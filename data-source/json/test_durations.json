@@ -6,77 +6,95 @@
     "title": "Durations",
     "description": "A test schema for different durations",
     "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "duration-block",
-                "question": {
-                    "answers": [{
-                        "id": "year-month-answer",
-                        "label": "Years and Months",
-                        "mandatory": false,
-                        "units": ["years", "months"],
-                        "q_code": "11",
-                        "type": "Duration"
-                    }, {
-                        "id": "mandatory-year-month-answer",
-                        "label": "Mandatory Years and Months",
-                        "mandatory": true,
-                        "units": ["years", "months"],
-                        "q_code": "12",
-                        "type": "Duration"
-                    }, {
-                        "id": "year-answer",
-                        "label": "Years",
-                        "mandatory": false,
-                        "units": ["years"],
-                        "q_code": "13",
-                        "type": "Duration"
-                    }, {
-                        "id": "mandatory-year-answer",
-                        "label": "Mandatory Years",
-                        "mandatory": true,
-                        "units": ["years"],
-                        "q_code": "14",
-                        "type": "Duration"
-                    }, {
-                        "id": "month-answer",
-                        "label": "Months",
-                        "mandatory": false,
-                        "units": ["months"],
-                        "q_code": "14",
-                        "type": "Duration"
-                    }, {
-                        "id": "mandatory-month-answer",
-                        "label": "Mandatory Months",
-                        "mandatory": true,
-                        "units": ["months"],
-                        "q_code": "15",
-                        "type": "Duration"
-                    }],
-                    "description": "",
-                    "id": "duration-question",
-                    "title": "Durations",
-                    "type": "General"
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "duration-block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "year-month-answer",
+                                        "label": "Years and Months",
+                                        "mandatory": false,
+                                        "units": ["years", "months"],
+                                        "q_code": "11",
+                                        "type": "Duration"
+                                    },
+                                    {
+                                        "id": "mandatory-year-month-answer",
+                                        "label": "Mandatory Years and Months",
+                                        "mandatory": true,
+                                        "units": ["years", "months"],
+                                        "q_code": "12",
+                                        "type": "Duration"
+                                    },
+                                    {
+                                        "id": "year-answer",
+                                        "label": "Years",
+                                        "mandatory": false,
+                                        "units": ["years"],
+                                        "q_code": "13",
+                                        "type": "Duration"
+                                    },
+                                    {
+                                        "id": "mandatory-year-answer",
+                                        "label": "Mandatory Years",
+                                        "mandatory": true,
+                                        "units": ["years"],
+                                        "q_code": "14",
+                                        "type": "Duration"
+                                    },
+                                    {
+                                        "id": "month-answer",
+                                        "label": "Months",
+                                        "mandatory": false,
+                                        "units": ["months"],
+                                        "q_code": "14",
+                                        "type": "Duration"
+                                    },
+                                    {
+                                        "id": "mandatory-month-answer",
+                                        "label": "Mandatory Months",
+                                        "mandatory": true,
+                                        "units": ["months"],
+                                        "q_code": "15",
+                                        "type": "Duration"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "duration-question",
+                                "title": "Durations",
+                                "type": "General"
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "durations",
+                    "title": ""
                 }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "durations",
-            "title": ""
-        }]
-    }]
+            ]
+        }
+    ]
 }

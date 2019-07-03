@@ -11,72 +11,89 @@
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
         "INVALID_DECIMAL": "Please enter a number to %(max)d decimal places"
     },
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string",
-        "optional": true
-    }, {
-        "name": "trad_as",
-        "type": "string",
-        "optional": true
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "block",
-                "question": {
-                    "answers": [{
-                        "id": "answer",
-                        "label": "How much did you spend?",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "Currency",
-                        "currency": "GBP",
-                        "decimal_places": 2
-                    }, {
-                        "id": "answer-usd",
-                        "label": "How much did you spend?",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "Currency",
-                        "currency": "USD",
-                        "decimal_places": 2
-                    }, {
-                        "id": "answer-eur",
-                        "label": "How much did you spend?",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "Currency",
-                        "currency": "EUR",
-                        "decimal_places": 2
-                    }, {
-                        "id": "answer-jpy",
-                        "label": "How much did you spend?",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "Currency",
-                        "currency": "JPY"
-                    }],
-                    "description": "",
-                    "id": "question",
-                    "title": "Currency Input Test",
-                    "type": "General"
-                },
-                "routing_rules": []
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "group",
-            "title": ""
-        }]
-    }]
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string",
+            "optional": true
+        },
+        {
+            "name": "trad_as",
+            "type": "string",
+            "optional": true
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "answer",
+                                        "label": "How much did you spend?",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "Currency",
+                                        "currency": "GBP",
+                                        "decimal_places": 2
+                                    },
+                                    {
+                                        "id": "answer-usd",
+                                        "label": "How much did you spend?",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "Currency",
+                                        "currency": "USD",
+                                        "decimal_places": 2
+                                    },
+                                    {
+                                        "id": "answer-eur",
+                                        "label": "How much did you spend?",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "Currency",
+                                        "currency": "EUR",
+                                        "decimal_places": 2
+                                    },
+                                    {
+                                        "id": "answer-jpy",
+                                        "label": "How much did you spend?",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "Currency",
+                                        "currency": "JPY"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "question",
+                                "title": "Currency Input Test",
+                                "type": "General"
+                            },
+                            "routing_rules": []
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "group",
+                    "title": ""
+                }
+            ]
+        }
+    ]
 }

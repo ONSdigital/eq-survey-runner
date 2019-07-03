@@ -5,52 +5,68 @@
     "survey_id": "0",
     "title": "Radio Mandatory with Mandatory Other",
     "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "radio",
-            "title": "Radio Mandatory with Mandatory Other",
-            "blocks": [{
-                "type": "Question",
-                "id": "radio-mandatory",
-                "question": {
-                    "type": "General",
-                    "id": "radio-mandatory-question",
-                    "title": "What is you favourite breakfast item?",
-                    "answers": [{
-                        "type": "Radio",
-                        "id": "radio-mandatory-answer",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Toast",
-                            "value": "Toast"
-                        }, {
-                            "label": "Other",
-                            "description": "An answer is required.",
-                            "value": "Other",
-                            "detail_answer": {
-                                "mandatory": true,
-                                "id": "other-answer-mandatory",
-                                "label": "Please specify other",
-                                "type": "TextField"
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "radio",
+                    "title": "Radio Mandatory with Mandatory Other",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "radio-mandatory",
+                            "question": {
+                                "type": "General",
+                                "id": "radio-mandatory-question",
+                                "title": "What is you favourite breakfast item?",
+                                "answers": [
+                                    {
+                                        "type": "Radio",
+                                        "id": "radio-mandatory-answer",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "Toast",
+                                                "value": "Toast"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "description": "An answer is required.",
+                                                "value": "Other",
+                                                "detail_answer": {
+                                                    "mandatory": true,
+                                                    "id": "other-answer-mandatory",
+                                                    "label": "Please specify other",
+                                                    "type": "TextField"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
-                        }]
-                    }]
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
                 }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+            ]
+        }
+    ]
 }

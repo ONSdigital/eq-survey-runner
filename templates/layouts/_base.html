@@ -72,7 +72,7 @@
 {% block scripts %}
   {% if config['EQ_ENABLE_LIVE_RELOAD'] %}
     <script nonce="{{ csp_nonce() }}" id="__bs_script__">//<![CDATA[
-      document.write("<script async nonce='{{ csp_nonce() }}' src='http://HOST:5075/browser-sync/browser-sync-client.js?v=2.24.4'><\/script>".replace("HOST", location.hostname));
+      document.write("<script async nonce='{{ csp_nonce() }}' src='http://HOST:35729/livereload.js'><\/script>".replace("HOST", location.hostname));
     //]]></script>
   {% endif %}
 {% endblock %}

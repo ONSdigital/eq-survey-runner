@@ -32,5 +32,8 @@
     "indent": [2, 2, {"SwitchCase": 1}],
     "space-before-blocks": [2, "always"],
     "no-var": [1]
-  }
+  },
+  "plugins": [
+    "json"
+  ]
 }

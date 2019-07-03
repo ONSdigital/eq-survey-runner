@@ -7,119 +7,164 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A test survey for routing based comparison with answers",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "comparison-1",
-                "question": {
-                    "answers": [{
-                        "id": "comparison-1-answer",
-                        "label": "1st Number",
-                        "mandatory": true,
-                        "type": "Number"
-                    }],
-                    "description": "",
-                    "id": "comparison-1-question",
-                    "title": "Enter your first number",
-                    "type": "General"
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "comparison-1",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "comparison-1-answer",
+                                        "label": "1st Number",
+                                        "mandatory": true,
+                                        "type": "Number"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "comparison-1-question",
+                                "title": "Enter your first number",
+                                "type": "General"
+                            }
+                        },
+                        {
+                            "type": "Question",
+                            "id": "comparison-2",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "comparison-2-answer",
+                                        "label": "2nd Number",
+                                        "mandatory": true,
+                                        "type": "Number"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "comparison-2-question",
+                                "title": "Enter your second number",
+                                "type": "General"
+                            }
+                        },
+                        {
+                            "type": "Interstitial",
+                            "id": "equals-answers",
+                            "content": {
+                                "title": "Answers equal",
+                                "contents": [
+                                    {
+                                        "description": "Your second number was equal to your first number"
+                                    }
+                                ]
+                            },
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "id": "comparison-1-answer",
+                                            "condition": "not equals",
+                                            "comparison_id": "comparison-2-answer"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Interstitial",
+                            "id": "less-than-answers",
+                            "content": {
+                                "title": "First less than second",
+                                "contents": [
+                                    {
+                                        "description": "Your first answer was less than your second number"
+                                    }
+                                ]
+                            },
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "id": "comparison-1-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "comparison-2-answer"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "when": [
+                                        {
+                                            "id": "comparison-1-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "comparison-2-answer"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Interstitial",
+                            "id": "greater-than-answers",
+                            "content": {
+                                "title": "First greater than second",
+                                "contents": [
+                                    {
+                                        "description": "Your first answer was greater than your second number"
+                                    }
+                                ]
+                            },
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "id": "comparison-1-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "comparison-2-answer"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "when": [
+                                        {
+                                            "id": "comparison-1-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "comparison-2-answer"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "skip-group",
+                    "title": ""
+                },
+                {
+                    "id": "summary-group",
+                    "title": "",
+                    "blocks": [
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
                 }
-            }, {
-                "type": "Question",
-                "id": "comparison-2",
-                "question": {
-                    "answers": [{
-                        "id": "comparison-2-answer",
-                        "label": "2nd Number",
-                        "mandatory": true,
-                        "type": "Number"
-                    }],
-                    "description": "",
-                    "id": "comparison-2-question",
-                    "title": "Enter your second number",
-                    "type": "General"
-                }
-            }, {
-                "type": "Interstitial",
-                "id": "equals-answers",
-                "content": {
-                    "title": "Answers equal",
-                    "contents": [{
-                        "description": "Your second number was equal to your first number"
-                    }]
-                },
-                "skip_conditions": [{
-                    "when": [{
-                        "id": "comparison-1-answer",
-                        "condition": "not equals",
-                        "comparison_id": "comparison-2-answer"
-                    }]
-                }]
-            }, {
-                "type": "Interstitial",
-                "id": "less-than-answers",
-                "content": {
-                    "title": "First less than second",
-                    "contents": [{
-                        "description": "Your first answer was less than your second number"
-                    }]
-                },
-                "skip_conditions": [{
-                    "when": [{
-                        "id": "comparison-1-answer",
-                        "condition": "greater than",
-                        "comparison_id": "comparison-2-answer"
-                    }]
-                }, {
-                    "when": [{
-                        "id": "comparison-1-answer",
-                        "condition": "equals",
-                        "comparison_id": "comparison-2-answer"
-                    }]
-                }]
-            }, {
-                "type": "Interstitial",
-                "id": "greater-than-answers",
-                "content": {
-                    "title": "First greater than second",
-                    "contents": [{
-                        "description": "Your first answer was greater than your second number"
-                    }]
-                },
-                "skip_conditions": [{
-                    "when": [{
-                        "id": "comparison-1-answer",
-                        "condition": "less than",
-                        "comparison_id": "comparison-2-answer"
-                    }]
-                }, {
-                    "when": [{
-                        "id": "comparison-1-answer",
-                        "condition": "equals",
-                        "comparison_id": "comparison-2-answer"
-                    }]
-                }]
-            }],
-            "id": "skip-group",
-            "title": ""
-        }, {
-            "id": "summary-group",
-            "title": "",
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+            ]
+        }
+    ]
 }

@@ -11,42 +11,55 @@
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
         "INVALID_NUMBER": "Please enter an integer"
     },
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "name-block",
-                "question": {
-                    "answers": [{
-                        "id": "name-answer",
-                        "label": "What is your name?",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }],
-                    "description": "",
-                    "id": "name-question",
-                    "title": "",
-                    "type": "General"
-                },
-                "routing_rules": []
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "group",
-            "title": ""
-        }]
-    }]
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "name-block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "name-answer",
+                                        "label": "What is your name?",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextField"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "name-question",
+                                "title": "",
+                                "type": "General"
+                            },
+                            "routing_rules": []
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "group",
+                    "title": ""
+                }
+            ]
+        }
+    ]
 }

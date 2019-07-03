@@ -6,292 +6,308 @@
     "title": "Question Guidance Test",
     "theme": "default",
     "description": "A questionnaire to test question guidance content",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "group",
-            "title": "",
-            "blocks": [{
-                "type": "Introduction",
-                "id": "introduction"
-            }, {
-                "type": "Question",
-                "id": "block-test-guidance-title",
-                "question": {
-                    "id": "question-test-guidance-title",
-                    "title": "Question: Test guidance title",
-                    "description": "Testing combinations of the title within guidance",
-                    "guidance": {
-                        "contents": [{
-                                "title": "This one has a description but no list"
-                            },
-                            {
-                                "description": "No list items below this text"
-                            },
-                            {
-                                "title": "This one has no list or description"
-                            },
-                            {
-                                "description": "title, description, title, description"
-                            }
-                        ]
-                    },
-                    "type": "General",
-                    "answers": [{
-                        "id": "answer-test-guidance-title",
-                        "label": "Text question",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }]
-                }
-            }, {
-                "type": "Question",
-                "id": "block-test-guidance-description",
-                "question": {
-                    "id": "question-test-guidance-description",
-                    "title": "Question: Test guidance descriptions",
-                    "description": "Tests the descriptions within guidance",
-                    "guidance": {
-                        "contents": [{
-                                "description": "No title above this text, list below"
-                            },
-                            {
-                                "list": [
-                                    "Item Include 1",
-                                    "Item Include 2",
-                                    "Item Include 3",
-                                    "Item Include 4"
-                                ]
-                            },
-                            {
-                                "description": "Just description, no title above this text, no list below"
-                            }
-                        ]
-                    },
-                    "type": "General",
-                    "answers": [{
-                        "id": "answer-test-guidance-description",
-                        "label": "Text question",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }]
-                }
-            }, {
-                "type": "Question",
-                "id": "block-test-guidance-lists",
-                "question": {
-                    "id": "question-test-guidance-lists",
-                    "title": "Question: Test guidance lists (with no question description below)",
-                    "guidance": {
-                        "contents": [{
-                                "title": "Title, no description, list follows",
-                                "list": [
-                                    "Item Include 1",
-                                    "Item Include 2",
-                                    "Item Include 3",
-                                    "Item Include 4"
-                                ]
-                            },
-                            {
-                                "list": [
-                                    "List with no title or description 1",
-                                    "List with no title or description 2",
-                                    "List with no title or description 3",
-                                    "List with no title or description 4"
-                                ]
-                            }
-                        ]
-                    },
-                    "type": "General",
-                    "answers": [{
-                        "id": "answer-test-guidance-lists",
-                        "label": "Text question",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }]
-                }
-            }, {
-                "type": "Question",
-                "id": "block-test-guidance-content-description",
-                "question": {
-                    "id": "question-test-guidance-content-description",
-                    "title": "Question: Test show guidance content description",
-                    "guidance": {
-                        "contents": [{
-                            "description": "Guidance with content description"
-                        }]
-                    },
-                    "type": "General",
-                    "answers": [{
-                        "guidance": {
-                            "show_guidance": "Show test guidance.",
-                            "hide_guidance": "Hide test guidance.",
-                            "contents": [{
-                                "description": "The text here is for description"
-                            }]
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "group",
+                    "title": "",
+                    "blocks": [
+                        {
+                            "type": "Introduction",
+                            "id": "introduction"
                         },
-                        "id": "answer-test-guidance-content-description",
-                        "label": "Text question",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }]
-                }
-            }, {
-                "type": "Question",
-                "id": "block-test-guidance-content-title",
-                "question": {
-                    "id": "question-test-guidance-content-title",
-                    "title": "Question: Test show guidance content title",
-                    "guidance": {
-                        "contents": [{
-                            "description": "Guidance with content title"
-                        }]
-                    },
-                    "type": "General",
-                    "answers": [{
-                        "guidance": {
-                            "show_guidance": "Show test guidance.",
-                            "hide_guidance": "Hide test guidance.",
-                            "contents": [{
-                                "title": "The text here is for a title"
-                            }]
-                        },
-                        "id": "answer-test-guidance-content-title",
-                        "label": "Text question",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }]
-                }
-            }, {
-                "type": "Question",
-                "id": "block-test-guidance-content-list",
-                "question": {
-                    "id": "question-test-guidance-content-list",
-                    "title": "Question: Test show guidance content list",
-                    "guidance": {
-                        "contents": [{
-                            "title": "Guidance with content list"
-                        }]
-                    },
-                    "type": "General",
-                    "answers": [{
-                        "guidance": {
-                            "show_guidance": "Show test guidance.",
-                            "hide_guidance": "Hide test guidance.",
-                            "contents": [{
-                                "list": [
-                                    "The text here is for a list",
-                                    "Another list item",
-                                    "One more"
-                                ]
-                            }]
-                        },
-                        "id": "answer-test-guidance-content-list",
-                        "label": "Text question",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }]
-                }
-            }, {
-                "type": "Question",
-                "id": "block-test-guidance-all",
-                "question": {
-                    "id": "question-test-guidance-all",
-                    "title": "Question: Test guidance all",
-                    "description": "Testing all features of the guidance block enabled together",
-                    "guidance": {
-                        "contents": [{
-                                "title": "Include"
-                            },
-                            {
-                                "description": "<p>Guidance <b>include</b> description text</p>"
-                            },
-                            {
-                                "list": [
-                                    "Item Include 1",
-                                    "Item Include 2",
-                                    "Item Include 3",
-                                    "Item Include 4"
-                                ]
-                            },
-                            {
-                                "title": "Exclude"
-                            },
-                            {
-                                "description": "<p>Guidance <b>exclude</b> description text</p>"
-                            },
-                            {
-                                "list": [
-                                    "Item Exclude 1",
-                                    "Item Exclude 2",
-                                    "Item Exclude 3",
-                                    "Item Exclude 4"
-                                ]
-                            },
-                            {
-                                "title": "Other"
-                            },
-                            {
-                                "description": "<p>Guidance <b>other</b> description text</p>"
-                            },
-                            {
-                                "list": [
-                                    "Item Other 1",
-                                    "Item Other 2",
-                                    "Item Other 3",
-                                    "Item Other 4"
-                                ]
-                            }
-                        ]
-                    },
-                    "type": "General",
-                    "answers": [{
-                        "guidance": {
-                            "show_guidance": "Show test guidance.",
-                            "hide_guidance": "Hide test guidance.",
-                            "contents": [{
-                                    "description": "The text here is for a description"
-                                },
-                                {
-                                    "description": "Here's some more description text"
-                                },
-                                {
-                                    "title": "This text here is the title for the list",
-                                    "list": [
-                                        "The text here is for a list",
-                                        "Another list item",
-                                        "One more"
+                        {
+                            "type": "Question",
+                            "id": "block-test-guidance-title",
+                            "question": {
+                                "id": "question-test-guidance-title",
+                                "title": "Question: Test guidance title",
+                                "description": "Testing combinations of the title within guidance",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "title": "This one has a description but no list"
+                                        },
+                                        {
+                                            "description": "No list items below this text"
+                                        },
+                                        {
+                                            "title": "This one has no list or description"
+                                        },
+                                        {
+                                            "description": "title, description, title, description"
+                                        }
                                     ]
-                                }
-                            ]
+                                },
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "answer-test-guidance-title",
+                                        "label": "Text question",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextField"
+                                    }
+                                ]
+                            }
                         },
-                        "id": "answer-test-guidance-all",
-                        "label": "Text question",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }]
+                        {
+                            "type": "Question",
+                            "id": "block-test-guidance-description",
+                            "question": {
+                                "id": "question-test-guidance-description",
+                                "title": "Question: Test guidance descriptions",
+                                "description": "Tests the descriptions within guidance",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "description": "No title above this text, list below"
+                                        },
+                                        {
+                                            "list": ["Item Include 1", "Item Include 2", "Item Include 3", "Item Include 4"]
+                                        },
+                                        {
+                                            "description": "Just description, no title above this text, no list below"
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "answer-test-guidance-description",
+                                        "label": "Text question",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextField"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Question",
+                            "id": "block-test-guidance-lists",
+                            "question": {
+                                "id": "question-test-guidance-lists",
+                                "title": "Question: Test guidance lists (with no question description below)",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "title": "Title, no description, list follows",
+                                            "list": ["Item Include 1", "Item Include 2", "Item Include 3", "Item Include 4"]
+                                        },
+                                        {
+                                            "list": [
+                                                "List with no title or description 1",
+                                                "List with no title or description 2",
+                                                "List with no title or description 3",
+                                                "List with no title or description 4"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "answer-test-guidance-lists",
+                                        "label": "Text question",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextField"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Question",
+                            "id": "block-test-guidance-content-description",
+                            "question": {
+                                "id": "question-test-guidance-content-description",
+                                "title": "Question: Test show guidance content description",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "description": "Guidance with content description"
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "guidance": {
+                                            "show_guidance": "Show test guidance.",
+                                            "hide_guidance": "Hide test guidance.",
+                                            "contents": [
+                                                {
+                                                    "description": "The text here is for description"
+                                                }
+                                            ]
+                                        },
+                                        "id": "answer-test-guidance-content-description",
+                                        "label": "Text question",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextField"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Question",
+                            "id": "block-test-guidance-content-title",
+                            "question": {
+                                "id": "question-test-guidance-content-title",
+                                "title": "Question: Test show guidance content title",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "description": "Guidance with content title"
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "guidance": {
+                                            "show_guidance": "Show test guidance.",
+                                            "hide_guidance": "Hide test guidance.",
+                                            "contents": [
+                                                {
+                                                    "title": "The text here is for a title"
+                                                }
+                                            ]
+                                        },
+                                        "id": "answer-test-guidance-content-title",
+                                        "label": "Text question",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextField"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Question",
+                            "id": "block-test-guidance-content-list",
+                            "question": {
+                                "id": "question-test-guidance-content-list",
+                                "title": "Question: Test show guidance content list",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "title": "Guidance with content list"
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "guidance": {
+                                            "show_guidance": "Show test guidance.",
+                                            "hide_guidance": "Hide test guidance.",
+                                            "contents": [
+                                                {
+                                                    "list": ["The text here is for a list", "Another list item", "One more"]
+                                                }
+                                            ]
+                                        },
+                                        "id": "answer-test-guidance-content-list",
+                                        "label": "Text question",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextField"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Question",
+                            "id": "block-test-guidance-all",
+                            "question": {
+                                "id": "question-test-guidance-all",
+                                "title": "Question: Test guidance all",
+                                "description": "Testing all features of the guidance block enabled together",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "title": "Include"
+                                        },
+                                        {
+                                            "description": "<p>Guidance <b>include</b> description text</p>"
+                                        },
+                                        {
+                                            "list": ["Item Include 1", "Item Include 2", "Item Include 3", "Item Include 4"]
+                                        },
+                                        {
+                                            "title": "Exclude"
+                                        },
+                                        {
+                                            "description": "<p>Guidance <b>exclude</b> description text</p>"
+                                        },
+                                        {
+                                            "list": ["Item Exclude 1", "Item Exclude 2", "Item Exclude 3", "Item Exclude 4"]
+                                        },
+                                        {
+                                            "title": "Other"
+                                        },
+                                        {
+                                            "description": "<p>Guidance <b>other</b> description text</p>"
+                                        },
+                                        {
+                                            "list": ["Item Other 1", "Item Other 2", "Item Other 3", "Item Other 4"]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "guidance": {
+                                            "show_guidance": "Show test guidance.",
+                                            "hide_guidance": "Hide test guidance.",
+                                            "contents": [
+                                                {
+                                                    "description": "The text here is for a description"
+                                                },
+                                                {
+                                                    "description": "Here's some more description text"
+                                                },
+                                                {
+                                                    "title": "This text here is the title for the list",
+                                                    "list": ["The text here is for a list", "Another list item", "One more"]
+                                                }
+                                            ]
+                                        },
+                                        "id": "answer-test-guidance-all",
+                                        "label": "Text question",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextField"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
                 }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+            ]
+        }
+    ]
 }

@@ -7,41 +7,54 @@
     "title": "Timeout test",
     "theme": "default",
     "description": "A questionnaire to test the time out functionality",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "timeout-group",
-            "title": "Timeout",
-            "blocks": [{
-                "type": "Question",
-                "id": "timeout-block",
-                "question": {
-                    "answers": [{
-                        "id": "timeout-answer",
-                        "label": "Does the timeout appear?",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }],
-                    "description": "",
-                    "id": "timeout-question",
-                    "title": "Timeout title",
-                    "type": "General"
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "timeout-group",
+                    "title": "Timeout",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "timeout-block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "timeout-answer",
+                                        "label": "Does the timeout appear?",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextField"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "timeout-question",
+                                "title": "Timeout title",
+                                "type": "General"
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
                 }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+            ]
+        }
+    ]
 }

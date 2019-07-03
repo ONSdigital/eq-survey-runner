@@ -6,94 +6,124 @@
     "title": "Test Routing Number Equals",
     "theme": "default",
     "description": "A test survey for routing based on an number equals",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "number-question",
-                "question": {
-                    "answers": [{
-                        "id": "answer",
-                        "mandatory": true,
-                        "type": "Number",
-                        "label": "123"
-                    }],
-                    "id": "question",
-                    "title": "Enter the number 123",
-                    "type": "General"
-                },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "correct-answer",
-                        "when": [{
-                            "id": "answer",
-                            "condition": "equals",
-                            "value": 123
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "block": "incorrect-answer"
-                    }
-                }]
-            }, {
-                "type": "Interstitial",
-                "id": "incorrect-answer",
-                "content": {
-                    "title": "You did not enter 123",
-                    "contents": [{
-                        "description": {
-                            "text": "You were asked to enter <em>123</em> but you actually entered <em>{answer}</em>.",
-                            "placeholders": [{
-                                "placeholder": "answer",
-                                "value": {
-                                    "source": "answers",
-                                    "identifier": "answer"
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "number-question",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "answer",
+                                        "mandatory": true,
+                                        "type": "Number",
+                                        "label": "123"
+                                    }
+                                ],
+                                "id": "question",
+                                "title": "Enter the number 123",
+                                "type": "General"
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "correct-answer",
+                                        "when": [
+                                            {
+                                                "id": "answer",
+                                                "condition": "equals",
+                                                "value": 123
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "incorrect-answer"
+                                    }
                                 }
-                            }]
-                        }
-                    }]
-                },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "summary"
-                    }
-                }]
-            }, {
-                "type": "Interstitial",
-                "id": "correct-answer",
-                "content": {
-                    "title": "Correct",
-                    "contents": [{
-                        "description": {
-                            "text": "You were asked to enter <em>123</em> and you entered <em>{answer}</em>.",
-                            "placeholders": [{
-                                "placeholder": "answer",
-                                "value": {
-                                    "source": "answers",
-                                    "identifier": "answer"
+                            ]
+                        },
+                        {
+                            "type": "Interstitial",
+                            "id": "incorrect-answer",
+                            "content": {
+                                "title": "You did not enter 123",
+                                "contents": [
+                                    {
+                                        "description": {
+                                            "text": "You were asked to enter <em>123</em> but you actually entered <em>{answer}</em>.",
+                                            "placeholders": [
+                                                {
+                                                    "placeholder": "answer",
+                                                    "value": {
+                                                        "source": "answers",
+                                                        "identifier": "answer"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "summary"
+                                    }
                                 }
-                            }]
+                            ]
+                        },
+                        {
+                            "type": "Interstitial",
+                            "id": "correct-answer",
+                            "content": {
+                                "title": "Correct",
+                                "contents": [
+                                    {
+                                        "description": {
+                                            "text": "You were asked to enter <em>123</em> and you entered <em>{answer}</em>.",
+                                            "placeholders": [
+                                                {
+                                                    "placeholder": "answer",
+                                                    "value": {
+                                                        "source": "answers",
+                                                        "identifier": "answer"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
                         }
-                    }]
+                    ],
+                    "id": "group",
+                    "title": ""
                 }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "group",
-            "title": ""
-        }]
-    }]
+            ]
+        }
+    ]
 }

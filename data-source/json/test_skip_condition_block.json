@@ -5,92 +5,120 @@
     "survey_id": "0",
     "title": "Skip group",
     "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "do-you-want-to-skip-group",
-            "title": "Do you want to skip the next block?",
-            "blocks": [{
-                "type": "Question",
-                "id": "do-you-want-to-skip",
-                "routing_rules": [],
-                "question": {
-                    "description": "",
-                    "id": "do-you-want-to-skip-question",
-                    "title": "Do you want to skip?",
-                    "type": "General",
-                    "answers": [{
-                        "id": "do-you-want-to-skip-answer",
-                        "label": "Do you want to skip?",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Yes",
-                            "value": "Yes"
-                        }, {
-                            "label": "No",
-                            "value": "No"
-                        }],
-                        "type": "Radio",
-                        "validation": {
-                            "messages": {}
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "do-you-want-to-skip-group",
+                    "title": "Do you want to skip the next block?",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "do-you-want-to-skip",
+                            "routing_rules": [],
+                            "question": {
+                                "description": "",
+                                "id": "do-you-want-to-skip-question",
+                                "title": "Do you want to skip?",
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "do-you-want-to-skip-answer",
+                                        "label": "Do you want to skip?",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ],
+                                        "type": "Radio",
+                                        "validation": {
+                                            "messages": {}
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Question",
+                            "id": "should-skip",
+                            "routing_rules": [],
+                            "question": {
+                                "description": "",
+                                "id": "should-skip-question",
+                                "title": "Do you want to skip?",
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "should-skip-answer",
+                                        "label": "Why didn't you skip the block?",
+                                        "mandatory": true,
+                                        "type": "TextArea"
+                                    }
+                                ]
+                            },
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "id": "do-you-want-to-skip-answer",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Question",
+                            "id": "a-non-skipped-block",
+                            "question": {
+                                "id": "will-not-be-skipped-question",
+                                "title": "Always ask this question",
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "will-not-be-skipped-answer",
+                                        "label": "never skipped",
+                                        "mandatory": true,
+                                        "type": "TextArea"
+                                    }
+                                ]
+                            }
                         }
-                    }]
-                }
-            }, {
-                "type": "Question",
-                "id": "should-skip",
-                "routing_rules": [],
-                "question": {
-                    "description": "",
-                    "id": "should-skip-question",
-                    "title": "Do you want to skip?",
-                    "type": "General",
-                    "answers": [{
-                        "id": "should-skip-answer",
-                        "label": "Why didn't you skip the block?",
-                        "mandatory": true,
-                        "type": "TextArea"
-                    }]
+                    ]
                 },
-                "skip_conditions": [{
-                    "when": [{
-                        "id": "do-you-want-to-skip-answer",
-                        "condition": "equals",
-                        "value": "Yes"
-                    }]
-                }]
-            }, {
-                "type": "Question",
-                "id": "a-non-skipped-block",
-                "question": {
-                    "id": "will-not-be-skipped-question",
-                    "title": "Always ask this question",
-                    "type": "General",
-                    "answers": [{
-                        "id": "will-not-be-skipped-answer",
-                        "label": "never skipped",
-                        "mandatory": true,
-                        "type": "TextArea"
-                    }]
+                {
+                    "blocks": [
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "summary-group",
+                    "title": ""
                 }
-            }]
-        }, {
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "summary-group",
-            "title": ""
-        }]
-    }]
+            ]
+        }
+    ]
 }

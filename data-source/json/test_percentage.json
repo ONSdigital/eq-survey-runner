@@ -9,55 +9,72 @@
     "navigation": {
         "visible": true
     },
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "percent-input-section",
-        "title": "Percent Input",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "block",
-                "question": {
-                    "answers": [{
-                        "description": "Enter percentage of growth",
-                        "id": "answer",
-                        "label": "New to the market 2012-2014",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "Percentage",
-                        "max_value": {
-                            "value": 100
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "percent-input-section",
+            "title": "Percent Input",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "description": "Enter percentage of growth",
+                                        "id": "answer",
+                                        "label": "New to the market 2012-2014",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "Percentage",
+                                        "max_value": {
+                                            "value": 100
+                                        }
+                                    }
+                                ],
+                                "description": "",
+                                "id": "question",
+                                "title": "",
+                                "type": "General"
+                            },
+                            "routing_rules": []
                         }
-                    }],
-                    "description": "",
-                    "id": "question",
-                    "title": "",
-                    "type": "General"
-                },
-                "routing_rules": []
-            }],
-            "id": "group",
-            "title": ""
-        }]
-    }, {
-        "id": "summary-section",
-        "title": "Summary",
-        "groups": [{
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "summary-group",
-            "title": "Summary"
-        }]
-    }]
+                    ],
+                    "id": "group",
+                    "title": ""
+                }
+            ]
+        },
+        {
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "summary-group",
+                    "title": "Summary"
+                }
+            ]
+        }
+    ]
 }

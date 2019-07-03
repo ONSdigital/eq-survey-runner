@@ -11,46 +11,59 @@
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
         "INVALID_NUMBER": "Please enter an integer"
     },
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "textarea-block",
-                "question": {
-                    "answers": [{
-                        "id": "answer",
-                        "label": "Enter your comments",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextArea",
-                        "max_length": 20,
-                        "validation": {
-                            "messages": {
-                                "MAX_LENGTH_EXCEEDED": "Your answer has to be less than %(max)d characters long"
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "textarea-block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "answer",
+                                        "label": "Enter your comments",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextArea",
+                                        "max_length": 20,
+                                        "validation": {
+                                            "messages": {
+                                                "MAX_LENGTH_EXCEEDED": "Your answer has to be less than %(max)d characters long"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "id": "question",
+                                "title": "",
+                                "type": "General"
                             }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "textarea-summary"
                         }
-                    }],
-                    "id": "question",
-                    "title": "",
-                    "type": "General"
+                    ],
+                    "id": "textarea-group",
+                    "title": ""
                 }
-            }, {
-                "type": "Summary",
-                "id": "textarea-summary"
-            }],
-            "id": "textarea-group",
-            "title": ""
-        }]
-    }]
+            ]
+        }
+    ]
 }
