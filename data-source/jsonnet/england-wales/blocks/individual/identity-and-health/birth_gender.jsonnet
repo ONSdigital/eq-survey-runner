@@ -5,11 +5,18 @@ local question(title) = {
   id: 'birth-gender-question',
   title: title,
   type: 'General',
-  description: 'This question is voluntary',
+  guidance: {
+    contents: [
+      {
+        description: 'This question is <strong>voluntary</strong>',
+      },
+    ],
+  },
   answers: [
     {
       id: 'birth-gender-answer',
       mandatory: false,
+      label: '',
       options: [
         {
           label: 'Yes',

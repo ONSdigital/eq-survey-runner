@@ -8,6 +8,22 @@ describe('Checkbox with "other" option', function() {
 
   const checkbox_schema = 'test_checkbox.json';
 
+  it('Given a label has not been provided in the schema for a checkbox answer, When the checkbox answer is displayed, Then the label should be not visible', function() {
+    return helpers.openQuestionnaire(checkbox_schema).then(() => {
+      return browser
+        .getText('body').should.not.eventually.have.string('Select all that apply');
+    });
+  });
+
+  it('Given a label has been set in the schema for a checkbox answer, When the checkbox answer is displayed, Then the label "Select all that apply" should be visible', function() {
+    return helpers.openQuestionnaire(checkbox_schema).then(() => {
+      return browser
+        .click(MandatoryCheckboxPage.none())
+        .click(MandatoryCheckboxPage.submit())
+        .getText('body').should.eventually.have.string('Select all that apply');
+    });
+  });
+
   it('Given an "other" option is available, when the user clicks the "other" option the other input should be visible.', function() {
     return helpers.openQuestionnaire(checkbox_schema).then(() => {
       return browser
