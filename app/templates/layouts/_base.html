@@ -50,6 +50,11 @@
     {% if analytics_gtm_id and analytics_gtm_env_id %}
       <script>
         dataLayer = [{'gtm.blacklist': ['customScripts' , 'html']}];
+        {%  if metadata and metadata.tx_id %}
+          dataLayer.push({
+            'txId': {{  metadata.tx_id }}
+          });
+        {%- endif %}
       </script>
       <script nonce="{{ csp_nonce() }}">(function(w,d,s,l,i,e){w['GoogleTagManagerObject']=l;w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
