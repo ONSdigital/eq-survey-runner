@@ -51,7 +51,7 @@ script:
     - echo "Pushing with tag [$TAG]"
     - docker push eu.gcr.io/census-eq-ci/eq-survey-runner:"$TAG"
 after_success:
-    - export PYENV_VERSION=$(cat .python-version)
+    - pyenv global $(cat .python-version)
     - pipenv run bash <(curl -s https://codecov.io/bash)
     - pipenv run pip install codacy-coverage
     - pipenv run python-codacy-coverage -r coverage.xml
