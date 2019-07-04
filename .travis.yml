@@ -35,9 +35,8 @@ before_install:
     - pipenv install --dev --deploy
     - pipenv check
     - pushd /opt && if [ ! -e jsonnet/Makefile ]; then git clone --branch v0.12.1 --depth 1 https://github.com/google/jsonnet.git; fi && cd jsonnet && make && popd
-    - yarn cache clean
 cache:
-    # - yarn
+    - yarn
     - pip
     - directories:
         - /opt/python/
