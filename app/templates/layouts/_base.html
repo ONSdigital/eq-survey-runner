@@ -49,9 +49,10 @@
     <!-- Google Tag Manager -->
     {% if analytics_gtm_id and analytics_gtm_env_id %}
       <script>
-        dataLayer = [{'gtm.blacklist': ['customScripts' , 'html']}];
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({'gtm.blacklist': ['customScripts' , 'html']});
         {%  if metadata and metadata.tx_id %}
-          dataLayer.push({
+          window.dataLayer.push({
             'txId': {{  metadata.tx_id }}
           });
         {%- endif %}
