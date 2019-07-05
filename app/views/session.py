@@ -94,6 +94,9 @@ def login():
             'account_service_log_out_url'
         )
 
+    if g.schema.is_hub_enabled():
+        return redirect(url_for('questionnaire.get_hub'))
+
     return redirect(url_for('questionnaire.get_questionnaire'))
 
 

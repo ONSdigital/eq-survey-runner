@@ -42,3 +42,15 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
 
         # Then there should be a previous link on the current page
         self.assertInBody('Previous')
+
+    def test_previous_link_appears_on_the_first_question_preceded_by_the_hub(self):
+
+        # Given a survey with a hub enabled
+        self.launchSurvey('test_hub_and_spoke')
+
+        # When I answer go to the first question in a section
+        self.assertInUrl('sections/')
+        self.post()
+
+        # Then there should be a previous link on the current page
+        self.assertInBody('Previous')

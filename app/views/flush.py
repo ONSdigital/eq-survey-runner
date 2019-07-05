@@ -48,13 +48,13 @@ def _submit_data(user):
         questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
         answer_store = questionnaire_store.answer_store
         metadata = questionnaire_store.metadata
-        completed_store = questionnaire_store.completed_store
+        progress_store = questionnaire_store.progress_store
         list_store = questionnaire_store.list_store
 
         schema = load_schema_from_metadata(metadata)
 
         path_finder = PathFinder(
-            schema, answer_store, metadata, completed_store, list_store
+            schema, answer_store, metadata, progress_store, list_store
         )
         full_routing_path = path_finder.full_routing_path()
 

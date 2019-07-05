@@ -7,7 +7,7 @@ from werkzeug.local import LocalProxy
 from app.globals import (
     get_answer_store,
     get_metadata,
-    get_completed_store,
+    get_progress_store,
     get_list_store,
 )
 from app.questionnaire.path_finder import PathFinder
@@ -20,10 +20,10 @@ def get_path_finder():
     except AttributeError:
         metadata = get_metadata(current_user)
         answer_store = get_answer_store(current_user)
-        completed_store = get_completed_store(current_user)
+        progress_store = get_progress_store(current_user)
         list_store = get_list_store(current_user)
         finder = PathFinder(
-            g.schema, answer_store, metadata, completed_store, list_store
+            g.schema, answer_store, metadata, progress_store, list_store
         )
         g.path_finder = finder
     return finder
