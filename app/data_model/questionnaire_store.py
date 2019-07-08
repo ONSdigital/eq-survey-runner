@@ -2,7 +2,7 @@ from types import MappingProxyType
 import simplejson as json
 
 from app.data_model.answer_store import AnswerStore
-from app.data_model.completed_store import CompletedStore
+from app.data_model.progress_store import ProgressStore
 from app.data_model.list_store import ListStore
 
 
@@ -20,7 +20,7 @@ class QuestionnaireStore:
         self.collection_metadata = {}
         self.list_store = ListStore()
         self.answer_store = AnswerStore()
-        self.completed_store = CompletedStore()
+        self.progress_store = ProgressStore()
 
         raw_data, version = self._storage.get_user_data()
         if raw_data:
@@ -43,7 +43,7 @@ class QuestionnaireStore:
 
     def _deserialise(self, data):
         json_data = json.loads(data, use_decimal=True)
-        self.completed_store = CompletedStore(json_data.get('COMPLETED'))
+        self.progress_store = ProgressStore(json_data.get('PROGRESS'))
         self.set_metadata(json_data.get('METADATA', {}))
         self.answer_store = AnswerStore(json_data.get('ANSWERS'))
         self.list_store = ListStore.deserialise(json_data.get('LISTS'))
@@ -54,7 +54,7 @@ class QuestionnaireStore:
             'METADATA': self._metadata,
             'ANSWERS': list(self.answer_store),
             'LISTS': self.list_store.serialise(),
-            'COMPLETED': self.completed_store.serialise(),
+            'PROGRESS': self.progress_store.serialise(),
             'COLLECTION_METADATA': self.collection_metadata,
         }
         return json.dumps(data, for_json=True)
@@ -64,7 +64,7 @@ class QuestionnaireStore:
         self._metadata.clear()
         self.collection_metadata = {}
         self.answer_store.clear()
-        self.completed_store.clear()
+        self.progress_store.clear()
 
     def save(self):
         data = self.serialise()
