@@ -54,7 +54,7 @@ describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override',
         .click(SummaryPage.previous())
 
         // Then
-        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should.eventually.be.true;
     });
   });
 
