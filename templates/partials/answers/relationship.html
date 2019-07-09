@@ -1,0 +1,9 @@
+{% from "components/relationships/_macro.njk" import onsRelationships %}
+
+{{ onsRelationships({
+  "id": answer["id"],
+  "name": answer["id"],
+  "legend": question["title"],
+  "playback": answer["playback"],
+  "radios": map_relationships_config(form, answer)
+}) }}

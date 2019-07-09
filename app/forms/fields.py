@@ -54,6 +54,7 @@ def get_field(
         field = {
             'Checkbox': get_select_multiple_field,
             'Radio': get_select_field,
+            'Relationship': get_select_field,
             'TextArea': get_text_area_field,
             'TextField': get_string_field,
             'Dropdown': get_dropdown_field,

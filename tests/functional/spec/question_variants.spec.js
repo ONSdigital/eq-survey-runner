@@ -63,5 +63,3 @@ describe('QuestionVariants', function() {
 
     });
 });
-
-

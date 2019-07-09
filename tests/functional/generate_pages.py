@@ -206,6 +206,10 @@ LIST_SUMMARY_LIST_GETTER = r"""  listSummary() { return '.list__item'; }
 
 """
 
+RELATIONSHIP_PLAYBACK_GETTER = r"""  playback() { return '[class*="relationships__playback"]'; }
+
+"""
+
 CONSTRUCTOR = Template(
     r"""  constructor() {
     super('${block_id}');
@@ -283,6 +287,10 @@ def process_answer(answer, page_spec, long_names, page_name):
 
     if answer['type'] in ('Radio', 'Checkbox'):
         process_options(answer['id'], answer['options'], page_spec, prefix)
+
+    elif answer['type'] in 'Relationship':
+        process_options(answer['id'], answer['options'], page_spec, prefix)
+        page_spec.write(RELATIONSHIP_PLAYBACK_GETTER)
 
     elif answer['type'] in 'Date':
         page_spec.write(_write_date_answer(answer['id'], prefix))
