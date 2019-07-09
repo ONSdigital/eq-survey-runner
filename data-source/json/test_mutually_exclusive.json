@@ -20,9 +20,6 @@
             "type": "string"
         }
     ],
-    "navigation": {
-        "visible": true
-    },
     "sections": [
         {
             "id": "mutually-exclusive-checkbox-section",

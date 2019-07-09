@@ -1,0 +1,30 @@
+{% extends 'layouts/_base.html' %}
+{% import 'macros/helpers.html' as helpers %}
+{% from "components/panel/_macro.njk" import onsPanel %}
+{% from "components/summary/_macro.njk" import onsSummary %}
+{% from "components/button/_macro.njk" import onsButton %}
+
+{% set save_on_signout = true %}
+
+{% block main %}
+    <h1 class="u-mt-m">{{ content.title }}</h1>
+    {% call onsPanel({
+      "type": "info",
+      "attributes": {
+      }
+    }) %}
+        <p><strong>{{ content.description }}</strong></p>
+    {% endcall %}
+    {{ onsSummary({
+        "hub": true,
+        "classes": "u-mt-m",
+        "rows": content.rows
+    }) }}
+    {{
+        onsButton({
+            "text": content.submit_button,
+            "classes": 'u-mb-m u-mt-l',
+            "attributes": {'data-qa': 'btn-submit'}
+        })
+    }}
+{% endblock %}

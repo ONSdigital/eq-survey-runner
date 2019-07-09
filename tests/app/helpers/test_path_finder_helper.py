@@ -13,7 +13,7 @@ class TestPathFinderHelper(AppContextTestCase):
     @patch('app.helpers.path_finder_helper.PathFinder')
     @patch('app.helpers.path_finder_helper.get_metadata')
     @patch('app.helpers.path_finder_helper.get_answer_store')
-    @patch('app.helpers.path_finder_helper.get_completed_store')
+    @patch('app.helpers.path_finder_helper.get_progress_store')
     @patch('app.helpers.path_finder_helper.get_list_store')
     def test_path_finder_instantiated_once(self, mock_path_finder, _, __, ___, ____):
         g.schema = QuestionnaireSchema({})
