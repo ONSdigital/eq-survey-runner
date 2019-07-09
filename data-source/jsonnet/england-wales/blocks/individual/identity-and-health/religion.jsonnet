@@ -17,12 +17,19 @@ local question(title, region_code) = (
   {
     id: 'religion-question',
     title: title,
-    description: 'This question is voluntary',
+    guidance: {
+      contents: [
+        {
+          description: 'This question is <strong>voluntary</strong>',
+        },
+      ],
+    },
     type: 'General',
     answers: [
       {
         id: 'religion-answer',
         mandatory: false,
+        label: '',
         options: [
           {
             label: 'No religion',
@@ -60,7 +67,7 @@ local question(title, region_code) = (
               id: 'religion-answer-other',
               type: 'TextField',
               mandatory: false,
-              label: 'Please specify other religion',
+              label: 'Please specify religion',
             },
           },
         ],

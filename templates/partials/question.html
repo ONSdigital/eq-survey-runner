@@ -35,8 +35,6 @@
 {% set question_answers %}
   {% if mutually_exclusive_question %}
     {%- set answer = question.answers[0] -%}
-    {%- set mutuallyExclusiveAnswer = question.answers[1] -%}
-    {%- set mutuallyExlusiveOption = mutuallyExclusiveAnswer.options[0] -%}
 
     {%- set deselectionMessage = _("Selecting this will clear your answer") -%}
     {%- set deselectGroupAdjective = _("cleared") -%}
@@ -48,16 +46,7 @@
 
     {%- set mutuallyExclusive = {
       "or": _("Or"),
-      "checkbox": {
-        "id": mutuallyExclusiveAnswer.id + "-0",
-        "label": {
-          "text": mutuallyExlusiveOption.label,
-          "description": mutuallyExlusiveOption.description
-        },
-        "value": mutuallyExlusiveOption.value,
-        "name": mutuallyExclusiveAnswer.id,
-        "checked": mutuallyExlusiveOption.checked
-      },
+      "checkbox": map_checkbox_config(form, question.answers[-1])[0],
       "deselectionMessage": deselectionMessage,
       "deselectGroupAdjective": deselectGroupAdjective,
       "deselectCheckboxAdjective": _("deselected"),

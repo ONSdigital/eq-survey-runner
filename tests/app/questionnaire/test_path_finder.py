@@ -2,7 +2,7 @@ from unittest.mock import patch
 import pytest
 
 from app.data_model.answer_store import Answer, AnswerStore
-from app.data_model.completed_store import CompletedStore
+from app.data_model.progress_store import ProgressStore, CompletionStatus
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
 from app.utilities.schema import load_schema_from_name
@@ -14,9 +14,16 @@ class TestPathFinder(
 ):  # pylint: disable=too-many-public-methods, too-many-lines
     def test_simple_path(self):
         schema = load_schema_from_name('test_textfield')
-        completed_store = CompletedStore({'locations': [{'block_id': 'name-block'}]})
+        progress_store = ProgressStore(
+            {
+                'default-section': {
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [{'block_id': 'name-block'}],
+                }
+            }
+        )
         path_finder = PathFinder(
-            schema, AnswerStore(), metadata={}, completed_store=completed_store
+            schema, AnswerStore(), metadata={}, progress_store=progress_store
         )
 
         section = schema.get_section_for_block_id('name-block')
@@ -34,7 +41,7 @@ class TestPathFinder(
         current_section = schema.get_section('introduction-section')
 
         path_finder = PathFinder(
-            schema, AnswerStore(), metadata={}, completed_store=CompletedStore()
+            schema, AnswerStore(), metadata={}, progress_store=ProgressStore()
         )
 
         blocks = [b.block_id for b in path_finder.routing_path(current_section)]
@@ -45,7 +52,7 @@ class TestPathFinder(
         schema = load_schema_from_name('test_checkbox')
         current_section = schema.get_section('default-section')
         path_finder = PathFinder(
-            schema, AnswerStore(), metadata={}, completed_store=CompletedStore()
+            schema, AnswerStore(), metadata={}, progress_store=ProgressStore()
         )
 
         with patch('app.questionnaire.rules.evaluate_when_rules', return_value=False):
@@ -65,13 +72,16 @@ class TestPathFinder(
         answer = Answer(answer_id='answer', value=123)
         answers = AnswerStore()
         answers.add_or_update(answer)
-
-        completed_store = CompletedStore(
-            {'locations': [{'block_id': 'number-question'}]}
+        progress_store = ProgressStore(
+            {
+                'default-section': {
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [{'block_id': 'number-question'}],
+                }
+            }
         )
-
         path_finder = PathFinder(
-            schema, answer_store=answers, metadata={}, completed_store=completed_store
+            schema, answer_store=answers, metadata={}, progress_store=progress_store
         )
 
         routing_path = path_finder.routing_path(current_section)
@@ -95,7 +105,7 @@ class TestPathFinder(
 
         # When
         path_finder = PathFinder(
-            schema, answer_store=answers, metadata={}, completed_store=CompletedStore()
+            schema, answer_store=answers, metadata={}, progress_store=ProgressStore()
         )
         routing_path = path_finder.routing_path(current_section)
 
@@ -105,15 +115,21 @@ class TestPathFinder(
     def test_routing_path_with_complete_introduction(self):
         schema = load_schema_from_name('test_introduction')
         current_section = schema.get_section_for_block_id('introduction')
-        completed_store = CompletedStore({'locations': [{'block_id': 'introduction'}]})
-
+        progress_store = ProgressStore(
+            {
+                'introduction-section': {
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [{'block_id': 'introduction'}],
+                }
+            }
+        )
         expected_routing_path = [
             Location(block_id='introduction'),
             Location(block_id='general-business-information-completed'),
             Location(block_id='confirmation'),
         ]
 
-        path_finder = PathFinder(schema, AnswerStore(), {}, completed_store)
+        path_finder = PathFinder(schema, AnswerStore(), {}, progress_store)
         routing_path = path_finder.routing_path(current_section)
 
         self.assertEqual(routing_path, expected_routing_path)
@@ -129,17 +145,20 @@ class TestPathFinder(
         ]
 
         answers = AnswerStore()
-        completed_store = CompletedStore(
+        progress_store = ProgressStore(
             {
-                'locations': [
-                    {'block_id': 'radio'},
-                    {'block_id': 'test-number-block'},
-                    {'block_id': 'dessert-block'},
-                ]
+                'default-section': {
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [
+                        {'block_id': 'radio'},
+                        {'block_id': 'test-number-block'},
+                        {'block_id': 'dessert-block'},
+                    ],
+                }
             }
         )
         path_finder = PathFinder(
-            schema, answer_store=answers, metadata={}, completed_store=completed_store
+            schema, answer_store=answers, metadata={}, progress_store=progress_store
         )
         routing_path = path_finder.routing_path(current_section)
 
@@ -161,12 +180,17 @@ class TestPathFinder(
         answers.add_or_update(answer_1)
         answers.add_or_update(answer_2)
 
-        completed_store = CompletedStore(
-            {'locations': [{'block_id': 'mandatory-checkbox'}]}
+        progress_store = ProgressStore(
+            {
+                'default-section': {
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [{'block_id': 'mandatory-checkbox'}],
+                }
+            }
         )
 
         path_finder = PathFinder(
-            schema, answer_store=answers, metadata={}, completed_store=completed_store
+            schema, answer_store=answers, metadata={}, progress_store=progress_store
         )
         routing_path = path_finder.routing_path(current_section)
 
@@ -182,11 +206,18 @@ class TestPathFinder(
             Location(block_id='summary'),
         ]
 
-        completed_store = CompletedStore({'locations': [{'block_id': 'block1'}]})
+        progress_store = ProgressStore(
+            {
+                'default-section': {
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [{'block_id': 'block1'}],
+                }
+            }
+        )
         metadata = {}
 
         path_finder = PathFinder(
-            schema, AnswerStore(), metadata=metadata, completed_store=completed_store
+            schema, AnswerStore(), metadata=metadata, progress_store=progress_store
         )
         routing_path = path_finder.routing_path(current_section)
 
@@ -200,8 +231,14 @@ class TestPathFinder(
         answer_store.add_or_update(
             Answer(answer_id='do-you-want-to-skip-answer', value='Yes')
         )
-        completed_store = CompletedStore(
-            {'locations': [{'block_id': 'do-you-want-to-skip'}]}
+
+        progress_store = ProgressStore(
+            {
+                'default-section': {
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [{'block_id': 'do-you-want-to-skip'}],
+                }
+            }
         )
 
         # When
@@ -209,7 +246,7 @@ class TestPathFinder(
             schema,
             answer_store=answer_store,
             metadata={},
-            completed_store=completed_store,
+            progress_store=progress_store,
         )
         routing_path = path_finder.routing_path(current_section)
 
@@ -234,9 +271,13 @@ class TestPathFinder(
         answer_store.add_or_update(
             Answer(answer_id='do-you-want-to-skip-answer', value='Yes')
         )
-
-        completed_store = CompletedStore(
-            {'locations': [{'block_id': 'do-you-want-to-skip'}]}
+        progress_store = ProgressStore(
+            {
+                'default-section': {
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [{'block_id': 'do-you-want-to-skip'}],
+                }
+            }
         )
 
         # When
@@ -244,7 +285,7 @@ class TestPathFinder(
             schema,
             answer_store=answer_store,
             metadata={},
-            completed_store=completed_store,
+            progress_store=progress_store,
         )
         routing_path = path_finder.routing_path(current_section)
 
@@ -269,9 +310,13 @@ class TestPathFinder(
         answer_store.add_or_update(
             Answer(answer_id='do-you-want-to-skip-answer', value='No')
         )
-
-        completed_store = CompletedStore(
-            {'locations': [{'block_id': 'do-you-want-to-skip'}]}
+        progress_store = ProgressStore(
+            {
+                'default-section': {
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [{'block_id': 'do-you-want-to-skip'}],
+                }
+            }
         )
 
         # When
@@ -279,7 +324,7 @@ class TestPathFinder(
             schema,
             answer_store=answer_store,
             metadata={},
-            completed_store=completed_store,
+            progress_store=progress_store,
         )
         routing_path = path_finder.routing_path(current_section)
 
@@ -309,7 +354,7 @@ class TestPathFinder(
             schema,
             answer_store=answer_store,
             metadata={},
-            completed_store=CompletedStore(),
+            progress_store=ProgressStore(),
         )
 
         # Then
@@ -342,7 +387,7 @@ class TestPathFinder(
             schema,
             answer_store=answer_store,
             metadata={},
-            completed_store=CompletedStore(),
+            progress_store=ProgressStore({}),
         )
         path = path_finder.routing_path(current_section)
 
@@ -355,13 +400,17 @@ class TestPathFinder(
         current_section = schema.get_section_for_block_id(
             'confirm-zero-employees-block'
         )
+
         # All blocks completed
-        completed_store = CompletedStore(
+        progress_store = ProgressStore(
             {
-                'locations': [
-                    {'block_id': 'number-of-employees-total-block'},
-                    {'block_id': 'confirm-zero-employees-block'},
-                ]
+                'default-section': {
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [
+                        {'block_id': 'number-of-employees-total-block'},
+                        {'block_id': 'confirm-zero-employees-block'},
+                    ],
+                }
             }
         )
 
@@ -376,10 +425,13 @@ class TestPathFinder(
         answer_store.add_or_update(confirm_zero_answer)
 
         path_finder = PathFinder(
-            schema, answer_store, metadata={}, completed_store=completed_store
+            schema, answer_store, metadata={}, progress_store=progress_store
         )
 
-        self.assertEqual(len(path_finder.completed_store.locations), 2)
+        self.assertEqual(
+            len(path_finder.progress_store.get_completed_locations('default-section')),
+            2,
+        )
         self.assertEqual(len(path_finder.answer_store), 2)
 
         routing_path = path_finder.routing_path(current_section)
@@ -392,6 +444,7 @@ class TestPathFinder(
         self.assertEqual(routing_path, expected_path)
 
         self.assertEqual(
-            path_finder.completed_store.locations, [completed_store.locations[0]]
+            path_finder.progress_store.get_completed_locations('default-section'),
+            [progress_store.get_completed_locations('default-section')[0]],
         )
         self.assertEqual(len(path_finder.answer_store), 1)

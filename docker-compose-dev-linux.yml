@@ -14,7 +14,7 @@ services:
 
   eq-questionnaire-launcher:
     network_mode: "host"
-    image: onsdigital/eq-questionnaire-launcher:latest
+    image: eu.gcr.io/census-eq-ci/eq-questionnaire-launcher:latest
     environment:
       SURVEY_RUNNER_URL: http://localhost:5000
       SURVEY_RUNNER_SCHEMA_URL: http://localhost:5000

@@ -4,7 +4,7 @@ from typing import List, Mapping
 from structlog import get_logger
 
 from app.data_model.answer_store import AnswerStore
-from app.data_model.completed_store import CompletedStore
+from app.data_model.progress_store import ProgressStore
 from app.data_model.list_store import ListStore
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
@@ -24,28 +24,32 @@ class PathFinder:
         schema: QuestionnaireSchema,
         answer_store: AnswerStore,
         metadata: Mapping,
-        completed_store: CompletedStore = None,
+        progress_store: ProgressStore = None,
         list_store: ListStore = None,
     ):
         self.answer_store = answer_store
         self.metadata = metadata
         self.schema = schema
-        self.completed_store = completed_store
+        self.progress_store = progress_store
         self.list_store = list_store
 
     def is_path_complete(self, path):
         return not self.get_first_incomplete_location(path)
 
     def get_first_incomplete_location(self, path):
-        for location in path:
-            block = self.schema.get_block(location.block_id)
-            block_type = block.get('type')
-            if location not in self.completed_store.locations and block_type not in [
-                'SectionSummary',
-                'Summary',
-                'Confirmation',
-            ]:
-                return location
+        if path:
+            first_location = path[0]
+            section_id = self.schema.get_section_id_for_block_id(
+                first_location.block_id
+            )
+
+            for location in path:
+                block = self.schema.get_block(location.block_id)
+                block_type = block.get('type')
+                if location not in self.progress_store.get_completed_locations(
+                    section_id
+                ) and block_type not in ['SectionSummary', 'Summary', 'Confirmation']:
+                    return location
 
         return None
 
@@ -192,4 +196,6 @@ class PathFinder:
                 if 'meta' not in condition.keys():
                     self.answer_store.remove_answer(condition['id'])
 
-        self.completed_store.remove_completed_location(this_location)
+        section_id = self.schema.get_section_id_for_block_id(this_location.block_id)
+
+        self.progress_store.remove_completed_location(section_id, this_location)
