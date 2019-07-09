@@ -42,22 +42,6 @@ describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override',
     });
   });
 
-  describe('Given the user has clicked the mutually exclusive "other" option', function() {
-    it('When the user returns to the question, Then the mutually exclusive other option should remain checked.', function() {
-
-      return browser
-        // Given
-        .click(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay())
-        .click(MandatoryCheckboxPage.submit())
-
-        // When
-        .click(SummaryPage.previous())
-
-        // Then
-        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should.eventually.be.true
-    });
-  });
-
   describe('Given the user has clicked the mutually exclusive option', function() {
     it('When the user clicks the non-exclusive options, Then only the non-exclusive options should be checked.', function() {
 
