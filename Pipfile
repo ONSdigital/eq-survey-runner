@@ -60,6 +60,8 @@ jsonpointer = "*"
 redis = "*"
 flask-compress = "*"
 htmlmin = "*"
+docker = "*"
+coloredlogs = "*"
 
 [requires]
 python_version = "3.7"

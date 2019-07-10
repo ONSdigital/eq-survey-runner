@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-08 12:43+0100\n"
+"POT-Creation-Date: 2019-07-17 13:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Not a valid choice"
 msgstr ""
 
-#: app/forms/fields.py:230
+#: app/forms/fields.py:231
 msgid "Select an answer"
 msgstr ""
 
@@ -590,39 +590,39 @@ msgstr ""
 msgid "Hide this"
 msgstr ""
 
-#: templates/partials/question.html:39
+#: templates/partials/question.html:38
 msgid "Selecting this will clear your answer"
 msgstr ""
 
-#: templates/partials/question.html:40
+#: templates/partials/question.html:39
 msgid "cleared"
 msgstr ""
 
-#: templates/partials/question.html:43
+#: templates/partials/question.html:42
 msgid "Selecting this will deselect any selected options"
 msgstr ""
 
-#: templates/partials/question.html:44 templates/partials/question.html:61
+#: templates/partials/question.html:43 templates/partials/question.html:51
 msgid "deselected"
 msgstr ""
 
-#: templates/partials/question.html:48
+#: templates/partials/question.html:47
 msgid "Or"
 msgstr ""
 
-#: templates/partials/answers/checkbox.html:5
+#: templates/partials/answers/checkbox.html:7
 msgid "Select all that apply"
 msgstr ""
 
-#: templates/partials/answers/date.html:28
+#: templates/partials/answers/date.html:22
 msgid "Day"
 msgstr ""
 
-#: templates/partials/answers/date.html:43
+#: templates/partials/answers/date.html:37
 msgid "Month"
 msgstr ""
 
-#: templates/partials/answers/date.html:58
+#: templates/partials/answers/date.html:52
 msgid "Year"
 msgstr ""
 
