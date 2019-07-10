@@ -558,3 +558,21 @@ def test_get_all_questions_for_block_empty():
     all_questions = QuestionnaireSchema.get_all_questions_for_block(block)
 
     assert not all_questions
+
+
+def test_get_default_answer_no_answer_in_answer_store(question_variant_schema):
+    schema = QuestionnaireSchema(question_variant_schema)
+    assert schema.get_default_answer('test') is None
+
+
+def test_get_default_answer_no_default_in_schema(question_variant_schema):
+    schema = QuestionnaireSchema(question_variant_schema)
+    assert schema.get_default_answer('answer1') is None
+
+
+def test_get_default_answer_single_question(single_question_schema):
+    schema = QuestionnaireSchema(single_question_schema)
+    answer = schema.get_default_answer('answer1')
+
+    assert answer.answer_id == 'answer1'
+    assert answer.value == 'test'

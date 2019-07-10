@@ -40,7 +40,7 @@
                                     }
                                 ],
                                 "id": "question",
-                                "title": "Don't enter an answer. A default value will be used",
+                                "title": "Question One",
                                 "type": "General"
                             }
                         },
@@ -53,13 +53,53 @@
                                         "id": "answer-two",
                                         "mandatory": false,
                                         "type": "Number",
-                                        "label": "Enter a Value"
+                                        "label": "Enter a Value",
+                                        "default": 1
                                     }
                                 ],
                                 "id": "question2",
-                                "title": "Enter an answer. It will be shown on the summary page",
+                                "title": "Question Two",
                                 "type": "General"
-                            }
+                            },
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "condition": "not equals",
+                                            "id": "answer-one",
+                                            "value": 1
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Question",
+                            "id": "number-question-three",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "answer-three",
+                                        "mandatory": false,
+                                        "type": "Number",
+                                        "label": "Leave blank"
+                                    }
+                                ],
+                                "id": "question3",
+                                "title": "Question Three",
+                                "type": "General"
+                            },
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "condition": "equals",
+                                            "id": "answer-two",
+                                            "value": 1
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         {
                             "type": "Summary",

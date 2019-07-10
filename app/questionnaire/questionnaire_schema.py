@@ -3,6 +3,7 @@ from typing import Union
 
 from flask_babel import force_locale
 
+from app.data_model.answer import Answer
 from app.validation.error_messages import error_messages
 
 DEFAULT_LANGUAGE_CODE = 'en'
@@ -82,6 +83,15 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         variants
         """
         return self._answers_by_id.get(answer_id)
+
+    def get_default_answer(self, answer_id):
+        try:
+            answer_schema = self.get_answers_by_answer_id(answer_id)[0]
+            answer = Answer(answer_schema['id'], answer_schema['default'])
+        except (KeyError, TypeError):
+            return None
+
+        return answer
 
     def get_add_block_for_list_collector(self, list_collector_id):
         add_block_map = {

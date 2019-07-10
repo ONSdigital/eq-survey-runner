@@ -2,6 +2,70 @@ import pytest
 
 
 @pytest.fixture()
+def question_variant_schema_evaluates_to_false():
+    return {
+        'sections': [
+            {
+                'id': 'section1',
+                'groups': [
+                    {
+                        'id': 'group1',
+                        'title': 'Group 1',
+                        'blocks': [
+                            {
+                                'id': 'block1',
+                                'type': 'Question',
+                                'title': 'Block 1',
+                                'question_variants': [
+                                    {
+                                        'when': [
+                                            {
+                                                'id': 'when-answer',
+                                                'condition': 'equals',
+                                                'value': 'yes',
+                                            }
+                                        ],
+                                        'question': {
+                                            'id': 'question1',
+                                            'title': 'Question 1, Yes',
+                                            'answers': [
+                                                {
+                                                    'id': 'answer1',
+                                                    'label': 'Answer 1 Variant 1',
+                                                }
+                                            ],
+                                        },
+                                    },
+                                    {
+                                        'when': [
+                                            {
+                                                'id': 'when-answer',
+                                                'condition': 'equals',
+                                                'value': 'no',
+                                            }
+                                        ],
+                                        'question': {
+                                            'id': 'question1',
+                                            'title': 'Question 1, No',
+                                            'answers': [
+                                                {
+                                                    'id': 'answer1',
+                                                    'label': 'Answer 1 Variant 2',
+                                                }
+                                            ],
+                                        },
+                                    },
+                                ],
+                            }
+                        ],
+                    }
+                ],
+            }
+        ]
+    }
+
+
+@pytest.fixture()
 def question_variant_schema():
     return {
         'sections': [
@@ -56,6 +120,41 @@ def question_variant_schema():
                                         },
                                     },
                                 ],
+                            }
+                        ],
+                    }
+                ],
+            }
+        ]
+    }
+
+
+@pytest.fixture()
+def single_question_schema():
+    return {
+        'sections': [
+            {
+                'id': 'section1',
+                'groups': [
+                    {
+                        'id': 'group1',
+                        'title': 'Group 1',
+                        'blocks': [
+                            {
+                                'id': 'block1',
+                                'type': 'Question',
+                                'title': 'Block 1',
+                                'question': {
+                                    'id': 'question1',
+                                    'title': 'Question 1, Yes',
+                                    'answers': [
+                                        {
+                                            'id': 'answer1',
+                                            'label': 'Answer 1 Variant 1',
+                                            'default': 'test',
+                                        }
+                                    ],
+                                },
                             }
                         ],
                     }

@@ -67,7 +67,7 @@ class TestQuestionnaireStoreUpdater(unittest.TestCase):
             'value': answer_value,
         }
 
-    def test_save_answers_data_with_default_value(self):
+    def test_default_answers_are_not_saved(self):
         answer_id = 'answer'
         default_value = 0
 
@@ -87,14 +87,7 @@ class TestQuestionnaireStoreUpdater(unittest.TestCase):
         )
         self.questionnaire_store_updater.update_answers(form)
 
-        assert self.answer_store.add_or_update.call_count == 1
-
-        created_answer = self.answer_store.add_or_update.call_args[0][0]
-        assert created_answer.__dict__ == {
-            'answer_id': answer_id,
-            'list_item_id': None,
-            'value': default_value,
-        }
+        assert self.answer_store.add_or_update.call_count == 0
 
     def test_empty_answers(self):
         string_answer_id = 'string-answer'
