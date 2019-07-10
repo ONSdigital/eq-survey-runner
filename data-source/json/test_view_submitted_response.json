@@ -10,103 +10,128 @@
         "enabled": true,
         "duration": 5
     },
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string",
-        "optional": true
-    }, {
-        "name": "trad_as",
-        "type": "string",
-        "optional": true
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "radio",
-                "question": {
-                    "answers": [{
-                        "id": "radio-answer",
-                        "label": "What is your favourite breakfast food?",
-                        "mandatory": false,
-                        "options": [{
-                            "label": "None",
-                            "value": "None"
-                        }, {
-                            "label": "Bacon",
-                            "value": "Bacon"
-                        }, {
-                            "label": "Eggs",
-                            "value": "Eggs"
-                        }, {
-                            "label": "Sausage",
-                            "value": "Sausage"
-                        }, {
-                            "label": "Other",
-                            "description": "An answer is required.",
-                            "value": "Other",
-                            "detail_answer": {
-                                "mandatory": false,
-                                "id": "other-answer-mandatory",
-                                "label": "Please specify other",
-                                "q_code": "20",
-                                "type": "TextField"
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string",
+            "optional": true
+        },
+        {
+            "name": "trad_as",
+            "type": "string",
+            "optional": true
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "radio",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "radio-answer",
+                                        "label": "What is your favourite breakfast food?",
+                                        "mandatory": false,
+                                        "options": [
+                                            {
+                                                "label": "None",
+                                                "value": "None"
+                                            },
+                                            {
+                                                "label": "Bacon",
+                                                "value": "Bacon"
+                                            },
+                                            {
+                                                "label": "Eggs",
+                                                "value": "Eggs"
+                                            },
+                                            {
+                                                "label": "Sausage",
+                                                "value": "Sausage"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "description": "An answer is required.",
+                                                "value": "Other",
+                                                "detail_answer": {
+                                                    "mandatory": false,
+                                                    "id": "other-answer-mandatory",
+                                                    "label": "Please specify other",
+                                                    "q_code": "20",
+                                                    "type": "TextField"
+                                                }
+                                            }
+                                        ],
+                                        "q_code": "20",
+                                        "type": "Radio"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "radio-question",
+                                "title": "What is your favourite breakfast food",
+                                "type": "General"
                             }
-                        }],
-                        "q_code": "20",
-                        "type": "Radio"
-                    }],
-                    "description": "",
-                    "id": "radio-question",
-                    "title": "What is your favourite breakfast food",
-                    "type": "General"
+                        },
+                        {
+                            "type": "Question",
+                            "id": "test-number-block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "test-currency",
+                                        "description": "",
+                                        "label": "Currency Test",
+                                        "mandatory": false,
+                                        "type": "Currency",
+                                        "currency": "GBP",
+                                        "decimal_places": 2
+                                    },
+                                    {
+                                        "id": "square-kilometres",
+                                        "description": "",
+                                        "label": "Kilometres Square",
+                                        "mandatory": false,
+                                        "type": "Unit",
+                                        "unit_length": "short",
+                                        "unit": "area-square-kilometer"
+                                    },
+                                    {
+                                        "id": "test-decimal",
+                                        "description": "",
+                                        "label": "Decimal test to 2 decimal places",
+                                        "mandatory": false,
+                                        "type": "Number",
+                                        "decimal_places": 2
+                                    }
+                                ],
+                                "description": "",
+                                "id": "test-number-range-question",
+                                "title": "Please enter test values (none mandatory)",
+                                "type": "General"
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "summary-group",
+                    "title": "View Submission Test"
                 }
-            }, {
-                "type": "Question",
-                "id": "test-number-block",
-                "question": {
-                    "answers": [{
-                        "id": "test-currency",
-                        "description": "",
-                        "label": "Currency Test",
-                        "mandatory": false,
-                        "type": "Currency",
-                        "currency": "GBP",
-                        "decimal_places": 2
-                    }, {
-                        "id": "square-kilometres",
-                        "description": "",
-                        "label": "Kilometres Square",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit_length": "short",
-                        "unit": "area-square-kilometer"
-                    }, {
-                        "id": "test-decimal",
-                        "description": "",
-                        "label": "Decimal test to 2 decimal places",
-                        "mandatory": false,
-                        "type": "Number",
-                        "decimal_places": 2
-                    }],
-                    "description": "",
-                    "id": "test-number-range-question",
-                    "title": "Please enter test values (none mandatory)",
-                    "type": "General"
-                }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "summary-group",
-            "title": "View Submission Test"
-        }]
-    }]
+            ]
+        }
+    ]
 }

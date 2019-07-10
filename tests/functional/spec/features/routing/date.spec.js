@@ -166,9 +166,6 @@ describe('Feature: Routing on a Date', function () {
       var DateQuestionPage = require('../../../generated_pages/routing_date_less_than/date-question.page');
       // TODAY
       var today = new Date();
-      var dd_today = today.getDate();
-      var mm_today = today.getMonth()+1;
-      var yyyy_today = today.getFullYear();
 
       // YESTERDAY
       var yesterday = new Date(today);
@@ -177,9 +174,6 @@ describe('Feature: Routing on a Date', function () {
       var mm_yesterday = yesterday.getMonth()+1; //January is 0!
       var yyyy_yesterday = yesterday.getFullYear();
 
-      const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-      ];
 
       beforeEach(function() {
         return helpers.openQuestionnaire('test_routing_date_less_than.json').then(() => {

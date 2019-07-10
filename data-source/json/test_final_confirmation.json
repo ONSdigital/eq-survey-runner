@@ -14,57 +14,75 @@
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
         "INVALID_NUMBER": "Please enter an integer"
     },
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "first-group",
-        "title": "First group",
-        "groups": [{
-            "blocks": [{
-                "type": "Introduction",
-                "id": "introduction"
-            }, {
-                "type": "Question",
-                "id": "breakfast",
-                "question": {
-                    "answers": [{
-                        "id": "breakfast-answer",
-                        "label": "What is your favourite breakfast food",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }],
-                    "description": "",
-                    "id": "breakfast-question",
-                    "title": "What is your favourite breakfast food",
-                    "type": "General"
-                },
-                "routing_rules": []
-            }],
-            "id": "final-confirmation",
-            "title": "First group"
-        }]
-    }, {
-        "id": "submit-answers",
-        "title": "Submit answers",
-        "groups": [{
-            "blocks": [{
-                "type": "Confirmation",
-                "id": "confirmation",
-                "content": {
-                    "title": "Thank you for your answers, do you wish to submit"
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "first-group",
+            "title": "First group",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Introduction",
+                            "id": "introduction"
+                        },
+                        {
+                            "type": "Question",
+                            "id": "breakfast",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "breakfast-answer",
+                                        "label": "What is your favourite breakfast food",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextField"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "breakfast-question",
+                                "title": "What is your favourite breakfast food",
+                                "type": "General"
+                            },
+                            "routing_rules": []
+                        }
+                    ],
+                    "id": "final-confirmation",
+                    "title": "First group"
                 }
-            }],
-            "id": "confirmation-group",
-            "title": "Submit answers"
-        }]
-    }]
+            ]
+        },
+        {
+            "id": "submit-answers",
+            "title": "Submit answers",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Confirmation",
+                            "id": "confirmation",
+                            "content": {
+                                "title": "Thank you for your answers, do you wish to submit"
+                            }
+                        }
+                    ],
+                    "id": "confirmation-group",
+                    "title": "Submit answers"
+                }
+            ]
+        }
+    ]
 }

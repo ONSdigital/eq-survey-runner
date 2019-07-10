@@ -6,45 +6,61 @@
     "title": "Question Title Test",
     "theme": "default",
     "description": "A questionnaire to test question titles",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "group",
-            "title": "",
-            "blocks": [{
-                "type": "Question",
-                "id": "single-title-block",
-                "question": {
-                    "id": "single-title-question",
-                    "title": "How are you feeling??",
-                    "type": "General",
-                    "answers": [{
-                        "type": "Radio",
-                        "id": "feeling-answer",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Good",
-                            "value": "good"
-                        }, {
-                            "label": "Bad",
-                            "value": "bad"
-                        }]
-                    }]
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "group",
+                    "title": "",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "single-title-block",
+                            "question": {
+                                "id": "single-title-question",
+                                "title": "How are you feeling??",
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "type": "Radio",
+                                        "id": "feeling-answer",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "Good",
+                                                "value": "good"
+                                            },
+                                            {
+                                                "label": "Bad",
+                                                "value": "bad"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
                 }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+            ]
+        }
+    ]
 }

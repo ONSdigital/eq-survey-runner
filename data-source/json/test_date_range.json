@@ -6,47 +6,61 @@
     "title": "Date range",
     "description": "A test schema for different date formats",
     "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "date-block",
-                "question": {
-                    "answers": [{
-                        "id": "date-range-from-answer",
-                        "label": "Period from",
-                        "mandatory": true,
-                        "q_code": "11",
-                        "type": "Date"
-                    }, {
-                        "id": "date-range-to-answer",
-                        "label": "Period to",
-                        "mandatory": true,
-                        "q_code": "12",
-                        "type": "Date"
-                    }],
-                    "description": "",
-                    "id": "date-range-question",
-                    "title": "Date range",
-                    "type": "DateRange"
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "date-block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "date-range-from-answer",
+                                        "label": "Period from",
+                                        "mandatory": true,
+                                        "q_code": "11",
+                                        "type": "Date"
+                                    },
+                                    {
+                                        "id": "date-range-to-answer",
+                                        "label": "Period to",
+                                        "mandatory": true,
+                                        "q_code": "12",
+                                        "type": "Date"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "date-range-question",
+                                "title": "Date range",
+                                "type": "DateRange"
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "dates",
+                    "title": ""
                 }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "dates",
-            "title": ""
-        }]
-    }]
+            ]
+        }
+    ]
 }

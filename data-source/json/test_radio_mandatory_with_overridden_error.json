@@ -5,50 +5,66 @@
     "survey_id": "0",
     "title": "Radio Mandatory with Overridden Error",
     "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "radio",
-            "title": "Radio Mandatory with Overridden Error",
-            "blocks": [{
-                "type": "Question",
-                "id": "radio-mandatory",
-                "question": {
-                    "type": "General",
-                    "id": "radio-mandatory-question",
-                    "title": "What is you favourite breakfast beverage?",
-                    "answers": [{
-                        "type": "Radio",
-                        "id": "radio-mandatory-answer",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Coffee",
-                            "value": "Coffee"
-                        }, {
-                            "label": "Tea",
-                            "value": "Tea"
-                        }],
-                        "validation": {
-                            "messages": {
-                                "MANDATORY_RADIO": "Test error message is overridden"
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "radio",
+                    "title": "Radio Mandatory with Overridden Error",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "radio-mandatory",
+                            "question": {
+                                "type": "General",
+                                "id": "radio-mandatory-question",
+                                "title": "What is you favourite breakfast beverage?",
+                                "answers": [
+                                    {
+                                        "type": "Radio",
+                                        "id": "radio-mandatory-answer",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "Coffee",
+                                                "value": "Coffee"
+                                            },
+                                            {
+                                                "label": "Tea",
+                                                "value": "Tea"
+                                            }
+                                        ],
+                                        "validation": {
+                                            "messages": {
+                                                "MANDATORY_RADIO": "Test error message is overridden"
+                                            }
+                                        }
+                                    }
+                                ]
                             }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
                         }
-                    }]
+                    ]
                 }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+            ]
+        }
+    ]
 }

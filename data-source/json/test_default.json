@@ -6,40 +6,53 @@
     "title": "Test Routing Number Equals",
     "theme": "default",
     "description": "A test survey for routing based on an number equals",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "number-question",
-                "question": {
-                    "answers": [{
-                        "id": "answer",
-                        "mandatory": false,
-                        "type": "Number",
-                        "label": "Leave blank",
-                        "default": 0
-                    }],
-                    "id": "question",
-                    "title": "Don't enter an answer. Zero will be shown on summary",
-                    "type": "General"
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "number-question",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "answer",
+                                        "mandatory": false,
+                                        "type": "Number",
+                                        "label": "Leave blank",
+                                        "default": 0
+                                    }
+                                ],
+                                "id": "question",
+                                "title": "Don't enter an answer. Zero will be shown on summary",
+                                "type": "General"
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "group",
+                    "title": ""
                 }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "group",
-            "title": ""
-        }]
-    }]
+            ]
+        }
+    ]
 }
