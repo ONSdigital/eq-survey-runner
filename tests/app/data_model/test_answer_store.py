@@ -61,7 +61,7 @@ def test_raises_error_on_invalid_answer(empty_answer_store):
     with pytest.raises(TypeError) as e:
         empty_answer_store.add_or_update({'answer_id': '4', 'value': 25})
 
-    assert 'Method only supports Answer argument type' in str(e)
+    assert 'Method only supports Answer argument type' in str(e.value)
 
 
 def test_updates_answer_no_list_id(basic_answer_store):

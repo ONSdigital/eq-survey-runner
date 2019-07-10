@@ -134,4 +134,4 @@ def test_converter_raises_runtime_error_for_unsupported_version(
             QuestionnaireSchema(questionnaire), fake_questionnaire_store, {}
         )
 
-    assert 'Data version -0.0.1 not supported' in str(err)
+    assert 'Data version -0.0.1 not supported' in str(err.value)
