@@ -27,10 +27,10 @@ env:
 before_install:
     - export BOTO_CONFIG=/dev/null # Workaround for https://github.com/travis-ci/travis-ci/issues/7940
     - cd /opt/pyenv/plugins/python-build/../.. && git pull origin master && cd -
-    - pyenv global $(cat .python-version)
     - pyenv versions
     - pyenv install --skip-existing
     - pyenv rehash
+    - pyenv global $(cat .python-version)
     - pip install -U pip pipenv wheel
     - pipenv install --dev --deploy
     - pipenv check
