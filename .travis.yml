@@ -27,6 +27,7 @@ env:
 before_install:
     - export BOTO_CONFIG=/dev/null # Workaround for https://github.com/travis-ci/travis-ci/issues/7940
     - cd /opt/pyenv/plugins/python-build/../.. && git pull origin master && cd -
+    - pyenv global $(cat .python-version)
     - pyenv versions
     - pyenv install --skip-existing
     - pyenv rehash
@@ -52,7 +53,6 @@ script:
     - echo "Pushing with tag [$TAG]"
     - docker push eu.gcr.io/census-eq-ci/eq-survey-runner:"$TAG"
 after_success:
-    - pyenv global $(cat .python-version)
     - pipenv run bash <(curl -s https://codecov.io/bash)
     - pipenv run pip install codacy-coverage
     - pipenv run python-codacy-coverage -r coverage.xml
