@@ -2,12 +2,14 @@ from flask import url_for
 
 from app.helpers.path_finder_helper import path_finder
 from app.questionnaire.location import Location
+from app.questionnaire.relationship_router import RelationshipRouter
 
 
 class Router:
-    def __init__(self, schema, progress_store=None):
+    def __init__(self, schema, progress_store=None, list_store=None):
         self._schema = schema
         self._progress_store = progress_store
+        self._list_store = list_store
 
     def can_access_location(self, location: Location, routing_path):
         """
@@ -62,7 +64,8 @@ class Router:
         if location_index == len(routing_path) - 1:
             return self.get_first_incomplete_location_in_survey().url()
 
-        return routing_path[location_index + 1].url()
+        next_location = routing_path[location_index + 1]
+        return next_location.url()
 
     def get_previous_location_url(self, location, routing_path):
         """
@@ -79,7 +82,16 @@ class Router:
         location_index = routing_path.index(location)
 
         if location_index != 0:
-            return routing_path[location_index - 1].url()
+            previous_location = routing_path[location_index - 1]
+            previous_block = self._schema.get_block(previous_location.block_id)
+            if previous_block['type'] == 'RelationshipCollector':
+                list_items = self._list_store.get(previous_block['for_list'])
+                relationship_router = RelationshipRouter(
+                    previous_block['id'], list_items
+                )
+                return relationship_router.get_last_location_url()
+
+            return previous_location.url()
 
         if self._schema.is_hub_enabled():
             return url_for('questionnaire.get_hub')

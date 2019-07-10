@@ -91,27 +91,31 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     @classmethod
     def get_answer_ids_for_question(cls, question):
-        answer_ids = set()
+        answer_ids = []
 
         for answer in question.get('answers', []):
-            answer_ids.add(answer['id'])
+            answer_ids.append(answer['id'])
             for option in answer.get('options', []):
                 if 'detail_answer' in option:
-                    answer_ids.add(option['detail_answer']['id'])
+                    answer_ids.append(option['detail_answer']['id'])
 
         return answer_ids
+
+    def get_relationship_answer_id_for_block(self, block_id):
+        answer_ids = self.get_answer_ids_for_block(block_id)
+        return answer_ids[0]
 
     def get_answer_ids_for_block(self, block_id):
         block = self.get_block(block_id)
-        answer_ids = set()
 
         if block:
-            questions = self.get_all_questions_for_block(block)
-
-            for question in questions:
-                answer_ids.update(self.get_answer_ids_for_question(question))
-
-        return answer_ids
+            if block.get('question'):
+                return self.get_answer_ids_for_question(block['question'])
+            if block.get('question_variants'):
+                return self.get_answer_ids_for_question(
+                    block['question_variants'][0]['question']
+                )
+        return []
 
     def get_summary_and_confirmation_blocks(self):
         return [

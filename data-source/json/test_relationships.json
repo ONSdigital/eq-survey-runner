@@ -1,0 +1,180 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Test Relationships",
+    "theme": "default",
+    "description": "A questionnaire to test capturing of relationships.",
+    "messages": {},
+    "metadata": [{
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [{
+        "id": "section",
+        "groups": [{
+            "id": "group",
+            "title": "Relationships",
+            "blocks": [{
+                    "id": "list-collector",
+                    "type": "ListCollector",
+                    "populates_list": "people",
+                    "add_answer": {
+                        "id": "anyone-else",
+                        "value": "Yes"
+                    },
+                    "remove_answer": {
+                        "id": "remove-confirmation",
+                        "value": "Yes"
+                    },
+                    "question": {
+                        "id": "confirmation-question",
+                        "type": "General",
+                        "title": "Does anyone else live at 1 Pleasant Lane?",
+                        "answers": [{
+                            "id": "anyone-else",
+                            "mandatory": true,
+                            "type": "Radio",
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No",
+                                    "value": "No"
+                                }
+                            ]
+                        }]
+                    },
+                    "add_block": {
+                        "id": "add-person",
+                        "type": "ListAddQuestion",
+                        "question": {
+                            "id": "add-question",
+                            "type": "General",
+                            "title": "What is the name of the person who isn't you?",
+                            "answers": [{
+                                    "id": "first-name",
+                                    "label": "First name",
+                                    "mandatory": true,
+                                    "type": "TextField"
+                                },
+                                {
+                                    "id": "last-name",
+                                    "label": "Last name",
+                                    "mandatory": true,
+                                    "type": "TextField"
+                                }
+                            ]
+                        }
+                    },
+                    "edit_block": {
+                        "id": "edit-person",
+                        "type": "ListEditQuestion",
+                        "question": {
+                            "id": "edit-question",
+                            "type": "General",
+                            "title": "What is the name of the person?",
+                            "answers": [{
+                                    "id": "first-name",
+                                    "label": "First name",
+                                    "mandatory": true,
+                                    "type": "TextField"
+                                },
+                                {
+                                    "id": "last-name",
+                                    "label": "Last name",
+                                    "mandatory": true,
+                                    "type": "TextField"
+                                }
+                            ]
+                        }
+                    },
+                    "remove_block": {
+                        "id": "remove-person",
+                        "type": "ListRemoveQuestion",
+                        "question": {
+                            "id": "remove-question",
+                            "type": "General",
+                            "title": "Are you sure you want to remove this person?",
+                            "answers": [{
+                                "id": "remove-confirmation",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }
+                    }
+                },
+                {
+                    "type": "RelationshipCollector",
+                    "id": "relationships",
+                    "title": "This will iterate over the people list, capturing the one way relationships.",
+                    "for_list": "people",
+                    "question": {
+                        "id": "relationship-question",
+                        "type": "General",
+                        "title": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
+                        "answers": [{
+                            "id": "relationship-answer",
+                            "mandatory": true,
+                            "type": "Relationship",
+                            "playback": "{second_person_name} is {first_person_name_possessive} <em>…</em>",
+                            "options": [{
+                                    "label": "Husband or Wife",
+                                    "value": "Husband or Wife",
+                                    "title": "Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>",
+                                    "playback": "{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>"
+                                },
+                                {
+                                    "label": "Legally registered civil partner",
+                                    "value": "Legally registered civil partner",
+                                    "title": "Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>",
+                                    "playback": "{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>"
+                                },
+                                {
+                                    "label": "Son or daughter",
+                                    "value": "Son or daughter",
+                                    "title": "Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>",
+                                    "playback": "{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>"
+                                }
+                            ]
+                        }]
+                    },
+                    "skip_conditions": [{
+                        "when": [{
+                            "list": "people",
+                            "condition": "less than",
+                            "value": 2
+                        }]
+                    }]
+                },
+                {
+                    "type": "Confirmation",
+                    "id": "confirmation",
+                    "content": {
+                        "title": "Thank you for your answers, do you wish to submit"
+                    }
+                }
+            ]
+        }]
+    }]
+}

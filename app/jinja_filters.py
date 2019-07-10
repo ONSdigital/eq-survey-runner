@@ -264,6 +264,25 @@ class RadioConfig:
             self.other = OtherConfig(detail_answer)
 
 
+class RelationshipRadioConfig:
+    def __init__(self, option, index, answer):
+        self.id = option.id
+        self.name = option.name
+        self.value = option.data
+        self.checked = option.checked
+
+        label_description = None
+        answer_option = answer['options'][index]
+
+        self.label = LabelConfig(option.id, option.label.text, label_description)
+
+        if answer_option:
+            self.attributes = {
+                'data-title': answer_option['title'],
+                'data-playback': answer_option['playback'],
+            }
+
+
 class OtherConfig:
     def __init__(self, detail_answer):
         self.id = detail_answer.id
@@ -294,6 +313,20 @@ def map_radio_config(form, answer):
 @blueprint.app_context_processor
 def map_radio_config_processor():
     return dict(map_radio_config=map_radio_config)
+
+
+@blueprint.app_template_filter()
+def map_relationships_config(form, answer):
+    options = form['fields'][answer['id']]
+
+    return [
+        RelationshipRadioConfig(option, i, answer) for i, option in enumerate(options)
+    ]
+
+
+@blueprint.app_context_processor
+def map_relationships_config_processor():
+    return dict(map_relationships_config=map_relationships_config)
 
 
 class SelectOptionConfig:
