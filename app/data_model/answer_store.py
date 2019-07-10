@@ -66,8 +66,7 @@ class AnswerStore:
 
         if existing_answer != answer:
             self._is_dirty = True
-
-        self.answer_map[key] = answer
+            self.answer_map[key] = answer
 
     def get_answer(self, answer_id: str, list_item_id: str = None) -> Optional[Answer]:
         """ Get a single answer from the store

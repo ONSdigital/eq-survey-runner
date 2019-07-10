@@ -3,7 +3,9 @@ from collections import OrderedDict
 from structlog import get_logger
 from werkzeug.datastructures import MultiDict
 
+from app.data_model.relationship_store import RelationshipStore
 from app.forms.questionnaire_form import generate_form
+from app.questionnaire.relationship_location import RelationshipLocation
 
 logger = get_logger()
 
@@ -93,14 +95,23 @@ def get_mapped_answers(schema, answer_store, location):
     """
     Maps the answers in an answer store to a dictionary of key, value answers.
     """
+    result = {}
 
-    block_id = location.block_id
-
-    answer_ids = schema.get_answer_ids_for_block(block_id)
-
-    answers = answer_store.get_answers_by_answer_id(
-        answer_ids=answer_ids, list_item_id=location.list_item_id
-    )
-    result = {answer.answer_id: answer.value for answer in answers if answer}
+    if isinstance(location, RelationshipLocation):
+        answer_id = schema.get_relationship_answer_id_for_block(location.block_id)
+        answer = answer_store.get_answer(answer_id)
+        if answer:
+            relationship_store = RelationshipStore(answer.value)
+            relationship = relationship_store.get_relationship(
+                location.from_list_item_id, location.to_list_item_id
+            )
+            if relationship:
+                result = {answer.answer_id: relationship.relationship}
+    else:
+        answer_ids = schema.get_answer_ids_for_block(location.block_id)
+        answers = answer_store.get_answers_by_answer_id(
+            answer_ids=answer_ids, list_item_id=location.list_item_id
+        )
+        result = {answer.answer_id: answer.value for answer in answers if answer}
 
     return OrderedDict(sorted(result.items()))

@@ -1,6 +1,7 @@
 from typing import List, Tuple
 
 from app.data_model.answer_store import Answer
+from app.data_model.relationship_store import Relationship, RelationshipStore
 
 
 class QuestionnaireStoreUpdater:
@@ -37,6 +38,28 @@ class QuestionnaireStoreUpdater:
 
     def update_answers(self, form):
         self._update_questionnaire_store_with_form_data(form.data)
+
+    def update_relationship_answer(self, form_data, from_list_item_id, to_list_item_id):
+        relationship_answer_id = self._schema.get_relationship_answer_id_for_block(
+            self._current_location.block_id
+        )
+
+        answer = self._answer_store.get_answer(relationship_answer_id)
+        if answer:
+            relationship_store = RelationshipStore(answer.value)
+        else:
+            relationship_store = RelationshipStore()
+
+        relationship_answer = form_data.get(relationship_answer_id)
+
+        relationship = Relationship(
+            from_list_item_id, to_list_item_id, relationship_answer
+        )
+        relationship_store.add_or_update(relationship)
+
+        self._answer_store.add_or_update(
+            Answer(relationship_answer_id, relationship_store.serialise())
+        )
 
     def remove_answers(self, answer_ids: List):
         for answer_id in answer_ids:

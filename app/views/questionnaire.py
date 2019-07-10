@@ -5,7 +5,7 @@ import humanize
 import simplejson as json
 from dateutil.tz import tzutc
 from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
-from flask_login import current_user, login_required, logout_user
+from flask_login import current_user, login_required
 from jwcrypto.common import base64url_decode
 from sdc.crypto.encrypter import encrypt
 from structlog import get_logger
@@ -23,7 +23,7 @@ from app.globals import (
     get_session_store,
     get_session_timeout_in_seconds,
 )
-from app.helpers.form_helper import post_form_for_block
+from app.helpers.form_helper import get_form_for_location, post_form_for_block
 from app.helpers.path_finder_helper import path_finder, section_routing_path_required
 from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_questionnaire_store
@@ -33,6 +33,8 @@ from app.questionnaire.location import Location
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.router import Router
+from app.questionnaire.relationship_location import RelationshipLocation
+from app.questionnaire.relationship_router import RelationshipRouter
 from app.questionnaire.schema_utils import transform_variants
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
@@ -106,7 +108,11 @@ def before_post_submission_request():
 @with_questionnaire_store
 @with_schema
 def get_questionnaire(schema, questionnaire_store):
-    router = Router(schema, progress_store=questionnaire_store.progress_store)
+    router = Router(
+        schema,
+        progress_store=questionnaire_store.progress_store,
+        list_store=questionnaire_store.list_store,
+    )
     redirect_location = router.get_first_incomplete_location_in_survey()
     return redirect(redirect_location.url())
 
@@ -116,11 +122,15 @@ def get_questionnaire(schema, questionnaire_store):
 @with_questionnaire_store
 @with_schema
 def get_hub(schema, questionnaire_store):
-    router = Router(schema, progress_store=questionnaire_store.progress_store)
+    router = Router(
+        schema,
+        progress_store=questionnaire_store.progress_store,
+        list_store=questionnaire_store.list_store,
+    )
 
     if not schema.is_hub_enabled():
         redirect_location = router.get_first_incomplete_location_in_survey()
-        return _redirect_to_location(redirect_location)
+        return redirect(redirect_location.url())
 
     language_code = get_session_store().session_data.language_code
     hub = HubContext(
@@ -141,15 +151,17 @@ def get_hub(schema, questionnaire_store):
 def get_hub_section(schema, questionnaire_store, section_id):
 
     progress_store = questionnaire_store.progress_store
-    router = Router(schema, progress_store=progress_store)
+    router = Router(
+        schema, progress_store=progress_store, list_store=questionnaire_store.list_store
+    )
 
     if not schema.is_hub_enabled():
         redirect_location = router.get_first_incomplete_location_in_survey()
-        return _redirect_to_location(redirect_location)
+        return redirect(redirect_location.url())
 
     section = schema.get_section(section_id)
     if not section:
-        return redirect_to_hub()
+        return redirect(url_for('.get_hub'))
 
     section_status = progress_store.get_section_status(section_id)
     routing_path = path_finder.routing_path(section)
@@ -186,96 +198,216 @@ def get_block(
     list_name=None,
     list_item_id=None,
 ):
+    current_location = Location(
+        block_id=block_id, list_name=list_name, list_item_id=list_item_id
+    )
     return get_block_handler(
-        routing_path, schema, questionnaire_store, block_id, list_name, list_item_id
+        routing_path, schema, questionnaire_store, current_location
     )
 
 
+# pylint: disable=too-many-locals
+@questionnaire_blueprint.route(
+    '<block_id>/<from_list_item_id>/to/<to_list_item_id>/', methods=['GET', 'POST']
+)
+@login_required
+@with_questionnaire_store
+@with_schema
+@section_routing_path_required
+def get_relationship(
+    routing_path,
+    schema,
+    questionnaire_store,
+    block_id,
+    from_list_item_id,
+    to_list_item_id,
+):
+    list_store = questionnaire_store.list_store
+
+    parent_location = Location(block_id)
+    current_location = RelationshipLocation(
+        block_id, from_list_item_id, to_list_item_id
+    )
+
+    redirect_url = validate_location(
+        schema, routing_path, questionnaire_store.list_store, current_location
+    )
+    if redirect_url:
+        return redirect(redirect_url)
+
+    list_items = list_store.get(schema.get_block(block_id)['for_list'])
+    relationship_router = RelationshipRouter(block_id, list_items)
+
+    if not relationship_router.can_access_location(current_location):
+        return redirect(relationship_router.get_first_location_url())
+
+    previous_location_url = relationship_router.get_previous_location_url(
+        current_location
+    )
+    if not previous_location_url:
+        router = Router(
+            schema, questionnaire_store.progress_store, questionnaire_store.list_store
+        )
+        previous_location_url = router.get_previous_location_url(
+            parent_location, routing_path
+        )
+
+    rendered_block = _render_block(schema, questionnaire_store, block_id)
+
+    form = _generate_wtf_form(rendered_block, schema, current_location)
+    if request.method == 'GET' or not form.validate():
+        context = _get_context(rendered_block, current_location, schema, form)
+        return _render_page(
+            rendered_block['type'],
+            context,
+            current_location,
+            previous_location_url,
+            schema,
+        )
+
+    return relationships_post_handler(
+        questionnaire_store,
+        schema,
+        rendered_block,
+        current_location,
+        parent_location,
+        form,
+        relationship_router,
+        routing_path,
+    )
+
+
+# pylint: disable=too-many-locals
+def relationships_post_handler(
+    questionnaire_store,
+    schema,
+    rendered_block,
+    current_location,
+    parent_location,
+    form,
+    relationship_router,
+    routing_path,
+):
+    questionnaire_store_updater = QuestionnaireStoreUpdater(
+        parent_location, schema, questionnaire_store, rendered_block.get('question')
+    )
+    questionnaire_store_updater.update_relationship_answer(
+        form.data, current_location.from_list_item_id, current_location.to_list_item_id
+    )
+
+    # The location needs to be removed as we may have previously completed this location
+    if 'action[save_sign_out]' in request.form:
+        questionnaire_store_updater.remove_completed_location()
+        questionnaire_store_updater.save()
+        return redirect(url_for('session.get_sign_out'))
+
+    next_location_url = relationship_router.get_next_location_url(current_location)
+    if next_location_url:
+        questionnaire_store_updater.save()
+        return redirect(next_location_url)
+
+    questionnaire_store_updater.add_completed_location()
+    _update_section_completeness(questionnaire_store_updater, routing_path)
+    questionnaire_store_updater.save()
+
+    router = Router(
+        schema, questionnaire_store.progress_store, questionnaire_store.list_store
+    )
+    next_location_url = router.get_next_location_url(parent_location, routing_path)
+    return redirect(next_location_url)
+
+
 def validate_location(schema, routing_path, list_store, current_location):
-    router = Router(schema, get_progress_store(current_user))
+    router = Router(schema, get_progress_store(current_user), list_store)
 
-    if current_location.block_id not in [block['id'] for block in schema.get_blocks()]:
-
+    if not schema.get_block(current_location.block_id):
         if schema.is_hub_enabled():
-            return redirect_to_hub()
+            return url_for('.get_hub')
 
         redirect_location = router.get_first_incomplete_location_in_survey()
-        return _redirect_to_location(redirect_location)
+        return redirect_location.url()
 
     is_list_collector_child = schema.is_block_list_collector_child(
         current_location.block_id
     )
 
+    block = schema.get_block(current_location.block_id)
     if is_list_collector_child:
         parent_block_id = schema.get_list_collector_for_block_id(
             current_location.block_id
         )['id']
         routing_location = Location(block_id=parent_block_id)
+    elif block['type'] == 'RelationshipCollector':
+        routing_location = Location(block_id=current_location.block_id)
     else:
         routing_location = current_location
 
     if not router.can_access_location(routing_location, routing_path):
         redirect_location = router.get_first_incomplete_location_in_survey()
-        return _redirect_to_location(redirect_location)
+        return redirect_location.url()
 
     if is_list_collector_child:
-        list_item_id = current_location.list_item_id
-        list_name = current_location.list_name
-        block = schema.get_block(current_location.block_id)
-        parent_block = schema.get_list_collector_for_block_id(current_location.block_id)
-
-        if list_name != parent_block['populates_list']:
-            logger.info(
-                f'Mismatched list_name: {list_name} and block_id: {current_location.block_id}'
-            )
-            next_location = path_finder.get_first_incomplete_location(routing_path)
-            return _redirect_to_location(next_location)
-
-        if block['type'] == 'ListAddQuestion':
-            if list_item_id:
-                raise PageNotFoundException(
-                    f'list_item_id included in route for add question on list collector'
-                )
-            return
-
-        if list_item_id not in list_store[current_location.list_name]:
-            return redirect(
-                url_for('questionnaire.get_block', block_id=parent_block['id'])
-            )
+        return _validate_list_collector_child_location(
+            schema, routing_path, list_store, current_location
+        )
 
 
-def get_block_handler(
-    routing_path,
-    schema,
-    questionnaire_store,
-    block_id,
-    list_name=None,
-    list_item_id=None,
+def _validate_list_collector_child_location(
+    schema, routing_path, list_store, current_location
 ):
-    metadata = questionnaire_store.metadata
-    answer_store = questionnaire_store.answer_store
-    list_store = questionnaire_store.list_store
-    current_location = Location(block_id, list_name, list_item_id)
+    list_item_id = current_location.list_item_id
+    list_name = current_location.list_name
+    block = schema.get_block(current_location.block_id)
+    parent_block = schema.get_list_collector_for_block_id(current_location.block_id)
 
-    redirect_location = validate_location(
-        schema, routing_path, list_store, current_location
+    if list_name != parent_block['populates_list']:
+        logger.info(
+            f'Mismatched list_name: {list_name} and block_id: {current_location.block_id}'
+        )
+        next_location = path_finder.get_first_incomplete_location(routing_path)
+        return next_location.url()
+
+    if block['type'] == 'ListAddQuestion':
+        if list_item_id:
+            raise PageNotFoundException(
+                f'list_item_id included in route for add question on list collector'
+            )
+        return
+
+    if list_item_id not in list_store[current_location.list_name]:
+        return url_for('questionnaire.get_block', block_id=parent_block['id'])
+
+
+def get_block_handler(routing_path, schema, questionnaire_store, current_location):
+    redirect_url = validate_location(
+        schema, routing_path, questionnaire_store.list_store, current_location
     )
-    if redirect_location:
-        return redirect_location
+    if redirect_url:
+        return redirect(redirect_url)
 
-    router = Router(schema, progress_store=questionnaire_store.progress_store)
+    block = schema.get_block(current_location.block_id)
+    if block['type'] == 'RelationshipCollector':
+        list_items = questionnaire_store.list_store.get(block['for_list'])
+        relationship_router = RelationshipRouter(current_location.block_id, list_items)
+        return redirect(relationship_router.get_first_location_url())
+
+    router = Router(
+        schema,
+        progress_store=questionnaire_store.progress_store,
+        list_store=questionnaire_store.list_store,
+    )
     previous_location_url = router.get_previous_location_url(
         current_location, routing_path
     )
 
-    return _render_block(
-        schema,
-        metadata,
-        answer_store,
-        list_store,
-        block_id,
-        current_location,
-        previous_location_url,
+    rendered_block = _render_block(
+        schema, questionnaire_store, current_location.block_id
+    )
+    form = _generate_wtf_form(rendered_block, schema, current_location)
+    context = _get_context(rendered_block, current_location, schema, form)
+
+    return _render_page(
+        rendered_block['type'], context, current_location, previous_location_url, schema
     )
 
 
@@ -296,42 +428,31 @@ def post_block_handler(
 
     current_location = Location(block_id, list_name, list_item_id)
 
-    redirect_location = validate_location(
-        schema, routing_path, list_store, current_location
+    redirect_url = validate_location(
+        schema, routing_path, questionnaire_store.list_store, current_location
     )
-    if redirect_location:
-        return redirect_location
+    if redirect_url:
+        return redirect(redirect_url)
 
-    block = schema.get_block(block_id)
+    if 'action[sign_out]' in request.form:
+        return redirect(url_for('session.get_sign_out'))
 
-    transformed_block = transform_variants(
-        block, schema, metadata, answer_store, list_store
+    rendered_block = _render_block(schema, questionnaire_store, block_id)
+
+    form = _generate_wtf_form(rendered_block, schema, current_location)
+
+    router = Router(
+        schema,
+        progress_store=questionnaire_store.progress_store,
+        list_store=questionnaire_store.list_store,
     )
-
-    placeholder_renderer = PlaceholderRenderer(
-        language=flask_babel.get_locale().language,
-        answer_store=answer_store,
-        metadata=metadata,
-    )
-
-    rendered_block = placeholder_renderer.render(transformed_block)
-
-    router = Router(schema, progress_store=questionnaire_store.progress_store)
     previous_location_url = router.get_previous_location_url(
         current_location, routing_path
     )
 
-    form = _generate_wtf_form(request.form, rendered_block, schema)
-    form_action_redirect = _handle_signout(
-        form, current_location, previous_location_url, rendered_block, schema
-    )
-
-    if form_action_redirect:
-        return form_action_redirect
-
     if not form.validate():
         context = build_view_context(
-            block['type'],
+            rendered_block['type'],
             metadata,
             schema,
             list_store,
@@ -341,16 +462,29 @@ def post_block_handler(
             form,
         )
         return _render_page(
-            block['type'], context, current_location, previous_location_url, schema
+            rendered_block['type'],
+            context,
+            current_location,
+            previous_location_url,
+            schema,
         )
-
-    _set_started_at_metadata(form, collection_metadata)
 
     questionnaire_store_updater = QuestionnaireStoreUpdater(
         current_location, schema, questionnaire_store, rendered_block.get('question')
     )
+    if 'action[save_sign_out]' in request.form:
+        questionnaire_store_updater.update_answers(form)
+        # The location needs to be removed as we may have previously completed this location
+        questionnaire_store_updater.remove_completed_location()
+        questionnaire_store_updater.save()
+        return redirect(url_for('session.get_sign_out'))
 
-    if schema.is_list_block_type(block['type']):
+    if _is_end_of_questionnaire(rendered_block):
+        return submit_answers(schema)
+
+    _set_started_at_metadata(form, collection_metadata)
+
+    if schema.is_list_block_type(rendered_block['type']):
         list_action_redirect = perform_list_action(
             schema,
             metadata,
@@ -365,25 +499,14 @@ def post_block_handler(
         if list_action_redirect:
             return redirect(list_action_redirect)
 
-    if _is_end_of_questionnaire(block):
-        return submit_answers(schema)
-
     questionnaire_store_updater.update_answers(form)
 
-    section = schema.get_section_for_block_id(block_id)
-
-    # recreate routing path if the answers have changed
-    if answer_store.is_dirty:
+    if questionnaire_store_updater.is_dirty:
+        section = schema.get_section_for_block_id(block_id)
         routing_path = path_finder.routing_path(section)
 
     questionnaire_store_updater.add_completed_location()
-
-    is_path_complete = path_finder.is_path_complete(routing_path)
-
-    if is_path_complete:
-        questionnaire_store_updater.update_section_status(CompletionStatus.COMPLETED)
-    else:
-        questionnaire_store_updater.update_section_status(CompletionStatus.IN_PROGRESS)
+    _update_section_completeness(questionnaire_store_updater, routing_path)
 
     questionnaire_store_updater.save()
 
@@ -392,16 +515,11 @@ def post_block_handler(
     return redirect(next_location_url)
 
 
-def _handle_signout(
-    form, current_location, previous_location_url, rendered_block, schema
-):
-    if 'action[save_sign_out]' in request.form:
-        return _save_sign_out(
-            current_location, previous_location_url, rendered_block, form, schema
-        )
-
-    if 'action[sign_out]' in request.form:
-        return redirect(url_for('session.get_sign_out'))
+def _update_section_completeness(questionnaire_store_updater, routing_path):
+    if path_finder.is_path_complete(routing_path):
+        questionnaire_store_updater.update_section_status(CompletionStatus.COMPLETED)
+    else:
+        questionnaire_store_updater.update_section_status(CompletionStatus.IN_PROGRESS)
 
 
 def perform_list_action(
@@ -499,7 +617,11 @@ def hub_post_block(schema, questionnaire_store):
     ):
         return redirect(url_for('session.get_sign_out'))
 
-    router = Router(schema, progress_store=questionnaire_store.progress_store)
+    router = Router(
+        schema,
+        progress_store=questionnaire_store.progress_store,
+        list_store=questionnaire_store.list_store,
+    )
 
     if schema.is_hub_enabled() and router.is_survey_complete():
         return submit_answers(schema)
@@ -645,19 +767,19 @@ def _render_page(block_type, context, current_location, previous_location_url, s
     )
 
 
-def _generate_wtf_form(form, block, schema):
-    disable_mandatory = 'action[save_sign_out]' in form
+def _generate_wtf_form(block, schema, current_location):
+    answer_store = get_answer_store(current_user)
+    metadata = get_metadata(current_user)
 
-    wtf_form = post_form_for_block(
-        schema,
-        block,
-        get_answer_store(current_user),
-        get_metadata(current_user),
-        request.form,
-        disable_mandatory,
+    if request.method == 'POST':
+        disable_mandatory = 'action[save_sign_out]' in request.form
+        return post_form_for_block(
+            schema, block, answer_store, metadata, request.form, disable_mandatory
+        )
+
+    return get_form_for_location(
+        schema, block, current_location, answer_store, metadata
     )
-
-    return wtf_form
 
 
 def _is_end_of_questionnaire(block):
@@ -752,38 +874,6 @@ def _is_submission_viewable(schema, submitted_time):
     return False
 
 
-def _save_sign_out(current_location, previous_location_url, block, form, schema):
-    questionnaire_store = get_questionnaire_store(
-        current_user.user_id, current_user.user_ik
-    )
-
-    if form.validate():
-        questionnaire_store_updater = QuestionnaireStoreUpdater(
-            current_location, schema, questionnaire_store, block.get('question')
-        )
-        questionnaire_store_updater.update_answers(form)
-        # The location needs to be removed as we may have previously completed this location
-        questionnaire_store_updater.remove_completed_location()
-        questionnaire_store_updater.save()
-
-        logout_user()
-
-        return redirect(url_for('session.get_sign_out'))
-
-    context = _get_context(block, current_location, schema, form)
-    return _render_page(
-        block['type'], context, current_location, previous_location_url, schema
-    )
-
-
-def _redirect_to_location(location):
-    return redirect(url_for('questionnaire.get_block', block_id=location.block_id))
-
-
-def redirect_to_hub():
-    return redirect(url_for('.get_hub'))
-
-
 def _get_context(block, current_location, schema, form=None):
     questionnaire_store = get_questionnaire_store(
         current_user.user_id, current_user.user_ik
@@ -852,29 +942,20 @@ def request_wants_json():
     )
 
 
-def _render_block(
-    schema,
-    metadata,
-    answer_store,
-    list_store,
-    block_id,
-    current_location,
-    previous_location_url,
-):
+def _render_block(schema, questionnaire_store, block_id):
+
     block = schema.get_block(block_id)
     transformed_block = transform_variants(
-        block, schema, metadata, answer_store, list_store
+        block,
+        schema,
+        questionnaire_store.metadata,
+        questionnaire_store.answer_store,
+        questionnaire_store.list_store,
     )
 
     placeholder_renderer = PlaceholderRenderer(
         language=flask_babel.get_locale().language,
-        answer_store=answer_store,
-        metadata=metadata,
+        answer_store=questionnaire_store.answer_store,
+        metadata=questionnaire_store.metadata,
     )
-    rendered_block = placeholder_renderer.render(transformed_block)
-
-    context = _get_context(rendered_block, current_location, schema)
-
-    return _render_page(
-        rendered_block['type'], context, current_location, previous_location_url, schema
-    )
+    return placeholder_renderer.render(transformed_block)

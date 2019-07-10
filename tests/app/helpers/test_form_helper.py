@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from werkzeug.datastructures import MultiDict
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -8,6 +9,7 @@ from app.helpers.form_helper import (
 )
 from app.questionnaire.location import Location
 from app.utilities.schema import load_schema_from_name
+from app.questionnaire.relationship_location import RelationshipLocation
 from app.data_model.answer_store import AnswerStore
 from app.validation.validators import DateRequired, OptionalForm
 
@@ -195,3 +197,28 @@ class TestFormHelper(AppContextTestCase):
 
         mapped = get_mapped_answers(schema, answer_store, location)
         self.assertEqual(len(mapped), 2)
+
+    def test_get_mapped_relationship_answers(self):
+        schema = load_schema_from_name('test_relationships')
+        location = RelationshipLocation(
+            block_id='relationships', from_list_item_id='id1', to_list_item_id='id2'
+        )
+        answer_store = AnswerStore(
+            [
+                {
+                    'answer_id': 'relationship-answer',
+                    'value': [
+                        {
+                            'from_list_item_id': 'id1',
+                            'to_list_item_id': 'id2',
+                            'relationship': 'Husband or Wife',
+                        }
+                    ],
+                }
+            ]
+        )
+
+        mapped_answers = get_mapped_answers(schema, answer_store, location)
+        self.assertEqual(len(mapped_answers), 1)
+        expected_answers = OrderedDict({'relationship-answer': 'Husband or Wife'})
+        self.assertEqual(mapped_answers, expected_answers)

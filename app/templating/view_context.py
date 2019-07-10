@@ -1,6 +1,5 @@
 from flask import url_for
 from app.questionnaire.placeholder_transforms import PlaceholderTransforms
-from app.helpers.form_helper import get_form_for_location
 from app.jinja_filters import (
     get_formatted_currency,
     format_number,
@@ -14,6 +13,7 @@ from app.questionnaire.schema_utils import (
 )
 
 
+# pylint: disable=too-many-return-statements
 def build_view_context(
     block_type,
     metadata,
@@ -46,15 +46,15 @@ def build_view_context(
         'ListEditQuestion',
         'ListRemoveQuestion',
     ):
-        form = form or get_form_for_location(
-            schema, rendered_block, current_location, answer_store, metadata
-        )
         return build_view_context_for_question(rendered_block, form)
 
-    if block_type == 'ListCollector':
-        form = form or get_form_for_location(
-            schema, rendered_block, current_location, answer_store, metadata
+    if block_type == 'RelationshipCollector':
+        transformed_block = transform_relationships(
+            rendered_block, answer_store, current_location
         )
+        return build_view_context_for_question(transformed_block, form)
+
+    if block_type == 'ListCollector':
         return build_view_context_for_list_collector(
             rendered_block, list_store, answer_store, form
         )
@@ -258,6 +258,42 @@ def build_view_context_for_question(
             context['form']['fields'][answer_id] = form[answer_id]
 
     return context
+
+
+# This is required until we can resolve placeholders for list items in schema.
+def transform_relationships(block, answer_store, location):
+    transform = PlaceholderTransforms('en')
+    first_person_name = _get_name(answer_store, location.from_list_item_id)
+    second_person_name = _get_name(answer_store, location.to_list_item_id)
+    first_person_name_possessive = transform.format_possessive(first_person_name)
+
+    placeholders = {
+        'first_person_name': first_person_name,
+        'second_person_name': second_person_name,
+        'first_person_name_possessive': first_person_name_possessive,
+    }
+
+    question = block['question']
+    question['title'] = question['title'].format(**placeholders)
+    answer = question['answers'][0]
+    answer['playback'] = answer['playback'].format(**placeholders)
+
+    for option in answer['options']:
+        option['title'] = option['title'].format(**placeholders)
+        option['playback'] = option['playback'].format(**placeholders)
+
+    return block
+
+
+def _get_name(answer_store, list_item_id):
+    name = []
+    answers = answer_store.get_answers_by_answer_id(
+        answer_ids=['first-name', 'last-name'], list_item_id=list_item_id
+    )
+    for answer in answers:
+        name.append(answer.value.strip())
+
+    return ' '.join(name)
 
 
 def _build_calculated_summary_section_list(
