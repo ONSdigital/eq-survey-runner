@@ -67,9 +67,6 @@ local employer_type_of_address = import 'blocks/individual/employment/employer_t
 local employers_business = import 'blocks/individual/employment/employers_business.jsonnet';
 local ever_worked = import 'blocks/individual/employment/ever_worked.jsonnet';
 
-// comments
-local comments = import '../common/blocks/comments.json';
-
 function(region_code, census_date) {
   mime_type: 'application/json/ons/eq',
   schema_version: '0.0.1',
@@ -195,19 +192,6 @@ function(region_code, census_date) {
             school_location,
             school_travel_mode,
           ],
-        },
-      ],
-    },
-    {
-      id: 'comments',
-      title: 'Comments',
-      groups: [
-        {
-          blocks: [
-            comments,
-          ],
-          id: 'comments-group',
-          title: 'Comments',
         },
       ],
     },

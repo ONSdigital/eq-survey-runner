@@ -81,7 +81,7 @@ local proxyGuidance = 'Exclude anything they do as part of their paid employment
     },
     {
       goto: {
-        group: 'comments-group',
+        group: 'submit-group',
       },
     },
   ],

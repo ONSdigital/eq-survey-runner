@@ -189,7 +189,7 @@ local otherNonUkAddressOptions = {
     },
     {
       goto: {
-        group: 'comments-group',
+        group: 'submit-group',
         when: [
           {
             id: 'term-time-location-answer',
@@ -201,7 +201,7 @@ local otherNonUkAddressOptions = {
     },
     {
       goto: {
-        group: 'comments-group',
+        group: 'submit-group',
         when: [
           {
             id: 'term-time-location-answer',
