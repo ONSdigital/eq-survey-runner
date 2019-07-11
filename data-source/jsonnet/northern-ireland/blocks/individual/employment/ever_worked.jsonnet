@@ -65,10 +65,10 @@ local studyRouting(label) = [
   },
 ];
 
-local commentsRouting(label) = [
+local summaryRouting(label) = [
   {
     goto: {
-      group: 'comments-group',
+      group: 'submit-group',
       when: [
         {
           id: 'ever-worked-answer',
@@ -106,8 +106,8 @@ local proxyLabel = 'No, has never worked';
   routing_rules:
     studyRouting(nonProxyLabel) +
     studyRouting(proxyLabel) +
-    commentsRouting(nonProxyLabel) +
-    commentsRouting(proxyLabel) + [
+    summaryRouting(nonProxyLabel) +
+    summaryRouting(proxyLabel) + [
       {
         goto: {
           block: 'main-employment-block',

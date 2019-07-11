@@ -75,8 +75,6 @@ local employer_type_of_address = import 'blocks/individual/employment/employer_t
 local employers_business = import 'blocks/individual/employment/employers_business.jsonnet';
 local ever_worked = import 'blocks/individual/employment/ever_worked.jsonnet';
 
-local comments = import '../common/blocks/comments.json';
-
 local understandWelshBlock(region_code) = if region_code == 'GB-WLS' then [understand_welsh] else [];
 
 function(region_code, census_date) {
@@ -208,19 +206,6 @@ function(region_code, census_date) {
             employer_address_workplace,
             employer_address_depot,
           ],
-        },
-      ],
-    },
-    {
-      id: 'comments',
-      title: 'Comments',
-      groups: [
-        {
-          blocks: [
-            comments,
-          ],
-          id: 'comments-group',
-          title: 'Comments',
         },
       ],
     },

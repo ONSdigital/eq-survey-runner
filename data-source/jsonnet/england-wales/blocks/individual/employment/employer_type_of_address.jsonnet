@@ -95,7 +95,7 @@ local proxyTitle = {
     },
     {
       goto: {
-        group: 'comments-group',
+        group: 'submit-group',
       },
     },
   ],

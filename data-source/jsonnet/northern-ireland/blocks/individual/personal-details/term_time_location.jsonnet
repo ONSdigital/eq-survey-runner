@@ -53,7 +53,7 @@ local proxyTitle = {
   routing_rules: [
     {
       goto: {
-        group: 'comments-group',
+        group: 'submit-group',
         when: [
           {
             id: 'term-time-location-answer',
