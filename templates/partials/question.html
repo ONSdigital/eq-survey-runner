@@ -1,5 +1,5 @@
 {% from "components/question/_macro.njk" import onsQuestion %}
-{% from "components/field/_macro.njk" import onsField %}
+{% from "components/fieldset/_macro.njk" import onsFieldset %}
 
 {% set form = content.form %}
 
@@ -7,8 +7,7 @@
 {% set question_description = format_paragraphs(question.description) if question.description else None %}
 {% set question_guidance = "" %}
 {% set question_definition = "" %}
-{% set answers_require_legend = answers_require_legend(question) %}
-{% set answer_requires_legend = answer_requires_legend(question) %}
+{% set should_wrap_with_fieldset = should_wrap_with_fieldset(question) %}
 
 {%- set question_definition -%}
   {%- if question.definitions -%}
@@ -49,8 +48,9 @@
       "checkbox": map_checkbox_config(form, question.answers[-1])[0],
       "deselectionMessage": deselectionMessage,
       "deselectGroupAdjective": deselectGroupAdjective,
-      "deselectCheckboxAdjective": _("deselected"),
-    } %}
+      "deselectCheckboxAdjective": _("deselected")
+    } -%}
+
     {% include 'partials/answer.html' %}
   {%- else -%}
     {%- set answers -%}
@@ -59,9 +59,10 @@
       {%- endfor -%}
     {%- endset -%}
 
-    {%- if answers_require_legend -%}
-      {%- call onsField({
-        "legend": question_title
+    {%- if should_wrap_with_fieldset -%}
+      {%- call onsFieldset({
+        "legend": question_title,
+        "legendClasses": "u-vh"
       }) -%}
         {{ answers }}
       {%- endcall -%}

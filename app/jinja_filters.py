@@ -190,50 +190,18 @@ def setAttributes(dictionary, attributes):
 
 
 @blueprint.app_template_filter()
-def answers_require_legend(question):
-    question_type = question['type']
-
-    if question_type == 'MutuallyExclusive':
-        return False
-
+def should_wrap_with_fieldset(question):
     answers = question['answers']
-    more_than_one_question = len(answers) > 1
 
-    if more_than_one_question and question_type != 'DateRange':
+    if len(answers) > 1 and not any(answer['type'] == 'Date' for answer in answers):
         return True
 
     return False
 
 
 @blueprint.app_context_processor
-def answers_require_legend_processor():
-    return dict(answers_require_legend=answers_require_legend)
-
-
-@blueprint.app_template_filter()
-def answer_requires_legend(question):
-    if answers_require_legend(question):
-        return False
-
-    question_type = question['type']
-
-    if question_type == 'MutuallyExclusive':
-        return True
-
-    answer = question['answers'][0]
-
-    if 'type' in answer and any(
-        answer['type'] in answer_type
-        for answer_type in ['Checkbox', 'Radio', 'Date', 'Duration']
-    ):
-        return True
-
-    return False
-
-
-@blueprint.app_context_processor
-def answer_requires_legend_processor():
-    return dict(answer_requires_legend=answer_requires_legend)
+def should_wrap_with_fieldset_processor():
+    return {'should_wrap_with_fieldset': should_wrap_with_fieldset}
 
 
 class LabelConfig:
@@ -283,11 +251,30 @@ class RadioConfig:
             self.other = OtherConfig(detail_answer)
 
 
+class RelationshipRadioConfig:
+    def __init__(self, option, index, answer):
+        self.id = option.id
+        self.name = option.name
+        self.value = option.data
+        self.checked = option.checked
+
+        label_description = None
+        answer_option = answer['options'][index]
+
+        self.label = LabelConfig(option.id, option.label.text, label_description)
+
+        if answer_option:
+            self.attributes = {
+                'data-title': answer_option['title'],
+                'data-playback': answer_option['playback'],
+            }
+
+
 class OtherConfig:
     def __init__(self, detail_answer):
         self.id = detail_answer.id
         self.name = detail_answer.name
-        self.value = detail_answer.data
+        self.value = detail_answer.data or ''
         self.label = LabelConfig(detail_answer.id, detail_answer.label.text)
 
 
@@ -313,6 +300,20 @@ def map_radio_config(form, answer):
 @blueprint.app_context_processor
 def map_radio_config_processor():
     return dict(map_radio_config=map_radio_config)
+
+
+@blueprint.app_template_filter()
+def map_relationships_config(form, answer):
+    options = form['fields'][answer['id']]
+
+    return [
+        RelationshipRadioConfig(option, i, answer) for i, option in enumerate(options)
+    ]
+
+
+@blueprint.app_context_processor
+def map_relationships_config_processor():
+    return dict(map_relationships_config=map_relationships_config)
 
 
 class SelectOptionConfig:

@@ -6,7 +6,6 @@
   "id": answer.id,
   "name": input.name,
   "value": input._value(),
-  "legend": question_title if answer_requires_legend,
   "label": {
     "text": answer.label,
     "description": answer.description
@@ -14,5 +13,7 @@
   "attributes": {
     "data-qa": "input-text"
   },
+  "legend": question_title,
+  "legendClasses": "u-vh",
   "mutuallyExclusive": mutuallyExclusive
 }) }}

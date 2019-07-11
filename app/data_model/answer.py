@@ -3,11 +3,6 @@ from typing import Union, Optional, Dict, List
 from dataclasses import dataclass, field, asdict
 
 
-from structlog import get_logger
-
-logger = get_logger()
-
-
 @dataclass
 class Answer:
     answer_id: str

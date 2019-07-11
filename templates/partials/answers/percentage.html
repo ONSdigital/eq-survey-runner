@@ -6,7 +6,6 @@
   "id": answer.id,
   "classes": "js-totaliser-input-calculated" if answer.calculated,
   "type": "number",
-  "legend": question_title if answer_requires_legend,
   "label": {
     "text": answer.label,
     "description": answer.description
@@ -19,5 +18,7 @@
   "suffix": {
     "title": "%"
   },
+  "legend": question_title,
+  "legendClasses": "u-vh",
   "mutuallyExclusive": mutuallyExclusive
 }) }}

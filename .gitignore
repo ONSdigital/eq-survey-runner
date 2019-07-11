@@ -92,6 +92,7 @@ requirements.txt
 
 # Ignore built schemas
 data/en/
+data/cy/census_household_gb_wls.json
 
 # Ignore any generated pages for the functional tests
 tests/functional/generated_pages

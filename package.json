@@ -11,43 +11,59 @@
     "url": "https://github.com/ONSdigital/eq-survey-runner"
   },
   "scripts": {
-    "start": "gulp watch",
-    "lint": "gulp lint",
+    "start": "make dev-compose-up && concurrently \"make run\" \"livereload . -e 'html,njk'\"",
+    "lint": "yarn lint:tests && yarn lint:data-source",
+    "lint:tests": "rm -rf ./tests/functional/generated_pages && eslint tests/functional --fix",
+    "lint:data-source": "eslint data-source/json/*.json --fix",
     "test_functional": "chimp tests/functional/chimp.js",
-    "test_cypress": "node tests/functional/cypress.js",
-    "cypress": "cypress open",
-    "generate_pages": "rm -rf ./tests/functional/generated_pages && cd tests/functional &&  pipenv run ./generate_pages.py ../../data/en/ ./generated_pages -r '../../base_pages' && cd ../..",
-    "format": "gulp format:json && pipenv run black app tests"
+    "generate_pages": "rm -rf ./tests/functional/generated_pages && cd tests/functional && pipenv run ./generate_pages.py ../../data/en/ ./generated_pages -r '../../base_pages' && cd ../..",
+    "format": "yarn format:json && yarn format:python",
+    "format:data-source": "prettier data-source/json/*.json --write",
+    "format:python": "pipenv run black app tests",
+    "lint-staged": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "tests/functional/**/*.js": [
+      "yarn lint:tests",
+      "git add"
+    ],
+    "data-source/json/**/*.json": [
+      "yarn format:data-source",
+      "yarn lint:data-source",
+      "git add"
+    ],
+    "*.py": [
+      "yarn format:python",
+      "git add"
+    ]
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "babel-register": "^6.26.0",
-    "browser-sync": "^2.18.13",
-    "chimp": "^0.50.0",
-    "cypress": "^3.1.5",
-    "del": "^3.0.0",
+    "chimp": "0.50.0",
+    "concurrently": "^4.1.1",
     "eslint": "^4.3.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.1",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "gulp": "^3.9.0",
-    "gulp-debug": "^3.1.0",
-    "gulp-diff": "^1.0.0",
-    "gulp-eslint": "^4.0.0",
-    "gulp-exec": "^3.0.2",
-    "gulp-jsbeautifier": "^2.0.4",
-    "gulp-plumber": "^1.2.1",
+    "eslint-cli": "^1.1.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-json": "^1.4.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "fibers": "3",
+    "husky": "^3.0.0",
     "json-web-key": "^0.3.0",
     "jsrsasign": "^8.0.3",
-    "mocha": "^5.0.5",
+    "lint-staged": "^9.0.2",
+    "livereload": "^0.8.0",
+    "lodash": "^4.17.11",
     "node-jose": "^0.9.5",
-    "uuid": "^3.1.0",
-    "which": "^1.3.1"
-  },
-  "dependencies": {
-    "lodash": "^4.17.5"
+    "prettier": "^1.18.2",
+    "uuid": "^3.1.0"
   }
 }

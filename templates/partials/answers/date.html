@@ -4,37 +4,16 @@
 {%- set month_field = form.fields[answer['id']]['month'] -%}
 {%- set year_field = form.fields[answer['id']]['year'] -%}
 
-{%- set fields = 0 -%}
-
-{%- if day_field -%}
-  {%- set fields = fields + 1 -%}
-{%- endif -%}
-
-{%- if month_field -%}
-  {%- set fields = fields + 1 -%}
-{%- endif -%}
-
-{%- if year_field -%}
-  {%- set fields = fields + 1 -%}
-{%- endif -%}
-
 {%- set config = {
   "id": answer['id'],
   "description": answer.description,
+  "legend": question_title,
+  "legendClasses": "u-vh",
   "attributes": {
     "data-qa": "widget-date"
   },
   "mutuallyExclusive": mutuallyExclusive
 } -%}
-
-{%- if answer_requires_legend and answer.label and question.type == "DateRange" -%}
-  {%- set config = config | setAttributes({
-    "legend": answer.label,
-    "dontVisuallyHideLegend": true
-  }) -%}
-{%- elif fields > 1 -%}
-  {%- set config = config | setAttribute("legend", question_title) -%}
-{%- endif -%}
 
 {%- if day_field -%}
   {%- set config = config | setAttributes({

@@ -233,7 +233,7 @@ def setup_secure_headers(application):
 
     if application.config['EQ_ENABLE_LIVE_RELOAD']:
         # browsersync is configured to bind on port 5075
-        csp_policy['connect-src'] += ['http://localhost:5075', 'ws://localhost:5075']
+        csp_policy['connect-src'] += ['ws://localhost:35729']
 
     Talisman(
         application,
