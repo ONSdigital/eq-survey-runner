@@ -39,7 +39,7 @@
                     }],
                     "description": "",
                     "id": "manual-range-question",
-                    "title": "Did you have a paid job, either as an employee or self-employed, in the week {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM YYYY' ) }} to {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU') | format_date_custom( 'EEEE d MMMM YYYY' ) }}",
+                    "title": "Did you have a paid job, either as an employee or self-employed, in the week {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM yyyy' ) }} to {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU') | format_date_custom( 'EEEE d MMMM yyyy' ) }}",
                     "type": "General"
                 }]
             }, {

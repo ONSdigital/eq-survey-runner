@@ -2,7 +2,7 @@ import uuid
 from unittest import TestCase
 
 from mock import patch, Mock, call
-from pika.exceptions import AMQPError
+from pika.exceptions import AMQPError, UnroutableError
 
 from app.submitter.submitter import RabbitMQSubmitter
 
@@ -30,9 +30,8 @@ class TestSubmitter(TestCase):
     def test_when_message_sent_then_published_true(self):
         # Given
         with patch('app.submitter.submitter.BlockingConnection'):
-            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
-
             # When
+            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
 
             # Then
             self.assertTrue(published, 'send_message should publish message')
@@ -103,9 +102,11 @@ class TestSubmitter(TestCase):
     def test_when_fail_to_publish_message_then_returns_false(self):
         # Given
         channel = Mock()
-        channel.basic_publish = Mock(return_value=False)
+        channel.basic_publish = Mock(side_effect=UnroutableError('Error'))
+
         connection = Mock()
         connection.channel.side_effect = Mock(return_value=channel)
+
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
             # When
             published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')

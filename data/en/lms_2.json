@@ -3364,7 +3364,7 @@
                         "questions": [{
                             "id": "paid-job-question",
                             "titles": [{
-                                    "value": "Did <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
+                                    "value": "Did <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3372,7 +3372,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Did you have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
+                                    "value": "Did you have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?"
                                 }
                             ],
                             "type": "General",
@@ -3762,7 +3762,7 @@
                         "questions": [{
                             "id": "not-working-casual-work-question",
                             "titles": [{
-                                    "value": "Did they do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
+                                    "value": "Did they do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3770,7 +3770,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Did you do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
+                                    "value": "Did you do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?"
                                 }
                             ],
                             "type": "General",
@@ -4725,7 +4725,7 @@
                         "questions": [{
                             "id": "one-job-actual-hours-question",
                             "titles": [{
-                                    "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['one-job-usual-hours-answer'][group_instance]}} hours in their job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>actually</em> work, excluding overtime?",
+                                    "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['one-job-usual-hours-answer'][group_instance]}} hours in their job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>actually</em> work, excluding overtime?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -4733,7 +4733,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "You usually work {{answers['one-job-usual-hours-answer'][group_instance]}} hours in your job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you <em>actually</em> work, excluding overtime?"
+                                    "value": "You usually work {{answers['one-job-usual-hours-answer'][group_instance]}} hours in your job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did you <em>actually</em> work, excluding overtime?"
                                 }
                             ],
                             "type": "General",
@@ -5424,7 +5424,7 @@
                         "questions": [{
                             "id": "one-job-actual-hours-confirmation-question",
                             "titles": [{
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY')}}, you entered that <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked zero hours, excluding overtime.",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy')}}, you entered that <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked zero hours, excluding overtime.",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -5432,7 +5432,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that you worked zero hours, excluding overtime."
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, you entered that you worked zero hours, excluding overtime."
                                 }
                             ],
                             "type": "General",
@@ -6325,7 +6325,7 @@
                         "questions": [{
                             "id": "two-jobs-j1-actual-hours-question",
                             "titles": [{
-                                    "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['two-jobs-j1-usual-hours-answer'][group_instance]}} hours in their main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did they <em>actually</em> work in their <em>main</em> job, excluding overtime?",
+                                    "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['two-jobs-j1-usual-hours-answer'][group_instance]}} hours in their main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did they <em>actually</em> work in their <em>main</em> job, excluding overtime?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -6333,7 +6333,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "You usually work {{answers['two-jobs-j1-usual-hours-answer'][group_instance]}} hours in your main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you <em>actually</em> work in your <em>main</em> job, excluding overtime?"
+                                    "value": "You usually work {{answers['two-jobs-j1-usual-hours-answer'][group_instance]}} hours in your main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did you <em>actually</em> work in your <em>main</em> job, excluding overtime?"
                                 }
                             ],
                             "type": "General",
@@ -6381,7 +6381,7 @@
                         "questions": [{
                             "id": "two-jobs-j1-actual-hours-confirmation-question",
                             "titles": [{
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} worked zero hours in their <em>main</em> job, excluding overtime.",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, you entered that {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} worked zero hours in their <em>main</em> job, excluding overtime.",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -6389,7 +6389,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that you worked zero hours in your <em>main</em> job, excluding overtime."
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, you entered that you worked zero hours in your <em>main</em> job, excluding overtime."
                                 }
                             ],
                             "type": "General",
@@ -6562,7 +6562,7 @@
                         "questions": [{
                             "id": "two-jobs-j2-actual-hours-question",
                             "titles": [{
-                                    "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['two-jobs-j2-usual-hours-answer'][group_instance]}} hours in their second job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did they <em>actually</em> work in their <em>second</em> job, excluding overtime?",
+                                    "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['two-jobs-j2-usual-hours-answer'][group_instance]}} hours in their second job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did they <em>actually</em> work in their <em>second</em> job, excluding overtime?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -6570,7 +6570,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "You usually work {{answers['two-jobs-j2-usual-hours-answer'][group_instance]}} hours in your second job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you <em>actually</em> work in your <em>second</em> job, excluding overtime?"
+                                    "value": "You usually work {{answers['two-jobs-j2-usual-hours-answer'][group_instance]}} hours in your second job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did you <em>actually</em> work in your <em>second</em> job, excluding overtime?"
                                 }
                             ],
                             "type": "General",
@@ -6618,7 +6618,7 @@
                         "questions": [{
                             "id": "two-jobs-j2-actual-hours-confirmation-question",
                             "titles": [{
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} worked <em>zero hours</em> in their second job, excluding overtime.",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, you entered that {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} worked <em>zero hours</em> in their second job, excluding overtime.",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -6626,7 +6626,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that you worked <em>zero hours</em> in your second job, excluding overtime."
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, you entered that you worked <em>zero hours</em> in your second job, excluding overtime."
                                 }
                             ],
                             "type": "General",
@@ -6668,7 +6668,7 @@
                         "questions": [{
                             "id": "casual-hours-question",
                             "titles": [{
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>actually</em> work, excluding overtime?",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>actually</em> work, excluding overtime?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -6676,7 +6676,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you <em>actually</em> work, excluding overtime?"
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did you <em>actually</em> work, excluding overtime?"
                                 }
                             ],
                             "type": "General",
@@ -6697,7 +6697,7 @@
                         "id": "one-job-hours-totalized-w13",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "We calculate the total number of hours that <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked in their job, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct?",
+                                "value": "We calculate the total number of hours that <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked in their job, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}. Is this correct?",
                                 "when": [{
                                     "id": "proxy-check-answer",
                                     "condition": "equals",
@@ -6705,7 +6705,7 @@
                                 }]
                             },
                             {
-                                "value": "We calculate the total number of hours that you worked in your job, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct?"
+                                "value": "We calculate the total number of hours that you worked in your job, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}. Is this correct?"
                             }
                         ],
                         "calculation": {
@@ -6990,7 +6990,7 @@
                         "id": "two-jobs-hours-totalized-w13-1",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "We calculate the total number of hours that <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked in their main and second jobs, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct?",
+                                "value": "We calculate the total number of hours that <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked in their main and second jobs, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}. Is this correct?",
                                 "when": [{
                                     "id": "proxy-check-answer",
                                     "condition": "equals",
@@ -6998,7 +6998,7 @@
                                 }]
                             },
                             {
-                                "value": "We calculate the total number of hours that you worked in your main and second jobs, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct?"
+                                "value": "We calculate the total number of hours that you worked in your main and second jobs, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}. Is this correct?"
                             }
                         ],
                         "calculation": {
@@ -7277,7 +7277,7 @@
                         "questions": [{
                             "id": "reason-why-fewer-hours-than-usual-self-employed-question",
                             "titles": [{
-                                    "value": "What was the main reason <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
+                                    "value": "What was the main reason <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -7285,7 +7285,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "What was the main reason you worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
+                                    "value": "What was the main reason you worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?"
                                 }
                             ],
                             "type": "General",
@@ -7391,7 +7391,7 @@
                         "questions": [{
                             "id": "reason-why-fewer-hours-than-usual-employee-question",
                             "titles": [{
-                                    "value": "What was the main reason <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
+                                    "value": "What was the main reason <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -7399,7 +7399,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "What was the main reason you worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
+                                    "value": "What was the main reason you worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?"
                                 }
                             ],
                             "type": "General",
@@ -7806,7 +7806,7 @@
                         "questions": [{
                             "id": "did-you-look-for-work-question",
                             "titles": [{
-                                    "value": "In the 4 weeks between {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks': -3}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }} did <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> look for any paid work?",
+                                    "value": "In the 4 weeks between {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks': -3}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }} did <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> look for any paid work?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -7814,7 +7814,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the 4 weeks between {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks': -3}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }} did you look for any paid work?"
+                                    "value": "In the 4 weeks between {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks': -3}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }} did you look for any paid work?"
                                 }
                             ],
                             "type": "General",
@@ -8144,7 +8144,7 @@
                         "questions": [{
                             "id": "unpaid-or-voluntary-work-question",
                             "titles": [{
-                                    "value": "Did <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> do any unpaid or voluntary work in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
+                                    "value": "Did <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> do any unpaid or voluntary work in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -8152,7 +8152,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Did you do any unpaid or voluntary work in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) , calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
+                                    "value": "Did you do any unpaid or voluntary work in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) , calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?"
                                 }
                             ],
                             "type": "MutuallyExclusive",
@@ -10933,7 +10933,7 @@
                         "questions": [{
                             "id": "no-primary-paid-job-question",
                             "titles": [{
-                                    "value": "Did <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
+                                    "value": "Did <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -10941,7 +10941,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Did you have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
+                                    "value": "Did you have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?"
                                 }
                             ],
                             "type": "General",
@@ -11331,7 +11331,7 @@
                         "questions": [{
                             "id": "no-primary-not-working-casual-work-question",
                             "titles": [{
-                                    "value": "Did they do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
+                                    "value": "Did they do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -11339,7 +11339,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Did you do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
+                                    "value": "Did you do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?"
                                 }
                             ],
                             "type": "General",
@@ -12294,7 +12294,7 @@
                         "questions": [{
                             "id": "no-primary-one-job-actual-hours-question",
                             "titles": [{
-                                    "value": "{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['no-primary-one-job-usual-hours-answer'][group_instance]}} hours in their job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>actually</em> work, excluding overtime?",
+                                    "value": "{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['no-primary-one-job-usual-hours-answer'][group_instance]}} hours in their job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>actually</em> work, excluding overtime?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -12302,7 +12302,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "You usually work {{answers['no-primary-one-job-usual-hours-answer'][group_instance]}} hours in your job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you <em>actually</em> work, excluding overtime?"
+                                    "value": "You usually work {{answers['no-primary-one-job-usual-hours-answer'][group_instance]}} hours in your job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did you <em>actually</em> work, excluding overtime?"
                                 }
                             ],
                             "type": "General",
@@ -12993,7 +12993,7 @@
                         "questions": [{
                             "id": "no-primary-one-job-actual-hours-confirmation-question",
                             "titles": [{
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY')}}, you entered that <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked zero hours, excluding overtime.",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy')}}, you entered that <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked zero hours, excluding overtime.",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -13001,7 +13001,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that you worked zero hours, excluding overtime."
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, you entered that you worked zero hours, excluding overtime."
                                 }
                             ],
                             "type": "General",
@@ -13894,7 +13894,7 @@
                         "questions": [{
                             "id": "no-primary-two-jobs-j1-actual-hours-question",
                             "titles": [{
-                                    "value": "{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['no-primary-two-jobs-j1-usual-hours-answer'][group_instance]}} hours in their main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did they <em>actually</em> work in their <em>main</em> job, excluding overtime?",
+                                    "value": "{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['no-primary-two-jobs-j1-usual-hours-answer'][group_instance]}} hours in their main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did they <em>actually</em> work in their <em>main</em> job, excluding overtime?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -13902,7 +13902,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "You usually work {{answers['no-primary-two-jobs-j1-usual-hours-answer'][group_instance]}} hours in your main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you <em>actually</em> work in your <em>main</em> job, excluding overtime?"
+                                    "value": "You usually work {{answers['no-primary-two-jobs-j1-usual-hours-answer'][group_instance]}} hours in your main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did you <em>actually</em> work in your <em>main</em> job, excluding overtime?"
                                 }
                             ],
                             "type": "General",
@@ -13950,7 +13950,7 @@
                         "questions": [{
                             "id": "no-primary-two-jobs-j1-actual-hours-confirmation-question",
                             "titles": [{
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} worked zero hours in their <em>main</em> job, excluding overtime.",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, you entered that {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} worked zero hours in their <em>main</em> job, excluding overtime.",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -13958,7 +13958,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that you worked zero hours in your <em>main</em> job, excluding overtime."
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, you entered that you worked zero hours in your <em>main</em> job, excluding overtime."
                                 }
                             ],
                             "type": "General",
@@ -14131,7 +14131,7 @@
                         "questions": [{
                             "id": "no-primary-two-jobs-j2-actual-hours-question",
                             "titles": [{
-                                    "value": "{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['no-primary-two-jobs-j2-usual-hours-answer'][group_instance]}} hours in their second job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did they <em>actually</em> work in their <em>second</em> job, excluding overtime?",
+                                    "value": "{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['no-primary-two-jobs-j2-usual-hours-answer'][group_instance]}} hours in their second job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did they <em>actually</em> work in their <em>second</em> job, excluding overtime?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -14139,7 +14139,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "You usually work {{answers['no-primary-two-jobs-j2-usual-hours-answer'][group_instance]}} hours in your second job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you <em>actually</em> work in your <em>second</em> job, excluding overtime?"
+                                    "value": "You usually work {{answers['no-primary-two-jobs-j2-usual-hours-answer'][group_instance]}} hours in your second job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did you <em>actually</em> work in your <em>second</em> job, excluding overtime?"
                                 }
                             ],
                             "type": "General",
@@ -14187,7 +14187,7 @@
                         "questions": [{
                             "id": "no-primary-two-jobs-j2-actual-hours-confirmation-question",
                             "titles": [{
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} worked <em>zero hours</em> in their second job, excluding overtime.",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, you entered that {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} worked <em>zero hours</em> in their second job, excluding overtime.",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -14195,7 +14195,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that you worked <em>zero hours</em> in your second job, excluding overtime."
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, you entered that you worked <em>zero hours</em> in your second job, excluding overtime."
                                 }
                             ],
                             "type": "General",
@@ -14237,7 +14237,7 @@
                         "questions": [{
                             "id": "no-primary-casual-hours-question",
                             "titles": [{
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>actually</em> work, excluding overtime?",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>actually</em> work, excluding overtime?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -14245,7 +14245,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you <em>actually</em> work, excluding overtime?"
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}, how many hours did you <em>actually</em> work, excluding overtime?"
                                 }
                             ],
                             "type": "General",
@@ -14266,7 +14266,7 @@
                         "id": "no-primary-one-job-hours-totalized-w13",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "We calculate the total number of hours that <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked in their job, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct?",
+                                "value": "We calculate the total number of hours that <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked in their job, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}. Is this correct?",
                                 "when": [{
                                     "id": "no-primary-proxy-check-answer",
                                     "condition": "equals",
@@ -14274,7 +14274,7 @@
                                 }]
                             },
                             {
-                                "value": "We calculate the total number of hours that you worked in your job, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct?"
+                                "value": "We calculate the total number of hours that you worked in your job, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}. Is this correct?"
                             }
                         ],
                         "calculation": {
@@ -14559,7 +14559,7 @@
                         "id": "no-primary-two-jobs-hours-totalized-w13-1",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "We calculate the total number of hours that <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked in their main and second jobs, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct?",
+                                "value": "We calculate the total number of hours that <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked in their main and second jobs, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}. Is this correct?",
                                 "when": [{
                                     "id": "no-primary-proxy-check-answer",
                                     "condition": "equals",
@@ -14567,7 +14567,7 @@
                                 }]
                             },
                             {
-                                "value": "We calculate the total number of hours that you worked in your main and second jobs, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct?"
+                                "value": "We calculate the total number of hours that you worked in your main and second jobs, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}. Is this correct?"
                             }
                         ],
                         "calculation": {
@@ -14846,7 +14846,7 @@
                         "questions": [{
                             "id": "no-primary-reason-why-fewer-hours-than-usual-self-employed-question",
                             "titles": [{
-                                    "value": "What was the main reason <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
+                                    "value": "What was the main reason <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -14854,7 +14854,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "What was the main reason you worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
+                                    "value": "What was the main reason you worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?"
                                 }
                             ],
                             "type": "General",
@@ -14960,7 +14960,7 @@
                         "questions": [{
                             "id": "no-primary-reason-why-fewer-hours-than-usual-employee-question",
                             "titles": [{
-                                    "value": "What was the main reason <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
+                                    "value": "What was the main reason <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -14968,7 +14968,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "What was the main reason you worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
+                                    "value": "What was the main reason you worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?"
                                 }
                             ],
                             "type": "General",
@@ -15375,7 +15375,7 @@
                         "questions": [{
                             "id": "no-primary-did-you-look-for-work-question",
                             "titles": [{
-                                    "value": "In the 4 weeks between {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks': -3}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }} did <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> look for any paid work?",
+                                    "value": "In the 4 weeks between {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks': -3}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }} did <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> look for any paid work?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -15383,7 +15383,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the 4 weeks between {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks': -3}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }} did you look for any paid work?"
+                                    "value": "In the 4 weeks between {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks': -3}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }} did you look for any paid work?"
                                 }
                             ],
                             "type": "General",
@@ -15713,7 +15713,7 @@
                         "questions": [{
                             "id": "no-primary-unpaid-or-voluntary-work-question",
                             "titles": [{
-                                    "value": "Did <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> do any unpaid or voluntary work in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
+                                    "value": "Did <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> do any unpaid or voluntary work in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -15721,7 +15721,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Did you do any unpaid or voluntary work in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) , calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
+                                    "value": "Did you do any unpaid or voluntary work in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) , calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?"
                                 }
                             ],
                             "type": "MutuallyExclusive",

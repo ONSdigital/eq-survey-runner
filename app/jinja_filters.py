@@ -132,11 +132,11 @@ def format_date(context, value):
     value = value[0] if isinstance(value, list) else value
     if not isinstance(value, str):
         return value
-    date_format = 'd MMMM YYYY'
+    date_format = 'd MMMM yyyy'
     if value and re.match(r'\d{4}-\d{2}$', value):
-        date_format = 'MMMM YYYY'
+        date_format = 'MMMM yyyy'
     if value and re.match(r'\d{4}$', value):
-        date_format = 'YYYY'
+        date_format = 'yyyy'
 
     date_to_format = convert_to_datetime(value).date()
     result = "<span class='date'>{date}</span>".format(
@@ -147,7 +147,7 @@ def format_date(context, value):
 
 @evalcontextfilter
 @blueprint.app_template_filter()
-def format_date_custom(context, value, date_format='EEEE d MMMM YYYY'):
+def format_date_custom(context, value, date_format='EEEE d MMMM yyyy'):
 
     london_date = datetime.strptime(value, '%Y-%m-%d')
     result = "<span class='date'>{date}</span>".format(date=flask_babel.format_datetime(london_date,
@@ -161,7 +161,7 @@ def format_datetime(context, value):
 
     london_date_time = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
     london_date = london_date_time.date()
-    formatted_date = flask_babel.format_date(london_date, format='d MMMM YYYY')
+    formatted_date = flask_babel.format_date(london_date, format='d MMMM yyyy')
     formatted_time = flask_babel.format_time(london_date_time, format='HH:mm')
 
     result = "<span class='date'>{date}</span>".format(
@@ -247,7 +247,7 @@ def format_date_range(context, start_date, end_date=None):
 
 
 @evalcontextfunction
-def format_date_range_no_repeated_month_year(context, start_date, end_date, date_format='d MMMM YYYY'):
+def format_date_range_no_repeated_month_year(context, start_date, end_date, date_format='d MMMM yyyy'):
     """
     Format a date range, ensuring months and years are not repeated.
 
@@ -273,7 +273,7 @@ def format_date_range_no_repeated_month_year(context, start_date, end_date, date
     first_date_format = date_format
 
     if start_datetime.year == end_datetime.year:
-        first_date_format = date_format.replace('YYYY', '')
+        first_date_format = date_format.replace('yyyy', '')
 
         if start_datetime.month == end_datetime.month:
             first_date_format = first_date_format.replace('MMMM', '')

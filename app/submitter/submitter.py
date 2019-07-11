@@ -1,7 +1,7 @@
 from pika import BasicProperties
 from pika import BlockingConnection
 from pika import URLParameters
-from pika.exceptions import AMQPError
+from pika.exceptions import AMQPError, NackError, UnroutableError
 from structlog import get_logger
 
 logger = get_logger()
@@ -73,16 +73,20 @@ class RabbitMQSubmitter():
             if tx_id:
                 properties.headers['tx_id'] = tx_id
 
-            published = channel.basic_publish(exchange='',
-                                              routing_key=queue,
-                                              body=message_as_string,
-                                              mandatory=True,
-                                              properties=properties)
-            if published:
-                logger.info('sent message', category='rabbitmq')
+            try:
+                channel.basic_publish(exchange='',
+                                      routing_key=queue,
+                                      body=message_as_string,
+                                      mandatory=True,
+                                      properties=properties)
+
+            except (NackError, UnroutableError) as e:
+                logger.error('unable to send message', exc_info=e, category='rabbitmq')
+                return False
             else:
-                logger.error('unable to send message', category='rabbitmq')
-            return published
+                logger.info('sent message', category='rabbitmq')
+                return True
+
         except AMQPError as e:
             logger.error('unable to send message', exc_info=e, category='rabbitmq')
             return False
