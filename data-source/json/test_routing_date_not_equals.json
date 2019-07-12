@@ -1,110 +1,110 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "001",
-  "title": "Test Routing Date Not Equals",
-  "theme": "default",
-  "description": "A test survey for routing based on a date not equals",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    }
-  ],
-  "sections": [
-    {
-      "id": "default-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "001",
+    "title": "Test Routing Date Not Equals",
+    "theme": "default",
+    "description": "A test survey for routing based on a date not equals",
+    "metadata": [
         {
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "date-question",
-              "question": {
-                "answers": [
-                  {
-                    "id": "single-date-answer",
-                    "label": "Today",
-                    "mandatory": true,
-                    "type": "Date"
-                  }
-                ],
-                "description": "",
-                "id": "date-questions",
-                "title": "Enter a date other than 28 February 2018",
-                "type": "General"
-              },
-              "routing_rules": [
-                {
-                  "goto": {
-                    "block": "correct-answer",
-                    "when": [
-                      {
-                        "id": "single-date-answer",
-                        "condition": "not equals",
-                        "date_comparison": {
-                          "value": "2018-02-28"
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "goto": {
-                    "block": "incorrect-answer"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Interstitial",
-              "id": "incorrect-answer",
-              "content": {
-                "title": "Incorrect Date",
-                "contents": [
-                  {
-                    "description": "You entered 28 February 2018."
-                  }
-                ]
-              },
-              "routing_rules": [
-                {
-                  "goto": {
-                    "block": "summary"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Interstitial",
-              "id": "correct-answer",
-              "content": {
-                "title": "Correct Date",
-                "contents": [
-                  {
-                    "description": "You entered a date other than 28 February 2018."
-                  }
-                ]
-              }
-            },
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ],
-          "id": "group",
-          "title": ""
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "date-question",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "single-date-answer",
+                                        "label": "Today",
+                                        "mandatory": true,
+                                        "type": "Date"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "date-questions",
+                                "title": "Enter a date other than 28 February 2018",
+                                "type": "General"
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "correct-answer",
+                                        "when": [
+                                            {
+                                                "id": "single-date-answer",
+                                                "condition": "not equals",
+                                                "date_comparison": {
+                                                    "value": "2018-02-28"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "incorrect-answer"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Interstitial",
+                            "id": "incorrect-answer",
+                            "content": {
+                                "title": "Incorrect Date",
+                                "contents": [
+                                    {
+                                        "description": "You entered 28 February 2018."
+                                    }
+                                ]
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "summary"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Interstitial",
+                            "id": "correct-answer",
+                            "content": {
+                                "title": "Correct Date",
+                                "contents": [
+                                    {
+                                        "description": "You entered a date other than 28 February 2018."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "group",
+                    "title": ""
+                }
+            ]
+        }
+    ]
 }

@@ -1,155 +1,150 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "023",
-  "title": "Test Conditional Routing",
-  "description": "",
-  "theme": "default",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    }
-  ],
-  "sections": [
-    {
-      "id": "single-answer-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "023",
+    "title": "Test Conditional Routing",
+    "description": "",
+    "theme": "default",
+    "metadata": [
         {
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "conditional-routing-block",
-              "question": {
-                "id": "conditional-routing-question",
-                "title": "Do you drink coffee?",
-                "description": "",
-                "type": "General",
-                "answers": [
-                  {
-                    "options": [
-                      {
-                        "label": "Yes",
-                        "value": "Yes"
-                      },
-                      {
-                        "label": "Sometimes",
-                        "value": "Sometimes"
-                      },
-                      {
-                        "label": "No, I prefer tea",
-                        "value": "No, I prefer tea"
-                      },
-                      {
-                        "label": "I don't like coffee",
-                        "value": "I don't like coffee"
-                      },
-                      {
-                        "label": "No, I don't drink any hot drinks",
-                        "value": "No, I don't drink any hot drinks"
-                      }
-                    ],
-                    "q_code": "1",
-                    "id": "conditional-routing-answer",
-                    "label": "Which conditional question should we jump to?",
-                    "mandatory": true,
-                    "type": "Radio"
-                  }
-                ]
-              },
-              "routing_rules": [
-                {
-                  "goto": {
-                    "block": "response-any",
-                    "when": [
-                      {
-                        "id": "conditional-routing-answer",
-                        "condition": "equals any",
-                        "values": ["Yes", "Sometimes"]
-                      }
-                    ]
-                  }
-                },
-                {
-                  "goto": {
-                    "block": "response-not-any",
-                    "when": [
-                      {
-                        "id": "conditional-routing-answer",
-                        "condition": "not equals any",
-                        "values": [
-                          "Yes",
-                          "Sometimes",
-                          "I don't like coffee",
-                          "No, I don't drink any hot drinks"
-                        ]
-                      }
-                    ]
-                  }
-                },
-                {
-                  "goto": {
-                    "block": "summary"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Question",
-              "id": "response-any",
-              "question": {
-                "id": "response-any-question",
-                "title": "How many cups of coffee do you drink a day?",
-                "description": "",
-                "type": "General",
-                "answers": [
-                  {
-                    "id": "response-any-number-of-cups",
-                    "label": "Number of cups",
-                    "mandatory": true,
-                    "q_code": "2",
-                    "type": "Number"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "Question",
-              "id": "response-not-any",
-              "question": {
-                "id": "response-not-any-question",
-                "title": "How many cups of tea do you drink a day?",
-                "description": "",
-                "type": "General",
-                "answers": [
-                  {
-                    "id": "response-not-any-number-of-cups",
-                    "label": "Number of cups",
-                    "mandatory": true,
-                    "q_code": "2",
-                    "type": "Number"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ],
-          "id": "conditional-routing-within-group",
-          "title": "Conditional routing within group"
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "single-answer-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "conditional-routing-block",
+                            "question": {
+                                "id": "conditional-routing-question",
+                                "title": "Do you drink coffee?",
+                                "description": "",
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "Sometimes",
+                                                "value": "Sometimes"
+                                            },
+                                            {
+                                                "label": "No, I prefer tea",
+                                                "value": "No, I prefer tea"
+                                            },
+                                            {
+                                                "label": "I don't like coffee",
+                                                "value": "I don't like coffee"
+                                            },
+                                            {
+                                                "label": "No, I don't drink any hot drinks",
+                                                "value": "No, I don't drink any hot drinks"
+                                            }
+                                        ],
+                                        "q_code": "1",
+                                        "id": "conditional-routing-answer",
+                                        "label": "Which conditional question should we jump to?",
+                                        "mandatory": true,
+                                        "type": "Radio"
+                                    }
+                                ]
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "response-any",
+                                        "when": [
+                                            {
+                                                "id": "conditional-routing-answer",
+                                                "condition": "equals any",
+                                                "values": ["Yes", "Sometimes"]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "response-not-any",
+                                        "when": [
+                                            {
+                                                "id": "conditional-routing-answer",
+                                                "condition": "not equals any",
+                                                "values": ["Yes", "Sometimes", "I don't like coffee", "No, I don't drink any hot drinks"]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "summary"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Question",
+                            "id": "response-any",
+                            "question": {
+                                "id": "response-any-question",
+                                "title": "How many cups of coffee do you drink a day?",
+                                "description": "",
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "response-any-number-of-cups",
+                                        "label": "Number of cups",
+                                        "mandatory": true,
+                                        "q_code": "2",
+                                        "type": "Number"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Question",
+                            "id": "response-not-any",
+                            "question": {
+                                "id": "response-not-any-question",
+                                "title": "How many cups of tea do you drink a day?",
+                                "description": "",
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "response-not-any-number-of-cups",
+                                        "label": "Number of cups",
+                                        "mandatory": true,
+                                        "q_code": "2",
+                                        "type": "Number"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "conditional-routing-within-group",
+                    "title": "Conditional routing within group"
+                }
+            ]
+        }
+    ]
 }

@@ -1,170 +1,170 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "001",
-  "title": "Test Routing Date Greater Than",
-  "theme": "default",
-  "description": "A test survey for routing based on a date greater than",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    },
-    {
-      "name": "return_by",
-      "type": "date"
-    }
-  ],
-  "sections": [
-    {
-      "id": "default-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "001",
+    "title": "Test Routing Date Greater Than",
+    "theme": "default",
+    "description": "A test survey for routing based on a date greater than",
+    "metadata": [
         {
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "date-question",
-              "question": {
-                "answers": [
-                  {
-                    "id": "single-date-answer",
-                    "mandatory": true,
-                    "type": "MonthYearDate"
-                  }
-                ],
-                "description": "",
-                "id": "date-questions",
-                "title": {
-                  "text": "Enter a date greater than Return date: {date}",
-                  "placeholders": [
-                    {
-                      "placeholder": "date",
-                      "transforms": [
-                        {
-                          "transform": "format_date",
-                          "arguments": {
-                            "date_to_format": {
-                              "source": "metadata",
-                              "identifier": "return_by"
-                            },
-                            "date_format": "d MMMM yyyy"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                },
-                "type": "General"
-              },
-              "routing_rules": [
-                {
-                  "goto": {
-                    "block": "correct-answer",
-                    "when": [
-                      {
-                        "id": "single-date-answer",
-                        "condition": "greater than",
-                        "date_comparison": {
-                          "meta": "return_by"
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "goto": {
-                    "block": "incorrect-answer"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Interstitial",
-              "id": "incorrect-answer",
-              "content": {
-                "title": "Incorrect answer",
-                "contents": [
-                  {
-                    "description": {
-                      "text": "You entered a return date earlier than {date}",
-                      "placeholders": [
-                        {
-                          "placeholder": "date",
-                          "transforms": [
-                            {
-                              "transform": "format_date",
-                              "arguments": {
-                                "date_to_format": {
-                                  "source": "metadata",
-                                  "identifier": "return_by"
-                                },
-                                "date_format": "d MMMM yyyy"
-                              }
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                ]
-              },
-              "routing_rules": [
-                {
-                  "goto": {
-                    "block": "summary"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Interstitial",
-              "id": "correct-answer",
-              "content": {
-                "title": "Correct answer",
-                "contents": [
-                  {
-                    "description": {
-                      "text": "You entered a return date later than {date}",
-                      "placeholders": [
-                        {
-                          "placeholder": "date",
-                          "transforms": [
-                            {
-                              "transform": "format_date",
-                              "arguments": {
-                                "date_to_format": {
-                                  "source": "metadata",
-                                  "identifier": "return_by"
-                                },
-                                "date_format": "d MMMM yyyy"
-                              }
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ],
-          "id": "group",
-          "title": ""
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        },
+        {
+            "name": "return_by",
+            "type": "date"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "date-question",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "single-date-answer",
+                                        "mandatory": true,
+                                        "type": "MonthYearDate"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "date-questions",
+                                "title": {
+                                    "text": "Enter a date greater than Return date: {date}",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "date",
+                                            "transforms": [
+                                                {
+                                                    "transform": "format_date",
+                                                    "arguments": {
+                                                        "date_to_format": {
+                                                            "source": "metadata",
+                                                            "identifier": "return_by"
+                                                        },
+                                                        "date_format": "d MMMM yyyy"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General"
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "correct-answer",
+                                        "when": [
+                                            {
+                                                "id": "single-date-answer",
+                                                "condition": "greater than",
+                                                "date_comparison": {
+                                                    "meta": "return_by"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "incorrect-answer"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Interstitial",
+                            "id": "incorrect-answer",
+                            "content": {
+                                "title": "Incorrect answer",
+                                "contents": [
+                                    {
+                                        "description": {
+                                            "text": "You entered a return date earlier than {date}",
+                                            "placeholders": [
+                                                {
+                                                    "placeholder": "date",
+                                                    "transforms": [
+                                                        {
+                                                            "transform": "format_date",
+                                                            "arguments": {
+                                                                "date_to_format": {
+                                                                    "source": "metadata",
+                                                                    "identifier": "return_by"
+                                                                },
+                                                                "date_format": "d MMMM yyyy"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "summary"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Interstitial",
+                            "id": "correct-answer",
+                            "content": {
+                                "title": "Correct answer",
+                                "contents": [
+                                    {
+                                        "description": {
+                                            "text": "You entered a return date later than {date}",
+                                            "placeholders": [
+                                                {
+                                                    "placeholder": "date",
+                                                    "transforms": [
+                                                        {
+                                                            "transform": "format_date",
+                                                            "arguments": {
+                                                                "date_to_format": {
+                                                                    "source": "metadata",
+                                                                    "identifier": "return_by"
+                                                                },
+                                                                "date_format": "d MMMM yyyy"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "group",
+                    "title": ""
+                }
+            ]
+        }
+    ]
 }

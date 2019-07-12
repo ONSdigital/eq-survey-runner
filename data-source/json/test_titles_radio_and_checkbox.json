@@ -1,338 +1,338 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "0",
-  "title": "Test Survey - Checkbox and Radio titles",
-  "description": "",
-  "theme": "default",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    }
-  ],
-  "sections": [
-    {
-      "id": "default-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Test Survey - Checkbox and Radio titles",
+    "description": "",
+    "theme": "default",
+    "metadata": [
         {
-          "id": "radio-checkbox-group",
-          "title": "",
-          "blocks": [
-            {
-              "id": "preamble-block",
-              "type": "Question",
-              "question": {
-                "id": "name-question",
-                "title": "What is your name?",
-                "type": "General",
-                "guidance": {
-                  "contents": [
-                    {
-                      "description": "The answer you write will have an effect on question titles in next question",
-                      "list": [
-                        "If you type 'Peter', the question will be aimed for Peter",
-                        "If you type 'Mary', the question will be aimed for Mary",
-                        "If you type anything else the question will be the default question"
-                      ]
-                    }
-                  ]
-                },
-                "answers": [
-                  {
-                    "id": "name-answer",
-                    "label": "Your name",
-                    "type": "TextField",
-                    "mandatory": true
-                  }
-                ]
-              }
-            },
-            {
-              "type": "Question",
-              "id": "checkbox-block",
-              "question_variants": [
-                {
-                  "when": [
-                    {
-                      "id": "name-answer",
-                      "condition": "equals",
-                      "value": "Peter"
-                    }
-                  ],
-                  "question": {
-                    "id": "checkbox-question",
-                    "type": "General",
-                    "title": "Did <em>Peter</em> make changes to this business?",
-                    "answers": [
-                      {
-                        "id": "checkbox-answer",
-                        "type": "Checkbox",
-                        "mandatory": true,
-                        "options": [
-                          {
-                            "label": "New business practices for organising procedures",
-                            "value": "New business practices for organising procedures"
-                          },
-                          {
-                            "label": "New methods of organising work responsibilities and decision making",
-                            "value": "New methods of organising work responsibilities and decision making"
-                          },
-                          {
-                            "label": "New methods of organising external relationships with other firms or public institutions",
-                            "value": "New methods of organising external relationships with other firms or public institutions"
-                          },
-                          {
-                            "label": "Implementation of changes to marketing concepts or strategies",
-                            "value": "Implementation of changes to marketing concepts or strategies"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                },
-                {
-                  "when": [
-                    {
-                      "id": "name-answer",
-                      "condition": "equals",
-                      "value": "Mary"
-                    }
-                  ],
-                  "question": {
-                    "id": "checkbox-question",
-                    "type": "General",
-                    "title": "Did <em>Mary</em> make changes to this business?",
-                    "answers": [
-                      {
-                        "id": "checkbox-answer",
-                        "type": "Checkbox",
-                        "mandatory": true,
-                        "options": [
-                          {
-                            "label": "New business practices for organising procedures",
-                            "value": "New business practices for organising procedures"
-                          },
-                          {
-                            "label": "New methods of organising work responsibilities and decision making",
-                            "value": "New methods of organising work responsibilities and decision making"
-                          },
-                          {
-                            "label": "New methods of organising external relationships with other firms or public institutions",
-                            "value": "New methods of organising external relationships with other firms or public institutions"
-                          },
-                          {
-                            "label": "Implementation of changes to marketing concepts or strategies",
-                            "value": "Implementation of changes to marketing concepts or strategies"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                },
-                {
-                  "when": [
-                    {
-                      "id": "name-answer",
-                      "condition": "not equals",
-                      "value": "Mary"
-                    }
-                  ],
-                  "question": {
-                    "id": "checkbox-question",
-                    "type": "General",
-                    "title": "Did this business make major changes in the following areas?",
-                    "answers": [
-                      {
-                        "id": "checkbox-answer",
-                        "type": "Checkbox",
-                        "mandatory": true,
-                        "options": [
-                          {
-                            "label": "New business practices for organising procedures",
-                            "value": "New business practices for organising procedures"
-                          },
-                          {
-                            "label": "New methods of organising work responsibilities and decision making",
-                            "value": "New methods of organising work responsibilities and decision making"
-                          },
-                          {
-                            "label": "New methods of organising external relationships with other firms or public institutions",
-                            "value": "New methods of organising external relationships with other firms or public institutions"
-                          },
-                          {
-                            "label": "Implementation of changes to marketing concepts or strategies",
-                            "value": "Implementation of changes to marketing concepts or strategies"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Question",
-              "id": "radio-block",
-              "question_variants": [
-                {
-                  "when": [
-                    {
-                      "id": "name-answer",
-                      "condition": "equals",
-                      "value": "Peter"
-                    }
-                  ],
-                  "question": {
-                    "id": "radio-question",
-                    "type": "General",
-                    "title": "Is <em>Peter</em> the boss?",
-                    "answers": [
-                      {
-                        "id": "radio-answer",
-                        "mandatory": true,
-                        "type": "Radio",
-                        "options": [
-                          {
-                            "label": "Yes",
-                            "value": "yes"
-                          },
-                          {
-                            "label": "No",
-                            "value": "no"
-                          },
-                          {
-                            "label": "Maybe",
-                            "value": "maybe"
-                          },
-                          {
-                            "label": "I don't know",
-                            "value": "know"
-                          },
-                          {
-                            "label": "Can you repeat the question",
-                            "value": "repeat"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                },
-                {
-                  "when": [
-                    {
-                      "id": "name-answer",
-                      "condition": "equals",
-                      "value": "Mary"
-                    }
-                  ],
-                  "question": {
-                    "id": "radio-question",
-                    "type": "General",
-                    "title": "Is <em>Mary</em> the boss?",
-                    "answers": [
-                      {
-                        "id": "radio-answer",
-                        "mandatory": true,
-                        "type": "Radio",
-                        "options": [
-                          {
-                            "label": "Yes",
-                            "value": "yes"
-                          },
-                          {
-                            "label": "No",
-                            "value": "no"
-                          },
-                          {
-                            "label": "Maybe",
-                            "value": "maybe"
-                          },
-                          {
-                            "label": "I don't know",
-                            "value": "know"
-                          },
-                          {
-                            "label": "Can you repeat the question",
-                            "value": "repeat"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                },
-                {
-                  "when": [
-                    {
-                      "id": "name-answer",
-                      "condition": "not equals",
-                      "value": "Mary"
-                    }
-                  ],
-                  "question": {
-                    "id": "radio-question",
-                    "type": "General",
-                    "title": {
-                      "text": "Is <em>{name}</em> the boss?",
-                      "placeholders": [
-                        {
-                          "placeholder": "name",
-                          "value": {
-                            "source": "answers",
-                            "identifier": "name-answer"
-                          }
-                        }
-                      ]
-                    },
-                    "answers": [
-                      {
-                        "id": "radio-answer",
-                        "mandatory": true,
-                        "type": "Radio",
-                        "options": [
-                          {
-                            "label": "Yes",
-                            "value": "yes"
-                          },
-                          {
-                            "label": "No",
-                            "value": "no"
-                          },
-                          {
-                            "label": "Maybe",
-                            "value": "maybe"
-                          },
-                          {
-                            "label": "I don't know",
-                            "value": "know"
-                          },
-                          {
-                            "label": "Can you repeat the question",
-                            "value": "repeat"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ]
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "radio-checkbox-group",
+                    "title": "",
+                    "blocks": [
+                        {
+                            "id": "preamble-block",
+                            "type": "Question",
+                            "question": {
+                                "id": "name-question",
+                                "title": "What is your name?",
+                                "type": "General",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "description": "The answer you write will have an effect on question titles in next question",
+                                            "list": [
+                                                "If you type 'Peter', the question will be aimed for Peter",
+                                                "If you type 'Mary', the question will be aimed for Mary",
+                                                "If you type anything else the question will be the default question"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "answers": [
+                                    {
+                                        "id": "name-answer",
+                                        "label": "Your name",
+                                        "type": "TextField",
+                                        "mandatory": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Question",
+                            "id": "checkbox-block",
+                            "question_variants": [
+                                {
+                                    "when": [
+                                        {
+                                            "id": "name-answer",
+                                            "condition": "equals",
+                                            "value": "Peter"
+                                        }
+                                    ],
+                                    "question": {
+                                        "id": "checkbox-question",
+                                        "type": "General",
+                                        "title": "Did <em>Peter</em> make changes to this business?",
+                                        "answers": [
+                                            {
+                                                "id": "checkbox-answer",
+                                                "type": "Checkbox",
+                                                "mandatory": true,
+                                                "options": [
+                                                    {
+                                                        "label": "New business practices for organising procedures",
+                                                        "value": "New business practices for organising procedures"
+                                                    },
+                                                    {
+                                                        "label": "New methods of organising work responsibilities and decision making",
+                                                        "value": "New methods of organising work responsibilities and decision making"
+                                                    },
+                                                    {
+                                                        "label": "New methods of organising external relationships with other firms or public institutions",
+                                                        "value": "New methods of organising external relationships with other firms or public institutions"
+                                                    },
+                                                    {
+                                                        "label": "Implementation of changes to marketing concepts or strategies",
+                                                        "value": "Implementation of changes to marketing concepts or strategies"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "when": [
+                                        {
+                                            "id": "name-answer",
+                                            "condition": "equals",
+                                            "value": "Mary"
+                                        }
+                                    ],
+                                    "question": {
+                                        "id": "checkbox-question",
+                                        "type": "General",
+                                        "title": "Did <em>Mary</em> make changes to this business?",
+                                        "answers": [
+                                            {
+                                                "id": "checkbox-answer",
+                                                "type": "Checkbox",
+                                                "mandatory": true,
+                                                "options": [
+                                                    {
+                                                        "label": "New business practices for organising procedures",
+                                                        "value": "New business practices for organising procedures"
+                                                    },
+                                                    {
+                                                        "label": "New methods of organising work responsibilities and decision making",
+                                                        "value": "New methods of organising work responsibilities and decision making"
+                                                    },
+                                                    {
+                                                        "label": "New methods of organising external relationships with other firms or public institutions",
+                                                        "value": "New methods of organising external relationships with other firms or public institutions"
+                                                    },
+                                                    {
+                                                        "label": "Implementation of changes to marketing concepts or strategies",
+                                                        "value": "Implementation of changes to marketing concepts or strategies"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "when": [
+                                        {
+                                            "id": "name-answer",
+                                            "condition": "not equals",
+                                            "value": "Mary"
+                                        }
+                                    ],
+                                    "question": {
+                                        "id": "checkbox-question",
+                                        "type": "General",
+                                        "title": "Did this business make major changes in the following areas?",
+                                        "answers": [
+                                            {
+                                                "id": "checkbox-answer",
+                                                "type": "Checkbox",
+                                                "mandatory": true,
+                                                "options": [
+                                                    {
+                                                        "label": "New business practices for organising procedures",
+                                                        "value": "New business practices for organising procedures"
+                                                    },
+                                                    {
+                                                        "label": "New methods of organising work responsibilities and decision making",
+                                                        "value": "New methods of organising work responsibilities and decision making"
+                                                    },
+                                                    {
+                                                        "label": "New methods of organising external relationships with other firms or public institutions",
+                                                        "value": "New methods of organising external relationships with other firms or public institutions"
+                                                    },
+                                                    {
+                                                        "label": "Implementation of changes to marketing concepts or strategies",
+                                                        "value": "Implementation of changes to marketing concepts or strategies"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Question",
+                            "id": "radio-block",
+                            "question_variants": [
+                                {
+                                    "when": [
+                                        {
+                                            "id": "name-answer",
+                                            "condition": "equals",
+                                            "value": "Peter"
+                                        }
+                                    ],
+                                    "question": {
+                                        "id": "radio-question",
+                                        "type": "General",
+                                        "title": "Is <em>Peter</em> the boss?",
+                                        "answers": [
+                                            {
+                                                "id": "radio-answer",
+                                                "mandatory": true,
+                                                "type": "Radio",
+                                                "options": [
+                                                    {
+                                                        "label": "Yes",
+                                                        "value": "yes"
+                                                    },
+                                                    {
+                                                        "label": "No",
+                                                        "value": "no"
+                                                    },
+                                                    {
+                                                        "label": "Maybe",
+                                                        "value": "maybe"
+                                                    },
+                                                    {
+                                                        "label": "I don't know",
+                                                        "value": "know"
+                                                    },
+                                                    {
+                                                        "label": "Can you repeat the question",
+                                                        "value": "repeat"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "when": [
+                                        {
+                                            "id": "name-answer",
+                                            "condition": "equals",
+                                            "value": "Mary"
+                                        }
+                                    ],
+                                    "question": {
+                                        "id": "radio-question",
+                                        "type": "General",
+                                        "title": "Is <em>Mary</em> the boss?",
+                                        "answers": [
+                                            {
+                                                "id": "radio-answer",
+                                                "mandatory": true,
+                                                "type": "Radio",
+                                                "options": [
+                                                    {
+                                                        "label": "Yes",
+                                                        "value": "yes"
+                                                    },
+                                                    {
+                                                        "label": "No",
+                                                        "value": "no"
+                                                    },
+                                                    {
+                                                        "label": "Maybe",
+                                                        "value": "maybe"
+                                                    },
+                                                    {
+                                                        "label": "I don't know",
+                                                        "value": "know"
+                                                    },
+                                                    {
+                                                        "label": "Can you repeat the question",
+                                                        "value": "repeat"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "when": [
+                                        {
+                                            "id": "name-answer",
+                                            "condition": "not equals",
+                                            "value": "Mary"
+                                        }
+                                    ],
+                                    "question": {
+                                        "id": "radio-question",
+                                        "type": "General",
+                                        "title": {
+                                            "text": "Is <em>{name}</em> the boss?",
+                                            "placeholders": [
+                                                {
+                                                    "placeholder": "name",
+                                                    "value": {
+                                                        "source": "answers",
+                                                        "identifier": "name-answer"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "answers": [
+                                            {
+                                                "id": "radio-answer",
+                                                "mandatory": true,
+                                                "type": "Radio",
+                                                "options": [
+                                                    {
+                                                        "label": "Yes",
+                                                        "value": "yes"
+                                                    },
+                                                    {
+                                                        "label": "No",
+                                                        "value": "no"
+                                                    },
+                                                    {
+                                                        "label": "Maybe",
+                                                        "value": "maybe"
+                                                    },
+                                                    {
+                                                        "label": "I don't know",
+                                                        "value": "know"
+                                                    },
+                                                    {
+                                                        "label": "Can you repeat the question",
+                                                        "value": "repeat"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

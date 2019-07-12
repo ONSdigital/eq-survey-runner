@@ -1,115 +1,110 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "0",
-  "title": "A test schema to validate a sum of answers are Less Than a given total",
-  "theme": "default",
-  "description": "A survey that tests grouped and calculated answers against a total",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    }
-  ],
-  "sections": [
-    {
-      "id": "default-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "A test schema to validate a sum of answers are Less Than a given total",
+    "theme": "default",
+    "description": "A survey that tests grouped and calculated answers against a total",
+    "metadata": [
         {
-          "id": "group",
-          "title": "Validate sum against total",
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "total-block",
-              "question": {
-                "id": "total-question",
-                "title": "Total",
-                "type": "General",
-                "answers": [
-                  {
-                    "id": "total-answer",
-                    "label": "Total",
-                    "mandatory": true,
-                    "type": "Currency",
-                    "currency": "GBP",
-                    "decimal_places": 2
-                  }
-                ]
-              }
-            },
-            {
-              "type": "Question",
-              "id": "breakdown-block",
-              "question": {
-                "id": "breakdown-question",
-                "title": "Breakdown",
-                "type": "Calculated",
-                "calculations": [
-                  {
-                    "calculation_type": "sum",
-                    "answer_id": "total-answer",
-                    "answers_to_calculate": [
-                      "breakdown-1",
-                      "breakdown-2",
-                      "breakdown-3",
-                      "breakdown-4"
-                    ],
-                    "conditions": ["less than"]
-                  }
-                ],
-                "answers": [
-                  {
-                    "id": "breakdown-1",
-                    "label": "Breakdown 1",
-                    "mandatory": false,
-                    "decimal_places": 2,
-                    "type": "Currency",
-                    "currency": "GBP"
-                  },
-                  {
-                    "id": "breakdown-2",
-                    "label": "Breakdown 2",
-                    "mandatory": false,
-                    "decimal_places": 2,
-                    "type": "Currency",
-                    "currency": "GBP"
-                  },
-                  {
-                    "id": "breakdown-3",
-                    "label": "Breakdown 3",
-                    "mandatory": false,
-                    "decimal_places": 2,
-                    "type": "Currency",
-                    "currency": "GBP"
-                  },
-                  {
-                    "id": "breakdown-4",
-                    "label": "Breakdown 4",
-                    "mandatory": false,
-                    "decimal_places": 2,
-                    "type": "Currency",
-                    "currency": "GBP"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ]
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "group",
+                    "title": "Validate sum against total",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "total-block",
+                            "question": {
+                                "id": "total-question",
+                                "title": "Total",
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "total-answer",
+                                        "label": "Total",
+                                        "mandatory": true,
+                                        "type": "Currency",
+                                        "currency": "GBP",
+                                        "decimal_places": 2
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Question",
+                            "id": "breakdown-block",
+                            "question": {
+                                "id": "breakdown-question",
+                                "title": "Breakdown",
+                                "type": "Calculated",
+                                "calculations": [
+                                    {
+                                        "calculation_type": "sum",
+                                        "answer_id": "total-answer",
+                                        "answers_to_calculate": ["breakdown-1", "breakdown-2", "breakdown-3", "breakdown-4"],
+                                        "conditions": ["less than"]
+                                    }
+                                ],
+                                "answers": [
+                                    {
+                                        "id": "breakdown-1",
+                                        "label": "Breakdown 1",
+                                        "mandatory": false,
+                                        "decimal_places": 2,
+                                        "type": "Currency",
+                                        "currency": "GBP"
+                                    },
+                                    {
+                                        "id": "breakdown-2",
+                                        "label": "Breakdown 2",
+                                        "mandatory": false,
+                                        "decimal_places": 2,
+                                        "type": "Currency",
+                                        "currency": "GBP"
+                                    },
+                                    {
+                                        "id": "breakdown-3",
+                                        "label": "Breakdown 3",
+                                        "mandatory": false,
+                                        "decimal_places": 2,
+                                        "type": "Currency",
+                                        "currency": "GBP"
+                                    },
+                                    {
+                                        "id": "breakdown-4",
+                                        "label": "Breakdown 4",
+                                        "mandatory": false,
+                                        "decimal_places": 2,
+                                        "type": "Currency",
+                                        "currency": "GBP"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

@@ -1,131 +1,131 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "023",
-  "title": "Difference between two dates",
-  "description": "A test schema for calculate age from date",
-  "theme": "default",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    }
-  ],
-  "sections": [
-    {
-      "id": "default-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "023",
+    "title": "Difference between two dates",
+    "description": "A test schema for calculate age from date",
+    "theme": "default",
+    "metadata": [
         {
-          "id": "dates",
-          "title": "Date Difference",
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "date-block",
-              "question": {
-                "id": "date-pipe-question",
-                "title": "How long were you outside the UK?",
-                "type": "DateRange",
-                "answers": [
-                  {
-                    "mandatory": true,
-                    "label": "From",
-                    "id": "period-from",
-                    "type": "Date"
-                  },
-                  {
-                    "mandatory": true,
-                    "label": "To",
-                    "id": "period-to",
-                    "type": "Date"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "ConfirmationQuestion",
-              "id": "age-test",
-              "question": {
-                "id": "confirm-dob-question",
-                "title": {
-                  "text": "You were out of the UK for {time_away}. Is this correct?",
-                  "placeholders": [
-                    {
-                      "placeholder": "time_away",
-                      "transforms": [
-                        {
-                          "transform": "calculate_years_difference",
-                          "arguments": {
-                            "first_date": {
-                              "source": "answers",
-                              "identifier": "period-from"
-                            },
-                            "second_date": {
-                              "source": "answers",
-                              "identifier": "period-to"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                },
-                "type": "General",
-                "answers": [
-                  {
-                    "id": "date-test-answer",
-                    "label": "Piped dates",
-                    "mandatory": true,
-                    "type": "Radio",
-                    "options": [
-                      {
-                        "label": "Yes",
-                        "value": "Yes"
-                      },
-                      {
-                        "label": "No",
-                        "value": "No"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "routing_rules": [
-                {
-                  "goto": {
-                    "block": "date-block",
-                    "when": [
-                      {
-                        "id": "date-test-answer",
-                        "condition": "equals",
-                        "value": "No"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "goto": {
-                    "block": "summary"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ]
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "dates",
+                    "title": "Date Difference",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "date-block",
+                            "question": {
+                                "id": "date-pipe-question",
+                                "title": "How long were you outside the UK?",
+                                "type": "DateRange",
+                                "answers": [
+                                    {
+                                        "mandatory": true,
+                                        "label": "From",
+                                        "id": "period-from",
+                                        "type": "Date"
+                                    },
+                                    {
+                                        "mandatory": true,
+                                        "label": "To",
+                                        "id": "period-to",
+                                        "type": "Date"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "ConfirmationQuestion",
+                            "id": "age-test",
+                            "question": {
+                                "id": "confirm-dob-question",
+                                "title": {
+                                    "text": "You were out of the UK for {time_away}. Is this correct?",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "time_away",
+                                            "transforms": [
+                                                {
+                                                    "transform": "calculate_years_difference",
+                                                    "arguments": {
+                                                        "first_date": {
+                                                            "source": "answers",
+                                                            "identifier": "period-from"
+                                                        },
+                                                        "second_date": {
+                                                            "source": "answers",
+                                                            "identifier": "period-to"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "date-test-answer",
+                                        "label": "Piped dates",
+                                        "mandatory": true,
+                                        "type": "Radio",
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "date-block",
+                                        "when": [
+                                            {
+                                                "id": "date-test-answer",
+                                                "condition": "equals",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "summary"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

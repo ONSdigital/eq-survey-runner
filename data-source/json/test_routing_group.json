@@ -1,145 +1,145 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "0",
-  "title": "Routing Group",
-  "theme": "default",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    }
-  ],
-  "sections": [
-    {
-      "id": "default-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Routing Group",
+    "theme": "default",
+    "metadata": [
         {
-          "id": "which-group",
-          "title": "What group do you want to go to?",
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "which-group-block",
-              "question": {
-                "description": "",
-                "id": "which-group-question",
-                "title": "Select Group",
-                "type": "General",
-                "answers": [
-                  {
-                    "id": "which-group-answer",
-                    "label": "Choose next group",
-                    "mandatory": true,
-                    "options": [
-                      {
-                        "label": "Group 1",
-                        "value": "group1"
-                      },
-                      {
-                        "label": "Group 2",
-                        "value": "group2"
-                      }
-                    ],
-                    "type": "Radio",
-                    "validation": {
-                      "messages": {}
-                    }
-                  }
-                ]
-              },
-              "routing_rules": [
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
                 {
-                  "goto": {
-                    "group": "group1",
-                    "when": [
-                      {
-                        "id": "which-group-answer",
-                        "condition": "equals",
-                        "value": "group1"
-                      }
+                    "id": "which-group",
+                    "title": "What group do you want to go to?",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "which-group-block",
+                            "question": {
+                                "description": "",
+                                "id": "which-group-question",
+                                "title": "Select Group",
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "which-group-answer",
+                                        "label": "Choose next group",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "Group 1",
+                                                "value": "group1"
+                                            },
+                                            {
+                                                "label": "Group 2",
+                                                "value": "group2"
+                                            }
+                                        ],
+                                        "type": "Radio",
+                                        "validation": {
+                                            "messages": {}
+                                        }
+                                    }
+                                ]
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "group": "group1",
+                                        "when": [
+                                            {
+                                                "id": "which-group-answer",
+                                                "condition": "equals",
+                                                "value": "group1"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "group": "group2"
+                                    }
+                                }
+                            ]
+                        }
                     ]
-                  }
                 },
                 {
-                  "goto": {
-                    "group": "group2"
-                  }
+                    "id": "group1",
+                    "title": "This is Group 1",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "group1-block",
+                            "routing_rules": [],
+                            "question": {
+                                "description": "",
+                                "id": "group1-question",
+                                "title": "Did you want Group 1?",
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "group1-answer",
+                                        "label": "Why did you choose Group 1?",
+                                        "mandatory": true,
+                                        "type": "TextArea"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "group2",
+                    "title": "This is Group 2",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "group2-block",
+                            "routing_rules": [],
+                            "question": {
+                                "description": "",
+                                "id": "group2-question",
+                                "title": "Did you want Group 2?",
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "group2-answer",
+                                        "label": "Why did you choose Group 2?",
+                                        "mandatory": true,
+                                        "type": "TextArea"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "blocks": [
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "summary-group",
+                    "title": "Summary"
                 }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "group1",
-          "title": "This is Group 1",
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "group1-block",
-              "routing_rules": [],
-              "question": {
-                "description": "",
-                "id": "group1-question",
-                "title": "Did you want Group 1?",
-                "type": "General",
-                "answers": [
-                  {
-                    "id": "group1-answer",
-                    "label": "Why did you choose Group 1?",
-                    "mandatory": true,
-                    "type": "TextArea"
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "group2",
-          "title": "This is Group 2",
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "group2-block",
-              "routing_rules": [],
-              "question": {
-                "description": "",
-                "id": "group2-question",
-                "title": "Did you want Group 2?",
-                "type": "General",
-                "answers": [
-                  {
-                    "id": "group2-answer",
-                    "label": "Why did you choose Group 2?",
-                    "mandatory": true,
-                    "type": "TextArea"
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "blocks": [
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ],
-          "id": "summary-group",
-          "title": "Summary"
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

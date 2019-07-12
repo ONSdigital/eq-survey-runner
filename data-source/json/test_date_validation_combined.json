@@ -1,142 +1,142 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "023",
-  "title": "Date formats",
-  "description": "A test schema for different date formats",
-  "theme": "default",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    },
-    {
-      "name": "ref_p_start_date",
-      "type": "date"
-    },
-    {
-      "name": "ref_p_end_date",
-      "type": "date"
-    }
-  ],
-  "sections": [
-    {
-      "id": "default-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "023",
+    "title": "Date formats",
+    "description": "A test schema for different date formats",
+    "theme": "default",
+    "metadata": [
         {
-          "id": "dates",
-          "title": "Date Range Validation",
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "date-range-block",
-              "question": {
-                "id": "date-range-question",
-                "title": "Enter Date Range",
-                "type": "DateRange",
-                "guidance": {
-                  "contents": [
-                    {
-                      "description": "Dates between 10 and 50 days apart"
-                    },
-                    {
-                      "description": {
-                        "text": "Period from date greater than 19 days before {date}",
-                        "placeholders": [
-                          {
-                            "placeholder": "date",
-                            "transforms": [
-                              {
-                                "transform": "format_date",
-                                "arguments": {
-                                  "date_to_format": {
-                                    "source": "metadata",
-                                    "identifier": "ref_p_start_date"
-                                  },
-                                  "date_format": "d MMMM yyyy"
-                                }
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "description": {
-                        "text": "Period to date no greater than 20 days after {date}",
-                        "placeholders": [
-                          {
-                            "placeholder": "date",
-                            "transforms": [
-                              {
-                                "transform": "format_date",
-                                "arguments": {
-                                  "date_to_format": {
-                                    "source": "metadata",
-                                    "identifier": "ref_p_end_date"
-                                  },
-                                  "date_format": "d MMMM yyyy"
-                                }
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                "period_limits": {
-                  "minimum": {
-                    "days": 10
-                  },
-                  "maximum": {
-                    "days": 50
-                  }
-                },
-                "answers": [
-                  {
-                    "id": "date-range-from",
-                    "label": "Period from",
-                    "mandatory": true,
-                    "type": "Date",
-                    "minimum": {
-                      "meta": "ref_p_start_date",
-                      "offset_by": {
-                        "days": -19
-                      }
-                    }
-                  },
-                  {
-                    "id": "date-range-to",
-                    "label": "Period to",
-                    "mandatory": true,
-                    "type": "Date",
-                    "maximum": {
-                      "meta": "ref_p_end_date",
-                      "offset_by": {
-                        "days": 20
-                      }
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ]
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        },
+        {
+            "name": "ref_p_start_date",
+            "type": "date"
+        },
+        {
+            "name": "ref_p_end_date",
+            "type": "date"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "dates",
+                    "title": "Date Range Validation",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "date-range-block",
+                            "question": {
+                                "id": "date-range-question",
+                                "title": "Enter Date Range",
+                                "type": "DateRange",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "description": "Dates between 10 and 50 days apart"
+                                        },
+                                        {
+                                            "description": {
+                                                "text": "Period from date greater than 19 days before {date}",
+                                                "placeholders": [
+                                                    {
+                                                        "placeholder": "date",
+                                                        "transforms": [
+                                                            {
+                                                                "transform": "format_date",
+                                                                "arguments": {
+                                                                    "date_to_format": {
+                                                                        "source": "metadata",
+                                                                        "identifier": "ref_p_start_date"
+                                                                    },
+                                                                    "date_format": "d MMMM yyyy"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "description": {
+                                                "text": "Period to date no greater than 20 days after {date}",
+                                                "placeholders": [
+                                                    {
+                                                        "placeholder": "date",
+                                                        "transforms": [
+                                                            {
+                                                                "transform": "format_date",
+                                                                "arguments": {
+                                                                    "date_to_format": {
+                                                                        "source": "metadata",
+                                                                        "identifier": "ref_p_end_date"
+                                                                    },
+                                                                    "date_format": "d MMMM yyyy"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                },
+                                "period_limits": {
+                                    "minimum": {
+                                        "days": 10
+                                    },
+                                    "maximum": {
+                                        "days": 50
+                                    }
+                                },
+                                "answers": [
+                                    {
+                                        "id": "date-range-from",
+                                        "label": "Period from",
+                                        "mandatory": true,
+                                        "type": "Date",
+                                        "minimum": {
+                                            "meta": "ref_p_start_date",
+                                            "offset_by": {
+                                                "days": -19
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "id": "date-range-to",
+                                        "label": "Period to",
+                                        "mandatory": true,
+                                        "type": "Date",
+                                        "maximum": {
+                                            "meta": "ref_p_end_date",
+                                            "offset_by": {
+                                                "days": 20
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

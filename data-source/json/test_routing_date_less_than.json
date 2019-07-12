@@ -1,110 +1,110 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "001",
-  "title": "Test Routing Date Less Than",
-  "theme": "default",
-  "description": "A test survey for routing based on a Date less than",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    }
-  ],
-  "sections": [
-    {
-      "id": "default-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "001",
+    "title": "Test Routing Date Less Than",
+    "theme": "default",
+    "description": "A test survey for routing based on a Date less than",
+    "metadata": [
         {
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "date-question",
-              "question": {
-                "answers": [
-                  {
-                    "id": "single-date-answer",
-                    "label": "Today",
-                    "mandatory": true,
-                    "type": "Date"
-                  }
-                ],
-                "description": "",
-                "id": "date-questions",
-                "title": "Enter a date less than Today",
-                "type": "General"
-              },
-              "routing_rules": [
-                {
-                  "goto": {
-                    "block": "correct-answer",
-                    "when": [
-                      {
-                        "id": "single-date-answer",
-                        "condition": "less than",
-                        "date_comparison": {
-                          "value": "now"
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "goto": {
-                    "block": "incorrect-answer"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Interstitial",
-              "id": "incorrect-answer",
-              "content": {
-                "title": "Incorrect answer",
-                "contents": [
-                  {
-                    "description": "You entered a date later than yesterday."
-                  }
-                ]
-              },
-              "routing_rules": [
-                {
-                  "goto": {
-                    "block": "summary"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Interstitial",
-              "id": "correct-answer",
-              "content": {
-                "title": "Correct answer",
-                "contents": [
-                  {
-                    "description": "You entered a date older than Today."
-                  }
-                ]
-              }
-            },
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ],
-          "id": "group",
-          "title": ""
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "date-question",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "single-date-answer",
+                                        "label": "Today",
+                                        "mandatory": true,
+                                        "type": "Date"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "date-questions",
+                                "title": "Enter a date less than Today",
+                                "type": "General"
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "correct-answer",
+                                        "when": [
+                                            {
+                                                "id": "single-date-answer",
+                                                "condition": "less than",
+                                                "date_comparison": {
+                                                    "value": "now"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "incorrect-answer"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Interstitial",
+                            "id": "incorrect-answer",
+                            "content": {
+                                "title": "Incorrect answer",
+                                "contents": [
+                                    {
+                                        "description": "You entered a date later than yesterday."
+                                    }
+                                ]
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "summary"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Interstitial",
+                            "id": "correct-answer",
+                            "content": {
+                                "title": "Correct answer",
+                                "contents": [
+                                    {
+                                        "description": "You entered a date older than Today."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "group",
+                    "title": ""
+                }
+            ]
+        }
+    ]
 }

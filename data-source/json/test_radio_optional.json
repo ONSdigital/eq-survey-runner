@@ -1,65 +1,65 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "0",
-  "title": "Radio Optional",
-  "theme": "default",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    }
-  ],
-  "sections": [
-    {
-      "id": "section-1",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Radio Optional",
+    "theme": "default",
+    "metadata": [
         {
-          "id": "radio",
-          "title": "Radio Optional",
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "radio-non-mandatory",
-              "question": {
-                "type": "General",
-                "id": "radio-non-mandatory-question",
-                "title": "What is you favourite breakfast beverage?",
-                "answers": [
-                  {
-                    "type": "Radio",
-                    "id": "radio-non-mandatory-answer",
-                    "mandatory": false,
-                    "options": [
-                      {
-                        "label": "Coffee",
-                        "value": "Coffee"
-                      },
-                      {
-                        "label": "Tea",
-                        "value": "Tea"
-                      }
-                    ]
-                  }
-                ]
-              }
-            },
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ]
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "section-1",
+            "groups": [
+                {
+                    "id": "radio",
+                    "title": "Radio Optional",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "radio-non-mandatory",
+                            "question": {
+                                "type": "General",
+                                "id": "radio-non-mandatory-question",
+                                "title": "What is you favourite breakfast beverage?",
+                                "answers": [
+                                    {
+                                        "type": "Radio",
+                                        "id": "radio-non-mandatory-answer",
+                                        "mandatory": false,
+                                        "options": [
+                                            {
+                                                "label": "Coffee",
+                                                "value": "Coffee"
+                                            },
+                                            {
+                                                "label": "Tea",
+                                                "value": "Tea"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

@@ -1,338 +1,338 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "0",
-  "title": "Test ListCollector",
-  "theme": "default",
-  "description": "A questionnaire to test ListCollector",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    }
-  ],
-  "sections": [
-    {
-      "id": "section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Test ListCollector",
+    "theme": "default",
+    "description": "A questionnaire to test ListCollector",
+    "metadata": [
         {
-          "id": "group",
-          "title": "List",
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "you-live-here-block",
-              "question": {
-                "type": "General",
-                "id": "you-live-here-question",
-                "title": "Do you live at 1 Pleasant Lane?",
-                "answers": [
-                  {
-                    "type": "Radio",
-                    "id": "you-live-here-answer",
-                    "mandatory": true,
-                    "options": [
-                      {
-                        "label": "Yes",
-                        "value": "Yes"
-                      },
-                      {
-                        "label": "No",
-                        "value": "No"
-                      }
-                    ]
-                  }
-                ]
-              }
-            },
-            {
-              "id": "list-collector",
-              "type": "ListCollector",
-              "populates_list": "people",
-              "add_answer": {
-                "id": "anyone-else",
-                "value": "Yes"
-              },
-              "remove_answer": {
-                "id": "remove-confirmation",
-                "value": "Yes"
-              },
-              "question_variants": [
-                {
-                  "question": {
-                    "id": "confirmation-question",
-                    "type": "General",
-                    "title": "Does anyone else live at 1 Pleasant Lane?",
-                    "answers": [
-                      {
-                        "id": "anyone-else",
-                        "mandatory": true,
-                        "type": "Radio",
-                        "options": [
-                          {
-                            "label": "Yes",
-                            "value": "Yes"
-                          },
-                          {
-                            "label": "No",
-                            "value": "No"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  "when": [
-                    {
-                      "id": "you-live-here-answer",
-                      "condition": "equals",
-                      "value": "Yes"
-                    }
-                  ]
-                },
-                {
-                  "question": {
-                    "id": "confirmation-question",
-                    "type": "General",
-                    "title": "Does anyone live at 1 Pleasant Lane?",
-                    "answers": [
-                      {
-                        "id": "anyone-else",
-                        "mandatory": true,
-                        "type": "Radio",
-                        "options": [
-                          {
-                            "label": "Yes",
-                            "value": "Yes"
-                          },
-                          {
-                            "label": "No",
-                            "value": "No"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  "when": [
-                    {
-                      "id": "you-live-here-answer",
-                      "condition": "equals",
-                      "value": "No"
-                    }
-                  ]
-                }
-              ],
-              "add_block": {
-                "id": "add-person",
-                "type": "ListAddQuestion",
-                "question_variants": [
-                  {
-                    "question": {
-                      "id": "add-question",
-                      "type": "General",
-                      "title": "What is the name of the person who isn't you?",
-                      "answers": [
-                        {
-                          "id": "first-name",
-                          "label": "First name",
-                          "mandatory": true,
-                          "type": "TextField"
-                        },
-                        {
-                          "id": "last-name",
-                          "label": "Last name",
-                          "mandatory": true,
-                          "type": "TextField"
-                        }
-                      ]
-                    },
-                    "when": [
-                      {
-                        "id": "you-live-here-answer",
-                        "condition": "equals",
-                        "value": "No"
-                      }
-                    ]
-                  },
-                  {
-                    "question": {
-                      "id": "add-question",
-                      "type": "General",
-                      "title": "What is the name of the person?",
-                      "answers": [
-                        {
-                          "id": "first-name",
-                          "label": "First name",
-                          "mandatory": true,
-                          "type": "TextField"
-                        },
-                        {
-                          "id": "last-name",
-                          "label": "Last name",
-                          "mandatory": true,
-                          "type": "TextField"
-                        }
-                      ]
-                    },
-                    "when": [
-                      {
-                        "id": "you-live-here-answer",
-                        "condition": "equals",
-                        "value": "Yes"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "edit_block": {
-                "id": "edit-person",
-                "type": "ListEditQuestion",
-                "question_variants": [
-                  {
-                    "question": {
-                      "id": "edit-question",
-                      "type": "General",
-                      "title": "What is the name of the person?",
-                      "answers": [
-                        {
-                          "id": "first-name",
-                          "label": "First name",
-                          "mandatory": true,
-                          "type": "TextField"
-                        },
-                        {
-                          "id": "last-name",
-                          "label": "Last name",
-                          "mandatory": true,
-                          "type": "TextField"
-                        }
-                      ]
-                    },
-                    "when": [
-                      {
-                        "id": "you-live-here-answer",
-                        "condition": "equals",
-                        "value": "Yes"
-                      }
-                    ]
-                  },
-                  {
-                    "question": {
-                      "id": "edit-question",
-                      "type": "General",
-                      "title": "What is the name of the person who isn't you?",
-                      "answers": [
-                        {
-                          "id": "first-name",
-                          "label": "First name",
-                          "mandatory": true,
-                          "type": "TextField"
-                        },
-                        {
-                          "id": "last-name",
-                          "label": "Last name",
-                          "mandatory": true,
-                          "type": "TextField"
-                        }
-                      ]
-                    },
-                    "when": [
-                      {
-                        "id": "you-live-here-answer",
-                        "condition": "equals",
-                        "value": "No"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "remove_block": {
-                "id": "remove-person",
-                "type": "ListRemoveQuestion",
-                "question_variants": [
-                  {
-                    "question": {
-                      "id": "remove-question",
-                      "type": "General",
-                      "title": "Are you sure you want to remove this person?",
-                      "answers": [
-                        {
-                          "id": "remove-confirmation",
-                          "mandatory": true,
-                          "type": "Radio",
-                          "options": [
-                            {
-                              "label": "Yes",
-                              "value": "Yes"
-                            },
-                            {
-                              "label": "No",
-                              "value": "No"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    "when": [
-                      {
-                        "id": "you-live-here-answer",
-                        "condition": "equals",
-                        "value": "Yes"
-                      }
-                    ]
-                  },
-                  {
-                    "question": {
-                      "id": "remove-question",
-                      "type": "General",
-                      "title": "Are you sure you want to remove this person who isn't you?",
-                      "answers": [
-                        {
-                          "id": "remove-confirmation",
-                          "mandatory": true,
-                          "type": "Radio",
-                          "options": [
-                            {
-                              "label": "Yes",
-                              "value": "Yes"
-                            },
-                            {
-                              "label": "No",
-                              "value": "No"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    "when": [
-                      {
-                        "id": "you-live-here-answer",
-                        "condition": "equals",
-                        "value": "No"
-                      }
-                    ]
-                  }
-                ]
-              }
-            },
-            {
-              "type": "Confirmation",
-              "id": "confirmation",
-              "content": {
-                "title": "Thank you for your answers, do you wish to submit"
-              }
-            }
-          ]
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "section",
+            "groups": [
+                {
+                    "id": "group",
+                    "title": "List",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "you-live-here-block",
+                            "question": {
+                                "type": "General",
+                                "id": "you-live-here-question",
+                                "title": "Do you live at 1 Pleasant Lane?",
+                                "answers": [
+                                    {
+                                        "type": "Radio",
+                                        "id": "you-live-here-answer",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": "list-collector",
+                            "type": "ListCollector",
+                            "populates_list": "people",
+                            "add_answer": {
+                                "id": "anyone-else",
+                                "value": "Yes"
+                            },
+                            "remove_answer": {
+                                "id": "remove-confirmation",
+                                "value": "Yes"
+                            },
+                            "question_variants": [
+                                {
+                                    "question": {
+                                        "id": "confirmation-question",
+                                        "type": "General",
+                                        "title": "Does anyone else live at 1 Pleasant Lane?",
+                                        "answers": [
+                                            {
+                                                "id": "anyone-else",
+                                                "mandatory": true,
+                                                "type": "Radio",
+                                                "options": [
+                                                    {
+                                                        "label": "Yes",
+                                                        "value": "Yes"
+                                                    },
+                                                    {
+                                                        "label": "No",
+                                                        "value": "No"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "when": [
+                                        {
+                                            "id": "you-live-here-answer",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": {
+                                        "id": "confirmation-question",
+                                        "type": "General",
+                                        "title": "Does anyone live at 1 Pleasant Lane?",
+                                        "answers": [
+                                            {
+                                                "id": "anyone-else",
+                                                "mandatory": true,
+                                                "type": "Radio",
+                                                "options": [
+                                                    {
+                                                        "label": "Yes",
+                                                        "value": "Yes"
+                                                    },
+                                                    {
+                                                        "label": "No",
+                                                        "value": "No"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "when": [
+                                        {
+                                            "id": "you-live-here-answer",
+                                            "condition": "equals",
+                                            "value": "No"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "add_block": {
+                                "id": "add-person",
+                                "type": "ListAddQuestion",
+                                "question_variants": [
+                                    {
+                                        "question": {
+                                            "id": "add-question",
+                                            "type": "General",
+                                            "title": "What is the name of the person who isn't you?",
+                                            "answers": [
+                                                {
+                                                    "id": "first-name",
+                                                    "label": "First name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                },
+                                                {
+                                                    "id": "last-name",
+                                                    "label": "Last name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                }
+                                            ]
+                                        },
+                                        "when": [
+                                            {
+                                                "id": "you-live-here-answer",
+                                                "condition": "equals",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "question": {
+                                            "id": "add-question",
+                                            "type": "General",
+                                            "title": "What is the name of the person?",
+                                            "answers": [
+                                                {
+                                                    "id": "first-name",
+                                                    "label": "First name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                },
+                                                {
+                                                    "id": "last-name",
+                                                    "label": "Last name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                }
+                                            ]
+                                        },
+                                        "when": [
+                                            {
+                                                "id": "you-live-here-answer",
+                                                "condition": "equals",
+                                                "value": "Yes"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "edit_block": {
+                                "id": "edit-person",
+                                "type": "ListEditQuestion",
+                                "question_variants": [
+                                    {
+                                        "question": {
+                                            "id": "edit-question",
+                                            "type": "General",
+                                            "title": "What is the name of the person?",
+                                            "answers": [
+                                                {
+                                                    "id": "first-name",
+                                                    "label": "First name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                },
+                                                {
+                                                    "id": "last-name",
+                                                    "label": "Last name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                }
+                                            ]
+                                        },
+                                        "when": [
+                                            {
+                                                "id": "you-live-here-answer",
+                                                "condition": "equals",
+                                                "value": "Yes"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "question": {
+                                            "id": "edit-question",
+                                            "type": "General",
+                                            "title": "What is the name of the person who isn't you?",
+                                            "answers": [
+                                                {
+                                                    "id": "first-name",
+                                                    "label": "First name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                },
+                                                {
+                                                    "id": "last-name",
+                                                    "label": "Last name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                }
+                                            ]
+                                        },
+                                        "when": [
+                                            {
+                                                "id": "you-live-here-answer",
+                                                "condition": "equals",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "remove_block": {
+                                "id": "remove-person",
+                                "type": "ListRemoveQuestion",
+                                "question_variants": [
+                                    {
+                                        "question": {
+                                            "id": "remove-question",
+                                            "type": "General",
+                                            "title": "Are you sure you want to remove this person?",
+                                            "answers": [
+                                                {
+                                                    "id": "remove-confirmation",
+                                                    "mandatory": true,
+                                                    "type": "Radio",
+                                                    "options": [
+                                                        {
+                                                            "label": "Yes",
+                                                            "value": "Yes"
+                                                        },
+                                                        {
+                                                            "label": "No",
+                                                            "value": "No"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        "when": [
+                                            {
+                                                "id": "you-live-here-answer",
+                                                "condition": "equals",
+                                                "value": "Yes"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "question": {
+                                            "id": "remove-question",
+                                            "type": "General",
+                                            "title": "Are you sure you want to remove this person who isn't you?",
+                                            "answers": [
+                                                {
+                                                    "id": "remove-confirmation",
+                                                    "mandatory": true,
+                                                    "type": "Radio",
+                                                    "options": [
+                                                        {
+                                                            "label": "Yes",
+                                                            "value": "Yes"
+                                                        },
+                                                        {
+                                                            "label": "No",
+                                                            "value": "No"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        "when": [
+                                            {
+                                                "id": "you-live-here-answer",
+                                                "condition": "equals",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Confirmation",
+                            "id": "confirmation",
+                            "content": {
+                                "title": "Thank you for your answers, do you wish to submit"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

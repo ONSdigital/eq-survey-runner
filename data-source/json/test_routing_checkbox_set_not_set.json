@@ -1,217 +1,217 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.2",
-  "data_version": "0.0.3",
-  "survey_id": "0",
-  "title": "Other input fields",
-  "theme": "default",
-  "description": "A questionnaire to demo checkbox field Other input.",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    }
-  ],
-  "sections": [
-    {
-      "id": "default-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.2",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Other input fields",
+    "theme": "default",
+    "description": "A questionnaire to demo checkbox field Other input.",
+    "metadata": [
         {
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "topping-checkbox",
-              "question": {
-                "answers": [
-                  {
-                    "id": "topping-checkbox-answer",
-                    "label": "",
-                    "mandatory": false,
-                    "options": [
-                      {
-                        "label": "None",
-                        "value": "None"
-                      },
-                      {
-                        "label": "Cheese",
-                        "value": "Cheese"
-                      },
-                      {
-                        "label": "Ham",
-                        "value": "Ham"
-                      },
-                      {
-                        "label": "Pineapple",
-                        "value": "Pineapple"
-                      },
-                      {
-                        "label": "Tuna",
-                        "value": "Tuna"
-                      },
-                      {
-                        "label": "Pepperoni",
-                        "value": "Pepperoni"
-                      },
-                      {
-                        "label": "Other",
-                        "value": "Other",
-                        "description": "Choose any other topping",
-                        "detail_answer": {
-                          "mandatory": false,
-                          "id": "other-answer-topping",
-                          "label": "Please specify other",
-                          "type": "TextField"
-                        }
-                      }
-                    ],
-                    "type": "Checkbox",
-                    "validation": {
-                      "messages": {}
-                    }
-                  }
-                ],
-                "description": "",
-                "id": "topping-checkbox-question",
-                "title": "What extra toppings would you like?",
-                "type": "General"
-              },
-              "routing_rules": []
-            },
-            {
-              "id": "topping-interstitial-set",
-              "content": {
-                "title": "Topping selected",
-                "contents": [
-                  {
-                    "description": "You selected a topping"
-                  }
-                ]
-              },
-              "type": "Interstitial",
-              "skip_conditions": [
-                {
-                  "when": [
-                    {
-                      "id": "topping-checkbox-answer",
-                      "condition": "not set"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "topping-interstitial-not-set",
-              "content": {
-                "title": "Topping not selected",
-                "contents": [
-                  {
-                    "description": "You did not select a topping"
-                  }
-                ]
-              },
-              "type": "Interstitial",
-              "skip_conditions": [
-                {
-                  "when": [
-                    {
-                      "id": "topping-checkbox-answer",
-                      "condition": "set"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "Question",
-              "id": "optional-mutually-exclusive",
-              "question": {
-                "answers": [
-                  {
-                    "id": "optional-mutually-exclusive-answer",
-                    "mandatory": false,
-                    "options": [
-                      {
-                        "label": "Cheddar",
-                        "value": "Cheddar"
-                      },
-                      {
-                        "label": "Mozzarella",
-                        "value": "Mozzarella"
-                      },
-                      {
-                        "label": "I don't like cheese",
-                        "value": "No cheese"
-                      }
-                    ],
-                    "type": "Checkbox"
-                  }
-                ],
-                "id": "optional-mutually-exclusive-question",
-                "title": "What is your favourite cheese?",
-                "type": "General"
-              }
-            },
-            {
-              "id": "cheese-interstitial-set",
-              "type": "Interstitial",
-              "content": {
-                "title": "Cheese selected",
-                "contents": [
-                  {
-                    "description": "You selected an option for the cheese question"
-                  }
-                ]
-              },
-              "skip_conditions": [
-                {
-                  "when": [
-                    {
-                      "id": "optional-mutually-exclusive-answer",
-                      "condition": "not set"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "cheese-interstitial-not-set",
-              "type": "Interstitial",
-              "content": {
-                "title": "Cheese not selected",
-                "contents": [
-                  {
-                    "description": "You did not select an option for the cheese question"
-                  }
-                ]
-              },
-              "skip_conditions": [
-                {
-                  "when": [
-                    {
-                      "id": "optional-mutually-exclusive-answer",
-                      "condition": "set"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ],
-          "id": "checkboxes",
-          "title": ""
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "topping-checkbox",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "topping-checkbox-answer",
+                                        "label": "",
+                                        "mandatory": false,
+                                        "options": [
+                                            {
+                                                "label": "None",
+                                                "value": "None"
+                                            },
+                                            {
+                                                "label": "Cheese",
+                                                "value": "Cheese"
+                                            },
+                                            {
+                                                "label": "Ham",
+                                                "value": "Ham"
+                                            },
+                                            {
+                                                "label": "Pineapple",
+                                                "value": "Pineapple"
+                                            },
+                                            {
+                                                "label": "Tuna",
+                                                "value": "Tuna"
+                                            },
+                                            {
+                                                "label": "Pepperoni",
+                                                "value": "Pepperoni"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "value": "Other",
+                                                "description": "Choose any other topping",
+                                                "detail_answer": {
+                                                    "mandatory": false,
+                                                    "id": "other-answer-topping",
+                                                    "label": "Please specify other",
+                                                    "type": "TextField"
+                                                }
+                                            }
+                                        ],
+                                        "type": "Checkbox",
+                                        "validation": {
+                                            "messages": {}
+                                        }
+                                    }
+                                ],
+                                "description": "",
+                                "id": "topping-checkbox-question",
+                                "title": "What extra toppings would you like?",
+                                "type": "General"
+                            },
+                            "routing_rules": []
+                        },
+                        {
+                            "id": "topping-interstitial-set",
+                            "content": {
+                                "title": "Topping selected",
+                                "contents": [
+                                    {
+                                        "description": "You selected a topping"
+                                    }
+                                ]
+                            },
+                            "type": "Interstitial",
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "id": "topping-checkbox-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "topping-interstitial-not-set",
+                            "content": {
+                                "title": "Topping not selected",
+                                "contents": [
+                                    {
+                                        "description": "You did not select a topping"
+                                    }
+                                ]
+                            },
+                            "type": "Interstitial",
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "id": "topping-checkbox-answer",
+                                            "condition": "set"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Question",
+                            "id": "optional-mutually-exclusive",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "optional-mutually-exclusive-answer",
+                                        "mandatory": false,
+                                        "options": [
+                                            {
+                                                "label": "Cheddar",
+                                                "value": "Cheddar"
+                                            },
+                                            {
+                                                "label": "Mozzarella",
+                                                "value": "Mozzarella"
+                                            },
+                                            {
+                                                "label": "I don't like cheese",
+                                                "value": "No cheese"
+                                            }
+                                        ],
+                                        "type": "Checkbox"
+                                    }
+                                ],
+                                "id": "optional-mutually-exclusive-question",
+                                "title": "What is your favourite cheese?",
+                                "type": "General"
+                            }
+                        },
+                        {
+                            "id": "cheese-interstitial-set",
+                            "type": "Interstitial",
+                            "content": {
+                                "title": "Cheese selected",
+                                "contents": [
+                                    {
+                                        "description": "You selected an option for the cheese question"
+                                    }
+                                ]
+                            },
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "id": "optional-mutually-exclusive-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "cheese-interstitial-not-set",
+                            "type": "Interstitial",
+                            "content": {
+                                "title": "Cheese not selected",
+                                "contents": [
+                                    {
+                                        "description": "You did not select an option for the cheese question"
+                                    }
+                                ]
+                            },
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "id": "optional-mutually-exclusive-answer",
+                                            "condition": "set"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "checkboxes",
+                    "title": ""
+                }
+            ]
+        }
+    ]
 }

@@ -1,55 +1,55 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "0",
-  "title": "English Language Survey",
-  "theme": "social",
-  "description": "A questionnaire to demonstrate english language",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    }
-  ],
-  "sections": [
-    {
-      "id": "default-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "English Language Survey",
+    "theme": "social",
+    "description": "A questionnaire to demonstrate english language",
+    "metadata": [
         {
-          "id": "language-group",
-          "title": "",
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "language-block",
-              "question": {
-                "answers": [
-                  {
-                    "id": "month-year-answer",
-                    "label": "Date",
-                    "mandatory": true,
-                    "q_code": "11",
-                    "type": "MonthYearDate"
-                  }
-                ],
-                "description": "",
-                "id": "month-year-question",
-                "title": "English Questionnaire - Date with month and year",
-                "type": "General"
-              }
-            },
-            {
-              "type": "Summary",
-              "id": "summary"
-            }
-          ]
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "language-group",
+                    "title": "",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "language-block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "month-year-answer",
+                                        "label": "Date",
+                                        "mandatory": true,
+                                        "q_code": "11",
+                                        "type": "MonthYearDate"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "month-year-question",
+                                "title": "English Questionnaire - Date with month and year",
+                                "type": "General"
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }
