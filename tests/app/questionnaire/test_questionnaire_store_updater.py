@@ -12,7 +12,16 @@ from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
 
-class TestAnswerStoreUpdater(unittest.TestCase):
+def fake_list_store():
+    serialised = [
+        {'name': 'people', 'primary_person': 'abcdef', 'items': ['abcdef', 'xyzabc']},
+        {'name': 'pets', 'items': ['tuvwxy']},
+    ]
+
+    return ListStore.deserialise(serialised)
+
+
+class TestQuestionnaireStoreUpdater(unittest.TestCase):
     def setUp(self):
         super().setUp()
 
@@ -30,7 +39,7 @@ class TestAnswerStoreUpdater(unittest.TestCase):
             progress_store=self.progress_store,
         )
         self.metadata = MagicMock()
-        self.answer_store_updater = None
+        self.questionnaire_store_updater = None
         self.current_question = None
 
     def test_save_answers_with_form_data(self):
@@ -44,10 +53,10 @@ class TestAnswerStoreUpdater(unittest.TestCase):
         self.current_question = self.schema.get_block(self.location.block_id)[
             'question'
         ]
-        self.answer_store_updater = QuestionnaireStoreUpdater(
+        self.questionnaire_store_updater = QuestionnaireStoreUpdater(
             self.location, self.schema, self.questionnaire_store, self.current_question
         )
-        self.answer_store_updater.update_answers(form)
+        self.questionnaire_store_updater.update_answers(form)
 
         assert self.answer_store.add_or_update.call_count == 1
 
@@ -73,10 +82,10 @@ class TestAnswerStoreUpdater(unittest.TestCase):
         self.current_question = {
             'answers': [{'id': 'answer', 'default': default_value}]
         }
-        self.answer_store_updater = QuestionnaireStoreUpdater(
+        self.questionnaire_store_updater = QuestionnaireStoreUpdater(
             self.location, self.schema, self.questionnaire_store, self.current_question
         )
-        self.answer_store_updater.update_answers(form)
+        self.questionnaire_store_updater.update_answers(form)
 
         assert self.answer_store.add_or_update.call_count == 1
 
@@ -113,10 +122,10 @@ class TestAnswerStoreUpdater(unittest.TestCase):
                 {'id': 'radio-answer'},
             ]
         }
-        self.answer_store_updater = QuestionnaireStoreUpdater(
+        self.questionnaire_store_updater = QuestionnaireStoreUpdater(
             self.location, self.schema, self.questionnaire_store, self.current_question
         )
-        self.answer_store_updater.update_answers(form)
+        self.questionnaire_store_updater.update_answers(form)
 
         assert self.answer_store.add_or_update.call_count == 0
 
@@ -137,10 +146,52 @@ class TestAnswerStoreUpdater(unittest.TestCase):
             progress_store=ProgressStore(),
         )
 
-        self.answer_store_updater = QuestionnaireStoreUpdater(
+        self.questionnaire_store_updater = QuestionnaireStoreUpdater(
             self.location, self.schema, questionnaire_store, self.current_question
         )
-        self.answer_store_updater.remove_list_item_and_answers('abc', 'abcdef')
+        self.questionnaire_store_updater.remove_list_item_and_answers('abc', 'abcdef')
 
         assert len(answer_store) == 1
         assert answer_store.get_answer('test3', 'uvwxyz')
+
+    def test_remove_primary_person(self):
+        answer_store = AnswerStore(
+            existing_answers=[
+                {'answer_id': 'test1', 'value': 1, 'list_item_id': 'abcdef'},
+                {'answer_id': 'test2', 'value': 2, 'list_item_id': 'abcdef'},
+                {'answer_id': 'test3', 'value': 3, 'list_item_id': 'xyzabc'},
+            ]
+        )
+
+        list_store = fake_list_store()
+
+        questionnaire_store = MagicMock(
+            spec=QuestionnaireStore,
+            completed_blocks=[],
+            answer_store=answer_store,
+            list_store=list_store,
+            progress_store=ProgressStore(),
+        )
+
+        questionnaire_store_updater = QuestionnaireStoreUpdater(
+            self.location, self.schema, questionnaire_store, self.current_question
+        )
+
+        questionnaire_store_updater.remove_primary_person('people')
+
+    def test_add_primary_person(self):
+        list_store = fake_list_store()
+
+        questionnaire_store = MagicMock(
+            spec=QuestionnaireStore,
+            completed_blocks=[],
+            answer_store=self.answer_store,
+            list_store=list_store,
+            progress_store=ProgressStore(),
+        )
+
+        questionnaire_store_updater = QuestionnaireStoreUpdater(
+            self.location, self.schema, questionnaire_store, self.current_question
+        )
+
+        questionnaire_store_updater.add_primary_person('people')

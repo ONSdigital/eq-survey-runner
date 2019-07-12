@@ -65,6 +65,12 @@ class QuestionnaireStoreUpdater:
         for answer_id in answer_ids:
             self._answer_store.remove_answer(answer_id)
 
+    def add_primary_person(self, list_name):
+        if self._list_store[list_name].primary_person:
+            return self._list_store[list_name].primary_person
+
+        return self._list_store.add_list_item(list_name, primary_person=True)
+
     def add_list_item_and_answers(self, form, list_name):
         new_list_item_id = self._list_store.add_list_item(list_name)
 
@@ -72,19 +78,28 @@ class QuestionnaireStoreUpdater:
 
         self.update_answers(form)
 
+    def remove_primary_person(self, list_name: str):
+        """ Remove the primary person and all of their answers.
+        Any context for the primary person will be removed
+        """
+        list_item_id = self._list_store[list_name].primary_person
+        if list_item_id:
+            self.remove_list_item_and_answers(list_name, list_item_id)
+
     def remove_list_item_and_answers(self, list_name: str, list_item_id: str):
         """ Remove answers from the answer store and update the list store to remove it
         """
-        self._list_store.delete_list_item_id(list_name, list_item_id)
+        self._list_store.delete_list_item(list_name, list_item_id)
 
         self._answer_store.remove_all_answers_for_list_item_id(
             list_item_id=list_item_id
         )
 
-    def add_completed_location(self):
-        self._progress_store.add_completed_location(
-            self._current_section_id, self._current_location
-        )
+    def add_completed_location(self, location=None, section_id=None):
+        location = location or self._current_location
+        section_id = section_id or self._current_section_id
+
+        self._progress_store.add_completed_location(section_id, location)
 
     def remove_completed_location(self):
         self._progress_store.remove_completed_location(

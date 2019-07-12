@@ -48,6 +48,7 @@ from app.views.exceptions import PageNotFoundException
 
 END_BLOCKS = 'Summary', 'Confirmation'
 
+
 logger = get_logger()
 
 questionnaire_blueprint = Blueprint(
@@ -235,7 +236,7 @@ def get_relationship(
     if redirect_url:
         return redirect(redirect_url)
 
-    list_items = list_store.get(schema.get_block(block_id)['for_list'])
+    list_items = list_store[schema.get_block(block_id)['for_list']].items
     relationship_router = RelationshipRouter(block_id, list_items)
 
     if not relationship_router.can_access_location(current_location):
@@ -374,7 +375,13 @@ def _validate_list_collector_child_location(
             )
         return
 
-    if list_item_id not in list_store[current_location.list_name]:
+    if (
+        block['type'] == 'ListRemoveQuestion'
+        and list_store[list_name].primary_person == list_item_id
+    ):
+        return url_for('questionnaire.get_block', block_id=parent_block['id'])
+
+    if list_item_id not in list_store[current_location.list_name].items:
         return url_for('questionnaire.get_block', block_id=parent_block['id'])
 
 
@@ -387,7 +394,7 @@ def get_block_handler(routing_path, schema, questionnaire_store, current_locatio
 
     block = schema.get_block(current_location.block_id)
     if block['type'] == 'RelationshipCollector':
-        list_items = questionnaire_store.list_store.get(block['for_list'])
+        list_items = questionnaire_store.list_store.get(block['for_list']).items
         relationship_router = RelationshipRouter(current_location.block_id, list_items)
         return redirect(relationship_router.get_first_location_url())
 
@@ -413,7 +420,8 @@ def get_block_handler(routing_path, schema, questionnaire_store, current_locatio
 
 # pylint: disable=too-many-locals
 # pylint: disable=too-many-return-statements
-def post_block_handler(
+# pylint: disable=too-complex
+def post_block_handler(  # noqa: C901
     routing_path,
     schema,
     questionnaire_store,
@@ -484,20 +492,29 @@ def post_block_handler(
 
     _set_started_at_metadata(form, collection_metadata)
 
-    if schema.is_list_block_type(rendered_block['type']):
-        list_action_redirect = perform_list_action(
+    if schema.is_primary_person_block_type(rendered_block['type']):
+        next_url = handle_primary_person_action(
             schema,
-            metadata,
-            answer_store,
-            list_store,
+            router,
+            routing_path,
+            form,
+            rendered_block,
+            questionnaire_store_updater,
+        )
+        if next_url:
+            return redirect(next_url)
+
+    elif schema.is_list_block_type(rendered_block['type']):
+        next_list_url = perform_list_action(
+            schema,
             current_location,
             form,
             rendered_block,
             questionnaire_store_updater,
             list_item_id,
         )
-        if list_action_redirect:
-            return redirect(list_action_redirect)
+        if next_list_url:
+            return redirect(next_list_url)
 
     questionnaire_store_updater.update_answers(form)
 
@@ -524,9 +541,6 @@ def _update_section_completeness(questionnaire_store_updater, routing_path):
 
 def perform_list_action(
     schema,
-    metadata,
-    answer_store,
-    list_store,
     current_location,
     form,
     rendered_block,
@@ -565,22 +579,62 @@ def perform_list_action(
         questionnaire_store_updater.add_list_item_and_answers(
             form, parent_block['populates_list']
         )
-    elif block['type'] == 'ListEditQuestion':
+    if block['type'] == 'ListEditQuestion':
         questionnaire_store_updater.update_answers(form)
 
     # Clear the answer from the confirmation question on the list collector question
-    transformed_parent = transform_variants(
-        parent_block, schema, metadata, answer_store, list_store
-    )
-    answer_ids_to_remove = [
-        answer['id'] for answer in transformed_parent['question']['answers']
-    ]
+    answer_ids_to_remove = schema.get_answer_ids_for_block(parent_block['id'])
     questionnaire_store_updater.remove_answers(answer_ids_to_remove)
     questionnaire_store_updater.save()
 
     list_collector_url = url_for('questionnaire.get_block', block_id=parent_block['id'])
 
     return list_collector_url
+
+
+def handle_primary_person_action(
+    schema, router, routing_path, form, block, questionnaire_store_updater
+):
+    if block['type'] == 'PrimaryPersonListCollector':
+        list_name = block['populates_list']
+
+        if (
+            form.data[block['add_or_edit_answer']['id']]
+            == block['add_or_edit_answer']['value']
+        ):
+            questionnaire_store_updater.update_answers(form)
+            primary_person_id = questionnaire_store_updater.add_primary_person(
+                list_name
+            )
+            # To ensure answering 'No' doesn't allow the user to skip ahead.
+            questionnaire_store_updater.remove_completed_location()
+            questionnaire_store_updater.save()
+
+            add_or_edit_url = url_for(
+                'questionnaire.get_block',
+                list_name=block['populates_list'],
+                block_id=block['add_or_edit_block']['id'],
+                list_item_id=primary_person_id,
+            )
+            return add_or_edit_url
+
+        questionnaire_store_updater.remove_primary_person(list_name)
+        return
+
+    if block['type'] == 'PrimaryPersonListAddOrEditQuestion':
+        parent_block = schema.get_list_collector_for_block_id(block['id'])
+        parent_location = Location(parent_block['id'])
+        questionnaire_store_updater.update_answers(form)
+        parent_section_id = schema.get_section_for_block_id(parent_location.block_id)[
+            'id'
+        ]
+        questionnaire_store_updater.add_completed_location(
+            location=parent_location, section_id=parent_section_id
+        )
+        _update_section_completeness(questionnaire_store_updater, routing_path)
+        questionnaire_store_updater.save()
+        next_location_url = router.get_next_location_url(parent_location, routing_path)
+        return next_location_url
 
 
 @questionnaire_blueprint.route('<block_id>/', methods=['POST'])
@@ -776,7 +830,6 @@ def _generate_wtf_form(block, schema, current_location):
         return post_form_for_block(
             schema, block, answer_store, metadata, request.form, disable_mandatory
         )
-
     return get_form_for_location(
         schema, block, current_location, answer_store, metadata
     )

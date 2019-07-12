@@ -13,6 +13,7 @@ from app.jinja_filters import (
     format_unit_input_label,
     format_duration,
     get_formatted_currency,
+    map_list_collector_config,
 )
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -158,3 +159,28 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
 
     def test_get_formatted_currency_with_no_value(self):
         self.assertEqual(get_formatted_currency(''), '')
+
+
+def test_map_list_collector_config_for_primary_person():
+    """ Ensure the list isn't reordered. Primary will always be first in the list.
+    """
+    list_items = [
+        {'remove_link': 'primary', 'edit_link': 'primary', 'primary_person': True},
+        {
+            'remove_link': 'nonprimary',
+            'edit_link': 'nonprimary',
+            'primary_person': False,
+        },
+    ]
+
+    output = map_list_collector_config(
+        list_items,
+        'icon',
+        'edit_link_text',
+        'edit_link_aria_label',
+        'remove_link_text',
+        'remove_link_aria_label',
+    )
+
+    assert output[0]['rowItems'][0]['actions'][0]['url'] == 'primary'
+    assert output[1]['rowItems'][0]['actions'][0]['url'] == 'nonprimary'

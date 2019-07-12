@@ -141,7 +141,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add_or_update(Answer(answer_id='my_answer', value='Yes'))
 
         self.assertTrue(
-            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore({}))
+            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore())
         )
 
     def test_do_not_go_to_next_question_for_answer(self):
@@ -155,7 +155,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add_or_update(Answer(answer_id='my_answer', value='No'))
 
         self.assertFalse(
-            evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, ListStore({}))
+            evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, ListStore())
         )
 
     def test_evaluate_goto_returns_false_when_checkbox_question_not_answered(self):
@@ -175,12 +175,12 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         self.assertFalse(
             evaluate_goto(
-                goto_contains, get_schema_mock(), {}, answer_store, ListStore({})
+                goto_contains, get_schema_mock(), {}, answer_store, ListStore()
             )
         )
         self.assertFalse(
             evaluate_goto(
-                goto_not_contains, get_schema_mock(), {}, answer_store, ListStore({})
+                goto_not_contains, get_schema_mock(), {}, answer_store, ListStore()
             )
         )
 
@@ -198,7 +198,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         )
 
         self.assertTrue(
-            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore({}))
+            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore())
         )
 
     def test_evaluate_goto_returns_true_when_answer_value_list_not_contains_match_value(
@@ -238,7 +238,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         )
 
         self.assertTrue(
-            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore({}))
+            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore())
         )
 
     def test_evaluate_goto_returns_true_when_answer_values_contains_all_match_values(
@@ -261,7 +261,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         )
 
         self.assertTrue(
-            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore({}))
+            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore())
         )
 
     def test_evaluate_goto_returns_true_when_answer_value_equals_any_match_values(self):
@@ -280,7 +280,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add_or_update(Answer(answer_id='my_answers', value='answer2'))
 
         self.assertTrue(
-            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore({}))
+            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore())
         )
 
     def test_evaluate_goto_returns_true_when_answer_value_not_equals_any_match_values(
@@ -301,7 +301,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add_or_update(Answer(answer_id='my_answers', value='answer3'))
 
         self.assertTrue(
-            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore({}))
+            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore())
         )
 
     def test_evaluate_skip_condition_returns_true_when_this_rule_true(self):
@@ -315,7 +315,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         condition = evaluate_skip_conditions(
-            skip_conditions, get_schema_mock(), {}, answer_store, ListStore({})
+            skip_conditions, get_schema_mock(), {}, answer_store, ListStore()
         )
 
         # Given
@@ -333,7 +333,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         self.assertTrue(
             evaluate_skip_conditions(
-                skip_conditions, get_schema_mock(), {}, answer_store, ListStore({})
+                skip_conditions, get_schema_mock(), {}, answer_store, ListStore()
             )
         )
 
@@ -349,7 +349,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         condition = evaluate_skip_conditions(
-            skip_conditions, get_schema_mock(), {}, answer_store, ListStore({})
+            skip_conditions, get_schema_mock(), {}, answer_store, ListStore()
         )
 
         # Then
@@ -367,7 +367,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         condition = evaluate_skip_conditions(
-            skip_conditions, get_schema_mock(), {}, answer_store, ListStore({})
+            skip_conditions, get_schema_mock(), {}, answer_store, ListStore()
         )
 
         # Then
@@ -379,7 +379,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         condition = evaluate_skip_conditions(
-            skip_conditions, get_schema_mock(), {}, AnswerStore({}), ListStore({})
+            skip_conditions, get_schema_mock(), {}, AnswerStore({}), ListStore()
         )
 
         # Then
@@ -391,7 +391,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         self.assertTrue(
             evaluate_when_rules(
-                when['when'], get_schema_mock(), {}, answer_store, ListStore({}), None
+                when['when'], get_schema_mock(), {}, answer_store, ListStore(), None
             )
         )
 
@@ -409,7 +409,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add_or_update(Answer(answer_id='my_other_answer', value='2'))
 
         self.assertTrue(
-            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore({}))
+            evaluate_goto(goto, get_schema_mock(), {}, answer_store, ListStore())
         )
 
     def test_do_not_go_to_next_question_for_multiple_answers(self):
@@ -425,7 +425,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add_or_update(Answer(answer_id='my_answer', value='No'))
 
         self.assertFalse(
-            evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, ListStore({}))
+            evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, ListStore())
         )
 
     def test_should_go_to_next_question_when_condition_is_meta_and_answer_type(self):
@@ -443,7 +443,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         goto = evaluate_goto(
-            goto_rule, get_schema_mock(), metadata, answer_store, ListStore({})
+            goto_rule, get_schema_mock(), metadata, answer_store, ListStore()
         )
 
         # Then
@@ -467,7 +467,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         goto = evaluate_goto(
-            goto_rule, get_schema_mock(), metadata, answer_store, ListStore({})
+            goto_rule, get_schema_mock(), metadata, answer_store, ListStore()
         )
 
         # Then
@@ -488,7 +488,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         goto = evaluate_goto(
-            goto_rule, get_schema_mock(), metadata, answer_store, ListStore({})
+            goto_rule, get_schema_mock(), metadata, answer_store, ListStore()
         )
 
         # Then
@@ -594,12 +594,12 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store = AnswerStore({})
         with self.assertRaises(Exception):
             evaluate_when_rules(
-                when['when'], get_schema_mock(), {}, answer_store, ListStore({}), None
+                when['when'], get_schema_mock(), {}, answer_store, ListStore(), None
             )
 
     def test_list_rules_less_than(self):
         answer_store = AnswerStore({})
-        list_store = ListStore({'people': ['abcdef']})
+        list_store = ListStore(existing_items=[{'name': 'people', 'items': ['abcdef']}])
 
         when_rules = [{'list': 'people', 'condition': 'less than', 'value': 2}]
         self.assertTrue(
@@ -610,7 +610,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
     def test_list_rules_equals(self):
         answer_store = AnswerStore({})
-        list_store = ListStore({'people': ['abcdef']})
+        list_store = ListStore(existing_items=[{'name': 'people', 'items': ['abcdef']}])
 
         when_rules = [{'list': 'people', 'condition': 'equals', 'value': 1}]
         self.assertTrue(
@@ -640,7 +640,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                     get_schema_mock(),
                     {},
                     answer_store,
-                    ListStore({}),
+                    ListStore(),
                     routing_path=routing_path,
                 )
             )

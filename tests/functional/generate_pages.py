@@ -194,11 +194,11 @@ LIST_SUMMARY_LABEL_GETTER = r"""  listLabel(instance) { return `tbody:nth-child(
 
 """
 
-LIST_SUMMARY_EDIT_LINK_GETTER = r"""  listEditLink(instance) { return `tbody:nth-child(${instance}) td:last-child a:first-child`; }
+LIST_SUMMARY_EDIT_LINK_GETTER = r"""  listEditLink(instance) { return `tbody:nth-child(${instance}) td:last-child a[data-qa='change-item-link'`; }
 
 """
 
-LIST_SUMMARY_REMOVE_LINK_GETTER = r"""  listRemoveLink(instance) { return `tbody:nth-child(${instance}) td:last-child a:last-child`; }
+LIST_SUMMARY_REMOVE_LINK_GETTER = r"""  listRemoveLink(instance) { return `tbody:nth-child(${instance}) td:last-child a[data-qa='remove-item-link'`; }
 
 """
 
@@ -507,6 +507,16 @@ def process_block(
                 page_filename=f'{block["id"]}-{list_operation}.page.js',
             )
 
+    if block['type'] == 'PrimaryPersonListCollector':
+        process_block(
+            block['add_or_edit_block'],
+            dir_out,
+            schema_data,
+            spec_file,
+            relative_require,
+            page_filename=f'{block["id"]}-add.page.js',
+        )
+
     page_path = os.path.join(dir_out, page_filename)
 
     logger.info('creating %s...', page_path)
@@ -574,6 +584,7 @@ def process_schema(in_schema, out_dir, spec_file, require_path='..'):
         data = json.loads(open(in_schema).read())
     except Exception as ex:
         logger.error('error reading %s', in_schema)
+        return
 
     try:
         os.stat(out_dir)

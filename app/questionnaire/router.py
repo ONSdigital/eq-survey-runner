@@ -85,7 +85,7 @@ class Router:
             previous_location = routing_path[location_index - 1]
             previous_block = self._schema.get_block(previous_location.block_id)
             if previous_block['type'] == 'RelationshipCollector':
-                list_items = self._list_store.get(previous_block['for_list'])
+                list_items = self._list_store.get(previous_block['for_list']).items
                 relationship_router = RelationshipRouter(
                     previous_block['id'], list_items
                 )
