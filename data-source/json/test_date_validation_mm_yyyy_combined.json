@@ -1,118 +1,142 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "023",
-    "title": "Date formats",
-    "description": "A test schema for different date formats",
-    "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }, {
-        "name": "ref_p_start_date",
-        "type": "date"
-    }, {
-        "name": "ref_p_end_date",
-        "type": "date"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "dates",
-            "title": "Date Range Validation",
-            "blocks": [{
-                "type": "Question",
-                "id": "date-range-block",
-                "question": {
-                    "id": "date-range-question",
-                    "title": "Enter Date Range",
-                    "type": "DateRange",
-                    "guidance": {
-                        "contents": [{
-                                "description": "Dates between 2 and 3 months apart"
-                            },
-                            {
-                                "description": {
-                                    "text": "Period from date greater than 1 month before {date}",
-                                    "placeholders": [{
-                                        "placeholder": "date",
-                                        "transforms": [{
-                                            "transform": "format_date",
-                                            "arguments": {
-                                                "date_to_format": {
-                                                    "source": "metadata",
-                                                    "identifier": "ref_p_start_date"
-                                                },
-                                                "date_format": "d MMMM yyyy"
-                                            }
-                                        }]
-                                    }]
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "023",
+  "title": "Date formats",
+  "description": "A test schema for different date formats",
+  "theme": "default",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    },
+    {
+      "name": "ref_p_start_date",
+      "type": "date"
+    },
+    {
+      "name": "ref_p_end_date",
+      "type": "date"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "id": "dates",
+          "title": "Date Range Validation",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "date-range-block",
+              "question": {
+                "id": "date-range-question",
+                "title": "Enter Date Range",
+                "type": "DateRange",
+                "guidance": {
+                  "contents": [
+                    {
+                      "description": "Dates between 2 and 3 months apart"
+                    },
+                    {
+                      "description": {
+                        "text": "Period from date greater than 1 month before {date}",
+                        "placeholders": [
+                          {
+                            "placeholder": "date",
+                            "transforms": [
+                              {
+                                "transform": "format_date",
+                                "arguments": {
+                                  "date_to_format": {
+                                    "source": "metadata",
+                                    "identifier": "ref_p_start_date"
+                                  },
+                                  "date_format": "d MMMM yyyy"
                                 }
-                            },
-                            {
-                                "description": {
-                                    "text": "Period to date no greater than 3 months after {date}",
-                                    "placeholders": [{
-                                        "placeholder": "date",
-                                        "transforms": [{
-                                            "transform": "format_date",
-                                            "arguments": {
-                                                "date_to_format": {
-                                                    "source": "metadata",
-                                                    "identifier": "ref_p_end_date"
-                                                },
-                                                "date_format": "d MMMM yyyy"
-                                            }
-                                        }]
-                                    }]
-                                }
-                            }
+                              }
+                            ]
+                          }
                         ]
-
+                      }
                     },
-                    "period_limits": {
-                        "minimum": {
-                            "months": 2
-                        },
-                        "maximum": {
-                            "months": 3
-                        }
-                    },
-                    "answers": [{
-                        "id": "date-range-from",
-                        "label": "Period from",
-                        "mandatory": true,
-                        "type": "MonthYearDate",
-                        "minimum": {
-                            "meta": "ref_p_start_date",
-                            "offset_by": {
-                                "months": -1
-                            }
-                        }
-                    }, {
-                        "id": "date-range-to",
-                        "label": "Period to",
-                        "mandatory": true,
-                        "type": "MonthYearDate",
-                        "maximum": {
-                            "meta": "ref_p_end_date",
-                            "offset_by": {
-                                "months": 3
-                            }
-                        }
-                    }]
-                }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+                    {
+                      "description": {
+                        "text": "Period to date no greater than 3 months after {date}",
+                        "placeholders": [
+                          {
+                            "placeholder": "date",
+                            "transforms": [
+                              {
+                                "transform": "format_date",
+                                "arguments": {
+                                  "date_to_format": {
+                                    "source": "metadata",
+                                    "identifier": "ref_p_end_date"
+                                  },
+                                  "date_format": "d MMMM yyyy"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "period_limits": {
+                  "minimum": {
+                    "months": 2
+                  },
+                  "maximum": {
+                    "months": 3
+                  }
+                },
+                "answers": [
+                  {
+                    "id": "date-range-from",
+                    "label": "Period from",
+                    "mandatory": true,
+                    "type": "MonthYearDate",
+                    "minimum": {
+                      "meta": "ref_p_start_date",
+                      "offset_by": {
+                        "months": -1
+                      }
+                    }
+                  },
+                  {
+                    "id": "date-range-to",
+                    "label": "Period to",
+                    "mandatory": true,
+                    "type": "MonthYearDate",
+                    "maximum": {
+                      "meta": "ref_p_end_date",
+                      "offset_by": {
+                        "months": 3
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

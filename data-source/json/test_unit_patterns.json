@@ -1,210 +1,247 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "999",
-    "title": "Test Unit Patterns",
-    "description": "Tests for localised (UK rendering) measurements.",
-    "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "set-length-units-block",
-                "question": {
-                    "answers": [{
-                        "id": "centimetres",
-                        "description": "",
-                        "label": "Centimetres",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "length-centimeter",
-                        "unit_length": "short"
-                    }, {
-                        "id": "metres",
-                        "description": "",
-                        "label": "Metres",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "length-meter",
-                        "unit_length": "short"
-                    }, {
-                        "id": "kilometres",
-                        "description": "",
-                        "label": "Kilometres",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "length-kilometer",
-                        "unit_length": "short"
-                    }, {
-                        "id": "miles",
-                        "description": "",
-                        "label": "Miles",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "length-mile",
-                        "unit_length": "short"
-                    }],
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "999",
+  "title": "Test Unit Patterns",
+  "description": "Tests for localised (UK rendering) measurements.",
+  "theme": "default",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "set-length-units-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "centimetres",
                     "description": "",
-                    "id": "set-length-units-question",
-                    "title": "Length Units",
-                    "type": "General"
-                }
-            }, {
-                "type": "Question",
-                "id": "set-duration-units-block",
-                "question": {
-                    "answers": [{
-                        "id": "duration-hour",
-                        "description": "",
-                        "label": "Hour",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "duration-hour",
-                        "unit_length": "long"
-                    }, {
-                        "id": "duration-year",
-                        "description": "",
-                        "label": "Years",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "duration-year",
-                        "unit_length": "long"
-                    }],
+                    "label": "Centimetres",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "length-centimeter",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "metres",
                     "description": "",
-                    "id": "set-duration-units-question",
-                    "title": "Duration Units",
-                    "type": "General"
-                }
-            }, {
-                "type": "Question",
-                "id": "set-area-units-block",
-                "question": {
-                    "answers": [{
-                        "id": "square-centimetres",
-                        "description": "",
-                        "label": "Centimetres Square",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "area-square-centimeter",
-                        "unit_length": "short"
-                    }, {
-                        "id": "square-metres",
-                        "description": "",
-                        "label": "Metres Square",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "area-square-meter",
-                        "unit_length": "short"
-                    }, {
-                        "id": "square-kilometres",
-                        "description": "",
-                        "label": "Kilometres Square",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "area-square-kilometer",
-                        "unit_length": "short"
-                    }, {
-                        "id": "square-miles",
-                        "description": "",
-                        "label": "Miles Square",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "area-square-mile",
-                        "unit_length": "short"
-                    }, {
-                        "id": "acres",
-                        "description": "",
-                        "label": "Acres",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "area-acre",
-                        "unit_length": "short"
-                    }, {
-                        "id": "hectares",
-                        "description": "",
-                        "label": "Hectares",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "area-hectare",
-                        "unit_length": "short"
-                    }],
+                    "label": "Metres",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "length-meter",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "kilometres",
                     "description": "",
-                    "id": "set-area-unit-questions",
-                    "title": "Area Units",
-                    "type": "General"
-                }
-            }, {
-                "type": "Question",
-                "id": "set-volume-units-block",
-                "question": {
-                    "answers": [{
-                        "id": "cubic-centimetres",
-                        "description": "",
-                        "label": "Cubic Centimetres",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "volume-cubic-centimeter",
-                        "unit_length": "short"
-                    }, {
-                        "id": "cubic-metres",
-                        "description": "",
-                        "label": "Cubic Metres",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "volume-cubic-meter",
-                        "unit_length": "short"
-                    }, {
-                        "id": "litres",
-                        "description": "",
-                        "label": "Litres",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "volume-liter",
-                        "unit_length": "short"
-                    }, {
-                        "id": "hectolitres",
-                        "description": "",
-                        "label": "Hectolitres",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "volume-hectoliter",
-                        "unit_length": "short"
-                    }, {
-                        "id": "megalitres",
-                        "description": "",
-                        "label": "Megalitres",
-                        "mandatory": false,
-                        "type": "Unit",
-                        "unit": "volume-megaliter",
-                        "unit_length": "short"
-                    }],
+                    "label": "Kilometres",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "length-kilometer",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "miles",
                     "description": "",
-                    "id": "set-volume-unit-questions",
-                    "title": "Volume Units",
-                    "type": "General"
-                }
-            }],
-            "id": "test",
-            "title": ""
-        }, {
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "summary-group",
-            "title": "Summary"
-        }]
-    }]
+                    "label": "Miles",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "length-mile",
+                    "unit_length": "short"
+                  }
+                ],
+                "description": "",
+                "id": "set-length-units-question",
+                "title": "Length Units",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Question",
+              "id": "set-duration-units-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "duration-hour",
+                    "description": "",
+                    "label": "Hour",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "duration-hour",
+                    "unit_length": "long"
+                  },
+                  {
+                    "id": "duration-year",
+                    "description": "",
+                    "label": "Years",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "duration-year",
+                    "unit_length": "long"
+                  }
+                ],
+                "description": "",
+                "id": "set-duration-units-question",
+                "title": "Duration Units",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Question",
+              "id": "set-area-units-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "square-centimetres",
+                    "description": "",
+                    "label": "Centimetres Square",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "area-square-centimeter",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "square-metres",
+                    "description": "",
+                    "label": "Metres Square",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "area-square-meter",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "square-kilometres",
+                    "description": "",
+                    "label": "Kilometres Square",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "area-square-kilometer",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "square-miles",
+                    "description": "",
+                    "label": "Miles Square",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "area-square-mile",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "acres",
+                    "description": "",
+                    "label": "Acres",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "area-acre",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "hectares",
+                    "description": "",
+                    "label": "Hectares",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "area-hectare",
+                    "unit_length": "short"
+                  }
+                ],
+                "description": "",
+                "id": "set-area-unit-questions",
+                "title": "Area Units",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Question",
+              "id": "set-volume-units-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "cubic-centimetres",
+                    "description": "",
+                    "label": "Cubic Centimetres",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "volume-cubic-centimeter",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "cubic-metres",
+                    "description": "",
+                    "label": "Cubic Metres",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "volume-cubic-meter",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "litres",
+                    "description": "",
+                    "label": "Litres",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "volume-liter",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "hectolitres",
+                    "description": "",
+                    "label": "Hectolitres",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "volume-hectoliter",
+                    "unit_length": "short"
+                  },
+                  {
+                    "id": "megalitres",
+                    "description": "",
+                    "label": "Megalitres",
+                    "mandatory": false,
+                    "type": "Unit",
+                    "unit": "volume-megaliter",
+                    "unit_length": "short"
+                  }
+                ],
+                "description": "",
+                "id": "set-volume-unit-questions",
+                "title": "Volume Units",
+                "type": "General"
+              }
+            }
+          ],
+          "id": "test",
+          "title": ""
+        },
+        {
+          "blocks": [
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ],
+          "id": "summary-group",
+          "title": "Summary"
+        }
+      ]
+    }
+  ]
 }

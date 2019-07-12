@@ -1,96 +1,124 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "023",
-    "title": "Difference between two dates",
-    "description": "A test schema for calculate age from date",
-    "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "dates",
-            "title": "Date Difference",
-            "blocks": [{
-                "type": "Question",
-                "id": "age-block",
-                "question": {
-                    "id": "date-pipe-question",
-                    "title": "When did you last go on holiday?",
-                    "type": "General",
-                    "answers": [{
-                        "id": "date-dob",
-                        "label": "For example March 1990",
-                        "mandatory": true,
-                        "type": "MonthYearDate"
-                    }]
-                }
-            }, {
-                "type": "ConfirmationQuestion",
-                "id": "age-test",
-                "question": {
-                    "id": "confirm-dob-question",
-                    "title": {
-                        "text": "It has been {age} since you last went on holiday. Is this correct?",
-                        "placeholders": [{
-                            "placeholder": "age",
-                            "transforms": [{
-                                "transform": "calculate_years_difference",
-                                "arguments": {
-                                    "first_date": {
-                                        "source": "answers",
-                                        "identifier": "date-dob"
-                                    },
-                                    "second_date": {
-                                        "value": "now"
-                                    }
-                                }
-                            }]
-                        }]
-                    },
-                    "type": "General",
-                    "answers": [{
-                        "id": "date-test-answer",
-                        "label": "Piped dates",
-                        "mandatory": true,
-                        "type": "Radio",
-                        "options": [{
-                            "label": "Yes",
-                            "value": "Yes"
-                        }, {
-                            "label": "No",
-                            "value": "No"
-                        }]
-                    }]
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "023",
+  "title": "Difference between two dates",
+  "description": "A test schema for calculate age from date",
+  "theme": "default",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "id": "dates",
+          "title": "Date Difference",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "age-block",
+              "question": {
+                "id": "date-pipe-question",
+                "title": "When did you last go on holiday?",
+                "type": "General",
+                "answers": [
+                  {
+                    "id": "date-dob",
+                    "label": "For example March 1990",
+                    "mandatory": true,
+                    "type": "MonthYearDate"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "ConfirmationQuestion",
+              "id": "age-test",
+              "question": {
+                "id": "confirm-dob-question",
+                "title": {
+                  "text": "It has been {age} since you last went on holiday. Is this correct?",
+                  "placeholders": [
+                    {
+                      "placeholder": "age",
+                      "transforms": [
+                        {
+                          "transform": "calculate_years_difference",
+                          "arguments": {
+                            "first_date": {
+                              "source": "answers",
+                              "identifier": "date-dob"
+                            },
+                            "second_date": {
+                              "value": "now"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
                 },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "age-block",
-                        "when": [{
-                            "id": "date-test-answer",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "block": "summary"
-                    }
-                }]
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+                "type": "General",
+                "answers": [
+                  {
+                    "id": "date-test-answer",
+                    "label": "Piped dates",
+                    "mandatory": true,
+                    "type": "Radio",
+                    "options": [
+                      {
+                        "label": "Yes",
+                        "value": "Yes"
+                      },
+                      {
+                        "label": "No",
+                        "value": "No"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "block": "age-block",
+                    "when": [
+                      {
+                        "id": "date-test-answer",
+                        "condition": "equals",
+                        "value": "No"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "goto": {
+                    "block": "summary"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

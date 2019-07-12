@@ -1,89 +1,113 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "0",
-    "title": "Census England Household Schema",
-    "description": "Census England Household Schema",
-    "theme": "census",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "flag_1",
-        "type": "boolean"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "group1",
-            "title": "Group 1",
-            "blocks": [{
-                "type": "Question",
-                "id": "block1",
-                "question": {
-                    "id": "block1-question",
-                    "title": "Question 1",
-                    "type": "General",
-                    "answers": [{
-                        "id": "block1-answer",
-                        "mandatory": false,
-                        "q_code": "20",
-                        "type": "TextField",
-                        "label": "Question 1"
-                    }]
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "0",
+  "title": "Census England Household Schema",
+  "description": "Census England Household Schema",
+  "theme": "census",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "flag_1",
+      "type": "boolean"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "id": "group1",
+          "title": "Group 1",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "block1",
+              "question": {
+                "id": "block1-question",
+                "title": "Question 1",
+                "type": "General",
+                "answers": [
+                  {
+                    "id": "block1-answer",
+                    "mandatory": false,
+                    "q_code": "20",
+                    "type": "TextField",
+                    "label": "Question 1"
+                  }
+                ]
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "block": "block3",
+                    "when": [
+                      {
+                        "meta": "flag_1",
+                        "condition": "equals",
+                        "value": true
+                      }
+                    ]
+                  }
                 },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "block3",
-                        "when": [{
-                            "meta": "flag_1",
-                            "condition": "equals",
-                            "value": true
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "block": "block2"
-                    }
-                }]
-            }, {
-                "type": "Question",
-                "id": "block2",
-                "question": {
-                    "id": "block2-question",
-                    "title": "Question 2",
-                    "type": "General",
-                    "answers": [{
-                        "id": "block2-answer",
-                        "mandatory": false,
-                        "q_code": "20",
-                        "type": "TextField",
-                        "label": "Question 2"
-                    }]
+                {
+                  "goto": {
+                    "block": "block2"
+                  }
                 }
-            }, {
-                "type": "Question",
-                "id": "block3",
-                "question": {
-                    "id": "block3-question",
-                    "title": "Question 3",
-                    "type": "General",
-                    "answers": [{
-                        "id": "block3-answer",
-                        "mandatory": false,
-                        "q_code": "20",
-                        "type": "TextField",
-                        "label": "Question 3"
-                    }]
-                }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+              ]
+            },
+            {
+              "type": "Question",
+              "id": "block2",
+              "question": {
+                "id": "block2-question",
+                "title": "Question 2",
+                "type": "General",
+                "answers": [
+                  {
+                    "id": "block2-answer",
+                    "mandatory": false,
+                    "q_code": "20",
+                    "type": "TextField",
+                    "label": "Question 2"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Question",
+              "id": "block3",
+              "question": {
+                "id": "block3-question",
+                "title": "Question 3",
+                "type": "General",
+                "answers": [
+                  {
+                    "id": "block3-answer",
+                    "mandatory": false,
+                    "q_code": "20",
+                    "type": "TextField",
+                    "label": "Question 3"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

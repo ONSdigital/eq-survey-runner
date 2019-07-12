@@ -1,203 +1,261 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "0",
-    "title": "Placeholder Test",
-    "theme": "default",
-    "description": "A questionnaire to test placeholders",
-    "navigation": {
-        "visible": true
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "0",
+  "title": "Placeholder Test",
+  "theme": "default",
+  "description": "A questionnaire to test placeholders",
+  "navigation": {
+    "visible": true
+  },
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
     },
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "name-section",
-        "title": "Name Input",
-        "groups": [{
-            "id": "name-group",
-            "title": "",
-            "blocks": [{
-                "type": "Question",
-                "id": "name-question",
-                "question": {
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "name-section",
+      "title": "Name Input",
+      "groups": [
+        {
+          "id": "name-group",
+          "title": "",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "name-question",
+              "question": {
+                "description": "",
+                "id": "primary-name-question",
+                "title": "Please enter your name",
+                "type": "General",
+                "answers": [
+                  {
+                    "id": "first-name",
                     "description": "",
-                    "id": "primary-name-question",
-                    "title": "Please enter your name",
-                    "type": "General",
-                    "answers": [{
-                        "id": "first-name",
-                        "description": "",
-                        "label": "First Name",
-                        "mandatory": true,
-                        "type": "TextField"
-                    }, {
-                        "id": "last-name",
-                        "description": "",
-                        "label": "Last Name",
-                        "mandatory": false,
-                        "type": "TextField"
-                    }]
-                }
-            }]
-        }]
-    }, {
-        "id": "age-input-section",
-        "title": "Age Input",
-        "groups": [{
-            "id": "dob-input-group",
-            "title": "",
-            "blocks": [{
-                "type": "Question",
-                "id": "dob-question-block",
-                "question": {
+                    "label": "First Name",
+                    "mandatory": true,
+                    "type": "TextField"
+                  },
+                  {
+                    "id": "last-name",
                     "description": "",
-                    "id": "dob-question",
-                    "title": {
-                        "text": "What is the date of birth for {person_name}?",
-                        "placeholders": [{
-                            "placeholder": "person_name",
-                            "transforms": [{
-                                "transform": "concatenate_list",
-                                "arguments": {
-                                    "list_to_concatenate": {
-                                        "source": "answers",
-                                        "identifier": ["first-name", "last-name"]
-                                    },
-                                    "delimiter": " "
-                                }
-                            }]
-                        }]
+                    "label": "Last Name",
+                    "mandatory": false,
+                    "type": "TextField"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "age-input-section",
+      "title": "Age Input",
+      "groups": [
+        {
+          "id": "dob-input-group",
+          "title": "",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "dob-question-block",
+              "question": {
+                "description": "",
+                "id": "dob-question",
+                "title": {
+                  "text": "What is the date of birth for {person_name}?",
+                  "placeholders": [
+                    {
+                      "placeholder": "person_name",
+                      "transforms": [
+                        {
+                          "transform": "concatenate_list",
+                          "arguments": {
+                            "list_to_concatenate": {
+                              "source": "answers",
+                              "identifier": ["first-name", "last-name"]
+                            },
+                            "delimiter": " "
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "type": "General",
+                "answers": [
+                  {
+                    "id": "date-of-birth-answer",
+                    "description": "Enter your date of birth",
+                    "label": "Date of Birth",
+                    "mandatory": true,
+                    "type": "Date"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "age-confirmation-section",
+      "title": "Age Confirmation",
+      "groups": [
+        {
+          "blocks": [
+            {
+              "type": "ConfirmationQuestion",
+              "id": "confirm-dob-proxy",
+              "question": {
+                "id": "confirm-date-of-birth-proxy",
+                "title": {
+                  "text": "{person_name} is {age_in_years} years old. Is this correct?",
+                  "placeholders": [
+                    {
+                      "placeholder": "person_name",
+                      "transforms": [
+                        {
+                          "transform": "concatenate_list",
+                          "arguments": {
+                            "list_to_concatenate": {
+                              "source": "answers",
+                              "identifier": ["first-name", "last-name"]
+                            },
+                            "delimiter": " "
+                          }
+                        }
+                      ]
                     },
-                    "type": "General",
-                    "answers": [{
-                        "id": "date-of-birth-answer",
-                        "description": "Enter your date of birth",
-                        "label": "Date of Birth",
-                        "mandatory": true,
-                        "type": "Date"
-                    }]
-                }
-            }]
-        }]
-    }, {
-        "id": "age-confirmation-section",
-        "title": "Age Confirmation",
-        "groups": [{
-            "blocks": [{
-                "type": "ConfirmationQuestion",
-                "id": "confirm-dob-proxy",
-                "question": {
-                    "id": "confirm-date-of-birth-proxy",
-                    "title": {
-                        "text": "{person_name} is {age_in_years} years old. Is this correct?",
-                        "placeholders": [{
-                            "placeholder": "person_name",
-                            "transforms": [{
-                                "transform": "concatenate_list",
-                                "arguments": {
+                    {
+                      "placeholder": "age_in_years",
+                      "transforms": [
+                        {
+                          "transform": "calculate_years_difference",
+                          "arguments": {
+                            "first_date": {
+                              "source": "answers",
+                              "identifier": "date-of-birth-answer"
+                            },
+                            "second_date": {
+                              "value": "now"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "type": "General",
+                "answers": [
+                  {
+                    "id": "confirm-date-of-birth-answer-proxy",
+                    "mandatory": true,
+                    "options": [
+                      {
+                        "label": {
+                          "text": "Yes, {person_name} is {age_in_years} years old.",
+                          "placeholders": [
+                            {
+                              "placeholder": "person_name",
+                              "transforms": [
+                                {
+                                  "transform": "concatenate_list",
+                                  "arguments": {
                                     "list_to_concatenate": {
-                                        "source": "answers",
-                                        "identifier": ["first-name", "last-name"]
+                                      "source": "answers",
+                                      "identifier": ["first-name", "last-name"]
                                     },
                                     "delimiter": " "
+                                  }
                                 }
-                            }]
-                        }, {
-                            "placeholder": "age_in_years",
-                            "transforms": [{
-                                "transform": "calculate_years_difference",
-                                "arguments": {
+                              ]
+                            },
+                            {
+                              "placeholder": "age_in_years",
+                              "transforms": [
+                                {
+                                  "transform": "calculate_years_difference",
+                                  "arguments": {
                                     "first_date": {
-                                        "source": "answers",
-                                        "identifier": "date-of-birth-answer"
+                                      "source": "answers",
+                                      "identifier": "date-of-birth-answer"
                                     },
                                     "second_date": {
-                                        "value": "now"
+                                      "value": "now"
                                     }
+                                  }
                                 }
-                            }]
-                        }]
-                    },
-                    "type": "General",
-                    "answers": [{
+                              ]
+                            }
+                          ]
+                        },
+                        "value": "Yes"
+                      },
+                      {
+                        "label": "No, I need to change their date of birth",
+                        "value": "No"
+                      }
+                    ],
+                    "type": "Radio"
+                  }
+                ]
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "group": "dob-input-group",
+                    "when": [
+                      {
                         "id": "confirm-date-of-birth-answer-proxy",
-                        "mandatory": true,
-                        "options": [{
-                            "label": {
-                                "text": "Yes, {person_name} is {age_in_years} years old.",
-                                "placeholders": [{
-                                    "placeholder": "person_name",
-                                    "transforms": [{
-                                        "transform": "concatenate_list",
-                                        "arguments": {
-                                            "list_to_concatenate": {
-                                                "source": "answers",
-                                                "identifier": ["first-name", "last-name"]
-                                            },
-                                            "delimiter": " "
-                                        }
-                                    }]
-                                }, {
-                                    "placeholder": "age_in_years",
-                                    "transforms": [{
-                                        "transform": "calculate_years_difference",
-                                        "arguments": {
-                                            "first_date": {
-                                                "source": "answers",
-                                                "identifier": "date-of-birth-answer"
-                                            },
-                                            "second_date": {
-                                                "value": "now"
-                                            }
-                                        }
-                                    }]
-                                }]
-                            },
-                            "value": "Yes"
-                        }, {
-                            "label": "No, I need to change their date of birth",
-                            "value": "No"
-                        }],
-                        "type": "Radio"
-                    }]
+                        "condition": "equals",
+                        "value": "No"
+                      }
+                    ]
+                  }
                 },
-                "routing_rules": [{
-                    "goto": {
-                        "group": "dob-input-group",
-                        "when": [{
-                            "id": "confirm-date-of-birth-answer-proxy",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "group": "summary-group"
-                    }
-                }]
-            }],
-            "id": "group",
-            "title": ""
-        }]
-    }, {
-        "id": "summary-section",
-        "title": "Summary",
-        "groups": [{
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "summary-group",
-            "title": "Summary"
-        }]
-    }]
+                {
+                  "goto": {
+                    "group": "summary-group"
+                  }
+                }
+              ]
+            }
+          ],
+          "id": "group",
+          "title": ""
+        }
+      ]
+    },
+    {
+      "id": "summary-section",
+      "title": "Summary",
+      "groups": [
+        {
+          "blocks": [
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ],
+          "id": "summary-group",
+          "title": "Summary"
+        }
+      ]
+    }
+  ]
 }

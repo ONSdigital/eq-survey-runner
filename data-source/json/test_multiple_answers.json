@@ -1,53 +1,67 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "023",
-    "title": "Multiple answers per question",
-    "description": "A survey containing questions which have more than one answer",
-    "theme": "default",
-    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "personal-details-block",
-                "question": {
-                    "answers": [{
-                        "id": "first-name-answer",
-                        "label": "What is your first name",
-                        "mandatory": false,
-                        "q_code": "1",
-                        "type": "TextField"
-                    }, {
-                        "id": "surname-answer",
-                        "label": "What is your surname",
-                        "mandatory": false,
-                        "q_code": "2",
-                        "type": "TextField"
-                    }],
-                    "description": "",
-                    "id": "personal-details-question",
-                    "title": "Tell me about yourself",
-                    "type": "General"
-                }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "multiple-questions-group",
-            "title": ""
-        }]
-    }]
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "023",
+  "title": "Multiple answers per question",
+  "description": "A survey containing questions which have more than one answer",
+  "theme": "default",
+  "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "personal-details-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "first-name-answer",
+                    "label": "What is your first name",
+                    "mandatory": false,
+                    "q_code": "1",
+                    "type": "TextField"
+                  },
+                  {
+                    "id": "surname-answer",
+                    "label": "What is your surname",
+                    "mandatory": false,
+                    "q_code": "2",
+                    "type": "TextField"
+                  }
+                ],
+                "description": "",
+                "id": "personal-details-question",
+                "title": "Tell me about yourself",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ],
+          "id": "multiple-questions-group",
+          "title": ""
+        }
+      ]
+    }
+  ]
 }

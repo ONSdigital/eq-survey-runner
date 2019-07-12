@@ -1,56 +1,72 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "0",
-    "title": "Radio Mandatory with Optional Other",
-    "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "radio",
-            "title": "Radio Mandatory with Optional Other",
-            "blocks": [{
-                "type": "Question",
-                "id": "radio-mandatory",
-                "question": {
-                    "type": "General",
-                    "id": "radio-mandatory-question",
-                    "title": "What is you favourite breakfast item?",
-                    "answers": [{
-                        "type": "Radio",
-                        "id": "radio-mandatory-answer",
-                        "mandatory": false,
-                        "options": [{
-                            "label": "Toast",
-                            "value": "Toast"
-                        }, {
-                            "label": "Other",
-                            "description": "An answer is required.",
-                            "value": "Other",
-                            "detail_answer": {
-                                "mandatory": false,
-                                "id": "other-answer-mandatory",
-                                "label": "Please specify other",
-                                "type": "TextField"
-                            }
-                        }]
-                    }]
-                }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "0",
+  "title": "Radio Mandatory with Optional Other",
+  "theme": "default",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "id": "radio",
+          "title": "Radio Mandatory with Optional Other",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "radio-mandatory",
+              "question": {
+                "type": "General",
+                "id": "radio-mandatory-question",
+                "title": "What is you favourite breakfast item?",
+                "answers": [
+                  {
+                    "type": "Radio",
+                    "id": "radio-mandatory-answer",
+                    "mandatory": false,
+                    "options": [
+                      {
+                        "label": "Toast",
+                        "value": "Toast"
+                      },
+                      {
+                        "label": "Other",
+                        "description": "An answer is required.",
+                        "value": "Other",
+                        "detail_answer": {
+                          "mandatory": false,
+                          "id": "other-answer-mandatory",
+                          "label": "Please specify other",
+                          "type": "TextField"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

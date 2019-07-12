@@ -1,53 +1,68 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "0",
-    "title": "Markup test",
-    "theme": "default",
-    "description": "A questionnaire to test rendering of markup in questionnaires",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "markup-group",
-            "title": "Markup",
-            "blocks": [{
-                "type": "Question",
-                "id": "emphasis-block",
-                "question": {
-                    "answers": [{
-                        "guidance": {
-                            "show_guidance": "Show lorem ipsum guidance",
-                            "hide_guidance": "hide lorem ipsum guidance",
-                            "contents": [{
-                                "description": "Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
-                            }]
-                        },
-                        "id": "answer",
-                        "label": "What is the thing?",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }],
-                    "description": "Cum sociis natoque penatibus et <em>magnis dis parturient montes</em>, nascetur ridiculus mus. Curabitur blandit tempus porttitor.",
-                    "id": "question",
-                    "title": "This is a title <em>with emphasis</em>",
-                    "type": "General"
-                }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "0",
+  "title": "Markup test",
+  "theme": "default",
+  "description": "A questionnaire to test rendering of markup in questionnaires",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "id": "markup-group",
+          "title": "Markup",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "emphasis-block",
+              "question": {
+                "answers": [
+                  {
+                    "guidance": {
+                      "show_guidance": "Show lorem ipsum guidance",
+                      "hide_guidance": "hide lorem ipsum guidance",
+                      "contents": [
+                        {
+                          "description": "Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
+                        }
+                      ]
+                    },
+                    "id": "answer",
+                    "label": "What is the thing?",
+                    "mandatory": false,
+                    "q_code": "0",
+                    "type": "TextField"
+                  }
+                ],
+                "description": "Cum sociis natoque penatibus et <em>magnis dis parturient montes</em>, nascetur ridiculus mus. Curabitur blandit tempus porttitor.",
+                "id": "question",
+                "title": "This is a title <em>with emphasis</em>",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

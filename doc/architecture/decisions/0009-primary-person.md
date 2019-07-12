@@ -6,9 +6,9 @@ The census requires that the primary person within a household can be identified
 
 ## Decision
 
-### Add context to lists
+### Add primary person attribute to lists
 
-Context allows storage of additional information related to lists. Each list collection can store with it a map of context for the list. For example, a primary householder "Joe" would be represented as follows:
+The list store will include a `primary_person` key which will map to a `list_item_id`. For example, a primary householder "Joe" would be represented as follows:
 
 ```json
 {
@@ -37,9 +37,7 @@ Context allows storage of additional information related to lists. Each list col
     "lists": [
         {
             "name": "people",
-            "context": {
-                "primary_person": "a9hd8j"
-            },
+            "primary_person": "a9hd8j",
             "items": [
                 "a9hd8j",
                 "gyt5hy"
@@ -63,7 +61,7 @@ As per a ListCollector, the navigation path followed by the PrimaryPersonCollect
 
 ## Consequences
 
-- The primary person is able to be represented as context
+- The primary person is able to be represented as an attribute of the `ListStore`
 - Custom handling of distinct block type allows addition and removal of primary person
 - Both the primary person and other household persons entry do not form part of the main routing path
 - Custom routing is able to be supported for primary person

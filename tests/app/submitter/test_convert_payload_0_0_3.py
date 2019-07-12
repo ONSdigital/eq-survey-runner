@@ -355,6 +355,48 @@ def test_unit_answer(fake_questionnaire_store):
     assert answer_object['data'][0].value == 10
 
 
+def test_primary_person_list_item_conversion(fake_questionnaire_store):
+    routing_path = [
+        Location(block_id='primary-person-list-collector'),
+        Location(block_id='list-collector'),
+        Location(block_id='summary'),
+    ]
+
+    answer_objects = [
+        {'answer_id': 'you-live-here', 'value': 'Yes'},
+        {'answer_id': 'first-name', 'value': '1', 'list_item_id': 'xJlKBy'},
+        {'answer_id': 'last-name', 'value': '1', 'list_item_id': 'xJlKBy'},
+        {'answer_id': 'first-name', 'value': '2', 'list_item_id': 'RfAGDc'},
+        {'answer_id': 'last-name', 'value': '2', 'list_item_id': 'RfAGDc'},
+        {'answer_id': 'anyone-else', 'value': 'No'},
+    ]
+
+    answers = AnswerStore(answer_objects)
+
+    list_store = ListStore(
+        existing_items=[
+            {
+                'name': 'people',
+                'items': ['xJlKBy', 'RfAGDc'],
+                'primary_person': 'xJlKBy',
+            }
+        ]
+    )
+
+    fake_questionnaire_store.answer_store = answers
+    fake_questionnaire_store.list_store = list_store
+
+    schema = load_schema('test_list_collector_primary_person')
+
+    output = convert_answers(schema, fake_questionnaire_store, routing_path)
+
+    data_dict = json.loads(json.dumps(output['data'], for_json=True))
+
+    assert sorted(answer_objects, key=lambda x: x['answer_id']) == sorted(
+        data_dict, key=lambda x: x['answer_id']
+    )
+
+
 def test_list_item_conversion(fake_questionnaire_store):
     routing_path = [
         Location(block_id='list-collector'),
@@ -375,7 +417,9 @@ def test_list_item_conversion(fake_questionnaire_store):
 
     answers = AnswerStore(answer_objects)
 
-    list_store = ListStore({'people': ['xJlKBy', 'RfAGDc']})
+    list_store = ListStore(
+        existing_items=[{'name': 'people', 'items': ['xJlKBy', 'RfAGDc']}]
+    )
 
     fake_questionnaire_store.answer_store = answers
     fake_questionnaire_store.list_store = list_store
@@ -412,7 +456,7 @@ def test_list_item_conversion_empty_list(fake_questionnaire_store):
 
     answers = AnswerStore(answer_objects)
 
-    list_store = ListStore({})
+    list_store = ListStore()
 
     fake_questionnaire_store.answer_store = answers
     fake_questionnaire_store.list_store = list_store

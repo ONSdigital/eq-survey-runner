@@ -1,4 +1,5 @@
 from flask import url_for
+from flask_babel import lazy_gettext as _
 from app.questionnaire.placeholder_transforms import PlaceholderTransforms
 from app.jinja_filters import (
     get_formatted_currency,
@@ -45,6 +46,8 @@ def build_view_context(
         'ListAddQuestion',
         'ListEditQuestion',
         'ListRemoveQuestion',
+        'PrimaryPersonListCollector',
+        'PrimaryPersonListAddOrEditQuestion',
     ):
         return build_view_context_for_question(rendered_block, form)
 
@@ -92,24 +95,32 @@ def build_view_context_for_list_collector(
     question_context = build_view_context_for_question(rendered_block, form)
 
     list_name = rendered_block['populates_list']
-    list_item_ids = list_store[list_name]
+    list_item_ids = list_store[list_name].items
 
     list_title_answer_ids = [
         answer['id'] for answer in rendered_block['add_block']['question']['answers']
     ]
+
+    primary_person = list_store[list_name].primary_person
 
     list_items = []
     for list_item_id in list_item_ids:
         title_answers = answer_store.get_answers_by_answer_id(
             answer_ids=list_title_answer_ids, list_item_id=list_item_id
         )
+        is_primary = list_item_id == primary_person
         if title_answers:
+            item_title = generate_list_item_title(
+                title_answers, rendered_block['add_block']
+            )
+
+            if is_primary:
+                item_title += _(' (You)')
+
             list_items.append(
                 {
                     'answers': title_answers,
-                    'item_title': generate_list_item_title(
-                        title_answers, rendered_block['add_block']
-                    ),
+                    'item_title': item_title,
                     'edit_link': url_for(
                         'questionnaire.get_block',
                         list_name=list_name,
@@ -122,6 +133,7 @@ def build_view_context_for_list_collector(
                         block_id=rendered_block['remove_block']['id'],
                         list_item_id=list_item_id,
                     ),
+                    'primary_person': is_primary,
                 }
             )
 

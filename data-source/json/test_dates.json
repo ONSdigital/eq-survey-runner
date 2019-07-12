@@ -1,117 +1,143 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "023",
-    "title": "Date formats",
-    "description": "A test schema for different date formats",
-    "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "title": "Date Examples",
-        "groups": [{
-            "id": "dates",
-            "title": "",
-            "blocks": [{
-                "type": "Question",
-                "id": "date-range-block",
-                "question": {
-                    "answers": [{
-                        "id": "date-range-from-answer",
-                        "label": "Period from",
-                        "mandatory": true,
-                        "q_code": "11",
-                        "type": "Date"
-                    }, {
-                        "id": "date-range-to-answer",
-                        "label": "Period to",
-                        "mandatory": true,
-                        "q_code": "12",
-                        "type": "Date"
-                    }],
-                    "description": "",
-                    "id": "date-range-question",
-                    "title": "Date range",
-                    "type": "DateRange"
-                }
-            }, {
-                "type": "Question",
-                "id": "date-month-year-block",
-                "question": {
-                    "answers": [{
-                        "id": "month-year-answer",
-                        "label": "Date",
-                        "mandatory": true,
-                        "q_code": "11",
-                        "type": "MonthYearDate"
-                    }],
-                    "description": "",
-                    "id": "month-year-question",
-                    "title": "Date with month and year",
-                    "type": "General"
-                }
-            }, {
-                "type": "Question",
-                "id": "date-single-block",
-                "question": {
-                    "answers": [{
-                        "id": "single-date-answer",
-                        "label": "Date",
-                        "mandatory": true,
-                        "q_code": "11",
-                        "type": "Date"
-                    }],
-                    "description": "",
-                    "id": "single-date-question",
-                    "title": "Single date type",
-                    "type": "General"
-                }
-            }, {
-                "type": "Question",
-                "id": "date-non-mandatory-block",
-                "question": {
-                    "answers": [{
-                        "id": "non-mandatory-date-answer",
-                        "label": "Date",
-                        "mandatory": false,
-                        "q_code": "17",
-                        "type": "Date"
-                    }],
-                    "description": "",
-                    "id": "non-mandatory-date-question",
-                    "title": "Non Mandatory",
-                    "type": "General"
-                }
-            }, {
-                "type": "Question",
-                "id": "date-year-date-block",
-                "question": {
-                    "answers": [{
-                        "id": "year-date-answer",
-                        "label": "Date",
-                        "mandatory": false,
-                        "q_code": "18",
-                        "type": "YearDate"
-                    }],
-                    "description": "",
-                    "id": "year-date-question",
-                    "title": "Year (YYYY)",
-                    "type": "General"
-                }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "023",
+  "title": "Date formats",
+  "description": "A test schema for different date formats",
+  "theme": "default",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "title": "Date Examples",
+      "groups": [
+        {
+          "id": "dates",
+          "title": "",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "date-range-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "date-range-from-answer",
+                    "label": "Period from",
+                    "mandatory": true,
+                    "q_code": "11",
+                    "type": "Date"
+                  },
+                  {
+                    "id": "date-range-to-answer",
+                    "label": "Period to",
+                    "mandatory": true,
+                    "q_code": "12",
+                    "type": "Date"
+                  }
+                ],
+                "description": "",
+                "id": "date-range-question",
+                "title": "Date range",
+                "type": "DateRange"
+              }
+            },
+            {
+              "type": "Question",
+              "id": "date-month-year-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "month-year-answer",
+                    "label": "Date",
+                    "mandatory": true,
+                    "q_code": "11",
+                    "type": "MonthYearDate"
+                  }
+                ],
+                "description": "",
+                "id": "month-year-question",
+                "title": "Date with month and year",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Question",
+              "id": "date-single-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "single-date-answer",
+                    "label": "Date",
+                    "mandatory": true,
+                    "q_code": "11",
+                    "type": "Date"
+                  }
+                ],
+                "description": "",
+                "id": "single-date-question",
+                "title": "Single date type",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Question",
+              "id": "date-non-mandatory-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "non-mandatory-date-answer",
+                    "label": "Date",
+                    "mandatory": false,
+                    "q_code": "17",
+                    "type": "Date"
+                  }
+                ],
+                "description": "",
+                "id": "non-mandatory-date-question",
+                "title": "Non Mandatory",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Question",
+              "id": "date-year-date-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "year-date-answer",
+                    "label": "Date",
+                    "mandatory": false,
+                    "q_code": "18",
+                    "type": "YearDate"
+                  }
+                ],
+                "description": "",
+                "id": "year-date-question",
+                "title": "Year (YYYY)",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

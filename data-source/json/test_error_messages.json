@@ -1,67 +1,84 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "023",
-    "title": "Test Error Messages",
-    "description": "Test Description",
-    "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "test-errors",
-                "question": {
-                    "answers": [{
-                        "id": "test-number",
-                        "description": "",
-                        "label": "Number Test",
-                        "mandatory": false,
-                        "type": "Number"
-                    }, {
-                        "id": "test-percent",
-                        "description": "",
-                        "label": "Percent Test (0 to 100)",
-                        "mandatory": false,
-                        "type": "Percentage",
-                        "max_value": {
-                            "value": 100
-                        }
-                    }, {
-                        "id": "test-currency",
-                        "description": "",
-                        "label": "Currency test to 2 decimal places",
-                        "mandatory": false,
-                        "type": "Currency",
-                        "currency": "GBP",
-                        "decimal_places": 2
-                    }],
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "023",
+  "title": "Test Error Messages",
+  "description": "Test Description",
+  "theme": "default",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "test-errors",
+              "question": {
+                "answers": [
+                  {
+                    "id": "test-number",
                     "description": "",
-                    "id": "test-min-max-range-question",
-                    "title": "Please enter test values (none mandatory)",
-                    "type": "General"
-                }
-            }],
-            "id": "test",
-            "title": ""
-        }, {
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "summary-group",
-            "title": "Summary"
-        }]
-    }]
+                    "label": "Number Test",
+                    "mandatory": false,
+                    "type": "Number"
+                  },
+                  {
+                    "id": "test-percent",
+                    "description": "",
+                    "label": "Percent Test (0 to 100)",
+                    "mandatory": false,
+                    "type": "Percentage",
+                    "max_value": {
+                      "value": 100
+                    }
+                  },
+                  {
+                    "id": "test-currency",
+                    "description": "",
+                    "label": "Currency test to 2 decimal places",
+                    "mandatory": false,
+                    "type": "Currency",
+                    "currency": "GBP",
+                    "decimal_places": 2
+                  }
+                ],
+                "description": "",
+                "id": "test-min-max-range-question",
+                "title": "Please enter test values (none mandatory)",
+                "type": "General"
+              }
+            }
+          ],
+          "id": "test",
+          "title": ""
+        },
+        {
+          "blocks": [
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ],
+          "id": "summary-group",
+          "title": "Summary"
+        }
+      ]
+    }
+  ]
 }

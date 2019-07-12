@@ -1,72 +1,97 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "0",
-    "title": "Test Content Variants",
-    "theme": "default",
-    "description": "A questionnaire to test content variants and variant choices",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "section",
-        "groups": [{
-            "id": "group",
-            "title": "Variants",
-            "blocks": [{
-                "type": "Question",
-                "id": "age-question-block",
-                "question": {
-                    "id": "age-question",
-                    "type": "General",
-                    "title": "What is your age?",
-                    "answers": [{
-                        "id": "age-answer",
-                        "label": "Your age?",
-                        "mandatory": true,
-                        "type": "Number"
-                    }]
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "0",
+  "title": "Test Content Variants",
+  "theme": "default",
+  "description": "A questionnaire to test content variants and variant choices",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "section",
+      "groups": [
+        {
+          "id": "group",
+          "title": "Variants",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "age-question-block",
+              "question": {
+                "id": "age-question",
+                "type": "General",
+                "title": "What is your age?",
+                "answers": [
+                  {
+                    "id": "age-answer",
+                    "label": "Your age?",
+                    "mandatory": true,
+                    "type": "Number"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Interstitial",
+              "id": "age-display-block",
+              "content_variants": [
+                {
+                  "content": {
+                    "title": "You are 16 or older",
+                    "contents": [
+                      {
+                        "description": "According to your answer"
+                      }
+                    ]
+                  },
+                  "when": [
+                    {
+                      "id": "age-answer",
+                      "condition": "greater than",
+                      "value": 16
+                    }
+                  ]
+                },
+                {
+                  "content": {
+                    "title": "You are 16 or younger",
+                    "contents": [
+                      {
+                        "description": "According to your answer"
+                      }
+                    ]
+                  },
+                  "when": [
+                    {
+                      "id": "age-answer",
+                      "condition": "less than or equal to",
+                      "value": 16
+                    }
+                  ]
                 }
-            }, {
-                "type": "Interstitial",
-                "id": "age-display-block",
-                "content_variants": [{
-                    "content": {
-                        "title": "You are 16 or older",
-                        "contents": [{
-                            "description": "According to your answer"
-                        }]
-                    },
-                    "when": [{
-                        "id": "age-answer",
-                        "condition": "greater than",
-                        "value": 16
-                    }]
-                }, {
-                    "content": {
-                        "title": "You are 16 or younger",
-                        "contents": [{
-                            "description": "According to your answer"
-                        }]
-                    },
-                    "when": [{
-                        "id": "age-answer",
-                        "condition": "less than or equal to",
-                        "value": 16
-                    }]
-                }]
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+              ]
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

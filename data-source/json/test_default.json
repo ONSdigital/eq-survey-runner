@@ -1,45 +1,58 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "001",
-    "title": "Test Routing Number Equals",
-    "theme": "default",
-    "description": "A test survey for routing based on an number equals",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "number-question",
-                "question": {
-                    "answers": [{
-                        "id": "answer",
-                        "mandatory": false,
-                        "type": "Number",
-                        "label": "Leave blank",
-                        "default": 0
-                    }],
-                    "id": "question",
-                    "title": "Don't enter an answer. Zero will be shown on summary",
-                    "type": "General"
-                }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "group",
-            "title": ""
-        }]
-    }]
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "001",
+  "title": "Test Routing Number Equals",
+  "theme": "default",
+  "description": "A test survey for routing based on an number equals",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "number-question",
+              "question": {
+                "answers": [
+                  {
+                    "id": "answer",
+                    "mandatory": false,
+                    "type": "Number",
+                    "label": "Leave blank",
+                    "default": 0
+                  }
+                ],
+                "id": "question",
+                "title": "Don't enter an answer. Zero will be shown on summary",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ],
+          "id": "group",
+          "title": ""
+        }
+      ]
+    }
+  ]
 }

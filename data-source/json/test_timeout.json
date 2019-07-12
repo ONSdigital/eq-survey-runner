@@ -1,47 +1,60 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "0",
-    "session_timeout_in_seconds": 3,
-    "title": "Timeout test",
-    "theme": "default",
-    "description": "A questionnaire to test the time out functionality",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "timeout-group",
-            "title": "Timeout",
-            "blocks": [{
-                "type": "Question",
-                "id": "timeout-block",
-                "question": {
-                    "answers": [{
-                        "id": "timeout-answer",
-                        "label": "Does the timeout appear?",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }],
-                    "description": "",
-                    "id": "timeout-question",
-                    "title": "Timeout title",
-                    "type": "General"
-                }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "0",
+  "session_timeout_in_seconds": 3,
+  "title": "Timeout test",
+  "theme": "default",
+  "description": "A questionnaire to test the time out functionality",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "id": "timeout-group",
+          "title": "Timeout",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "timeout-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "timeout-answer",
+                    "label": "Does the timeout appear?",
+                    "mandatory": false,
+                    "q_code": "0",
+                    "type": "TextField"
+                  }
+                ],
+                "description": "",
+                "id": "timeout-question",
+                "title": "Timeout title",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

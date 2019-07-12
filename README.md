@@ -192,6 +192,12 @@ Available commands:
 
 ---
 
+### Development with functional tests
+
+The functional tests use Chimp (now [Chimpy](https://github.com/TheBrainFamily/chimpy)).
+
+Underneath Chimp, the tests are written using [WebdriverIO](https://webdriver.io/docs), [Chai](https://www.chaijs.com/), and [Mocha](https://mochajs.org/)
+
 ### Functional test options
 
 The functional tests use a set of selectors that are generated from each of the test schemas. These make it quick to add new functional tests.

@@ -1,84 +1,104 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "0",
-    "title": "Interstitial Pages",
-    "theme": "default",
-    "description": "A questionnaire to demo interstitial pages.",
-    "messages": {
-        "NUMBER_TOO_LARGE": "Number is too large",
-        "NUMBER_TOO_SMALL": "Number cannot be less than zero",
-        "INVALID_NUMBER": "Please enter an integer"
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "0",
+  "title": "Interstitial Pages",
+  "theme": "default",
+  "description": "A questionnaire to demo interstitial pages.",
+  "messages": {
+    "NUMBER_TOO_LARGE": "Number is too large",
+    "NUMBER_TOO_SMALL": "Number cannot be less than zero",
+    "INVALID_NUMBER": "Please enter an integer"
+  },
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
     },
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Introduction",
-                "id": "introduction"
-            }, {
-                "type": "Question",
-                "id": "breakfast-block",
-                "question": {
-                    "answers": [{
-                        "id": "favourite-breakfast",
-                        "label": "What is your favourite breakfast food",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }],
-                    "description": "",
-                    "id": "favourite-breakfast-question",
-                    "title": "What is your favourite breakfast food",
-                    "type": "General"
-                },
-                "routing_rules": []
-            }, {
-                "id": "breakfast-interstitial",
-                "content": {
-                    "title": "Breakfast interstitial",
-                    "contents": [{
-                        "description": "You have successfully completed the breakfast section. Next we want to know about your lunch."
-                    }]
-                },
-                "type": "Interstitial"
-            }, {
-                "type": "Question",
-                "id": "lunch-block",
-                "question": {
-                    "answers": [{
-                        "id": "favourite-lunch",
-                        "label": "What is your favourite lunchtime food",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }],
-                    "description": "",
-                    "id": "favourite-lunch-question",
-                    "title": "",
-                    "type": "General"
-                },
-                "routing_rules": []
-            }, {
-                "type": "Confirmation",
-                "id": "confirmation",
-                "content": {
-                    "title": "Thank you for your answers, do you wish to submit"
-                }
-            }],
-            "id": "favourite-foods",
-            "title": "Favourite food"
-        }]
-    }]
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "blocks": [
+            {
+              "type": "Introduction",
+              "id": "introduction"
+            },
+            {
+              "type": "Question",
+              "id": "breakfast-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "favourite-breakfast",
+                    "label": "What is your favourite breakfast food",
+                    "mandatory": false,
+                    "q_code": "0",
+                    "type": "TextField"
+                  }
+                ],
+                "description": "",
+                "id": "favourite-breakfast-question",
+                "title": "What is your favourite breakfast food",
+                "type": "General"
+              },
+              "routing_rules": []
+            },
+            {
+              "id": "breakfast-interstitial",
+              "content": {
+                "title": "Breakfast interstitial",
+                "contents": [
+                  {
+                    "description": "You have successfully completed the breakfast section. Next we want to know about your lunch."
+                  }
+                ]
+              },
+              "type": "Interstitial"
+            },
+            {
+              "type": "Question",
+              "id": "lunch-block",
+              "question": {
+                "answers": [
+                  {
+                    "id": "favourite-lunch",
+                    "label": "What is your favourite lunchtime food",
+                    "mandatory": false,
+                    "q_code": "0",
+                    "type": "TextField"
+                  }
+                ],
+                "description": "",
+                "id": "favourite-lunch-question",
+                "title": "",
+                "type": "General"
+              },
+              "routing_rules": []
+            },
+            {
+              "type": "Confirmation",
+              "id": "confirmation",
+              "content": {
+                "title": "Thank you for your answers, do you wish to submit"
+              }
+            }
+          ],
+          "id": "favourite-foods",
+          "title": "Favourite food"
+        }
+      ]
+    }
+  ]
 }

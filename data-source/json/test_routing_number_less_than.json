@@ -1,99 +1,129 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "001",
-    "title": "Test Routing Number Less Than",
-    "theme": "default",
-    "description": "A test survey for routing based on a number less than",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "number-question",
-                "question": {
-                    "answers": [{
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "001",
+  "title": "Test Routing Number Less Than",
+  "theme": "default",
+  "description": "A test survey for routing based on a number less than",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "number-question",
+              "question": {
+                "answers": [
+                  {
+                    "id": "answer",
+                    "mandatory": true,
+                    "type": "Number",
+                    "label": "Less than 123"
+                  }
+                ],
+                "id": "question",
+                "title": "Enter the number less than 123",
+                "type": "General"
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "block": "correct-answer",
+                    "when": [
+                      {
                         "id": "answer",
-                        "mandatory": true,
-                        "type": "Number",
-                        "label": "Less than 123"
-                    }],
-                    "id": "question",
-                    "title": "Enter the number less than 123",
-                    "type": "General"
+                        "condition": "less than",
+                        "value": 123
+                      }
+                    ]
+                  }
                 },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "correct-answer",
-                        "when": [{
-                            "id": "answer",
-                            "condition": "less than",
-                            "value": 123
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "block": "incorrect-answer"
-                    }
-                }]
-            }, {
-                "type": "Interstitial",
-                "id": "incorrect-answer",
-                "content": {
-                    "title": "Incorrect answer",
-                    "contents": [{
-                        "description": {
-                            "text": "You were asked to enter a number less than <em>123</em> but you entered <em>{answer}</em>.",
-                            "placeholders": [{
-                                "placeholder": "answer",
-                                "value": {
-                                    "source": "answers",
-                                    "identifier": "answer"
-                                }
-                            }]
-                        }
-                    }]
-                },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "summary"
-                    }
-                }]
-            }, {
-                "type": "Interstitial",
-                "id": "correct-answer",
-                "content": {
-                    "title": "Correct answer",
-                    "contents": [{
-                        "description": {
-                            "text": "You were asked to enter a number less than <em>123</em> and you entered <em>{answer}</em>.",
-                            "placeholders": [{
-                                "placeholder": "answer",
-                                "value": {
-                                    "source": "answers",
-                                    "identifier": "answer"
-                                }
-                            }]
-                        }
-                    }]
+                {
+                  "goto": {
+                    "block": "incorrect-answer"
+                  }
                 }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "group",
-            "title": ""
-        }]
-    }]
+              ]
+            },
+            {
+              "type": "Interstitial",
+              "id": "incorrect-answer",
+              "content": {
+                "title": "Incorrect answer",
+                "contents": [
+                  {
+                    "description": {
+                      "text": "You were asked to enter a number less than <em>123</em> but you entered <em>{answer}</em>.",
+                      "placeholders": [
+                        {
+                          "placeholder": "answer",
+                          "value": {
+                            "source": "answers",
+                            "identifier": "answer"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "block": "summary"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Interstitial",
+              "id": "correct-answer",
+              "content": {
+                "title": "Correct answer",
+                "contents": [
+                  {
+                    "description": {
+                      "text": "You were asked to enter a number less than <em>123</em> and you entered <em>{answer}</em>.",
+                      "placeholders": [
+                        {
+                          "placeholder": "answer",
+                          "value": {
+                            "source": "answers",
+                            "identifier": "answer"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ],
+          "id": "group",
+          "title": ""
+        }
+      ]
+    }
+  ]
 }

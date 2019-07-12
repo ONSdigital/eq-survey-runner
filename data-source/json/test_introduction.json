@@ -1,153 +1,194 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "144",
-    "theme": "default",
-    "title": "Test introduction",
-    "legal_basis": "Notice is given under section 999 of the Test Act 2000",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "introduction-section",
-        "title": "Introduction",
-        "groups": [{
-            "id": "introduction-group",
-            "title": "General Business Information",
-            "blocks": [{
-                "id": "introduction",
-                "type": "Introduction",
-                "primary_content": [{
-                    "id": "use-of-information",
-                    "title": "What you need to do next",
-                    "contents": [{
-                            "list": [
-                                "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
-                                "You can provide informed estimates if actual figures aren’t available.",
-                                "We will treat your data securely and confidentially."
-                            ]
-                        },
-                        {
-                            "description": "To take part, all you need to do is check that you have the information you need to answer the survey questions."
-                        }
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "144",
+  "theme": "default",
+  "title": "Test introduction",
+  "legal_basis": "Notice is given under section 999 of the Test Act 2000",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "introduction-section",
+      "title": "Introduction",
+      "groups": [
+        {
+          "id": "introduction-group",
+          "title": "General Business Information",
+          "blocks": [
+            {
+              "id": "introduction",
+              "type": "Introduction",
+              "primary_content": [
+                {
+                  "id": "use-of-information",
+                  "title": "What you need to do next",
+                  "contents": [
+                    {
+                      "list": [
+                        "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
+                        "You can provide informed estimates if actual figures aren’t available.",
+                        "We will treat your data securely and confidentially."
+                      ]
+                    },
+                    {
+                      "description": "To take part, all you need to do is check that you have the information you need to answer the survey questions."
+                    }
+                  ]
+                }
+              ],
+              "preview_content": {
+                "id": "preview",
+                "title": "Information you need",
+                "contents": [
+                  {
+                    "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                  },
+                  {
+                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/aboutonsbusinesssurveys/detailedguidancetohelpcompletethequarterlyacquisitionsanddisposalsofcapitalassetssurvey'>Read the detailed guidance for completing this survey</a>"
+                  }
+                ],
+                "questions": [
+                  {
+                    "id": "employee-pay-frequency",
+                    "question": "Employee pay frequency",
+                    "contents": [
+                      {
+                        "list": [
+                          "You will need to indicate how frequently employees are paid i.e weekly, fortnightly, calendar monthly, four weekly or five weekly.",
+                          "You will be asked to answer the questions below for all of your selected pay patterns."
+                        ]
+                      }
                     ]
-                }],
-                "preview_content": {
-                    "id": "preview",
-                    "title": "Information you need",
-                    "contents": [{
-                            "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
-                        },
-                        {
-                            "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/aboutonsbusinesssurveys/detailedguidancetohelpcompletethequarterlyacquisitionsanddisposalsofcapitalassetssurvey'>Read the detailed guidance for completing this survey</a>"
-                        }
-                    ],
-                    "questions": [{
-                        "id": "employee-pay-frequency",
-                        "question": "Employee pay frequency",
-                        "contents": [{
-                            "list": [
-                                "You will need to indicate how frequently employees are paid i.e weekly, fortnightly, calendar monthly, four weekly or five weekly.",
-                                "You will be asked to answer the questions below for all of your selected pay patterns."
-                            ]
-                        }]
-                    }, {
-                        "id": "what-you-need-to-know",
-                        "question": "What you need to know",
-                        "contents": [{
-                            "list": [
-                                "You can provide informed estimates if actual figures aren't available",
-                                "All information you provide is strictly confidential"
-                            ]
-                        }]
-                    }, {
-                        "id": "definition-of-innovation",
-                        "question": "Definition of innovation",
-                        "contents": [{
-                                "description": {
-                                    "text": "Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that {ru_name} has introduced, regardless of their origin.",
-                                    "placeholders": [{
-                                        "placeholder": "ru_name",
-                                        "value": {
-                                            "source": "metadata",
-                                            "identifier": "ru_name"
-                                        }
-                                    }]
-                                }
-                            },
+                  },
+                  {
+                    "id": "what-you-need-to-know",
+                    "question": "What you need to know",
+                    "contents": [
+                      {
+                        "list": [
+                          "You can provide informed estimates if actual figures aren't available",
+                          "All information you provide is strictly confidential"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "definition-of-innovation",
+                    "question": "Definition of innovation",
+                    "contents": [
+                      {
+                        "description": {
+                          "text": "Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that {ru_name} has introduced, regardless of their origin.",
+                          "placeholders": [
                             {
-                                "description": {
-                                    "text": "These innovations may be new to {ru_name} or new to the market",
-                                    "placeholders": [{
-                                        "placeholder": "ru_name",
-                                        "value": {
-                                            "source": "metadata",
-                                            "identifier": "ru_name"
-                                        }
-                                    }]
-                                }
-                            },
-                            {
-                                "description": {
-                                    "text": "Investments for future innovation and changes that {ru_name} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered",
-                                    "placeholders": [{
-                                        "placeholder": "ru_name",
-                                        "value": {
-                                            "source": "metadata",
-                                            "identifier": "ru_name"
-                                        }
-                                    }]
-                                }
+                              "placeholder": "ru_name",
+                              "value": {
+                                "source": "metadata",
+                                "identifier": "ru_name"
+                              }
                             }
-                        ]
-                    }]
-                },
-                "secondary_content": [{
-                    "id": "how-we-use-your-data",
-                    "contents": [{
-                        "title": "How we use your data",
-                        "list": [
-                            "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy",
-                            "The data from you business is essential is it helps us calculate the GDP of the UK",
-                            "Our surveys inform government decisions. For example, past statistics from our surveys led to the introduction of business grants"
-                        ]
-                    }]
-                }]
-            }, {
-                "type": "Interstitial",
-                "id": "general-business-information-completed",
-                "content": {
-                    "title": "Section complete",
-                    "contents": [{
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers changes in <em>business strategy and practices</em>, for example, implementing changes to marketing concepts or strategies.</p>"
-                    }]
+                          ]
+                        }
+                      },
+                      {
+                        "description": {
+                          "text": "These innovations may be new to {ru_name} or new to the market",
+                          "placeholders": [
+                            {
+                              "placeholder": "ru_name",
+                              "value": {
+                                "source": "metadata",
+                                "identifier": "ru_name"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "description": {
+                          "text": "Investments for future innovation and changes that {ru_name} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered",
+                          "placeholders": [
+                            {
+                              "placeholder": "ru_name",
+                              "value": {
+                                "source": "metadata",
+                                "identifier": "ru_name"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "secondary_content": [
+                {
+                  "id": "how-we-use-your-data",
+                  "contents": [
+                    {
+                      "title": "How we use your data",
+                      "list": [
+                        "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy",
+                        "The data from you business is essential is it helps us calculate the GDP of the UK",
+                        "Our surveys inform government decisions. For example, past statistics from our surveys led to the introduction of business grants"
+                      ]
+                    }
+                  ]
                 }
-            }]
-        }, {
-            "blocks": [{
-                "id": "confirmation",
-                "type": "Confirmation",
-                "content": {
-                    "title": "You are now ready to submit this survey",
-                    "contents": [{
-                        "title": "Submission",
-                        "list": [
-                            "You will not be able to access or change your answers on submitting the questionnaire",
-                            "If you wish to review your answers please select the relevant completed sections"
-                        ]
-                    }]
-                }
-            }],
-            "id": "ready-to-submit",
-            "title": "Submit answers"
-        }]
-    }]
+              ]
+            },
+            {
+              "type": "Interstitial",
+              "id": "general-business-information-completed",
+              "content": {
+                "title": "Section complete",
+                "contents": [
+                  {
+                    "description": "<p>You have successfully completed this section</p><p>The next section covers changes in <em>business strategy and practices</em>, for example, implementing changes to marketing concepts or strategies.</p>"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "blocks": [
+            {
+              "id": "confirmation",
+              "type": "Confirmation",
+              "content": {
+                "title": "You are now ready to submit this survey",
+                "contents": [
+                  {
+                    "title": "Submission",
+                    "list": [
+                      "You will not be able to access or change your answers on submitting the questionnaire",
+                      "If you wish to review your answers please select the relevant completed sections"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "id": "ready-to-submit",
+          "title": "Submit answers"
+        }
+      ]
+    }
+  ]
 }

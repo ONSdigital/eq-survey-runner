@@ -1,95 +1,122 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "0",
-    "title": "Test schema for routing on multiple selected answers",
-    "description": "Test schema for routing on multiple selected answers",
-    "theme": "census",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "group1",
-            "title": "Group 1",
-            "blocks": [{
-                "type": "Question",
-                "id": "block1",
-                "question": {
-                    "id": "block1-question",
-                    "title": "Question 1",
-                    "type": "General",
-                    "answers": [{
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "0",
+  "title": "Test schema for routing on multiple selected answers",
+  "description": "Test schema for routing on multiple selected answers",
+  "theme": "census",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "id": "group1",
+          "title": "Group 1",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "block1",
+              "question": {
+                "id": "block1-question",
+                "title": "Question 1",
+                "type": "General",
+                "answers": [
+                  {
+                    "id": "passports-answer",
+                    "mandatory": false,
+                    "options": [
+                      {
+                        "label": "United Kingdom",
+                        "value": "United Kingdom"
+                      },
+                      {
+                        "label": "Irish",
+                        "value": "Irish"
+                      },
+                      {
+                        "label": "None",
+                        "value": "None"
+                      }
+                    ],
+                    "q_code": "20",
+                    "type": "Checkbox"
+                  }
+                ]
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "block": "block3",
+                    "when": [
+                      {
                         "id": "passports-answer",
-                        "mandatory": false,
-                        "options": [{
-                            "label": "United Kingdom",
-                            "value": "United Kingdom"
-                        }, {
-                            "label": "Irish",
-                            "value": "Irish"
-                        }, {
-                            "label": "None",
-                            "value": "None"
-                        }],
-                        "q_code": "20",
-                        "type": "Checkbox"
-                    }]
+                        "condition": "contains",
+                        "value": "United Kingdom"
+                      }
+                    ]
+                  }
                 },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "block3",
-                        "when": [{
-                            "id": "passports-answer",
-                            "condition": "contains",
-                            "value": "United Kingdom"
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "block": "block2"
-                    }
-                }]
-            }, {
-                "type": "Question",
-                "id": "block2",
-                "question": {
-                    "id": "block2-question",
-                    "title": "Question 2",
-                    "type": "General",
-                    "answers": [{
-                        "id": "block2-answer",
-                        "label": "Question 2",
-                        "mandatory": false,
-                        "q_code": "20",
-                        "type": "TextField"
-                    }]
+                {
+                  "goto": {
+                    "block": "block2"
+                  }
                 }
-            }, {
-                "type": "Question",
-                "id": "block3",
-                "question": {
-                    "id": "block3-question",
-                    "title": "Question 3",
-                    "type": "General",
-                    "answers": [{
-                        "id": "block3-answer",
-                        "label": "Question 3",
-                        "mandatory": false,
-                        "q_code": "20",
-                        "type": "TextField"
-                    }]
-                }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+              ]
+            },
+            {
+              "type": "Question",
+              "id": "block2",
+              "question": {
+                "id": "block2-question",
+                "title": "Question 2",
+                "type": "General",
+                "answers": [
+                  {
+                    "id": "block2-answer",
+                    "label": "Question 2",
+                    "mandatory": false,
+                    "q_code": "20",
+                    "type": "TextField"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Question",
+              "id": "block3",
+              "question": {
+                "id": "block3-question",
+                "title": "Question 3",
+                "type": "General",
+                "answers": [
+                  {
+                    "id": "block3-answer",
+                    "label": "Question 3",
+                    "mandatory": false,
+                    "q_code": "20",
+                    "type": "TextField"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

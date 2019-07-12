@@ -1,54 +1,71 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "0",
-    "title": "Dropdown Mandatory",
-    "theme": "default",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "dropdown",
-            "title": "Dropdown Optional",
-            "blocks": [{
-                "type": "Question",
-                "id": "dropdown-optional",
-                "question": {
-                    "type": "General",
-                    "id": "dropdown-optional-question",
-                    "title": "Which football team do your support?",
-                    "answers": [{
-                        "type": "Dropdown",
-                        "id": "dropdown-optional-answer",
-                        "mandatory": false,
-                        "label": "Football team",
-                        "description": "Your favourite team from the Premier League.",
-                        "options": [{
-                            "label": "Liverpool",
-                            "value": "Liverpool"
-                        }, {
-                            "label": "Chelsea",
-                            "value": "Chelsea"
-                        }, {
-                            "label": "Rugby is better!",
-                            "value": "Rugby is better!"
-                        }]
-                    }]
-                }
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "0",
+  "title": "Dropdown Mandatory",
+  "theme": "default",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "id": "dropdown",
+          "title": "Dropdown Optional",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "dropdown-optional",
+              "question": {
+                "type": "General",
+                "id": "dropdown-optional-question",
+                "title": "Which football team do your support?",
+                "answers": [
+                  {
+                    "type": "Dropdown",
+                    "id": "dropdown-optional-answer",
+                    "mandatory": false,
+                    "label": "Football team",
+                    "description": "Your favourite team from the Premier League.",
+                    "options": [
+                      {
+                        "label": "Liverpool",
+                        "value": "Liverpool"
+                      },
+                      {
+                        "label": "Chelsea",
+                        "value": "Chelsea"
+                      },
+                      {
+                        "label": "Rugby is better!",
+                        "value": "Rugby is better!"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

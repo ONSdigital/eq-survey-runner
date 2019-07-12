@@ -3,9 +3,9 @@
   "schema_version": "0.0.1",
   "data_version": "0.0.3",
   "survey_id": "0",
-  "title": "Test ListCollector",
+  "title": "Test PrimaryPersonListCollector",
   "theme": "default",
-  "description": "A questionnaire to test ListCollector",
+  "description": "A questionnaire to test Primary Person ListCollector",
   "metadata": [
     {
       "name": "user_id",
@@ -26,8 +26,62 @@
       "groups": [
         {
           "id": "group",
-          "title": "List",
+          "title": "Primary Person",
           "blocks": [
+            {
+              "id": "primary-person-list-collector",
+              "type": "PrimaryPersonListCollector",
+              "populates_list": "people",
+              "add_or_edit_answer": {
+                "id": "you-live-here",
+                "value": "Yes"
+              },
+              "add_or_edit_block": {
+                "id": "add-or-edit-primary-person",
+                "type": "PrimaryPersonListAddOrEditQuestion",
+                "question": {
+                  "id": "primary-person-add-or-edit-question",
+                  "type": "General",
+                  "title": "What is your name",
+                  "answers": [
+                    {
+                      "id": "first-name",
+                      "label": "First name",
+                      "mandatory": true,
+                      "type": "TextField"
+                    },
+                    {
+                      "id": "last-name",
+                      "label": "Last name",
+                      "mandatory": true,
+                      "type": "TextField"
+                    }
+                  ]
+                }
+              },
+              "question": {
+                "id": "primary-confirmation-question",
+                "type": "General",
+                "title": "Do you live here?",
+                "answers": [
+                  {
+                    "id": "you-live-here",
+                    "mandatory": true,
+                    "type": "Radio",
+                    "options": [
+                      {
+                        "label": "Yes",
+                        "value": "Yes"
+                      },
+                      {
+                        "label": "No",
+                        "value": "No"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
             {
               "id": "list-collector",
               "type": "ListCollector",
@@ -91,7 +145,25 @@
                 "question": {
                   "id": "edit-question",
                   "type": "General",
-                  "title": "What is the name of the person?",
+                  "title": {
+                    "text": "Change details for {first_name} {last_name}",
+                    "placeholders": [
+                      {
+                        "placeholder": "first_name",
+                        "value": {
+                          "source": "answers",
+                          "identifier": "first-name"
+                        }
+                      },
+                      {
+                        "placeholder": "last_name",
+                        "value": {
+                          "source": "answers",
+                          "identifier": "last-name"
+                        }
+                      }
+                    ]
+                  },
                   "answers": [
                     {
                       "id": "first-name",
@@ -118,131 +190,6 @@
                   "answers": [
                     {
                       "id": "remove-confirmation",
-                      "mandatory": true,
-                      "type": "Radio",
-                      "options": [
-                        {
-                          "label": "Yes",
-                          "value": "Yes"
-                        },
-                        {
-                          "label": "No",
-                          "value": "No"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        {
-          "id": "extra-list-group",
-          "title": "Another List",
-          "blocks": [
-            {
-              "id": "next-interstitial",
-              "content": {
-                "title": "Another list",
-                "contents": [
-                  {
-                    "description": "You have added some people to the 'people' list. Next we'll test another list collector adding to the same list. This should still have the same list of people."
-                  }
-                ]
-              },
-              "type": "Interstitial"
-            },
-            {
-              "id": "another-list-collector-block",
-              "type": "ListCollector",
-              "populates_list": "people",
-              "add_answer": {
-                "id": "another-anyone-else",
-                "value": "Yes"
-              },
-              "remove_answer": {
-                "id": "another-remove-confirmation",
-                "value": "Yes"
-              },
-              "question": {
-                "id": "another-confirmation-question",
-                "type": "General",
-                "title": "This list collector will add to the same 'people' list. Add someone else?",
-                "answers": [
-                  {
-                    "id": "another-anyone-else",
-                    "mandatory": true,
-                    "type": "Radio",
-                    "options": [
-                      {
-                        "label": "Yes",
-                        "value": "Yes"
-                      },
-                      {
-                        "label": "No",
-                        "value": "No"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "add_block": {
-                "id": "another-add-person",
-                "type": "ListAddQuestion",
-                "question": {
-                  "id": "another-add-question",
-                  "type": "General",
-                  "title": "What is the name of the person?",
-                  "answers": [
-                    {
-                      "id": "first-name",
-                      "label": "First name",
-                      "mandatory": true,
-                      "type": "TextField"
-                    },
-                    {
-                      "id": "last-name",
-                      "label": "Last name",
-                      "mandatory": true,
-                      "type": "TextField"
-                    }
-                  ]
-                }
-              },
-              "edit_block": {
-                "id": "another-edit-person",
-                "type": "ListEditQuestion",
-                "question": {
-                  "id": "another-edit-question",
-                  "type": "General",
-                  "title": "What is the name of the person?",
-                  "answers": [
-                    {
-                      "id": "first-name",
-                      "label": "First name",
-                      "mandatory": true,
-                      "type": "TextField"
-                    },
-                    {
-                      "id": "last-name",
-                      "label": "Last name",
-                      "mandatory": true,
-                      "type": "TextField"
-                    }
-                  ]
-                }
-              },
-              "remove_block": {
-                "id": "another-remove-person",
-                "type": "ListRemoveQuestion",
-                "question": {
-                  "id": "another-remove-question",
-                  "type": "General",
-                  "title": "Are you sure you want to remove this person?",
-                  "answers": [
-                    {
-                      "id": "another-remove-confirmation",
                       "mandatory": true,
                       "type": "Radio",
                       "options": [

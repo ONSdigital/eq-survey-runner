@@ -44,7 +44,7 @@
     },
     {
       goto: {
-        group: 'comments-group',
+        group: 'submit-group',
         when: [
           {
             id: 'term-time-address-country-answer',

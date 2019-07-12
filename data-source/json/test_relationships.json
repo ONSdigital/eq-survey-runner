@@ -3,9 +3,10 @@
   "schema_version": "0.0.1",
   "data_version": "0.0.3",
   "survey_id": "0",
-  "title": "Test ListCollector",
+  "title": "Test Relationships",
   "theme": "default",
-  "description": "A questionnaire to test ListCollector",
+  "description": "A questionnaire to test capturing of relationships.",
+  "messages": {},
   "metadata": [
     {
       "name": "user_id",
@@ -26,7 +27,7 @@
       "groups": [
         {
           "id": "group",
-          "title": "List",
+          "title": "Relationships",
           "blocks": [
             {
               "id": "list-collector",
@@ -43,7 +44,7 @@
               "question": {
                 "id": "confirmation-question",
                 "type": "General",
-                "title": "Does anyone else live here?",
+                "title": "Does anyone else live at 1 Pleasant Lane?",
                 "answers": [
                   {
                     "id": "anyone-else",
@@ -68,7 +69,7 @@
                 "question": {
                   "id": "add-question",
                   "type": "General",
-                  "title": "What is the name of the person?",
+                  "title": "What is the name of the person who isn't you?",
                   "answers": [
                     {
                       "id": "first-name",
@@ -134,135 +135,63 @@
                   ]
                 }
               }
-            }
-          ]
-        },
-        {
-          "id": "extra-list-group",
-          "title": "Another List",
-          "blocks": [
-            {
-              "id": "next-interstitial",
-              "content": {
-                "title": "Another list",
-                "contents": [
-                  {
-                    "description": "You have added some people to the 'people' list. Next we'll test another list collector adding to the same list. This should still have the same list of people."
-                  }
-                ]
-              },
-              "type": "Interstitial"
             },
             {
-              "id": "another-list-collector-block",
-              "type": "ListCollector",
-              "populates_list": "people",
-              "add_answer": {
-                "id": "another-anyone-else",
-                "value": "Yes"
-              },
-              "remove_answer": {
-                "id": "another-remove-confirmation",
-                "value": "Yes"
-              },
+              "type": "RelationshipCollector",
+              "id": "relationships",
+              "title": "This will iterate over the people list, capturing the one way relationships.",
+              "for_list": "people",
               "question": {
-                "id": "another-confirmation-question",
+                "id": "relationship-question",
                 "type": "General",
-                "title": "This list collector will add to the same 'people' list. Add someone else?",
+                "title": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
                 "answers": [
                   {
-                    "id": "another-anyone-else",
+                    "id": "relationship-answer",
                     "mandatory": true,
-                    "type": "Radio",
+                    "type": "Relationship",
+                    "playback": "{second_person_name} is {first_person_name_possessive} <em>…</em>",
                     "options": [
                       {
-                        "label": "Yes",
-                        "value": "Yes"
+                        "label": "Husband or Wife",
+                        "value": "Husband or Wife",
+                        "title": "Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>",
+                        "playback": "{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>"
                       },
                       {
-                        "label": "No",
-                        "value": "No"
+                        "label": "Legally registered civil partner",
+                        "value": "Legally registered civil partner",
+                        "title": "Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>",
+                        "playback": "{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>"
+                      },
+                      {
+                        "label": "Son or daughter",
+                        "value": "Son or daughter",
+                        "title": "Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>",
+                        "playback": "{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>"
                       }
                     ]
                   }
                 ]
               },
-              "add_block": {
-                "id": "another-add-person",
-                "type": "ListAddQuestion",
-                "question": {
-                  "id": "another-add-question",
-                  "type": "General",
-                  "title": "What is the name of the person?",
-                  "answers": [
+              "skip_conditions": [
+                {
+                  "when": [
                     {
-                      "id": "first-name",
-                      "label": "First name",
-                      "mandatory": true,
-                      "type": "TextField"
-                    },
-                    {
-                      "id": "last-name",
-                      "label": "Last name",
-                      "mandatory": true,
-                      "type": "TextField"
+                      "list": "people",
+                      "condition": "less than",
+                      "value": 2
                     }
                   ]
                 }
-              },
-              "edit_block": {
-                "id": "another-edit-person",
-                "type": "ListEditQuestion",
-                "question": {
-                  "id": "another-edit-question",
-                  "type": "General",
-                  "title": "What is the name of the person?",
-                  "answers": [
-                    {
-                      "id": "first-name",
-                      "label": "First name",
-                      "mandatory": true,
-                      "type": "TextField"
-                    },
-                    {
-                      "id": "last-name",
-                      "label": "Last name",
-                      "mandatory": true,
-                      "type": "TextField"
-                    }
-                  ]
-                }
-              },
-              "remove_block": {
-                "id": "another-remove-person",
-                "type": "ListRemoveQuestion",
-                "question": {
-                  "id": "another-remove-question",
-                  "type": "General",
-                  "title": "Are you sure you want to remove this person?",
-                  "answers": [
-                    {
-                      "id": "another-remove-confirmation",
-                      "mandatory": true,
-                      "type": "Radio",
-                      "options": [
-                        {
-                          "label": "Yes",
-                          "value": "Yes"
-                        },
-                        {
-                          "label": "No",
-                          "value": "No"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
+              ]
             },
             {
-              "id": "summary",
-              "type": "Summary"
+              "type": "Confirmation",
+              "id": "confirmation",
+              "content": {
+                "title": "Thank you for your answers, do you wish to submit"
+              }
             }
           ]
         }

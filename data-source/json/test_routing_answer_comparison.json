@@ -1,97 +1,126 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "001",
-    "title": "Test Routing Answer Comparisons",
-    "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
-    "description": "A test survey for routing based comparison with answers",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "id": "route-group",
-            "title": "",
-            "blocks": [{
-                "type": "Question",
-                "id": "route-comparison-1",
-                "question": {
-                    "answers": [{
-                        "id": "route-comparison-1-answer",
-                        "label": "1st Number",
-                        "mandatory": true,
-                        "type": "Number"
-                    }],
-                    "description": "",
-                    "id": "route-comparison-1-question",
-                    "title": "Enter your first number",
-                    "type": "General"
-                }
-            }, {
-                "type": "Question",
-                "id": "route-comparison-2",
-                "question": {
-                    "answers": [{
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "001",
+  "title": "Test Routing Answer Comparisons",
+  "theme": "default",
+  "legal_basis": "StatisticsOfTradeAct",
+  "description": "A test survey for routing based comparison with answers",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "id": "route-group",
+          "title": "",
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "route-comparison-1",
+              "question": {
+                "answers": [
+                  {
+                    "id": "route-comparison-1-answer",
+                    "label": "1st Number",
+                    "mandatory": true,
+                    "type": "Number"
+                  }
+                ],
+                "description": "",
+                "id": "route-comparison-1-question",
+                "title": "Enter your first number",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Question",
+              "id": "route-comparison-2",
+              "question": {
+                "answers": [
+                  {
+                    "id": "route-comparison-2-answer",
+                    "label": "2nd Number",
+                    "mandatory": true,
+                    "type": "Number"
+                  }
+                ],
+                "description": "",
+                "id": "route-comparison-2-question",
+                "title": "Enter a higher number to skip the next interstitial",
+                "type": "General"
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "block": "route-comparison-4",
+                    "when": [
+                      {
                         "id": "route-comparison-2-answer",
-                        "label": "2nd Number",
-                        "mandatory": true,
-                        "type": "Number"
-                    }],
-                    "description": "",
-                    "id": "route-comparison-2-question",
-                    "title": "Enter a higher number to skip the next interstitial",
-                    "type": "General"
+                        "condition": "greater than",
+                        "comparison_id": "route-comparison-1-answer"
+                      }
+                    ]
+                  }
                 },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "route-comparison-4",
-                        "when": [{
-                            "id": "route-comparison-2-answer",
-                            "condition": "greater than",
-                            "comparison_id": "route-comparison-1-answer"
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "block": "route-comparison-3"
-                    }
-                }]
-            }, {
-                "type": "Interstitial",
-                "id": "route-comparison-3",
-                "content": {
-                    "title": "Your second number was lower or equal",
-                    "contents": [{
-                        "description": "This page should be skipped if your second answer was higher than your first"
-                    }]
+                {
+                  "goto": {
+                    "block": "route-comparison-3"
+                  }
                 }
-            }, {
-                "type": "Interstitial",
-                "id": "route-comparison-4",
-                "content": {
-                    "title": "Your second number was higher",
-                    "contents": [{
-                        "description": "This page should never be skipped"
-                    }]
-                }
-            }]
-        }, {
-            "id": "summary-group",
-            "title": "",
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+              ]
+            },
+            {
+              "type": "Interstitial",
+              "id": "route-comparison-3",
+              "content": {
+                "title": "Your second number was lower or equal",
+                "contents": [
+                  {
+                    "description": "This page should be skipped if your second answer was higher than your first"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Interstitial",
+              "id": "route-comparison-4",
+              "content": {
+                "title": "Your second number was higher",
+                "contents": [
+                  {
+                    "description": "This page should never be skipped"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "summary-group",
+          "title": "",
+          "blocks": [
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

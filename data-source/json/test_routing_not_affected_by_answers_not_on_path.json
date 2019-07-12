@@ -1,162 +1,216 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "001",
-    "title": "Test routing not affected by invalid answers",
-    "theme": "default",
-    "description": "A test survey to make sure previous answers that are not on the routing path do not affect routing",
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "initial-choice",
-                "question": {
-                    "type": "General",
-                    "id": "initial-choice-question",
-                    "title": "Answer First, then, after answering a question, go back to this question and answer Second",
-                    "answers": [{
-                        "type": "Radio",
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "001",
+  "title": "Test routing not affected by invalid answers",
+  "theme": "default",
+  "description": "A test survey to make sure previous answers that are not on the routing path do not affect routing",
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "default-section",
+      "groups": [
+        {
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "initial-choice",
+              "question": {
+                "type": "General",
+                "id": "initial-choice-question",
+                "title": "Answer First, then, after answering a question, go back to this question and answer Second",
+                "answers": [
+                  {
+                    "type": "Radio",
+                    "id": "initial-choice-answer",
+                    "mandatory": true,
+                    "options": [
+                      {
+                        "label": "Go here first",
+                        "value": "First"
+                      },
+                      {
+                        "label": "Go here second",
+                        "value": "Second"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "block": "valid-path",
+                    "when": [
+                      {
                         "id": "initial-choice-answer",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Go here first",
-                            "value": "First"
-                        }, {
-                            "label": "Go here second",
-                            "value": "Second"
-                        }]
-                    }]
+                        "condition": "equals",
+                        "value": "Second"
+                      }
+                    ]
+                  }
                 },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "valid-path",
-                        "when": [{
-                            "id": "initial-choice-answer",
-                            "condition": "equals",
-                            "value": "Second"
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "block": "invalid-path"
-                    }
-                }]
-            }, {
-                "type": "Question",
-                "id": "invalid-path",
-                "question": {
-                    "answers": [{
-                        "id": "invalid-path-answer",
-                        "mandatory": true,
-                        "label": "Number",
-                        "type": "Number"
-                    }],
-                    "id": "invalid-path-question",
-                    "title": "Enter a number",
-                    "type": "General"
+                {
+                  "goto": {
+                    "block": "invalid-path"
+                  }
                 }
-            }, {
-                "type": "Interstitial",
-                "id": "invalid-path-interstitial",
-                "content": {
-                    "title": "You now have an answer that could be invalid in the store.",
-                    "contents": [{
-                        "description": "Go back to the first question and choose the second path."
-                    }]
-                },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "summary"
-                    }
-                }]
-            }, {
-                "type": "Question",
-                "id": "valid-path",
-                "question": {
-                    "answers": [{
-                        "id": "valid-path-answer",
-                        "mandatory": true,
-                        "type": "Number",
-                        "label": "Number"
-                    }],
-                    "id": "valid-path-question",
-                    "title": "Enter a number and continue",
-                    "type": "General"
-                },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "invalid-final-interstitial",
-                        "when": [{
-                            "id": "invalid-path-answer",
-                            "condition": "set"
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "block": "valid-skipped-interstitial"
-                    }
-                }]
-            }, {
-                "type": "Interstitial",
-                "id": "valid-skipped-interstitial",
-                "content": {
-                    "title": "This page should have been skipped!",
-                    "contents": [{
-                        "description": ""
-                    }]
-                },
-                "skip_conditions": [{
-                    "when": [{
+              ]
+            },
+            {
+              "type": "Question",
+              "id": "invalid-path",
+              "question": {
+                "answers": [
+                  {
+                    "id": "invalid-path-answer",
+                    "mandatory": true,
+                    "label": "Number",
+                    "type": "Number"
+                  }
+                ],
+                "id": "invalid-path-question",
+                "title": "Enter a number",
+                "type": "General"
+              }
+            },
+            {
+              "type": "Interstitial",
+              "id": "invalid-path-interstitial",
+              "content": {
+                "title": "You now have an answer that could be invalid in the store.",
+                "contents": [
+                  {
+                    "description": "Go back to the first question and choose the second path."
+                  }
+                ]
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "block": "summary"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Question",
+              "id": "valid-path",
+              "question": {
+                "answers": [
+                  {
+                    "id": "valid-path-answer",
+                    "mandatory": true,
+                    "type": "Number",
+                    "label": "Number"
+                  }
+                ],
+                "id": "valid-path-question",
+                "title": "Enter a number and continue",
+                "type": "General"
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "block": "invalid-final-interstitial",
+                    "when": [
+                      {
                         "id": "invalid-path-answer",
-                        "condition": "not set"
-                    }]
-                }]
-            }, {
-                "type": "Interstitial",
-                "id": "valid-final-interstitial",
-                "content": {
-                    "title": "You were routed correctly!",
-                    "contents": [{
-                        "description": ""
-                    }]
+                        "condition": "set"
+                      }
+                    ]
+                  }
                 },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "summary"
+                {
+                  "goto": {
+                    "block": "valid-skipped-interstitial"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Interstitial",
+              "id": "valid-skipped-interstitial",
+              "content": {
+                "title": "This page should have been skipped!",
+                "contents": [
+                  {
+                    "description": ""
+                  }
+                ]
+              },
+              "skip_conditions": [
+                {
+                  "when": [
+                    {
+                      "id": "invalid-path-answer",
+                      "condition": "not set"
                     }
-                }]
-            }, {
-                "type": "Interstitial",
-                "id": "invalid-final-interstitial",
-                "content": {
-                    "title": "You were routed incorrectly!",
-                    "contents": [{
-                        "description": ""
-                    }]
-                },
-                "routing_rules": [{
-                    "goto": {
-                        "block": "summary"
-                    }
-                }]
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "group",
-            "title": ""
-        }]
-    }]
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Interstitial",
+              "id": "valid-final-interstitial",
+              "content": {
+                "title": "You were routed correctly!",
+                "contents": [
+                  {
+                    "description": ""
+                  }
+                ]
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "block": "summary"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Interstitial",
+              "id": "invalid-final-interstitial",
+              "content": {
+                "title": "You were routed incorrectly!",
+                "contents": [
+                  {
+                    "description": ""
+                  }
+                ]
+              },
+              "routing_rules": [
+                {
+                  "goto": {
+                    "block": "summary"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ],
+          "id": "group",
+          "title": ""
+        }
+      ]
+    }
+  ]
 }

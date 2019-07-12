@@ -1,58 +1,75 @@
 {
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.3",
-    "survey_id": "0",
-    "title": "Placeholder Test",
-    "theme": "default",
-    "description": "A questionnaire to test placeholders",
-    "navigation": {
-        "visible": true
+  "mime_type": "application/json/ons/eq",
+  "schema_version": "0.0.1",
+  "data_version": "0.0.3",
+  "survey_id": "0",
+  "title": "Placeholder Test",
+  "theme": "default",
+  "description": "A questionnaire to test placeholders",
+  "navigation": {
+    "visible": true
+  },
+  "metadata": [
+    {
+      "name": "user_id",
+      "type": "string"
     },
-    "metadata": [{
-        "name": "user_id",
-        "type": "string"
-    }, {
-        "name": "period_id",
-        "type": "string"
-    }, {
-        "name": "ru_name",
-        "type": "string"
-    }],
-    "sections": [{
-        "id": "percent-input-section",
-        "title": "Gross Weekly Pay",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "block",
-                "question": {
-                    "answers": [{
-                        "description": "Enter the total gross weekly pay",
-                        "id": "answer",
-                        "label": "",
-                        "mandatory": false,
-                        "type": "Number"
-                    }],
-                    "id": "question",
-                    "title": "",
-                    "type": "General"
-                },
-                "routing_rules": []
-            }],
-            "id": "group",
-            "title": ""
-        }]
-    }, {
-        "id": "summary-section",
-        "title": "Summary",
-        "groups": [{
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "summary-group",
-            "title": "Summary"
-        }]
-    }]
+    {
+      "name": "period_id",
+      "type": "string"
+    },
+    {
+      "name": "ru_name",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "id": "percent-input-section",
+      "title": "Gross Weekly Pay",
+      "groups": [
+        {
+          "blocks": [
+            {
+              "type": "Question",
+              "id": "block",
+              "question": {
+                "answers": [
+                  {
+                    "description": "Enter the total gross weekly pay",
+                    "id": "answer",
+                    "label": "",
+                    "mandatory": false,
+                    "type": "Number"
+                  }
+                ],
+                "id": "question",
+                "title": "",
+                "type": "General"
+              },
+              "routing_rules": []
+            }
+          ],
+          "id": "group",
+          "title": ""
+        }
+      ]
+    },
+    {
+      "id": "summary-section",
+      "title": "Summary",
+      "groups": [
+        {
+          "blocks": [
+            {
+              "type": "Summary",
+              "id": "summary"
+            }
+          ],
+          "id": "summary-group",
+          "title": "Summary"
+        }
+      ]
+    }
+  ]
 }
