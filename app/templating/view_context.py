@@ -94,7 +94,7 @@ def build_view_context_for_list_collector(
 ):
     question_context = build_view_context_for_question(rendered_block, form)
 
-    list_name = rendered_block['populates_list']
+    list_name = rendered_block['for_list']
     list_item_ids = list_store[list_name].items
 
     list_title_answer_ids = [
@@ -141,7 +141,7 @@ def build_view_context_for_list_collector(
         'list_items': list_items,
         'add_link': url_for(
             'questionnaire.get_block',
-            list_name=rendered_block['populates_list'],
+            list_name=rendered_block['for_list'],
             block_id=rendered_block['id'],
         ),
     }

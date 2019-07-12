@@ -467,7 +467,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
                                 {
                                     'id': 'list-collector',
                                     'type': 'ListCollector',
-                                    'populates_list': 'list',
+                                    'for_list': 'list',
                                     'question': {},
                                     'add_block': {
                                         'id': 'add-block',

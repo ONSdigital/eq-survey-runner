@@ -361,7 +361,7 @@ def _validate_list_collector_child_location(
     block = schema.get_block(current_location.block_id)
     parent_block = schema.get_list_collector_for_block_id(current_location.block_id)
 
-    if list_name != parent_block['populates_list']:
+    if list_name != parent_block['for_list']:
         logger.info(
             f'Mismatched list_name: {list_name} and block_id: {current_location.block_id}'
         )
@@ -557,7 +557,7 @@ def perform_list_action(
             questionnaire_store_updater.save()
             add_url = url_for(
                 'questionnaire.get_block',
-                list_name=rendered_block['populates_list'],
+                list_name=rendered_block['for_list'],
                 block_id=rendered_block['add_block']['id'],
             )
             return add_url
@@ -568,7 +568,7 @@ def perform_list_action(
             form.data[parent_block['remove_answer']['id']]
             == parent_block['remove_answer']['value']
         ):
-            list_name = parent_block['populates_list']
+            list_name = parent_block['for_list']
             questionnaire_store_updater.remove_list_item_and_answers(
                 list_name, list_item_id
             )
@@ -577,7 +577,7 @@ def perform_list_action(
 
     if block['type'] == 'ListAddQuestion':
         questionnaire_store_updater.add_list_item_and_answers(
-            form, parent_block['populates_list']
+            form, parent_block['for_list']
         )
     if block['type'] == 'ListEditQuestion':
         questionnaire_store_updater.update_answers(form)
@@ -596,7 +596,7 @@ def handle_primary_person_action(
     schema, router, routing_path, form, block, questionnaire_store_updater
 ):
     if block['type'] == 'PrimaryPersonListCollector':
-        list_name = block['populates_list']
+        list_name = block['for_list']
 
         if (
             form.data[block['add_or_edit_answer']['id']]
@@ -612,7 +612,7 @@ def handle_primary_person_action(
 
             add_or_edit_url = url_for(
                 'questionnaire.get_block',
-                list_name=block['populates_list'],
+                list_name=block['for_list'],
                 block_id=block['add_or_edit_block']['id'],
                 list_item_id=primary_person_id,
             )

@@ -20,7 +20,7 @@ A new block type will co-ordinate the collection of a list of things:
 {
     "id": "block-id",
     "type": "ListCollector",
-    "populates_list": "people",
+    "for_list": "people",
     "question": {},
     "add_block": {},
     "edit_block": {},
