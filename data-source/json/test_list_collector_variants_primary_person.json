@@ -50,7 +50,7 @@
                 {
                     "id": "primary-person-list-collector",
                     "type": "PrimaryPersonListCollector",
-                    "populates_list": "people",
+                    "for_list": "people",
                     "add_or_edit_answer": {
                         "id": "you-live-here",
                         "value": "Yes"
@@ -167,7 +167,7 @@
                 {
                     "id": "list-collector",
                     "type": "ListCollector",
-                    "populates_list": "people",
+                    "for_list": "people",
                     "add_answer": {
                         "id": "anyone-else",
                         "value": "Yes"
