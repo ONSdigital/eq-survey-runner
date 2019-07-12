@@ -6,7 +6,13 @@ from flask_babel import force_locale
 from app.validation.error_messages import error_messages
 
 DEFAULT_LANGUAGE_CODE = 'en'
-LIST_COLLECTOR_CHILDREN = ['ListAddQuestion', 'ListEditQuestion', 'ListRemoveQuestion']
+
+LIST_COLLECTOR_CHILDREN = [
+    'ListAddQuestion',
+    'ListEditQuestion',
+    'ListRemoveQuestion',
+    'PrimaryPersonListAddOrEditQuestion',
+]
 
 
 class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
@@ -76,6 +82,22 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         variants
         """
         return self._answers_by_id.get(answer_id)
+
+    def get_add_block_for_list_collector(self, list_collector_id):
+        add_block_map = {
+            'ListCollector': 'add_block',
+            'PrimaryPersonListCollector': 'add_or_edit_block',
+        }
+        list_collector = self.get_block(list_collector_id)
+
+        return list_collector[add_block_map[list_collector['type']]]
+
+    def get_answer_ids_for_list_items(self, list_collector_id):
+        """
+        Get answer ids used to add items to a list.
+        """
+        add_block = self.get_add_block_for_list_collector(list_collector_id)
+        return self.get_answer_ids_for_block(add_block['id'])
 
     def get_questions(self, question_id):
         """ Return a list of questions matching some question id
@@ -171,15 +193,28 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     def get_list_collector_for_block_id(self, block_id):
         block = self.get_block(block_id)
-        return self.get_block(block['parent_id'])
+        if block['type'] in LIST_COLLECTOR_CHILDREN:
+            return self.get_block(block['parent_id'])
+
+        return self.get_block(block_id)
 
     def is_block_list_collector_child(self, block_id):
         block = self.get_block(block_id)
         return block['type'] in LIST_COLLECTOR_CHILDREN
 
     @staticmethod
+    def is_primary_person_block_type(block_type):
+        primary_person_blocks = [
+            'PrimaryPersonListCollector',
+            'PrimaryPersonListAddOrEditQuestion',
+        ]
+
+        return block_type in primary_person_blocks
+
+    @staticmethod
     def is_list_block_type(block_type):
-        return block_type in ['ListCollector'] + LIST_COLLECTOR_CHILDREN
+        list_blocks = ['ListCollector'] + LIST_COLLECTOR_CHILDREN
+        return block_type in list_blocks
 
     def _parse_schema(self):
         self._sections_by_id = self._get_sections_by_id()
@@ -202,15 +237,17 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
                 block['parent_id'] = group['id']
                 blocks[block['id']] = block
 
-                if block['type'] == 'ListCollector':
+                if block['type'] in ('ListCollector', 'PrimaryPersonListCollector'):
                     for nested_block_name in [
                         'add_block',
                         'edit_block',
                         'remove_block',
+                        'add_or_edit_block',
                     ]:
-                        nested_block = block[nested_block_name]
-                        nested_block['parent_id'] = block['id']
-                        blocks[nested_block['id']] = nested_block
+                        if block.get(nested_block_name):
+                            nested_block = block[nested_block_name]
+                            nested_block['parent_id'] = block['id']
+                            blocks[nested_block['id']] = nested_block
 
         return blocks
 
