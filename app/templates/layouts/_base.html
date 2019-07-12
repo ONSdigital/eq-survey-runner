@@ -48,19 +48,19 @@
     {% endblock head -%}
     <!-- Google Tag Manager -->
     {% if analytics_gtm_id and analytics_gtm_env_id %}
-      <script>
+      <script nonce="{{ csp_nonce() }}">
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({'gtm.blacklist': ['customScripts' , 'html']});
         {%  if metadata and metadata.tx_id %}
           window.dataLayer.push({
-            'txId': {{  metadata.tx_id }}
+            'txId': "{{  metadata.tx_id }}"
           });
         {%- endif %}
       </script>
       <script nonce="{{ csp_nonce() }}">(function(w,d,s,l,i,e){w['GoogleTagManagerObject']=l;w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      "https://www.googletagmanager.com/gtm.js?id=" + i + dl + "&gtm_auth=" + e;f.parentNode.insertBefore(j,f);
+      "https://www.googletagmanager.com/gtm.js?id=" + i + dl + "&gtm_auth=" + e; j.nonce="{{ csp_nonce() }}"; f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','{{analytics_gtm_id}}', "{{analytics_gtm_env_id}}");</script>
     {%- endif %}
     <!-- End Google Tag Manager -->
@@ -69,7 +69,7 @@
 
     <!-- Google Tag Manager (noscript) -->
     {% if analytics_gtm_id and analytics_gtm_env_id %}
-      <noscript nonce="{{ csp_nonce() }}"><iframe src="https://www.googletagmanager.com/gtm.js?id={{analytics_gtm_id}}&gtm_auth={{analytics_gtm_env_id}}"
+      <noscript><iframe src="https://www.googletagmanager.com/gtm.js?id={{analytics_gtm_id}}&gtm_auth={{analytics_gtm_env_id}}"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {%- endif %}
     <!-- End Google Tag Manager (noscript) -->
