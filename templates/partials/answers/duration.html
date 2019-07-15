@@ -1,13 +1,25 @@
 {% from "components/mutually-exclusive/_macro.njk" import onsMutuallyExclusive %}
+{% from "components/fieldset/_macro.njk" import onsFieldset %}
+{% from "components/field/_macro.njk" import onsField %}
 {% from "components/input/_macro.njk" import onsInput %}
 
+{%- set numberOfFields = 0 -%}
+
+{%- if form.fields[answer.id].years -%}
+  {%- set numberOfFields = numberOfFields + 1 -%}
+{%- endif -%}
+
+{%- if form.fields[answer.id].months -%}
+  {%- set numberOfFields = numberOfFields + 1 -%}
+{%- endif -%}
+
 {%- set fields -%}
-  <div class="field-group">
+
     {% if answer.label %}
-      <p class="u-fs-r--b u-mb-xs">{{ answer.label }}</p>
+      <span class="u-fs-r--b u-mb-xs u-d-b">{{ answer.label }}</span>
     {% endif %}
 
-    {% if form.fields[answer.id].years %}
+    {%- if form.fields[answer.id].years -%}
       {% set input = form.fields[answer.id].years %}
         {{ onsInput({
           "id": input.id,
@@ -17,11 +29,12 @@
           "suffix": {
             "title": _(input.label.text),
             "text": format_unit_input_label('duration-year', unit_length='long') | capitalize
-          }
+          },
+          "dontWrap": numberOfFields < 2
         }) }}
-    {% endif %}
+    {%- endif -%}
 
-    {% if form.fields[answer.id].months %}
+    {%- if form.fields[answer.id].months -%}
       {% set input = form.fields[answer.id].months %}
         {{ onsInput({
           "id": input.id,
@@ -31,10 +44,11 @@
           "suffix": {
             "title": _(input.label.text),
             "text": format_unit_input_label('duration-month', unit_length='long') | capitalize
-          }
+          },
+          "dontWrap": numberOfFields < 2
         }) }}
-    {% endif %}
-  </div>
+    {%- endif -%}
+
 {%- endset -%}
 
 {%- if mutuallyExclusive -%}
@@ -44,8 +58,24 @@
   }) -%}
 
   {%- call onsMutuallyExclusive(mutuallyExclusive) -%}
-    {{- fields | safe -}}
+    <div class="field-group">
+      {{- fields | safe -}}
+    </div>
+  {%- endcall -%}
+{%- elif numberOfFields > 1 -%}
+  {%- call onsFieldset({
+    "id": answer.id,
+    "legend": question_title,
+    "legendClasses": "u-vh"
+  }) %}
+    <div class="field-group">
+      {{- fields | safe -}}
+    </div>
   {%- endcall -%}
 {%- else -%}
-  {{- fields | safe -}}
+  {%- call onsField({
+    "id": answer.id
+  }) -%}
+    {{- fields | safe -}}
+  {%- endcall -%}
 {%- endif -%}
