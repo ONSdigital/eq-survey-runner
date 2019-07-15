@@ -1,4 +1,5 @@
 {% from "components/question/_macro.njk" import onsQuestion %}
+{% from "components/fieldset/_macro.njk" import onsFieldset %}
 
 {% set form = content.form %}
 
@@ -6,7 +7,7 @@
 {% set question_description = format_paragraphs(question.description) if question.description else None %}
 {% set question_guidance = "" %}
 {% set question_definition = "" %}
-{% set wrap_question_in_fieldset = question_as_legend(question) %}
+{% set should_wrap_with_fieldset = should_wrap_with_fieldset(question) %}
 
 {%- set question_definition -%}
   {%- if question.definitions -%}
@@ -47,21 +48,34 @@
       "checkbox": map_checkbox_config(form, question.answers[-1])[0],
       "deselectionMessage": deselectionMessage,
       "deselectGroupAdjective": deselectGroupAdjective,
-      "deselectCheckboxAdjective": _("deselected"),
-    } %}
+      "deselectCheckboxAdjective": _("deselected")
+    } -%}
+
     {% include 'partials/answer.html' %}
   {%- else -%}
-    {%- for answer in question.answers -%}
-      {% include 'partials/answer.html' %}
-    {%- endfor -%}
+    {%- set answers -%}
+      {%- for answer in question.answers -%}
+        {% include 'partials/answer.html' %}
+      {%- endfor -%}
+    {%- endset -%}
+
+    {%- if should_wrap_with_fieldset -%}
+      {%- call onsFieldset({
+        "legend": question_title,
+        "legendClasses": "u-vh"
+      }) -%}
+        {{ answers }}
+      {%- endcall -%}
+    {%- else -%}
+      {{ answers }}
+    {%- endif -%}
   {%- endif -%}
 {% endset %}
 
 {% call onsQuestion({
   "id": question.id,
   "title": question_title,
-  "description": question_description,
-  "useFieldset": wrap_question_in_fieldset
+  "description": question_description
 }) %}
   {%- if content.list_items -%}
     {% include 'partials/summary/list-summary.html' %}

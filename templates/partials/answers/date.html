@@ -7,19 +7,13 @@
 {%- set config = {
   "id": answer['id'],
   "description": answer.description,
+  "legend": question_title,
+  "legendClasses": "u-vh",
   "attributes": {
     "data-qa": "widget-date"
   },
   "mutuallyExclusive": mutuallyExclusive
 } -%}
-
-{%- if wrap_question_in_fieldset -%}
-  {%- if answer.label and question.type == "DateRange" -%}
-    {%- set config = config | setAttribute("label", answer.label) -%}
-  {%- endif -%}
-{%- else -%}
-  {%- set config = config | setAttribute("legend", answer.label) -%}
-{%- endif -%}
 
 {%- if day_field -%}
   {%- set config = config | setAttributes({

@@ -1,16 +1,14 @@
-{% from "components/field/_macro.njk" import onsField %}
+{% from "components/mutually-exclusive/_macro.njk" import onsMutuallyExclusive %}
 {% from "components/input/_macro.njk" import onsInput %}
 
-{% call onsField({
-  "mutuallyExclusive": mutuallyExclusive
-}) %}
-  {% if answer.label %}
-    <p class="u-fs-r--b u-mb-xs">{{ answer.label }}</p>
-  {% endif %}
-  <div class="field__group">
+{%- set fields -%}
+  <div class="field-group">
+    {% if answer.label %}
+      <p class="u-fs-r--b u-mb-xs">{{ answer.label }}</p>
+    {% endif %}
+
     {% if form.fields[answer.id].years %}
       {% set input = form.fields[answer.id].years %}
-      <div class="field__item">
         {{ onsInput({
           "id": input.id,
           "classes": "input--w-2" + (" js-exclusive-group" if mutuallyExclusive else ""),
@@ -21,12 +19,10 @@
             "text": format_unit_input_label('duration-year', unit_length='long') | capitalize
           }
         }) }}
-      </div>
     {% endif %}
 
     {% if form.fields[answer.id].months %}
       {% set input = form.fields[answer.id].months %}
-      <div class="field__item">
         {{ onsInput({
           "id": input.id,
           "classes": "input--w-2" + (" js-exclusive-group" if mutuallyExclusive else ""),
@@ -37,7 +33,19 @@
             "text": format_unit_input_label('duration-month', unit_length='long') | capitalize
           }
         }) }}
-      </div>
     {% endif %}
   </div>
-{% endcall %}
+{%- endset -%}
+
+{%- if mutuallyExclusive -%}
+  {% set mutuallyExclusive = mutuallyExclusive | setAttributes({
+    "legend": question_title,
+    "legendClasses": "u-vh"
+  }) -%}
+
+  {%- call onsMutuallyExclusive(mutuallyExclusive) -%}
+    {{- fields | safe -}}
+  {%- endcall -%}
+{%- else -%}
+  {{- fields | safe -}}
+{%- endif -%}

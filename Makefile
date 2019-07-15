@@ -24,6 +24,7 @@ run: build
 	pipenv run flask run
 
 dev-compose-up:
+	docker-compose pull eq-questionnaire-launcher
 	docker-compose -f docker-compose-dev-mac.yml up -d
 
 dev-compose-up-linux:

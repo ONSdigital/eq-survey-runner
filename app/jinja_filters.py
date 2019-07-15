@@ -190,31 +190,18 @@ def setAttributes(dictionary, attributes):
 
 
 @blueprint.app_template_filter()
-def question_as_legend(question):
-    question_type = question['type']
-
-    if question_type == 'MutuallyExclusive':
-        return True
-
+def should_wrap_with_fieldset(question):
     answers = question['answers']
-    more_than_one_question = len(answers) > 1
 
-    if more_than_one_question:
-        return True
-
-    answer = answers[0]
-    if 'type' in answer and any(
-        answer['type'] in answer_type
-        for answer_type in ['Checkbox', 'Radio', 'Date', 'Duration']
-    ):
+    if len(answers) > 1 and not any(answer['type'] == 'Date' for answer in answers):
         return True
 
     return False
 
 
 @blueprint.app_context_processor
-def question_as_legend_processor():
-    return dict(question_as_legend=question_as_legend)
+def should_wrap_with_fieldset_processor():
+    return {'should_wrap_with_fieldset': should_wrap_with_fieldset}
 
 
 class LabelConfig:
@@ -287,7 +274,7 @@ class OtherConfig:
     def __init__(self, detail_answer):
         self.id = detail_answer.id
         self.name = detail_answer.name
-        self.value = detail_answer.data
+        self.value = detail_answer.data or ''
         self.label = LabelConfig(detail_answer.id, detail_answer.label.text)
 
 

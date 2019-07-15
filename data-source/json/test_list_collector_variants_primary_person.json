@@ -6,7 +6,8 @@
     "title": "Test PrimaryPersonListCollector With Variants",
     "theme": "default",
     "description": "A questionnaire to test Primary Person ListCollector with Variants",
-    "metadata": [{
+    "metadata": [
+        {
             "name": "user_id",
             "type": "string"
         },
@@ -19,272 +20,307 @@
             "type": "string"
         }
     ],
-    "sections": [{
-        "id": "section",
-        "groups": [{
-            "id": "group",
-            "title": "Variant Question",
-            "blocks": [{
-                    "type": "Question",
-                    "id": "variant-block",
-                    "question": {
-                        "type": "General",
-                        "id": "variant-question",
-                        "title": "Do you like variants?",
-                        "answers": [{
-                            "type": "Radio",
-                            "id": "variant-answer",
-                            "mandatory": true,
-                            "options": [{
-                                    "label": "Yes",
-                                    "value": "Yes"
-                                },
-                                {
-                                    "label": "No",
-                                    "value": "No"
-                                }
-                            ]
-                        }]
-                    }
-                },
+    "sections": [
+        {
+            "id": "section",
+            "groups": [
                 {
-                    "id": "primary-person-list-collector",
-                    "type": "PrimaryPersonListCollector",
-                    "for_list": "people",
-                    "add_or_edit_answer": {
-                        "id": "you-live-here",
-                        "value": "Yes"
-                    },
-                    "add_or_edit_block": {
-                        "id": "add-or-edit-primary-person",
-                        "type": "PrimaryPersonListAddOrEditQuestion",
-                        "question_variants": [{
-                                "question": {
-                                    "id": "primary-person-add-or-edit-question",
-                                    "type": "General",
-                                    "title": "What is your name",
-                                    "answers": [{
-                                            "id": "first-name",
-                                            "label": "First name",
-                                            "mandatory": true,
-                                            "type": "TextField"
-                                        },
-                                        {
-                                            "id": "last-name",
-                                            "label": "Last name",
-                                            "mandatory": true,
-                                            "type": "TextField"
-                                        }
-                                    ]
-                                },
-                                "when": [{
-                                    "id": "variant-answer",
-                                    "condition": "equals",
-                                    "value": "No"
-                                }]
-                            },
-                            {
-                                "question": {
-                                    "id": "primary-person-add-or-edit-question",
-                                    "type": "General",
-                                    "title": "What is your name (variant)",
-                                    "answers": [{
-                                            "id": "first-name",
-                                            "label": "First name",
-                                            "mandatory": true,
-                                            "type": "TextField"
-                                        },
-                                        {
-                                            "id": "last-name",
-                                            "label": "Last name",
-                                            "mandatory": true,
-                                            "type": "TextField"
-                                        }
-                                    ]
-                                },
-                                "when": [{
-                                    "id": "variant-answer",
-                                    "condition": "equals",
-                                    "value": "Yes"
-                                }]
-                            }
-                        ]
-                    },
-                    "question_variants": [{
+                    "id": "group",
+                    "title": "Variant Question",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "variant-block",
                             "question": {
-                                "id": "primary-confirmation-question",
                                 "type": "General",
-                                "title": "Do you live here? (variant)",
-                                "answers": [{
-                                    "id": "you-live-here",
-                                    "mandatory": true,
-                                    "type": "Radio",
-                                    "options": [{
-                                            "label": "Yes",
-                                            "value": "Yes"
-                                        },
-                                        {
-                                            "label": "No",
-                                            "value": "No"
-                                        }
-                                    ]
-                                }]
-                            },
-                            "when": [{
-                                "id": "variant-answer",
-                                "condition": "equals",
-                                "value": "Yes"
-                            }]
+                                "id": "variant-question",
+                                "title": "Do you like variants?",
+                                "answers": [
+                                    {
+                                        "type": "Radio",
+                                        "id": "variant-answer",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
                         },
                         {
-                            "question": {
-                                "id": "primary-confirmation-question",
-                                "type": "General",
-                                "title": "Do you live here?",
-                                "answers": [{
-                                    "id": "you-live-here",
-                                    "mandatory": true,
-                                    "type": "Radio",
-                                    "options": [{
-                                            "label": "Yes",
-                                            "value": "Yes"
+                            "id": "primary-person-list-collector",
+                            "type": "PrimaryPersonListCollector",
+                            "for_list": "people",
+                            "add_or_edit_answer": {
+                                "id": "you-live-here",
+                                "value": "Yes"
+                            },
+                            "add_or_edit_block": {
+                                "id": "add-or-edit-primary-person",
+                                "type": "PrimaryPersonListAddOrEditQuestion",
+                                "question_variants": [
+                                    {
+                                        "question": {
+                                            "id": "primary-person-add-or-edit-question",
+                                            "type": "General",
+                                            "title": "What is your name",
+                                            "answers": [
+                                                {
+                                                    "id": "first-name",
+                                                    "label": "First name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                },
+                                                {
+                                                    "id": "last-name",
+                                                    "label": "Last name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                }
+                                            ]
                                         },
+                                        "when": [
+                                            {
+                                                "id": "variant-answer",
+                                                "condition": "equals",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "question": {
+                                            "id": "primary-person-add-or-edit-question",
+                                            "type": "General",
+                                            "title": "What is your name (variant)",
+                                            "answers": [
+                                                {
+                                                    "id": "first-name",
+                                                    "label": "First name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                },
+                                                {
+                                                    "id": "last-name",
+                                                    "label": "Last name",
+                                                    "mandatory": true,
+                                                    "type": "TextField"
+                                                }
+                                            ]
+                                        },
+                                        "when": [
+                                            {
+                                                "id": "variant-answer",
+                                                "condition": "equals",
+                                                "value": "Yes"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "question_variants": [
+                                {
+                                    "question": {
+                                        "id": "primary-confirmation-question",
+                                        "type": "General",
+                                        "title": "Do you live here? (variant)",
+                                        "answers": [
+                                            {
+                                                "id": "you-live-here",
+                                                "mandatory": true,
+                                                "type": "Radio",
+                                                "options": [
+                                                    {
+                                                        "label": "Yes",
+                                                        "value": "Yes"
+                                                    },
+                                                    {
+                                                        "label": "No",
+                                                        "value": "No"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "when": [
                                         {
-                                            "label": "No",
+                                            "id": "variant-answer",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": {
+                                        "id": "primary-confirmation-question",
+                                        "type": "General",
+                                        "title": "Do you live here?",
+                                        "answers": [
+                                            {
+                                                "id": "you-live-here",
+                                                "mandatory": true,
+                                                "type": "Radio",
+                                                "options": [
+                                                    {
+                                                        "label": "Yes",
+                                                        "value": "Yes"
+                                                    },
+                                                    {
+                                                        "label": "No",
+                                                        "value": "No"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "when": [
+                                        {
+                                            "id": "variant-answer",
+                                            "condition": "equals",
                                             "value": "No"
                                         }
                                     ]
-                                }]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "list-collector",
+                            "type": "ListCollector",
+                            "for_list": "people",
+                            "add_answer": {
+                                "id": "anyone-else",
+                                "value": "Yes"
                             },
-                            "when": [{
-                                "id": "variant-answer",
-                                "condition": "equals",
-                                "value": "No"
-                            }]
+                            "remove_answer": {
+                                "id": "remove-confirmation",
+                                "value": "Yes"
+                            },
+                            "question": {
+                                "id": "confirmation-question",
+                                "type": "General",
+                                "title": "Does anyone else live here?",
+                                "answers": [
+                                    {
+                                        "id": "anyone-else",
+                                        "mandatory": true,
+                                        "type": "Radio",
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "add_block": {
+                                "id": "add-person",
+                                "type": "ListAddQuestion",
+                                "question": {
+                                    "id": "add-question",
+                                    "type": "General",
+                                    "title": "What is the name of the person?",
+                                    "answers": [
+                                        {
+                                            "id": "first-name",
+                                            "label": "First name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "last-name",
+                                            "label": "Last name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            },
+                            "edit_block": {
+                                "id": "edit-person",
+                                "type": "ListEditQuestion",
+                                "question": {
+                                    "id": "edit-question",
+                                    "type": "General",
+                                    "title": {
+                                        "text": "Change details for {first_name} {last_name}",
+                                        "placeholders": [
+                                            {
+                                                "placeholder": "first_name",
+                                                "value": {
+                                                    "source": "answers",
+                                                    "identifier": "first-name"
+                                                }
+                                            },
+                                            {
+                                                "placeholder": "last_name",
+                                                "value": {
+                                                    "source": "answers",
+                                                    "identifier": "last-name"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "answers": [
+                                        {
+                                            "id": "first-name",
+                                            "label": "First name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "last-name",
+                                            "label": "Last name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            },
+                            "remove_block": {
+                                "id": "remove-person",
+                                "type": "ListRemoveQuestion",
+                                "question": {
+                                    "id": "remove-question",
+                                    "type": "General",
+                                    "title": "Are you sure you want to remove this person?",
+                                    "answers": [
+                                        {
+                                            "id": "remove-confirmation",
+                                            "mandatory": true,
+                                            "type": "Radio",
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "id": "summary",
+                            "type": "Summary"
                         }
                     ]
-                },
-                {
-                    "id": "list-collector",
-                    "type": "ListCollector",
-                    "for_list": "people",
-                    "add_answer": {
-                        "id": "anyone-else",
-                        "value": "Yes"
-                    },
-                    "remove_answer": {
-                        "id": "remove-confirmation",
-                        "value": "Yes"
-                    },
-                    "question": {
-                        "id": "confirmation-question",
-                        "type": "General",
-                        "title": "Does anyone else live here?",
-                        "answers": [{
-                            "id": "anyone-else",
-                            "mandatory": true,
-                            "type": "Radio",
-                            "options": [{
-                                    "label": "Yes",
-                                    "value": "Yes"
-                                },
-                                {
-                                    "label": "No",
-                                    "value": "No"
-                                }
-                            ]
-                        }]
-                    },
-                    "add_block": {
-                        "id": "add-person",
-                        "type": "ListAddQuestion",
-                        "question": {
-                            "id": "add-question",
-                            "type": "General",
-                            "title": "What is the name of the person?",
-                            "answers": [{
-                                    "id": "first-name",
-                                    "label": "First name",
-                                    "mandatory": true,
-                                    "type": "TextField"
-                                },
-                                {
-                                    "id": "last-name",
-                                    "label": "Last name",
-                                    "mandatory": true,
-                                    "type": "TextField"
-                                }
-                            ]
-                        }
-                    },
-                    "edit_block": {
-                        "id": "edit-person",
-                        "type": "ListEditQuestion",
-                        "question": {
-                            "id": "edit-question",
-                            "type": "General",
-                            "title": {
-                                "text": "Change details for {first_name} {last_name}",
-                                "placeholders": [{
-                                        "placeholder": "first_name",
-                                        "value": {
-                                            "source": "answers",
-                                            "identifier": "first-name"
-                                        }
-                                    },
-                                    {
-                                        "placeholder": "last_name",
-                                        "value": {
-                                            "source": "answers",
-                                            "identifier": "last-name"
-                                        }
-                                    }
-                                ]
-                            },
-                            "answers": [{
-                                    "id": "first-name",
-                                    "label": "First name",
-                                    "mandatory": true,
-                                    "type": "TextField"
-                                },
-                                {
-                                    "id": "last-name",
-                                    "label": "Last name",
-                                    "mandatory": true,
-                                    "type": "TextField"
-                                }
-                            ]
-                        }
-                    },
-                    "remove_block": {
-                        "id": "remove-person",
-                        "type": "ListRemoveQuestion",
-                        "question": {
-                            "id": "remove-question",
-                            "type": "General",
-                            "title": "Are you sure you want to remove this person?",
-                            "answers": [{
-                                "id": "remove-confirmation",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }]
-                        }
-                    }
-                },
-                {
-                    "id": "summary",
-                    "type": "Summary"
                 }
             ]
-        }]
-    }]
+        }
+    ]
 }

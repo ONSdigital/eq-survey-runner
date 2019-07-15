@@ -37,3 +37,6 @@ insert_final_newline = false
 
 [*.{js,scss,html,jsonnet}]
 indent_size = 2
+
+[Makefile]
+indent_style = tab

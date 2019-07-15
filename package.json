@@ -14,10 +14,10 @@
     "start": "make dev-compose-up && concurrently \"make run\" \"livereload . -e 'html,njk'\"",
     "lint": "yarn lint:tests && yarn lint:data-source",
     "lint:tests": "rm -rf ./tests/functional/generated_pages && eslint tests/functional --fix",
-    "lint:data-source": "eslint data-source/json/*.json",
+    "lint:data-source": "eslint data-source/json/*.json --fix",
     "test_functional": "chimp tests/functional/chimp.js",
     "generate_pages": "rm -rf ./tests/functional/generated_pages && cd tests/functional && pipenv run ./generate_pages.py ../../data/en/ ./generated_pages -r '../../base_pages' && cd ../..",
-    "format": "yarn format:json && yarn format:python",
+    "format": "yarn format:data-source && yarn format:python",
     "format:data-source": "prettier data-source/json/*.json --write",
     "format:python": "pipenv run black app tests",
     "lint-staged": "lint-staged"
