@@ -20,6 +20,8 @@ PAYLOAD = {
     'trad_as': 'Integration Tests',
     'employment_date': '1983-06-02',
     'region_code': 'GB-ENG',
+    'channel': 'RH',
+    'case_type': 'HI',
     'language_code': 'en',
     'roles': [],
     'account_service_url': 'http://upstream.url',

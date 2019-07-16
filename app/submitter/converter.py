@@ -35,19 +35,21 @@ def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
         'submitted_at': '2016-03-07T15:28:05Z',
         'response_id': '1234567890123456',
         'questionnaire_id': '1234567890000000',
+        'channel': 'RH',
         'metadata': {
           'user_id': '789473423',
           'ru_ref': '432423423423'
         },
-        'data': {
+        'data': [
             ...
-        },
+        ],
       }
     ```
 
     Args:
         schema: QuestionnaireSchema instance with populated schema json
-        full_routing_path: The full routing path followed by the user when answering the questionnaire
+        questionnaire_store: EncryptedQuestionnaireStorage instance for accessing current questionnaire data
+        routing_path: The full routing path followed by the user when answering the questionnaire
         flushed: True when system submits the users answers, False when submitted by user.
     Returns:
         Data payload
@@ -74,6 +76,12 @@ def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
         'questionnaire_id': metadata['questionnaire_id'],
     }
 
+    if metadata.get('channel'):
+        payload['channel'] = metadata['channel']
+    if metadata.get('case_type'):
+        payload['case_type'] = metadata['case_type']
+    if metadata.get('region_code'):
+        payload['region_code'] = metadata['region_code']
     if collection_metadata.get('started_at'):
         payload['started_at'] = collection_metadata['started_at']
     if metadata.get('case_id'):
