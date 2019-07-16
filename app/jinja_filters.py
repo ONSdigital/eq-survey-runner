@@ -193,7 +193,9 @@ def setAttributes(dictionary, attributes):
 def should_wrap_with_fieldset(question):
     answers = question['answers']
 
-    if len(answers) > 1 and not any(answer['type'] == 'Date' for answer in answers):
+    if len(answers) > 1 and not any(
+        answer['type'] in {'Date', 'MonthYearDate', 'Duration'} for answer in answers
+    ):
         return True
 
     return False
