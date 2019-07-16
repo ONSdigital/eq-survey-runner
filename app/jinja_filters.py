@@ -350,8 +350,12 @@ class SummaryAction:
         self.ariaLabel = edit_link_aria_label + ' ' + answer_title
         self.url = block['link'] + '#' + answer['id']
 
-        qa_attribute = answer['id'] + '-edit'
-        self.attributes = dict(**{'data-qa': qa_attribute})
+        self.attributes = {
+            'data-qa': answer['id'] + '-edit',
+            'data-ga': 'click',
+            'data-ga-category': 'Summary',
+            'data-ga-action': 'Edit click',
+        }
 
 
 class SummaryRowItemValue:
