@@ -8,13 +8,13 @@ local question(title) = {
   answers: [
     {
       id: 'last-year-address-answer-building',
-      label: 'House name or number',
+      label: 'Address line 1',
       mandatory: false,
       type: 'TextField',
     },
     {
       id: 'last-year-address-answer-street',
-      label: 'Street',
+      label: 'Address line 2',
       mandatory: false,
       type: 'TextField',
     },
