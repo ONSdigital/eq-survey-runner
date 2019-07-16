@@ -8,7 +8,6 @@ from ua_parser import user_agent_parser
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
 from app.helpers.template_helper import render_template
-from app.libs.utils import convert_tx_id_for_boxes
 from app.submitter.submission_failed import SubmissionFailedException
 
 
@@ -18,14 +17,9 @@ errors_blueprint = Blueprint('errors', __name__)
 
 
 @errors_blueprint.app_errorhandler(401)
+@errors_blueprint.app_errorhandler(CSRFError)
 @errors_blueprint.app_errorhandler(NoTokenException)
 def unauthorized(error=None):
-    log_exception(error, 401)
-    return _render_error_page(401, 'session-expired')
-
-
-@errors_blueprint.app_errorhandler(CSRFError)
-def csrf_error(error=None):
     log_exception(error, 401)
     return _render_error_page(401, 'session-expired')
 
@@ -37,11 +31,6 @@ def forbidden(error=None):
 
 
 @errors_blueprint.app_errorhandler(SubmissionFailedException)
-def service_unavailable(error=None):
-    log_exception(error, 503)
-    return _render_error_page(503)
-
-
 @errors_blueprint.app_errorhandler(Exception)
 def internal_server_error(error=None):
     log_exception(error, 500)
@@ -69,21 +58,7 @@ def log_exception(error, status_code):
 
 
 def _render_error_page(status_code, template=None):
-    tx_id = get_tx_id()
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
-    template = template or 'error'
+    template = template or status_code
 
-    return (
-        render_template(
-            template=template, status_code=status_code, ua=user_agent, tx_id=tx_id
-        ),
-        status_code,
-    )
-
-
-def get_tx_id():
-    tx_id = None
-    metadata = get_metadata(current_user)
-    if metadata:
-        tx_id = convert_tx_id_for_boxes(metadata['tx_id'])
-    return tx_id
+    return render_template(template=f'errors/{template}', ua=user_agent), status_code

@@ -1,6 +1,7 @@
 {% import 'macros/helpers.html' as helpers %}
 {% set form = content.form %}
-{% set invalid = form.answer_errors[answer.id] | length > 0 %}
+{% set errors = form.answer_errors[answer.id] %}
+{% from "components/error/_macro.njk" import onsError %}
 
 {% if render_guidance != False %}
   {%- set answer_guidance %}
@@ -16,29 +17,17 @@
   {% endset -%}
 {% endif %}
 
-{% if invalid %}
-  {% from "components/panel/_macro.njk" import onsPanel %}
-  {% set answer_id = answer.id %}
-
-  {% call onsPanel({
-    "type": "error",
+{% if errors | length > 0 %}
+  {% set error = {
+    "text": errors[0],
     "attributes": {
-      "data-qa": "error"
+      "data-ga": "error",
+      "data-ga-category": "Error",
+      "data-ga-action": errors[0],
+      "data-ga-label": question.id
     }
-  }) %}
-    <ul class="list list--bare list--errors">
-      {% for field_error in form.answer_errors[answer_id] %}
-        <li class="list__item u-fs-r--b" {{ helpers.track('error', 'Error', field_error, question.id) }}>{{ field_error }}</li>
-      {% endfor %}
-    </ul>
-    <div data-qa="error-body">
-      {% include 'partials/answers/' ~ answer.type|lower ~ '.html' %}
-    </div>
-  {% endcall %}
-
-  {{answer_guidance}}
-
-{% else %}
-  {% include 'partials/answers/' ~ answer.type|lower ~ '.html' %}
-  {{ answer_guidance }}
+  } %}
 {% endif %}
+
+{% include 'partials/answers/' ~ answer.type|lower ~ '.html' %}
+{{ answer_guidance }}

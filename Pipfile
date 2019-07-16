@@ -57,7 +57,7 @@ marshmallow = "==3.0.0rc6"
 python-snappy = "*"
 google-cloud-storage = "*"
 jsonpointer = "*"
-redis = "*"
+redis = "==3.2.1"
 flask-compress = "*"
 htmlmin = "*"
 docker = "*"
@@ -66,5 +66,5 @@ coloredlogs = "*"
 [requires]
 python_version = "3.7"
 
-[pipenv]	
+[pipenv]
 allow_prereleases = false
