@@ -93,7 +93,7 @@ class TestRouter(AppContextTestCase):
         previous_location_url = router.get_previous_location_url(
             current_location, routing_path
         )
-        expected_location_url = url_for('questionnaire.get_hub')
+        expected_location_url = url_for('questionnaire.get_questionnaire')
 
         self.assertEqual(previous_location_url, expected_location_url)
 

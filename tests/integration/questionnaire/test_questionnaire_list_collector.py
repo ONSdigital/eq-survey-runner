@@ -32,7 +32,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.get('/questionnaire/people/123/add-person')
 
-        self.assertInBody('Error 404')
+        self.assertInUrl('/questionnaire/list-collector')
 
     def test_invalid_block(self):
         self.launchSurvey('test_list_collector')

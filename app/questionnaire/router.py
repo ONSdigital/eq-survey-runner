@@ -38,19 +38,20 @@ class Router:
         current_block_type = self._schema.get_block(location.block_id)['type']
         last_block_location = routing_path[-1]
         last_block_type = self._schema.get_block(last_block_location.block_id)['type']
+        section_id = self._schema.get_section_id_for_block_id(location.block_id)
 
         if (
             self._schema.is_hub_enabled()
             and location.block_id == last_block_location.block_id
-            and path_finder.is_path_complete(routing_path)
+            and section_id in self._progress_store.completed_section_ids
         ):
-            return url_for('.get_hub')
+            return url_for('.get_questionnaire')
 
         # If the section is complete and contains a SectionSummary, return the SectionSummary location
         if (
             last_block_type == 'SectionSummary'
             and current_block_type != last_block_type
-            and path_finder.is_path_complete(routing_path)
+            and section_id in self._progress_store.completed_section_ids
         ):
             return last_block_location.url()
 
@@ -71,14 +72,6 @@ class Router:
         """
         Returns the previous 'location' to visit given a set of user answers
         """
-
-        block_id = location.block_id
-
-        if self._schema.is_block_list_collector_child(block_id):
-            # If this is a list collector sub block, return the collector in the previous link
-            block = self._schema.get_block(block_id)
-            return Location(block_id=block['parent_id']).url()
-
         location_index = routing_path.index(location)
 
         if location_index != 0:
@@ -94,7 +87,7 @@ class Router:
             return previous_location.url()
 
         if self._schema.is_hub_enabled():
-            return url_for('questionnaire.get_hub')
+            return url_for('questionnaire.get_questionnaire')
 
         return None
 
