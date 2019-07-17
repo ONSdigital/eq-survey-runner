@@ -12,10 +12,18 @@ local placeholders = import '../../../../common/lib/placeholders.libsonnet';
       ],
     },
     type: 'General',
+    definitions: [{
+      title: 'What is a communal establishment?',
+      contents: [
+        {
+          description: 'A communal establishment is a place providing managed residential accommodation. “Managed” here means full-time or part-time supervision of the accommodation',
+        },
+      ],
+    }],
     answers: [
       {
         id: 'accommodation-type-answer',
-        mandatory: false,
+        mandatory: true,
         options: [
           {
             label: 'A communal establishment',
@@ -31,24 +39,4 @@ local placeholders = import '../../../../common/lib/placeholders.libsonnet';
       },
     ],
   },
-  skip_conditions: [
-    {
-      when: [
-        {
-          meta: 'case_type',
-          condition: 'equals',
-          value: 'HI',
-        },
-      ],
-    },
-    {
-      when: [
-        {
-          meta: 'case_type',
-          condition: 'equals',
-          value: 'CI',
-        },
-      ],
-    },
-  ],
 }
