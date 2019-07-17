@@ -24,31 +24,24 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle(census_date) = {
-  text: 'Did you arrive in the UK, on or after {census_date}',
-  placeholders: [
-    placeholders.censusDate(census_date),
-  ],
-};
-
-local proxyTitle(census_date) = {
-  text: 'Did <em>{person_name}</em> arrive in the UK, on or after {census_date}',
+local nonProxyTitle = 'Did you arrive in the UK, on or after 13 October 2018';
+local proxyTitle = {
+  text: 'Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018',
   placeholders: [
     placeholders.personName,
-    placeholders.censusDate(census_date),
   ],
 };
 
-function(region_code, census_date) {
+function(region_code) {
   type: 'Question',
   id: 'when-arrive-in-uk',
   question_variants: [
     {
-      question: question(nonProxyTitle(census_date)),
+      question: question(nonProxyTitle),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle(census_date)),
+      question: question(proxyTitle),
       when: [rules.proxyYes],
     },
   ],

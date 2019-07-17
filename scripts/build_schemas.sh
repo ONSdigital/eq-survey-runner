@@ -8,13 +8,18 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
     FORMATTED_REGION_CODE=$(echo "${region_code}" | tr '[:upper:]' '[:lower:]' | tr - _)
     DESTINATION_FILE="data-source/jsonnet/census_individual_${FORMATTED_REGION_CODE}.json"
 
+    CENSUS_DATE="2019-10-13"
+    CENSUS_MONTH_YEAR_DATE="2019-10"
+
     if [[ "$region_code" = "GB-NIR" ]]; then
         SOURCE_FILE="data-source/jsonnet/northern-ireland/census_individual.jsonnet"
+
+        jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
     else
         SOURCE_FILE="data-source/jsonnet/england-wales/census_individual.jsonnet"
-    fi
 
-    jsonnet --tla-str region_code="${region_code}" --tla-str census_date="2019-06-20" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
+        jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" --tla-str census_month_year_date="${CENSUS_MONTH_YEAR_DATE}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
+    fi
 
     echo "Built ${DESTINATION_FILE}"
 done

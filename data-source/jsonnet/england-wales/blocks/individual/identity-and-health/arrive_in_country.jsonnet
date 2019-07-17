@@ -14,9 +14,6 @@ local question(title) = {
       minimum: {
         answer_id: 'date-of-birth-answer',
       },
-      maximum: {
-        value: 'now',
-      },
     },
   ],
 };
@@ -29,7 +26,7 @@ local proxyTitle = {
   ],
 };
 
-function(region_code, census_date) {
+function(region_code, census_month_year_date) {
   type: 'Question',
   id: 'arrive-in-country',
   question_variants: [
@@ -45,13 +42,13 @@ function(region_code, census_date) {
   routing_rules: [
     {
       goto: {
-        block: 'length-of-stay',
+        block: 'when-arrive-in-uk',
         when: [
           {
             id: 'arrive-in-country-answer',
-            condition: 'greater than',
+            condition: 'equals',
             date_comparison: {
-              value: census_date,
+              value: census_month_year_date,
               offset_by: {
                 years: -1,
               },
@@ -62,13 +59,13 @@ function(region_code, census_date) {
     },
     {
       goto: {
-        block: 'when-arrive-in-uk',
+        block: 'length-of-stay',
         when: [
           {
             id: 'arrive-in-country-answer',
-            condition: 'equals',
+            condition: 'greater than',
             date_comparison: {
-              value: census_date,
+              value: census_month_year_date,
               offset_by: {
                 years: -1,
               },
@@ -81,6 +78,16 @@ function(region_code, census_date) {
       goto: {
         block: 'national-identity',
         when: [
+          {
+            id: 'arrive-in-country-answer',
+            condition: 'less than',
+            date_comparison: {
+              value: census_month_year_date,
+              offset_by: {
+                years: -1,
+              },
+            },
+          },
           rules.under3,
         ],
       },
@@ -88,23 +95,6 @@ function(region_code, census_date) {
     {
       goto: {
         block: if region_code == 'GB-WLS' then 'understand-welsh' else 'language',
-        when: [
-          {
-            id: 'arrive-in-country-answer',
-            condition: 'less than',
-            date_comparison: {
-              value: census_date,
-              offset_by: {
-                years: -1,
-              },
-            },
-          },
-        ],
-      },
-    },
-    {
-      goto: {
-        block: 'when-arrive-in-uk',
       },
     },
   ],
