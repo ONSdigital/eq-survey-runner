@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-18 14:07+0000\n"
+"POT-Creation-Date: 2019-07-22 12:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,7 +130,7 @@ msgid ""
 " teaching or nursing"
 msgstr ""
 
-msgid "Questions on other NVQs, A levels, GCSEs and equivalents will follow"
+msgid "Questions on GCSEs, A levels, other NVQs and equivalents will follow"
 msgstr ""
 
 msgid ""
@@ -144,22 +144,22 @@ msgstr ""
 msgid "For example BTEC General, City and Guilds Craft"
 msgstr ""
 
-msgid "Questions on A levels and GCSEs and equivalents will follow"
-msgstr ""
-
 msgid "Include 4 or more AS levels"
 msgstr ""
 
 msgid "Include 2 or 3 AS levels"
 msgstr ""
 
-msgid "Questions on GCSEs and equivalents will follow"
+msgid "Questions on NVQs and equivalents will follow"
 msgstr ""
 
 msgid "Include 5 or more O level passes or CSEs grades 1"
 msgstr ""
 
 msgid "Include any other O levels or CSEs at any grades"
+msgstr ""
+
+msgid "Questions on A levels, NVQs and equivalents will follow"
 msgstr ""
 
 msgid "For example, trade, advanced, foundation or modern apprenticeships"

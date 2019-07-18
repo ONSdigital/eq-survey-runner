@@ -34,7 +34,7 @@ local question(title) = {
         {
           label: 'No',
           value: 'No',
-          description: 'Questions on other NVQs, A levels, GCSEs and equivalents will follow',
+          description: 'Questions on GCSEs, A levels, other NVQs and equivalents will follow',
         },
       ],
     },
