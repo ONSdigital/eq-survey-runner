@@ -1,4 +1,4 @@
-local placeholders = import '../../../../common/lib/placeholders.libsonnet';
+local placeholders = import '../../../lib/placeholders.libsonnet';
 
 {
   type: 'Question',

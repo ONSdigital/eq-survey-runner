@@ -1,5 +1,5 @@
-local placeholders = import '../../../../common/lib/placeholders.libsonnet';
-local rules = import '../../../../common/lib/rules.libsonnet';
+local placeholders = import '../../../lib/placeholders.libsonnet';
+local rules = import '../../../lib/rules.libsonnet';
 
 local question(title, census_date) = {
   id: 'date-of-birth-question',

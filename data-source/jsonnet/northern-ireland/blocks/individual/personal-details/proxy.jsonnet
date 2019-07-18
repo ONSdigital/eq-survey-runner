@@ -3,21 +3,21 @@
   id: 'proxy',
   question: {
     id: 'proxy-question',
-    title: 'Are you answering the questions on behalf of someone else?',
+    title: 'Are you answering these questions for yourself or for someone else?',
     type: 'General',
     answers: [
       {
         id: 'proxy-answer',
         mandatory: false,
-        default: 'Yes',
+        default: 'For someone else',
         options: [
           {
-            label: 'No, I’m answering for myself',
-            value: 'No',
+            label: 'For myself',
+            value: 'For myself',
           },
           {
-            label: 'Yes',
-            value: 'Yes',
+            label: 'For someone else',
+            value: 'For someone else',
           },
         ],
         type: 'Radio',

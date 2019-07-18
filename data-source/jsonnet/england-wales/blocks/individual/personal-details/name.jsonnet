@@ -1,4 +1,4 @@
-local rules = import '../../../../common/lib/rules.libsonnet';
+local rules = import '../../../lib/rules.libsonnet';
 
 local question(title) = {
   id: 'name-question',
