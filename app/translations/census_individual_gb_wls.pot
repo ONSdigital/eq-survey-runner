@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-24 12:07+0000\n"
+"POT-Creation-Date: 2019-07-24 13:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -288,10 +288,20 @@ msgid ""
 "served in the armed forces, and their families, are not disadvantaged."
 msgstr ""
 
-msgid "Current serving members should select “No”"
+msgid "Current serving members should only select “No”"
+msgstr ""
+
+msgid ""
+"Freelance means that you are self-employed and work for different "
+"companies or people on particular pieces of work"
 msgstr ""
 
 msgid "Include casual or temporary work, even if only for one hour"
+msgstr ""
+
+msgid ""
+"Freelance means that they are self-employed and work for different "
+"companies or people on particular pieces of work"
 msgstr ""
 
 msgid "Whether receiving a pension or not"
@@ -328,6 +338,16 @@ msgid "If they were self-employed in their own business, give the business name.
 msgstr ""
 
 msgid ""
+"For example, retail assistant, office cleaner, district nurse, primary "
+"school teacher. Do not state your grade or pay band"
+msgstr ""
+
+msgid ""
+"For example, retail assistant, office cleaner, district nurse, primary "
+"school teacher. Do not state their grade or pay band"
+msgstr ""
+
+msgid ""
 "For example, clothing retail, general hospital, primary education, food "
 "wholesale, civil service (Welsh Government), local government (housing)."
 msgstr ""
@@ -335,10 +355,14 @@ msgstr ""
 msgid "Include paid and unpaid overtime"
 msgstr ""
 
-msgid "Answer for the longest part, by distance, of your usual journey to work"
+msgid ""
+"Answer for the longest part, <em>by distance</em>, of your usual journey "
+"to work"
 msgstr ""
 
-msgid "Answer for the longest part, by distance, of their usual journey to work"
+msgid ""
+"Answer for the longest part, <em>by distance</em>, of their usual journey"
+" to work"
 msgstr ""
 
 msgid ""
@@ -489,9 +513,6 @@ msgstr ""
 msgid "Enter details of your address one year ago."
 msgstr ""
 
-msgid "Enter details of their address one year ago."
-msgstr ""
-
 msgid "What passports do you hold?"
 msgstr ""
 
@@ -605,10 +626,10 @@ msgstr ""
 msgid "What was your full job title?"
 msgstr ""
 
-msgid "Briefly describe what you do in your main job?"
+msgid "Briefly describe what you do in your main job."
 msgstr ""
 
-msgid "Briefly describe what you did in your main job?"
+msgid "Briefly describe what you did in your main job."
 msgstr ""
 
 msgid ""
@@ -798,6 +819,9 @@ msgstr ""
 msgid "One year ago, what was <em>{person_name_possessive}</em> usual address?"
 msgstr ""
 
+msgid "Enter details of <em>{person_name_possessive}</em> address one year ago."
+msgstr ""
+
 msgid "What passports does <em>{person_name}</em> hold?"
 msgstr ""
 
@@ -925,10 +949,10 @@ msgstr ""
 msgid "What was <em>{person_name_possessive}</em> full job title?"
 msgstr ""
 
-msgid "Briefly describe what <em>{person_name}</em> does in their main job?"
+msgid "Briefly describe what <em>{person_name}</em> does in their main job."
 msgstr ""
 
-msgid "Briefly describe what <em>{person_name}</em> did in their main job?"
+msgid "Briefly describe what <em>{person_name}</em> did in their main job."
 msgstr ""
 
 msgid ""
@@ -1327,7 +1351,7 @@ msgstr ""
 
 #. answer-id: another-address-answer-other-country
 msgctxt "Answer for: Do you stay at another address for more than 30 days a year?"
-msgid "Please specify a country"
+msgid "Please specify the country"
 msgstr ""
 
 #. answer-id: another-address-answer
@@ -1355,7 +1379,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Does <em>{person_name}</em> stay at another address for more "
 "than 30 days a year?"
-msgid "Please specify a country"
+msgid "Please specify the country"
 msgstr ""
 
 #. answer-id: other-address-answer-building
@@ -1632,7 +1656,7 @@ msgstr ""
 
 #. answer-id: term-time-address-country-answer-other
 msgctxt "Answer for: Is this address in the UK?"
-msgid "Please specify a country"
+msgid "Please specify the country"
 msgstr ""
 
 #. answer-id: term-time-address-details-answer-building
@@ -1737,7 +1761,7 @@ msgstr ""
 
 #. answer-id: country-of-birth-answer-other
 msgctxt "Answer for: What is your country of birth?"
-msgid "Please specify current name of country"
+msgid "Please specify the current name of the country"
 msgstr ""
 
 #. answer-id: country-of-birth-answer
@@ -1772,7 +1796,7 @@ msgstr ""
 
 #. answer-id: country-of-birth-answer-other
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
-msgid "Please specify current name of country"
+msgid "Please specify the current name of the country"
 msgstr ""
 
 #. answer-id: when-arrive-in-uk-answer
@@ -2354,14 +2378,14 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes your Black, Black British, Caribbean"
 " or African ethnic group or background?"
-msgid "Any Black, Black British or Caribbean background"
+msgid "Any other Black, Black British or Caribbean background"
 msgstr ""
 
 #. answer-id: black-ethnic-group-answer-other
 msgctxt ""
 "Answer for: Which one best describes your Black, Black British, Caribbean"
 " or African ethnic group or background?"
-msgid "Please specify Black, Black British, or Caribbean background"
+msgid "Please specify any other Black, Black British or Caribbean background"
 msgstr ""
 
 #. answer-id: black-ethnic-group-answer
@@ -2389,14 +2413,14 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes <em>{person_name_possessive}</em> "
 "Black, Black British, Caribbean or African ethnic group or background?"
-msgid "Any Black, Black British or Caribbean background"
+msgid "Any other Black, Black British or Caribbean background"
 msgstr ""
 
 #. answer-id: black-ethnic-group-answer-other
 msgctxt ""
 "Answer for: Which one best describes <em>{person_name_possessive}</em> "
 "Black, Black British, Caribbean or African ethnic group or background?"
-msgid "Please specify Black, Black British, or Caribbean background"
+msgid "Please specify any other Black, Black British or Caribbean background"
 msgstr ""
 
 #. answer-id: other-ethnic-group-answer
@@ -2548,7 +2572,7 @@ msgstr ""
 
 #. answer-id: past-usual-address-household-answer-other
 msgctxt "Answer for: One year ago, what was your usual address?"
-msgid "Please enter the country"
+msgid "Please specify the country"
 msgstr ""
 
 #. answer-id: past-usual-address-household-answer
@@ -2576,7 +2600,7 @@ msgstr ""
 msgctxt ""
 "Answer for: One year ago, what was <em>{person_name_possessive}</em> "
 "usual address?"
-msgid "Please enter the country"
+msgid "Please specify the country"
 msgstr ""
 
 #. answer-id: last-year-address-answer-building
@@ -2605,27 +2629,37 @@ msgid "Postcode"
 msgstr ""
 
 #. answer-id: last-year-address-answer-building
-msgctxt "Answer for: Enter details of their address one year ago."
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> address "
+"one year ago."
 msgid "Address line 1"
 msgstr ""
 
 #. answer-id: last-year-address-answer-street
-msgctxt "Answer for: Enter details of their address one year ago."
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> address "
+"one year ago."
 msgid "Address line 2"
 msgstr ""
 
 #. answer-id: last-year-address-answer-city
-msgctxt "Answer for: Enter details of their address one year ago."
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> address "
+"one year ago."
 msgid "Town or city"
 msgstr ""
 
 #. answer-id: last-year-address-answer-county
-msgctxt "Answer for: Enter details of their address one year ago."
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> address "
+"one year ago."
 msgid "County (optional)"
 msgstr ""
 
 #. answer-id: last-year-address-answer-postcode
-msgctxt "Answer for: Enter details of their address one year ago."
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> address "
+"one year ago."
 msgid "Postcode"
 msgstr ""
 
@@ -3634,7 +3668,7 @@ msgstr ""
 msgctxt ""
 "Answer for: What is the name of the organisation or business "
 "<em>{person_name}</em> works for?"
-msgid "No organisation or work for a private individual"
+msgid "No organisation or works for a private individual"
 msgstr ""
 
 #. answer-id: business-name-answer
@@ -3686,34 +3720,34 @@ msgid "Job title"
 msgstr ""
 
 #. answer-id: job-description-answer
-msgctxt "Answer for: Briefly describe what you do in your main job?"
-msgid "Description"
+msgctxt "Answer for: Briefly describe what you do in your main job."
+msgid "Job description"
 msgstr ""
 
 #. answer-id: job-description-answer
 msgctxt ""
 "Answer for: Briefly describe what <em>{person_name}</em> does in their "
-"main job?"
-msgid "Description"
+"main job."
+msgid "Job description"
 msgstr ""
 
 #. answer-id: job-description-answer
-msgctxt "Answer for: Briefly describe what you did in your main job?"
-msgid "Description"
+msgctxt "Answer for: Briefly describe what you did in your main job."
+msgid "Job description"
 msgstr ""
 
 #. answer-id: job-description-answer
 msgctxt ""
 "Answer for: Briefly describe what <em>{person_name}</em> did in their "
-"main job?"
-msgid "Description"
+"main job."
+msgid "Job description"
 msgstr ""
 
 #. answer-id: employers-business-answer
 msgctxt ""
 "Answer for: What is the main activity of your organisation, business or "
 "freelance work?"
-msgid "Description"
+msgid "Main activity"
 msgstr ""
 
 #. answer-id: employers-business-answer
@@ -3721,14 +3755,14 @@ msgctxt ""
 "Answer for: What is the main activity of "
 "<em>{person_name_possessive}</em> organisation, business or freelance "
 "work?"
-msgid "Description"
+msgid "Main activity"
 msgstr ""
 
 #. answer-id: employers-business-answer
 msgctxt ""
 "Answer for: What was the main activity of your organisation, business or "
 "freelance work?"
-msgid "Description"
+msgid "Main activity"
 msgstr ""
 
 #. answer-id: employers-business-answer
@@ -3736,7 +3770,7 @@ msgctxt ""
 "Answer for: What was the main activity of "
 "<em>{person_name_possessive}</em> organisation, business or freelance "
 "work?"
-msgid "Description"
+msgid "Main activity"
 msgstr ""
 
 #. answer-id: supervise-answer

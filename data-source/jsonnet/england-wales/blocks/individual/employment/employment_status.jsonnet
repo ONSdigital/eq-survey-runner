@@ -1,7 +1,7 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title) = {
+local question(title, description) = {
   id: 'employment-status-question',
   title: title,
   type: 'MutuallyExclusive',
@@ -26,6 +26,7 @@ local question(title) = {
         {
           label: 'Self-employed or freelance',
           value: 'Self-employed or freelance',
+          description: description,
         },
         {
           label: 'Temporarily away from work ill, on holiday or temporarily laid off',
@@ -63,16 +64,19 @@ local proxyTitle = {
   ],
 };
 
+local nonProxyAnswerDescription = 'Freelance means that you are self-employed and work for different companies or people on particular pieces of work';
+local proxyAnswerDescription = 'Freelance means that they are self-employed and work for different companies or people on particular pieces of work';
+
 {
   type: 'Question',
   id: 'employment-status',
   question_variants: [
     {
-      question: question(nonProxyTitle),
+      question: question(nonProxyTitle, nonProxyAnswerDescription),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle),
+      question: question(proxyTitle, proxyAnswerDescription),
       when: [rules.proxyYes],
     },
   ],

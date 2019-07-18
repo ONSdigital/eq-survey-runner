@@ -9,6 +9,16 @@
     condition: 'equals',
     value: 'Yes',
   },
+  over19: {
+    id: 'date-of-birth-answer',
+    condition: 'less than or equal to',
+    date_comparison: {
+      value: 'now',
+      offset_by: {
+        years: -19,
+      },
+    },
+  },
   over16: {
     id: 'date-of-birth-answer',
     condition: 'less than or equal to',

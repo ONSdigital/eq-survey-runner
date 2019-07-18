@@ -21,7 +21,7 @@
               id: 'term-time-address-country-answer-other',
               type: 'TextField',
               mandatory: false,
-              label: 'Please specify a country',
+              label: 'Please specify the country',
             },
           },
         ],

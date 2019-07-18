@@ -40,7 +40,12 @@ local question(title) = {
 };
 
 local nonProxyTitle = 'Enter details of your address one year ago.';
-local proxyTitle = 'Enter details of their address one year ago.';
+local proxyTitle = {
+  text: 'Enter details of <em>{person_name_possessive}</em> address one year ago.',
+  placeholders: [
+    placeholders.personNamePossessive,
+  ],
+};
 
 {
   type: 'Question',

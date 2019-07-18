@@ -8,24 +8,24 @@ local question(title) = {
   answers: [
     {
       id: 'job-description-answer',
-      label: 'Description',
+      label: 'Job description',
       mandatory: false,
       type: 'TextField',
     },
   ],
 };
 
-local nonProxyTitle = 'Briefly describe what you do in your main job?';
+local nonProxyTitle = 'Briefly describe what you do in your main job.';
 local proxyTitle = {
-  text: 'Briefly describe what <em>{person_name}</em> does in their main job?',
+  text: 'Briefly describe what <em>{person_name}</em> does in their main job.',
   placeholders: [
     placeholders.personName,
   ],
 };
 
-local pastNonProxyTitle = 'Briefly describe what you did in your main job?';
+local pastNonProxyTitle = 'Briefly describe what you did in your main job.';
 local pastProxyTitle = {
-  text: 'Briefly describe what <em>{person_name}</em> did in their main job?',
+  text: 'Briefly describe what <em>{person_name}</em> did in their main job.',
   placeholders: [
     placeholders.personName,
   ],

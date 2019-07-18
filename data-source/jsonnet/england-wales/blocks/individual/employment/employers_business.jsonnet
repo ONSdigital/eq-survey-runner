@@ -30,7 +30,7 @@ local question(title, region_code) = (
     answers: [
       {
         id: 'employers-business-answer',
-        label: 'Description',
+        label: 'Main activity',
         mandatory: false,
         type: 'TextField',
       },
