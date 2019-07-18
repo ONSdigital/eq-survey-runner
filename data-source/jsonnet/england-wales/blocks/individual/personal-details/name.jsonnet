@@ -58,32 +58,9 @@ local proxyTitle = 'What is their name?';
         block: 'date-of-birth',
         when: [
           {
-            meta: 'case_type',
-            condition: 'equals',
-            value: 'HI',
-          },
-        ],
-      },
-    },
-    {
-      goto: {
-        block: 'date-of-birth',
-        when: [
-          {
             id: 'accommodation-type-answer',
             condition: 'equals',
             value: 'A private or family household',
-          },
-        ],
-      },
-    },
-    {
-      goto: {
-        block: 'date-of-birth',
-        when: [
-          {
-            id: 'accommodation-type-answer',
-            condition: 'not set',
           },
         ],
       },

@@ -89,15 +89,9 @@ function(region_code, census_date) {
       type: 'string',
     },
     {
-      name: 'case_type',
-      type: 'string',
-      optional: true,
-    },
-    {
       name: 'display_address',
       type: 'string',
     },
-
   ],
   sections: [
     {
