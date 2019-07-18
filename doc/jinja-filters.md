@@ -93,13 +93,13 @@ Output:
 ```
 
 ## format_date
-Formats a date string, which can be in the format "YYYY-MM-DD", "YYYY-MM" or "YYYY".
-The output will be of the form "d MMMM YYYY", "MMMM YYYY" or "YYYY" depending on value passed.
+Formats a date string, which can be in the format "yyyy-MM-DD", "yyyy-MM" or "yyyy".
+The output will be of the form "d MMMM yyyy", "MMMM yyyy" or "yyyy" depending on value passed.
 If the value is not a string it will just return the initial value.
 Uses Babel's [format_date](http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_date).
 
 ##### Parameters: 
-- value:    String value representing a datetime. Allowable formats "YYYY-MM-DD", "YYYY-MM" or "YYYY".
+- value:    String value representing a datetime. Allowable formats "yyyy-MM-DD", "yyyy-MM" or "yyyy".
 
 ##### Context:
 Used when a date is used in a question.
@@ -121,14 +121,14 @@ Returns a date in a defined format. In most cases in order to include the day of
 Uses Babel's [format_datetime](http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_datetime).
 
 ##### Parameters: 
-- value:        String value representing a datetime. Allowable formats "YYYY-MM-DD".
-- date_format:  Format of the date to return. Default 'EEEE d MMMM YYYY'
+- value:        String value representing a datetime. Allowable formats "yyyy-MM-DD".
+- date_format:  Format of the date to return. Default 'EEEE d MMMM yyyy'
 
 ##### Context:
 Used in LMS for both Questions and Options in order to add day of week to a date. 
 Often combined with `calculate_offset_from_weekday_in_last_whole_week` filter.
 ```
-Did you have a paid job, either as an employee or self-employed, in the week {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM YYYY' ) }} to {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU') | format_date_custom( 'EEEE d MMMM YYYY' ) }}
+Did you have a paid job, either as an employee or self-employed, in the week {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM yyyy' ) }} to {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU') | format_date_custom( 'EEEE d MMMM yyyy' ) }}
  
 As an option:
 {{calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'MO') | format_date_custom('EEEE dd MMMM') }}
@@ -137,10 +137,10 @@ As an option:
 ##### Examples:
 ```
 Input:                              Output:
-("2018-08-14", "EEEE d MMMM YYYY")  "<span class='date'>Tuesday 14 August 2018</span>"
+("2018-08-14", "EEEE d MMMM yyyy")  "<span class='date'>Tuesday 14 August 2018</span>"
 ("2018-08-14", "EEEE d MMMM")       "<span class='date'>Tuesday 14 August</span>"
 ("2018-08-14", "EEEE d")            "<span class='date'>Tuesday 14</span>"
-("2018-08-14", "d MMMM YYYY")       "<span class='date'>14 August 2018</span>"
+("2018-08-14", "d MMMM yyyy")       "<span class='date'>14 August 2018</span>"
 ```
 
 ## format_conditional_date
@@ -233,24 +233,24 @@ If the dates are in the same month and year, the first year (YYYY) and month wil
 ##### Parameters: 
 - start_date:   Initial date in range.
 - end_date:     Final date in range.
-- date_format:  Format to return date in. Default is 'd MMMM YYYY'.
+- date_format:  Format to return date in. Default is 'd MMMM yyyy'.
 
 ##### Context:
 Used in LMS to simplify dates when often they are only a week apart.
 ```
-Did you have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?
+Did you have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM yyyy') }}?
 ```
 
 ##### Examples:
 ```
 Input:                                              Output:
-("2018-08-14", "2018-08-16", "EEEE d MMMM YYYY")    "<span class='date'>Tuesday 14</span> to <span class='date'>Thursday 16 August 2018</span>"
-("2018-07-31", "2018-08-16", "EEEE d MMMM YYYY")    "<span class='date'>Tuesday 31 July</span> to <span class='date'>Thursday 16 August 2018</span>"
-("2017-12-31", "2018-08-16", "EEEE d MMMM YYYY")    "<span class='date'>Sunday 31 December 2017</span> to <span class='date'>Thursday 16 August 2018</span>"
-("2017-12-31", "2018-08-16", "MMMM YYYY")           "<span class='date'>December 2017</span> to <span class='date'>August 2018</span>"
-("2018-08-14", "2018-08-16", "MMMM YYYY")           "<span class='date'>August 2018</span> to <span class='date'>August 2018</span>"
-("2017-12-31", "2018-08-16", "YYYY")                "<span class='date'>2017</span> to <span class='date'>2018</span>"
-("2017-07-31", "2018-08-16", "YYYY")                "<span class='date'>2017</span> to <span class='date'>2018</span>"
+("2018-08-14", "2018-08-16", "EEEE d MMMM yyyy")    "<span class='date'>Tuesday 14</span> to <span class='date'>Thursday 16 August 2018</span>"
+("2018-07-31", "2018-08-16", "EEEE d MMMM yyyy")    "<span class='date'>Tuesday 31 July</span> to <span class='date'>Thursday 16 August 2018</span>"
+("2017-12-31", "2018-08-16", "EEEE d MMMM yyyy")    "<span class='date'>Sunday 31 December 2017</span> to <span class='date'>Thursday 16 August 2018</span>"
+("2017-12-31", "2018-08-16", "MMMM yyyy")           "<span class='date'>December 2017</span> to <span class='date'>August 2018</span>"
+("2018-08-14", "2018-08-16", "MMMM yyyy")           "<span class='date'>August 2018</span> to <span class='date'>August 2018</span>"
+("2017-12-31", "2018-08-16", "yyyy")                "<span class='date'>2017</span> to <span class='date'>2018</span>"
+("2017-07-31", "2018-08-16", "yyyy")                "<span class='date'>2017</span> to <span class='date'>2018</span>"
 ("2018-08-14", "2018-08-16", "EEEE d")              "<span class='date'>Tuesday 14</span> to <span class='date'>Thursday 16</span>"
 ```
 

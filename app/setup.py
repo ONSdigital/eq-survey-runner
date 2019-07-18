@@ -208,8 +208,10 @@ def get_database_uri(application):
 
 def setup_database(application):
     application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    application.config['SQLALCHEMY_POOL_RECYCLE'] = 60
     application.config['SQLALCHEMY_DATABASE_URI'] = get_database_uri(application)
+    application.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+        'pool_recycle': 60,
+    }
 
     with application.app_context():
         db.init_app(application)
@@ -362,7 +364,6 @@ def add_safe_health_check(application):
 
 
 def versioned_url_for(endpoint, **values):
-
     if endpoint == 'static':
         filename = values.get('filename', None)
         if filename:

@@ -903,10 +903,10 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
     def test_format_date_custom(self):
         test_cases = [
             # Input Date, date format, show year
-            ('2018-08-14', 'EEEE d MMMM YYYY', 'Tuesday 14 August 2018'),
+            ('2018-08-14', 'EEEE d MMMM yyyy', 'Tuesday 14 August 2018'),
             ('2018-08-14', 'EEEE d MMMM', 'Tuesday 14 August'),
             ('2018-08-14', 'EEEE d', 'Tuesday 14'),
-            ('2018-08-14', 'd MMMM YYYY', '14 August 2018'),
+            ('2018-08-14', 'd MMMM yyyy', '14 August 2018'),
         ]
 
         with self.app_request_context('/'):
@@ -919,13 +919,13 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
     def test_format_date_range_no_repeated_month_year(self):
         test_cases = [
             # Start Date, End Date, Date Format, Output Expected First, Output Expected Second
-            ('2018-08-14', '2018-08-16', 'EEEE d MMMM YYYY', 'Tuesday 14', 'Thursday 16 August 2018'),
-            ('2018-07-31', '2018-08-16', 'EEEE d MMMM YYYY', 'Tuesday 31 July', 'Thursday 16 August 2018'),
-            ('2017-12-31', '2018-08-16', 'EEEE d MMMM YYYY', 'Sunday 31 December 2017', 'Thursday 16 August 2018'),
-            ('2017-12-31', '2018-08-16', 'MMMM YYYY', 'December 2017', 'August 2018'),
-            ('2018-08-14', '2018-08-16', 'MMMM YYYY', 'August 2018', 'August 2018'),
-            ('2017-12-31', '2018-08-16', 'YYYY', '2017', '2018'),
-            ('2017-07-31', '2018-08-16', 'YYYY', '2017', '2018'),
+            ('2018-08-14', '2018-08-16', 'EEEE d MMMM yyyy', 'Tuesday 14', 'Thursday 16 August 2018'),
+            ('2018-07-31', '2018-08-16', 'EEEE d MMMM yyyy', 'Tuesday 31 July', 'Thursday 16 August 2018'),
+            ('2017-12-31', '2018-08-16', 'EEEE d MMMM yyyy', 'Sunday 31 December 2017', 'Thursday 16 August 2018'),
+            ('2017-12-31', '2018-08-16', 'MMMM yyyy', 'December 2017', 'August 2018'),
+            ('2018-08-14', '2018-08-16', 'MMMM yyyy', 'August 2018', 'August 2018'),
+            ('2017-12-31', '2018-08-16', 'yyyy', '2017', '2018'),
+            ('2017-07-31', '2018-08-16', 'yyyy', '2017', '2018'),
             ('2018-08-14', '2018-08-16', 'EEEE d', 'Tuesday 14', 'Thursday 16')
         ]
 

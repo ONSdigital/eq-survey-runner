@@ -223,13 +223,13 @@ def validate_min_max_date(answer, answer_store, metadata, date_format, group_ins
         messages = answer['validation'].get('messages')
     minimum_date, maximum_date = get_dates_for_single_date_period_validation(answer, answer_store, metadata, group_instance=group_instance)
 
-    display_format = 'd MMMM YYYY'
+    display_format = 'd MMMM yyyy'
     if date_format == 'yyyy-mm':
-        display_format = 'MMMM YYYY'
+        display_format = 'MMMM yyyy'
         minimum_date = minimum_date.replace(day=1) if minimum_date else None    # First day of Month
         maximum_date = maximum_date + relativedelta(day=31) if maximum_date else None   # Last day of month
     elif date_format == 'yyyy':
-        display_format = 'YYYY'
+        display_format = 'yyyy'
         minimum_date = minimum_date.replace(month=1, day=1) if minimum_date else None    # January 1st
         maximum_date = maximum_date.replace(month=12, day=31) if maximum_date else None   # Last day of december
 

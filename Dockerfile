@@ -2,7 +2,7 @@ FROM python:3.7-slim-stretch
 
 RUN pip install pipenv==2018.11.26 \
   && pip install awscli==1.11.174
-RUN apt update && apt install -y libsnappy-dev build-essential
+RUN apt update && apt install -y libsnappy-dev build-essential libpq-dev
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
