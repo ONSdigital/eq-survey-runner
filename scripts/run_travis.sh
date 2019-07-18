@@ -11,6 +11,9 @@ echo "Building"
 echo "Running schema tests"
 ./scripts/test_schemas.sh
 
+echo "Running translation tests"
+python -m scripts.generate_translation_templates --test
+
 echo "Running lint tests"
 ./scripts/run_lint.sh
 
