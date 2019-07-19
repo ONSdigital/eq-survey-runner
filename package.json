@@ -22,24 +22,16 @@
     "format:python": "pipenv run black app tests",
     "lint-staged": "lint-staged"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "tests/functional/**/*.js": [
-      "yarn lint:tests",
-      "git add"
+      "yarn lint:tests"
     ],
     "data-source/json/**/*.json": [
       "yarn format:data-source",
-      "yarn lint:data-source",
-      "git add"
+      "yarn lint:data-source"
     ],
     "*.py": [
-      "yarn format:python",
-      "git add"
+      "yarn format:python"
     ]
   },
   "devDependencies": {
@@ -56,7 +48,6 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "fibers": "3",
-    "husky": "^3.0.0",
     "json-web-key": "^0.3.0",
     "jsrsasign": "^8.0.3",
     "lint-staged": "^9.0.2",
