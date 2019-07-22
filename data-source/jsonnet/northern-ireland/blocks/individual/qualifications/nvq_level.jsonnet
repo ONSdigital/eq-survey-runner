@@ -51,7 +51,6 @@ local question(title) = {
         {
           label: 'None of these apply',
           value: 'None of these apply',
-          description: 'Questions on A levels and GCSEs and equivalents will follow',
         },
       ],
     },
