@@ -39,8 +39,8 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle = 'What address do you travel to for your course of study, including school?';
-local proxyTitle = {
+local nonProxyTitleSchool = 'What address do you travel to for your course of study, including school?';
+local proxyTitleSchool = {
   text: 'What address does <em>{person_name}</em> travel to for their course of study, including school?',
   placeholders: [
     placeholders.personName,
@@ -52,11 +52,11 @@ local proxyTitle = {
   id: 'school-location',
   question_variants: [
     {
-      question: question(nonProxyTitle),
+      question: question(nonProxyTitleSchool),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle),
+      question: question(proxyTitleSchool),
       when: [rules.proxyYes],
     },
   ],

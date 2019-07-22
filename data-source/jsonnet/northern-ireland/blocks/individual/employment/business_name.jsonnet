@@ -37,7 +37,8 @@ local proxyTitle = {
   ],
 };
 local proxyDescription = 'If they are self-employed in their own business, give the business name.';
-local option = 'No organisation or work for a private individual';
+local nonProxyoption = 'No organisation or work for a private individual';
+local proxyOption = 'No organisation or works for a private individual';
 
 local pastNonProxyTitle = 'What was the name of the organisation or business you worked for?';
 local pastNonProxyDescription = 'If you were self-employed in your own business, give the business name.';
@@ -56,11 +57,11 @@ local pastOption = 'No organisation or worked for a private individual';
   id: 'business-name',
   question_variants: [
     {
-      question: question(nonProxyTitle, nonProxyDescription, option),
+      question: question(nonProxyTitle, nonProxyDescription, nonProxyoption),
       when: [rules.proxyNo, rules.mainJob],
     },
     {
-      question: question(proxyTitle, proxyDescription, option),
+      question: question(proxyTitle, proxyDescription, proxyOption),
       when: [rules.proxyYes, rules.mainJob],
     },
     {
