@@ -147,9 +147,9 @@ function(region_code, census_date) {
           blocks: [
             qualifications,
             degree,
-            nvq_level,
-            a_level,
             gcse,
+            a_level,
+            nvq_level,
             other_qualifications,
             apprenticeship,
           ],
