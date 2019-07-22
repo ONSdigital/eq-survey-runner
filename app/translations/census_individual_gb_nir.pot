@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-18 11:54+0000\n"
+"POT-Creation-Date: 2019-07-18 14:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -254,7 +254,7 @@ msgstr ""
 msgid "What is a communal establishment?"
 msgstr ""
 
-msgid "Are you answering the questions on behalf of someone else?"
+msgid "Are you answering these questions for yourself or for someone else?"
 msgstr ""
 
 msgid "What is your name?"
@@ -300,9 +300,6 @@ msgid "One year ago, what was your usual address?"
 msgstr ""
 
 msgid "Enter details of your address one year ago."
-msgstr ""
-
-msgid "Enter details of their address one year ago."
 msgstr ""
 
 msgid "What passports do you hold?"
@@ -552,6 +549,9 @@ msgstr ""
 msgid "One year ago, what was <em>{person_name_possessive}</em> usual address?"
 msgstr ""
 
+msgid "Enter details of <em>{person_name_possessive}</em> address one year ago."
+msgstr ""
+
 msgid "What passports does <em>{person_name}</em> hold?"
 msgstr ""
 
@@ -781,13 +781,17 @@ msgid "A private or family household"
 msgstr ""
 
 #. answer-id: proxy-answer
-msgctxt "Answer for: Are you answering the questions on behalf of someone else?"
-msgid "No, I’m answering for myself"
+msgctxt ""
+"Answer for: Are you answering these questions for yourself or for someone"
+" else?"
+msgid "For myself"
 msgstr ""
 
 #. answer-id: proxy-answer
-msgctxt "Answer for: Are you answering the questions on behalf of someone else?"
-msgid "Yes"
+msgctxt ""
+"Answer for: Are you answering these questions for yourself or for someone"
+" else?"
+msgid "For someone else"
 msgstr ""
 
 #. answer-id: first-name
@@ -1206,27 +1210,37 @@ msgid "Postcode"
 msgstr ""
 
 #. answer-id: last-year-address-answer-building
-msgctxt "Answer for: Enter details of their address one year ago."
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> address "
+"one year ago."
 msgid "Address line 1"
 msgstr ""
 
 #. answer-id: last-year-address-answer-street
-msgctxt "Answer for: Enter details of their address one year ago."
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> address "
+"one year ago."
 msgid "Address line 2"
 msgstr ""
 
 #. answer-id: last-year-address-answer-city
-msgctxt "Answer for: Enter details of their address one year ago."
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> address "
+"one year ago."
 msgid "Town or city"
 msgstr ""
 
 #. answer-id: last-year-address-answer-county
-msgctxt "Answer for: Enter details of their address one year ago."
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> address "
+"one year ago."
 msgid "County (optional)"
 msgstr ""
 
 #. answer-id: last-year-address-answer-postcode
-msgctxt "Answer for: Enter details of their address one year ago."
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> address "
+"one year ago."
 msgid "Postcode"
 msgstr ""
 

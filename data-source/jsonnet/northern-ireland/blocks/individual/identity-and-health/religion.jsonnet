@@ -1,5 +1,5 @@
-local placeholders = import '../../../../common/lib/placeholders.libsonnet';
-local rules = import '../../../../common/lib/rules.libsonnet';
+local placeholders = import '../../../lib/placeholders.libsonnet';
+local rules = import '../../../lib/rules.libsonnet';
 
 local nonProxyTitle = 'What religion, religious denomination or body do you belong to?';
 local proxyTitle = {
