@@ -210,7 +210,10 @@ def _get_when_rule_value(
     elif 'meta' in when_rule:
         value = get_metadata_value(metadata, when_rule['meta'])
     elif 'list' in when_rule:
-        value = get_list_count(list_store, when_rule['list'])
+        if 'id_selector' in when_rule:
+            value = getattr(list_store.get(when_rule['list']), when_rule['id_selector'])
+        else:
+            value = get_list_count(list_store, when_rule['list'])
     else:
         raise Exception('The when rule is invalid')
 
@@ -218,7 +221,7 @@ def _get_when_rule_value(
 
 
 def evaluate_when_rules(
-    when_rules, schema, metadata, answer_store, list_store, routing_path=None
+    when_rules, schema, metadata, answer_store, list_store, routing_path=None, relationship_location=None
 ):
     """
     Whether the skip condition has been met.
@@ -227,6 +230,7 @@ def evaluate_when_rules(
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
     :param routing_path: The routing path to use when filtering answer_store
+    :param relationship_location: The relationship location to use when evaluating when rules
     :return: True if the when condition has been met otherwise False
     """
     for when_rule in when_rules:
@@ -236,7 +240,7 @@ def evaluate_when_rules(
             list_store,
             schema,
             metadata,
-            routing_path=routing_path,
+            routing_path=routing_path
         )
 
         if 'date_comparison' in when_rule:
@@ -248,6 +252,13 @@ def evaluate_when_rules(
             )
             if not evaluate_comparison_rule(when_rule, value, comparison_id_value):
                 return False
+        elif 'comparison' in when_rule:
+            if not when_rule['comparison']:
+                return False
+            else:
+                comparison_id_value = getattr(relationship_location, when_rule['comparison']['id'])
+                if not evaluate_comparison_rule(when_rule, value, comparison_id_value):
+                    return False
         else:
             if not evaluate_rule(when_rule, value):
                 return False
