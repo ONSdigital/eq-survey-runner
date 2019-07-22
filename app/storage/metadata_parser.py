@@ -82,6 +82,9 @@ class RunnerMetadataSchema(Schema, StripWhitespaceMixin):
     roles = fields.List(fields.String(), required=False)
     survey_url = VALIDATORS['url'](required=False)
     language_code = VALIDATORS['string'](required=False)
+    channel = VALIDATORS['string'](
+        required=False, validate=validate.OneOf(('RH', 'FIELD', 'CC', 'AD'))
+    )
 
     # Either schema_name OR the three census parameters are required. Should be required after census.
     schema_name = VALIDATORS['string'](required=False)
@@ -120,10 +123,8 @@ class RunnerMetadataSchema(Schema, StripWhitespaceMixin):
         """
         if data.get('schema_name'):
             logger.info(
-                f'Ignoring claims: survey: {data.get("survey")}, case_type: {data.get("case_type")} because schema_name was specified'
+                'Using schema_name claim to specify schema, overriding survey, case_type and region_code'
             )
-            data.pop('survey', None)
-            data.pop('case_type', None)
         else:
             data['schema_name'] = get_schema_name_from_census_params(
                 data.get('survey'), data.get('case_type'), data.get('region_code')
