@@ -82,9 +82,7 @@ class RunnerMetadataSchema(Schema, StripWhitespaceMixin):
     roles = fields.List(fields.String(), required=False)
     survey_url = VALIDATORS['url'](required=False)
     language_code = VALIDATORS['string'](required=False)
-    channel = VALIDATORS['string'](
-        required=False, validate=validate.OneOf(('RH', 'FIELD', 'CC', 'AD'))
-    )
+    channel = VALIDATORS['string'](required=False, validate=validate.Length(min=1))
 
     # Either schema_name OR the three census parameters are required. Should be required after census.
     schema_name = VALIDATORS['string'](required=False)
