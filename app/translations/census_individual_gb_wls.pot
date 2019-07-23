@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 12:31+0000\n"
+"POT-Creation-Date: 2019-07-23 05:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -430,6 +430,9 @@ msgstr ""
 msgid "When did you most recently arrive to live in the United Kingdom?"
 msgstr ""
 
+msgid "Did you arrive in the UK, on or after 13 October 2018"
+msgstr ""
+
 msgid ""
 "Including the time already spent here, how long do you intend to stay in "
 "the United Kingdom?"
@@ -741,10 +744,7 @@ msgid ""
 "United Kingdom?"
 msgstr ""
 
-msgid "Did you arrive in the UK, on or after {census_date}"
-msgstr ""
-
-msgid "Did <em>{person_name}</em> arrive in the UK, on or after {census_date}"
+msgid "Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018"
 msgstr ""
 
 msgid ""
@@ -1776,26 +1776,26 @@ msgid "Please specify current name of country"
 msgstr ""
 
 #. answer-id: when-arrive-in-uk-answer
-msgctxt "Answer for: Did you arrive in the UK, on or after {census_date}"
+msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018"
 msgid "Yes"
 msgstr ""
 
 #. answer-id: when-arrive-in-uk-answer
-msgctxt "Answer for: Did you arrive in the UK, on or after {census_date}"
+msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018"
 msgid "No"
 msgstr ""
 
 #. answer-id: when-arrive-in-uk-answer
 msgctxt ""
-"Answer for: Did <em>{person_name}</em> arrive in the UK, on or after "
-"{census_date}"
+"Answer for: Did <em>{person_name}</em> arrive in the UK, on or after 13 "
+"October 2018"
 msgid "Yes"
 msgstr ""
 
 #. answer-id: when-arrive-in-uk-answer
 msgctxt ""
-"Answer for: Did <em>{person_name}</em> arrive in the UK, on or after "
-"{census_date}"
+"Answer for: Did <em>{person_name}</em> arrive in the UK, on or after 13 "
+"October 2018"
 msgid "No"
 msgstr ""
 
