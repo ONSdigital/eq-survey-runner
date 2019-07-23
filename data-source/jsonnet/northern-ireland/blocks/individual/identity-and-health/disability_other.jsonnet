@@ -83,4 +83,23 @@ local proxyTitle = {
       when: [rules.proxyYes],
     },
   ],
+  routing_rules: [
+    {
+      goto: {
+        group: 'submit-group',
+        when: [rules.under4],
+      },
+    },
+    {
+      goto: {
+        block: 'carer',
+        when: [rules.over5],
+      },
+    },
+    {
+      goto: {
+        group: 'school-group',
+      },
+    },
+  ],
 }
