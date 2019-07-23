@@ -1,0 +1,3109 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: eq-census-nisra\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-05-30 17:23+0100\n"
+"PO-Revision-Date: 2019-07-18 08:05\n"
+"Last-Translator: ONS_Census\n"
+"Language-Team: Irish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: eq-census-nisra\n"
+"X-Crowdin-Language: ga-IE\n"
+"X-Crowdin-File: census_individual_gb_nir.pot\n"
+"Language: ga_IE\n"
+
+msgid "Why your answer is important"
+msgstr ""
+
+msgid "Why do I need to answer if I am retired or long term sick or disabled?"
+msgstr ""
+
+msgid "Why do I need to answer if they have retired or are long term sick or disabled?"
+msgstr ""
+
+msgid "Census England Individual Schema"
+msgstr ""
+
+msgid "For example, student hall of residence, boarding school, armed forces base, hospital, care home, prison"
+msgstr ""
+
+msgid "For example, student, member of Armed Forces, patient, detainee"
+msgstr ""
+
+msgid "No usual UK address"
+msgstr ""
+
+msgid "A communal establishment is an establishment providing managed residential accommodation. ‘Managed’ in this context means full-time or part-time supervision of the accommodation. Examples of communal establishments include student halls of residence, boarding schools, armed forces bases, hospitals, care homes and prisons"
+msgstr ""
+
+msgid "If you had no usual address one year ago, state the address where you were staying"
+msgstr ""
+
+msgid "If they had no usual address one year ago, state the address where they were staying"
+msgstr ""
+
+msgid "National identity is not dependent on your ethnic group or citizenship."
+msgstr ""
+
+msgid "It is about the country or countries where you feel you belong or think of as home."
+msgstr ""
+
+msgid "National identity is not dependent on their ethnic group or citizenship."
+msgstr ""
+
+msgid "It is about the country or countries where they feel they belong or think of as home."
+msgstr ""
+
+msgid "Including British or Irish Sign Language"
+msgstr ""
+
+msgid "Main language is your first or preferred language."
+msgstr ""
+
+msgid "Main language is their first or preferred language."
+msgstr ""
+
+msgid "For example walking or dressing"
+msgstr ""
+
+msgid "For example Asthma"
+msgstr ""
+
+msgid "The next set of questions is about the qualifications you have ever acheived in Northern Ireland or worldwide, even if you are not using them now."
+msgstr ""
+
+msgid "For example degree, foundation degree, HND or HNC, NVQ level 4 and above, teaching or nursing"
+msgstr ""
+
+msgid "Questions on other NVQs, A levels, GCSEs and equivalents will follow"
+msgstr ""
+
+msgid "For example BTEC National, OND or ONC, City and Guilds Advanced Craft"
+msgstr ""
+
+msgid "For example BTEC General, City and Guilds Craft"
+msgstr ""
+
+msgid "Questions on A levels, GCSEs and equivalents will follow"
+msgstr ""
+
+msgid "Include 4 or more AS levels"
+msgstr ""
+
+msgid "Include 2 to 3 AS levels"
+msgstr ""
+
+msgid "Questions on GCSEs and equivalents will follow"
+msgstr ""
+
+msgid "Include 5 or more O level passes or CSEs grades 1"
+msgstr ""
+
+msgid "Include any other O levels or CSEs at any grades"
+msgstr ""
+
+msgid "Skills for life, literacy, numeracy and language"
+msgstr ""
+
+msgid "For example trade, advanced, foundation or modern apprenticeships"
+msgstr ""
+
+msgid "We are measuring the number of people who have served in the UK Armed Forces and have now left. Government and councils need this information to carry out their commitments made under the Armed Forces Covenant. This is a promise by the nation ensuring that those who serve or who have served in the armed forces, and their families, are not disadvantaged."
+msgstr ""
+
+msgid "Whether receiving a pension or not"
+msgstr ""
+
+msgid "To get a true picture of the UK working population, we ask this question of everyone who is not currently working. We ask people who are retired because the number of people continuing to work after retirement age is increasing. We ask people who are long-term sick or disabled because some intend to go back to work."
+msgstr ""
+
+msgid "The next set of questions is about your main job. Your main job is the job in which you usually work the most hours"
+msgstr ""
+
+msgid "The next set of questions is about your last main job. Your main job is the job in which you usually worked the most hours"
+msgstr ""
+
+msgid "If you are self-employed in your own business, give the business name."
+msgstr ""
+
+msgid "If they are self-employed in their own business, give the business name."
+msgstr ""
+
+msgid "If you were self-employed in your own business, give the business name."
+msgstr ""
+
+msgid "If they were self-employed in their own business, give the business name."
+msgstr ""
+
+msgid "For example clothing retail, general hospital, primary education, food wholesale, civil service DWP, local government housing."
+msgstr ""
+
+msgid "Answer for the longest part, by distance, of your usual journey to work"
+msgstr ""
+
+msgid "Answer for the longest part, by distance, of their usual journey to work"
+msgstr ""
+
+msgid "The government uses information about workplace address and method of travel to work to form transport policies and plan services. The information helps to work out local transport needs."
+msgstr ""
+
+msgid "Thank you for taking part in the 2017 Census Test"
+msgstr ""
+
+msgid "Voluntary"
+msgstr ""
+
+msgid "2017 Census Test"
+msgstr ""
+
+msgid "Individual Section"
+msgstr ""
+
+msgid "Personal Details"
+msgstr ""
+
+msgid "Are you answering the questions on behalf of someone else?"
+msgstr ""
+
+msgid "What is your name?"
+msgstr ""
+
+msgid "What is their name?"
+msgstr ""
+
+msgid "What is your position in this establishment?"
+msgstr ""
+
+msgid "What is an establishment?"
+msgstr ""
+
+msgid "What is your date of birth?"
+msgstr ""
+
+msgid "What is your sex?"
+msgstr ""
+
+msgid "What is your marital or same-sex civil partnership status?"
+msgstr ""
+
+msgid "Are you a student in full-time education?"
+msgstr ""
+
+msgid "Are you a schoolchild or student in full-time education?"
+msgstr ""
+
+msgid "During term time, where do you usually live?"
+msgstr ""
+
+msgid "Identity and Health"
+msgstr ""
+
+msgid "What is your country of birth?"
+msgstr ""
+
+msgid "What year did you come to live in Northern Ireland?"
+msgstr ""
+
+msgid "One year ago, what was your usual address?"
+msgstr ""
+
+msgid "Enter details of your address one year ago"
+msgstr ""
+
+msgid "Enter details of their address one year ago"
+msgstr ""
+
+msgid "What passports do you hold?"
+msgstr ""
+
+msgid "How would you describe your national identity?"
+msgstr ""
+
+msgid "What do we mean by “national identity”?"
+msgstr ""
+
+msgid "What is your ethnic group?"
+msgstr ""
+
+msgid "What religion, religious denomination or body do you belong to?"
+msgstr ""
+
+msgid "What religion, religious denomination or body were you <em>brought up</em> in?"
+msgstr ""
+
+msgid "What is your main language?"
+msgstr ""
+
+msgid "What do we mean by “main language”?"
+msgstr ""
+
+msgid "How well can you speak English?"
+msgstr ""
+
+msgid "Can you understand, speak, read or write Irish?"
+msgstr ""
+
+msgid "How often do you speak Irish?"
+msgstr ""
+
+msgid "Can you understand, speak, read or write Ulster-Scots?"
+msgstr ""
+
+msgid "How often do you speak Ulster-Scots?"
+msgstr ""
+
+msgid "How is your health in general?"
+msgstr ""
+
+msgid "Are your day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
+msgstr ""
+
+msgid "Include problems relating to old age"
+msgstr ""
+
+msgid "Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgstr ""
+
+msgid "Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgstr ""
+
+msgid "Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgstr ""
+
+msgid "Exclude anything you do as part of your paid employment"
+msgstr ""
+
+msgid "Exclude anything they do as part of their paid employment"
+msgstr ""
+
+msgid "Which of the following best describes your sexual orientation?"
+msgstr ""
+
+msgid "School"
+msgstr ""
+
+msgid "What address do you travel to for your course of study, including school?"
+msgstr ""
+
+msgid "How do you usually travel to your place of study, including school?"
+msgstr ""
+
+msgid "Select one option only, for the longest part, by distance, of your usual journey to place of study."
+msgstr ""
+
+msgid "Select one option only, for the longest part, by distance, of their usual journey to place of study."
+msgstr ""
+
+msgid "Qualifications"
+msgstr ""
+
+msgid "Have you achieved a qualification at degree level or above?"
+msgstr ""
+
+msgid "Include equivalent qualifications achieved anywhere outside Northern Ireland"
+msgstr ""
+
+msgid "Have you achieved an NVQ or equivalent qualification?"
+msgstr ""
+
+msgid "Have you achieved an AS, A level or equivalent qualification?"
+msgstr ""
+
+msgid "Have you achieved a GCSE or equivalent qualification?"
+msgstr ""
+
+msgid "Have you achieved any other qualifications, either within or outside of Northern Ireland?"
+msgstr ""
+
+msgid "Have you completed an apprenticeship?"
+msgstr ""
+
+msgid "Include equivalent apprenticeships completed anywhere outside Northern Ireland"
+msgstr ""
+
+msgid "Employment"
+msgstr ""
+
+msgid "Have you previously served in the UK Armed Forces?"
+msgstr ""
+
+msgid "Current serving members should select “No”"
+msgstr ""
+
+msgid "In the last seven days, were you doing any of the following?"
+msgstr ""
+
+msgid "Include casual or temporary work, even if only for one hour"
+msgstr ""
+
+msgid "Which of the following describes what you were doing in the last seven days?"
+msgstr ""
+
+msgid "In the last four weeks, were you actively looking for any kind of paid work?"
+msgstr ""
+
+msgid "Are you available to start work in the next two weeks?"
+msgstr ""
+
+msgid "In the last seven days, were you waiting to start a job already accepted?"
+msgstr ""
+
+msgid "Have you ever done any paid work?"
+msgstr ""
+
+msgid "Main job"
+msgstr ""
+
+msgid "Last main job"
+msgstr ""
+
+msgid "In your main job, what is your employment status?"
+msgstr ""
+
+msgid "In your main job, what was your employment status?"
+msgstr ""
+
+msgid "What is the name of the organisation or business you work for?"
+msgstr ""
+
+msgid "What was the name of the organisation or business you worked for?"
+msgstr ""
+
+msgid "What is your full job title?"
+msgstr ""
+
+msgid "What was your full job title?"
+msgstr ""
+
+msgid "Briefly describe what you do in your main job?"
+msgstr ""
+
+msgid "Briefly describe what you did in your main job?"
+msgstr ""
+
+msgid "What is the main activity of your organisation, business or freelance work?"
+msgstr ""
+
+msgid "What was the main activity of your organisation, business or freelance work?"
+msgstr ""
+
+msgid "Do you supervise or oversee the work of other employees on a day-to-day basis?"
+msgstr ""
+
+msgid "Did you supervise or oversee the work of other employees on a day-to-day basis?"
+msgstr ""
+
+msgid "In your main job, how many hours a week do you usually work?"
+msgstr ""
+
+msgid "Include paid and unpaid overtime"
+msgstr ""
+
+msgid "How do you usually travel to work?"
+msgstr ""
+
+msgid "Where do you mainly work?"
+msgstr ""
+
+msgid "What is the address of your workplace?"
+msgstr ""
+
+msgid "What is the address of your depot?"
+msgstr ""
+
+msgid "Comments"
+msgstr ""
+
+msgid "Thanks you are done!"
+msgstr ""
+
+msgid "Submit answers"
+msgstr ""
+
+msgid "You’re ready to submit your 2017 Census Test"
+msgstr ""
+
+msgid "Please note:"
+msgstr ""
+
+msgid "Please enter a name or remove the person to continue"
+msgstr ""
+
+#, python-format
+msgid "Your answer has to be less than %(max)d characters long"
+msgstr ""
+
+msgid "by submitting your responses, you are declaring that you have completed to the best of your knowledge and belief."
+msgstr ""
+
+msgid "if you do not submit, your responses will be automatically submitted when the Census 2017 Test closes."
+msgstr ""
+
+msgid "after submission you will have an opportunity to provide feedback on your experience."
+msgstr ""
+
+msgid "What type of accommodation is <em>{address}</em>?"
+msgstr ""
+
+msgid "What is <em>{person_name_possessive}</em> position in this establishment?"
+msgstr ""
+
+msgid "What is <em>{person_name_possessive}</em> date of birth?"
+msgstr ""
+
+msgid "You are {age_in_years} years old. Is this correct?"
+msgstr ""
+
+msgid "{person_name} is {age_in_years} years old. Is this correct?"
+msgstr ""
+
+msgid "What is <em>{person_name_possessive}</em> sex?"
+msgstr ""
+
+msgid "What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
+msgstr ""
+
+msgid "Is <em>{person_name}</em> a student in full-time education?"
+msgstr ""
+
+msgid "Is <em>{person_name}</em> a schoolchild or student in full-time education?"
+msgstr ""
+
+msgid "During term time, where does <em>{person_name}</em> usually live?"
+msgstr ""
+
+msgid "What is <em>{person_name_possessive}</em> country of birth?"
+msgstr ""
+
+msgid "What year did <em>{person_name}</em> come to live in Northern Ireland?"
+msgstr ""
+
+msgid "One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgstr ""
+
+msgid "What passports does <em>{person_name}</em> hold?"
+msgstr ""
+
+msgid "How would <em>{person_name}</em> describe their national identity?"
+msgstr ""
+
+msgid "What is <em>{person_name_possessive}</em> ethnic group?"
+msgstr ""
+
+msgid "What religion, religious denomination or body does <em>{person_name}</em> belong to?"
+msgstr ""
+
+msgid "What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
+msgstr ""
+
+msgid "What is <em>{person_name_possessive}</em> main language?"
+msgstr ""
+
+msgid "How well can <em>{person_name}</em> speak English?"
+msgstr ""
+
+msgid "Can <em>{person_name}</em> understand, speak, read or write Irish?"
+msgstr ""
+
+msgid "How often does <em>{person_name}</em> speak Irish?"
+msgstr ""
+
+msgid "Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
+msgstr ""
+
+msgid "How often does <em>{person_name}</em> speak Ulster-Scots?"
+msgstr ""
+
+msgid "How is <em>{person_name_possessive}</em> health in general?"
+msgstr ""
+
+msgid "Are <em>{person_name_possessive}</em> day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
+msgstr ""
+
+msgid "Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgstr ""
+
+msgid "Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgstr ""
+
+msgid "Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgstr ""
+
+msgid "Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgstr ""
+
+msgid "What address does <em>{person_name}</em> travel to for their course of study, including school?"
+msgstr ""
+
+msgid "How does <em>{person_name}</em> usually travel to their place of study, including school?"
+msgstr ""
+
+msgid "The next set of questions is about the qualifications <em>{person_name}</em> has ever acheived in Northern Ireland or worldwide, even if they are not using them now."
+msgstr ""
+
+msgid "Has <em>{person_name}</em> achieved a qualification at degree level or above?"
+msgstr ""
+
+msgid "Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgstr ""
+
+msgid "Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
+msgstr ""
+
+msgid "Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgstr ""
+
+msgid "Has <em>{person_name}</em> achieved any other qualifications?"
+msgstr ""
+
+msgid "Has <em>{person_name}</em> completed an apprenticeship?"
+msgstr ""
+
+msgid "Has <em>{person_name}</em> previously served in the UK Armed Forces?"
+msgstr ""
+
+msgid "In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgstr ""
+
+msgid "Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgstr ""
+
+msgid "In the last four weeks, was <em>{person_name}</em> actively looking for any kind of paid work?"
+msgstr ""
+
+msgid "Is <em>{person_name}</em> available to start work in the next two weeks?"
+msgstr ""
+
+msgid "In the last seven days, was <em>{person_name}</em> waiting to start a job already accepted?"
+msgstr ""
+
+msgid "Has <em>{person_name}</em> ever done any paid work?"
+msgstr ""
+
+msgid "The next set of questions is about <em>{person_name_possessive}</em> main job. Their main job is the job in which they usually work the most hours"
+msgstr ""
+
+msgid "The next set of questions is about <em>{person_name_possessive}</em> last main job. Their main job is the job in which they usually worked the most hours"
+msgstr ""
+
+msgid "In their main job, what is <em>{person_name_possessive}</em> employment status?"
+msgstr ""
+
+msgid "In their main job, what was <em>{person_name_possessive}</em> employment status?"
+msgstr ""
+
+msgid "What is the name of the organisation or business <em>{person_name}</em> works for?"
+msgstr ""
+
+msgid "What was the name of the organisation or business <em>{person_name}</em> worked for?"
+msgstr ""
+
+msgid "What is <em>{person_name_possessive}</em> full job title?"
+msgstr ""
+
+msgid "What was <em>{person_name_possessive}</em> full job title?"
+msgstr ""
+
+msgid "Briefly describe what <em>{person_name}</em> does in their main job?"
+msgstr ""
+
+msgid "Briefly describe what <em>{person_name}</em> did in their main job?"
+msgstr ""
+
+msgid "What is the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
+msgstr ""
+
+msgid "What was the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
+msgstr ""
+
+msgid "Does <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgstr ""
+
+msgid "Did <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgstr ""
+
+msgid "In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
+msgstr ""
+
+msgid "How does <em>{person_name}</em> usually travel to work?"
+msgstr ""
+
+msgid "Where does <em>{person_name}</em> mainly work?"
+msgstr ""
+
+msgid "What is the address of <em>{person_name_possessive}</em> workplace?"
+msgstr ""
+
+msgid "What is the address of <em>{person_name_possessive}</em> depot?"
+msgstr ""
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
+msgid "A communal establishment"
+msgstr ""
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
+msgid "A private or family household"
+msgstr ""
+
+#. answer-id: proxy-answer
+msgctxt "Answer for: Are you answering the questions on behalf of someone else?"
+msgid "No, I’m answering for myself"
+msgstr ""
+
+#. answer-id: proxy-answer
+msgctxt "Answer for: Are you answering the questions on behalf of someone else?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: What is your name?"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: What is your name?"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: What is your name?"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: What is their name?"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: What is their name?"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: What is their name?"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: establishment-position-answer
+msgctxt "Answer for: What is your position in this establishment?"
+msgid "Resident"
+msgstr ""
+
+#. answer-id: establishment-position-answer
+msgctxt "Answer for: What is your position in this establishment?"
+msgid "Staff or owner"
+msgstr ""
+
+#. answer-id: establishment-position-answer
+msgctxt "Answer for: What is your position in this establishment?"
+msgid "Family member or partner of staff or owner"
+msgstr ""
+
+#. answer-id: establishment-position-answer
+msgctxt "Answer for: What is your position in this establishment?"
+msgid "Staying temporarily"
+msgstr ""
+
+#. answer-id: establishment-position-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
+msgid "Resident"
+msgstr ""
+
+#. answer-id: establishment-position-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
+msgid "Staff or owner"
+msgstr ""
+
+#. answer-id: establishment-position-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
+msgid "Family member or partner of staff or owner"
+msgstr ""
+
+#. answer-id: establishment-position-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
+msgid "Staying temporarily"
+msgstr ""
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
+msgid "No, I need to change my date of birth"
+msgstr ""
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: {person_name} is {age_in_years} years old. Is this correct?"
+msgid "No, I need to change their date of birth"
+msgstr ""
+
+#. answer-id: sex-answer
+msgctxt "Answer for: What is your sex?"
+msgid "Female"
+msgstr ""
+
+#. answer-id: sex-answer
+msgctxt "Answer for: What is your sex?"
+msgid "Male"
+msgstr ""
+
+#. answer-id: sex-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> sex?"
+msgid "Female"
+msgstr ""
+
+#. answer-id: sex-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> sex?"
+msgid "Male"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
+msgid "Single, never married and never in a same-sex civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
+msgid "Married"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
+msgid "In a same-sex civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
+msgid "Separated, but still legally married"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
+msgid "Separated, but still legally in a same-sex civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
+msgid "Divorced"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
+msgid "Formerly in a same-sex civil partnership which is now legally dissolved"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
+msgid "Widowed"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
+msgid "Surviving partner from a same-sex civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
+msgid "Single, never married and never in a same-sex civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
+msgid "Married"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
+msgid "In a same-sex civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
+msgid "Separated, but still legally married"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
+msgid "Separated, but still legally in a same-sex civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
+msgid "Divorced"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
+msgid "Formerly in a same-sex civil partnership which is now legally dissolved"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
+msgid "Widowed"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
+msgid "Surviving partner from a same-sex civil partnership"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Are you a student in full-time education?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Are you a student in full-time education?"
+msgid "No"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Is <em>{person_name}</em> a student in full-time education?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Is <em>{person_name}</em> a student in full-time education?"
+msgid "No"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Are you a schoolchild or student in full-time education?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Are you a schoolchild or student in full-time education?"
+msgid "No"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Is <em>{person_name}</em> a schoolchild or student in full-time education?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Is <em>{person_name}</em> a schoolchild or student in full-time education?"
+msgid "No"
+msgstr ""
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where do you usually live?"
+msgid "Another address"
+msgstr ""
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where does <em>{person_name}</em> usually live?"
+msgid "Another address"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "Northern Ireland"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "England"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "Scotland"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "Wales"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "Republic of Ireland"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "Elsewhere"
+msgstr ""
+
+#. answer-id: country-of-birth-answer-other
+msgctxt "Answer for: What is your country of birth?"
+msgid "Please specify current name of country"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Northern Ireland"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "England"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Scotland"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Wales"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Republic of Ireland"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Elsewhere"
+msgstr ""
+
+#. answer-id: country-of-birth-answer-other
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Please specify current name of country"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was your usual address?"
+msgid "Student term time address in the UK"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was your usual address?"
+msgid "Another address in the UK"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was your usual address?"
+msgid "An address outside the UK"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer-other
+msgctxt "Answer for: One year ago, what was your usual address?"
+msgid "Please enter the country"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgid "Student term time address in the UK"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgid "Another address in the UK"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgid "An address outside the UK"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer-other
+msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgid "Please enter the country"
+msgstr ""
+
+#. answer-id: last-year-address-answer-building
+msgctxt "Answer for: Enter details of your address one year ago"
+msgid "House name or number"
+msgstr ""
+
+#. answer-id: last-year-address-answer-street
+msgctxt "Answer for: Enter details of your address one year ago"
+msgid "Street"
+msgstr ""
+
+#. answer-id: last-year-address-answer-city
+msgctxt "Answer for: Enter details of your address one year ago"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: last-year-address-answer-county
+msgctxt "Answer for: Enter details of your address one year ago"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: last-year-address-answer-postcode
+msgctxt "Answer for: Enter details of your address one year ago"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: last-year-address-answer-building
+msgctxt "Answer for: Enter details of their address one year ago"
+msgid "House name or number"
+msgstr ""
+
+#. answer-id: last-year-address-answer-street
+msgctxt "Answer for: Enter details of their address one year ago"
+msgid "Street"
+msgstr ""
+
+#. answer-id: last-year-address-answer-city
+msgctxt "Answer for: Enter details of their address one year ago"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: last-year-address-answer-county
+msgctxt "Answer for: Enter details of their address one year ago"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: last-year-address-answer-postcode
+msgctxt "Answer for: Enter details of their address one year ago"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports do you hold?"
+msgid "United Kingdom"
+msgstr ""
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports do you hold?"
+msgid "Ireland"
+msgstr ""
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports do you hold?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: passport-answer-other
+msgctxt "Answer for: What passports do you hold?"
+msgid "Please specify the passports you hold"
+msgstr ""
+
+#. answer-id: passports-answer-exclusive
+msgctxt "Answer for: What passports do you hold?"
+msgid "None"
+msgstr ""
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
+msgid "United Kingdom"
+msgstr ""
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
+msgid "Ireland"
+msgstr ""
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: passport-answer-other
+msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
+msgid "Please specify the passports held"
+msgstr ""
+
+#. answer-id: passports-answer-exclusive
+msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
+msgid "None"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "British"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "Irish"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "Northern Irish"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "English"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "Scottish"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "Welsh"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: national-identity-answer-other
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "Please describe your national identity"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "British"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "Irish"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "Northern Irish"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "English"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "Scottish"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "Welsh"
+msgstr ""
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: national-identity-answer-other
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "Please describe their national identity"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "White"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Chinese"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Irish Traveller"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Roma"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Indian"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Filipino"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Black African"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Black other"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Mixed ethnic group"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Other ethnic group"
+msgstr ""
+
+#. answer-id: ehtnic-group-other
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Please specify other religion"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "White"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Chinese"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Irish Traveller"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Roma"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Indian"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Filipino"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Black African"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Black other"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Mixed ethnic group"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Other ethnic group"
+msgstr ""
+
+#. answer-id: ehtnic-group-other
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Please specify other religion"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
+msgid "Roman Catholic"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
+msgid "Presbyterian Church in Ireland"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
+msgid "Church of Ireland"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
+msgid "Methodist Church in Ireland"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: religion-answer-other
+msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
+msgid "Please specify religion, religious denomination or body"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
+msgid "None"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
+msgid "Roman Catholic"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
+msgid "Presbyterian Church in Ireland"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
+msgid "Church of Ireland"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
+msgid "Methodist Church in Ireland"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: religion-answer-other
+msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
+msgid "Please specify religion, religious denomination or body"
+msgstr ""
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
+msgid "None"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
+msgid "Select one option only"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
+msgid "Roman Catholic"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
+msgid "Presbyterian Church in Ireland"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
+msgid "Church of Ireland"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
+msgid "Methodist Church in Ireland"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: no-religion-answer-other
+msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
+msgid "Please specify religion, religious denomination or body"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
+msgid "None"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
+msgid "Select one option only"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
+msgid "Roman Catholic"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
+msgid "Presbyterian Church in Ireland"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
+msgid "Church of Ireland"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
+msgid "Methodist Church in Ireland"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: no-religion-answer-other
+msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
+msgid "Please specify religion, religious denomination or body"
+msgstr ""
+
+#. answer-id: no-religion-answer
+msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
+msgid "None"
+msgstr ""
+
+#. answer-id: language-answer
+msgctxt "Answer for: What is your main language?"
+msgid "English"
+msgstr ""
+
+#. answer-id: language-answer
+msgctxt "Answer for: What is your main language?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: language-answer-other
+msgctxt "Answer for: What is your main language?"
+msgid "Please specify main language"
+msgstr ""
+
+#. answer-id: language-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
+msgid "English"
+msgstr ""
+
+#. answer-id: language-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: language-answer-other
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
+msgid "Please specify main language"
+msgstr ""
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can you speak English?"
+msgid "Very well"
+msgstr ""
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can you speak English?"
+msgid "Well"
+msgstr ""
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can you speak English?"
+msgid "Not well"
+msgstr ""
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can you speak English?"
+msgid "Not at all"
+msgstr ""
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
+msgid "Very well"
+msgstr ""
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
+msgid "Well"
+msgstr ""
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
+msgid "Not well"
+msgstr ""
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
+msgid "Not at all"
+msgstr ""
+
+#. answer-id: understand-irish-answer
+msgctxt "Answer for: Can you understand, speak, read or write Irish?"
+msgid "Understand spoken Irish"
+msgstr ""
+
+#. answer-id: understand-irish-answer
+msgctxt "Answer for: Can you understand, speak, read or write Irish?"
+msgid "Speak Irish"
+msgstr ""
+
+#. answer-id: understand-irish-answer
+msgctxt "Answer for: Can you understand, speak, read or write Irish?"
+msgid "Read Irish"
+msgstr ""
+
+#. answer-id: understand-irish-answer
+msgctxt "Answer for: Can you understand, speak, read or write Irish?"
+msgid "Write Irish"
+msgstr ""
+
+#. answer-id: understand-irish-answer-exclusive
+msgctxt "Answer for: Can you understand, speak, read or write Irish?"
+msgid "No ability"
+msgstr ""
+
+#. answer-id: understand-irish-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Irish?"
+msgid "Understand spoken Irish"
+msgstr ""
+
+#. answer-id: understand-irish-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Irish?"
+msgid "Speak Irish"
+msgstr ""
+
+#. answer-id: understand-irish-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Irish?"
+msgid "Read Irish"
+msgstr ""
+
+#. answer-id: understand-irish-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Irish?"
+msgid "Write Irish"
+msgstr ""
+
+#. answer-id: understand-irish-answer-exclusive
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Irish?"
+msgid "No ability"
+msgstr ""
+
+#. answer-id: frequency-irish-answer
+msgctxt "Answer for: How often do you speak Irish?"
+msgid "Daily"
+msgstr ""
+
+#. answer-id: frequency-irish-answer
+msgctxt "Answer for: How often do you speak Irish?"
+msgid "Weekly"
+msgstr ""
+
+#. answer-id: frequency-irish-answer
+msgctxt "Answer for: How often do you speak Irish?"
+msgid "Less often"
+msgstr ""
+
+#. answer-id: frequency-irish-answer
+msgctxt "Answer for: How often do you speak Irish?"
+msgid "Never"
+msgstr ""
+
+#. answer-id: frequency-irish-answer
+msgctxt "Answer for: How often does <em>{person_name}</em> speak Irish?"
+msgid "Daily"
+msgstr ""
+
+#. answer-id: frequency-irish-answer
+msgctxt "Answer for: How often does <em>{person_name}</em> speak Irish?"
+msgid "Weekly"
+msgstr ""
+
+#. answer-id: frequency-irish-answer
+msgctxt "Answer for: How often does <em>{person_name}</em> speak Irish?"
+msgid "Less often"
+msgstr ""
+
+#. answer-id: frequency-irish-answer
+msgctxt "Answer for: How often does <em>{person_name}</em> speak Irish?"
+msgid "Never"
+msgstr ""
+
+#. answer-id: understand-ulster-scots-answer
+msgctxt "Answer for: Can you understand, speak, read or write Ulster-Scots?"
+msgid "Understand spoken Ulster-Scots"
+msgstr ""
+
+#. answer-id: understand-ulster-scots-answer
+msgctxt "Answer for: Can you understand, speak, read or write Ulster-Scots?"
+msgid "Speak Ulster-Scots"
+msgstr ""
+
+#. answer-id: understand-ulster-scots-answer
+msgctxt "Answer for: Can you understand, speak, read or write Ulster-Scots?"
+msgid "Read Ulster-Scots"
+msgstr ""
+
+#. answer-id: understand-ulster-scots-answer
+msgctxt "Answer for: Can you understand, speak, read or write Ulster-Scots?"
+msgid "Write Ulster-Scots"
+msgstr ""
+
+#. answer-id: understand-ulster-scots-answer-exclusive
+msgctxt "Answer for: Can you understand, speak, read or write Ulster-Scots?"
+msgid "No ability"
+msgstr ""
+
+#. answer-id: understand-ulster-scots-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
+msgid "Understand spoken Ulster-Scots"
+msgstr ""
+
+#. answer-id: understand-ulster-scots-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
+msgid "Speak Ulster-Scots"
+msgstr ""
+
+#. answer-id: understand-ulster-scots-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
+msgid "Read Ulster-Scots"
+msgstr ""
+
+#. answer-id: understand-ulster-scots-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
+msgid "Write Ulster-Scots"
+msgstr ""
+
+#. answer-id: understand-ulster-scots-answer-exclusive
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
+msgid "No ability"
+msgstr ""
+
+#. answer-id: frequency-ulster-scots-answer
+msgctxt "Answer for: How often do you speak Ulster-Scots?"
+msgid "Daily"
+msgstr ""
+
+#. answer-id: frequency-ulster-scots-answer
+msgctxt "Answer for: How often do you speak Ulster-Scots?"
+msgid "Weekly"
+msgstr ""
+
+#. answer-id: frequency-ulster-scots-answer
+msgctxt "Answer for: How often do you speak Ulster-Scots?"
+msgid "Less often"
+msgstr ""
+
+#. answer-id: frequency-ulster-scots-answer
+msgctxt "Answer for: How often do you speak Ulster-Scots?"
+msgid "Never"
+msgstr ""
+
+#. answer-id: frequency-ulster-scots-answer
+msgctxt "Answer for: How often does <em>{person_name}</em> speak Ulster-Scots?"
+msgid "Daily"
+msgstr ""
+
+#. answer-id: frequency-ulster-scots-answer
+msgctxt "Answer for: How often does <em>{person_name}</em> speak Ulster-Scots?"
+msgid "Weekly"
+msgstr ""
+
+#. answer-id: frequency-ulster-scots-answer
+msgctxt "Answer for: How often does <em>{person_name}</em> speak Ulster-Scots?"
+msgid "Less often"
+msgstr ""
+
+#. answer-id: frequency-ulster-scots-answer
+msgctxt "Answer for: How often does <em>{person_name}</em> speak Ulster-Scots?"
+msgid "Never"
+msgstr ""
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is your health in general?"
+msgid "Very good"
+msgstr ""
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is your health in general?"
+msgid "Good"
+msgstr ""
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is your health in general?"
+msgid "Fair"
+msgstr ""
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is your health in general?"
+msgid "Bad"
+msgstr ""
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is your health in general?"
+msgid "Very bad"
+msgstr ""
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
+msgid "Very good"
+msgstr ""
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
+msgid "Good"
+msgstr ""
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
+msgid "Fair"
+msgstr ""
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
+msgid "Bad"
+msgstr ""
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
+msgid "Very bad"
+msgstr ""
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Are your day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Are your day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
+msgid "No"
+msgstr ""
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Are <em>{person_name_possessive}</em> day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Are <em>{person_name_possessive}</em> day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
+msgid "No"
+msgstr ""
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Deafness or partial hearing loss"
+msgstr ""
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Blindness or partial sight loss"
+msgstr ""
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "A mobility or dexterity difficulty that limits basic physical activities"
+msgstr ""
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "A mobility or dexterity difficulty, which requires the use of a wheelchair in the home"
+msgstr ""
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Shortness of breath or difficulty breathing"
+msgstr ""
+
+#. answer-id: disability-answer-exclusive
+msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "None of these conditions"
+msgstr ""
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Deafness or partial hearing loss"
+msgstr ""
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Blindness or partial sight loss"
+msgstr ""
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "A mobility or dexterity difficulty that limits basic physical activities"
+msgstr ""
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "A mobility or dexterity difficulty, which requires the use of a wheelchair in the home"
+msgstr ""
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Shortness of breath or difficulty breathing"
+msgstr ""
+
+#. answer-id: disability-answer-exclusive
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "None of these conditions"
+msgstr ""
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Deafness or partial hearing loss"
+msgstr ""
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Blindness or partial sight loss"
+msgstr ""
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "A mobility or dexterity difficulty that limits basic physical activities"
+msgstr ""
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "A mobility or dexterity difficulty, which requires the use of a wheelchair in the home"
+msgstr ""
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Shortness of breath or difficulty breathing"
+msgstr ""
+
+#. answer-id: disability-other-answer-exclusive
+msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "None of these conditions"
+msgstr ""
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Deafness or partial hearing loss"
+msgstr ""
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Blindness or partial sight loss"
+msgstr ""
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "A mobility or dexterity difficulty that limits basic physical activities"
+msgstr ""
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "A mobility or dexterity difficulty, which requires the use of a wheelchair in the home"
+msgstr ""
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Shortness of breath or difficulty breathing"
+msgstr ""
+
+#. answer-id: disability-other-answer-exclusive
+msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "None of these conditions"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "No"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 9 hours a week or less"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 10 to 19 hours a week"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 20 to 34 hours a week"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 35 to 49 hours a week"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 50 or more hours a week"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "No"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 9 hours a week or less"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 10 to 19 hours a week"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 20 to 34 hours a week"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 35 to 49 hours a week"
+msgstr ""
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 50 or more hours a week"
+msgstr ""
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes your sexual orientation?"
+msgid "Straight or Heterosexual"
+msgstr ""
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes your sexual orientation?"
+msgid "Gay or Lesbian"
+msgstr ""
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes your sexual orientation?"
+msgid "Bisexual"
+msgstr ""
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes your sexual orientation?"
+msgid "Other sexual orientation"
+msgstr ""
+
+#. answer-id: sexual-identity-answer-other
+msgctxt "Answer for: Which of the following best describes your sexual orientation?"
+msgid "Please specify their sexual orientation"
+msgstr ""
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes your sexual orientation?"
+msgid "Prefer not to say"
+msgstr ""
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgid "Straight or Heterosexual"
+msgstr ""
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgid "Gay or Lesbian"
+msgstr ""
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgid "Bisexual"
+msgstr ""
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgid "Other sexual orientation"
+msgstr ""
+
+#. answer-id: sexual-identity-answer-other
+msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgid "Please specify their sexual orientation"
+msgstr ""
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgid "Prefer not to say"
+msgstr ""
+
+#. answer-id: school-address-details-answer-building
+msgctxt "Answer for: What address do you travel to for your course of study, including school?"
+msgid "Building name or number"
+msgstr ""
+
+#. answer-id: school-address-details-answer-street
+msgctxt "Answer for: What address do you travel to for your course of study, including school?"
+msgid "Street"
+msgstr ""
+
+#. answer-id: school-address-details-answer-city
+msgctxt "Answer for: What address do you travel to for your course of study, including school?"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: school-address-details-answer-county
+msgctxt "Answer for: What address do you travel to for your course of study, including school?"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: school-address-details-answer-postcode
+msgctxt "Answer for: What address do you travel to for your course of study, including school?"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: school-address-details-answer-building
+msgctxt "Answer for: What address does <em>{person_name}</em> travel to for their course of study, including school?"
+msgid "Building name or number"
+msgstr ""
+
+#. answer-id: school-address-details-answer-street
+msgctxt "Answer for: What address does <em>{person_name}</em> travel to for their course of study, including school?"
+msgid "Street"
+msgstr ""
+
+#. answer-id: school-address-details-answer-city
+msgctxt "Answer for: What address does <em>{person_name}</em> travel to for their course of study, including school?"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: school-address-details-answer-county
+msgctxt "Answer for: What address does <em>{person_name}</em> travel to for their course of study, including school?"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: school-address-details-answer-postcode
+msgctxt "Answer for: What address does <em>{person_name}</em> travel to for their course of study, including school?"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How do you usually travel to your place of study, including school?"
+msgid "Driving a car or van"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How do you usually travel to your place of study, including school?"
+msgid "Passenger in a car or van"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How do you usually travel to your place of study, including school?"
+msgid "Car or van pool, sharing driving"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How do you usually travel to your place of study, including school?"
+msgid "Bus, minibus or coach (public or private)"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How do you usually travel to your place of study, including school?"
+msgid "On foot"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How do you usually travel to your place of study, including school?"
+msgid "Taxi"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How do you usually travel to your place of study, including school?"
+msgid "Train"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How do you usually travel to your place of study, including school?"
+msgid "Bicycle"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How do you usually travel to your place of study, including school?"
+msgid "Motorcycle, scooter or moped"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How do you usually travel to your place of study, including school?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
+msgid "Driving a car or van"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
+msgid "Passenger in a car or van"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
+msgid "Car or van pool, sharing driving"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
+msgid "Bus, minibus or coach (public or private)"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
+msgid "On foot"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
+msgid "Taxi"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
+msgid "Train"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
+msgid "Bicycle"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
+msgid "Motorcycle, scooter or moped"
+msgstr ""
+
+#. answer-id: school-travel-mode-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: degree-answer
+msgctxt "Answer for: Have you achieved a qualification at degree level or above?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: degree-answer
+msgctxt "Answer for: Have you achieved a qualification at degree level or above?"
+msgid "No"
+msgstr ""
+
+#. answer-id: degree-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a qualification at degree level or above?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: degree-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a qualification at degree level or above?"
+msgid "No"
+msgstr ""
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 3 or equivalent"
+msgstr ""
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 2 or equivalent"
+msgstr ""
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 1 or equivalent"
+msgstr ""
+
+#. answer-id: nvq-level-answer-exclusive
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "None of these apply"
+msgstr ""
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 3 or equivalent"
+msgstr ""
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 2 or equivalent"
+msgstr ""
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 1 or equivalent"
+msgstr ""
+
+#. answer-id: nvq-level-answer-exclusive
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "None of these apply"
+msgstr ""
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
+msgid "2 or more A levels"
+msgstr ""
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
+msgid "1 A level"
+msgstr ""
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
+msgid "1 AS level"
+msgstr ""
+
+#. answer-id: a-level-answer-exclusive
+msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
+msgid "None of these apply"
+msgstr ""
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
+msgid "2 or more A levels"
+msgstr ""
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
+msgid "1 A level"
+msgstr ""
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
+msgid "1 AS level"
+msgstr ""
+
+#. answer-id: a-level-answer-exclusive
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
+msgid "None of these apply"
+msgstr ""
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "5 or more GCSEs grades A* to C or 9 to 4"
+msgstr ""
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "Any other GCSEs"
+msgstr ""
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "Basic skills course"
+msgstr ""
+
+#. answer-id: gcse-answer-exclusive
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "None of these apply"
+msgstr ""
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgid "5 or more GCSEs grades A* to C or 9 to 4"
+msgstr ""
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgid "Any other GCSEs"
+msgstr ""
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgid "Basic skills course"
+msgstr ""
+
+#. answer-id: gcse-answer-exclusive
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgid "None of these apply"
+msgstr ""
+
+#. answer-id: other-qualifications-answer
+msgctxt "Answer for: Have you achieved any other qualifications, either within or outside of Northern Ireland?"
+msgid "Yes, in England or Wales"
+msgstr ""
+
+#. answer-id: other-qualifications-answer
+msgctxt "Answer for: Have you achieved any other qualifications, either within or outside of Northern Ireland?"
+msgid "Yes, anywhere outside of England and Wales"
+msgstr ""
+
+#. answer-id: other-qualifications-answer-exclusive
+msgctxt "Answer for: Have you achieved any other qualifications, either within or outside of Northern Ireland?"
+msgid "No qualifications"
+msgstr ""
+
+#. answer-id: other-qualifications-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved any other qualifications?"
+msgid "Yes, in England or Wales"
+msgstr ""
+
+#. answer-id: other-qualifications-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved any other qualifications?"
+msgid "Yes, anywhere outside of England and Wales"
+msgstr ""
+
+#. answer-id: other-qualifications-answer-exclusive
+msgctxt "Answer for: Has <em>{person_name}</em> achieved any other qualifications?"
+msgid "No qualifications"
+msgstr ""
+
+#. answer-id: apprenticeship-answer
+msgctxt "Answer for: Have you completed an apprenticeship?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: apprenticeship-answer
+msgctxt "Answer for: Have you completed an apprenticeship?"
+msgid "No"
+msgstr ""
+
+#. answer-id: apprenticeship-answer
+msgctxt "Answer for: Has <em>{person_name}</em> completed an apprenticeship?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: apprenticeship-answer
+msgctxt "Answer for: Has <em>{person_name}</em> completed an apprenticeship?"
+msgid "No"
+msgstr ""
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Have you previously served in the UK Armed Forces?"
+msgid "No"
+msgstr ""
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Have you previously served in the UK Armed Forces?"
+msgid "Yes, previously served in Regular Armed Forces"
+msgstr ""
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Have you previously served in the UK Armed Forces?"
+msgid "Yes, previously served in Reserve Armed Forces"
+msgstr ""
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Has <em>{person_name}</em> previously served in the UK Armed Forces?"
+msgid "No"
+msgstr ""
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Has <em>{person_name}</em> previously served in the UK Armed Forces?"
+msgid "Yes, previously served in Regular Armed Forces"
+msgstr ""
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Has <em>{person_name}</em> previously served in the UK Armed Forces?"
+msgid "Yes, previously served in Reserve Armed Forces"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "Working as an employee"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "Self-employed or freelance"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "Temporarily away from work ill, on holiday or temporarily laid off"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "On maternity or paternity leave"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "Doing any other kind of paid work"
+msgstr ""
+
+#. answer-id: employment-status-answer-exclusive
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "None of these apply"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "Working as an employee"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "Self-employed or freelance"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "Temporarily away from work ill, on holiday or temporarily laid off"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "On maternity or paternity leave"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "Doing any other kind of paid work"
+msgstr ""
+
+#. answer-id: employment-status-answer-exclusive
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "None of these apply"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
+msgid "Retired"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
+msgid "Studying"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
+msgid "Looking after home or family"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
+msgid "Long-term sick or disabled"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgid "Retired"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgid "Studying"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgid "Looking after home or family"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgid "Long-term sick or disabled"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: jobseeker-answer
+msgctxt "Answer for: In the last four weeks, were you actively looking for any kind of paid work?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: jobseeker-answer
+msgctxt "Answer for: In the last four weeks, were you actively looking for any kind of paid work?"
+msgid "No"
+msgstr ""
+
+#. answer-id: jobseeker-answer
+msgctxt "Answer for: In the last four weeks, was <em>{person_name}</em> actively looking for any kind of paid work?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: jobseeker-answer
+msgctxt "Answer for: In the last four weeks, was <em>{person_name}</em> actively looking for any kind of paid work?"
+msgid "No"
+msgstr ""
+
+#. answer-id: job-availability-answer
+msgctxt "Answer for: Are you available to start work in the next two weeks?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: job-availability-answer
+msgctxt "Answer for: Are you available to start work in the next two weeks?"
+msgid "No"
+msgstr ""
+
+#. answer-id: job-availability-answer
+msgctxt "Answer for: Is <em>{person_name}</em> available to start work in the next two weeks?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: job-availability-answer
+msgctxt "Answer for: Is <em>{person_name}</em> available to start work in the next two weeks?"
+msgid "No"
+msgstr ""
+
+#. answer-id: job-pending-answer
+msgctxt "Answer for: In the last seven days, were you waiting to start a job already accepted?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: job-pending-answer
+msgctxt "Answer for: In the last seven days, were you waiting to start a job already accepted?"
+msgid "No"
+msgstr ""
+
+#. answer-id: job-pending-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> waiting to start a job already accepted?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: job-pending-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> waiting to start a job already accepted?"
+msgid "No"
+msgstr ""
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Have you ever done any paid work?"
+msgid "Yes, in the last 12 months"
+msgstr ""
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Have you ever done any paid work?"
+msgid "Yes, but not in the last 12 months"
+msgstr ""
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Have you ever done any paid work?"
+msgid "No, have never worked"
+msgstr ""
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Has <em>{person_name}</em> ever done any paid work?"
+msgid "Yes, in the last 12 months"
+msgstr ""
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Has <em>{person_name}</em> ever done any paid work?"
+msgid "Yes, but not in the last 12 months"
+msgstr ""
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Has <em>{person_name}</em> ever done any paid work?"
+msgid "No, has never worked"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what is your employment status?"
+msgid "Employee"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what is your employment status?"
+msgid "Self-employed or freelance without employees"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what is your employment status?"
+msgid "Self-employed with employees"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what is <em>{person_name_possessive}</em> employment status?"
+msgid "Employee"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what is <em>{person_name_possessive}</em> employment status?"
+msgid "Self-employed or freelance without employees"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what is <em>{person_name_possessive}</em> employment status?"
+msgid "Self-employed with employees"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what was your employment status?"
+msgid "Employee"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what was your employment status?"
+msgid "Self-employed or freelance without employees"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what was your employment status?"
+msgid "Self-employed with employees"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what was <em>{person_name_possessive}</em> employment status?"
+msgid "Employee"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what was <em>{person_name_possessive}</em> employment status?"
+msgid "Self-employed or freelance without employees"
+msgstr ""
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what was <em>{person_name_possessive}</em> employment status?"
+msgid "Self-employed with employees"
+msgstr ""
+
+#. answer-id: business-name-answer
+msgctxt "Answer for: What is the name of the organisation or business you work for?"
+msgid "Organisation or business name"
+msgstr ""
+
+#. answer-id: no-business-name-answer
+msgctxt "Answer for: What is the name of the organisation or business you work for?"
+msgid "No organisation or work for a private individual"
+msgstr ""
+
+#. answer-id: business-name-answer
+msgctxt "Answer for: What is the name of the organisation or business <em>{person_name}</em> works for?"
+msgid "Organisation or business name"
+msgstr ""
+
+#. answer-id: no-business-name-answer
+msgctxt "Answer for: What is the name of the organisation or business <em>{person_name}</em> works for?"
+msgid "No organisation or work for a private individual"
+msgstr ""
+
+#. answer-id: business-name-answer
+msgctxt "Answer for: What was the name of the organisation or business you worked for?"
+msgid "Organisation or business name"
+msgstr ""
+
+#. answer-id: no-business-name-answer
+msgctxt "Answer for: What was the name of the organisation or business you worked for?"
+msgid "No organisation or worked for a private individual"
+msgstr ""
+
+#. answer-id: business-name-answer
+msgctxt "Answer for: What was the name of the organisation or business <em>{person_name}</em> worked for?"
+msgid "Organisation or business name"
+msgstr ""
+
+#. answer-id: no-business-name-answer
+msgctxt "Answer for: What was the name of the organisation or business <em>{person_name}</em> worked for?"
+msgid "No organisation or worked for a private individual"
+msgstr ""
+
+#. answer-id: job-title-answer
+msgctxt "Answer for: What is your full job title?"
+msgid "Job title"
+msgstr ""
+
+#. answer-id: job-title-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> full job title?"
+msgid "Job title"
+msgstr ""
+
+#. answer-id: job-title-answer
+msgctxt "Answer for: What was your full job title?"
+msgid "Job title"
+msgstr ""
+
+#. answer-id: job-title-answer
+msgctxt "Answer for: What was <em>{person_name_possessive}</em> full job title?"
+msgid "Job title"
+msgstr ""
+
+#. answer-id: job-description-answer
+msgctxt "Answer for: Briefly describe what you do in your main job?"
+msgid "Description"
+msgstr ""
+
+#. answer-id: job-description-answer
+msgctxt "Answer for: Briefly describe what <em>{person_name}</em> does in their main job?"
+msgid "Description"
+msgstr ""
+
+#. answer-id: job-description-answer
+msgctxt "Answer for: Briefly describe what you did in your main job?"
+msgid "Description"
+msgstr ""
+
+#. answer-id: job-description-answer
+msgctxt "Answer for: Briefly describe what <em>{person_name}</em> did in their main job?"
+msgid "Description"
+msgstr ""
+
+#. answer-id: employers-business-answer
+msgctxt "Answer for: What is the main activity of your organisation, business or freelance work?"
+msgid "Description"
+msgstr ""
+
+#. answer-id: employers-business-answer
+msgctxt "Answer for: What is the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
+msgid "Description"
+msgstr ""
+
+#. answer-id: employers-business-answer
+msgctxt "Answer for: What was the main activity of your organisation, business or freelance work?"
+msgid "Description"
+msgstr ""
+
+#. answer-id: employers-business-answer
+msgctxt "Answer for: What was the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
+msgid "Description"
+msgstr ""
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Do you supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Do you supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "No"
+msgstr ""
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Does <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Does <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "No"
+msgstr ""
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Did you supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Did you supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "No"
+msgstr ""
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Did <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Did <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "No"
+msgstr ""
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
+msgid "0 to 15 hours"
+msgstr ""
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
+msgid "16 to 30 hours"
+msgstr ""
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
+msgid "31 to 48 hours"
+msgstr ""
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
+msgid "49 hours or more"
+msgstr ""
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
+msgid "0 to 15 hours"
+msgstr ""
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
+msgid "16 to 30 hours"
+msgstr ""
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
+msgid "31 to 48 hours"
+msgstr ""
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
+msgid "49 hours or more"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Work mainly at or from home"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Underground, metro, light rail or tram"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Train"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Bus, minibus or coach"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Taxi"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Motorcycle, scooter or moped"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Driving a car or van"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Passenger in a car or van"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Bicycle"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "On foot"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Work mainly at or from home"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Underground, metro, light rail or tram"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Train"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Bus, minibus or coach"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Taxi"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Motorcycle, scooter or moped"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Driving a car or van"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Passenger in a car or van"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Bicycle"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "On foot"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "At a workplace"
+msgstr ""
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "Report to a depot"
+msgstr ""
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "At or from home"
+msgstr ""
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "No fixed place"
+msgstr ""
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "At a workplace"
+msgstr ""
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "Report to a depot"
+msgstr ""
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "At or from home"
+msgstr ""
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "No fixed place"
+msgstr ""
+
+#. answer-id: employer-address-workplace-answer-building
+msgctxt "Answer for: What is the address of your workplace?"
+msgid "Building"
+msgstr ""
+
+#. answer-id: employer-address-workplace-answer-street
+msgctxt "Answer for: What is the address of your workplace?"
+msgid "Street"
+msgstr ""
+
+#. answer-id: employer-address-workplace-answer-city
+msgctxt "Answer for: What is the address of your workplace?"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: employer-address-workplace-answer-county
+msgctxt "Answer for: What is the address of your workplace?"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: employer-adress-workplace-answer-postcode
+msgctxt "Answer for: What is the address of your workplace?"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: employer-address-workplace-answer-building
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+msgid "Building"
+msgstr ""
+
+#. answer-id: employer-address-workplace-answer-street
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+msgid "Street"
+msgstr ""
+
+#. answer-id: employer-address-workplace-answer-city
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: employer-address-workplace-answer-county
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: employer-adress-workplace-answer-postcode
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: employer-address-depot-answer-building
+msgctxt "Answer for: What is the address of your depot?"
+msgid "Building"
+msgstr ""
+
+#. answer-id: employer-address-depot-answer-street
+msgctxt "Answer for: What is the address of your depot?"
+msgid "Street"
+msgstr ""
+
+#. answer-id: employer-address-depot-answer-city
+msgctxt "Answer for: What is the address of your depot?"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: employer-address-depot-answer-county
+msgctxt "Answer for: What is the address of your depot?"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: employer-adress-depot-answer-postcode
+msgctxt "Answer for: What is the address of your depot?"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: employer-address-depot-answer-building
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+msgid "Building"
+msgstr ""
+
+#. answer-id: employer-address-depot-answer-street
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+msgid "Street"
+msgstr ""
+
+#. answer-id: employer-address-depot-answer-city
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: employer-address-depot-answer-county
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: employer-adress-depot-answer-postcode
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: comments-answer
+msgctxt "Answer for: Thanks you are done!"
+msgid "Comments"
+msgstr ""
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
+msgid "Yes, I am {age_in_years} years old"
+msgstr ""
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: {person_name} is {age_in_years} years old. Is this correct?"
+msgid "Yes, {person_name} is {age_in_years} years old"
+msgstr ""
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where do you usually live?"
+msgid "{address}"
+msgstr ""
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where does <em>{person_name}</em> usually live?"
+msgid "{address}"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was your usual address?"
+msgid "{address}"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgid "{address}"
+msgstr ""
+
