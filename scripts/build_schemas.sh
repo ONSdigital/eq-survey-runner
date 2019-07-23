@@ -28,3 +28,11 @@ done
 mkdir -p data/en
 mv data-source/jsonnet/*.json data/en
 cp data-source/json/*.json data/en
+
+echo "Creating temporary household schemas based on individual schema in 'data' dir"
+
+# Until household is delivered, temporarily create household schema as copies of the individual schema
+cp data/en/census_individual_gb_wls.json data/en/census_household_gb_wls.json
+cp data/en/census_individual_gb_eng.json data/en/census_household_gb_eng.json
+cp data/en/census_individual_gb_nir.json data/en/census_household_gb_nir.json
+
