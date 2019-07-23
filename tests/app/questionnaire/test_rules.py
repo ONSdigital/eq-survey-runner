@@ -579,7 +579,10 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                     {
                         'id': lhs.answer_id,
                         'condition': comparison,
-                        'comparison_id': rhs.answer_id,
+                        'comparison': {
+                            'id': rhs.answer_id,
+                            'source': 'answers'
+                        }
                     }
                 ]
 
@@ -648,18 +651,36 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
     def test_primary_person_checks_location(self):
         answer_store = AnswerStore({})
-        list_store = ListStore(existing_items=[{'name': 'people', 'primary_person': 'abcdef', 'items': ['abcdef', '12345']}])
+        list_store = ListStore(
+            existing_items=[
+                {
+                    'name': 'people',
+                    'primary_person': 'abcdef',
+                    'items': ['abcdef', '12345'],
+                }
+            ]
+        )
 
-        location = RelationshipLocation(block_id='some-block', from_list_item_id='abcdef', to_list_item_id='12345')
+        location = RelationshipLocation(
+            block_id='some-block', from_list_item_id='abcdef', to_list_item_id='12345'
+        )
 
-        when_rules = [{
-            'list': 'people',
-            'id_selector': 'primary_person',
-            'condition': 'equals',
-            'comparison': {
-                'source': 'location',
-                'id': 'from_list_item_id'
+        when_rules = [
+            {
+                'list': 'people',
+                'id_selector': 'primary_person',
+                'condition': 'equals',
+                'comparison': {'source': 'location', 'id': 'from_list_item_id'},
             }
-        }]
+        ]
 
-        self.assertTrue(evaluate_when_rules(when_rules, get_schema_mock(), {}, answer_store, list_store, relationship_location=location))
+        self.assertTrue(
+            evaluate_when_rules(
+                when_rules,
+                get_schema_mock(),
+                {},
+                answer_store,
+                list_store,
+                relationship_location=location,
+            )
+        )

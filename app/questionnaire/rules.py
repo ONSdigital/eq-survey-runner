@@ -166,7 +166,7 @@ def _get_comparison_id_value(when_rule, answer_store, schema):
         Gets the value of an answer specified as an operand in a comparator ( i.e right hand argument ,
         or rhs in if lhs>rhs ) In a when clause
     """
-    answer_id = when_rule['comparison_id']
+    answer_id = when_rule['comparison']['id']
 
     return get_answer_store_value(answer_id, answer_store, schema)
 
@@ -221,7 +221,13 @@ def _get_when_rule_value(
 
 
 def evaluate_when_rules(
-    when_rules, schema, metadata, answer_store, list_store, routing_path=None, relationship_location=None
+    when_rules,
+    schema,
+    metadata,
+    answer_store,
+    list_store,
+    routing_path=None,
+    relationship_location=None,
 ):
     """
     Whether the skip condition has been met.
@@ -240,25 +246,24 @@ def evaluate_when_rules(
             list_store,
             schema,
             metadata,
-            routing_path=routing_path
+            routing_path=routing_path,
         )
 
         if 'date_comparison' in when_rule:
             if not evaluate_date_rule(when_rule, answer_store, schema, metadata, value):
                 return False
-        elif 'comparison_id' in when_rule:
-            comparison_id_value = _get_comparison_id_value(
-                when_rule, answer_store, schema
-            )
+        elif 'comparison' in when_rule:
+            comparison_id_value = None
+            if when_rule['comparison']['source'] == 'answers':
+                comparison_id_value = _get_comparison_id_value(
+                    when_rule, answer_store, schema
+                )
+            if when_rule['comparison']['source'] == 'location':
+                comparison_id_value = getattr(
+                    relationship_location, when_rule['comparison']['id']
+                )
             if not evaluate_comparison_rule(when_rule, value, comparison_id_value):
                 return False
-        elif 'comparison' in when_rule:
-            if not when_rule['comparison']:
-                return False
-            else:
-                comparison_id_value = getattr(relationship_location, when_rule['comparison']['id'])
-                if not evaluate_comparison_rule(when_rule, value, comparison_id_value):
-                    return False
         else:
             if not evaluate_rule(when_rule, value):
                 return False

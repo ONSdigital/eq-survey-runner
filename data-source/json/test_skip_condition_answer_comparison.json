@@ -80,7 +80,10 @@
                                         {
                                             "id": "comparison-1-answer",
                                             "condition": "not equals",
-                                            "comparison_id": "comparison-2-answer"
+                                            "comparison": {
+                                                "source": "answers",
+                                                "id": "comparison-2-answer"
+                                            }
                                         }
                                     ]
                                 }
@@ -103,7 +106,11 @@
                                         {
                                             "id": "comparison-1-answer",
                                             "condition": "greater than",
-                                            "comparison_id": "comparison-2-answer"
+                                            "comparison": {
+                                                "source": "answers",
+                                                "id": "comparison-2-answer"
+                                            }
+
                                         }
                                     ]
                                 },
@@ -112,7 +119,10 @@
                                         {
                                             "id": "comparison-1-answer",
                                             "condition": "equals",
-                                            "comparison_id": "comparison-2-answer"
+                                            "comparison": {
+                                                "source": "answers",
+                                                "id": "comparison-2-answer"
+                                            }
                                         }
                                     ]
                                 }
@@ -135,7 +145,10 @@
                                         {
                                             "id": "comparison-1-answer",
                                             "condition": "less than",
-                                            "comparison_id": "comparison-2-answer"
+                                            "comparison": {
+                                                "source": "answers",
+                                                "id": "comparison-2-answer"
+                                            }
                                         }
                                     ]
                                 },
@@ -144,7 +157,10 @@
                                         {
                                             "id": "comparison-1-answer",
                                             "condition": "equals",
-                                            "comparison_id": "comparison-2-answer"
+                                            "comparison": {
+                                                "source": "answers",
+                                                "id": "comparison-2-answer"
+                                            }
                                         }
                                     ]
                                 }
