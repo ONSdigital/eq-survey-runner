@@ -207,6 +207,11 @@ msgid "If they were self-employed in their own business, give the business name.
 msgstr ""
 
 msgid ""
+"For example, retail assistant, office cleaner, district nurse, primary "
+"school teacher. Do not state your grade or pay band."
+msgstr ""
+
+msgid ""
 "For example clothing retail, general hospital, primary education, food "
 "wholesale, civil service, local government housing."
 msgstr ""
@@ -1617,13 +1622,6 @@ msgstr ""
 msgctxt ""
 "Answer for: What religion, religious denomination or body were you "
 "<em>brought up</em> in?"
-msgid "Select one option only"
-msgstr ""
-
-#. answer-id: no-religion-answer
-msgctxt ""
-"Answer for: What religion, religious denomination or body were you "
-"<em>brought up</em> in?"
 msgid "Roman Catholic"
 msgstr ""
 
@@ -1667,13 +1665,6 @@ msgctxt ""
 "Answer for: What religion, religious denomination or body were you "
 "<em>brought up</em> in?"
 msgid "None"
-msgstr ""
-
-#. answer-id: no-religion-answer
-msgctxt ""
-"Answer for: What religion, religious denomination or body was "
-"{person_name} <em>brought up</em> in?"
-msgid "Select one option only"
 msgstr ""
 
 #. answer-id: no-religion-answer
