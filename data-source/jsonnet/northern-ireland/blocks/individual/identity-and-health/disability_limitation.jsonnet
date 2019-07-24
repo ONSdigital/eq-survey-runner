@@ -15,7 +15,7 @@ local question(title) = {
   answers: [
     {
       id: 'disability-limitation-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'No',

@@ -4,7 +4,7 @@ local rules = import '../../../lib/rules.libsonnet';
 local question(title) = {
   id: 'understand-irish-question',
   title: title,
-  mandatory: true,
+  mandatory: false,
   type: 'MutuallyExclusive',
   answers: [
     {

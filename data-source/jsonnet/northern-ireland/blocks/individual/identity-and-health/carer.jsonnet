@@ -15,7 +15,7 @@ local question(title, guidance) = {
   answers: [
     {
       id: 'carer-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'No',

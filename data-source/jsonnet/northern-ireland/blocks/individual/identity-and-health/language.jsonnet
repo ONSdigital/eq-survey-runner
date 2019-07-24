@@ -27,7 +27,7 @@ local question(title, definitionDescription) = {
   answers: [
     {
       id: 'language-answer',
-      mandatory: true,
+      mandatory: false,
       type: 'Radio',
       options: [
         {
