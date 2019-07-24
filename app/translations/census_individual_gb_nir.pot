@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-23 05:58+0000\n"
+"POT-Creation-Date: 2019-07-24 12:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -138,10 +138,13 @@ msgid ""
 "Ireland"
 msgstr ""
 
-msgid "For example BTEC National, OND or ONC, City and Guilds Advanced Craft"
+msgid "Include 5 or more O level passes or CSEs grades 1"
 msgstr ""
 
-msgid "For example BTEC General, City and Guilds Craft"
+msgid "Include any other O levels or CSEs at any grades"
+msgstr ""
+
+msgid "Questions on A levels, NVQs and equivalents will follow"
 msgstr ""
 
 msgid "Include 4 or more AS levels"
@@ -153,13 +156,10 @@ msgstr ""
 msgid "Questions on NVQs and equivalents will follow"
 msgstr ""
 
-msgid "Include 5 or more O level passes or CSEs grades 1"
+msgid "For example BTEC National, OND or ONC, City and Guilds Advanced Craft"
 msgstr ""
 
-msgid "Include any other O levels or CSEs at any grades"
-msgstr ""
-
-msgid "Questions on A levels, NVQs and equivalents will follow"
+msgid "For example BTEC General, City and Guilds Craft"
 msgstr ""
 
 msgid "For example, trade, advanced, foundation or modern apprenticeships"
@@ -376,13 +376,13 @@ msgstr ""
 msgid "Have you achieved a qualification at degree level or above?"
 msgstr ""
 
-msgid "Have you achieved an NVQ or equivalent qualification?"
+msgid "Have you achieved a GCSE or equivalent qualification?"
 msgstr ""
 
 msgid "Have you achieved an A level, AS level or equivalent qualifications?"
 msgstr ""
 
-msgid "Have you achieved a GCSE or equivalent qualification?"
+msgid "Have you achieved an NVQ or equivalent qualification?"
 msgstr ""
 
 msgid ""
@@ -631,7 +631,7 @@ msgid ""
 "above?"
 msgstr ""
 
-msgid "Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
 msgstr ""
 
 msgid ""
@@ -639,7 +639,7 @@ msgid ""
 "qualifications?"
 msgstr ""
 
-msgid "Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgid "Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
 msgstr ""
 
 msgid "Has <em>{person_name}</em> achieved any other qualifications?"
@@ -2480,50 +2480,38 @@ msgctxt ""
 msgid "No"
 msgstr ""
 
-#. answer-id: nvq-level-answer
-msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
-msgid "NVQ level 3 or equivalent"
+#. answer-id: gcse-answer
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "5 or more GCSEs grades A* to C or 9 to 4"
 msgstr ""
 
-#. answer-id: nvq-level-answer
-msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
-msgid "NVQ level 2 or equivalent"
+#. answer-id: gcse-answer
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "Any other GCSEs"
 msgstr ""
 
-#. answer-id: nvq-level-answer
-msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
-msgid "NVQ level 1 or equivalent"
-msgstr ""
-
-#. answer-id: nvq-level-answer-exclusive
-msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+#. answer-id: gcse-answer-exclusive
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
 msgid "None of these apply"
 msgstr ""
 
-#. answer-id: nvq-level-answer
+#. answer-id: gcse-answer
 msgctxt ""
-"Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent "
+"Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent "
 "qualification?"
-msgid "NVQ level 3 or equivalent"
+msgid "5 or more GCSEs grades A* to C or 9 to 4"
 msgstr ""
 
-#. answer-id: nvq-level-answer
+#. answer-id: gcse-answer
 msgctxt ""
-"Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent "
+"Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent "
 "qualification?"
-msgid "NVQ level 2 or equivalent"
+msgid "Any other GCSEs"
 msgstr ""
 
-#. answer-id: nvq-level-answer
+#. answer-id: gcse-answer-exclusive
 msgctxt ""
-"Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent "
-"qualification?"
-msgid "NVQ level 1 or equivalent"
-msgstr ""
-
-#. answer-id: nvq-level-answer-exclusive
-msgctxt ""
-"Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent "
+"Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent "
 "qualification?"
 msgid "None of these apply"
 msgstr ""
@@ -2584,38 +2572,50 @@ msgctxt ""
 msgid "None of these apply"
 msgstr ""
 
-#. answer-id: gcse-answer
-msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
-msgid "5 or more GCSEs grades A* to C or 9 to 4"
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 3 or equivalent"
 msgstr ""
 
-#. answer-id: gcse-answer
-msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
-msgid "Any other GCSEs"
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 2 or equivalent"
 msgstr ""
 
-#. answer-id: gcse-answer-exclusive
-msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 1 or equivalent"
+msgstr ""
+
+#. answer-id: nvq-level-answer-exclusive
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
 msgid "None of these apply"
 msgstr ""
 
-#. answer-id: gcse-answer
+#. answer-id: nvq-level-answer
 msgctxt ""
-"Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent "
+"Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent "
 "qualification?"
-msgid "5 or more GCSEs grades A* to C or 9 to 4"
+msgid "NVQ level 3 or equivalent"
 msgstr ""
 
-#. answer-id: gcse-answer
+#. answer-id: nvq-level-answer
 msgctxt ""
-"Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent "
+"Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent "
 "qualification?"
-msgid "Any other GCSEs"
+msgid "NVQ level 2 or equivalent"
 msgstr ""
 
-#. answer-id: gcse-answer-exclusive
+#. answer-id: nvq-level-answer
 msgctxt ""
-"Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent "
+"Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent "
+"qualification?"
+msgid "NVQ level 1 or equivalent"
+msgstr ""
+
+#. answer-id: nvq-level-answer-exclusive
+msgctxt ""
+"Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent "
 "qualification?"
 msgid "None of these apply"
 msgstr ""

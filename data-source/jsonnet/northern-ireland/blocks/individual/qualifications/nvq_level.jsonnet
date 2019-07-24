@@ -70,4 +70,38 @@ local question(title) = {
       when: [rules.proxyYes],
     },
   ],
+  routing_rules: [
+    {
+      goto: {
+        block: 'other-qualifications',
+        when: [
+          {
+            id: 'degree-answer',
+            condition: 'equals',
+            value: 'No',
+          },
+          {
+            id: 'gcse-answer-exclusive',
+            condition: 'contains',
+            value: 'None of these apply',
+          },
+          {
+            id: 'a-level-answer-exclusive',
+            condition: 'contains',
+            value: 'None of these apply',
+          },
+          {
+            id: 'nvq-level-answer-exclusive',
+            condition: 'contains',
+            value: 'None of these apply',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'apprenticeship',
+      },
+    },
+  ],
 }
