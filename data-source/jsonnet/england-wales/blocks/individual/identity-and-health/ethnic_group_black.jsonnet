@@ -38,13 +38,13 @@ local question(title) = {
           },
         },
         {
-          label: 'Any Black, Black British or Caribbean background',
+          label: 'Any other Black, Black British or Caribbean background',
           value: 'Other',
           detail_answer: {
             id: 'black-ethnic-group-answer-other',
             type: 'TextField',
             mandatory: false,
-            label: 'Please specify Black, Black British, or Caribbean background',
+            label: 'Please specify any other Black, Black British or Caribbean background',
           },
         },
       ],

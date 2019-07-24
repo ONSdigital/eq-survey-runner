@@ -36,7 +36,7 @@ local question(title) = {
             id: 'another-address-answer-other-country',
             type: 'TextField',
             mandatory: true,
-            label: 'Please specify a country',
+            label: 'Please specify the country',
           },
         },
       ],

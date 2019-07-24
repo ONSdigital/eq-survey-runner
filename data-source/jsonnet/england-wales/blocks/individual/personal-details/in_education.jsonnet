@@ -25,15 +25,15 @@ local question(title) = {
 };
 
 
-local nonProxyUnder16Title = 'Are you a schoolchild or student in full-time education?';
-local proxyUnder16Title = {
+local nonProxyUnder19Title = 'Are you a schoolchild or student in full-time education?';
+local proxyUnder19Title = {
   text: 'Is <em>{person_name}</em> a schoolchild or student in full-time education?',
   placeholders: [
     placeholders.personName,
   ],
 };
-local nonProxyOver16Title = 'Are you a student in full-time education?';
-local proxyOver16Title = {
+local nonProxyOver19Title = 'Are you a student in full-time education?';
+local proxyOver19Title = {
   text: 'Is <em>{person_name}</em> a student in full-time education?',
   placeholders: [
     placeholders.personName,
@@ -45,19 +45,19 @@ local proxyOver16Title = {
   id: 'in-education',
   question_variants: [
     {
-      question: question(nonProxyOver16Title),
-      when: [rules.proxyNo, rules.over16],
+      question: question(nonProxyOver19Title),
+      when: [rules.proxyNo, rules.over19],
     },
     {
-      question: question(proxyOver16Title),
-      when: [rules.proxyYes, rules.over16],
+      question: question(proxyOver19Title),
+      when: [rules.proxyYes, rules.over19],
     },
     {
-      question: question(nonProxyUnder16Title),
+      question: question(nonProxyUnder19Title),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyUnder16Title),
+      question: question(proxyUnder19Title),
       when: [rules.proxyYes],
     },
   ],

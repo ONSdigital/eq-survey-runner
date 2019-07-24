@@ -35,7 +35,7 @@ local question(title, description) = {
             id: 'past-usual-address-household-answer-other',
             type: 'TextField',
             mandatory: false,
-            label: 'Please enter the country',
+            label: 'Please specify the country',
           },
         },
       ],

@@ -62,14 +62,14 @@ local question(title, description) = {
 };
 
 local nonProxyTitle = 'How do you usually travel to work?';
-local nonProxyDescription = 'Answer for the longest part, by distance, of your usual journey to work';
+local nonProxyDescription = 'Answer for the longest part, <em>by distance</em>, of your usual journey to work';
 local proxyTitle = {
   text: 'How does <em>{person_name}</em> usually travel to work?',
   placeholders: [
     placeholders.personName,
   ],
 };
-local proxyDescription = 'Answer for the longest part, by distance, of their usual journey to work';
+local proxyDescription = 'Answer for the longest part, <em>by distance</em>, of their usual journey to work';
 
 {
   type: 'Question',
