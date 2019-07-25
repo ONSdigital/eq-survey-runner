@@ -4,6 +4,7 @@ local rules = import '../../../lib/rules.libsonnet';
 local question(title) = {
   id: 'job-title-question',
   title: title,
+  description: 'For example, retail assistant, office cleaner, district nurse, primary school teacher. Do not state your grade or pay band.',
   type: 'General',
   answers: [
     {
