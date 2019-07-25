@@ -9,6 +9,7 @@ local question(title) = {
     {
       id: 'sexual-identity-answer',
       mandatory: false,
+      label: '',
       options: [
         {
           label: 'Straight or Heterosexual',
