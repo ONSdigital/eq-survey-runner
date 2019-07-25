@@ -70,11 +70,11 @@ local question(title) = {
   routing_rules: [
     {
       goto: {
-        block: 'past-usual-household-address',
+        block: 'arrive-in-country',
         when: [
           {
             id: 'country-of-birth-answer',
-            condition: 'equals',
+            condition: 'not equals',
             value: 'Northern Ireland',
           },
         ],
@@ -82,7 +82,13 @@ local question(title) = {
     },
     {
       goto: {
-        block: 'arrive-in-country',
+        block: 'passports',
+        when: [rules.under1],
+      },
+    },
+    {
+      goto: {
+        block: 'past-usual-household-address',
       },
     },
   ],

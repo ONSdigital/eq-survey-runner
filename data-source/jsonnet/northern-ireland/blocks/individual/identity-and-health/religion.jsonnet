@@ -81,10 +81,16 @@ local question(title) = {
         block: 'no-religion',
         when: [
           {
-            id: 'religion-answer-exclusive',
-            condition: 'set',
+            id: 'religion-answer',
+            condition: 'not set',
           },
         ],
+      },
+    },
+    {
+      goto: {
+        block: 'health',
+        when: [rules.under3],
       },
     },
     {

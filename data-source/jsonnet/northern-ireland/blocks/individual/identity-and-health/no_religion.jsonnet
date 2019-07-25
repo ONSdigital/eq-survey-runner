@@ -76,4 +76,17 @@ local question(title) = {
       when: [rules.proxyYes],
     },
   ],
+  routing_rules: [
+    {
+      goto: {
+        block: 'health',
+        when: [rules.under3],
+      },
+    },
+    {
+      goto: {
+        block: 'language',
+      },
+    },
+  ],
 }
