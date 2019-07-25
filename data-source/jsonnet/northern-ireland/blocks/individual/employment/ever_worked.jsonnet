@@ -28,60 +28,9 @@ local question(title, label) = {
   ],
 };
 
-local studyRouting(label) = [
-  {
-    goto: {
-      group: 'school-group',
-      when: [
-        {
-          id: 'ever-worked-answer',
-          condition: 'equals',
-          value: label,
-        },
-        {
-          id: 'in-education-answer',
-          condition: 'equals',
-          value: 'Yes',
-        },
-      ],
-    },
-  },
-  {
-    goto: {
-      group: 'school-group',
-      when: [
-        {
-          id: 'ever-worked-answer',
-          condition: 'equals',
-          value: label,
-        },
-        {
-          id: 'employment-type-answer',
-          condition: 'contains',
-          value: 'Studying',
-        },
-      ],
-    },
-  },
-];
-
-local summaryRouting(label) = [
-  {
-    goto: {
-      group: 'submit-group',
-      when: [
-        {
-          id: 'ever-worked-answer',
-          condition: 'equals',
-          value: label,
-        },
-      ],
-    },
-  },
-];
-
 local nonProxyTitle = 'Have you ever done any paid work?';
 local nonProxyLabel = 'No, have never worked';
+
 local proxyTitle = {
   text: 'Has <em>{person_name}</em> ever done any paid work?',
   placeholders: [
@@ -103,15 +52,37 @@ local proxyLabel = 'No, has never worked';
       when: [rules.proxyYes],
     },
   ],
-  routing_rules:
-    studyRouting(nonProxyLabel) +
-    studyRouting(proxyLabel) +
-    summaryRouting(nonProxyLabel) +
-    summaryRouting(proxyLabel) + [
-      {
-        goto: {
-          block: 'main-employment-block',
-        },
+  routing_rules: [
+    {
+      goto: {
+        block: 'main-employment-block',
+        when: [rules.hasWorked],
       },
-    ],
+    },
+    {
+      goto: {
+        group: 'school-group',
+        when: [{
+          id: 'in-education-answer',
+          condition: 'equals',
+          value: 'Yes',
+        }],
+      },
+    },
+    {
+      goto: {
+        group: 'school-group',
+        when: [{
+          id: 'employment-type-answer',
+          condition: 'contains',
+          value: 'Studying',
+        }],
+      },
+    },
+    {
+      goto: {
+        group: 'submit-group',
+      },
+    },
+  ],
 }

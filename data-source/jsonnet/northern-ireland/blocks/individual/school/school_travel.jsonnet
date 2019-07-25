@@ -1,21 +1,15 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title, guidance) = {
-  id: 'school-travel-mode-question',
+local question(title, description) = {
   title: title,
-  guidance: {
-    contents: [
-      {
-        description: guidance,
-      },
-    ],
-  },
+  id: 'school-travel-question',
+  description: description,
   type: 'General',
   answers: [
     {
-      id: 'school-travel-mode-answer',
-      mandatory: true,
+      id: 'school-travel-answer',
+      mandatory: false,
       options: [
         {
           label: 'Driving a car or van',
@@ -63,26 +57,28 @@ local question(title, guidance) = {
   ],
 };
 
-local nonProxyTitle = 'How do you usually travel to your place of study, including school?';
-local nonProxyGuidance = 'Select one option only, for the longest part, by distance, of your usual journey to place of study.';
-local proxyTitle = {
+
+local nonProxyTitleSchool = 'How do you usually travel to your place of study, including school?';
+local proxyTitleSchool = {
   text: 'How does <em>{person_name}</em> usually travel to their place of study, including school?',
   placeholders: [
     placeholders.personName,
   ],
 };
-local proxyGuidance = 'Select one option only, for the longest part, by distance, of their usual journey to place of study.';
+
+local nonProxyDescriptionSchool = 'Select one option only, for the longest part, by distance, of your usual journey to place of study.';
+local proxyDescriptionSchool = 'Select one option only, for the longest part, by distance, of thier usual journey to place of study.';
 
 {
   type: 'Question',
-  id: 'school-travel-mode',
+  id: 'school-travel',
   question_variants: [
     {
-      question: question(nonProxyTitle, nonProxyGuidance),
+      question: question(nonProxyTitleSchool, nonProxyDescriptionSchool),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle, proxyGuidance),
+      question: question(proxyTitleSchool, proxyDescriptionSchool),
       when: [rules.proxyYes],
     },
   ],

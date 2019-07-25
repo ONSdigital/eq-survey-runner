@@ -12,30 +12,6 @@ local question(title, description) = {
       mandatory: false,
       options: [
         {
-          label: 'Work mainly at or from home',
-          value: 'Work mainly at or from home',
-        },
-        {
-          label: 'Underground, metro, light rail or tram',
-          value: 'Underground, metro, light rail or tram',
-        },
-        {
-          label: 'Train',
-          value: 'Train',
-        },
-        {
-          label: 'Bus, minibus or coach',
-          value: 'Bus, minibus or coach ',
-        },
-        {
-          label: 'Taxi',
-          value: 'Taxi ',
-        },
-        {
-          label: 'Motorcycle, scooter or moped',
-          value: 'Motorcycle, scooter or moped',
-        },
-        {
           label: 'Driving a car or van',
           value: 'Driving a car or van',
         },
@@ -44,12 +20,32 @@ local question(title, description) = {
           value: 'Passenger in a car or van',
         },
         {
-          label: 'Bicycle',
-          value: 'Bicycle',
+          label: 'Car or van pool, sharing driving',
+          value: 'Car or van pool, sharing driving',
+        },
+        {
+          label: 'Bus, minibus or coach (public or private)',
+          value: 'Bus, minibus or coach (public or private)',
         },
         {
           label: 'On foot',
           value: 'On foot',
+        },
+        {
+          label: 'Taxi',
+          value: 'Taxi',
+        },
+        {
+          label: 'Train',
+          value: 'Train',
+        },
+        {
+          label: 'Bicycle',
+          value: 'Bicycle',
+        },
+        {
+          label: 'Motorcycle, scooter or moped',
+          value: 'Motorcycle, scooter or moped',
         },
         {
           label: 'Other',
@@ -61,27 +57,51 @@ local question(title, description) = {
   ],
 };
 
-local nonProxyTitle = 'How do you usually travel to work?';
-local nonProxyDescription = 'Answer for the longest part, by distance, of your usual journey to work';
-local proxyTitle = {
-  text: 'How does <em>{person_name}</em> usually travel to work?',
+local nonProxyTitleWork = 'How do you usually travel to your main place of work?';
+local proxyTitleWork = {
+  text: 'How does <em>{person_name}</em> usually travel to their main place of work?',
   placeholders: [
     placeholders.personName,
   ],
 };
-local proxyDescription = 'Answer for the longest part, by distance, of their usual journey to work';
+
+local pastNonProxyTitleWork = 'How did you usually travel to your main place of work?';
+local pastProxyTitleWork = {
+  text: 'How did <em>{person_name}</em> usually travel to their main place of work?',
+  placeholders: [
+    placeholders.personName,
+  ],
+};
+
+local nonProxyDescriptionWork = 'Select one option only, for the longest part, by distance, of your usual journey to place of work.';
+local proxyDescriptionWork = 'Select one option only, for the longest part, by distance, of their usual journey to place of work.';
 
 {
   type: 'Question',
   id: 'work-travel',
   question_variants: [
     {
-      question: question(nonProxyTitle, nonProxyDescription),
+      question: question(nonProxyTitleWork, nonProxyDescriptionWork),
+      when: [rules.proxyNo, rules.mainJob],
+    },
+    {
+      question: question(proxyTitleWork, proxyDescriptionWork),
+      when: [rules.proxyYes, rules.mainJob],
+    },
+    {
+      question: question(pastNonProxyTitleWork, nonProxyDescriptionWork),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle, proxyDescription),
+      question: question(pastProxyTitleWork, proxyDescriptionWork),
       when: [rules.proxyYes],
+    },
+  ],
+  routing_rules: [
+    {
+      goto: {
+        group: 'submit-group',
+      },
     },
   ],
 }

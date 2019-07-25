@@ -47,17 +47,33 @@ local proxyTitle = {
   ],
 };
 
+local pastNonProxyTitle = 'In your main job, how many hours a week did you usually work?';
+local pastProxyTitle = {
+  text: 'In <em>{person_name_possessive}</em> main job, how many hours a week did they usually work?',
+  placeholders: [
+    placeholders.personNamePossessive,
+  ],
+};
+
 {
   type: 'Question',
   id: 'hours-worked',
   question_variants: [
     {
       question: question(nonProxyTitle),
-      when: [rules.proxyNo],
+      when: [rules.proxyNo, rules.mainJob],
     },
     {
       question: question(proxyTitle),
-      when: [rules.proxyYes],
+      when: [rules.proxyYes, rules.mainJob],
+    },
+    {
+      question: question(pastNonProxyTitle),
+      when: [rules.proxyNo, rules.lastMainJob],
+    },
+    {
+      question: question(pastProxyTitle),
+      when: [rules.proxyYes, rules.lastMainJob],
     },
   ],
 }

@@ -28,4 +28,9 @@
     condition: 'contains',
     value: 'None of these apply',
   },
+  hasWorked: {
+    id: 'ever-worked-answer',
+    condition: 'not equals any',
+    values: ['No, has never worked', 'No, have never worked'],
+  },
 }
