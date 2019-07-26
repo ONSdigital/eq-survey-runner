@@ -16,6 +16,7 @@ local question(title) = {
     {
       id: 'armed-forces-answer',
       mandatory: false,
+      label: '',
       options: [
         {
           label: 'No',
