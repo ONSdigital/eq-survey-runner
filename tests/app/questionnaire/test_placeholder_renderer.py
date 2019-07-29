@@ -9,6 +9,7 @@ from tests.app.app_context_test_case import AppContextTestCase
 class TestPlaceholderRenderer(AppContextTestCase):
     def setUp(self):
         super().setUp()
+
         self.question_json = {
             'id': 'confirm-date-of-birth-proxy',
             'title': 'Confirm date of birth',

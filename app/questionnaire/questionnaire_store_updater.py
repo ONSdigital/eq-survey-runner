@@ -118,18 +118,6 @@ class QuestionnaireStoreUpdater:
 
         for answer_id, answer_value in form_data.items():
 
-            # If answer is not answered then check for a schema specified default
-            if answer_value in self.EMPTY_ANSWER_VALUES:
-                answer = next(
-                    (
-                        answer
-                        for answer in self._current_question.get('answers', [])
-                        if answer['id'] == answer_id
-                    ),
-                    {},
-                )
-                answer_value = answer.get('default')
-
             if answer_id in answer_ids_for_question:
                 if answer_value not in self.EMPTY_ANSWER_VALUES:
                     answer = Answer(

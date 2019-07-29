@@ -76,7 +76,8 @@
                                             }
                                         ],
                                         "q_code": "20",
-                                        "type": "Radio"
+                                        "type": "Radio",
+                                        "default": "Bacon"
                                     }
                                 ],
                                 "description": "",

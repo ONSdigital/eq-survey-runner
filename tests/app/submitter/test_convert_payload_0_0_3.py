@@ -454,12 +454,8 @@ def test_list_item_conversion_empty_list(fake_questionnaire_store):
         {'answer_id': 'extraneous-answer', 'value': 'Bad', 'list_item_id': '123'},
     ]
 
-    answers = AnswerStore(answer_objects)
-
-    list_store = ListStore()
-
-    fake_questionnaire_store.answer_store = answers
-    fake_questionnaire_store.list_store = list_store
+    fake_questionnaire_store.answer_store = AnswerStore(answer_objects)
+    fake_questionnaire_store.list_store = ListStore()
 
     schema = load_schema('test_list_collector')
 
@@ -474,3 +470,26 @@ def test_list_item_conversion_empty_list(fake_questionnaire_store):
     assert sorted(answer_objects, key=lambda x: x['answer_id']) == sorted(
         data_dict, key=lambda x: x['answer_id']
     )
+
+
+def test_default_answers_not_present_when_not_answered(fake_questionnaire_store):
+    """Test that default values aren't submitted downstream when an answer with
+    a default value is not present in the answer store."""
+    schema = load_schema('test_view_submitted_response')
+
+    answer_objects = [
+        {'answer_id': 'test-currency', 'value': '12'},
+        {'answer_id': 'square-kilometres', 'value': '345'},
+        {'answer_id': 'test-decimal', 'value': '67.89'},
+    ]
+
+    fake_questionnaire_store.answer_store = AnswerStore(answer_objects)
+    fake_questionnaire_store.list_store = ListStore()
+
+    routing_path = [Location(block_id='radio'), Location(block_id='test-number-block')]
+
+    output = convert_answers(schema, fake_questionnaire_store, routing_path)
+    data = json.loads(json.dumps(output['data'], for_json=True))
+
+    answer_ids = {answer['answer_id'] for answer in data}
+    assert 'radio-answer' not in answer_ids
