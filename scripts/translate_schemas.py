@@ -13,6 +13,7 @@ TRANSLATION_MAP = {'cy': ['census_individual_gb_wls']}
 
 
 def translate_schemas(runner_directory):
+    print(f'Using runner directory: {runner_directory}')
 
     for language, schemas in TRANSLATION_MAP.items():
         for schema_name in schemas:
