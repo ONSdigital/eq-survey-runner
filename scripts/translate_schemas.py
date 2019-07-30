@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
+
 import logging
 import os
 import sys
 
-from eq_translations.cli.translate_survey import translate_schema
+from eq_translations.entrypoints import translate_schema
 
 
 logger = logging.getLogger(__name__)
