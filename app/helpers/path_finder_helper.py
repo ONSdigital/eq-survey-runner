@@ -1,5 +1,3 @@
-from functools import wraps
-
 from flask import g
 from flask_login import current_user, login_required
 from werkzeug.local import LocalProxy
@@ -30,19 +28,3 @@ def get_path_finder():
 
 
 path_finder = LocalProxy(get_path_finder)
-
-
-def section_routing_path_required(function):
-    @wraps(function)
-    def wrap_function(*args, **kwargs):
-        block_id = kwargs['block_id']
-        block = g.schema.get_block(block_id)
-
-        if not block:
-            return function(None, *args, **kwargs)
-
-        section = g.schema.get_section_for_block_id(block_id)
-        routing_path = path_finder.routing_path(section)
-        return function(routing_path, *args, **kwargs)
-
-    return wrap_function

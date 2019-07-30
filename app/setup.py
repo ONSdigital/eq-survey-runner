@@ -355,39 +355,39 @@ def add_blueprints(application):
     csrf = CSRFProtect(application)
 
     # import and register the main application blueprint
-    from app.views.questionnaire import questionnaire_blueprint
+    from app.routes.questionnaire import questionnaire_blueprint
 
     application.register_blueprint(questionnaire_blueprint)
     questionnaire_blueprint.config = application.config.copy()
 
-    from app.views.questionnaire import post_submission_blueprint
+    from app.routes.questionnaire import post_submission_blueprint
 
     application.register_blueprint(post_submission_blueprint)
     post_submission_blueprint.config = application.config.copy()
 
-    from app.views.feedback import feedback_blueprint
+    from app.routes.feedback import feedback_blueprint
 
     application.register_blueprint(feedback_blueprint)
     feedback_blueprint.config = application.config.copy()
 
-    from app.views.session import session_blueprint
+    from app.routes.session import session_blueprint
 
     csrf.exempt(session_blueprint)
     application.register_blueprint(session_blueprint)
     session_blueprint.config = application.config.copy()
 
-    from app.views.flush import flush_blueprint
+    from app.routes.flush import flush_blueprint
 
     csrf.exempt(flush_blueprint)
     application.register_blueprint(flush_blueprint)
     flush_blueprint.config = application.config.copy()
 
-    from app.views.dump import dump_blueprint
+    from app.routes.dump import dump_blueprint
 
     application.register_blueprint(dump_blueprint)
     dump_blueprint.config = application.config.copy()
 
-    from app.views.errors import errors_blueprint
+    from app.routes.errors import errors_blueprint
 
     application.register_blueprint(errors_blueprint)
     errors_blueprint.config = application.config.copy()
@@ -396,12 +396,12 @@ def add_blueprints(application):
 
     application.register_blueprint(filter_blueprint)
 
-    from app.views.static import contact_blueprint
+    from app.routes.static import contact_blueprint
 
     application.register_blueprint(contact_blueprint)
     contact_blueprint.config = application.config.copy()
 
-    from app.views.schema import schema_blueprint
+    from app.routes.schema import schema_blueprint
 
     application.register_blueprint(schema_blueprint)
     schema_blueprint.config = application.config.copy()

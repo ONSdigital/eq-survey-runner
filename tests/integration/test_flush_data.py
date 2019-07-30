@@ -13,7 +13,7 @@ class TestFlushData(IntegrationTestCase):
         self.submitter_instance = mock_submitter_class.return_value
         self.submitter_instance.send_message.return_value = True
 
-        self.encrypter_patcher = patch('app.views.flush.encrypt')
+        self.encrypter_patcher = patch('app.routes.flush.encrypt')
         mock_encrypter_class = self.encrypter_patcher.start()
         self.encrypt_instance = mock_encrypter_class
 

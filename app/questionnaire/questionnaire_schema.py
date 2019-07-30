@@ -201,17 +201,6 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
         return False
 
-    def get_list_collector_for_block_id(self, block_id):
-        block = self.get_block(block_id)
-        if block['type'] in LIST_COLLECTOR_CHILDREN:
-            return self.get_block(block['parent_id'])
-
-        return self.get_block(block_id)
-
-    def is_block_list_collector_child(self, block_id):
-        block = self.get_block(block_id)
-        return block['type'] in LIST_COLLECTOR_CHILDREN
-
     @staticmethod
     def is_primary_person_block_type(block_type):
         primary_person_blocks = [

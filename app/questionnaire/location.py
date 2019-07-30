@@ -5,6 +5,12 @@ from dataclasses import dataclass
 from flask import url_for
 
 
+class InvalidLocationException(Exception):
+    def __init__(self, value):
+        super().__init__()
+        self.value = value
+
+
 @dataclass
 class Location:
     """
@@ -43,7 +49,7 @@ class Location:
         :return:
         """
         return url_for(
-            'questionnaire.get_block',
+            'questionnaire.block',
             block_id=self.block_id,
             list_name=self.list_name,
             list_item_id=self.list_item_id,

@@ -101,9 +101,10 @@ class QuestionnaireStoreUpdater:
 
         self._progress_store.add_completed_location(section_id, location)
 
-    def remove_completed_location(self):
+    def remove_completed_location(self, location=None):
+        location = location or self._current_location
         self._progress_store.remove_completed_location(
-            self._current_section_id, self._current_location
+            self._current_section_id, location
         )
 
     def update_section_status(self, section_status):

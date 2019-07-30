@@ -6,7 +6,7 @@ class HubPage extends BasePage {
     super(pageName);
   }
 
-  url() { return "/questionnaire/sections/"; }
+  url() { return "/questionnaire/"; }
 
   myAccountLink() { return '#my-account'; }
 
