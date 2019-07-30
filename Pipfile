@@ -29,6 +29,7 @@ snakeviz = "*"
 fakeredis = "*"
 mypy = "*"
 black = "==19.3b0"
+pytest-flask = "*"
 
 [packages]
 colorama = "*"
