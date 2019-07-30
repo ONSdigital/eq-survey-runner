@@ -20,7 +20,7 @@ local question(title) = {
     ],
   },
   type: 'MutuallyExclusive',
-  mandatory: true,
+  mandatory: false,
   answers: [
     {
       id: 'a-level-answer',

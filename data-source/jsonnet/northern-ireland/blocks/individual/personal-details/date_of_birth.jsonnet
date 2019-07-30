@@ -24,7 +24,7 @@ local question(title, census_date) = {
         },
       },
       maximum: {
-        value: census_date,
+        value: 'now',
       },
     },
   ],

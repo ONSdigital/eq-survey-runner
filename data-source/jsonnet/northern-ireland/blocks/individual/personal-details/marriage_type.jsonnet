@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'marriage-type-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Single, never married and never in a same-sex civil partnership',

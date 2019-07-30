@@ -5,7 +5,7 @@ local question(title) = {
   id: 'disability-other-question',
   title: title,
   type: 'MutuallyExclusive',
-  mandatory: true,
+  mandatory: false,
   answers: [
     {
       id: 'disability-other-answer',
