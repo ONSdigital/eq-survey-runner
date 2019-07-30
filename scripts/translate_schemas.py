@@ -13,7 +13,7 @@ TRANSLATION_MAP = {'cy': ['census_individual_gb_wls']}
 
 
 def translate_schemas(runner_directory):
-    print(f'Using runner directory: {runner_directory}')
+    logger.info('Using runner directory: %s', runner_directory)
 
     for language, schemas in TRANSLATION_MAP.items():
         for schema_name in schemas:
@@ -35,5 +35,5 @@ def translate_schemas(runner_directory):
 
 
 if __name__ == '__main__':
-    runner_directory = os.getenv('EQ_RUNNER_BASE_DIRECTORY', '../eq-survey-runner')
-    translate_schemas(runner_directory)
+    runner_base_directory = os.getenv('EQ_RUNNER_BASE_DIRECTORY', '../eq-survey-runner')
+    translate_schemas(runner_base_directory)
