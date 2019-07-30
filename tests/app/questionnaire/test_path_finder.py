@@ -436,11 +436,7 @@ class TestPathFinder(
 
         routing_path = path_finder.routing_path(current_section)
 
-        expected_path = [
-            Location(block_id='number-of-employees-total-block'),
-            Location(block_id='confirm-zero-employees-block'),
-            Location(block_id='number-of-employees-total-block'),
-        ]
+        expected_path = [Location(block_id='number-of-employees-total-block')]
         self.assertEqual(routing_path, expected_path)
 
         self.assertEqual(
