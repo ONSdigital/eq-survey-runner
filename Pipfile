@@ -62,6 +62,7 @@ flask-compress = "*"
 htmlmin = "*"
 docker = "*"
 coloredlogs = "*"
+eq-translations = {editable = true,git = "https://github.com/ONSDigital/eq-translations.git",ref = "python-package"}
 
 [requires]
 python_version = "3.7"
