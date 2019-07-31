@@ -13,7 +13,7 @@ local question(title) = {
   id: 'gcse-question',
   title: title,
   type: 'MutuallyExclusive',
-  mandatory: true,
+  mandatory: false,
   guidance: {
     contents: [
       {

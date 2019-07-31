@@ -19,7 +19,7 @@ local question(title, detailAnswerLabel) = {
   answers: [
     {
       id: 'national-identity-answer',
-      mandatory: true,
+      mandatory: false,
       type: 'Checkbox',
       options: [
         {

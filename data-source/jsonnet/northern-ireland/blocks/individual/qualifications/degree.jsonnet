@@ -23,7 +23,7 @@ local question(title) = {
   answers: [
     {
       id: 'degree-answer',
-      mandatory: true,
+      mandatory: false,
       type: 'Radio',
       options: [
         {

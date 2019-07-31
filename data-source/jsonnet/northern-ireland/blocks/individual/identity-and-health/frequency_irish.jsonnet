@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'frequency-irish-answer',
-      mandatory: true,
+      mandatory: false,
       type: 'Radio',
       options: [
         {

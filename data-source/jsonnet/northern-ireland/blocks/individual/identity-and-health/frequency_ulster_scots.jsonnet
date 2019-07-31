@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'frequency-ulster-scots-answer',
-      mandatory: true,
+      mandatory: false,
       type: 'Radio',
       options: [
         {

@@ -27,7 +27,7 @@ local question(title) = (
       {
         id: 'employers-business-answer',
         label: 'Main activity',
-        mandatory: true,
+        mandatory: false,
         type: 'TextField',
       },
     ],

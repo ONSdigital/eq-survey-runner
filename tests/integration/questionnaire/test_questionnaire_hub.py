@@ -1,6 +1,6 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 
-HUB_URL = '/questionnaire/sections/'
+HUB_URL = '/questionnaire/'
 
 
 class TestQuestionnaireHub(IntegrationTestCase):
@@ -13,7 +13,7 @@ class TestQuestionnaireHub(IntegrationTestCase):
 
         # Then I should be redirected to the first incomplete question
         self.assertInBody('Which pizza toppings would you like?')
-        self.assertNotInUrl(HUB_URL)
+        self.assertInUrl('mandatory-checkbox')
 
     def test_invalid_block_id_redirects_to_hub_when_hub_enabled(self):
         # Given the hub is enabled

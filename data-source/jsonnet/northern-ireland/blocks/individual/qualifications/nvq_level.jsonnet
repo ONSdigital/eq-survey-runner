@@ -20,7 +20,7 @@ local question(title) = {
       },
     ],
   },
-  mandatory: true,
+  mandatory: false,
   answers: [
     {
       id: 'nvq-level-answer',
@@ -73,27 +73,12 @@ local question(title) = {
   routing_rules: [
     {
       goto: {
-        block: 'other-qualifications',
+        block: 'apprenticeship',
         when: [
           {
             id: 'degree-answer',
             condition: 'equals',
-            value: 'No',
-          },
-          {
-            id: 'gcse-answer-exclusive',
-            condition: 'contains',
-            value: 'None of these apply',
-          },
-          {
-            id: 'a-level-answer-exclusive',
-            condition: 'contains',
-            value: 'None of these apply',
-          },
-          {
-            id: 'nvq-level-answer-exclusive',
-            condition: 'contains',
-            value: 'None of these apply',
+            value: 'Yes',
           },
         ],
       },
@@ -101,6 +86,39 @@ local question(title) = {
     {
       goto: {
         block: 'apprenticeship',
+        when: [
+          {
+            id: 'gcse-answer',
+            condition: 'set',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'apprenticeship',
+        when: [
+          {
+            id: 'a-level-answer',
+            condition: 'set',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'apprenticeship',
+        when: [
+          {
+            id: 'nvq-level-answer',
+            condition: 'set',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'other-qualifications',
       },
     },
   ],

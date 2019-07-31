@@ -17,7 +17,7 @@ local question(title) = {
   answers: [
     {
       id: 'ethnic-group-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'White',

@@ -8,8 +8,14 @@ local question(title) = {
   answers: [
     {
       id: 'arrive-in-country-answer',
-      mandatory: true,
+      mandatory: false,
       type: 'YearDate',
+      minimum: {
+        answer_id: 'date-of-birth-answer',
+      },
+      maximum: {
+        value: 'now',
+      },
     },
   ],
 };

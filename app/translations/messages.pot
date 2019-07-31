@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-25 07:19+0100\n"
+"POT-Creation-Date: 2019-07-30 09:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,67 +47,6 @@ msgstr ""
 
 #: app/forms/fields.py:231
 msgid "Select an answer"
-msgstr ""
-
-#: app/templating/hub_context.py:12 app/templating/hub_context.py:14
-msgid "Submit survey"
-msgstr ""
-
-#: app/templating/hub_context.py:13 templates/summary.html:16
-msgid "Please submit this survey to complete it"
-msgstr ""
-
-#: app/templating/hub_context.py:17
-msgid "Choose another section to complete"
-msgstr ""
-
-#: app/templating/hub_context.py:18
-msgid "You must complete all sections in order to submit this survey"
-msgstr ""
-
-#: app/templating/hub_context.py:21 templates/confirmation.html:12
-#: templates/interstitial.html:5
-msgid "Continue"
-msgstr ""
-
-#: app/templating/hub_context.py:27
-msgid "Completed"
-msgstr ""
-
-#: app/templating/hub_context.py:29
-msgid "View answers"
-msgstr ""
-
-#: app/templating/hub_context.py:30
-msgid "View answers for {section_name}"
-msgstr ""
-
-#: app/templating/hub_context.py:34
-msgid "Partially completed"
-msgstr ""
-
-#: app/templating/hub_context.py:36
-msgid "Continue with section"
-msgstr ""
-
-#: app/templating/hub_context.py:37
-msgid "Continue with {section_name} section"
-msgstr ""
-
-#: app/templating/hub_context.py:41
-msgid "Not started"
-msgstr ""
-
-#: app/templating/hub_context.py:43
-msgid "Start section"
-msgstr ""
-
-#: app/templating/hub_context.py:44
-msgid "Start {section_name} section"
-msgstr ""
-
-#: app/templating/view_context.py:118
-msgid " (You)"
 msgstr ""
 
 #: app/validation/error_messages.py:5 app/validation/error_messages.py:6
@@ -166,67 +105,67 @@ msgstr ""
 msgid "Enter answers that add up to less than %(total)s"
 msgstr ""
 
-#: app/validation/error_messages.py:23
+#: app/validation/error_messages.py:25
 #, python-format
 msgid "Enter answers that add up to greater than %(total)s"
 msgstr ""
 
-#: app/validation/error_messages.py:26
+#: app/validation/error_messages.py:28
 #, python-format
 msgid "Enter answers that add up to or are greater than %(total)s"
 msgstr ""
 
-#: app/validation/error_messages.py:29
+#: app/validation/error_messages.py:31
 msgid "Enter a number."
 msgstr ""
 
-#: app/validation/error_messages.py:30
+#: app/validation/error_messages.py:32
 msgid "Enter a whole number."
 msgstr ""
 
-#: app/validation/error_messages.py:31
+#: app/validation/error_messages.py:33
 #, python-format
 msgid "Enter a number rounded to %(max)d decimal places."
 msgstr ""
 
-#: app/validation/error_messages.py:32
+#: app/validation/error_messages.py:36
 #, python-format
 msgid "Your answer is too long, it has to be less than %(max)d characters."
 msgstr ""
 
-#: app/validation/error_messages.py:35
+#: app/validation/error_messages.py:39
 msgid "Enter a valid date."
 msgstr ""
 
-#: app/validation/error_messages.py:36
+#: app/validation/error_messages.py:40
 msgid "Enter a 'period to' date later than the 'period from' date."
 msgstr ""
 
-#: app/validation/error_messages.py:39
+#: app/validation/error_messages.py:43
 msgid "Enter a valid duration."
 msgstr ""
 
-#: app/validation/error_messages.py:40
+#: app/validation/error_messages.py:44
 #, python-format
 msgid "Enter a reporting period greater than or equal to %(min)s."
 msgstr ""
 
-#: app/validation/error_messages.py:43
+#: app/validation/error_messages.py:47
 #, python-format
 msgid "Enter a reporting period less than or equal to %(max)s."
 msgstr ""
 
-#: app/validation/error_messages.py:46
+#: app/validation/error_messages.py:50
 #, python-format
 msgid "Enter a date after %(min)s."
 msgstr ""
 
-#: app/validation/error_messages.py:47
+#: app/validation/error_messages.py:51
 #, python-format
 msgid "Enter a date before %(max)s."
 msgstr ""
 
-#: app/validation/error_messages.py:48
+#: app/validation/error_messages.py:52
 msgid "Remove an answer to continue."
 msgstr ""
 
@@ -236,6 +175,67 @@ msgid "%(num)s day"
 msgid_plural "%(num)s days"
 msgstr[0] ""
 msgstr[1] ""
+
+#: app/views/contexts/hub_context.py:12 app/views/contexts/hub_context.py:14
+msgid "Submit survey"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:13 templates/summary.html:16
+msgid "Please submit this survey to complete it"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:17
+msgid "Choose another section to complete"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:18
+msgid "You must complete all sections in order to submit this survey"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:21 templates/confirmation.html:12
+#: templates/interstitial.html:5
+msgid "Continue"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:27
+msgid "Completed"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:29
+msgid "View answers"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:30
+msgid "View answers for {section_name}"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:34
+msgid "Partially completed"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:36
+msgid "Continue with section"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:37
+msgid "Continue with {section_name} section"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:41
+msgid "Not started"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:43
+msgid "Start section"
+msgstr ""
+
+#: app/views/contexts/hub_context.py:44
+msgid "Start {section_name} section"
+msgstr ""
+
+#: app/views/contexts/list_collector.py:32
+msgid " (You)"
+msgstr ""
 
 #: templates/confirmation.html:6 templates/confirmation.html:37
 msgid "Submit answers"

@@ -23,7 +23,7 @@ local question(title) = {
   answers: [
     {
       id: 'apprenticeship-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Yes',

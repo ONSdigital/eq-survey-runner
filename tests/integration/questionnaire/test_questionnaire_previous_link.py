@@ -49,7 +49,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         self.launchSurvey('test_hub_and_spoke')
 
         # When I answer go to the first question in a section
-        self.assertInUrl('sections/')
+        self.assertInUrl('/')
         self.post()
 
         # Then there should be a previous link on the current page
