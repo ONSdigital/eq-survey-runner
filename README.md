@@ -344,6 +344,10 @@ pipenv run pybabel update -i app/translations/messages.pot -d app/translations
 
 ---
 
+### Translating the schemas
+
+The schemas can be translated assuming `.po` files are available. This can be done through the `scripts/translate_schemas.py` script.
+
 ## Environment Variables
 
 The following env variables can be used
