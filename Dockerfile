@@ -13,7 +13,7 @@ COPY . /runner
 
 RUN mkdir -p /runner/data/en
 RUN pip install pipenv==2018.11.26
-RUN pipenv install --deploy -v
+RUN pipenv install --deploy
 ENV EQ_RUNNER_BASE_DIRECTORY=/runner
 RUN pipenv run ./scripts/build.sh
 
