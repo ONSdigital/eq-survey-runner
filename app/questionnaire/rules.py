@@ -33,7 +33,7 @@ def evaluate_rule(when, answer_value):
     :return (bool): The result of the evaluation
     """
 
-    match_value = when['value'] if 'value' in when else None
+    match_value = when.get('value', when.get('values'))
 
     condition = when['condition']
 
@@ -67,14 +67,42 @@ def evaluate_condition(condition, answer_value, match_value):
     comparison_operators = {
         'equals': lambda answer_value, match_value: answer_value == match_value,
         'not equals': lambda answer_value, match_value: answer_value != match_value,
-        'contains': lambda answer_value, match_value: isinstance(answer_value, list) and match_value in answer_value,
-        'not contains': lambda answer_value, match_value: isinstance(answer_value, list) and match_value not in answer_value,
+        'contains':
+            lambda answer_value, match_value: isinstance(answer_value, list)
+            and match_value in answer_value,
+        'contains all':
+            lambda answer_value, match_value: isinstance(answer_value, list)
+            and isinstance(match_value, list)
+            and set(answer_value) >= set(match_value),
+        'contains any':
+            lambda answer_value, match_value: isinstance(answer_value, list)
+            and isinstance(match_value, list)
+            and bool(set(answer_value) & set(match_value)),
+        'not contains any':
+            lambda answer_value, match_value: isinstance(answer_value, list)
+            and isinstance(match_value, list)
+            and set(answer_value).isdisjoint(set(match_value)),
+        'not contains all':
+            lambda answer_value, match_value: isinstance(answer_value, list)
+            and isinstance(match_value, list)
+            and not set(match_value) <= set(answer_value),
+        'not contains':
+            lambda answer_value, match_value: isinstance(answer_value, list)
+            and match_value not in answer_value,
         'set': lambda answer_value, _: answer_value is not None and answer_value != [],
         'not set': lambda answer_value, _: answer_value is None or answer_value == [],
-        'greater than': lambda answer_value, match_value: answer_and_match and answer_value > match_value,
-        'greater than or equal to': lambda answer_value, match_value: answer_and_match and answer_value >= match_value,
-        'less than': lambda answer_value, match_value: answer_and_match and answer_value < match_value,
-        'less than or equal to': lambda answer_value, match_value: answer_and_match and answer_value <= match_value,
+        'greater than':
+            lambda answer_value, match_value: answer_and_match
+            and answer_value > match_value,
+        'greater than or equal to':
+            lambda answer_value, match_value: answer_and_match
+            and answer_value >= match_value,
+        'less than':
+            lambda answer_value, match_value: answer_and_match
+            and answer_value < match_value,
+        'less than or equal to':
+            lambda answer_value, match_value: answer_and_match
+            and answer_value <= match_value,
     }
 
     match_function = comparison_operators[condition]
