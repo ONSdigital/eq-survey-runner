@@ -60,8 +60,8 @@ jsonpointer = "*"
 redis = "==3.2.1"
 flask-compress = "*"
 htmlmin = "*"
-docker = "*"
 coloredlogs = "*"
+eq-translations = {editable = true,git = "https://github.com/ONSDigital/eq-translations.git",ref = "master"}
 
 [requires]
 python_version = "3.7"

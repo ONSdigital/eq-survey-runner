@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "953d4383b2dac843849ebef4385c14c6e9f16991ee7bba2a80eb4086b4ddc1dd"
+            "sha256": "7ff80be68f13865f0dd60481c9621b93dace2fd6fd848a78974017db95a3bd12"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -150,14 +150,6 @@
             ],
             "version": "==2.7"
         },
-        "docker": {
-            "hashes": [
-                "sha256:acf51b5e3e0d056925c3b780067a6f753c915fffaa46c5f2d79eb0fc1cbe6a01",
-                "sha256:cc5b2e94af6a2b1e1ed9d7dcbdc77eff56c36081757baf9ada6e878ea0213164"
-            ],
-            "index": "pypi",
-            "version": "==4.0.2"
-        },
         "docutils": {
             "hashes": [
                 "sha256:02aec4bd92ab067f6ff27a38a38a41173bf01bed8f89157768c1573f53e474a6",
@@ -165,6 +157,11 @@
                 "sha256:7a4bd47eaf6596e1295ecb11361139febe29b084a87bf005bf899f9a42edc3c6"
             ],
             "version": "==0.14"
+        },
+        "eq-translations": {
+            "editable": true,
+            "git": "https://github.com/ONSDigital/eq-translations.git",
+            "ref": "23bbc1b4747a77684091fa77a5742afe68ce856e"
         },
         "flask": {
             "hashes": [
@@ -655,6 +652,13 @@
             "index": "pypi",
             "version": "==19.1.0"
         },
+        "tqdm": {
+            "hashes": [
+                "sha256:14a285392c32b6f8222ecfbcd217838f88e11630affe9006cd0e94c7eff3cb61",
+                "sha256:25d4c0ea02a305a688e7e9c2cdc8f862f989ef2a4701ab28ee963295f5b109ab"
+            ],
+            "version": "==4.32.2"
+        },
         "ua-parser": {
             "hashes": [
                 "sha256:3908c19ea0abdcdfe7245366dc03e5b4a8901ec17105bd66ba2ccbe3948dce8a",
@@ -670,13 +674,6 @@
             ],
             "markers": "python_version >= '3.4'",
             "version": "==1.25.3"
-        },
-        "websocket-client": {
-            "hashes": [
-                "sha256:1151d5fb3a62dc129164292e1227655e4bbc5dd5340a5165dfae61128ec50aa9",
-                "sha256:1fd5520878b68b84b5748bb30e592b10d0a91529d5383f74f4964e72b297fd3a"
-            ],
-            "version": "==0.56.0"
         },
         "werkzeug": {
             "hashes": [
@@ -926,7 +923,6 @@
                 "sha256:acf51b5e3e0d056925c3b780067a6f753c915fffaa46c5f2d79eb0fc1cbe6a01",
                 "sha256:cc5b2e94af6a2b1e1ed9d7dcbdc77eff56c36081757baf9ada6e878ea0213164"
             ],
-            "index": "pypi",
             "version": "==4.0.2"
         },
         "docutils": {
