@@ -156,7 +156,9 @@ class PathFinder:
 
                 if next_precedes_current:
                     self._remove_rule_answers(rule['goto'], this_location)
-                    path.pop()
+                    next_location = Location(block_id=next_block_id)
+                    path.append(next_location)
+                    return None
 
                 return next_block_index
 
