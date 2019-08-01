@@ -3,7 +3,7 @@ FROM python:3.7-stretch as builder
 RUN apt-get update \
     && apt-get install -y curl unzip git make build-essential libsnappy-dev
 
-RUN git clone --branch v0.12.1 --depth 1 https://github.com/google/jsonnet.git /tmp/jsonnet \
+RUN git clone --branch v0.13.0 --depth 1 https://github.com/google/jsonnet.git /tmp/jsonnet \
     && make -C /tmp/jsonnet \
     && cp /tmp/jsonnet/jsonnet /usr/local/bin
 
