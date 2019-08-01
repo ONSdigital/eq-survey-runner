@@ -97,7 +97,7 @@ describe('Primary Person List Collector Survey', function() {
     it('When the user submits, then they are allowed to submit the survey', function () {
       return browser
         .click(SummaryPage.submit())
-        .getText(ThankYouPage.submissionSuccessfulTitle()).should.eventually.contain('Submission successful');
+        .getText(ThankYouPage.submissionSuccessfulTitle()).should.eventually.contain('Thank you for submitting your census');
     });
   });
 
