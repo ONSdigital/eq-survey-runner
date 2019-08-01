@@ -7,7 +7,7 @@ class Section:
     """
         Store a section in the questionnaire.
 
-        block_id: The id of the block.
+        section_id: The id of the section
         list_item_id: The list_item_id if this section is associated with a list
     """
 

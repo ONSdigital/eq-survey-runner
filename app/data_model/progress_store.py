@@ -31,7 +31,7 @@ class ProgressStore:
 
     @staticmethod
     def _build_map(in_progress_sections: List[Dict]) -> Dict:
-        """ Builds the answer_store's data structure from a list of answer dictionaries"""
+        """ Builds the progress_store's data structure from a list of progress dictionaries"""
         return {
             Section(
                 section['section_id'], section.get('list_item_id')
