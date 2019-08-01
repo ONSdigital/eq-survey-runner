@@ -23,9 +23,6 @@ class TestDumpDebug(IntegrationTestCase):
         # Then I receive a 403 Forbidden response code
         self.assertStatusForbidden()
 
-        # And the response data contains Forbidden
-        self.assertInBody('Error 403')
-
     def test_dump_debug_authenticated_with_role(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
@@ -57,9 +54,6 @@ class TestDumpSubmission(IntegrationTestCase):
 
         # Then I receive a 403 Forbidden response code
         self.assertStatusForbidden()
-
-        # And the response data contains Forbidden
-        self.assertInBody('Error 403')
 
     def test_dump_submission_authenticated_with_role_no_answers(self):
         # Given I am an authenticated user who has launched a survey
@@ -168,9 +162,6 @@ class TestDumpRoute(IntegrationTestCase):
 
         # Then I receive a 403 Forbidden response code
         self.assertStatusForbidden()
-
-        # And the response data contains Forbidden
-        self.assertInBody('Error 403')
 
     def test_dump_route_authenticated_with_role(self):
         # Given I am an authenticated user who has launched a survey

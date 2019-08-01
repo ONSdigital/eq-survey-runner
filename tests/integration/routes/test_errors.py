@@ -27,7 +27,6 @@ class TestErrors(IntegrationTestCase):
     def test_errors_404(self):
         self.get('/hfjdskahfjdkashfsa')
         self.assertStatusNotFound()
-        self.assertInBody('Error 404')
 
         # Test that my account link does not show
         self.assertNotInBody('My account')
@@ -38,7 +37,6 @@ class TestErrors(IntegrationTestCase):
             self.launchSurvey('test_percentage')
             self.get('/hfjdskahfjdkashfsa')
             self.assertStatusNotFound()
-            self.assertInBody('Error 404')
 
             # Test that my account link uses account_service_url that's passed in via the payload
             self.assertInBody('My account')
@@ -62,7 +60,6 @@ class TestErrors(IntegrationTestCase):
         ):
             self.post({'answer': '5000000'})
             self.assertStatusCode(500)
-            self.assertInBody('500')
 
             # Test that my account link doesn't show as it wasn't passed in via the payload.
             self.assertNotInBody('My account')
@@ -81,7 +78,6 @@ class TestErrors(IntegrationTestCase):
             ):
                 self.post({'answer': '5000000'})
                 self.assertStatusCode(500)
-                self.assertInBody('500')
 
                 # Test that my account link uses account_service_url that's passed in via the payload
                 self.assertInBody('My account')

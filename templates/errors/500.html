@@ -1,0 +1,10 @@
+{% extends 'layouts/_base.html' %}
+
+{% set page_title = _("An error has occurred") + " - " + _("Office for National Statistics") %}
+
+{% block main %}
+<h1>{{ _("Sorry, there is a problem with this service") }}</h1>
+<p>{{ _("Try again later.") }}</p>
+<p>{{ _("If you have started a survey, your answers have been saved.") }}</p>
+<p>{{ _("<a href='/contact-us'>Contact us</a> if you need to speak to someone about your survey.") }}</p>
+{% endblock %}

@@ -1,4 +1,3 @@
-import copy
 from typing import List, Mapping
 
 from structlog import get_logger
@@ -64,17 +63,10 @@ class PathFinder:
         """
         Visits all the blocks in a section and returns a path given a list of answers.
         """
-        this_location = None
         blocks: List[Mapping] = []
         path: List[Location] = []
-        block_index: int = 0
-        first_group_id = section['groups'][0]['id']
 
         for group in section['groups']:
-            if group['id'] == first_group_id:
-                first_block_in_group = group['blocks'][0]['id']
-                this_location = Location(block_id=first_block_in_group)
-
             if 'skip_conditions' in group:
                 if evaluate_skip_conditions(
                     group['skip_conditions'],
@@ -88,71 +80,62 @@ class PathFinder:
 
             blocks.extend(group['blocks'])
 
-            if blocks:
-                path, block_index = self._build_path_within_group(
-                    blocks, block_index, this_location, path
-                )
+        if blocks:
+            path = self._build_path(blocks, path)
 
         return RoutingPath(path)
 
     @staticmethod
-    def _block_index_for_location(blocks, location):
+    def _block_index_for_block_id(blocks, block_id):
         return next(
-            (
-                index
-                for (index, block) in enumerate(blocks)
-                if block['id'] == location.block_id
-            ),
+            (index for (index, block) in enumerate(blocks) if block['id'] == block_id),
             None,
         )
 
-    def _build_path_within_group(self, blocks, block_index, this_location, path):
+    def _build_path(self, blocks, path):
         # Keep going unless we've hit the last block
+        block_index = 0
         while block_index < len(blocks):
-            prev_block_index = block_index
-            block_index = PathFinder._block_index_for_location(blocks, this_location)
-
-            if block_index is None:
-                return path, prev_block_index
-
             block = blocks[block_index]
 
-            if block.get('skip_conditions') and evaluate_skip_conditions(
+            is_skipping = block.get('skip_conditions') and evaluate_skip_conditions(
                 block['skip_conditions'],
                 self.schema,
                 self.metadata,
                 self.answer_store,
                 self.list_store,
                 routing_path=path,
-            ):
+            )
 
-                if block_index == len(blocks) - 1:
-                    return path, block_index
+            if not is_skipping:
+                this_location = Location(block_id=block['id'])
 
-                this_location = Location(block_id=blocks[block_index + 1]['id'])
-                continue
+                if this_location not in path:
+                    path.append(this_location)
 
-            if this_location not in path:
-                path.append(this_location)
+                # If routing rules exist then a rule must match (i.e. default goto)
+                routing_rules = block.get('routing_rules')
+                if routing_rules:
+                    block_index = self._evaluate_routing_rules(
+                        this_location, blocks, routing_rules, block_index, path
+                    )
+                    if block_index:
+                        continue
 
-            # If routing rules exist then a rule must match (i.e. default goto)
-            if 'routing_rules' in block and block['routing_rules']:
-                this_location = self._evaluate_routing_rules(
-                    this_location, blocks, block, block_index, path
-                )
+                    # Return path if routing out of a section
+                    return path
 
-                if this_location:
-                    continue
+            # Last block so return path
+            if block_index == len(blocks) - 1:
+                return path
 
-            # No routing rules, so if this isn't the last block, step forward a block
-            if block_index < len(blocks) - 1:
-                this_location = Location(block_id=blocks[block_index + 1]['id'])
-                continue
+            # No routing rules, so step forward a block
+            block_index = block_index + 1
 
-            return path, block_index
-
-    def _evaluate_routing_rules(self, this_location, blocks, block, block_index, path):
-        for rule in filter(is_goto_rule, block['routing_rules']):
+    def _evaluate_routing_rules(
+        self, this_location, blocks, routing_rules, block_index, path
+    ):
+        for rule in filter(is_goto_rule, routing_rules):
             should_goto = evaluate_goto(
                 rule['goto'],
                 self.schema,
@@ -163,30 +146,24 @@ class PathFinder:
             )
 
             if should_goto:
-                return self._follow_routing_rule(
-                    this_location, rule, blocks, block_index, path
+                next_block_id = self._get_next_block_id(rule)
+                next_block_index = PathFinder._block_index_for_block_id(
+                    blocks, next_block_id
+                )
+                next_precedes_current = (
+                    next_block_index is not None and next_block_index < block_index
                 )
 
-    def _follow_routing_rule(self, this_location, rule, blocks, block_index, path):
-        next_location = copy.copy(this_location)
+                if next_precedes_current:
+                    self._remove_rule_answers(rule['goto'], this_location)
+                    path.pop()
 
+                return next_block_index
+
+    def _get_next_block_id(self, rule):
         if 'group' in rule['goto']:
-            next_location.block_id = self.schema.get_first_block_id_for_group(
-                rule['goto']['group']
-            )
-        else:
-            next_location.block_id = rule['goto']['block']
-
-        next_block_index = PathFinder._block_index_for_location(blocks, next_location)
-        next_precedes_current = (
-            next_block_index is not None and next_block_index < block_index
-        )
-
-        if next_precedes_current:
-            self._remove_rule_answers(rule['goto'], this_location)
-            path.append(next_location)
-
-        return next_location
+            return self.schema.get_first_block_id_for_group(rule['goto']['group'])
+        return rule['goto']['block']
 
     def _remove_rule_answers(self, goto_rule, this_location):
         # We're jumping backwards, so need to delete all answers from which
