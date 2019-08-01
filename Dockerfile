@@ -1,19 +1,21 @@
-FROM ubuntu:18.04 as builder
+FROM python:3.7-stretch as builder
 
 RUN apt-get update \
-    && apt-get install -y curl unzip git make build-essential
+    && apt-get install -y curl unzip git make build-essential libsnappy-dev
 
-RUN git clone --branch v0.12.1 --depth 1 https://github.com/google/jsonnet.git /tmp/jsonnet \
+RUN git clone --branch v0.13.0 --depth 1 https://github.com/google/jsonnet.git /tmp/jsonnet \
     && make -C /tmp/jsonnet \
     && cp /tmp/jsonnet/jsonnet /usr/local/bin
 
 WORKDIR /runner
 
 COPY . /runner
-RUN ./scripts/load_templates.sh
 
 RUN mkdir -p /runner/data/en
-RUN ./scripts/build_schemas.sh
+RUN pip install pipenv==2018.11.26
+RUN pipenv install --deploy
+ENV EQ_RUNNER_BASE_DIRECTORY=/runner
+RUN pipenv run ./scripts/build.sh
 
 ###############################################################################
 # Second Stage
@@ -23,7 +25,7 @@ FROM python:3.7-slim-stretch
 
 EXPOSE 5000
 
-RUN apt update && apt install -y libsnappy-dev build-essential
+RUN apt update && apt install -y git libsnappy-dev build-essential
 
 RUN mkdir -p /runner
 WORKDIR /runner

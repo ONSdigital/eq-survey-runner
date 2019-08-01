@@ -16,7 +16,7 @@ class TestBrokenSubmission(IntegrationTestCase):
     def tearDown(self):
         self.patcher.stop()
 
-    def test_broken_submitter_results_in_503(self):
+    def test_broken_submitter_results_in_500(self):
         self.post({'answer': '50'})
         self.assertStatusOK()
 
@@ -24,4 +24,4 @@ class TestBrokenSubmission(IntegrationTestCase):
         self.assertEqual(
             self.instance.send_message.called, True
         )  # pylint: disable=no-member
-        self.assertStatusCode(503)
+        self.assertStatusCode(500)

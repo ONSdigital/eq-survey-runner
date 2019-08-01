@@ -5,9 +5,9 @@
 
 failures=0
 while read file; do 
-  jsonnet fmt --test -i $file
+  jsonnetfmt --test -i $file
   if [ $? -ne 0 ]; then
-    echo "'$file' failed Jsonnet format check. Run 'jsonnet fmt -i $file' to fix."
+    echo "'$file' failed Jsonnet format check. Run 'jsonnetfmt -i $file' to fix."
     (( failures+= 1 ))
   fi
 done < <(find ./data-source -name '*.jsonnet' -o -name '*.libsonnet')
