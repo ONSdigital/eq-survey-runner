@@ -115,7 +115,7 @@ def validate_jti(decrypted_token):
 def get_session_expired():
     logout_user()
 
-    return render_template('session-expired')
+    return render_template('errors/session-expired')
 
 
 @session_blueprint.route('/signed-out', methods=['GET'])

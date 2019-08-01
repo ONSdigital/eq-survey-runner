@@ -127,7 +127,7 @@ class Feedback(IntegrationTestCase):
 
             self.fail('{} Schema Validation Errors.\n{}'.format(len(errors), errors))
 
-    def test_post_with_broken_send_message_returns_503(self):
+    def test_post_with_broken_send_message_returns_500(self):
         post_data = {
             'message': 'This survey is awesome',
             'name': 'Bill',
@@ -137,7 +137,7 @@ class Feedback(IntegrationTestCase):
         self.instance.send_message.return_value = False  # pylint: disable=no-member
 
         self.post(url=FEEDBACK_FORM_URL, post_data=post_data, action='send_feedback')
-        self.assertStatusCode(503)
+        self.assertStatusCode(500)
 
     def post_then_intercept_and_decrypt_message(self, post_data, **kwargs):
         self.post(
