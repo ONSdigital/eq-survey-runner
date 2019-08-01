@@ -4,7 +4,7 @@ import logging
 import os
 import sys
 
-from eq_translations.entrypoints import translate_schema
+from eq_translations.entrypoints import handle_translate_schema
 
 
 logger = logging.getLogger(__name__)
@@ -31,7 +31,7 @@ def translate_schemas(runner_directory):
 
             schema_path = f'{runner_directory}/data/en/{schema_file}'
 
-            translate_schema(
+            handle_translate_schema(
                 schema_path, f'{language_dir}/{translation_file}', f'{output_dir}'
             )
 
