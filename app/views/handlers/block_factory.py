@@ -1,16 +1,16 @@
+from app.questionnaire.location import InvalidLocationException
+from app.views.handlers.calculated_summary import CalculatedSummary
 from app.views.handlers.content import Content
-from app.views.handlers.question import Question
-from app.views.handlers.list_collector import ListCollector
 from app.views.handlers.list_add_question import ListAddQuestion
+from app.views.handlers.list_collector import ListCollector
 from app.views.handlers.list_edit_question import ListEditQuestion
 from app.views.handlers.list_remove_question import ListRemoveQuestion
 from app.views.handlers.primary_person_list_collector import PrimaryPersonListCollector
 from app.views.handlers.primary_person_question import PrimaryPersonQuestion
+from app.views.handlers.question import Question
 from app.views.handlers.relationship_collector import RelationshipCollector
-from app.views.handlers.summary import Summary
 from app.views.handlers.section_summary import SectionSummary
-from app.views.handlers.calculated_summary import CalculatedSummary
-from app.questionnaire.location import InvalidLocationException
+from app.views.handlers.summary import Summary
 
 BLOCK_MAPPINGS = {
     'Question': Question,
@@ -36,6 +36,13 @@ def get_block_handler(schema, location, questionnaire_store, language):
     if not block:
         raise InvalidLocationException(
             f'block id {location.block_id} is not valid for this schema'
+        )
+
+    if schema.is_block_in_repeating_section(block_id=block['id']) and not all(
+        (location.list_name, location.list_item_id)
+    ):
+        raise InvalidLocationException(
+            f'block id {location.block_id} is in a repeating section without valid list_name/list_item_id'
         )
 
     block_type = block['type']

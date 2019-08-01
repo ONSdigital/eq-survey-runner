@@ -133,7 +133,13 @@ def convert_to_datetime(value):
 
 
 def evaluate_goto(
-    goto_rule, schema, metadata, answer_store, list_store, routing_path=None
+    goto_rule,
+    schema,
+    metadata,
+    answer_store,
+    list_store,
+    list_item_id=None,
+    routing_path=None,
 ):
     """
     Determine whether a goto rule will be satisfied based on a given answer
@@ -141,6 +147,8 @@ def evaluate_goto(
     :param schema: survey schema
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
+    :param list_store: store of lists to evaluate
+    :param list_item_id: list_item_id to filter answers by
     :return: True if the when condition has been met otherwise False
     """
     if 'when' in goto_rule:
@@ -150,6 +158,7 @@ def evaluate_goto(
             metadata,
             answer_store,
             list_store,
+            list_item_id=list_item_id,
             routing_path=routing_path,
         )
     return True
@@ -161,18 +170,26 @@ def _is_answer_on_path(schema, answer, routing_path):
     return location in routing_path
 
 
-def _get_comparison_id_value(when_rule, answer_store, schema):
+def _get_comparison_id_value(when_rule, answer_store, schema, list_item_id=None):
     """
         Gets the value of an answer specified as an operand in a comparator ( i.e right hand argument ,
         or rhs in if lhs>rhs ) In a when clause
     """
     answer_id = when_rule['comparison_id']
 
-    return get_answer_store_value(answer_id, answer_store, schema)
+    return get_answer_store_value(
+        answer_id, answer_store, schema, list_item_id=list_item_id
+    )
 
 
 def evaluate_skip_conditions(
-    skip_conditions, schema, metadata, answer_store, list_store, routing_path=None
+    skip_conditions,
+    schema,
+    metadata,
+    answer_store,
+    list_store,
+    list_item_id=None,
+    routing_path=None,
 ):
     """
     Determine whether a skip condition will be satisfied based on a given answer
@@ -188,7 +205,13 @@ def evaluate_skip_conditions(
 
     for when in skip_conditions:
         condition = evaluate_when_rules(
-            when['when'], schema, metadata, answer_store, list_store, routing_path
+            when['when'],
+            schema,
+            metadata,
+            answer_store,
+            list_store,
+            list_item_id=list_item_id,
+            routing_path=routing_path,
         )
         if condition is True:
             return True
@@ -196,7 +219,13 @@ def evaluate_skip_conditions(
 
 
 def _get_when_rule_value(
-    when_rule, answer_store, list_store, schema, metadata, routing_path=None
+    when_rule,
+    answer_store,
+    list_store,
+    schema,
+    metadata,
+    list_item_id=None,
+    routing_path=None,
 ):
     """
     Get the value from a when rule.
@@ -205,7 +234,11 @@ def _get_when_rule_value(
     """
     if 'id' in when_rule:
         value = get_answer_store_value(
-            when_rule['id'], answer_store, schema, routing_path=routing_path
+            when_rule['id'],
+            answer_store,
+            schema,
+            list_item_id=list_item_id,
+            routing_path=routing_path,
         )
     elif 'meta' in when_rule:
         value = get_metadata_value(metadata, when_rule['meta'])
@@ -218,7 +251,13 @@ def _get_when_rule_value(
 
 
 def evaluate_when_rules(
-    when_rules, schema, metadata, answer_store, list_store, routing_path=None
+    when_rules,
+    schema,
+    metadata,
+    answer_store,
+    list_store,
+    list_item_id=None,
+    routing_path=None,
 ):
     """
     Whether the skip condition has been met.
@@ -226,6 +265,8 @@ def evaluate_when_rules(
     :param schema: survey schema
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
+    :param list_store: store of lists to evaluate
+    :param list_item_id: list_item_id to filter answers by
     :param routing_path: The routing path to use when filtering answer_store
     :return: True if the when condition has been met otherwise False
     """
@@ -236,6 +277,7 @@ def evaluate_when_rules(
             list_store,
             schema,
             metadata,
+            list_item_id=list_item_id,
             routing_path=routing_path,
         )
 
@@ -255,12 +297,16 @@ def evaluate_when_rules(
     return True
 
 
-def get_answer_store_value(answer_id, answer_store, schema, routing_path=None):
+def get_answer_store_value(
+    answer_id, answer_store, schema, list_item_id=None, routing_path=None
+):
     """ Return answer value assuming it is on the routing path.
     If answer is not on the routing path, return None
     If routing_path empty, return answer value
     """
-    answer = answer_store.get_answer(answer_id) or schema.get_default_answer(answer_id)
+    answer = answer_store.get_answer(
+        answer_id, list_item_id
+    ) or schema.get_default_answer(answer_id)
 
     if not answer:
         return None

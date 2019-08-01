@@ -8,13 +8,15 @@ class PlaceholderParser:
     final values
     """
 
-    def __init__(self, language, answer_store=None, metadata=None):
+    def __init__(self, language, list_item_id=None, answer_store=None, metadata=None):
+        self.list_item_id = list_item_id
         self._answer_store = answer_store or AnswerStore()
         self._metadata = metadata
         self._transformer = PlaceholderTransforms(language)
 
     def _lookup_answer(self, answer_id):
-        answer = self._answer_store.get_answer(answer_id)
+
+        answer = self._answer_store.get_answer(answer_id, self.list_item_id)
 
         if answer:
             return answer.value

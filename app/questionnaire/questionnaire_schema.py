@@ -34,6 +34,9 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def get_section(self, section_id: str):
         return self._sections_by_id.get(section_id)
 
+    def get_repeating_list_for_section(self, section_id):
+        return self._sections_by_id.get(section_id).get('repeat', {}).get('for_list')
+
     def get_section_for_block_id(self, block_id):
         block = self.get_block(block_id)
 
@@ -74,6 +77,11 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     def get_block_for_answer_id(self, answer_id):
         return self._block_for_answer(answer_id)
+
+    def is_block_in_repeating_section(self, block_id):
+        section_id = self.get_section_id_for_block_id(block_id=block_id)
+
+        return self.get_repeating_list_for_section(section_id)
 
     def get_answer_ids(self):
         return self._answers_by_id.values()

@@ -11,11 +11,11 @@ from sdc.crypto.encrypter import encrypt
 from structlog import get_logger
 
 from app.authentication.no_token_exception import NoTokenException
-from app.views.handlers.block_factory import get_block_handler
 from app.data_model.answer_store import AnswerStore
 from app.data_model.app_models import SubmittedResponse
 from app.data_model.list_store import ListStore
 from app.data_model.progress_store import CompletionStatus
+from app.data_model.section import Section
 from app.globals import (
     get_answer_store,
     get_metadata,
@@ -30,20 +30,20 @@ from app.helpers.session_helpers import with_questionnaire_store
 from app.helpers.template_helper import render_template, safe_content
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.questionnaire.location import InvalidLocationException, Location
-from app.questionnaire.router import Router
 from app.questionnaire.relationship_location import RelationshipLocation
+from app.questionnaire.router import Router
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
 from app.submitter.submission_failed import SubmissionFailedException
+from app.utilities.schema import load_schema_from_session_data
+from app.views.contexts.hub_context import HubContext
 from app.views.contexts.metadata_context import (
     build_metadata_context_for_survey_completed,
 )
 from app.views.contexts.summary_context import build_summary_rendering_context
-from app.views.contexts.hub_context import HubContext
-from app.utilities.schema import load_schema_from_session_data
+from app.views.handlers.block_factory import get_block_handler
 
 END_BLOCKS = 'Summary', 'Confirmation'
-
 
 logger = get_logger()
 
@@ -116,9 +116,11 @@ def get_questionnaire(schema, questionnaire_store):
         return redirect(redirect_location.url())
 
     language_code = get_session_store().session_data.language_code
+
     hub = HubContext(
         questionnaire_store.progress_store,
-        schema.get_sections(),
+        questionnaire_store.list_store,
+        schema,
         router.is_survey_complete(),
     )
 
@@ -151,11 +153,11 @@ def post_questionnaire(schema, questionnaire_store):
 
 
 @questionnaire_blueprint.route('sections/<section_id>/', methods=['GET'])
+@questionnaire_blueprint.route('sections/<section_id>/<list_item_id>/', methods=['GET'])
 @login_required
 @with_questionnaire_store
 @with_schema
-def get_section(schema, questionnaire_store, section_id):
-
+def get_section(schema, questionnaire_store, section_id, list_item_id=None):
     progress_store = questionnaire_store.progress_store
     router = Router(
         schema, progress_store=progress_store, list_store=questionnaire_store.list_store
@@ -165,12 +167,14 @@ def get_section(schema, questionnaire_store, section_id):
         redirect_location = router.get_first_incomplete_location_in_survey()
         return redirect(redirect_location.url())
 
-    section = schema.get_section(section_id)
-    if not section:
+    section_schema = schema.get_section(section_id)
+    if not section_schema:
         return redirect(url_for('.get_questionnaire'))
 
-    section_status = progress_store.get_section_status(section_id)
+    section = Section(section_id, list_item_id)
+
     routing_path = path_finder.routing_path(section)
+    section_status = progress_store.get_section_status(section)
 
     if section_status == CompletionStatus.COMPLETED:
         return redirect(routing_path[-1].url())
@@ -178,12 +182,12 @@ def get_section(schema, questionnaire_store, section_id):
     if section_status == CompletionStatus.NOT_STARTED:
         return redirect(
             router.get_first_incomplete_location_for_section(
-                section_id, routing_path
+                section, routing_path
             ).url()
         )
 
     return redirect(
-        router.get_last_complete_location_for_section(section_id, routing_path).url()
+        router.get_last_complete_location_for_section(section, routing_path).url()
     )
 
 

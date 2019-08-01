@@ -20,7 +20,7 @@ def test_get_not_started_row_for_section():
     }
 
     hub = HubContext(
-        progress_store=ProgressStore({}), sections={}, survey_complete=False
+        progress_store=ProgressStore({}), schema_sections={}, survey_complete=False
     )
 
     actual = hub.get_row_for_section(
@@ -51,7 +51,7 @@ def test_get_completed_row_for_section():
     }
 
     hub = HubContext(
-        progress_store=ProgressStore({}), sections={}, survey_complete=False
+        progress_store=ProgressStore({}), schema_sections={}, survey_complete=False
     )
 
     actual = hub.get_row_for_section(
@@ -65,7 +65,7 @@ def test_get_completed_row_for_section():
 
 def test_get_context():
     hub = HubContext(
-        progress_store=ProgressStore({}), sections={}, survey_complete=False
+        progress_store=ProgressStore({}), schema_sections={}, survey_complete=False
     )
 
     expected_context = {

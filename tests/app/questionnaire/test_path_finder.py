@@ -15,12 +15,14 @@ class TestPathFinder(
     def test_simple_path(self):
         schema = load_schema_from_name('test_textfield')
         progress_store = ProgressStore(
-            {
-                'default-section': {
+            [
+                {
+                    'section_id': 'default-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'name-block'}],
                 }
-            }
+            ]
         )
         path_finder = PathFinder(
             schema, AnswerStore(), metadata={}, progress_store=progress_store
@@ -73,12 +75,14 @@ class TestPathFinder(
         answers = AnswerStore()
         answers.add_or_update(answer)
         progress_store = ProgressStore(
-            {
-                'default-section': {
+            [
+                {
+                    'section_id': 'default-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'number-question'}],
                 }
-            }
+            ]
         )
         path_finder = PathFinder(
             schema, answer_store=answers, metadata={}, progress_store=progress_store
@@ -116,12 +120,14 @@ class TestPathFinder(
         schema = load_schema_from_name('test_introduction')
         current_section = schema.get_section_for_block_id('introduction')
         progress_store = ProgressStore(
-            {
-                'introduction-section': {
+            [
+                {
+                    'section_id': 'introduction-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'introduction'}],
                 }
-            }
+            ]
         )
         expected_routing_path = [
             Location(block_id='introduction'),
@@ -146,8 +152,10 @@ class TestPathFinder(
 
         answers = AnswerStore()
         progress_store = ProgressStore(
-            {
-                'default-section': {
+            [
+                {
+                    'section_id': 'default-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [
                         {'block_id': 'radio'},
@@ -155,7 +163,7 @@ class TestPathFinder(
                         {'block_id': 'dessert-block'},
                     ],
                 }
-            }
+            ]
         )
         path_finder = PathFinder(
             schema, answer_store=answers, metadata={}, progress_store=progress_store
@@ -181,12 +189,14 @@ class TestPathFinder(
         answers.add_or_update(answer_2)
 
         progress_store = ProgressStore(
-            {
-                'default-section': {
+            [
+                {
+                    'section_id': 'default-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'mandatory-checkbox'}],
                 }
-            }
+            ]
         )
 
         path_finder = PathFinder(
@@ -207,12 +217,14 @@ class TestPathFinder(
         ]
 
         progress_store = ProgressStore(
-            {
-                'default-section': {
+            [
+                {
+                    'section_id': 'default-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'block1'}],
                 }
-            }
+            ]
         )
         metadata = {}
 
@@ -233,12 +245,14 @@ class TestPathFinder(
         )
 
         progress_store = ProgressStore(
-            {
-                'default-section': {
+            [
+                {
+                    'section_id': 'introduction-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'do-you-want-to-skip'}],
                 }
-            }
+            ]
         )
 
         # When
@@ -272,12 +286,14 @@ class TestPathFinder(
             Answer(answer_id='do-you-want-to-skip-answer', value='Yes')
         )
         progress_store = ProgressStore(
-            {
-                'default-section': {
+            [
+                {
+                    'section_id': 'introduction-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'do-you-want-to-skip'}],
                 }
-            }
+            ]
         )
 
         # When
@@ -311,12 +327,14 @@ class TestPathFinder(
             Answer(answer_id='do-you-want-to-skip-answer', value='No')
         )
         progress_store = ProgressStore(
-            {
-                'default-section': {
+            [
+                {
+                    'section_id': 'default-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'do-you-want-to-skip'}],
                 }
-            }
+            ]
         )
 
         # When
@@ -365,6 +383,7 @@ class TestPathFinder(
             },
             {'block_id': 'summary', 'group_id': 'should-skip-group'},
         ]
+
         current_section = schema.get_section_for_block_id('summary')
         pytest.xfail(
             reason='Known bug when skipping last group due to summary bundled into it'
@@ -403,15 +422,17 @@ class TestPathFinder(
 
         # All blocks completed
         progress_store = ProgressStore(
-            {
-                'default-section': {
+            [
+                {
+                    'section_id': 'default-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [
                         {'block_id': 'number-of-employees-total-block'},
                         {'block_id': 'confirm-zero-employees-block'},
                     ],
                 }
-            }
+            ]
         )
 
         answer_store = AnswerStore()

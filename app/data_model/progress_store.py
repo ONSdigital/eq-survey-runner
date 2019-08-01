@@ -1,5 +1,7 @@
-from typing import List, Mapping, MutableMapping
+from typing import List, Dict
 
+from app.data_model.progress import Progress
+from app.data_model.section import Section
 from app.questionnaire.location import Location
 
 
@@ -15,96 +17,104 @@ class ProgressStore:
     that have been started.
     """
 
-    def __init__(self, in_progress_sections: Mapping = None) -> None:
+    def __init__(self, in_progress_sections: List[Dict] = None) -> None:
         """
         Instantiate a ProgressStore object that tracks the status of sections and its completed locations
         Args:
             in_progress_sections: A hierarchical dict containing the section status and completed locations
         """
         self._is_dirty = False  # type: bool
-        self._progress = {}  # type: MutableMapping
+        self._progress = self._build_map(in_progress_sections or [])  # type: Dict
 
-        if not in_progress_sections:
-            return
+    def __contains__(self, section: Section) -> bool:
+        return section in self._progress
 
-        for section_id, serialised_section in in_progress_sections.items():
-            self._progress[section_id] = {
-                'status': serialised_section['status'],
-                'locations': [
-                    Location.from_dict(location_dict=location)
-                    for location in serialised_section['locations']
-                ],
-            }
-
-    def __contains__(self, section_id):
-        return section_id in self._progress
+    @staticmethod
+    def _build_map(in_progress_sections: List[Dict]) -> Dict:
+        """ Builds the answer_store's data structure from a list of answer dictionaries"""
+        return {
+            Section(
+                section['section_id'], section.get('list_item_id')
+            ): Progress.from_dict(section)
+            for section in in_progress_sections
+        }
 
     @property
     def is_dirty(self) -> bool:
         return self._is_dirty
 
     @property
-    def completed_section_ids(self) -> List[str]:
-        complete_section_ids = []
-        for section_id, section_progress in self._progress.items():
-            if section_progress['status'] == CompletionStatus.COMPLETED:
-                complete_section_ids.append(section_id)
+    def completed_sections(self) -> List[Section]:
+        complete_sections = []
+        for section, section_progress in self._progress.items():
+            if section_progress.status == CompletionStatus.COMPLETED:
+                complete_sections.append(section)
 
-        return complete_section_ids
+        return complete_sections
 
-    def update_section_status(self, section_id: str, section_status: str) -> None:
-        if section_id in self._progress:
-            self._progress[section_id]['status'] = section_status
+    def update_section_status(self, section: Section, section_status: str) -> None:
+        if section in self._progress:
+            self._progress[section].status = section_status
             self._is_dirty = True
 
-    def get_section_status(self, section_id: str) -> str:
-        if section_id in self._progress:
-            return self._progress[section_id]['status']
+    def get_section_status(self, section: Section) -> str:
+        if section in self._progress:
+            return self._progress[section].status
 
         return CompletionStatus.NOT_STARTED
 
-    def get_completed_locations(self, section_id: str) -> List[Location]:
-        if section_id in self._progress:
-            return self._progress[section_id]['locations']
+    def get_completed_locations(self, section: Section) -> List[Location]:
+        if section in self._progress:
+            return self._progress[section].locations
 
         return []
 
-    def add_completed_location(self, section_id: str, location: Location) -> None:
-        locations = self.get_completed_locations(section_id)
+    def add_completed_location(self, section: Section, location: Location) -> None:
+        locations = self.get_completed_locations(section)
 
         if location not in locations:
             locations.append(location)
 
-            if section_id not in self._progress:
-                self._progress[section_id] = {}
-
-            self._progress[section_id]['locations'] = locations
-            self._is_dirty = True
-
-    def remove_completed_location(self, section_id: str, location: Location) -> None:
-        if (
-            section_id in self._progress
-            and location in self._progress[section_id]['locations']
-        ):
-            self._progress[section_id]['locations'].remove(location)
-
-            if not self._progress[section_id]['locations']:
-                del self._progress[section_id]
+            if section not in self._progress:
+                self._progress[section] = Progress(
+                    section_id=section.section_id,
+                    list_item_id=section.list_item_id,
+                    locations=locations,
+                )
+            else:
+                self._progress[section].locations = locations
 
             self._is_dirty = True
 
-    def serialise(self) -> Mapping:
-        serialised = {}
+    def remove_completed_location(self, section: Section, location: Location) -> None:
+        if section in self._progress and location in self._progress[section].locations:
+            self._progress[section].locations.remove(location)
 
-        for section_id, section_progress in self._progress.items():
-            serialised[section_id] = {
-                'status': section_progress['status'],
-                'locations': [
-                    location.for_json() for location in section_progress['locations']
-                ],
-            }
+            if not self._progress[section].locations:
+                del self._progress[section]
 
-        return serialised
+            self._is_dirty = True
+
+    def remove_progress_for_list_item_id(self, list_item_id: str) -> None:
+        """Remove progress associated with a particular list_item_id
+        This method iterates through all progress.
+
+        *Not efficient.*
+        """
+
+        keys_to_delete = []
+
+        for section in self._progress:
+            if section.list_item_id == list_item_id:
+                keys_to_delete.append(Section(section.section_id, section.list_item_id))
+
+        for key in keys_to_delete:
+            del self._progress[key]
+
+            self._is_dirty = True
+
+    def serialise(self) -> List:
+        return list(self._progress.values())
 
     def clear(self) -> None:
         self._progress.clear()

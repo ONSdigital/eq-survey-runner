@@ -32,7 +32,12 @@ def convert_answers_to_payload_0_0_1(
 
             block = schema.get_block_for_answer_id(answer_in_block.answer_id)
             question = choose_question_to_display(
-                block, schema, metadata, answer_store, list_store
+                block,
+                schema,
+                metadata,
+                answer_store,
+                list_store,
+                list_item_id=location.list_item_id,
             )
             for answer in question['answers']:
                 if answer['id'] == answer_in_block.answer_id:

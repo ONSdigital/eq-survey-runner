@@ -50,13 +50,16 @@ class TestRouter(AppContextTestCase):
     def test_next_location_url(self):
         schema = load_schema_from_name('test_textfield')
         progress_store = ProgressStore(
-            {
-                'default-section': {
+            [
+                {
+                    'section_id': 'default-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'name-block'}],
                 }
-            }
+            ]
         )
+
         router = Router(schema, progress_store)
 
         current_location = Location(block_id='name-block')
@@ -109,12 +112,14 @@ class TestRouter(AppContextTestCase):
     def test_is_survey_complete(self):
         schema = load_schema_from_name('test_textfield')
         progress_store = ProgressStore(
-            {
-                'default-section': {
+            [
+                {
+                    'section_id': 'default-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'name-block'}],
                 }
-            }
+            ]
         )
         router = Router(schema, progress_store)
 
@@ -126,20 +131,26 @@ class TestRouter(AppContextTestCase):
         schema = load_schema_from_name('test_placeholder_full')
 
         progress_store = ProgressStore(
-            {
-                'name-section': {
+            [
+                {
+                    'section_id': 'name-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'name-question'}],
                 },
-                'age-input-section': {
+                {
+                    'section_id': 'age-input-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'dob-question-block'}],
                 },
-                'age-confirmation-section': {
+                {
+                    'section_id': 'age-confirmation-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'confirm-dob-proxy'}],
                 },
-            }
+            ]
         )
         router = Router(schema, progress_store)
 
@@ -151,12 +162,14 @@ class TestRouter(AppContextTestCase):
         schema = load_schema_from_name('test_section_summary')
 
         progress_store = ProgressStore(
-            {
-                'property-details-section': {
+            [
+                {
+                    'section_id': 'property-details-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'insurance-type'}],
                 }
-            }
+            ]
         )
         router = Router(schema, progress_store)
 
@@ -175,12 +188,14 @@ class TestRouter(AppContextTestCase):
         schema = load_schema_from_name('test_section_summary')
 
         progress_store = ProgressStore(
-            {
-                'property-details-section': {
+            [
+                {
+                    'section_id': 'property-details-section',
+                    'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [{'block_id': 'insurance-type'}],
                 }
-            }
+            ]
         )
         router = Router(schema, progress_store)
 

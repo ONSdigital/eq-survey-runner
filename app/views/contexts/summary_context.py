@@ -1,8 +1,8 @@
 from typing import List, Mapping
 
-from app.views.contexts.summary.group import Group
 from app.data_model.answer_store import AnswerStore
 from app.data_model.list_store import ListStore
+from app.data_model.section import Section
 from app.jinja_filters import (
     get_formatted_currency,
     format_number,
@@ -15,6 +15,7 @@ from app.questionnaire.schema_utils import (
     choose_question_to_display,
     get_answer_ids_in_block,
 )
+from app.views.contexts.summary.group import Group
 
 
 def build_summary_rendering_context(
@@ -22,16 +23,26 @@ def build_summary_rendering_context(
     answer_store: AnswerStore,
     list_store: ListStore,
     metadata: Mapping,
-    sections: List[Mapping] = None,
+    schema_sections: List[Mapping] = None,
 ) -> List:
     path_finder = PathFinder(schema, answer_store, metadata, list_store=list_store)
 
-    sections = sections or schema.get_sections()
-    paths = [path_finder.routing_path(section) for section in sections]
+    paths = []
+    schema_sections = schema_sections or schema.get_sections()
+    for section_schema in schema_sections:
+        section = Section(section_schema['id'])
+        for_list = schema.get_repeating_list_for_section(section.section_id)
+
+        if for_list:
+            for list_item_id in list_store[for_list].items:
+                section.list_item_id = list_item_id
+                paths.append(path_finder.routing_path(section))
+        else:
+            paths.append(path_finder.routing_path(section))
 
     return [
         Group(group, path, answer_store, list_store, metadata, schema).serialize()
-        for path, section in zip(paths, sections)
+        for path, section in zip(paths, schema_sections)
         for group in section['groups']
     ]
 
@@ -102,7 +113,12 @@ def build_view_context_for_calculated_summary(
     )
 
     formatted_total = _get_formatted_total(
-        context['summary'].get('groups', []), metadata, answer_store, list_store, schema
+        context['summary'].get('groups', []),
+        metadata,
+        answer_store,
+        list_store,
+        schema,
+        list_item_id=current_location.list_item_id,
     )
 
     context['summary'].update(
@@ -120,6 +136,7 @@ def _build_calculated_summary_section_list(
     schema, rendered_block, current_location, answer_store, list_store, metadata
 ):
     """Build up the list of blocks only including blocks / questions / answers which are relevant to the summary"""
+    section_id = schema.get_section_id_for_block_id(current_location.block_id)
     group = schema.get_group_for_block_id(current_location.block_id)
     blocks = []
     answers_to_calculate = rendered_block['calculation']['answers_to_calculate']
@@ -131,24 +148,36 @@ def _build_calculated_summary_section_list(
     for block in unique_blocks:
         if block['type'] == 'Question':
             transformed_block = _remove_unwanted_questions_answers(
-                block, answers_to_calculate, answer_store, list_store, metadata, schema
+                block,
+                answers_to_calculate,
+                answer_store,
+                list_store,
+                metadata,
+                schema,
+                list_item_id=None,
             )
             if set(get_answer_ids_in_block(transformed_block)) & set(
                 answers_to_calculate
             ):
                 blocks.append(transformed_block)
 
-    return [{'groups': [{'id': group['id'], 'blocks': blocks}]}]
+    return [{'id': section_id, 'groups': [{'id': group['id'], 'blocks': blocks}]}]
 
 
 def _remove_unwanted_questions_answers(
-    block, answer_ids_to_keep, answer_store, list_store, metadata, schema
+    block,
+    answer_ids_to_keep,
+    answer_store,
+    list_store,
+    metadata,
+    schema,
+    list_item_id=None,
 ):
     """
     Evaluates questions in a block and removes any questions not containing a relevant answer
     """
     block_question = choose_question_to_display(
-        block, schema, answer_store, list_store, metadata
+        block, schema, answer_store, list_store, metadata, list_item_id=list_item_id
     )
 
     reduced_block = block.copy()
@@ -170,13 +199,20 @@ def _remove_unwanted_questions_answers(
     return reduced_block
 
 
-def _get_formatted_total(groups, metadata, answer_store, list_store, schema):
+def _get_formatted_total(
+    groups, metadata, answer_store, list_store, schema, list_item_id=None
+):
     calculated_total = 0
     answer_format = {'type': None}
     for group in groups:
         for block in group['blocks']:
             question = choose_question_to_display(
-                block, schema, metadata, answer_store, list_store
+                block,
+                schema,
+                metadata,
+                answer_store,
+                list_store,
+                list_item_id=list_item_id,
             )
             for answer in question['answers']:
                 if not answer_format['type']:

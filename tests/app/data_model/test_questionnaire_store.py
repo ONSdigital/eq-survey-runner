@@ -14,12 +14,14 @@ def get_basic_input():
         'METADATA': {'test': True},
         'ANSWERS': [{'answer_id': 'test', 'value': 'test'}],
         'LISTS': [],
-        'PROGRESS': {
-            'a-test-section': {
+        'PROGRESS': [
+            {
+                'section_id': 'a-test-section',
+                'list_item_id': 'abc123',
                 'status': CompletionStatus.COMPLETED,
                 'locations': [{'block_id': 'a-test-block'}],
             }
-        },
+        ],
         'COLLECTION_METADATA': {'test-meta': 'test'},
     }
 
@@ -28,12 +30,14 @@ def get_input_answers_dict():
     return {
         'METADATA': {'test': True},
         'ANSWERS': {'test': [{'answer_id': 'test', 'value': 'test'}]},
-        'PROGRESS': {
-            'a-test-section': {
+        'PROGRESS': [
+            {
+                'section_id': 'a-test-section',
+                'list_item_id': None,
                 'status': CompletionStatus.COMPLETED,
                 'locations': [{'block_id': 'a-test-block'}],
             }
-        },
+        ],
         'COLLECTION_METADATA': {'test-meta': 'test'},
     }
 
@@ -66,12 +70,17 @@ class TestQuestionnaireStore(TestCase):
         self.assertEqual(store.metadata.copy(), expected['METADATA'])
         self.assertEqual(store.collection_metadata, expected['COLLECTION_METADATA'])
         self.assertEqual(store.answer_store, AnswerStore(expected['ANSWERS']))
-        expected_location = expected['PROGRESS']['a-test-section']['locations'][0]
+
+        expected_location = expected['PROGRESS'][0]['locations'][0]
+
         self.assertEqual(
-            len(store.progress_store.get_completed_locations('a-test-section')), 1
+            len(
+                store.progress_store.get_completed_locations('a-test-section', 'abc123')
+            ),
+            1,
         )
         self.assertEqual(
-            store.progress_store.get_completed_locations('a-test-section')[0],
+            store.progress_store.get_completed_locations('a-test-section', 'abc123')[0],
             Location.from_dict(location_dict=expected_location),
         )
 
@@ -88,12 +97,17 @@ class TestQuestionnaireStore(TestCase):
         self.assertEqual(store.metadata.copy(), expected['METADATA'])
         self.assertEqual(store.collection_metadata, expected['COLLECTION_METADATA'])
         self.assertEqual(store.answer_store, AnswerStore(expected['ANSWERS']))
-        expected_location = expected['PROGRESS']['a-test-section']['locations'][0]
+
+        expected_location = expected['PROGRESS'][0]['locations'][0]
+
         self.assertEqual(
-            len(store.progress_store.get_completed_locations('a-test-section')), 1
+            len(
+                store.progress_store.get_completed_locations('a-test-section', 'abc123')
+            ),
+            1,
         )
         self.assertEqual(
-            store.progress_store.get_completed_locations('a-test-section')[0],
+            store.progress_store.get_completed_locations('a-test-section', 'abc123')[0],
             Location.from_dict(location_dict=expected_location),
         )
 
@@ -108,7 +122,7 @@ class TestQuestionnaireStore(TestCase):
         self.assertEqual(store.metadata.copy(), expected['METADATA'])
         self.assertEqual(store.collection_metadata, expected['COLLECTION_METADATA'])
         self.assertEqual(store.answer_store, AnswerStore(expected['ANSWERS']))
-        self.assertEqual(store.progress_store.serialise(), {})
+        self.assertEqual(store.progress_store.serialise(), [])
 
     def test_questionnaire_store_updates_storage(self):
         # Given

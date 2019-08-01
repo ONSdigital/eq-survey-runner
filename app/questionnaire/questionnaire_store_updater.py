@@ -2,6 +2,7 @@ from typing import List, Tuple
 
 from app.data_model.answer_store import Answer
 from app.data_model.relationship_store import Relationship, RelationshipStore
+from app.data_model.section import Section
 
 
 class QuestionnaireStoreUpdater:
@@ -15,7 +16,9 @@ class QuestionnaireStoreUpdater:
             'id'
         ]
         self._current_location = current_location
-        self._current_section_id = current_section_id
+        self._current_section = Section(
+            current_section_id, current_location.list_item_id
+        )
         self._current_question = current_question or {}
         self._schema = schema
         self._questionnaire_store = questionnaire_store
@@ -95,22 +98,22 @@ class QuestionnaireStoreUpdater:
             list_item_id=list_item_id
         )
 
-    def add_completed_location(self, location=None, section_id=None):
-        location = location or self._current_location
-        section_id = section_id or self._current_section_id
+        self._progress_store.remove_progress_for_list_item_id(list_item_id=list_item_id)
 
-        self._progress_store.add_completed_location(section_id, location)
+    def add_completed_location(self, location=None, section=None):
+        location = location or self._current_location
+        section = section or self._current_section
+
+        self._progress_store.add_completed_location(section, location)
 
     def remove_completed_location(self, location=None):
         location = location or self._current_location
-        self._progress_store.remove_completed_location(
-            self._current_section_id, location
-        )
+        self._progress_store.remove_completed_location(self._current_section, location)
 
-    def update_section_status(self, section_status):
-        self._progress_store.update_section_status(
-            self._current_section_id, section_status
-        )
+    def update_section_status(self, section_status, section=None):
+        section_to_update = section or self._current_section
+
+        self._progress_store.update_section_status(section_to_update, section_status)
 
     def _update_questionnaire_store_with_form_data(self, form_data):
         answer_ids_for_question = self._schema.get_answer_ids_for_question(
