@@ -10,7 +10,7 @@ import difflib
 
 import coloredlogs
 
-from eq_translations.entrypoints import extract_template
+from eq_translations.entrypoints import handle_extract_template
 
 logger = logging.getLogger(__name__)
 
@@ -91,7 +91,7 @@ def build_schema_templates(output_dir):
 
         logger.info('Building %s/%s', output_dir, template_file)
 
-        extract_template(f'data/en/{schema_file}', output_dir)
+        handle_extract_template(f'data/en/{schema_file}', output_dir)
 
         logger.info('Built %s/%s', output_dir, template_file)
 
