@@ -14,4 +14,4 @@ echo "Building schemas"
 echo "Translating schemas"
 make translate
 
-echo -n $(git rev-parse HEAD) > .application-version
+printf $(git rev-parse HEAD) > .application-version
