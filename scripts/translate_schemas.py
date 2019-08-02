@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
+
 import logging
 import os
 import sys
 
-import docker
+from eq_translations.entrypoints import handle_translate_schema
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -11,34 +14,28 @@ logger.addHandler(logging.StreamHandler(sys.stdout))
 TRANSLATION_MAP = {'cy': ['census_individual_gb_wls']}
 
 
-def translate_schemas():
-    docker_client = docker.from_env()
+def translate_schemas(runner_directory):
+    logger.info('Using runner directory: %s', runner_directory)
 
     for language, schemas in TRANSLATION_MAP.items():
         for schema_name in schemas:
             translation_file = f'{schema_name}_{language}.po'
             schema_file = f'{schema_name}.json'
             relative_dir = f'data/{language}'
-            output_dir = f'/usr/src/eq-survey-runner/data/{language}'
-            language_dir = f'/usr/src/eq-survey-runner/app/translations/{language}'
+            output_dir = f'{runner_directory}/data/{language}'
+            language_dir = f'{runner_directory}/app/translations/{language}'
 
             logger.info('Building %s/%s', relative_dir, schema_file)
 
             os.makedirs(relative_dir, exist_ok=True)
 
-            docker_client.images.pull('onsdigital/eq-translations:latest')
-            container = docker_client.containers.run(
-                'onsdigital/eq-translations',
-                f'pipenv run python -m cli.translate_survey ../eq-survey-runner/data/en/{schema_file} {language_dir}/{translation_file} {output_dir}',
-                volumes={
-                    os.getcwd(): {'bind': '/usr/src/eq-survey-runner', 'mode': 'rw'}
-                },
-                remove=True,
-                detach=True,
+            schema_path = f'{runner_directory}/data/en/{schema_file}'
+
+            handle_translate_schema(
+                schema_path, f'{language_dir}/{translation_file}', f'{output_dir}'
             )
-            for log in container.logs(stdout=True, stream=True):
-                logger.info(log.decode().strip('\n'))
 
 
 if __name__ == '__main__':
-    translate_schemas()
+    runner_base_directory = os.getenv('EQ_RUNNER_BASE_DIRECTORY', '../eq-survey-runner')
+    translate_schemas(runner_base_directory)
