@@ -7,7 +7,7 @@ const ThankYouPage = require('../../base_pages/thank-you.page.js');
 
 describe('Feature: Confirmation Question', function() {
 
-  describe('Given I have a confirmation Question', function() {
+  describe('Given I have a completed the confirmation question', function() {
 
     before('Get to summary', function () {
       return helpers.openQuestionnaire('test_confirmation_question.json').then(() => {
@@ -36,5 +36,19 @@ describe('Feature: Confirmation Question', function() {
     });
 
   });
-});
 
+  describe('Given a confirmation Question', function() {
+
+    it('When I answer \'No\' to the confirmation question, Then I should be routed back to the source question', function () {
+      return helpers.openQuestionnaire('test_confirmation_question.json').then(() => {
+        return browser
+          .click(NumberOfEmployeesTotalBlockPage.submit())
+          .click(ConfirmZeroEmployeesBlockPage.no())
+          .click(ConfirmZeroEmployeesBlockPage.submit())
+          .getUrl().should.eventually.contain(NumberOfEmployeesTotalBlockPage.pageName);
+      });
+    });
+
+  });
+
+});
