@@ -13,5 +13,3 @@ echo "Building schemas"
 
 echo "Translating schemas"
 make translate
-
-printf $(git rev-parse HEAD) > .application-version
