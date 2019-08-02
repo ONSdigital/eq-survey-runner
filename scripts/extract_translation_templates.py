@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import sys
 import subprocess
@@ -6,8 +8,9 @@ import logging
 import argparse
 import difflib
 
-import docker
 import coloredlogs
+
+from eq_translations.entrypoints import handle_extract_template
 
 logger = logging.getLogger(__name__)
 
@@ -81,24 +84,16 @@ def compare_files(source_dir, target_dir, filename):
 
 
 def build_schema_templates(output_dir):
-    docker_client = docker.from_env()
 
     for schema_name in SCHEMAS_TO_EXTRACT:
         template_file = f'{schema_name}.pot'
         schema_file = f'{schema_name}.json'
 
-        docker_client.images.pull('onsdigital/eq-translations:latest')
-        run_results = docker_client.containers.run(
-            'onsdigital/eq-translations',
-            f'pipenv run python -m cli.template_extractor ../eq-survey-runner/data/en/{schema_file} /usr/src/templates',
-            volumes={
-                os.getcwd(): {'bind': '/usr/src/eq-survey-runner', 'mode': 'rw'},
-                output_dir: {'bind': '/usr/src/templates', 'mode': 'rw'},
-            },
-            remove=True,
-        )
         logger.info('Building %s/%s', output_dir, template_file)
-        logger.info(run_results.decode())
+
+        handle_extract_template(f'data/en/{schema_file}', output_dir)
+
+        logger.info('Built %s/%s', output_dir, template_file)
 
 
 def check_schema_templates(source_dir, target_dir):

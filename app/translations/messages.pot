@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-30 09:36+0100\n"
+"POT-Creation-Date: 2019-08-01 14:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -297,7 +297,7 @@ msgstr ""
 msgid "It is now safe to close this window"
 msgstr ""
 
-#: templates/feedback_sent.html:12 templates/session-expired.html:22
+#: templates/errors/session-expired.html:22 templates/feedback_sent.html:12
 #: templates/signed-out.html:9
 msgid "Return to your account"
 msgstr ""
@@ -347,18 +347,6 @@ msgid "This <strong>must be corrected</strong> to continue"
 msgid_plural "These <strong>must be corrected</strong> to continue"
 msgstr[0] ""
 msgstr[1] ""
-
-#: templates/session-expired.html:6
-msgid "Session expired"
-msgstr ""
-
-#: templates/session-expired.html:10
-msgid "Your session has expired"
-msgstr ""
-
-#: templates/session-expired.html:18
-msgid "To help protect your information we have signed you out"
-msgstr ""
 
 #: templates/signed-out.html:3
 msgid "Signed out"
@@ -477,20 +465,75 @@ msgstr ""
 msgid "Print this page"
 msgstr ""
 
-#: templates/layouts/_error.html:5 templates/layouts/_error.html:8
-msgid "Error"
+#: templates/errors/403.html:3
+msgid "Authorisation refused"
 msgstr ""
 
-#: templates/layouts/_error.html:13
-msgid "Sorry, something has gone wrong"
+#: templates/errors/403.html:3 templates/errors/404.html:3
+#: templates/errors/500.html:3
+msgid "Office for National Statistics"
 msgstr ""
 
-#: templates/layouts/_error.html:15
-msgid "Please quote this reference for any support queries"
+#: templates/errors/403.html:6
+msgid "Sorry, there is a problem"
 msgstr ""
 
-#: templates/layouts/_error.html:27
-msgid "Your system information"
+#: templates/errors/403.html:7
+msgid ""
+"To access this page you need to <a href='#'>enter your unique access "
+"code.</a>"
+msgstr ""
+
+#: templates/errors/404.html:3 templates/errors/404.html:6
+msgid "Page not found"
+msgstr ""
+
+#: templates/errors/404.html:7
+msgid "If you entered a web address, check it is correct."
+msgstr ""
+
+#: templates/errors/404.html:8
+msgid "If you pasted the web address, check you copied the whole address."
+msgstr ""
+
+#: templates/errors/404.html:9
+msgid ""
+"If the web address is correct or you selected a link or button, <a href"
+"='/contact-us'>contact us</a> for more help."
+msgstr ""
+
+#: templates/errors/500.html:3
+msgid "An error has occurred"
+msgstr ""
+
+#: templates/errors/500.html:6
+msgid "Sorry, there is a problem with this service"
+msgstr ""
+
+#: templates/errors/500.html:7
+msgid "Try again later."
+msgstr ""
+
+#: templates/errors/500.html:8
+msgid "If you have started a survey, your answers have been saved."
+msgstr ""
+
+#: templates/errors/500.html:9
+msgid ""
+"<a href='/contact-us'>Contact us</a> if you need to speak to someone "
+"about your survey."
+msgstr ""
+
+#: templates/errors/session-expired.html:6
+msgid "Session expired"
+msgstr ""
+
+#: templates/errors/session-expired.html:10
+msgid "Your session has expired"
+msgstr ""
+
+#: templates/errors/session-expired.html:18
+msgid "To help protect your information we have signed you out"
 msgstr ""
 
 #: templates/layouts/_questionnaire.html:11
@@ -614,15 +657,15 @@ msgstr ""
 msgid "Select all that apply"
 msgstr ""
 
-#: templates/partials/answers/date.html:22
+#: templates/partials/answers/date.html:23
 msgid "Day"
 msgstr ""
 
-#: templates/partials/answers/date.html:37
+#: templates/partials/answers/date.html:38
 msgid "Month"
 msgstr ""
 
-#: templates/partials/answers/date.html:52
+#: templates/partials/answers/date.html:53
 msgid "Year"
 msgstr ""
 

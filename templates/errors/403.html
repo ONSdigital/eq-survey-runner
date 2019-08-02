@@ -1,0 +1,8 @@
+{% extends 'layouts/_base.html' %}
+
+{% set page_title = _("Authorisation refused") + " - " + _('Office for National Statistics') %}
+
+{% block main %}
+<h1>{{ _("Sorry, there is a problem") }}</h1>
+<p>{{ _("To access this page you need to <a href='#'>enter your unique access code.</a>") }}</p>
+{% endblock %}
