@@ -1,9 +1,11 @@
 from dataclasses import dataclass
 from typing import Optional
 
+from flask import url_for
+
 
 @dataclass
-class Section:
+class SectionLocation:
     """
         Store a section in the questionnaire.
 
@@ -16,3 +18,15 @@ class Section:
 
     def __hash__(self):
         return hash(frozenset(self.__dict__.values()))
+
+    def url(self) -> str:
+        """
+        Return the survey runner url that this location represents
+
+        :return:
+        """
+        return url_for(
+            'questionnaire.get_section',
+            section_id=self.section_id,
+            list_item_id=self.list_item_id,
+        )

@@ -5,7 +5,7 @@ from structlog import get_logger
 from app.data_model.answer_store import AnswerStore
 from app.data_model.list_store import ListStore
 from app.data_model.progress_store import ProgressStore
-from app.data_model.section import Section
+from app.data_model.section_location import SectionLocation
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.routing_path import RoutingPath
@@ -46,10 +46,11 @@ class PathFinder:
             for location in path:
                 block = self.schema.get_block(location.block_id)
                 block_type = block.get('type')
-                section = Section(section_id, location.list_item_id)
+                section_location = SectionLocation(section_id, location.list_item_id)
 
                 is_location_complete = (
-                    location in self.progress_store.get_completed_locations(section)
+                    location
+                    in self.progress_store.get_completed_locations(section_location)
                 )
 
                 if not is_location_complete and block_type not in [
@@ -66,25 +67,27 @@ class PathFinder:
         schema_sections = schema_sections or self.schema.get_sections()
 
         for section_schema in schema_sections:
-            section = Section(section_schema['id'])
-            for_list = self.schema.get_repeating_list_for_section(section.section_id)
+            section_location = SectionLocation(section_schema['id'])
+            for_list = self.schema.get_repeating_list_for_section(
+                section_location.section_id
+            )
 
             if for_list:
                 for list_item_id in self.list_store[for_list].items:
-                    section.list_item_id = list_item_id
-                    path = path + list(self.routing_path(section))
+                    section_location.list_item_id = list_item_id
+                    path = path + list(self.routing_path(section_location))
             else:
-                path = path + list(self.routing_path(section))
+                path = path + list(self.routing_path(section_location))
 
         return path
 
-    def routing_path(self, section: Section) -> RoutingPath:
+    def routing_path(self, section_location: SectionLocation) -> RoutingPath:
         """
         Visits all the blocks in a section and returns a path given a list of answers.
         """
         blocks: List[Mapping] = []
         path: List[Location] = []
-        section_schema = self.schema.get_section(section.section_id)
+        section_schema = self.schema.get_section(section_location.section_id)
 
         for group in section_schema['groups']:
             if 'skip_conditions' in group:
@@ -94,7 +97,7 @@ class PathFinder:
                     self.metadata,
                     self.answer_store,
                     self.list_store,
-                    list_item_id=section.list_item_id,
+                    list_item_id=section_location.list_item_id,
                     routing_path=path,
                 ):
                     continue
@@ -102,7 +105,7 @@ class PathFinder:
             blocks.extend(group['blocks'])
 
         if blocks:
-            path = self._build_path(blocks, path, section=section)
+            path = self._build_path(blocks, path, section_location=section_location)
 
         return RoutingPath(path)
 
@@ -113,10 +116,12 @@ class PathFinder:
             None,
         )
 
-    def _build_path(self, blocks, path, section):
+    def _build_path(self, blocks, path, section_location):
         # Keep going unless we've hit the last block
         block_index = 0
-        for_list = self.schema.get_repeating_list_for_section(section.section_id)
+        for_list = self.schema.get_repeating_list_for_section(
+            section_location.section_id
+        )
         while block_index < len(blocks):
             block = blocks[block_index]
 
@@ -126,16 +131,16 @@ class PathFinder:
                 self.metadata,
                 self.answer_store,
                 self.list_store,
-                list_item_id=section.list_item_id,
+                list_item_id=section_location.list_item_id,
                 routing_path=path,
             )
 
             if not is_skipping:
-                if for_list and section.list_item_id:
+                if for_list and section_location.list_item_id:
                     this_location = Location(
                         block_id=block['id'],
                         list_name=for_list,
-                        list_item_id=section.list_item_id,
+                        list_item_id=section_location.list_item_id,
                     )
                 else:
                     this_location = Location(block_id=block['id'])
@@ -152,7 +157,7 @@ class PathFinder:
                         routing_rules,
                         block_index,
                         path,
-                        list_item_id=section.list_item_id,
+                        list_item_id=section_location.list_item_id,
                     )
                     if block_index:
                         continue

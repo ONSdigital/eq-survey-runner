@@ -1,6 +1,6 @@
 from flask import url_for
 
-from app.data_model.section import Section
+from app.data_model.section_location import SectionLocation
 from app.helpers.path_finder_helper import path_finder
 from app.questionnaire.location import Location
 from app.questionnaire.relationship_router import RelationshipRouter
@@ -40,12 +40,12 @@ class Router:
         last_block_location = routing_path[-1]
         last_block_type = self._schema.get_block(last_block_location.block_id)['type']
         section_id = self._schema.get_section_id_for_block_id(location.block_id)
-        section = Section(section_id, location.list_item_id)
+        section_location = SectionLocation(section_id, location.list_item_id)
 
         if (
             self._schema.is_hub_enabled()
             and location.block_id == last_block_location.block_id
-            and section in self._progress_store.completed_sections
+            and section_location in self._progress_store.completed_section_locations
         ):
             return url_for('.get_questionnaire')
 
@@ -53,7 +53,7 @@ class Router:
         if (
             last_block_type == 'SectionSummary'
             and current_block_type != last_block_type
-            and section in self._progress_store.completed_sections
+            and section_location in self._progress_store.completed_section_locations
         ):
             return last_block_location.url()
 
@@ -94,42 +94,48 @@ class Router:
         return None
 
     def get_first_incomplete_location_in_survey(self):
-        incomplete_sections = self._get_incomplete_sections()
+        incomplete_section_locations = self._get_incomplete_section_locations()
 
-        if incomplete_sections:
-            section_routing_path = path_finder.routing_path(incomplete_sections[0])
+        if incomplete_section_locations:
+            section_routing_path = path_finder.routing_path(
+                incomplete_section_locations[0]
+            )
             location = path_finder.get_first_incomplete_location(section_routing_path)
+
             if location:
                 return location
 
         all_section_ids = self._schema.get_section_ids()
         last_block_id = self._schema.get_last_block_id_for_section(all_section_ids[-1])
+
         return Location(block_id=last_block_id)
 
-    def get_first_incomplete_location_for_section(self, section, routing_path):
-        if section in self._progress_store:
+    def get_first_incomplete_location_for_section(self, section_location, routing_path):
+        if section_location in self._progress_store:
             for location in routing_path:
                 if location not in self._progress_store.get_completed_locations(
-                    section
+                    section_location
                 ):
                     return location
 
         return routing_path[0]
 
-    def get_last_complete_location_for_section(self, section, routing_path):
-        if section in self._progress_store:
+    def get_last_complete_location_for_section(self, section_location, routing_path):
+        if section_location in self._progress_store:
             for location in routing_path[::-1]:
-                if location in self._progress_store.get_completed_locations(section):
+                if location in self._progress_store.get_completed_locations(
+                    section_location
+                ):
                     return location
 
     def is_survey_complete(self):
-        incomplete_sections = self._get_incomplete_sections()
+        incomplete_section_locations = self._get_incomplete_section_locations()
 
-        if incomplete_sections:
-            if len(incomplete_sections) > 1:
+        if incomplete_section_locations:
+            if len(incomplete_section_locations) > 1:
                 return False
             if self._does_section_only_contain_summary(
-                incomplete_sections[0].section_id
+                incomplete_section_locations[0].section_id
             ):
                 return True
             return False
@@ -150,35 +156,37 @@ class Router:
 
             for location in routing_path:
                 allowable_path.append(location)
-                section = Section(section_id, location.list_item_id)
+                section_location = SectionLocation(section_id, location.list_item_id)
+
                 if location not in self._progress_store.get_completed_locations(
-                    section
+                    section_location
                 ):
                     return allowable_path
+
         return allowable_path
 
-    def _get_incomplete_sections(self):
+    def _get_incomplete_section_locations(self):
         all_section_ids = self._schema.get_section_ids()
 
-        all_sections = []
+        all_section_locations = []
         for section_id in all_section_ids:
             for_list = self._schema.get_repeating_list_for_section(section_id)
 
             if for_list:
                 for list_item_id in self._list_store[for_list].items:
-                    section = Section(section_id, list_item_id)
-                    all_sections.append(section)
+                    section_location = SectionLocation(section_id, list_item_id)
+                    all_section_locations.append(section_location)
             else:
-                section = Section(section_id)
-                all_sections.append(section)
+                section_location = SectionLocation(section_id)
+                all_section_locations.append(section_location)
 
-        incomplete_sections = [
-            section
-            for section in all_sections
-            if section not in self._progress_store.completed_sections
+        incomplete_sections_locations = [
+            section_location
+            for section_location in all_section_locations
+            if section_location not in self._progress_store.completed_section_locations
         ]
 
-        return incomplete_sections
+        return incomplete_sections_locations
 
     # This is horrible and only necessary as currently a section can be defined that only
     # contains a Summary or Confirmation. The ideal solution is to move Summary/Confirmation

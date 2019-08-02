@@ -3,7 +3,7 @@ from datetime import datetime
 from structlog import get_logger
 
 from app.data_model.progress_store import CompletionStatus
-from app.data_model.section import Section
+from app.data_model.section_location import SectionLocation
 from app.questionnaire.location import InvalidLocationException
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
@@ -106,9 +106,11 @@ class BlockHandler:
         section_id = self._schema.get_section_id_for_block_id(
             self._current_location.block_id
         )
-        section = Section(section_id, self._current_location.list_item_id)
+        section_location = SectionLocation(
+            section_id, self._current_location.list_item_id
+        )
 
-        return self.path_finder.routing_path(section)
+        return self.path_finder.routing_path(section_location)
 
     def _render_block(self, location, language):
         block_schema = self._schema.get_block(location.block_id)
@@ -129,12 +131,12 @@ class BlockHandler:
         )
         return placeholder_renderer.render(transformed_block)
 
-    def _update_section_completeness(self, section=None):
+    def _update_section_completeness(self, section_location=None):
         if self.path_finder.is_path_complete(self._routing_path):
             self.questionnaire_store_updater.update_section_status(
-                CompletionStatus.COMPLETED, section=section
+                CompletionStatus.COMPLETED, section_location=section_location
             )
         else:
             self.questionnaire_store_updater.update_section_status(
-                CompletionStatus.IN_PROGRESS, section=section
+                CompletionStatus.IN_PROGRESS, section_location=section_location
             )

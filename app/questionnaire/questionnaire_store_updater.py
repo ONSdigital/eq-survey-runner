@@ -2,7 +2,7 @@ from typing import List, Tuple
 
 from app.data_model.answer_store import Answer
 from app.data_model.relationship_store import Relationship, RelationshipStore
-from app.data_model.section import Section
+from app.data_model.section_location import SectionLocation
 
 
 class QuestionnaireStoreUpdater:
@@ -16,7 +16,7 @@ class QuestionnaireStoreUpdater:
             'id'
         ]
         self._current_location = current_location
-        self._current_section = Section(
+        self._current_section_location = SectionLocation(
             current_section_id, current_location.list_item_id
         )
         self._current_question = current_question or {}
@@ -100,18 +100,20 @@ class QuestionnaireStoreUpdater:
 
         self._progress_store.remove_progress_for_list_item_id(list_item_id=list_item_id)
 
-    def add_completed_location(self, location=None, section=None):
+    def add_completed_location(self, section_location=None, location=None):
+        section_location = section_location or self._current_section_location
         location = location or self._current_location
-        section = section or self._current_section
 
-        self._progress_store.add_completed_location(section, location)
+        self._progress_store.add_completed_location(section_location, location)
 
     def remove_completed_location(self, location=None):
         location = location or self._current_location
-        self._progress_store.remove_completed_location(self._current_section, location)
+        self._progress_store.remove_completed_location(
+            self._current_section_location, location
+        )
 
-    def update_section_status(self, section_status, section=None):
-        section_to_update = section or self._current_section
+    def update_section_status(self, section_status, section_location=None):
+        section_to_update = section_location or self._current_section_location
 
         self._progress_store.update_section_status(section_to_update, section_status)
 

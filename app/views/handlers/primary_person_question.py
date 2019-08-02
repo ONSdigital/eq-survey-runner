@@ -1,4 +1,4 @@
-from app.data_model.section import Section
+from app.data_model.section_location import SectionLocation
 from app.views.handlers.block import BlockHandler
 from app.views.contexts.question import build_question_context
 from app.questionnaire.location import Location
@@ -29,9 +29,12 @@ class PrimaryPersonQuestion(BlockHandler):
             self.parent_location.block_id
         )['id']
 
-        section = Section(parent_section_id, self.parent_location.list_item_id)
-        self.questionnaire_store_updater.add_completed_location(
-            location=self.parent_location, section=section
+        section_location = SectionLocation(
+            parent_section_id, self.parent_location.list_item_id
         )
-        self._update_section_completeness(section=section)
+
+        self.questionnaire_store_updater.add_completed_location(
+            section_location=section_location, location=self.parent_location
+        )
+        self._update_section_completeness(section_location=section_location)
         self.questionnaire_store_updater.save()

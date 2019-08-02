@@ -15,7 +15,7 @@ from app.data_model.answer_store import AnswerStore
 from app.data_model.app_models import SubmittedResponse
 from app.data_model.list_store import ListStore
 from app.data_model.progress_store import CompletionStatus
-from app.data_model.section import Section
+from app.data_model.section_location import SectionLocation
 from app.globals import (
     get_answer_store,
     get_metadata,
@@ -171,10 +171,10 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
     if not section_schema:
         return redirect(url_for('.get_questionnaire'))
 
-    section = Section(section_id, list_item_id)
+    section_location = SectionLocation(section_id, list_item_id)
 
-    routing_path = path_finder.routing_path(section)
-    section_status = progress_store.get_section_status(section)
+    routing_path = path_finder.routing_path(section_location)
+    section_status = progress_store.get_section_status(section_location)
 
     if section_status == CompletionStatus.COMPLETED:
         return redirect(routing_path[-1].url())
@@ -182,12 +182,14 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
     if section_status == CompletionStatus.NOT_STARTED:
         return redirect(
             router.get_first_incomplete_location_for_section(
-                section, routing_path
+                section_location, routing_path
             ).url()
         )
 
     return redirect(
-        router.get_last_complete_location_for_section(section, routing_path).url()
+        router.get_last_complete_location_for_section(
+            section_location, routing_path
+        ).url()
     )
 
 

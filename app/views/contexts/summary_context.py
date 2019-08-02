@@ -2,7 +2,7 @@ from typing import List, Mapping
 
 from app.data_model.answer_store import AnswerStore
 from app.data_model.list_store import ListStore
-from app.data_model.section import Section
+from app.data_model.section_location import SectionLocation
 from app.jinja_filters import (
     get_formatted_currency,
     format_number,
@@ -30,15 +30,15 @@ def build_summary_rendering_context(
     paths = []
     schema_sections = schema_sections or schema.get_sections()
     for section_schema in schema_sections:
-        section = Section(section_schema['id'])
-        for_list = schema.get_repeating_list_for_section(section.section_id)
+        section_location = SectionLocation(section_schema['id'])
+        for_list = schema.get_repeating_list_for_section(section_location.section_id)
 
         if for_list:
             for list_item_id in list_store[for_list].items:
-                section.list_item_id = list_item_id
-                paths.append(path_finder.routing_path(section))
+                section_location.list_item_id = list_item_id
+                paths.append(path_finder.routing_path(section_location))
         else:
-            paths.append(path_finder.routing_path(section))
+            paths.append(path_finder.routing_path(section_location))
 
     return [
         Group(group, path, answer_store, list_store, metadata, schema).serialize()
