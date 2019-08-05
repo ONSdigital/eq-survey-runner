@@ -87,7 +87,7 @@ pipenv install --dev
 To update the design system templates run:
 
 ```
-make load_templates
+make load-templates
 ```
 
 Run the server inside the virtual env created by Pipenv with:
