@@ -19,7 +19,11 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
         if [[ "$region_code" = "GB-NIR" ]]; then
             SOURCE_FILE="data-source/jsonnet/northern-ireland/census_${census_type}.jsonnet"
 
-            jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
+            if [ -f "$SOURCE_FILE" ]; then
+                jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
+            else
+                echo "Ignoring $SOURCE_FILE as it does not exist"
+            fi
         else
             SOURCE_FILE="data-source/jsonnet/england-wales/census_${census_type}.jsonnet"
 
@@ -32,5 +36,4 @@ done
 
 # Move newly built schemas to 'en' dir
 mkdir -p data/en
-mv data-source/jsonnet/*.json data/en
 cp data-source/json/*.json data/en
