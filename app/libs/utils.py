@@ -11,3 +11,12 @@ def convert_tx_id(tx_id):
 class ObjectFromDict:
     def __init__(self, properties):
         self.__dict__ = properties
+
+
+def get_answer(schema, answer_store, answer_id, list_item_id=None):
+    if list_item_id and not schema.is_answer_in_repeating_section(answer_id):
+        list_item_id = None
+
+    answer = answer_store.get_answer(answer_id, list_item_id)
+
+    return answer

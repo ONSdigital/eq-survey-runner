@@ -15,7 +15,7 @@ describe('Primary Person List Collector Survey', function() {
       return helpers.openQuestionnaire('test_list_collector_primary_person.json');
     });
 
-    it('When the user says they do not live there, and changes their answer to yes, then the user can\'t navigate to the list collector', function () {
+    it.skip('When the user says they do not live there, and changes their answer to yes, then the user can\'t navigate to the list collector', function () {
       return browser
         .click(PrimaryPersonListCollectorPage.noLabel())
         .click(PrimaryPersonListCollectorPage.submit())

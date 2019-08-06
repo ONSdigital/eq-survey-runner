@@ -22,6 +22,7 @@ class Location:
     """
 
     block_id: str
+    section_id: Optional[str] = None
     list_name: Optional[str] = None
     list_item_id: Optional[str] = None
 
@@ -30,10 +31,16 @@ class Location:
 
     @classmethod
     def from_dict(cls, location_dict: Mapping):
+        section_id = location_dict['section_id']
         block_id = location_dict['block_id']
         list_item_id = location_dict.get('list_item_id')
         list_name = location_dict.get('list_name')
-        return cls(block_id, list_name, list_item_id)
+        return cls(
+            section_id=section_id,
+            block_id=block_id,
+            list_name=list_name,
+            list_item_id=list_item_id,
+        )
 
     def for_json(self) -> Mapping:
         """

@@ -1,6 +1,5 @@
-from app.data_model.section_location import SectionLocation
-from app.views.handlers.block import BlockHandler
 from app.views.contexts.question import build_question_context
+from app.views.handlers.block import BlockHandler
 
 
 class Question(BlockHandler):
@@ -13,14 +12,10 @@ class Question(BlockHandler):
         self.questionnaire_store_updater.add_completed_location()
 
         if self.questionnaire_store_updater.is_dirty:
-            section_id = self._schema.get_section_id_for_block_id(
-                self._current_location.block_id
+            self._routing_path = self.path_finder.routing_path(
+                section_id=self._current_location.section_id,
+                list_item_id=self._current_location.list_item_id,
             )
-            section_location = SectionLocation(
-                section_id, self._current_location.list_item_id
-            )
-
-            self._routing_path = self.path_finder.routing_path(section_location)
 
         self._update_section_completeness()
 

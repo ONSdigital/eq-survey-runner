@@ -1,3 +1,5 @@
+from unittest.mock import Mock
+
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.placeholder_renderer import (
     PlaceholderRenderer,
@@ -95,6 +97,7 @@ class TestPlaceholderRenderer(AppContextTestCase):
 
         renderer = PlaceholderRenderer(
             language='en',
+            schema=Mock(),
             answer_store=AnswerStore(
                 [
                     {'answer_id': 'first-name', 'value': 'Hal'},
@@ -128,6 +131,7 @@ class TestPlaceholderRenderer(AppContextTestCase):
 
         renderer = PlaceholderRenderer(
             language='en',
+            schema=Mock(),
             answer_store=AnswerStore(
                 [
                     {'answer_id': 'first-name', 'value': 'Alfred'},
@@ -143,15 +147,13 @@ class TestPlaceholderRenderer(AppContextTestCase):
         assert rendered_label == 'Alfred Aho is 33 years old. Is this correct?'
 
     def test_errors_on_invalid_pointer(self):
-
-        renderer = PlaceholderRenderer(language='en')
+        renderer = PlaceholderRenderer(language='en', schema=Mock())
 
         with self.assertRaises(ValueError):
             renderer.render_pointer(self.question_json, '/title')
 
     def test_errors_on_invalid_json(self):
-
-        renderer = PlaceholderRenderer(language='en')
+        renderer = PlaceholderRenderer(language='en', schema=Mock())
 
         with self.assertRaises(ValueError):
             dict_to_render = {'invalid': {'no': 'placeholders', 'in': 'this'}}

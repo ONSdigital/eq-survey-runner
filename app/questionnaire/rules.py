@@ -4,6 +4,7 @@ from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
+from app.libs.utils import get_answer
 from app.questionnaire.location import Location
 
 MAX_REPEATS = 25
@@ -165,8 +166,10 @@ def evaluate_goto(
 
 
 def _is_answer_on_path(schema, answer, routing_path):
-    block_schema = schema.get_block_for_answer_id(answer.answer_id)
-    location = Location(block_id=block_schema['id'])
+    block_id = schema.get_block_for_answer_id(answer.answer_id)['id']
+    section_id = schema.get_section_id_for_block_id(block_id)
+
+    location = Location(section_id=section_id, block_id=block_id)
     return location in routing_path
 
 
@@ -304,8 +307,14 @@ def get_answer_store_value(
     If answer is not on the routing path, return None
     If routing_path empty, return answer value
     """
-    answer = answer_store.get_answer(
-        answer_id, list_item_id
+    if not schema.is_answer_in_repeating_section(answer_id):
+        list_item_id = None
+
+    answer = get_answer(
+        answer_store=answer_store,
+        schema=schema,
+        answer_id=answer_id,
+        list_item_id=list_item_id,
     ) or schema.get_default_answer(answer_id)
 
     if not answer:

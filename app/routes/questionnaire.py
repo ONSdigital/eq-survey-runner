@@ -15,7 +15,6 @@ from app.data_model.answer_store import AnswerStore
 from app.data_model.app_models import SubmittedResponse
 from app.data_model.list_store import ListStore
 from app.data_model.progress_store import CompletionStatus
-from app.data_model.section_location import SectionLocation
 from app.globals import (
     get_answer_store,
     get_metadata,
@@ -167,14 +166,16 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
         redirect_location = router.get_first_incomplete_location_in_survey()
         return redirect(redirect_location.url())
 
-    section_schema = schema.get_section(section_id)
-    if not section_schema:
+    section = schema.get_section(section_id)
+    if not section:
         return redirect(url_for('.get_questionnaire'))
 
-    section_location = SectionLocation(section_id, list_item_id)
-
-    routing_path = path_finder.routing_path(section_location)
-    section_status = progress_store.get_section_status(section_location)
+    routing_path = path_finder.routing_path(
+        section_id=section_id, list_item_id=list_item_id
+    )
+    section_status = progress_store.get_section_status(
+        section_id=section_id, list_item_id=list_item_id
+    )
 
     if section_status == CompletionStatus.COMPLETED:
         return redirect(routing_path[-1].url())
@@ -182,13 +183,13 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
     if section_status == CompletionStatus.NOT_STARTED:
         return redirect(
             router.get_first_incomplete_location_for_section(
-                section_location, routing_path
+                routing_path, section_id=section_id, list_item_id=list_item_id
             ).url()
         )
 
     return redirect(
         router.get_last_complete_location_for_section(
-            section_location, routing_path
+            routing_path=routing_path, section_id=section_id, list_item_id=list_item_id
         ).url()
     )
 
@@ -203,6 +204,7 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
 @with_questionnaire_store
 @with_schema
 def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=None):
+
     current_location = Location(
         block_id=block_id, list_name=list_name, list_item_id=list_item_id
     )
@@ -223,12 +225,14 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
     if 'action[sign_out]' in request.form:
         return redirect(url_for('session.get_sign_out'))
 
-    form = _generate_wtf_form(block_handler.rendered_block, schema, current_location)
+    form = _generate_wtf_form(
+        block_handler.rendered_block, schema, block_handler.current_location
+    )
     if request.method == 'GET' or not form.validate():
         return _render_page(
             block_type=block_handler.rendered_block['type'],
             context=block_handler.get_context(form),
-            current_location=current_location,
+            current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
         )
@@ -250,16 +254,14 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
 
 
 @questionnaire_blueprint.route(
-    '<block_id>/<from_list_item_id>/to/<to_list_item_id>/', methods=['GET', 'POST']
+    '<block_id>/<list_item_id>/to/<to_list_item_id>/', methods=['GET', 'POST']
 )
 @login_required
 @with_questionnaire_store
 @with_schema
-def relationship(
-    schema, questionnaire_store, block_id, from_list_item_id, to_list_item_id
-):
+def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_item_id):
     current_location = RelationshipLocation(
-        block_id, from_list_item_id, to_list_item_id
+        block_id=block_id, list_item_id=list_item_id, to_list_item_id=to_list_item_id
     )
 
     try:
@@ -272,12 +274,14 @@ def relationship(
     except InvalidLocationException:
         return redirect(url_for('.get_questionnaire'))
 
-    form = _generate_wtf_form(block_handler.rendered_block, schema, current_location)
+    form = _generate_wtf_form(
+        block_handler.rendered_block, schema, block_handler.current_location
+    )
     if request.method == 'GET' or not form.validate():
         return _render_page(
             block_type=block_handler.rendered_block['type'],
             context=block_handler.get_context(form),
-            current_location=current_location,
+            current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
         )

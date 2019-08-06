@@ -238,4 +238,4 @@ def test_completed_section_ids():
     ]
     store = ProgressStore(completed)
 
-    assert store.completed_sections == [('s1', None)]
+    assert store.completed_section_locations == [('s1', None)]

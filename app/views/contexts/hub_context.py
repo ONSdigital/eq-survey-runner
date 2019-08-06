@@ -1,9 +1,9 @@
 from typing import List, Mapping, Union
 
+from flask import url_for
 from flask_babel import lazy_gettext
 
 from app.data_model.progress_store import CompletionStatus, ProgressStore
-from app.data_model.section_location import SectionLocation
 
 
 class HubContext:
@@ -91,30 +91,43 @@ class HubContext:
 
         return context
 
-    def _get_row_for_section(self, section_location, section_name):
-        section_status = self._progress_store.get_section_status(section_location)
+    @staticmethod
+    def get_section_url(section_id, list_item_id) -> str:
+        if list_item_id:
+            return url_for(
+                'questionnaire.get_section',
+                section_id=section_id,
+                list_item_id=list_item_id,
+            )
+
+        return url_for('questionnaire.get_section', section_id=section_id)
+
+    def _get_row_for_section(self, section_name, section_id, list_item_id=None):
+        section_status = self._progress_store.get_section_status(
+            section_id, list_item_id
+        )
 
         return self.get_row_context_for_section(
-            section_name, section_status, section_location.url()
+            section_name, section_status, self.get_section_url(section_id, list_item_id)
         )
 
     def _get_rows(self) -> List[Mapping[str, Union[str, List]]]:
         rows = []
 
         for section_schema in self._schema.get_sections():
-            section_location = SectionLocation(section_schema['id'])
             section_title = section_schema['title']
-            for_list = self._schema.get_repeating_list_for_section(
-                section_location.section_id
-            )
+            section_id = section_schema['id']
+
+            for_list = self._schema.get_repeating_list_for_section(section_id)
 
             if for_list:
                 for list_item_id in self._list_store[for_list].items:
-                    section_location.list_item_id = list_item_id
                     rows.append(
-                        self._get_row_for_section(section_location, section_title)
+                        self._get_row_for_section(
+                            section_title, section_id, list_item_id
+                        )
                     )
             else:
-                rows.append(self._get_row_for_section(section_location, section_title))
+                rows.append(self._get_row_for_section(section_title, section_id))
 
         return rows

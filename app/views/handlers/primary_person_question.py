@@ -1,13 +1,15 @@
-from app.data_model.section_location import SectionLocation
-from app.views.handlers.block import BlockHandler
-from app.views.contexts.question import build_question_context
 from app.questionnaire.location import Location
+from app.views.contexts.question import build_question_context
+from app.views.handlers.block import BlockHandler
 
 
 class PrimaryPersonQuestion(BlockHandler):
     @property
     def parent_location(self):
-        return Location(self.rendered_block['parent_id'])
+        return Location(
+            section_id=self._current_location.section_id,
+            block_id=self.rendered_block['parent_id'],
+        )
 
     def is_location_valid(self):
         return self.router.can_access_location(self.parent_location, self._routing_path)
@@ -25,16 +27,17 @@ class PrimaryPersonQuestion(BlockHandler):
 
     def handle_post(self, form):
         self.questionnaire_store_updater.update_answers(form)
-        parent_section_id = self._schema.get_section_for_block_id(
-            self.parent_location.block_id
-        )['id']
-
-        section_location = SectionLocation(
-            parent_section_id, self.parent_location.list_item_id
-        )
+        # parent_section_id = self._schema.get_section_for_block_id(
+        #     self.parent_location.block_id
+        # )['id']
 
         self.questionnaire_store_updater.add_completed_location(
-            section_location=section_location, location=self.parent_location
+            location=self.parent_location,
+            section_id=self.parent_location.section_id,
+            list_item_id=None,
         )
-        self._update_section_completeness(section_location=section_location)
+        self._update_section_completeness(
+            section_id=self.parent_location.section_id,
+            list_item_id=self.parent_location.list_item_id,
+        )
         self.questionnaire_store_updater.save()

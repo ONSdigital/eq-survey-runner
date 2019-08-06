@@ -50,4 +50,5 @@ def get_block_handler(schema, location, questionnaire_store, language):
     if not block_class:
         raise ValueError(f'block type {block_type} is not valid')
 
+    location.section_id = schema.get_section_id_for_block_id(location.block_id)
     return block_class(schema, questionnaire_store, language, location)

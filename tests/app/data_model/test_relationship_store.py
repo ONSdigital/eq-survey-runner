@@ -2,12 +2,12 @@ from app.data_model.relationship_store import Relationship, RelationshipStore
 
 relationships = [
     {
-        'from_list_item_id': '123456',
+        'list_item_id': '123456',
         'to_list_item_id': '789101',
         'relationship': 'Husband or Wife',
     },
     {
-        'from_list_item_id': '123456',
+        'list_item_id': '123456',
         'to_list_item_id': 'ghijkl',
         'relationship': 'Husband or Wife',
     },
@@ -43,7 +43,7 @@ def test_add_relationship():
 
     assert (
         relationship_store.get_relationship(
-            relationship.from_list_item_id, relationship.to_list_item_id
+            relationship.list_item_id, relationship.to_list_item_id
         )
         == relationship
     )
@@ -63,7 +63,7 @@ def test_add_relationship_that_already_exists():
 def test_get_relationship():
     relationship_store = RelationshipStore(relationships)
     relationship = relationship_store.get_relationship(
-        from_list_item_id='123456', to_list_item_id='789101'
+        list_item_id='123456', to_list_item_id='789101'
     )
     assert relationship
 
@@ -71,7 +71,7 @@ def test_get_relationship():
 def test_get_relationship_that_doesnt_exist():
     relationship_store = RelationshipStore(relationships)
     relationship = relationship_store.get_relationship(
-        from_list_item_id='123456', to_list_item_id='yyyyyy'
+        list_item_id='123456', to_list_item_id='yyyyyy'
     )
     assert not relationship
 
@@ -92,8 +92,7 @@ def test_remove_id_in_single_relationship():
     assert len(relationship_store) == 1
     assert (
         relationship_store.get_relationship(
-            remaining_relationship.from_list_item_id,
-            remaining_relationship.to_list_item_id,
+            remaining_relationship.list_item_id, remaining_relationship.to_list_item_id
         )
         == remaining_relationship
     )
@@ -110,7 +109,7 @@ def test_update_existing_relationship():
 
     assert len(relationship_store) == 2
     updated_relationship = relationship_store.get_relationship(
-        relationship.from_list_item_id, relationship.to_list_item_id
+        relationship.list_item_id, relationship.to_list_item_id
     )
     assert updated_relationship.relationship == 'test'
     assert relationship_store.is_dirty

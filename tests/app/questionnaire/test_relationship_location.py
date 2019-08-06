@@ -16,14 +16,14 @@ class TestRelationshipLocation(AppContextTestCase):
     def test_create_location_from_dict(self):
         location_dict = {
             'block_id': 'relationships',
-            'from_list_item_id': 'id1',
+            'list_item_id': 'id1',
             'to_list_item_id': 'id2',
         }
 
         location = RelationshipLocation(**location_dict)
 
         self.assertEqual(location.block_id, 'relationships')
-        self.assertEqual(location.from_list_item_id, 'id1')
+        self.assertEqual(location.list_item_id, 'id1')
         self.assertEqual(location.to_list_item_id, 'id2')
 
     def test_for_json(self):
@@ -34,7 +34,7 @@ class TestRelationshipLocation(AppContextTestCase):
             json,
             {
                 'block_id': 'relationships',
-                'from_list_item_id': 'id1',
+                'list_item_id': 'id1',
                 'to_list_item_id': 'id2',
             },
         )

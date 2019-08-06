@@ -12,7 +12,7 @@ class Group:
             group_schema, path, answer_store, list_store, metadata, schema
         )
         self.placeholder_renderer = PlaceholderRenderer(
-            language='en', answer_store=answer_store, metadata=metadata
+            language='en', schema=schema, answer_store=answer_store, metadata=metadata
         )
 
     @staticmethod

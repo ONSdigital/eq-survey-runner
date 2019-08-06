@@ -1,7 +1,6 @@
-from typing import List, Dict
+from typing import List, Dict, Tuple
 
 from app.data_model.progress import Progress
-from app.data_model.section_location import SectionLocation
 from app.questionnaire.location import Location
 
 
@@ -26,16 +25,16 @@ class ProgressStore:
         self._is_dirty = False  # type: bool
         self._progress = self._build_map(in_progress_sections or [])  # type: Dict
 
-    def __contains__(self, section_location: SectionLocation) -> bool:
+    def __contains__(self, section_location) -> bool:
         return section_location in self._progress
 
     @staticmethod
     def _build_map(in_progress_sections: List[Dict]) -> Dict:
         """ Builds the progress_store's data structure from a list of progress dictionaries"""
         return {
-            SectionLocation(
-                section['section_id'], section.get('list_item_id')
-            ): Progress.from_dict(section)
+            (section['section_id'], section.get('list_item_id')): Progress.from_dict(
+                section
+            )
             for section in in_progress_sections
         }
 
@@ -44,7 +43,7 @@ class ProgressStore:
         return self._is_dirty
 
     @property
-    def completed_section_locations(self) -> List[SectionLocation]:
+    def completed_section_locations(self) -> List[Tuple[str]]:
         complete_section_locations = []
 
         for section_location, section_progress in self._progress.items():
@@ -54,38 +53,43 @@ class ProgressStore:
         return complete_section_locations
 
     def update_section_status(
-        self, section_location: SectionLocation, section_status: str
+        self, section_status: str, section_id, list_item_id=None
     ) -> None:
+
+        section_location = (section_id, list_item_id)
         if section_location in self._progress:
             self._progress[section_location].status = section_status
             self._is_dirty = True
 
-    def get_section_status(self, section_location: SectionLocation) -> str:
+    def get_section_status(self, section_id, list_item_id=None) -> str:
+        section_location = (section_id, list_item_id)
         if section_location in self._progress:
             return self._progress[section_location].status
 
         return CompletionStatus.NOT_STARTED
 
-    def get_completed_locations(
-        self, section_location: SectionLocation
-    ) -> List[Location]:
+    def get_completed_locations(self, section_id, list_item_id=None) -> List[Location]:
+        section_location = (section_id, list_item_id)
         if section_location in self._progress:
             return self._progress[section_location].locations
 
         return []
 
     def add_completed_location(
-        self, section_location: SectionLocation, location: Location
+        self, location: Location, section_id, list_item_id=None
     ) -> None:
-        locations = self.get_completed_locations(section_location)
+
+        locations = self.get_completed_locations(section_id, list_item_id)
 
         if location not in locations:
             locations.append(location)
 
+            section_location = (section_id, list_item_id)
+
             if section_location not in self._progress:
                 self._progress[section_location] = Progress(
-                    section_id=section_location.section_id,
-                    list_item_id=section_location.list_item_id,
+                    section_id=section_id,
+                    list_item_id=list_item_id,
                     locations=locations,
                 )
             else:
@@ -94,8 +98,10 @@ class ProgressStore:
             self._is_dirty = True
 
     def remove_completed_location(
-        self, section_location: SectionLocation, location: Location
+        self, location: Location, section_id, list_item_id=None
     ) -> None:
+
+        section_location = (section_id, list_item_id)
         if (
             section_location in self._progress
             and location in self._progress[section_location].locations
@@ -117,12 +123,8 @@ class ProgressStore:
         keys_to_delete = []
 
         for section_location in self._progress:
-            if section_location.list_item_id == list_item_id:
-                keys_to_delete.append(
-                    SectionLocation(
-                        section_location.section_id, section_location.list_item_id
-                    )
-                )
+            if section_location[1] == list_item_id:
+                keys_to_delete.append((section_location[0], section_location[1]))
 
         for key in keys_to_delete:
             del self._progress[key]

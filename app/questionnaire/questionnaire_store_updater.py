@@ -2,7 +2,6 @@ from typing import List, Tuple
 
 from app.data_model.answer_store import Answer
 from app.data_model.relationship_store import Relationship, RelationshipStore
-from app.data_model.section_location import SectionLocation
 
 
 class QuestionnaireStoreUpdater:
@@ -12,13 +11,7 @@ class QuestionnaireStoreUpdater:
     EMPTY_ANSWER_VALUES: Tuple = (None, [], '')
 
     def __init__(self, current_location, schema, questionnaire_store, current_question):
-        current_section_id = schema.get_section_for_block_id(current_location.block_id)[
-            'id'
-        ]
         self._current_location = current_location
-        self._current_section_location = SectionLocation(
-            current_section_id, current_location.list_item_id
-        )
         self._current_question = current_question or {}
         self._schema = schema
         self._questionnaire_store = questionnaire_store
@@ -42,7 +35,7 @@ class QuestionnaireStoreUpdater:
     def update_answers(self, form):
         self._update_questionnaire_store_with_form_data(form.data)
 
-    def update_relationship_answer(self, form_data, from_list_item_id, to_list_item_id):
+    def update_relationship_answer(self, form_data, list_item_id, to_list_item_id):
         relationship_answer_id = self._schema.get_relationship_answer_id_for_block(
             self._current_location.block_id
         )
@@ -55,9 +48,7 @@ class QuestionnaireStoreUpdater:
 
         relationship_answer = form_data.get(relationship_answer_id)
 
-        relationship = Relationship(
-            from_list_item_id, to_list_item_id, relationship_answer
-        )
+        relationship = Relationship(list_item_id, to_list_item_id, relationship_answer)
         relationship_store.add_or_update(relationship)
 
         self._answer_store.add_or_update(
@@ -100,22 +91,34 @@ class QuestionnaireStoreUpdater:
 
         self._progress_store.remove_progress_for_list_item_id(list_item_id=list_item_id)
 
-    def add_completed_location(self, section_location=None, location=None):
-        section_location = section_location or self._current_section_location
+    def add_completed_location(self, location=None, section_id=None, list_item_id=None):
+
+        if not section_id and not list_item_id:
+            section_id = self._current_location.section_id
+            list_item_id = self._current_location.list_item_id
+
         location = location or self._current_location
 
-        self._progress_store.add_completed_location(section_location, location)
+        self._progress_store.add_completed_location(
+            location=location, section_id=section_id, list_item_id=list_item_id
+        )
 
     def remove_completed_location(self, location=None):
         location = location or self._current_location
         self._progress_store.remove_completed_location(
-            self._current_section_location, location
+            location=location,
+            section_id=self._current_location.section_id,
+            list_item_id=self._current_location.list_item_id,
         )
 
-    def update_section_status(self, section_status, section_location=None):
-        section_to_update = section_location or self._current_section_location
+    def update_section_status(self, section_status, section_id=None, list_item_id=None):
+        if not section_id and not list_item_id:
+            section_id = self._current_location.section_id
+            list_item_id = self._current_location.list_item_id
 
-        self._progress_store.update_section_status(section_to_update, section_status)
+        self._progress_store.update_section_status(
+            section_status, section_id=section_id, list_item_id=list_item_id
+        )
 
     def _update_questionnaire_store_with_form_data(self, form_data):
         answer_ids_for_question = self._schema.get_answer_ids_for_question(

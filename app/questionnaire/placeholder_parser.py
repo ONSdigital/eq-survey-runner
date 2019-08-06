@@ -1,4 +1,5 @@
 from app.data_model.answer_store import AnswerStore
+from app.libs.utils import get_answer
 from app.questionnaire.placeholder_transforms import PlaceholderTransforms
 
 
@@ -8,15 +9,24 @@ class PlaceholderParser:
     final values
     """
 
-    def __init__(self, language, list_item_id=None, answer_store=None, metadata=None):
-        self.list_item_id = list_item_id
+    def __init__(
+        self, language, schema=None, answer_store=None, metadata=None, list_item_id=None
+    ):
+
+        self._schema = schema
         self._answer_store = answer_store or AnswerStore()
         self._metadata = metadata
+        self._list_item_id = list_item_id
         self._transformer = PlaceholderTransforms(language)
 
     def _lookup_answer(self, answer_id):
 
-        answer = self._answer_store.get_answer(answer_id, self.list_item_id)
+        answer = get_answer(
+            answer_store=self._answer_store,
+            schema=self._schema,
+            answer_id=answer_id,
+            list_item_id=self._list_item_id,
+        )
 
         if answer:
             return answer.value

@@ -14,10 +14,13 @@ class RelationshipCollector(BlockHandler):
     def relationship_router(self):
         if not self._relationship_router:
             block_id = self._current_location.block_id
+            section_id = self._current_location.section_id
             list_items = self._questionnaire_store.list_store[
                 self._schema.get_block(block_id)['for_list']
             ].items
-            relationship_router = RelationshipRouter(block_id, list_items)
+            relationship_router = RelationshipRouter(
+                section_id=section_id, block_id=block_id, list_item_ids=list_items
+            )
             self._relationship_router = relationship_router
         return self._relationship_router
 
@@ -27,7 +30,10 @@ class RelationshipCollector(BlockHandler):
                 self._current_location, self._routing_path
             )
 
-        parent_location = Location(block_id=self._current_location.block_id)
+        parent_location = Location(
+            section_id=self._current_location.section_id,
+            block_id=self._current_location.block_id,
+        )
         can_access_parent_location = self.router.can_access_location(
             parent_location, self._routing_path
         )
@@ -46,7 +52,11 @@ class RelationshipCollector(BlockHandler):
             self._current_location
         )
         if not previous_location_url:
-            parent_location = Location(block_id=self.rendered_block['id'])
+
+            parent_location = Location(
+                section_id=self._current_location.section_id,
+                block_id=self.rendered_block['id'],
+            )
             previous_location_url = self.router.get_previous_location_url(
                 parent_location, self._routing_path
             )
@@ -59,7 +69,10 @@ class RelationshipCollector(BlockHandler):
         if next_location_url:
             return next_location_url
 
-        parent_location = Location(self.rendered_block['id'])
+        parent_location = Location(
+            section_id=self._current_location.section_id,
+            block_id=self.rendered_block['id'],
+        )
         return self.router.get_next_location_url(parent_location, self._routing_path)
 
     def get_context(self, form):
@@ -73,11 +86,14 @@ class RelationshipCollector(BlockHandler):
     def save_on_signout(self, form):
         self.questionnaire_store_updater.update_relationship_answer(
             form.data,
-            self._current_location.from_list_item_id,
+            self._current_location.list_item_id,
             self._current_location.to_list_item_id,
         )
 
-        parent_location = Location(self.rendered_block['id'])
+        parent_location = Location(
+            section_id=self._current_location.section_id,
+            block_id=self.rendered_block['id'],
+        )
         self.questionnaire_store_updater.remove_completed_location(
             location=parent_location
         )
@@ -87,14 +103,24 @@ class RelationshipCollector(BlockHandler):
     def handle_post(self, form):
         self.questionnaire_store_updater.update_relationship_answer(
             form.data,
-            self._current_location.from_list_item_id,
+            self._current_location.list_item_id,
             self._current_location.to_list_item_id,
         )
 
         if self._is_last_relationship():
-            parent_location = Location(self.rendered_block['id'])
-            self.questionnaire_store_updater.add_completed_location(parent_location)
-            self._update_section_completeness()
+            parent_location = Location(
+                section_id=self._current_location.section_id,
+                block_id=self.rendered_block['id'],
+            )
+            self.questionnaire_store_updater.add_completed_location(
+                location=parent_location,
+                section_id=parent_location.section_id,
+                list_item_id=None,
+            )
+            self._update_section_completeness(
+                section_id=parent_location.section_id,
+                list_item_id=parent_location.list_item_id,
+            )
 
         self.questionnaire_store_updater.save()
 

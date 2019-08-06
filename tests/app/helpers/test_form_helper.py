@@ -201,7 +201,7 @@ class TestFormHelper(AppContextTestCase):
     def test_get_mapped_relationship_answers(self):
         schema = load_schema_from_name('test_relationships')
         location = RelationshipLocation(
-            block_id='relationships', from_list_item_id='id1', to_list_item_id='id2'
+            block_id='relationships', list_item_id='id1', to_list_item_id='id2'
         )
         answer_store = AnswerStore(
             [
@@ -209,7 +209,7 @@ class TestFormHelper(AppContextTestCase):
                     'answer_id': 'relationship-answer',
                     'value': [
                         {
-                            'from_list_item_id': 'id1',
+                            'list_item_id': 'id1',
                             'to_list_item_id': 'id2',
                             'relationship': 'Husband or Wife',
                         }
