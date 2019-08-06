@@ -6,7 +6,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
   question: {
     id: 'central-heating-question',
     title: {
-      text: 'What type of central heating does <em>{address}</em> have?', 
+      text: 'What type of central heating does <em>{address}</em> have?',
       placeholders: [placeholders.address],
     },
     type: 'General',

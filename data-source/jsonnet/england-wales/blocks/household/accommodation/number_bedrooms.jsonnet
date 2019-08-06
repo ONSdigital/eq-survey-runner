@@ -16,7 +16,7 @@
       mandatory: true,
       type: 'Number',
       max_value: {
-        value: 99
+        value: 99,
       },
     }],
   },

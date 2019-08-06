@@ -9,7 +9,7 @@
       title: 'What is a “household”?',
       contents: [{
         description: 'One person living alone; or a group of people, who are not necessarily related, living at the same address who share cooking facilities and share a living room or sitting room or dining area.',
-      }]
+      }],
     }],
     answers: [{
       id: 'self-contained-answer',

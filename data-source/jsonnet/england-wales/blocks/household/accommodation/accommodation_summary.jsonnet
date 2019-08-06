@@ -1,4 +1,4 @@
 {
-    type: 'SectionSummary',
-    id: 'currency-section-summary'
+  type: 'SectionSummary',
+  id: 'currency-section-summary',
 }

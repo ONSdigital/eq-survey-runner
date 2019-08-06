@@ -1,5 +1,6 @@
 // Accommodation
 local accommodation_introduction = import 'blocks/household/accommodation/accommodation_introduction.jsonnet';
+local accommodation_summary = import 'blocks/household/accommodation/accommodation_summary.jsonnet';
 local accommodation_type = import 'blocks/household/accommodation/accommodation_type.jsonnet';
 local central_heating = import 'blocks/household/accommodation/central_heating.jsonnet';
 local number_bedrooms = import 'blocks/household/accommodation/number_bedrooms.jsonnet';
@@ -9,7 +10,6 @@ local self_contained = import 'blocks/household/accommodation/self_contained.jso
 local type_of_flat = import 'blocks/household/accommodation/type_of_flat.jsonnet';
 local type_of_house = import 'blocks/household/accommodation/type_of_house.jsonnet';
 local who_rent_from = import 'blocks/household/accommodation/who_rent_from.jsonnet';
-local accommodation_summary = import 'blocks/household/accommodation/accommodation_summary.jsonnet';
 
 
 function(region_code, census_date, census_month_year_date) {
@@ -39,7 +39,7 @@ function(region_code, census_date, census_month_year_date) {
     },
   ],
   hub: {
-    enabled: true
+    enabled: true,
   },
   sections: [
     {
@@ -60,10 +60,10 @@ function(region_code, census_date, census_month_year_date) {
             own_or_rent,
             who_rent_from,
             number_of_vehicles,
-            accommodation_summary
+            accommodation_summary,
           ],
         },
       ],
-    }
+    },
   ],
 }

@@ -6,7 +6,7 @@
     contents: [
       {
         description: 'In this section, we’re going to ask you about the accommodation you live in.',
-      }, 
+      },
       {
         title: 'You will need to know',
         list: [
