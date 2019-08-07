@@ -33,6 +33,7 @@
         {
           label: '4 or more',
           value: '4 or more',
+          description: 'Select to enter number',
           detail_answer: {
             id: 'number-of-vehicles-answer-other',
             type: 'TextField',

@@ -498,6 +498,7 @@
                                     "value": "3"
                                  },
                                  {
+                                    "description": "Select to enter number",
                                     "detail_answer": {
                                        "id": "number-of-vehicles-answer-other",
                                        "label": "Enter the number of cars or vans",
