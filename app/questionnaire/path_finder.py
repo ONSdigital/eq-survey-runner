@@ -154,8 +154,7 @@ class PathFinder:
                         blocks,
                         routing_rules,
                         block_index,
-                        path,
-                        list_item_id=list_item_id,
+                        path
                     )
                     if block_index:
                         continue
@@ -171,7 +170,7 @@ class PathFinder:
             block_index = block_index + 1
 
     def _evaluate_routing_rules(
-        self, this_location, blocks, routing_rules, block_index, path, list_item_id=None
+        self, this_location, blocks, routing_rules, block_index, path
     ):
         for rule in filter(is_goto_rule, routing_rules):
             should_goto = evaluate_goto(
@@ -180,7 +179,7 @@ class PathFinder:
                 self.metadata,
                 self.answer_store,
                 self.list_store,
-                list_item_id=list_item_id,
+                current_location=this_location,
                 routing_path=path,
             )
 

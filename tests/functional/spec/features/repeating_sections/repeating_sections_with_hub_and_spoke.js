@@ -1,25 +1,25 @@
 const helpers = require('../../../helpers');
 
-const PrimaryPersonPage = require('../../../generated_pages/Hub_and_spoke_with_repeats/primary-person-list-collector.page');
-const PrimaryPersonAddPage = require('../../../generated_pages/Hub_and_spoke_with_repeats/primary-person-list-collector-add.page');
+const PrimaryPersonPage = require('../../../generated_pages/hub_and_spoke_with_repeats/primary-person-list-collector.page');
+const PrimaryPersonAddPage = require('../../../generated_pages/hub_and_spoke_with_repeats/primary-person-list-collector-add.page');
 
-const FirstListCollectorPage = require('../../../generated_pages/Hub_and_spoke_with_repeats/list-collector.page');
-const FirstListCollectorAddPage = require('../../../generated_pages/Hub_and_spoke_with_repeats/list-collector-add.page');
+const FirstListCollectorPage = require('../../../generated_pages/hub_and_spoke_with_repeats/list-collector.page');
+const FirstListCollectorAddPage = require('../../../generated_pages/hub_and_spoke_with_repeats/list-collector-add.page');
 
-const SecondListCollecerInterstitialPage = require('../../../generated_pages/Hub_and_spoke_with_repeats/next-interstitial.page');
-const SecondListCollectorPage = require('../../../generated_pages/Hub_and_spoke_with_repeats/another-list-collector-block.page');
-const SecondListCollectorAddPage = require('../../../generated_pages/Hub_and_spoke_with_repeats/another-list-collector-block-add.page');
-const SecondListCollectorRemovePage = require('../../../generated_pages/Hub_and_spoke_with_repeats/another-list-collector-block-remove.page');
+const SecondListCollecerInterstitialPage = require('../../../generated_pages/hub_and_spoke_with_repeats/next-interstitial.page');
+const SecondListCollectorPage = require('../../../generated_pages/hub_and_spoke_with_repeats/another-list-collector-block.page');
+const SecondListCollectorAddPage = require('../../../generated_pages/hub_and_spoke_with_repeats/another-list-collector-block-add.page');
+const SecondListCollectorRemovePage = require('../../../generated_pages/hub_and_spoke_with_repeats/another-list-collector-block-remove.page');
 
-const ProxyPage = require('../../../generated_pages/Hub_and_spoke_with_repeats/proxy.page');
-const DateOfBirthPage = require('../../../generated_pages/Hub_and_spoke_with_repeats/date-of-birth.page');
-const ConfirmDateOfBirthPage = require('../../../generated_pages/Hub_and_spoke_with_repeats/confirm-dob.page');
-const SexPage = require('../../../generated_pages/Hub_and_spoke_with_repeats/sex.page');
+const ProxyPage = require('../../../generated_pages/hub_and_spoke_with_repeats/proxy.page');
+const DateOfBirthPage = require('../../../generated_pages/hub_and_spoke_with_repeats/date-of-birth.page');
+const ConfirmDateOfBirthPage = require('../../../generated_pages/hub_and_spoke_with_repeats/confirm-dob.page');
+const SexPage = require('../../../generated_pages/hub_and_spoke_with_repeats/sex.page');
 
-const HubPage = require('../../../base_pages/Hub.page.js');
+const HubPage = require('../../../base_pages/hub.page.js');
 
 
-describe('Feature: Hub and Spoke with Repeats Sections', function () {
+describe('Feature: Repeating Sections with Hub and Spoke', function () {
 
   const Hub_and_spoke_schema = 'test_Hub_and_spoke_with_repeats.json';
 

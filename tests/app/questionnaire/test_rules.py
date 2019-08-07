@@ -5,6 +5,7 @@ from app.data_model.answer_store import AnswerStore, Answer
 from app.data_model.list_store import ListStore
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
+from app.questionnaire.relationship_location import RelationshipLocation
 from app.questionnaire.rules import (
     evaluate_rule,
     evaluate_goto,
@@ -577,7 +578,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                     {
                         'id': lhs.answer_id,
                         'condition': comparison,
-                        'comparison_id': rhs.answer_id,
+                        'comparison': {'id': rhs.answer_id, 'source': 'answers'},
                     }
                 ]
 
@@ -641,3 +642,73 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                     routing_path=routing_path,
                 )
             )
+
+    def test_primary_person_checks_location(self):
+        answer_store = AnswerStore({})
+        list_store = ListStore(
+            existing_items=[
+                {
+                    'name': 'people',
+                    'primary_person': 'abcdef',
+                    'items': ['abcdef', '12345'],
+                }
+            ]
+        )
+
+        location = RelationshipLocation(
+            block_id='some-block', from_list_item_id='abcdef', to_list_item_id='12345'
+        )
+
+        when_rules = [
+            {
+                'list': 'people',
+                'id_selector': 'primary_person',
+                'condition': 'equals',
+                'comparison': {'source': 'location', 'id': 'from_list_item_id'},
+            }
+        ]
+
+        self.assertTrue(
+            evaluate_when_rules(
+                when_rules,
+                get_schema(),
+                {},
+                answer_store,
+                list_store,
+                current_location=location,
+            )
+        )
+
+    def test_primary_person_returns_false_on_invalid_id(self):
+        answer_store = AnswerStore({})
+        list_store = ListStore(
+            existing_items=[
+                {
+                    'name': 'people',
+                    'primary_person': 'abcdef',
+                    'items': ['abcdef', '12345'],
+                }
+            ]
+        )
+
+        location = Location(block_id='some-block')
+
+        when_rules = [
+            {
+                'list': 'people',
+                'id_selector': 'primary_person',
+                'condition': 'equals',
+                'comparison': {'source': 'location', 'id': 'from_list_item_id'},
+            }
+        ]
+
+        self.assertFalse(
+            evaluate_when_rules(
+                when_rules,
+                get_schema(),
+                {},
+                answer_store,
+                list_store,
+                current_location=location,
+            )
+        )

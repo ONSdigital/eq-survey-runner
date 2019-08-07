@@ -72,7 +72,10 @@
                                             {
                                                 "id": "route-comparison-2-answer",
                                                 "condition": "greater than",
-                                                "comparison_id": "route-comparison-1-answer"
+                                                "comparison": {
+                                                    "source": "answers",
+                                                    "id": "route-comparison-1-answer"
+                                                }
                                             }
                                         ]
                                     }

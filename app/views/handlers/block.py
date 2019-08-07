@@ -124,7 +124,7 @@ class BlockHandler:
             self._questionnaire_store.metadata,
             self._questionnaire_store.answer_store,
             self._questionnaire_store.list_store,
-            list_item_id=location.list_item_id,
+            location
         )
 
         placeholder_renderer = PlaceholderRenderer(
