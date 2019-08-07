@@ -16,6 +16,12 @@ class Router:
         Checks whether the location is valid and accessible.
         :return: boolean
         """
+        if (
+            location.list_item_id
+            and location.list_item_id not in self._list_store[location.list_name].items
+        ):
+            return False
+
         allowable_path = self._get_allowable_path(routing_path)
 
         if location in allowable_path:
