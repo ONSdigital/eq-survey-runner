@@ -2,6 +2,8 @@
 
 set -e
 
+mkdir -p data/en
+
 # Build schema for each region
 for region_code in GB-WLS GB-ENG GB-NIR; do
     # Lowercase the region code and replace '-' with '_'
@@ -35,5 +37,4 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
 done
 
 # Move newly built schemas to 'en' dir
-mkdir -p data/en
 cp data-source/json/*.json data/en
