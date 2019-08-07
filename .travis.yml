@@ -53,7 +53,8 @@ script:
     - docker push eu.gcr.io/census-eq-ci/eq-survey-runner:"$TAG"
 after_success:
     - pyenv global $(cat .python-version)
-    - pipenv run bash <(curl -s https://codecov.io/bash)
+    - pip install codecov
+    - pipenv run codecov
     - pipenv run pip install codacy-coverage
     - pipenv run python-codacy-coverage -r coverage.xml
 branches:
