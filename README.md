@@ -1,6 +1,6 @@
 # eQ Census Survey Runner v3
 
-[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=v3)](https://travis-ci.org/ONSdigital/eq-survey-runner)
+[![Build Status](https://travis-ci.com/ONSdigital/eq-survey-runner.svg?branch=v3)](https://travis-ci.com/ONSdigital/eq-survey-runner)
 [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a2bc191a96e546b99a6d1c33b9b0ed62)](https://app.codacy.com/project/MebinAbraham/eq-survey-runner/dashboard?branchId=10869033)
 
