@@ -37,7 +37,7 @@
             id: 'number-of-vehicles-answer-other',
             type: 'TextField',
             mandatory: false,
-            label: 'Enter number of cars or vans',
+            label: 'Enter the number of cars or vans',
           },
         },
       ],
