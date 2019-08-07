@@ -500,7 +500,7 @@
                                  {
                                     "detail_answer": {
                                        "id": "number-of-vehicles-answer-other",
-                                       "label": "Please specify number of cars or vans",
+                                       "label": "Enter number of cars or vans",
                                        "mandatory": false,
                                        "type": "TextField"
                                     },
