@@ -161,12 +161,17 @@ def _is_answer_on_path(schema, answer, routing_path):
     return location in routing_path
 
 
-def _get_comparison_id_value(when_rule, answer_store, schema):
+def _get_comparison_id_value(when_rule, answer_store, schema, current_location):
     """
-        Gets the value of an answer specified as an operand in a comparator ( i.e right hand argument ,
-        or rhs in if lhs>rhs ) In a when clause
+        Gets the value of a comparison id specified as an operand in a comparator
     """
-    answer_id = when_rule['comparison_id']
+    if when_rule['comparison']['source'] == 'location':
+        try:
+            return getattr(current_location, when_rule['comparison']['id'])
+        except AttributeError:
+            return None
+
+    answer_id = when_rule['comparison']['id']
 
     return get_answer_store_value(answer_id, answer_store, schema)
 
@@ -209,6 +214,8 @@ def _get_when_rule_value(
         )
     elif 'meta' in when_rule:
         value = get_metadata_value(metadata, when_rule['meta'])
+    elif 'id_selector' in when_rule:
+        value = getattr(list_store.get(when_rule['list']), when_rule['id_selector'])
     elif 'list' in when_rule:
         value = get_list_count(list_store, when_rule['list'])
     else:
@@ -218,7 +225,13 @@ def _get_when_rule_value(
 
 
 def evaluate_when_rules(
-    when_rules, schema, metadata, answer_store, list_store, routing_path=None
+    when_rules,
+    schema,
+    metadata,
+    answer_store,
+    list_store,
+    routing_path=None,
+    current_location=None,
 ):
     """
     Whether the skip condition has been met.
@@ -227,6 +240,7 @@ def evaluate_when_rules(
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
     :param routing_path: The routing path to use when filtering answer_store
+    :param current_location: The location to use when evaluating when rules
     :return: True if the when condition has been met otherwise False
     """
     for when_rule in when_rules:
@@ -242,9 +256,9 @@ def evaluate_when_rules(
         if 'date_comparison' in when_rule:
             if not evaluate_date_rule(when_rule, answer_store, schema, metadata, value):
                 return False
-        elif 'comparison_id' in when_rule:
+        elif 'comparison' in when_rule:
             comparison_id_value = _get_comparison_id_value(
-                when_rule, answer_store, schema
+                when_rule, answer_store, schema, current_location
             )
             if not evaluate_comparison_rule(when_rule, value, comparison_id_value):
                 return False
