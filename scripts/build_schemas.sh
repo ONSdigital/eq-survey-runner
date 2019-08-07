@@ -12,9 +12,7 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
     CENSUS_DATE="2019-10-13"
     CENSUS_MONTH_YEAR_DATE="2019-10"
 
-    CENSUS_TYPES=("individual" "household")
-
-    for census_type in "${CENSUS_TYPES[@]}"; do
+    for census_type in "individual" "household"; do
 
         DESTINATION_FILE="data/en/census_${census_type}_${FORMATTED_REGION_CODE}.json"
 
