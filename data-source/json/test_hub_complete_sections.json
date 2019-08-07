@@ -1,0 +1,198 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Hub & Spoke",
+    "theme": "default",
+    "description": "A questionnaire to demo hub and spoke functionality",
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "hub": {
+        "enabled": true,
+        "required_completed_sections": ["employment-section"]
+    },
+    "sections": [
+        {
+            "id": "employment-section",
+            "title": "Employment",
+            "groups": [
+                {
+                    "id": "radio",
+                    "title": "Radio Optional",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "employment-status",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "employment-status-answer",
+                                        "mandatory": false,
+                                        "options": [
+                                            {
+                                                "label": "Working as an employee",
+                                                "value": "Working as an employee"
+                                            },
+                                            {
+                                                "label": "Self-employed or freelance",
+                                                "value": "Self-employed or freelance"
+                                            },
+                                            {
+                                                "label": "Temporarily away from work ill, on holiday or temporarily laid off",
+                                                "value": "Temporarily away from work ill, on holiday or temporarily laid off"
+                                            },
+                                            {
+                                                "label": "On maternity or paternity leave",
+                                                "value": "On maternity or paternity leave"
+                                            },
+                                            {
+                                                "label": "Doing any other kind of paid work",
+                                                "value": "Doing any other kind of paid work"
+                                            }
+                                        ],
+                                        "type": "Checkbox"
+                                    },
+                                    {
+                                        "id": "employment-status-answer-exclusive",
+                                        "mandatory": false,
+                                        "options": [
+                                            {
+                                                "label": "None of these apply",
+                                                "value": "None of these apply"
+                                            }
+                                        ],
+                                        "type": "Checkbox"
+                                    }
+                                ],
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "description": "Include casual or temporary work, even if only for one hour"
+                                        }
+                                    ]
+                                },
+                                "id": "employment-status-question",
+                                "mandatory": true,
+                                "title": "In the last seven days, were you doing any of the following?",
+                                "type": "MutuallyExclusive"
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "group": "checkboxes",
+                                        "when": [
+                                            {
+                                                "id": "employment-status-answer",
+                                                "condition": "set"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "employment-type"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Question",
+                            "id": "employment-type",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "employment-type-answer",
+                                        "mandatory": false,
+                                        "options": [
+                                            {
+                                                "description": "Whether receiving a pension or not",
+                                                "label": "Retired",
+                                                "value": "Retired"
+                                            },
+                                            {
+                                                "label": "Studying",
+                                                "value": "Studying"
+                                            },
+                                            {
+                                                "label": "Looking after home or family",
+                                                "value": "Looking after home or family"
+                                            },
+                                            {
+                                                "label": "Long-term sick or disabled",
+                                                "value": "Long-term sick or disabled"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "value": "Other"
+                                            }
+                                        ],
+                                        "type": "Checkbox"
+                                    }
+                                ],
+                                "id": "employment-type-question",
+                                "title": "Which of the following describes what you were doing in the last seven days?",
+                                "type": "General"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "accommodation-section",
+            "title": "Accommodation",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "id": "proxy",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "default": "Yes",
+                                        "id": "proxy-answer",
+                                        "mandatory": false,
+                                        "options": [
+                                            {
+                                                "label": "No, I’m answering for myself",
+                                                "value": "No"
+                                            },
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            }
+                                        ],
+                                        "type": "Radio"
+                                    }
+                                ],
+                                "id": "proxy-question",
+                                "title": "Are you answering the questions on behalf of someone else?",
+                                "type": "General"
+                            },
+                            "type": "Question"
+                        },
+                        {
+                            "id": "accommodation-details-summary",
+                            "type": "SectionSummary"
+                        }
+                    ],
+                    "id": "checkboxes",
+                    "title": ""
+                }
+            ]
+        }
+    ]
+}

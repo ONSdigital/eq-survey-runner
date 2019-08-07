@@ -229,7 +229,19 @@ describe('Feature: Hub and Spoke', function () {
         .click(HubPage.submit())
         .getUrl().should.eventually.contain('thank-you');
     });
-
   });
 
+  describe('Given a user opens a schema with required sections', function () {
+    it('It should only display when those sections are complete', function () {
+      return helpers.openQuestionnaire('test_hub_complete_sections.json')
+        .then(() => {
+          return browser
+            .click(EmploymentStatusBlockPage.exclusiveNoneOfTheseApply())
+            .click(EmploymentStatusBlockPage.submit())
+            .click(EmploymentTypeBlockPage.studying())
+            .click(EmploymentTypeBlockPage.submit())
+            .getText(HubPage.submit()).should.eventually.contain('Continue');
+       });
+    });
+  });
 });
