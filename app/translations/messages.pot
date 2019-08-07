@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-01 14:51+0100\n"
+"POT-Creation-Date: 2019-08-01 10:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -289,7 +289,7 @@ msgstr ""
 msgid "Thank you for your feedback"
 msgstr ""
 
-#: templates/feedback_sent.html:6 templates/thank-you.html:8
+#: templates/feedback_sent.html:6
 msgid "Submission successful"
 msgstr ""
 
@@ -386,57 +386,16 @@ msgid ""
 "after submitting this survey"
 msgstr ""
 
-#: templates/thank-you.html:4
+#: templates/thank-you.html:3
 msgid "We've received your answers"
 msgstr ""
 
-#: templates/thank-you.html:17
-#, python-format
-msgid ""
-"Your answers were submitted for <span>%(ru_name)s</span> "
-"(%(trading_as_name)s) on %(submitted_date_time)s"
+#: templates/thank-you.html:8
+msgid "Thank you for submitting your census"
 msgstr ""
 
-#: templates/thank-you.html:22
-#, python-format
-msgid ""
-"Your answers were submitted for <span>%(ru_name)s</span> on "
-"%(submitted_date_time)s"
-msgstr ""
-
-#: templates/thank-you.html:27 templates/view-submission.html:30
-msgid "Transaction ID"
-msgstr ""
-
-#: templates/thank-you.html:30
-msgid "Your answers will be processed in the next few weeks"
-msgstr ""
-
-#: templates/thank-you.html:31
-msgid "We may contact you to query your answers via phone or secure message"
-msgstr ""
-
-#: templates/thank-you.html:36
-msgid "View and print a copy of your answers"
-msgstr ""
-
-#: templates/thank-you.html:37
-#, python-format
-msgid ""
-"Your answers will only be available for <b>%(duration)s</b> to keep them "
-"secure."
-msgstr ""
-
-#: templates/thank-you.html:45
-msgid "You are no longer able to view and print your answers"
-msgstr ""
-
-#: templates/thank-you.html:46
-msgid "The link expires to maintain the security of your information"
-msgstr ""
-
-#: templates/thank-you.html:52
-msgid "For more information on how we use this data"
+#: templates/thank-you.html:10
+msgid "We have received your answers and you do not need to do anything else."
 msgstr ""
 
 #: templates/view-submission.html:8
@@ -459,6 +418,10 @@ msgstr ""
 msgid ""
 "Your answers were submitted for <span>%(ru_name)s</span> on "
 "%(submitted_time)s"
+msgstr ""
+
+#: templates/view-submission.html:30
+msgid "Transaction ID"
 msgstr ""
 
 #: templates/view-submission.html:37
