@@ -29,10 +29,6 @@ class TestViewSubmission(IntegrationTestCase):
 
     def test_view_submission(self):
 
-        # check we're on the thank you page and view submission link is available
-        self.assertInUrl('thank-you')
-        self.assertInBody('View and print a copy of your answers')
-
         # go to the view submission page
         self.get('submitted/view-submission')
 
@@ -64,7 +60,7 @@ class TestViewSubmission(IntegrationTestCase):
 
 
 class TestCantViewSubmission(IntegrationTestCase):
-    def test_try_view_submission_when_not_available(self):
+    def test_try_view_submission(self):
         self.launchSurvey('test_currency')
 
         # check we're on first page
@@ -88,9 +84,8 @@ class TestCantViewSubmission(IntegrationTestCase):
         # Submit answers
         self.post(action=None)
 
-        # check we're on the thank you page and view submission link is not available
+        # check we're on the thank you page
         self.assertInUrl('thank-you')
-        self.assertNotInBody('View and print a copy of your answers')
 
         # try go to the view submission page anyway
         self.get('submitted/view-submission')
