@@ -1,0 +1,351 @@
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-08-07 13:13+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Census England Household Schema"
+msgstr ""
+
+msgid ""
+"In this section, we’re going to ask you about the accommodation you live "
+"in."
+msgstr ""
+
+msgid "Including purpose-built flats and flats within converted and shared houses"
+msgstr ""
+
+msgid "Including end-terrace"
+msgstr ""
+
+msgid "Including bedsits"
+msgstr ""
+
+msgid "For example, in an office building, hotel, or over a shop"
+msgstr ""
+
+msgid ""
+"One person living alone; or a group of people, who are not necessarily "
+"related, living at the same address who share cooking facilities and "
+"share a living room or sitting room or dining area."
+msgstr ""
+
+msgid "Including storage heaters"
+msgstr ""
+
+msgid "For example, logs, waste wood or pellets"
+msgstr ""
+
+msgid "For example, coal"
+msgstr ""
+
+msgid "For example, solar thermal or heat pumps"
+msgstr ""
+
+msgid "Shared ownership"
+msgstr ""
+
+msgid "With or without housing benefit"
+msgstr ""
+
+msgid "Select to enter number"
+msgstr ""
+
+msgid "Voluntary"
+msgstr ""
+
+msgid "2019 Census Test"
+msgstr ""
+
+msgid "Household accommodation"
+msgstr ""
+
+msgid "You will need to know"
+msgstr ""
+
+msgid "Which of the following is your house or bungalow?"
+msgstr ""
+
+msgid "Where is your flat, maisonette or apartment?"
+msgstr ""
+
+msgid ""
+"Are all the rooms in this accommodation, including the kitchen, bathroom "
+"and toilet, behind a door that only this household can use?"
+msgstr ""
+
+msgid "What is a “household”?"
+msgstr ""
+
+msgid "How many bedrooms are available for use only by this household?"
+msgstr ""
+
+msgid "Include all rooms built or converted for use as bedrooms"
+msgstr ""
+
+msgid ""
+"Include central heating systems that generate heat for multiple rooms "
+"whether or not you use them"
+msgstr ""
+
+msgid "Who is your landlord?"
+msgstr ""
+
+msgid ""
+"In total, how many cars or vans are owned, or available for use, by "
+"members of this household?"
+msgstr ""
+
+msgid "Include any company cars or vans available for private use."
+msgstr ""
+
+msgid "Type of property, and if it’s owned or rented"
+msgstr ""
+
+msgid ""
+"Type of landlord if rented, for example housing association, council or "
+"private"
+msgstr ""
+
+msgid "Type of central heating"
+msgstr ""
+
+msgid "What type of accommodation is <em>{address}</em>?"
+msgstr ""
+
+msgid "What type of central heating does <em>{address}</em> have?"
+msgstr ""
+
+msgid "Does your household own or rent <em>{address}</em>?"
+msgstr ""
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
+msgid "Whole house or bungalow"
+msgstr ""
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
+msgid "Flat, maisonette or apartment"
+msgstr ""
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
+msgid "Caravan or other mobile or temporary structure"
+msgstr ""
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Detached"
+msgstr ""
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Semi-detached"
+msgstr ""
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Terraced"
+msgstr ""
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "In a purpose-built block of flats or tenement"
+msgstr ""
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "Part of a converted or shared house"
+msgstr ""
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "In a commercial building"
+msgstr ""
+
+#. answer-id: self-contained-answer
+msgctxt ""
+"Answer for: Are all the rooms in this accommodation, including the "
+"kitchen, bathroom and toilet, behind a door that only this household can "
+"use?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: self-contained-answer
+msgctxt ""
+"Answer for: Are all the rooms in this accommodation, including the "
+"kitchen, bathroom and toilet, behind a door that only this household can "
+"use?"
+msgid "No, one or more rooms are shared with another household"
+msgstr ""
+
+#. answer-id: number-of-bedrooms-answer
+msgctxt ""
+"Answer for: How many bedrooms are available for use only by this "
+"household?"
+msgid "Number of bedrooms"
+msgstr ""
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "No central heating"
+msgstr ""
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Mains gas"
+msgstr ""
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Tank or bottled gas"
+msgstr ""
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Electric"
+msgstr ""
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Oil"
+msgstr ""
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Wood"
+msgstr ""
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Solid fuel"
+msgstr ""
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Renewable energy"
+msgstr ""
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "District or communal heat networks"
+msgstr ""
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Owns outright"
+msgstr ""
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Owns with a mortgage or loan"
+msgstr ""
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Part owns and part rents"
+msgstr ""
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Rents"
+msgstr ""
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Lives here rent free"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid ""
+"Housing association, housing co-operative, charitable trust, registered "
+"social landlord"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Council or local authority"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Private landlord or letting agency"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Employer of a household member"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Relative or friend of a household member"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: number-of-vehicles-answer
+msgctxt ""
+"Answer for: In total, how many cars or vans are owned, or available for "
+"use, by members of this household?"
+msgid "None"
+msgstr ""
+
+#. answer-id: number-of-vehicles-answer
+msgctxt ""
+"Answer for: In total, how many cars or vans are owned, or available for "
+"use, by members of this household?"
+msgid "1"
+msgstr ""
+
+#. answer-id: number-of-vehicles-answer
+msgctxt ""
+"Answer for: In total, how many cars or vans are owned, or available for "
+"use, by members of this household?"
+msgid "2"
+msgstr ""
+
+#. answer-id: number-of-vehicles-answer
+msgctxt ""
+"Answer for: In total, how many cars or vans are owned, or available for "
+"use, by members of this household?"
+msgid "3"
+msgstr ""
+
+#. answer-id: number-of-vehicles-answer
+msgctxt ""
+"Answer for: In total, how many cars or vans are owned, or available for "
+"use, by members of this household?"
+msgid "4 or more"
+msgstr ""
+
+#. answer-id: number-of-vehicles-answer-other
+msgctxt ""
+"Answer for: In total, how many cars or vans are owned, or available for "
+"use, by members of this household?"
+msgid "Enter the number of cars or vans"
+msgstr ""
+

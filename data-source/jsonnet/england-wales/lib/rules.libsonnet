@@ -88,4 +88,14 @@
     condition: 'contains',
     value: 'None of these apply',
   },
+  accommodationIsHouse: {
+    id: 'accommodation-type-answer',
+    condition: 'equals',
+    value: 'Whole house or bungalow',
+  },
+  accommodationIsFlat: {
+    id: 'accommodation-type-answer',
+    condition: 'equals',
+    value: 'Flat, maisonette or apartment',
+  },
 }
