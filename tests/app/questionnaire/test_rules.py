@@ -1,6 +1,5 @@
 from unittest.mock import patch
 
-
 from app.data_model.answer_store import AnswerStore, Answer
 from app.data_model.list_store import ListStore
 from app.questionnaire.location import Location
@@ -138,12 +137,21 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             'id': 'next-question',
             'when': [{'id': 'my_answer', 'condition': 'equals', 'value': 'Yes'}],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
 
         answer_store.add_or_update(Answer(answer_id='my_answer', value='Yes'))
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertTrue(
-            evaluate_goto(goto, get_schema(), {}, answer_store, ListStore({}))
+            evaluate_goto(
+                goto_rule=goto,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )
 
     def test_do_not_go_to_next_question_for_answer(self):
@@ -152,12 +160,21 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             'id': 'next-question',
             'when': [{'id': 'my_answer', 'condition': 'equals', 'value': 'Yes'}],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
 
         answer_store.add_or_update(Answer(answer_id='my_answer', value='No'))
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertFalse(
-            evaluate_goto(goto_rule, get_schema(), {}, answer_store, ListStore({}))
+            evaluate_goto(
+                goto_rule=goto_rule,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )
 
     def test_evaluate_goto_returns_false_when_checkbox_question_not_answered(self):
@@ -173,14 +190,29 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 {'id': 'my_answers', 'condition': 'not contains', 'value': 'answer1'}
             ],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
+
+        current_location = Location(section_id='some-section', block_id='some-block')
 
         self.assertFalse(
-            evaluate_goto(goto_contains, get_schema(), {}, answer_store, ListStore({}))
+            evaluate_goto(
+                goto_rule=goto_contains,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )
+
         self.assertFalse(
             evaluate_goto(
-                goto_not_contains, get_schema(), {}, answer_store, ListStore({})
+                goto_rule=goto_not_contains,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
             )
         )
 
@@ -192,13 +224,22 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             'id': 'next-question',
             'when': [{'id': 'my_answers', 'condition': 'contains', 'value': 'answer1'}],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(
             Answer(answer_id='my_answers', value=['answer1', 'answer2', 'answer3'])
         )
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertTrue(
-            evaluate_goto(goto, get_schema(), {}, answer_store, ListStore({}))
+            evaluate_goto(
+                goto_rule=goto,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )
 
     def test_evaluate_goto_returns_true_when_answer_value_list_not_contains_match_value(
@@ -211,12 +252,23 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 {'id': 'my_answers', 'condition': 'not contains', 'value': 'answer1'}
             ],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(
             Answer(answer_id='my_answers', value=['answer2', 'answer3'])
         )
 
-        self.assertTrue(evaluate_goto(goto, get_schema(), {}, answer_store, 0))
+        current_location = Location(section_id='some-section', block_id='some-block')
+
+        self.assertTrue(
+            evaluate_goto(
+                goto_rule=goto,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
+        )
 
     def test_evaluate_goto_returns_true_when_answer_values_contains_any_match_values(
         self
@@ -232,13 +284,22 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 }
             ],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(
             Answer(answer_id='my_answers', value=['answer1', 'answer4'])
         )
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertTrue(
-            evaluate_goto(goto, get_schema(), {}, answer_store, ListStore({}))
+            evaluate_goto(
+                goto_rule=goto,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )
 
     def test_evaluate_goto_returns_true_when_answer_values_contains_all_match_values(
@@ -255,13 +316,22 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 }
             ],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(
             Answer(answer_id='my_answers', value=['answer1', 'answer2', 'answer3'])
         )
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertTrue(
-            evaluate_goto(goto, get_schema(), {}, answer_store, ListStore({}))
+            evaluate_goto(
+                goto_rule=goto,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )
 
     def test_evaluate_goto_returns_true_when_answer_value_equals_any_match_values(self):
@@ -276,11 +346,20 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 }
             ],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(Answer(answer_id='my_answers', value='answer2'))
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertTrue(
-            evaluate_goto(goto, get_schema(), {}, answer_store, ListStore({}))
+            evaluate_goto(
+                goto_rule=goto,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )
 
     def test_evaluate_goto_returns_true_when_answer_value_not_equals_any_match_values(
@@ -297,11 +376,20 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 }
             ],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(Answer(answer_id='my_answers', value='answer3'))
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertTrue(
-            evaluate_goto(goto, get_schema(), {}, answer_store, ListStore({}))
+            evaluate_goto(
+                goto_rule=goto,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )
 
     def test_evaluate_skip_condition_returns_true_when_this_rule_true(self):
@@ -310,12 +398,19 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             {'when': [{'id': 'this', 'condition': 'equals', 'value': 'value'}]},
             {'when': [{'id': 'that', 'condition': 'equals', 'value': 'other value'}]},
         ]
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(Answer(answer_id='this', value='value'))
+
+        current_location = Location(section_id='some-section', block_id='some-block')
 
         # When
         condition = evaluate_skip_conditions(
-            skip_conditions, get_schema(), {}, answer_store, ListStore({})
+            skip_conditions=skip_conditions,
+            schema=get_schema(),
+            metadata={},
+            answer_store=answer_store,
+            list_store=ListStore(),
+            current_location=current_location,
         )
 
         # Given
@@ -327,13 +422,21 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             {'when': [{'id': 'this', 'condition': 'equals', 'value': 'value'}]},
             {'when': [{'id': 'that', 'condition': 'equals', 'value': 'other value'}]},
         ]
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
 
         answer_store.add_or_update(Answer(answer_id='that', value='other value'))
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
+        # When
         self.assertTrue(
             evaluate_skip_conditions(
-                skip_conditions, get_schema(), {}, answer_store, ListStore({})
+                skip_conditions=skip_conditions,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
             )
         )
 
@@ -343,13 +446,20 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             {'when': [{'id': 'this', 'condition': 'equals', 'value': 'value'}]},
             {'when': [{'id': 'that', 'condition': 'equals', 'value': 'other value'}]},
         ]
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(Answer(answer_id='this', value='value'))
         answer_store.add_or_update(Answer(answer_id='that', value='other value'))
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         # When
         condition = evaluate_skip_conditions(
-            skip_conditions, get_schema(), {}, answer_store, ListStore({})
+            skip_conditions=skip_conditions,
+            schema=get_schema(),
+            metadata={},
+            answer_store=answer_store,
+            list_store=ListStore(),
+            current_location=current_location,
         )
 
         # Then
@@ -361,13 +471,20 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             {'when': [{'id': 'this', 'condition': 'equals', 'value': 'value'}]},
             {'when': [{'id': 'that', 'condition': 'equals', 'value': 'other value'}]},
         ]
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(Answer(answer_id='this', value='not correct'))
         answer_store.add_or_update(Answer(answer_id='that', value='not correct'))
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         # When
         condition = evaluate_skip_conditions(
-            skip_conditions, get_schema(), {}, answer_store, ListStore({})
+            skip_conditions=skip_conditions,
+            schema=get_schema(),
+            metadata={},
+            answer_store=answer_store,
+            list_store=ListStore(),
+            current_location=current_location,
         )
 
         # Then
@@ -377,9 +494,16 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         # Given
         skip_conditions = None
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         # When
         condition = evaluate_skip_conditions(
-            skip_conditions, get_schema(), {}, AnswerStore({}), ListStore({})
+            skip_conditions=skip_conditions,
+            schema=get_schema(),
+            metadata={},
+            answer_store=AnswerStore(),
+            list_store=ListStore(),
+            current_location=current_location,
         )
 
         # Then
@@ -387,11 +511,18 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
     def test_evaluate_not_set_when_rules_should_return_true(self):
         when = {'when': [{'id': 'my_answers', 'condition': 'not set'}]}
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
+
+        current_location = Location(section_id='some-section', block_id='some-block')
 
         self.assertTrue(
             evaluate_when_rules(
-                when['when'], get_schema(), {}, answer_store, ListStore({}), None
+                when_rules=when['when'],
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
             )
         )
 
@@ -404,12 +535,21 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 {'id': 'my_other_answer', 'condition': 'equals', 'value': '2'},
             ],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(Answer(answer_id='my_answer', value='Yes'))
         answer_store.add_or_update(Answer(answer_id='my_other_answer', value='2'))
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertTrue(
-            evaluate_goto(goto, get_schema(), {}, answer_store, ListStore({}))
+            evaluate_goto(
+                goto_rule=goto,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )
 
     def test_do_not_go_to_next_question_for_multiple_answers(self):
@@ -421,11 +561,20 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 {'id': 'my_other_answer', 'condition': 'equals', 'value': '2'},
             ],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(Answer(answer_id='my_answer', value='No'))
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertFalse(
-            evaluate_goto(goto_rule, get_schema(), {}, answer_store, ListStore({}))
+            evaluate_goto(
+                goto_rule=goto_rule,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )
 
     def test_should_go_to_next_question_when_condition_is_meta_and_answer_type(self):
@@ -437,17 +586,22 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 {'condition': 'equals', 'meta': 'sexual_identity', 'value': True},
             ],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(Answer(answer_id='my_answer', value='Yes'))
         metadata = {'sexual_identity': True}
 
-        # When
-        goto = evaluate_goto(
-            goto_rule, get_schema(), metadata, answer_store, ListStore({})
-        )
+        current_location = Location(section_id='some-section', block_id='some-block')
 
-        # Then
-        self.assertTrue(goto)
+        self.assertTrue(
+            evaluate_goto(
+                goto_rule=goto_rule,
+                schema=get_schema(),
+                metadata=metadata,
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
+        )
 
     def test_meta_comparison_missing(self):
         # Given
@@ -461,17 +615,22 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 }
             ],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(Answer(answer_id='my_answer', value='Yes'))
         metadata = {'varient_flags': {'sexual_identity': True}}
 
-        # When
-        goto = evaluate_goto(
-            goto_rule, get_schema(), metadata, answer_store, ListStore({})
-        )
+        current_location = Location(section_id='some-section', block_id='some-block')
 
-        # Then
-        self.assertFalse(goto)
+        self.assertFalse(
+            evaluate_goto(
+                goto_rule=goto_rule,
+                schema=get_schema(),
+                metadata=metadata,
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
+        )
 
     def test_should_not_go_to_next_question_when_second_condition_fails(self):
         # Given
@@ -482,17 +641,22 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 {'condition': 'equals', 'meta': 'sexual_identity', 'value': False},
             ],
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(Answer(answer_id='my_answer', value='Yes'))
         metadata = {'sexual_identity': True}
 
-        # When
-        goto = evaluate_goto(
-            goto_rule, get_schema(), metadata, answer_store, ListStore({})
-        )
+        current_location = Location(section_id='some-section', block_id='some-block')
 
-        # Then
-        self.assertFalse(goto)
+        self.assertFalse(
+            evaluate_goto(
+                goto_rule=goto_rule,
+                schema=get_schema(),
+                metadata=metadata,
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
+        )
 
     def test_when_rule_comparing_answer_values(self):
         answers = {
@@ -570,7 +734,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             with self.subTest(
                 lhs=lhs, comparison=comparison, rhs=rhs, expected_result=expected_result
             ):
-                answer_store = AnswerStore({})
+                answer_store = AnswerStore()
                 for answer in answers.values():
                     answer_store.add_or_update(answer)
 
@@ -582,38 +746,66 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                     }
                 ]
 
+                current_location = Location(
+                    section_id='some-section', block_id='some-block'
+                )
+
                 self.assertEqual(
-                    evaluate_when_rules(when, get_schema(), {}, answer_store, None),
+                    evaluate_when_rules(
+                        when_rules=when,
+                        schema=get_schema(),
+                        metadata={},
+                        answer_store=answer_store,
+                        list_store=ListStore(),
+                        current_location=current_location,
+                        routing_path=None,
+                    ),
                     expected_result,
                 )
 
     def test_evaluate_when_rule_raises_if_bad_when_condition(self):
         when = {'when': [{'condition': 'not set'}]}
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         with self.assertRaises(Exception):
             evaluate_when_rules(
-                when['when'], get_schema(), {}, answer_store, ListStore({}), None
+                when['when'], get_schema(), {}, answer_store, ListStore(), None
             )
 
     def test_list_rules_less_than(self):
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         list_store = ListStore(existing_items=[{'name': 'people', 'items': ['abcdef']}])
 
         when_rules = [{'list': 'people', 'condition': 'less than', 'value': 2}]
+
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertTrue(
             evaluate_when_rules(
-                when_rules, get_schema(), {}, answer_store, list_store, None
+                when_rules=when_rules,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=list_store,
+                current_location=current_location,
             )
         )
 
     def test_list_rules_equals(self):
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         list_store = ListStore(existing_items=[{'name': 'people', 'items': ['abcdef']}])
 
         when_rules = [{'list': 'people', 'condition': 'equals', 'value': 1}]
+
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertTrue(
             evaluate_when_rules(
-                when_rules, get_schema(), {}, answer_store, list_store, None
+                when_rules=when_rules,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=list_store,
+                current_location=current_location,
             )
         )
 
@@ -623,28 +815,40 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 {'id': 'some-answer', 'condition': 'equals', 'value': 'some value'}
             ]
         }
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         answer_store.add_or_update(Answer(answer_id='some-answer', value='some value'))
 
-        routing_path = [Location('test_block_id')]
+        routing_path = [Location(section_id='some-section', block_id='test_block_id')]
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertTrue(
-            evaluate_when_rules(when['when'], get_schema(), {}, answer_store, None)
+            evaluate_when_rules(
+                when_rules=when['when'],
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )
+
+        current_location = Location(section_id='some-section', block_id='some-block')
 
         with patch('app.questionnaire.rules._is_answer_on_path', return_value=False):
             self.assertFalse(
                 evaluate_when_rules(
-                    when['when'],
-                    get_schema(),
-                    {},
-                    answer_store,
-                    ListStore(),
+                    when_rules=when['when'],
+                    schema=get_schema(),
+                    metadata={},
+                    answer_store=answer_store,
+                    list_store=ListStore(),
+                    current_location=current_location,
                     routing_path=routing_path,
                 )
             )
 
     def test_primary_person_checks_location(self):
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         list_store = ListStore(
             existing_items=[
                 {
@@ -655,8 +859,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             ]
         )
 
-        location = RelationshipLocation(
-            block_id='some-block', from_list_item_id='abcdef', to_list_item_id='12345'
+        current_location = RelationshipLocation(
+            block_id='some-block', list_item_id='abcdef', to_list_item_id='12345'
         )
 
         when_rules = [
@@ -664,23 +868,23 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 'list': 'people',
                 'id_selector': 'primary_person',
                 'condition': 'equals',
-                'comparison': {'source': 'location', 'id': 'from_list_item_id'},
+                'comparison': {'source': 'location', 'id': 'list_item_id'},
             }
         ]
 
         self.assertTrue(
             evaluate_when_rules(
-                when_rules,
-                get_schema(),
-                {},
-                answer_store,
-                list_store,
-                current_location=location,
+                when_rules=when_rules,
+                schema=get_schema(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=list_store,
+                current_location=current_location,
             )
         )
 
     def test_primary_person_returns_false_on_invalid_id(self):
-        answer_store = AnswerStore({})
+        answer_store = AnswerStore()
         list_store = ListStore(
             existing_items=[
                 {
@@ -691,7 +895,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             ]
         )
 
-        location = Location(block_id='some-block')
+        current_location = Location(section_id='some-section', block_id='some-block')
 
         when_rules = [
             {
@@ -709,6 +913,6 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 {},
                 answer_store,
                 list_store,
-                current_location=location,
+                current_location=current_location,
             )
         )

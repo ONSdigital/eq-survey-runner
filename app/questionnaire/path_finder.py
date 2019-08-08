@@ -85,6 +85,7 @@ class PathFinder:
         blocks: List[Mapping] = []
         path: List[Location] = []
         section_schema = self.schema.get_section(section_id)
+        current_location = Location(section_id=section_id, list_item_id=list_item_id)
 
         for group in section_schema['groups']:
             if 'skip_conditions' in group:
@@ -94,7 +95,7 @@ class PathFinder:
                     self.metadata,
                     self.answer_store,
                     self.list_store,
-                    list_item_id=list_item_id,
+                    current_location=current_location,
                     routing_path=path,
                 ):
                     continue
@@ -102,7 +103,7 @@ class PathFinder:
             blocks.extend(group['blocks'])
 
         if blocks:
-            path = self._build_path(blocks, path, section_id, list_item_id)
+            path = self._build_path(blocks, path, current_location)
 
         return RoutingPath(path)
 
@@ -113,10 +114,12 @@ class PathFinder:
             None,
         )
 
-    def _build_path(self, blocks, path, section_id, list_item_id=None):
+    def _build_path(self, blocks, path, current_location):
         # Keep going unless we've hit the last block
         block_index = 0
-        for_list = self.schema.get_repeating_list_for_section(section_id)
+        for_list = self.schema.get_repeating_list_for_section(
+            current_location.section_id
+        )
         while block_index < len(blocks):
             block = blocks[block_index]
 
@@ -126,21 +129,21 @@ class PathFinder:
                 self.metadata,
                 self.answer_store,
                 self.list_store,
-                list_item_id=list_item_id,
+                current_location=current_location,
                 routing_path=path,
             )
 
             if not is_skipping:
-                if for_list and list_item_id:
+                if for_list and current_location.list_item_id:
                     this_location = Location(
-                        section_id=section_id,
+                        section_id=current_location.section_id,
                         block_id=block['id'],
                         list_name=for_list,
-                        list_item_id=list_item_id,
+                        list_item_id=current_location.list_item_id,
                     )
                 else:
                     this_location = Location(
-                        section_id=section_id, block_id=block['id']
+                        section_id=current_location.section_id, block_id=block['id']
                     )
 
                 if this_location not in path:
@@ -190,7 +193,12 @@ class PathFinder:
 
                 if next_precedes_current:
                     self._remove_rule_answers(rule['goto'], this_location)
-                    next_location = Location(block_id=next_block_id)
+                    section_id_for_block_id = self.schema.get_section_id_for_block_id(
+                        block_id=next_block_id
+                    )
+                    next_location = Location(
+                        section_id=section_id_for_block_id, block_id=next_block_id
+                    )
                     path.append(next_location)
                     return None
 

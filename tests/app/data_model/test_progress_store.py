@@ -6,9 +6,11 @@ from app.questionnaire.location import Location
 def test_serialisation():
     store = ProgressStore()
 
-    store.add_completed_location('s1', Location('one'))
-    store.add_completed_location('s1', Location('two'))
-    store.update_section_status('s1', CompletionStatus.COMPLETED)
+    store.add_completed_location(Location(section_id='s1', block_id='one'))
+    store.add_completed_location(Location(section_id='s1', block_id='two'))
+    store.update_section_status(
+        section_status=CompletionStatus.COMPLETED, section_id='s1'
+    )
 
     serialised = store.serialise()
 
@@ -62,8 +64,8 @@ def test_clear():
 def test_add_completed_location():
     store = ProgressStore()
 
-    location = Location(block_id='one')
-    store.add_completed_location('s1', location)
+    location = Location(section_id='s1', block_id='one')
+    store.add_completed_location(location)
 
     assert store.get_completed_locations('s1') == [location]
     assert store.is_dirty
@@ -80,8 +82,8 @@ def test_add_completed_location_existing():
     ]
     store = ProgressStore(completed)
 
-    location = Location(block_id='one')
-    store.add_completed_location('s1', location)
+    location = Location(section_id='s1', block_id='one')
+    store.add_completed_location(location)
 
     assert store.get_section_status('s1') == CompletionStatus.COMPLETED
     assert len(store.get_completed_locations('s1')) == 1
@@ -99,8 +101,8 @@ def test_add_completed_location_new():
     ]
     store = ProgressStore(completed)
 
-    location = Location(block_id='two')
-    store.add_completed_location('s1', location)
+    location = Location(section_id='s1', block_id='two')
+    store.add_completed_location(location)
 
     assert store.get_section_status('s1') == CompletionStatus.COMPLETED
     assert len(store.get_completed_locations('s1')) == 2

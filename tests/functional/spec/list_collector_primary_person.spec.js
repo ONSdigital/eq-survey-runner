@@ -8,7 +8,7 @@ const SummaryPage = require('../generated_pages/list_collector/summary.page.js')
 const ThankYouPage = require('../base_pages/thank-you.page.js');
 
 
-describe('Primary Person List Collector Survey', function() {
+describe('@watch Primary Person List Collector Survey', function() {
 
   describe('Given the user starts on the \'do you live here\' question', function() {
     before('Load the survey', function () {

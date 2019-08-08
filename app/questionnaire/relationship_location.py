@@ -1,16 +1,17 @@
 from __future__ import annotations
-from typing import Mapping, Optional
+
 from dataclasses import dataclass
+from typing import Mapping
 
 from flask import url_for
 
 
 @dataclass
 class RelationshipLocation:
+    section_id: str
     block_id: str
     list_item_id: str
     to_list_item_id: str
-    section_id: Optional[str] = None
 
     def for_json(self) -> Mapping:
         attributes = vars(self)

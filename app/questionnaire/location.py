@@ -1,6 +1,7 @@
 from __future__ import annotations
-from typing import Mapping, Optional
+
 from dataclasses import dataclass
+from typing import Mapping, Optional
 
 from flask import url_for
 
@@ -21,8 +22,8 @@ class Location:
         list_name: The list name
     """
 
-    block_id: str
-    section_id: Optional[str] = None
+    section_id: str
+    block_id: Optional[str] = None
     list_name: Optional[str] = None
     list_item_id: Optional[str] = None
 

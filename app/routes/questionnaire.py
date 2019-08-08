@@ -28,8 +28,7 @@ from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_questionnaire_store
 from app.helpers.template_helper import render_template, safe_content
 from app.keys import KEY_PURPOSE_SUBMISSION
-from app.questionnaire.location import InvalidLocationException, Location
-from app.questionnaire.relationship_location import RelationshipLocation
+from app.questionnaire.location import InvalidLocationException
 from app.questionnaire.router import Router
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
@@ -204,15 +203,12 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
 @with_questionnaire_store
 @with_schema
 def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=None):
-
-    current_location = Location(
-        block_id=block_id, list_name=list_name, list_item_id=list_item_id
-    )
-
     try:
         block_handler = get_block_handler(
             schema=schema,
-            location=current_location,
+            block_id=block_id,
+            list_name=list_name,
+            list_item_id=list_item_id,
             questionnaire_store=questionnaire_store,
             language=flask_babel.get_locale().language,
         )
@@ -260,14 +256,12 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
 @with_questionnaire_store
 @with_schema
 def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_item_id):
-    current_location = RelationshipLocation(
-        block_id=block_id, list_item_id=list_item_id, to_list_item_id=to_list_item_id
-    )
-
     try:
         block_handler = get_block_handler(
             schema=schema,
-            location=current_location,
+            block_id=block_id,
+            list_item_id=list_item_id,
+            to_list_item_id=to_list_item_id,
             questionnaire_store=questionnaire_store,
             language=flask_babel.get_locale().language,
         )

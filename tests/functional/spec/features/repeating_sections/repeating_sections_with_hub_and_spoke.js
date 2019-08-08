@@ -19,7 +19,7 @@ const SexPage = require('../../../generated_pages/repeating_sections_with_hub_an
 const HubPage = require('../../../base_pages/hub.page.js');
 
 
-describe('Feature: Repeating Sections with Hub and Spoke', function () {
+describe('@watch Feature: Repeating Sections with Hub and Spoke', function () {
 
   const Hub_and_spoke_schema = 'test_repeating_sections_with_hub_and_spoke.json';
 

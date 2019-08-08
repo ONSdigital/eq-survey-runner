@@ -37,7 +37,7 @@ def convert_answers_to_payload_0_0_1(
                 metadata,
                 answer_store,
                 list_store,
-                list_item_id=location.list_item_id,
+                current_location=location,
             )
             for answer in question['answers']:
                 if answer['id'] == answer_in_block.answer_id:
