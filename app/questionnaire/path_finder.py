@@ -150,11 +150,7 @@ class PathFinder:
                 routing_rules = block.get('routing_rules')
                 if routing_rules:
                     block_index = self._evaluate_routing_rules(
-                        this_location,
-                        blocks,
-                        routing_rules,
-                        block_index,
-                        path
+                        this_location, blocks, routing_rules, block_index, path
                     )
                     if block_index:
                         continue

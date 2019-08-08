@@ -124,7 +124,7 @@ class BlockHandler:
             self._questionnaire_store.metadata,
             self._questionnaire_store.answer_store,
             self._questionnaire_store.list_store,
-            location
+            location,
         )
 
         placeholder_renderer = PlaceholderRenderer(
@@ -136,16 +136,13 @@ class BlockHandler:
         )
         return placeholder_renderer.render(transformed_block)
 
-    def _update_section_completeness(self, section_id=None, list_item_id=None):
-        if self.path_finder.is_path_complete(self._routing_path):
-            self.questionnaire_store_updater.update_section_status(
-                CompletionStatus.COMPLETED,
-                section_id=section_id,
-                list_item_id=list_item_id,
-            )
-        else:
-            self.questionnaire_store_updater.update_section_status(
-                CompletionStatus.IN_PROGRESS,
-                section_id=section_id,
-                list_item_id=list_item_id,
-            )
+    def _update_section_completeness(self, location=None):
+        section_status = (
+            CompletionStatus.COMPLETED
+            if self.path_finder.is_path_complete(self._routing_path)
+            else CompletionStatus.IN_PROGRESS
+        )
+
+        self.questionnaire_store_updater.update_section_status(
+            section_status=section_status, location=location
+        )

@@ -113,14 +113,9 @@ class RelationshipCollector(BlockHandler):
                 block_id=self.rendered_block['id'],
             )
             self.questionnaire_store_updater.add_completed_location(
-                location=parent_location,
-                section_id=parent_location.section_id,
-                list_item_id=None,
+                location=parent_location
             )
-            self._update_section_completeness(
-                section_id=parent_location.section_id,
-                list_item_id=parent_location.list_item_id,
-            )
+            self._update_section_completeness(location=parent_location)
 
         self.questionnaire_store_updater.save()
 

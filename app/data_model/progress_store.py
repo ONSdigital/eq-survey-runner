@@ -75,9 +75,10 @@ class ProgressStore:
 
         return []
 
-    def add_completed_location(
-        self, location: Location, section_id, list_item_id=None
-    ) -> None:
+    def add_completed_location(self, location: Location) -> None:
+
+        section_id = location.section_id
+        list_item_id = location.list_item_id
 
         locations = self.get_completed_locations(section_id, list_item_id)
 

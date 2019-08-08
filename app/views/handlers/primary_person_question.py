@@ -32,12 +32,7 @@ class PrimaryPersonQuestion(BlockHandler):
         # )['id']
 
         self.questionnaire_store_updater.add_completed_location(
-            location=self.parent_location,
-            section_id=self.parent_location.section_id,
-            list_item_id=None,
+            location=self.parent_location
         )
-        self._update_section_completeness(
-            section_id=self.parent_location.section_id,
-            list_item_id=self.parent_location.list_item_id,
-        )
+        self._update_section_completeness(location=self.parent_location)
         self.questionnaire_store_updater.save()
