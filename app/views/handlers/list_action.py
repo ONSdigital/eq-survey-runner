@@ -1,12 +1,12 @@
-from app.views.handlers.block import BlockHandler
+from app.views.handlers.question import Question
 from app.views.contexts.question import build_question_context
 from app.questionnaire.location import Location
 
 
-class ListAction(BlockHandler):
+class ListAction(Question):
     @property
     def parent_block(self):
-        return self._schema.get_block(self.rendered_block['parent_id'])
+        return self._schema.get_block(self.block['parent_id'])
 
     @property
     def parent_location(self):
