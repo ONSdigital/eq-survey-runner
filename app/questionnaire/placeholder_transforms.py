@@ -1,10 +1,9 @@
 from datetime import datetime
 
-from dateutil.relativedelta import relativedelta
-from dateutil.tz import tzutc
-
 from babel.numbers import format_currency, format_decimal
 from babel.dates import format_datetime
+from dateutil.relativedelta import relativedelta
+from dateutil.tz import tzutc
 
 from app.settings import DEFAULT_LOCALE
 

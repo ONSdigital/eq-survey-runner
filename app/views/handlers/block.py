@@ -5,10 +5,8 @@ from structlog import get_logger
 from app.data_model.progress_store import CompletionStatus
 from app.questionnaire.location import InvalidLocationException
 from app.questionnaire.path_finder import PathFinder
-from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.router import Router
-from app.questionnaire.schema_utils import transform_variants
 
 logger = get_logger()
 
@@ -17,9 +15,10 @@ class BlockHandler:
     def __init__(self, schema, questionnaire_store, language, current_location):
         self._schema = schema
         self._questionnaire_store = questionnaire_store
+        self._language = language
         self._current_location = current_location
+        self.block = self._schema.get_block(current_location.block_id)
 
-        self._rendered_block = self._render_block(current_location, language)
         self._questionnaire_store_updater = None
         self._path_finder = None
         self._router = None
@@ -35,17 +34,13 @@ class BlockHandler:
         return self._current_location
 
     @property
-    def rendered_block(self):
-        return self._rendered_block
-
-    @property
     def questionnaire_store_updater(self):
         if not self._questionnaire_store_updater:
             self._questionnaire_store_updater = QuestionnaireStoreUpdater(
                 self._current_location,
                 self._schema,
                 self._questionnaire_store,
-                self.rendered_block.get('question'),
+                self.block.get('question'),
             )
         return self._questionnaire_store_updater
 
@@ -114,27 +109,6 @@ class BlockHandler:
             section_id=self._current_location.section_id,
             list_item_id=self._current_location.list_item_id,
         )
-
-    def _render_block(self, location, language):
-        block_schema = self._schema.get_block(location.block_id)
-
-        transformed_block = transform_variants(
-            block_schema,
-            self._schema,
-            self._questionnaire_store.metadata,
-            self._questionnaire_store.answer_store,
-            self._questionnaire_store.list_store,
-            location,
-        )
-
-        placeholder_renderer = PlaceholderRenderer(
-            language=language,
-            schema=self._schema,
-            answer_store=self._questionnaire_store.answer_store,
-            metadata=self._questionnaire_store.metadata,
-            list_item_id=location.list_item_id,
-        )
-        return placeholder_renderer.render(transformed_block)
 
     def _update_section_completeness(self, location=None):
         section_status = (

@@ -1,9 +1,9 @@
 from app.questionnaire.location import Location
 from app.views.contexts.question import build_question_context
-from app.views.handlers.block import BlockHandler
+from app.views.handlers.question import Question
 
 
-class PrimaryPersonQuestion(BlockHandler):
+class PrimaryPersonQuestion(Question):
     @property
     def parent_location(self):
         return Location(
@@ -27,9 +27,6 @@ class PrimaryPersonQuestion(BlockHandler):
 
     def handle_post(self, form):
         self.questionnaire_store_updater.update_answers(form)
-        # parent_section_id = self._schema.get_section_for_block_id(
-        #     self.parent_location.block_id
-        # )['id']
 
         self.questionnaire_store_updater.add_completed_location(
             location=self.parent_location

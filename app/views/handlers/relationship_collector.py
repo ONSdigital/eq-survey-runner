@@ -1,11 +1,11 @@
-from app.views.handlers.block import BlockHandler
 from app.questionnaire.location import Location
 from app.questionnaire.relationship_router import RelationshipRouter
 from app.views.contexts.question import build_question_context
 from app.views.contexts.relationship_collector import transform_relationships
+from app.views.handlers.question import Question
 
 
-class RelationshipCollector(BlockHandler):
+class RelationshipCollector(Question):
     def __init__(self, *args):
         self._relationship_router = None
         super().__init__(*args)
@@ -52,10 +52,8 @@ class RelationshipCollector(BlockHandler):
             self._current_location
         )
         if not previous_location_url:
-
             parent_location = Location(
-                section_id=self._current_location.section_id,
-                block_id=self.rendered_block['id'],
+                section_id=self._current_location.section_id, block_id=self.block['id']
             )
             previous_location_url = self.router.get_previous_location_url(
                 parent_location, self._routing_path
@@ -70,8 +68,7 @@ class RelationshipCollector(BlockHandler):
             return next_location_url
 
         parent_location = Location(
-            section_id=self._current_location.section_id,
-            block_id=self.rendered_block['id'],
+            section_id=self._current_location.section_id, block_id=self.block['id']
         )
         return self.router.get_next_location_url(parent_location, self._routing_path)
 

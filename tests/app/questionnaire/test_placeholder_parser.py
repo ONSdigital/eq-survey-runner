@@ -181,6 +181,7 @@ class TestPlaceholder(unittest.TestCase):
         parser = PlaceholderParser(
             language='en', metadata={'ref_p_start_date': '2019-02-11'}
         )
+
         placeholders = parser.parse(placeholder_list)
 
         assert placeholders['start_date'] == '11/02/2019'

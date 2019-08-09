@@ -41,8 +41,8 @@ class PlaceholderRenderer:
     def __init__(
         self, language, schema, answer_store=None, metadata=None, list_item_id=None
     ):
-        self.__language = language
-        self.__schema = schema
+        self._language = language
+        self._schema = schema
         self._answer_store = answer_store or AnswerStore()
         self._metadata = metadata
         self._list_item_id = list_item_id
@@ -50,8 +50,8 @@ class PlaceholderRenderer:
 
     def render_pointer(self, dict_to_render, pointer_to_render):
         placeholder_parser = PlaceholderParser(
-            language=self.__language,
-            schema=self.__schema,
+            language=self._language,
+            schema=self._schema,
             answer_store=self._answer_store,
             metadata=self._metadata,
             list_item_id=self._list_item_id,

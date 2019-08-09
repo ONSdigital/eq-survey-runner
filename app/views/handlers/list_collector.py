@@ -23,9 +23,11 @@ class ListCollector(Question):
     def get_context(self, form):
         return build_list_collector_context(
             self.rendered_block,
-            form,
-            self._questionnaire_store.list_store,
+            self._schema,
             self._questionnaire_store.answer_store,
+            self._questionnaire_store.list_store,
+            self._language,
+            form,
         )
 
     def handle_post(self, form):

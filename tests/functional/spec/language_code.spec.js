@@ -41,7 +41,7 @@ describe('Language Code', function() {
         .click(SummaryPage.submit())
 
         .getUrl().should.eventually.contain('thank-you')
-        .getText(ThankYouPage.submissionSuccessfulTitle()).should.eventually.contain('Submission successful');
+        .getText(ThankYouPage.submissionSuccessfulTitle()).should.eventually.contain('Thank you for submitting your census');
     });
   });
 
