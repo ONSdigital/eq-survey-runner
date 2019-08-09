@@ -248,7 +248,7 @@ describe('Feature: Hub and Spoke', function () {
             .click(EmploymentStatusBlockPage.submit())
             .click(EmploymentTypeBlockPage.studying())
             .click(EmploymentTypeBlockPage.submit())
-            .getText(HubPage.submit()).should.eventually.contain('Continue');
+            .getUrl().should.eventually.contain(HubPage.url());
        });
     });
   });
