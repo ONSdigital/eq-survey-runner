@@ -12,6 +12,20 @@ def test_serialisation():
         section_status=CompletionStatus.COMPLETED, section_id='s1'
     )
 
+    store.add_completed_location(
+        Location(
+            section_id='s2',
+            block_id='another-one',
+            list_name='people',
+            list_item_id='abc123',
+        )
+    )
+    store.update_section_status(
+        section_status=CompletionStatus.IN_PROGRESS,
+        section_id='s2',
+        list_item_id='abc123',
+    )
+
     serialised = store.serialise()
 
     assert serialised == [
@@ -25,7 +39,22 @@ def test_serialisation():
                     {'section_id': 's1', 'block_id': 'two'},
                 ],
             }
-        )
+        ),
+        Progress.from_dict(
+            {
+                'section_id': 's2',
+                'list_item_id': 'abc123',
+                'status': CompletionStatus.IN_PROGRESS,
+                'locations': [
+                    {
+                        'section_id': 's2',
+                        'block_id': 'another-one',
+                        'list_name': 'people',
+                        'list_item_id': 'abc123',
+                    }
+                ],
+            }
+        ),
     ]
 
 
@@ -39,14 +68,46 @@ def test_deserialisation():
                 {'section_id': 's1', 'block_id': 'one'},
                 {'section_id': 's1', 'block_id': 'two'},
             ],
-        }
+        },
+        {
+            'section_id': 's2',
+            'list_item_id': 'abc123',
+            'status': CompletionStatus.COMPLETED,
+            'locations': [
+                {
+                    'section_id': 's2',
+                    'block_id': 'three',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                },
+                {
+                    'section_id': 's2',
+                    'block_id': 'four',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                },
+            ],
+        },
     ]
     store = ProgressStore(in_progress_sections)
 
-    assert store.get_section_status('s1') == CompletionStatus.IN_PROGRESS
+    assert store.get_section_status(section_id='s1') == CompletionStatus.IN_PROGRESS
     assert store.get_completed_locations('s1') == [
         Location(section_id='s1', block_id='one'),
         Location(section_id='s1', block_id='two'),
+    ]
+
+    assert (
+        store.get_section_status(section_id='s2', list_item_id='abc123')
+        == CompletionStatus.COMPLETED
+    )
+    assert store.get_completed_locations(section_id='s2', list_item_id='abc123') == [
+        Location(
+            section_id='s2', block_id='three', list_name='people', list_item_id='abc123'
+        ),
+        Location(
+            section_id='s2', block_id='four', list_name='people', list_item_id='abc123'
+        ),
     ]
 
 
@@ -60,7 +121,26 @@ def test_clear():
                 {'section_id': 's1', 'block_id': 'one'},
                 {'section_id': 's1', 'block_id': 'two'},
             ],
-        }
+        },
+        {
+            'section_id': 's2',
+            'list_item_id': 'abc123',
+            'status': CompletionStatus.COMPLETED,
+            'locations': [
+                {
+                    'section_id': 's2',
+                    'block_id': 'three',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                },
+                {
+                    'section_id': 's2',
+                    'block_id': 'four',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                },
+            ],
+        },
     ]
     store = ProgressStore(in_progress_sections)
 
@@ -73,10 +153,22 @@ def test_clear():
 def test_add_completed_location():
     store = ProgressStore()
 
-    location = Location(section_id='s1', block_id='one')
-    store.add_completed_location(location)
+    non_repeating_location = Location(section_id='s1', block_id='one')
+    repeating_location = Location(
+        section_id='s2',
+        block_id='another-one',
+        list_name='people',
+        list_item_id='abc123',
+    )
 
-    assert store.get_completed_locations('s1') == [location]
+    store.add_completed_location(non_repeating_location)
+    store.add_completed_location(repeating_location)
+
+    assert store.get_completed_locations(section_id='s1') == [non_repeating_location]
+    assert store.get_completed_locations(section_id='s2', list_item_id='abc123') == [
+        repeating_location
+    ]
+
     assert store.is_dirty
 
 
@@ -87,15 +179,48 @@ def test_add_completed_location_existing():
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
             'locations': [{'section_id': 's1', 'block_id': 'one'}],
-        }
+        },
+        {
+            'section_id': 's2',
+            'list_item_id': 'abc123',
+            'status': CompletionStatus.COMPLETED,
+            'locations': [
+                {
+                    'section_id': 's2',
+                    'block_id': 'three',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                },
+                {
+                    'section_id': 's2',
+                    'block_id': 'four',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                },
+            ],
+        },
     ]
     store = ProgressStore(completed)
 
-    location = Location(section_id='s1', block_id='one')
-    store.add_completed_location(location)
+    non_repeating_location = Location(section_id='s1', block_id='one')
+    repeating_location = Location(
+        section_id='s2', block_id='three', list_name='people', list_item_id='abc123'
+    )
 
-    assert store.get_section_status('s1') == CompletionStatus.COMPLETED
-    assert len(store.get_completed_locations('s1')) == 1
+    store.add_completed_location(non_repeating_location)
+    store.add_completed_location(repeating_location)
+
+    assert store.get_section_status(section_id='s1') == CompletionStatus.COMPLETED
+    assert (
+        store.get_section_status(section_id='s2', list_item_id='abc123')
+        == CompletionStatus.COMPLETED
+    )
+
+    assert len(store.get_completed_locations(section_id='s1')) == 1
+    assert (
+        len(store.get_completed_locations(section_id='s2', list_item_id='abc123')) == 2
+    )
+
     assert not store.is_dirty
 
 
@@ -106,15 +231,48 @@ def test_add_completed_location_new():
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
             'locations': [{'section_id': 's1', 'block_id': 'one'}],
-        }
+        },
+        {
+            'section_id': 's2',
+            'list_item_id': 'abc123',
+            'status': CompletionStatus.COMPLETED,
+            'locations': [
+                {
+                    'section_id': 's2',
+                    'block_id': 'three',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                },
+                {
+                    'section_id': 's2',
+                    'block_id': 'four',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                },
+            ],
+        },
     ]
     store = ProgressStore(completed)
 
-    location = Location(section_id='s1', block_id='two')
-    store.add_completed_location(location)
+    non_repeating_location = Location(section_id='s1', block_id='two')
+    repeating_location = Location(
+        section_id='s2', block_id='five', list_name='people', list_item_id='abc123'
+    )
 
-    assert store.get_section_status('s1') == CompletionStatus.COMPLETED
-    assert len(store.get_completed_locations('s1')) == 2
+    store.add_completed_location(non_repeating_location)
+    store.add_completed_location(repeating_location)
+
+    assert store.get_section_status(section_id='s1') == CompletionStatus.COMPLETED
+    assert (
+        store.get_section_status(section_id='s2', list_item_id='abc123')
+        == CompletionStatus.COMPLETED
+    )
+
+    assert len(store.get_completed_locations(section_id='s1')) == 2
+    assert (
+        len(store.get_completed_locations(section_id='s2', list_item_id='abc123')) == 3
+    )
+
     assert store.is_dirty
 
 
@@ -128,15 +286,46 @@ def test_remove_completed_location():
                 {'section_id': 's1', 'block_id': 'one'},
                 {'section_id': 's1', 'block_id': 'two'},
             ],
-        }
+        },
+        {
+            'section_id': 's2',
+            'list_item_id': 'abc123',
+            'status': CompletionStatus.COMPLETED,
+            'locations': [
+                {
+                    'section_id': 's2',
+                    'block_id': 'three',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                },
+                {
+                    'section_id': 's2',
+                    'block_id': 'four',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                },
+            ],
+        },
     ]
     store = ProgressStore(completed)
 
-    store.remove_completed_location(Location(section_id='s1', block_id='two'))
+    non_repeating_location = Location(section_id='s1', block_id='one')
+    repeating_location = Location(
+        section_id='s2', block_id='three', list_name='people', list_item_id='abc123'
+    )
 
-    assert store.get_completed_locations('s1') == [
-        Location(section_id='s1', block_id='one')
+    store.remove_completed_location(non_repeating_location)
+    store.remove_completed_location(repeating_location)
+
+    assert store.get_completed_locations(section_id='s1') == [
+        Location(section_id='s1', block_id='two')
     ]
+    assert store.get_completed_locations(section_id='s2', list_item_id='abc123') == [
+        Location(
+            section_id='s2', block_id='four', list_name='people', list_item_id='abc123'
+        )
+    ]
+
     assert store.is_dirty
 
 
@@ -147,13 +336,37 @@ def test_remove_final_completed_location_removes_section():
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
             'locations': [{'section_id': 's1', 'block_id': 'one'}],
-        }
+        },
+        {
+            'section_id': 's2',
+            'list_item_id': 'abc123',
+            'status': CompletionStatus.COMPLETED,
+            'locations': [
+                {
+                    'section_id': 's2',
+                    'block_id': 'three',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                }
+            ],
+        },
     ]
     store = ProgressStore(completed)
 
-    store.remove_completed_location(Location(section_id='s1', block_id='one'))
+    non_repeating_location = Location(section_id='s1', block_id='one')
+    repeating_location = Location(
+        section_id='s2', block_id='three', list_name='people', list_item_id='abc123'
+    )
 
-    assert 's1' not in store
+    store.remove_completed_location(non_repeating_location)
+    store.remove_completed_location(repeating_location)
+
+    assert ('s1', None) not in store
+    assert store.get_completed_locations(section_id='s1') == []
+
+    assert ('s2', 'abc123') not in store
+    assert store.get_completed_locations(section_id='s1', list_item_id='abc123') == []
+
     assert store.is_dirty
 
 
@@ -168,9 +381,15 @@ def test_remove_non_existent_completed_location():
     ]
     store = ProgressStore(completed)
 
-    store.remove_completed_location(Location(section_id='s1', block_id='two'))
+    non_repeating_location = Location(section_id='s1', block_id='two')
+    repeating_location = Location(
+        section_id='s2', block_id='three', list_name='people', list_item_id='abc123'
+    )
 
-    assert len(store.get_completed_locations('s1')) == 1
+    store.remove_completed_location(non_repeating_location)
+    store.remove_completed_location(repeating_location)
+
+    assert len(store.get_completed_locations(section_id='s1')) == 1
     assert not store.is_dirty
 
 
@@ -181,13 +400,37 @@ def test_update_section_status():
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
             'locations': [{'section_id': 's1', 'block_id': 'one'}],
-        }
+        },
+        {
+            'section_id': 's2',
+            'list_item_id': 'abc123',
+            'status': CompletionStatus.COMPLETED,
+            'locations': [
+                {
+                    'section_id': 's2',
+                    'block_id': 'three',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                }
+            ],
+        },
     ]
     store = ProgressStore(completed)
 
-    store.update_section_status(CompletionStatus.IN_PROGRESS, 's1')
+    store.update_section_status(
+        section_status=CompletionStatus.IN_PROGRESS, section_id='s1'
+    )
+    store.update_section_status(
+        section_status=CompletionStatus.IN_PROGRESS,
+        section_id='s2',
+        list_item_id='abc123',
+    )
 
-    assert store.get_section_status('s1') == CompletionStatus.IN_PROGRESS
+    assert store.get_section_status(section_id='s1') == CompletionStatus.IN_PROGRESS
+    assert (
+        store.get_section_status(section_id='s2', list_item_id='abc123')
+        == CompletionStatus.IN_PROGRESS
+    )
     assert store.is_dirty
 
 
@@ -205,22 +448,42 @@ def test_update_non_existing_section_status():
     store.update_section_status('s2', CompletionStatus.IN_PROGRESS)
 
     assert store.get_section_status('s1') == CompletionStatus.COMPLETED
+
     assert 's2' not in store
+    assert store.get_completed_locations(section_id='s2') == []
+
     assert not store.is_dirty
 
 
 def test_get_section_status():
-    completed = [
+    existing_progress = [
         {
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
             'locations': [{'section_id': 's1', 'block_id': 'one'}],
-        }
+        },
+        {
+            'section_id': 's2',
+            'list_item_id': 'abc123',
+            'status': CompletionStatus.IN_PROGRESS,
+            'locations': [
+                {
+                    'section_id': 's2',
+                    'block_id': 'three',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                }
+            ],
+        },
     ]
-    store = ProgressStore(completed)
+    store = ProgressStore(existing_progress)
 
-    assert store.get_section_status('s1') == CompletionStatus.COMPLETED
+    assert store.get_section_status(section_id='s1') == CompletionStatus.COMPLETED
+    assert (
+        store.get_section_status(section_id='s2', list_item_id='abc123')
+        == CompletionStatus.IN_PROGRESS
+    )
 
 
 def test_get_section_locations():
@@ -230,12 +493,31 @@ def test_get_section_locations():
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
             'locations': [{'section_id': 's1', 'block_id': 'one'}],
-        }
+        },
+        {
+            'section_id': 's2',
+            'list_item_id': 'abc123',
+            'status': CompletionStatus.IN_PROGRESS,
+            'locations': [
+                {
+                    'section_id': 's2',
+                    'block_id': 'three',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                }
+            ],
+        },
     ]
     store = ProgressStore(completed)
 
-    assert store.get_completed_locations('s1') == [
+    assert store.get_completed_locations(section_id='s1') == [
         Location(section_id='s1', block_id='one')
+    ]
+
+    assert store.get_completed_locations(section_id='s2', list_item_id='abc123') == [
+        Location(
+            section_id='s2', block_id='three', list_name='people', list_item_id='abc123'
+        )
     ]
 
 
@@ -256,7 +538,94 @@ def test_completed_section_ids():
             'status': CompletionStatus.IN_PROGRESS,
             'locations': [{'section_id': 's2', 'block_id': 'three'}],
         },
+        {
+            'section_id': 's3',
+            'list_item_id': 'abc123',
+            'status': CompletionStatus.IN_PROGRESS,
+            'locations': [
+                {
+                    'section_id': 's3',
+                    'block_id': 'three',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                }
+            ],
+        },
+        {
+            'section_id': 's4',
+            'list_item_id': '123abc',
+            'status': CompletionStatus.COMPLETED,
+            'locations': [
+                {
+                    'section_id': 's4',
+                    'block_id': 'not-three',
+                    'list_name': 'other-people',
+                    'list_item_id': '123abc',
+                }
+            ],
+        },
     ]
+
     store = ProgressStore(completed)
 
-    assert store.completed_section_locations == [('s1', None)]
+    assert store.completed_section_locations == [('s1', None), ('s4', '123abc')]
+
+
+def test_remove_progress_for_list_item_id():
+    completed = [
+        {
+            'section_id': 's1',
+            'list_item_id': None,
+            'status': CompletionStatus.COMPLETED,
+            'locations': [
+                {'section_id': 's1', 'block_id': 'one'},
+                {'section_id': 's1', 'block_id': 'two'},
+            ],
+        },
+        {
+            'section_id': 's2',
+            'list_item_id': None,
+            'status': CompletionStatus.IN_PROGRESS,
+            'locations': [{'section_id': 's2', 'block_id': 'three'}],
+        },
+        {
+            'section_id': 's3',
+            'list_item_id': 'abc123',
+            'status': CompletionStatus.IN_PROGRESS,
+            'locations': [
+                {
+                    'section_id': 's3',
+                    'block_id': 'three',
+                    'list_name': 'people',
+                    'list_item_id': 'abc123',
+                }
+            ],
+        },
+        {
+            'section_id': 's4',
+            'list_item_id': '123abc',
+            'status': CompletionStatus.COMPLETED,
+            'locations': [
+                {
+                    'section_id': 's4',
+                    'block_id': 'not-three',
+                    'list_name': 'other-people',
+                    'list_item_id': '123abc',
+                }
+            ],
+        },
+    ]
+
+    store = ProgressStore(completed)
+
+    store.remove_progress_for_list_item_id(list_item_id='abc123')
+
+    assert ('s3', 'abc123') not in store
+    assert store.get_completed_locations(section_id='s3', list_item_id='abc123') == []
+
+    assert ('s4', '123abc') in store
+
+    store.remove_progress_for_list_item_id(list_item_id='123abc')
+
+    assert ('s4', '123abc') not in store
+    assert store.get_completed_locations(section_id='s4', list_item_id='123abc') == []
