@@ -44,8 +44,8 @@ class Router:
         current_block_type = self._schema.get_block(location.block_id)['type']
         last_block_location = routing_path[-1]
         last_block_type = self._schema.get_block(last_block_location.block_id)['type']
-        section_id = self._schema.get_section_id_for_block_id(location.block_id)
-        section_location = (section_id, location.list_item_id)
+
+        section_location = (location.section_id, location.list_item_id)
 
         if (
             self._schema.is_hub_enabled()
