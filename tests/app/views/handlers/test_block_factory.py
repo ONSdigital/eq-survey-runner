@@ -11,12 +11,24 @@ class TestBlockFactory(TestCase):
         schema = Mock()
         schema.get_block = Mock(return_value=None)
         with self.assertRaises(InvalidLocationException):
-            location = Location(block_id='block-id')
-            get_block_handler(schema, location, None, None)
+            get_block_handler(
+                schema=schema,
+                block_id='invalid-block-id',
+                list_item_id=None,
+                questionnaire_store=None,
+                language=None,
+            )
 
     def test_get_handler_invalid_block_type(self):
         schema = Mock()
-        schema.get_block = Mock(return_value={'type': 'MadeUpType'})
+        schema.get_block = Mock(return_value={'id': 'some-block', 'type': 'MadeUpType'})
+        schema.is_block_in_repeating_section = Mock(return_value=False)
+
         with self.assertRaises(ValueError):
-            location = Location(block_id='block-id')
-            get_block_handler(schema, location, None, None)
+            get_block_handler(
+                schema=schema,
+                block_id='some-block',
+                list_item_id=None,
+                questionnaire_store=None,
+                language=None,
+            )

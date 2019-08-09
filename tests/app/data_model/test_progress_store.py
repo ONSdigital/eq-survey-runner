@@ -20,7 +20,10 @@ def test_serialisation():
                 'section_id': 's1',
                 'list_item_id': None,
                 'status': CompletionStatus.COMPLETED,
-                'locations': [{'block_id': 'one'}, {'block_id': 'two'}],
+                'locations': [
+                    {'section_id': 's1', 'block_id': 'one'},
+                    {'section_id': 's1', 'block_id': 'two'},
+                ],
             }
         )
     ]
@@ -32,15 +35,18 @@ def test_deserialisation():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.IN_PROGRESS,
-            'locations': [{'block_id': 'one'}, {'block_id': 'two'}],
+            'locations': [
+                {'section_id': 's1', 'block_id': 'one'},
+                {'section_id': 's1', 'block_id': 'two'},
+            ],
         }
     ]
     store = ProgressStore(in_progress_sections)
 
     assert store.get_section_status('s1') == CompletionStatus.IN_PROGRESS
     assert store.get_completed_locations('s1') == [
-        Location(block_id='one'),
-        Location(block_id='two'),
+        Location(section_id='s1', block_id='one'),
+        Location(section_id='s1', block_id='two'),
     ]
 
 
@@ -50,7 +56,10 @@ def test_clear():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
-            'locations': [{'block_id': 'one'}, {'block_id': 'two'}],
+            'locations': [
+                {'section_id': 's1', 'block_id': 'one'},
+                {'section_id': 's1', 'block_id': 'two'},
+            ],
         }
     ]
     store = ProgressStore(in_progress_sections)
@@ -77,7 +86,7 @@ def test_add_completed_location_existing():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
-            'locations': [{'block_id': 'one'}],
+            'locations': [{'section_id': 's1', 'block_id': 'one'}],
         }
     ]
     store = ProgressStore(completed)
@@ -96,7 +105,7 @@ def test_add_completed_location_new():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
-            'locations': [{'block_id': 'one'}],
+            'locations': [{'section_id': 's1', 'block_id': 'one'}],
         }
     ]
     store = ProgressStore(completed)
@@ -115,14 +124,19 @@ def test_remove_completed_location():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
-            'locations': [{'block_id': 'one'}, {'block_id': 'two'}],
+            'locations': [
+                {'section_id': 's1', 'block_id': 'one'},
+                {'section_id': 's1', 'block_id': 'two'},
+            ],
         }
     ]
     store = ProgressStore(completed)
 
-    store.remove_completed_location('s1', Location(block_id='two'))
+    store.remove_completed_location(Location(section_id='s1', block_id='two'))
 
-    assert store.get_completed_locations('s1') == [Location(block_id='one')]
+    assert store.get_completed_locations('s1') == [
+        Location(section_id='s1', block_id='one')
+    ]
     assert store.is_dirty
 
 
@@ -132,12 +146,12 @@ def test_remove_final_completed_location_removes_section():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
-            'locations': [{'block_id': 'one'}],
+            'locations': [{'section_id': 's1', 'block_id': 'one'}],
         }
     ]
     store = ProgressStore(completed)
 
-    store.remove_completed_location('s1', Location(block_id='one'))
+    store.remove_completed_location(Location(section_id='s1', block_id='one'))
 
     assert 's1' not in store
     assert store.is_dirty
@@ -149,12 +163,12 @@ def test_remove_non_existent_completed_location():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
-            'locations': [{'block_id': 'one'}],
+            'locations': [{'section_id': 's1', 'block_id': 'one'}],
         }
     ]
     store = ProgressStore(completed)
 
-    store.remove_completed_location('s1', Location(block_id='two'))
+    store.remove_completed_location(Location(section_id='s1', block_id='two'))
 
     assert len(store.get_completed_locations('s1')) == 1
     assert not store.is_dirty
@@ -166,12 +180,12 @@ def test_update_section_status():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
-            'locations': [{'block_id': 'one'}],
+            'locations': [{'section_id': 's1', 'block_id': 'one'}],
         }
     ]
     store = ProgressStore(completed)
 
-    store.update_section_status('s1', CompletionStatus.IN_PROGRESS)
+    store.update_section_status(CompletionStatus.IN_PROGRESS, 's1')
 
     assert store.get_section_status('s1') == CompletionStatus.IN_PROGRESS
     assert store.is_dirty
@@ -183,7 +197,7 @@ def test_update_non_existing_section_status():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
-            'locations': [{'block_id': 'one'}],
+            'locations': [{'section_id': 's1', 'block_id': 'one'}],
         }
     ]
     store = ProgressStore(completed)
@@ -201,7 +215,7 @@ def test_get_section_status():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
-            'locations': [{'block_id': 'one'}],
+            'locations': [{'section_id': 's1', 'block_id': 'one'}],
         }
     ]
     store = ProgressStore(completed)
@@ -215,12 +229,14 @@ def test_get_section_locations():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
-            'locations': [{'block_id': 'one'}],
+            'locations': [{'section_id': 's1', 'block_id': 'one'}],
         }
     ]
     store = ProgressStore(completed)
 
-    assert store.get_completed_locations('s1') == [Location(block_id='one')]
+    assert store.get_completed_locations('s1') == [
+        Location(section_id='s1', block_id='one')
+    ]
 
 
 def test_completed_section_ids():
@@ -229,13 +245,16 @@ def test_completed_section_ids():
             'section_id': 's1',
             'list_item_id': None,
             'status': CompletionStatus.COMPLETED,
-            'locations': [{'block_id': 'one'}, {'block_id': 'two'}],
+            'locations': [
+                {'section_id': 's1', 'block_id': 'one'},
+                {'section_id': 's1', 'block_id': 'two'},
+            ],
         },
         {
             'section_id': 's2',
             'list_item_id': None,
             'status': CompletionStatus.IN_PROGRESS,
-            'locations': [{'block_id': 'three'}],
+            'locations': [{'section_id': 's2', 'block_id': 'three'}],
         },
     ]
     store = ProgressStore(completed)

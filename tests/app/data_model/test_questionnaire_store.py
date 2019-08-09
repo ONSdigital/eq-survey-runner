@@ -19,7 +19,9 @@ def get_basic_input():
                 'section_id': 'a-test-section',
                 'list_item_id': 'abc123',
                 'status': CompletionStatus.COMPLETED,
-                'locations': [{'block_id': 'a-test-block'}],
+                'locations': [
+                    {'section_id': 'a-test-section', 'block_id': 'a-test-block'}
+                ],
             }
         ],
         'COLLECTION_METADATA': {'test-meta': 'test'},

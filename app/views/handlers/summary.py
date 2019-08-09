@@ -5,10 +5,10 @@ from app.views.contexts.summary_context import build_view_context_for_final_summ
 class Summary(BlockHandler):
     def get_context(self, _):
         return build_view_context_for_final_summary(
-            self._questionnaire_store.metadata,
-            self._schema,
-            self._questionnaire_store.answer_store,
-            self._questionnaire_store.list_store,
-            self.rendered_block['type'],
-            self.rendered_block,
+            schema=self._schema,
+            answer_store=self._questionnaire_store.answer_store,
+            list_store=self._questionnaire_store.list_store,
+            metadata=self._questionnaire_store.metadata,
+            rendered_block=self.rendered_block,
+            current_location=self.current_location,
         )

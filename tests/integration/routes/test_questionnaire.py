@@ -34,7 +34,9 @@ class TestQuestionnaire(IntegrationTestCase):
 
         # When
         page_title = get_page_title_for_location(
-            schema, Location('introduction'), self.mock_context
+            schema,
+            Location(section_id='first-group', block_id='introduction'),
+            self.mock_context,
         )
 
         # Then
@@ -48,7 +50,9 @@ class TestQuestionnaire(IntegrationTestCase):
 
         # When
         page_title = get_page_title_for_location(
-            schema, Location('breakfast-interstitial'), self.mock_context
+            schema,
+            Location(section_id='default-section', block_id='breakfast-interstitial'),
+            self.mock_context,
         )
 
         # Then
@@ -62,7 +66,9 @@ class TestQuestionnaire(IntegrationTestCase):
 
         # When
         page_title = get_page_title_for_location(
-            schema, Location('breakfast'), self.mock_context
+            schema,
+            Location(section_id='first-group', block_id='breakfast'),
+            self.mock_context,
         )
 
         # Then

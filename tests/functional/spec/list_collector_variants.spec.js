@@ -18,7 +18,7 @@ function checkPeopleInList(peopleExpected) {
   return chain;
 }
 
-describe('@watch List Collector With Variants', function() {
+describe('List Collector With Variants', function() {
 
   describe('Given that a person lives in house', function() {
     before('Load the survey', function() {

@@ -13,8 +13,11 @@ class TestRouter(AppContextTestCase):
         progress_store = ProgressStore({})
         router = Router(schema, progress_store)
 
-        current_location = Location(block_id='name-block')
-        routing_path = [Location(block_id='name-block'), Location(block_id='summary')]
+        current_location = Location(section_id='default-section', block_id='name-block')
+        routing_path = [
+            Location(section_id='default-section', block_id='name-block'),
+            Location(section_id='default-section', block_id='summary'),
+        ]
         can_access_location = router.can_access_location(current_location, routing_path)
 
         self.assertTrue(can_access_location)
@@ -24,7 +27,7 @@ class TestRouter(AppContextTestCase):
         progress_store = ProgressStore({})
         router = Router(schema, progress_store)
 
-        current_location = Location(block_id='name-block')
+        current_location = Location(section_id='default-section', block_id='name-block')
         routing_path = []
         can_access_location = router.can_access_location(current_location, routing_path)
 
@@ -35,13 +38,15 @@ class TestRouter(AppContextTestCase):
         progress_store = ProgressStore({})
         router = Router(schema, progress_store)
 
-        current_location = Location(block_id='set-duration-units-block')
+        current_location = Location(
+            section_id='default-section', block_id='set-duration-units-block'
+        )
         routing_path = [
-            Location(block_id='set-length-units-block'),
-            Location(block_id='set-duration-units-block'),
-            Location(block_id='set-area-units-block'),
-            Location(block_id='set-volume-units-block'),
-            Location(block_id='summary'),
+            Location(section_id='default-section', block_id='set-length-units-block'),
+            Location(section_id='default-section', block_id='set-duration-units-block'),
+            Location(section_id='default-section', block_id='set-area-units-block'),
+            Location(section_id='default-section', block_id='set-volume-units-block'),
+            Location(section_id='default-section', block_id='summary'),
         ]
         can_access_location = router.can_access_location(current_location, routing_path)
 
@@ -55,17 +60,24 @@ class TestRouter(AppContextTestCase):
                     'section_id': 'default-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'name-block'}],
+                    'locations': [
+                        {'section_id': 'default-section', 'block_id': 'name-block'}
+                    ],
                 }
             ]
         )
 
         router = Router(schema, progress_store)
 
-        current_location = Location(block_id='name-block')
-        routing_path = [Location(block_id='name-block'), Location(block_id='summary')]
+        current_location = Location(section_id='default-section', block_id='name-block')
+        routing_path = [
+            Location(section_id='default-section', block_id='name-block'),
+            Location(section_id='default-section', block_id='summary'),
+        ]
         next_location = router.get_next_location_url(current_location, routing_path)
-        expected_location = Location(block_id='summary').url()
+        expected_location = Location(
+            section_id='default-section', block_id='summary'
+        ).url()
 
         self.assertEqual(next_location, expected_location)
 
@@ -74,12 +86,17 @@ class TestRouter(AppContextTestCase):
         progress_store = ProgressStore({})
         router = Router(schema, progress_store)
 
-        current_location = Location(block_id='summary')
-        routing_path = [Location(block_id='name-block'), Location(block_id='summary')]
+        current_location = Location(section_id='default-section', block_id='summary')
+        routing_path = [
+            Location(section_id='default-section', block_id='name-block'),
+            Location(section_id='default-section', block_id='summary'),
+        ]
         previous_location_url = router.get_previous_location_url(
             current_location, routing_path
         )
-        expected_location_url = Location(block_id='name-block').url()
+        expected_location_url = Location(
+            section_id='default-section', block_id='name-block'
+        ).url()
 
         self.assertEqual(previous_location_url, expected_location_url)
 
@@ -88,10 +105,12 @@ class TestRouter(AppContextTestCase):
         progress_store = ProgressStore({})
         router = Router(schema, progress_store)
 
-        current_location = Location(block_id='employment-status')
+        current_location = Location(
+            section_id='employment-section', block_id='employment-status'
+        )
         routing_path = [
-            Location(block_id='employment-status'),
-            Location(block_id='employment-type'),
+            Location(section_id='employment-section', block_id='employment-status'),
+            Location(section_id='employment-section', block_id='employment-type'),
         ]
         previous_location_url = router.get_previous_location_url(
             current_location, routing_path
@@ -117,7 +136,9 @@ class TestRouter(AppContextTestCase):
                     'section_id': 'default-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'name-block'}],
+                    'locations': [
+                        {'section_id': 'default-section', 'block_id': 'name-block'}
+                    ],
                 }
             ]
         )
@@ -136,19 +157,31 @@ class TestRouter(AppContextTestCase):
                     'section_id': 'name-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'name-question'}],
+                    'locations': [
+                        {'section_id': 'name-section', 'block_id': 'name-question'}
+                    ],
                 },
                 {
                     'section_id': 'age-input-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'dob-question-block'}],
+                    'locations': [
+                        {
+                            'section_id': 'age-input-section',
+                            'block_id': 'dob-question-block',
+                        }
+                    ],
                 },
                 {
                     'section_id': 'age-confirmation-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'confirm-dob-proxy'}],
+                    'locations': [
+                        {
+                            'section_id': 'age-confirmation-section',
+                            'block_id': 'confirm-dob-proxy',
+                        }
+                    ],
                 },
             ]
         )
@@ -167,22 +200,34 @@ class TestRouter(AppContextTestCase):
                     'section_id': 'property-details-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'insurance-type'}],
+                    'locations': [
+                        {
+                            'section_id': 'property-details-section',
+                            'block_id': 'insurance-type',
+                        }
+                    ],
                 }
             ]
         )
         router = Router(schema, progress_store)
 
         section_routing_path = [
-            Location(block_id='insurance-type'),
-            Location(block_id='insurance-address'),
+            Location(section_id='property-details-section', block_id='insurance-type'),
+            Location(
+                section_id='property-details-section', block_id='insurance-address'
+            ),
         ]
 
         incomplete = router.get_first_incomplete_location_for_section(
-            'property-details-section', section_routing_path
+            routing_path=section_routing_path, section_id='property-details-section'
         )
 
-        self.assertEqual(incomplete, Location(block_id='insurance-address'))
+        self.assertEqual(
+            incomplete,
+            Location(
+                section_id='property-details-section', block_id='insurance-address'
+            ),
+        )
 
     def test_get_last_complete_location(self):
         schema = load_schema_from_name('test_section_summary')
@@ -193,19 +238,29 @@ class TestRouter(AppContextTestCase):
                     'section_id': 'property-details-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'insurance-type'}],
+                    'locations': [
+                        {
+                            'section_id': 'property-details-section',
+                            'block_id': 'insurance-type',
+                        }
+                    ],
                 }
             ]
         )
         router = Router(schema, progress_store)
 
         section_routing_path = [
-            Location(block_id='insurance-type'),
-            Location(block_id='insurance-address'),
+            Location(section_id='property-details-section', block_id='insurance-type'),
+            Location(
+                section_id='property-details-section', block_id='insurance-address'
+            ),
         ]
 
         last_complete_location = router.get_last_complete_location_for_section(
-            'property-details-section', section_routing_path
+            routing_path=section_routing_path, section_id='property-details-section'
         )
 
-        self.assertEqual(last_complete_location, Location(block_id='insurance-type'))
+        self.assertEqual(
+            last_complete_location,
+            Location(section_id='property-details-section', block_id='insurance-type'),
+        )

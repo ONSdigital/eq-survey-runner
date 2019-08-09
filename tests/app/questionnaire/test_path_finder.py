@@ -20,7 +20,9 @@ class TestPathFinder(
                     'section_id': 'default-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'name-block'}],
+                    'locations': [
+                        {'section_id': 'default-section', 'block_id': 'name-block'}
+                    ],
                 }
             ]
         )
@@ -28,12 +30,12 @@ class TestPathFinder(
             schema, AnswerStore(), metadata={}, progress_store=progress_store
         )
 
-        section = schema.get_section_for_block_id('name-block')
-        routing_path = path_finder.routing_path(section)
+        section_id = schema.get_section_id_for_block_id('name-block')
+        routing_path = path_finder.routing_path(section_id=section_id)
 
         assumed_routing_path = [
-            Location(block_id='name-block'),
-            Location(block_id='summary'),
+            Location(section_id='default-section', block_id='name-block'),
+            Location(section_id='default-section', block_id='summary'),
         ]
 
         self.assertEqual(routing_path, assumed_routing_path)
@@ -46,7 +48,10 @@ class TestPathFinder(
             schema, AnswerStore(), metadata={}, progress_store=ProgressStore()
         )
 
-        blocks = [b.block_id for b in path_finder.routing_path(current_section)]
+        blocks = [
+            b.block_id
+            for b in path_finder.routing_path(section_id=current_section['id'])
+        ]
 
         self.assertIn('introduction', blocks)
 
@@ -58,17 +63,20 @@ class TestPathFinder(
         )
 
         with patch('app.questionnaire.rules.evaluate_when_rules', return_value=False):
-            blocks = [b.block_id for b in path_finder.routing_path(current_section)]
+            blocks = [
+                b.block_id
+                for b in path_finder.routing_path(section_id=current_section['id'])
+            ]
 
         self.assertNotIn('introduction', blocks)
 
     def test_routing_path_with_conditional_path(self):
         schema = load_schema_from_name('test_routing_number_equals')
-        current_section = schema.get_section_for_block_id('number-question')
+        section_id = schema.get_section_id_for_block_id('number-question')
         expected_path = [
-            Location(block_id='number-question'),
-            Location(block_id='correct-answer'),
-            Location(block_id='summary'),
+            Location(section_id='default-section', block_id='number-question'),
+            Location(section_id='default-section', block_id='correct-answer'),
+            Location(section_id='default-section', block_id='summary'),
         ]
 
         answer = Answer(answer_id='answer', value=123)
@@ -80,7 +88,9 @@ class TestPathFinder(
                     'section_id': 'default-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'number-question'}],
+                    'locations': [
+                        {'section_id': 'default-section', 'block_id': 'number-question'}
+                    ],
                 }
             ]
         )
@@ -88,18 +98,18 @@ class TestPathFinder(
             schema, answer_store=answers, metadata={}, progress_store=progress_store
         )
 
-        routing_path = path_finder.routing_path(current_section)
+        routing_path = path_finder.routing_path(section_id=section_id)
 
         self.assertEqual(routing_path, expected_path)
 
     def test_routing_basic_and_conditional_path(self):
         # Given
         schema = load_schema_from_name('test_routing_number_equals')
-        current_section = schema.get_section_for_block_id('number-question')
+        section_id = schema.get_section_id_for_block_id('number-question')
         expected_path = [
-            Location('number-question'),
-            Location('correct-answer'),
-            Location('summary'),
+            Location(section_id='default-section', block_id='number-question'),
+            Location(section_id='default-section', block_id='correct-answer'),
+            Location(section_id='default-section', block_id='summary'),
         ]
 
         answer_1 = Answer(answer_id='answer', value=123)
@@ -111,43 +121,51 @@ class TestPathFinder(
         path_finder = PathFinder(
             schema, answer_store=answers, metadata={}, progress_store=ProgressStore()
         )
-        routing_path = path_finder.routing_path(current_section)
+        routing_path = path_finder.routing_path(section_id=section_id)
 
         # Then
         self.assertEqual(routing_path, expected_path)
 
     def test_routing_path_with_complete_introduction(self):
         schema = load_schema_from_name('test_introduction')
-        current_section = schema.get_section_for_block_id('introduction')
+        section_id = schema.get_section_id_for_block_id('introduction')
         progress_store = ProgressStore(
             [
                 {
                     'section_id': 'introduction-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'introduction'}],
+                    'locations': [
+                        {
+                            'section_id': 'introduction-section',
+                            'block_id': 'introduction',
+                        }
+                    ],
                 }
             ]
         )
         expected_routing_path = [
-            Location(block_id='introduction'),
-            Location(block_id='general-business-information-completed'),
-            Location(block_id='confirmation'),
+            Location(section_id='introduction-section', block_id='introduction'),
+            Location(
+                section_id='introduction-section',
+                block_id='general-business-information-completed',
+            ),
+            Location(section_id='introduction-section', block_id='confirmation'),
         ]
 
         path_finder = PathFinder(schema, AnswerStore(), {}, progress_store)
-        routing_path = path_finder.routing_path(current_section)
+        routing_path = path_finder.routing_path(section_id=section_id)
 
         self.assertEqual(routing_path, expected_routing_path)
 
     def test_routing_path_full_path(self):
         schema = load_schema_from_name('test_summary')
-        current_section = schema.get_section_for_block_id('dessert-block')
+        section_id = schema.get_section_id_for_block_id('dessert-block')
         expected_path = [
-            Location('radio'),
-            Location('test-number-block'),
-            Location('dessert-block'),
-            Location('summary'),
+            Location(section_id='default-section', block_id='radio'),
+            Location(section_id='default-section', block_id='test-number-block'),
+            Location(section_id='default-section', block_id='dessert-block'),
+            Location(section_id='default-section', block_id='summary'),
         ]
 
         answers = AnswerStore()
@@ -158,9 +176,12 @@ class TestPathFinder(
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [
-                        {'block_id': 'radio'},
-                        {'block_id': 'test-number-block'},
-                        {'block_id': 'dessert-block'},
+                        {'section_id': 'default-section', 'block_id': 'radio'},
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'test-number-block',
+                        },
+                        {'section_id': 'default-section', 'block_id': 'dessert-block'},
                     ],
                 }
             ]
@@ -168,17 +189,17 @@ class TestPathFinder(
         path_finder = PathFinder(
             schema, answer_store=answers, metadata={}, progress_store=progress_store
         )
-        routing_path = path_finder.routing_path(current_section)
+        routing_path = path_finder.routing_path(section_id=section_id)
 
         self.assertEqual(routing_path, expected_path)
 
     def test_routing_path_empty_routing_rules(self):
         schema = load_schema_from_name('test_checkbox')
-        current_section = schema.get_section_for_block_id('mandatory-checkbox')
+        section_id = schema.get_section_id_for_block_id('mandatory-checkbox')
         expected_path = [
-            Location('mandatory-checkbox'),
-            Location('non-mandatory-checkbox'),
-            Location('summary'),
+            Location(section_id='default-section', block_id='mandatory-checkbox'),
+            Location(section_id='default-section', block_id='non-mandatory-checkbox'),
+            Location(section_id='default-section', block_id='summary'),
         ]
 
         answer_1 = Answer(answer_id='mandatory-checkbox-answer', value='Cheese')
@@ -194,7 +215,12 @@ class TestPathFinder(
                     'section_id': 'default-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'mandatory-checkbox'}],
+                    'locations': [
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'mandatory-checkbox',
+                        }
+                    ],
                 }
             ]
         )
@@ -202,18 +228,18 @@ class TestPathFinder(
         path_finder = PathFinder(
             schema, answer_store=answers, metadata={}, progress_store=progress_store
         )
-        routing_path = path_finder.routing_path(current_section)
+        routing_path = path_finder.routing_path(section_id=section_id)
 
         self.assertEqual(routing_path, expected_path)
 
     def test_routing_path_with_conditional_value_not_in_metadata(self):
         schema = load_schema_from_name('test_metadata_routing')
-        current_section = schema.get_section_for_block_id('block1')
+        section_id = schema.get_section_id_for_block_id('block1')
         expected_path = [
-            Location(block_id='block1'),
-            Location(block_id='block2'),
-            Location(block_id='block3'),
-            Location(block_id='summary'),
+            Location(section_id='default-section', block_id='block1'),
+            Location(section_id='default-section', block_id='block2'),
+            Location(section_id='default-section', block_id='block3'),
+            Location(section_id='default-section', block_id='summary'),
         ]
 
         progress_store = ProgressStore(
@@ -222,7 +248,9 @@ class TestPathFinder(
                     'section_id': 'default-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'block1'}],
+                    'locations': [
+                        {'section_id': 'default-section', 'block_id': 'block1'}
+                    ],
                 }
             ]
         )
@@ -231,14 +259,14 @@ class TestPathFinder(
         path_finder = PathFinder(
             schema, AnswerStore(), metadata=metadata, progress_store=progress_store
         )
-        routing_path = path_finder.routing_path(current_section)
+        routing_path = path_finder.routing_path(section_id=section_id)
 
         self.assertEqual(routing_path, expected_path)
 
     def test_routing_path_should_skip_block(self):
         # Given
         schema = load_schema_from_name('test_skip_condition_block')
-        current_section = schema.get_section_for_block_id('should-skip')
+        section_id = schema.get_section_id_for_block_id('should-skip')
         answer_store = AnswerStore()
         answer_store.add_or_update(
             Answer(answer_id='do-you-want-to-skip-answer', value='Yes')
@@ -250,7 +278,12 @@ class TestPathFinder(
                     'section_id': 'introduction-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'do-you-want-to-skip'}],
+                    'locations': [
+                        {
+                            'section_id': 'introduction-section',
+                            'block_id': 'do-you-want-to-skip',
+                        }
+                    ],
                 }
             ]
         )
@@ -262,13 +295,13 @@ class TestPathFinder(
             metadata={},
             progress_store=progress_store,
         )
-        routing_path = path_finder.routing_path(current_section)
+        routing_path = path_finder.routing_path(section_id=section_id)
 
         # Then
         expected_routing_path = [
-            Location(block_id='do-you-want-to-skip'),
-            Location(block_id='a-non-skipped-block'),
-            Location(block_id='summary'),
+            Location(section_id='default-section', block_id='do-you-want-to-skip'),
+            Location(section_id='default-section', block_id='a-non-skipped-block'),
+            Location(section_id='default-section', block_id='summary'),
         ]
 
         with patch(
@@ -280,7 +313,7 @@ class TestPathFinder(
         # Given
         schema = load_schema_from_name('test_skip_condition_group')
 
-        current_section = schema.get_section_for_block_id('do-you-want-to-skip')
+        section_id = schema.get_section_id_for_block_id('do-you-want-to-skip')
         answer_store = AnswerStore()
         answer_store.add_or_update(
             Answer(answer_id='do-you-want-to-skip-answer', value='Yes')
@@ -288,10 +321,15 @@ class TestPathFinder(
         progress_store = ProgressStore(
             [
                 {
-                    'section_id': 'introduction-section',
+                    'section_id': 'default-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'do-you-want-to-skip'}],
+                    'locations': [
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'do-you-want-to-skip',
+                        }
+                    ],
                 }
             ]
         )
@@ -303,13 +341,13 @@ class TestPathFinder(
             metadata={},
             progress_store=progress_store,
         )
-        routing_path = path_finder.routing_path(current_section)
+        routing_path = path_finder.routing_path(section_id=section_id)
 
         # Then
         expected_routing_path = [
-            Location(block_id='do-you-want-to-skip'),
-            Location(block_id='last-group-block'),
-            Location(block_id='summary'),
+            Location(section_id='default-section', block_id='do-you-want-to-skip'),
+            Location(section_id='default-section', block_id='last-group-block'),
+            Location(section_id='default-section', block_id='summary'),
         ]
 
         with patch(
@@ -321,7 +359,7 @@ class TestPathFinder(
         # Given
         schema = load_schema_from_name('test_skip_condition_group')
 
-        current_section = schema.get_section_for_block_id('do-you-want-to-skip')
+        section_id = schema.get_section_id_for_block_id('do-you-want-to-skip')
         answer_store = AnswerStore()
         answer_store.add_or_update(
             Answer(answer_id='do-you-want-to-skip-answer', value='No')
@@ -332,7 +370,12 @@ class TestPathFinder(
                     'section_id': 'default-section',
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
-                    'locations': [{'block_id': 'do-you-want-to-skip'}],
+                    'locations': [
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'do-you-want-to-skip',
+                        }
+                    ],
                 }
             ]
         )
@@ -344,14 +387,14 @@ class TestPathFinder(
             metadata={},
             progress_store=progress_store,
         )
-        routing_path = path_finder.routing_path(current_section)
+        routing_path = path_finder.routing_path(section_id=section_id)
 
         # Then
         expected_routing_path = [
-            Location(block_id='do-you-want-to-skip'),
-            Location(block_id='should-skip'),
-            Location(block_id='last-group-block'),
-            Location(block_id='summary'),
+            Location(section_id='default-section', block_id='do-you-want-to-skip'),
+            Location(section_id='default-section', block_id='should-skip'),
+            Location(section_id='default-section', block_id='last-group-block'),
+            Location(section_id='default-section', block_id='summary'),
         ]
 
         with patch(
@@ -384,17 +427,19 @@ class TestPathFinder(
             {'block_id': 'summary', 'group_id': 'should-skip-group'},
         ]
 
-        current_section = schema.get_section_for_block_id('summary')
+        section_id = schema.get_section_id_for_block_id('summary')
         pytest.xfail(
             reason='Known bug when skipping last group due to summary bundled into it'
         )
 
-        self.assertEqual(path_finder.routing_path(current_section), expected_route)
+        self.assertEqual(
+            path_finder.routing_path(section_id=section_id), expected_route
+        )
 
     def test_build_path_with_group_routing(self):
         # Given i have answered the routing question
         schema = load_schema_from_name('test_routing_group')
-        current_section = schema.get_section_for_block_id('group2-block')
+        section_id = schema.get_section_id_for_block_id('group2-block')
 
         answer_store = AnswerStore()
         answer_store.add_or_update(
@@ -406,19 +451,17 @@ class TestPathFinder(
             schema,
             answer_store=answer_store,
             metadata={},
-            progress_store=ProgressStore({}),
+            progress_store=ProgressStore(),
         )
-        path = path_finder.routing_path(current_section)
+        path = path_finder.routing_path(section_id=section_id)
 
         # Then it should route me straight to Group2 and not Group1
-        self.assertNotIn(Location('group1-block'), path)
-        self.assertIn(Location('group2-block'), path)
+        self.assertNotIn(Location(section_id=section_id, block_id='group1-block'), path)
+        self.assertIn(Location(section_id=section_id, block_id='group2-block'), path)
 
     def test_remove_answer_and_block_if_routing_backwards(self):
         schema = load_schema_from_name('test_confirmation_question')
-        current_section = schema.get_section_for_block_id(
-            'confirm-zero-employees-block'
-        )
+        section_id = schema.get_section_id_for_block_id('confirm-zero-employees-block')
 
         # All blocks completed
         progress_store = ProgressStore(
@@ -428,8 +471,14 @@ class TestPathFinder(
                     'list_item_id': None,
                     'status': CompletionStatus.COMPLETED,
                     'locations': [
-                        {'block_id': 'number-of-employees-total-block'},
-                        {'block_id': 'confirm-zero-employees-block'},
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'number-of-employees-total-block',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'confirm-zero-employees-block',
+                        },
                     ],
                 }
             ]
@@ -450,22 +499,34 @@ class TestPathFinder(
         )
 
         self.assertEqual(
-            len(path_finder.progress_store.get_completed_locations('default-section')),
+            len(
+                path_finder.progress_store.get_completed_locations(
+                    section_id='default-section'
+                )
+            ),
             2,
         )
         self.assertEqual(len(path_finder.answer_store), 2)
 
-        routing_path = path_finder.routing_path(current_section)
+        routing_path = path_finder.routing_path(section_id=section_id)
 
         expected_path = [
-            Location(block_id='number-of-employees-total-block'),
-            Location(block_id='confirm-zero-employees-block'),
-            Location(block_id='number-of-employees-total-block'),
+            Location(
+                section_id='default-section', block_id='number-of-employees-total-block'
+            ),
+            Location(
+                section_id='default-section', block_id='confirm-zero-employees-block'
+            ),
+            Location(
+                section_id='default-section', block_id='number-of-employees-total-block'
+            ),
         ]
         self.assertEqual(routing_path, expected_path)
 
         self.assertEqual(
-            path_finder.progress_store.get_completed_locations('default-section'),
-            [progress_store.get_completed_locations('default-section')[0]],
+            path_finder.progress_store.get_completed_locations(
+                section_id='default-section'
+            ),
+            [progress_store.get_completed_locations(section_id='default-section')[0]],
         )
         self.assertEqual(len(path_finder.answer_store), 1)

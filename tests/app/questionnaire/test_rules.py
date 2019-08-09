@@ -860,7 +860,10 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         )
 
         current_location = RelationshipLocation(
-            block_id='some-block', list_item_id='abcdef', to_list_item_id='12345'
+            section_id='some-section',
+            block_id='some-block',
+            list_item_id='abcdef',
+            to_list_item_id='12345',
         )
 
         when_rules = [
@@ -902,7 +905,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 'list': 'people',
                 'id_selector': 'primary_person',
                 'condition': 'equals',
-                'comparison': {'source': 'location', 'id': 'from_list_item_id'},
+                'comparison': {'source': 'location', 'id': 'list_item_id'},
             }
         ]
 

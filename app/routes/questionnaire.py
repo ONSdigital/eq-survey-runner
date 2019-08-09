@@ -369,7 +369,10 @@ def get_view_submission(schema):  # pylint: too-many-locals
             metadata = submitted_data.get('metadata')
 
             summary_rendered_context = build_summary_rendering_context(
-                schema, answer_store, list_store, metadata
+                schema=schema,
+                answer_store=answer_store,
+                list_store=list_store,
+                metadata=metadata,
             )
 
             context = {

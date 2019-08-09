@@ -98,11 +98,9 @@ class ProgressStore:
 
             self._is_dirty = True
 
-    def remove_completed_location(
-        self, location: Location, section_id, list_item_id=None
-    ) -> None:
+    def remove_completed_location(self, location: Location) -> None:
 
-        section_location = (section_id, list_item_id)
+        section_location = (location.section_id, location.list_item_id)
         if (
             section_location in self._progress
             and location in self._progress[section_location].locations

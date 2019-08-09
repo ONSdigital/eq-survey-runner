@@ -20,7 +20,7 @@ class TestFormHelper(AppContextTestCase):
             schema = load_schema_from_name('test_date_range')
 
             block_json = schema.get_block('date-block')
-            location = Location(block_id='date-block')
+            location = Location(section_id='default-section', block_id='date-block')
 
             form = get_form_for_location(
                 schema, block_json, location, AnswerStore(), metadata=None
@@ -40,7 +40,7 @@ class TestFormHelper(AppContextTestCase):
             schema = load_schema_from_name('test_date_range')
 
             block_json = schema.get_block('date-block')
-            location = Location(block_id='date-block')
+            location = Location(section_id='default-section', block_id='date-block')
 
             form = get_form_for_location(
                 schema,
@@ -186,7 +186,9 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_mapped_answers(self):
         schema = load_schema_from_name('test_list_collector')
-        location = Location(block_id='add-person', list_name='people')
+        location = Location(
+            section_id='section', block_id='add-person', list_name='people'
+        )
         answer_store = AnswerStore(
             [
                 {'answer_id': 'first-name', 'value': 'Jon'},
@@ -201,7 +203,10 @@ class TestFormHelper(AppContextTestCase):
     def test_get_mapped_relationship_answers(self):
         schema = load_schema_from_name('test_relationships')
         location = RelationshipLocation(
-            block_id='relationships', list_item_id='id1', to_list_item_id='id2'
+            section_id='section',
+            block_id='relationships',
+            list_item_id='id1',
+            to_list_item_id='id2',
         )
         answer_store = AnswerStore(
             [

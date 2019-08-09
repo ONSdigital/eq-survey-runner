@@ -217,6 +217,4 @@ class PathFinder:
                 if 'meta' not in condition.keys():
                     self.answer_store.remove_answer(condition['id'])
 
-        section_id = self.schema.get_section_id_for_block_id(this_location.block_id)
-
-        self.progress_store.remove_completed_location(section_id, this_location)
+        self.progress_store.remove_completed_location(location=this_location)

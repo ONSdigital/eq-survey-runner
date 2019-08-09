@@ -54,12 +54,14 @@ def get_block_handler(
         raise ValueError(f'block type {block_type} is not valid')
 
     section_id = schema.get_section_id_for_block_id(block_id)
-    if block_type == 'RelationshipCollector':
+    to_list_item_id = kwargs.get('to_list_item_id')
+
+    if to_list_item_id:
         location = RelationshipLocation(
             section_id=section_id,
             block_id=block_id,
             list_item_id=list_item_id,
-            to_list_item_id=kwargs.get('to_list_item_id'),
+            to_list_item_id=to_list_item_id,
         )
     else:
         location = Location(

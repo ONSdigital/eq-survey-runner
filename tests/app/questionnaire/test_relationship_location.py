@@ -5,7 +5,12 @@ from tests.app.app_context_test_case import AppContextTestCase
 
 class TestRelationshipLocation(AppContextTestCase):
     def test_location_url(self):
-        location = RelationshipLocation('relationships', 'id1', 'id2')
+        location = RelationshipLocation(
+            section_id='household',
+            block_id='relationships',
+            list_item_id='id1',
+            to_list_item_id='id2',
+        )
         location_url = location.url()
 
         self.assertEqual(
@@ -15,6 +20,7 @@ class TestRelationshipLocation(AppContextTestCase):
 
     def test_create_location_from_dict(self):
         location_dict = {
+            'section_id': 'household',
             'block_id': 'relationships',
             'list_item_id': 'id1',
             'to_list_item_id': 'id2',
@@ -22,17 +28,24 @@ class TestRelationshipLocation(AppContextTestCase):
 
         location = RelationshipLocation(**location_dict)
 
+        self.assertEqual(location.section_id, 'household')
         self.assertEqual(location.block_id, 'relationships')
         self.assertEqual(location.list_item_id, 'id1')
         self.assertEqual(location.to_list_item_id, 'id2')
 
     def test_for_json(self):
-        location = RelationshipLocation('relationships', 'id1', 'id2')
+        location = RelationshipLocation(
+            section_id='household',
+            block_id='relationships',
+            list_item_id='id1',
+            to_list_item_id='id2',
+        )
         json = location.for_json()
 
         self.assertEqual(
             json,
             {
+                'section_id': 'household',
                 'block_id': 'relationships',
                 'list_item_id': 'id1',
                 'to_list_item_id': 'id2',

@@ -175,25 +175,26 @@ def _is_answer_on_path(schema, answer, routing_path):
 
 
 def _get_comparison_id_value(
-    when_rule, answer_store, schema, current_location, routing_path=None
+    when_rule, answer_store, schema, current_location=None, routing_path=None
 ):
     """
         Gets the value of a comparison id specified as an operand in a comparator
     """
-    if when_rule['comparison']['source'] == 'location':
+    if current_location and when_rule['comparison']['source'] == 'location':
         try:
             return getattr(current_location, when_rule['comparison']['id'])
         except AttributeError:
             return None
 
     answer_id = when_rule['comparison']['id']
+    list_item_id = current_location.list_item_id if current_location else None
 
     return get_answer_store_value(
         answer_id,
         answer_store,
         schema,
         routing_path=routing_path,
-        list_item_id=current_location.list_item_id,
+        list_item_id=list_item_id,
     )
 
 
@@ -276,7 +277,7 @@ def evaluate_when_rules(
     metadata,
     answer_store,
     list_store,
-    current_location,
+    current_location=None,
     routing_path=None,
 ):
     """
@@ -291,6 +292,7 @@ def evaluate_when_rules(
     :return: True if the when condition has been met otherwise False
     """
     for when_rule in when_rules:
+        list_item_id = current_location.list_item_id if current_location else None
 
         value = _get_when_rule_value(
             when_rule,
@@ -299,7 +301,7 @@ def evaluate_when_rules(
             schema,
             metadata,
             routing_path=routing_path,
-            list_item_id=current_location.list_item_id,
+            list_item_id=list_item_id,
         )
 
         if 'date_comparison' in when_rule:

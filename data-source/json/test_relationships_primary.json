@@ -260,7 +260,7 @@
                                             "condition": "equals",
                                             "comparison": {
                                                 "source": "location",
-                                                "id": "from_list_item_id"
+                                                "id": "list_item_id"
                                             }
                                         }
                                     ]
@@ -312,7 +312,7 @@
                                             "condition": "not equals",
                                             "comparison": {
                                                 "source": "location",
-                                                "id": "from_list_item_id"
+                                                "id": "list_item_id"
                                             }
                                         }
                                     ]

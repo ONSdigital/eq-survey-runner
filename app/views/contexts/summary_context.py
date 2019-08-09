@@ -8,6 +8,7 @@ from app.jinja_filters import (
     format_unit,
     format_percentage,
 )
+from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.schema_utils import (
@@ -22,6 +23,7 @@ def build_summary_rendering_context(
     answer_store: AnswerStore,
     list_store: ListStore,
     metadata: Mapping,
+    current_location: Location = None,
     schema_sections: List[Mapping] = None,
 ) -> List:
     path_finder = PathFinder(schema, answer_store, metadata, list_store=list_store)
@@ -43,17 +45,24 @@ def build_summary_rendering_context(
             paths.append(path_finder.routing_path(section_id=section_id))
 
     return [
-        Group(group, path, answer_store, list_store, metadata, schema).serialize()
+        Group(
+            group, path, answer_store, list_store, metadata, schema, current_location
+        ).serialize()
         for path, section in zip(paths, schema_sections)
         for group in section['groups']
     ]
 
 
 def build_view_context_for_final_summary(
-    metadata, schema, answer_store, list_store, block_type, rendered_block
+    metadata, schema, answer_store, list_store, rendered_block, current_location
 ):
     context = build_view_context_for_summary(
-        schema, answer_store, list_store, metadata, block_type
+        schema,
+        answer_store,
+        list_store,
+        metadata,
+        rendered_block['type'],
+        current_location,
     )
 
     context['summary'].update(
@@ -69,10 +78,16 @@ def build_view_context_for_final_summary(
 
 
 def build_view_context_for_summary(
-    schema, answer_store, list_store, metadata, block_type, sections=None
+    schema,
+    answer_store,
+    list_store,
+    metadata,
+    block_type,
+    current_location,
+    sections=None,
 ):
     summary_rendering_context = build_summary_rendering_context(
-        schema, answer_store, list_store, metadata, sections
+        schema, answer_store, list_store, metadata, current_location, sections
     )
 
     context = {
@@ -94,7 +109,13 @@ def build_view_context_for_section_summary(
     title = section.get('title')
 
     context = build_view_context_for_summary(
-        schema, answer_store, list_store, metadata, block_type, [section]
+        schema,
+        answer_store,
+        list_store,
+        metadata,
+        block_type,
+        current_location,
+        [section],
     )
 
     context['summary'].update({'title': title})
@@ -111,7 +132,13 @@ def build_view_context_for_calculated_summary(
     )
 
     context = build_view_context_for_summary(
-        schema, answer_store, list_store, metadata, block_type, section_list
+        schema,
+        answer_store,
+        list_store,
+        metadata,
+        block_type,
+        current_location,
+        section_list,
     )
 
     formatted_total = _get_formatted_total(
@@ -120,7 +147,7 @@ def build_view_context_for_calculated_summary(
         answer_store,
         list_store,
         schema,
-        list_item_id=current_location.list_item_id,
+        current_location=current_location,
     )
 
     context['summary'].update(
@@ -156,7 +183,7 @@ def _build_calculated_summary_section_list(
                 list_store,
                 metadata,
                 schema,
-                list_item_id=None,
+                current_location=current_location,
             )
             if set(get_answer_ids_in_block(transformed_block)) & set(
                 answers_to_calculate
@@ -173,13 +200,18 @@ def _remove_unwanted_questions_answers(
     list_store,
     metadata,
     schema,
-    list_item_id=None,
+    current_location,
 ):
     """
     Evaluates questions in a block and removes any questions not containing a relevant answer
     """
     block_question = choose_question_to_display(
-        block, schema, answer_store, list_store, metadata, list_item_id=list_item_id
+        block,
+        schema,
+        answer_store,
+        list_store,
+        metadata,
+        current_location=current_location,
     )
 
     reduced_block = block.copy()
@@ -202,7 +234,7 @@ def _remove_unwanted_questions_answers(
 
 
 def _get_formatted_total(
-    groups, metadata, answer_store, list_store, schema, list_item_id=None
+    groups, metadata, answer_store, list_store, schema, current_location
 ):
     calculated_total = 0
     answer_format = {'type': None}
@@ -214,7 +246,7 @@ def _get_formatted_total(
                 metadata,
                 answer_store,
                 list_store,
-                list_item_id=list_item_id,
+                current_location=current_location,
             )
             for answer in question['answers']:
                 if not answer_format['type']:
