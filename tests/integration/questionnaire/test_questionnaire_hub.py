@@ -120,21 +120,3 @@ class TestQuestionnaireHub(IntegrationTestCase):
 
         # Then I should be redirected to the last completed question in the section
         self.assertEqualUrl('/questionnaire/accommodation-details-summary/')
-
-    def test_hub_inaccessible_if_sections_required_and_incomplete(self):
-        self.launchSurvey('test_hub_complete_sections')
-
-        self.get('/questionnaire/')
-
-        # Redirected to first question to complete
-        self.assertEqualUrl('/questionnaire/employment-status/')
-
-    def test_hub_accessible_if_sections_required_and_complete(self):
-        self.launchSurvey('test_hub_complete_sections')
-
-        self.post({'employment-status-answer': 'Working as an employee'})
-        self.post(action='submit')
-
-        self.get('/questionnaire/')
-
-        self.assertEqualUrl('/questionnaire/')
