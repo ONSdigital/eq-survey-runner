@@ -111,12 +111,12 @@ def get_questionnaire(schema, questionnaire_store):
         list_store=questionnaire_store.list_store,
     )
     completed_section_ids = questionnaire_store.progress_store.completed_section_ids
-    hub_preceding_sections_complete = all(
+    hub_required_sections_complete = all(
         section_id in completed_section_ids
         for section_id in schema.get_hub_required_section_ids()
     )
 
-    if not schema.is_hub_enabled() or not hub_preceding_sections_complete:
+    if not schema.is_hub_enabled() or not hub_required_sections_complete:
         redirect_location = router.get_first_incomplete_location_in_survey()
         return redirect(redirect_location.url())
 
