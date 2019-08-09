@@ -1,0 +1,270 @@
+{
+    "eq_id": "6a9df23b-9652-4c8b-a493-4c38eed79e3b",
+    "form_type": "6a9df23b-9652-4c8b-a493-4c38eed79e3b",
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "hello",
+    "title": "Hello",
+    "sections": [{
+        "id": "section-one",
+        "groups": [{
+                "id": "group-one",
+                "title": "Group-one",
+                "blocks": [{
+                        "id": "block-one",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question-one",
+                            "title": "Hello",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer-one",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "any of and all of",
+                                "options": [{
+                                        "label": "Box1",
+                                        "value": "Box1"
+                                    },
+                                    {
+                                        "label": "Box2",
+                                        "value": "Box2"
+                                    },
+                                    {
+                                        "label": "Box3",
+                                        "value": "Box3"
+                                    },
+                                    {
+                                        "label": "Box4",
+                                        "value": "Box4"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                            "goto": {
+                                "block": "block-two",
+                                "when": [{
+                                    "id": "answer-one",
+                                    "condition": "contains all",
+                                    "values": ["Box1", "Box2", "Box3"]
+                                }]
+                            }
+                        }, {
+                            "goto": {
+                                "block": "block-three",
+                                "when": [{
+                                    "id": "answer-one",
+                                    "condition": "contains any",
+                                    "values": ["Box1", "Box2", "Box3"]
+                                }]
+                            }
+                        }, {
+                            "goto": {
+                                "block": "block-four"
+                            }
+                        }]
+                    },
+                    {
+                        "id": "block-two",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question-two",
+                            "title": "Page-two",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer-two",
+                                "mandatory": false,
+                                "type": "Number",
+                                "label": "Answer-two",
+                                "decimal_places": 0
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block-three",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question-three",
+                            "title": "Page-three",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer-three",
+                                "mandatory": false,
+                                "type": "Number",
+                                "label": "Answer-three",
+                                "decimal_places": 0
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block-four",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question-four",
+                            "title": "Page-four",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer-four",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "not contains all",
+                                "options": [{
+                                        "label": "Box1",
+                                        "value": "Box1"
+                                    },
+                                    {
+                                        "label": "Box2",
+                                        "value": "Box2"
+                                    },
+                                    {
+                                        "label": "Box3",
+                                        "value": "Box3"
+                                    },
+                                    {
+                                        "label": "Box4",
+                                        "value": "Box4"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                            "goto": {
+                                "block": "block-five",
+                                "when": [{
+                                    "id": "answer-four",
+                                    "condition": "not contains all",
+                                    "values": ["Box1", "Box2", "Box3"]
+                                }]
+                            }
+                        }, {
+                            "goto": {
+                                "block": "block-six"
+                            }
+                        }]
+                    },
+                    {
+                        "id": "block-five",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question-five",
+                            "title": "Page-five",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer-five",
+                                "mandatory": false,
+                                "type": "Number",
+                                "label": "Answer-five",
+                                "decimal_places": 0
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block-six",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question-six",
+                            "title": "Page-six",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer-six",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "not contains any",
+                                "options": [{
+                                        "label": "Box1",
+                                        "value": "Box1"
+                                    },
+                                    {
+                                        "label": "Box2",
+                                        "value": "Box2"
+                                    },
+                                    {
+                                        "label": "Box3",
+                                        "value": "Box3"
+                                    },
+                                    {
+                                        "label": "Box4",
+                                        "value": "Box4"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                            "goto": {
+                                "block": "block-seven",
+                                "when": [{
+                                    "id": "answer-six",
+                                    "condition": "not contains any",
+                                    "values": ["Box1", "Box2", "Box3"]
+                                }]
+                            }
+                        }, {
+                            "goto": {
+                                "group": "confirmation-group"
+                            }
+                        }]
+                    },
+                    {
+                        "id": "block-seven",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question-seven",
+                            "title": "Page-seven",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer-seven",
+                                "mandatory": false,
+                                "type": "Number",
+                                "label": "Answer-seven",
+                                "decimal_places": 0
+                            }]
+                        }]
+                    }
+                ]
+            },
+            {
+                "id": "confirmation-group",
+                "title": "confirmation",
+                "blocks": [{
+                    "title": "You are now ready to submit this survey",
+                    "type": "Confirmation",
+                    "id": "confirmation",
+                    "description": "",
+                    "questions": [{
+                        "id": "ready-to-submit-completed-question",
+                        "title": "Submission",
+                        "type": "Content",
+                        "guidance": {
+                            "content": [{
+                                "list": [
+                                    "You will not be able to access or change your answers on submitting the questionnaire",
+                                    "If you wish to review your answers please select the relevant completed sections"
+                                ]
+                            }]
+                        }
+                    }]
+                }]
+            }
+        ]
+    }],
+    "theme": "social",
+    "navigation": {
+        "visible": false
+    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    }
+}
