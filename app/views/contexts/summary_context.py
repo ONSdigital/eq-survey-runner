@@ -1,5 +1,7 @@
 from typing import List, Mapping
 
+import flask_babel
+
 from app.data_model.answer_store import AnswerStore
 from app.data_model.list_store import ListStore
 from app.jinja_filters import (
@@ -16,6 +18,7 @@ from app.questionnaire.schema_utils import (
     get_answer_ids_in_block,
 )
 from app.views.contexts.summary.group import Group
+from app.views.contexts.list_collector import build_list_items_summary_context
 
 
 def build_summary_rendering_context(
@@ -111,7 +114,16 @@ def build_view_context_for_section_summary(
         [section],
     )
 
+    list_collector_blocks = schema.get_list_blocks_for_section(section)
+
+    if list_collector_blocks:
+        list_item_summary = build_list_items_summary_context(
+            list_collector_blocks[0], answer_store, list_store, flask_babel.get_locale()
+        )
+        context['summary'].update({'list_items': list_item_summary})
+
     context['summary'].update({'title': title})
+
     return context
 
 

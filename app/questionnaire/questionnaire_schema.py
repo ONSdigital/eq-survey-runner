@@ -152,6 +152,15 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
                 return True
         return False
 
+    @staticmethod
+    def get_list_blocks_for_section(section):
+        list_collector_blocks = []
+        for group in section['groups']:
+            for block in group['blocks']:
+                if block['type'] in ['ListCollector', 'PrimaryPersonListCollector']:
+                    list_collector_blocks.append(block)
+        return list_collector_blocks
+
     @classmethod
     def get_answer_ids_for_question(cls, question):
         answer_ids = []
