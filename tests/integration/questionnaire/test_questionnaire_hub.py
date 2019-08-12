@@ -129,7 +129,7 @@ class TestQuestionnaireHub(IntegrationTestCase):
 
         return filtered[0].get('href')
 
-    def test_hub_displays_repeating_sections(self):
+    def test_hub_displays_repeating_sections_with_valid_urls(self):
         # Given the hub is enabled and a section is complete
         self.launchSurvey('test_repeating_sections_with_hub_and_spoke')
         # Go to first section
@@ -151,3 +151,24 @@ class TestQuestionnaireHub(IntegrationTestCase):
 
         # Go to hub
         self.post({'another-anyone-else': 'No'})
+
+        # Get URLs for sections. This should be replaced and done by asserting the name of the person is present on the hub once that work is done.
+        section_urls = self.getHtmlSoup().find_all(
+            'a', class_='summary__button', href=True
+        )
+
+        # Go to first section
+        first_repeating_setion_url = section_urls[1].attrs['href']
+        self.get(first_repeating_setion_url)
+        self.post({'proxy-answer': 'Yes'})
+
+        self.assertInBody('What is <em>John Doe’s</em> date of birth?')
+
+        self.get(HUB_URL)
+
+        # Go to second section
+        second_repeating_setion_url = section_urls[2].attrs['href']
+        self.get(second_repeating_setion_url)
+        self.post({'proxy-answer': 'Yes'})
+
+        self.assertInBody('What is <em>Anna Doe’s</em> date of birth?')
