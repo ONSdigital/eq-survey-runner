@@ -120,7 +120,7 @@ def build_view_context_for_section_summary(
         list_item_summary = build_list_items_summary_context(
             list_collector_blocks[0], answer_store, list_store, flask_babel.get_locale()
         )
-        context['summary'].update({'list_items': list_item_summary})
+        context['list_items'] = list_item_summary
 
     context['summary'].update({'title': title})
 

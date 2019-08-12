@@ -46,7 +46,9 @@
       {% include 'partials/summary/summary.html' %}
     {% endif %}
   </div>
-
+  {%- if content.list_items -%}
+    {% include 'partials/summary/list-summary.html' %}
+  {% endif %}
   {% if content.summary.is_view_submission_response_enabled %}
     <div class="u-mt-m u-mb-s u-mb-m@s" data-qa="view-submission-text">
       <div class="u-fs-r--b">{{ _("You will have the opportunity to view and print a copy of your answers after submitting this survey") }}</div>
