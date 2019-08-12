@@ -120,3 +120,34 @@ class TestQuestionnaireHub(IntegrationTestCase):
 
         # Then I should be redirected to the last completed question in the section
         self.assertEqualUrl('/questionnaire/accommodation-details-summary/')
+
+    def get_link(self, rowIndex, text):
+        selector = f'tbody:nth-child({rowIndex}) td:last-child a'
+        selected = self.getHtmlSoup().select(selector)
+
+        filtered = [html for html in selected if text in html.get_text()]
+
+        return filtered[0].get('href')
+
+    def test_hub_displays_repeating_sections(self):
+        # Given the hub is enabled and a section is complete
+        self.launchSurvey('test_repeating_sections_with_hub_and_spoke')
+        # Go to first section
+        self.post(action='submit')
+
+        # Add a primary person
+        self.post({'you-live-here': 'Yes'})
+        self.post({'first-name': 'John', 'last-name': 'Doe'})
+
+        # First list collector
+        self.post({'anyone-else': 'Yes'})
+
+        self.post({'first-name': 'Anna', 'last-name': 'Doe'})
+
+        # Go to second list collector
+        self.post({'anyone-else': 'No'})
+        # Submit interstitial page
+        self.post(action='submit')
+
+        # Go to hub
+        self.post({'another-anyone-else': 'No'})

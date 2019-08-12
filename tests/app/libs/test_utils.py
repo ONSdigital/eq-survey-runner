@@ -5,8 +5,6 @@ from mock import Mock
 from app.data_model.answer import Answer
 from app.data_model.answer_store import AnswerStore
 from app.libs.utils import ObjectFromDict, get_answer
-from app.utilities.schema import load_schema_from_name
-from tests.app.app_context_test_case import AppContextTestCase
 
 
 class ObjectFromDictTest(unittest.TestCase):
@@ -27,7 +25,8 @@ class ObjectFromDictTest(unittest.TestCase):
 
 
 class TestGetAnswer(unittest.TestCase):
-    def test_get_answer_without_repeat(self):
+    @staticmethod
+    def test_get_answer_without_repeat():
         schema = Mock()
         schema.is_answer_in_list_collector_block = Mock(return_value=False)
         schema.is_answer_in_repeating_section = Mock(return_value=False)
@@ -42,7 +41,8 @@ class TestGetAnswer(unittest.TestCase):
 
         assert answer_value == expected_answer
 
-    def test_get_answer_without_repeat_with_list_item_id(self):
+    @staticmethod
+    def test_get_answer_without_repeat_with_list_item_id():
         schema = Mock()
         schema.is_answer_in_list_collector_block = Mock(return_value=False)
         schema.is_answer_in_repeating_section = Mock(return_value=False)
@@ -59,7 +59,8 @@ class TestGetAnswer(unittest.TestCase):
 
         assert answer_value == expected_answer
 
-    def test_get_answer_within_repeat_with_list_item_id(self):
+    @staticmethod
+    def test_get_answer_within_repeat_with_list_item_id():
         schema = Mock()
         schema.is_answer_in_list_collector_block = Mock(return_value=True)
         schema.is_answer_in_repeating_section = Mock(return_value=True)
@@ -77,7 +78,8 @@ class TestGetAnswer(unittest.TestCase):
 
         assert answer_value == expected_answer
 
-    def test_get_answer_within_repeat_without_list_item_id(self):
+    @staticmethod
+    def test_get_answer_within_repeat_without_list_item_id():
         schema = Mock()
         schema.is_answer_in_list_collector_block = Mock(return_value=True)
         schema.is_answer_in_repeating_section = Mock(return_value=True)

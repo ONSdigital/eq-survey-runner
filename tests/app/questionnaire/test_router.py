@@ -1,5 +1,6 @@
 from flask import url_for
 
+from app.data_model.list_store import ListStore
 from app.data_model.progress_store import ProgressStore, CompletionStatus
 from app.questionnaire.location import Location
 from app.questionnaire.router import Router
@@ -10,7 +11,7 @@ from tests.app.app_context_test_case import AppContextTestCase
 class TestRouter(AppContextTestCase):
     def test_can_access_location(self):
         schema = load_schema_from_name('test_textfield')
-        progress_store = ProgressStore({})
+        progress_store = ProgressStore()
         router = Router(schema, progress_store)
 
         current_location = Location(section_id='default-section', block_id='name-block')
@@ -23,8 +24,35 @@ class TestRouter(AppContextTestCase):
         self.assertTrue(can_access_location)
 
     def test_cant_access_location(self):
+        schema = load_schema_from_name('test_repeating_sections_with_hub_and_spoke')
+
+        list_store = ListStore(
+            [
+                {
+                    'items': ['abc123', '123abc'],
+                    'name': 'people',
+                    'primary_person': 'abc123',
+                }
+            ]
+        )
+
+        router = Router(
+            schema=schema, progress_store=ProgressStore, list_store=list_store
+        )
+
+        current_location = Location(
+            section_id='personal-details-section',
+            block_id='proxy',
+            list_item_id='invalid-list-item-id',
+        )
+        routing_path = []
+        can_access_location = router.can_access_location(current_location, routing_path)
+
+        self.assertFalse(can_access_location)
+
+    def test_cant_access_location_invalid_list_item_id(self):
         schema = load_schema_from_name('test_textfield')
-        progress_store = ProgressStore({})
+        progress_store = ProgressStore()
         router = Router(schema, progress_store)
 
         current_location = Location(section_id='default-section', block_id='name-block')
@@ -35,7 +63,7 @@ class TestRouter(AppContextTestCase):
 
     def test_cant_access_location_not_on_allowable_path(self):
         schema = load_schema_from_name('test_unit_patterns')
-        progress_store = ProgressStore({})
+        progress_store = ProgressStore()
         router = Router(schema, progress_store)
 
         current_location = Location(
@@ -83,7 +111,7 @@ class TestRouter(AppContextTestCase):
 
     def test_previous_location_url(self):
         schema = load_schema_from_name('test_textfield')
-        progress_store = ProgressStore({})
+        progress_store = ProgressStore()
         router = Router(schema, progress_store)
 
         current_location = Location(section_id='default-section', block_id='summary')
@@ -102,7 +130,7 @@ class TestRouter(AppContextTestCase):
 
     def test_previous_location_with_hub_enabled(self):
         schema = load_schema_from_name('test_hub_and_spoke')
-        progress_store = ProgressStore({})
+        progress_store = ProgressStore()
         router = Router(schema, progress_store)
 
         current_location = Location(
@@ -121,7 +149,7 @@ class TestRouter(AppContextTestCase):
 
     def test_is_survey_not_complete(self):
         schema = load_schema_from_name('test_textfield')
-        progress_store = ProgressStore({})
+        progress_store = ProgressStore()
         router = Router(schema, progress_store)
 
         is_survey_complete = router.is_survey_complete()
@@ -143,6 +171,109 @@ class TestRouter(AppContextTestCase):
             ]
         )
         router = Router(schema, progress_store)
+
+        is_survey_complete = router.is_survey_complete()
+
+        self.assertTrue(is_survey_complete)
+
+    def test_is_survey_not_complete_with_repeating_sections(self):
+        schema = load_schema_from_name('test_repeating_sections_with_hub_and_spoke')
+
+        progress_store = ProgressStore(
+            [
+                {
+                    'section_id': 'default-section',
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'mandatory-checkbox',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'non-mandatory-checkbox',
+                        },
+                    ],
+                }
+            ]
+        )
+
+        list_store = ListStore(
+            [
+                {
+                    'items': ['abc123', '123abc'],
+                    'name': 'people',
+                    'primary_person': 'abc123',
+                }
+            ]
+        )
+
+        router = Router(schema, progress_store, list_store)
+
+        is_survey_complete = router.is_survey_complete()
+
+        self.assertFalse(is_survey_complete)
+
+    def test_is_survey_complete_with_repeating_sections(self):
+        schema = load_schema_from_name('test_repeating_sections_with_hub_and_spoke')
+
+        progress_store = ProgressStore(
+            [
+                {
+                    'section_id': 'section',
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [
+                        {
+                            'section_id': 'section',
+                            'block_id': 'primary-person-list-collector',
+                        },
+                        {'section_id': 'section', 'block_id': 'list-collector'},
+                        {'section_id': 'section', 'block_id': 'next-interstitial'},
+                        {
+                            'section_id': 'section',
+                            'block_id': 'another-list-collector-block',
+                        },
+                    ],
+                },
+                {
+                    'section_id': 'personal-details-section',
+                    'status': CompletionStatus.COMPLETED,
+                    'list_item_id': 'abc123',
+                    'locations': [
+                        {
+                            'section_id': 'personal-details-section',
+                            'block_id': 'proxy',
+                            'list_name': 'people',
+                            'list_item_id': 'ZywslG',
+                        },
+                        {
+                            'section_id': 'personal-details-section',
+                            'block_id': 'date-of-birth',
+                            'list_name': 'people',
+                            'list_item_id': 'ZywslG',
+                        },
+                        {
+                            'section_id': 'personal-details-section',
+                            'block_id': 'confirm-dob',
+                            'list_name': 'people',
+                            'list_item_id': 'ZywslG',
+                        },
+                        {
+                            'section_id': 'personal-details-section',
+                            'block_id': 'sex',
+                            'list_name': 'people',
+                            'list_item_id': 'ZywslG',
+                        },
+                    ],
+                },
+            ]
+        )
+
+        list_store = ListStore(
+            [{'items': ['abc123'], 'name': 'people', 'primary_person': 'abc123'}]
+        )
+
+        router = Router(schema, progress_store, list_store)
 
         is_survey_complete = router.is_survey_complete()
 
@@ -191,7 +322,7 @@ class TestRouter(AppContextTestCase):
 
         self.assertTrue(is_survey_complete)
 
-    def test_get_first_incomplete_location(self):
+    def test_get_first_incomplete_location_in_section(self):
         schema = load_schema_from_name('test_section_summary')
 
         progress_store = ProgressStore(
@@ -229,7 +360,7 @@ class TestRouter(AppContextTestCase):
             ),
         )
 
-    def test_get_last_complete_location(self):
+    def test_get_last_complete_location_in_section(self):
         schema = load_schema_from_name('test_section_summary')
 
         progress_store = ProgressStore(

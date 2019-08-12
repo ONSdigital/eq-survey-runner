@@ -1,7 +1,9 @@
 from unittest.mock import patch
+
 import pytest
 
 from app.data_model.answer_store import Answer, AnswerStore
+from app.data_model.list_store import ListStore
 from app.data_model.progress_store import ProgressStore, CompletionStatus
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
@@ -158,7 +160,7 @@ class TestPathFinder(
 
         self.assertEqual(routing_path, expected_routing_path)
 
-    def test_routing_path_full_path(self):
+    def test_routing_path(self):
         schema = load_schema_from_name('test_summary')
         section_id = schema.get_section_id_for_block_id('dessert-block')
         expected_path = [
@@ -190,6 +192,69 @@ class TestPathFinder(
             schema, answer_store=answers, metadata={}, progress_store=progress_store
         )
         routing_path = path_finder.routing_path(section_id=section_id)
+
+        self.assertEqual(routing_path, expected_path)
+
+    def test_routing_path_with_repeating_sections(self):
+        schema = load_schema_from_name('test_repeating_sections_with_hub_and_spoke')
+
+        answers = AnswerStore()
+
+        progress_store = ProgressStore(
+            [
+                {
+                    'section_id': 'section',
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [
+                        {
+                            'section_id': 'section',
+                            'block_id': 'primary-person-list-collector',
+                        },
+                        {'section_id': 'section', 'block_id': 'list-collector'},
+                        {'section_id': 'section', 'block_id': 'next-interstitial'},
+                        {
+                            'section_id': 'section',
+                            'block_id': 'another-list-collector-block',
+                        },
+                    ],
+                }
+            ]
+        )
+        path_finder = PathFinder(
+            schema, answer_store=answers, metadata={}, progress_store=progress_store
+        )
+
+        repeating_section_id = 'personal-details-section'
+        routing_path = path_finder.routing_path(
+            section_id=repeating_section_id, list_item_id='abc123'
+        )
+
+        expected_path = [
+            Location(
+                section_id='personal-details-section',
+                block_id='proxy',
+                list_name='people',
+                list_item_id='abc123',
+            ),
+            Location(
+                section_id='personal-details-section',
+                block_id='date-of-birth',
+                list_name='people',
+                list_item_id='abc123',
+            ),
+            Location(
+                section_id='personal-details-section',
+                block_id='confirm-dob',
+                list_name='people',
+                list_item_id='abc123',
+            ),
+            Location(
+                section_id='personal-details-section',
+                block_id='sex',
+                list_name='people',
+                list_item_id='abc123',
+            ),
+        ]
 
         self.assertEqual(routing_path, expected_path)
 
@@ -530,3 +595,138 @@ class TestPathFinder(
             [progress_store.get_completed_locations(section_id='default-section')[0]],
         )
         self.assertEqual(len(path_finder.answer_store), 1)
+
+    def test_full_routing_path_without_repeating_sections(self):
+        schema = load_schema_from_name('test_checkbox')
+
+        path_finder = PathFinder(
+            schema,
+            answer_store=AnswerStore(),
+            metadata={},
+            progress_store=ProgressStore(),
+        )
+
+        routing_path = path_finder.full_routing_path()
+
+        expected_path = [
+            Location(
+                section_id='default-section',
+                block_id='mandatory-checkbox',
+                list_name=None,
+                list_item_id=None,
+            ),
+            Location(
+                section_id='default-section',
+                block_id='non-mandatory-checkbox',
+                list_name=None,
+                list_item_id=None,
+            ),
+            Location(
+                section_id='default-section',
+                block_id='summary',
+                list_name=None,
+                list_item_id=None,
+            ),
+        ]
+
+        self.assertEqual(routing_path, expected_path)
+
+    def test_full_routing_path_with_repeating_sections(self):
+        schema = load_schema_from_name('test_repeating_sections_with_hub_and_spoke')
+
+        list_store = ListStore(
+            [
+                {
+                    'items': ['abc123', '123abc'],
+                    'name': 'people',
+                    'primary_person': 'abc123',
+                }
+            ]
+        )
+
+        path_finder = PathFinder(
+            schema,
+            answer_store=AnswerStore(),
+            list_store=list_store,
+            metadata={},
+            progress_store=ProgressStore(),
+        )
+
+        routing_path = path_finder.full_routing_path()
+
+        expected_path = [
+            Location(
+                section_id='section',
+                block_id='primary-person-list-collector',
+                list_name=None,
+                list_item_id=None,
+            ),
+            Location(
+                section_id='section',
+                block_id='list-collector',
+                list_name=None,
+                list_item_id=None,
+            ),
+            Location(
+                section_id='section',
+                block_id='next-interstitial',
+                list_name=None,
+                list_item_id=None,
+            ),
+            Location(
+                section_id='section',
+                block_id='another-list-collector-block',
+                list_name=None,
+                list_item_id=None,
+            ),
+            Location(
+                section_id='personal-details-section',
+                block_id='proxy',
+                list_name='people',
+                list_item_id='abc123',
+            ),
+            Location(
+                section_id='personal-details-section',
+                block_id='date-of-birth',
+                list_name='people',
+                list_item_id='abc123',
+            ),
+            Location(
+                section_id='personal-details-section',
+                block_id='confirm-dob',
+                list_name='people',
+                list_item_id='abc123',
+            ),
+            Location(
+                section_id='personal-details-section',
+                block_id='sex',
+                list_name='people',
+                list_item_id='abc123',
+            ),
+            Location(
+                section_id='personal-details-section',
+                block_id='proxy',
+                list_name='people',
+                list_item_id='123abc',
+            ),
+            Location(
+                section_id='personal-details-section',
+                block_id='date-of-birth',
+                list_name='people',
+                list_item_id='123abc',
+            ),
+            Location(
+                section_id='personal-details-section',
+                block_id='confirm-dob',
+                list_name='people',
+                list_item_id='123abc',
+            ),
+            Location(
+                section_id='personal-details-section',
+                block_id='sex',
+                list_name='people',
+                list_item_id='123abc',
+            ),
+        ]
+
+        self.assertEqual(routing_path, expected_path)

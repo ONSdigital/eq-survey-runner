@@ -28,27 +28,20 @@ def build_summary_rendering_context(
 ) -> List:
     path_finder = PathFinder(schema, answer_store, metadata, list_store=list_store)
 
-    paths = []
-    schema_sections = schema_sections or schema.get_sections()
-    for section_schema in schema_sections:
-        section_id = section_schema['id']
-        for_list = schema.get_repeating_list_for_section(section_id)
-
-        if for_list:
-            for list_item_id in list_store[for_list].items:
-                paths.append(
-                    path_finder.routing_path(
-                        section_id=section_id, list_item_id=list_item_id
-                    )
-                )
-        else:
-            paths.append(path_finder.routing_path(section_id=section_id))
+    sections = schema_sections or schema.get_sections()
+    paths = [path_finder.routing_path(section['id']) for section in sections]
 
     return [
         Group(
-            group, path, answer_store, list_store, metadata, schema, current_location
+            group,
+            path,
+            answer_store,
+            list_store,
+            metadata,
+            schema,
+            current_location=current_location,
         ).serialize()
-        for path, section in zip(paths, schema_sections)
+        for path, section in zip(paths, sections)
         for group in section['groups']
     ]
 

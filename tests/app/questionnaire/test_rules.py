@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 
 from app.data_model.answer_store import AnswerStore, Answer
 from app.data_model.list_store import ListStore
@@ -10,6 +10,7 @@ from app.questionnaire.rules import (
     evaluate_goto,
     evaluate_skip_conditions,
     evaluate_when_rules,
+    get_answer_store_value,
 )
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -905,7 +906,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 'list': 'people',
                 'id_selector': 'primary_person',
                 'condition': 'equals',
-                'comparison': {'source': 'location', 'id': 'list_item_id'},
+                'comparison': {'source': 'location', 'id': 'invalid-location-id'},
             }
         ]
 
@@ -919,3 +920,20 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 current_location=current_location,
             )
         )
+
+    @staticmethod
+    def test_get_answer_store_value_for_answer_outside_repeat_from_repeat():
+        schema = Mock()
+        schema.is_answer_in_repeating_section = Mock(return_value=False)
+
+        answer_id = 'some-answer'
+        answer_value = 'some value'
+
+        answer_store = AnswerStore()
+        answer_store.add_or_update(Answer(answer_id=answer_id, value='some value'))
+
+        value_from_answer_store = get_answer_store_value(
+            answer_id, answer_store, schema, list_item_id='abc123'
+        )
+
+        assert value_from_answer_store == answer_value

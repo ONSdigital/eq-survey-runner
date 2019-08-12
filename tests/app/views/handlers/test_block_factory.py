@@ -32,3 +32,32 @@ class TestBlockFactory(TestCase):
                 questionnaire_store=None,
                 language=None,
             )
+
+    def test_get_handler_invalid_location_missing_list_name_for_repeat(self):
+        schema = Mock()
+        schema.get_block = Mock(return_value={'id': 'some-block', 'type': 'Question'})
+        schema.is_block_in_repeating_section = Mock(return_value=True)
+
+        with self.assertRaises(InvalidLocationException):
+            get_block_handler(
+                schema=schema,
+                block_id='some-block',
+                list_item_id=None,
+                questionnaire_store=None,
+                language=None,
+            )
+
+    def test_get_handler_invalid_location_missing_list_item_id_for_repeat(self):
+        schema = Mock()
+        schema.get_block = Mock(return_value={'id': 'some-block', 'type': 'Question'})
+        schema.is_block_in_repeating_section = Mock(return_value=True)
+
+        with self.assertRaises(InvalidLocationException):
+            get_block_handler(
+                schema=schema,
+                block_id='some-block',
+                list_item_id=None,
+                list_name='people',
+                questionnaire_store=None,
+                language=None,
+            )
