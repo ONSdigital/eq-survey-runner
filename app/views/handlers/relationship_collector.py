@@ -91,9 +91,7 @@ class RelationshipCollector(Question):
             section_id=self._current_location.section_id,
             block_id=self.rendered_block['id'],
         )
-        self.questionnaire_store_updater.remove_completed_location(
-            location=parent_location
-        )
+        self.questionnaire_store_updater.remove_completed_location(parent_location)
 
         self.questionnaire_store_updater.save()
 

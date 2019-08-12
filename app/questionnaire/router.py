@@ -45,12 +45,12 @@ class Router:
         last_block_location = routing_path[-1]
         last_block_type = self._schema.get_block(last_block_location.block_id)['type']
 
-        section_location = (location.section_id, location.list_item_id)
+        section_key = (location.section_id, location.list_item_id)
 
         if (
             self._schema.is_hub_enabled()
             and location.block_id == last_block_location.block_id
-            and section_location in self._progress_store.completed_section_locations
+            and section_key in self._progress_store.completed_section_keys
         ):
             return url_for('.get_questionnaire')
 
@@ -58,7 +58,7 @@ class Router:
         if (
             last_block_type == 'SectionSummary'
             and current_block_type != last_block_type
-            and section_location in self._progress_store.completed_section_locations
+            and section_key in self._progress_store.completed_section_keys
         ):
             return last_block_location.url()
 
@@ -102,11 +102,10 @@ class Router:
         return None
 
     def get_first_incomplete_location_in_survey(self):
-        incomplete_section_locations = self._get_incomplete_section_locations()
+        incomplete_section_keys = self._get_incomplete_section_keys()
 
-        if incomplete_section_locations:
-            section_id = incomplete_section_locations[0][0]
-            list_item_id = incomplete_section_locations[0][1]
+        if incomplete_section_keys:
+            section_id, list_item_id = incomplete_section_keys[0]
 
             section_routing_path = path_finder.routing_path(
                 section_id=section_id, list_item_id=list_item_id
@@ -124,9 +123,9 @@ class Router:
     def get_first_incomplete_location_for_section(
         self, routing_path, section_id, list_item_id=None
     ):
-        section_location = (section_id, list_item_id)
+        section_key = (section_id, list_item_id)
 
-        if section_location in self._progress_store:
+        if section_key in self._progress_store:
             for location in routing_path:
                 if location not in self._progress_store.get_completed_locations(
                     section_id=section_id, list_item_id=list_item_id
@@ -138,9 +137,9 @@ class Router:
     def get_last_complete_location_for_section(
         self, routing_path, section_id, list_item_id=None
     ):
-        section_location = (section_id, list_item_id)
+        section_key = (section_id, list_item_id)
 
-        if section_location in self._progress_store:
+        if section_key in self._progress_store:
             for location in routing_path[::-1]:
                 if location in self._progress_store.get_completed_locations(
                     section_id=section_id, list_item_id=list_item_id
@@ -148,13 +147,13 @@ class Router:
                     return location
 
     def is_survey_complete(self):
-        incomplete_section_locations = self._get_incomplete_section_locations()
+        incomplete_section_keys = self._get_incomplete_section_keys()
 
-        if incomplete_section_locations:
-            if len(incomplete_section_locations) > 1:
+        if incomplete_section_keys:
+            if len(incomplete_section_keys) > 1:
                 return False
 
-            section_id = incomplete_section_locations[0][0]
+            section_id = incomplete_section_keys[0][0]
             if self._does_section_only_contain_summary(section_id):
                 return True
             return False
@@ -178,25 +177,25 @@ class Router:
 
         return allowable_path
 
-    def _get_incomplete_section_locations(self):
+    def _get_incomplete_section_keys(self):
         all_section_ids = self._schema.get_section_ids()
 
-        all_section_locations = []
+        all_section_keys = []
         for section_id in all_section_ids:
             for_list = self._schema.get_repeating_list_for_section(section_id)
 
             if for_list:
                 for list_item_id in self._list_store[for_list].items:
-                    section_location = (section_id, list_item_id)
-                    all_section_locations.append(section_location)
+                    section_key = (section_id, list_item_id)
+                    all_section_keys.append(section_key)
             else:
-                section_location = (section_id, None)
-                all_section_locations.append(section_location)
+                section_key = (section_id, None)
+                all_section_keys.append(section_key)
 
         incomplete_sections_locations = [
-            section_location
-            for section_location in all_section_locations
-            if section_location not in self._progress_store.completed_section_locations
+            section_key
+            for section_key in all_section_keys
+            if section_key not in self._progress_store.completed_section_keys
         ]
 
         return incomplete_sections_locations

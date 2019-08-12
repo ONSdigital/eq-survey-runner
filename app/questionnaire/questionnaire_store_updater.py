@@ -94,11 +94,11 @@ class QuestionnaireStoreUpdater:
     def add_completed_location(self, location=None):
         location = location or self._current_location
 
-        self._progress_store.add_completed_location(location=location)
+        self._progress_store.add_completed_location(location)
 
     def remove_completed_location(self, location=None):
         location = location or self._current_location
-        self._progress_store.remove_completed_location(location=location)
+        self._progress_store.remove_completed_location(location)
 
     def update_section_status(self, section_status, location=None):
         if location:
