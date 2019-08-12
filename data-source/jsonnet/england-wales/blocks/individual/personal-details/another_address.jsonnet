@@ -32,11 +32,12 @@ local question(title) = {
         {
           label: 'Yes, an address outside the UK',
           value: 'Other',
+          description: 'Select to enter answer',
           detail_answer: {
             id: 'another-address-answer-other-country',
             type: 'TextField',
             mandatory: true,
-            label: 'Please specify the country',
+            label: 'Enter the current name of the country',
           },
         },
       ],
