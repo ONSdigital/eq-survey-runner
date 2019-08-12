@@ -210,6 +210,22 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         self.assertFalse(evaluate_rule(when, ['a', 'b']))
         self.assertFalse(evaluate_rule(when, ['a', 'b', 'c']))
 
+    def test_evaluate_rule_radio_contains_any(self):
+        when = {'values': ['a', 'b'], 'condition': 'contains any'}
+
+        self.assertTrue(evaluate_rule(when, 'a'))
+        self.assertTrue(evaluate_rule(when, 'b'))
+        self.assertFalse(evaluate_rule(when, ''))
+        self.assertFalse(evaluate_rule(when, 'c'))
+
+    def test_evaluate_rule_radio_not_contains_any(self):
+        when = {'values': ['a', 'b'], 'condition': 'not contains any'}
+
+        self.assertTrue(evaluate_rule(when, 'c'))
+        self.assertTrue(evaluate_rule(when, ''))
+        self.assertFalse(evaluate_rule(when, 'b'))
+        self.assertFalse(evaluate_rule(when, 'a'))
+
     def test_go_to_next_question_for_answer(self):
         # Given
         goto = {

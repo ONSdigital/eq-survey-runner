@@ -75,11 +75,11 @@ def evaluate_condition(condition, answer_value, match_value):
             and isinstance(match_value, list)
             and set(answer_value) >= set(match_value),
         'contains any':
-            lambda answer_value, match_value: isinstance(answer_value, list)
+            lambda answer_value, match_value: answer_and_match
             and isinstance(match_value, list)
             and bool(set(answer_value) & set(match_value)),
         'not contains any':
-            lambda answer_value, match_value: isinstance(answer_value, list)
+            lambda answer_value, match_value: answer_and_match
             and isinstance(match_value, list)
             and set(answer_value).isdisjoint(set(match_value)),
         'not contains all':
@@ -106,7 +106,6 @@ def evaluate_condition(condition, answer_value, match_value):
     }
 
     match_function = comparison_operators[condition]
-
     return match_function(answer_value, match_value)
 
 
