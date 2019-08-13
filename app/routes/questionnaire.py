@@ -110,9 +110,9 @@ def get_questionnaire(schema, questionnaire_store):
         progress_store=questionnaire_store.progress_store,
         list_store=questionnaire_store.list_store,
     )
-    completed_section_ids = questionnaire_store.progress_store.completed_section_ids
+
     are_hub_required_sections_complete = all(
-        section_id in completed_section_ids
+        section_id in questionnaire_store.progress_store.completed_section_ids
         for section_id in schema.get_section_ids_required_for_hub()
     )
 
