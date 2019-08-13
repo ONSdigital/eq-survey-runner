@@ -20,14 +20,13 @@
     {% set group = content.summary.groups %}
 
     <h1>{{content.summary.title}}</h1>
-
-    {% call onsPanel({
-      "type": "success",
-      "classes": "print__hidden u-mb-l"
-    }) %}
-      <strong>{{ _("This section is now complete") }}</strong>
-      <p>{{ _("You can review your answers below") }}</p>
-    {% endcall %}
+      {% call onsPanel({
+        "type": "success",
+        "classes": "print__hidden u-mb-l"
+      }) %}
+        <strong>{{ _("This section is now complete") }}</strong>
+        <p>{{ _("You can review your answers below") }}</p>
+      {% endcall %}
   {% elif content.summary.summary_type == 'CalculatedSummary' %}
     <h1 data-qa="calculated-summary-title">{{content.summary.title}}</h1>
 
@@ -46,9 +45,18 @@
       {% include 'partials/summary/summary.html' %}
     {% endif %}
   </div>
-  {%- if content.list_items -%}
-    {% include 'partials/summary/list-summary.html' %}
+
+  {% if content.summary.list_item_summaries %}
+    {% for list_item_summary in content.summary.list_item_summaries %}
+      <h2>{{list_item_summary.title}}</h2>
+      {% set listItems = list_item_summary.list_items %}
+      {% include 'partials/summary/list-summary.html' %}
+      <div class="u-mb-l">
+        <a href="{{list_item_summary.add_link}}">{{list_item_summary.add_link_text}}</a>
+      </div>
+    {% endfor %}
   {% endif %}
+
   {% if content.summary.is_view_submission_response_enabled %}
     <div class="u-mt-m u-mb-s u-mb-m@s" data-qa="view-submission-text">
       <div class="u-fs-r--b">{{ _("You will have the opportunity to view and print a copy of your answers after submitting this survey") }}</div>

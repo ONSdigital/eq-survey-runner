@@ -1,6 +1,7 @@
 from typing import List, Mapping
 
 import flask_babel
+from flask import url_for
 
 from app.data_model.answer_store import AnswerStore
 from app.data_model.list_store import ListStore
@@ -17,8 +18,8 @@ from app.questionnaire.schema_utils import (
     choose_question_to_display,
     get_answer_ids_in_block,
 )
-from app.views.contexts.summary.group import Group
 from app.views.contexts.list_collector import build_list_items_summary_context
+from app.views.contexts.summary.group import Group
 
 
 def build_summary_rendering_context(
@@ -114,15 +115,29 @@ def build_view_context_for_section_summary(
         [section],
     )
 
-    list_collector_blocks = schema.get_list_blocks_for_section(section)
+    list_collector_blocks = schema.get_visible_list_blocks_for_section(section)
 
-    if list_collector_blocks:
-        list_item_summary = build_list_items_summary_context(
-            list_collector_blocks[0], answer_store, list_store, flask_babel.get_locale()
-        )
-        context['list_items'] = list_item_summary
+    list_item_summaries = []
 
-    context['summary'].update({'title': title})
+    for list_collector_block in list_collector_blocks:
+        list_item_summary = {
+            'title': list_collector_block['summary']['title'],
+            'add_link': url_for(
+                'questionnaire.block',
+                list_name=list_collector_block['for_list'],
+                block_id=list_collector_block['add_block']['id'],
+            ),
+            'add_link_text': list_collector_block['summary']['add_link_text'],
+            'empty_list_text': list_collector_block['summary']['empty_list_text'],
+            'list_items': build_list_items_summary_context(
+                list_collector_block, answer_store, list_store, flask_babel.get_locale()
+            )
+        }
+        list_item_summaries.append(list_item_summary)
+
+    context['summary'].update(
+        {'title': title, 'list_item_summaries': list_item_summaries}
+    )
 
     return context
 
