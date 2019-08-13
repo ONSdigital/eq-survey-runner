@@ -31,11 +31,12 @@ local question(title, description) = {
         {
           label: 'An address outside the UK',
           value: 'Other',
+          description: 'Select to enter answer',
           detail_answer: {
             id: 'past-usual-address-household-answer-other',
             type: 'TextField',
             mandatory: false,
-            label: 'Please specify the country',
+            label: 'Enter the current name of the country',
           },
         },
       ],

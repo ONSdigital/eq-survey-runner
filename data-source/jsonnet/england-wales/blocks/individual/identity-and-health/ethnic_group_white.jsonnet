@@ -55,11 +55,12 @@ local question(title, region_code) = (
           {
             label: 'Any other White background',
             value: 'Other',
+            description: 'Select to enter answer',
             detail_answer: {
               id: 'white-ethnic-group-answer-other',
               type: 'TextField',
               mandatory: false,
-              label: 'Please specify White background',
+              label: 'Enter White background',
             },
           },
         ],

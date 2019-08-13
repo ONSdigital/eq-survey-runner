@@ -34,6 +34,7 @@ local question(title, label, definitionContent) = {
         {
           label: 'Other',
           value: 'Other',
+          description: 'Select to enter answer',
           detail_answer: {
             id: 'passport-answer-other',
             type: 'TextField',
@@ -59,7 +60,7 @@ local question(title, label, definitionContent) = {
 
 local nonProxyDefinitionContent = 'You may have other travel documents that show you are a citizen of a particular country. Please complete this question as if your travel documents are passports.';
 local nonProxyTitle = 'What passports do you hold?';
-local nonProxyLabel = 'Please specify the passports you hold';
+local nonProxyLabel = 'Enter the passports you hold';
 local proxyDefinitionContent = 'They may have other travel documents that show they are a citizen of a particular country. Please complete this question as if their travel documents are passports.';
 local proxyTitle = {
   text: 'What passports does <em>{person_name}</em> hold?',
@@ -67,7 +68,7 @@ local proxyTitle = {
     placeholders.personName,
   ],
 };
-local proxyLabel = 'Please specify the passports held';
+local proxyLabel = 'Enter passports held';
 
 {
   type: 'Question',
