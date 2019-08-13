@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-01 10:17+0100\n"
+"POT-Creation-Date: 2019-08-12 15:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -233,7 +233,7 @@ msgstr ""
 msgid "Start {section_name} section"
 msgstr ""
 
-#: app/views/contexts/list_collector.py:32
+#: app/views/contexts/list_collector.py:33
 msgid " (You)"
 msgstr ""
 

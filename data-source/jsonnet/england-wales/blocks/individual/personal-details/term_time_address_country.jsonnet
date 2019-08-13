@@ -17,11 +17,12 @@
           {
             label: 'No',
             value: 'No',
+            description: 'Select to enter country',
             detail_answer: {
               id: 'term-time-address-country-answer-other',
               type: 'TextField',
               mandatory: false,
-              label: 'Please specify the country',
+              label: 'Enter the current name of the country',
             },
           },
         ],
