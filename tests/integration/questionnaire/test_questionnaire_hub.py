@@ -146,20 +146,30 @@ class TestQuestionnaireHub(IntegrationTestCase):
 
         # Go to second list collector
         self.post({'anyone-else': 'No'})
+
         # Submit interstitial page
         self.post(action='submit')
 
-        # Go to hub
+        # Go to visitors
         self.post({'another-anyone-else': 'No'})
 
-        # Get URLs for sections. This should be replaced and done by asserting the name of the person is present on the hub once that work is done.
+        # Visitors
+        self.post({'visitors-anyone-else': 'Yes'})
+
+        self.post({'first-name': 'Joe', 'last-name': 'Public'})
+
+        # Go back to hub
+        self.post({'visitors-anyone-else': 'No'})
+
+        # Get URLs for sections. This should be replaced and done by asserting
+        # that the name of the person is present on the hub once that work is done.
         section_urls = self.getHtmlSoup().find_all(
             'a', class_='summary__button', href=True
         )
 
         # Go to first section
-        first_repeating_setion_url = section_urls[1].attrs['href']
-        self.get(first_repeating_setion_url)
+        first_repeating_section_url = section_urls[1].attrs['href']
+        self.get(first_repeating_section_url)
         self.post({'proxy-answer': 'Yes'})
 
         self.assertInBody('What is <em>John Doe’s</em> date of birth?')
@@ -167,8 +177,13 @@ class TestQuestionnaireHub(IntegrationTestCase):
         self.get(HUB_URL)
 
         # Go to second section
-        second_repeating_setion_url = section_urls[2].attrs['href']
-        self.get(second_repeating_setion_url)
+        second_repeating_section_url = section_urls[2].attrs['href']
+        self.get(second_repeating_section_url)
         self.post({'proxy-answer': 'Yes'})
 
         self.assertInBody('What is <em>Anna Doe’s</em> date of birth?')
+
+        # Go to visitors
+        visitor_repeating_section_url = section_urls[3].attrs['href']
+        self.get(visitor_repeating_section_url)
+        self.assertInBody('What is <em>Joe Public’s</em> date of birth?')

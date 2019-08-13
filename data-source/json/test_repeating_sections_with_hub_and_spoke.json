@@ -203,7 +203,10 @@
                                                     "arguments": {
                                                         "delimiter": " ",
                                                         "list_to_concatenate": {
-                                                            "identifier": ["first-name", "last-name"],
+                                                            "identifier": [
+                                                                "first-name",
+                                                                "last-name"
+                                                            ],
                                                             "source": "answers"
                                                         }
                                                     },
@@ -350,7 +353,148 @@
                                                     "arguments": {
                                                         "delimiter": " ",
                                                         "list_to_concatenate": {
-                                                            "identifier": ["first-name", "last-name"],
+                                                            "identifier": [
+                                                                "first-name",
+                                                                "last-name"
+                                                            ],
+                                                            "source": "answers"
+                                                        }
+                                                    },
+                                                    "transform": "concatenate_list"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "visitors-list-group",
+                    "title": "Visitors List",
+                    "blocks": [
+                        {
+                            "id": "visitors-block",
+                            "type": "ListCollector",
+                            "for_list": "visitor",
+                            "add_answer": {
+                                "id": "visitors-anyone-else",
+                                "value": "Yes"
+                            },
+                            "remove_answer": {
+                                "id": "visitors-remove-confirmation",
+                                "value": "Yes"
+                            },
+                            "question": {
+                                "id": "visitors-confirmation-question",
+                                "type": "General",
+                                "title": "This is the visitors list collector. Add a visitor?",
+                                "answers": [
+                                    {
+                                        "id": "visitors-anyone-else",
+                                        "mandatory": true,
+                                        "type": "Radio",
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "add_block": {
+                                "id": "visitors-add-person",
+                                "type": "ListAddQuestion",
+                                "question": {
+                                    "id": "visitors-add-question",
+                                    "type": "General",
+                                    "title": "What is the name of the person?",
+                                    "answers": [
+                                        {
+                                            "id": "first-name",
+                                            "label": "First name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "last-name",
+                                            "label": "Last name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            },
+                            "edit_block": {
+                                "id": "visitors-edit-person",
+                                "type": "ListEditQuestion",
+                                "question": {
+                                    "id": "visitors-edit-question",
+                                    "type": "General",
+                                    "title": "What is the name of the person?",
+                                    "answers": [
+                                        {
+                                            "id": "first-name",
+                                            "label": "First name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "last-name",
+                                            "label": "Last name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            },
+                            "remove_block": {
+                                "id": "visitors-remove-person",
+                                "type": "ListRemoveQuestion",
+                                "question": {
+                                    "id": "visitors-remove-question",
+                                    "type": "General",
+                                    "title": "Are you sure you want to remove this person?",
+                                    "answers": [
+                                        {
+                                            "id": "visitors-remove-confirmation",
+                                            "mandatory": true,
+                                            "type": "Radio",
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": {
+                                "item_title": {
+                                    "text": "{person_name}",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "person_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "delimiter": " ",
+                                                        "list_to_concatenate": {
+                                                            "identifier": [
+                                                                "first-name",
+                                                                "last-name"
+                                                            ],
                                                             "source": "answers"
                                                         }
                                                     },
@@ -944,6 +1088,83 @@
                                 }
                             ],
                             "type": "Question"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "visitors-section",
+            "title": "Visitors",
+            "repeat": {
+                "for_list": "visitor"
+            },
+            "groups": [
+                {
+                    "id": "visitors-group",
+                    "title": "Visitors",
+                    "blocks": [
+                        {
+                            "id": "visitors-date-of-birth",
+                            "type": "Question",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "visitors-date-of-birth-answer",
+                                        "mandatory": true,
+                                        "maximum": {
+                                            "value": "now"
+                                        },
+                                        "minimum": {
+                                            "offset_by": {
+                                                "years": -115
+                                            },
+                                            "value": "2019-10-13"
+                                        },
+                                        "type": "Date"
+                                    }
+                                ],
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "description": "For example 31 12 1970"
+                                        }
+                                    ]
+                                },
+                                "id": "visitors-date-of-birth-question",
+                                "title": {
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "person_name_possessive",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "delimiter": " ",
+                                                        "list_to_concatenate": {
+                                                            "identifier": [
+                                                                "first-name",
+                                                                "last-name"
+                                                            ],
+                                                            "source": "answers"
+                                                        }
+                                                    },
+                                                    "transform": "concatenate_list"
+                                                },
+                                                {
+                                                    "arguments": {
+                                                        "string_to_format": {
+                                                            "source": "previous_transform"
+                                                        }
+                                                    },
+                                                    "transform": "format_possessive"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "text": "What is <em>{person_name_possessive}</em> date of birth?"
+                                },
+                                "type": "General"
+                            }
                         }
                     ]
                 }

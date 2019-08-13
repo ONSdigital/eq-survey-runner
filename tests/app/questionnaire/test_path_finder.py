@@ -680,6 +680,12 @@ class TestPathFinder(
                 list_item_id=None,
             ),
             Location(
+                section_id='section',
+                block_id='visitors-block',
+                list_name=None,
+                list_item_id=None,
+            ),
+            Location(
                 section_id='personal-details-section',
                 block_id='proxy',
                 list_name='people',

@@ -6,10 +6,14 @@ const PrimaryPersonAddPage = require('../../../generated_pages/repeating_section
 const FirstListCollectorPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/list-collector.page');
 const FirstListCollectorAddPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/list-collector-add.page');
 
-const SecondListCollecerInterstitialPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/next-interstitial.page');
+const SecondListCollectorInterstitialPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/next-interstitial.page');
 const SecondListCollectorPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/another-list-collector-block.page');
 const SecondListCollectorAddPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/another-list-collector-block-add.page');
-const SecondListCollectorRemovePage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/another-list-collector-block-remove.page');
+
+const VisitorsListCollectorPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/visitors-block.page');
+const VisitorsListCollectorAddPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/visitors-block-add.page');
+const VisitorsListCollectorRemovePage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/visitors-block-remove.page');
+const VisitorsDateOfBirthPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/visitors-date-of-birth.page');
 
 const ProxyPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/proxy.page');
 const DateOfBirthPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/date-of-birth.page');
@@ -61,7 +65,7 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
 
             .click(FirstListCollectorPage.no())
             .click(FirstListCollectorPage.submit())
-            .click(SecondListCollecerInterstitialPage.submit())
+            .click(SecondListCollectorInterstitialPage.submit())
 
             // Add other household members (Second list collector)
 
@@ -73,7 +77,7 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
 
             // Complete the section and Go to the Hub
 
-            .click(SecondListCollectorPage.no())
+            .click(SecondListCollectorPage.no()).pause(5)
             .click(FirstListCollectorPage.submit());
 
         });
@@ -163,6 +167,38 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
         .isSelected(SexPage.female()).should.eventually.be.true;
     });
 
+    it('When the user adds 2 visitors to the household then a section for each visitor should be display on the hub', function () {
+      return browser
+      // Ensure no other sections exist
+        .isExisting(HubPage.summaryRowState(6)).should.eventually.be.false
+
+        // Start section for first visitor
+        .click(HubPage.submit())
+
+        .getText(SexPage.questionText()).should.eventually.equal('This is the visitors list collector. Add a visitor?')
+
+        // Add first visitor
+        .click(VisitorsListCollectorPage.yes())
+        .click(VisitorsListCollectorPage.submit())
+        .setValue(VisitorsListCollectorAddPage.firstName(), 'Joe')
+        .setValue(VisitorsListCollectorAddPage.lastName(), 'Public')
+        .click(VisitorsListCollectorAddPage.submit())
+
+        // Add second visitor
+        .click(VisitorsListCollectorPage.yes())
+        .click(VisitorsListCollectorPage.submit())
+        .setValue(VisitorsListCollectorAddPage.firstName(), 'Yvonne')
+        .setValue(VisitorsListCollectorAddPage.lastName(), 'Yoe')
+        .click(VisitorsListCollectorAddPage.submit())
+        .click(VisitorsListCollectorPage.no())
+        .click(VisitorsListCollectorPage.submit())
+
+        .getText(HubPage.summaryRowState(6)).should.eventually.equal('Not started')
+        .getText(HubPage.summaryRowState(7)).should.eventually.equal('Not started')
+
+        .isExisting(HubPage.summaryRowState(8)).should.eventually.be.false;
+    });
+
     it('When the user clicks \'Continue\' from the Hub, Then they should progress to the first incomplete section', function () {
       return browser
         .click(HubPage.submit())
@@ -228,6 +264,18 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
         .click(SexPage.female())
         .click(SexPage.submit())
 
+        .click(HubPage.submit())
+        .setValue(VisitorsDateOfBirthPage.day(), '03')
+        .setValue(VisitorsDateOfBirthPage.month(), '09')
+        .setValue(VisitorsDateOfBirthPage.year(), '1975')
+        .click(VisitorsDateOfBirthPage.submit())
+
+        .click(HubPage.submit())
+        .setValue(VisitorsDateOfBirthPage.day(), '31')
+        .setValue(VisitorsDateOfBirthPage.month(), '07')
+        .setValue(VisitorsDateOfBirthPage.year(), '1999')
+        .click(VisitorsDateOfBirthPage.submit())
+
         .getText(HubPage.submit()).should.eventually.equal('Submit survey')
         .getText(HubPage.displayedName()).should.eventually.equal('Submit survey');
     });
@@ -237,19 +285,19 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
         .click(HubPage.summaryRowLink(1))
 
         // Add another householder
-        .click(SecondListCollectorPage.yes())
-        .click(SecondListCollectorPage.submit())
+        .click(VisitorsListCollectorPage.yes())
+        .click(VisitorsListCollectorPage.submit())
 
-        .setValue(SecondListCollectorAddPage.firstName(), 'Anna')
-        .setValue(SecondListCollectorAddPage.lastName(), 'Doe')
+        .setValue(VisitorsListCollectorAddPage.firstName(), 'Anna')
+        .setValue(VisitorsListCollectorAddPage.lastName(), 'Doe')
 
         .click(SecondListCollectorAddPage.submit())
-        .click(SecondListCollectorPage.no())
-        .click(SecondListCollectorPage.submit())
+        .click(VisitorsListCollectorPage.no())
+        .click(VisitorsListCollectorPage.submit())
 
         // New householder added to hub
-        .getText(HubPage.summaryRowState(6)).should.eventually.equal('Not started')
-        .isExisting(HubPage.summaryRowState(6)).should.eventually.be.true
+        .getText(HubPage.summaryRowState(8)).should.eventually.equal('Not started')
+        .isExisting(HubPage.summaryRowState(8)).should.eventually.be.true
 
         .getText(HubPage.submit()).should.not.eventually.equal('Submit survey')
         .getText(HubPage.submit()).should.eventually.equal('Continue')
@@ -261,17 +309,17 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
     it('When the user removes a member from the household, Then their section is not longer displayed on he Hub', function () {
       return browser
       // Final householder exists
-        .isExisting(HubPage.summaryRowState(6)).should.eventually.be.true
+        .isExisting(HubPage.summaryRowState(8)).should.eventually.be.true
 
         .click(HubPage.summaryRowLink(1))
 
         // Remove final householder
-        .click(SecondListCollectorPage.listRemoveLink(5))
-        .click(SecondListCollectorRemovePage.yes())
-        .click(SecondListCollectorPage.submit())
+        .click(VisitorsListCollectorPage.listRemoveLink(3))
+        .click(VisitorsListCollectorRemovePage.yes())
+        .click(VisitorsListCollectorPage.submit())
 
         // Final householder no longer exists
-        .isExisting(HubPage.summaryRowState(6)).should.eventually.be.false;
+        .isExisting(HubPage.summaryRowState(8)).should.eventually.be.false;
     });
 
     it('When the user submits, it should show the thank you page', function () {
