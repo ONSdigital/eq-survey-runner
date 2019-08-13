@@ -113,7 +113,7 @@ def get_questionnaire(schema, questionnaire_store):
     completed_section_ids = questionnaire_store.progress_store.completed_section_ids
     hub_required_sections_complete = all(
         section_id in completed_section_ids
-        for section_id in schema.get_hub_required_section_ids()
+        for section_id in schema.get_section_ids_required_for_hub()
     )
 
     if not schema.is_hub_enabled() or not hub_required_sections_complete:

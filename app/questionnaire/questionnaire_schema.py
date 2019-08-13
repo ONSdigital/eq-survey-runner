@@ -25,7 +25,7 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def is_hub_enabled(self):
         return self.json.get('hub', {}).get('enabled')
 
-    def get_hub_required_section_ids(self):
+    def get_section_ids_required_for_hub(self):
         return self.json.get('hub', {}).get('required_completed_sections', [])
 
     def get_sections(self):
