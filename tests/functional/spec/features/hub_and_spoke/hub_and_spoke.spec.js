@@ -232,7 +232,7 @@ describe('Feature: Hub and Spoke', function () {
   });
 
   describe('Given a user opens a schema with required sections', function () {
-    it('It should not show first of all', function () {
+    it('The hub should not show first of all', function () {
       return helpers.openQuestionnaire('test_hub_complete_sections.json')
         .then(() => {
           return browser
@@ -240,7 +240,7 @@ describe('Feature: Hub and Spoke', function () {
        });
     });
 
-    it('It should only display when required sections are complete', function () {
+    it('The hub should only display when required sections are complete', function () {
       return helpers.openQuestionnaire('test_hub_complete_sections.json')
         .then(() => {
           return browser
