@@ -5,6 +5,7 @@ from app.questionnaire.placeholder_renderer import (
     PlaceholderRenderer,
     find_pointers_containing,
 )
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -97,7 +98,7 @@ class TestPlaceholderRenderer(AppContextTestCase):
 
         renderer = PlaceholderRenderer(
             language='en',
-            schema=Mock(),
+            schema=QuestionnaireSchema({}),
             answer_store=AnswerStore(
                 [
                     {'answer_id': 'first-name', 'value': 'Hal'},
@@ -131,7 +132,7 @@ class TestPlaceholderRenderer(AppContextTestCase):
 
         renderer = PlaceholderRenderer(
             language='en',
-            schema=Mock(),
+            schema=QuestionnaireSchema({}),
             answer_store=AnswerStore(
                 [
                     {'answer_id': 'first-name', 'value': 'Alfred'},

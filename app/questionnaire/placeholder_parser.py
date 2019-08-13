@@ -1,5 +1,4 @@
 from app.data_model.answer_store import AnswerStore
-from app.libs.utils import get_answer
 from app.questionnaire.placeholder_transforms import PlaceholderTransforms
 
 
@@ -20,13 +19,14 @@ class PlaceholderParser:
         self._transformer = PlaceholderTransforms(language)
 
     def _lookup_answer(self, answer_id):
+        if self._schema:
+            list_item_id = self._schema.get_list_item_id_for_answer_id(
+                answer_id, self._list_item_id
+            )
+        else:
+            list_item_id = None
 
-        answer = get_answer(
-            answer_store=self._answer_store,
-            schema=self._schema,
-            answer_id=answer_id,
-            list_item_id=self._list_item_id,
-        )
+        answer = self._answer_store.get_answer(answer_id, list_item_id)
 
         if answer:
             return answer.value

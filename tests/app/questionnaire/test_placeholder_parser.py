@@ -1,8 +1,8 @@
 import unittest
-from unittest.mock import Mock
 
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.placeholder_parser import PlaceholderParser
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
 
 class TestPlaceholderParser(unittest.TestCase):
@@ -84,7 +84,7 @@ class TestPlaceholder(unittest.TestCase):
         )
 
         parser = PlaceholderParser(
-            language='en', schema=Mock(), answer_store=answer_store
+            language='en', schema=QuestionnaireSchema({}), answer_store=answer_store
         )
         placeholders = parser.parse(placeholder_list)
 

@@ -1,4 +1,4 @@
-from typing import List, Mapping
+from typing import List, Mapping, Optional
 
 from structlog import get_logger
 
@@ -64,10 +64,10 @@ class PathFinder:
 
         for section_schema in schema_sections:
             section_id = section_schema['id']
-            for_list = self.schema.get_repeating_list_for_section(section_id)
+            repeating_list = self.schema.get_repeating_list_for_section(section_id)
 
-            if for_list:
-                for list_item_id in self.list_store[for_list].items:
+            if repeating_list:
+                for list_item_id in self.list_store[repeating_list].items:
                     path = path + list(
                         self.routing_path(
                             section_id=section_id, list_item_id=list_item_id
@@ -78,7 +78,9 @@ class PathFinder:
 
         return path
 
-    def routing_path(self, section_id, list_item_id=None) -> RoutingPath:
+    def routing_path(
+        self, section_id: str, list_item_id: Optional[str] = None
+    ) -> RoutingPath:
         """
         Visits all the blocks in a section and returns a path given a list of answers.
         """
@@ -117,7 +119,7 @@ class PathFinder:
     def _build_path(self, blocks, path, current_location):
         # Keep going unless we've hit the last block
         block_index = 0
-        for_list = self.schema.get_repeating_list_for_section(
+        repeating_list = self.schema.get_repeating_list_for_section(
             current_location.section_id
         )
         while block_index < len(blocks):
@@ -134,11 +136,11 @@ class PathFinder:
             )
 
             if not is_skipping:
-                if for_list and current_location.list_item_id:
+                if repeating_list and current_location.list_item_id:
                     this_location = Location(
                         section_id=current_location.section_id,
                         block_id=block['id'],
-                        list_name=for_list,
+                        list_name=repeating_list,
                         list_item_id=current_location.list_item_id,
                     )
                 else:

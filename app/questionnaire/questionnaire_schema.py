@@ -93,6 +93,16 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
         return self.is_block_in_repeating_section(block_id=block['id'])
 
+    def get_list_item_id_for_answer_id(self, answer_id, list_item_id):
+        if (
+            list_item_id
+            and not self.is_answer_in_list_collector_block(answer_id)
+            and not self.is_answer_in_repeating_section(answer_id)
+        ):
+            return None
+
+        return list_item_id
+
     def get_answer_ids(self):
         return self._answers_by_id.values()
 

@@ -30,7 +30,30 @@ class ProgressStore:
 
     @staticmethod
     def _build_map(in_progress_sections: List[Dict]) -> Dict:
-        """ Builds the progress_store's data structure from a list of progress dictionaries"""
+        """
+        Builds the progress_store's data structure from a list of progress dictionaries
+
+        The `section_key` is tuple consisting of `section_id` and the `list_item_id`
+        The `section_progress` is a mapping created from the Progress object
+
+        Example structure:
+        {
+            ('some-section', 'a-list-item-id'): {
+                'section_id': 'some-section',
+                'status': 'COMPLETED',
+                'list_item_id': 'a-list-item-id',
+                'locations': [
+                    {
+                        'section_id': 'some-section',
+                        'block_id': 'some-block',
+                        'list_name': 'people',
+                        'list_item_id': 'a-list-item-id',
+                    }
+                ],
+            }
+        }
+        """
+
         return {
             (section['section_id'], section.get('list_item_id')): Progress.from_dict(
                 section
@@ -117,11 +140,11 @@ class ProgressStore:
         *Not efficient.*
         """
 
-        section_keys_to_delete = []
-
-        for section_key in self._progress:
-            if section_key[1] == list_item_id:
-                section_keys_to_delete.append((section_key[0], section_key[1]))
+        section_keys_to_delete = [
+            (section, section_list_item_id)
+            for section, section_list_item_id in self._progress
+            if section_list_item_id == list_item_id
+        ]
 
         for section_key in section_keys_to_delete:
             del self._progress[section_key]

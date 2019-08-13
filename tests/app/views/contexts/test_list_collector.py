@@ -7,6 +7,7 @@ from app.data_model.list_store import ListStore
 from app.forms.questionnaire_form import QuestionnaireForm
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.setup import create_app
+from app.utilities.schema import load_schema_from_name
 from app.views.contexts import list_collector
 
 
@@ -171,7 +172,7 @@ def form():
 
 @pytest.fixture
 def schema():
-    return Mock(QuestionnaireSchema({}))
+    return MagicMock(QuestionnaireSchema({}))
 
 
 @pytest.fixture
@@ -208,7 +209,7 @@ def test_build_list_collector_context_no_summary(
 
 
 def test_build_list_items_summary_context(
-    rendered_block, schema, answer_store, list_store, app
+    rendered_block, answer_store, list_store, app
 ):
     expected = [
         {
@@ -240,6 +241,7 @@ def test_build_list_items_summary_context(
         },
     ]
 
+    schema = load_schema_from_name('test_list_collector_primary_person')
     actual = list_collector.build_list_items_summary_context(
         rendered_block, schema, answer_store, list_store, 'en'
     )
@@ -248,9 +250,10 @@ def test_build_list_items_summary_context(
 
 
 def test_assert_primary_person_string_appended(
-    rendered_block, schema, answer_store, list_store, app
+    rendered_block, answer_store, list_store, app
 ):
     list_store['people'].primary_person = 'PlwgoG'
+    schema = load_schema_from_name('test_list_collector_primary_person')
     list_item_context = list_collector.build_list_items_summary_context(
         rendered_block, schema, answer_store, list_store, 'en'
     )

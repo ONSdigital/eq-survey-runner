@@ -182,10 +182,10 @@ class Router:
 
         all_section_keys = []
         for section_id in all_section_ids:
-            for_list = self._schema.get_repeating_list_for_section(section_id)
+            repeating_list = self._schema.get_repeating_list_for_section(section_id)
 
-            if for_list:
-                for list_item_id in self._list_store[for_list].items:
+            if repeating_list:
+                for list_item_id in self._list_store[repeating_list].items:
                     section_key = (section_id, list_item_id)
                     all_section_keys.append(section_key)
             else:

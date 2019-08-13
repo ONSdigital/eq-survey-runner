@@ -4,7 +4,6 @@ from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from app.libs.utils import get_answer
 from app.questionnaire.location import Location
 
 MAX_REPEATS = 25
@@ -104,9 +103,7 @@ def get_date_match_value(date_comparison, answer_store, schema, metadata):
         else:
             match_value = date_comparison['value']
     elif 'id' in date_comparison:
-        match_value = get_answer_store_value(
-            date_comparison['id'], answer_store, schema
-        )
+        match_value = get_answer_value(date_comparison['id'], answer_store, schema)
     elif 'meta' in date_comparison:
         match_value = get_metadata_value(metadata, date_comparison['meta'])
 
@@ -189,7 +186,7 @@ def _get_comparison_id_value(
     answer_id = when_rule['comparison']['id']
     list_item_id = current_location.list_item_id if current_location else None
 
-    return get_answer_store_value(
+    return get_answer_value(
         answer_id,
         answer_store,
         schema,
@@ -252,7 +249,7 @@ def _get_when_rule_value(
     :return: The value to use in a when rule
     """
     if 'id' in when_rule:
-        value = get_answer_store_value(
+        value = get_answer_value(
             when_rule['id'],
             answer_store,
             schema,
@@ -288,7 +285,7 @@ def evaluate_when_rules(
     :param answer_store: store of answers to evaluate
     :param list_store: store of lists to evaluate
     :param current_location: The location to use when evaluating when rules
-    :param routing_path: rhe location to use when evaluating when rules
+    :param routing_path: The location to use when evaluating when rules
     :return: True if the when condition has been met otherwise False
     """
     for when_rule in when_rules:
@@ -320,22 +317,20 @@ def evaluate_when_rules(
     return True
 
 
-def get_answer_store_value(
+def get_answer_for_answer_id(answer_id, answer_store, schema, list_item_id):
+    list_item_id = schema.get_list_item_id_for_answer_id(answer_id, list_item_id)
+
+    answer = answer_store.get_answer(
+        answer_id, list_item_id
+    ) or schema.get_default_answer(answer_id)
+
+    return answer
+
+
+def get_answer_value(
     answer_id, answer_store, schema, routing_path=None, list_item_id=None
 ):
-    """ Return answer value assuming it is on the routing path.
-    If answer is not on the routing path, return None
-    If routing_path empty, return answer value
-    """
-    if list_item_id and not schema.is_answer_in_repeating_section(answer_id):
-        list_item_id = None
-
-    answer = get_answer(
-        answer_store=answer_store,
-        schema=schema,
-        answer_id=answer_id,
-        list_item_id=list_item_id,
-    ) or schema.get_default_answer(answer_id)
+    answer = get_answer_for_answer_id(answer_id, answer_store, schema, list_item_id)
 
     if not answer:
         return None

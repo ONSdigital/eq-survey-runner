@@ -46,7 +46,7 @@
                                 "question": {
                                     "id": "primary-person-add-or-edit-question",
                                     "type": "General",
-                                    "title": "What is your name",
+                                    "title": "What is your name?",
                                     "answers": [
                                         {
                                             "id": "first-name",
