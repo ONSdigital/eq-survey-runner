@@ -1,4 +1,4 @@
-from typing import List, Dict, Tuple
+from typing import List, MutableMapping, Tuple
 
 from app.data_model.progress import Progress
 from app.questionnaire.location import Location
@@ -16,20 +16,22 @@ class ProgressStore:
     that have been started.
     """
 
-    def __init__(self, in_progress_sections: List[Dict] = None) -> None:
+    def __init__(self, in_progress_sections: List[MutableMapping] = None) -> None:
         """
         Instantiate a ProgressStore object that tracks the status of sections and its completed locations
         Args:
             in_progress_sections: A hierarchical dict containing the section status and completed locations
         """
         self._is_dirty = False  # type: bool
-        self._progress = self._build_map(in_progress_sections or [])  # type: Dict
+        self._progress = self._build_map(
+            in_progress_sections or []
+        )  # type: MutableMapping
 
     def __contains__(self, section_key) -> bool:
         return section_key in self._progress
 
     @staticmethod
-    def _build_map(in_progress_sections: List[Dict]) -> Dict:
+    def _build_map(in_progress_sections: List[MutableMapping]) -> MutableMapping:
         """
         Builds the progress_store's data structure from a list of progress dictionaries
 
