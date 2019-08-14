@@ -42,11 +42,12 @@ local question(title) = {
         {
           label: 'Any other Asian background',
           value: 'Other',
+          description: 'Select to enter answer',
           detail_answer: {
             id: 'asian-ethnic-group-answer-other',
             type: 'TextField',
             mandatory: false,
-            label: 'Please specify Asian background',
+            label: 'Enter Asian background',
           },
         },
       ],

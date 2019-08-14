@@ -34,11 +34,12 @@ local englandOptions = {
     {
       label: 'Elsewhere',
       value: 'Other',
+      description: 'Select to enter answer',
       detail_answer: {
         id: 'country-of-birth-answer-other',
         type: 'TextField',
         mandatory: false,
-        label: 'Please specify the current name of the country',
+        label: 'Enter the current name of the country',
       },
     },
   ],
@@ -69,11 +70,12 @@ local walesOptions = {
     {
       label: 'Elsewhere',
       value: 'Other',
+      description: 'Select to enter answer',
       detail_answer: {
         id: 'country-of-birth-answer-other',
         type: 'TextField',
         mandatory: false,
-        label: 'Please specify the current name of the country',
+        label: 'Enter the current name of the country',
       },
     },
   ],

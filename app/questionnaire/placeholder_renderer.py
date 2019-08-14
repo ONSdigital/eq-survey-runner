@@ -38,8 +38,9 @@ class PlaceholderRenderer:
     strings
     """
 
-    def __init__(self, language, answer_store=None, metadata=None):
+    def __init__(self, language, answer_store=None, list_item_id=None, metadata=None):
         self.language = language
+        self.list_item_id = list_item_id
         self.answer_store = answer_store or AnswerStore()
         self.metadata = metadata
         self.placeholders = {}
@@ -48,6 +49,7 @@ class PlaceholderRenderer:
         placeholder_parser = PlaceholderParser(
             language=self.language,
             answer_store=self.answer_store,
+            list_item_id=self.list_item_id,
             metadata=self.metadata,
         )
 

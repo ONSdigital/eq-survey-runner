@@ -216,36 +216,16 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
     except InvalidLocationException:
         return redirect(url_for('.get_questionnaire'))
 
-    if block_handler.rendered_block['type'] == 'RelationshipCollector':
+    if block_handler.block['type'] == 'RelationshipCollector':
         return redirect(block_handler.get_first_location_url())
 
     if 'action[sign_out]' in request.form:
         return redirect(url_for('session.get_sign_out'))
 
-    form = _generate_wtf_form(block_handler.rendered_block, schema, current_location)
-    if request.method == 'GET' or not form.validate():
-        return _render_page(
-            block_type=block_handler.rendered_block['type'],
-            context=block_handler.get_context(form),
-            current_location=current_location,
-            previous_location_url=block_handler.get_previous_location_url(),
-            schema=schema,
-        )
+    required_block = block_handler.rendered_block
 
-    if 'action[save_sign_out]' in request.form:
-        block_handler.save_on_signout(form)
-        return redirect(url_for('session.get_sign_out'))
-
-    if block_handler.rendered_block['type'] in END_BLOCKS:
-        return submit_answers(schema)
-
-    if form.data:
-        block_handler.set_started_at_metadata()
-
-    block_handler.handle_post(form)
-    next_location_url = block_handler.get_next_location_url()
-
-    return redirect(next_location_url)
+    form = _generate_wtf_form(required_block, schema, current_location)
+    return _handle_form_for_block(form, schema, block_handler, current_location)
 
 
 @questionnaire_blueprint.route(
@@ -274,7 +254,7 @@ def relationship(
     form = _generate_wtf_form(block_handler.rendered_block, schema, current_location)
     if request.method == 'GET' or not form.validate():
         return _render_page(
-            block_type=block_handler.rendered_block['type'],
+            block_type=block_handler.block['type'],
             context=block_handler.get_context(form),
             current_location=current_location,
             previous_location_url=block_handler.get_previous_location_url(),
@@ -527,6 +507,32 @@ def get_page_title_for_location(schema, current_location, context):
         page_title = schema.json['title']
 
     return safe_content(page_title)
+
+
+def _handle_form_for_block(form, schema, block_handler, current_location):
+    if request.method == 'GET' or not form.validate():
+        return _render_page(
+            block_type=block_handler.rendered_block['type'],
+            context=block_handler.get_context(form),
+            current_location=current_location,
+            previous_location_url=block_handler.get_previous_location_url(),
+            schema=schema,
+        )
+
+    if 'action[save_sign_out]' in request.form:
+        block_handler.save_on_signout(form)
+        return redirect(url_for('session.get_sign_out'))
+
+    if block_handler.block['type'] in END_BLOCKS:
+        return submit_answers(schema)
+
+    if form.data:
+        block_handler.set_started_at_metadata()
+
+    block_handler.handle_post(form)
+    next_location_url = block_handler.get_next_location_url()
+
+    return redirect(next_location_url)
 
 
 def _render_page(block_type, context, current_location, previous_location_url, schema):

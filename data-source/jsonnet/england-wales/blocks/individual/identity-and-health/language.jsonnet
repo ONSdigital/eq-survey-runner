@@ -44,14 +44,14 @@ local question(title, definitionDescription, region_code) = (
         options: [
           regionOption,
           {
-            label: 'Other',
+            label: 'Other, including British Sign Language',
             value: 'Other',
-            description: 'Including British Sign Language',
+            description: 'Select to enter answer',
             detail_answer: {
               id: 'language-answer-other',
               type: 'TextField',
               mandatory: false,
-              label: 'Please specify main language',
+              label: 'Enter main language',
             },
           },
         ],

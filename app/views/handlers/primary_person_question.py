@@ -1,9 +1,9 @@
-from app.views.handlers.block import BlockHandler
+from app.views.handlers.question import Question
 from app.views.contexts.question import build_question_context
 from app.questionnaire.location import Location
 
 
-class PrimaryPersonQuestion(BlockHandler):
+class PrimaryPersonQuestion(Question):
     @property
     def parent_location(self):
         return Location(self.rendered_block['parent_id'])

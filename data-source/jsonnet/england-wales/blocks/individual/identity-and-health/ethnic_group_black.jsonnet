@@ -30,21 +30,23 @@ local question(title) = {
         {
           label: 'African',
           value: 'African',
+          description: 'Select to enter answer',
           detail_answer: {
             id: 'african-ethnic-group-answer-other',
             type: 'TextField',
             mandatory: false,
-            label: 'Please specify African background',
+            label: 'Enter African background',
           },
         },
         {
           label: 'Any other Black, Black British or Caribbean background',
           value: 'Other',
+          description: 'Select to enter answer',
           detail_answer: {
             id: 'black-ethnic-group-answer-other',
             type: 'TextField',
             mandatory: false,
-            label: 'Please specify any other Black, Black British or Caribbean background',
+            label: 'Enter Black, Black British or Caribbean background',
           },
         },
       ],

@@ -49,8 +49,8 @@ local walesOptions = [
   },
 ];
 
-local nonProxyDetailAnswerLabel = 'Please describe your national identity';
-local proxyDetailAnswerLabel = 'Please describe their national identity';
+local nonProxyDetailAnswerLabel = 'Describe your national identity';
+local proxyDetailAnswerLabel = 'Describe their national identity';
 
 local question(title, definitionContent, detailAnswerLabel, region_code) = (
   local regionOptions = if region_code == 'GB-WLS' then walesOptions else englandOptions;
@@ -85,6 +85,7 @@ local question(title, definitionContent, detailAnswerLabel, region_code) = (
           {
             label: 'Other',
             value: 'Other',
+            description: 'Select to enter answer',
             detail_answer: {
               id: 'national-identity-answer-other',
               type: 'TextField',

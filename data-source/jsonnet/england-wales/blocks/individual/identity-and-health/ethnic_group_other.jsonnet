@@ -30,11 +30,12 @@ local question(title) = {
         {
           label: 'Any other ethnic group',
           value: 'Other',
+          description: 'Select to enter answer',
           detail_answer: {
             id: 'other-ethnic-group-answer-other',
             type: 'TextField',
             mandatory: false,
-            label: 'Please specify other ethnic group',
+            label: 'Enter other ethnic group',
           },
         },
       ],
