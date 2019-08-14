@@ -49,11 +49,17 @@
   {% if content.summary.list_item_summaries %}
     {% for list_item_summary in content.summary.list_item_summaries %}
       <h2>{{list_item_summary.title}}</h2>
-      {% set listItems = list_item_summary.list_items %}
-      {% include 'partials/summary/list-summary.html' %}
-      <div class="u-mb-l">
-        <a href="{{list_item_summary.add_link}}">{{list_item_summary.add_link_text}}</a>
-      </div>
+        {% if list_item_summary.list_items %}
+          {% set listItems = list_item_summary.list_items %}
+          {% include 'partials/summary/list-summary.html' %}
+        {% else %}
+          <div class="u-mb-s">
+            {{ list_item_summary.empty_list_text }}
+          </div>
+        {% endif %}
+        <div class="u-mb-l">
+          <a href="{{list_item_summary.add_link}}">{{list_item_summary.add_link_text}}</a>
+        </div>
     {% endfor %}
   {% endif %}
 
