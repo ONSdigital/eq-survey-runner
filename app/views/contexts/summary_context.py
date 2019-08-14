@@ -24,11 +24,11 @@ def build_summary_rendering_context(
     list_store: ListStore,
     metadata: Mapping,
     current_location: Location = None,
-    schema_sections: List[Mapping] = None,
+    sections: List[Mapping] = None,
 ) -> List:
     path_finder = PathFinder(schema, answer_store, metadata, list_store=list_store)
 
-    sections = schema_sections or schema.get_sections()
+    sections = sections or schema.get_sections()
     paths = [path_finder.routing_path(section['id']) for section in sections]
 
     return [

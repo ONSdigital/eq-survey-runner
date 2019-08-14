@@ -1,4 +1,4 @@
-from typing import List, MutableMapping, Tuple
+from typing import List, Tuple, Mapping, MutableMapping
 
 from app.data_model.progress import Progress
 from app.questionnaire.location import Location
@@ -16,11 +16,11 @@ class ProgressStore:
     that have been started.
     """
 
-    def __init__(self, in_progress_sections: List[MutableMapping] = None) -> None:
+    def __init__(self, in_progress_sections: List[Mapping] = None) -> None:
         """
         Instantiate a ProgressStore object that tracks the status of sections and its completed locations
         Args:
-            in_progress_sections: A hierarchical dict containing the section status and completed locations
+            in_progress_sections: A list of hierarchical dict containing the section status and completed locations
         """
         self._is_dirty = False  # type: bool
         self._progress = self._build_map(
@@ -31,12 +31,12 @@ class ProgressStore:
         return section_key in self._progress
 
     @staticmethod
-    def _build_map(in_progress_sections: List[MutableMapping]) -> MutableMapping:
+    def _build_map(section_progress_list: List[Mapping]) -> MutableMapping:
         """
         Builds the progress_store's data structure from a list of progress dictionaries
 
         The `section_key` is tuple consisting of `section_id` and the `list_item_id`
-        The `section_progress` is a mapping created from the Progress object
+        The `section_progress` is a mutableMapping created from the Progress object
 
         Example structure:
         {
@@ -57,10 +57,11 @@ class ProgressStore:
         """
 
         return {
-            (section['section_id'], section.get('list_item_id')): Progress.from_dict(
-                section
-            )
-            for section in in_progress_sections
+            (
+                section_progress['section_id'],
+                section_progress.get('list_item_id'),
+            ): Progress.from_dict(section_progress)
+            for section_progress in section_progress_list
         }
 
     @property
@@ -143,9 +144,9 @@ class ProgressStore:
         """
 
         section_keys_to_delete = [
-            (section, section_list_item_id)
-            for section, section_list_item_id in self._progress
-            if section_list_item_id == list_item_id
+            (section_id, progress_list_item_id)
+            for section_id, progress_list_item_id in self._progress
+            if progress_list_item_id == list_item_id
         ]
 
         for section_key in section_keys_to_delete:

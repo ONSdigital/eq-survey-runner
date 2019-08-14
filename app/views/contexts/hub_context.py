@@ -114,9 +114,9 @@ class HubContext:
     def _get_rows(self) -> List[Mapping[str, Union[str, List]]]:
         rows = []
 
-        for section_schema in self._schema.get_sections():
-            section_title = section_schema['title']
-            section_id = section_schema['id']
+        for section in self._schema.get_sections():
+            section_title = section['title']
+            section_id = section['id']
 
             repeating_list = self._schema.get_repeating_list_for_section(section_id)
 

@@ -60,10 +60,10 @@ class PathFinder:
 
     def full_routing_path(self, sections=None):
         path = []
-        schema_sections = sections or self.schema.get_sections()
+        sections = sections or self.schema.get_sections()
 
-        for section_schema in schema_sections:
-            section_id = section_schema['id']
+        for section in sections:
+            section_id = section['id']
             repeating_list = self.schema.get_repeating_list_for_section(section_id)
 
             if repeating_list:
@@ -86,10 +86,11 @@ class PathFinder:
         """
         blocks: List[Mapping] = []
         path: List[Location] = []
-        section_schema = self.schema.get_section(section_id)
-        current_location = Location(section_id=section_id, list_item_id=list_item_id)
 
-        for group in section_schema['groups']:
+        current_location = Location(section_id=section_id, list_item_id=list_item_id)
+        section = self.schema.get_section(section_id)
+
+        for group in section['groups']:
             if 'skip_conditions' in group:
                 if evaluate_skip_conditions(
                     group['skip_conditions'],

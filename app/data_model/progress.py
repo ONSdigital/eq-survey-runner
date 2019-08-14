@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from typing import MutableMapping, List, Optional
+from typing import MutableMapping, List, Optional, Mapping
 
 from app.questionnaire.location import Location
 
@@ -14,7 +14,7 @@ class Progress:
     list_item_id: Optional[str] = None
 
     @classmethod
-    def from_dict(cls, progress_dict: MutableMapping) -> Progress:
+    def from_dict(cls, progress_dict: Mapping) -> Progress:
         return cls(
             section_id=progress_dict['section_id'],
             locations=[
@@ -25,7 +25,7 @@ class Progress:
             list_item_id=progress_dict.get('list_item_id'),
         )
 
-    def for_json(self) -> MutableMapping:
+    def for_json(self) -> Mapping:
         locations_for_json = [location.for_json() for location in self.locations]
 
         output = self.to_dict()
