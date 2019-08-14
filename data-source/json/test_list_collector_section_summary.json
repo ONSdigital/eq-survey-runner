@@ -30,6 +30,63 @@
                     "title": "Questions",
                     "blocks": [
                         {
+                            "id": "primary-person-list-collector",
+                            "type": "PrimaryPersonListCollector",
+                            "for_list": "people",
+                            "add_or_edit_answer": {
+                                "id": "you-live-here",
+                                "value": "Yes"
+                            },
+                            "add_or_edit_block": {
+                                "id": "add-or-edit-primary-person",
+                                "type": "PrimaryPersonListAddOrEditQuestion",
+                                "question": {
+                                    "id": "primary-person-add-or-edit-question",
+                                    "type": "General",
+                                    "title": "What is your name",
+                                    "answers": [
+                                        {
+                                            "id": "first-name",
+                                            "label": "First name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "last-name",
+                                            "label": "Last name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            },
+                            "question": {
+                                "id": "primary-confirmation-question",
+                                "type": "General",
+                                "title": "Do you live here?",
+                                "answers": [
+                                    {
+                                        "id": "you-live-here",
+                                        "mandatory": true,
+                                        "type": "Radio",
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "summary": {
+                                "hide_on_section_summary": true
+                            }
+                        },
+                        {
                             "id": "list-collector",
                             "type": "ListCollector",
                             "for_list": "people",
@@ -163,28 +220,6 @@
                             "hide_on_section_summary": false
                         },
                         {
-                            "type": "Question",
-                            "id": "block",
-                            "question": {
-                                "answers": [
-                                    {
-                                        "id": "answer",
-                                        "label": "How much did you spend?",
-                                        "mandatory": false,
-                                        "q_code": "0",
-                                        "type": "Currency",
-                                        "currency": "GBP",
-                                        "decimal_places": 2
-                                    }
-                                ],
-                                "description": "",
-                                "id": "question",
-                                "title": "Currency Input Test",
-                                "type": "General"
-                            },
-                            "routing_rules": []
-                        },
-                        {
                             "id": "visitor-list-collector",
                             "type": "ListCollector",
                             "for_list": "visitors",
@@ -193,7 +228,7 @@
                                 "value": "Yes"
                             },
                             "remove_answer": {
-                                "id": "remove-visitor",
+                                "id": "remove-visitor-confirmation",
                                 "value": "Yes"
                             },
                             "question": {
