@@ -33,9 +33,9 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
       return helpers.openQuestionnaire(Hub_and_spoke_schema)
         .then(() => {
           return browser
-          // Ensure we are on the Hub
+            // Ensure we are on the Hub
             .getUrl().should.eventually.contain(HubPage.url())
-            // Ensure the first section is not stared
+            // Ensure the first section is not started
             .getText(HubPage.summaryRowState(1)).should.eventually.equal('Not started')
             // Start first section to add household members
             .click(HubPage.summaryRowLink(1))
@@ -75,7 +75,7 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
             .setValue(SecondListCollectorAddPage.lastName(), 'Doe')
             .click(SecondListCollectorAddPage.submit())
 
-            // Complete the section and Go to the Hub
+            // Go back to the Hub
 
             .click(SecondListCollectorPage.no()).pause(5)
             .click(FirstListCollectorPage.submit());
@@ -83,13 +83,12 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
         });
     });
 
-    beforeEach('Navigate go Hub', function () {
+    beforeEach('Navigate to the Hub', function () {
       return browser.url(HubPage.url());
     });
 
     it('Then a section for each household member should be displayed', function () {
       return browser
-      // .click(HubPage.submit())
         .getUrl().should.eventually.contain(HubPage.url())
 
         .getText(HubPage.summaryRowState(2)).should.eventually.equal('Not started')
@@ -169,7 +168,7 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
 
     it('When the user adds 2 visitors to the household then a section for each visitor should be display on the hub', function () {
       return browser
-      // Ensure no other sections exist
+        // Ensure no other sections exist
         .isExisting(HubPage.summaryRowState(6)).should.eventually.be.false
 
         // Start section for first visitor
@@ -202,7 +201,6 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
     it('When the user clicks \'Continue\' from the Hub, Then they should progress to the first incomplete section', function () {
       return browser
         .click(HubPage.submit())
-
         .getText(ConfirmDateOfBirthPage.questionText()).should.eventually.equal('What is Marcus Twin’s sex?');
     });
 
@@ -252,7 +250,7 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
     it('When the user completes all sections, Then the Hub should be in the completed state', function () {
       return browser
 
-      // Complete remaining sections
+        // Complete remaining sections
         .click(HubPage.submit())
         .click(SexPage.male())
         .click(SexPage.submit())
@@ -308,7 +306,7 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
 
     it('When the user removes a member from the household, Then their section is not longer displayed on he Hub', function () {
       return browser
-      // Final householder exists
+        // Ensure final householder exists
         .isExisting(HubPage.summaryRowState(8)).should.eventually.be.true
 
         .click(HubPage.summaryRowLink(1))
@@ -318,7 +316,7 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
         .click(VisitorsListCollectorRemovePage.yes())
         .click(VisitorsListCollectorPage.submit())
 
-        // Final householder no longer exists
+        // Ensure final householder no longer exists
         .isExisting(HubPage.summaryRowState(8)).should.eventually.be.false;
     });
 
