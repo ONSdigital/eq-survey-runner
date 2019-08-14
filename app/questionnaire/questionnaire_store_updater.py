@@ -102,14 +102,10 @@ class QuestionnaireStoreUpdater:
         self._progress_store.remove_completed_location(location)
 
     def update_section_status(
-        self, section_status: str, location: Optional[Location] = None
+        self, section_status: str, section_id: str, list_item_id: Optional[str] = None
     ):
-        location = location or self._current_location
-
         self._progress_store.update_section_status(
-            section_status,
-            section_id=location.section_id,
-            list_item_id=location.list_item_id,
+            section_status, section_id, list_item_id
         )
 
     def _update_questionnaire_store_with_form_data(self, form_data):

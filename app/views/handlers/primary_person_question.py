@@ -31,5 +31,6 @@ class PrimaryPersonQuestion(Question):
         self.questionnaire_store_updater.add_completed_location(
             location=self.parent_location
         )
+
         self._update_section_completeness(location=self.parent_location)
         self.questionnaire_store_updater.save()
