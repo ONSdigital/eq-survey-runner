@@ -10,7 +10,10 @@ class ListAction(Question):
 
     @property
     def parent_location(self):
-        return Location(self.rendered_block['parent_id'])
+        return Location(
+            section_id=self._current_location.section_id,
+            block_id=self.rendered_block['parent_id'],
+        )
 
     def is_location_valid(self):
         can_access_parent_location = self.router.can_access_location(

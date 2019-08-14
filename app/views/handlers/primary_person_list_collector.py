@@ -35,8 +35,6 @@ class PrimaryPersonListCollector(Question):
             self._primary_person_id = self.questionnaire_store_updater.add_primary_person(
                 self.rendered_block['for_list']
             )
-            # To ensure answering 'No' doesn't allow the user to skip ahead.
-            self.questionnaire_store_updater.remove_completed_location()
             self.questionnaire_store_updater.save()
         else:
             self.questionnaire_store_updater.remove_primary_person(

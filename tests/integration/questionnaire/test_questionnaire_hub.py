@@ -138,3 +138,62 @@ class TestQuestionnaireHub(IntegrationTestCase):
         self.get('/questionnaire/')
 
         self.assertEqualUrl('/questionnaire/')
+
+    def test_hub_displays_repeating_sections_with_valid_urls(self):
+        # Given the hub is enabled and a section is complete
+        self.launchSurvey('test_repeating_sections_with_hub_and_spoke')
+        # Go to first section
+        self.post(action='submit')
+
+        # Add a primary person
+        self.post({'you-live-here': 'Yes'})
+        self.post({'first-name': 'John', 'last-name': 'Doe'})
+
+        # First list collector
+        self.post({'anyone-else': 'Yes'})
+
+        self.post({'first-name': 'Anna', 'last-name': 'Doe'})
+
+        # Go to second list collector
+        self.post({'anyone-else': 'No'})
+
+        # Submit interstitial page
+        self.post(action='submit')
+
+        # Go to visitors
+        self.post({'another-anyone-else': 'No'})
+
+        # Visitors
+        self.post({'visitors-anyone-else': 'Yes'})
+
+        self.post({'first-name': 'Joe', 'last-name': 'Public'})
+
+        # Go back to hub
+        self.post({'visitors-anyone-else': 'No'})
+
+        # Get URLs for sections. This should be replaced and done by asserting
+        # that the name of the person is present on the hub once that work is done.
+        section_urls = self.getHtmlSoup().find_all(
+            'a', class_='summary__button', href=True
+        )
+
+        # Go to first section
+        first_repeating_section_url = section_urls[1].attrs['href']
+        self.get(first_repeating_section_url)
+        self.post({'proxy-answer': 'Yes'})
+
+        self.assertInBody('What is <em>John Doe’s</em> date of birth?')
+
+        self.get(HUB_URL)
+
+        # Go to second section
+        second_repeating_section_url = section_urls[2].attrs['href']
+        self.get(second_repeating_section_url)
+        self.post({'proxy-answer': 'Yes'})
+
+        self.assertInBody('What is <em>Anna Doe’s</em> date of birth?')
+
+        # Go to visitors
+        visitor_repeating_section_url = section_urls[3].attrs['href']
+        self.get(visitor_repeating_section_url)
+        self.assertInBody('What is <em>Joe Public’s</em> date of birth?')

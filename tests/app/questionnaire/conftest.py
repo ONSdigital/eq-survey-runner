@@ -452,3 +452,48 @@ def question_schema():
             }
         ]
     }
+
+
+@pytest.fixture
+def section_with_repeating_list():
+    return {
+        'sections': [
+            {
+                'id': 'personal-details-section',
+                'title': 'Personal Details',
+                'repeat': {'for_list': 'people'},
+                'groups': [
+                    {
+                        'id': 'personal-details-group',
+                        'title': 'Personal Details',
+                        'blocks': [
+                            {
+                                'id': 'proxy',
+                                'question': {
+                                    'answers': [
+                                        {
+                                            'default': 'Yes',
+                                            'id': 'proxy-answer',
+                                            'mandatory': False,
+                                            'options': [
+                                                {
+                                                    'label': 'No, I’m answering for myself',
+                                                    'value': 'No',
+                                                },
+                                                {'label': 'Yes', 'value': 'Yes'},
+                                            ],
+                                            'type': 'Radio',
+                                        }
+                                    ],
+                                    'id': 'proxy-question',
+                                    'title': 'Are you answering the questions on behalf of someone else?',
+                                    'type': 'General',
+                                },
+                                'type': 'Question',
+                            }
+                        ],
+                    }
+                ],
+            }
+        ]
+    }

@@ -9,8 +9,8 @@ from wtforms import Form, StringField, FormField
 
 from app.questionnaire.rules import (
     get_metadata_value,
-    get_answer_store_value,
     convert_to_datetime,
+    get_answer_value,
 )
 from app.validation.validators import (
     DateCheck,
@@ -249,9 +249,8 @@ def get_referenced_offset_value(answer_min_or_max, answer_store, metadata):
         value = get_metadata_value(metadata, answer_min_or_max['meta'])
     elif 'answer_id' in answer_min_or_max:
         schema = load_schema_from_metadata(metadata)
-        value = get_answer_store_value(
-            answer_min_or_max['answer_id'], answer_store, schema
-        )
+        answer_id = answer_min_or_max['answer_id']
+        value = get_answer_value(answer_id, answer_store, schema)
 
     value = convert_to_datetime(value)
 

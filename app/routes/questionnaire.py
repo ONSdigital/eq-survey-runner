@@ -11,7 +11,6 @@ from sdc.crypto.encrypter import encrypt
 from structlog import get_logger
 
 from app.authentication.no_token_exception import NoTokenException
-from app.views.handlers.block_factory import get_block_handler
 from app.data_model.answer_store import AnswerStore
 from app.data_model.app_models import SubmittedResponse
 from app.data_model.list_store import ListStore
@@ -29,21 +28,20 @@ from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_questionnaire_store
 from app.helpers.template_helper import render_template, safe_content
 from app.keys import KEY_PURPOSE_SUBMISSION
-from app.questionnaire.location import InvalidLocationException, Location
+from app.questionnaire.location import InvalidLocationException
 from app.questionnaire.router import Router
-from app.questionnaire.relationship_location import RelationshipLocation
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
 from app.submitter.submission_failed import SubmissionFailedException
+from app.utilities.schema import load_schema_from_session_data
+from app.views.contexts.hub_context import HubContext
 from app.views.contexts.metadata_context import (
     build_metadata_context_for_survey_completed,
 )
 from app.views.contexts.summary_context import build_summary_rendering_context
-from app.views.contexts.hub_context import HubContext
-from app.utilities.schema import load_schema_from_session_data
+from app.views.handlers.block_factory import get_block_handler
 
 END_BLOCKS = 'Summary', 'Confirmation'
-
 
 logger = get_logger()
 
@@ -112,7 +110,7 @@ def get_questionnaire(schema, questionnaire_store):
     )
 
     are_hub_required_sections_complete = all(
-        section_id in questionnaire_store.progress_store.completed_section_ids
+        questionnaire_store.progress_store.is_section_complete(section_id)
         for section_id in schema.get_section_ids_required_for_hub()
     )
 
@@ -121,9 +119,11 @@ def get_questionnaire(schema, questionnaire_store):
         return redirect(redirect_location.url())
 
     language_code = get_session_store().session_data.language_code
+
     hub = HubContext(
         questionnaire_store.progress_store,
-        schema.get_sections(),
+        questionnaire_store.list_store,
+        schema,
         router.is_survey_complete(),
     )
 
@@ -156,11 +156,11 @@ def post_questionnaire(schema, questionnaire_store):
 
 
 @questionnaire_blueprint.route('sections/<section_id>/', methods=['GET'])
+@questionnaire_blueprint.route('sections/<section_id>/<list_item_id>/', methods=['GET'])
 @login_required
 @with_questionnaire_store
 @with_schema
-def get_section(schema, questionnaire_store, section_id):
-
+def get_section(schema, questionnaire_store, section_id, list_item_id=None):
     progress_store = questionnaire_store.progress_store
     router = Router(
         schema, progress_store=progress_store, list_store=questionnaire_store.list_store
@@ -174,8 +174,12 @@ def get_section(schema, questionnaire_store, section_id):
     if not section:
         return redirect(url_for('.get_questionnaire'))
 
-    section_status = progress_store.get_section_status(section_id)
-    routing_path = path_finder.routing_path(section)
+    routing_path = path_finder.routing_path(
+        section_id=section_id, list_item_id=list_item_id
+    )
+    section_status = progress_store.get_section_status(
+        section_id=section_id, list_item_id=list_item_id
+    )
 
     if section_status == CompletionStatus.COMPLETED:
         return redirect(routing_path[-1].url())
@@ -183,12 +187,14 @@ def get_section(schema, questionnaire_store, section_id):
     if section_status == CompletionStatus.NOT_STARTED:
         return redirect(
             router.get_first_incomplete_location_for_section(
-                section_id, routing_path
+                routing_path, section_id=section_id, list_item_id=list_item_id
             ).url()
         )
 
     return redirect(
-        router.get_last_complete_location_for_section(section_id, routing_path).url()
+        router.get_last_complete_location_for_section(
+            routing_path=routing_path, section_id=section_id, list_item_id=list_item_id
+        ).url()
     )
 
 
@@ -202,14 +208,12 @@ def get_section(schema, questionnaire_store, section_id):
 @with_questionnaire_store
 @with_schema
 def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=None):
-    current_location = Location(
-        block_id=block_id, list_name=list_name, list_item_id=list_item_id
-    )
-
     try:
         block_handler = get_block_handler(
             schema=schema,
-            location=current_location,
+            block_id=block_id,
+            list_name=list_name,
+            list_item_id=list_item_id,
             questionnaire_store=questionnaire_store,
             language=flask_babel.get_locale().language,
         )
@@ -222,41 +226,41 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
     if 'action[sign_out]' in request.form:
         return redirect(url_for('session.get_sign_out'))
 
-    required_block = block_handler.rendered_block
-
-    form = _generate_wtf_form(required_block, schema, current_location)
-    return _handle_form_for_block(form, schema, block_handler, current_location)
+    form = _generate_wtf_form(
+        block_handler.rendered_block, schema, block_handler.current_location
+    )
+    return _handle_form_for_block(
+        form, schema, block_handler, block_handler.current_location
+    )
 
 
 @questionnaire_blueprint.route(
-    '<block_id>/<from_list_item_id>/to/<to_list_item_id>/', methods=['GET', 'POST']
+    '<block_id>/<list_item_id>/to/<to_list_item_id>/', methods=['GET', 'POST']
 )
 @login_required
 @with_questionnaire_store
 @with_schema
-def relationship(
-    schema, questionnaire_store, block_id, from_list_item_id, to_list_item_id
-):
-    current_location = RelationshipLocation(
-        block_id, from_list_item_id, to_list_item_id
-    )
-
+def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_item_id):
     try:
         block_handler = get_block_handler(
             schema=schema,
-            location=current_location,
+            block_id=block_id,
+            list_item_id=list_item_id,
+            to_list_item_id=to_list_item_id,
             questionnaire_store=questionnaire_store,
             language=flask_babel.get_locale().language,
         )
     except InvalidLocationException:
         return redirect(url_for('.get_questionnaire'))
 
-    form = _generate_wtf_form(block_handler.rendered_block, schema, current_location)
+    form = _generate_wtf_form(
+        block_handler.rendered_block, schema, block_handler.current_location
+    )
     if request.method == 'GET' or not form.validate():
         return _render_page(
             block_type=block_handler.block['type'],
             context=block_handler.get_context(form),
-            current_location=current_location,
+            current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
         )
@@ -350,7 +354,10 @@ def get_view_submission(schema):  # pylint: too-many-locals
             metadata = submitted_data.get('metadata')
 
             summary_rendered_context = build_summary_rendering_context(
-                schema, answer_store, list_store, metadata
+                schema=schema,
+                answer_store=answer_store,
+                list_store=list_store,
+                metadata=metadata,
             )
 
             context = {
