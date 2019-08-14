@@ -58,11 +58,10 @@ class PathFinder:
 
         return None
 
-    def full_routing_path(self, sections=None):
+    def full_routing_path(self):
         path = []
-        sections = sections or self.schema.get_sections()
 
-        for section in sections:
+        for section in self.schema.get_sections():
             section_id = section['id']
             repeating_list = self.schema.get_repeating_list_for_section(section_id)
 

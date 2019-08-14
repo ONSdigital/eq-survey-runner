@@ -50,7 +50,7 @@ class Router:
         if (
             self._schema.is_hub_enabled()
             and location.block_id == last_block_location.block_id
-            and section_key in self._progress_store.completed_section_keys
+            and self._progress_store.is_section_complete(section_key)
         ):
             return url_for('.get_questionnaire')
 
@@ -58,7 +58,7 @@ class Router:
         if (
             last_block_type == 'SectionSummary'
             and current_block_type != last_block_type
-            and section_key in self._progress_store.completed_section_keys
+            and self._progress_store.is_section_complete(section_key)
         ):
             return last_block_location.url()
 
@@ -195,7 +195,7 @@ class Router:
         incomplete_sections_locations = [
             section_key
             for section_key in all_section_keys
-            if section_key not in self._progress_store.completed_section_keys
+            if not self._progress_store.is_section_complete(section_key)
         ]
 
         return incomplete_sections_locations

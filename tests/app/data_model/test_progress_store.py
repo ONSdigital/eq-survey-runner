@@ -521,7 +521,7 @@ def test_get_section_locations():
     ]
 
 
-def test_completed_section_keys():
+def test_is_section_complete():
     completed = [
         {
             'section_id': 's1',
@@ -568,7 +568,8 @@ def test_completed_section_keys():
 
     store = ProgressStore(completed)
 
-    assert store.completed_section_keys == [('s1', None), ('s4', '123abc')]
+    assert store.is_section_complete(('s1', None)) is True
+    assert store.is_section_complete(('s4', '123abc')) is True
 
 
 def test_remove_progress_for_list_item_id():

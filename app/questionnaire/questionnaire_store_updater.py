@@ -1,7 +1,8 @@
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 from app.data_model.answer_store import Answer
 from app.data_model.relationship_store import Relationship, RelationshipStore
+from app.questionnaire.location import Location
 
 
 class QuestionnaireStoreUpdater:
@@ -91,16 +92,18 @@ class QuestionnaireStoreUpdater:
 
         self._progress_store.remove_progress_for_list_item_id(list_item_id=list_item_id)
 
-    def add_completed_location(self, location=None):
+    def add_completed_location(self, location: Optional[Location] = None):
         location = location or self._current_location
 
         self._progress_store.add_completed_location(location)
 
-    def remove_completed_location(self, location=None):
+    def remove_completed_location(self, location: Optional[Location] = None):
         location = location or self._current_location
         self._progress_store.remove_completed_location(location)
 
-    def update_section_status(self, section_status, location=None):
+    def update_section_status(
+        self, section_status: str, location: Optional[Location] = None
+    ):
         location = location or self._current_location
 
         self._progress_store.update_section_status(

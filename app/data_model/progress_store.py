@@ -1,4 +1,4 @@
-from typing import List, Tuple, Mapping, MutableMapping
+from typing import List, Tuple, Mapping, MutableMapping, Optional
 
 from app.data_model.progress import Progress
 from app.questionnaire.location import Location
@@ -68,8 +68,10 @@ class ProgressStore:
     def is_dirty(self) -> bool:
         return self._is_dirty
 
-    @property
-    def completed_section_keys(self) -> List[Tuple[str]]:
+    def is_section_complete(self, section_key: Tuple[str, Optional[str]]) -> bool:
+        return section_key in self._completed_section_keys()
+
+    def _completed_section_keys(self) -> List[Tuple[str, Optional[str]]]:
         return [
             section_key
             for section_key, section_progress in self._progress.items()
@@ -77,7 +79,7 @@ class ProgressStore:
         ]
 
     def update_section_status(
-        self, section_status: str, section_id, list_item_id=None
+        self, section_status: str, section_id: str, list_item_id: Optional[str] = None
     ) -> None:
 
         section_key = (section_id, list_item_id)
@@ -85,14 +87,18 @@ class ProgressStore:
             self._progress[section_key].status = section_status
             self._is_dirty = True
 
-    def get_section_status(self, section_id, list_item_id=None) -> str:
+    def get_section_status(
+        self, section_id: str, list_item_id: Optional[str] = None
+    ) -> str:
         section_key = (section_id, list_item_id)
         if section_key in self._progress:
             return self._progress[section_key].status
 
         return CompletionStatus.NOT_STARTED
 
-    def get_completed_locations(self, section_id, list_item_id=None) -> List[Location]:
+    def get_completed_locations(
+        self, section_id: str, list_item_id: Optional[str] = None
+    ) -> List[Location]:
         section_key = (section_id, list_item_id)
         if section_key in self._progress:
             return self._progress[section_key].locations
