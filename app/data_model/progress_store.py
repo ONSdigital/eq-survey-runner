@@ -68,8 +68,8 @@ class ProgressStore:
     def is_dirty(self) -> bool:
         return self._is_dirty
 
-    def is_section_complete(self, section_key: Tuple[str, Optional[str]]) -> bool:
-        return section_key in self._completed_section_keys()
+    def is_section_complete(self, section_id: str, list_item_id: Optional[str]) -> bool:
+        return (section_id, list_item_id) in self._completed_section_keys()
 
     def _completed_section_keys(self) -> List[Tuple[str, Optional[str]]]:
         return [

@@ -568,8 +568,8 @@ def test_is_section_complete():
 
     store = ProgressStore(completed)
 
-    assert store.is_section_complete(('s1', None)) is True
-    assert store.is_section_complete(('s4', '123abc')) is True
+    assert store.is_section_complete(section_id='s1', list_item_id=None) is True
+    assert store.is_section_complete(section_id='s4', list_item_id='123abc') is True
 
 
 def test_remove_progress_for_list_item_id():

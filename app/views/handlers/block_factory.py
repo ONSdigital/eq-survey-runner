@@ -33,7 +33,13 @@ BLOCK_MAPPINGS = {
 
 
 def get_block_handler(
-    schema, block_id, list_item_id, questionnaire_store, language, **kwargs
+    schema,
+    block_id,
+    list_item_id,
+    questionnaire_store,
+    language,
+    list_name=None,
+    to_list_item_id=None,
 ):
     block = schema.get_block(block_id)
     if not block:
@@ -42,7 +48,7 @@ def get_block_handler(
         )
 
     if schema.is_block_in_repeating_section(block_id=block['id']) and not all(
-        (kwargs.get('list_name'), list_item_id)
+        (list_name, list_item_id)
     ):
         raise InvalidLocationException(
             f'block id {block_id} is in a repeating section without valid list_name/list_item_id'
@@ -54,7 +60,6 @@ def get_block_handler(
         raise ValueError(f'block type {block_type} is not valid')
 
     section_id = schema.get_section_id_for_block_id(block_id)
-    to_list_item_id = kwargs.get('to_list_item_id')
 
     if to_list_item_id:
         location = RelationshipLocation(
@@ -67,7 +72,7 @@ def get_block_handler(
         location = Location(
             section_id=section_id,
             block_id=block_id,
-            list_name=kwargs.get('list_name'),
+            list_name=list_name,
             list_item_id=list_item_id,
         )
 

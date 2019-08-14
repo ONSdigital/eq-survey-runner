@@ -45,12 +45,12 @@ class Router:
         last_block_location = routing_path[-1]
         last_block_type = self._schema.get_block(last_block_location.block_id)['type']
 
-        section_key = (location.section_id, location.list_item_id)
-
         if (
             self._schema.is_hub_enabled()
             and location.block_id == last_block_location.block_id
-            and self._progress_store.is_section_complete(section_key)
+            and self._progress_store.is_section_complete(
+                location.section_id, location.list_item_id
+            )
         ):
             return url_for('.get_questionnaire')
 
@@ -58,7 +58,9 @@ class Router:
         if (
             last_block_type == 'SectionSummary'
             and current_block_type != last_block_type
-            and self._progress_store.is_section_complete(section_key)
+            and self._progress_store.is_section_complete(
+                location.section_id, location.list_item_id
+            )
         ):
             return last_block_location.url()
 
@@ -192,13 +194,13 @@ class Router:
                 section_key = (section_id, None)
                 all_section_keys.append(section_key)
 
-        incomplete_sections_locations = [
-            section_key
-            for section_key in all_section_keys
-            if not self._progress_store.is_section_complete(section_key)
+        incomplete_section_keys = [
+            (section_id, list_item_id)
+            for section_id, list_item_id in all_section_keys
+            if not self._progress_store.is_section_complete(section_id, list_item_id)
         ]
 
-        return incomplete_sections_locations
+        return incomplete_section_keys
 
     # This is horrible and only necessary as currently a section can be defined that only
     # contains a Summary or Confirmation. The ideal solution is to move Summary/Confirmation
