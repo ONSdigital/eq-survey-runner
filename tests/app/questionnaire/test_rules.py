@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 
 from app.data_model.answer_store import AnswerStore, Answer
 from app.data_model.list_store import ListStore
@@ -762,6 +762,64 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                     ),
                     expected_result,
                 )
+
+    def test_evaluate_when_rule_fetches_answer_using_list_item_id(self):
+        when = {
+            'when': [{'id': 'my_answer', 'condition': 'equals', 'value': 'an answer'}]
+        }
+
+        list_item_id = 'abc123'
+
+        answer_store = AnswerStore()
+        answer_store.add_or_update(
+            Answer(answer_id='my_answer', value='an answer', list_item_id=list_item_id)
+        )
+
+        current_location = Location(
+            section_id='some-section', block_id='some-block', list_item_id=list_item_id
+        )
+
+        schema = Mock(get_schema())
+        schema.get_list_item_id_for_answer_id = Mock(return_value=list_item_id)
+
+        self.assertTrue(
+            evaluate_when_rules(
+                when_rules=when['when'],
+                schema=schema,
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
+        )
+
+    def test_evaluate_when_rule_with_invalid_list_item_id(self):
+        when = {
+            'when': [{'id': 'my_answer', 'condition': 'equals', 'value': 'an answer'}]
+        }
+
+        answer_store = AnswerStore()
+        answer_store.add_or_update(
+            Answer(answer_id='my_answer', value='an answer', list_item_id='abc123')
+        )
+
+        current_location = Location(
+            section_id='some-section', block_id='some-block', list_item_id='123abc'
+        )
+
+        schema = Mock(get_schema())
+        schema.get_list_item_id_for_answer_id = Mock(return_value='123abc')
+
+        self.assertFalse(
+            evaluate_when_rules(
+                when_rules=when['when'],
+                schema=schema,
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
+        )
 
     def test_evaluate_when_rule_raises_if_bad_when_condition(self):
         when = {'when': [{'condition': 'not set'}]}
