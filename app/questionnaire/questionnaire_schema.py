@@ -157,7 +157,7 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         list_collector_blocks = []
         for group in section['groups']:
             for block in group['blocks']:
-                hidden = block.get('hide_on_section_summary', False)
+                hidden = block.get('summary', {}).get('hide_on_section_summary', False)
                 if (
                     block['type'] in ['ListCollector', 'PrimaryPersonListCollector']
                     and not hidden
