@@ -73,4 +73,14 @@
     condition: 'not equals any',
     values: ['No, has never worked', 'No, have never worked'],
   },
+    hasNotWorked: {
+    id: 'ever-worked-answer',
+    condition: 'equals any',
+    values: ['No, has never worked', 'No, have never worked'],
+  },
+    working: {
+    id: 'employment-status-answer',
+    condition: 'not equals any',
+    values: ['None of these apply'],
+  },
 }
