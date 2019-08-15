@@ -5,7 +5,7 @@
             "text": _("Save and sign out"),
             "name": "action[save_sign_out]",
             "classes": "js-btn-save",
-            "url": account_service_log_out_url,
+            "url": "/signed-out",
             "attributes": {
                 "data-qa": "btn-save-sign-out",
                 "data-ga": "click",
@@ -17,7 +17,7 @@
         {% do page | setAttribute("signoutButton", {
             "text": _("Sign out"),
             "name": "action[sign_out]",
-            "url": account_service_log_out_url,
+            "url": "/signed-out",
             "attributes": {
                 "data-qa": "btn-sign-out",
                 "data-ga": "click",
