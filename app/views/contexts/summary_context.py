@@ -98,7 +98,7 @@ def build_view_context_for_summary(
 
 
 def build_view_context_for_section_summary(
-    metadata, schema, answer_store, list_store, block_type, current_location
+    metadata, schema, answer_store, list_store, block_type, current_location, language
 ):
     group = schema.get_group_for_block_id(current_location.block_id)
     section_id = group['parent_id']
@@ -130,8 +130,8 @@ def build_view_context_for_section_summary(
             'add_link_text': list_collector_block['summary']['add_link_text'],
             'empty_list_text': list_collector_block['summary']['empty_list_text'],
             'list_items': build_list_items_summary_context(
-                list_collector_block, answer_store, list_store, flask_babel.get_locale()
-            )
+                list_collector_block, answer_store, list_store, language
+            ),
         }
         list_item_summaries.append(list_item_summary)
 

@@ -3,14 +3,15 @@ from unittest.mock import Mock, patch
 from app.data_model.answer_store import AnswerStore, Answer
 from app.data_model.list_store import ListStore
 from app.questionnaire.location import Location
+from app.utilities.schema import load_schema_from_name
 from app.views.contexts.summary_context import (
     build_summary_rendering_context,
     build_view_context_for_final_summary,
     build_view_context_for_section_summary,
     build_view_context_for_calculated_summary,
 )
-from app.utilities.schema import load_schema_from_name
 from tests.app.app_context_test_case import AppContextTestCase
+from app.settings import DEFAULT_LOCALE
 
 
 class TestStandardSummaryContext(AppContextTestCase):
@@ -30,6 +31,7 @@ class TestStandardSummaryContext(AppContextTestCase):
             'collection_exercise_sid': '789',
             'schema_name': '0000_1',
         }
+        self.language = 'en'
 
     def check_context(self, context):
         self.assertEqual(len(context), 1)
@@ -101,15 +103,13 @@ class TestSummaryContext(TestStandardSummaryContext):
 class TestSectionSummaryContext(TestStandardSummaryContext):
     def setUp(self):
         super().setUp()
-        self.schema = load_schema_from_name('test_section_summary')
-        self.answer_store = AnswerStore()
-        self.list_store = ListStore()
         self.block_type = 'SectionSummary'
 
     def test_build_summary_rendering_context(self):
-        sections = [self.schema.get_section('property-details-section')]
+        schema = load_schema_from_name('test_section_summary')
+        sections = [schema.get_section('property-details-section')]
         summary_rendering_context = build_summary_rendering_context(
-            self.schema, self.answer_store, self.list_store, self.metadata, sections
+            schema, AnswerStore(), ListStore(), self.metadata, sections
         )
         self.check_summary_rendering_context(summary_rendering_context)
 
@@ -117,19 +117,20 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
         current_location = Location(
             section_id='property-details-section', block_id='property-details-summary'
         )
+        schema = load_schema_from_name('test_section_summary')
 
         context = build_view_context_for_section_summary(
             self.metadata,
-            self.schema,
-            self.answer_store,
-            self.list_store,
+            schema,
+            AnswerStore(),
+            ListStore(),
             self.block_type,
             current_location,
+            self.language,
         )
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
-        self.assertEqual(len(context['summary']), 4)
         self.assertTrue('title' in context['summary'])
 
 
@@ -329,3 +330,83 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.assertEqual(
             context_summary['calculated_question']['answers'][0]['value'], '22'
         )
+
+
+def test_context_for_section_list_summary(people_answer_store, app):
+    schema = load_schema_from_name('test_list_collector_section_summary')
+    current_location = Location(block_id='people-list-summary')
+
+    context = build_view_context_for_section_summary(
+        {},
+        schema,
+        people_answer_store,
+        ListStore(
+            [
+                {'items': ['PlwgoG', 'UHPLbX'], 'name': 'people'},
+                {'items': ['gTrlio'], 'name': 'visitors'},
+            ]
+        ),
+        'SectionSummary',
+        current_location,
+        DEFAULT_LOCALE,
+    )
+
+    expected = [
+        {
+            'add_link': '/questionnaire/people/add-person/',
+            'add_link_text': 'Add someone to this household',
+            'empty_list_text': 'There are no householders',
+            'list_items': [
+                {
+                    'answers': [
+                        Answer(
+                            answer_id='first-name', value='Toni', list_item_id='PlwgoG'
+                        ),
+                        Answer(
+                            answer_id='last-name',
+                            value='Morrison',
+                            list_item_id='PlwgoG',
+                        ),
+                    ],
+                    'edit_link': f'/questionnaire/people/PlwgoG/edit-person/',
+                    'item_title': 'Toni Morrison',
+                    'primary_person': False,
+                    'remove_link': '/questionnaire/people/PlwgoG/remove-person/',
+                },
+                {
+                    'answers': [
+                        Answer(
+                            answer_id='first-name', value='Barry', list_item_id='UHPLbX'
+                        ),
+                        Answer(
+                            answer_id='last-name',
+                            value='Pheloung',
+                            list_item_id='UHPLbX',
+                        ),
+                    ],
+                    'edit_link': '/questionnaire/people/UHPLbX/edit-person/',
+                    'item_title': 'Barry Pheloung',
+                    'primary_person': False,
+                    'remove_link': '/questionnaire/people/UHPLbX/remove-person/',
+                },
+            ],
+            'title': 'People who live here',
+        },
+        {
+            'add_link': '/questionnaire/visitors/add-visitor/',
+            'add_link_text': 'Add another visitor to this household',
+            'empty_list_text': 'There are no visitors',
+            'list_items': [
+                {
+                    'answers': [],
+                    'edit_link': '/questionnaire/visitors/gTrlio/edit-visitor-person/',
+                    'item_title': '',
+                    'primary_person': False,
+                    'remove_link': '/questionnaire/visitors/gTrlio/remove-visitor/',
+                }
+            ],
+            'title': 'Visitors staying overnight',
+        },
+    ]
+
+    assert context['summary']['list_item_summaries'] == expected
