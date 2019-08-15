@@ -38,11 +38,12 @@ local question(title) = {
         {
           label: 'Any other Mixed or Multiple background',
           value: 'Other',
+          description: 'Select to enter answer',
           detail_answer: {
             id: 'mixed-ethnic-group-answer-other',
             type: 'TextField',
             mandatory: false,
-            label: 'Please specify Mixed or Multiple background',
+            label: 'Enter Mixed or Multiple background',
           },
         },
       ],

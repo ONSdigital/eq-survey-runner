@@ -63,11 +63,12 @@ local question(title, region_code) = (
           {
             label: 'Any other religion',
             value: 'Other',
+            description: 'Select to enter answer',
             detail_answer: {
               id: 'religion-answer-other',
               type: 'TextField',
               mandatory: false,
-              label: 'Please specify religion',
+              label: 'Enter religion',
             },
           },
         ],

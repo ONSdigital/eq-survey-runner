@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-01 10:17+0100\n"
+"POT-Creation-Date: 2019-08-13 11:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -233,7 +233,7 @@ msgstr ""
 msgid "Start {section_name} section"
 msgstr ""
 
-#: app/views/contexts/list_collector.py:32
+#: app/views/contexts/list_collector.py:33
 msgid " (You)"
 msgstr ""
 
@@ -499,13 +499,12 @@ msgstr ""
 msgid "To help protect your information we have signed you out"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:11
-#: templates/layouts/_questionnaire.html:32
-msgid "Save and continue"
+#: templates/layouts/_questionnaire.html:16
+msgid "Previous"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:17
-msgid "Previous"
+#: templates/layouts/_questionnaire.html:31
+msgid "Save and continue"
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:3
@@ -579,11 +578,11 @@ msgstr ""
 msgid "Save and sign out"
 msgstr ""
 
-#: templates/layouts/configs/_save-sign-out-button.html:17
+#: templates/layouts/configs/_save-sign-out-button.html:18
 msgid "Sign out"
 msgstr ""
 
-#: templates/layouts/configs/_save-sign-out-button.html:30
+#: templates/layouts/configs/_save-sign-out-button.html:31
 msgid "Save and complete later"
 msgstr ""
 

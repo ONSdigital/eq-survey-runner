@@ -71,6 +71,9 @@ class TestSummaryContext(TestStandardSummaryContext):
             'type': 'Summary',
             'collapsible': True,
         }
+        self.current_location = Location(
+            section_id='default-section', block_id='summary'
+        )
 
     def test_build_summary_rendering_context(self):
         summary_rendering_context = build_summary_rendering_context(
@@ -84,8 +87,8 @@ class TestSummaryContext(TestStandardSummaryContext):
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
             self.rendered_block,
+            self.current_location,
         )
 
         self.check_context(context)
@@ -111,7 +114,9 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
         self.check_summary_rendering_context(summary_rendering_context)
 
     def test_build_view_context_for_section_summary(self):
-        current_location = Location(block_id='property-details-summary')
+        current_location = Location(
+            section_id='property-details-section', block_id='property-details-summary'
+        )
 
         context = build_view_context_for_section_summary(
             self.metadata,
@@ -153,7 +158,9 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_currency_calculated_summary_no_skip(self):
-        current_location = Location(block_id='currency-total-playback-with-fourth')
+        current_location = Location(
+            section_id='default-section', block_id='currency-total-playback-with-fourth'
+        )
 
         context = build_view_context_for_calculated_summary(
             self.metadata,
@@ -186,7 +193,10 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_currency_calculated_summary_with_skip(self):
-        current_location = Location(block_id='currency-total-playback-skipped-fourth')
+        current_location = Location(
+            section_id='default-section',
+            block_id='currency-total-playback-skipped-fourth',
+        )
 
         skip_answer = Answer('skip-fourth-block-answer', 'Yes')
         self.answer_store.add_or_update(skip_answer)
@@ -221,7 +231,9 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_unit_calculated_summary(self):
-        current_location = Location(block_id='unit-total-playback')
+        current_location = Location(
+            section_id='default-section', block_id='unit-total-playback'
+        )
 
         context = build_view_context_for_calculated_summary(
             self.metadata,
@@ -252,7 +264,9 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         )
 
     def test_build_view_context_for_percentage_calculated_summary(self):
-        current_location = Location(block_id='percentage-total-playback')
+        current_location = Location(
+            section_id='default-section', block_id='percentage-total-playback'
+        )
 
         context = build_view_context_for_calculated_summary(
             self.metadata,
@@ -284,7 +298,9 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_number_calculated_summary(self):
-        current_location = Location(block_id='number-total-playback')
+        current_location = Location(
+            section_id='default-section', block_id='number-total-playback'
+        )
 
         context = build_view_context_for_calculated_summary(
             self.metadata,

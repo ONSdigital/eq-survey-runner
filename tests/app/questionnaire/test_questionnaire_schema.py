@@ -576,3 +576,57 @@ def test_get_default_answer_single_question(single_question_schema):
 
     assert answer.answer_id == 'answer1'
     assert answer.value == 'test'
+
+
+def test_get_list_item_id_for_answer_id_without_list_item_id(
+    section_with_repeating_list
+):
+    schema = QuestionnaireSchema(section_with_repeating_list)
+
+    expected_list_item_id = None
+
+    list_item_id = schema.get_list_item_id_for_answer_id(
+        answer_id='answer1', list_item_id=expected_list_item_id
+    )
+
+    assert list_item_id == expected_list_item_id
+
+
+#
+#
+def test_get_list_item_id_for_answer_id_without_repeat_or_list_collector(
+    question_schema
+):
+    schema = QuestionnaireSchema(question_schema)
+
+    list_item_id = schema.get_list_item_id_for_answer_id(
+        answer_id='answer1', list_item_id='abc123'
+    )
+
+    assert list_item_id is None
+
+
+def test_get_answer_within_repeat_with_list_item_id(section_with_repeating_list):
+    schema = QuestionnaireSchema(section_with_repeating_list)
+
+    expected_list_item_id = 'abc123'
+
+    list_item_id = schema.get_list_item_id_for_answer_id(
+        answer_id='proxy-answer', list_item_id=expected_list_item_id
+    )
+
+    assert list_item_id == expected_list_item_id
+
+
+def test_get_answer_within_list_collector_with_list_item_id(
+    list_collector_variant_schema
+):
+    schema = QuestionnaireSchema(list_collector_variant_schema)
+
+    expected_list_item_id = 'abc123'
+
+    list_item_id = schema.get_list_item_id_for_answer_id(
+        answer_id='answer1', list_item_id=expected_list_item_id
+    )
+
+    assert list_item_id == expected_list_item_id

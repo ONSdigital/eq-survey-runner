@@ -1,12 +1,15 @@
-from app.views.handlers.question import Question
-from app.views.contexts.question import build_question_context
 from app.questionnaire.location import Location
+from app.views.contexts.question import build_question_context
+from app.views.handlers.question import Question
 
 
 class PrimaryPersonQuestion(Question):
     @property
     def parent_location(self):
-        return Location(self.rendered_block['parent_id'])
+        return Location(
+            section_id=self._current_location.section_id,
+            block_id=self.rendered_block['parent_id'],
+        )
 
     def is_location_valid(self):
         return self.router.can_access_location(self.parent_location, self._routing_path)
@@ -24,11 +27,10 @@ class PrimaryPersonQuestion(Question):
 
     def handle_post(self, form):
         self.questionnaire_store_updater.update_answers(form)
-        parent_section_id = self._schema.get_section_for_block_id(
-            self.parent_location.block_id
-        )['id']
+
         self.questionnaire_store_updater.add_completed_location(
-            location=self.parent_location, section_id=parent_section_id
+            location=self.parent_location
         )
-        self._update_section_completeness()
+
+        self._update_section_completeness(location=self.parent_location)
         self.questionnaire_store_updater.save()

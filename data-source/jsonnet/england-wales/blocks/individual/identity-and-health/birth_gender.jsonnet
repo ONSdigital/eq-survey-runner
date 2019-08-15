@@ -25,11 +25,12 @@ local question(title) = {
         {
           label: 'No',
           value: 'No',
+          description: 'An option to enter gender will follow',
           detail_answer: {
             id: 'birth-gender-answer-other',
             type: 'TextField',
             mandatory: false,
-            label: 'Please specify gender',
+            label: 'Enter gender',
           },
         },
       ],

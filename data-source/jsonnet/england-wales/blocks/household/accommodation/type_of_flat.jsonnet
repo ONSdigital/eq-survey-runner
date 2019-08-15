@@ -7,7 +7,7 @@
     type: 'General',
     answers: [{
       id: 'type-of-flat-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'In a purpose-built block of flats or tenement',

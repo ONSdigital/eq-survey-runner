@@ -38,19 +38,23 @@ class PlaceholderRenderer:
     strings
     """
 
-    def __init__(self, language, answer_store=None, list_item_id=None, metadata=None):
-        self.language = language
-        self.list_item_id = list_item_id
-        self.answer_store = answer_store or AnswerStore()
-        self.metadata = metadata
-        self.placeholders = {}
+    def __init__(
+        self, language, schema, answer_store=None, metadata=None, list_item_id=None
+    ):
+        self._language = language
+        self._schema = schema
+        self._answer_store = answer_store or AnswerStore()
+        self._metadata = metadata
+        self._list_item_id = list_item_id
+        self._placeholders = {}
 
     def render_pointer(self, dict_to_render, pointer_to_render):
         placeholder_parser = PlaceholderParser(
-            language=self.language,
-            answer_store=self.answer_store,
-            list_item_id=self.list_item_id,
-            metadata=self.metadata,
+            language=self._language,
+            schema=self._schema,
+            answer_store=self._answer_store,
+            metadata=self._metadata,
+            list_item_id=self._list_item_id,
         )
 
         pointer_data = resolve_pointer(dict_to_render, pointer_to_render)

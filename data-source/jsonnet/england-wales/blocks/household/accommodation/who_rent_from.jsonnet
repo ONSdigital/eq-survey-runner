@@ -7,7 +7,7 @@
     type: 'General',
     answers: [{
       id: 'who-rent-from-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Housing association, housing co-operative, charitable trust, registered social landlord',

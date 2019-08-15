@@ -12,7 +12,7 @@
     },
     answers: [{
       id: 'number-of-vehicles-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'None',

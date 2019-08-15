@@ -33,6 +33,7 @@ local question(title, label) = {
         {
           label: 'Other sexual orientation',
           value: 'Other sexual orientation',
+          description: 'Select to enter answer',
           detail_answer: {
             id: 'sexual-identity-answer-other',
             type: 'TextField',
@@ -47,14 +48,14 @@ local question(title, label) = {
 };
 
 local nonProxyTitle = 'Which of the following best describes your sexual orientation?';
-local nonProxyLabel = 'Please specify your sexual orientation';
+local nonProxyLabel = 'Enter your sexual orientation';
 local proxyTitle = {
   text: 'Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?',
   placeholders: [
     placeholders.personNamePossessive,
   ],
 };
-local proxyLabel = 'Please specify their sexual orientation';
+local proxyLabel = 'Enter their sexual orientation';
 
 {
   type: 'Question',

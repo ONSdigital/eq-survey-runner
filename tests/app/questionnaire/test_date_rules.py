@@ -1,6 +1,8 @@
 from datetime import datetime
 
 from app.data_model.answer_store import AnswerStore, Answer
+from app.data_model.list_store import ListStore
+from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.rules import evaluate_date_rule, evaluate_goto
 from tests.app.app_context_test_case import AppContextTestCase
@@ -145,6 +147,15 @@ class TestDateRules(AppContextTestCase):
         answer_store = AnswerStore({})
         answer_store.add_or_update(Answer(answer_id='date-answer', value='2018-02-01'))
 
+        current_location = Location(section_id='some-section', block_id='some-block')
+
         self.assertFalse(
-            evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, 0)
+            evaluate_goto(
+                goto_rule=goto_rule,
+                schema=get_schema_mock(),
+                metadata={},
+                answer_store=answer_store,
+                list_store=ListStore(),
+                current_location=current_location,
+            )
         )

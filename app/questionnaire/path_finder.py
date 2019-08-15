@@ -1,10 +1,10 @@
-from typing import List, Mapping
+from typing import List, Mapping, Optional
 
 from structlog import get_logger
 
 from app.data_model.answer_store import AnswerStore
-from app.data_model.progress_store import ProgressStore
 from app.data_model.list_store import ListStore
+from app.data_model.progress_store import ProgressStore
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.routing_path import RoutingPath
@@ -37,34 +37,57 @@ class PathFinder:
 
     def get_first_incomplete_location(self, path):
         if path:
-            first_location = path[0]
-            section_id = self.schema.get_section_id_for_block_id(
-                first_location.block_id
-            )
-
             for location in path:
                 block = self.schema.get_block(location.block_id)
                 block_type = block.get('type')
-                if location not in self.progress_store.get_completed_locations(
-                    section_id
-                ) and block_type not in ['SectionSummary', 'Summary', 'Confirmation']:
+
+                is_location_complete = (
+                    location
+                    in self.progress_store.get_completed_locations(
+                        section_id=location.section_id,
+                        list_item_id=location.list_item_id,
+                    )
+                )
+
+                if not is_location_complete and block_type not in [
+                    'SectionSummary',
+                    'Summary',
+                    'Confirmation',
+                ]:
                     return location
 
         return None
 
     def full_routing_path(self):
         path = []
-        sections = self.schema.get_sections()
-        for section in sections:
-            path = path + list(self.routing_path(section))
+
+        for section in self.schema.get_sections():
+            section_id = section['id']
+            repeating_list = self.schema.get_repeating_list_for_section(section_id)
+
+            if repeating_list:
+                for list_item_id in self.list_store[repeating_list].items:
+                    path = path + list(
+                        self.routing_path(
+                            section_id=section_id, list_item_id=list_item_id
+                        )
+                    )
+            else:
+                path = path + list(self.routing_path(section_id=section_id))
+
         return path
 
-    def routing_path(self, section: Mapping) -> RoutingPath:
+    def routing_path(
+        self, section_id: str, list_item_id: Optional[str] = None
+    ) -> RoutingPath:
         """
         Visits all the blocks in a section and returns a path given a list of answers.
         """
         blocks: List[Mapping] = []
         path: List[Location] = []
+
+        current_location = Location(section_id=section_id, list_item_id=list_item_id)
+        section = self.schema.get_section(section_id)
 
         for group in section['groups']:
             if 'skip_conditions' in group:
@@ -74,6 +97,7 @@ class PathFinder:
                     self.metadata,
                     self.answer_store,
                     self.list_store,
+                    current_location=current_location,
                     routing_path=path,
                 ):
                     continue
@@ -81,7 +105,7 @@ class PathFinder:
             blocks.extend(group['blocks'])
 
         if blocks:
-            path = self._build_path(blocks, path)
+            path = self._build_path(blocks, path, current_location)
 
         return RoutingPath(path)
 
@@ -92,9 +116,12 @@ class PathFinder:
             None,
         )
 
-    def _build_path(self, blocks, path):
+    def _build_path(self, blocks, path, current_location):
         # Keep going unless we've hit the last block
         block_index = 0
+        repeating_list = self.schema.get_repeating_list_for_section(
+            current_location.section_id
+        )
         while block_index < len(blocks):
             block = blocks[block_index]
 
@@ -104,11 +131,22 @@ class PathFinder:
                 self.metadata,
                 self.answer_store,
                 self.list_store,
+                current_location=current_location,
                 routing_path=path,
             )
 
             if not is_skipping:
-                this_location = Location(block_id=block['id'])
+                if repeating_list and current_location.list_item_id:
+                    this_location = Location(
+                        section_id=current_location.section_id,
+                        block_id=block['id'],
+                        list_name=repeating_list,
+                        list_item_id=current_location.list_item_id,
+                    )
+                else:
+                    this_location = Location(
+                        section_id=current_location.section_id, block_id=block['id']
+                    )
 
                 if this_location not in path:
                     path.append(this_location)
@@ -142,6 +180,7 @@ class PathFinder:
                 self.metadata,
                 self.answer_store,
                 self.list_store,
+                current_location=this_location,
                 routing_path=path,
             )
 
@@ -156,7 +195,12 @@ class PathFinder:
 
                 if next_precedes_current:
                     self._remove_rule_answers(rule['goto'], this_location)
-                    next_location = Location(block_id=next_block_id)
+                    section_id_for_block_id = self.schema.get_section_id_for_block_id(
+                        block_id=next_block_id
+                    )
+                    next_location = Location(
+                        section_id=section_id_for_block_id, block_id=next_block_id
+                    )
                     path.append(next_location)
                     return None
 
@@ -175,6 +219,4 @@ class PathFinder:
                 if 'meta' not in condition.keys():
                     self.answer_store.remove_answer(condition['id'])
 
-        section_id = self.schema.get_section_id_for_block_id(this_location.block_id)
-
-        self.progress_store.remove_completed_location(section_id, this_location)
+        self.progress_store.remove_completed_location(location=this_location)

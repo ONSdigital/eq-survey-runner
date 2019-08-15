@@ -13,7 +13,7 @@
     answers: [{
       id: 'number-of-bedrooms-answer',
       label: 'Number of bedrooms',
-      mandatory: true,
+      mandatory: false,
       type: 'Number',
       max_value: {
         value: 99,
