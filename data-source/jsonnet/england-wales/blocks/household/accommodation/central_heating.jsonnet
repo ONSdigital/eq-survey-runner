@@ -20,7 +20,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
     answers: [
       {
         id: 'central-heating-answer',
-        mandatory: true,
+        mandatory: false,
         type: 'Checkbox',
         options: [
           {

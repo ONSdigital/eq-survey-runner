@@ -7,7 +7,7 @@
     type: 'General',
     answers: [{
       id: 'type-of-house-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Detached',
