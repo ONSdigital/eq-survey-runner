@@ -103,7 +103,7 @@ def get_mapped_answers(schema, answer_store, location):
         if answer:
             relationship_store = RelationshipStore(answer.value)
             relationship = relationship_store.get_relationship(
-                location.from_list_item_id, location.to_list_item_id
+                location.list_item_id, location.to_list_item_id
             )
             if relationship:
                 result = {answer.answer_id: relationship.relationship}

@@ -2,6 +2,7 @@ import unittest
 
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.placeholder_parser import PlaceholderParser
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
 
 class TestPlaceholderParser(unittest.TestCase):
@@ -82,7 +83,9 @@ class TestPlaceholder(unittest.TestCase):
             [{'answer_id': 'total-retail-turnover-answer', 'value': retail_turnover}]
         )
 
-        parser = PlaceholderParser(language='en', answer_store=answer_store)
+        parser = PlaceholderParser(
+            language='en', schema=QuestionnaireSchema({}), answer_store=answer_store
+        )
         placeholders = parser.parse(placeholder_list)
 
         assert placeholders['total_turnover'] == '£1,000.00'

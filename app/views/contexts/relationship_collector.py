@@ -4,7 +4,7 @@ from app.questionnaire.placeholder_transforms import PlaceholderTransforms
 # This is required until we can resolve placeholders for list items in schema.
 def transform_relationships(block, answer_store, location):
     transform = PlaceholderTransforms('en')
-    first_person_name = _get_name(answer_store, location.from_list_item_id)
+    first_person_name = _get_name(answer_store, location.list_item_id)
     second_person_name = _get_name(answer_store, location.to_list_item_id)
     first_person_name_possessive = transform.format_possessive(first_person_name)
 

@@ -1,14 +1,13 @@
-import json
-from mock import MagicMock
-from pathlib import Path
-
 import pytest
+from mock import MagicMock, Mock
 
 from app.data_model.answer import Answer
 from app.data_model.answer_store import AnswerStore
 from app.data_model.list_store import ListStore
 from app.forms.questionnaire_form import QuestionnaireForm
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.setup import create_app
+from app.utilities.schema import load_schema_from_name
 from app.views.contexts import list_collector
 
 
@@ -172,17 +171,24 @@ def form():
 
 
 @pytest.fixture
+def schema():
+    return MagicMock(QuestionnaireSchema({}))
+
+
+@pytest.fixture
 def app():
     setting_overrides = {'LOGIN_DISABLED': True}
     app = create_app(setting_overrides=setting_overrides)
+    app._app_context = app.app_context()
+
     return app
 
 
 def test_build_list_collector_context(
-    rendered_block, answer_store, list_store, form, app
+    rendered_block, schema, answer_store, list_store, form, app
 ):
     context = list_collector.build_list_collector_context(
-        rendered_block, answer_store, list_store, 'en', form
+        rendered_block, schema, answer_store, list_store, 'en', form
     )
 
     assert all(
@@ -192,11 +198,11 @@ def test_build_list_collector_context(
 
 
 def test_build_list_collector_context_no_summary(
-    rendered_block, answer_store, list_store, form, app
+    rendered_block, schema, answer_store, list_store, form, app
 ):
     del rendered_block['summary']
     context = list_collector.build_list_collector_context(
-        rendered_block, answer_store, list_store, 'en', form
+        rendered_block, schema, answer_store, list_store, 'en', form
     )
 
     assert context['list_items'] == []
@@ -205,7 +211,6 @@ def test_build_list_collector_context_no_summary(
 def test_build_list_items_summary_context(
     rendered_block, answer_store, list_store, app
 ):
-
     expected = [
         {
             'answers': [
@@ -236,8 +241,9 @@ def test_build_list_items_summary_context(
         },
     ]
 
+    schema = load_schema_from_name('test_list_collector_primary_person')
     actual = list_collector.build_list_items_summary_context(
-        rendered_block, answer_store, list_store, 'en'
+        rendered_block, schema, answer_store, list_store, 'en'
     )
 
     assert expected == actual
@@ -247,8 +253,9 @@ def test_assert_primary_person_string_appended(
     rendered_block, answer_store, list_store, app
 ):
     list_store['people'].primary_person = 'PlwgoG'
+    schema = load_schema_from_name('test_list_collector_primary_person')
     list_item_context = list_collector.build_list_items_summary_context(
-        rendered_block, answer_store, list_store, 'en'
+        rendered_block, schema, answer_store, list_store, 'en'
     )
 
     assert list_item_context[0]['primary_person'] == True

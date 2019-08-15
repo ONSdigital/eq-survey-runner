@@ -1,6 +1,5 @@
 from typing import List, Mapping
 
-from app.views.contexts.summary.group import Group
 from app.data_model.answer_store import AnswerStore
 from app.data_model.list_store import ListStore
 from app.jinja_filters import (
@@ -9,12 +8,14 @@ from app.jinja_filters import (
     format_unit,
     format_percentage,
 )
+from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.schema_utils import (
     choose_question_to_display,
     get_answer_ids_in_block,
 )
+from app.views.contexts.summary.group import Group
 
 
 def build_summary_rendering_context(
@@ -22,25 +23,39 @@ def build_summary_rendering_context(
     answer_store: AnswerStore,
     list_store: ListStore,
     metadata: Mapping,
+    current_location: Location = None,
     sections: List[Mapping] = None,
 ) -> List:
     path_finder = PathFinder(schema, answer_store, metadata, list_store=list_store)
 
     sections = sections or schema.get_sections()
-    paths = [path_finder.routing_path(section) for section in sections]
+    paths = [path_finder.routing_path(section['id']) for section in sections]
 
     return [
-        Group(group, path, answer_store, list_store, metadata, schema).serialize()
+        Group(
+            group,
+            path,
+            answer_store,
+            list_store,
+            metadata,
+            schema,
+            current_location=current_location,
+        ).serialize()
         for path, section in zip(paths, sections)
         for group in section['groups']
     ]
 
 
 def build_view_context_for_final_summary(
-    metadata, schema, answer_store, list_store, block_type, rendered_block
+    metadata, schema, answer_store, list_store, rendered_block, current_location
 ):
     context = build_view_context_for_summary(
-        schema, answer_store, list_store, metadata, block_type
+        schema,
+        answer_store,
+        list_store,
+        metadata,
+        rendered_block['type'],
+        current_location,
     )
 
     context['summary'].update(
@@ -56,10 +71,16 @@ def build_view_context_for_final_summary(
 
 
 def build_view_context_for_summary(
-    schema, answer_store, list_store, metadata, block_type, sections=None
+    schema,
+    answer_store,
+    list_store,
+    metadata,
+    block_type,
+    current_location,
+    sections=None,
 ):
     summary_rendering_context = build_summary_rendering_context(
-        schema, answer_store, list_store, metadata, sections
+        schema, answer_store, list_store, metadata, current_location, sections
     )
 
     context = {
@@ -81,7 +102,13 @@ def build_view_context_for_section_summary(
     title = section.get('title')
 
     context = build_view_context_for_summary(
-        schema, answer_store, list_store, metadata, block_type, [section]
+        schema,
+        answer_store,
+        list_store,
+        metadata,
+        block_type,
+        current_location,
+        [section],
     )
 
     context['summary'].update({'title': title})
@@ -98,11 +125,22 @@ def build_view_context_for_calculated_summary(
     )
 
     context = build_view_context_for_summary(
-        schema, answer_store, list_store, metadata, block_type, section_list
+        schema,
+        answer_store,
+        list_store,
+        metadata,
+        block_type,
+        current_location,
+        section_list,
     )
 
     formatted_total = _get_formatted_total(
-        context['summary'].get('groups', []), metadata, answer_store, list_store, schema
+        context['summary'].get('groups', []),
+        metadata,
+        answer_store,
+        list_store,
+        schema,
+        current_location=current_location,
     )
 
     context['summary'].update(
@@ -120,6 +158,7 @@ def _build_calculated_summary_section_list(
     schema, rendered_block, current_location, answer_store, list_store, metadata
 ):
     """Build up the list of blocks only including blocks / questions / answers which are relevant to the summary"""
+    section_id = schema.get_section_id_for_block_id(current_location.block_id)
     group = schema.get_group_for_block_id(current_location.block_id)
     blocks = []
     answers_to_calculate = rendered_block['calculation']['answers_to_calculate']
@@ -131,24 +170,41 @@ def _build_calculated_summary_section_list(
     for block in unique_blocks:
         if block['type'] == 'Question':
             transformed_block = _remove_unwanted_questions_answers(
-                block, answers_to_calculate, answer_store, list_store, metadata, schema
+                block,
+                answers_to_calculate,
+                answer_store,
+                list_store,
+                metadata,
+                schema,
+                current_location=current_location,
             )
             if set(get_answer_ids_in_block(transformed_block)) & set(
                 answers_to_calculate
             ):
                 blocks.append(transformed_block)
 
-    return [{'groups': [{'id': group['id'], 'blocks': blocks}]}]
+    return [{'id': section_id, 'groups': [{'id': group['id'], 'blocks': blocks}]}]
 
 
 def _remove_unwanted_questions_answers(
-    block, answer_ids_to_keep, answer_store, list_store, metadata, schema
+    block,
+    answer_ids_to_keep,
+    answer_store,
+    list_store,
+    metadata,
+    schema,
+    current_location,
 ):
     """
     Evaluates questions in a block and removes any questions not containing a relevant answer
     """
     block_question = choose_question_to_display(
-        block, schema, answer_store, list_store, metadata
+        block,
+        schema,
+        answer_store,
+        list_store,
+        metadata,
+        current_location=current_location,
     )
 
     reduced_block = block.copy()
@@ -170,13 +226,20 @@ def _remove_unwanted_questions_answers(
     return reduced_block
 
 
-def _get_formatted_total(groups, metadata, answer_store, list_store, schema):
+def _get_formatted_total(
+    groups, metadata, answer_store, list_store, schema, current_location
+):
     calculated_total = 0
     answer_format = {'type': None}
     for group in groups:
         for block in group['blocks']:
             question = choose_question_to_display(
-                block, schema, metadata, answer_store, list_store
+                block,
+                schema,
+                metadata,
+                answer_store,
+                list_store,
+                current_location=current_location,
             )
             for answer in question['answers']:
                 if not answer_format['type']:

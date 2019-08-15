@@ -9,7 +9,7 @@ def _choose_variant(
     list_store,
     variants_key,
     single_key,
-    current_location=None,
+    current_location,
 ):
     if block.get(single_key):
         return block[single_key]
@@ -28,7 +28,7 @@ def _choose_variant(
 
 
 def choose_question_to_display(
-    block, schema, metadata, answer_store, list_store, current_location=None
+    block, schema, metadata, answer_store, list_store, current_location
 ):
     return _choose_variant(
         block,
@@ -43,7 +43,7 @@ def choose_question_to_display(
 
 
 def choose_content_to_display(
-    block, schema, metadata, answer_store, list_store, current_location=None
+    block, schema, metadata, answer_store, list_store, current_location
 ):
     return _choose_variant(
         block,
@@ -58,7 +58,7 @@ def choose_content_to_display(
 
 
 def transform_variants(
-    block, schema, metadata, answer_store, list_store, current_location=None
+    block, schema, metadata, answer_store, list_store, current_location
 ):
     output_block = block.copy()
 

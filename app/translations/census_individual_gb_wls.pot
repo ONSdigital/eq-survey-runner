@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-07 13:13+0100\n"
+"POT-Creation-Date: 2019-08-13 11:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,16 +65,19 @@ msgstr ""
 msgid "This could be more than 30 days in a row or divided across the year"
 msgstr ""
 
+msgid "Select to enter answer"
+msgstr ""
+
 msgid ""
 "We mean a different address to the one at the start of this survey. This "
 "might be another parent or guardian’s address, a term-time address, a "
 "partner’s address or a holiday home."
 msgstr ""
 
-msgid "Do not count short visits away from the UK"
+msgid "Select to enter country"
 msgstr ""
 
-msgid "Including British Sign Language"
+msgid "Do not count short visits away from the UK"
 msgstr ""
 
 msgid ""
@@ -224,6 +227,9 @@ msgid "Exclude anything you do as part of your paid employment"
 msgstr ""
 
 msgid "Exclude anything they do as part of their paid employment"
+msgstr ""
+
+msgid "An option to enter gender will follow"
 msgstr ""
 
 msgid ""
@@ -1351,7 +1357,7 @@ msgstr ""
 
 #. answer-id: another-address-answer-other-country
 msgctxt "Answer for: Do you stay at another address for more than 30 days a year?"
-msgid "Please specify the country"
+msgid "Enter the current name of the country"
 msgstr ""
 
 #. answer-id: another-address-answer
@@ -1379,7 +1385,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Does <em>{person_name}</em> stay at another address for more "
 "than 30 days a year?"
-msgid "Please specify the country"
+msgid "Enter the current name of the country"
 msgstr ""
 
 #. answer-id: other-address-answer-building
@@ -1656,7 +1662,7 @@ msgstr ""
 
 #. answer-id: term-time-address-country-answer-other
 msgctxt "Answer for: Is this address in the UK?"
-msgid "Please specify the country"
+msgid "Enter the current name of the country"
 msgstr ""
 
 #. answer-id: term-time-address-details-answer-building
@@ -1761,7 +1767,7 @@ msgstr ""
 
 #. answer-id: country-of-birth-answer-other
 msgctxt "Answer for: What is your country of birth?"
-msgid "Please specify the current name of the country"
+msgid "Enter the current name of the country"
 msgstr ""
 
 #. answer-id: country-of-birth-answer
@@ -1796,7 +1802,7 @@ msgstr ""
 
 #. answer-id: country-of-birth-answer-other
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
-msgid "Please specify the current name of the country"
+msgid "Enter the current name of the country"
 msgstr ""
 
 #. answer-id: when-arrive-in-uk-answer
@@ -1918,12 +1924,12 @@ msgstr ""
 
 #. answer-id: language-answer
 msgctxt "Answer for: What is your main language?"
-msgid "Other"
+msgid "Other, including British Sign Language"
 msgstr ""
 
 #. answer-id: language-answer-other
 msgctxt "Answer for: What is your main language?"
-msgid "Please specify main language"
+msgid "Enter main language"
 msgstr ""
 
 #. answer-id: language-answer
@@ -1933,12 +1939,12 @@ msgstr ""
 
 #. answer-id: language-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
-msgid "Other"
+msgid "Other, including British Sign Language"
 msgstr ""
 
 #. answer-id: language-answer-other
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
-msgid "Please specify main language"
+msgid "Enter main language"
 msgstr ""
 
 #. answer-id: english-answer
@@ -2013,7 +2019,7 @@ msgstr ""
 
 #. answer-id: national-identity-answer-other
 msgctxt "Answer for: How would you describe your national identity?"
-msgid "Please describe your national identity"
+msgid "Describe your national identity"
 msgstr ""
 
 #. answer-id: national-identity-answer
@@ -2062,7 +2068,7 @@ msgstr ""
 msgctxt ""
 "Answer for: How would <em>{person_name}</em> describe their national "
 "identity?"
-msgid "Please describe their national identity"
+msgid "Describe their national identity"
 msgstr ""
 
 #. answer-id: ethnic-group-answer
@@ -2154,7 +2160,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes your White ethnic group or "
 "background?"
-msgid "Please specify White background"
+msgid "Enter White background"
 msgstr ""
 
 #. answer-id: white-ethnic-group-answer
@@ -2196,7 +2202,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes <em>{person_name_possessive}</em> "
 "White ethnic group or background?"
-msgid "Please specify White background"
+msgid "Enter White background"
 msgstr ""
 
 #. answer-id: mixed-ethnic-group-answer
@@ -2231,7 +2237,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes your Mixed or Multiple ethnic group "
 "or background?"
-msgid "Please specify Mixed or Multiple background"
+msgid "Enter Mixed or Multiple background"
 msgstr ""
 
 #. answer-id: mixed-ethnic-group-answer
@@ -2266,7 +2272,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes <em>{person_name_possessive}</em> "
 "Mixed or Multiple ethnic group or background?"
-msgid "Please specify Mixed or Multiple background"
+msgid "Enter Mixed or Multiple background"
 msgstr ""
 
 #. answer-id: asian-ethnic-group-answer
@@ -2308,7 +2314,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes your Asian or Asian British ethnic "
 "group or background?"
-msgid "Please specify Asian background"
+msgid "Enter Asian background"
 msgstr ""
 
 #. answer-id: asian-ethnic-group-answer
@@ -2350,7 +2356,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes <em>{person_name_possessive}</em> "
 "Asian or Asian British ethnic group or background?"
-msgid "Please specify Asian background"
+msgid "Enter Asian background"
 msgstr ""
 
 #. answer-id: black-ethnic-group-answer
@@ -2371,7 +2377,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes your Black, Black British, Caribbean"
 " or African ethnic group or background?"
-msgid "Please specify African background"
+msgid "Enter African background"
 msgstr ""
 
 #. answer-id: black-ethnic-group-answer
@@ -2385,7 +2391,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes your Black, Black British, Caribbean"
 " or African ethnic group or background?"
-msgid "Please specify any other Black, Black British or Caribbean background"
+msgid "Enter Black, Black British or Caribbean background"
 msgstr ""
 
 #. answer-id: black-ethnic-group-answer
@@ -2406,7 +2412,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes <em>{person_name_possessive}</em> "
 "Black, Black British, Caribbean or African ethnic group or background?"
-msgid "Please specify African background"
+msgid "Enter African background"
 msgstr ""
 
 #. answer-id: black-ethnic-group-answer
@@ -2420,7 +2426,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes <em>{person_name_possessive}</em> "
 "Black, Black British, Caribbean or African ethnic group or background?"
-msgid "Please specify any other Black, Black British or Caribbean background"
+msgid "Enter Black, Black British or Caribbean background"
 msgstr ""
 
 #. answer-id: other-ethnic-group-answer
@@ -2441,7 +2447,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes your other ethnic group or "
 "background?"
-msgid "Please specify other ethnic group"
+msgid "Enter other ethnic group"
 msgstr ""
 
 #. answer-id: other-ethnic-group-answer
@@ -2462,7 +2468,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes <em>{person_name_possessive}</em> "
 "other ethnic group or background?"
-msgid "Please specify other ethnic group"
+msgid "Enter other ethnic group"
 msgstr ""
 
 #. answer-id: religion-answer
@@ -2507,7 +2513,7 @@ msgstr ""
 
 #. answer-id: religion-answer-other
 msgctxt "Answer for: What is your religion?"
-msgid "Please specify religion"
+msgid "Enter religion"
 msgstr ""
 
 #. answer-id: religion-answer
@@ -2552,7 +2558,7 @@ msgstr ""
 
 #. answer-id: religion-answer-other
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> religion?"
-msgid "Please specify religion"
+msgid "Enter religion"
 msgstr ""
 
 #. answer-id: past-usual-address-household-answer
@@ -2572,7 +2578,7 @@ msgstr ""
 
 #. answer-id: past-usual-address-household-answer-other
 msgctxt "Answer for: One year ago, what was your usual address?"
-msgid "Please specify the country"
+msgid "Enter the current name of the country"
 msgstr ""
 
 #. answer-id: past-usual-address-household-answer
@@ -2600,7 +2606,7 @@ msgstr ""
 msgctxt ""
 "Answer for: One year ago, what was <em>{person_name_possessive}</em> "
 "usual address?"
-msgid "Please specify the country"
+msgid "Enter the current name of the country"
 msgstr ""
 
 #. answer-id: last-year-address-answer-building
@@ -2680,7 +2686,7 @@ msgstr ""
 
 #. answer-id: passport-answer-other
 msgctxt "Answer for: What passports do you hold?"
-msgid "Please specify the passports you hold"
+msgid "Enter the passports you hold"
 msgstr ""
 
 #. answer-id: passports-answer-exclusive
@@ -2705,7 +2711,7 @@ msgstr ""
 
 #. answer-id: passport-answer-other
 msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
-msgid "Please specify the passports held"
+msgid "Enter passports held"
 msgstr ""
 
 #. answer-id: passports-answer-exclusive
@@ -2953,7 +2959,7 @@ msgstr ""
 
 #. answer-id: sexual-identity-answer-other
 msgctxt "Answer for: Which of the following best describes your sexual orientation?"
-msgid "Please specify your sexual orientation"
+msgid "Enter your sexual orientation"
 msgstr ""
 
 #. answer-id: sexual-identity-answer
@@ -2988,7 +2994,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which of the following best describes "
 "<em>{person_name_possessive}</em> sexual orientation?"
-msgid "Please specify their sexual orientation"
+msgid "Enter their sexual orientation"
 msgstr ""
 
 #. answer-id: birth-gender-answer
@@ -3009,7 +3015,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Is your gender the same as the sex you were registered at "
 "birth?"
-msgid "Please specify gender"
+msgid "Enter gender"
 msgstr ""
 
 #. answer-id: birth-gender-answer
@@ -3030,7 +3036,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Is <em>{person_name_possessive}</em> gender the same as the "
 "sex they were registered at birth?"
-msgid "Please specify gender"
+msgid "Enter gender"
 msgstr ""
 
 #. answer-id: apprenticeship-answer

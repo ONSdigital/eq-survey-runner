@@ -25,7 +25,7 @@ class TestQuestionnaireStoreUpdater(unittest.TestCase):
     def setUp(self):
         super().setUp()
 
-        self.location = Location('block_bar')
+        self.location = Location(section_id='section-foo', block_id='block-bar')
         self.schema = MagicMock(spec=QuestionnaireSchema)
         self.answer_store = MagicMock(spec=AnswerStore)
         self.progress_store = MagicMock(spec=ProgressStore)
