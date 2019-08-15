@@ -41,7 +41,7 @@ local question(title) = {
 
 local nonProxyTitleSchool = 'What is the address of your main place of study, including school?';
 local proxyTitleSchool = {
-  text: 'What is the address of <em>{person_name}</em>'s main place of study, including school?',
+  text: 'What is the address of <em>{person_name}</em>\'s main place of study, including school?',
   placeholders: [
     placeholders.personName,
   ],

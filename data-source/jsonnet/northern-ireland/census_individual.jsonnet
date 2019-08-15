@@ -68,9 +68,6 @@ local supervise = import 'blocks/individual/employment/supervise.jsonnet';
 local work_location = import 'blocks/individual/employment/work_location.jsonnet';
 local work_travel = import 'blocks/individual/employment/work_travel.jsonnet';
 
-// work-study
-local work_study_location = import 'blocks/individual/work_study/work_study_location.jsonnet';
-
 function(region_code, census_date) {
   mime_type: 'application/json/ons/eq',
   schema_version: '0.0.1',
@@ -177,7 +174,6 @@ function(region_code, census_date) {
             employers_business,
             supervise,
             hours_worked,
-            work-study-location,
             work_location,
             work_travel,
           ],
@@ -186,7 +182,6 @@ function(region_code, census_date) {
           id: 'school-group',
           title: 'School',
           blocks: [
-            work-study-location,
             school_location,
             school_travel,
           ],

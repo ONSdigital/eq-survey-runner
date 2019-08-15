@@ -41,7 +41,7 @@ local question(title) = {
 
 local nonProxyTitleWork = 'What is the address of your main place of work?';
 local proxyTitleWork = {
-  text: 'What is the address of <em>{person_name}</em>'s main place of work?',
+  text: 'What is the address of <em>{person_name}</em>\'s main place of work?',
   placeholders: [
     placeholders.personName,
   ],
@@ -49,7 +49,7 @@ local proxyTitleWork = {
 
 local pastNonProxyTitleWork = 'What was the address of your main place of work?';
 local pastProxyTitleWork = {
-  text: 'What was the address of <em>{person_name}</em>'s main place of work?',
+  text: 'What was the address of <em>{person_name}</em>\'s main place of work?',
   placeholders: [
     placeholders.personName,
   ],

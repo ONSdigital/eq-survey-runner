@@ -88,7 +88,7 @@ local firstRadioWork = 'At a workplace';
       when: [rules.proxyNo, rules.working],
     },
     {
-      question: question(proxyTitleDidWork, proxyDescriptionDidWork, firstRadioWork,
+      question: question(proxyTitleDidWork, proxyDescriptionDidWork, firstRadioWork),
       when: [rules.proxyYes, rules.working],
     },
   ],
@@ -105,6 +105,8 @@ local firstRadioWork = 'At a workplace';
           },
         ],
       },
+    },
+    {
       goto: {
         block: 'work-location',
         when: [
