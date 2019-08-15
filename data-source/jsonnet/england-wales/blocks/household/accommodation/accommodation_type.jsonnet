@@ -14,7 +14,7 @@ local rules = import '../../../lib/rules.libsonnet';
     answers: [
       {
         id: 'accommodation-type-answer',
-        mandatory: true,
+        mandatory: false,
         type: 'Radio',
         options: [
           {
