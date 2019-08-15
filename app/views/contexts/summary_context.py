@@ -1,6 +1,5 @@
 from typing import List, Mapping
 
-import flask_babel
 from flask import url_for
 
 from app.data_model.answer_store import AnswerStore

@@ -11,7 +11,6 @@ from app.views.contexts.summary_context import (
     build_view_context_for_calculated_summary,
 )
 from tests.app.app_context_test_case import AppContextTestCase
-from app.settings import DEFAULT_LOCALE
 
 
 class TestStandardSummaryContext(AppContextTestCase):
