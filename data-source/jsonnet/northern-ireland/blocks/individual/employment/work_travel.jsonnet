@@ -28,10 +28,6 @@ local question(title, description) = {
           value: 'Bus, minibus or coach (public or private)',
         },
         {
-          label: 'On foot',
-          value: 'On foot',
-        },
-        {
           label: 'Taxi',
           value: 'Taxi',
         },
@@ -40,12 +36,16 @@ local question(title, description) = {
           value: 'Train',
         },
         {
+          label: 'Motorcycle, scooter or moped',
+          value: 'Motorcycle, scooter or moped',
+        },
+        {
           label: 'Bicycle',
           value: 'Bicycle',
         },
         {
-          label: 'Motorcycle, scooter or moped',
-          value: 'Motorcycle, scooter or moped',
+          label: 'On foot',
+          value: 'On foot',
         },
         {
           label: 'Other',

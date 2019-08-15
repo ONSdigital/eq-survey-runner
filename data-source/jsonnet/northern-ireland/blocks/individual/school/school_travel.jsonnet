@@ -28,10 +28,6 @@ local question(title, description) = {
           value: 'Bus, minibus or coach (public or private)',
         },
         {
-          label: 'On foot',
-          value: 'On foot',
-        },
-        {
           label: 'Taxi',
           value: 'Taxi',
         },
@@ -39,13 +35,17 @@ local question(title, description) = {
           label: 'Train',
           value: 'Train',
         },
+                {
+          label: 'Motorcycle, scooter or moped',
+          value: 'Motorcycle, scooter or moped',
+        },
         {
           label: 'Bicycle',
           value: 'Bicycle',
         },
         {
-          label: 'Motorcycle, scooter or moped',
-          value: 'Motorcycle, scooter or moped',
+          label: 'On foot',
+          value: 'On foot',
         },
         {
           label: 'Other',
@@ -58,9 +58,9 @@ local question(title, description) = {
 };
 
 
-local nonProxyTitleSchool = 'How do you usually travel to your place of study, including school?';
+local nonProxyTitleSchool = 'How do you usually travel to your main place of study, including school?';
 local proxyTitleSchool = {
-  text: 'How does <em>{person_name}</em> usually travel to their place of study, including school?',
+  text: 'How does <em>{person_name}</em> usually travel to their main place of study, including school?',
   placeholders: [
     placeholders.personName,
   ],

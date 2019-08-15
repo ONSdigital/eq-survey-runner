@@ -1,11 +1,11 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title) = {
+local question(title, description) = {
   id: 'job-title-question',
   title: title,
-  description: 'For example, retail assistant, office cleaner, district nurse, primary school teacher. Do not state your grade or pay band.',
   type: 'General',
+  description: description,
   answers: [
     {
       id: 'job-title-answer',
@@ -32,24 +32,27 @@ local pastProxyTitle = {
   ],
 };
 
+local nonProxyDescription = 'For example, retail assistant, office cleaner, district nurse, primary school teacher. Do not state your grade or pay band';
+local proxyDescription = 'For example, retail assistant, office cleaner, district nurse, primary school teacher. Do not state their grade or pay band';
+
 {
   type: 'Question',
   id: 'job-title',
   question_variants: [
     {
-      question: question(nonProxyTitle),
+      question: question(nonProxyTitle, nonProxyDescription),
       when: [rules.proxyNo, rules.mainJob],
     },
     {
-      question: question(proxyTitle),
+      question: question(proxyTitle, proxyDescription),
       when: [rules.proxyYes, rules.mainJob],
     },
     {
-      question: question(pastNonProxyTitle),
+      question: question(pastNonProxyTitle, nonProxyDescription),
       when: [rules.proxyNo, rules.lastMainJob],
     },
     {
-      question: question(pastProxyTitle),
+      question: question(pastProxyTitle, proxyDescription),
       when: [rules.proxyYes, rules.lastMainJob],
     },
   ],
