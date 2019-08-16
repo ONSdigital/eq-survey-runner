@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "162a823290ea41904d5aeee1b450de75a9aa14531a2117ee59a741bf150a4954"
+            "sha256": "51149247bb7c71a568cf02088f9ea97d7ab5b418bcf7fa544ee3a266a74b319e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -161,7 +161,7 @@
         "eq-translations": {
             "editable": true,
             "git": "https://github.com/ONSDigital/eq-translations.git",
-            "ref": "f593787634eca7ea11ae18c213ad361cf5d9b2bb",
+            "ref": "a1f5fa38f8d54ffbd6d755ea48e3f06a73d34ae0",
             "version": "==0.2"
         },
         "flask": {
