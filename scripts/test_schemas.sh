@@ -6,7 +6,7 @@ if [ "$1" == "--local" ] || [ "$2" == "--local" ]; then
 fi
 
 if [ "$run_docker" == true ]; then
-    branch=add-validation-number-of-cars
+    branch=allow-numeric-detail-answer
     docker pull onsdigital/eq-schema-validator:$branch
     validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator:$branch)"
     sleep 3
