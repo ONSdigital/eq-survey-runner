@@ -34,11 +34,10 @@ def build_list_items_summary_context(
         except KeyError:
             return []
 
-        if list_item_id == primary_person:
-            is_primary = True
+        is_primary = list_item_id == primary_person
+
+        if is_primary:
             rendered_summary['item_title'] += lazy_gettext(' (You)')
-        else:
-            is_primary = False
 
         list_items.append(
             {

@@ -129,7 +129,7 @@ def build_view_context_for_section_summary(
             'add_link_text': list_collector_block['summary']['add_link_text'],
             'empty_list_text': list_collector_block['summary']['empty_list_text'],
             'list_items': build_list_items_summary_context(
-                list_collector_block, answer_store, list_store, language
+                list_collector_block, schema, answer_store, list_store, language
             ),
         }
         list_item_summaries.append(list_item_summary)

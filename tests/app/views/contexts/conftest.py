@@ -4,7 +4,18 @@ from mock import MagicMock
 from app.data_model.answer_store import AnswerStore
 from app.data_model.list_store import ListStore
 from app.forms.questionnaire_form import QuestionnaireForm
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.setup import create_app
+
+
+@pytest.fixture
+def app():
+    setting_overrides = {'LOGIN_DISABLED': True, 'SERVER_NAME': 'test.localdomain'}
+    app = create_app(setting_overrides=setting_overrides)
+    context = app.app_context()
+    context.push()
+
+    return app
 
 
 @pytest.fixture
@@ -136,6 +147,11 @@ def form():
 
 
 @pytest.fixture
+def schema():
+    return MagicMock(QuestionnaireSchema({}))
+
+
+@pytest.fixture
 def people_answer_store():
     return AnswerStore(
         [
@@ -150,10 +166,3 @@ def people_answer_store():
 @pytest.fixture
 def people_list_store():
     return ListStore([{'items': ['PlwgoG', 'UHPLbX', 'FnoDHP'], 'name': 'people'}])
-
-
-@pytest.fixture
-def app():
-    setting_overrides = {'LOGIN_DISABLED': True}
-    app = create_app(setting_overrides=setting_overrides)
-    return app
