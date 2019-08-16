@@ -81,9 +81,6 @@
                                         ]
                                     }
                                 ]
-                            },
-                            "summary": {
-                                "hide_on_section_summary": true
                             }
                         },
                         {
@@ -353,8 +350,12 @@
                             "hide_on_section_summary": false
                         },
                         {
-                            "id": "people-list-summary",
+                            "id": "people-list-section-summary",
                             "type": "SectionSummary"
+                        },
+                        {
+                            "id": "people-list-summary",
+                            "type": "Summary"
                         }
                     ]
                 }
