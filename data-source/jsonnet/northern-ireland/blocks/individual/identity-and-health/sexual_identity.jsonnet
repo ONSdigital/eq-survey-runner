@@ -9,6 +9,7 @@ local question(title) = {
     {
       id: 'sexual-identity-answer',
       mandatory: false,
+      type: 'Checkbox',
       label: '',
       options: [
         {
@@ -34,7 +35,6 @@ local question(title) = {
           },
         },
       ],
-      type: 'Checkbox',
     },
     {
       id: 'sexual-identity-answer-exclusive',
