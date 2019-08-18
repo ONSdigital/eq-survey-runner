@@ -176,7 +176,6 @@ function(region_code, census_date) {
             employers_business,
             supervise,
             hours_worked,
-            work_location_type,
             work_location,
             work_travel,
           ],
@@ -185,7 +184,6 @@ function(region_code, census_date) {
           id: 'school-group',
           title: 'School',
           blocks: [
-            study_location_type,
             school_location,
             school_travel,
           ],

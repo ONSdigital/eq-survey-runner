@@ -4,7 +4,7 @@ local rules = import '../../../lib/rules.libsonnet';
 local question(title) = {
   id: 'sexual-identity-question',
   title: title,
-  type: 'MutuallyExclusive',
+  type: 'General',
   answers: [
     {
       id: 'sexual-identity-answer',

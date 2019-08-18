@@ -46,9 +46,20 @@ local proxyTitleDidWork = {
 };
 
 local nonProxyDescriptionWork = 'Answer for the place where you spend the most time. Even if ill, on maternity leave, holiday or temporarily laid off provide details of your main place of work.';
-local proxyDescriptionWork = 'Answer for the place where <em>{person_name}</em> spends the most time. Even if ill, on maternity leave, holiday or temporarily laid off provide details of their main place of work.';
+local proxyDescriptionWork = {
+  text: 'Answer for the place where <em>{person_name}</em> spends the most time. Even if ill, on maternity leave, holiday or temporarily laid off provide details of their main place of work.',
+  placeholders: [
+    placeholders.personName,
+  ],
+};
+
 local nonProxyDescriptionDidWork = 'Answer for the place where you spent the most time.';
-local proxyDescriptionDidWork = 'Answer for the place where <em>{person_name}</em> spent the most time.';
+local proxyDescriptionDidWork = {
+  text: 'Answer for the place where <em>{person_name}</em> spent the most time.',
+  placeholders: [
+    placeholders.personName,
+  ],
+};
 
 {
   type: 'Question',
