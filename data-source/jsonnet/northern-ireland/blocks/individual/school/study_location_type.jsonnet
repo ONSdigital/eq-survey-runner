@@ -2,14 +2,14 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
 local question(title, description) = {
+  id: 'study-location-type-question',
   title: title,
-  id: 'study_location_type-question',
   description: description,
   type: 'General',
   answers: [
     {
-      id: 'study_location_type-answer',
-      mandatory: true,
+      id: 'study-location-type-answer',
+      mandatory: false,
       options: [
         {
           label: 'At a campus or school',
@@ -36,14 +36,17 @@ local proxyTitleStudy = {
     placeholders.personName,
   ],
 };
-
 local nonProxyDescriptionStudy = 'Answer for the place where you spend the most time. If student or schoolchild, answer for your study address.';
-local proxyDescriptionStudy = 'Answer for the place where <em>{person_name}</em> spends the most time. If student or schoolchild, answer for their study address.';
-
+local proxyDescriptionStudy = {
+  text: 'Answer for the place where <em>{person_name}</em> spends the most time. If student or schoolchild, answer for their study address.',
+  placeholders: [
+    placeholders.personName,
+  ],
+};
 
 {
   type: 'Question',
-  id: 'study_location_type',
+  id: 'study-location-type',
   question_variants: [
     {
       question: question(nonProxyTitleStudy, nonProxyDescriptionStudy),
@@ -60,7 +63,7 @@ local proxyDescriptionStudy = 'Answer for the place where <em>{person_name}</em>
         block: 'school-location',
         when: [
           {
-            id: 'study_location_type-answer',
+            id: 'study-location-type-answer',
             condition: 'equals',
             value: 'At a campus or school',
           },

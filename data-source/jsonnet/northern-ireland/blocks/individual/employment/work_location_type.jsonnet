@@ -3,12 +3,12 @@ local rules = import '../../../lib/rules.libsonnet';
 
 local question(title, description) = {
   title: title,
-  id: 'work_location_type-question',
+  id: 'work-location-type-question',
   description: description,
   type: 'General',
   answers: [
     {
-      id: 'work_location_type-answer',
+      id: 'work-location-type-answer',
       mandatory: true,
       options: [
         {
@@ -63,7 +63,7 @@ local proxyDescriptionDidWork = {
 
 {
   type: 'Question',
-  id: 'work_location_type',
+  id: 'work-location-type',
   question_variants: [
     {
       question: question(nonProxyTitleWork, nonProxyDescriptionWork),
@@ -88,7 +88,7 @@ local proxyDescriptionDidWork = {
         block: 'work-location',
         when: [
           {
-            id: 'work_location_type-answer',
+            id: 'work-location-type-answer',
             condition: 'equals',
             value: 'At a workplace',
           },
