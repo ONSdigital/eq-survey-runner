@@ -1,4 +1,6 @@
+from app.data_model.list_store import ListStore
 from app.data_model.progress_store import ProgressStore, CompletionStatus
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.views.contexts.hub_context import HubContext
 
 
@@ -20,10 +22,13 @@ def test_get_not_started_row_for_section():
     }
 
     hub = HubContext(
-        progress_store=ProgressStore({}), sections={}, survey_complete=False
+        progress_store=ProgressStore(),
+        list_store=ListStore(),
+        schema=QuestionnaireSchema({}),
+        survey_complete=False,
     )
 
-    actual = hub.get_row_for_section(
+    actual = hub.get_row_context_for_section(
         section_name='Breakfast',
         section_status=CompletionStatus.NOT_STARTED,
         section_url='http://some/url',
@@ -51,10 +56,13 @@ def test_get_completed_row_for_section():
     }
 
     hub = HubContext(
-        progress_store=ProgressStore({}), sections={}, survey_complete=False
+        progress_store=ProgressStore(),
+        list_store=ListStore(),
+        schema=QuestionnaireSchema({}),
+        survey_complete=False,
     )
 
-    actual = hub.get_row_for_section(
+    actual = hub.get_row_context_for_section(
         section_name='Breakfast',
         section_status=CompletionStatus.COMPLETED,
         section_url='http://some/url',
@@ -65,7 +73,10 @@ def test_get_completed_row_for_section():
 
 def test_get_context():
     hub = HubContext(
-        progress_store=ProgressStore({}), sections={}, survey_complete=False
+        progress_store=ProgressStore(),
+        list_store=ListStore(),
+        schema=QuestionnaireSchema({}),
+        survey_complete=False,
     )
 
     expected_context = {

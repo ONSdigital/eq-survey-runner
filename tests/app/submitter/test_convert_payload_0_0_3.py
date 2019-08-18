@@ -11,8 +11,8 @@ from tests.app.submitter.schema import make_schema, load_schema
 
 def test_convert_answers_to_payload_0_0_3(fake_questionnaire_store):
     full_routing_path = [
-        Location(block_id='about you'),
-        Location(block_id='where you live'),
+        Location(section_id='household-section', block_id='about you'),
+        Location(section_id='household-section', block_id='where you live'),
     ]
 
     fake_questionnaire_store.answer_store = AnswerStore(
@@ -72,7 +72,7 @@ def test_convert_answers_to_payload_0_0_3(fake_questionnaire_store):
 
 
 def test_convert_payload_0_0_3_multiple_answers(fake_questionnaire_store):
-    routing_path = [Location(block_id='crisps')]
+    routing_path = [Location(section_id='section-1', block_id='crisps')]
     answers = AnswerStore(
         [Answer('crisps-answer', ['Ready salted', 'Sweet chilli']).to_dict()]
     )
@@ -109,7 +109,7 @@ def test_convert_payload_0_0_3_multiple_answers(fake_questionnaire_store):
 
 
 def test_radio_answer(fake_questionnaire_store):
-    routing_path = [Location(block_id='radio-block')]
+    routing_path = [Location(section_id='section-1', block_id='radio-block')]
     answers = AnswerStore([Answer('radio-answer', 'Coffee').to_dict()])
     fake_questionnaire_store.answer_store = answers
 
@@ -142,7 +142,7 @@ def test_radio_answer(fake_questionnaire_store):
 
 
 def test_number_answer(fake_questionnaire_store):
-    routing_path = [Location(block_id='number-block')]
+    routing_path = [Location(section_id='section-1', block_id='number-block')]
     answers = AnswerStore([Answer('number-answer', 1.755).to_dict()])
     fake_questionnaire_store.answer_store = answers
 
@@ -166,7 +166,7 @@ def test_number_answer(fake_questionnaire_store):
 
 
 def test_percentage_answer(fake_questionnaire_store):
-    routing_path = [Location(block_id='percentage-block')]
+    routing_path = [Location(section_id='section-1', block_id='percentage-block')]
     answers = AnswerStore([Answer('percentage-answer', 99).to_dict()])
     fake_questionnaire_store.answer_store = answers
 
@@ -190,7 +190,7 @@ def test_percentage_answer(fake_questionnaire_store):
 
 
 def test_textarea_answer(fake_questionnaire_store):
-    routing_path = [Location(block_id='textarea-block')]
+    routing_path = [Location(section_id='section-1', block_id='textarea-block')]
     answers = AnswerStore(
         [Answer('textarea-answer', 'This is an example text!').to_dict()]
     )
@@ -216,7 +216,7 @@ def test_textarea_answer(fake_questionnaire_store):
 
 
 def test_currency_answer(fake_questionnaire_store):
-    routing_path = [Location(block_id='currency-block')]
+    routing_path = [Location(section_id='section-1', block_id='currency-block')]
     answers = AnswerStore([Answer('currency-answer', 100).to_dict()])
     fake_questionnaire_store.answer_store = answers
 
@@ -240,7 +240,7 @@ def test_currency_answer(fake_questionnaire_store):
 
 
 def test_dropdown_answer(fake_questionnaire_store):
-    routing_path = [Location(block_id='dropdown-block')]
+    routing_path = [Location(section_id='section-1', block_id='dropdown-block')]
     answers = AnswerStore([Answer('dropdown-answer', 'Rugby is better!').to_dict()])
     fake_questionnaire_store.answer_store = answers
 
@@ -275,7 +275,7 @@ def test_dropdown_answer(fake_questionnaire_store):
 
 
 def test_date_answer(fake_questionnaire_store):
-    routing_path = [Location(block_id='date-block')]
+    routing_path = [Location(section_id='section-1', block_id='date-block')]
     answers = AnswerStore(
         [
             Answer('single-date-answer', '01-01-1990').to_dict(),
@@ -305,7 +305,7 @@ def test_date_answer(fake_questionnaire_store):
 
 
 def test_month_year_date_answer(fake_questionnaire_store):
-    routing_path = [Location(block_id='date-block')]
+    routing_path = [Location(section_id='section-1', block_id='date-block')]
     answers = AnswerStore(
         [
             Answer('single-date-answer', '01-01-1990').to_dict(),
@@ -335,7 +335,7 @@ def test_month_year_date_answer(fake_questionnaire_store):
 
 
 def test_unit_answer(fake_questionnaire_store):
-    routing_path = [Location(block_id='unit-block')]
+    routing_path = [Location(section_id='section-1', block_id='unit-block')]
     answers = AnswerStore([Answer('unit-answer', 10).to_dict()])
     fake_questionnaire_store.answer_store = answers
 
@@ -357,9 +357,9 @@ def test_unit_answer(fake_questionnaire_store):
 
 def test_primary_person_list_item_conversion(fake_questionnaire_store):
     routing_path = [
-        Location(block_id='primary-person-list-collector'),
-        Location(block_id='list-collector'),
-        Location(block_id='summary'),
+        Location(section_id='section-1', block_id='primary-person-list-collector'),
+        Location(section_id='section-1', block_id='list-collector'),
+        Location(section_id='section-2', block_id='summary'),
     ]
 
     answer_objects = [
@@ -399,10 +399,10 @@ def test_primary_person_list_item_conversion(fake_questionnaire_store):
 
 def test_list_item_conversion(fake_questionnaire_store):
     routing_path = [
-        Location(block_id='list-collector'),
-        Location(block_id='next-interstitial'),
-        Location(block_id='another-list-collector-block'),
-        Location(block_id='summary'),
+        Location(section_id='section-1', block_id='list-collector'),
+        Location(section_id='section-1', block_id='next-interstitial'),
+        Location(section_id='section-1', block_id='another-list-collector-block'),
+        Location(section_id='section-2', block_id='summary'),
     ]
 
     answer_objects = [
@@ -441,10 +441,10 @@ def test_list_item_conversion_empty_list(fake_questionnaire_store):
     """ Test that the list store is populated with an empty list for lists which
     do not have answers yet."""
     routing_path = [
-        Location(block_id='list-collector'),
-        Location(block_id='next-interstitial'),
-        Location(block_id='another-list-collector-block'),
-        Location(block_id='summary'),
+        Location(section_id='section-1', block_id='list-collector'),
+        Location(section_id='section-1', block_id='next-interstitial'),
+        Location(section_id='section-1', block_id='another-list-collector-block'),
+        Location(section_id='section-2', block_id='summary'),
     ]
 
     answer_objects = [
@@ -486,7 +486,10 @@ def test_default_answers_not_present_when_not_answered(fake_questionnaire_store)
     fake_questionnaire_store.answer_store = AnswerStore(answer_objects)
     fake_questionnaire_store.list_store = ListStore()
 
-    routing_path = [Location(block_id='radio'), Location(block_id='test-number-block')]
+    routing_path = [
+        Location(section_id='default-section', block_id='radio'),
+        Location(section_id='default-section', block_id='test-number-block'),
+    ]
 
     output = convert_answers(schema, fake_questionnaire_store, routing_path)
     data = json.loads(json.dumps(output['data'], for_json=True))

@@ -8,7 +8,7 @@ class Relationship:
     Represents a relationship between two items.
     """
 
-    from_list_item_id: str
+    list_item_id: str
     to_list_item_id: str
     relationship: str
 
@@ -30,7 +30,7 @@ class RelationshipStore:
 
     def __contains__(self, relationship):
         return (
-            relationship.from_list_item_id,
+            relationship.list_item_id,
             relationship.to_list_item_id,
         ) in self._relationships
 
@@ -50,12 +50,12 @@ class RelationshipStore:
             relationship.for_json() for relationship in self._relationships.values()
         ]
 
-    def get_relationship(self, from_list_item_id, to_list_item_id):
-        key = (from_list_item_id, to_list_item_id)
+    def get_relationship(self, list_item_id, to_list_item_id):
+        key = (list_item_id, to_list_item_id)
         return self._relationships.get(key)
 
     def add_or_update(self, relationship: Relationship):
-        key = (relationship.from_list_item_id, relationship.to_list_item_id)
+        key = (relationship.list_item_id, relationship.to_list_item_id)
 
         existing_relationship = self._relationships.get(key)
 
@@ -73,10 +73,10 @@ class RelationshipStore:
         for relationship in self:
             if list_item_id in (
                 relationship.to_list_item_id,
-                relationship.from_list_item_id,
+                relationship.list_item_id,
             ):
                 keys_to_delete.append(
-                    (relationship.from_list_item_id, relationship.to_list_item_id)
+                    (relationship.list_item_id, relationship.to_list_item_id)
                 )
 
         for key in keys_to_delete:
@@ -87,7 +87,7 @@ class RelationshipStore:
     def _build_map(relationships):
         return {
             (
-                relationship['from_list_item_id'],
+                relationship['list_item_id'],
                 relationship['to_list_item_id'],
             ): Relationship(**relationship)
             for relationship in relationships

@@ -13,6 +13,7 @@ from app.forms.date_form import (
     DateFormType,
     DateField,
 )
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.rules import convert_to_datetime
 from app.utilities.schema import load_schema_from_name
 from tests.app.app_context_test_case import AppContextTestCase
@@ -247,8 +248,11 @@ class TestDateForm(AppContextTestCase):
         self.assertEqual(value, convert_to_datetime('2018-02-10'))
 
     # pylint: disable=unused-argument
-    @patch('app.forms.date_form.load_schema_from_metadata')
-    def test_get_referenced_offset_value_for_answer_id(self, mock1):
+    @patch(
+        'app.forms.date_form.load_schema_from_metadata',
+        return_value=QuestionnaireSchema({}),
+    )
+    def test_get_referenced_offset_value_for_answer_id(self, schema_mock):
         store = AnswerStore()
 
         test_answer_id = Answer(answer_id='date', value='2018-03-20')
@@ -268,7 +272,10 @@ class TestDateForm(AppContextTestCase):
         self.assertEqual(value, convert_to_datetime('2017-06-11'))
 
     # pylint: disable=unused-argument
-    @patch('app.forms.date_form.load_schema_from_metadata')
+    @patch(
+        'app.forms.date_form.load_schema_from_metadata',
+        return_value=QuestionnaireSchema({}),
+    )
     def test_minimum_and_maximum_offset_dates(self, mock1):
         test_metadata = {'date': '2018-02-20'}
         store = AnswerStore()

@@ -54,7 +54,7 @@ spec:
             - name: EQ_STORAGE_BACKEND
               value: "datastore"
             - name: EQ_ENABLE_SECURE_SESSION_COOKIE
-              value: "False"
+              value: "True"
             - name: EQ_SECRETS_FILE
               value: /secrets/secrets.yml
             - name: EQ_KEYS_FILE

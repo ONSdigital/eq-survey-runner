@@ -1,9 +1,10 @@
 from datetime import datetime
+from typing import Optional
 
 from structlog import get_logger
 
 from app.data_model.progress_store import CompletionStatus
-from app.questionnaire.location import InvalidLocationException
+from app.questionnaire.location import InvalidLocationException, Location
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.router import Router
@@ -28,6 +29,10 @@ class BlockHandler:
             raise InvalidLocationException(
                 f'location {self._current_location} is not valid'
             )
+
+    @property
+    def current_location(self):
+        return self._current_location
 
     @property
     def questionnaire_store_updater(self):
@@ -101,15 +106,22 @@ class BlockHandler:
             collection_metadata['started_at'] = started_at
 
     def _get_routing_path(self):
-        section = self._schema.get_section_for_block_id(self._current_location.block_id)
-        return self.path_finder.routing_path(section)
+        return self.path_finder.routing_path(
+            section_id=self._current_location.section_id,
+            list_item_id=self._current_location.list_item_id,
+        )
 
-    def _update_section_completeness(self):
-        if self.path_finder.is_path_complete(self._routing_path):
-            self.questionnaire_store_updater.update_section_status(
-                CompletionStatus.COMPLETED
-            )
-        else:
-            self.questionnaire_store_updater.update_section_status(
-                CompletionStatus.IN_PROGRESS
-            )
+    def _update_section_completeness(self, location: Optional[Location] = None):
+        section_status = (
+            CompletionStatus.COMPLETED
+            if self.path_finder.is_path_complete(self._routing_path)
+            else CompletionStatus.IN_PROGRESS
+        )
+
+        location = location or self._current_location
+
+        self.questionnaire_store_updater.update_section_status(
+            section_status=section_status,
+            section_id=location.section_id,
+            list_item_id=location.list_item_id,
+        )

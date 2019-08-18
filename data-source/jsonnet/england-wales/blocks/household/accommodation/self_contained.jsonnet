@@ -13,7 +13,7 @@
     }],
     answers: [{
       id: 'self-contained-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Yes',

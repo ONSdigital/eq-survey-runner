@@ -47,10 +47,11 @@ class HubContext:
     }
 
     def __init__(
-        self, progress_store: ProgressStore, sections: Mapping, survey_complete: bool
+        self, progress_store: ProgressStore, list_store, schema, survey_complete: bool
     ) -> None:
         self._progress_store = progress_store
-        self._sections = sections
+        self._list_store = list_store
+        self._schema = schema
         self._survey_complete = survey_complete
 
     def get_context(self) -> Mapping:
@@ -61,11 +62,7 @@ class HubContext:
 
         return context
 
-    @staticmethod
-    def get_section_url(section_id: str) -> str:
-        return url_for('questionnaire.get_section', section_id=section_id)
-
-    def get_row_for_section(
+    def get_row_context_for_section(
         self, section_name: str, section_status: str, section_url: str
     ) -> Mapping[str, Union[str, List]]:
 
@@ -94,17 +91,43 @@ class HubContext:
 
         return context
 
+    @staticmethod
+    def get_section_url(section_id, list_item_id) -> str:
+        if list_item_id:
+            return url_for(
+                'questionnaire.get_section',
+                section_id=section_id,
+                list_item_id=list_item_id,
+            )
+
+        return url_for('questionnaire.get_section', section_id=section_id)
+
+    def _get_row_for_section(self, section_name, section_id, list_item_id=None):
+        section_status = self._progress_store.get_section_status(
+            section_id, list_item_id
+        )
+
+        return self.get_row_context_for_section(
+            section_name, section_status, self.get_section_url(section_id, list_item_id)
+        )
+
     def _get_rows(self) -> List[Mapping[str, Union[str, List]]]:
         rows = []
 
-        for section in self._sections:
-            section_status = self._progress_store.get_section_status(section['id'])
+        for section in self._schema.get_sections():
+            section_title = section['title']
+            section_id = section['id']
 
-            section_name = section['title']
-            section_url = self.get_section_url(section['id'])
+            repeating_list = self._schema.get_repeating_list_for_section(section_id)
 
-            rows.append(
-                self.get_row_for_section(section_name, section_status, section_url)
-            )
+            if repeating_list:
+                for list_item_id in self._list_store[repeating_list].items:
+                    rows.append(
+                        self._get_row_for_section(
+                            section_title, section_id, list_item_id
+                        )
+                    )
+            else:
+                rows.append(self._get_row_for_section(section_title, section_id))
 
         return rows
