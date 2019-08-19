@@ -46,27 +46,6 @@ describe('Section Summary', function() {
     });
   });
 
-  describe('Given I start a Test Section Summary survey and complete to Section Summary', function() {
-
-    beforeEach(function() {
-      return helpers.openQuestionnaire('test_list_collector_section_summary.json').then(() => {
-        return browser
-          .click(InsuranceTypePage.both())
-          .click(InsuranceTypePage.submit())
-          .click(InsuranceAddressPage.submit())
-          .getText(PropertyDetailsSummaryPage.insuranceTypeAnswer()).should.eventually.contain('Both');
-      });
-    });
-
-    it('When I have selected an answer to edit and edit it, Then I should return to the section summary with new value displayed', function() {
-      return browser
-        .click(PropertyDetailsSummaryPage.insuranceAddressAnswerEdit())
-        .setValue(InsuranceAddressPage.answer(), 'Test Address')
-        .click(InsuranceAddressPage.submit())
-        .getText(PropertyDetailsSummaryPage.insuranceAddressAnswer()).should.eventually.contain('Test Address');
-    });
-  });
-
   describe('Given I start a Test Section Summary survey and complete to Final Summary', function() {
 
     beforeEach(function() {

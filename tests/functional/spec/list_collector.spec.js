@@ -10,6 +10,18 @@ const ListCollectorRemovePage = require('../generated_pages/list_collector/list-
 const NextInterstitialPage = require('../generated_pages/list_collector/next-interstitial.page.js');
 const SummaryPage = require('../generated_pages/list_collector/summary.page.js');
 
+const PrimaryPersonListCollectorPage = require('../generated_pages/list_collector_section_summary/primary-person-list-collector.page.js');
+const PrimaryPersonListCollectorAddPage = require('../generated_pages/list_collector_section_summary/primary-person-list-collector-add.page.js');
+const SectionSummaryListCollectorPage = require('../generated_pages/list_collector_section_summary/list-collector.page.js');
+const SectionSummaryListCollectorAddPage = require('../generated_pages/list_collector_section_summary/list-collector-add.page.js');
+const SectionSummaryListCollectorEditPage = require('../generated_pages/list_collector_section_summary/list-collector-edit.page.js');
+const SectionSummaryListCollectorRemovePage = require('../generated_pages/list_collector_section_summary/list-collector-remove.page.js');
+const VisitorListCollectorPage = require('../generated_pages/list_collector_section_summary/visitor-list-collector.page.js');
+const VisitorListCollectorAddPage = require('../generated_pages/list_collector_section_summary/visitor-list-collector-add.page.js');
+const VisitorListCollectorEditPage = require('../generated_pages/list_collector_section_summary/visitor-list-collector-edit.page.js');
+const VisitorListCollectorRemovePage = require('../generated_pages/list_collector_section_summary/visitor-list-collector-remove.page.js');
+const PeopleListSectionSummaryPage = require('../generated_pages/list_collector_section_summary/people-list-section-summary.page.js');
+
 function checkPeopleInList(peopleExpected) {
   let chain = browser.waitForVisible(ListCollectorPage.listLabel(1)).should.eventually.be.true;
 
@@ -168,5 +180,38 @@ describe('List Collector', function() {
         .getUrl().should.eventually.contain('thank-you');
     });
 
+  });
+
+  describe.only('Given I start a list collector survey and complete to Section Summary', function() {
+
+    beforeEach(function() {
+      return helpers.openQuestionnaire('test_list_collector_section_summary.json').then(() => {
+        return browser
+            .click(PrimaryPersonListCollectorPage.yes())
+            .click(PrimaryPersonListCollectorPage.submit())
+            .setValue(PrimaryPersonListCollectorAddPage.firstName(), 'Marcus')
+            .setValue(PrimaryPersonListCollectorAddPage.lastName(), 'Twin')
+            .click(PrimaryPersonListCollectorAddPage.submit())
+            .click(ListCollectorPage.yes())
+            .click(ListCollectorPage.submit())
+            .setValue(ListCollectorAddPage.firstName(), 'Samuel')
+            .setValue(ListCollectorAddPage.lastName(), 'Clemens')
+            .click(ListCollectorAddPage.submit())
+            .click(ListCollectorPage.no())
+            .click(ListCollectorPage.submit())
+            .click(VisitorListCollectorPage.yes())
+            .click(VisitorListCollectorPage.submit())
+            .setValue(VisitorListCollectorAddPage.firstNameVisitor(), 'Olivia')
+            .setValue(VisitorListCollectorAddPage.lastNameVisitor(), 'Clemens')
+            .click(VisitorListCollectorAddPage.submit())
+            .click(VisitorListCollectorPage.no())
+            .click(VisitorListCollectorPage.submit());
+        });
+    });
+
+    it('The section summary should display contents of the list collector', function() {
+      return browser
+        .getUrl().should.eventually.contain(PeopleListSectionSummaryPage.pageName);
+    });
   });
 });
