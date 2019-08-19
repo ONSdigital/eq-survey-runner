@@ -11,6 +11,20 @@ local type_of_flat = import 'blocks/household/accommodation/type_of_flat.jsonnet
 local type_of_house = import 'blocks/household/accommodation/type_of_house.jsonnet';
 local who_rent_from = import 'blocks/household/accommodation/who_rent_from.jsonnet';
 
+// Who lives here
+local any_visitors = import 'blocks/household/who-lives-here/any_visitors.jsonnet';
+local anyone_else_list_collector = import 'blocks/household/who-lives-here/anyone_else_list_collector.jsonnet';
+local anyone_else_temporarily_away_list_collector = import 'blocks/household/who-lives-here/anyone_else_temporarily_away_list_collector.jsonnet';
+local anyone_usually_live_at = import 'blocks/household/who-lives-here/anyone_usually_live_at.jsonnet';
+local primary_person_list_collector = import 'blocks/household/who-lives-here/primary_person_list_collector.jsonnet';
+local visitor_list_collector = import 'blocks/household/who-lives-here/visitor_list_collector.jsonnet';
+local who_lives_here_interstitial = import 'blocks/household/who-lives-here/who_lives_here_interstitial.jsonnet';
+local who_lives_here_section_summary = import 'blocks/household/who-lives-here/who_lives_here_section_summary.jsonnet';
+
+// Relationships
+local relationships_collector = import 'blocks/household/who-lives-here/relationships_collector.jsonnet';
+local relationships_interstitial = import 'blocks/household/who-lives-here/relationships_interstitial.jsonnet';
+
 
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
@@ -40,8 +54,31 @@ function(region_code, census_date, census_month_year_date) {
   ],
   hub: {
     enabled: true,
+    required_completed_sections: ['who-lives-here-section', 'accommodation-section'],
   },
   sections: [
+    {
+      id: 'who-lives-here-section',
+      title: 'People who live here and overnight visitors',
+      groups: [
+        {
+          id: 'who-lives-here--group',
+          title: 'Who lives here',
+          blocks: [
+            who_lives_here_interstitial(census_date),
+            primary_person_list_collector,
+            anyone_usually_live_at(census_date),
+            anyone_else_list_collector(census_date),
+            anyone_else_temporarily_away_list_collector,
+            any_visitors(census_date),
+            visitor_list_collector(census_date),
+            who_lives_here_section_summary,
+            relationships_interstitial,
+            relationships_collector,
+          ],
+        },
+      ],
+    },
     {
       id: 'accommodation-section',
       title: 'Household accommodation',
