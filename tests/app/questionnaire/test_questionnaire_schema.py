@@ -578,6 +578,32 @@ def test_get_default_answer_single_question(single_question_schema):
     assert answer.value == 'test'
 
 
+def test_get_relationship_collectors(relationship_collector_schema):
+    schema = QuestionnaireSchema(relationship_collector_schema)
+    answer = schema.get_relationship_collectors()
+
+    assert len(answer) == 2
+    assert answer[0]['id'] == 'relationships'
+    assert answer[1]['id'] == 'relationships-that-dont-point-to-list-collector'
+
+
+def test_get_relationship_collectors_by_list_name(relationship_collector_schema):
+    schema = QuestionnaireSchema(relationship_collector_schema)
+    answer = schema.get_relationship_collectors_by_list_name('people')
+
+    assert len(answer) == 1
+    assert answer[0]['id'] == 'relationships'
+
+
+def test_get_relationship_collectors_by_list_name_no_collectors(
+    relationship_collector_schema
+):
+    schema = QuestionnaireSchema(relationship_collector_schema)
+    answer = schema.get_relationship_collectors_by_list_name('not-a-list')
+
+    assert not answer
+
+
 def test_get_list_item_id_for_answer_id_without_list_item_id(
     section_with_repeating_list
 ):
@@ -592,8 +618,6 @@ def test_get_list_item_id_for_answer_id_without_list_item_id(
     assert list_item_id == expected_list_item_id
 
 
-#
-#
 def test_get_list_item_id_for_answer_id_without_repeat_or_list_collector(
     question_schema
 ):

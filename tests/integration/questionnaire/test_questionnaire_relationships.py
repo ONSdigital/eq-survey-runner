@@ -11,6 +11,12 @@ class TestQuestionnaireRelationships(IntegrationTestCase):
         selected = self.getHtmlSoup().select(selector)
         return selected[0].get('href')
 
+    def remove_last_list_item(self):
+        self.get('questionnaire/list-collector')
+        selector = self.getHtmlSoup().find_all('a', {'data-qa': 'remove-item-link'})[-1]
+        self.get(selector['href'])
+        self.post({'remove-confirmation': 'Yes'})
+
     def test_valid_relationship(self):
         self.launchSurvey('test_relationships')
         self.add_person('Marie', 'Doe')
@@ -71,3 +77,47 @@ class TestQuestionnaireRelationships(IntegrationTestCase):
         self.post({'relationship-answer': 'Husband or Wife'})
 
         self.assertInUrl('/questionnaire/confirmation')
+
+    def test_relationships_removed_when_list_item_removed(self):
+        self.launchSurvey('test_relationships', roles=['dumper'])
+        self.add_person('Marie', 'Doe')
+        self.add_person('John', 'Doe')
+        self.add_person('Susan', 'Doe')
+        self.post({'anyone-else': 'No'})
+
+        self.post({'relationship-answer': 'Husband or Wife'})
+        self.post({'relationship-answer': 'Husband or Wife'})
+        self.post({'relationship-answer': 'Husband or Wife'})
+
+        list_item_ids = self.dump_debug()['LISTS'][0]['items']
+        self.remove_last_list_item()
+
+        self.assertNotInBody('Susan Doe')
+
+        relationship_answer = self.dump_debug()['ANSWERS'][-1]
+        for relationship in relationship_answer['value']:
+            self.assertNotIn(list_item_ids[-1], relationship.values())
+
+        self.remove_last_list_item()
+        relationship_answer = self.dump_debug()['ANSWERS'][-1]
+        del list_item_ids[-1]
+        for relationship in relationship_answer['value']:
+            self.assertNotIn(list_item_ids[-1], relationship.values())
+
+    def test_relationship_not_altered_when_new_list_item_not_submitted(self):
+        self.launchSurvey('test_relationships', roles=['dumper'])
+        self.add_person('Marie', 'Doe')
+        self.add_person('John', 'Doe')
+        self.post({'anyone-else': 'No'})
+        self.post({'relationship-answer': 'Husband or Wife'})
+
+        list_item_ids_original = self.dump_debug()['LISTS'][0]['items']
+
+        self.get('/questionnaire/list-collector')
+        self.add_person('Susan', 'Doe')
+        self.remove_last_list_item()
+        self.post({'anyone-else': 'No'})
+
+        list_item_ids_new = self.dump_debug()['LISTS'][0]['items']
+
+        self.assertEqual(list_item_ids_original, list_item_ids_new)
