@@ -158,11 +158,11 @@
                         },
                         {
                             "type": "Question",
-                            "id": "mandatory-checkbox2",
+                            "id": "mandatory-checkbox-numeric-detail",
                             "question": {
                                 "answers": [
                                     {
-                                        "id": "mandatory-checkbox-answer2",
+                                        "id": "mandatory-checkbox-numeric-detail-answer",
                                         "label": "",
                                         "mandatory": true,
                                         "options": [
@@ -187,7 +187,7 @@
                                                 "value": "Other",
                                                 "detail_answer": {
                                                     "mandatory": true,
-                                                    "id": "other-answer-mandatory2",
+                                                    "id": "other-answer-mandatory-numeric-detail",
                                                     "label": "Please specify other",
                                                     "type": "Number"
                                                 }
@@ -200,7 +200,7 @@
                                     }
                                 ],
                                 "description": "",
-                                "id": "mandatory-checkbox-question2",
+                                "id": "mandatory-checkbox-question-numeric-detail",
                                 "title": "How many pizza toppings would you like?",
                                 "type": "General"
                             },
@@ -208,11 +208,11 @@
                         },
                         {
                             "type": "Question",
-                            "id": "non-mandatory-checkbox2",
+                            "id": "non-mandatory-checkbox-numeric-detail",
                             "question": {
                                 "answers": [
                                     {
-                                        "id": "non-mandatory-checkbox-answer2",
+                                        "id": "non-mandatory-checkbox-numeric-detail-answer",
                                         "mandatory": false,
                                         "options": [
                                             {
@@ -233,7 +233,7 @@
                                                 "description": "Choose any number of toppings",
                                                 "detail_answer": {
                                                     "mandatory": false,
-                                                    "id": "other-answer-non-mandatory2",
+                                                    "id": "other-answer-non-mandatory-numeric-detail",
                                                     "label": "Please specify other",
                                                     "type": "Number"
                                                 }
@@ -247,7 +247,7 @@
                                     }
                                 ],
                                 "description": "",
-                                "id": "non-mandatory-checkbox-question2",
+                                "id": "non-mandatory-checkbox-question-numeric-detail",
                                 "title": "How many extra toppings would you like?",
                                 "type": "General"
                             },
