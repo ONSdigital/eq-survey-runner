@@ -157,6 +157,95 @@
                             "routing_rules": []
                         },
                         {
+                            "type": "Question",
+                            "id": "mandatory-checkbox2",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "mandatory-checkbox-answer2",
+                                        "label": "",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "1",
+                                                "value": "1",
+                                                "q_code": "1"
+                                            },
+                                            {
+                                                "label": "2",
+                                                "value": "2",
+                                                "q_code": "2"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "q_code": "3",
+                                                "description": "Choose any number of toppings",
+                                                "value": "Other",
+                                                "detail_answer": {
+                                                    "mandatory": true,
+                                                    "id": "other-answer-mandatory",
+                                                    "label": "Please specify other",
+                                                    "type": "Number"
+                                                }
+                                            }
+                                        ],
+                                        "type": "Checkbox",
+                                        "validation": {
+                                            "messages": {}
+                                        }
+                                    }
+                                ],
+                                "description": "",
+                                "id": "mandatory-checkbox-question2",
+                                "title": "How many pizza toppings would you like?",
+                                "type": "General"
+                            },
+                            "routing_rules": []
+                        },
+                        {
+                            "type": "Question",
+                            "id": "non-mandatory-checkbox2",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "non-mandatory-checkbox-answer2",
+                                        "mandatory": false,
+                                        "options": [
+                                            {
+                                                "label": "1",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "label": "2",
+                                                "value": "2"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "value": "Other",
+                                                "description": "Choose any number of toppings",
+                                                "detail_answer": {
+                                                    "mandatory": false,
+                                                    "id": "other-answer-non-mandatory",
+                                                    "label": "Please specify other",
+                                                    "type": "Number"
+                                                }
+                                            }
+                                        ],
+                                        "q_code": "20",
+                                        "type": "Checkbox",
+                                        "validation": {
+                                            "messages": {}
+                                        }
+                                    }
+                                ],
+                                "description": "",
+                                "id": "non-mandatory-checkbox-question2",
+                                "title": "How many extra toppings would you like?",
+                                "type": "General"
+                            },
+                            "routing_rules": []
+                        },
+                        {
                             "type": "Summary",
                             "id": "summary"
                         }
