@@ -268,7 +268,7 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
         self.assertEqual(len(question.answers[0]['value']), 2)
         self.assertEqual(question.answers[0]['value'][1].detail_answer_value, 'Test')
 
-    def test_checkbox_answer_with_numeric_detail_answer_returns_the_value(self):
+    def test_checkbox_answer_with_numeric_detail_answer_returns_number(self):
         # Given
         self.answer_store.add_or_update(
             Answer(answer_id='answer_1', value=['Light Side', 'Other'])
@@ -419,7 +419,7 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
         # Then
         self.assertEqual(question.answers[0]['value']['detail_answer_value'], 'Test')
 
-    def test_radio_answer_with_numeric_detail_answer_returns_the_value(self):
+    def test_radio_answer_with_numeric_detail_answer_returns_number(self):
         # Given
         self.answer_store.add_or_update(Answer(answer_id='answer_1', value='Other'))
         self.answer_store.add_or_update(Answer(answer_id='child_answer', value=1))

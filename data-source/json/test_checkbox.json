@@ -167,6 +167,10 @@
                                         "mandatory": true,
                                         "options": [
                                             {
+                                                "label": "None",
+                                                "value": "None"
+                                            },
+                                            {
                                                 "label": "1",
                                                 "value": "1",
                                                 "q_code": "1"
@@ -183,7 +187,7 @@
                                                 "value": "Other",
                                                 "detail_answer": {
                                                     "mandatory": true,
-                                                    "id": "other-answer-mandatory",
+                                                    "id": "other-answer-mandatory2",
                                                     "label": "Please specify other",
                                                     "type": "Number"
                                                 }
@@ -212,6 +216,10 @@
                                         "mandatory": false,
                                         "options": [
                                             {
+                                                "label": "None",
+                                                "value": "None"
+                                            },
+                                            {
                                                 "label": "1",
                                                 "value": "1"
                                             },
@@ -225,7 +233,7 @@
                                                 "description": "Choose any number of toppings",
                                                 "detail_answer": {
                                                     "mandatory": false,
-                                                    "id": "other-answer-non-mandatory",
+                                                    "id": "other-answer-non-mandatory2",
                                                     "label": "Please specify other",
                                                     "type": "Number"
                                                 }
