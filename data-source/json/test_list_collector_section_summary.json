@@ -81,7 +81,8 @@
                                         ]
                                     }
                                 ]
-                            }
+                            },
+                            "hide_on_section_summary": true
                         },
                         {
                             "id": "list-collector",
@@ -352,10 +353,6 @@
                         {
                             "id": "people-list-section-summary",
                             "type": "SectionSummary"
-                        },
-                        {
-                            "id": "people-list-summary",
-                            "type": "Summary"
                         }
                     ]
                 }
