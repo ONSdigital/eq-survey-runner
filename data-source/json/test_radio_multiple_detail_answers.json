@@ -76,48 +76,6 @@
                             }
                         },
                         {
-                            "type": "Question",
-                            "id": "radio-mandatory2",
-                            "question": {
-                                "type": "General",
-                                "id": "radio-mandatory-question2",
-                                "title": "How many breakfast items would you like?",
-                                "answers": [
-                                    {
-                                        "type": "Radio",
-                                        "id": "radio-mandatory-answer2",
-                                        "mandatory": true,
-                                        "options": [
-                                            {
-                                                "label": "1",
-                                                "value": "1"
-                                            },
-                                            {
-                                                "label": "2",
-                                                "value": "2"
-                                            },
-                                            {
-                                                "label": "Other",
-                                                "description": "An answer is required.",
-                                                "value": "Other",
-                                                "detail_answer": {
-                                                    "mandatory": true,
-                                                    "id": "alternate-answer2",
-                                                    "label": "Please specify how many",
-                                                    "type": "Number",
-                                                    "validation": {
-                                                        "messages": {
-                                                            "MANDATORY_TEXTFIELD": "Enter a number to continue"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             "type": "Summary",
                             "id": "summary"
                         }
