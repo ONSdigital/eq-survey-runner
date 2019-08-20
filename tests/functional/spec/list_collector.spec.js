@@ -18,8 +18,6 @@ const SectionSummaryListCollectorEditPage = require('../generated_pages/list_col
 const SectionSummaryListCollectorRemovePage = require('../generated_pages/list_collector_section_summary/list-collector-remove.page.js');
 const VisitorListCollectorPage = require('../generated_pages/list_collector_section_summary/visitor-list-collector.page.js');
 const VisitorListCollectorAddPage = require('../generated_pages/list_collector_section_summary/visitor-list-collector-add.page.js');
-const VisitorListCollectorEditPage = require('../generated_pages/list_collector_section_summary/visitor-list-collector-edit.page.js');
-const VisitorListCollectorRemovePage = require('../generated_pages/list_collector_section_summary/visitor-list-collector-remove.page.js');
 const PeopleListSectionSummaryPage = require('../generated_pages/list_collector_section_summary/people-list-section-summary.page.js');
 
 function checkPeopleInList(peopleExpected) {
@@ -182,7 +180,7 @@ describe('List Collector', function() {
 
   });
 
-  describe.only('Given I start a list collector survey and complete to Section Summary', function() {
+  describe('Given I start a list collector survey and complete to Section Summary', function() {
 
     beforeEach(function() {
       return helpers.openQuestionnaire('test_list_collector_section_summary.json').then(() => {
@@ -192,13 +190,13 @@ describe('List Collector', function() {
             .setValue(PrimaryPersonListCollectorAddPage.firstName(), 'Marcus')
             .setValue(PrimaryPersonListCollectorAddPage.lastName(), 'Twin')
             .click(PrimaryPersonListCollectorAddPage.submit())
-            .click(ListCollectorPage.yes())
-            .click(ListCollectorPage.submit())
-            .setValue(ListCollectorAddPage.firstName(), 'Samuel')
-            .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-            .click(ListCollectorAddPage.submit())
-            .click(ListCollectorPage.no())
-            .click(ListCollectorPage.submit())
+            .click(SectionSummaryListCollectorPage.yes())
+            .click(SectionSummaryListCollectorPage.submit())
+            .setValue(SectionSummaryListCollectorAddPage.firstName(), 'Samuel')
+            .setValue(SectionSummaryListCollectorAddPage.lastName(), 'Clemens')
+            .click(SectionSummaryListCollectorAddPage.submit())
+            .click(SectionSummaryListCollectorPage.no())
+            .click(SectionSummaryListCollectorPage.submit())
             .click(VisitorListCollectorPage.yes())
             .click(VisitorListCollectorPage.submit())
             .setValue(VisitorListCollectorAddPage.firstNameVisitor(), 'Olivia')
@@ -230,21 +228,21 @@ describe('List Collector', function() {
     it('When the user removes an item from the list, They should return to the section summary and it should display the updated list', function() {
       return browser
         .click(PeopleListSectionSummaryPage.peopleListRemoveLink(2))
-        .click(ListCollectorRemovePage.yes())
-        .click(ListCollectorRemovePage.submit())
-        .click(ListCollectorPage.no())
-        .click(ListCollectorPage.submit())
+        .click(SectionSummaryListCollectorRemovePage.yes())
+        .click(SectionSummaryListCollectorRemovePage.submit())
+        .click(SectionSummaryListCollectorPage.no())
+        .click(SectionSummaryListCollectorPage.submit())
         .isExisting(PeopleListSectionSummaryPage.visitorsListLabel(2)).should.eventually.equal(false);
     });
 
     it('When the user updates the list, They should return to the section summary and it should display the updated list', function() {
       return browser
         .click(PeopleListSectionSummaryPage.peopleListEditLink(1))
-        .setValue(PrimaryPersonListCollectorAddPage.firstName(), 'Mark')
-        .setValue(PrimaryPersonListCollectorAddPage.lastName(), 'Twain')
-        .click(PrimaryPersonListCollectorAddPage.submit())
-        .click(ListCollectorPage.no())
-        .click(ListCollectorPage.submit())
+        .setValue(SectionSummaryListCollectorEditPage.firstName(), 'Mark')
+        .setValue(SectionSummaryListCollectorEditPage.lastName(), 'Twain')
+        .click(SectionSummaryListCollectorEditPage.submit())
+        .click(SectionSummaryListCollectorPage.no())
+        .click(SectionSummaryListCollectorPage.submit())
         .getText(PeopleListSectionSummaryPage.peopleListLabel(1)).should.eventually.contain('Mark Twain (You)');
     });
   });
