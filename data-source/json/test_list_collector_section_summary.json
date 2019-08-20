@@ -357,6 +357,23 @@
                     ]
                 }
             ]
+        },
+        {
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [
+                {
+                    "id": "summary-group",
+                    "title": "Summary",
+                    "blocks": [
+                        {
+                            "id": "summary",
+                            "type": "Summary",
+                            "collapsible": true
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
