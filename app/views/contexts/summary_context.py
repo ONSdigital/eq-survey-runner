@@ -131,7 +131,7 @@ def build_view_context_for_section_summary(
             'list_items': build_list_items_summary_context(
                 list_collector_block, schema, answer_store, list_store, language
             ),
-            'list_name': list_collector_block['for_list']
+            'list_name': list_collector_block['for_list'],
         }
         list_item_summaries.append(list_item_summary)
 

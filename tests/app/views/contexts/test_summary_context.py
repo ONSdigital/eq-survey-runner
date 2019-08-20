@@ -334,7 +334,9 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
 def test_context_for_section_list_summary(people_answer_store, app):
     schema = load_schema_from_name('test_list_collector_section_summary')
-    current_location = Location(block_id='people-list-section-summary', section_id='section')
+    current_location = Location(
+        block_id='people-list-section-summary', section_id='section'
+    )
 
     context = build_view_context_for_section_summary(
         {},
