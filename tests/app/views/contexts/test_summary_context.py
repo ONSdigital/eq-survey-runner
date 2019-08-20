@@ -393,6 +393,7 @@ def test_context_for_section_list_summary(people_answer_store, app):
                 },
             ],
             'title': 'People who live here',
+            'list_name': 'people',
         },
         {
             'add_link': '/questionnaire/visitors/add-visitor/',
@@ -408,6 +409,7 @@ def test_context_for_section_list_summary(people_answer_store, app):
                 }
             ],
             'title': 'Visitors staying overnight',
+            'list_name': 'visitors',
         },
     ]
 
