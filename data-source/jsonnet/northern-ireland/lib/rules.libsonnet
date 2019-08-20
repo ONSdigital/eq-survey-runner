@@ -73,4 +73,14 @@
     condition: 'not equals any',
     values: ['No, has never worked', 'No, have never worked'],
   },
+  accommodationIsHouse: {
+    id: 'accommodation-type-answer',
+    condition: 'equals',
+    value: 'Whole house or bungalow',
+  },
+  accommodationIsFlat: {
+    id: 'accommodation-type-answer',
+    condition: 'equals',
+    value: 'Flat, maisonette or apartment',
+  },
 }

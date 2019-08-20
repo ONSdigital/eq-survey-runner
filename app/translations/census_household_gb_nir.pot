@@ -37,31 +37,25 @@ msgstr ""
 msgid "For example, in an office building, hotel, or over a shop"
 msgstr ""
 
-msgid ""
-"One person living alone; or a group of people, who are not necessarily "
-"related, living at the same address who share cooking facilities and "
-"share a living room or sitting room or dining area."
+msgid "For example downstairs bathroom"
+msgstr ""
+
+msgid "For example a ramp"
 msgstr ""
 
 msgid "Including storage heaters"
 msgstr ""
 
-msgid "For example, logs, waste wood or pellets"
+msgid "Including coal"
 msgstr ""
 
-msgid "For example, coal"
-msgstr ""
-
-msgid "For example, solar thermal or heat pumps"
+msgid "For example wood pellets, Biomass, air or ground heat source systems"
 msgstr ""
 
 msgid "Shared ownership"
 msgstr ""
 
 msgid "With or without housing benefit"
-msgstr ""
-
-msgid "Select to enter number"
 msgstr ""
 
 msgid "Voluntary"
@@ -83,25 +77,11 @@ msgid "Where is your flat, maisonette or apartment?"
 msgstr ""
 
 msgid ""
-"Are all the rooms in this accommodation, including the kitchen, bathroom "
-"and toilet, behind a door that only this household can use?"
-msgstr ""
-
-msgid "What is a “household”?"
-msgstr ""
-
-msgid "How many bedrooms are available for use only by this household?"
-msgstr ""
-
-msgid "Include all rooms built or converted for use as bedrooms"
-msgstr ""
-
-msgid ""
 "Include central heating systems that generate heat for multiple rooms "
 "whether or not you use them"
 msgstr ""
 
-msgid "Who is your landlord?"
+msgid "Who do you rent from?"
 msgstr ""
 
 msgid ""
@@ -126,7 +106,13 @@ msgstr ""
 msgid "What type of accommodation is <em>{address}</em>?"
 msgstr ""
 
+msgid "Has <em>{address}</em> been designed or adapted for any of the following?"
+msgstr ""
+
 msgid "What type of central heating does <em>{address}</em> have?"
+msgstr ""
+
+msgid "What type of renewable energy systems does <em>{address}</em> have?"
 msgstr ""
 
 msgid "Does your household own or rent <em>{address}</em>?"
@@ -164,7 +150,7 @@ msgstr ""
 
 #. answer-id: type-of-flat-answer
 msgctxt "Answer for: Where is your flat, maisonette or apartment?"
-msgid "In a purpose-built block of flats or tenement"
+msgid "In a purpose-built block of flats"
 msgstr ""
 
 #. answer-id: type-of-flat-answer
@@ -177,32 +163,58 @@ msgctxt "Answer for: Where is your flat, maisonette or apartment?"
 msgid "In a commercial building"
 msgstr ""
 
-#. answer-id: self-contained-answer
+#. answer-id: adapted-answer
 msgctxt ""
-"Answer for: Are all the rooms in this accommodation, including the "
-"kitchen, bathroom and toilet, behind a door that only this household can "
-"use?"
-msgid "Yes"
+"Answer for: Has <em>{address}</em> been designed or adapted for any of "
+"the following?"
+msgid "Internal wheelchair usage"
 msgstr ""
 
-#. answer-id: self-contained-answer
+#. answer-id: adapted-answer
 msgctxt ""
-"Answer for: Are all the rooms in this accommodation, including the "
-"kitchen, bathroom and toilet, behind a door that only this household can "
-"use?"
-msgid "No, one or more rooms are shared with another household"
+"Answer for: Has <em>{address}</em> been designed or adapted for any of "
+"the following?"
+msgid "External wheelchair access"
 msgstr ""
 
-#. answer-id: number-of-bedrooms-answer
+#. answer-id: adapted-answer
 msgctxt ""
-"Answer for: How many bedrooms are available for use only by this "
-"household?"
-msgid "Number of bedrooms"
+"Answer for: Has <em>{address}</em> been designed or adapted for any of "
+"the following?"
+msgid "Other physical or mobility difficulties"
+msgstr ""
+
+#. answer-id: adapted-answer
+msgctxt ""
+"Answer for: Has <em>{address}</em> been designed or adapted for any of "
+"the following?"
+msgid "Visual difficulties"
+msgstr ""
+
+#. answer-id: adapted-answer
+msgctxt ""
+"Answer for: Has <em>{address}</em> been designed or adapted for any of "
+"the following?"
+msgid "Hearing difficulties"
+msgstr ""
+
+#. answer-id: adapted-answer
+msgctxt ""
+"Answer for: Has <em>{address}</em> been designed or adapted for any of "
+"the following?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: adapted-answer-exclusive
+msgctxt ""
+"Answer for: Has <em>{address}</em> been designed or adapted for any of "
+"the following?"
+msgid "None of these"
 msgstr ""
 
 #. answer-id: central-heating-answer
 msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
-msgid "No central heating"
+msgid "Oil"
 msgstr ""
 
 #. answer-id: central-heating-answer
@@ -222,11 +234,6 @@ msgstr ""
 
 #. answer-id: central-heating-answer
 msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
-msgid "Oil"
-msgstr ""
-
-#. answer-id: central-heating-answer
-msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
 msgid "Wood"
 msgstr ""
 
@@ -242,12 +249,47 @@ msgstr ""
 
 #. answer-id: central-heating-answer
 msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
-msgid "District or communal heat networks"
+msgid "Other central heating"
 msgstr ""
 
-#. answer-id: central-heating-answer
+#. answer-id: central-heating-answer-exclusive
 msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "No central heating"
+msgstr ""
+
+#. answer-id: renewables-answer
+msgctxt ""
+"Answer for: What type of renewable energy systems does <em>{address}</em>"
+" have?"
+msgid "Solar panels for electricity"
+msgstr ""
+
+#. answer-id: renewables-answer
+msgctxt ""
+"Answer for: What type of renewable energy systems does <em>{address}</em>"
+" have?"
+msgid "Solar panels for heating water"
+msgstr ""
+
+#. answer-id: renewables-answer
+msgctxt ""
+"Answer for: What type of renewable energy systems does <em>{address}</em>"
+" have?"
+msgid "Wind turbine"
+msgstr ""
+
+#. answer-id: renewables-answer
+msgctxt ""
+"Answer for: What type of renewable energy systems does <em>{address}</em>"
+" have?"
 msgid "Other"
+msgstr ""
+
+#. answer-id: renewables-answer-exclusive
+msgctxt ""
+"Answer for: What type of renewable energy systems does <em>{address}</em>"
+" have?"
+msgid "No renewable energy systems"
 msgstr ""
 
 #. answer-id: own-or-rent-answer
@@ -276,34 +318,37 @@ msgid "Lives here rent free"
 msgstr ""
 
 #. answer-id: who-rent-from-answer
-msgctxt "Answer for: Who is your landlord?"
-msgid ""
-"Housing association, housing co-operative, charitable trust, registered "
-"social landlord"
+msgctxt "Answer for: Who do you rent from?"
+msgid "Northern Ireland Housing Executive"
 msgstr ""
 
 #. answer-id: who-rent-from-answer
-msgctxt "Answer for: Who is your landlord?"
-msgid "Council or local authority"
+msgctxt "Answer for: Who do you rent from?"
+msgid "Housing association or charitable trust"
 msgstr ""
 
 #. answer-id: who-rent-from-answer
-msgctxt "Answer for: Who is your landlord?"
-msgid "Private landlord or letting agency"
+msgctxt "Answer for: Who do you rent from?"
+msgid "Private landlord"
 msgstr ""
 
 #. answer-id: who-rent-from-answer
-msgctxt "Answer for: Who is your landlord?"
+msgctxt "Answer for: Who do you rent from?"
+msgid "Private renting with a letting agent"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who do you rent from?"
 msgid "Employer of a household member"
 msgstr ""
 
 #. answer-id: who-rent-from-answer
-msgctxt "Answer for: Who is your landlord?"
+msgctxt "Answer for: Who do you rent from?"
 msgid "Relative or friend of a household member"
 msgstr ""
 
 #. answer-id: who-rent-from-answer
-msgctxt "Answer for: Who is your landlord?"
+msgctxt "Answer for: Who do you rent from?"
 msgid "Other"
 msgstr ""
 

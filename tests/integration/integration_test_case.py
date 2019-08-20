@@ -139,6 +139,11 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         dump_submission = json.loads(self.getResponseData())
         return dump_submission
 
+    def dump_debug(self):
+        self.get('/dump/debug')
+        self.assertStatusOK()
+        return json.loads(self.getResponseData())
+
     def get(self, url, **kwargs):
         """
         GETs the specified URL, following any redirects.
