@@ -37,6 +37,7 @@ class ListCollector(Question):
         ):
             self._is_adding = True
             self.questionnaire_store_updater.update_answers(form)
+
             self.questionnaire_store_updater.save()
         else:
             return super().handle_post(form)

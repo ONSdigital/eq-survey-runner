@@ -1,5 +1,5 @@
 from collections import OrderedDict, defaultdict
-from typing import Union
+from typing import List, Union
 
 from flask_babel import force_locale
 
@@ -186,6 +186,22 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
             for block in self.get_blocks()
             if block['type'] in ('Summary', 'Confirmation')
         ]
+
+    def get_relationship_collectors(self) -> List:
+        return [
+            block
+            for block in self.get_blocks()
+            if block['type'] == 'RelationshipCollector'
+        ]
+
+    def get_relationship_collectors_by_list_name(self, list_name: str):
+        relationship_collectors = self.get_relationship_collectors()
+        if relationship_collectors:
+            return [
+                block
+                for block in relationship_collectors
+                if block['for_list'] == list_name
+            ]
 
     @staticmethod
     def get_all_questions_for_block(block):

@@ -33,6 +33,36 @@ def basic_answer_store():
     return answer_store
 
 
+@pytest.fixture
+def relationship_answer_store():
+    answer_store = AnswerStore()
+
+    answer_store.add_or_update(
+        Answer(
+            answer_id='relationship-answer',
+            value=[
+                {
+                    'list_item_id': 'abc123',
+                    'to_list_item_id': 'xyz987',
+                    'relationship': 'Husband or Wife',
+                },
+                {
+                    'list_item_id': 'abc123',
+                    'to_list_item_id': '123abc',
+                    'relationship': 'Son or Daughter',
+                },
+                {
+                    'list_item_id': 'xyz987',
+                    'to_list_item_id': '123abc',
+                    'relationship': 'Son or Daughter',
+                },
+            ],
+        )
+    )
+
+    return answer_store
+
+
 @pytest.fixture()
 def store_to_serialise():
     answer_store = AnswerStore()
@@ -133,6 +163,17 @@ def test_remove_answer(basic_answer_store):
     len_before_remove = len(basic_answer_store)
     basic_answer_store.remove_answer('answer1', 'abc123')
     assert len(basic_answer_store) == len_before_remove - 1
+
+
+def test_remove_all_answers_for_list_item_id(relationship_answer_store):
+    relationship_answer_store.remove_all_answers_for_list_item_id('abc123')
+    assert relationship_answer_store.get_answer('answer1') is None
+
+
+def test_remove_all_answers_for_list_item_id_doesnt_exist(relationship_answer_store):
+    len_before = len(relationship_answer_store)
+    relationship_answer_store.remove_all_answers_for_list_item_id('not-an-id')
+    assert len(relationship_answer_store) == len_before
 
 
 def test_list_serialisation(store_to_serialise):
