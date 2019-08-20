@@ -10,9 +10,8 @@ from app.setup import create_app
 
 @pytest.fixture
 def app():
-    app = create_app(
-        setting_overrides={'LOGIN_DISABLED': True, 'SERVER_NAME': 'test.localdomain'}
-    )
+    setting_overrides = {'LOGIN_DISABLED': True, 'SERVER_NAME': 'test.localdomain'}
+    app = create_app(setting_overrides=setting_overrides)
     context = app.app_context()
     context.push()
 

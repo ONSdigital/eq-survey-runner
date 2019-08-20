@@ -8,7 +8,6 @@ def test_build_list_collector_context(
     list_collector_block, schema, people_answer_store, people_list_store, form, app
 ):
 
-    server_name = app.config['SERVER_NAME']
     context = list_collector.build_list_collector_context(
         list_collector_block,
         schema,
@@ -21,10 +20,7 @@ def test_build_list_collector_context(
     assert all(
         keys in context.keys() for keys in ['block', 'form', 'list_items', 'add_link']
     )
-    assert (
-        context['add_link']
-        == f'http://{server_name}/questionnaire/people/list-collector/'
-    )
+    assert context['add_link'] == '/questionnaire/people/list-collector/'
 
 
 def test_build_list_collector_context_no_summary(
@@ -47,7 +43,6 @@ def test_build_list_items_summary_context(
     list_collector_block, people_answer_store, people_list_store, app
 ):
 
-    server_name = app.config['SERVER_NAME']
     schema = load_schema_from_name('test_list_collector_primary_person')
     expected = [
         {
@@ -56,8 +51,8 @@ def test_build_list_items_summary_context(
                 Answer(answer_id='last-name', value='Morrison', list_item_id='PlwgoG'),
             ],
             'item_title': 'Toni Morrison',
-            'edit_link': f'http://{server_name}/questionnaire/people/PlwgoG/edit-person/',
-            'remove_link': f'http://{server_name}/questionnaire/people/PlwgoG/remove-person/',
+            'edit_link': '/questionnaire/people/PlwgoG/edit-person/',
+            'remove_link': '/questionnaire/people/PlwgoG/remove-person/',
             'primary_person': False,
         },
         {
@@ -66,15 +61,15 @@ def test_build_list_items_summary_context(
                 Answer(answer_id='last-name', value='Pheloung', list_item_id='UHPLbX'),
             ],
             'item_title': 'Barry Pheloung',
-            'edit_link': f'http://{server_name}/questionnaire/people/UHPLbX/edit-person/',
-            'remove_link': f'http://{server_name}/questionnaire/people/UHPLbX/remove-person/',
+            'edit_link': '/questionnaire/people/UHPLbX/edit-person/',
+            'remove_link': '/questionnaire/people/UHPLbX/remove-person/',
             'primary_person': False,
         },
         {
             'answers': [],
             'item_title': '',
-            'edit_link': f'http://{server_name}/questionnaire/people/FnoDHP/edit-person/',
-            'remove_link': f'http://{server_name}/questionnaire/people/FnoDHP/remove-person/',
+            'edit_link': '/questionnaire/people/FnoDHP/edit-person/',
+            'remove_link': '/questionnaire/people/FnoDHP/remove-person/',
             'primary_person': False,
         },
     ]
