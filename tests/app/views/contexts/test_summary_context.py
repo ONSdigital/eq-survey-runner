@@ -337,7 +337,7 @@ def test_context_for_section_list_summary(people_answer_store, app):
     current_location = Location(
         block_id='people-list-section-summary', section_id='section'
     )
-
+    server_name = app.config['SERVER_NAME']
     context = build_view_context_for_section_summary(
         {},
         schema,
@@ -355,7 +355,7 @@ def test_context_for_section_list_summary(people_answer_store, app):
 
     expected = [
         {
-            'add_link': '/questionnaire/people/add-person/',
+            'add_link': f'http://{server_name}/questionnaire/people/add-person/',
             'add_link_text': 'Add someone to this household',
             'empty_list_text': 'There are no householders',
             'list_items': [
@@ -370,10 +370,10 @@ def test_context_for_section_list_summary(people_answer_store, app):
                             list_item_id='PlwgoG',
                         ),
                     ],
-                    'edit_link': '/questionnaire/people/PlwgoG/edit-person/',
+                    'edit_link': f'http://{server_name}/questionnaire/people/PlwgoG/edit-person/',
                     'item_title': 'Toni Morrison',
                     'primary_person': False,
-                    'remove_link': '/questionnaire/people/PlwgoG/remove-person/',
+                    'remove_link': f'http://{server_name}/questionnaire/people/PlwgoG/remove-person/',
                 },
                 {
                     'answers': [
@@ -386,26 +386,26 @@ def test_context_for_section_list_summary(people_answer_store, app):
                             list_item_id='UHPLbX',
                         ),
                     ],
-                    'edit_link': '/questionnaire/people/UHPLbX/edit-person/',
+                    'edit_link': f'http://{server_name}/questionnaire/people/UHPLbX/edit-person/',
                     'item_title': 'Barry Pheloung',
                     'primary_person': False,
-                    'remove_link': '/questionnaire/people/UHPLbX/remove-person/',
+                    'remove_link': f'http://{server_name}/questionnaire/people/UHPLbX/remove-person/',
                 },
             ],
             'title': 'People who live here',
             'list_name': 'people',
         },
         {
-            'add_link': '/questionnaire/visitors/add-visitor/',
+            'add_link': f'http://{server_name}/questionnaire/visitors/add-visitor/',
             'add_link_text': 'Add another visitor to this household',
             'empty_list_text': 'There are no visitors',
             'list_items': [
                 {
                     'answers': [],
-                    'edit_link': '/questionnaire/visitors/gTrlio/edit-visitor-person/',
+                    'edit_link': f'http://{server_name}/questionnaire/visitors/gTrlio/edit-visitor-person/',
                     'item_title': '',
                     'primary_person': False,
-                    'remove_link': '/questionnaire/visitors/gTrlio/remove-visitor/',
+                    'remove_link': f'http://{server_name}/questionnaire/visitors/gTrlio/remove-visitor/',
                 }
             ],
             'title': 'Visitors staying overnight',
