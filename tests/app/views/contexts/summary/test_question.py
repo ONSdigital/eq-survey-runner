@@ -424,6 +424,7 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
         self.answer_store.add_or_update(Answer(answer_id='answer_1', value='Other'))
         self.answer_store.add_or_update(Answer(answer_id='child_answer', value=1))
         options = [
+            {'label': 1, 'value': 1},
             {
                 'label': 'Other',
                 'value': 'Other',
@@ -433,7 +434,7 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
         answer_schema = [
             {
                 'id': 'answer_1',
-                'label': 'Which side?',
+                'label': 'How many cakes have you had today?',
                 'type': 'Radio',
                 'options': options,
             }
