@@ -1,6 +1,7 @@
 import unittest
 
 from mock import MagicMock
+from mock import patch
 
 from app.data_model.answer_store import AnswerStore
 from app.data_model.progress_store import ProgressStore
@@ -186,5 +187,80 @@ class TestQuestionnaireStoreUpdater(unittest.TestCase):
         questionnaire_store_updater = QuestionnaireStoreUpdater(
             self.location, self.schema, questionnaire_store, self.current_question
         )
-
         questionnaire_store_updater.add_primary_person('people')
+
+    def test_remove_completed_relationship_locations_for_list_name(self):
+        list_store = fake_list_store()
+        self.progress_store.add_completed_location(
+            'section',
+            Location(section_id='section', block_id='test-relationship-collector'),
+        )
+        questionnaire_store = MagicMock(
+            spec=QuestionnaireStore,
+            completed_blocks=[],
+            answer_store=self.answer_store,
+            list_store=list_store,
+            progress_store=self.progress_store,
+        )
+        questionnaire_store_updater = QuestionnaireStoreUpdater(
+            self.location, self.schema, questionnaire_store, self.current_question
+        )
+
+        patch_method = 'app.questionnaire.questionnaire_store_updater.QuestionnaireStoreUpdater._get_relationship_collectors_by_list_name'
+        with patch(patch_method) as patched:
+            patched.return_value = [{'id': 'test-relationship-collector'}]
+            questionnaire_store_updater.remove_completed_relationship_locations_for_list_name(
+                'test-relationship-collector'
+            )
+
+        completed = self.progress_store.serialise()
+        self.assertEqual(len(completed), 0)
+
+    def test_remove_completed_relationship_locations_for_list_name_no_locations(self):
+        self.progress_store.add_completed_location(
+            'section',
+            Location(section_id='section', block_id='test-relationship-collector'),
+        )
+        initial_progress_store = self.progress_store.serialise()
+        list_store = fake_list_store()
+        questionnaire_store = MagicMock(
+            spec=QuestionnaireStore,
+            completed_blocks=[],
+            answer_store=self.answer_store,
+            list_store=list_store,
+            progress_store=self.progress_store,
+        )
+        questionnaire_store_updater = QuestionnaireStoreUpdater(
+            self.location, self.schema, questionnaire_store, self.current_question
+        )
+
+        patch_method = 'app.questionnaire.questionnaire_store_updater.QuestionnaireStoreUpdater._get_relationship_collectors_by_list_name'
+        with patch(patch_method) as patched:
+            patched.return_value = None
+            questionnaire_store_updater.remove_completed_relationship_locations_for_list_name(
+                'test-relationship-collector'
+            )
+
+        self.assertEqual(self.progress_store.serialise(), initial_progress_store)
+
+    def test_update_relationship_question_completeness_no_relationship_collectors(self):
+        list_store = fake_list_store()
+        questionnaire_store = MagicMock(
+            spec=QuestionnaireStore,
+            completed_blocks=[],
+            answer_store=self.answer_store,
+            list_store=list_store,
+            progress_store=self.progress_store,
+        )
+        questionnaire_store_updater = QuestionnaireStoreUpdater(
+            self.location, self.schema, questionnaire_store, self.current_question
+        )
+
+        patch_method = 'app.questionnaire.questionnaire_store_updater.QuestionnaireStoreUpdater._get_relationship_collectors_by_list_name'
+        with patch(patch_method) as patched:
+            patched.return_value = None
+            self.assertIsNone(
+                questionnaire_store_updater.update_relationship_question_completeness(
+                    'test-relationship-collector'
+                )
+            )
