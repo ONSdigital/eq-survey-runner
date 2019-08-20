@@ -22,11 +22,11 @@ class PrimaryPersonQuestion(Question):
             self.parent_location, self._routing_path
         )
 
-    def get_context(self, form):
-        return build_question_context(self.rendered_block, form)
+    def get_context(self):
+        return build_question_context(self.rendered_block, self.form)
 
-    def handle_post(self, form):
-        self.questionnaire_store_updater.update_answers(form)
+    def handle_post(self):
+        self.questionnaire_store_updater.update_answers(self.form)
 
         self.questionnaire_store_updater.add_completed_location(
             location=self.parent_location

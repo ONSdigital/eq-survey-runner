@@ -1,5 +1,6 @@
 from werkzeug.utils import cached_property
 
+from app.questionnaire.location import Location
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.schema_utils import transform_variants
@@ -12,11 +13,48 @@ class Question(BlockHandler):
     def rendered_block(self):
         return self._render_block(self.block['id'])
 
-    def get_context(self, form):
-        return build_question_context(self.rendered_block, form)
+    def get_next_location_url(self):
+        answer_action = self._get_answer_action()
+        if self._has_redirect_to_list_add_action(answer_action):
+            return self._get_list_add_question_url(answer_action['params'])
 
-    def handle_post(self, form):
-        self.questionnaire_store_updater.update_answers(form)
+        return self.router.get_next_location_url(
+            self._current_location, self._routing_path
+        )
+
+    @staticmethod
+    def _has_redirect_to_list_add_action(answer_action):
+        return answer_action and answer_action['type'] == 'RedirectToListAddQuestion'
+
+    def _get_list_add_question_url(self, params):
+        list_name = params['list_name']
+        is_list_empty = not self._questionnaire_store.list_store[list_name].items
+
+        if is_list_empty:
+            block_id = params['block_id']
+            section_id = self._schema.get_section_id_for_block_id(block_id)
+
+            return Location(
+                section_id=section_id, block_id=block_id, list_name=list_name
+            ).url(return_to=self.current_location.block_id)
+
+    def _get_answer_action(self):
+        answers = self.rendered_block['question']['answers']
+
+        for answer in answers:
+            submitted_answer = self.form.data[answer['id']]
+
+            for option in answer.get('options', {}):
+                action = option.get('action')
+
+                if action and submitted_answer == option['value']:
+                    return action
+
+    def get_context(self):
+        return build_question_context(self.rendered_block, self.form)
+
+    def handle_post(self):
+        self.questionnaire_store_updater.update_answers(self.form)
 
         self.questionnaire_store_updater.add_completed_location()
 

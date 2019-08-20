@@ -22,16 +22,16 @@ class PrimaryPersonListCollector(Question):
 
         return super().get_next_location_url()
 
-    def get_context(self, form):
-        return build_question_context(self.rendered_block, form)
+    def get_context(self):
+        return build_question_context(self.rendered_block, self.form)
 
-    def handle_post(self, form):
+    def handle_post(self):
         if (
-            form.data[self.rendered_block['add_or_edit_answer']['id']]
+            self.form.data[self.rendered_block['add_or_edit_answer']['id']]
             == self.rendered_block['add_or_edit_answer']['value']
         ):
             self._is_adding = True
-            self.questionnaire_store_updater.update_answers(form)
+            self.questionnaire_store_updater.update_answers(self.form)
             self._primary_person_id = self.questionnaire_store_updater.add_primary_person(
                 self.rendered_block['for_list']
             )
@@ -40,4 +40,4 @@ class PrimaryPersonListCollector(Question):
             self.questionnaire_store_updater.remove_primary_person(
                 self.rendered_block['for_list']
             )
-            return super().handle_post(form)
+            return super().handle_post()

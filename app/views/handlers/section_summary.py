@@ -7,7 +7,7 @@ class SectionSummary(Content):
     def rendered_block(self):
         return self._render_block(self.block['id'])
 
-    def get_context(self, _):
+    def get_context(self):
         return build_view_context_for_section_summary(
             self._questionnaire_store.metadata,
             self._schema,

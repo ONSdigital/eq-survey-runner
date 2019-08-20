@@ -3,7 +3,7 @@ from app.views.contexts.summary_context import build_view_context_for_calculated
 
 
 class CalculatedSummary(Content):
-    def get_context(self, _):
+    def get_context(self):
         return build_view_context_for_calculated_summary(
             self._questionnaire_store.metadata,
             self._schema,
