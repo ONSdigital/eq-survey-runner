@@ -43,7 +43,7 @@ local nonProxyTitleSchool = 'What is the address of your main place of study, in
 local proxyTitleSchool = {
   text: 'What is the address of <em>{person_name_possessive}</em> main place of study, including school?',
   placeholders: [
-    placeholders.personName,
+    placeholders.personNamePossessive,
   ],
 };
 
