@@ -208,15 +208,19 @@ LIST_SUMMARY_LIST_GETTER = r"""  listSummary() { return '.list__item'; }
 
 """
 
-LIST_SECTION_SUMMARY_ADD_LINK_GETTER = Template(r"""  ${list_name}ListAddLink() { return 'a[data-qa="add-item-link"]:nth-child(${list_instance})'; }
+LIST_SECTION_SUMMARY_LABEL_GETTER = Template(r"""  ${list_name}ListLabel(listItemInstance) { return 'div[data-qa="${list_name}-list-summary"] tbody:nth-child(' + listItemInstance + ') td:first-child'; }
 
 """)
 
-LIST_SECTION_SUMMARY_EDIT_LINK_GETTER = Template(r"""  ${list_name}ListEditLink(listItemInstance) { return 'div.summary:nth-child(${list_instance}) tbody:nth-child(' + listItemInstance + ') td:last-child a[data-qa="change-item-link"'; }
+LIST_SECTION_SUMMARY_ADD_LINK_GETTER = Template(r"""  ${list_name}ListAddLink() { return 'div[data-qa="${list_name}-list-summary"] a[data-qa="add-item-link"]'; }
 
 """)
 
-LIST_SECTION_SUMMARY_REMOVE_LINK_GETTER = Template(r"""  ${list_name}ListRemoveLink(listItemInstance) { return 'div.summary:nth-child(${list_instance}) tbody:nth-child(' + listItemInstance + ') td:last-child a[data-qa="remove-item-link"'; }
+LIST_SECTION_SUMMARY_EDIT_LINK_GETTER = Template(r"""  ${list_name}ListEditLink(listItemInstance) { return 'div[data-qa="${list_name}-list-summary"] tbody:nth-child(' + listItemInstance + ') td:last-child a[data-qa="change-item-link"'; }
+
+""")
+
+LIST_SECTION_SUMMARY_REMOVE_LINK_GETTER = Template(r"""  ${list_name}ListRemoveLink(listItemInstance) { return 'div[data-qa="${list_name}-list-summary"] tbody:nth-child(' + listItemInstance + ') td:last-child a[data-qa="remove-item-link"'; }
 
 """)
 
@@ -421,12 +425,12 @@ def process_summary(schema_data, page_spec):
 
                     for list_instance, list_block in enumerate(list_collector_blocks):
                         list_context = {
-                            'list_instance': list_instance,
                             'list_name': list_block['for_list']
                         }
                         page_spec.write(LIST_SECTION_SUMMARY_ADD_LINK_GETTER.substitute(list_context))
                         page_spec.write(LIST_SECTION_SUMMARY_EDIT_LINK_GETTER.substitute(list_context))
                         page_spec.write(LIST_SECTION_SUMMARY_REMOVE_LINK_GETTER.substitute(list_context))
+                        page_spec.write(LIST_SECTION_SUMMARY_LABEL_GETTER.substitute(list_context))
 
             group_context = {
                 'group_id_camel': camel_case(generate_pascal_case_from_id(group['id'])),

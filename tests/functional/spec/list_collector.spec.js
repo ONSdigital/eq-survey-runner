@@ -211,7 +211,41 @@ describe('List Collector', function() {
 
     it('The section summary should display contents of the list collector', function() {
       return browser
-        .getUrl().should.eventually.contain(PeopleListSectionSummaryPage.pageName);
+        .getText(PeopleListSectionSummaryPage.peopleListLabel(1)).should.eventually.contain('Marcus Twin (You)')
+        .getText(PeopleListSectionSummaryPage.peopleListLabel(2)).should.eventually.contain('Samuel Clemens')
+        .getText(PeopleListSectionSummaryPage.visitorsListLabel(1)).should.eventually.contain('Olivia Clemens');
+    });
+
+    it('When the user adds an item to the list, They should return to the section summary and it should display the updated list', function() {
+      return browser
+        .click(PeopleListSectionSummaryPage.visitorsListAddLink(1))
+        .setValue(VisitorListCollectorAddPage.firstNameVisitor(), 'Joe')
+        .setValue(VisitorListCollectorAddPage.lastNameVisitor(), 'Bloggs')
+        .click(VisitorListCollectorAddPage.submit())
+        .click(VisitorListCollectorPage.no())
+        .click(VisitorListCollectorPage.submit())
+        .getText(PeopleListSectionSummaryPage.visitorsListLabel(2)).should.eventually.contain('Joe Bloggs');
+    });
+
+    it('When the user removes an item from the list, They should return to the section summary and it should display the updated list', function() {
+      return browser
+        .click(PeopleListSectionSummaryPage.peopleListRemoveLink(2))
+        .click(ListCollectorRemovePage.yes())
+        .click(ListCollectorRemovePage.submit())
+        .click(ListCollectorPage.no())
+        .click(ListCollectorPage.submit())
+        .isExisting(PeopleListSectionSummaryPage.visitorsListLabel(2)).should.eventually.equal(false);
+    });
+
+    it('When the user updates the list, They should return to the section summary and it should display the updated list', function() {
+      return browser
+        .click(PeopleListSectionSummaryPage.peopleListEditLink(1))
+        .setValue(PrimaryPersonListCollectorAddPage.firstName(), 'Mark')
+        .setValue(PrimaryPersonListCollectorAddPage.lastName(), 'Twain')
+        .click(PrimaryPersonListCollectorAddPage.submit())
+        .click(ListCollectorPage.no())
+        .click(ListCollectorPage.submit())
+        .getText(PeopleListSectionSummaryPage.peopleListLabel(1)).should.eventually.contain('Mark Twain (You)');
     });
   });
 });
