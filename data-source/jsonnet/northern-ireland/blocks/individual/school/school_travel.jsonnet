@@ -35,7 +35,7 @@ local question(title, description) = {
           label: 'Train',
           value: 'Train',
         },
-                {
+        {
           label: 'Motorcycle, scooter or moped',
           value: 'Motorcycle, scooter or moped',
         },

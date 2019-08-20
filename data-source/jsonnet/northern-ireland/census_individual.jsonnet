@@ -67,8 +67,8 @@ local main_employment_block = import 'blocks/individual/employment/main_employme
 local main_job_type = import 'blocks/individual/employment/main_job_type.jsonnet';
 local supervise = import 'blocks/individual/employment/supervise.jsonnet';
 local work_location = import 'blocks/individual/employment/work_location.jsonnet';
-local work_travel = import 'blocks/individual/employment/work_travel.jsonnet';
 local work_location_type = import 'blocks/individual/employment/work_location_type.jsonnet';
+local work_travel = import 'blocks/individual/employment/work_travel.jsonnet';
 
 function(region_code, census_date) {
   mime_type: 'application/json/ons/eq',

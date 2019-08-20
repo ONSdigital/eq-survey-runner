@@ -97,7 +97,7 @@ local proxyDescriptionDidWork = {
     },
     {
       goto: {
-        group:'submit-group',
+        group: 'submit-group',
       },
     },
   ],
