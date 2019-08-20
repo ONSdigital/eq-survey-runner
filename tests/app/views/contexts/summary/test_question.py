@@ -271,12 +271,12 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
     def test_checkbox_answer_with_numeric_detail_answer_returns_number(self):
         # Given
         self.answer_store.add_or_update(
-            Answer(answer_id='answer_1', value=['Light Side', 'Other'])
+            Answer(answer_id='answer_1', value=[1, 'Other'])
         )
-        self.answer_store.add_or_update(Answer(answer_id='child_answer', value=1))
+        self.answer_store.add_or_update(Answer(answer_id='child_answer', value=2))
 
         options = [
-            {'label': 'Light Side', 'value': 'Light Side'},
+            {'label': 1, 'value': 1},
             {
                 'label': 'Other',
                 'value': 'Other',
@@ -286,7 +286,7 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
         answer_schema = [
             {
                 'id': 'answer_1',
-                'label': 'Which side?',
+                'label': 'How many cakes have you had today?',
                 'type': 'Checkbox',
                 'options': options,
             }
