@@ -429,7 +429,7 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
                 'label': 'Other',
                 'value': 'Other',
                 'detail_answer': {'id': 'child_answer', 'type': 'Number'},
-            }
+            },
         ]
         answer_schema = [
             {
