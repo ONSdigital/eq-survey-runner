@@ -39,7 +39,7 @@ def test_build_list_collector_context_no_summary(
     assert context['list_items'] == []
 
 
-def test_build_list_items_summary_context(
+def test_build_list_summary_context(
     list_collector_block, people_answer_store, people_list_store, app
 ):
 
@@ -64,14 +64,7 @@ def test_build_list_items_summary_context(
             'edit_link': '/questionnaire/people/UHPLbX/edit-person/',
             'remove_link': '/questionnaire/people/UHPLbX/remove-person/',
             'primary_person': False,
-        },
-        {
-            'answers': [],
-            'item_title': '',
-            'edit_link': '/questionnaire/people/FnoDHP/edit-person/',
-            'remove_link': '/questionnaire/people/FnoDHP/remove-person/',
-            'primary_person': False,
-        },
+        }
     ]
     actual = list_collector.build_list_items_summary_context(
         list_collector_block,
