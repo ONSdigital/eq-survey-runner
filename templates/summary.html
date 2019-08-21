@@ -46,20 +46,20 @@
     {% endif %}
   </div>
 
-  {% if content.summary.list_item_summaries %}
-    {% for list_item_summary in content.summary.list_item_summaries %}
+  {% if content.summary.list_summaries %}
+    {% for list_summary in content.summary.list_summaries %}
       <div data-qa="{{list_item_summary.list_name}}-list-summary">
-        <h2>{{list_item_summary.title}}</h2>
-          {% if list_item_summary.list_items %}
-            {% set list_items = list_item_summary.list_items %}
+        <h2>{{list_summary.title}}</h2>
+          {% if list_summary.list_items %}
+            {% set list_items = list_summary.list_items %}
             {% include 'partials/summary/list-summary.html' %}
           {% else %}
             <div class="u-mb-s">
-              {{ list_item_summary.empty_list_text }}
+              {{ list_summary.empty_list_text }}
             </div>
           {% endif %}
           <div class="u-mb-l">
-            <a data-qa="add-item-link" href="{{list_item_summary.add_link}}">{{list_item_summary.add_link_text}}</a>
+            <a data-qa="add-item-link" href="{{list_summary.add_link}}">{{list_summary.add_link_text}}</a>
           </div>
       </div>
     {% endfor %}

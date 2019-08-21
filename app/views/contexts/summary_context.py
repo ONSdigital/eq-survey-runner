@@ -116,10 +116,10 @@ def build_view_context_for_section_summary(
 
     list_collector_blocks = schema.get_visible_list_blocks_for_section(section)
 
-    list_item_summaries = []
+    list_summaries = []
 
     for list_collector_block in list_collector_blocks:
-        list_item_summary = {
+        list_summary = {
             'title': list_collector_block['summary']['title'],
             'add_link': url_for(
                 'questionnaire.block',
@@ -133,10 +133,10 @@ def build_view_context_for_section_summary(
             ),
             'list_name': list_collector_block['for_list'],
         }
-        list_item_summaries.append(list_item_summary)
+        list_summaries.append(list_summary)
 
     context['summary'].update(
-        {'title': title, 'list_item_summaries': list_item_summaries}
+        {'title': title, 'list_summaries': list_summaries}
     )
 
     return context
