@@ -89,15 +89,14 @@ def test_assert_primary_person_string_appended(
 ):
     schema = load_schema_from_name('test_list_collector_primary_person')
     people_list_store['people'].primary_person = 'PlwgoG'
-    with app.test_request_context():
-        list_item_context = list_collector.build_list_items_summary_context(
-            list_collector_block,
-            schema,
-            people_answer_store,
-            people_list_store,
-            DEFAULT_LANGUAGE_CODE,
-        )
+    list_item_context = list_collector.build_list_items_summary_context(
+        list_collector_block,
+        schema,
+        people_answer_store,
+        people_list_store,
+        DEFAULT_LANGUAGE_CODE,
+    )
 
-        assert list_item_context[0]['primary_person'] is True
-        assert 'Toni Morrison (You)' == list_item_context[0]['item_title']
-        assert 'Barry Pheloung' == list_item_context[1]['item_title']
+    assert list_item_context[0]['primary_person'] is True
+    assert 'Toni Morrison (You)' == list_item_context[0]['item_title']
+    assert 'Barry Pheloung' == list_item_context[1]['item_title']

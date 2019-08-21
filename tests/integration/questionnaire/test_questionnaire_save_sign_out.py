@@ -22,15 +22,14 @@ class TestSaveSignOut(IntegrationTestCase):
     def test_save_sign_out_with_non_mandatory_validation_error(self):
         # We can't save if a validation error is caused, this doesn't include missing a mandatory question
 
-        with self._application.test_request_context():
-            # Given
-            self.launchSurvey('test_error_messages')
+        # Given
+        self.launchSurvey('test_error_messages')
 
-            # When
-            self.post(post_data={'test-number': 'error'}, action='save_sign_out')
+        # When
+        self.post(post_data={'test-number': 'error'}, action='save_sign_out')
 
-            # Then we are presented with an error message
-            self.assertRegexPage(error_messages['INVALID_NUMBER'])
+        # Then we are presented with an error message
+        self.assertRegexPage(error_messages['INVALID_NUMBER'])
 
     def test_save_sign_out_complete_a_block_then_revisit_it(self):
         # If a user completes a block, but then goes back and uses save and come back on that block, that block
