@@ -135,9 +135,7 @@ def build_view_context_for_section_summary(
         }
         list_summaries.append(list_summary)
 
-    context['summary'].update(
-        {'title': title, 'list_summaries': list_summaries}
-    )
+    context['summary'].update({'title': title, 'list_summaries': list_summaries})
 
     return context
 

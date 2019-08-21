@@ -64,7 +64,7 @@ def test_build_list_summary_context(
             'edit_link': '/questionnaire/people/UHPLbX/edit-person/',
             'remove_link': '/questionnaire/people/UHPLbX/remove-person/',
             'primary_person': False,
-        }
+        },
     ]
     actual = list_collector.build_list_items_summary_context(
         list_collector_block,
