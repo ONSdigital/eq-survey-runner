@@ -163,4 +163,4 @@ def people_answer_store():
 
 @pytest.fixture
 def people_list_store():
-    return ListStore([{'items': ['PlwgoG', 'UHPLbX', 'FnoDHP'], 'name': 'people'}])
+    return ListStore([{'items': ['PlwgoG', 'UHPLbX'], 'name': 'people'}])
