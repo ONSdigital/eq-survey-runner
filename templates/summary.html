@@ -51,7 +51,7 @@
       <div data-qa="{{list_item_summary.list_name}}-list-summary">
         <h2>{{list_item_summary.title}}</h2>
           {% if list_item_summary.list_items %}
-            {% set listItems = list_item_summary.list_items %}
+            {% set list_items = list_item_summary.list_items %}
             {% include 'partials/summary/list-summary.html' %}
           {% else %}
             <div class="u-mb-s">
