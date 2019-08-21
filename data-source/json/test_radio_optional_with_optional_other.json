@@ -61,39 +61,6 @@
                             }
                         },
                         {
-                            "type": "Question",
-                            "id": "radio-non-mandatory2",
-                            "question": {
-                                "type": "General",
-                                "id": "radio-non-mandatory-question2",
-                                "title": "How many items do you like on your breakfast?",
-                                "answers": [
-                                    {
-                                        "type": "Radio",
-                                        "id": "radio-non-mandatory-answer2",
-                                        "mandatory": false,
-                                        "options": [
-                                            {
-                                                "label": "1",
-                                                "value": "1"
-                                            },
-                                            {
-                                                "label": "Other",
-                                                "description": "This is optional.",
-                                                "value": "Other",
-                                                "detail_answer": {
-                                                    "mandatory": false,
-                                                    "id": "other-answer-non-mandatory2",
-                                                    "label": "Please specify a number",
-                                                    "type": "Number"
-                                                }
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             "type": "Summary",
                             "id": "summary"
                         }

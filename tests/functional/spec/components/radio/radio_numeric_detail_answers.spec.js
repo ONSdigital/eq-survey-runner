@@ -3,7 +3,7 @@ const helpers = require('../../../helpers');
 const RadioNumericDetailPage = require('../../../generated_pages/radio_numeric_detail_answers/radio-numeric-detail.page');
 const SummaryPage = require('../../../generated_pages/radio_numeric_detail_answers/summary.page');
 
-describe.only('Radio with a numeric "detail_answer" option', function() {
+describe('Radio with a numeric "detail_answer" option', function() {
 
   const radio_schema = 'test_radio_numeric_detail_answers.json';
 
@@ -37,10 +37,10 @@ describe.only('Radio with a numeric "detail_answer" option', function() {
       return browser
       // When
         .click(RadioNumericDetailPage.other())
-        .setValue(RadioNumericDetailPage.otherDetail(), '1')
+        .setValue(RadioNumericDetailPage.otherDetail(), '1234')
         .click(RadioNumericDetailPage.submit())
       // Then
-        .getText(SummaryPage.radioAnswerNumericDetail()).should.eventually.contain('1');
+        .getText(SummaryPage.radioAnswerNumericDetail()).should.eventually.contain('1234');
     });
   });
 });

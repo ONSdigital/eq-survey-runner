@@ -2,8 +2,6 @@ const helpers = require('../helpers');
 
 const MandatoryCheckboxPage = require('../generated_pages/checkbox/mandatory-checkbox.page');
 const NonMandatoryCheckboxPage = require('../generated_pages/checkbox/non-mandatory-checkbox.page');
-const MandatoryCheckboxNumericDetailPage = require('../generated_pages/checkbox/mandatory-checkbox-numeric-detail.page');
-const NonMandatoryCheckboxNumericDetailPage = require('../generated_pages/checkbox/non-mandatory-checkbox-numeric-detail.page');
 const SummaryPage = require('../generated_pages/checkbox/summary.page');
 
 describe('Checkbox with "other" option', function() {
@@ -72,13 +70,8 @@ describe('Checkbox with "other" option', function() {
         .setValue(MandatoryCheckboxPage.otherDetail(), 'Other value')
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.submit())
-        .click(MandatoryCheckboxNumericDetailPage.other())
-        .setValue(MandatoryCheckboxNumericDetailPage.otherDetail(), '1234')
-        .click(MandatoryCheckboxNumericDetailPage.submit())
-        .click(NonMandatoryCheckboxNumericDetailPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('No answer provided')
-        .getText(SummaryPage.nonMandatoryCheckboxNumericDetailAnswer()).should.eventually.contain('No answer provided');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('No answer provided');
     });
   });
 
@@ -92,14 +85,8 @@ describe('Checkbox with "other" option', function() {
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.other())
         .click(NonMandatoryCheckboxPage.submit())
-        .click(MandatoryCheckboxNumericDetailPage.other())
-        .setValue(MandatoryCheckboxNumericDetailPage.otherDetail(), '1234')
-        .click(MandatoryCheckboxNumericDetailPage.submit())
-        .click(NonMandatoryCheckboxNumericDetailPage.other())
-        .click(NonMandatoryCheckboxNumericDetailPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('Other')
-        .getText(SummaryPage.nonMandatoryCheckboxNumericDetailAnswer()).should.eventually.contain('Other');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('Other');
     });
 
   });
@@ -115,15 +102,8 @@ describe('Checkbox with "other" option', function() {
         .click(NonMandatoryCheckboxPage.other())
         .setValue(NonMandatoryCheckboxPage.otherDetail(), 'The other value')
         .click(NonMandatoryCheckboxPage.submit())
-        .click(MandatoryCheckboxNumericDetailPage.other())
-        .setValue(MandatoryCheckboxNumericDetailPage.otherDetail(), '1234')
-        .click(MandatoryCheckboxNumericDetailPage.submit())
-        .click(NonMandatoryCheckboxNumericDetailPage.other())
-        .setValue(NonMandatoryCheckboxNumericDetailPage.otherDetail(), '5678')
-        .click(NonMandatoryCheckboxNumericDetailPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('The other value')
-        .getText(SummaryPage.nonMandatoryCheckboxNumericDetailAnswer()).should.eventually.contain('5678');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('The other value');
 
     });
 
@@ -157,10 +137,6 @@ describe('Checkbox with "other" option', function() {
         .click(MandatoryCheckboxPage.ham())
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.submit())
-        .click(MandatoryCheckboxNumericDetailPage.other())
-        .setValue(MandatoryCheckboxNumericDetailPage.otherDetail(), '1')
-        .click(MandatoryCheckboxNumericDetailPage.submit())
-        .click(NonMandatoryCheckboxNumericDetailPage.submit())
       // Then
         .element(SummaryPage.mandatoryCheckboxAnswer()).elements('li').then(result => result.value).should.eventually.be.empty;
     });
@@ -175,10 +151,6 @@ describe('Checkbox with "other" option', function() {
         .click(MandatoryCheckboxPage.cheese())
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.submit())
-        .click(MandatoryCheckboxNumericDetailPage.other())
-        .setValue(MandatoryCheckboxNumericDetailPage.otherDetail(), '1')
-        .click(MandatoryCheckboxNumericDetailPage.submit())
-        .click(NonMandatoryCheckboxNumericDetailPage.submit())
       // Then
         .element(SummaryPage.mandatoryCheckboxAnswer()).elements('li').then(result => result.value.length).should.eventually.be.equal(2);
     });
