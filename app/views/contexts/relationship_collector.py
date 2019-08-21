@@ -13,7 +13,6 @@ def transform_relationships(block, answer_store, location):
         'second_person_name': second_person_name,
         'first_person_name_possessive': first_person_name_possessive,
     }
-
     question = block['question']
     question['title'] = question['title'].format(**placeholders)
     answer = question['answers'][0]

@@ -9,23 +9,23 @@ class PlaceholderParser:
     """
 
     def __init__(
-        self, language, schema=None, answer_store=None, metadata=None, list_item_id=None
+        self,
+        language,
+        schema=None,
+        answer_store=None,
+        metadata=None,
+        list_item_id=None,
+        location=None,
     ):
 
         self._schema = schema
         self._answer_store = answer_store or AnswerStore()
         self._metadata = metadata
         self._list_item_id = list_item_id
+        self._location = location
         self._transformer = PlaceholderTransforms(language)
 
-    def _lookup_answer(self, answer_id):
-        if self._schema:
-            list_item_id = self._schema.get_list_item_id_for_answer_id(
-                answer_id, self._list_item_id
-            )
-        else:
-            list_item_id = None
-
+    def _lookup_answer(self, answer_id, list_item_id=None):
         answer = self._answer_store.get_answer(answer_id, list_item_id)
 
         if answer:
@@ -36,12 +36,13 @@ class PlaceholderParser:
 
         for placeholder in placeholder_list:
             placeholder_id = placeholder['placeholder']
-
             if 'value' in placeholder:
                 source_id = placeholder['value']['identifier']
 
                 if placeholder['value']['source'] == 'answers':
-                    placeholder_map[placeholder_id] = self._lookup_answer(source_id)
+                    placeholder_map[placeholder_id] = self._lookup_answer(
+                        source_id, self._list_item_id
+                    )
                 elif placeholder['value']['source'] == 'metadata':
                     placeholder_map[placeholder_id] = self._metadata[source_id]
             elif 'transforms' in placeholder:
@@ -55,6 +56,11 @@ class PlaceholderParser:
         transformed_value = None
 
         for transform in transform_list:
+            list_item_id = self._get_list_item_id(
+                transform.get('arguments', {})
+                .get('list_to_concatenate', {})
+                .get('list_item_selector')
+            )
             transform_args = {}
             for arg_key, arg_value in transform['arguments'].items():
                 if 'value' in arg_value:
@@ -64,12 +70,12 @@ class PlaceholderParser:
                 elif arg_value['source'] == 'answers':
                     if isinstance(arg_value['identifier'], list):
                         transform_args[arg_key] = [
-                            self._lookup_answer(identifier)
+                            self._lookup_answer(identifier, list_item_id)
                             for identifier in arg_value['identifier']
                         ]
                     else:
                         transform_args[arg_key] = self._lookup_answer(
-                            arg_value['identifier']
+                            arg_value['identifier'], list_item_id
                         )
                 elif arg_value['source'] == 'metadata':
                     if isinstance(arg_value['identifier'], list):
@@ -89,3 +95,8 @@ class PlaceholderParser:
             )
 
         return transformed_value
+
+    def _get_list_item_id(self, list_item_selector=None):
+        if list_item_selector:
+            return getattr(self._location, list_item_selector)
+        return self._list_item_id
