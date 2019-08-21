@@ -1,5 +1,7 @@
 from app.views.handlers.content import Content
-from app.views.contexts.summary_context import build_view_context_for_calculated_summary
+from app.views.contexts.calculated_summary import (
+    build_view_context_for_calculated_summary,
+)
 
 
 class CalculatedSummary(Content):

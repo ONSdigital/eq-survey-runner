@@ -3,6 +3,7 @@ from typing import List, Mapping, Union
 from flask import url_for
 from flask_babel import lazy_gettext
 
+from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.data_model.progress_store import CompletionStatus, ProgressStore
 
 
@@ -47,10 +48,20 @@ class HubContext:
     }
 
     def __init__(
-        self, progress_store: ProgressStore, list_store, schema, survey_complete: bool
+        self,
+        language,
+        progress_store: ProgressStore,
+        list_store,
+        answer_store,
+        metadata,
+        schema,
+        survey_complete: bool,
     ) -> None:
+        self._language = language
         self._progress_store = progress_store
         self._list_store = list_store
+        self._answer_store = answer_store
+        self._metadata = metadata
         self._schema = schema
         self._survey_complete = survey_complete
 
@@ -102,19 +113,40 @@ class HubContext:
 
         return url_for('questionnaire.get_section', section_id=section_id)
 
-    def _get_row_for_section(self, section_name, section_id, list_item_id=None):
+    def _get_row_for_repeating_section(self, section_title, section_id, list_item_id):
+        repeating_title = self._schema.get_repeating_title_for_section(section_id)
+
+        if repeating_title:
+            placeholder_renderer = PlaceholderRenderer(
+                language=self._language,
+                schema=self._schema,
+                answer_store=self._answer_store,
+                metadata=self._metadata,
+                list_item_id=list_item_id,
+            )
+
+            title = placeholder_renderer.render(repeating_title)
+        else:
+            title = section_title
+
+        return self._get_row_for_section(title, section_id, list_item_id)
+
+    def _get_row_for_section(self, section_title, section_id, list_item_id=None):
         section_status = self._progress_store.get_section_status(
             section_id, list_item_id
         )
 
         return self.get_row_context_for_section(
-            section_name, section_status, self.get_section_url(section_id, list_item_id)
+            section_title,
+            section_status,
+            self.get_section_url(section_id, list_item_id),
         )
 
     def _get_rows(self) -> List[Mapping[str, Union[str, List]]]:
         rows = []
 
         for section in self._schema.get_sections():
+
             section_title = section['title']
             section_id = section['id']
 
@@ -123,7 +155,7 @@ class HubContext:
             if repeating_list:
                 for list_item_id in self._list_store[repeating_list].items:
                     rows.append(
-                        self._get_row_for_section(
+                        self._get_row_for_repeating_section(
                             section_title, section_id, list_item_id
                         )
                     )

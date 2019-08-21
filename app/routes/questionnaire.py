@@ -38,7 +38,7 @@ from app.views.contexts.hub_context import HubContext
 from app.views.contexts.metadata_context import (
     build_metadata_context_for_survey_completed,
 )
-from app.views.contexts.summary_context import build_summary_rendering_context
+from app.views.contexts.summary_context import SummaryContext
 from app.views.handlers.block_factory import get_block_handler
 
 END_BLOCKS = 'Summary', 'Confirmation'
@@ -121,8 +121,11 @@ def get_questionnaire(schema, questionnaire_store):
     language_code = get_session_store().session_data.language_code
 
     hub = HubContext(
+        language_code,
         questionnaire_store.progress_store,
         questionnaire_store.list_store,
+        questionnaire_store.answer_store,
+        questionnaire_store.metadata,
         schema,
         router.is_survey_complete(),
     )

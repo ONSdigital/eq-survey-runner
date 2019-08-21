@@ -23,6 +23,7 @@
     "sections": [
         {
             "id": "default-section",
+            "title": "test",
             "groups": [
                 {
                     "blocks": [

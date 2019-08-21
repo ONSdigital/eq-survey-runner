@@ -1,5 +1,6 @@
 from app.data_model.list_store import ListStore
 from app.data_model.progress_store import ProgressStore, CompletionStatus
+from app.data_model.answer_store import AnswerStore
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.views.contexts.hub_context import HubContext
 
@@ -22,9 +23,12 @@ def test_get_not_started_row_for_section():
     }
 
     hub = HubContext(
+        language=None,
         progress_store=ProgressStore(),
         list_store=ListStore(),
         schema=QuestionnaireSchema({}),
+        answer_store=AnswerStore(),
+        metadata={},
         survey_complete=False,
     )
 
@@ -56,9 +60,12 @@ def test_get_completed_row_for_section():
     }
 
     hub = HubContext(
+        language=None,
         progress_store=ProgressStore(),
         list_store=ListStore(),
         schema=QuestionnaireSchema({}),
+        answer_store=AnswerStore(),
+        metadata={},
         survey_complete=False,
     )
 
@@ -73,9 +80,12 @@ def test_get_completed_row_for_section():
 
 def test_get_context():
     hub = HubContext(
+        language=None,
         progress_store=ProgressStore(),
         list_store=ListStore(),
         schema=QuestionnaireSchema({}),
+        answer_store=AnswerStore(),
+        metadata={},
         survey_complete=False,
     )
 
