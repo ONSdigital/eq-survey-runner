@@ -21,5 +21,5 @@ function display_result {
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-py.test -n auto --cov=app --cov-report html "$@"
+py.test -n auto --cov=app --cov-report html --cov-fail-under=100 "$@"
 display_result $? 3 "Unit tests"
