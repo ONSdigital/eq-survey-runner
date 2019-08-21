@@ -81,8 +81,7 @@
                                         ]
                                     }
                                 ]
-                            },
-                            "hide_on_section_summary": true
+                            }
                         },
                         {
                             "id": "list-collector",
