@@ -13,8 +13,8 @@ local question(title) = {
       type: 'Checkbox',
       options: [
         {
-          label: 'Understand spoken Irish',
-          value: 'Understand spoken Irish',
+          label: 'Understand Irish',
+          value: 'Understand Irish',
         },
         {
           label: 'Speak Irish',

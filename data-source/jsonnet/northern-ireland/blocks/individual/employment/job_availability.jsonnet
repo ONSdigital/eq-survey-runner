@@ -24,9 +24,9 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle = 'Are you available to start work in the next two weeks?';
+local nonProxyTitle = 'If a job became available now, could you start it within two weeks?';
 local proxyTitle = {
-  text: 'Is <em>{person_name}</em> available to start work in the next two weeks?',
+  text: 'If a job became available now, could <em>{person_name}</em> start it within two weeks?',
   placeholders: [
     placeholders.personName,
   ],

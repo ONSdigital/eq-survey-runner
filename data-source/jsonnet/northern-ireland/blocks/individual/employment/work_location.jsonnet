@@ -39,19 +39,19 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitleWork = 'What address do you travel to for your main place of work?';
+local nonProxyTitleWork = 'What is the address of your main place of work?';
 local proxyTitleWork = {
-  text: 'What address does <em>{person_name}</em> travel to for their main place of work?',
+  text: 'What is the address of <em>{person_name_possessive}</em> main place of work?',
   placeholders: [
-    placeholders.personName,
+    placeholders.personNamePossessive,
   ],
 };
 
-local pastNonProxyTitleWork = 'What address did you travel to for your main place of work?';
+local pastNonProxyTitleWork = 'What was the address of your main place of work?';
 local pastProxyTitleWork = {
-  text: 'What address did <em>{person_name}</em> travel to for their main place of work?',
+  text: 'What was the address of <em>{person_name_possessive}</em> main place of work?',
   placeholders: [
-    placeholders.personName,
+    placeholders.personNamePossessive,
   ],
 };
 

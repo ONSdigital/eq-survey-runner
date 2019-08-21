@@ -4,11 +4,13 @@ local rules = import '../../../lib/rules.libsonnet';
 local question(title) = {
   id: 'sexual-identity-question',
   title: title,
-  type: 'General',
+  type: 'MutuallyExclusive',
+  mandatory: false,
   answers: [
     {
       id: 'sexual-identity-answer',
       mandatory: false,
+      type: 'Checkbox',
       label: '',
       options: [
         {
@@ -33,12 +35,18 @@ local question(title) = {
             label: 'Please specify sexual orientation',
           },
         },
+      ],
+    },
+    {
+      id: 'sexual-identity-answer-exclusive',
+      type: 'Checkbox',
+      mandatory: false,
+      options: [
         {
           label: 'Prefer not to say',
           value: 'Prefer not to say',
         },
       ],
-      type: 'Checkbox',
     },
   ],
 };

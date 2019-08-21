@@ -21,8 +21,8 @@ local question(title, description) = {
           value: 'household-address',
         },
         {
-          label: 'Student term time address in the UK',
-          value: 'Student term time address in the UK',
+          label: 'Student term-time address in the UK',
+          value: 'Student term-time address in the UK',
         },
         {
           label: 'Another address in the UK',
@@ -78,7 +78,7 @@ local proxyDescription = 'If they had no usual address one year ago, state the a
             condition: 'equals any',
             values: [
               'Another address in the UK',
-              'Student term time address in the UK',
+              'Student term-time address in the UK',
             ],
           },
         ],
