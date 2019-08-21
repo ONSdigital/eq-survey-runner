@@ -77,8 +77,8 @@ describe('Checkbox with "other" option', function() {
         .click(MandatoryCheckboxNumericDetailPage.submit())
         .click(NonMandatoryCheckboxNumericDetailPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.equal('No answer provided')
-        .getText(SummaryPage.nonMandatoryCheckboxNumericDetailAnswer()).should.eventually.equal('No answer provided');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('No answer provided')
+        .getText(SummaryPage.nonMandatoryCheckboxNumericDetailAnswer()).should.eventually.contain('No answer provided');
     });
   });
 
@@ -98,8 +98,8 @@ describe('Checkbox with "other" option', function() {
         .click(NonMandatoryCheckboxNumericDetailPage.other())
         .click(NonMandatoryCheckboxNumericDetailPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.have.string('Other')
-        .getText(SummaryPage.nonMandatoryCheckboxNumericDetailAnswer()).should.eventually.have.string('Other');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('Other')
+        .getText(SummaryPage.nonMandatoryCheckboxNumericDetailAnswer()).should.eventually.contain('Other');
     });
 
   });
@@ -122,8 +122,8 @@ describe('Checkbox with "other" option', function() {
         .setValue(NonMandatoryCheckboxNumericDetailPage.otherDetail(), '5678')
         .click(NonMandatoryCheckboxNumericDetailPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.have.string('The other value')
-        .getText(SummaryPage.nonMandatoryCheckboxNumericDetailAnswer()).should.eventually.have.string('5678');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('The other value')
+        .getText(SummaryPage.nonMandatoryCheckboxNumericDetailAnswer()).should.eventually.contain('5678');
 
     });
 
