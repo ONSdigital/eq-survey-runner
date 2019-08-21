@@ -196,11 +196,11 @@ LIST_SUMMARY_LABEL_GETTER = r"""  listLabel(instance) { return `tbody:nth-child(
 
 """
 
-LIST_SUMMARY_EDIT_LINK_GETTER = r"""  listEditLink(instance) { return `tbody:nth-child(${instance}) td:last-child a[data-qa='change-item-link'`; }
+LIST_SUMMARY_EDIT_LINK_GETTER = r"""  listEditLink(instance) { return `tbody:nth-child(${instance}) td:last-child a[data-qa='change-item-link']`; }
 
 """
 
-LIST_SUMMARY_REMOVE_LINK_GETTER = r"""  listRemoveLink(instance) { return `tbody:nth-child(${instance}) td:last-child a[data-qa='remove-item-link'`; }
+LIST_SUMMARY_REMOVE_LINK_GETTER = r"""  listRemoveLink(instance) { return `tbody:nth-child(${instance}) td:last-child a[data-qa='remove-item-link']`; }
 
 """
 
@@ -221,13 +221,13 @@ LIST_SECTION_SUMMARY_ADD_LINK_GETTER = Template(
 )
 
 LIST_SECTION_SUMMARY_EDIT_LINK_GETTER = Template(
-    r"""  ${list_name}ListEditLink(listItemInstance) { return 'div[data-qa="${list_name}-list-summary"] tbody:nth-child(' + listItemInstance + ') td:last-child a[data-qa="change-item-link"'; }
+    r"""  ${list_name}ListEditLink(listItemInstance) { return 'div[data-qa="${list_name}-list-summary"] tbody:nth-child(' + listItemInstance + ') td:last-child a[data-qa="change-item-link"]'; }
 
 """
 )
 
 LIST_SECTION_SUMMARY_REMOVE_LINK_GETTER = Template(
-    r"""  ${list_name}ListRemoveLink(listItemInstance) { return 'div[data-qa="${list_name}-list-summary"] tbody:nth-child(' + listItemInstance + ') td:last-child a[data-qa="remove-item-link"'; }
+    r"""  ${list_name}ListRemoveLink(listItemInstance) { return 'div[data-qa="${list_name}-list-summary"] tbody:nth-child(' + listItemInstance + ') td:last-child a[data-qa="remove-item-link"]'; }
 
 """
 )
