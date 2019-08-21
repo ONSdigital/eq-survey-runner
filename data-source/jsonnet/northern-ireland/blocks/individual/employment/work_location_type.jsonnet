@@ -97,6 +97,18 @@ local proxyDescriptionDidWork = {
     },
     {
       goto: {
+        block: 'work-travel',
+        when: [
+          {
+            id: 'work-location-type-answer',
+            condition: 'equals',
+            value: 'No fixed place',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
         group: 'submit-group',
       },
     },

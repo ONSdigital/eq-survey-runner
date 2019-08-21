@@ -67,7 +67,7 @@ local proxyTitleSchool = {
 };
 
 local nonProxyDescriptionSchool = 'Select one option only, for the longest part, by distance, of your usual journey to place of study.';
-local proxyDescriptionSchool = 'Select one option only, for the longest part, by distance, of thier usual journey to place of study.';
+local proxyDescriptionSchool = 'Select one option only, for the longest part, by distance, of their usual journey to place of study.';
 
 {
   type: 'Question',

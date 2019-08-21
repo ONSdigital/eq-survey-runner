@@ -58,4 +58,18 @@ local proxyTitle = {
       when: [rules.proxyYes],
     },
   ],
+  routing_rules: [
+    {
+      goto: {
+        block: 'jobseeker',
+        when: [
+          {
+            id: 'employment-type-answer',
+            condition: 'not equals',
+            value: 'Studying',
+          },
+        ],
+      },
+    },
+  ],
 }

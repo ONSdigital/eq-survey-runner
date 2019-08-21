@@ -5,7 +5,7 @@ local question(title) = {
   id: 'sexual-identity-question',
   title: title,
   type: 'MutuallyExclusive',
-  mandatory: true,
+  mandatory: false,
   answers: [
     {
       id: 'sexual-identity-answer',
