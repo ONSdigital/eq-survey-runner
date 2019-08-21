@@ -10,10 +10,6 @@ def build_list_items_summary_context(
 ):
     list_name = list_collector_block['for_list']
     list_item_ids = list_store[list_name].items
-    list_answer_ids = [
-        answer['id']
-        for answer in list_collector_block['add_block']['question']['answers']
-    ]
 
     primary_person = list_store[list_name].primary_person
 
@@ -41,9 +37,6 @@ def build_list_items_summary_context(
 
         list_items.append(
             {
-                'answers': answer_store.get_answers_by_answer_id(
-                    list_answer_ids, list_item_id
-                ),
                 'item_title': rendered_summary['item_title'],
                 'edit_link': url_for(
                     'questionnaire.block',

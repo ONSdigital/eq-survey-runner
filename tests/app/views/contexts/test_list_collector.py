@@ -46,20 +46,12 @@ def test_build_list_summary_context(
     schema = load_schema_from_name('test_list_collector_primary_person')
     expected = [
         {
-            'answers': [
-                Answer(answer_id='first-name', value='Toni', list_item_id='PlwgoG'),
-                Answer(answer_id='last-name', value='Morrison', list_item_id='PlwgoG'),
-            ],
             'item_title': 'Toni Morrison',
             'edit_link': '/questionnaire/people/PlwgoG/edit-person/',
             'remove_link': '/questionnaire/people/PlwgoG/remove-person/',
             'primary_person': False,
         },
         {
-            'answers': [
-                Answer(answer_id='first-name', value='Barry', list_item_id='UHPLbX'),
-                Answer(answer_id='last-name', value='Pheloung', list_item_id='UHPLbX'),
-            ],
             'item_title': 'Barry Pheloung',
             'edit_link': '/questionnaire/people/UHPLbX/edit-person/',
             'remove_link': '/questionnaire/people/UHPLbX/remove-person/',

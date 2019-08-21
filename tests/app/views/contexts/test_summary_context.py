@@ -360,32 +360,12 @@ def test_context_for_section_list_summary(people_answer_store, app):
             'empty_list_text': 'There are no householders',
             'list_items': [
                 {
-                    'answers': [
-                        Answer(
-                            answer_id='first-name', value='Toni', list_item_id='PlwgoG'
-                        ),
-                        Answer(
-                            answer_id='last-name',
-                            value='Morrison',
-                            list_item_id='PlwgoG',
-                        ),
-                    ],
                     'edit_link': '/questionnaire/people/PlwgoG/edit-person/',
                     'item_title': 'Toni Morrison',
                     'primary_person': False,
                     'remove_link': '/questionnaire/people/PlwgoG/remove-person/',
                 },
                 {
-                    'answers': [
-                        Answer(
-                            answer_id='first-name', value='Barry', list_item_id='UHPLbX'
-                        ),
-                        Answer(
-                            answer_id='last-name',
-                            value='Pheloung',
-                            list_item_id='UHPLbX',
-                        ),
-                    ],
                     'edit_link': '/questionnaire/people/UHPLbX/edit-person/',
                     'item_title': 'Barry Pheloung',
                     'primary_person': False,
@@ -401,7 +381,6 @@ def test_context_for_section_list_summary(people_answer_store, app):
             'empty_list_text': 'There are no visitors',
             'list_items': [
                 {
-                    'answers': [],
                     'edit_link': '/questionnaire/visitors/gTrlio/edit-visitor-person/',
                     'item_title': '',
                     'primary_person': False,
