@@ -413,4 +413,4 @@ def test_context_for_section_list_summary(people_answer_store, app):
         },
     ]
 
-    assert context['summary']['list_item_summaries'] == expected
+    assert context['summary']['list_summaries'] == expected
