@@ -48,7 +48,7 @@
 
   {% if content.summary.list_summaries %}
     {% for list_summary in content.summary.list_summaries %}
-      <div data-qa="{{list_item_summary.list_name}}-list-summary">
+      <div data-qa="{{list_summary.list_name}}-list-summary">
         <h2>{{list_summary.title}}</h2>
           {% if list_summary.list_items %}
             {% set list_items = list_summary.list_items %}
