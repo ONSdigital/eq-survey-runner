@@ -36,6 +36,7 @@ local understand_ulster_scots = import 'blocks/individual/identity-and-health/un
 // school
 local school_location = import 'blocks/individual/school/school_location.jsonnet';
 local school_travel = import 'blocks/individual/school/school_travel.jsonnet';
+local study_location_type = import 'blocks/individual/school/study_location_type.jsonnet';
 
 // qualifications
 local a_level = import 'blocks/individual/qualifications/a_level.jsonnet';
@@ -66,6 +67,7 @@ local main_employment_block = import 'blocks/individual/employment/main_employme
 local main_job_type = import 'blocks/individual/employment/main_job_type.jsonnet';
 local supervise = import 'blocks/individual/employment/supervise.jsonnet';
 local work_location = import 'blocks/individual/employment/work_location.jsonnet';
+local work_location_type = import 'blocks/individual/employment/work_location_type.jsonnet';
 local work_travel = import 'blocks/individual/employment/work_travel.jsonnet';
 
 function(region_code, census_date) {
@@ -174,6 +176,7 @@ function(region_code, census_date) {
             employers_business,
             supervise,
             hours_worked,
+            work_location_type,
             work_location,
             work_travel,
           ],
@@ -182,6 +185,7 @@ function(region_code, census_date) {
           id: 'school-group',
           title: 'School',
           blocks: [
+            study_location_type,
             school_location,
             school_travel,
           ],

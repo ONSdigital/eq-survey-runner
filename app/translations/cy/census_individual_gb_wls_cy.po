@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-19 16:18+0100\n"
-"PO-Revision-Date: 2019-08-21 08:18\n"
+"POT-Creation-Date: 2019-07-30 08:36+0000\n"
+"PO-Revision-Date: 2019-08-09 09:19\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -54,17 +54,14 @@ msgstr "Bydd cwestiwn am rywedd yn dilyn yn nes ymlaen"
 msgid "This could be more than 30 days in a row or divided across the year"
 msgstr "Gallai hyn fod yn fwy na 30 diwrnod un ar ôl y llall neu wedi'u rhannu ar hyd y flwyddyn"
 
-msgid "Select to enter answer"
-msgstr "Dewiswch i roi ateb"
-
 msgid "We mean a different address to the one at the start of this survey. This might be another parent or guardian’s address, a term-time address, a partner’s address or a holiday home."
 msgstr "Rydym ni’n golygu cyfeiriad gwahanol i'r un ar ddechrau'r arolwg hwn. Gall fod yn gyfeiriad rhiant neu warcheidwad arall, cyfeiriad yn ystod y tymor, cyfeiriad partner, neu gyfeiriad tŷ gwyliau."
 
-msgid "Select to enter country"
-msgstr "Dewiswch i nodi gwlad"
-
 msgid "Do not count short visits away from the UK"
 msgstr "Peidiwch â chyfrif ymweliadau byr i ffwrdd o'r Deyrnas Unedig"
+
+msgid "Including British Sign Language"
+msgstr "Gan gynnwys laith Arwyddion Prydain"
 
 msgid "Your main language is the language you use most naturally. It could be the language you use at home."
 msgstr "Eich prif iaith yw’r iaith rydych chi’n ei defnyddio’n fwyaf naturiol. Yr iaith rydych chi’n ei defnyddio gartref."
@@ -115,22 +112,24 @@ msgid "If they had no usual address one year ago, state the address where they w
 msgstr "Os nad oedd gan yr unigolyn gyfeiriad arferol flwyddyn yn ôl, nodwch y cyfeiriad lle roedd yn aros"
 
 msgid "You may have other travel documents that show you are a citizen of a particular country. Please complete this question as if your travel documents are passports."
-msgstr "Efallai bod gennych ddogfennau teithio eraill sy'n dangos eich bod yn ddinesydd gwlad benodol. Cwblhewch y cwestiwn hwn fel petai eich dogfennau teithio yn basbortau."
+msgstr "Efallai bod gennych ddogfennau teithio eraill sy'n dangos eich bod yn ddinesydd gwlad benodol. Cwblhewch y cwestiwn hwn fel petai eich dogfennau teithio yn basportau."
 
 msgid "They may have other travel documents that show they are a citizen of a particular country. Please complete this question as if their travel documents are passports."
-msgstr "Gallai fod ganddynt ddogfennau teithio eraill sy'n dangos eu bod yn ddinesydd gwlad benodol. Cwblhewch y cwestiwn hwn fel petai eu dogfennau teithio yn basbortau."
+msgstr "Gallai fod ganddynt ddogfennau teithio eraill sy'n dangos eu bod yn ddinesydd gwlad benodol. Cwblhewch y cwestiwn hwn fel petai eu dogfennau teithio yn basportau."
 
 msgid "This refers to health conditions, illnesses or impairments you may have."
 msgstr "Mae hyn yn golygu cyflwr iechyd, salwch neu nam a all fod gennych."
 
 msgid "Consider conditions that always affect you and those that flare up from time to time. These may include, for example, sensory conditions, developmental conditions or learning impairments."
-msgstr "Dylech ystyried cyflyrau sydd bob amser yn effeithio arnoch chi a’r rhai sy’n ailgodi o bryd i’w gilydd. Gall hyn gynnwys, er enghraifft, cyflwr synhwyraidd, cyflwr datblygiadol neu anhawster dysgu."
+msgstr "Dylech ystyried cyflyrau sydd bob amser yn effeithio arnoch chi a’r rhai sy’n ailgodi o bryd i’w gilydd. \n"
+"Gall hyn gynnwys, er enghraifft, gyflwr synhwyraidd, cyflwr datblygiadol neu anhawster dysgu."
 
 msgid "This refers to health conditions, illnesses or impairments they may have."
 msgstr "Mae hyn yn golygu cyflwr iechyd, salwch neu nam a all fod gan yr unigolyn."
 
 msgid "Consider conditions that always affect them and those that flare up from time to time. These may include, for example, sensory conditions, developmental conditions or learning impairments."
-msgstr "Dylech ystyried cyflyrau sydd bob amser yn effeithio ar yr unigolyn a’r rhai sy’n ailgodi o bryd i’w gilydd. Gall hyn gynnwys, er enghraifft, cyflwr synhwyraidd, cyflwr datblygiadol neu anhawster dysgu."
+msgstr "Dylech ystyried cyflyrau sydd bob amser yn effeithio ar yr unigolyn a’r rhai sy’n ailgodi o bryd i’w gilydd. \n"
+"Gall hyn gynnwys, er enghraifft, cyflwr synhwyraidd, cyflwr datblygiadol neu anhawster dysgu."
 
 msgid "We mean whether your health condition or illness currently affects your ability to carry out day-to-day activities."
 msgstr "Rydym ni’n golygu faint o effaith mae eich cyflwr iechyd neu'ch salwch yn ei chael ar eich gallu i wneud gweithgareddau pob dydd."
@@ -151,7 +150,7 @@ msgid "Consider whether they are still affected while receiving any treatment, m
 msgstr "Dylech ystyried a yw'r cyflwr neu’r salwch yn dal i gael effaith ar yr unigolyn wrth gael unrhyw driniaeth neu feddyginiaeth, neu wrth ddefnyddio unrhyw ddyfeisiau ar ei gyfer."
 
 msgid "For example, if they need a hearing aid and by using the device they experience no restriction in carrying out their day-to-day activities, then you should select “Not at all”."
-msgstr "Er enghraifft, os oes angen i’r unigolyn ddefnyddio cymorth clyw, ac nad yw’r gallu i wneud gweithgareddau pob dydd yn cael ei gyfyngu o gwbl wrth ei ddefnyddio, dylech ddewis \"Ddim o gwbl\"."
+msgstr "Er enghraifft, os oes angen i’r unigolyn ddefnyddio cymorth clyw, ac nad yw’r gallu i wneud gweithgareddau pob dydd, yn cael ei gyfyngu o gwbl wrth ei ddefnyddio, dylech ddewis \"Ddim o gwbl\"."
 
 msgid "You should select “Yes, a lot” if they usually need some level of support from family members, friends or personal social services for most normal daily activities."
 msgstr "Dylech ddewis “Ydy, yn fawr” os oes angen rhywfaint o gymorth ar yr unigolyn fel arfer, gan aelodau o'r teulu, ffrindiau neu wasanaethau cymdeithasol personol ar gyfer y rhan fwyaf o weithgareddau arferol, pob dydd."
@@ -161,9 +160,6 @@ msgstr "Peidiwch â chyfrif unrhyw beth y byddwch chi’n derbyn cyflog am ei wn
 
 msgid "Exclude anything they do as part of their paid employment"
 msgstr "Peidiwch â chyfrif unrhyw beth y bydd yn derbyn cyflog am ei wneud"
-
-msgid "An option to enter gender will follow"
-msgstr "Bydd opsiwn i nodi rhywedd yn dilyn"
 
 msgid "The next set of questions is about any qualifications you have ever achieved in Wales, England or worldwide, including equivalents, even if you are not using them now."
 msgstr "Mae'r gyfres nesaf o gwestiynau yn ymwneud ag unrhyw gymwysterau rydych chi wedi’u hennill erioed yng Nghymru, Lloegr neu unrhyw le arall yn y byd, gan gynnwys cymwysterau cyfatebol, hyd yn oed os nad ydych yn eu defnyddio erbyn hyn."
@@ -214,13 +210,13 @@ msgid "We are measuring the number of people who have served in the UK Armed For
 msgstr "Rydym ni’n mesur faint o bobl sydd wedi gwasanaethu yn Lluoedd Arfog y Deyrnas Unedig ac sydd bellach wedi gadael. Mae angen i’r llywodraeth a chynghorau gael y wybodaeth hon er mwyn cyflawni eu hymrwymiadau o dan Gyfamod y Lluoedd Arfog. Addewid gan y genedl yw hwn, sy'n sicrhau nad yw’r rhai sy'n gwasanaethu neu sydd wedi gwasanaethu yn y lluoedd arfog, na'u teuluoedd, o dan anfantais."
 
 msgid "Current serving members should only select “No”"
-msgstr "Aelodau sy'n gwasanaethu ar hyn o bryd, dewiswch \"Nac ydw\"/\"Nac ydy\" yn unig"
+msgstr "Aelodau sy'n gwasanaethu ar hyn o bryd, dewiswch \"Nac ydw\" yn unig"
 
 msgid "Freelance means that you are self-employed and work for different companies or people on particular pieces of work"
 msgstr "Mae ar eich liwt eich hun yn golygu eich bod yn hunangyflogedig ac yn gweithio i wahanol gwmnïau neu bobl ar ddarnau penodol o waith. Gair arall am hyn yw llawrydd."
 
 msgid "Include casual or temporary work, even if only for one hour"
-msgstr "Dylech gynnwys gwaith achlysurol neu dros dro, hyd yn oed os mai dim ond am awr"
+msgstr "Dylech gynnwys gwaith achlysurol neu dros dro, hyd yn oed os mai dim ond am awr y bu'n chi'n gweithio"
 
 msgid "Freelance means that they are self-employed and work for different companies or people on particular pieces of work"
 msgstr "Mae ar ei liwt ei hun yn golygu bod yr unigolyn yn hunangyflogedig ac yn gweithio i wahanol gwmnïau neu bobl ar ddarnau penodol o waith. Gair arall am hyn yw llawrydd."
@@ -544,7 +540,7 @@ msgid "Enter a first name to continue"
 msgstr "Nodwch enw cyntaf i barhau"
 
 msgid "Enter a last name to continue"
-msgstr "Nodwch gyfenw i barhau"
+msgstr "Nodwch cyfenw i barhau"
 
 msgid "provide services and share funding fairly"
 msgstr "darparu gwasanaethau a rhannu cyllid yn deg"
@@ -1093,8 +1089,8 @@ msgstr "Ydw, mewn cyfeiriad y tu allan i’r Deyrnas Unedig"
 
 #. answer-id: another-address-answer-other-country
 msgctxt "Answer for: Do you stay at another address for more than 30 days a year?"
-msgid "Enter the current name of the country"
-msgstr "Nodwch enw presennol y wlad"
+msgid "Please specify the country"
+msgstr "Nodwch y wlad"
 
 #. answer-id: another-address-answer
 msgctxt "Answer for: Does <em>{person_name}</em> stay at another address for more than 30 days a year?"
@@ -1113,8 +1109,8 @@ msgstr "Ydy, mewn cyfeiriad y tu allan i’r Deyrnas Unedig"
 
 #. answer-id: another-address-answer-other-country
 msgctxt "Answer for: Does <em>{person_name}</em> stay at another address for more than 30 days a year?"
-msgid "Enter the current name of the country"
-msgstr "Nodwch enw presennol y wlad"
+msgid "Please specify the country"
+msgstr "Nodwch y wlad"
 
 #. answer-id: other-address-answer-building
 msgctxt "Answer for: Enter details of the other UK address where you stay for more than 30 days a year."
@@ -1348,8 +1344,8 @@ msgstr "Nac ydy"
 
 #. answer-id: term-time-address-country-answer-other
 msgctxt "Answer for: Is this address in the UK?"
-msgid "Enter the current name of the country"
-msgstr "Nodwch enw presennol y wlad"
+msgid "Please specify the country"
+msgstr "Nodwch y wlad"
 
 #. answer-id: term-time-address-details-answer-building
 msgctxt "Answer for: Enter details of the UK address where you usually stay during term time."
@@ -1433,7 +1429,7 @@ msgstr "Rhywle arall"
 
 #. answer-id: country-of-birth-answer-other
 msgctxt "Answer for: What is your country of birth?"
-msgid "Enter the current name of the country"
+msgid "Please specify the current name of the country"
 msgstr "Nodwch enw presennol y wlad"
 
 #. answer-id: country-of-birth-answer
@@ -1468,7 +1464,7 @@ msgstr "Rhywle arall"
 
 #. answer-id: country-of-birth-answer-other
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
-msgid "Enter the current name of the country"
+msgid "Please specify the current name of the country"
 msgstr "Nodwch enw presennol y wlad"
 
 #. answer-id: when-arrive-in-uk-answer
@@ -1568,13 +1564,13 @@ msgstr "Cymraeg neu Saesneg"
 
 #. answer-id: language-answer
 msgctxt "Answer for: What is your main language?"
-msgid "Other, including British Sign Language"
-msgstr "Arall, gan gynnwys Iaith Arwyddion Prydain"
+msgid "Other"
+msgstr "Arall"
 
 #. answer-id: language-answer-other
 msgctxt "Answer for: What is your main language?"
-msgid "Enter main language"
-msgstr "Nodwch y brif iaith"
+msgid "Please specify main language"
+msgstr "Nodwch eich prif iaith"
 
 #. answer-id: language-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
@@ -1583,12 +1579,12 @@ msgstr "Cymraeg neu Saesneg"
 
 #. answer-id: language-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
-msgid "Other, including British Sign Language"
-msgstr "Arall, gan gynnwys Iaith Arwyddion Prydain"
+msgid "Other"
+msgstr "Arall"
 
 #. answer-id: language-answer-other
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
-msgid "Enter main language"
+msgid "Please specify main language"
 msgstr "Nodwch y brif iaith"
 
 #. answer-id: english-answer
@@ -1663,7 +1659,7 @@ msgstr "Arall"
 
 #. answer-id: national-identity-answer-other
 msgctxt "Answer for: How would you describe your national identity?"
-msgid "Describe your national identity"
+msgid "Please describe your national identity"
 msgstr "Disgrifiwch eich hunaniaeth genedlaethol"
 
 #. answer-id: national-identity-answer
@@ -1698,7 +1694,7 @@ msgstr "Arall"
 
 #. answer-id: national-identity-answer-other
 msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
-msgid "Describe their national identity"
+msgid "Please describe their national identity"
 msgstr "Disgrifiwch ei hunaniaeth genedlaethol"
 
 #. answer-id: ethnic-group-answer
@@ -1778,7 +1774,7 @@ msgstr "Unrhyw gefndir Gwyn arall"
 
 #. answer-id: white-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes your White ethnic group or background?"
-msgid "Enter White background"
+msgid "Please specify White background"
 msgstr "Nodwch y cefndir Gwyn"
 
 #. answer-id: white-ethnic-group-answer
@@ -1808,7 +1804,7 @@ msgstr "Unrhyw gefndir Gwyn arall"
 
 #. answer-id: white-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> White ethnic group or background?"
-msgid "Enter White background"
+msgid "Please specify White background"
 msgstr "Nodwch y cefndir Gwyn"
 
 #. answer-id: mixed-ethnic-group-answer
@@ -1833,7 +1829,7 @@ msgstr "Unrhyw gefndir Cymysg neu Aml-ethnig arall"
 
 #. answer-id: mixed-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes your Mixed or Multiple ethnic group or background?"
-msgid "Enter Mixed or Multiple background"
+msgid "Please specify Mixed or Multiple background"
 msgstr "Nodwch y cefndir Cymysg neu Aml-ethnig"
 
 #. answer-id: mixed-ethnic-group-answer
@@ -1858,7 +1854,7 @@ msgstr "Unrhyw gefndir Cymysg neu Aml-ethnig arall"
 
 #. answer-id: mixed-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Mixed or Multiple ethnic group or background?"
-msgid "Enter Mixed or Multiple background"
+msgid "Please specify Mixed or Multiple background"
 msgstr "Nodwch y cefndir Cymysg neu Aml-ethnig"
 
 #. answer-id: asian-ethnic-group-answer
@@ -1888,7 +1884,7 @@ msgstr "Unrhyw gefndir Asiaidd arall"
 
 #. answer-id: asian-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes your Asian or Asian British ethnic group or background?"
-msgid "Enter Asian background"
+msgid "Please specify Asian background"
 msgstr "Nodwch y cefndir Asiaidd"
 
 #. answer-id: asian-ethnic-group-answer
@@ -1918,7 +1914,7 @@ msgstr "Unrhyw gefndir Asiaidd arall"
 
 #. answer-id: asian-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Asian or Asian British ethnic group or background?"
-msgid "Enter Asian background"
+msgid "Please specify Asian background"
 msgstr "Nodwch y cefndir Asiaidd"
 
 #. answer-id: black-ethnic-group-answer
@@ -1933,7 +1929,7 @@ msgstr "Affricanaidd"
 
 #. answer-id: african-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes your Black, Black British, Caribbean or African ethnic group or background?"
-msgid "Enter African background"
+msgid "Please specify African background"
 msgstr "Nodwch y cefndir Affricanaidd"
 
 #. answer-id: black-ethnic-group-answer
@@ -1943,7 +1939,7 @@ msgstr "Unrhyw gefndir Du, Du Prydeinig neu Garibïaidd arall"
 
 #. answer-id: black-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes your Black, Black British, Caribbean or African ethnic group or background?"
-msgid "Enter Black, Black British or Caribbean background"
+msgid "Please specify any other Black, Black British or Caribbean background"
 msgstr "Nodwch y cefndir Du, Du Prydeinig neu Garibïaidd"
 
 #. answer-id: black-ethnic-group-answer
@@ -1958,7 +1954,7 @@ msgstr "Affricanaidd"
 
 #. answer-id: african-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Black, Black British, Caribbean or African ethnic group or background?"
-msgid "Enter African background"
+msgid "Please specify African background"
 msgstr "Nodwch y cefndir Affricanaidd"
 
 #. answer-id: black-ethnic-group-answer
@@ -1968,7 +1964,7 @@ msgstr "Unrhyw gefndir Du, Du Prydeinig neu Garibïaidd arall"
 
 #. answer-id: black-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Black, Black British, Caribbean or African ethnic group or background?"
-msgid "Enter Black, Black British or Caribbean background"
+msgid "Please specify any other Black, Black British or Caribbean background"
 msgstr "Nodwch y cefndir Du, Du Prydeinig neu Garibïaidd"
 
 #. answer-id: other-ethnic-group-answer
@@ -1983,7 +1979,7 @@ msgstr "Unrhyw grŵp ethnig arall"
 
 #. answer-id: other-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes your other ethnic group or background?"
-msgid "Enter other ethnic group"
+msgid "Please specify other ethnic group"
 msgstr "Nodwch y grŵp ethnig arall"
 
 #. answer-id: other-ethnic-group-answer
@@ -1998,7 +1994,7 @@ msgstr "Unrhyw grŵp ethnig arall"
 
 #. answer-id: other-ethnic-group-answer-other
 msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> other ethnic group or background?"
-msgid "Enter other ethnic group"
+msgid "Please specify other ethnic group"
 msgstr "Nodwch y grŵp ethnig arall"
 
 #. answer-id: religion-answer
@@ -2043,7 +2039,7 @@ msgstr "Unrhyw grefydd arall"
 
 #. answer-id: religion-answer-other
 msgctxt "Answer for: What is your religion?"
-msgid "Enter religion"
+msgid "Please specify religion"
 msgstr "Nodwch y grefydd"
 
 #. answer-id: religion-answer
@@ -2088,7 +2084,7 @@ msgstr "Unrhyw grefydd arall"
 
 #. answer-id: religion-answer-other
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> religion?"
-msgid "Enter religion"
+msgid "Please specify religion"
 msgstr "Nodwch y grefydd"
 
 #. answer-id: past-usual-address-household-answer
@@ -2108,8 +2104,8 @@ msgstr "Cyfeiriad y tu allan i’r Deyrnas Unedig"
 
 #. answer-id: past-usual-address-household-answer-other
 msgctxt "Answer for: One year ago, what was your usual address?"
-msgid "Enter the current name of the country"
-msgstr "Nodwch enw presennol y wlad"
+msgid "Please specify the country"
+msgstr "Nodwch y wlad"
 
 #. answer-id: past-usual-address-household-answer
 msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
@@ -2128,8 +2124,8 @@ msgstr "Cyfeiriad y tu allan i’r Deyrnas Unedig"
 
 #. answer-id: past-usual-address-household-answer-other
 msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
-msgid "Enter the current name of the country"
-msgstr "Nodwch enw presennol y wlad"
+msgid "Please specify the country"
+msgstr "Nodwch y wlad"
 
 #. answer-id: last-year-address-answer-building
 msgctxt "Answer for: Enter details of your address one year ago."
@@ -2198,7 +2194,7 @@ msgstr "Arall"
 
 #. answer-id: passport-answer-other
 msgctxt "Answer for: What passports do you hold?"
-msgid "Enter the passports you hold"
+msgid "Please specify the passports you hold"
 msgstr "Nodwch y pasbortau sydd gennych chi"
 
 #. answer-id: passports-answer-exclusive
@@ -2223,7 +2219,7 @@ msgstr "Arall"
 
 #. answer-id: passport-answer-other
 msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
-msgid "Enter passports held"
+msgid "Please specify the passports held"
 msgstr "Nodwch y pasbortau sydd gan yr unigolyn"
 
 #. answer-id: passports-answer-exclusive
@@ -2413,7 +2409,7 @@ msgstr "Cyfeiriadedd rhywiol arall"
 
 #. answer-id: sexual-identity-answer-other
 msgctxt "Answer for: Which of the following best describes your sexual orientation?"
-msgid "Enter your sexual orientation"
+msgid "Please specify your sexual orientation"
 msgstr "Nodwch eich cyfeiriadedd rhywiol"
 
 #. answer-id: sexual-identity-answer
@@ -2438,7 +2434,7 @@ msgstr "Cyfeiriadedd rhywiol arall"
 
 #. answer-id: sexual-identity-answer-other
 msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
-msgid "Enter their sexual orientation"
+msgid "Please specify their sexual orientation"
 msgstr "Nodwch gyfeiriadedd rhywiol yr unigolyn"
 
 #. answer-id: birth-gender-answer
@@ -2453,8 +2449,8 @@ msgstr "Nac ydy"
 
 #. answer-id: birth-gender-answer-other
 msgctxt "Answer for: Is your gender the same as the sex you were registered at birth?"
-msgid "Enter gender"
-msgstr "Nodwch y rhywedd"
+msgid "Please specify gender"
+msgstr "Nodwch eich rhywedd"
 
 #. answer-id: birth-gender-answer
 msgctxt "Answer for: Is <em>{person_name_possessive}</em> gender the same as the sex they were registered at birth?"
@@ -2468,7 +2464,7 @@ msgstr "Nac ydy"
 
 #. answer-id: birth-gender-answer-other
 msgctxt "Answer for: Is <em>{person_name_possessive}</em> gender the same as the sex they were registered at birth?"
-msgid "Enter gender"
+msgid "Please specify gender"
 msgstr "Nodwch y rhywedd"
 
 #. answer-id: apprenticeship-answer

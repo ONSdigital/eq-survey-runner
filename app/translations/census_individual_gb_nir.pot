@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 14:16+0100\n"
+"POT-Creation-Date: 2019-08-21 12:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -208,7 +208,12 @@ msgstr ""
 
 msgid ""
 "For example, retail assistant, office cleaner, district nurse, primary "
-"school teacher. Do not state your grade or pay band."
+"school teacher. Do not state your grade or pay band"
+msgstr ""
+
+msgid ""
+"For example, retail assistant, office cleaner, district nurse, primary "
+"school teacher. Do not state their grade or pay band"
 msgstr ""
 
 msgid ""
@@ -217,6 +222,15 @@ msgid ""
 msgstr ""
 
 msgid "Include paid and unpaid overtime"
+msgstr ""
+
+msgid ""
+"Answer for the place where you spend the most time. Even if ill, on "
+"maternity leave, holiday or temporarily laid off provide details of your "
+"main place of work."
+msgstr ""
+
+msgid "Answer for the place where you spent the most time."
 msgstr ""
 
 msgid ""
@@ -230,12 +244,17 @@ msgid ""
 msgstr ""
 
 msgid ""
+"Answer for the place where you spend the most time. If student or "
+"schoolchild, answer for your study address."
+msgstr ""
+
+msgid ""
 "Select one option only, for the longest part, by distance, of your usual "
 "journey to place of study."
 msgstr ""
 
 msgid ""
-"Select one option only, for the longest part, by distance, of thier usual"
+"Select one option only, for the longest part, by distance, of their usual"
 " journey to place of study."
 msgstr ""
 
@@ -353,7 +372,7 @@ msgstr ""
 
 msgid ""
 "Do you have any of the following <em>physical health conditions</em> "
-"lasting or expected to last 12 months or more?"
+"which have lasted, or are expected to last, at least 12 months?"
 msgstr ""
 
 msgid ""
@@ -412,7 +431,7 @@ msgid ""
 "work?"
 msgstr ""
 
-msgid "Are you available to start work in the next two weeks?"
+msgid "If a job became available now, could you start it within two weeks?"
 msgstr ""
 
 msgid "In the last seven days, were you waiting to start a job already accepted?"
@@ -477,10 +496,16 @@ msgstr ""
 msgid "In your main job, how many hours a week did you usually work?"
 msgstr ""
 
-msgid "What address do you travel to for your main place of work?"
+msgid "Where do you mainly work?"
 msgstr ""
 
-msgid "What address did you travel to for your main place of work?"
+msgid "Where did you mainly work?"
+msgstr ""
+
+msgid "What is the address of your main place of work?"
+msgstr ""
+
+msgid "What was the address of your main place of work?"
 msgstr ""
 
 msgid "How do you usually travel to your main place of work?"
@@ -492,10 +517,13 @@ msgstr ""
 msgid "School"
 msgstr ""
 
-msgid "What address do you travel to for your course of study, including school?"
+msgid "Where do you mainly study?"
 msgstr ""
 
-msgid "How do you usually travel to your place of study, including school?"
+msgid "What is the address of your main place of study, including school?"
+msgstr ""
+
+msgid "How do you usually travel to your main place of study, including school?"
 msgstr ""
 
 msgid "Submit answers"
@@ -599,7 +627,8 @@ msgstr ""
 
 msgid ""
 "Does {person_name} have any of the following <em>physical health "
-"conditions</em> lasting or expected to last 12 months or more?"
+"conditions</em> which have lasted, or are expected to last, at least 12 "
+"months?"
 msgstr ""
 
 msgid ""
@@ -667,7 +696,9 @@ msgid ""
 "any kind of paid work?"
 msgstr ""
 
-msgid "Is <em>{person_name}</em> available to start work in the next two weeks?"
+msgid ""
+"If a job became available now, could <em>{person_name}</em> start it "
+"within two weeks?"
 msgstr ""
 
 msgid ""
@@ -753,13 +784,28 @@ msgid ""
 msgstr ""
 
 msgid ""
-"What address does <em>{person_name}</em> travel to for their main place "
-"of work?"
+"Answer for the place where <em>{person_name}</em> spends the most time. "
+"Even if ill, on maternity leave, holiday or temporarily laid off provide "
+"details of their main place of work."
+msgstr ""
+
+msgid "Where does <em>{person_name}</em> mainly work?"
+msgstr ""
+
+msgid "Answer for the place where <em>{person_name}</em> spent the most time."
+msgstr ""
+
+msgid "Where did <em>{person_name}</em> mainly work?"
 msgstr ""
 
 msgid ""
-"What address did <em>{person_name}</em> travel to for their main place of"
-" work?"
+"What is the address of <em>{person_name_possessive}</em> main place of "
+"work?"
+msgstr ""
+
+msgid ""
+"What was the address of <em>{person_name_possessive}</em> main place of "
+"work?"
 msgstr ""
 
 msgid ""
@@ -771,13 +817,21 @@ msgid "How did <em>{person_name}</em> usually travel to their main place of work
 msgstr ""
 
 msgid ""
-"What address does <em>{person_name}</em> travel to for their course of "
+"Answer for the place where <em>{person_name}</em> spends the most time. "
+"If student or schoolchild, answer for their study address."
+msgstr ""
+
+msgid "Where does <em>{person_name}</em> mainly study?"
+msgstr ""
+
+msgid ""
+"What is the address of <em>{person_name_possessive}</em> main place of "
 "study, including school?"
 msgstr ""
 
 msgid ""
-"How does <em>{person_name}</em> usually travel to their place of study, "
-"including school?"
+"How does <em>{person_name}</em> usually travel to their main place of "
+"study, including school?"
 msgstr ""
 
 #. answer-id: accommodation-type-answer
@@ -1148,7 +1202,7 @@ msgstr ""
 
 #. answer-id: past-usual-address-household-answer
 msgctxt "Answer for: One year ago, what was your usual address?"
-msgid "Student term time address in the UK"
+msgid "Student term-time address in the UK"
 msgstr ""
 
 #. answer-id: past-usual-address-household-answer
@@ -1170,7 +1224,7 @@ msgstr ""
 msgctxt ""
 "Answer for: One year ago, what was <em>{person_name_possessive}</em> "
 "usual address?"
-msgid "Student term time address in the UK"
+msgid "Student term-time address in the UK"
 msgstr ""
 
 #. answer-id: past-usual-address-household-answer
@@ -1788,7 +1842,7 @@ msgstr ""
 
 #. answer-id: understand-irish-answer
 msgctxt "Answer for: Can you understand, speak, read or write Irish?"
-msgid "Understand spoken Irish"
+msgid "Understand Irish"
 msgstr ""
 
 #. answer-id: understand-irish-answer
@@ -1815,7 +1869,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Can <em>{person_name}</em> understand, speak, read or write "
 "Irish?"
-msgid "Understand spoken Irish"
+msgid "Understand Irish"
 msgstr ""
 
 #. answer-id: understand-irish-answer
@@ -1888,7 +1942,7 @@ msgstr ""
 
 #. answer-id: understand-ulster-scots-answer
 msgctxt "Answer for: Can you understand, speak, read or write Ulster-Scots?"
-msgid "Understand spoken Ulster-Scots"
+msgid "Understand Ulster-Scots"
 msgstr ""
 
 #. answer-id: understand-ulster-scots-answer
@@ -1915,7 +1969,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Can <em>{person_name}</em> understand, speak, read or write "
 "Ulster-Scots?"
-msgid "Understand spoken Ulster-Scots"
+msgid "Understand Ulster-Scots"
 msgstr ""
 
 #. answer-id: understand-ulster-scots-answer
@@ -2087,21 +2141,24 @@ msgstr ""
 #. answer-id: disability-answer
 msgctxt ""
 "Answer for: Do you have any of the following <em>physical health "
-"conditions</em> lasting or expected to last 12 months or more?"
+"conditions</em> which have lasted, or are expected to last, at least 12 "
+"months?"
 msgid "Deafness or partial hearing loss"
 msgstr ""
 
 #. answer-id: disability-answer
 msgctxt ""
 "Answer for: Do you have any of the following <em>physical health "
-"conditions</em> lasting or expected to last 12 months or more?"
+"conditions</em> which have lasted, or are expected to last, at least 12 "
+"months?"
 msgid "Blindness or partial sight loss"
 msgstr ""
 
 #. answer-id: disability-answer
 msgctxt ""
 "Answer for: Do you have any of the following <em>physical health "
-"conditions</em> lasting or expected to last 12 months or more?"
+"conditions</em> which have lasted, or are expected to last, at least 12 "
+"months?"
 msgid ""
 "A mobility or dexterity difficulty, which requires the use of a "
 "wheelchair in the home"
@@ -2110,42 +2167,48 @@ msgstr ""
 #. answer-id: disability-answer
 msgctxt ""
 "Answer for: Do you have any of the following <em>physical health "
-"conditions</em> lasting or expected to last 12 months or more?"
+"conditions</em> which have lasted, or are expected to last, at least 12 "
+"months?"
 msgid "A mobility or dexterity difficulty that limits basic physical activities"
 msgstr ""
 
 #. answer-id: disability-answer
 msgctxt ""
 "Answer for: Do you have any of the following <em>physical health "
-"conditions</em> lasting or expected to last 12 months or more?"
+"conditions</em> which have lasted, or are expected to last, at least 12 "
+"months?"
 msgid "Shortness of breath or difficulty breathing"
 msgstr ""
 
 #. answer-id: disability-answer-exclusive
 msgctxt ""
 "Answer for: Do you have any of the following <em>physical health "
-"conditions</em> lasting or expected to last 12 months or more?"
+"conditions</em> which have lasted, or are expected to last, at least 12 "
+"months?"
 msgid "None of these conditions"
 msgstr ""
 
 #. answer-id: disability-answer
 msgctxt ""
 "Answer for: Does {person_name} have any of the following <em>physical "
-"health conditions</em> lasting or expected to last 12 months or more?"
+"health conditions</em> which have lasted, or are expected to last, at "
+"least 12 months?"
 msgid "Deafness or partial hearing loss"
 msgstr ""
 
 #. answer-id: disability-answer
 msgctxt ""
 "Answer for: Does {person_name} have any of the following <em>physical "
-"health conditions</em> lasting or expected to last 12 months or more?"
+"health conditions</em> which have lasted, or are expected to last, at "
+"least 12 months?"
 msgid "Blindness or partial sight loss"
 msgstr ""
 
 #. answer-id: disability-answer
 msgctxt ""
 "Answer for: Does {person_name} have any of the following <em>physical "
-"health conditions</em> lasting or expected to last 12 months or more?"
+"health conditions</em> which have lasted, or are expected to last, at "
+"least 12 months?"
 msgid ""
 "A mobility or dexterity difficulty, which requires the use of a "
 "wheelchair in the home"
@@ -2154,21 +2217,24 @@ msgstr ""
 #. answer-id: disability-answer
 msgctxt ""
 "Answer for: Does {person_name} have any of the following <em>physical "
-"health conditions</em> lasting or expected to last 12 months or more?"
+"health conditions</em> which have lasted, or are expected to last, at "
+"least 12 months?"
 msgid "A mobility or dexterity difficulty that limits basic physical activities"
 msgstr ""
 
 #. answer-id: disability-answer
 msgctxt ""
 "Answer for: Does {person_name} have any of the following <em>physical "
-"health conditions</em> lasting or expected to last 12 months or more?"
+"health conditions</em> which have lasted, or are expected to last, at "
+"least 12 months?"
 msgid "Shortness of breath or difficulty breathing"
 msgstr ""
 
 #. answer-id: disability-answer-exclusive
 msgctxt ""
 "Answer for: Does {person_name} have any of the following <em>physical "
-"health conditions</em> lasting or expected to last 12 months or more?"
+"health conditions</em> which have lasted, or are expected to last, at "
+"least 12 months?"
 msgid "None of these conditions"
 msgstr ""
 
@@ -2405,7 +2471,7 @@ msgctxt "Answer for: Which of the following best describes your sexual orientati
 msgid "Please specify sexual orientation"
 msgstr ""
 
-#. answer-id: sexual-identity-answer
+#. answer-id: sexual-identity-answer-exclusive
 msgctxt "Answer for: Which of the following best describes your sexual orientation?"
 msgid "Prefer not to say"
 msgstr ""
@@ -2445,7 +2511,7 @@ msgctxt ""
 msgid "Please specify sexual orientation"
 msgstr ""
 
-#. answer-id: sexual-identity-answer
+#. answer-id: sexual-identity-answer-exclusive
 msgctxt ""
 "Answer for: Which of the following best describes "
 "<em>{person_name_possessive}</em> sexual orientation?"
@@ -2867,26 +2933,30 @@ msgid "No"
 msgstr ""
 
 #. answer-id: job-availability-answer
-msgctxt "Answer for: Are you available to start work in the next two weeks?"
+msgctxt ""
+"Answer for: If a job became available now, could you start it within two "
+"weeks?"
 msgid "Yes"
 msgstr ""
 
 #. answer-id: job-availability-answer
-msgctxt "Answer for: Are you available to start work in the next two weeks?"
+msgctxt ""
+"Answer for: If a job became available now, could you start it within two "
+"weeks?"
 msgid "No"
 msgstr ""
 
 #. answer-id: job-availability-answer
 msgctxt ""
-"Answer for: Is <em>{person_name}</em> available to start work in the next"
-" two weeks?"
+"Answer for: If a job became available now, could <em>{person_name}</em> "
+"start it within two weeks?"
 msgid "Yes"
 msgstr ""
 
 #. answer-id: job-availability-answer
 msgctxt ""
-"Answer for: Is <em>{person_name}</em> available to start work in the next"
-" two weeks?"
+"Answer for: If a job became available now, could <em>{person_name}</em> "
+"start it within two weeks?"
 msgid "No"
 msgstr ""
 
@@ -3298,122 +3368,182 @@ msgctxt ""
 msgid "49 hours or more"
 msgstr ""
 
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "At a workplace"
+msgstr ""
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "At or from home"
+msgstr ""
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "No fixed place"
+msgstr ""
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "At a workplace"
+msgstr ""
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "At or from home"
+msgstr ""
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "No fixed place"
+msgstr ""
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did you mainly work?"
+msgid "At a workplace"
+msgstr ""
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did you mainly work?"
+msgid "At or from home"
+msgstr ""
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did you mainly work?"
+msgid "No fixed place"
+msgstr ""
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did <em>{person_name}</em> mainly work?"
+msgid "At a workplace"
+msgstr ""
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did <em>{person_name}</em> mainly work?"
+msgid "At or from home"
+msgstr ""
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did <em>{person_name}</em> mainly work?"
+msgid "No fixed place"
+msgstr ""
+
 #. answer-id: work-address-details-answer-building
-msgctxt "Answer for: What address do you travel to for your main place of work?"
+msgctxt "Answer for: What is the address of your main place of work?"
 msgid "Address line 1"
 msgstr ""
 
 #. answer-id: work-address-details-answer-street
-msgctxt "Answer for: What address do you travel to for your main place of work?"
+msgctxt "Answer for: What is the address of your main place of work?"
 msgid "Address line 2"
 msgstr ""
 
 #. answer-id: work-address-details-answer-city
-msgctxt "Answer for: What address do you travel to for your main place of work?"
+msgctxt "Answer for: What is the address of your main place of work?"
 msgid "Town or city"
 msgstr ""
 
 #. answer-id: work-address-details-answer-county
-msgctxt "Answer for: What address do you travel to for your main place of work?"
+msgctxt "Answer for: What is the address of your main place of work?"
 msgid "County (optional)"
 msgstr ""
 
 #. answer-id: work-address-details-answer-postcode
-msgctxt "Answer for: What address do you travel to for your main place of work?"
+msgctxt "Answer for: What is the address of your main place of work?"
 msgid "Postcode"
 msgstr ""
 
 #. answer-id: work-address-details-answer-building
 msgctxt ""
-"Answer for: What address does <em>{person_name}</em> travel to for their "
-"main place of work?"
+"Answer for: What is the address of <em>{person_name_possessive}</em> main"
+" place of work?"
 msgid "Address line 1"
 msgstr ""
 
 #. answer-id: work-address-details-answer-street
 msgctxt ""
-"Answer for: What address does <em>{person_name}</em> travel to for their "
-"main place of work?"
+"Answer for: What is the address of <em>{person_name_possessive}</em> main"
+" place of work?"
 msgid "Address line 2"
 msgstr ""
 
 #. answer-id: work-address-details-answer-city
 msgctxt ""
-"Answer for: What address does <em>{person_name}</em> travel to for their "
-"main place of work?"
+"Answer for: What is the address of <em>{person_name_possessive}</em> main"
+" place of work?"
 msgid "Town or city"
 msgstr ""
 
 #. answer-id: work-address-details-answer-county
 msgctxt ""
-"Answer for: What address does <em>{person_name}</em> travel to for their "
-"main place of work?"
+"Answer for: What is the address of <em>{person_name_possessive}</em> main"
+" place of work?"
 msgid "County (optional)"
 msgstr ""
 
 #. answer-id: work-address-details-answer-postcode
 msgctxt ""
-"Answer for: What address does <em>{person_name}</em> travel to for their "
-"main place of work?"
+"Answer for: What is the address of <em>{person_name_possessive}</em> main"
+" place of work?"
 msgid "Postcode"
 msgstr ""
 
 #. answer-id: work-address-details-answer-building
-msgctxt "Answer for: What address did you travel to for your main place of work?"
+msgctxt "Answer for: What was the address of your main place of work?"
 msgid "Address line 1"
 msgstr ""
 
 #. answer-id: work-address-details-answer-street
-msgctxt "Answer for: What address did you travel to for your main place of work?"
+msgctxt "Answer for: What was the address of your main place of work?"
 msgid "Address line 2"
 msgstr ""
 
 #. answer-id: work-address-details-answer-city
-msgctxt "Answer for: What address did you travel to for your main place of work?"
+msgctxt "Answer for: What was the address of your main place of work?"
 msgid "Town or city"
 msgstr ""
 
 #. answer-id: work-address-details-answer-county
-msgctxt "Answer for: What address did you travel to for your main place of work?"
+msgctxt "Answer for: What was the address of your main place of work?"
 msgid "County (optional)"
 msgstr ""
 
 #. answer-id: work-address-details-answer-postcode
-msgctxt "Answer for: What address did you travel to for your main place of work?"
+msgctxt "Answer for: What was the address of your main place of work?"
 msgid "Postcode"
 msgstr ""
 
 #. answer-id: work-address-details-answer-building
 msgctxt ""
-"Answer for: What address did <em>{person_name}</em> travel to for their "
+"Answer for: What was the address of <em>{person_name_possessive}</em> "
 "main place of work?"
 msgid "Address line 1"
 msgstr ""
 
 #. answer-id: work-address-details-answer-street
 msgctxt ""
-"Answer for: What address did <em>{person_name}</em> travel to for their "
+"Answer for: What was the address of <em>{person_name_possessive}</em> "
 "main place of work?"
 msgid "Address line 2"
 msgstr ""
 
 #. answer-id: work-address-details-answer-city
 msgctxt ""
-"Answer for: What address did <em>{person_name}</em> travel to for their "
+"Answer for: What was the address of <em>{person_name_possessive}</em> "
 "main place of work?"
 msgid "Town or city"
 msgstr ""
 
 #. answer-id: work-address-details-answer-county
 msgctxt ""
-"Answer for: What address did <em>{person_name}</em> travel to for their "
+"Answer for: What was the address of <em>{person_name_possessive}</em> "
 "main place of work?"
 msgid "County (optional)"
 msgstr ""
 
 #. answer-id: work-address-details-answer-postcode
 msgctxt ""
-"Answer for: What address did <em>{person_name}</em> travel to for their "
+"Answer for: What was the address of <em>{person_name_possessive}</em> "
 "main place of work?"
 msgid "Postcode"
 msgstr ""
@@ -3440,11 +3570,6 @@ msgstr ""
 
 #. answer-id: work-travel-answer
 msgctxt "Answer for: How do you usually travel to your main place of work?"
-msgid "On foot"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to your main place of work?"
 msgid "Taxi"
 msgstr ""
 
@@ -3455,12 +3580,17 @@ msgstr ""
 
 #. answer-id: work-travel-answer
 msgctxt "Answer for: How do you usually travel to your main place of work?"
+msgid "Motorcycle, scooter or moped"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of work?"
 msgid "Bicycle"
 msgstr ""
 
 #. answer-id: work-travel-answer
 msgctxt "Answer for: How do you usually travel to your main place of work?"
-msgid "Motorcycle, scooter or moped"
+msgid "On foot"
 msgstr ""
 
 #. answer-id: work-travel-answer
@@ -3500,13 +3630,6 @@ msgstr ""
 msgctxt ""
 "Answer for: How does <em>{person_name}</em> usually travel to their main "
 "place of work?"
-msgid "On foot"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt ""
-"Answer for: How does <em>{person_name}</em> usually travel to their main "
-"place of work?"
 msgid "Taxi"
 msgstr ""
 
@@ -3521,6 +3644,13 @@ msgstr ""
 msgctxt ""
 "Answer for: How does <em>{person_name}</em> usually travel to their main "
 "place of work?"
+msgid "Motorcycle, scooter or moped"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt ""
+"Answer for: How does <em>{person_name}</em> usually travel to their main "
+"place of work?"
 msgid "Bicycle"
 msgstr ""
 
@@ -3528,7 +3658,7 @@ msgstr ""
 msgctxt ""
 "Answer for: How does <em>{person_name}</em> usually travel to their main "
 "place of work?"
-msgid "Motorcycle, scooter or moped"
+msgid "On foot"
 msgstr ""
 
 #. answer-id: work-travel-answer
@@ -3560,11 +3690,6 @@ msgstr ""
 
 #. answer-id: work-travel-answer
 msgctxt "Answer for: How did you usually travel to your main place of work?"
-msgid "On foot"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How did you usually travel to your main place of work?"
 msgid "Taxi"
 msgstr ""
 
@@ -3575,12 +3700,17 @@ msgstr ""
 
 #. answer-id: work-travel-answer
 msgctxt "Answer for: How did you usually travel to your main place of work?"
+msgid "Motorcycle, scooter or moped"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did you usually travel to your main place of work?"
 msgid "Bicycle"
 msgstr ""
 
 #. answer-id: work-travel-answer
 msgctxt "Answer for: How did you usually travel to your main place of work?"
-msgid "Motorcycle, scooter or moped"
+msgid "On foot"
 msgstr ""
 
 #. answer-id: work-travel-answer
@@ -3620,13 +3750,6 @@ msgstr ""
 msgctxt ""
 "Answer for: How did <em>{person_name}</em> usually travel to their main "
 "place of work?"
-msgid "On foot"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt ""
-"Answer for: How did <em>{person_name}</em> usually travel to their main "
-"place of work?"
 msgid "Taxi"
 msgstr ""
 
@@ -3641,13 +3764,6 @@ msgstr ""
 msgctxt ""
 "Answer for: How did <em>{person_name}</em> usually travel to their main "
 "place of work?"
-msgid "Bicycle"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt ""
-"Answer for: How did <em>{person_name}</em> usually travel to their main "
-"place of work?"
 msgid "Motorcycle, scooter or moped"
 msgstr ""
 
@@ -3655,216 +3771,260 @@ msgstr ""
 msgctxt ""
 "Answer for: How did <em>{person_name}</em> usually travel to their main "
 "place of work?"
+msgid "Bicycle"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt ""
+"Answer for: How did <em>{person_name}</em> usually travel to their main "
+"place of work?"
+msgid "On foot"
+msgstr ""
+
+#. answer-id: work-travel-answer
+msgctxt ""
+"Answer for: How did <em>{person_name}</em> usually travel to their main "
+"place of work?"
 msgid "Other"
+msgstr ""
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where do you mainly study?"
+msgid "At a campus or school"
+msgstr ""
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where do you mainly study?"
+msgid "At or from home"
+msgstr ""
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where do you mainly study?"
+msgid "No fixed place"
+msgstr ""
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly study?"
+msgid "At a campus or school"
+msgstr ""
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly study?"
+msgid "At or from home"
+msgstr ""
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly study?"
+msgid "No fixed place"
 msgstr ""
 
 #. answer-id: school-address-details-answer-building
 msgctxt ""
-"Answer for: What address do you travel to for your course of study, "
-"including school?"
+"Answer for: What is the address of your main place of study, including "
+"school?"
 msgid "Address line 1"
 msgstr ""
 
 #. answer-id: school-address-details-answer-street
 msgctxt ""
-"Answer for: What address do you travel to for your course of study, "
-"including school?"
+"Answer for: What is the address of your main place of study, including "
+"school?"
 msgid "Address line 2"
 msgstr ""
 
 #. answer-id: school-address-details-answer-city
 msgctxt ""
-"Answer for: What address do you travel to for your course of study, "
-"including school?"
+"Answer for: What is the address of your main place of study, including "
+"school?"
 msgid "Town or city"
 msgstr ""
 
 #. answer-id: school-address-details-answer-county
 msgctxt ""
-"Answer for: What address do you travel to for your course of study, "
-"including school?"
+"Answer for: What is the address of your main place of study, including "
+"school?"
 msgid "County (optional)"
 msgstr ""
 
 #. answer-id: school-address-details-answer-postcode
 msgctxt ""
-"Answer for: What address do you travel to for your course of study, "
-"including school?"
+"Answer for: What is the address of your main place of study, including "
+"school?"
 msgid "Postcode"
 msgstr ""
 
 #. answer-id: school-address-details-answer-building
 msgctxt ""
-"Answer for: What address does <em>{person_name}</em> travel to for their "
-"course of study, including school?"
+"Answer for: What is the address of <em>{person_name_possessive}</em> main"
+" place of study, including school?"
 msgid "Address line 1"
 msgstr ""
 
 #. answer-id: school-address-details-answer-street
 msgctxt ""
-"Answer for: What address does <em>{person_name}</em> travel to for their "
-"course of study, including school?"
+"Answer for: What is the address of <em>{person_name_possessive}</em> main"
+" place of study, including school?"
 msgid "Address line 2"
 msgstr ""
 
 #. answer-id: school-address-details-answer-city
 msgctxt ""
-"Answer for: What address does <em>{person_name}</em> travel to for their "
-"course of study, including school?"
+"Answer for: What is the address of <em>{person_name_possessive}</em> main"
+" place of study, including school?"
 msgid "Town or city"
 msgstr ""
 
 #. answer-id: school-address-details-answer-county
 msgctxt ""
-"Answer for: What address does <em>{person_name}</em> travel to for their "
-"course of study, including school?"
+"Answer for: What is the address of <em>{person_name_possessive}</em> main"
+" place of study, including school?"
 msgid "County (optional)"
 msgstr ""
 
 #. answer-id: school-address-details-answer-postcode
 msgctxt ""
-"Answer for: What address does <em>{person_name}</em> travel to for their "
-"course of study, including school?"
+"Answer for: What is the address of <em>{person_name_possessive}</em> main"
+" place of study, including school?"
 msgid "Postcode"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How do you usually travel to your place of study, including "
-"school?"
+"Answer for: How do you usually travel to your main place of study, "
+"including school?"
 msgid "Driving a car or van"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How do you usually travel to your place of study, including "
-"school?"
+"Answer for: How do you usually travel to your main place of study, "
+"including school?"
 msgid "Passenger in a car or van"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How do you usually travel to your place of study, including "
-"school?"
+"Answer for: How do you usually travel to your main place of study, "
+"including school?"
 msgid "Car or van pool, sharing driving"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How do you usually travel to your place of study, including "
-"school?"
+"Answer for: How do you usually travel to your main place of study, "
+"including school?"
 msgid "Bus, minibus or coach (public or private)"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How do you usually travel to your place of study, including "
-"school?"
-msgid "On foot"
-msgstr ""
-
-#. answer-id: school-travel-answer
-msgctxt ""
-"Answer for: How do you usually travel to your place of study, including "
-"school?"
+"Answer for: How do you usually travel to your main place of study, "
+"including school?"
 msgid "Taxi"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How do you usually travel to your place of study, including "
-"school?"
+"Answer for: How do you usually travel to your main place of study, "
+"including school?"
 msgid "Train"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How do you usually travel to your place of study, including "
-"school?"
-msgid "Bicycle"
-msgstr ""
-
-#. answer-id: school-travel-answer
-msgctxt ""
-"Answer for: How do you usually travel to your place of study, including "
-"school?"
+"Answer for: How do you usually travel to your main place of study, "
+"including school?"
 msgid "Motorcycle, scooter or moped"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How do you usually travel to your place of study, including "
-"school?"
+"Answer for: How do you usually travel to your main place of study, "
+"including school?"
+msgid "Bicycle"
+msgstr ""
+
+#. answer-id: school-travel-answer
+msgctxt ""
+"Answer for: How do you usually travel to your main place of study, "
+"including school?"
+msgid "On foot"
+msgstr ""
+
+#. answer-id: school-travel-answer
+msgctxt ""
+"Answer for: How do you usually travel to your main place of study, "
+"including school?"
 msgid "Other"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How does <em>{person_name}</em> usually travel to their place"
-" of study, including school?"
+"Answer for: How does <em>{person_name}</em> usually travel to their main "
+"place of study, including school?"
 msgid "Driving a car or van"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How does <em>{person_name}</em> usually travel to their place"
-" of study, including school?"
+"Answer for: How does <em>{person_name}</em> usually travel to their main "
+"place of study, including school?"
 msgid "Passenger in a car or van"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How does <em>{person_name}</em> usually travel to their place"
-" of study, including school?"
+"Answer for: How does <em>{person_name}</em> usually travel to their main "
+"place of study, including school?"
 msgid "Car or van pool, sharing driving"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How does <em>{person_name}</em> usually travel to their place"
-" of study, including school?"
+"Answer for: How does <em>{person_name}</em> usually travel to their main "
+"place of study, including school?"
 msgid "Bus, minibus or coach (public or private)"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How does <em>{person_name}</em> usually travel to their place"
-" of study, including school?"
-msgid "On foot"
-msgstr ""
-
-#. answer-id: school-travel-answer
-msgctxt ""
-"Answer for: How does <em>{person_name}</em> usually travel to their place"
-" of study, including school?"
+"Answer for: How does <em>{person_name}</em> usually travel to their main "
+"place of study, including school?"
 msgid "Taxi"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How does <em>{person_name}</em> usually travel to their place"
-" of study, including school?"
+"Answer for: How does <em>{person_name}</em> usually travel to their main "
+"place of study, including school?"
 msgid "Train"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How does <em>{person_name}</em> usually travel to their place"
-" of study, including school?"
-msgid "Bicycle"
-msgstr ""
-
-#. answer-id: school-travel-answer
-msgctxt ""
-"Answer for: How does <em>{person_name}</em> usually travel to their place"
-" of study, including school?"
+"Answer for: How does <em>{person_name}</em> usually travel to their main "
+"place of study, including school?"
 msgid "Motorcycle, scooter or moped"
 msgstr ""
 
 #. answer-id: school-travel-answer
 msgctxt ""
-"Answer for: How does <em>{person_name}</em> usually travel to their place"
-" of study, including school?"
+"Answer for: How does <em>{person_name}</em> usually travel to their main "
+"place of study, including school?"
+msgid "Bicycle"
+msgstr ""
+
+#. answer-id: school-travel-answer
+msgctxt ""
+"Answer for: How does <em>{person_name}</em> usually travel to their main "
+"place of study, including school?"
+msgid "On foot"
+msgstr ""
+
+#. answer-id: school-travel-answer
+msgctxt ""
+"Answer for: How does <em>{person_name}</em> usually travel to their main "
+"place of study, including school?"
 msgid "Other"
 msgstr ""
 
