@@ -71,5 +71,10 @@ local proxyTitle = {
         ],
       },
     },
+    {
+      goto: {
+        group: 'submit-group',
+      },
+    },
   ],
 }
