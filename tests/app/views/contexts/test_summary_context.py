@@ -372,7 +372,7 @@ def test_context_for_section_list_summary(people_answer_store, app):
                     'remove_link': '/questionnaire/people/UHPLbX/remove-person/',
                 },
             ],
-            'title': 'People who live here',
+            'title': 'Household members on 13 October 2019',
             'list_name': 'people',
         },
         {
@@ -387,7 +387,7 @@ def test_context_for_section_list_summary(people_answer_store, app):
                     'remove_link': '/questionnaire/visitors/gTrlio/remove-visitor/',
                 }
             ],
-            'title': 'Visitors staying overnight',
+            'title': 'Visitors staying overnight on 13 October 2019',
             'list_name': 'visitors',
         },
     ]
