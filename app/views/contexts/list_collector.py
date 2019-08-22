@@ -6,13 +6,10 @@ from app.views.contexts.question import build_question_context
 
 
 def build_list_items_summary_context(
-    rendered_block, schema, answer_store, list_store, language
+    list_collector_block, schema, answer_store, list_store, language
 ):
-    list_name = rendered_block['for_list']
+    list_name = list_collector_block['for_list']
     list_item_ids = list_store[list_name].items
-    list_answer_ids = [
-        answer['id'] for answer in rendered_block['add_block']['question']['answers']
-    ]
 
     primary_person = list_store[list_name].primary_person
 
@@ -27,32 +24,30 @@ def build_list_items_summary_context(
         )
 
         try:
-            rendered_summary = placeholder_renderer.render(rendered_block['summary'])
+            rendered_summary = placeholder_renderer.render(
+                list_collector_block['summary']
+            )
         except KeyError:
             return []
 
-        if list_item_id == primary_person:
-            is_primary = True
+        is_primary = list_item_id == primary_person
+
+        if is_primary:
             rendered_summary['item_title'] += lazy_gettext(' (You)')
-        else:
-            is_primary = False
 
         list_items.append(
             {
-                'answers': answer_store.get_answers_by_answer_id(
-                    list_answer_ids, list_item_id
-                ),
                 'item_title': rendered_summary['item_title'],
                 'edit_link': url_for(
                     'questionnaire.block',
                     list_name=list_name,
-                    block_id=rendered_block['edit_block']['id'],
+                    block_id=list_collector_block['edit_block']['id'],
                     list_item_id=list_item_id,
                 ),
                 'remove_link': url_for(
                     'questionnaire.block',
                     list_name=list_name,
-                    block_id=rendered_block['remove_block']['id'],
+                    block_id=list_collector_block['remove_block']['id'],
                     list_item_id=list_item_id,
                 ),
                 'primary_person': is_primary,
@@ -63,17 +58,17 @@ def build_list_items_summary_context(
 
 
 def build_list_collector_context(
-    rendered_block, schema, answer_store, list_store, language, form
+    list_collector_block, schema, answer_store, list_store, language, form
 ):
-    question_context = build_question_context(rendered_block, form)
+    question_context = build_question_context(list_collector_block, form)
     list_collector_context = {
         'list_items': build_list_items_summary_context(
-            rendered_block, schema, answer_store, list_store, language
+            list_collector_block, schema, answer_store, list_store, language
         ),
         'add_link': url_for(
             'questionnaire.block',
-            list_name=rendered_block['for_list'],
-            block_id=rendered_block['id'],
+            list_name=list_collector_block['for_list'],
+            block_id=list_collector_block['id'],
         ),
     }
 

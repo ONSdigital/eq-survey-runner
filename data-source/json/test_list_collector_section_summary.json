@@ -23,11 +23,66 @@
     "sections": [
         {
             "id": "section",
+            "title": "People who live here and overnight visitors",
             "groups": [
                 {
                     "id": "group",
-                    "title": "List",
+                    "title": "Questions",
                     "blocks": [
+                        {
+                            "id": "primary-person-list-collector",
+                            "type": "PrimaryPersonListCollector",
+                            "for_list": "people",
+                            "add_or_edit_answer": {
+                                "id": "you-live-here",
+                                "value": "Yes"
+                            },
+                            "add_or_edit_block": {
+                                "id": "add-or-edit-primary-person",
+                                "type": "PrimaryPersonListAddOrEditQuestion",
+                                "question": {
+                                    "id": "primary-person-add-or-edit-question",
+                                    "type": "General",
+                                    "title": "What is your name",
+                                    "answers": [
+                                        {
+                                            "id": "first-name",
+                                            "label": "First name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "last-name",
+                                            "label": "Last name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            },
+                            "question": {
+                                "id": "primary-confirmation-question",
+                                "type": "General",
+                                "title": "Do you live here?",
+                                "answers": [
+                                    {
+                                        "id": "you-live-here",
+                                        "mandatory": true,
+                                        "type": "Radio",
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
                         {
                             "id": "list-collector",
                             "type": "ListCollector",
@@ -135,7 +190,25 @@
                                 }
                             },
                             "summary": {
-                                "title": "Household members",
+                                "title": {
+                                    "text": "Household members on {census_date}",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "census_date",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "date_format": "d MMMM yyyy",
+                                                        "date_to_format": {
+                                                            "value": "2019-10-13"
+                                                        }
+                                                    },
+                                                    "transform": "format_date"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
                                 "item_title": {
                                     "text": "{person_name}",
                                     "placeholders": [
@@ -155,46 +228,31 @@
                                             ]
                                         }
                                     ]
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "extra-list-group",
-                    "title": "Another List",
-                    "blocks": [
-                        {
-                            "id": "next-interstitial",
-                            "content": {
-                                "title": "Another list",
-                                "contents": [
-                                    {
-                                        "description": "You have added some people to the 'people' list. Next we'll test another list collector adding to the same list. This should still have the same list of people."
-                                    }
-                                ]
+                                },
+                                "add_link_text": "Add someone to this household",
+                                "empty_list_text": "There are no householders"
                             },
-                            "type": "Interstitial"
+                            "hide_on_section_summary": false
                         },
                         {
-                            "id": "another-list-collector-block",
+                            "id": "visitor-list-collector",
                             "type": "ListCollector",
-                            "for_list": "people",
+                            "for_list": "visitors",
                             "add_answer": {
-                                "id": "another-anyone-else",
+                                "id": "any-more-visitors",
                                 "value": "Yes"
                             },
                             "remove_answer": {
-                                "id": "another-remove-confirmation",
+                                "id": "remove-visitor-confirmation",
                                 "value": "Yes"
                             },
                             "question": {
-                                "id": "another-confirmation-question",
+                                "id": "confirmation-visitor-question",
                                 "type": "General",
-                                "title": "This list collector will add to the same 'people' list. Add someone else?",
+                                "title": "Are there any other visitors staying overnight?",
                                 "answers": [
                                     {
-                                        "id": "another-anyone-else",
+                                        "id": "any-more-visitors",
                                         "mandatory": true,
                                         "type": "Radio",
                                         "options": [
@@ -211,21 +269,21 @@
                                 ]
                             },
                             "add_block": {
-                                "id": "another-add-person",
+                                "id": "add-visitor",
                                 "type": "ListAddQuestion",
                                 "question": {
-                                    "id": "another-add-question",
+                                    "id": "add-visitor-question",
                                     "type": "General",
-                                    "title": "What is the name of the person?",
+                                    "title": "What is the name of the visitor?",
                                     "answers": [
                                         {
-                                            "id": "first-name",
+                                            "id": "first-name-visitor",
                                             "label": "First name",
                                             "mandatory": true,
                                             "type": "TextField"
                                         },
                                         {
-                                            "id": "last-name",
+                                            "id": "last-name-visitor",
                                             "label": "Last name",
                                             "mandatory": true,
                                             "type": "TextField"
@@ -234,21 +292,21 @@
                                 }
                             },
                             "edit_block": {
-                                "id": "another-edit-person",
+                                "id": "edit-visitor-person",
                                 "type": "ListEditQuestion",
                                 "question": {
-                                    "id": "another-edit-question",
+                                    "id": "edit-visitor-question",
                                     "type": "General",
                                     "title": "What is the name of the person?",
                                     "answers": [
                                         {
-                                            "id": "first-name",
+                                            "id": "first-name-visitor",
                                             "label": "First name",
                                             "mandatory": true,
                                             "type": "TextField"
                                         },
                                         {
-                                            "id": "last-name",
+                                            "id": "last-name-visitor",
                                             "label": "Last name",
                                             "mandatory": true,
                                             "type": "TextField"
@@ -257,15 +315,15 @@
                                 }
                             },
                             "remove_block": {
-                                "id": "another-remove-person",
+                                "id": "remove-visitor",
                                 "type": "ListRemoveQuestion",
                                 "question": {
-                                    "id": "another-remove-question",
+                                    "id": "remove-visitor-question",
                                     "type": "General",
                                     "title": "Are you sure you want to remove this person?",
                                     "answers": [
                                         {
-                                            "id": "another-remove-confirmation",
+                                            "id": "remove-visitor-confirmation",
                                             "mandatory": true,
                                             "type": "Radio",
                                             "options": [
@@ -283,18 +341,36 @@
                                 }
                             },
                             "summary": {
-                                "title": "Household members",
-                                "item_title": {
-                                    "text": "{person_name}",
+                                "title": {
+                                    "text": "Visitors staying overnight on {census_date}",
                                     "placeholders": [
                                         {
-                                            "placeholder": "person_name",
+                                            "placeholder": "census_date",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "date_format": "d MMMM yyyy",
+                                                        "date_to_format": {
+                                                            "value": "2019-10-13"
+                                                        }
+                                                    },
+                                                    "transform": "format_date"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "item_title": {
+                                    "text": "{visitor_name}",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "visitor_name",
                                             "transforms": [
                                                 {
                                                     "arguments": {
                                                         "delimiter": " ",
                                                         "list_to_concatenate": {
-                                                            "identifier": ["first-name", "last-name"],
+                                                            "identifier": ["first-name-visitor", "last-name-visitor"],
                                                             "source": "answers"
                                                         }
                                                     },
@@ -303,12 +379,32 @@
                                             ]
                                         }
                                     ]
-                                }
-                            }
+                                },
+                                "add_link_text": "Add another visitor to this household",
+                                "empty_list_text": "There are no visitors"
+                            },
+                            "hide_on_section_summary": false
                         },
                         {
+                            "id": "people-list-section-summary",
+                            "type": "SectionSummary"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [
+                {
+                    "id": "summary-group",
+                    "title": "Summary",
+                    "blocks": [
+                        {
                             "id": "summary",
-                            "type": "Summary"
+                            "type": "Summary",
+                            "collapsible": true
                         }
                     ]
                 }
