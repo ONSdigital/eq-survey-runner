@@ -31,6 +31,7 @@ from app.helpers.template_helper import render_template, safe_content
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.questionnaire.location import InvalidLocationException
 from app.questionnaire.router import Router
+from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
 from app.submitter.submission_failed import SubmissionFailedException
 from app.utilities.schema import load_schema_from_session_data
@@ -38,6 +39,7 @@ from app.views.contexts.hub_context import HubContext
 from app.views.contexts.metadata_context import (
     build_metadata_context_for_survey_completed,
 )
+from app.views.contexts.summary_context import SummaryContext
 from app.views.handlers.block_factory import get_block_handler
 
 END_BLOCKS = 'Summary', 'Confirmation'
@@ -287,11 +289,24 @@ def get_thank_you(schema):
 
     metadata_context = build_metadata_context_for_survey_completed(session_data)
 
+    view_submission_url = None
+    view_submission_duration = 0
+    if _is_submission_viewable(schema.json, session_data.submitted_time):
+        view_submission_url = url_for('.get_view_submission')
+        view_submission_duration = humanize.naturaldelta(
+            timedelta(seconds=schema.json['view_submitted_response']['duration'])
+        )
+
     return render_template(
         template='thank-you',
         metadata=metadata_context,
         survey_id=schema.json['survey_id'],
         survey_title=safe_content(schema.json['title']),
+        is_view_submitted_response_enabled=is_view_submitted_response_enabled(
+            schema.json
+        ),
+        view_submission_url=view_submission_url,
+        view_submission_duration=view_submission_duration,
     )
 
 
@@ -302,6 +317,78 @@ def post_thank_you():
         return redirect(url_for('session.get_sign_out'))
 
     return redirect(url_for('post_submission.get_thank_you'))
+
+
+@post_submission_blueprint.route('view-submission/', methods=['GET'])
+@login_required
+@with_schema
+def get_view_submission(schema):  # pylint: too-many-locals
+
+    session_data = get_session_store().session_data
+
+    if _is_submission_viewable(schema.json, session_data.submitted_time):
+        submitted_data = current_app.eq['storage'].get_by_key(
+            SubmittedResponse, session_data.tx_id
+        )
+
+        if submitted_data:
+
+            metadata_context = build_metadata_context_for_survey_completed(session_data)
+
+            pepper = current_app.eq['secret_store'].get_secret_by_name(
+                'EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER'
+            )
+
+            encrypter = StorageEncryption(
+                current_user.user_id, current_user.user_ik, pepper
+            )
+            submitted_data = encrypter.decrypt_data(submitted_data.data)
+
+            # for backwards compatibility
+            # submitted data used to be base64 encoded before encryption
+            try:
+                submitted_data = base64url_decode(submitted_data.decode()).decode()
+            except ValueError:
+                pass
+
+            submitted_data = json.loads(submitted_data)
+            answer_store = AnswerStore(submitted_data.get('answers'))
+            list_store = ListStore(submitted_data.get('lists'))
+
+            metadata = submitted_data.get('metadata')
+            language_code = get_session_store().session_data.language_code
+            summary_context = SummaryContext(language_code, schema, answer_store, list_store, metadata, None)
+
+            summary_rendered_context = summary_context._build_all_groups()
+
+            context = {
+                'summary': {
+                    'groups': summary_rendered_context,
+                    'answers_are_editable': False,
+                    'is_view_submission_response_enabled': is_view_submitted_response_enabled(
+                        schema.json
+                    ),
+                }
+            }
+
+            return render_template(
+                template='view-submission',
+                metadata=metadata_context,
+                content=context,
+                survey_id=schema.json['survey_id'],
+                survey_title=safe_content(schema.json['title']),
+            )
+
+    return redirect(url_for('post_submission.get_thank_you'))
+
+
+@post_submission_blueprint.route('view-submission/', methods=['POST'])
+@login_required
+def post_view_submission():
+    if 'action[sign_out]' in request.form:
+        return redirect(url_for('session.get_sign_out'))
+
+    return redirect(url_for('post_submission.get_view_submission'))
 
 
 def _generate_wtf_form(block_schema, schema, current_location):
@@ -353,6 +440,11 @@ def submit_answers(schema):
 
     _store_submitted_time_in_session(submitted_time)
 
+    if is_view_submitted_response_enabled(schema.json):
+        _store_viewable_submission(
+            answer_store.serialise(), list_store.serialise(), metadata, submitted_time
+        )
+
     get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
 
     return redirect(url_for('post_submission.get_thank_you'))
@@ -363,6 +455,47 @@ def _store_submitted_time_in_session(submitted_time):
     session_data = session_store.session_data
     session_data.submitted_time = submitted_time.isoformat()
     session_store.save()
+
+
+def _store_viewable_submission(answers, lists, metadata, submitted_time):
+    pepper = current_app.eq['secret_store'].get_secret_by_name(
+        'EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER'
+    )
+    encrypter = StorageEncryption(current_user.user_id, current_user.user_ik, pepper)
+    encrypted_data = encrypter.encrypt_data(
+        {'answers': answers, 'lists': lists, 'metadata': metadata.copy()}
+    )
+
+    valid_until = submitted_time + timedelta(
+        seconds=g.schema.json['view_submitted_response']['duration']
+    )
+
+    item = SubmittedResponse(
+        tx_id=metadata['tx_id'],
+        data=encrypted_data,
+        valid_until=valid_until.replace(tzinfo=tzutc()),
+    )
+
+    current_app.eq['storage'].put(item)
+
+
+def is_view_submitted_response_enabled(schema):
+    view_submitted_response = schema.get('view_submitted_response')
+    if view_submitted_response:
+        return view_submitted_response['enabled']
+
+    return False
+
+
+def _is_submission_viewable(schema, submitted_time):
+    if is_view_submitted_response_enabled(schema) and submitted_time:
+        submitted_time = datetime.strptime(submitted_time, '%Y-%m-%dT%H:%M:%S.%f')
+        submission_valid_until = submitted_time + timedelta(
+            seconds=schema['view_submitted_response']['duration']
+        )
+        return submission_valid_until > datetime.utcnow()
+
+    return False
 
 
 def get_page_title_for_location(schema, current_location, context):

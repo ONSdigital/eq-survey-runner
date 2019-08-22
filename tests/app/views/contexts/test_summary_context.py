@@ -1,8 +1,6 @@
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock, patch
 
 from app.data_model.answer_store import AnswerStore, Answer
-from app.data_model.questionnaire_store import QuestionnaireStore
-from app.data_model.progress_store import ProgressStore
 from app.data_model.list_store import ListStore
 from app.questionnaire.location import Location
 from app.views.contexts.summary_context import SummaryContext
@@ -75,16 +73,6 @@ class TestSummaryContext(TestStandardSummaryContext):
             section_id='default-section', block_id='summary'
         )
         self.language = 'en'
-        self.progress_store = MagicMock(spec=ProgressStore)
-        self.progress_store.locations = list()
-        self.questionnaire_store = MagicMock(
-            spec=QuestionnaireStore,
-            completed_blocks=[],
-            answer_store=self.answer_store,
-            list_store=self.list_store,
-            progress_store=self.progress_store,
-            metadata=self.metadata
-        )
 
     def test_build_summary_rendering_context(self):
         summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, self.current_location)
@@ -98,7 +86,7 @@ class TestSummaryContext(TestStandardSummaryContext):
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
         print(context)
-        self.assertEqual(len(context['summary']), 4)
+        self.assertEqual(len(context['summary']), 5)
         self.assertTrue('collapsible' in context['summary'])
 
 
@@ -110,16 +98,6 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
         self.list_store = ListStore()
         self.block_type = 'SectionSummary'
         self.language = 'en'
-        self.progress_store = MagicMock(spec=ProgressStore)
-        self.progress_store.locations = list()
-        self.questionnaire_store = MagicMock(
-            spec=QuestionnaireStore,
-            completed_blocks=[],
-            answer_store=self.answer_store,
-            list_store=self.list_store,
-            progress_store=self.progress_store,
-            metadata=self.metadata
-        )
 
     def test_build_summary_rendering_context(self):
         current_location = Location(

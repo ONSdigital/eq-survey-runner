@@ -17,9 +17,12 @@ class SummaryContext:
             self._metadata,
             list_store=self._list_store,
         )
-        self._block_type = self._schema.get_block(self._current_location.block_id)[
-            'type'
-        ]
+        if current_location:
+            self._block_type = self._schema.get_block(self._current_location.block_id)[
+                'type'
+            ]
+        else:
+            self._block_type = 'Summary'
 
     def _build_groups_for_section(self, section_id, list_item_id=None, section=None):
         """
@@ -66,6 +69,9 @@ class SummaryContext:
 
         context['summary'].update(
             {
+                'is_view_submission_response_enabled': _is_view_submitted_response_enabled(
+                    self._schema.json
+                ),
                 'collapsible': self._schema.get_block(
                     self._current_location.block_id
                 ).get('collapsible', False)

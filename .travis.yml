@@ -14,6 +14,7 @@ env:
   global:
     - EQ_RUN_FUNCTIONAL_TESTS_HEADLESS=True
     - EQ_DYNAMODB_ENDPOINT=http://localhost:6060
+    - EQ_SUBMITTED_RESPONSES_TABLE_NAME=dev-submitted-responses
     - EQ_QUESTIONNAIRE_STATE_TABLE_NAME=dev-questionnaire-state
     - EQ_SESSION_TABLE_NAME=dev-eq-session
     - EQ_USED_JTI_CLAIM_TABLE_NAME=dev-used-jti-claim

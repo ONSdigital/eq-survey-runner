@@ -24,19 +24,25 @@ class Block:
         )
 
     def _build_link(self, block_id):
-        return url_for(
-            'questionnaire.block',
-            list_name=self.current_location.list_name,
-            block_id=block_id,
-            list_item_id=self.current_location.list_item_id,
-        )
+        if self.current_location:
+            return url_for(
+                'questionnaire.block',
+                list_name=self.current_location.list_name,
+                block_id=block_id,
+                list_item_id=self.current_location.list_item_id,
+            )
+        else:
+            return url_for(
+                'questionnaire.block',
+                block_id=block_id,
+            )
 
     @staticmethod
     def get_question(
         block_schema, answer_store, list_store, metadata, schema, current_location=None
     ):
         """ Taking question variants into account, return the question which was displayed to the user """
-        list_item_id = current_location.list_item_id
+        list_item_id = current_location.list_item_id if current_location else None
         for variant in block_schema.get('question_variants', []):
             display_variant = evaluate_when_rules(
                 variant.get('when'),
