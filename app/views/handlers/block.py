@@ -6,6 +6,7 @@ from structlog import get_logger
 from app.data_model.progress_store import CompletionStatus
 from app.questionnaire.location import InvalidLocationException, Location
 from app.questionnaire.path_finder import PathFinder
+from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.router import Router
 
@@ -22,6 +23,7 @@ class BlockHandler:
 
         self._questionnaire_store_updater = None
         self._path_finder = None
+        self._placeholder_renderer = None
         self._router = None
         self._routing_path = self._get_routing_path()
 
@@ -56,6 +58,19 @@ class BlockHandler:
                 self._questionnaire_store.list_store,
             )
         return self._path_finder
+
+    @property
+    def placeholder_renderer(self):
+        if not self._placeholder_renderer:
+            self._placeholder_renderer = PlaceholderRenderer(
+                self._language,
+                schema=self._schema,
+                answer_store=self._questionnaire_store.answer_store,
+                metadata=self._questionnaire_store.metadata,
+                list_item_id=self._current_location.list_item_id,
+            )
+
+        return self._placeholder_renderer
 
     @property
     def router(self):
