@@ -7,10 +7,10 @@ class ListAddQuestion(ListAction):
             return False
         return True
 
-    def handle_post(self, form):
+    def handle_post(self):
         self.questionnaire_store_updater.add_list_item_and_answers(
-            form, self.parent_block['for_list']
+            self.form, self.parent_block['for_list']
         )
-        self.questionnaire_store_updater.update_answers(form)
+        self.questionnaire_store_updater.update_answers(self.form)
 
-        return super().handle_post(form)
+        return super().handle_post()

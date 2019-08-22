@@ -78,6 +78,9 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def get_block(self, block_id):
         return self._blocks_by_id.get(block_id)
 
+    def is_block_valid(self, block_id):
+        return bool(self.get_block(block_id))
+
     def get_block_for_answer_id(self, answer_id):
         return self._block_for_answer(answer_id)
 

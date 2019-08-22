@@ -73,12 +73,9 @@ class RelationshipCollector(Question):
         )
         return self.router.get_next_location_url(parent_location, self._routing_path)
 
-    def get_context(self, form):
-        return build_question_context(self.rendered_block, form)
-
-    def save_on_signout(self, form):
+    def save_on_sign_out(self):
         self.questionnaire_store_updater.update_relationship_answer(
-            form.data,
+            self.form.data,
             self._current_location.list_item_id,
             self._current_location.to_list_item_id,
         )
@@ -91,9 +88,9 @@ class RelationshipCollector(Question):
 
         self.questionnaire_store_updater.save()
 
-    def handle_post(self, form):
+    def handle_post(self):
         self.questionnaire_store_updater.update_relationship_answer(
-            form.data,
+            self.form.data,
             self._current_location.list_item_id,
             self._current_location.to_list_item_id,
         )

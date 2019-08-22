@@ -1,0 +1,238 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Test RedirectToListAddQuestion action",
+    "theme": "default",
+    "description": "A questionnaire to test RedirectToListAddQuestion answer action",
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "section",
+            "groups": [
+                {
+                    "id": "group",
+                    "title": "List",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "anyone-usually-live-at",
+                            "question": {
+                                "type": "General",
+                                "id": "anyone-usually-live-at-question",
+                                "title": "Does anyone usually live at 1 Pleasant Lane?",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "title": "Outcomes",
+                                            "list": [
+                                                "“Yes” and list <strong>is</strong> empty - Takes you to the list collector‘s <strong>add</strong> question.",
+                                                "“Yes” and list is <strong>not</strong> empty - Takes you directly to the list collector.",
+                                                "“No” - Takes you directly to the list collector."
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "answers": [
+                                    {
+                                        "type": "Radio",
+                                        "id": "anyone-usually-live-at-answer",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes",
+                                                "action": {
+                                                    "type": "RedirectToListAddQuestion",
+                                                    "params": {
+                                                        "block_id": "add-person",
+                                                        "list_name": "people"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": "anyone-else-live-at",
+                            "type": "ListCollector",
+                            "for_list": "people",
+                            "add_answer": {
+                                "id": "anyone-else-live-at-answer",
+                                "value": "Yes"
+                            },
+                            "remove_answer": {
+                                "id": "remove-confirmation",
+                                "value": "Yes"
+                            },
+                            "question": {
+                                "id": "confirmation-question",
+                                "type": "General",
+                                "title": "Does anyone else live at 1 Pleasant Lane?",
+                                "answers": [
+                                    {
+                                        "id": "anyone-else-live-at-answer",
+                                        "mandatory": true,
+                                        "type": "Radio",
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "add_block": {
+                                "id": "add-person",
+                                "type": "ListAddQuestion",
+                                "question": {
+                                    "id": "add-question",
+                                    "type": "General",
+                                    "title": "What is the name of the person?",
+                                    "guidance": {
+                                        "contents": [
+                                            {
+                                                "title": "Previous link",
+                                                "list": [
+                                                    "If a valid <strong>return_to</strong> is in the URL and list <strong>is</strong> empty - Returns you back to the question you just came from.",
+                                                    "If the list is <strong>not</strong> empty - Go back to the list collector."
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "answers": [
+                                        {
+                                            "id": "first-name",
+                                            "label": "First name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "last-name",
+                                            "label": "Last name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            },
+                            "edit_block": {
+                                "id": "edit-person",
+                                "type": "ListEditQuestion",
+                                "question": {
+                                    "id": "edit-question",
+                                    "type": "General",
+                                    "title": "What is the name of the person?",
+                                    "answers": [
+                                        {
+                                            "id": "first-name",
+                                            "label": "First name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "last-name",
+                                            "label": "Last name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            },
+                            "remove_block": {
+                                "id": "remove-person",
+                                "type": "ListRemoveQuestion",
+                                "question": {
+                                    "id": "remove-question",
+                                    "type": "General",
+                                    "title": "Are you sure you want to remove this person?",
+                                    "answers": [
+                                        {
+                                            "id": "remove-confirmation",
+                                            "mandatory": true,
+                                            "type": "Radio",
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": {
+                                "title": "Household members",
+                                "item_title": {
+                                    "text": "{person_name}",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "person_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "delimiter": " ",
+                                                        "list_to_concatenate": {
+                                                            "identifier": ["first-name", "last-name"],
+                                                            "source": "answers"
+                                                        }
+                                                    },
+                                                    "transform": "concatenate_list"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "summary-group",
+                    "title": "Summary"
+                }
+            ]
+        }
+    ]
+}

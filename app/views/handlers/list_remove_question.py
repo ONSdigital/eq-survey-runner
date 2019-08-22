@@ -19,9 +19,9 @@ class ListRemoveQuestion(ListAction):
             return False
         return True
 
-    def handle_post(self, form):
+    def handle_post(self):
         if (
-            form.data[self.parent_block['remove_answer']['id']]
+            self.form.data[self.parent_block['remove_answer']['id']]
             == self.parent_block['remove_answer']['value']
         ):
             list_name = self.parent_block['for_list']
@@ -29,4 +29,4 @@ class ListRemoveQuestion(ListAction):
                 list_name, self._current_location.list_item_id
             )
 
-        return super().handle_post(form)
+        return super().handle_post()
