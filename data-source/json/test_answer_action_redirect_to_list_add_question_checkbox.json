@@ -35,6 +35,18 @@
                                 "type": "General",
                                 "id": "anyone-usually-live-at-question",
                                 "title": "Does anyone usually live at 1 Pleasant Lane?",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "title": "Outcomes",
+                                            "list": [
+                                                "“I think so” is <strong>checked</strong> and list <strong>is</strong> empty - Takes you to the list collector‘s <strong>add</strong> question.",
+                                                "“I think so” is <strong>checked</strong> and list is <strong>not</strong> empty - Takes you directly to the list collector.",
+                                                "“No” - Takes you directly to the list collector."
+                                            ]
+                                        }
+                                    ]
+                                },
                                 "answers": [
                                     {
                                         "type": "Checkbox",
@@ -102,6 +114,17 @@
                                     "id": "add-question",
                                     "type": "General",
                                     "title": "What is the name of the person?",
+                                    "guidance": {
+                                        "contents": [
+                                            {
+                                                "title": "Previous link",
+                                                "list": [
+                                                    "If a valid <strong>return_to</strong> is in the URL and list <strong>is</strong> empty - Returns you back to the question you just came from.",
+                                                    "If the list is <strong>not</strong> empty - Go back to the list collector."
+                                                ]
+                                            }
+                                        ]
+                                    },
                                     "answers": [
                                         {
                                             "id": "first-name",
@@ -178,10 +201,7 @@
                                                     "arguments": {
                                                         "delimiter": " ",
                                                         "list_to_concatenate": {
-                                                            "identifier": [
-                                                                "first-name",
-                                                                "last-name"
-                                                            ],
+                                                            "identifier": ["first-name", "last-name"],
                                                             "source": "answers"
                                                         }
                                                     },

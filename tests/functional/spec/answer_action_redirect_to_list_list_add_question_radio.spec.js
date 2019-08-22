@@ -46,18 +46,15 @@ describe('Answer Action: Redirect To List Add Question (Radio)', function () {
         .getUrl().should.eventually.contain(AnyoneUsuallyLiveAt.pageName);
     });
 
-    it('When the user adds a household member, Then, they are taken to the list collector', function () {
+    it('When the user adds a household member, Then, they are taken to the list collector and the household members are displayed', function () {
       return browser
         .click(AnyoneUsuallyLiveAt.submit())
         .setValue(AnyoneLiveAtListCollectorAddPage.firstName(), 'Marcus')
         .setValue(AnyoneLiveAtListCollectorAddPage.lastName(), 'Twin')
-        .click(AnyoneLiveAtListCollectorAddPage.submit())
-        .getUrl().should.eventually.contain(AnyoneLiveAtListCollector.pageName);
-    });
-
-    it('The list collector shows the household members in the list summary', function () {
-      const peopleExpected = ['Marcus Twin'];
-      return checkPeopleInList(peopleExpected);
+        .click(AnyoneLiveAtListCollectorAddPage.submit()).getUrl().should.eventually.contain(AnyoneLiveAtListCollector.pageName).then(function () {
+          const peopleExpected = ['Marcus Twin'];
+          return checkPeopleInList(peopleExpected);
+        });
     });
 
     it('When the user click the "Previous" link from the list collector, Then, they are taken to the last complete block', function () {
