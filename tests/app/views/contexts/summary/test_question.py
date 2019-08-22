@@ -303,7 +303,7 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
 
         # Then
         self.assertEqual(len(question.answers[0]['value']), 2)
-        self.assertEqual(question.answers[0]['value'][1].detail_answer_value, 1)
+        self.assertEqual(question.answers[0]['value'][1].detail_answer_value, 2)
 
     def test_checkbox_button_other_option_text(self):
         # Given
