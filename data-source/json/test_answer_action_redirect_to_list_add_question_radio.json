@@ -191,6 +191,7 @@
                                 }
                             },
                             "summary": {
+                                "title": "Household members",
                                 "item_title": {
                                     "text": "{person_name}",
                                     "placeholders": [
