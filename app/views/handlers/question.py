@@ -9,6 +9,10 @@ from app.views.handlers.block import BlockHandler
 
 
 class Question(BlockHandler):
+    @staticmethod
+    def _has_redirect_to_list_add_action(answer_action):
+        return answer_action and answer_action['type'] == 'RedirectToListAddQuestion'
+
     @cached_property
     def rendered_block(self):
         return self._render_block(self.block['id'])
@@ -24,10 +28,6 @@ class Question(BlockHandler):
         return self.router.get_next_location_url(
             self._current_location, self._routing_path
         )
-
-    @staticmethod
-    def _has_redirect_to_list_add_action(answer_action):
-        return answer_action and answer_action['type'] == 'RedirectToListAddQuestion'
 
     def _get_list_add_question_url(self, params):
         list_name = params['list_name']
