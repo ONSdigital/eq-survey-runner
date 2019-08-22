@@ -19,7 +19,7 @@ from app.questionnaire.schema_utils import (
     get_answer_ids_in_block,
 )
 from app.views.contexts.list_collector import build_list_items_summary_context
-from app.views.contexts.summary.group import Group
+from app.views.contexts.summary.block import Block
 
 
 def build_summary_rendering_context(
@@ -35,19 +35,46 @@ def build_summary_rendering_context(
     sections = sections or schema.get_sections()
     paths = [path_finder.routing_path(section['id']) for section in sections]
 
-    return [
-        Group(
-            group,
-            path,
-            answer_store,
-            list_store,
-            metadata,
-            schema,
-            current_location=current_location,
-        ).serialize()
-        for path, section in zip(paths, sections)
-        for group in section['groups']
-    ]
+    group_collection = []
+
+    placeholder_renderer = PlaceholderRenderer(
+        'en', schema=schema, answer_store=answer_store, metadata=metadata
+    )
+
+    for path, section in zip(paths, sections):
+        block_ids_on_path = [location.block_id for location in path]
+        for group_schema in section['groups']:
+            blocks_to_return = []
+            for block in group_schema['blocks']:
+                if block['id'] in block_ids_on_path and block['type'] == 'Question':
+                    blocks_to_return.append(
+                        {
+                            'id': block['id'],
+                            'title': block.get('title'),
+                            'number': block.get('number'),
+                            'link': url_for(
+                                'questionnaire.block', block_id=block['id']
+                            ),
+                            'question': Block.get_question(
+                                block,
+                                answer_store,
+                                list_store,
+                                metadata,
+                                schema,
+                                current_location,
+                            ),
+                        }
+                    )
+            group_collection.append(
+                placeholder_renderer.render(
+                    {
+                        'id': group_schema['id'],
+                        'title': group_schema.get('title'),
+                        'blocks': blocks_to_return,
+                    }
+                )
+            )
+    return group_collection
 
 
 def build_view_context_for_final_summary(

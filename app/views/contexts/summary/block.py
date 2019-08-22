@@ -1,31 +1,8 @@
-from flask import url_for
-
 from app.questionnaire.rules import evaluate_when_rules
 from app.views.contexts.summary.question import Question
 
 
 class Block:
-    def __init__(
-        self,
-        block_schema,
-        answer_store,
-        list_store,
-        metadata,
-        schema,
-        current_location=None,
-    ):
-        self.id = block_schema['id']
-        self.title = block_schema.get('title')
-        self.number = block_schema.get('number')
-        self.link = self._build_link(block_schema['id'])
-        self.question = self.get_question(
-            block_schema, answer_store, list_store, metadata, schema, current_location
-        )
-
-    @staticmethod
-    def _build_link(block_id):
-        return url_for('questionnaire.block', block_id=block_id)
-
     @staticmethod
     def get_question(
         block_schema, answer_store, list_store, metadata, schema, current_location=None
@@ -44,12 +21,3 @@ class Block:
                 return Question(variant['question'], answer_store, schema).serialize()
 
         return Question(block_schema['question'], answer_store, schema).serialize()
-
-    def serialize(self):
-        return {
-            'id': self.id,
-            'title': self.title,
-            'number': self.number,
-            'link': self.link,
-            'question': self.question,
-        }
