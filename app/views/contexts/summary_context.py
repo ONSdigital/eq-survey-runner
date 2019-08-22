@@ -65,9 +65,6 @@ class SummaryContext:
 
         context['summary'].update(
             {
-                'is_view_submission_response_enabled': _is_view_submitted_response_enabled(
-                    self._schema.json
-                ),
                 'collapsible': self._schema.get_block(
                     self._current_location.block_id
                 ).get('collapsible', False),
