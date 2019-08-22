@@ -116,10 +116,7 @@ def build_view_context_for_section_summary(
     )
 
     placeholder_renderer = PlaceholderRenderer(
-        language,
-        schema=schema,
-        metadata=metadata,
-        answer_store=answer_store
+        language, schema=schema, metadata=metadata, answer_store=answer_store
     )
 
     list_collector_blocks = schema.get_visible_list_blocks_for_section(section)
