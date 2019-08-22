@@ -3,9 +3,9 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.3",
     "survey_id": "0",
-    "title": "Test PrimaryPersonListCollector",
+    "title": "Test ListCollector",
     "theme": "default",
-    "description": "A questionnaire to test Primary Person ListCollector",
+    "description": "A questionnaire to test ListCollector",
     "metadata": [
         {
             "name": "user_id",
@@ -23,10 +23,11 @@
     "sections": [
         {
             "id": "section",
+            "title": "People who live here and overnight visitors",
             "groups": [
                 {
                     "id": "group",
-                    "title": "Primary Person",
+                    "title": "Questions",
                     "blocks": [
                         {
                             "id": "primary-person-list-collector",
@@ -145,25 +146,7 @@
                                 "question": {
                                     "id": "edit-question",
                                     "type": "General",
-                                    "title": {
-                                        "text": "Change details for {first_name} {last_name}",
-                                        "placeholders": [
-                                            {
-                                                "placeholder": "first_name",
-                                                "value": {
-                                                    "source": "answers",
-                                                    "identifier": "first-name"
-                                                }
-                                            },
-                                            {
-                                                "placeholder": "last_name",
-                                                "value": {
-                                                    "source": "answers",
-                                                    "identifier": "last-name"
-                                                }
-                                            }
-                                        ]
-                                    },
+                                    "title": "What is the name of the person?",
                                     "answers": [
                                         {
                                             "id": "first-name",
@@ -207,7 +190,25 @@
                                 }
                             },
                             "summary": {
-                                "title": "Household members",
+                                "title": {
+                                    "text": "Household members on {census_date}",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "census_date",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "date_format": "d MMMM yyyy",
+                                                        "date_to_format": {
+                                                            "value": "2019-10-13"
+                                                        }
+                                                    },
+                                                    "transform": "format_date"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
                                 "item_title": {
                                     "text": "{person_name}",
                                     "placeholders": [
@@ -227,138 +228,183 @@
                                             ]
                                         }
                                     ]
-                                }
-                            }
+                                },
+                                "add_link_text": "Add someone to this household",
+                                "empty_list_text": "There are no householders"
+                            },
+                            "hide_on_section_summary": false
                         },
                         {
-                            "type": "RelationshipCollector",
-                            "id": "relationships",
-                            "title": "This will iterate over the people list, capturing the one way relationships.",
-                            "for_list": "people",
-                            "question_variants": [
-                                {
-                                    "question": {
-                                        "id": "relationship-question",
-                                        "type": "General",
-                                        "title": "{second_person_name} is your <em>...</em>",
-                                        "answers": [
+                            "id": "visitor-list-collector",
+                            "type": "ListCollector",
+                            "for_list": "visitors",
+                            "add_answer": {
+                                "id": "any-more-visitors",
+                                "value": "Yes"
+                            },
+                            "remove_answer": {
+                                "id": "remove-visitor-confirmation",
+                                "value": "Yes"
+                            },
+                            "question": {
+                                "id": "confirmation-visitor-question",
+                                "type": "General",
+                                "title": "Are there any other visitors staying overnight?",
+                                "answers": [
+                                    {
+                                        "id": "any-more-visitors",
+                                        "mandatory": true,
+                                        "type": "Radio",
+                                        "options": [
                                             {
-                                                "id": "relationship-answer",
-                                                "mandatory": true,
-                                                "type": "Relationship",
-                                                "playback": "{second_person_name} is your <em>...</em>",
-                                                "options": [
-                                                    {
-                                                        "label": "Husband or Wife",
-                                                        "value": "Husband or Wife",
-                                                        "title": "{second_person_name} is your <em>husband or wife</em>",
-                                                        "playback": "{second_person_name} is your <em>husband or wife</em>"
-                                                    },
-                                                    {
-                                                        "label": "Legally registered civil partner",
-                                                        "value": "Legally registered civil partner",
-                                                        "title": "{second_person_name} is your <em>legally registered civil partner</em>",
-                                                        "playback": "{second_person_name} is your <em>legally registered civil partner</em>"
-                                                    },
-                                                    {
-                                                        "label": "Son or daughter",
-                                                        "value": "Son or daughter",
-                                                        "title": "{second_person_name} is your <em>son or daughter</em>",
-                                                        "playback": "{second_person_name} is your <em>son or daughter</em>"
-                                                    },
-                                                    {
-                                                        "label": "Brother or sister",
-                                                        "value": "Brother or sister",
-                                                        "title": "{second_person_name} is your <em>brother or sister</em>",
-                                                        "playback": "{second_person_name} is your <em>brother or sister</em>"
-                                                    }
-                                                ]
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
                                             }
                                         ]
-                                    },
-                                    "when": [
+                                    }
+                                ]
+                            },
+                            "add_block": {
+                                "id": "add-visitor",
+                                "type": "ListAddQuestion",
+                                "question": {
+                                    "id": "add-visitor-question",
+                                    "type": "General",
+                                    "title": "What is the name of the visitor?",
+                                    "answers": [
                                         {
-                                            "list": "people",
-                                            "id_selector": "primary_person",
-                                            "condition": "equals",
-                                            "comparison": {
-                                                "source": "location",
-                                                "id": "list_item_id"
-                                            }
+                                            "id": "first-name-visitor",
+                                            "label": "First name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "last-name-visitor",
+                                            "label": "Last name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            },
+                            "edit_block": {
+                                "id": "edit-visitor-person",
+                                "type": "ListEditQuestion",
+                                "question": {
+                                    "id": "edit-visitor-question",
+                                    "type": "General",
+                                    "title": "What is the name of the person?",
+                                    "answers": [
+                                        {
+                                            "id": "first-name-visitor",
+                                            "label": "First name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "last-name-visitor",
+                                            "label": "Last name",
+                                            "mandatory": true,
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            },
+                            "remove_block": {
+                                "id": "remove-visitor",
+                                "type": "ListRemoveQuestion",
+                                "question": {
+                                    "id": "remove-visitor-question",
+                                    "type": "General",
+                                    "title": "Are you sure you want to remove this person?",
+                                    "answers": [
+                                        {
+                                            "id": "remove-visitor-confirmation",
+                                            "mandatory": true,
+                                            "type": "Radio",
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": {
+                                "title": {
+                                    "text": "Visitors staying overnight on {census_date}",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "census_date",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "date_format": "d MMMM yyyy",
+                                                        "date_to_format": {
+                                                            "value": "2019-10-13"
+                                                        }
+                                                    },
+                                                    "transform": "format_date"
+                                                }
+                                            ]
                                         }
                                     ]
                                 },
-                                {
-                                    "question": {
-                                        "id": "relationship-question",
-                                        "type": "General",
-                                        "title": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
-                                        "answers": [
-                                            {
-                                                "id": "relationship-answer",
-                                                "mandatory": true,
-                                                "type": "Relationship",
-                                                "playback": "{second_person_name} is {first_person_name_possessive} <em>…</em>",
-                                                "options": [
-                                                    {
-                                                        "label": "Husband or Wife",
-                                                        "value": "Husband or Wife",
-                                                        "title": "Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>",
-                                                        "playback": "{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>"
-                                                    },
-                                                    {
-                                                        "label": "Legally registered civil partner",
-                                                        "value": "Legally registered civil partner",
-                                                        "title": "Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>",
-                                                        "playback": "{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>"
-                                                    },
-                                                    {
-                                                        "label": "Son or daughter",
-                                                        "value": "Son or daughter",
-                                                        "title": "Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>",
-                                                        "playback": "{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>"
-                                                    },
-                                                    {
-                                                        "label": "Brother or sister",
-                                                        "value": "Brother or sister",
-                                                        "title": "Thinking of {first_person_name}, {second_person_name} is their <em>brother or sister</em>",
-                                                        "playback": "{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "when": [
+                                "item_title": {
+                                    "text": "{visitor_name}",
+                                    "placeholders": [
                                         {
-                                            "list": "people",
-                                            "id_selector": "primary_person",
-                                            "condition": "not equals",
-                                            "comparison": {
-                                                "source": "location",
-                                                "id": "list_item_id"
-                                            }
+                                            "placeholder": "visitor_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "delimiter": " ",
+                                                        "list_to_concatenate": {
+                                                            "identifier": ["first-name-visitor", "last-name-visitor"],
+                                                            "source": "answers"
+                                                        }
+                                                    },
+                                                    "transform": "concatenate_list"
+                                                }
+                                            ]
                                         }
                                     ]
-                                }
-                            ],
-                            "skip_conditions": [
-                                {
-                                    "when": [
-                                        {
-                                            "list": "people",
-                                            "condition": "less than",
-                                            "value": 2
-                                        }
-                                    ]
-                                }
-                            ]
+                                },
+                                "add_link_text": "Add another visitor to this household",
+                                "empty_list_text": "There are no visitors"
+                            },
+                            "hide_on_section_summary": false
                         },
                         {
-                            "type": "Confirmation",
-                            "id": "confirmation",
-                            "content": {
-                                "title": "Thank you for your answers, do you wish to submit"
-                            }
+                            "id": "people-list-section-summary",
+                            "type": "SectionSummary"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [
+                {
+                    "id": "summary-group",
+                    "title": "Summary",
+                    "blocks": [
+                        {
+                            "id": "summary",
+                            "type": "Summary",
+                            "collapsible": true
                         }
                     ]
                 }

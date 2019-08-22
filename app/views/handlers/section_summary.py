@@ -15,4 +15,5 @@ class SectionSummary(Content):
             self._questionnaire_store.list_store,
             self.block['type'],
             self._current_location,
+            self._language,
         )
