@@ -78,6 +78,7 @@
   "description": question_description
 }) %}
   {%- if content.list_items -%}
+    {% set list_items = content.list_items %}
     {% include 'partials/summary/list-summary.html' %}
   {% endif %}
   {{ question_definition }}
