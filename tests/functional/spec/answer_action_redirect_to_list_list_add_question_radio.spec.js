@@ -51,7 +51,8 @@ describe('Answer Action: Redirect To List Add Question (Radio)', function () {
         .click(AnyoneUsuallyLiveAt.submit())
         .setValue(AnyoneLiveAtListCollectorAddPage.firstName(), 'Marcus')
         .setValue(AnyoneLiveAtListCollectorAddPage.lastName(), 'Twin')
-        .click(AnyoneLiveAtListCollectorAddPage.submit()).getUrl().should.eventually.contain(AnyoneLiveAtListCollector.pageName).then(function () {
+        .click(AnyoneLiveAtListCollectorAddPage.submit())
+        .getUrl().should.eventually.contain(AnyoneLiveAtListCollector.pageName).then(function () {
           const peopleExpected = ['Marcus Twin'];
           return checkPeopleInList(peopleExpected);
         });
