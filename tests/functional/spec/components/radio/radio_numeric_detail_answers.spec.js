@@ -7,7 +7,7 @@ describe('Radio with a numeric "detail_answer" option', function() {
 
   const radio_schema = 'test_radio_numeric_detail_answers.json';
 
-  it('Given detail answer options are available, When the user clicks an option, Then the detail answer input should be visible.', function() {
+  it('Given a numeric detail answer options are available, When the user clicks an option, Then the detail answer input should be visible.', function() {
     // Given
     return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
@@ -18,7 +18,7 @@ describe('Radio with a numeric "detail_answer" option', function() {
     });
   });
 
-  it('Given a detail answer, When the user does not provide any text, Then just the option value should be displayed on the summary screen', function() {
+  it('Given a numeric detail answer, When the user does not provide any text, Then just the option value should be displayed on the summary screen', function() {
     // Given
     return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
@@ -31,16 +31,58 @@ describe('Radio with a numeric "detail_answer" option', function() {
     });
   });
 
-  it('Given a detail answer, When the user provides text, Then that text should be displayed on the summary screen', function() {
+  it('Given a numeric detail answer, When the user provides text, Then that text should be displayed on the summary screen', function() {
     // Given
     return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
       // When
         .click(RadioNumericDetailPage.other())
-        .setValue(RadioNumericDetailPage.otherDetail(), '1234')
+        .setValue(RadioNumericDetailPage.otherDetail(), '15')
         .click(RadioNumericDetailPage.submit())
       // Then
-        .getText(SummaryPage.radioAnswerNumericDetail()).should.eventually.contain('1234');
+        .getText(SummaryPage.radioAnswerNumericDetail()).should.eventually.contain('15');
+    });
+  });
+
+  it('Given a numeric detail answer, When the user provides text, An error should be displayed', function() {
+    // Given
+    return helpers.openQuestionnaire(radio_schema).then(() => {
+      return browser
+      // When
+        .click(RadioNumericDetailPage.other())
+        .setValue(RadioNumericDetailPage.otherDetail(), 'fhdjkshfjkds')
+        .click(RadioNumericDetailPage.submit())
+      // Then
+        .isVisible(RadioNumericDetailPage.error()).should.eventually.be.true
+        .getText(RadioNumericDetailPage.errorNumber(1)).should.eventually.contain('Please enter an integer');
+    });
+  });
+
+  it('Given a numeric detail answer, When the user provides a number larger than 20, An error should be displayed', function() {
+    // Given
+    return helpers.openQuestionnaire(radio_schema).then(() => {
+      return browser
+      // When
+        .click(RadioNumericDetailPage.other())
+        .setValue(RadioNumericDetailPage.otherDetail(), '250')
+        .click(RadioNumericDetailPage.submit())
+      // Then
+        .isVisible(RadioNumericDetailPage.error()).should.eventually.be.true
+        .getText(RadioNumericDetailPage.errorNumber(1)).should.eventually.contain('Number is too large');
+    });
+  });
+
+  it('Given a numeric detail answer, When the user provides a number less than 0, An error should be displayed', function() {
+    // Given
+    return helpers.openQuestionnaire(radio_schema).then(() => {
+      return browser
+      // When
+        .click(RadioNumericDetailPage.other())
+        .setValue(RadioNumericDetailPage.otherDetail(), '-1')
+        .click(RadioNumericDetailPage.submit())
+      // Then
+        .isVisible(RadioNumericDetailPage.error()).should.eventually.be.true
+        .getText(RadioNumericDetailPage.errorNumber(1)).should.eventually.contain('Number cannot be less than zero');
     });
   });
 });
