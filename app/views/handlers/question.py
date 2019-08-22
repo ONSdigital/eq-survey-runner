@@ -1,7 +1,6 @@
 from werkzeug.utils import cached_property
 
 from app.questionnaire.location import Location
-from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.schema_utils import transform_variants
 from app.views.contexts.question import build_question_context
@@ -97,15 +96,7 @@ class Question(BlockHandler):
             self._current_location,
         )
 
-        placeholder_renderer = PlaceholderRenderer(
-            language=self._language,
-            schema=self._schema,
-            answer_store=self._questionnaire_store.answer_store,
-            metadata=self._questionnaire_store.metadata,
-            list_item_id=self._current_location.list_item_id,
-        )
-
-        rendered_question = placeholder_renderer.render(
+        rendered_question = self.placeholder_renderer.render(
             transformed_block.pop('question')
         )
 
