@@ -6,7 +6,7 @@ if [ "$1" == "--local" ] || [ "$2" == "--local" ]; then
 fi
 
 if [ "$run_docker" == true ]; then
-    branch=eq-3221-ability-to-route-to-a-list-collectors-add-screen
+    branch=v3
     docker pull onsdigital/eq-schema-validator:$branch
     validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator:$branch)"
     sleep 3
