@@ -12,6 +12,7 @@ from app.jinja_filters import (
 )
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
+from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.schema_utils import (
     choose_question_to_display,
@@ -114,20 +115,29 @@ def build_view_context_for_section_summary(
         [section],
     )
 
+    placeholder_renderer = PlaceholderRenderer(
+        language,
+        schema=schema,
+        metadata=metadata,
+        answer_store=answer_store
+    )
+
     list_collector_blocks = schema.get_visible_list_blocks_for_section(section)
 
     list_summaries = []
 
     for list_collector_block in list_collector_blocks:
+        rendered_summary = placeholder_renderer.render(list_collector_block['summary'])
+
         list_summary = {
-            'title': list_collector_block['summary']['title'],
+            'title': rendered_summary['title'],
             'add_link': url_for(
                 'questionnaire.block',
                 list_name=list_collector_block['for_list'],
                 block_id=list_collector_block['add_block']['id'],
             ),
-            'add_link_text': list_collector_block['summary']['add_link_text'],
-            'empty_list_text': list_collector_block['summary']['empty_list_text'],
+            'add_link_text': rendered_summary['add_link_text'],
+            'empty_list_text': rendered_summary['empty_list_text'],
             'list_items': build_list_items_summary_context(
                 list_collector_block, schema, answer_store, list_store, language
             ),

@@ -190,7 +190,25 @@
                                 }
                             },
                             "summary": {
-                                "title": "People who live here",
+                                "title": {
+                                    "text": "Household members on {census_date}",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "census_date",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "date_format": "d MMMM yyyy",
+                                                        "date_to_format": {
+                                                            "value": "2019-10-13"
+                                                        }
+                                                    },
+                                                    "transform": "format_date"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
                                 "item_title": {
                                     "text": "{person_name}",
                                     "placeholders": [
@@ -323,7 +341,25 @@
                                 }
                             },
                             "summary": {
-                                "title": "Visitors staying overnight",
+                                "title": {
+                                    "text": "Visitors staying overnight on {census_date}",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "census_date",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "date_format": "d MMMM yyyy",
+                                                        "date_to_format": {
+                                                            "value": "2019-10-13"
+                                                        }
+                                                    },
+                                                    "transform": "format_date"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
                                 "item_title": {
                                     "text": "{visitor_name}",
                                     "placeholders": [
