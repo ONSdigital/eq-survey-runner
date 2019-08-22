@@ -48,3 +48,22 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         # Then
         self.assertInUrl('/questionnaire/list-collector/')
+
+    def test_previous_link_return_to_list_collector_when_invalid_return_to_block_id(
+        self
+    ):
+        # Given
+        self.launchSurvey('test_answer_action_redirect_to_list_add_question')
+        self.post({'anyone-else-live-here-answer': 'Yes'})
+
+        url_with_invalid_return_to = self.last_url + '-invalid'
+
+        self.get(url_with_invalid_return_to)
+
+        self.assertInUrl('?return_to=anyone-else-live-here-block-invalid')
+
+        # When
+        self.get(self.get_previous_link())
+
+        # Then
+        self.assertInUrl('/questionnaire/list-collector/')

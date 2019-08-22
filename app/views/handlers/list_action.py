@@ -31,9 +31,10 @@ class ListAction(Question):
     def get_previous_location_url(self):
         if self._return_to:
             block_id = self._return_to
-            section_id = self._schema.get_section_id_for_block_id(block_id)
 
-            return Location(section_id=section_id, block_id=block_id).url()
+            if self._schema.is_block_valid(block_id):
+                section_id = self._schema.get_section_id_for_block_id(block_id)
+                return Location(section_id=section_id, block_id=block_id).url()
 
         return self.parent_location.url()
 
