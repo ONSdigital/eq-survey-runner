@@ -38,7 +38,7 @@ class Group:
         list_store,
         metadata,
         schema,
-        current_location=None,
+        current_location,
     ):
         blocks = []
 

@@ -87,12 +87,12 @@ class TestSummaryContext(TestStandardSummaryContext):
         )
 
     def test_build_summary_rendering_context(self):
-        summary_context = SummaryContext(self.language, self.schema, self.questionnaire_store, self.current_location)
+        summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, self.current_location)
         summary_groups = summary_context._build_all_groups()
         self.check_summary_rendering_context(summary_groups)
 
     def test_build_view_context_for_summary(self):
-        summary_context = SummaryContext(self.language, self.schema, self.questionnaire_store, self.current_location)
+        summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, self.current_location)
 
         context = summary_context.final_summary()
         self.check_context(context)
@@ -126,7 +126,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
             section_id='property-details-section', block_id='property-details-summary'
         )
 
-        summary_context = SummaryContext(self.language, self.schema, self.questionnaire_store, current_location)
+        summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, current_location)
 
         single_section_context = summary_context._build_groups_for_section('property-details-section')
 
@@ -137,7 +137,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
             section_id='property-details-section', block_id='property-details-summary'
         )
 
-        summary_context = SummaryContext(self.language, self.schema, self.questionnaire_store, current_location)
+        summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, current_location)
         context = summary_context.section_summary()
 
         self.check_context(context)
@@ -253,6 +253,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             self.schema,
             self.answer_store,
             self.list_store,
+            self.block_type,
             current_location,
         )
 

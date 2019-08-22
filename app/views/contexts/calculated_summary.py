@@ -13,25 +13,24 @@ from app.views.contexts.summary_context import SummaryContext
 
 
 def build_view_context_for_calculated_summary(
-    language, schema, questionnaire_store, current_location
+    language, schema, answer_store, list_store, metadata, current_location
 ):
     block = schema.get_block(current_location.block_id)
-    answer_store = questionnaire_store.answer_store
-    list_store = questionnaire_store.list_store
-    metadata = questionnaire_store.metadata
 
-    section_list = _build_calculated_summary_section(
+    calculated_section = _build_calculated_summary_section(
         schema, block, current_location, answer_store, list_store, metadata
     )
 
     summary_context = SummaryContext(
         language,
         schema,
-        questionnaire_store,
+        answer_store,
+        list_store,
+        metadata,
         current_location,
     )
 
-    context = summary_context.summary(section=section_list[0])
+    context = summary_context.summary(section=calculated_section)
 
     formatted_total = _get_formatted_total(
         context['summary'].get('groups', []),
@@ -141,6 +140,7 @@ def _get_formatted_total(
                 current_location=current_location,
             )
             for answer in question['answers']:
+                print(answer)
                 if not answer_format['type']:
                     answer_format = {
                         'type': answer['type'],

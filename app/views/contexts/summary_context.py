@@ -4,11 +4,11 @@ from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 
 
 class SummaryContext:
-    def __init__(self, language, schema, questionnaire_store, current_location):
+    def __init__(self, language, schema, answer_store, list_store, metadata, current_location):
         self._language = language
-        self._answer_store = questionnaire_store.answer_store
-        self._list_store = questionnaire_store.list_store
-        self._metadata = questionnaire_store.metadata
+        self._answer_store = answer_store
+        self._list_store = list_store
+        self._metadata = metadata
         self._schema = schema
         self._current_location = current_location
         self._path_finder = PathFinder(
@@ -38,7 +38,7 @@ class SummaryContext:
                 self._list_store,
                 self._metadata,
                 self._schema,
-                current_location=self._current_location,
+                self._current_location,
             ).serialize()
             for group in section['groups']
         ]
@@ -77,6 +77,8 @@ class SummaryContext:
     def summary(self, section_id=None, list_item_id=None, section=None):
         if section_id or list_item_id:
             groups = self._build_groups_for_section(section_id, list_item_id)
+        elif section:
+            groups = self._build_groups_for_section(section['id'], section=section)
         else:
             groups = self._build_all_groups()
 
