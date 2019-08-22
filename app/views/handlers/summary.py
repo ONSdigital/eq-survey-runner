@@ -6,7 +6,7 @@ class Summary(Content):
     def __init__(self, *args):
         super().__init__(*args)
 
-    def get_context(self, _):
+    def get_context(self):
         return build_view_context_for_final_summary(
             metadata=self._questionnaire_store.metadata,
             schema=self._schema,

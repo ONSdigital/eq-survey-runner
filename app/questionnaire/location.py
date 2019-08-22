@@ -50,10 +50,10 @@ class Location:
         attributes = vars(self)
         return {k: v for k, v in attributes.items() if v is not None}
 
-    def url(self) -> str:
+    def url(self, **kwargs) -> str:
         """
         Return the survey runner url that this location represents
-
+        Any additional keyword arguments are parsed as query strings.
         :return:
         """
         return url_for(
@@ -61,4 +61,5 @@ class Location:
             block_id=self.block_id,
             list_name=self.list_name,
             list_item_id=self.list_item_id,
+            **kwargs,
         )
