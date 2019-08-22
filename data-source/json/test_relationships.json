@@ -136,6 +136,7 @@
                                 }
                             },
                             "summary": {
+                                "title": "People who live here",
                                 "item_title": {
                                     "text": "{person_name}",
                                     "placeholders": [

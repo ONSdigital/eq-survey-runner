@@ -10,6 +10,16 @@ const ListCollectorRemovePage = require('../generated_pages/list_collector/list-
 const NextInterstitialPage = require('../generated_pages/list_collector/next-interstitial.page.js');
 const SummaryPage = require('../generated_pages/list_collector/summary.page.js');
 
+const PrimaryPersonListCollectorPage = require('../generated_pages/list_collector_section_summary/primary-person-list-collector.page.js');
+const PrimaryPersonListCollectorAddPage = require('../generated_pages/list_collector_section_summary/primary-person-list-collector-add.page.js');
+const SectionSummaryListCollectorPage = require('../generated_pages/list_collector_section_summary/list-collector.page.js');
+const SectionSummaryListCollectorAddPage = require('../generated_pages/list_collector_section_summary/list-collector-add.page.js');
+const SectionSummaryListCollectorEditPage = require('../generated_pages/list_collector_section_summary/list-collector-edit.page.js');
+const SectionSummaryListCollectorRemovePage = require('../generated_pages/list_collector_section_summary/list-collector-remove.page.js');
+const VisitorListCollectorPage = require('../generated_pages/list_collector_section_summary/visitor-list-collector.page.js');
+const VisitorListCollectorAddPage = require('../generated_pages/list_collector_section_summary/visitor-list-collector-add.page.js');
+const PeopleListSectionSummaryPage = require('../generated_pages/list_collector_section_summary/people-list-section-summary.page.js');
+
 function checkPeopleInList(peopleExpected) {
   let chain = browser.waitForVisible(ListCollectorPage.listLabel(1)).should.eventually.be.true;
 
@@ -168,5 +178,72 @@ describe('List Collector', function() {
         .getUrl().should.eventually.contain('thank-you');
     });
 
+  });
+
+  describe('Given I start a list collector survey and complete to Section Summary', function() {
+
+    beforeEach(function() {
+      return helpers.openQuestionnaire('test_list_collector_section_summary.json').then(() => {
+        return browser
+            .click(PrimaryPersonListCollectorPage.yes())
+            .click(PrimaryPersonListCollectorPage.submit())
+            .setValue(PrimaryPersonListCollectorAddPage.firstName(), 'Marcus')
+            .setValue(PrimaryPersonListCollectorAddPage.lastName(), 'Twin')
+            .click(PrimaryPersonListCollectorAddPage.submit())
+            .click(SectionSummaryListCollectorPage.yes())
+            .click(SectionSummaryListCollectorPage.submit())
+            .setValue(SectionSummaryListCollectorAddPage.firstName(), 'Samuel')
+            .setValue(SectionSummaryListCollectorAddPage.lastName(), 'Clemens')
+            .click(SectionSummaryListCollectorAddPage.submit())
+            .click(SectionSummaryListCollectorPage.no())
+            .click(SectionSummaryListCollectorPage.submit())
+            .click(VisitorListCollectorPage.yes())
+            .click(VisitorListCollectorPage.submit())
+            .setValue(VisitorListCollectorAddPage.firstNameVisitor(), 'Olivia')
+            .setValue(VisitorListCollectorAddPage.lastNameVisitor(), 'Clemens')
+            .click(VisitorListCollectorAddPage.submit())
+            .click(VisitorListCollectorPage.no())
+            .click(VisitorListCollectorPage.submit());
+        });
+    });
+
+    it('The section summary should display contents of the list collector', function() {
+      return browser
+        .getText(PeopleListSectionSummaryPage.peopleListLabel(1)).should.eventually.contain('Marcus Twin (You)')
+        .getText(PeopleListSectionSummaryPage.peopleListLabel(2)).should.eventually.contain('Samuel Clemens')
+        .getText(PeopleListSectionSummaryPage.visitorsListLabel(1)).should.eventually.contain('Olivia Clemens');
+    });
+
+    it('When the user adds an item to the list, They should return to the section summary and it should display the updated list', function() {
+      return browser
+        .click(PeopleListSectionSummaryPage.visitorsListAddLink(1))
+        .setValue(VisitorListCollectorAddPage.firstNameVisitor(), 'Joe')
+        .setValue(VisitorListCollectorAddPage.lastNameVisitor(), 'Bloggs')
+        .click(VisitorListCollectorAddPage.submit())
+        .click(VisitorListCollectorPage.no())
+        .click(VisitorListCollectorPage.submit())
+        .getText(PeopleListSectionSummaryPage.visitorsListLabel(2)).should.eventually.contain('Joe Bloggs');
+    });
+
+    it('When the user removes an item from the list, They should return to the section summary and it should display the updated list', function() {
+      return browser
+        .click(PeopleListSectionSummaryPage.peopleListRemoveLink(2))
+        .click(SectionSummaryListCollectorRemovePage.yes())
+        .click(SectionSummaryListCollectorRemovePage.submit())
+        .click(SectionSummaryListCollectorPage.no())
+        .click(SectionSummaryListCollectorPage.submit())
+        .isExisting(PeopleListSectionSummaryPage.visitorsListLabel(2)).should.eventually.equal(false);
+    });
+
+    it('When the user updates the list, They should return to the section summary and it should display the updated list', function() {
+      return browser
+        .click(PeopleListSectionSummaryPage.peopleListEditLink(1))
+        .setValue(SectionSummaryListCollectorEditPage.firstName(), 'Mark')
+        .setValue(SectionSummaryListCollectorEditPage.lastName(), 'Twain')
+        .click(SectionSummaryListCollectorEditPage.submit())
+        .click(SectionSummaryListCollectorPage.no())
+        .click(SectionSummaryListCollectorPage.submit())
+        .getText(PeopleListSectionSummaryPage.peopleListLabel(1)).should.eventually.contain('Mark Twain (You)');
+    });
   });
 });
