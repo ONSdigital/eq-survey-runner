@@ -6,7 +6,9 @@ from app.data_model.progress_store import ProgressStore
 from app.data_model.list_store import ListStore
 from app.questionnaire.location import Location
 from app.views.contexts.summary_context import SummaryContext
-from app.views.contexts.calculated_summary import build_view_context_for_calculated_summary
+from app.views.contexts.calculated_summary import (
+    build_view_context_for_calculated_summary,
+)
 from app.utilities.schema import load_schema_from_name
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -72,27 +74,31 @@ class TestSummaryContext(TestStandardSummaryContext):
         self.current_location = Location(
             section_id='default-section', block_id='summary'
         )
+        self.language = 'en'
+        self.progress_store = MagicMock(spec=ProgressStore)
+        self.progress_store.locations = list()
+        self.questionnaire_store = MagicMock(
+            spec=QuestionnaireStore,
+            completed_blocks=[],
+            answer_store=self.answer_store,
+            list_store=self.list_store,
+            progress_store=self.progress_store,
+            metadata=self.metadata
+        )
 
     def test_build_summary_rendering_context(self):
-        summary_rendering_context = build_summary_rendering_context(
-            self.schema, self.answer_store, self.list_store, self.metadata
-        )
-        self.check_summary_rendering_context(summary_rendering_context)
+        summary_context = SummaryContext(self.language, self.schema, self.questionnaire_store, self.current_location)
+        summary_groups = summary_context._build_all_groups()
+        self.check_summary_rendering_context(summary_groups)
 
     def test_build_view_context_for_summary(self):
-        context = build_view_context_for_final_summary(
-            self.metadata,
-            self.schema,
-            self.answer_store,
-            self.list_store,
-            self.rendered_block,
-            self.current_location,
-        )
+        summary_context = SummaryContext(self.language, self.schema, self.questionnaire_store, self.current_location)
 
+        context = summary_context.final_summary()
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
-        self.assertEqual(len(context['summary']), 5)
-        self.assertTrue('is_view_submission_response_enabled' in context['summary'])
+        print(context)
+        self.assertEqual(len(context['summary']), 4)
         self.assertTrue('collapsible' in context['summary'])
 
 
@@ -103,27 +109,36 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
         self.answer_store = AnswerStore()
         self.list_store = ListStore()
         self.block_type = 'SectionSummary'
+        self.language = 'en'
+        self.progress_store = MagicMock(spec=ProgressStore)
+        self.progress_store.locations = list()
+        self.questionnaire_store = MagicMock(
+            spec=QuestionnaireStore,
+            completed_blocks=[],
+            answer_store=self.answer_store,
+            list_store=self.list_store,
+            progress_store=self.progress_store,
+            metadata=self.metadata
+        )
 
     def test_build_summary_rendering_context(self):
-        sections = [self.schema.get_section('property-details-section')]
-        summary_rendering_context = build_summary_rendering_context(
-            self.schema, self.answer_store, self.list_store, self.metadata, sections
+        current_location = Location(
+            section_id='property-details-section', block_id='property-details-summary'
         )
-        self.check_summary_rendering_context(summary_rendering_context)
+
+        summary_context = SummaryContext(self.language, self.schema, self.questionnaire_store, current_location)
+
+        single_section_context = summary_context._build_groups_for_section('property-details-section')
+
+        self.check_summary_rendering_context(single_section_context)
 
     def test_build_view_context_for_section_summary(self):
         current_location = Location(
             section_id='property-details-section', block_id='property-details-summary'
         )
 
-        context = build_view_context_for_section_summary(
-            self.metadata,
-            self.schema,
-            self.answer_store,
-            self.list_store,
-            self.block_type,
-            current_location,
-        )
+        summary_context = SummaryContext(self.language, self.schema, self.questionnaire_store, current_location)
+        context = summary_context.section_summary()
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -238,7 +253,6 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
             current_location,
         )
 

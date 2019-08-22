@@ -21,12 +21,13 @@ class SummaryContext:
             'type'
         ]
 
-    def _build_groups_for_section(self, section_id, list_item_id=None):
+    def _build_groups_for_section(self, section_id, list_item_id=None, section=None):
         """
         Build a groups context for a particular section and list_item_id.
 
         Does not support generating multiple sections at a time (i.e. passing no list_item_id for repeating section).
         """
+        section = section or self._schema.get_section(section_id)
         section_path = self._path_finder.routing_path(section_id, list_item_id)
 
         return [
@@ -39,7 +40,7 @@ class SummaryContext:
                 self._schema,
                 current_location=self._current_location,
             ).serialize()
-            for group in self._schema.get_section(section_id)['groups']
+            for group in section['groups']
         ]
 
     def _build_all_groups(self):
@@ -67,13 +68,13 @@ class SummaryContext:
             {
                 'collapsible': self._schema.get_block(
                     self._current_location.block_id
-                ).get('collapsible', False),
+                ).get('collapsible', False)
             }
         )
 
         return context
 
-    def summary(self, section_id=None, list_item_id=None):
+    def summary(self, section_id=None, list_item_id=None, section=None):
         if section_id or list_item_id:
             groups = self._build_groups_for_section(section_id, list_item_id)
         else:

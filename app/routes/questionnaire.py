@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from  unittest import mock
 
 import flask_babel
 import humanize
@@ -290,7 +291,7 @@ def get_thank_you(schema):
         template='thank-you',
         metadata=metadata_context,
         survey_id=schema.json['survey_id'],
-        survey_title=safe_content(schema.json['title'])
+        survey_title=safe_content(schema.json['title']),
     )
 
 

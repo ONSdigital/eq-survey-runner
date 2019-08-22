@@ -9,25 +9,29 @@ from app.questionnaire.schema_utils import (
     get_answer_ids_in_block,
 )
 
+from app.views.contexts.summary_context import SummaryContext
+
 
 def build_view_context_for_calculated_summary(
-    metadata, schema, answer_store, list_store, block_type, current_location
+    language, schema, questionnaire_store, current_location
 ):
     block = schema.get_block(current_location.block_id)
+    answer_store = questionnaire_store.answer_store
+    list_store = questionnaire_store.list_store
+    metadata = questionnaire_store.metadata
 
-    section_list = _build_calculated_summary_section_list(
+    section_list = _build_calculated_summary_section(
         schema, block, current_location, answer_store, list_store, metadata
     )
 
-    context = build_view_context_for_summary(
+    summary_context = SummaryContext(
+        language,
         schema,
-        answer_store,
-        list_store,
-        metadata,
-        block_type,
+        questionnaire_store,
         current_location,
-        section_list,
     )
+
+    context = summary_context.summary(section=section_list[0])
 
     formatted_total = _get_formatted_total(
         context['summary'].get('groups', []),
@@ -49,7 +53,7 @@ def build_view_context_for_calculated_summary(
     return context
 
 
-def _build_calculated_summary_section_list(
+def _build_calculated_summary_section(
     schema, rendered_block, current_location, answer_store, list_store, metadata
 ):
     """Build up the list of blocks only including blocks / questions / answers which are relevant to the summary"""
@@ -78,7 +82,7 @@ def _build_calculated_summary_section_list(
             ):
                 blocks.append(transformed_block)
 
-    return [{'id': section_id, 'groups': [{'id': group['id'], 'blocks': blocks}]}]
+    return {'id': section_id, 'groups': [{'id': group['id'], 'blocks': blocks}]}
 
 
 def _remove_unwanted_questions_answers(

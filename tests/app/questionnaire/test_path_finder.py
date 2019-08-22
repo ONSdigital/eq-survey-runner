@@ -254,9 +254,15 @@ class TestPathFinder(
                 list_name='people',
                 list_item_id='abc123',
             ),
+            Location(
+                section_id='personal-details-section',
+                block_id='personal-summary',
+                list_name='people',
+                list_item_id='abc123'
+            )
         ]
 
-        self.assertEqual(routing_path, expected_path)
+        assert routing_path == expected_path
 
     def test_routing_path_empty_routing_rules(self):
         schema = load_schema_from_name('test_checkbox')
@@ -711,6 +717,12 @@ class TestPathFinder(
             ),
             Location(
                 section_id='personal-details-section',
+                block_id='personal-summary',
+                list_name='people',
+                list_item_id='abc123'
+            ),
+            Location(
+                section_id='personal-details-section',
                 block_id='proxy',
                 list_name='people',
                 list_item_id='123abc',
@@ -733,6 +745,15 @@ class TestPathFinder(
                 list_name='people',
                 list_item_id='123abc',
             ),
+            Location(
+                section_id='personal-details-section',
+                block_id='personal-summary',
+                list_name='people',
+                list_item_id='123abc'
+            )
         ]
 
-        self.assertEqual(routing_path, expected_path)
+        print(routing_path, "\n")
+        print(expected_path)
+
+        assert routing_path == expected_path
