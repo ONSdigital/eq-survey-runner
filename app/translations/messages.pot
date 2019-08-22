@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-13 11:28+0100\n"
+"POT-Creation-Date: 2019-08-21 12:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -233,7 +233,7 @@ msgstr ""
 msgid "Start {section_name} section"
 msgstr ""
 
-#: app/views/contexts/list_collector.py:33
+#: app/views/contexts/list_collector.py:36
 msgid " (You)"
 msgstr ""
 
@@ -582,7 +582,7 @@ msgstr ""
 msgid "Sign out"
 msgstr ""
 
-#: templates/layouts/configs/_save-sign-out-button.html:31
+#: templates/layouts/configs/_save-sign-out-button.html:32
 msgid "Save and complete later"
 msgstr ""
 

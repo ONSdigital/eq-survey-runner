@@ -17,6 +17,7 @@
         {% do page | setAttribute("signoutButton", {
             "text": _("Sign out"),
             "name": "action[sign_out]",
+            "url": "/signed-out",
             "attributes": {
                 "data-qa": "btn-sign-out",
                 "data-ga": "click",
@@ -31,6 +32,7 @@
             "text": _("Save and complete later"),
             "name": "action[save_sign_out]",
             "classes": "js-btn-save",
+            "url": "/signed-out",
             "attributes": {
                 "data-qa": "btn-save-sign-out",
                 "data-ga": "click",

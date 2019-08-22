@@ -20,6 +20,7 @@ SCHEMAS_TO_EXTRACT = [
     'census_individual_gb_wls',
     'census_individual_gb_nir',
     'census_household_gb_wls',
+    'census_household_gb_nir',
 ]
 
 

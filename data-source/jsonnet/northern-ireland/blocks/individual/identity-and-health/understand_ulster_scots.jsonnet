@@ -13,8 +13,8 @@ local question(title) = {
       type: 'Checkbox',
       options: [
         {
-          label: 'Understand spoken Ulster-Scots',
-          value: 'Understand spoken Ulster-Scots',
+          label: 'Understand Ulster-Scots',
+          value: 'Understand Ulster-Scots',
         },
         {
           label: 'Speak Ulster-Scots',
