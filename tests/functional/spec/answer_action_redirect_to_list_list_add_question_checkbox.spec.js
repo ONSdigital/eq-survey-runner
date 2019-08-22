@@ -24,17 +24,17 @@ describe('Answer Action: Redirect To List Add Question (Checkbox)', function () 
       return helpers.openQuestionnaire('test_answer_action_redirect_to_list_add_question_checkbox.json');
     });
 
-    it('When the user answers "No", Then, they should be taken to straight the list collector.', function () {
+    it('When the user selects "No", Then, they should be taken to straight the list collector.', function () {
       return browser
         .click(AnyoneUsuallyLiveAt.no())
         .click(AnyoneUsuallyLiveAt.submit())
         .getUrl().should.eventually.contain(AnyoneLiveAtListCollector.pageName);
     });
 
-    it('When the user answers "Yes" then they should be taken to the list collector add question.', function () {
+    it('When the user selects "Yes" then they should be taken to the list collector add question.', function () {
       return browser
         .url(AnyoneUsuallyLiveAt.url())
-        .click(AnyoneUsuallyLiveAt.yes())
+        .click(AnyoneUsuallyLiveAt.iThinkSo())
         .click(AnyoneUsuallyLiveAt.submit())
         .getUrl().should.eventually.contain(AnyoneLiveAtListCollectorAddPage.pageName)
         .getUrl().should.eventually.contain('?return_to=anyone-usually-live-at');
