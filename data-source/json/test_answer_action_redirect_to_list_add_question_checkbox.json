@@ -30,20 +30,20 @@
                     "blocks": [
                         {
                             "type": "Question",
-                            "id": "anyone-else-live-here-block",
+                            "id": "anyone-usually-live-at",
                             "question": {
                                 "type": "General",
-                                "id": "anyone-else-live-here-question",
+                                "id": "anyone-usually-live-at-question",
                                 "title": "Does anyone usually live at 1 Pleasant Lane?",
                                 "answers": [
                                     {
-                                        "type": "Radio",
-                                        "id": "anyone-else-live-here-answer",
+                                        "type": "Checkbox",
+                                        "id": "anyone-usually-live-at-answer",
                                         "mandatory": true,
                                         "options": [
                                             {
-                                                "label": "Yes",
-                                                "value": "Yes",
+                                                "label": "I think so",
+                                                "value": "I think so",
                                                 "action": {
                                                     "type": "RedirectToListAddQuestion",
                                                     "params": {
@@ -62,11 +62,11 @@
                             }
                         },
                         {
-                            "id": "list-collector",
+                            "id": "anyone-else-live-at",
                             "type": "ListCollector",
                             "for_list": "people",
                             "add_answer": {
-                                "id": "anyone-else",
+                                "id": "anyone-else-live-at-answer",
                                 "value": "Yes"
                             },
                             "remove_answer": {
@@ -76,10 +76,10 @@
                             "question": {
                                 "id": "confirmation-question",
                                 "type": "General",
-                                "title": "Does anyone else live here?",
+                                "title": "Does anyone else live at 1 Pleasant Lane?",
                                 "answers": [
                                     {
-                                        "id": "anyone-else",
+                                        "id": "anyone-else-live-at-answer",
                                         "mandatory": true,
                                         "type": "Radio",
                                         "options": [

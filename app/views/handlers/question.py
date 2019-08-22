@@ -16,7 +16,10 @@ class Question(BlockHandler):
     def get_next_location_url(self):
         answer_action = self._get_answer_action()
         if self._has_redirect_to_list_add_action(answer_action):
-            return self._get_list_add_question_url(answer_action['params'])
+            location_url = self._get_list_add_question_url(answer_action['params'])
+
+            if location_url:
+                return location_url
 
         return self.router.get_next_location_url(
             self._current_location, self._routing_path
@@ -47,7 +50,10 @@ class Question(BlockHandler):
             for option in answer.get('options', {}):
                 action = option.get('action')
 
-                if action and submitted_answer == option['value']:
+                if action and (
+                    option['value'] == submitted_answer
+                    or option['value'] in submitted_answer
+                ):
                     return action
 
     def get_context(self):
