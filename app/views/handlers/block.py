@@ -14,11 +14,14 @@ logger = get_logger()
 
 
 class BlockHandler:
-    def __init__(self, schema, questionnaire_store, language, current_location):
+    def __init__(
+        self, schema, questionnaire_store, language, current_location, return_to
+    ):
         self._schema = schema
         self._questionnaire_store = questionnaire_store
         self._language = language
         self._current_location = current_location
+        self._return_to = return_to
         self.block = self._schema.get_block(current_location.block_id)
 
         self._questionnaire_store_updater = None
@@ -26,6 +29,7 @@ class BlockHandler:
         self._placeholder_renderer = None
         self._router = None
         self._routing_path = self._get_routing_path()
+        self.form = None
 
         if not self.is_location_valid():
             raise InvalidLocationException(
@@ -82,8 +86,8 @@ class BlockHandler:
             )
         return self._router
 
-    def save_on_signout(self, form):
-        self.questionnaire_store_updater.update_answers(form)
+    def save_on_sign_out(self):
+        self.questionnaire_store_updater.update_answers(self.form)
         # The location needs to be removed as we may have previously completed this location
         self.questionnaire_store_updater.remove_completed_location()
         self.questionnaire_store_updater.save()
@@ -103,7 +107,7 @@ class BlockHandler:
             self._current_location, self._routing_path
         )
 
-    def handle_post(self, _):
+    def handle_post(self):
         self.questionnaire_store_updater.add_completed_location()
         self._update_section_completeness()
         self.questionnaire_store_updater.save()

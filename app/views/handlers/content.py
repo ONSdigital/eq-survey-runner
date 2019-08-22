@@ -7,7 +7,7 @@ class Content(BlockHandler):
     def rendered_block(self):
         return self._render_block(self.block['id'])
 
-    def get_context(self, _):
+    def get_context(self):
         return {
             'block': self.rendered_block,
             'metadata': dict(self._questionnaire_store.metadata),

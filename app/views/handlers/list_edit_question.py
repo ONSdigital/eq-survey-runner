@@ -13,7 +13,7 @@ class ListEditQuestion(ListAction):
             return False
         return True
 
-    def handle_post(self, form):
-        self.questionnaire_store_updater.update_answers(form)
+    def handle_post(self):
+        self.questionnaire_store_updater.update_answers(self.form)
 
-        return super().handle_post(form)
+        return super().handle_post()
