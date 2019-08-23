@@ -1,4 +1,5 @@
 from flask import current_app
+from google.api_core.retry import Retry
 from google.cloud import datastore
 from structlog import get_logger
 
@@ -34,6 +35,7 @@ class DatastoreStorage:
     def __init__(self, client):
         self.client = client
 
+    @Retry()
     def put(self, model, overwrite=True):
         if not overwrite:
             raise NotImplementedError('Unique key checking not supported')
@@ -51,6 +53,7 @@ class DatastoreStorage:
         entity.update(item)
         self.client.put(entity)
 
+    @Retry()
     def get_by_key(self, model_type, key_value):
         config = TABLE_CONFIG[model_type]
 
@@ -63,6 +66,7 @@ class DatastoreStorage:
         if item:
             return schema.load(item)
 
+    @Retry()
     def delete(self, model):
         config = TABLE_CONFIG[type(model)]
 
