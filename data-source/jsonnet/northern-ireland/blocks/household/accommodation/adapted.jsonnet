@@ -42,6 +42,12 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
           {
             label: 'Other',
             value: 'Other',
+            detail_answer: {
+              id: 'adapted-answer-other',
+              type: 'TextField',
+              mandatory: false,
+              label: 'Enter adaptation',
+            },
           },
         ],
       },

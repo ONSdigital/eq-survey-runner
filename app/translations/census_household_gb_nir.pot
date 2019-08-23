@@ -94,13 +94,13 @@ msgstr ""
 msgid "For example a ramp"
 msgstr ""
 
-msgid "Including storage heaters"
+msgid "For example storage heaters"
 msgstr ""
 
-msgid "Including coal"
+msgid "For example logs or waste wood"
 msgstr ""
 
-msgid "For example wood pellets, Biomass, air or ground heat source systems"
+msgid "For example coal"
 msgstr ""
 
 msgid "Shared ownership"
@@ -911,6 +911,13 @@ msgctxt ""
 msgid "Other"
 msgstr ""
 
+#. answer-id: adapted-answer-other
+msgctxt ""
+"Answer for: Has <em>{address}</em> been designed or adapted for any of "
+"the following?"
+msgid "Enter adaptation"
+msgstr ""
+
 #. answer-id: adapted-answer-exclusive
 msgctxt ""
 "Answer for: Has <em>{address}</em> been designed or adapted for any of "
@@ -950,7 +957,7 @@ msgstr ""
 
 #. answer-id: central-heating-answer
 msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
-msgid "Renewable energy"
+msgid "Renewable heating system"
 msgstr ""
 
 #. answer-id: central-heating-answer
@@ -991,6 +998,13 @@ msgctxt ""
 msgid "Other"
 msgstr ""
 
+#. answer-id: renewables-answer-other
+msgctxt ""
+"Answer for: What type of renewable energy systems does <em>{address}</em>"
+" have?"
+msgid "Enter renewable energy system"
+msgstr ""
+
 #. answer-id: renewables-answer-exclusive
 msgctxt ""
 "Answer for: What type of renewable energy systems does <em>{address}</em>"
@@ -1020,7 +1034,7 @@ msgstr ""
 
 #. answer-id: own-or-rent-answer
 msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
-msgid "Lives here rent free"
+msgid "Lives here rent-free"
 msgstr ""
 
 #. answer-id: who-rent-from-answer
