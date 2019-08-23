@@ -68,7 +68,8 @@ class PlaceholderParser:
             list_item_id = self._get_list_item_id(
                 transform.get('arguments', {})
                 .get('list_to_concatenate', {})
-                .get('list_item_selector')
+                .get('list_item_selector', {})
+                .get('id')
             )
             transform_args = {}
             for arg_key, arg_value in transform['arguments'].items():
