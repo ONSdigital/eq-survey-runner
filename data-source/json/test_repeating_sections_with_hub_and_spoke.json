@@ -1099,7 +1099,7 @@
             "repeat": {
                 "for_list": "visitor",
                 "title": {
-                    "text": "Visitor {person_name}",
+                    "text": "{person_name}",
                     "placeholders": [
                         {
                             "placeholder": "person_name",

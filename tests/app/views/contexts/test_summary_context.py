@@ -85,7 +85,6 @@ class TestSummaryContext(TestStandardSummaryContext):
         context = summary_context.final_summary()
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
-        print(context)
         self.assertEqual(len(context['summary']), 5)
         self.assertTrue('collapsible' in context['summary'])
 
@@ -120,7 +119,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
-        self.assertEqual(len(context['summary']), 4)
+        self.assertEqual(len(context['summary']), 5)
         self.assertTrue('title' in context['summary'])
 
 
@@ -164,7 +163,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
-        self.assertEqual(len(context['summary']), 5)
+        self.assertEqual(len(context['summary']), 6)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
         self.assertEqual(
@@ -202,7 +201,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
-        self.assertEqual(len(context['summary']), 5)
+        self.assertEqual(len(context['summary']), 6)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
         self.assertEqual(len(context_summary['groups'][0]['blocks']), 3)
@@ -237,7 +236,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
-        self.assertEqual(len(context['summary']), 5)
+        self.assertEqual(len(context['summary']), 6)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
         self.assertEqual(
@@ -270,7 +269,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
-        self.assertEqual(len(context['summary']), 5)
+        self.assertEqual(len(context['summary']), 6)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
         self.assertEqual(
@@ -304,7 +303,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
-        self.assertEqual(len(context['summary']), 5)
+        self.assertEqual(len(context['summary']), 6)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
         self.assertEqual(

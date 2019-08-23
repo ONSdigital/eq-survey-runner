@@ -18,10 +18,10 @@ class SummaryContext:
             list_store=self._list_store,
         )
         if current_location:
-            self._block_type = self._schema.get_block(self._current_location.block_id)[
-                'type'
-            ]
+            self._block = self._schema.get_block(self._current_location.block_id)
+            self._block_type = self._block['type']
         else:
+            self.block = None
             self._block_type = 'Summary'
 
     def _build_groups_for_section(self, section_id, list_item_id=None, section=None):
@@ -92,6 +92,7 @@ class SummaryContext:
             'summary': {
                 'groups': groups,
                 'answers_are_editable': True,
+                'collapsible': self._block.get('collapsible', False),
                 'summary_type': self._block_type,
             }
         }
