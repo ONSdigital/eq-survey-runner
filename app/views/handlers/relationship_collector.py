@@ -2,7 +2,6 @@ from app.questionnaire.location import Location
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.questionnaire.relationship_router import RelationshipRouter
 from app.questionnaire.schema_utils import transform_variants
-from app.views.contexts.question import build_question_context
 from app.views.handlers.question import Question
 
 
