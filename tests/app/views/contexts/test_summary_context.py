@@ -434,6 +434,7 @@ def test_context_for_section_list_summary(people_answer_store):
 
     assert context['summary']['list_summaries'] == expected
 
+
 @pytest.mark.usefixtures('app')
 def test_titles_for_repeating_section_summary(people_answer_store):
     schema = load_schema_from_name('test_repeating_sections_with_hub_and_spoke')

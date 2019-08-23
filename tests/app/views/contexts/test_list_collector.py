@@ -3,6 +3,7 @@ from app.utilities.schema import load_schema_from_name
 from app.views.contexts import list_collector
 from app.questionnaire.questionnaire_schema import DEFAULT_LANGUAGE_CODE
 
+
 @pytest.mark.usefixtures('app')
 def test_build_list_collector_context(
     list_collector_block, schema, people_answer_store, people_list_store, form
