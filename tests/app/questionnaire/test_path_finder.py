@@ -262,7 +262,7 @@ class TestPathFinder(
             )
         ]
 
-        assert routing_path == expected_path
+        self.assertEqual(routing_path, expected_path)
 
     def test_routing_path_empty_routing_rules(self):
         schema = load_schema_from_name('test_checkbox')
@@ -753,7 +753,4 @@ class TestPathFinder(
             )
         ]
 
-        print(routing_path, "\n")
-        print(expected_path)
-
-        assert routing_path == expected_path
+        self.assertEqual(routing_path, expected_path)

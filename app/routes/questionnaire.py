@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from  unittest import mock
 
 import flask_babel
 import humanize
@@ -385,7 +384,7 @@ def get_view_submission(schema):  # pylint: too-many-locals
             language_code = get_session_store().session_data.language_code
             summary_context = SummaryContext(language_code, schema, answer_store, list_store, metadata, None)
 
-            summary_rendered_context = summary_context._build_all_groups()
+            summary_rendered_context = summary_context.build_all_groups()
 
             context = {
                 'summary': {

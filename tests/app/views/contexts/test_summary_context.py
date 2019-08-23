@@ -8,8 +8,8 @@ from app.views.contexts.calculated_summary import (
     build_view_context_for_calculated_summary,
 )
 from app.utilities.schema import load_schema_from_name
-from tests.app.app_context_test_case import AppContextTestCase
 from app.questionnaire.questionnaire_schema import DEFAULT_LANGUAGE_CODE
+from tests.app.app_context_test_case import AppContextTestCase
 
 
 class TestStandardSummaryContext(AppContextTestCase):
@@ -77,7 +77,7 @@ class TestSummaryContext(TestStandardSummaryContext):
 
     def test_build_summary_rendering_context(self):
         summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, self.current_location)
-        summary_groups = summary_context._build_all_groups()
+        summary_groups = summary_context.build_all_groups()
         self.check_summary_rendering_context(summary_groups)
 
     def test_build_view_context_for_summary(self):
@@ -106,7 +106,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
 
         summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, current_location)
 
-        single_section_context = summary_context._build_groups_for_section('property-details-section')
+        single_section_context = summary_context.build_groups_for_section('property-details-section')
 
         self.check_summary_rendering_context(single_section_context)
 

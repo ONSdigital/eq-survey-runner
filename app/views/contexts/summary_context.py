@@ -4,6 +4,7 @@ from app.views.contexts.summary.group import Group
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.views.contexts.list_collector import build_list_items_summary_context
 
+
 class SummaryContext:
     def __init__(self, language, schema, answer_store, list_store, metadata, current_location):
         self._language = language
@@ -25,7 +26,7 @@ class SummaryContext:
             self.block = None
             self._block_type = 'Summary'
 
-    def _build_groups_for_section(self, section_id, list_item_id=None, section=None):
+    def build_groups_for_section(self, section_id, list_item_id=None, section=None):
         """
         Build a groups context for a particular section and list_item_id.
 
@@ -47,7 +48,7 @@ class SummaryContext:
             for group in section['groups']
         ]
 
-    def _build_all_groups(self):
+    def build_all_groups(self):
         all_groups = []
 
         for section in self._schema.get_sections():
@@ -58,10 +59,10 @@ class SummaryContext:
             if repeating_list:
                 for list_item_id in self._list_store[repeating_list].items:
                     all_groups.extend(
-                        self._build_groups_for_section(section_id, list_item_id)
+                        self.build_groups_for_section(section_id, list_item_id)
                     )
             else:
-                all_groups.extend(self._build_groups_for_section(section_id))
+                all_groups.extend(self.build_groups_for_section(section_id))
 
         return all_groups
 
@@ -83,11 +84,11 @@ class SummaryContext:
 
     def summary(self, section_id=None, list_item_id=None, section=None):
         if section_id or list_item_id:
-            groups = self._build_groups_for_section(section_id, list_item_id)
+            groups = self.build_groups_for_section(section_id, list_item_id)
         elif section:
-            groups = self._build_groups_for_section(section['id'], section=section)
+            groups = self.build_groups_for_section(section['id'], section=section)
         else:
-            groups = self._build_all_groups()
+            groups = self.build_all_groups()
 
         context = {
             'summary': {

@@ -1,4 +1,3 @@
-from app.data_model.answer import Answer
 from app.utilities.schema import load_schema_from_name
 from app.views.contexts import list_collector
 from app.questionnaire.questionnaire_schema import DEFAULT_LANGUAGE_CODE
@@ -83,5 +82,5 @@ def test_assert_primary_person_string_appended(
     )
 
     assert list_item_context[0]['primary_person'] is True
-    assert 'Toni Morrison (You)' == list_item_context[0]['item_title']
-    assert 'Barry Pheloung' == list_item_context[1]['item_title']
+    assert list_item_context[0]['item_title'] == 'Toni Morrison (You)'
+    assert list_item_context[1]['item_title'] == 'Barry Pheloung'

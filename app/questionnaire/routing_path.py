@@ -22,8 +22,6 @@ class RoutingPath:
         return key in self._set
 
     def __eq__(self, other):
-        print(tuple(other))
-        print(self._values)
         other_values = other
         if isinstance(other, RoutingPath):
             other_values = other._values  # pylint: disable=protected-access

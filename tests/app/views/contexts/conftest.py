@@ -11,9 +11,9 @@ from app.setup import create_app
 @pytest.fixture
 def app():
     setting_overrides = {'LOGIN_DISABLED': True}
-    app = create_app(setting_overrides=setting_overrides)
+    the_app = create_app(setting_overrides=setting_overrides)
 
-    return app
+    return the_app
 
 
 @pytest.fixture

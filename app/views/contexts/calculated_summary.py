@@ -140,7 +140,6 @@ def _get_formatted_total(
                 current_location=current_location,
             )
             for answer in question['answers']:
-                print(answer)
                 if not answer_format['type']:
                     answer_format = {
                         'type': answer['type'],
