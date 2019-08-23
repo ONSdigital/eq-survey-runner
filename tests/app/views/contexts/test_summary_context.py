@@ -1,5 +1,7 @@
 from unittest.mock import Mock, patch
 
+import pytest
+
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.data_model.answer_store import AnswerStore, Answer
 from app.data_model.list_store import ListStore
@@ -369,7 +371,8 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         )
 
 
-def test_context_for_section_list_summary(people_answer_store, app):
+@pytest.mark.usefixtures('app')
+def test_context_for_section_list_summary(people_answer_store):
     schema = load_schema_from_name('test_list_collector_section_summary')
     current_location = Location(
         block_id='people-list-section-summary', section_id='section'
@@ -431,8 +434,8 @@ def test_context_for_section_list_summary(people_answer_store, app):
 
     assert context['summary']['list_summaries'] == expected
 
-
-def test_titles_for_repeating_section_summary(people_answer_store, app):
+@pytest.mark.usefixtures('app')
+def test_titles_for_repeating_section_summary(people_answer_store):
     schema = load_schema_from_name('test_repeating_sections_with_hub_and_spoke')
     current_location = Location(
         block_id='personal-summary',
