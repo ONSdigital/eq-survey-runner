@@ -85,8 +85,8 @@ function(census_date) {
         type: 'Checkbox',
         options: [
           {
-            label: 'No, there are no visitors staying overnight',
-            value: 'No, there are no visitors staying overnight',
+            label: 'No, there are no visitors staying overnight on 13 October 2019',
+            value: 'No, there are no visitors staying overnight on 13 October 2019',
           },
         ],
       },
