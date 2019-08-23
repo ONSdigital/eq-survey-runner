@@ -3,13 +3,9 @@ from unittest.mock import Mock, patch
 from app.data_model.answer_store import AnswerStore, Answer
 from app.data_model.list_store import ListStore
 from app.questionnaire.location import Location
+from app.views.contexts.summary_context import build_summary_rendering_context
+from app.views.handlers.summary import Summary
 from app.utilities.schema import load_schema_from_name
-from app.views.contexts.summary_context import (
-    build_summary_rendering_context,
-    build_view_context_for_final_summary,
-    build_view_context_for_section_summary,
-    build_view_context_for_calculated_summary,
-)
 from tests.app.app_context_test_case import AppContextTestCase
 from app.questionnaire.questionnaire_schema import DEFAULT_LANGUAGE_CODE
 
@@ -78,7 +74,7 @@ class TestSummaryContext(TestStandardSummaryContext):
         )
 
     def test_build_summary_rendering_context(self):
-        summary_rendering_context = build_summary_rendering_context(
+        summary_rendering_context = Summary(
             self.schema, self.answer_store, self.list_store, self.metadata
         )
         self.check_summary_rendering_context(summary_rendering_context)
