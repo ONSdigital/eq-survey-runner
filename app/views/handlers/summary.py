@@ -6,7 +6,7 @@ class Summary(Content):
     def __init__(self, *args):
         super().__init__(*args)
 
-    def get_context(self, _):
+    def get_context(self):
         summary_context = SummaryContext(
             self._language,
             self._schema,

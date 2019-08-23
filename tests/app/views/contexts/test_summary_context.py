@@ -9,6 +9,7 @@ from app.views.contexts.calculated_summary import (
 )
 from app.utilities.schema import load_schema_from_name
 from tests.app.app_context_test_case import AppContextTestCase
+from app.questionnaire.questionnaire_schema import DEFAULT_LANGUAGE_CODE
 
 
 class TestStandardSummaryContext(AppContextTestCase):
@@ -28,6 +29,7 @@ class TestStandardSummaryContext(AppContextTestCase):
             'collection_exercise_sid': '789',
             'schema_name': '0000_1',
         }
+        self.language = 'en'
 
     def check_context(self, context):
         self.assertEqual(len(context), 1)
@@ -72,7 +74,6 @@ class TestSummaryContext(TestStandardSummaryContext):
         self.current_location = Location(
             section_id='default-section', block_id='summary'
         )
-        self.language = 'en'
 
     def test_build_summary_rendering_context(self):
         summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, self.current_location)
@@ -86,6 +87,7 @@ class TestSummaryContext(TestStandardSummaryContext):
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
+        self.assertTrue('is_view_submission_response_enabled' in context['summary'])
         self.assertTrue('collapsible' in context['summary'])
 
 
@@ -96,7 +98,6 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
         self.answer_store = AnswerStore()
         self.list_store = ListStore()
         self.block_type = 'SectionSummary'
-        self.language = 'en'
 
     def test_build_summary_rendering_context(self):
         current_location = Location(
@@ -119,7 +120,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
-        self.assertEqual(len(context['summary']), 5)
+        self.assertEqual(len(context['summary']), 6)
         self.assertTrue('title' in context['summary'])
 
 
@@ -319,3 +320,66 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.assertEqual(
             context_summary['calculated_question']['answers'][0]['value'], '22'
         )
+
+
+def test_context_for_section_list_summary(people_answer_store, app):
+    schema = load_schema_from_name('test_list_collector_section_summary')
+    current_location = Location(
+        block_id='people-list-section-summary', section_id='section'
+    )
+
+    summary_context = SummaryContext(
+        DEFAULT_LANGUAGE_CODE,
+        schema,
+        people_answer_store,
+        ListStore(
+            [
+                {'items': ['PlwgoG', 'UHPLbX'], 'name': 'people'},
+                {'items': ['gTrlio'], 'name': 'visitors'},
+            ]
+        ),
+        {},
+        current_location
+        )
+    context = summary_context.section_summary()
+
+    expected = [
+        {
+            'add_link': '/questionnaire/people/add-person/',
+            'add_link_text': 'Add someone to this household',
+            'empty_list_text': 'There are no householders',
+            'list_items': [
+                {
+                    'edit_link': '/questionnaire/people/PlwgoG/edit-person/',
+                    'item_title': 'Toni Morrison',
+                    'primary_person': False,
+                    'remove_link': '/questionnaire/people/PlwgoG/remove-person/',
+                },
+                {
+                    'edit_link': '/questionnaire/people/UHPLbX/edit-person/',
+                    'item_title': 'Barry Pheloung',
+                    'primary_person': False,
+                    'remove_link': '/questionnaire/people/UHPLbX/remove-person/',
+                },
+            ],
+            'title': 'Household members on 13 October 2019',
+            'list_name': 'people',
+        },
+        {
+            'add_link': '/questionnaire/visitors/add-visitor/',
+            'add_link_text': 'Add another visitor to this household',
+            'empty_list_text': 'There are no visitors',
+            'list_items': [
+                {
+                    'edit_link': '/questionnaire/visitors/gTrlio/edit-visitor-person/',
+                    'item_title': '',
+                    'primary_person': False,
+                    'remove_link': '/questionnaire/visitors/gTrlio/remove-visitor/',
+                }
+            ],
+            'title': 'Visitors staying overnight on 13 October 2019',
+            'list_name': 'visitors',
+        },
+    ]
+
+    assert context['summary']['list_summaries'] == expected

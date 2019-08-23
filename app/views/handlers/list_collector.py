@@ -20,24 +20,24 @@ class ListCollector(Question):
 
         return super().get_next_location_url()
 
-    def get_context(self, form):
+    def get_context(self):
         return build_list_collector_context(
             self.rendered_block,
             self._schema,
             self._questionnaire_store.answer_store,
             self._questionnaire_store.list_store,
             self._language,
-            form,
+            self.form,
         )
 
-    def handle_post(self, form):
+    def handle_post(self):
         if (
-            form.data[self.rendered_block['add_answer']['id']]
+            self.form.data[self.rendered_block['add_answer']['id']]
             == self.rendered_block['add_answer']['value']
         ):
             self._is_adding = True
-            self.questionnaire_store_updater.update_answers(form)
+            self.questionnaire_store_updater.update_answers(self.form)
 
             self.questionnaire_store_updater.save()
         else:
-            return super().handle_post(form)
+            return super().handle_post()

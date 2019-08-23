@@ -81,6 +81,9 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def get_block(self, block_id):
         return self._blocks_by_id.get(block_id)
 
+    def is_block_valid(self, block_id):
+        return bool(self.get_block(block_id))
+
     def get_block_for_answer_id(self, answer_id):
         return self._block_for_answer(answer_id)
 
@@ -154,6 +157,16 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
             if block['type'] == 'Question':
                 return True
         return False
+
+    @staticmethod
+    def get_visible_list_blocks_for_section(section):
+        list_collector_blocks = []
+        for group in section['groups']:
+            for block in group['blocks']:
+                hidden = block.get('hide_on_section_summary', False)
+                if block['type'] == 'ListCollector' and not hidden:
+                    list_collector_blocks.append(block)
+        return list_collector_blocks
 
     @classmethod
     def get_answer_ids_for_question(cls, question):

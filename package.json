@@ -16,7 +16,7 @@
     "lint:tests": "rm -rf ./tests/functional/generated_pages && eslint tests/functional --fix",
     "lint:data-source": "eslint data-source/json/*.json --fix",
     "test_functional": "chimp tests/functional/chimp.js",
-    "generate_pages": "rm -rf ./tests/functional/generated_pages && cd tests/functional && pipenv run ./generate_pages.py ../../data/en/ ./generated_pages -r '../../base_pages' && cd ../..",
+    "generate_pages": "rm -rf ./tests/functional/generated_pages && pipenv run python -m tests.functional.generate_pages data/en/ ./tests/functional/generated_pages -r '../../base_pages'",
     "format": "yarn format:data-source && yarn format:python",
     "format:data-source": "prettier data-source/json/*.json --write",
     "format:python": "pipenv run black app tests",

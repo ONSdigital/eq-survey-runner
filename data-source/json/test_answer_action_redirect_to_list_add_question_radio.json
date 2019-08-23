@@ -3,10 +3,9 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.3",
     "survey_id": "0",
-    "title": "Test Relationships",
+    "title": "Test RedirectToListAddQuestion action",
     "theme": "default",
-    "description": "A questionnaire to test capturing of relationships.",
-    "messages": {},
+    "description": "A questionnaire to test RedirectToListAddQuestion answer action",
     "metadata": [
         {
             "name": "user_id",
@@ -27,14 +26,59 @@
             "groups": [
                 {
                     "id": "group",
-                    "title": "Relationships",
+                    "title": "List",
                     "blocks": [
                         {
-                            "id": "list-collector",
+                            "type": "Question",
+                            "id": "anyone-usually-live-at",
+                            "question": {
+                                "type": "General",
+                                "id": "anyone-usually-live-at-question",
+                                "title": "Does anyone usually live at 1 Pleasant Lane?",
+                                "guidance": {
+                                    "contents": [
+                                        {
+                                            "title": "Outcomes",
+                                            "list": [
+                                                "“Yes” and list <strong>is</strong> empty - Takes you to the list collector‘s <strong>add</strong> question.",
+                                                "“Yes” and list is <strong>not</strong> empty - Takes you directly to the list collector.",
+                                                "“No” - Takes you directly to the list collector."
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "answers": [
+                                    {
+                                        "type": "Radio",
+                                        "id": "anyone-usually-live-at-answer",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes",
+                                                "action": {
+                                                    "type": "RedirectToListAddQuestion",
+                                                    "params": {
+                                                        "block_id": "add-person",
+                                                        "list_name": "people"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": "anyone-else-live-at",
                             "type": "ListCollector",
                             "for_list": "people",
                             "add_answer": {
-                                "id": "anyone-else",
+                                "id": "anyone-else-live-at-answer",
                                 "value": "Yes"
                             },
                             "remove_answer": {
@@ -47,7 +91,7 @@
                                 "title": "Does anyone else live at 1 Pleasant Lane?",
                                 "answers": [
                                     {
-                                        "id": "anyone-else",
+                                        "id": "anyone-else-live-at-answer",
                                         "mandatory": true,
                                         "type": "Radio",
                                         "options": [
@@ -69,7 +113,18 @@
                                 "question": {
                                     "id": "add-question",
                                     "type": "General",
-                                    "title": "What is the name of the person who isn't you?",
+                                    "title": "What is the name of the person?",
+                                    "guidance": {
+                                        "contents": [
+                                            {
+                                                "title": "Previous link",
+                                                "list": [
+                                                    "If a valid <strong>return_to</strong> is in the URL and list <strong>is</strong> empty - Returns you back to the question you just came from.",
+                                                    "If the list is <strong>not</strong> empty - Go back to the list collector."
+                                                ]
+                                            }
+                                        ]
+                                    },
                                     "answers": [
                                         {
                                             "id": "first-name",
@@ -136,7 +191,7 @@
                                 }
                             },
                             "summary": {
-                                "title": "People who live here",
+                                "title": "Household members",
                                 "item_title": {
                                     "text": "{person_name}",
                                     "placeholders": [
@@ -158,65 +213,24 @@
                                     ]
                                 }
                             }
-                        },
-                        {
-                            "type": "RelationshipCollector",
-                            "id": "relationships",
-                            "title": "This will iterate over the people list, capturing the one way relationships.",
-                            "for_list": "people",
-                            "question": {
-                                "id": "relationship-question",
-                                "type": "General",
-                                "title": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
-                                "answers": [
-                                    {
-                                        "id": "relationship-answer",
-                                        "mandatory": true,
-                                        "type": "Relationship",
-                                        "playback": "{second_person_name} is {first_person_name_possessive} <em>…</em>",
-                                        "options": [
-                                            {
-                                                "label": "Husband or Wife",
-                                                "value": "Husband or Wife",
-                                                "title": "Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>",
-                                                "playback": "{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>"
-                                            },
-                                            {
-                                                "label": "Legally registered civil partner",
-                                                "value": "Legally registered civil partner",
-                                                "title": "Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>",
-                                                "playback": "{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>"
-                                            },
-                                            {
-                                                "label": "Son or daughter",
-                                                "value": "Son or daughter",
-                                                "title": "Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>",
-                                                "playback": "{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            "skip_conditions": [
-                                {
-                                    "when": [
-                                        {
-                                            "list": "people",
-                                            "condition": "less than",
-                                            "value": 2
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Confirmation",
-                            "id": "confirmation",
-                            "content": {
-                                "title": "Thank you for your answers, do you wish to submit"
-                            }
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "summary-group",
+                    "title": "Summary"
                 }
             ]
         }

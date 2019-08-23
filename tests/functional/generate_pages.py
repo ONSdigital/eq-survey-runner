@@ -7,6 +7,8 @@ import os
 import re
 from string import Template
 
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
+
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
@@ -194,17 +196,41 @@ LIST_SUMMARY_LABEL_GETTER = r"""  listLabel(instance) { return `tbody:nth-child(
 
 """
 
-LIST_SUMMARY_EDIT_LINK_GETTER = r"""  listEditLink(instance) { return `tbody:nth-child(${instance}) td:last-child a[data-qa='change-item-link'`; }
+LIST_SUMMARY_EDIT_LINK_GETTER = r"""  listEditLink(instance) { return `tbody:nth-child(${instance}) td:last-child a[data-qa='change-item-link']`; }
 
 """
 
-LIST_SUMMARY_REMOVE_LINK_GETTER = r"""  listRemoveLink(instance) { return `tbody:nth-child(${instance}) td:last-child a[data-qa='remove-item-link'`; }
+LIST_SUMMARY_REMOVE_LINK_GETTER = r"""  listRemoveLink(instance) { return `tbody:nth-child(${instance}) td:last-child a[data-qa='remove-item-link']`; }
 
 """
 
 LIST_SUMMARY_LIST_GETTER = r"""  listSummary() { return '.list__item'; }
 
 """
+
+LIST_SECTION_SUMMARY_LABEL_GETTER = Template(
+    r"""  ${list_name}ListLabel(listItemInstance) { return 'div[data-qa="${list_name}-list-summary"] tbody:nth-child(' + listItemInstance + ') td:first-child'; }
+
+"""
+)
+
+LIST_SECTION_SUMMARY_ADD_LINK_GETTER = Template(
+    r"""  ${list_name}ListAddLink() { return 'div[data-qa="${list_name}-list-summary"] a[data-qa="add-item-link"]'; }
+
+"""
+)
+
+LIST_SECTION_SUMMARY_EDIT_LINK_GETTER = Template(
+    r"""  ${list_name}ListEditLink(listItemInstance) { return 'div[data-qa="${list_name}-list-summary"] tbody:nth-child(' + listItemInstance + ') td:last-child a[data-qa="change-item-link"]'; }
+
+"""
+)
+
+LIST_SECTION_SUMMARY_REMOVE_LINK_GETTER = Template(
+    r"""  ${list_name}ListRemoveLink(listItemInstance) { return 'div[data-qa="${list_name}-list-summary"] tbody:nth-child(' + listItemInstance + ') td:last-child a[data-qa="remove-item-link"]'; }
+
+"""
+)
 
 RELATIONSHIP_PLAYBACK_GETTER = r"""  playback() { return '[class*="relationships__playback"]'; }
 
@@ -365,6 +391,9 @@ def process_calculated_summary(answers, page_spec):
 
 def process_summary(schema_data, page_spec):
     for section in schema_data['sections']:
+        list_collector_blocks = QuestionnaireSchema.get_visible_list_blocks_for_section(
+            section
+        )
         for group in section['groups']:
             for block in group['blocks']:
                 for question in get_all_questions(block):
@@ -403,6 +432,27 @@ def process_summary(schema_data, page_spec):
 
                 if block['type'] == 'SectionSummary':
                     page_spec.write(SUMMARY_SHOW_ALL_BUTTON.substitute())
+
+                    for list_instance, list_block in enumerate(list_collector_blocks):
+                        list_context = {'list_name': list_block['for_list']}
+                        page_spec.write(
+                            LIST_SECTION_SUMMARY_ADD_LINK_GETTER.substitute(
+                                list_context
+                            )
+                        )
+                        page_spec.write(
+                            LIST_SECTION_SUMMARY_EDIT_LINK_GETTER.substitute(
+                                list_context
+                            )
+                        )
+                        page_spec.write(
+                            LIST_SECTION_SUMMARY_REMOVE_LINK_GETTER.substitute(
+                                list_context
+                            )
+                        )
+                        page_spec.write(
+                            LIST_SECTION_SUMMARY_LABEL_GETTER.substitute(list_context)
+                        )
 
             group_context = {
                 'group_id_camel': camel_case(generate_pascal_case_from_id(group['id'])),
@@ -551,7 +601,7 @@ def process_block(
         page_spec.write(CONSTRUCTOR.substitute(block_context))
         if block['type'] in ('Summary', 'SectionSummary'):
             process_summary(schema_data, page_spec)
-        elif block['type'] in ('CalculatedSummary'):
+        elif block['type'] == 'CalculatedSummary':
             process_calculated_summary(
                 block['calculation']['answers_to_calculate'], page_spec
             )

@@ -6,6 +6,7 @@ from structlog import get_logger
 from app.data_model.progress_store import CompletionStatus
 from app.questionnaire.location import InvalidLocationException, Location
 from app.questionnaire.path_finder import PathFinder
+from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.router import Router
 
@@ -13,17 +14,22 @@ logger = get_logger()
 
 
 class BlockHandler:
-    def __init__(self, schema, questionnaire_store, language, current_location):
+    def __init__(
+        self, schema, questionnaire_store, language, current_location, return_to
+    ):
         self._schema = schema
         self._questionnaire_store = questionnaire_store
         self._language = language
         self._current_location = current_location
+        self._return_to = return_to
         self.block = self._schema.get_block(current_location.block_id)
 
         self._questionnaire_store_updater = None
         self._path_finder = None
+        self._placeholder_renderer = None
         self._router = None
         self._routing_path = self._get_routing_path()
+        self.form = None
 
         if not self.is_location_valid():
             raise InvalidLocationException(
@@ -58,6 +64,19 @@ class BlockHandler:
         return self._path_finder
 
     @property
+    def placeholder_renderer(self):
+        if not self._placeholder_renderer:
+            self._placeholder_renderer = PlaceholderRenderer(
+                self._language,
+                schema=self._schema,
+                answer_store=self._questionnaire_store.answer_store,
+                metadata=self._questionnaire_store.metadata,
+                list_item_id=self._current_location.list_item_id,
+            )
+
+        return self._placeholder_renderer
+
+    @property
     def router(self):
         if not self._router:
             self._router = Router(
@@ -67,8 +86,8 @@ class BlockHandler:
             )
         return self._router
 
-    def save_on_signout(self, form):
-        self.questionnaire_store_updater.update_answers(form)
+    def save_on_sign_out(self):
+        self.questionnaire_store_updater.update_answers(self.form)
         # The location needs to be removed as we may have previously completed this location
         self.questionnaire_store_updater.remove_completed_location()
         self.questionnaire_store_updater.save()
@@ -88,7 +107,7 @@ class BlockHandler:
             self._current_location, self._routing_path
         )
 
-    def handle_post(self, _):
+    def handle_post(self):
         self.questionnaire_store_updater.add_completed_location()
         self._update_section_completeness()
         self.questionnaire_store_updater.save()

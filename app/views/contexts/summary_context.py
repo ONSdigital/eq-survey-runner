@@ -1,7 +1,8 @@
+from flask import url_for
 from app.questionnaire.path_finder import PathFinder
 from app.views.contexts.summary.group import Group
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
-
+from app.views.contexts.list_collector import build_list_items_summary_context
 
 class SummaryContext:
     def __init__(self, language, schema, answer_store, list_store, metadata, current_location):
@@ -100,6 +101,7 @@ class SummaryContext:
 
     def section_summary(self):
         section_id = self._current_location.section_id
+        section = self._schema.get_section(self._current_location.section_id)
         list_item_id = self._current_location.list_item_id
 
         context = self.summary(section_id, list_item_id)
@@ -120,7 +122,39 @@ class SummaryContext:
                 )
                 title = placeholder_renderer.render(repeating_title)
 
-        context['summary'].update({'title': title})
+        placeholder_renderer = PlaceholderRenderer(
+            language=self._language,
+            schema=self._schema,
+            answer_store=self._answer_store,
+            metadata=self._metadata,
+            list_item_id=list_item_id,
+        )
+
+        list_collector_blocks = self._schema.get_visible_list_blocks_for_section(section)
+
+        list_summaries = []
+
+        for list_collector_block in list_collector_blocks:
+            rendered_summary = placeholder_renderer.render(list_collector_block['summary'])
+
+            list_summary = {
+                'title': rendered_summary['title'],
+                'add_link': url_for(
+                    'questionnaire.block',
+                    list_name=list_collector_block['for_list'],
+                    block_id=list_collector_block['add_block']['id'],
+                ),
+                'add_link_text': rendered_summary['add_link_text'],
+                'empty_list_text': rendered_summary['empty_list_text'],
+                'list_items': build_list_items_summary_context(
+                    list_collector_block, self._schema, self._answer_store, self._list_store, self._language
+                ),
+                'list_name': list_collector_block['for_list'],
+            }
+            list_summaries.append(list_summary)
+
+        context['summary'].update({'title': title, 'list_summaries': list_summaries})
+
         return context
 
 

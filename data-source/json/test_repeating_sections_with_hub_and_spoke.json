@@ -193,6 +193,7 @@
                                 }
                             },
                             "summary": {
+                                "title": "Household members",
                                 "item_title": {
                                     "text": "{person_name}",
                                     "placeholders": [
@@ -340,6 +341,7 @@
                                 }
                             },
                             "summary": {
+                                "title": "Household members",
                                 "item_title": {
                                     "text": "{person_name}",
                                     "placeholders": [
@@ -475,6 +477,7 @@
                                 }
                             },
                             "summary": {
+                                "title": "Household visitors",
                                 "item_title": {
                                     "text": "{person_name}",
                                     "placeholders": [
