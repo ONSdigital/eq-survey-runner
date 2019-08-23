@@ -258,8 +258,8 @@ class TestPathFinder(
                 section_id='personal-details-section',
                 block_id='personal-summary',
                 list_name='people',
-                list_item_id='abc123'
-            )
+                list_item_id='abc123',
+            ),
         ]
 
         self.assertEqual(routing_path, expected_path)
@@ -719,7 +719,7 @@ class TestPathFinder(
                 section_id='personal-details-section',
                 block_id='personal-summary',
                 list_name='people',
-                list_item_id='abc123'
+                list_item_id='abc123',
             ),
             Location(
                 section_id='personal-details-section',
@@ -749,8 +749,8 @@ class TestPathFinder(
                 section_id='personal-details-section',
                 block_id='personal-summary',
                 list_name='people',
-                list_item_id='123abc'
-            )
+                list_item_id='123abc',
+            ),
         ]
 
         self.assertEqual(routing_path, expected_path)

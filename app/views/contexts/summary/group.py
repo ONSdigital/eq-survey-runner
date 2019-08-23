@@ -32,13 +32,7 @@ class Group:
 
     @staticmethod
     def _build_blocks(
-        group_schema,
-        path,
-        answer_store,
-        list_store,
-        metadata,
-        schema,
-        current_location,
+        group_schema, path, answer_store, list_store, metadata, schema, current_location
     ):
         blocks = []
 

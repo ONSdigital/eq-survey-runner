@@ -46,7 +46,7 @@ class TestSection(TestCase):
                 self.list_store,
                 self.metadata,
                 self.schema,
-                location
+                location,
             )
 
         # Then

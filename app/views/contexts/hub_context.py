@@ -116,18 +116,15 @@ class HubContext:
     def _get_row_for_repeating_section(self, section_title, section_id, list_item_id):
         repeating_title = self._schema.get_repeating_title_for_section(section_id)
 
-        if repeating_title:
-            placeholder_renderer = PlaceholderRenderer(
-                language=self._language,
-                schema=self._schema,
-                answer_store=self._answer_store,
-                metadata=self._metadata,
-                list_item_id=list_item_id,
-            )
+        placeholder_renderer = PlaceholderRenderer(
+            language=self._language,
+            schema=self._schema,
+            answer_store=self._answer_store,
+            metadata=self._metadata,
+            list_item_id=list_item_id,
+        )
 
-            title = placeholder_renderer.render(repeating_title)
-        else:
-            title = section_title
+        title = placeholder_renderer.render(repeating_title)
 
         return self._get_row_for_section(title, section_id, list_item_id)
 

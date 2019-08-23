@@ -1,5 +1,6 @@
 from unittest.mock import Mock, patch
 
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.data_model.answer_store import AnswerStore, Answer
 from app.data_model.list_store import ListStore
 from app.questionnaire.location import Location
@@ -7,7 +8,7 @@ from app.views.contexts.summary_context import SummaryContext
 from app.views.contexts.calculated_summary import (
     build_view_context_for_calculated_summary,
 )
-from app.utilities.schema import load_schema_from_name
+from app.utilities.schema import load_schema_from_name, _load_schema_file
 from app.questionnaire.questionnaire_schema import DEFAULT_LANGUAGE_CODE
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -76,12 +77,26 @@ class TestSummaryContext(TestStandardSummaryContext):
         )
 
     def test_build_summary_rendering_context(self):
-        summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, self.current_location)
+        summary_context = SummaryContext(
+            self.language,
+            self.schema,
+            self.answer_store,
+            self.list_store,
+            self.metadata,
+            self.current_location,
+        )
         summary_groups = summary_context.build_all_groups()
         self.check_summary_rendering_context(summary_groups)
 
     def test_build_view_context_for_summary(self):
-        summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, self.current_location)
+        summary_context = SummaryContext(
+            self.language,
+            self.schema,
+            self.answer_store,
+            self.list_store,
+            self.metadata,
+            self.current_location,
+        )
 
         context = summary_context.final_summary()
         self.check_context(context)
@@ -89,6 +104,22 @@ class TestSummaryContext(TestStandardSummaryContext):
         self.assertEqual(len(context['summary']), 5)
         self.assertTrue('is_view_submission_response_enabled' in context['summary'])
         self.assertTrue('collapsible' in context['summary'])
+
+    def test_build_view_context_for_summary_no_view_submission(self):
+        schema_json = _load_schema_file('test_summary', DEFAULT_LANGUAGE_CODE)
+        schema_json.pop('view_submitted_response')
+        schema = QuestionnaireSchema(schema_json, DEFAULT_LANGUAGE_CODE)
+        summary_context = SummaryContext(
+            self.language,
+            schema,
+            self.answer_store,
+            self.list_store,
+            self.metadata,
+            self.current_location,
+        )
+
+        context = summary_context.final_summary()
+        self.assertFalse(context['summary']['is_view_submission_response_enabled'])
 
 
 class TestSectionSummaryContext(TestStandardSummaryContext):
@@ -104,9 +135,18 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
             section_id='property-details-section', block_id='property-details-summary'
         )
 
-        summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, current_location)
+        summary_context = SummaryContext(
+            self.language,
+            self.schema,
+            self.answer_store,
+            self.list_store,
+            self.metadata,
+            current_location,
+        )
 
-        single_section_context = summary_context.build_groups_for_section('property-details-section')
+        single_section_context = summary_context.build_groups_for_section(
+            'property-details-section'
+        )
 
         self.check_summary_rendering_context(single_section_context)
 
@@ -115,7 +155,14 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
             section_id='property-details-section', block_id='property-details-summary'
         )
 
-        summary_context = SummaryContext(self.language, self.schema, self.answer_store, self.list_store, self.metadata, current_location)
+        summary_context = SummaryContext(
+            self.language,
+            self.schema,
+            self.answer_store,
+            self.list_store,
+            self.metadata,
+            current_location,
+        )
         context = summary_context.section_summary()
 
         self.check_context(context)
@@ -339,8 +386,8 @@ def test_context_for_section_list_summary(people_answer_store, app):
             ]
         ),
         {},
-        current_location
-        )
+        current_location,
+    )
     context = summary_context.section_summary()
 
     expected = [
@@ -383,3 +430,44 @@ def test_context_for_section_list_summary(people_answer_store, app):
     ]
 
     assert context['summary']['list_summaries'] == expected
+
+
+def test_titles_for_repeating_section_summary(people_answer_store, app):
+    schema = load_schema_from_name('test_repeating_sections_with_hub_and_spoke')
+    current_location = Location(
+        block_id='personal-summary',
+        section_id='personal-details-section',
+        list_name='people',
+        list_item_id='PlwgoG',
+    )
+
+    summary_context = SummaryContext(
+        DEFAULT_LANGUAGE_CODE,
+        schema,
+        people_answer_store,
+        ListStore(
+            [
+                {'items': ['PlwgoG', 'UHPLbX'], 'name': 'people'},
+                {'items': ['gTrlio'], 'name': 'visitors'},
+            ]
+        ),
+        {},
+        current_location,
+    )
+
+    context = summary_context.section_summary()
+
+    assert context['summary']['title'] == 'Toni Morrison'
+
+    current_location = Location(
+        block_id='personal-summary',
+        section_id='personal-details-section',
+        list_name='people',
+        list_item_id='UHPLbX',
+    )
+
+    # pylint: disable=protected-access
+    summary_context._current_location = current_location
+
+    context = summary_context.section_summary()
+    assert context['summary']['title'] == 'Barry Pheloung'

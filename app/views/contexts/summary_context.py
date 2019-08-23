@@ -6,7 +6,9 @@ from app.views.contexts.list_collector import build_list_items_summary_context
 
 
 class SummaryContext:
-    def __init__(self, language, schema, answer_store, list_store, metadata, current_location):
+    def __init__(
+        self, language, schema, answer_store, list_store, metadata, current_location
+    ):
         self._language = language
         self._answer_store = answer_store
         self._list_store = list_store
@@ -49,20 +51,13 @@ class SummaryContext:
         ]
 
     def build_all_groups(self):
+        """ NB: Does not support repeating sections (final summary and view submission)"""
         all_groups = []
 
         for section in self._schema.get_sections():
             section_id = section['id']
 
-            repeating_list = self._schema.get_repeating_list_for_section(section_id)
-
-            if repeating_list:
-                for list_item_id in self._list_store[repeating_list].items:
-                    all_groups.extend(
-                        self.build_groups_for_section(section_id, list_item_id)
-                    )
-            else:
-                all_groups.extend(self.build_groups_for_section(section_id))
+            all_groups.extend(self.build_groups_for_section(section_id))
 
         return all_groups
 
@@ -76,7 +71,7 @@ class SummaryContext:
                 ),
                 'collapsible': self._schema.get_block(
                     self._current_location.block_id
-                ).get('collapsible', False)
+                ).get('collapsible', False),
             }
         )
 
@@ -131,12 +126,16 @@ class SummaryContext:
             list_item_id=list_item_id,
         )
 
-        list_collector_blocks = self._schema.get_visible_list_blocks_for_section(section)
+        list_collector_blocks = self._schema.get_visible_list_blocks_for_section(
+            section
+        )
 
         list_summaries = []
 
         for list_collector_block in list_collector_blocks:
-            rendered_summary = placeholder_renderer.render(list_collector_block['summary'])
+            rendered_summary = placeholder_renderer.render(
+                list_collector_block['summary']
+            )
 
             list_summary = {
                 'title': rendered_summary['title'],
@@ -148,7 +147,11 @@ class SummaryContext:
                 'add_link_text': rendered_summary['add_link_text'],
                 'empty_list_text': rendered_summary['empty_list_text'],
                 'list_items': build_list_items_summary_context(
-                    list_collector_block, self._schema, self._answer_store, self._list_store, self._language
+                    list_collector_block,
+                    self._schema,
+                    self._answer_store,
+                    self._list_store,
+                    self._language,
                 ),
                 'list_name': list_collector_block['for_list'],
             }

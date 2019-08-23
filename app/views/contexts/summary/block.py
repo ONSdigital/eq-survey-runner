@@ -32,10 +32,7 @@ class Block:
                 list_item_id=self.current_location.list_item_id,
             )
         else:
-            return url_for(
-                'questionnaire.block',
-                block_id=block_id,
-            )
+            return url_for('questionnaire.block', block_id=block_id)
 
     @staticmethod
     def get_question(

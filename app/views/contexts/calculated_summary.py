@@ -22,12 +22,7 @@ def build_view_context_for_calculated_summary(
     )
 
     summary_context = SummaryContext(
-        language,
-        schema,
-        answer_store,
-        list_store,
-        metadata,
-        current_location,
+        language, schema, answer_store, list_store, metadata, current_location
     )
 
     context = summary_context.summary(section=calculated_section)

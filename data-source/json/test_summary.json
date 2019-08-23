@@ -6,6 +6,10 @@
     "title": "Other input fields",
     "theme": "default",
     "description": "A questionnaire to demo radio field Other input.",
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 5
+    },
     "metadata": [
         {
             "name": "user_id",
