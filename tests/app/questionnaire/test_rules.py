@@ -184,20 +184,20 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         self.assertFalse(evaluate_rule(when, []))
 
     def test_evaluate_rule_checkbox_contains_any(self):
-        when = {'values': ['a', 'b'], 'condition': 'contains any'}
+        when = {'values': ['aaa', 'bbb'], 'condition': 'contains any'}
 
-        self.assertTrue(evaluate_rule(when, ['a', 'b', 'c']))
-        self.assertTrue(evaluate_rule(when, ['a']))
-        self.assertTrue(evaluate_rule(when, ['b', 'c']))
-        self.assertFalse(evaluate_rule(when, ['c']))
+        self.assertTrue(evaluate_rule(when, ['aaa', 'bbb', 'ccc']))
+        self.assertTrue(evaluate_rule(when, ['aaa']))
+        self.assertTrue(evaluate_rule(when, ['bbb', 'ccc']))
+        self.assertFalse(evaluate_rule(when, ['ccc']))
 
     def test_evaluate_rule_checkbox_not_contains_any(self):
-        when = {'values': ['a', 'b'], 'condition': 'not contains any'}
+        when = {'values': ['aaa', 'bbb'], 'condition': 'not contains any'}
 
-        self.assertTrue(evaluate_rule(when, ['c']))
-        self.assertFalse(evaluate_rule(when, ['b', 'c']))
-        self.assertFalse(evaluate_rule(when, ['a', 'b']))
-        self.assertFalse(evaluate_rule(when, ['a', 'b', 'c']))
+        self.assertTrue(evaluate_rule(when, ['ccc']))
+        self.assertFalse(evaluate_rule(when, ['bbb', 'ccc']))
+        self.assertFalse(evaluate_rule(when, ['aaa', 'bbb']))
+        self.assertFalse(evaluate_rule(when, ['aaa', 'bbb', 'ccc']))
 
     def test_evaluate_rule_checkbox_not_contains_all(self):
         when = {'values': ['a', 'b'], 'condition': 'not contains all'}

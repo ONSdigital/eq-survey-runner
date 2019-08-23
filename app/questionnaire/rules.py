@@ -77,11 +77,11 @@ def evaluate_condition(condition, answer_value, match_value):
         'contains any':
             lambda answer_value, match_value: answer_and_match
             and isinstance(match_value, list)
-            and bool(set(answer_value) & set(match_value)),
+            and bool(set(answer_value) & set(match_value)) if isinstance(answer_value, list) else answer_value in match_value,
         'not contains any':
             lambda answer_value, match_value: answer_and_match
             and isinstance(match_value, list)
-            and set(answer_value).isdisjoint(set(match_value)),
+            and set(answer_value).isdisjoint(set(match_value)) if isinstance(answer_value, list) else answer_value not in match_value,
         'not contains all':
             lambda answer_value, match_value: isinstance(answer_value, list)
             and isinstance(match_value, list)
