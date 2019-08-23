@@ -70,7 +70,7 @@ class PlaceholderRenderer:
         if 'text' not in pointer_data or 'placeholders' not in pointer_data:
             raise ValueError('No placeholder found at pointer')
 
-        transformed_values = placeholder_parser.parse(pointer_data['placeholders'])
+        transformed_values = placeholder_parser(pointer_data['placeholders'])
         return pointer_data['text'].format(**transformed_values)
 
     def render(self, dict_to_render):

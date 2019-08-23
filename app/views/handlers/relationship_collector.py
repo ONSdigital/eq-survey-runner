@@ -1,7 +1,5 @@
 from app.questionnaire.location import Location
-from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.questionnaire.relationship_router import RelationshipRouter
-from app.questionnaire.schema_utils import transform_variants
 from app.views.handlers.question import Question
 
 
@@ -110,4 +108,3 @@ class RelationshipCollector(Question):
         if self.relationship_router.get_next_location_url(self._current_location):
             return False
         return True
-

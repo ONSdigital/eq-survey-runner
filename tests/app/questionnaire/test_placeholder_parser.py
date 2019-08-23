@@ -17,7 +17,7 @@ class TestPlaceholderParser(unittest.TestCase):
         answer_store = AnswerStore([{'answer_id': 'first-name', 'value': 'Joe'}])
 
         parser = PlaceholderParser(language='en', answer_store=answer_store)
-        placeholders = parser.parse(placeholder_list)
+        placeholders = parser(placeholder_list)
 
         self.assertIsInstance(placeholders, dict)
 
@@ -39,7 +39,7 @@ class TestPlaceholder(unittest.TestCase):
         answer_store = AnswerStore([{'answer_id': 'first-name', 'value': first_name}])
 
         parser = PlaceholderParser(language='en', answer_store=answer_store)
-        placeholders = parser.parse(placeholder_list)
+        placeholders = parser(placeholder_list)
 
         assert first_name == placeholders['first_name']
 
@@ -55,7 +55,7 @@ class TestPlaceholder(unittest.TestCase):
         period_str = 'Aug 2018'
         parser = PlaceholderParser(language='en', metadata={'period_str': period_str})
 
-        placeholders = parser.parse(placeholder_list)
+        placeholders = parser(placeholder_list)
         assert period_str == placeholders['period']
 
     @staticmethod
@@ -86,7 +86,7 @@ class TestPlaceholder(unittest.TestCase):
         parser = PlaceholderParser(
             language='en', schema=QuestionnaireSchema({}), answer_store=answer_store
         )
-        placeholders = parser.parse(placeholder_list)
+        placeholders = parser(placeholder_list)
 
         assert placeholders['total_turnover'] == '£1,000.00'
 
@@ -113,7 +113,7 @@ class TestPlaceholder(unittest.TestCase):
         parser = PlaceholderParser(
             language='en', metadata={'ref_p_start_date': '2019-02-11'}
         )
-        placeholders = parser.parse(placeholder_list)
+        placeholders = parser(placeholder_list)
 
         assert placeholders['start_date'] == 'Monday 11 February 2019'
 
@@ -147,7 +147,7 @@ class TestPlaceholder(unittest.TestCase):
             ),
         )
 
-        placeholders = parser.parse(placeholder_list)
+        placeholders = parser(placeholder_list)
 
         assert placeholders['persons_name'] == 'Joe Bloggs'
 
@@ -182,7 +182,7 @@ class TestPlaceholder(unittest.TestCase):
             language='en', metadata={'ref_p_start_date': '2019-02-11'}
         )
 
-        placeholders = parser.parse(placeholder_list)
+        placeholders = parser(placeholder_list)
 
         assert placeholders['start_date'] == '11/02/2019'
 
@@ -210,7 +210,7 @@ class TestPlaceholder(unittest.TestCase):
             language='en',
             metadata={'ref_p_start_date': '2019-02-11', 'ref_p_end_date': '2019-10-11'},
         )
-        placeholders = parser.parse(placeholder_list)
+        placeholders = parser(placeholder_list)
 
         assert placeholders['dates'] == '2019-02-11 2019-10-11'
 
@@ -244,7 +244,7 @@ class TestPlaceholder(unittest.TestCase):
             ),
             metadata={'second-date': '2019-02-02'},
         )
-        placeholders = parser.parse(placeholder_list)
+        placeholders = parser(placeholder_list)
 
         assert placeholders['age_in_years'] == '20'
 
@@ -274,7 +274,7 @@ class TestPlaceholder(unittest.TestCase):
                 [{'answer_id': 'date-of-birth-answer', 'value': '1999-01-01'}]
             ),
         )
-        placeholders = parser.parse(placeholder_list)
+        placeholders = parser(placeholder_list)
 
         assert placeholders['age_in_years'] == '20'
 
@@ -314,6 +314,6 @@ class TestPlaceholder(unittest.TestCase):
             ),
         )
 
-        placeholders = parser.parse(placeholder_list)
+        placeholders = parser(placeholder_list)
 
         assert placeholders['persons_name'] == 'Joe Bloggs’'

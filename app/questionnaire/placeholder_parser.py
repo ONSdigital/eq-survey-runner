@@ -1,3 +1,6 @@
+from typing import Mapping, Sequence, Union
+
+from app.data_model.answer import Answer
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.placeholder_transforms import PlaceholderTransforms
 
@@ -24,35 +27,41 @@ class PlaceholderParser:
         self._list_item_id = list_item_id
         self._location = location
         self._transformer = PlaceholderTransforms(language)
+        self._placeholder_map = {}
 
-    def _lookup_answer(self, answer_id, list_item_id=None):
-        answer = self._answer_store.get_answer(answer_id, list_item_id)
-
-        if answer:
-            return answer.value
-
-    def parse(self, placeholder_list):
-        placeholder_map = {}
-
+    def __call__(self, placeholder_list: Sequence[Mapping]) -> Mapping:
         for placeholder in placeholder_list:
-            placeholder_id = placeholder['placeholder']
-            if 'value' in placeholder:
-                source_id = placeholder['value']['identifier']
+            try:
+                self._placeholder_map[placeholder['placeholder']]
+            except KeyError:
+                self._placeholder_map[
+                    placeholder['placeholder']
+                ] = self._parse_placeholder(placeholder)
+        return self._placeholder_map
 
-                if placeholder['value']['source'] == 'answers':
-                    placeholder_map[placeholder_id] = self._lookup_answer(
-                        source_id, self._list_item_id
-                    )
-                elif placeholder['value']['source'] == 'metadata':
-                    placeholder_map[placeholder_id] = self._metadata[source_id]
-            elif 'transforms' in placeholder:
-                placeholder_map[placeholder_id] = self.parse_transforms(
-                    placeholder['transforms']
-                )
+    def _lookup_answer(
+        self, answer_id: str, list_item_id: str = None
+    ) -> Union[Answer, None]:
+        try:
+            return self._answer_store.get_answer(answer_id, list_item_id).value
+        except AttributeError:
+            return None
 
-        return placeholder_map
+    def _parse_placeholder(self, placeholder: Mapping) -> Mapping:
+        try:
+            return self._parse_transforms(placeholder['transforms'])
+        except KeyError:
+            return self._parse_value_source(placeholder)
 
-    def parse_transforms(self, transform_list):
+    def _parse_value_source(self, placeholder: Mapping):
+        source = placeholder['value']['source']
+        source_id = placeholder['value']['identifier']
+
+        if source == 'answers':
+            return self._lookup_answer(source_id, self._list_item_id)
+        return self._metadata[source_id]
+
+    def _parse_transforms(self, transform_list: Sequence[Mapping]):
         transformed_value = None
 
         for transform in transform_list:
