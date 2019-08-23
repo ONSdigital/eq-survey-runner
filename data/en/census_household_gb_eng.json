@@ -1359,7 +1359,6 @@
                                           "value": "Stepchild"
                                        },
                                        {
-                                          "description": "Including half brother or half sister",
                                           "label": "Brother or sister",
                                           "playback": "{second_person_name} is your <em>brother or sister</em>",
                                           "title": "{second_person_name} is your <em>brother or sister</em>",
@@ -1396,7 +1395,6 @@
                                           "value": "Other relation"
                                        },
                                        {
-                                          "description": "Including foster child",
                                           "label": "Unrelated",
                                           "playback": "{second_person_name} is <em>unrelated</em> to you",
                                           "title": "{second_person_name} is <em>unrelated</em> to you",
@@ -1462,7 +1460,6 @@
                                           "value": "Stepchild"
                                        },
                                        {
-                                          "description": "Including half brother or half sister",
                                           "label": "Brother or sister",
                                           "playback": "{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>",
                                           "title": "Thinking of {first_person_name}, {second_person_name} is their <em>brother or sister</em>",
@@ -1499,7 +1496,6 @@
                                           "value": "Other relation"
                                        },
                                        {
-                                          "description": "Including foster child",
                                           "label": "Unrelated",
                                           "playback": "{second_person_name} is <em>unrelated</em> to {first_person_name}",
                                           "title": "Thinking of {first_person_name}, {second_person_name} is <em>unrelated</em> to {first_person_name}",

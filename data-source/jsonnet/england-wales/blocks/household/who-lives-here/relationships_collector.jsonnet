@@ -64,7 +64,6 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Brother or sister',
                 playback: '{second_person_name} is your <em>brother or sister</em>',
                 title: '{second_person_name} is your <em>brother or sister</em>',
-                description: 'Including half brother or half sister',
                 value: 'Brother or sister',
               },
               {
@@ -101,7 +100,6 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Unrelated',
                 playback: '{second_person_name} is <em>unrelated</em> to you',
                 title: '{second_person_name} is <em>unrelated</em> to you',
-                description: 'Including foster child',
                 value: 'Unrelated',
               },
             ],
@@ -157,7 +155,6 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Brother or sister',
                 playback: '{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>',
                 title: 'Thinking of {first_person_name}, {second_person_name} is their <em>brother or sister</em>',
-                description: 'Including half brother or half sister',
                 value: 'Brother or sister',
               },
               {
@@ -194,7 +191,6 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Unrelated',
                 playback: '{second_person_name} is <em>unrelated</em> to {first_person_name}',
                 title: 'Thinking of {first_person_name}, {second_person_name} is <em>unrelated</em> to {first_person_name}',
-                description: 'Including foster child',
                 value: 'Unrelated',
               },
             ],

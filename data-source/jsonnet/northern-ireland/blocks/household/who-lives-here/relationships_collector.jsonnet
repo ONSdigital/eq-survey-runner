@@ -98,8 +98,8 @@ local rules = import '../../../lib/rules.libsonnet';
               },
               {
                 label: 'Unrelated',
-                playback: '{second_person_name} is your <em>unrelated</em>',
-                title: '{second_person_name} is your <em>unrelated</em>',
+                playback: '{second_person_name} is <em>unrelated</em> to you',
+                title: '{second_person_name} is <em>unrelated</em> to you',
                 value: 'Unrelated',
               },
             ],
@@ -189,8 +189,8 @@ local rules = import '../../../lib/rules.libsonnet';
               },
               {
                 label: 'Unrelated',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>unrelated</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>unrelated</em>',
+                playback: '{second_person_name} is <em>unrelated</em> to {first_person_name}',
+                title: 'Thinking of {first_person_name}, {second_person_name} is <em>unrelated</em> to {first_person_name}',
                 value: 'Unrelated',
               },
             ],
