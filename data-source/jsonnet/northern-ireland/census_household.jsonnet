@@ -56,6 +56,7 @@ function(region_code, census_date) {
   ],
   hub: {
     enabled: true,
+    required_completed_sections: ['who-lives-here-section'],
   },
   sections: [
     {

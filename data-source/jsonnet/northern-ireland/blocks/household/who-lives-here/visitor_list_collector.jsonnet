@@ -10,7 +10,7 @@ local questionTitle(census_date) = {
 };
 
 local summaryTitle(census_date) = {
-  text: 'Visitors staying overnight on {census_date}?',
+  text: 'Visitors staying overnight on {census_date}',
   placeholders: [
     placeholders.censusDate(census_date),
   ],

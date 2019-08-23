@@ -4,8 +4,7 @@
    "hub": {
       "enabled": true,
       "required_completed_sections": [
-         "who-lives-here-section",
-         "accommodation-section"
+         "who-lives-here-section"
       ]
    },
    "legal_basis": "Voluntary",
@@ -447,7 +446,6 @@
                                     "value": "Yes, I need to add someone"
                                  },
                                  {
-                                    "description": "For example, this is a second address or holiday home",
                                     "label": "No, I do not need to add anyone",
                                     "value": "No, I do not need to add anyone"
                                  }
@@ -788,7 +786,7 @@
                                  }
                               }
                            ],
-                           "text": "Apart from the people already included, is there anyone else who is temporarily away or staying you need to add to {address}?"
+                           "text": "Apart from the people already included, is there anyone who is temporarily away or staying you need to add to {address}?"
                         },
                         "type": "General"
                      },
@@ -976,7 +974,7 @@
                                  }
                               }
                            ],
-                           "text": "Are there any other visitors staying overnight on {census_date} at {address}?"
+                           "text": "Are there any visitors staying overnight on {census_date} at {address}?"
                         },
                         "type": "MutuallyExclusive"
                      },
@@ -1282,7 +1280,7 @@
                                  ]
                               }
                            ],
-                           "text": "Visitors staying overnight on {census_date}?"
+                           "text": "Visitors staying overnight on {census_date}"
                         }
                      },
                      "type": "ListCollector"

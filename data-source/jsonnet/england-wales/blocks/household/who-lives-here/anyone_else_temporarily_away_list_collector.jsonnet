@@ -3,7 +3,7 @@ local rules = import '../../../lib/rules.libsonnet';
 
 
 local questionTitle = {
-  text: 'Apart from the people already included, is there anyone else who is temporarily away or staying you need to add to {address}?',
+  text: 'Apart from the people already included, is there anyone who is temporarily away or staying you need to add to {address}?',
   placeholders: [
     placeholders.address,
   ],

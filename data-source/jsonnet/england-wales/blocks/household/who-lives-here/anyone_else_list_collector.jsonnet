@@ -106,7 +106,6 @@ function(census_date) {
           {
             label: 'No, I do not need to add anyone',
             value: 'No, I do not need to add anyone',
-            description: 'For example, this is a second address or holiday home',
           },
         ],
       },
