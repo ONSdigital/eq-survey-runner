@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-23 14:29+0100\n"
+"POT-Creation-Date: 2019-08-23 15:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,42 +118,6 @@ msgstr ""
 msgid "Voluntary"
 msgstr ""
 
-msgid "2019 Census Test"
-msgstr ""
-
-msgid "People who live here and overnight visitors"
-msgstr ""
-
-msgid "Who lives here"
-msgstr ""
-
-msgid "People who live here"
-msgstr ""
-
-msgid "You will need to know"
-msgstr ""
-
-msgid "What is your name?"
-msgstr ""
-
-msgid "What does \"usually live\" mean?"
-msgstr ""
-
-msgid "Household members"
-msgstr ""
-
-msgid "Include people who are temporarily away"
-msgstr ""
-
-msgid "Include people who are temporarily staying"
-msgstr ""
-
-msgid "Include"
-msgstr ""
-
-msgid "Household relationships"
-msgstr ""
-
 msgid "{second_person_name} is your <em>...</em>"
 msgstr ""
 
@@ -191,6 +155,109 @@ msgid "{second_person_name} is your <em>other relation</em>"
 msgstr ""
 
 msgid "{second_person_name} is <em>unrelated</em> to you"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>husband or "
+"wife</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>legally "
+"registered civil partner</em>"
+msgstr ""
+
+msgid "{second_person_name} is {first_person_name_possessive} <em>partner</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>son or "
+"daughter</em>"
+msgstr ""
+
+msgid "{second_person_name} is {first_person_name_possessive} <em>stepchild</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>brother or "
+"sister</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>mother or "
+"father</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>stepmother or "
+"stepfather</em>"
+msgstr ""
+
+msgid "{second_person_name} is {first_person_name_possessive} <em>grandchild</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} "
+"<em>grandparent</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>other "
+"relation</em>"
+msgstr ""
+
+msgid "{second_person_name} is <em>unrelated</em> to {first_person_name}"
+msgstr ""
+
+msgid "Add someone to this household"
+msgstr ""
+
+msgid "Add another visitor to this household"
+msgstr ""
+
+msgid "Add a visitor"
+msgstr ""
+
+msgid "There are no householders"
+msgstr ""
+
+msgid "There are no visitors"
+msgstr ""
+
+msgid "2019 Census Test"
+msgstr ""
+
+msgid "People who live here and overnight visitors"
+msgstr ""
+
+msgid "Who lives here"
+msgstr ""
+
+msgid "People who live here"
+msgstr ""
+
+msgid "You will need to know"
+msgstr ""
+
+msgid "What is your name?"
+msgstr ""
+
+msgid "What does \"usually live\" mean?"
+msgstr ""
+
+msgid "Household members"
+msgstr ""
+
+msgid "Include people who are temporarily away"
+msgstr ""
+
+msgid "Include people who are temporarily staying"
+msgstr ""
+
+msgid "Include"
+msgstr ""
+
+msgid "Household relationships"
 msgstr ""
 
 msgid ""
