@@ -1,0 +1,2069 @@
+{
+   "data_version": "0.0.3",
+   "description": "Census England Household Schema",
+   "hub": {
+      "enabled": true,
+      "required_completed_sections": [
+         "who-lives-here-section",
+         "accommodation-section"
+      ]
+   },
+   "legal_basis": "Voluntary",
+   "metadata": [
+      {
+         "name": "user_id",
+         "type": "string"
+      },
+      {
+         "name": "period_id",
+         "type": "string"
+      },
+      {
+         "name": "display_address",
+         "type": "string"
+      }
+   ],
+   "mime_type": "application/json/ons/eq",
+   "navigation": {
+      "visible": false
+   },
+   "schema_version": "0.0.1",
+   "sections": [
+      {
+         "groups": [
+            {
+               "blocks": [
+                  {
+                     "content": {
+                        "contents": [
+                           {
+                              "description": {
+                                 "placeholders": [
+                                    {
+                                       "placeholder": "address",
+                                       "value": {
+                                          "identifier": "display_address",
+                                          "source": "metadata"
+                                       }
+                                    }
+                                 ],
+                                 "text": "In this section, we’re going to ask you about the people living or staying at {address}."
+                              }
+                           },
+                           {
+                              "list": [
+                                 "Names of the people living at this address including anyone temporarily away.",
+                                 "Names of visitors staying overnight at this address on 13 October 2019"
+                              ],
+                              "title": "You will need to know"
+                           }
+                        ],
+                        "title": "People who live here"
+                     },
+                     "id": "who-lives-here-interstitial",
+                     "type": "Interstitial"
+                  },
+                  {
+                     "add_or_edit_answer": {
+                        "id": "you-live-here-answer",
+                        "value": "Yes, I usually live here"
+                     },
+                     "add_or_edit_block": {
+                        "id": "add-or-edit-primary-person",
+                        "question": {
+                           "answers": [
+                              {
+                                 "id": "first-name",
+                                 "label": "First name",
+                                 "mandatory": true,
+                                 "type": "TextField"
+                              },
+                              {
+                                 "id": "middle-names",
+                                 "label": "Middle names",
+                                 "mandatory": false,
+                                 "type": "TextField"
+                              },
+                              {
+                                 "id": "last-name",
+                                 "label": "Last name",
+                                 "mandatory": true,
+                                 "type": "TextField"
+                              }
+                           ],
+                           "id": "primary-person-add-or-edit-question",
+                           "title": "What is your name?",
+                           "type": "General"
+                        },
+                        "type": "PrimaryPersonListAddOrEditQuestion"
+                     },
+                     "for_list": "household",
+                     "id": "primary-person-list-collector",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "you-live-here-answer",
+                              "mandatory": true,
+                              "options": [
+                                 {
+                                    "label": "Yes, I usually live here",
+                                    "value": "Yes, I usually live here"
+                                 },
+                                 {
+                                    "label": "No, I don’t usually live here",
+                                    "value": "No, I don’t usually live here"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "definitions": [
+                           {
+                              "contents": [
+                                 {
+                                    "description": "It means the address at which you generally spend most time. For most people, this will be their permanent or family home."
+                                 },
+                                 {
+                                    "description": "<strong>Full-time students</strong>, include yourself at your term time address."
+                                 },
+                                 {
+                                    "description": "<strong>Armed forces members</strong>, include yourself at your home address if you have one."
+                                 }
+                              ],
+                              "title": "What does \"usually live\" mean?"
+                           }
+                        ],
+                        "id": "primary-confirmation-question",
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "address",
+                                 "value": {
+                                    "identifier": "display_address",
+                                    "source": "metadata"
+                                 }
+                              }
+                           ],
+                           "text": "Do you usually live at {address}?"
+                        },
+                        "type": "General"
+                     },
+                     "type": "PrimaryPersonListCollector"
+                  },
+                  {
+                     "id": "anyone-usually-live-at",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "anyone-usually-live-at-answer",
+                              "mandatory": true,
+                              "options": [
+                                 {
+                                    "action": {
+                                       "params": {
+                                          "block_id": "add-person",
+                                          "list_name": "household"
+                                       },
+                                       "type": "RedirectToListAddQuestion"
+                                    },
+                                    "description": {
+                                       "placeholders": [
+                                          {
+                                             "placeholder": "census_date",
+                                             "transforms": [
+                                                {
+                                                   "arguments": {
+                                                      "date_format": "d MMMM yyyy",
+                                                      "date_to_format": {
+                                                         "value": "2019-10-13"
+                                                      }
+                                                   },
+                                                   "transform": "format_date"
+                                                }
+                                             ]
+                                          }
+                                       ],
+                                       "text": "Include partners, children, babies born on or before {census_date}, housemates, tenants and lodgers, students and schoolchildren who live away from home during term time, where this is their permanent or family home"
+                                    },
+                                    "label": "Yes, I need to add someone",
+                                    "value": "Yes, I need to add someone"
+                                 },
+                                 {
+                                    "description": "For example, this is a second address or holiday home",
+                                    "label": "No, no one usually lives here",
+                                    "value": "No, no one usually lives here"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "id": "anyone-usually-live-at-question",
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "address",
+                                 "value": {
+                                    "identifier": "display_address",
+                                    "source": "metadata"
+                                 }
+                              }
+                           ],
+                           "text": "Does anyone usually live at {address}?"
+                        },
+                        "type": "General"
+                     },
+                     "routing_rules": [
+                        {
+                           "goto": {
+                              "block": "anyone-else-temp-away-list-collector",
+                              "when": [
+                                 {
+                                    "condition": "equals",
+                                    "id": "anyone-usually-live-at-answer",
+                                    "value": "No, no one usually lives here"
+                                 }
+                              ]
+                           }
+                        },
+                        {
+                           "goto": {
+                              "block": "anyone-else-list-collector"
+                           }
+                        }
+                     ],
+                     "skip_conditions": [
+                        {
+                           "when": [
+                              {
+                                 "condition": "equals",
+                                 "id": "you-live-here-answer",
+                                 "value": "Yes, I usually live here"
+                              }
+                           ]
+                        }
+                     ],
+                     "type": "Question"
+                  },
+                  {
+                     "add_answer": {
+                        "id": "anyone-else-answer",
+                        "value": "Yes, I need to add someone"
+                     },
+                     "add_block": {
+                        "id": "add-person",
+                        "question": {
+                           "answers": [
+                              {
+                                 "id": "first-name",
+                                 "label": "First name",
+                                 "mandatory": true,
+                                 "type": "TextField"
+                              },
+                              {
+                                 "id": "middle-names",
+                                 "label": "Middle names",
+                                 "mandatory": false,
+                                 "type": "TextField"
+                              },
+                              {
+                                 "id": "last-name",
+                                 "label": "Last name",
+                                 "mandatory": true,
+                                 "type": "TextField"
+                              }
+                           ],
+                           "id": "add-question",
+                           "title": {
+                              "placeholders": [
+                                 {
+                                    "placeholder": "address",
+                                    "value": {
+                                       "identifier": "display_address",
+                                       "source": "metadata"
+                                    }
+                                 }
+                              ],
+                              "text": "Who do you need to add to {address}?"
+                           },
+                           "type": "General"
+                        },
+                        "type": "ListAddQuestion"
+                     },
+                     "edit_block": {
+                        "id": "edit-person",
+                        "question_variants": [
+                           {
+                              "question": {
+                                 "answers": [
+                                    {
+                                       "id": "first-name",
+                                       "label": "First name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    },
+                                    {
+                                       "id": "middle-names",
+                                       "label": "Middle names",
+                                       "mandatory": false,
+                                       "type": "TextField"
+                                    },
+                                    {
+                                       "id": "last-name",
+                                       "label": "Last name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    }
+                                 ],
+                                 "id": "edit-question",
+                                 "title": {
+                                    "placeholders": [
+                                       {
+                                          "placeholder": "person_name",
+                                          "transforms": [
+                                             {
+                                                "arguments": {
+                                                   "delimiter": " ",
+                                                   "list_to_concatenate": {
+                                                      "identifier": [
+                                                         "first-name",
+                                                         "last-name"
+                                                      ],
+                                                      "source": "answers"
+                                                   }
+                                                },
+                                                "transform": "concatenate_list"
+                                             }
+                                          ]
+                                       }
+                                    ],
+                                    "text": "Change details for {person_name} (You)"
+                                 },
+                                 "type": "General"
+                              },
+                              "when": [
+                                 {
+                                    "comparison": {
+                                       "id": "list_item_id",
+                                       "source": "location"
+                                    },
+                                    "condition": "equals",
+                                    "id_selector": "primary_person",
+                                    "list": "household"
+                                 }
+                              ]
+                           },
+                           {
+                              "question": {
+                                 "answers": [
+                                    {
+                                       "id": "first-name",
+                                       "label": "First name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    },
+                                    {
+                                       "id": "middle-names",
+                                       "label": "Middle names",
+                                       "mandatory": false,
+                                       "type": "TextField"
+                                    },
+                                    {
+                                       "id": "last-name",
+                                       "label": "Last name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    }
+                                 ],
+                                 "id": "edit-question",
+                                 "title": {
+                                    "placeholders": [
+                                       {
+                                          "placeholder": "person_name",
+                                          "transforms": [
+                                             {
+                                                "arguments": {
+                                                   "delimiter": " ",
+                                                   "list_to_concatenate": {
+                                                      "identifier": [
+                                                         "first-name",
+                                                         "last-name"
+                                                      ],
+                                                      "source": "answers"
+                                                   }
+                                                },
+                                                "transform": "concatenate_list"
+                                             }
+                                          ]
+                                       }
+                                    ],
+                                    "text": "Change details for {person_name}"
+                                 },
+                                 "type": "General"
+                              },
+                              "when": [
+                                 {
+                                    "comparison": {
+                                       "id": "list_item_id",
+                                       "source": "location"
+                                    },
+                                    "condition": "not equals",
+                                    "id_selector": "primary_person",
+                                    "list": "household"
+                                 }
+                              ]
+                           }
+                        ],
+                        "type": "ListEditQuestion"
+                     },
+                     "for_list": "household",
+                     "id": "anyone-else-list-collector",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "anyone-else-answer",
+                              "mandatory": true,
+                              "options": [
+                                 {
+                                    "description": {
+                                       "placeholders": [
+                                          {
+                                             "placeholder": "census_date",
+                                             "transforms": [
+                                                {
+                                                   "arguments": {
+                                                      "date_format": "d MMMM yyyy",
+                                                      "date_to_format": {
+                                                         "value": "2019-10-13"
+                                                      }
+                                                   },
+                                                   "transform": "format_date"
+                                                }
+                                             ]
+                                          }
+                                       ],
+                                       "text": "Include partners, children, babies born on or before {census_date}, housemates, tenants and lodgers, students and schoolchildren who live away from home during term time, where this is their permanent or family home"
+                                    },
+                                    "label": "Yes, I need to add someone",
+                                    "value": "Yes, I need to add someone"
+                                 },
+                                 {
+                                    "description": "For example, this is a second address or holiday home",
+                                    "label": "No, I do not need to add anyone",
+                                    "value": "No, I do not need to add anyone"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "id": "anyone-else-confirmation-question",
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "address",
+                                 "value": {
+                                    "identifier": "display_address",
+                                    "source": "metadata"
+                                 }
+                              }
+                           ],
+                           "text": "Does anyone else live at {address}?"
+                        },
+                        "type": "General"
+                     },
+                     "remove_answer": {
+                        "id": "remove-confirmation",
+                        "value": "Yes, I want to remove this person"
+                     },
+                     "remove_block": {
+                        "id": "remove-person",
+                        "question": {
+                           "answers": [
+                              {
+                                 "id": "remove-confirmation",
+                                 "mandatory": true,
+                                 "options": [
+                                    {
+                                       "label": "Yes, I want to remove this person",
+                                       "value": "Yes, I want to remove this person"
+                                    },
+                                    {
+                                       "label": "No, I do not want to remove this person",
+                                       "value": "No, I do not want to remove this person"
+                                    }
+                                 ],
+                                 "type": "Radio"
+                              }
+                           ],
+                           "id": "remove-question",
+                           "title": {
+                              "placeholders": [
+                                 {
+                                    "placeholder": "person_name",
+                                    "transforms": [
+                                       {
+                                          "arguments": {
+                                             "delimiter": " ",
+                                             "list_to_concatenate": {
+                                                "identifier": [
+                                                   "first-name",
+                                                   "last-name"
+                                                ],
+                                                "source": "answers"
+                                             }
+                                          },
+                                          "transform": "concatenate_list"
+                                       }
+                                    ]
+                                 }
+                              ],
+                              "text": "Are you sure you want to remove {person_name}?"
+                           },
+                           "type": "General"
+                        },
+                        "type": "ListRemoveQuestion"
+                     },
+                     "summary": {
+                        "add_link_text": "Add someone to this household",
+                        "empty_list_text": "There are no householders",
+                        "item_title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "person_name",
+                                 "transforms": [
+                                    {
+                                       "arguments": {
+                                          "delimiter": " ",
+                                          "list_to_concatenate": {
+                                             "identifier": [
+                                                "first-name",
+                                                "last-name"
+                                             ],
+                                             "source": "answers"
+                                          }
+                                       },
+                                       "transform": "concatenate_list"
+                                    }
+                                 ]
+                              }
+                           ],
+                           "text": "{person_name}"
+                        },
+                        "title": "Household members"
+                     },
+                     "type": "ListCollector"
+                  },
+                  {
+                     "add_answer": {
+                        "id": "anyone-else-temp-away-answer",
+                        "value": "Yes, I need to add someone"
+                     },
+                     "add_block": {
+                        "id": "anyone-else-temp-away-add-person",
+                        "question": {
+                           "answers": [
+                              {
+                                 "id": "first-name",
+                                 "label": "First name",
+                                 "mandatory": true,
+                                 "type": "TextField"
+                              },
+                              {
+                                 "id": "middle-names",
+                                 "label": "Middle names",
+                                 "mandatory": false,
+                                 "type": "TextField"
+                              },
+                              {
+                                 "id": "last-name",
+                                 "label": "Last name",
+                                 "mandatory": true,
+                                 "type": "TextField"
+                              }
+                           ],
+                           "id": "anyone-else-temp-away-add-question",
+                           "title": {
+                              "placeholders": [
+                                 {
+                                    "placeholder": "address",
+                                    "value": {
+                                       "identifier": "display_address",
+                                       "source": "metadata"
+                                    }
+                                 }
+                              ],
+                              "text": "Who do you need to add to {address}?"
+                           },
+                           "type": "General"
+                        },
+                        "type": "ListAddQuestion"
+                     },
+                     "edit_block": {
+                        "id": "anyone-else-temp-away-edit-person",
+                        "question_variants": [
+                           {
+                              "question": {
+                                 "answers": [
+                                    {
+                                       "id": "first-name",
+                                       "label": "First name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    },
+                                    {
+                                       "id": "middle-names",
+                                       "label": "Middle names",
+                                       "mandatory": false,
+                                       "type": "TextField"
+                                    },
+                                    {
+                                       "id": "last-name",
+                                       "label": "Last name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    }
+                                 ],
+                                 "id": "anyone-else-temp-away-edit-question",
+                                 "title": {
+                                    "placeholders": [
+                                       {
+                                          "placeholder": "person_name",
+                                          "transforms": [
+                                             {
+                                                "arguments": {
+                                                   "delimiter": " ",
+                                                   "list_to_concatenate": {
+                                                      "identifier": [
+                                                         "first-name",
+                                                         "last-name"
+                                                      ],
+                                                      "source": "answers"
+                                                   }
+                                                },
+                                                "transform": "concatenate_list"
+                                             }
+                                          ]
+                                       }
+                                    ],
+                                    "text": "Change details for {person_name} (You)"
+                                 },
+                                 "type": "General"
+                              },
+                              "when": [
+                                 {
+                                    "comparison": {
+                                       "id": "list_item_id",
+                                       "source": "location"
+                                    },
+                                    "condition": "equals",
+                                    "id_selector": "primary_person",
+                                    "list": "household"
+                                 }
+                              ]
+                           },
+                           {
+                              "question": {
+                                 "answers": [
+                                    {
+                                       "id": "first-name",
+                                       "label": "First name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    },
+                                    {
+                                       "id": "middle-names",
+                                       "label": "Middle names",
+                                       "mandatory": false,
+                                       "type": "TextField"
+                                    },
+                                    {
+                                       "id": "last-name",
+                                       "label": "Last name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    }
+                                 ],
+                                 "id": "anyone-else-temp-away-edit-question",
+                                 "title": {
+                                    "placeholders": [
+                                       {
+                                          "placeholder": "person_name",
+                                          "transforms": [
+                                             {
+                                                "arguments": {
+                                                   "delimiter": " ",
+                                                   "list_to_concatenate": {
+                                                      "identifier": [
+                                                         "first-name",
+                                                         "last-name"
+                                                      ],
+                                                      "source": "answers"
+                                                   }
+                                                },
+                                                "transform": "concatenate_list"
+                                             }
+                                          ]
+                                       }
+                                    ],
+                                    "text": "Change details for {person_name}"
+                                 },
+                                 "type": "General"
+                              },
+                              "when": [
+                                 {
+                                    "comparison": {
+                                       "id": "list_item_id",
+                                       "source": "location"
+                                    },
+                                    "condition": "not equals",
+                                    "id_selector": "primary_person",
+                                    "list": "household"
+                                 }
+                              ]
+                           }
+                        ],
+                        "type": "ListEditQuestion"
+                     },
+                     "for_list": "household",
+                     "hide_on_section_summary": true,
+                     "id": "anyone-else-temp-away-list-collector",
+                     "question": {
+                        "answers": [
+                           {
+                              "guidance": {
+                                 "contents": [
+                                    {
+                                       "description": "We ask this question to help ensure that everyone is correctly counted in the census. This includes people who are staying temporarily or are away."
+                                    }
+                                 ],
+                                 "hide_guidance": "Why do we ask this question?",
+                                 "show_guidance": "Why do we ask this question?"
+                              },
+                              "id": "anyone-else-temp-away-answer",
+                              "mandatory": true,
+                              "options": [
+                                 {
+                                    "label": "Yes, I need to add someone",
+                                    "value": "Yes, I need to add someone"
+                                 },
+                                 {
+                                    "label": "No, I do not need to add anyone",
+                                    "value": "No, I do not need to add anyone"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "guidance": {
+                           "contents": [
+                              {
+                                 "title": "Include people who are temporarily away"
+                              },
+                              {
+                                 "list": [
+                                    "People who work away from home within the UK if this is their permanent or family home",
+                                    "Members of the armed forces if this is their permanent or family home",
+                                    "People who are temporarily outside the UK for less than <strong>12 months</strong>",
+                                    "Other people who usually live here but are temporarily away"
+                                 ]
+                              },
+                              {
+                                 "title": "Include people who are temporarily staying"
+                              },
+                              {
+                                 "list": [
+                                    "People staying temporarily who usually live in the UK but do not have another UK address for example, relatives, friends",
+                                    "People who usually live outside the UK who are staying in the UK for <strong>3 months or more</strong>"
+                                 ]
+                              }
+                           ]
+                        },
+                        "id": "anyone-else-temp-away-confirmation-question",
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "address",
+                                 "value": {
+                                    "identifier": "display_address",
+                                    "source": "metadata"
+                                 }
+                              }
+                           ],
+                           "text": "Apart from the people already included, is there anyone else who is temporarily away or staying you need to add to {address}?"
+                        },
+                        "type": "General"
+                     },
+                     "remove_answer": {
+                        "id": "anyone-else-temp-away-remove-confirmation",
+                        "value": "Yes, I want to remove this person"
+                     },
+                     "remove_block": {
+                        "id": "anyone-else-temp-away-remove-person",
+                        "question": {
+                           "answers": [
+                              {
+                                 "id": "anyone-else-temp-away-remove-confirmation",
+                                 "mandatory": true,
+                                 "options": [
+                                    {
+                                       "label": "Yes, I want to remove this person",
+                                       "value": "Yes, I want to remove this person"
+                                    },
+                                    {
+                                       "label": "No, I do not want to remove this person",
+                                       "value": "No, I do not want to remove this person"
+                                    }
+                                 ],
+                                 "type": "Radio"
+                              }
+                           ],
+                           "id": "anyone-else-temp-away-remove-question",
+                           "title": {
+                              "placeholders": [
+                                 {
+                                    "placeholder": "person_name",
+                                    "transforms": [
+                                       {
+                                          "arguments": {
+                                             "delimiter": " ",
+                                             "list_to_concatenate": {
+                                                "identifier": [
+                                                   "first-name",
+                                                   "last-name"
+                                                ],
+                                                "source": "answers"
+                                             }
+                                          },
+                                          "transform": "concatenate_list"
+                                       }
+                                    ]
+                                 }
+                              ],
+                              "text": "Are you sure you want to remove {person_name}?"
+                           },
+                           "type": "General"
+                        },
+                        "type": "ListRemoveQuestion"
+                     },
+                     "summary": {
+                        "add_link_text": "Add another visitor to this household",
+                        "empty_list_text": "There are no visitors",
+                        "item_title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "person_name",
+                                 "transforms": [
+                                    {
+                                       "arguments": {
+                                          "delimiter": " ",
+                                          "list_to_concatenate": {
+                                             "identifier": [
+                                                "first-name",
+                                                "last-name"
+                                             ],
+                                             "source": "answers"
+                                          }
+                                       },
+                                       "transform": "concatenate_list"
+                                    }
+                                 ]
+                              }
+                           ],
+                           "text": "{person_name}"
+                        },
+                        "title": "Household members"
+                     },
+                     "type": "ListCollector"
+                  },
+                  {
+                     "id": "any-visitors",
+                     "question": {
+                        "answers": [
+                           {
+                              "guidance": {
+                                 "contents": [
+                                    {
+                                       "description": "We ask for visitor information to ensure that everyone is counted. This helps to produce accurate population estimates. Add any visitors, even if you think they may have been included on a census form at another address."
+                                    }
+                                 ],
+                                 "hide_guidance": "Why do I have to include visitors?",
+                                 "show_guidance": "Why do I have to include visitors?"
+                              },
+                              "id": "any-visitors-answer",
+                              "mandatory": false,
+                              "options": [
+                                 {
+                                    "action": {
+                                       "params": {
+                                          "block_id": "add-visitor",
+                                          "list_name": "visitor"
+                                       },
+                                       "type": "RedirectToListAddQuestion"
+                                    },
+                                    "label": "People who usually live somewhere else in the UK, for example boy/girlfriends, friends or relatives",
+                                    "value": "People who usually live somewhere else in the UK, for example boy/girlfriends, friends or relatives"
+                                 },
+                                 {
+                                    "action": {
+                                       "params": {
+                                          "block_id": "add-visitor",
+                                          "list_name": "visitor"
+                                       },
+                                       "type": "RedirectToListAddQuestion"
+                                    },
+                                    "label": "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
+                                    "value": "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere"
+                                 },
+                                 {
+                                    "action": {
+                                       "params": {
+                                          "block_id": "add-visitor",
+                                          "list_name": "visitor"
+                                       },
+                                       "type": "RedirectToListAddQuestion"
+                                    },
+                                    "label": "People who usually live outside the UK who are staying in the UK for less than three months",
+                                    "value": "People who usually live outside the UK who are staying in the UK for less than three months"
+                                 },
+                                 {
+                                    "action": {
+                                       "params": {
+                                          "block_id": "add-visitor",
+                                          "list_name": "visitor"
+                                       },
+                                       "type": "RedirectToListAddQuestion"
+                                    },
+                                    "label": "People here on holiday",
+                                    "value": "People here on holiday"
+                                 }
+                              ],
+                              "type": "Checkbox"
+                           },
+                           {
+                              "id": "any-visitors-answer-exclusive",
+                              "mandatory": false,
+                              "options": [
+                                 {
+                                    "label": "No, there are no visitors staying overnight",
+                                    "value": "No, there are no visitors staying overnight"
+                                 }
+                              ],
+                              "type": "Checkbox"
+                           }
+                        ],
+                        "id": "any-visitors-question",
+                        "mandatory": true,
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "census_date",
+                                 "transforms": [
+                                    {
+                                       "arguments": {
+                                          "date_format": "d MMMM yyyy",
+                                          "date_to_format": {
+                                             "value": "2019-10-13"
+                                          }
+                                       },
+                                       "transform": "format_date"
+                                    }
+                                 ]
+                              },
+                              {
+                                 "placeholder": "address",
+                                 "value": {
+                                    "identifier": "display_address",
+                                    "source": "metadata"
+                                 }
+                              }
+                           ],
+                           "text": "Are there any other visitors staying overnight on {census_date} at {address}?"
+                        },
+                        "type": "MutuallyExclusive"
+                     },
+                     "routing_rules": [
+                        {
+                           "goto": {
+                              "block": "who-lives-here-section-summary",
+                              "when": [
+                                 {
+                                    "condition": "set",
+                                    "id": "any-visitors-answer-exclusive"
+                                 }
+                              ]
+                           }
+                        },
+                        {
+                           "goto": {
+                              "block": "visitor-list-collector"
+                           }
+                        }
+                     ],
+                     "type": "Question"
+                  },
+                  {
+                     "add_answer": {
+                        "id": "visitor-answer",
+                        "value": "Yes, I need to add someone"
+                     },
+                     "add_block": {
+                        "id": "add-visitor",
+                        "question": {
+                           "answers": [
+                              {
+                                 "id": "first-name",
+                                 "label": "First name",
+                                 "mandatory": true,
+                                 "type": "TextField"
+                              },
+                              {
+                                 "guidance": {
+                                    "contents": [
+                                       {
+                                          "description": "We ask for visitor information to ensure that everyone is counted. This helps to produce accurate population estimates. Add any visitors, even if you think they may have been included on a census form at another address."
+                                       }
+                                    ],
+                                    "hide_guidance": "Why do I have to include visitors?",
+                                    "show_guidance": "Why do I have to include visitors?"
+                                 },
+                                 "id": "last-name",
+                                 "label": "Last name",
+                                 "mandatory": true,
+                                 "type": "TextField"
+                              }
+                           ],
+                           "guidance": {
+                              "contents": [
+                                 {
+                                    "title": "Include"
+                                 },
+                                 {
+                                    "list": [
+                                       "People who usually live somewhere else in the UK, for example boy/girlfriends, friends or relatives",
+                                       "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
+                                       "People who usually live outside the UK who are staying in the UK for less than three months",
+                                       "People here on holiday"
+                                    ]
+                                 }
+                              ]
+                           },
+                           "id": "visitor-add-question",
+                           "title": {
+                              "placeholders": [
+                                 {
+                                    "placeholder": "census_date",
+                                    "transforms": [
+                                       {
+                                          "arguments": {
+                                             "date_format": "d MMMM yyyy",
+                                             "date_to_format": {
+                                                "value": "2019-10-13"
+                                             }
+                                          },
+                                          "transform": "format_date"
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "placeholder": "address",
+                                    "value": {
+                                       "identifier": "display_address",
+                                       "source": "metadata"
+                                    }
+                                 }
+                              ],
+                              "text": "What is the name of the visitor staying overnight on {census_date} at {address}?"
+                           },
+                           "type": "General"
+                        },
+                        "type": "ListAddQuestion"
+                     },
+                     "edit_block": {
+                        "id": "edit-visitor",
+                        "question": {
+                           "answers": [
+                              {
+                                 "id": "first-name",
+                                 "label": "First name",
+                                 "mandatory": true,
+                                 "type": "TextField"
+                              },
+                              {
+                                 "id": "last-name",
+                                 "label": "Last name",
+                                 "mandatory": true,
+                                 "type": "TextField"
+                              }
+                           ],
+                           "id": "visitor-edit-question",
+                           "title": {
+                              "placeholders": [
+                                 {
+                                    "placeholder": "person_name",
+                                    "transforms": [
+                                       {
+                                          "arguments": {
+                                             "delimiter": " ",
+                                             "list_to_concatenate": {
+                                                "identifier": [
+                                                   "first-name",
+                                                   "last-name"
+                                                ],
+                                                "source": "answers"
+                                             }
+                                          },
+                                          "transform": "concatenate_list"
+                                       }
+                                    ]
+                                 }
+                              ],
+                              "text": "Change details for {person_name}"
+                           },
+                           "type": "General"
+                        },
+                        "type": "ListEditQuestion"
+                     },
+                     "for_list": "visitor",
+                     "hide_on_section_summary": false,
+                     "id": "visitor-list-collector",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "visitor-answer",
+                              "mandatory": true,
+                              "options": [
+                                 {
+                                    "label": "Yes, I need to add someone",
+                                    "value": "Yes, I need to add someone"
+                                 },
+                                 {
+                                    "label": "No, I do not need to add anyone",
+                                    "value": "No, I do not need to add anyone"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "guidance": {
+                           "contents": [
+                              {
+                                 "title": "Include"
+                              },
+                              {
+                                 "list": [
+                                    "People who usually live somewhere else in the UK, for example boy/girlfriends, friends or relatives",
+                                    "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
+                                    "People who usually live outside the UK who are staying in the UK for less than three months",
+                                    "People here on holiday"
+                                 ]
+                              }
+                           ]
+                        },
+                        "id": "visitor-confirmation-question",
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "census_date",
+                                 "transforms": [
+                                    {
+                                       "arguments": {
+                                          "date_format": "d MMMM yyyy",
+                                          "date_to_format": {
+                                             "value": "2019-10-13"
+                                          }
+                                       },
+                                       "transform": "format_date"
+                                    }
+                                 ]
+                              },
+                              {
+                                 "placeholder": "address",
+                                 "value": {
+                                    "identifier": "display_address",
+                                    "source": "metadata"
+                                 }
+                              }
+                           ],
+                           "text": "Are there any other visitors staying overnight on {census_date} at {address}?"
+                        },
+                        "type": "General"
+                     },
+                     "remove_answer": {
+                        "id": "visitor-remove-confirmation",
+                        "value": "Yes, I want to remove this person"
+                     },
+                     "remove_block": {
+                        "id": "remove-visitor",
+                        "question": {
+                           "answers": [
+                              {
+                                 "id": "visitor-remove-confirmation",
+                                 "mandatory": true,
+                                 "options": [
+                                    {
+                                       "label": "Yes, I want to remove this person",
+                                       "value": "Yes, I want to remove this person"
+                                    },
+                                    {
+                                       "label": "No, I do not want to remove this person",
+                                       "value": "No, I do not want to remove this person"
+                                    }
+                                 ],
+                                 "type": "Radio"
+                              }
+                           ],
+                           "id": "visitor-remove-question",
+                           "title": {
+                              "placeholders": [
+                                 {
+                                    "placeholder": "person_name",
+                                    "transforms": [
+                                       {
+                                          "arguments": {
+                                             "delimiter": " ",
+                                             "list_to_concatenate": {
+                                                "identifier": [
+                                                   "first-name",
+                                                   "last-name"
+                                                ],
+                                                "source": "answers"
+                                             }
+                                          },
+                                          "transform": "concatenate_list"
+                                       }
+                                    ]
+                                 }
+                              ],
+                              "text": "Are you sure you want to remove {person_name}?"
+                           },
+                           "type": "General"
+                        },
+                        "type": "ListRemoveQuestion"
+                     },
+                     "summary": {
+                        "add_link_text": "Add a visitor",
+                        "empty_list_text": "There are no visitors",
+                        "item_title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "person_name",
+                                 "transforms": [
+                                    {
+                                       "arguments": {
+                                          "delimiter": " ",
+                                          "list_to_concatenate": {
+                                             "identifier": [
+                                                "first-name",
+                                                "last-name"
+                                             ],
+                                             "source": "answers"
+                                          }
+                                       },
+                                       "transform": "concatenate_list"
+                                    }
+                                 ]
+                              }
+                           ],
+                           "text": "{person_name}"
+                        },
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "census_date",
+                                 "transforms": [
+                                    {
+                                       "arguments": {
+                                          "date_format": "d MMMM yyyy",
+                                          "date_to_format": {
+                                             "value": "2019-10-13"
+                                          }
+                                       },
+                                       "transform": "format_date"
+                                    }
+                                 ]
+                              }
+                           ],
+                           "text": "Visitors staying overnight on {census_date}?"
+                        }
+                     },
+                     "type": "ListCollector"
+                  },
+                  {
+                     "id": "who-lives-here-section-summary",
+                     "type": "SectionSummary"
+                  },
+                  {
+                     "content": {
+                        "contents": [
+                           {
+                              "description": "In this section, we’ll ask you how the people who usually live in this household are related to each other."
+                           },
+                           {
+                              "description": "For the displayed household members, select the appropriate relationship from the options shown. The selected relationship will display at the bottom of the page for you to check."
+                           }
+                        ],
+                        "title": "Household relationships"
+                     },
+                     "id": "relationships-interstitial",
+                     "skip_conditions": [
+                        {
+                           "when": [
+                              {
+                                 "condition": "less than",
+                                 "list": "household",
+                                 "value": 2
+                              }
+                           ]
+                        }
+                     ],
+                     "type": "Interstitial"
+                  },
+                  {
+                     "for_list": "household",
+                     "id": "relationships",
+                     "question_variants": [
+                        {
+                           "question": {
+                              "answers": [
+                                 {
+                                    "id": "relationship-answer",
+                                    "mandatory": false,
+                                    "options": [
+                                       {
+                                          "label": "Husband or wife",
+                                          "playback": "{second_person_name} is your <em>husband or wife</em>",
+                                          "title": "{second_person_name} is your <em>husband or wife</em>",
+                                          "value": "Husband or wife"
+                                       },
+                                       {
+                                          "label": "Legally registered civil partner",
+                                          "playback": "{second_person_name} is your <em>legally registered civil partner</em>",
+                                          "title": "{second_person_name} is your <em>legally registered civil partner</em>",
+                                          "value": "Legally registered civil partner"
+                                       },
+                                       {
+                                          "label": "Partner",
+                                          "playback": "{second_person_name} is your <em>partner</em>",
+                                          "title": "{second_person_name} is your <em>partner</em>",
+                                          "value": "Partner"
+                                       },
+                                       {
+                                          "label": "Son or daughter",
+                                          "playback": "{second_person_name} is your <em>son or daughter</em>",
+                                          "title": "{second_person_name} is your <em>son or daughter</em>",
+                                          "value": "Son or daughter"
+                                       },
+                                       {
+                                          "label": "Stepchild",
+                                          "playback": "{second_person_name} is your <em>stepchild</em>",
+                                          "title": "{second_person_name} is your <em>stepchild</em>",
+                                          "value": "Stepchild"
+                                       },
+                                       {
+                                          "description": "Including half brother or half sister",
+                                          "label": "Brother or sister",
+                                          "playback": "{second_person_name} is your <em>brother or sister</em>",
+                                          "title": "{second_person_name} is your <em>brother or sister</em>",
+                                          "value": "Brother or sister"
+                                       },
+                                       {
+                                          "label": "Mother or father",
+                                          "playback": "{second_person_name} is your <em>mother or father</em>",
+                                          "title": "{second_person_name} is your <em>mother or father</em>",
+                                          "value": "Mother or father"
+                                       },
+                                       {
+                                          "label": "Stepmother or stepfather",
+                                          "playback": "{second_person_name} is your <em>stepmother or stepfather</em>",
+                                          "title": "{second_person_name} is your <em>stepmother or stepfather</em>",
+                                          "value": "Stepmother or stepfather"
+                                       },
+                                       {
+                                          "label": "Grandchild",
+                                          "playback": "{second_person_name} is your <em>grandchild</em>",
+                                          "title": "{second_person_name} is your <em>grandchild</em>",
+                                          "value": "Grandchild"
+                                       },
+                                       {
+                                          "label": "Grandparent",
+                                          "playback": "{second_person_name} is your <em>grandparent</em>",
+                                          "title": "{second_person_name} is your <em>grandparent</em>",
+                                          "value": "Grandparent"
+                                       },
+                                       {
+                                          "label": "Other relation",
+                                          "playback": "{second_person_name} is your <em>other relation</em>",
+                                          "title": "{second_person_name} is your <em>other relation</em>",
+                                          "value": "Other relation"
+                                       },
+                                       {
+                                          "description": "Including foster child",
+                                          "label": "Unrelated",
+                                          "playback": "{second_person_name} is <em>unrelated</em> to you",
+                                          "title": "{second_person_name} is <em>unrelated</em> to you",
+                                          "value": "Unrelated"
+                                       }
+                                    ],
+                                    "playback": "{second_person_name} is your <em>...</em>",
+                                    "type": "Relationship"
+                                 }
+                              ],
+                              "description": "Complete the sentence by selecting the appropriate relationship.",
+                              "id": "relationship-question",
+                              "title": "{second_person_name} is your <em>...</em>",
+                              "type": "General"
+                           },
+                           "when": [
+                              {
+                                 "comparison": {
+                                    "id": "list_item_id",
+                                    "source": "location"
+                                 },
+                                 "condition": "equals",
+                                 "id_selector": "primary_person",
+                                 "list": "household"
+                              }
+                           ]
+                        },
+                        {
+                           "question": {
+                              "answers": [
+                                 {
+                                    "id": "relationship-answer",
+                                    "mandatory": false,
+                                    "options": [
+                                       {
+                                          "label": "Husband or wife",
+                                          "playback": "{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>",
+                                          "value": "Husband or wife"
+                                       },
+                                       {
+                                          "label": "Legally registered civil partner",
+                                          "playback": "{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>",
+                                          "value": "Legally registered civil partner"
+                                       },
+                                       {
+                                          "label": "Partner",
+                                          "playback": "{second_person_name} is {first_person_name_possessive} <em>partner</em>",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is their <em>partner</em>",
+                                          "value": "Partner"
+                                       },
+                                       {
+                                          "label": "Son or daughter",
+                                          "playback": "{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>",
+                                          "value": "Son or daughter"
+                                       },
+                                       {
+                                          "label": "Stepchild",
+                                          "playback": "{second_person_name} is {first_person_name_possessive} <em>stepchild</em>",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is their <em>stepchild</em>",
+                                          "value": "Stepchild"
+                                       },
+                                       {
+                                          "description": "Including half brother or half sister",
+                                          "label": "Brother or sister",
+                                          "playback": "{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is their <em>brother or sister</em>",
+                                          "value": "Brother or sister"
+                                       },
+                                       {
+                                          "label": "Mother or father",
+                                          "playback": "{second_person_name} is {first_person_name_possessive} <em>mother or father</em>",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is their <em>mother or father</em>",
+                                          "value": "Mother or father"
+                                       },
+                                       {
+                                          "label": "Stepmother or stepfather",
+                                          "playback": "{second_person_name} is {first_person_name_possessive} <em>stepmother or stepfather</em>",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is their <em>stepmother or stepfather</em>",
+                                          "value": "Stepmother or stepfather"
+                                       },
+                                       {
+                                          "label": "Grandchild",
+                                          "playback": "{second_person_name} is {first_person_name_possessive} <em>grandchild</em>",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is their <em>grandchild</em>",
+                                          "value": "Grandchild"
+                                       },
+                                       {
+                                          "label": "Grandparent",
+                                          "playback": "{second_person_name} is {first_person_name_possessive} <em>grandparent</em>",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is their <em>grandparent</em>",
+                                          "value": "Grandparent"
+                                       },
+                                       {
+                                          "label": "Other relation",
+                                          "playback": "{second_person_name} is {first_person_name_possessive} <em>other relation</em>",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is their <em>other relation</em>",
+                                          "value": "Other relation"
+                                       },
+                                       {
+                                          "description": "Including foster child",
+                                          "label": "Unrelated",
+                                          "playback": "{second_person_name} is <em>unrelated</em> to {first_person_name}",
+                                          "title": "Thinking of {first_person_name}, {second_person_name} is <em>unrelated</em> to {first_person_name}",
+                                          "value": "Unrelated"
+                                       }
+                                    ],
+                                    "playback": "{second_person_name} is your <em>...</em>",
+                                    "type": "Relationship"
+                                 }
+                              ],
+                              "description": "Complete the sentence by selecting the appropriate relationship.",
+                              "id": "relationship-question",
+                              "title": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
+                              "type": "General"
+                           },
+                           "when": [
+                              {
+                                 "comparison": {
+                                    "id": "list_item_id",
+                                    "source": "location"
+                                 },
+                                 "condition": "not equals",
+                                 "id_selector": "primary_person",
+                                 "list": "household"
+                              }
+                           ]
+                        }
+                     ],
+                     "skip_conditions": [
+                        {
+                           "when": [
+                              {
+                                 "condition": "less than",
+                                 "list": "household",
+                                 "value": 2
+                              }
+                           ]
+                        }
+                     ],
+                     "title": "Household relationships",
+                     "type": "RelationshipCollector"
+                  }
+               ],
+               "id": "who-lives-here--group",
+               "title": "Who lives here"
+            }
+         ],
+         "id": "who-lives-here-section",
+         "title": "People who live here and overnight visitors"
+      },
+      {
+         "groups": [
+            {
+               "blocks": [
+                  {
+                     "content": {
+                        "contents": [
+                           {
+                              "description": "In this section, we’re going to ask you about the accommodation you live in."
+                           },
+                           {
+                              "list": [
+                                 "Type of property, and if it’s owned or rented",
+                                 "Type of landlord if rented, for example housing association, council or private",
+                                 "Type of central heating"
+                              ],
+                              "title": "You will need to know"
+                           }
+                        ],
+                        "title": "Household accommodation"
+                     },
+                     "id": "accommodation-introduction",
+                     "type": "Interstitial"
+                  },
+                  {
+                     "id": "accommodation-type",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "accommodation-type-answer",
+                              "mandatory": false,
+                              "options": [
+                                 {
+                                    "label": "Whole house or bungalow",
+                                    "value": "Whole house or bungalow"
+                                 },
+                                 {
+                                    "description": "Including purpose-built flats and flats within converted and shared houses",
+                                    "label": "Flat, maisonette or apartment",
+                                    "value": "Flat, maisonette or apartment"
+                                 },
+                                 {
+                                    "label": "Caravan or other mobile or temporary structure",
+                                    "value": "Caravan or other mobile or temporary structure"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "id": "accommodation-type-question",
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "address",
+                                 "value": {
+                                    "identifier": "display_address",
+                                    "source": "metadata"
+                                 }
+                              }
+                           ],
+                           "text": "What type of accommodation is <em>{address}</em>?"
+                        },
+                        "type": "General"
+                     },
+                     "routing_rules": [
+                        {
+                           "goto": {
+                              "block": "type-of-house",
+                              "when": [
+                                 {
+                                    "condition": "equals",
+                                    "id": "accommodation-type-answer",
+                                    "value": "Whole house or bungalow"
+                                 }
+                              ]
+                           }
+                        },
+                        {
+                           "goto": {
+                              "block": "type-of-flat",
+                              "when": [
+                                 {
+                                    "condition": "equals",
+                                    "id": "accommodation-type-answer",
+                                    "value": "Flat, maisonette or apartment"
+                                 }
+                              ]
+                           }
+                        },
+                        {
+                           "goto": {
+                              "block": "self-contained"
+                           }
+                        }
+                     ],
+                     "type": "Question"
+                  },
+                  {
+                     "id": "type-of-house",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "type-of-house-answer",
+                              "mandatory": false,
+                              "options": [
+                                 {
+                                    "label": "Detached",
+                                    "value": "Detached"
+                                 },
+                                 {
+                                    "label": "Semi-detached",
+                                    "value": "Semi-detached"
+                                 },
+                                 {
+                                    "description": "Including end-terrace",
+                                    "label": "Terraced",
+                                    "value": "Terraced"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "id": "type-of-house-question",
+                        "title": "Which of the following is your house or bungalow?",
+                        "type": "General"
+                     },
+                     "routing_rules": [
+                        {
+                           "goto": {
+                              "block": "self-contained"
+                           }
+                        }
+                     ],
+                     "type": "Question"
+                  },
+                  {
+                     "id": "type-of-flat",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "type-of-flat-answer",
+                              "mandatory": false,
+                              "options": [
+                                 {
+                                    "label": "In a purpose-built block of flats or tenement",
+                                    "value": "In a purpose-built block of flats or tenement"
+                                 },
+                                 {
+                                    "description": "Including bedsits",
+                                    "label": "Part of a converted or shared house",
+                                    "value": "Part of a converted or shared house"
+                                 },
+                                 {
+                                    "description": "For example, in an office building, hotel, or over a shop",
+                                    "label": "In a commercial building",
+                                    "value": "In a commercial building"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "id": "type-of-flat-question",
+                        "title": "Where is your flat, maisonette or apartment?",
+                        "type": "General"
+                     },
+                     "routing_rules": [
+                        {
+                           "goto": {
+                              "block": "self-contained"
+                           }
+                        }
+                     ],
+                     "type": "Question"
+                  },
+                  {
+                     "id": "self-contained",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "self-contained-answer",
+                              "mandatory": false,
+                              "options": [
+                                 {
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                 },
+                                 {
+                                    "label": "No, one or more rooms are shared with another household",
+                                    "value": "No"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "definitions": [
+                           {
+                              "contents": [
+                                 {
+                                    "description": "One person living alone; or a group of people, who are not necessarily related, living at the same address who share cooking facilities and share a living room or sitting room or dining area."
+                                 }
+                              ],
+                              "title": "What is a “household”?"
+                           }
+                        ],
+                        "id": "self-contained-question",
+                        "title": "Are all the rooms in this accommodation, including the kitchen, bathroom and toilet, behind a door that only this household can use?",
+                        "type": "General"
+                     },
+                     "type": "Question"
+                  },
+                  {
+                     "id": "number-of-bedrooms",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "number-of-bedrooms-answer",
+                              "label": "Number of bedrooms",
+                              "mandatory": false,
+                              "max_value": {
+                                 "value": 99
+                              },
+                              "type": "Number"
+                           }
+                        ],
+                        "guidance": {
+                           "contents": [
+                              {
+                                 "title": "Include all rooms built or converted for use as bedrooms"
+                              }
+                           ]
+                        },
+                        "id": "number-of-bedrooms-question",
+                        "title": "How many bedrooms are available for use only by this household?",
+                        "type": "General"
+                     },
+                     "routing_rules": [
+                        {
+                           "goto": {
+                              "block": "central-heating"
+                           }
+                        }
+                     ],
+                     "type": "Question"
+                  },
+                  {
+                     "id": "central-heating",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "central-heating-answer",
+                              "mandatory": false,
+                              "options": [
+                                 {
+                                    "label": "No central heating",
+                                    "value": "No central heating"
+                                 },
+                                 {
+                                    "label": "Mains gas",
+                                    "value": "Mains gas"
+                                 },
+                                 {
+                                    "label": "Tank or bottled gas",
+                                    "value": "Tank or bottled gas"
+                                 },
+                                 {
+                                    "description": "Including storage heaters",
+                                    "label": "Electric",
+                                    "value": "Electric"
+                                 },
+                                 {
+                                    "label": "Oil",
+                                    "value": "Oil"
+                                 },
+                                 {
+                                    "description": "For example, logs, waste wood or pellets",
+                                    "label": "Wood",
+                                    "value": "Wood"
+                                 },
+                                 {
+                                    "description": "For example, coal",
+                                    "label": "Solid fuel",
+                                    "value": "Solid fuel"
+                                 },
+                                 {
+                                    "description": "For example, solar thermal or heat pumps",
+                                    "label": "Renewable energy",
+                                    "value": "Renewable energy"
+                                 },
+                                 {
+                                    "label": "District or communal heat networks",
+                                    "value": "District or communal heat networks"
+                                 },
+                                 {
+                                    "label": "Other",
+                                    "value": "Other"
+                                 }
+                              ],
+                              "type": "Checkbox"
+                           }
+                        ],
+                        "guidance": {
+                           "contents": [
+                              {
+                                 "title": "Include central heating systems that generate heat for multiple rooms whether or not you use them"
+                              }
+                           ]
+                        },
+                        "id": "central-heating-question",
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "address",
+                                 "value": {
+                                    "identifier": "display_address",
+                                    "source": "metadata"
+                                 }
+                              }
+                           ],
+                           "text": "What type of central heating does <em>{address}</em> have?"
+                        },
+                        "type": "General"
+                     },
+                     "type": "Question"
+                  },
+                  {
+                     "id": "own-or-rent",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "own-or-rent-answer",
+                              "mandatory": true,
+                              "options": [
+                                 {
+                                    "label": "Owns outright",
+                                    "value": "Owns outright"
+                                 },
+                                 {
+                                    "label": "Owns with a mortgage or loan",
+                                    "value": "Owns with a mortgage or loan"
+                                 },
+                                 {
+                                    "description": "Shared ownership",
+                                    "label": "Part owns and part rents",
+                                    "value": "Part owns and part rents"
+                                 },
+                                 {
+                                    "description": "With or without housing benefit",
+                                    "label": "Rents",
+                                    "value": "Rents"
+                                 },
+                                 {
+                                    "label": "Lives here rent free",
+                                    "value": "Lives here rent free"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "id": "own-or-rent-question",
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "address",
+                                 "value": {
+                                    "identifier": "display_address",
+                                    "source": "metadata"
+                                 }
+                              }
+                           ],
+                           "text": "Does your household own or rent <em>{address}</em>?"
+                        },
+                        "type": "General"
+                     },
+                     "routing_rules": [
+                        {
+                           "goto": {
+                              "block": "number-of-vehicles",
+                              "when": [
+                                 {
+                                    "condition": "equals",
+                                    "id": "own-or-rent-answer",
+                                    "value": "Owns outright"
+                                 }
+                              ]
+                           }
+                        },
+                        {
+                           "goto": {
+                              "block": "number-of-vehicles",
+                              "when": [
+                                 {
+                                    "condition": "equals",
+                                    "id": "own-or-rent-answer",
+                                    "value": "Owns with a mortgage or loan"
+                                 }
+                              ]
+                           }
+                        },
+                        {
+                           "goto": {
+                              "block": "who-rent-from"
+                           }
+                        }
+                     ],
+                     "type": "Question"
+                  },
+                  {
+                     "id": "who-rent-from",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "who-rent-from-answer",
+                              "mandatory": false,
+                              "options": [
+                                 {
+                                    "label": "Housing association, housing co-operative, charitable trust, registered social landlord",
+                                    "value": "Housing association, housing co-operative, charitable trust, registered social landlord"
+                                 },
+                                 {
+                                    "label": "Council or local authority",
+                                    "value": "Council or local authority"
+                                 },
+                                 {
+                                    "label": "Private landlord or letting agency",
+                                    "value": "Private landlord or letting agency"
+                                 },
+                                 {
+                                    "label": "Employer of a household member",
+                                    "value": "Employer of a household member"
+                                 },
+                                 {
+                                    "label": "Relative or friend of a household member",
+                                    "value": "Relative or friend of a household member"
+                                 },
+                                 {
+                                    "label": "Other",
+                                    "value": "Other"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "id": "who-rent-from-question",
+                        "title": "Who is your landlord?",
+                        "type": "General"
+                     },
+                     "type": "Question"
+                  },
+                  {
+                     "id": "number-of-vehicles",
+                     "question": {
+                        "answers": [
+                           {
+                              "id": "number-of-vehicles-answer",
+                              "mandatory": false,
+                              "options": [
+                                 {
+                                    "label": "None",
+                                    "value": "None"
+                                 },
+                                 {
+                                    "label": "1",
+                                    "value": "1"
+                                 },
+                                 {
+                                    "label": "2",
+                                    "value": "2"
+                                 },
+                                 {
+                                    "label": "3",
+                                    "value": "3"
+                                 },
+                                 {
+                                    "description": "Select to enter number",
+                                    "detail_answer": {
+                                       "id": "number-of-vehicles-answer-other",
+                                       "label": "Enter the number of cars or vans",
+                                       "mandatory": false,
+                                       "type": "TextField"
+                                    },
+                                    "label": "4 or more",
+                                    "value": "4 or more"
+                                 }
+                              ],
+                              "type": "Radio"
+                           }
+                        ],
+                        "guidance": {
+                           "contents": [
+                              {
+                                 "title": "Include any company cars or vans available for private use."
+                              }
+                           ]
+                        },
+                        "id": "number-of-vehicles-question",
+                        "title": "In total, how many cars or vans are owned, or available for use, by members of this household?",
+                        "type": "General"
+                     },
+                     "type": "Question"
+                  },
+                  {
+                     "id": "accommodation-section-summary",
+                     "type": "SectionSummary"
+                  }
+               ],
+               "id": "accommodation-group",
+               "title": "Household accommodation"
+            }
+         ],
+         "id": "accommodation-section",
+         "title": "Household accommodation"
+      }
+   ],
+   "survey_id": "census",
+   "theme": "census",
+   "title": "2019 Census Test"
+}
