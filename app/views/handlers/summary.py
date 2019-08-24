@@ -40,4 +40,4 @@ class Summary(Content):
             }
         )
 
-        return context
+        return self.placeholder_renderer.render(context)

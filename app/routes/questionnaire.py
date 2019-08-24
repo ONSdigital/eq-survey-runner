@@ -6,11 +6,14 @@ import simplejson as json
 from dateutil.tz import tzutc
 from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
 from flask_login import current_user, login_required
+from jwcrypto.common import base64url_decode
 from sdc.crypto.encrypter import encrypt
 from structlog import get_logger
 
 from app.authentication.no_token_exception import NoTokenException
+from app.data_model.answer_store import AnswerStore
 from app.data_model.app_models import SubmittedResponse
+from app.data_model.list_store import ListStore
 from app.data_model.progress_store import CompletionStatus
 from app.globals import (
     get_answer_store,
@@ -26,6 +29,8 @@ from app.helpers.session_helpers import with_questionnaire_store
 from app.helpers.template_helper import render_template, safe_content
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.questionnaire.location import InvalidLocationException
+from app.questionnaire.path_finder import PathFinder
+from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.questionnaire.router import Router
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
@@ -355,8 +360,36 @@ def get_view_submission(schema):  # pylint: too-many-locals
 
             metadata_context = build_metadata_context_for_survey_completed(session_data)
 
+            pepper = current_app.eq['secret_store'].get_secret_by_name(
+                'EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER'
+            )
+
+            encrypter = StorageEncryption(
+                current_user.user_id, current_user.user_ik, pepper
+            )
+            submitted_data = encrypter.decrypt_data(submitted_data.data)
+
+            # for backwards compatibility
+            # submitted data used to be base64 encoded before encryption
+            try:
+                submitted_data = base64url_decode(submitted_data.decode()).decode()
+            except ValueError:
+                pass
+
+            submitted_data = json.loads(submitted_data)
+            answer_store = AnswerStore(submitted_data.get('answers'))
+            list_store = ListStore(submitted_data.get('lists'))
+
+            metadata = submitted_data.get('metadata')
+
+            placeholder_renderer = PlaceholderRenderer(
+                'en', schema, answer_store, metadata
+            )
+
+            submitted_path_finder = PathFinder(schema, answer_store, metadata=metadata)
+
             summary_rendered_context = build_summary_rendering_context(
-                schema=schema, path_finder=path_finder
+                schema=schema, path_finder=submitted_path_finder
             )
 
             context = {
@@ -370,20 +403,20 @@ def get_view_submission(schema):  # pylint: too-many-locals
             }
 
             for group in context.get('summary').get('groups'):
-                for block in group.get('blocks'):
-                    block['question'] = Block.get_question(
-                        block['id'],
-                        self._questionnaire_store.answer_store,
-                        self._questionnaire_store.list_store,
-                        self._questionnaire_store.metadata,
-                        self._schema,
-                        self._current_location,
+                for this_block in group.get('blocks'):
+                    this_block['question'] = Block.get_question(
+                        this_block['id'],
+                        answer_store,
+                        list_store,
+                        metadata,
+                        schema,
+                        None,
                     )
 
             return render_template(
                 template='view-submission',
                 metadata=metadata_context,
-                content=context,
+                content=placeholder_renderer.render(context),
                 survey_id=schema.json['survey_id'],
                 survey_title=safe_content(schema.json['title']),
             )

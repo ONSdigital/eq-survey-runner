@@ -382,10 +382,7 @@ class SummaryRowItem:
         summary_type,
     ):
 
-        if 'type' in answer:
-            answer_type = answer['type']
-        else:
-            answer_type = 'calculated'
+        answer_type = answer['type'] if 'type' in answer else 'calculated'
 
         if (
             (

@@ -1,9 +1,12 @@
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, patch, MagicMock
 
 from app.data_model.answer_store import AnswerStore, Answer
 from app.data_model.list_store import ListStore
+from app.data_model.progress_store import ProgressStore, CompletionStatus
+from app.data_model.questionnaire_store import QuestionnaireStore
 from app.questionnaire.location import Location
-from app.views.contexts.summary_context import build_summary_rendering_context
+from app.views.handlers.calculated_summary import CalculatedSummary
+from app.views.handlers.section_summary import SectionSummary
 from app.views.handlers.summary import Summary
 from app.utilities.schema import load_schema_from_name
 from tests.app.app_context_test_case import AppContextTestCase
@@ -69,28 +72,60 @@ class TestSummaryContext(TestStandardSummaryContext):
             'type': 'Summary',
             'collapsible': True,
         }
+        self.language = 'en'
         self.current_location = Location(
             section_id='default-section', block_id='summary'
         )
 
-    def test_build_summary_rendering_context(self):
-        summary_rendering_context = Summary(
-            self.schema, self.answer_store, self.list_store, self.metadata
+        storage = MagicMock()
+        storage.get_user_data = MagicMock(return_value=('{}', 1))
+        storage.add_or_update = MagicMock()
+
+        self.questionnaire_store = QuestionnaireStore(storage)
+        self.questionnaire_store.answer_store = AnswerStore(
+            [
+                {'answer_id': 'radio-answer', 'value': 'Eggs', 'list_item_id': None},
+                {'answer_id': 'test-currency', 'value': 1, 'list_item_id': None},
+                {'answer_id': 'square-kilometres', 'value': 1, 'list_item_id': None},
+                {'answer_id': 'test-decimal', 'value': 1, 'list_item_id': None},
+                {'answer_id': 'dessert', 'value': 'Cake', 'list_item_id': None},
+            ]
         )
-        self.check_summary_rendering_context(summary_rendering_context)
+        self.questionnaire_store.progress_store = ProgressStore(
+            [
+                {
+                    'section_id': 'default-section',
+                    'list_item_id': None,
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [
+                        {'section_id': 'default-section', 'block_id': 'radio'},
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'test-number-block',
+                        },
+                        {'section_id': 'default-section', 'block_id': 'dessert-block'},
+                    ],
+                }
+            ]
+        )
+
+    def test_build_summary_rendering_context(self):
+        summary = Summary(
+            self.schema, self.questionnaire_store, self.language, self.current_location
+        )
+        context = summary.get_context()
+
+        self.check_summary_rendering_context(context['summary']['groups'])
 
     def test_build_view_context_for_summary(self):
-        context = build_view_context_for_final_summary(
-            self.metadata,
-            self.schema,
-            self.answer_store,
-            self.list_store,
-            self.rendered_block,
-            self.current_location,
+        summary = Summary(
+            self.schema, self.questionnaire_store, self.language, self.current_location
         )
+        context = summary.get_context()
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
+
         self.assertEqual(len(context['summary']), 5)
         self.assertTrue('is_view_submission_response_enabled' in context['summary'])
         self.assertTrue('collapsible' in context['summary'])
@@ -100,32 +135,47 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
     def setUp(self):
         super().setUp()
         self.block_type = 'SectionSummary'
-
-    def test_build_summary_rendering_context(self):
-        schema = load_schema_from_name('test_section_summary')
-        sections = [schema.get_section('property-details-section')]
-        summary_rendering_context = build_summary_rendering_context(
-            schema, AnswerStore(), ListStore(), self.metadata, sections
-        )
-        self.check_summary_rendering_context(summary_rendering_context)
-
-    def test_build_view_context_for_section_summary(self):
-        current_location = Location(
+        self.language = 'en'
+        self.current_location = Location(
             section_id='property-details-section', block_id='property-details-summary'
         )
-        schema = load_schema_from_name('test_section_summary')
 
-        context = build_view_context_for_section_summary(
-            self.metadata,
-            schema,
-            AnswerStore(),
-            ListStore(),
-            self.block_type,
-            current_location,
-            self.language,
+        storage = MagicMock()
+        storage.get_user_data = MagicMock(return_value=('{}', 1))
+        storage.add_or_update = MagicMock()
+
+        self.questionnaire_store = QuestionnaireStore(storage)
+        self.questionnaire_store.answer_store = AnswerStore()
+        self.questionnaire_store.progress_store = ProgressStore(
+            [
+                {
+                    'section_id': 'property-details-section',
+                    'list_item_id': None,
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [
+                        {
+                            'section_id': 'property-details-section',
+                            'block_id': 'insurance-type',
+                        },
+                        {
+                            'section_id': 'property-details-section',
+                            'block_id': 'insurance-address',
+                        },
+                        {
+                            'section_id': 'property-details-section',
+                            'block_id': 'address-duration',
+                        },
+                    ],
+                }
+            ]
         )
+        self.schema = load_schema_from_name('test_section_summary')
 
-        self.check_context(context)
+    def test_build_summary_rendering_context(self):
+        summary = SectionSummary(
+            self.schema, self.questionnaire_store, self.language, self.current_location, return_to=None
+        )
+        context = summary.get_context()
         self.check_summary_rendering_context(context['summary']['groups'])
         self.assertTrue('title' in context['summary'])
 
@@ -134,22 +184,96 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
     def setUp(self):
         super().setUp()
         self.schema = load_schema_from_name('test_calculated_summary')
-        answers = [
-            {'value': 1, 'answer_id': 'first-number-answer'},
-            {'value': 2, 'answer_id': 'second-number-answer'},
-            {'value': 3, 'answer_id': 'second-number-answer-unit-total'},
-            {'value': 4, 'answer_id': 'second-number-answer-also-in-total'},
-            {'value': 5, 'answer_id': 'third-number-answer'},
-            {'value': 6, 'answer_id': 'third-and-a-half-number-answer-unit-total'},
-            {'value': 'No', 'answer_id': 'skip-fourth-block-answer'},
-            {'value': 7, 'answer_id': 'fourth-number-answer'},
-            {'value': 8, 'answer_id': 'fourth-and-a-half-number-answer-also-in-total'},
-            {'value': 9, 'answer_id': 'fifth-percent-answer'},
-            {'value': 10, 'answer_id': 'fifth-number-answer'},
-            {'value': 11, 'answer_id': 'sixth-percent-answer'},
-            {'value': 12, 'answer_id': 'sixth-number-answer'},
-        ]
-        self.answer_store = AnswerStore(answers)
+
+        storage = MagicMock()
+        storage.get_user_data = MagicMock(return_value=('{}', 1))
+        storage.add_or_update = MagicMock()
+
+        self.language = 'en'
+        self.questionnaire_store = QuestionnaireStore(storage)
+        self.questionnaire_store.answer_store = AnswerStore(
+            [
+                {'value': 1, 'answer_id': 'first-number-answer'},
+                {'value': 2, 'answer_id': 'second-number-answer'},
+                {'value': 3, 'answer_id': 'second-number-answer-unit-total'},
+                {'value': 4, 'answer_id': 'second-number-answer-also-in-total'},
+                {'value': 5, 'answer_id': 'third-number-answer'},
+                {'value': 6, 'answer_id': 'third-and-a-half-number-answer-unit-total'},
+                {'value': 'No', 'answer_id': 'skip-fourth-block-answer'},
+                {'value': 7, 'answer_id': 'fourth-number-answer'},
+                {
+                    'value': 8,
+                    'answer_id': 'fourth-and-a-half-number-answer-also-in-total',
+                },
+                {'value': 9, 'answer_id': 'fifth-percent-answer'},
+                {'value': 10, 'answer_id': 'fifth-number-answer'},
+                {'value': 11, 'answer_id': 'sixth-percent-answer'},
+                {'value': 12, 'answer_id': 'sixth-number-answer'},
+            ]
+        )
+        self.questionnaire_store.progress_store = ProgressStore(
+            [
+                {
+                    'section_id': 'default-section',
+                    'list_item_id': None,
+                    'status': CompletionStatus.COMPLETED,
+                    'locations': [
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'first-number-block',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'second-number-block',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'third-number-block',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'third-and-a-half-number-block',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'skip-fourth-block',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'fourth-number-block',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'fourth-and-a-half-number-block',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'fifth-number-block',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'sixth-number-block',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'currency-total-playback-skipped-fourth',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'currency-total-playback-with-fourth',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'unit-total-playback',
+                        },
+                        {
+                            'section_id': 'default-section',
+                            'block_id': 'percentage-total-playback',
+                        },
+                    ],
+                }
+            ]
+        )
         self.list_store = ListStore()
         self.block_type = 'CalculatedSummary'
 
@@ -159,14 +283,11 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             section_id='default-section', block_id='currency-total-playback-with-fourth'
         )
 
-        context = build_view_context_for_calculated_summary(
-            self.metadata,
-            self.schema,
-            self.answer_store,
-            self.list_store,
-            self.block_type,
-            current_location,
+        summary = CalculatedSummary(
+            self.schema, self.questionnaire_store, self.language, current_location, return_to=None
         )
+
+        context = summary.get_context()
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -196,15 +317,14 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         )
 
         skip_answer = Answer('skip-fourth-block-answer', 'Yes')
-        self.answer_store.add_or_update(skip_answer)
-        context = build_view_context_for_calculated_summary(
-            self.metadata,
-            self.schema,
-            self.answer_store,
-            self.list_store,
-            self.block_type,
-            current_location,
+
+        self.questionnaire_store.answer_store.add_or_update(skip_answer)
+
+        summary = CalculatedSummary(
+            self.schema, self.questionnaire_store, self.language, current_location, return_to=None
         )
+
+        context = summary.get_context()
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -232,14 +352,11 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             section_id='default-section', block_id='unit-total-playback'
         )
 
-        context = build_view_context_for_calculated_summary(
-            self.metadata,
-            self.schema,
-            self.answer_store,
-            self.list_store,
-            self.block_type,
-            current_location,
+        summary = CalculatedSummary(
+            self.schema, self.questionnaire_store, self.language, current_location, return_to=None
         )
+
+        context = summary.get_context()
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -265,14 +382,11 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             section_id='default-section', block_id='percentage-total-playback'
         )
 
-        context = build_view_context_for_calculated_summary(
-            self.metadata,
-            self.schema,
-            self.answer_store,
-            self.list_store,
-            self.block_type,
-            current_location,
+        summary = CalculatedSummary(
+            self.schema, self.questionnaire_store, self.language, current_location, return_to=None
         )
+
+        context = summary.get_context()
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -299,14 +413,11 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             section_id='default-section', block_id='number-total-playback'
         )
 
-        context = build_view_context_for_calculated_summary(
-            self.metadata,
-            self.schema,
-            self.answer_store,
-            self.list_store,
-            self.block_type,
-            current_location,
+        summary = CalculatedSummary(
+            self.schema, self.questionnaire_store, self.language, current_location, return_to=None
         )
+
+        context = summary.get_context()
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -334,20 +445,24 @@ def test_context_for_section_list_summary(people_answer_store, app):
         block_id='people-list-section-summary', section_id='section'
     )
 
-    context = build_view_context_for_section_summary(
-        {},
-        schema,
-        people_answer_store,
-        ListStore(
-            [
-                {'items': ['PlwgoG', 'UHPLbX'], 'name': 'people'},
-                {'items': ['gTrlio'], 'name': 'visitors'},
-            ]
-        ),
-        'SectionSummary',
-        current_location,
-        DEFAULT_LANGUAGE_CODE,
+    storage = MagicMock()
+    storage.get_user_data = MagicMock(return_value=('{}', 1))
+    storage.add_or_update = MagicMock()
+
+    questionnaire_store = QuestionnaireStore(storage)
+    questionnaire_store.answer_store = people_answer_store
+    questionnaire_store.list_store = ListStore(
+        [
+            {'items': ['PlwgoG', 'UHPLbX'], 'name': 'people'},
+            {'items': ['gTrlio'], 'name': 'visitors'},
+        ]
     )
+
+    summary = SectionSummary(
+        schema, questionnaire_store, 'en', current_location, return_to=None
+    )
+
+    context = summary.get_context()
 
     expected = [
         {
