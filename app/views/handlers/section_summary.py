@@ -14,8 +14,8 @@ class SectionSummary(Summary):
         section = self._schema.get_section(group['parent_id'])
 
         context = self.build_context([section])
+        context = self.add_questions_to_blocks(context)
 
-        self.add_context_questions(context)
         list_collector_blocks = self._schema.get_visible_list_blocks_for_section(
             section
         )

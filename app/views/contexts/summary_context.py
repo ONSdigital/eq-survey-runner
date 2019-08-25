@@ -30,7 +30,7 @@ def get_section_context(section, block_ids_to_filter) -> List:
     return group_collection
 
 
-def build_summary_rendering_context(
+def build_group_summary_context(
     schema: QuestionnaireSchema, path_finder: PathFinder, sections: List[Mapping] = None
 ) -> List:
     sections = sections or schema.get_sections()

@@ -135,11 +135,9 @@ def _remove_unwanted_questions_answers(
 
 class CalculatedSummary(Summary):
     def get_context(self):
-        current_block = self._schema.get_block(self._current_location.block_id)
-
         section_list = _build_calculated_summary_section_list(
             self._schema,
-            current_block,
+            self.block,
             self._current_location,
             self._questionnaire_store.answer_store,
             self._questionnaire_store.list_store,
@@ -147,8 +145,7 @@ class CalculatedSummary(Summary):
         )
 
         context = self.build_context(section_list)
-
-        self.add_context_questions(context)
+        context = self.add_questions_to_blocks(context)
 
         formatted_total = _get_formatted_total(
             context['summary'].get('groups', []),
@@ -162,9 +159,9 @@ class CalculatedSummary(Summary):
         context['summary'].update(
             {
                 'calculated_question': _get_calculated_question(
-                    current_block['calculation'], formatted_total
+                    self.block['calculation'], formatted_total
                 ),
-                'title': current_block.get('title') % dict(total=formatted_total),
+                'title': self.block.get('title') % dict(total=formatted_total),
             }
         )
 

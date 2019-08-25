@@ -1,7 +1,8 @@
 from typing import List, Mapping
 
+from copy import deepcopy
 from app.views.contexts.summary.block import Block
-from app.views.contexts.summary_context import build_summary_rendering_context
+from app.views.contexts.summary_context import build_group_summary_context
 from app.views.handlers.content import Content
 
 
@@ -14,8 +15,10 @@ def _is_view_submitted_response_enabled(schema):
 
 
 class Summary(Content):
-    def add_context_questions(self, context):
-        for group in context.get('summary').get('groups'):
+    def add_questions_to_blocks(self, context):
+        updated_context = deepcopy(context)
+
+        for group in updated_context.get('summary').get('groups'):
             for block in group.get('blocks'):
                 block['question'] = Block.get_question(
                     block['id'],
@@ -25,9 +28,10 @@ class Summary(Content):
                     self._schema,
                     self._current_location,
                 )
+        return updated_context
 
     def build_context(self, sections: List[Mapping] = None):
-        summary_rendering_context = build_summary_rendering_context(
+        summary_rendering_context = build_group_summary_context(
             self._schema, self.path_finder, sections
         )
 
@@ -42,7 +46,7 @@ class Summary(Content):
     def get_context(self):
         context = self.build_context()
 
-        self.add_context_questions(context)
+        context = self.add_questions_to_blocks(context)
 
         context['summary'].update(
             {

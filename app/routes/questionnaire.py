@@ -41,7 +41,7 @@ from app.views.contexts.metadata_context import (
     build_metadata_context_for_survey_completed,
 )
 from app.views.contexts.summary.block import Block
-from app.views.contexts.summary_context import build_summary_rendering_context
+from app.views.contexts.summary_context import build_group_summary_context
 from app.views.handlers.block_factory import get_block_handler
 
 END_BLOCKS = 'Summary', 'Confirmation'
@@ -388,7 +388,7 @@ def get_view_submission(schema):  # pylint: too-many-locals
 
             submitted_path_finder = PathFinder(schema, answer_store, metadata=metadata)
 
-            summary_rendered_context = build_summary_rendering_context(
+            summary_rendered_context = build_group_summary_context(
                 schema=schema, path_finder=submitted_path_finder
             )
 
