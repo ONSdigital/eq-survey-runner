@@ -8,9 +8,7 @@ from app.questionnaire.schema_utils import (
     choose_question_to_display,
     get_answer_ids_in_block,
 )
-from app.views.contexts.summary.block import Block
-from app.views.contexts.summary_context import build_view_context_for_summary
-from app.views.handlers.content import Content
+from app.views.handlers.summary import Summary
 
 
 def _get_formatted_total(
@@ -135,8 +133,7 @@ def _remove_unwanted_questions_answers(
     return reduced_block
 
 
-class CalculatedSummary(Content):
-
+class CalculatedSummary(Summary):
     def get_context(self):
         current_block = self._schema.get_block(self._current_location.block_id)
 
@@ -149,20 +146,9 @@ class CalculatedSummary(Content):
             self._questionnaire_store.metadata,
         )
 
-        context = build_view_context_for_summary(
-            self._schema, current_block['type'], self.path_finder, section_list
-        )
+        context = self.build_context(section_list)
 
-        for group in context.get('summary').get('groups'):
-            for block in group.get('blocks'):
-                block['question'] = Block.get_question(
-                    block['id'],
-                    self._questionnaire_store.answer_store,
-                    self._questionnaire_store.list_store,
-                    self._questionnaire_store.metadata,
-                    self._schema,
-                    self._current_location,
-                )
+        self.add_context_questions(context)
 
         formatted_total = _get_formatted_total(
             context['summary'].get('groups', []),

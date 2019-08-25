@@ -42,18 +42,3 @@ def build_summary_rendering_context(
         block_ids_on_path = [location.block_id for location in path]
         group_collection.extend(get_section_context(section, block_ids_on_path))
     return group_collection
-
-
-def build_view_context_for_summary(schema, block_type, path_finder, sections=None):
-    summary_rendering_context = build_summary_rendering_context(
-        schema, path_finder, sections
-    )
-
-    context = {
-        'summary': {
-            'groups': summary_rendering_context,
-            'answers_are_editable': True,
-            'summary_type': block_type,
-        }
-    }
-    return context

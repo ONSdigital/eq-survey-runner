@@ -1,5 +1,7 @@
+from typing import List, Mapping
+
 from app.views.contexts.summary.block import Block
-from app.views.contexts.summary_context import build_view_context_for_summary
+from app.views.contexts.summary_context import build_summary_rendering_context
 from app.views.handlers.content import Content
 
 
@@ -15,11 +17,7 @@ class Summary(Content):
     def __init__(self, *args):
         super().__init__(*args)
 
-    def get_context(self):
-        context = build_view_context_for_summary(
-            self._schema, self.rendered_block['type'], self.path_finder
-        )
-
+    def add_context_questions(self, context):
         for group in context.get('summary').get('groups'):
             for block in group.get('blocks'):
                 block['question'] = Block.get_question(
@@ -30,6 +28,24 @@ class Summary(Content):
                     self._schema,
                     self._current_location,
                 )
+
+    def build_context(self, sections: List[Mapping] = None):
+        summary_rendering_context = build_summary_rendering_context(
+            self._schema, self.path_finder, sections
+        )
+
+        return {
+            'summary': {
+                'groups': summary_rendering_context,
+                'answers_are_editable': True,
+                'summary_type': self.rendered_block['type'],
+            }
+        }
+
+    def get_context(self):
+        context = self.build_context()
+
+        self.add_context_questions(context)
 
         context['summary'].update(
             {
