@@ -14,9 +14,6 @@ def _is_view_submitted_response_enabled(schema):
 
 
 class Summary(Content):
-    def __init__(self, *args):
-        super().__init__(*args)
-
     def add_context_questions(self, context):
         for group in context.get('summary').get('groups'):
             for block in group.get('blocks'):

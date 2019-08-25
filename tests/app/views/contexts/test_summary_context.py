@@ -111,7 +111,11 @@ class TestSummaryContext(TestStandardSummaryContext):
 
     def test_build_summary_rendering_context(self):
         summary = Summary(
-            self.schema, self.questionnaire_store, self.language, self.current_location
+            self.schema,
+            self.questionnaire_store,
+            self.language,
+            self.current_location,
+            None,
         )
         context = summary.get_context()
 
@@ -119,7 +123,11 @@ class TestSummaryContext(TestStandardSummaryContext):
 
     def test_build_view_context_for_summary(self):
         summary = Summary(
-            self.schema, self.questionnaire_store, self.language, self.current_location
+            self.schema,
+            self.questionnaire_store,
+            self.language,
+            self.current_location,
+            None,
         )
         context = summary.get_context()
 
@@ -173,7 +181,11 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
 
     def test_build_summary_rendering_context(self):
         summary = SectionSummary(
-            self.schema, self.questionnaire_store, self.language, self.current_location, return_to=None
+            self.schema,
+            self.questionnaire_store,
+            self.language,
+            self.current_location,
+            None,
         )
         context = summary.get_context()
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -284,7 +296,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         )
 
         summary = CalculatedSummary(
-            self.schema, self.questionnaire_store, self.language, current_location, return_to=None
+            self.schema, self.questionnaire_store, self.language, current_location, None
         )
 
         context = summary.get_context()
@@ -321,7 +333,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.questionnaire_store.answer_store.add_or_update(skip_answer)
 
         summary = CalculatedSummary(
-            self.schema, self.questionnaire_store, self.language, current_location, return_to=None
+            self.schema, self.questionnaire_store, self.language, current_location, None
         )
 
         context = summary.get_context()
@@ -353,7 +365,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         )
 
         summary = CalculatedSummary(
-            self.schema, self.questionnaire_store, self.language, current_location, return_to=None
+            self.schema, self.questionnaire_store, self.language, current_location, None
         )
 
         context = summary.get_context()
@@ -383,7 +395,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         )
 
         summary = CalculatedSummary(
-            self.schema, self.questionnaire_store, self.language, current_location, return_to=None
+            self.schema, self.questionnaire_store, self.language, current_location, None
         )
 
         context = summary.get_context()
@@ -414,7 +426,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         )
 
         summary = CalculatedSummary(
-            self.schema, self.questionnaire_store, self.language, current_location, return_to=None
+            self.schema, self.questionnaire_store, self.language, current_location, None
         )
 
         context = summary.get_context()
@@ -457,9 +469,26 @@ def test_context_for_section_list_summary(people_answer_store, app):
             {'items': ['gTrlio'], 'name': 'visitors'},
         ]
     )
+    questionnaire_store.progress_store = ProgressStore(
+        [
+            {
+                'section_id': 'section',
+                'list_item_id': None,
+                'status': CompletionStatus.COMPLETED,
+                'locations': [
+                    {
+                        'section_id': 'section',
+                        'block_id': 'primary-person-list-collector',
+                    },
+                    {'section_id': 'section', 'block_id': 'list-collector'},
+                    {'section_id': 'section', 'block_id': 'visitor-list-collector'},
+                ],
+            }
+        ]
+    )
 
     summary = SectionSummary(
-        schema, questionnaire_store, 'en', current_location, return_to=None
+        schema, questionnaire_store, DEFAULT_LANGUAGE_CODE, current_location, None
     )
 
     context = summary.get_context()
