@@ -85,4 +85,31 @@ describe('Checkbox with a numeric "detail_answer" option', function() {
         .getText(CheckboxNumericDetailPage.errorNumber(1)).should.eventually.contain('Number cannot be less than zero');
     });
   });
+
+  it('Given a numeric detail answer, When the user provides text, An error should be displayed and the text in the textbox should be kept', function() {
+    // Given
+    return helpers.openQuestionnaire(checkbox_schema).then(() => {
+      return browser
+      // When
+        .click(CheckboxNumericDetailPage.other())
+        .setValue(CheckboxNumericDetailPage.otherDetail(), 'biscuits')
+        .click(CheckboxNumericDetailPage.submit())
+        .isVisible(CheckboxNumericDetailPage.error()).should.eventually.be.true
+      // Then
+        .getText(CheckboxNumericDetailPage.otherDetail()).should.eventually.contain('biscuits');
+    });
+  });
+
+  it('Given a numeric detail answer, When the user enters "0" and submits, Then "0" should be displayed on the summary screen', function() {
+    // Given
+    return helpers.openQuestionnaire(checkbox_schema).then(() => {
+      return browser
+      // When
+        .click(CheckboxNumericDetailPage.other())
+        .setValue(CheckboxNumericDetailPage.otherDetail(), '0')
+        .click(CheckboxNumericDetailPage.submit())
+      // Then
+      .getText(SummaryPage.radioAnswerNumericDetail()).should.eventually.contain('0');
+    });
+  });
 });

@@ -3,7 +3,7 @@ const helpers = require('../../../helpers');
 const RadioNumericDetailPage = require('../../../generated_pages/radio_numeric_detail_answers/radio-numeric-detail.page');
 const SummaryPage = require('../../../generated_pages/radio_numeric_detail_answers/summary.page');
 
-describe('Radio with a numeric "detail_answer" option', function() {
+describe.only('Radio with a numeric "detail_answer" option', function() {
 
   const radio_schema = 'test_radio_numeric_detail_answers.json';
 
@@ -83,6 +83,33 @@ describe('Radio with a numeric "detail_answer" option', function() {
       // Then
         .isVisible(RadioNumericDetailPage.error()).should.eventually.be.true
         .getText(RadioNumericDetailPage.errorNumber(1)).should.eventually.contain('Number cannot be less than zero');
+    });
+  });
+
+  it('Given a numeric detail answer, When the user provides text, An error should be displayed and the text in the textbox should be kept', function() {
+    // Given
+    return helpers.openQuestionnaire(radio_schema).then(() => {
+      return browser
+      // When
+        .click(RadioNumericDetailPage.other())
+        .setValue(RadioNumericDetailPage.otherDetail(), 'biscuits')
+        .click(RadioNumericDetailPage.submit())
+        .isVisible(RadioNumericDetailPage.error()).should.eventually.be.true
+      // Then
+        .getText(RadioNumericDetailPage.otherDetail()).should.eventually.contain('biscuits');
+    });
+  });
+
+  it('Given a numeric detail answer, When the user enters "0" and submits, Then "0" should be displayed on the summary screen', function() {
+    // Given
+    return helpers.openQuestionnaire(radio_schema).then(() => {
+      return browser
+      // When
+        .click(RadioNumericDetailPage.other())
+        .setValue(RadioNumericDetailPage.otherDetail(), '0')
+        .click(RadioNumericDetailPage.submit())
+        // Then
+        .getText(SummaryPage.radioAnswerNumericDetail()).should.eventually.contain('0');
     });
   });
 });
