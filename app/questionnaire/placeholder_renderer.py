@@ -16,8 +16,8 @@ def find_pointers_containing(input_data, search_key, pointer=None):
     :return: generator of the json pointer paths
     """
     if isinstance(input_data, dict):
-        if pointer and search_key in input_data:
-            yield pointer
+        if search_key in input_data:
+            yield pointer or ''
         for k, v in input_data.items():
             if isinstance(v, dict) and search_key in v:
                 yield pointer + '/' + k if pointer else '/' + k
