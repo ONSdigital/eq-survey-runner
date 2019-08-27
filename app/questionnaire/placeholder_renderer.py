@@ -16,8 +16,8 @@ def find_pointers_containing(input_data, search_key, pointer=None):
     :return: generator of the json pointer paths
     """
     if isinstance(input_data, dict):
-        if search_key in input_data:
-            yield pointer or ''
+        if pointer and search_key in input_data:
+            yield pointer
         for k, v in input_data.items():
             if isinstance(v, dict) and search_key in v:
                 yield pointer + '/' + k if pointer else '/' + k
@@ -49,6 +49,11 @@ class PlaceholderRenderer:
         self._placeholders = {}
 
     def render_pointer(self, dict_to_render, pointer_to_render):
+        pointer_data = resolve_pointer(dict_to_render, pointer_to_render)
+
+        return self.render_placeholder(pointer_data)
+
+    def render_placeholder(self, placeholder_data):
         placeholder_parser = PlaceholderParser(
             language=self._language,
             schema=self._schema,
@@ -57,32 +62,22 @@ class PlaceholderRenderer:
             list_item_id=self._list_item_id,
         )
 
-        pointer_data = resolve_pointer(dict_to_render, pointer_to_render)
+        if 'text' not in placeholder_data or  'placeholders' not in placeholder_data:
+            raise ValueError('No placeholder found to render')
 
-        if 'text' not in pointer_data or 'placeholders' not in pointer_data:
-            raise ValueError('No placeholder found at pointer')
+        transformed_values = placeholder_parser.parse(placeholder_data['placeholders'])
 
-        transformed_values = placeholder_parser.parse(pointer_data['placeholders'])
-
-        return pointer_data['text'].format(**transformed_values)
+        return placeholder_data['text'].format(**transformed_values)
 
     def render(self, dict_to_render):
         """
         Transform the current schema json to a fully rendered dictionary
-
-        :return:
         """
         rendered_data = deepcopy(dict_to_render)
         pointer_list = find_pointers_containing(rendered_data, 'placeholders')
 
         for pointer in pointer_list:
             rendered_text = self.render_pointer(rendered_data, pointer)
-            # We can't set the top level object without copying to a new object.
-            if pointer == '':
-                rendered_data = set_pointer(
-                    rendered_data, pointer, rendered_text, inplace=False
-                )
-            else:
-                set_pointer(rendered_data, pointer, rendered_text)
+            set_pointer(rendered_data, pointer, rendered_text)
 
         return rendered_data
