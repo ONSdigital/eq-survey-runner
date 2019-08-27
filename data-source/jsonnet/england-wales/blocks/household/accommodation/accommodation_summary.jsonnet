@@ -1,4 +1,4 @@
 {
   type: 'SectionSummary',
-  id: 'currency-section-summary',
+  id: 'accommodation-section-summary',
 }

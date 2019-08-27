@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-21 12:13+0100\n"
+"POT-Creation-Date: 2019-08-23 15:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,58 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
+msgid "Why do we ask this question?"
+msgstr ""
+
+msgid "Why do I have to include visitors?"
+msgstr ""
+
 msgid "Census England Household Schema"
+msgstr ""
+
+msgid ""
+"It means the address at which you generally spend most time. For most "
+"people, this will be their permanent or family home."
+msgstr ""
+
+msgid ""
+"<strong>Full-time students</strong>, include yourself at your term time "
+"address."
+msgstr ""
+
+msgid ""
+"<strong>Armed forces members</strong>, include yourself at your home "
+"address if you have one."
+msgstr ""
+
+msgid "For example, this is a second address or holiday home"
+msgstr ""
+
+msgid ""
+"We ask this question to help ensure that everyone is correctly counted in"
+" the census. This includes people who are staying temporarily or are "
+"away."
+msgstr ""
+
+msgid ""
+"We ask for visitor information to ensure that everyone is counted. This "
+"helps to produce accurate population estimates. Add any visitors, even if"
+" you think they may have been included on a census form at another "
+"address."
+msgstr ""
+
+msgid ""
+"In this section, we’ll ask you how the people who usually live in this "
+"household are related to each other."
+msgstr ""
+
+msgid ""
+"For the displayed household members, select the appropriate relationship "
+"from the options shown. The selected relationship will display at the "
+"bottom of the page for you to check."
+msgstr ""
+
+msgid "Complete the sentence by selecting the appropriate relationship."
 msgstr ""
 
 msgid ""
@@ -67,13 +118,214 @@ msgstr ""
 msgid "Voluntary"
 msgstr ""
 
+msgid "{second_person_name} is your <em>...</em>"
+msgstr ""
+
+msgid "{second_person_name} is your <em>husband or wife</em>"
+msgstr ""
+
+msgid "{second_person_name} is your <em>legally registered civil partner</em>"
+msgstr ""
+
+msgid "{second_person_name} is your <em>partner</em>"
+msgstr ""
+
+msgid "{second_person_name} is your <em>son or daughter</em>"
+msgstr ""
+
+msgid "{second_person_name} is your <em>stepchild</em>"
+msgstr ""
+
+msgid "{second_person_name} is your <em>brother or sister</em>"
+msgstr ""
+
+msgid "{second_person_name} is your <em>mother or father</em>"
+msgstr ""
+
+msgid "{second_person_name} is your <em>stepmother or stepfather</em>"
+msgstr ""
+
+msgid "{second_person_name} is your <em>grandchild</em>"
+msgstr ""
+
+msgid "{second_person_name} is your <em>grandparent</em>"
+msgstr ""
+
+msgid "{second_person_name} is your <em>other relation</em>"
+msgstr ""
+
+msgid "{second_person_name} is <em>unrelated</em> to you"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>husband or "
+"wife</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>legally "
+"registered civil partner</em>"
+msgstr ""
+
+msgid "{second_person_name} is {first_person_name_possessive} <em>partner</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>son or "
+"daughter</em>"
+msgstr ""
+
+msgid "{second_person_name} is {first_person_name_possessive} <em>stepchild</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>brother or "
+"sister</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>mother or "
+"father</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>stepmother or "
+"stepfather</em>"
+msgstr ""
+
+msgid "{second_person_name} is {first_person_name_possessive} <em>grandchild</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} "
+"<em>grandparent</em>"
+msgstr ""
+
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>other "
+"relation</em>"
+msgstr ""
+
+msgid "{second_person_name} is <em>unrelated</em> to {first_person_name}"
+msgstr ""
+
+msgid "Add someone to this household"
+msgstr ""
+
+msgid "Add another visitor to this household"
+msgstr ""
+
+msgid "Add a visitor"
+msgstr ""
+
+msgid "There are no householders"
+msgstr ""
+
+msgid "There are no visitors"
+msgstr ""
+
 msgid "2019 Census Test"
 msgstr ""
 
-msgid "Household accommodation"
+msgid "People who live here and overnight visitors"
+msgstr ""
+
+msgid "Who lives here"
+msgstr ""
+
+msgid "People who live here"
 msgstr ""
 
 msgid "You will need to know"
+msgstr ""
+
+msgid "What is your name?"
+msgstr ""
+
+msgid "What does \"usually live\" mean?"
+msgstr ""
+
+msgid "Household members"
+msgstr ""
+
+msgid "Include people who are temporarily away"
+msgstr ""
+
+msgid "Include people who are temporarily staying"
+msgstr ""
+
+msgid "Include"
+msgstr ""
+
+msgid "Household relationships"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>...</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>husband or wife</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>legally registered civil partner</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>partner</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their <em>son or"
+" daughter</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>stepchild</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>brother or sister</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their <em>mother"
+" or father</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>stepmother or stepfather</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>grandchild</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>grandparent</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their <em>other "
+"relation</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is "
+"<em>unrelated</em> to {first_person_name}"
+msgstr ""
+
+msgid "Household accommodation"
 msgstr ""
 
 msgid "Which of the following is your house or bungalow?"
@@ -112,6 +364,79 @@ msgstr ""
 msgid "Include any company cars or vans available for private use."
 msgstr ""
 
+msgid ""
+"Names of the people living at this address including anyone temporarily "
+"away."
+msgstr ""
+
+msgid "Names of visitors staying overnight at this address on 13 October 2019"
+msgstr ""
+
+msgid "h"
+msgstr ""
+
+msgid "o"
+msgstr ""
+
+msgid "u"
+msgstr ""
+
+msgid "s"
+msgstr ""
+
+msgid "e"
+msgstr ""
+
+msgid "l"
+msgstr ""
+
+msgid "d"
+msgstr ""
+
+msgid ""
+"People who work away from home within the UK if this is their permanent "
+"or family home"
+msgstr ""
+
+msgid "Members of the armed forces if this is their permanent or family home"
+msgstr ""
+
+msgid ""
+"People who are temporarily outside the UK for less than <strong>12 "
+"months</strong>"
+msgstr ""
+
+msgid "Other people who usually live here but are temporarily away"
+msgstr ""
+
+msgid ""
+"People staying temporarily who usually live in the UK but do not have "
+"another UK address for example, relatives, friends"
+msgstr ""
+
+msgid ""
+"People who usually live outside the UK who are staying in the UK for "
+"<strong>3 months or more</strong>"
+msgstr ""
+
+msgid ""
+"People who usually live somewhere else in the UK, for example "
+"boy/girlfriends, friends or relatives"
+msgstr ""
+
+msgid ""
+"People staying here because it is their second address, for example, for "
+"work. Their permanent or family home is elsewhere"
+msgstr ""
+
+msgid ""
+"People who usually live outside the UK who are staying in the UK for less"
+" than three months"
+msgstr ""
+
+msgid "People here on holiday"
+msgstr ""
+
 msgid "Type of property, and if it’s owned or rented"
 msgstr ""
 
@@ -123,6 +448,56 @@ msgstr ""
 msgid "Type of central heating"
 msgstr ""
 
+msgid ""
+"In this section, we’re going to ask you about the people living or "
+"staying at {address}."
+msgstr ""
+
+msgid "Do you usually live at {address}?"
+msgstr ""
+
+msgid "Does anyone usually live at {address}?"
+msgstr ""
+
+msgid "Who do you need to add to {address}?"
+msgstr ""
+
+msgid "Change details for {person_name} (You)"
+msgstr ""
+
+msgid "Change details for {person_name}"
+msgstr ""
+
+msgid "Does anyone else live at {address}?"
+msgstr ""
+
+msgid "Are you sure you want to remove {person_name}?"
+msgstr ""
+
+msgid "{person_name}"
+msgstr ""
+
+msgid ""
+"Apart from the people already included, is there anyone who is "
+"temporarily away or staying you need to add to {address}?"
+msgstr ""
+
+msgid "Are there any visitors staying overnight on {census_date} at {address}?"
+msgstr ""
+
+msgid ""
+"What is the name of the visitor staying overnight on {census_date} at "
+"{address}?"
+msgstr ""
+
+msgid ""
+"Are there any other visitors staying overnight on {census_date} at "
+"{address}?"
+msgstr ""
+
+msgid "Visitors staying overnight on {census_date}"
+msgstr ""
+
 msgid "What type of accommodation is <em>{address}</em>?"
 msgstr ""
 
@@ -130,6 +505,337 @@ msgid "What type of central heating does <em>{address}</em> have?"
 msgstr ""
 
 msgid "Does your household own or rent <em>{address}</em>?"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: What is your name?"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: What is your name?"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: What is your name?"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: you-live-here-answer
+msgctxt "Answer for: Do you usually live at {address}?"
+msgid "Yes, I usually live here"
+msgstr ""
+
+#. answer-id: you-live-here-answer
+msgctxt "Answer for: Do you usually live at {address}?"
+msgid "No, I don’t usually live here"
+msgstr ""
+
+#. answer-id: anyone-usually-live-at-answer
+msgctxt "Answer for: Does anyone usually live at {address}?"
+msgid "Yes, I need to add someone"
+msgstr ""
+
+#. answer-id: anyone-usually-live-at-answer
+msgctxt "Answer for: Does anyone usually live at {address}?"
+msgid "No, no one usually lives here"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: anyone-else-answer
+msgctxt "Answer for: Does anyone else live at {address}?"
+msgid "Yes, I need to add someone"
+msgstr ""
+
+#. answer-id: anyone-else-answer
+msgctxt "Answer for: Does anyone else live at {address}?"
+msgid "No, I do not need to add anyone"
+msgstr ""
+
+#. answer-id: remove-confirmation
+#. answer-id: anyone-else-temp-away-remove-confirmation
+#. answer-id: visitor-remove-confirmation
+msgctxt "Answer for: Are you sure you want to remove {person_name}?"
+msgid "Yes, I want to remove this person"
+msgstr ""
+
+#. answer-id: remove-confirmation
+#. answer-id: anyone-else-temp-away-remove-confirmation
+#. answer-id: visitor-remove-confirmation
+msgctxt "Answer for: Are you sure you want to remove {person_name}?"
+msgid "No, I do not want to remove this person"
+msgstr ""
+
+#. answer-id: anyone-else-temp-away-answer
+msgctxt ""
+"Answer for: Apart from the people already included, is there anyone who "
+"is temporarily away or staying you need to add to {address}?"
+msgid "Yes, I need to add someone"
+msgstr ""
+
+#. answer-id: anyone-else-temp-away-answer
+msgctxt ""
+"Answer for: Apart from the people already included, is there anyone who "
+"is temporarily away or staying you need to add to {address}?"
+msgid "No, I do not need to add anyone"
+msgstr ""
+
+#. answer-id: any-visitors-answer
+msgctxt ""
+"Answer for: Are there any visitors staying overnight on {census_date} at "
+"{address}?"
+msgid ""
+"People who usually live somewhere else in the UK, for example "
+"boy/girlfriends, friends or relatives"
+msgstr ""
+
+#. answer-id: any-visitors-answer
+msgctxt ""
+"Answer for: Are there any visitors staying overnight on {census_date} at "
+"{address}?"
+msgid ""
+"People staying here because it is their second address, for example, for "
+"work. Their permanent or family home is elsewhere"
+msgstr ""
+
+#. answer-id: any-visitors-answer
+msgctxt ""
+"Answer for: Are there any visitors staying overnight on {census_date} at "
+"{address}?"
+msgid ""
+"People who usually live outside the UK who are staying in the UK for less"
+" than three months"
+msgstr ""
+
+#. answer-id: any-visitors-answer
+msgctxt ""
+"Answer for: Are there any visitors staying overnight on {census_date} at "
+"{address}?"
+msgid "People here on holiday"
+msgstr ""
+
+#. answer-id: any-visitors-answer-exclusive
+msgctxt ""
+"Answer for: Are there any visitors staying overnight on {census_date} at "
+"{address}?"
+msgid "No, there are no visitors staying overnight on 13 October 2019"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt ""
+"Answer for: What is the name of the visitor staying overnight on "
+"{census_date} at {address}?"
+msgid "First name"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt ""
+"Answer for: What is the name of the visitor staying overnight on "
+"{census_date} at {address}?"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: visitor-answer
+msgctxt ""
+"Answer for: Are there any other visitors staying overnight on "
+"{census_date} at {address}?"
+msgid "Yes, I need to add someone"
+msgstr ""
+
+#. answer-id: visitor-answer
+msgctxt ""
+"Answer for: Are there any other visitors staying overnight on "
+"{census_date} at {address}?"
+msgid "No, I do not need to add anyone"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Husband or wife"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Legally registered civil partner"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Partner"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Son or daughter"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Stepchild"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Brother or sister"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Mother or father"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Stepmother or stepfather"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Grandchild"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Grandparent"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Other relation"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "Unrelated"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Husband or wife"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Legally registered civil partner"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Partner"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Son or daughter"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Stepchild"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Brother or sister"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Mother or father"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Stepmother or stepfather"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Grandchild"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Grandparent"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Other relation"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "Unrelated"
 msgstr ""
 
 #. answer-id: accommodation-type-answer
@@ -347,5 +1053,23 @@ msgctxt ""
 "Answer for: In total, how many cars or vans are owned, or available for "
 "use, by members of this household?"
 msgid "Enter the number of cars or vans"
+msgstr ""
+
+#. answer-id: anyone-usually-live-at-answer
+msgctxt "Answer for: Does anyone usually live at {address}?"
+msgid ""
+"Include partners, children, babies born on or before {census_date}, "
+"housemates, tenants and lodgers, students and schoolchildren who live "
+"away from home during term time, where this is their permanent or family "
+"home"
+msgstr ""
+
+#. answer-id: anyone-else-answer
+msgctxt "Answer for: Does anyone else live at {address}?"
+msgid ""
+"Include partners, children, babies born on or before {census_date}, "
+"housemates, tenants and lodgers, students and schoolchildren who live "
+"away from home during term time, where this is their permanent or family "
+"home"
 msgstr ""
 
