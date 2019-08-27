@@ -1,6 +1,7 @@
 import contextlib
 
 import mock
+from google.api_core import exceptions
 from google.cloud import datastore as google_datastore
 
 from tests.app.app_context_test_case import AppContextTestCase
@@ -66,3 +67,12 @@ class TestDatastore(AppContextTestCase):
         m_key = self.mock_client.key.return_value
 
         self.mock_client.delete.assert_called_once_with(m_key)
+
+    def test_retry(self):
+        model = QuestionnaireState('someuser', 'data', 1)
+
+        self.mock_client.put = mock.Mock(
+            side_effect=[exceptions.InternalServerError('error'), mock.DEFAULT]
+        )
+        self.ds.put(model, True)
+        assert self.mock_client.put.call_count > 1
