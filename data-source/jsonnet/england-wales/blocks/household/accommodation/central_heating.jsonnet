@@ -71,4 +71,18 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
       },
     ],
   },
+  routing_rules: [
+    {
+        goto: {
+            block: 'accommodation-section-summary',
+            when: [
+            {
+                id: 'people',
+                condition: 'equals',
+                value: '0',
+            },
+          ],
+        },
+     },
+  ],
 }
