@@ -1,4 +1,5 @@
 local rules = import '../../../lib/rules.libsonnet';
+local placeholderSubs = import '../../../lib/placeholders.libsonnet';
 
 {
   type: 'RelationshipCollector',
@@ -21,85 +22,163 @@ local rules = import '../../../lib/rules.libsonnet';
       question: {
         id: 'relationship-question',
         type: 'General',
-        title: '{second_person_name} is your <em>...</em>',
+        title: {
+          text: '{second_person_name} is your <em>...</em>',
+          placeholders: [placeholderSubs.secondPersonPlaceholder],
+        },
         description: 'Complete the sentence by selecting the appropriate relationship.',
         answers: [
           {
             id: 'relationship-answer',
             mandatory: false,
             type: 'Relationship',
-            playback: '{second_person_name} is your <em>...</em>',
+            playback: {
+              text: '{second_person_name} is your <em>...</em>',
+              placeholders: [placeholderSubs.secondPersonPlaceholder],
+            },
             options: [
               {
                 label: 'Husband or wife',
-                playback: '{second_person_name} is your <em>husband or wife</em>',
-                title: '{second_person_name} is your <em>husband or wife</em>',
+                playback: {
+                  text: '{second_person_name} is your <em>husband or wife</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>husband or wife</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Husband or wife',
               },
               {
                 label: 'Legally registered civil partner',
-                playback: '{second_person_name} is your <em>legally registered civil partner</em>',
-                title: '{second_person_name} is your <em>legally registered civil partner</em>',
+                playback: {
+                  text: '{second_person_name} is your <em>legally registered civil partner</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>legally registered civil partner</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Legally registered civil partner',
               },
               {
                 label: 'Partner',
-                playback: '{second_person_name} is your <em>partner</em>',
-                title: '{second_person_name} is your <em>partner</em>',
+                playback: {
+                  text: '{second_person_name} is your <em>partner</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>partner</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Partner',
               },
               {
                 label: 'Son or daughter',
-                playback: '{second_person_name} is your <em>son or daughter</em>',
-                title: '{second_person_name} is your <em>son or daughter</em>',
+                playback: {
+                  text: '{second_person_name} is your <em>son or daughter</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>son or daughter</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Son or daughter',
               },
               {
                 label: 'Stepchild',
-                playback: '{second_person_name} is your <em>stepchild</em>',
-                title: '{second_person_name} is your <em>stepchild</em>',
+                playback: {
+                  text: '{second_person_name} is your <em>stepchild</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>stepchild</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Stepchild',
               },
               {
                 label: 'Brother or sister',
-                playback: '{second_person_name} is your <em>brother or sister</em>',
-                title: '{second_person_name} is your <em>brother or sister</em>',
+                playback: {
+                  text: '{second_person_name} is your <em>brother or sister</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>brother or sister</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Brother or sister',
               },
               {
                 label: 'Mother or father',
-                playback: '{second_person_name} is your <em>mother or father</em>',
-                title: '{second_person_name} is your <em>mother or father</em>',
+                playback: {
+                  text: '{second_person_name} is your <em>mother or father</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>mother or father</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Mother or father',
               },
               {
                 label: 'Stepmother or stepfather',
-                playback: '{second_person_name} is your <em>stepmother or stepfather</em>',
-                title: '{second_person_name} is your <em>stepmother or stepfather</em>',
+                playback: {
+                  text: '{second_person_name} is your <em>stepmother or stepfather</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>stepmother or stepfather</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Stepmother or stepfather',
               },
               {
                 label: 'Grandchild',
-                playback: '{second_person_name} is your <em>grandchild</em>',
-                title: '{second_person_name} is your <em>grandchild</em>',
+                playback: {
+                  text: '{second_person_name} is your <em>grandchild</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>grandchild</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Grandchild',
               },
               {
                 label: 'Grandparent',
-                playback: '{second_person_name} is your <em>grandparent</em>',
-                title: '{second_person_name} is your <em>grandparent</em>',
+                playback: {
+                  text: '{second_person_name} is your <em>grandparent</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>grandparent</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Grandparent',
               },
               {
                 label: 'Other relation',
-                playback: '{second_person_name} is your <em>other relation</em>',
-                title: '{second_person_name} is your <em>other relation</em>',
+                playback: {
+                  text: '{second_person_name} is your <em>other relation</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>other relation</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Other relation',
               },
               {
                 label: 'Unrelated',
-                playback: '{second_person_name} is <em>unrelated</em> to you',
-                title: '{second_person_name} is <em>unrelated</em> to you',
+                playback: {
+                  text: '{second_person_name} is <em>unrelated</em> to you',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is <em>unrelated</em> to you',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Unrelated',
               },
             ],
@@ -112,85 +191,163 @@ local rules = import '../../../lib/rules.libsonnet';
       question: {
         id: 'relationship-question',
         type: 'General',
-        title: 'Thinking of {first_person_name}, {second_person_name} is their <em>...</em>',
+        title: {
+          text: 'Thinking of {first_person_name}, {second_person_name} is their <em>...</em>',
+          placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+        },
         description: 'Complete the sentence by selecting the appropriate relationship.',
         answers: [
           {
             id: 'relationship-answer',
             mandatory: false,
             type: 'Relationship',
-            playback: '{second_person_name} is your <em>...</em>',
+            playback: {
+              text: '{second_person_name} is your <em>...</em>',
+              placeholders: [placeholderSubs.secondPersonPlaceholder],
+            },
             options: [
               {
                 label: 'Husband or wife',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Husband or wife',
               },
               {
                 label: 'Legally registered civil partner',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Legally registered civil partner',
               },
               {
                 label: 'Partner',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>partner</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>partner</em>',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>partner</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>partner</em>',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Partner',
               },
               {
                 label: 'Son or daughter',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Son or daughter',
               },
               {
                 label: 'Stepchild',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>stepchild</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>stepchild</em>',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>stepchild</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>stepchild</em>',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Stepchild',
               },
               {
                 label: 'Brother or sister',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>brother or sister</em>',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>brother or sister</em>',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Brother or sister',
               },
               {
                 label: 'Mother or father',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>mother or father</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>mother or father</em>',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>mother or father</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>mother or father</em>',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Mother or father',
               },
               {
                 label: 'Stepmother or stepfather',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>stepmother or stepfather</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>stepmother or stepfather</em>',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>stepmother or stepfather</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>stepmother or stepfather</em>',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Stepmother or stepfather',
               },
               {
                 label: 'Grandchild',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>grandchild</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>grandchild</em>',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>grandchild</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>grandchild</em>',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Grandchild',
               },
               {
                 label: 'Grandparent',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>grandparent</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>grandparent</em>',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>grandparent</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>grandparent</em>',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Grandparent',
               },
               {
                 label: 'Other relation',
-                playback: '{second_person_name} is {first_person_name_possessive} <em>other relation</em>',
-                title: 'Thinking of {first_person_name}, {second_person_name} is their <em>other relation</em>',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>other relation</em>',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>other relation</em>',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                },
                 value: 'Other relation',
               },
               {
                 label: 'Unrelated',
-                playback: '{second_person_name} is <em>unrelated</em> to {first_person_name}',
-                title: 'Thinking of {first_person_name}, {second_person_name} is <em>unrelated</em> to {first_person_name}',
+                playback: {
+                  text: '{second_person_name} is <em>unrelated</em> to {first_person_name}',
+                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonPlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is <em>unrelated</em> to {first_person_name}',
+                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonPlaceholder],
+                },
                 value: 'Unrelated',
               },
             ],
