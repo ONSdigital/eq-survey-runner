@@ -171,9 +171,7 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
     it('When the user clicks \'View answers\' for a completed repeating section, Then they are taken to the summary', function () {
       return browser
         .click(HubPage.summaryRowLink(3))
-
-        .getUrl().should.eventually.contain(PersonalSummaryPage.url().split('/').slice(-1)[0])
-
+        .getUrl().should.eventually.contain(PersonalSummaryPage.url().split('/').slice(-1)[0]);
     });
 
     it('When the user adds 2 visitors to the household then a section for each visitor should be display on the hub', function () {
