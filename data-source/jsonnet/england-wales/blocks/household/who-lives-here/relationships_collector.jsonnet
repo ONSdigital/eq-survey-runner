@@ -1,68 +1,5 @@
 local rules = import '../../../lib/rules.libsonnet';
 
-local first_person_placeholder = {
-  placeholder: 'first_person_name',
-  'transforms': [{
-    'transform': 'concatenate_list',
-    'arguments': {
-      'list_to_concatenate': {
-        'source': 'answers',
-        'identifier': ['first-name', 'last-name'],
-        'list_item_selector': {
-          'source': 'location',
-          'id': 'list_item_id'
-        }
-      },
-      'delimiter': ' '
-    }
-  }]
-};
-
-local second_person_placeholder = {
-  placeholder: 'second_person_name',
-  'transforms': [{
-    'transform': 'concatenate_list',
-    'arguments': {
-      'list_to_concatenate': {
-        'source': 'answers',
-        'identifier': ['first-name', 'last-name'],
-        'list_item_selector': {
-          'source': 'location',
-          'id': 'to_list_item_id'
-        }
-      },
-      'delimiter': ' '
-    }
-  }]
-};
-
-local first_person_name_possessive_placeholder = {
-  'placeholder': 'first_person_name_possessive',
-  'transforms': [{
-      'transform': 'concatenate_list',
-      'arguments': {
-        'list_to_concatenate': {
-          'source': 'answers',
-          'identifier': ['first-name', 'last-name'],
-          'list_item_selector': {
-            'source': 'location',
-            'id': 'list_item_id'
-          }
-        },
-        'delimiter': ' '
-      }
-    },
-    {
-      'transform': 'format_possessive',
-      'arguments': {
-        'string_to_format': {
-          'source': 'previous_transform'
-        }
-      }
-    }
-  ]
-};
-
 {
   type: 'RelationshipCollector',
   id: 'relationships',
@@ -86,7 +23,7 @@ local first_person_name_possessive_placeholder = {
         type: 'General',
         title: {
           text: '{second_person_name} is your <em>...</em>',
-          placeholders: [second_person_placeholder]
+          placeholders: [rules.secondPersonPlaceholder]
         },
         description: 'Complete the sentence by selecting the appropriate relationship.',
         answers: [{
@@ -95,17 +32,17 @@ local first_person_name_possessive_placeholder = {
           type: 'Relationship',
           playback: {
             text: '{second_person_name} is your <em>...</em>',
-            placeholders: [second_person_placeholder]
+            placeholders: [rules.secondPersonPlaceholder]
           },
           options: [{
               label: 'Husband or wife',
               playback: {
                 text: '{second_person_name} is your <em>husband or wife</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is your <em>husband or wife</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Husband or wife',
             },
@@ -113,11 +50,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Legally registered civil partner',
               playback: {
                 text: '{second_person_name} is your <em>legally registered civil partner</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is your <em>legally registered civil partner</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Legally registered civil partner',
             },
@@ -125,11 +62,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Partner',
               playback: {
                 text: '{second_person_name} is your <em>partner</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is your <em>partner</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Partner',
             },
@@ -137,11 +74,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Son or daughter',
               playback: {
                 text: '{second_person_name} is your <em>son or daughter</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is your <em>son or daughter</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Son or daughter',
             },
@@ -149,11 +86,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Stepchild',
               playback: {
                 text: '{second_person_name} is your <em>stepchild</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is your <em>stepchild</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Stepchild',
             },
@@ -161,11 +98,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Brother or sister',
               playback: {
                 text: '{second_person_name} is your <em>brother or sister</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is your <em>brother or sister</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Brother or sister',
             },
@@ -173,11 +110,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Mother or father',
               playback: {
                 text: '{second_person_name} is your <em>mother or father</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is your <em>mother or father</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Mother or father',
             },
@@ -185,11 +122,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Stepmother or stepfather',
               playback: {
                 text: '{second_person_name} is your <em>stepmother or stepfather</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is your <em>stepmother or stepfather</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Stepmother or stepfather',
             },
@@ -197,11 +134,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Grandchild',
               playback: {
                 text: '{second_person_name} is your <em>grandchild</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is your <em>grandchild</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Grandchild',
             },
@@ -209,11 +146,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Grandparent',
               playback: {
                 text: '{second_person_name} is your <em>grandparent</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is your <em>grandparent</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Grandparent',
             },
@@ -221,11 +158,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Other relation',
               playback: {
                 text: '{second_person_name} is your <em>other relation</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is your <em>other relation</em>',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Other relation',
             },
@@ -233,11 +170,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Unrelated',
               playback: {
                 text: '{second_person_name} is <em>unrelated</em> to you',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               title: {
                 text: '{second_person_name} is <em>unrelated</em> to you',
-                placeholders: [second_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder]
               },
               value: 'Unrelated',
             },
@@ -252,7 +189,7 @@ local first_person_name_possessive_placeholder = {
         type: 'General',
         title: {
           text: 'Thinking of {first_person_name}, {second_person_name} is their <em>...</em>',
-          placeholders: [first_person_placeholder, second_person_placeholder]
+          placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
         },
         description: 'Complete the sentence by selecting the appropriate relationship.',
         answers: [{
@@ -261,17 +198,17 @@ local first_person_name_possessive_placeholder = {
           type: 'Relationship',
           playback: {
             text: '{second_person_name} is your <em>...</em>',
-            placeholders: [second_person_placeholder]
+            placeholders: [rules.secondPersonPlaceholder]
           },
           options: [{
               label: 'Husband or wife',
               playback: {
                 text: '{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>',
-                placeholders: [second_person_placeholder, first_person_name_possessive_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonNamePossessivePlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>',
-                placeholders: [first_person_placeholder, second_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
             },
               value: 'Husband or wife',
             },
@@ -279,11 +216,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Legally registered civil partner',
               playback: {
                 text: '{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>',
-                placeholders: [second_person_placeholder, first_person_name_possessive_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonNamePossessivePlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>',
-                placeholders: [first_person_placeholder, second_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
             },
               value: 'Legally registered civil partner',
             },
@@ -291,11 +228,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Partner',
               playback: {
                 text: '{second_person_name} is {first_person_name_possessive} <em>partner</em>',
-                placeholders: [second_person_placeholder, first_person_name_possessive_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonNamePossessivePlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is their <em>partner</em>',
-                placeholders: [first_person_placeholder, second_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
             },
               value: 'Partner',
             },
@@ -303,11 +240,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Son or daughter',
               playback: {
                 text: '{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>',
-                placeholders: [second_person_placeholder, first_person_name_possessive_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonNamePossessivePlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>',
-                placeholders: [first_person_placeholder, second_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
             },
               value: 'Son or daughter',
             },
@@ -315,11 +252,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Stepchild',
               playback: {
                 text: '{second_person_name} is {first_person_name_possessive} <em>stepchild</em>',
-                placeholders: [second_person_placeholder, first_person_name_possessive_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonNamePossessivePlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is their <em>stepchild</em>',
-                placeholders: [first_person_placeholder, second_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
             },
               value: 'Stepchild',
             },
@@ -327,11 +264,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Brother or sister',
               playback: {
                 text: '{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>',
-                placeholders: [second_person_placeholder, first_person_name_possessive_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonNamePossessivePlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is their <em>brother or sister</em>',
-                placeholders: [first_person_placeholder, second_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
             },
               value: 'Brother or sister',
             },
@@ -339,11 +276,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Mother or father',
               playback: {
                 text: '{second_person_name} is {first_person_name_possessive} <em>mother or father</em>',
-                placeholders: [second_person_placeholder, first_person_name_possessive_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonNamePossessivePlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is their <em>mother or father</em>',
-                placeholders: [first_person_placeholder, second_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
             },
               value: 'Mother or father',
             },
@@ -351,11 +288,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Stepmother or stepfather',
               playback: {
                 text: '{second_person_name} is {first_person_name_possessive} <em>stepmother or stepfather</em>',
-                placeholders: [second_person_placeholder, first_person_name_possessive_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonNamePossessivePlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is their <em>stepmother or stepfather</em>',
-                placeholders: [first_person_placeholder, second_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
             },
               value: 'Stepmother or stepfather',
             },
@@ -363,11 +300,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Grandchild',
               playback: {
                 text: '{second_person_name} is {first_person_name_possessive} <em>grandchild</em>',
-                placeholders: [second_person_placeholder, first_person_name_possessive_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonNamePossessivePlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is their <em>grandchild</em>',
-                placeholders: [first_person_placeholder, second_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
             },
               value: 'Grandchild',
             },
@@ -375,11 +312,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Grandparent',
               playback: {
                 text: '{second_person_name} is {first_person_name_possessive} <em>grandparent</em>',
-                placeholders: [second_person_placeholder, first_person_name_possessive_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonNamePossessivePlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is their <em>grandparent</em>',
-                placeholders: [first_person_placeholder, second_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
             },
               value: 'Grandparent',
             },
@@ -387,11 +324,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Other relation',
               playback: {
                 text: '{second_person_name} is {first_person_name_possessive} <em>other relation</em>',
-                placeholders: [second_person_placeholder, first_person_name_possessive_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonNamePossessivePlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is their <em>other relation</em>',
-                placeholders: [first_person_placeholder, second_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder]
             },
               value: 'Other relation',
             },
@@ -399,11 +336,11 @@ local first_person_name_possessive_placeholder = {
               label: 'Unrelated',
               playback: {
                 text: '{second_person_name} is <em>unrelated</em> to {first_person_name}',
-                placeholders: [second_person_placeholder, first_person_placeholder]
+                placeholders: [rules.secondPersonPlaceholder, rules.firstPersonPlaceholder]
               },
               title: {
                 text: 'Thinking of {first_person_name}, {second_person_name} is <em>unrelated</em> to {first_person_name}',
-                placeholders: [first_person_placeholder, second_person_placeholder, first_person_placeholder]
+                placeholders: [rules.firstPersonPlaceholder, rules.secondPersonPlaceholder, rules.firstPersonPlaceholder]
             },
               value: 'Unrelated',
             },
