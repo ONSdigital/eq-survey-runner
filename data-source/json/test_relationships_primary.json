@@ -252,7 +252,10 @@
                                                                 "list_to_concatenate": {
                                                                     "source": "answers",
                                                                     "identifier": ["first-name", "last-name"],
-                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                    "list_item_selector": {
+                                                                      "source": "location",
+                                                                      "id": "to_list_item_id"
+                                                                    }
                                                                 },
                                                                 "delimiter": " "
                                                             }
@@ -278,7 +281,10 @@
                                                                         "list_to_concatenate": {
                                                                             "source": "answers",
                                                                             "identifier": ["first-name", "last-name"],
-                                                                            "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                            "list_item_selector": {
+                                                                              "source": "location",
+                                                                              "id": "to_list_item_id"
+                                                                            }
                                                                         },
                                                                         "delimiter": " "
                                                                     }
@@ -303,7 +309,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -324,7 +333,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -349,7 +361,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -370,7 +385,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -395,7 +413,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -416,7 +437,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -441,7 +465,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -462,7 +489,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -504,7 +534,10 @@
                                                                 "list_to_concatenate": {
                                                                     "source": "answers",
                                                                     "identifier": ["first-name", "last-name"],
-                                                                    "list_item_selector": "list_item_id"
+                                                                    "list_item_selector": {
+                                                                      "source": "location",
+                                                                      "id": "list_item_id"
+                                                                    }
                                                                 },
                                                                 "delimiter": " "
                                                             }
@@ -520,7 +553,10 @@
                                                                 "list_to_concatenate": {
                                                                     "source": "answers",
                                                                     "identifier": ["first-name", "last-name"],
-                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                    "list_item_selector": {
+                                                                      "source": "location",
+                                                                      "id": "to_list_item_id"
+                                                                    }
                                                                 },
                                                                 "delimiter": " "
                                                             }
@@ -546,7 +582,10 @@
                                                                         "list_to_concatenate": {
                                                                             "source": "answers",
                                                                             "identifier": ["first-name", "last-name"],
-                                                                            "list_item_selector": "list_item_id"
+                                                                            "list_item_selector": {
+                                                                              "source": "location",
+                                                                              "id": "list_item_id"
+                                                                            }
                                                                         },
                                                                         "delimiter": " "
                                                                     }
@@ -570,7 +609,10 @@
                                                                         "list_to_concatenate": {
                                                                             "source": "answers",
                                                                             "identifier": ["first-name", "last-name"],
-                                                                            "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                            "list_item_selector": {
+                                                                              "source": "location",
+                                                                              "id": "to_list_item_id"
+                                                                            }
                                                                         },
                                                                         "delimiter": " "
                                                                     }
@@ -595,7 +637,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": "list_item_id"
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -611,7 +656,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -632,7 +680,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": "list_item_id"
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -656,7 +707,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -681,7 +735,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": "list_item_id"
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -697,7 +754,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -718,7 +778,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": "list_item_id"
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -742,7 +805,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -767,7 +833,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": "list_item_id"
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -783,7 +852,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -804,7 +876,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": "list_item_id"
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -828,7 +903,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -853,7 +931,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": "list_item_id"
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -869,7 +950,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -890,7 +974,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": "list_item_id"
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
@@ -914,7 +1001,10 @@
                                                                                 "list_to_concatenate": {
                                                                                     "source": "answers",
                                                                                     "identifier": ["first-name", "last-name"],
-                                                                                    "list_item_selector": { "source": "location", "id": "to_list_item_id" }
+                                                                                    "list_item_selector": {
+                                                                                      "source": "location",
+                                                                                      "id": "to_list_item_id"
+                                                                                    }
                                                                                 },
                                                                                 "delimiter": " "
                                                                             }
