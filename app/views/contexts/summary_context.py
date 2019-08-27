@@ -116,7 +116,7 @@ class SummaryContext:
                     metadata=self._metadata,
                     list_item_id=list_item_id,
                 )
-                title = placeholder_renderer.render(repeating_title)
+                title = placeholder_renderer.render_placeholder(repeating_title)
 
         placeholder_renderer = PlaceholderRenderer(
             language=self._language,

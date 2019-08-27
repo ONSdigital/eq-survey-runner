@@ -124,7 +124,7 @@ class HubContext:
             list_item_id=list_item_id,
         )
 
-        title = placeholder_renderer.render(repeating_title)
+        title = placeholder_renderer.render_placeholder(repeating_title)
 
         return self._get_row_for_section(title, section_id, list_item_id)
 
