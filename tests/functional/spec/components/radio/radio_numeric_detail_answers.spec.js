@@ -3,7 +3,7 @@ const helpers = require('../../../helpers');
 const RadioNumericDetailPage = require('../../../generated_pages/radio_numeric_detail_answers/radio-numeric-detail.page');
 const SummaryPage = require('../../../generated_pages/radio_numeric_detail_answers/summary.page');
 
-describe.only('Radio with a numeric "detail_answer" option', function() {
+describe('Radio with a numeric "detail_answer" option', function() {
 
   const radio_schema = 'test_radio_numeric_detail_answers.json';
 
@@ -94,9 +94,10 @@ describe.only('Radio with a numeric "detail_answer" option', function() {
         .click(RadioNumericDetailPage.other())
         .setValue(RadioNumericDetailPage.otherDetail(), 'biscuits')
         .click(RadioNumericDetailPage.submit())
-        .isVisible(RadioNumericDetailPage.error()).should.eventually.be.true
       // Then
-        .getText(RadioNumericDetailPage.otherDetail()).should.eventually.contain('biscuits');
+        .isVisible(RadioNumericDetailPage.error()).should.eventually.be.true
+        .getText(RadioNumericDetailPage.errorNumber(1)).should.eventually.contain('Please enter an integer')
+        .getValue(RadioNumericDetailPage.otherDetail()).should.eventually.contain('biscuits');
     });
   });
 

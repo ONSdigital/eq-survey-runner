@@ -279,7 +279,14 @@ class OtherConfig:
     def __init__(self, detail_answer):
         self.id = detail_answer.id
         self.name = detail_answer.name
-        self.value = detail_answer.data or ''
+
+        if detail_answer.data or detail_answer.data == 0 or '':
+            self.value = detail_answer.data
+        elif detail_answer.raw_data or detail_answer.raw_data == 0 or '':
+            self.value = detail_answer.raw_data[0]
+        else:
+            self.value = ''
+
         self.label = LabelConfig(detail_answer.id, detail_answer.label.text)
 
 
@@ -367,7 +374,7 @@ class SummaryRowItemValue:
     def __init__(self, text, other=None):
         self.text = text
 
-        if other:
+        if other or other == 0:
             self.other = other
 
 

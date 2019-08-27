@@ -94,9 +94,10 @@ describe('Checkbox with a numeric "detail_answer" option', function() {
         .click(CheckboxNumericDetailPage.other())
         .setValue(CheckboxNumericDetailPage.otherDetail(), 'biscuits')
         .click(CheckboxNumericDetailPage.submit())
-        .isVisible(CheckboxNumericDetailPage.error()).should.eventually.be.true
       // Then
-        .getText(CheckboxNumericDetailPage.otherDetail()).should.eventually.contain('biscuits');
+        .isVisible(CheckboxNumericDetailPage.error()).should.eventually.be.true
+        .getText(CheckboxNumericDetailPage.errorNumber(1)).should.eventually.contain('Please enter an integer').pause(1000)
+        .getValue(CheckboxNumericDetailPage.otherDetail()).should.eventually.contain('biscuits');
     });
   });
 
@@ -109,7 +110,7 @@ describe('Checkbox with a numeric "detail_answer" option', function() {
         .setValue(CheckboxNumericDetailPage.otherDetail(), '0')
         .click(CheckboxNumericDetailPage.submit())
       // Then
-      .getText(SummaryPage.radioAnswerNumericDetail()).should.eventually.contain('0');
+      .getText(SummaryPage.checkboxNumericDetailAnswer()).should.eventually.contain('0');
     });
   });
 });

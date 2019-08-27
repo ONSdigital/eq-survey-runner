@@ -65,7 +65,7 @@
                                                 "value": "Other",
                                                 "detail_answer": {
                                                     "mandatory": false,
-                                                    "id": "other",
+                                                    "id": "other-answer",
                                                     "label": "Please enter a number of items",
                                                     "type": "Number",
                                                     "max_value": {

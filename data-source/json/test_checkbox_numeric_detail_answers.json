@@ -62,7 +62,7 @@
                                                 "value": "Other",
                                                 "detail_answer": {
                                                     "mandatory": false,
-                                                    "id": "other",
+                                                    "id": "other-answer",
                                                     "label": "Please specify other",
                                                     "type": "Number",
                                                     "max_value": {
