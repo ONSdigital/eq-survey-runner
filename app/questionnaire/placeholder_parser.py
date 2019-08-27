@@ -31,9 +31,7 @@ class PlaceholderParser:
 
     def __call__(self, placeholder_list: Sequence[Mapping]) -> Mapping:
         for placeholder in placeholder_list:
-            try:
-                self._placeholder_map[placeholder['placeholder']]
-            except KeyError:
+            if placeholder['placeholder'] not in self._placeholder_map:
                 self._placeholder_map[
                     placeholder['placeholder']
                 ] = self._parse_placeholder(placeholder)
