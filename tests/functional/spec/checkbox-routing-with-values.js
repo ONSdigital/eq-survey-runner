@@ -1,7 +1,6 @@
 const helpers = require('../helpers');
 const PositiveRoutingPage = require('../generated_pages/routing_values_array/block-one.page');
-const AllOfConditionTrue = require('../generated_pages/routing_values_array/block-two.page');
-const AnyOfConditionTrue = require('../generated_pages/routing_values_array/block-three.page');
+const AllAnyOfConditionTrue = require('../generated_pages/routing_values_array/block-two.page');
 const NotAllOfRoutingPage = require('../generated_pages/routing_values_array/block-four.page');
 const NotAllOfConditionTrue = require('../generated_pages/routing_values_array/block-five.page');
 const NotAnyOfRoutingPage = require('../generated_pages/routing_values_array/block-six.page');
@@ -22,12 +21,12 @@ describe('Conditional combined routing.', function() {
       .click(PositiveRoutingPage.box3())
       .click(PositiveRoutingPage.submit())
       // Then
-      .getUrl().should.eventually.contain(AllOfConditionTrue.pageName)
+      .getUrl().should.eventually.contain(AllAnyOfConditionTrue.pageName)
       // Or 
-      .click(AllOfConditionTrue.previous())
+      .click(AllAnyOfConditionTrue.previous())
       .click(PositiveRoutingPage.box4())
       .click(PositiveRoutingPage.submit())
-      .getUrl().should.eventually.contain(AllOfConditionTrue.pageName);
+      .getUrl().should.eventually.contain(AllAnyOfConditionTrue.pageName);
 
   });
 
@@ -38,20 +37,20 @@ describe('Conditional combined routing.', function() {
       .click(PositiveRoutingPage.box1())
       .click(PositiveRoutingPage.submit())
       // Then
-      .getUrl().should.eventually.contain(AnyOfConditionTrue.pageName)
+      .getUrl().should.eventually.contain(AllAnyOfConditionTrue.pageName)
       // Or 
-      .click(AnyOfConditionTrue.previous())
+      .click(AllAnyOfConditionTrue.previous())
       .click(PositiveRoutingPage.box2())
       .click(PositiveRoutingPage.submit())
       // Then
-      .getUrl().should.eventually.contain(AnyOfConditionTrue.pageName)
+      .getUrl().should.eventually.contain(AllAnyOfConditionTrue.pageName)
       // Or 
-      .click(AnyOfConditionTrue.previous())
+      .click(AllAnyOfConditionTrue.previous())
       .click(PositiveRoutingPage.box2())
       .click(PositiveRoutingPage.box3())
       .click(PositiveRoutingPage.submit())
       // Then
-      .getUrl().should.eventually.contain(AnyOfConditionTrue.pageName);
+      .getUrl().should.eventually.contain(AllAnyOfConditionTrue.pageName);
 
 
   });

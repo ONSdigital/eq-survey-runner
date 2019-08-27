@@ -53,7 +53,7 @@
                             }
                         }, {
                             "goto": {
-                                "block": "block-three",
+                                "block": "block-two",
                                 "when": [{
                                     "id": "answer-one",
                                     "condition": "contains any",
