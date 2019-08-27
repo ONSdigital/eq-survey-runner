@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title) = {
   id: 'sex-question',
@@ -47,21 +47,21 @@ local guidance = {
       question: question(nonProxyTitle) + {
         guidance: guidance,
       },
-      when: [rules.proxyNo, rules.over16],
+      when: [rules.isNotProxy, rules.over16],
     },
     {
       question: question(proxyTitle) + {
         guidance: guidance,
       },
-      when: [rules.proxyYes, rules.over16],
+      when: [rules.isProxy, rules.over16],
     },
     {
       question: question(nonProxyTitle),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
   routing_rules: [

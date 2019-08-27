@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title, definition) = {
   id: 'disability-limitation-question',
@@ -77,11 +77,11 @@ local proxyDefinition = {
   question_variants: [
     {
       question: question(nonProxyTitle, nonProxyDefinition),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle, proxyDefinition),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
   routing_rules: [

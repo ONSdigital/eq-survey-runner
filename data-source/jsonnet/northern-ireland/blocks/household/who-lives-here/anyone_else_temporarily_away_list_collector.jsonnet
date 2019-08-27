@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 
 local questionTitle = {

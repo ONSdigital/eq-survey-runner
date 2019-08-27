@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title, guidanceHeader) = {
   id: 'jobseeker-question',
@@ -49,11 +49,11 @@ local proxyGuidanceHeader = 'Why do I need to answer if they have retired or are
   question_variants: [
     {
       question: question(nonProxyTitle, nonProxyGuidanceHeader),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle, proxyGuidanceHeader),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
   routing_rules: [

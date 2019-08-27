@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local questionTitle(census_date) = {
   text: 'Are there any other visitors staying overnight on {census_date} at {address}?',

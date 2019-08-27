@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title) = {
   id: 'address-type-question',
@@ -108,11 +108,11 @@ local proxyNonUkAddressTitle = {
     },
     {
       question: question(nonProxyNonUkAddressTitle),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyNonUkAddressTitle),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
   routing_rules: [

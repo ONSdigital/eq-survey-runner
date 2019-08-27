@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title) = {
   id: 'school-location-question',
@@ -53,11 +53,11 @@ local proxyTitleSchool = {
   question_variants: [
     {
       question: question(nonProxyTitleSchool),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitleSchool),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
 }

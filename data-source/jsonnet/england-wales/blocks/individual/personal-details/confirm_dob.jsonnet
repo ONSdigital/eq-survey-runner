@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title, yesLabel, noLabel) = {
   id: 'confirm-date-of-birth',
@@ -78,11 +78,11 @@ local proxyNoLabel = 'No, I need to change their date of birth';
   question_variants: [
     {
       question: question(nonProxyTitle, nonProxyYesLabel, nonProxyNoLabel),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle, proxyYesLabel, proxyNoLabel),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
   routing_rules: [

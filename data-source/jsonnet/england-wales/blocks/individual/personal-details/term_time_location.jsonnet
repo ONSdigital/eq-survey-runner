@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title, options) = {
   id: 'term-time-location-question',
@@ -119,7 +119,7 @@ local otherNonUkAddressOptions = {
     {
       question: question(nonProxyTitle, otherNonUkAddressOptions),
       when: [
-        rules.proxyNo,
+        rules.isNotProxy,
         {
           id: 'another-address-answer',
           condition: 'equals',
@@ -130,7 +130,7 @@ local otherNonUkAddressOptions = {
     {
       question: question(proxyTitle, otherNonUkAddressOptions),
       when: [
-        rules.proxyYes,
+        rules.isProxy,
         {
           id: 'another-address-answer',
           condition: 'equals',
@@ -141,7 +141,7 @@ local otherNonUkAddressOptions = {
     {
       question: question(nonProxyTitle, otherUkAddressOptions),
       when: [
-        rules.proxyNo,
+        rules.isNotProxy,
         {
           id: 'another-address-answer',
           condition: 'equals',
@@ -152,7 +152,7 @@ local otherNonUkAddressOptions = {
     {
       question: question(proxyTitle, otherUkAddressOptions),
       when: [
-        rules.proxyYes,
+        rules.isProxy,
         {
           id: 'another-address-answer',
           condition: 'equals',
@@ -162,11 +162,11 @@ local otherNonUkAddressOptions = {
     },
     {
       question: question(nonProxyTitle, noOtherAddressOptions),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle, noOtherAddressOptions),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
   routing_rules: [

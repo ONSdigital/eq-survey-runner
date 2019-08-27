@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title, guidance) = {
   id: 'carer-question',
@@ -63,11 +63,11 @@ local proxyGuidance = 'Exclude anything they do as part of their paid employment
   question_variants: [
     {
       question: question(nonProxyTitle, nonProxyGuidance),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle, proxyGuidance),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
   routing_rules: [

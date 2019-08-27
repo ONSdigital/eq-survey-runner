@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title) = {
   id: 'in-education-question',
@@ -46,19 +46,19 @@ local proxyOver19Title = {
   question_variants: [
     {
       question: question(nonProxyOver19Title),
-      when: [rules.proxyNo, rules.over19],
+      when: [rules.isNotProxy, rules.over19],
     },
     {
       question: question(proxyOver19Title),
-      when: [rules.proxyYes, rules.over19],
+      when: [rules.isProxy, rules.over19],
     },
     {
       question: question(nonProxyUnder19Title),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyUnder19Title),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
   routing_rules: [

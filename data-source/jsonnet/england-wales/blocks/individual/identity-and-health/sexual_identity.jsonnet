@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title, label) = {
   id: 'sexual-identity-question',
@@ -63,11 +63,11 @@ local proxyLabel = 'Enter their sexual orientation';
   question_variants: [
     {
       question: question(nonProxyTitle, nonProxyLabel),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle, proxyLabel),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
 }

@@ -1,23 +1,13 @@
 {
-  proxyNo: {
+  isNotProxy: {
     id: 'proxy-answer',
     condition: 'equals',
-    value: 'No',
+    value: 'For myself',
   },
-  proxyYes: {
+  isProxy: {
     id: 'proxy-answer',
     condition: 'equals',
-    value: 'Yes',
-  },
-  over19: {
-    id: 'date-of-birth-answer',
-    condition: 'less than or equal to',
-    date_comparison: {
-      value: 'now',
-      offset_by: {
-        years: -19,
-      },
-    },
+    value: 'For someone else',
   },
   over16: {
     id: 'date-of-birth-answer',
@@ -29,19 +19,9 @@
       },
     },
   },
-  over15: {
+  over5: {
     id: 'date-of-birth-answer',
     condition: 'less than or equal to',
-    date_comparison: {
-      value: 'now',
-      offset_by: {
-        years: -15,
-      },
-    },
-  },
-  under5: {
-    id: 'date-of-birth-answer',
-    condition: 'greater than',
     date_comparison: {
       value: 'now',
       offset_by: {
@@ -88,6 +68,11 @@
     condition: 'contains',
     value: 'None of these apply',
   },
+  hasWorked: {
+    id: 'ever-worked-answer',
+    condition: 'not equals any',
+    values: ['No, has never worked', 'No, have never worked'],
+  },
   accommodationIsHouse: {
     id: 'accommodation-type-answer',
     condition: 'equals',
@@ -97,10 +82,6 @@
     id: 'accommodation-type-answer',
     condition: 'equals',
     value: 'Flat, maisonette or apartment',
-  },
-  accomodationNotAnswered: {
-    id: 'accomodation-type-answer',
-    condition: 'not set',
   },
   isPrimary: {
     list: 'household',

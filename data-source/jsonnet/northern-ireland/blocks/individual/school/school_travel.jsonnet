@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title, description) = {
   title: title,
@@ -75,11 +75,11 @@ local proxyDescriptionSchool = 'Select one option only, for the longest part, by
   question_variants: [
     {
       question: question(nonProxyTitleSchool, nonProxyDescriptionSchool),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitleSchool, proxyDescriptionSchool),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
 }

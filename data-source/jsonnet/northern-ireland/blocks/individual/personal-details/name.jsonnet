@@ -1,4 +1,4 @@
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title) = {
   id: 'name-question',
@@ -45,11 +45,11 @@ local proxyTitle = 'What is their name?';
   question_variants: [
     {
       question: question(nonProxyTitle),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
   routing_rules: [

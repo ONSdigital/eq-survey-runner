@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title, description) = {
   id: 'employment-status-question',
@@ -73,11 +73,11 @@ local proxyAnswerDescription = 'Freelance means that they are self-employed and 
   question_variants: [
     {
       question: question(nonProxyTitle, nonProxyAnswerDescription),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle, proxyAnswerDescription),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
   routing_rules: [

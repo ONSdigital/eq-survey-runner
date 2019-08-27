@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local nonProxyTitle = 'What is the main activity of your organisation, business or freelance work?';
 local proxyTitle = {
@@ -44,19 +44,19 @@ function(region_code) {
   question_variants: [
     {
       question: question(nonProxyTitle, region_code),
-      when: [rules.proxyNo, rules.mainJob],
+      when: [rules.isNotProxy, rules.mainJob],
     },
     {
       question: question(proxyTitle, region_code),
-      when: [rules.proxyYes, rules.mainJob],
+      when: [rules.isProxy, rules.mainJob],
     },
     {
       question: question(pastNonProxyTitle, region_code),
-      when: [rules.proxyNo, rules.lastMainJob],
+      when: [rules.isNotProxy, rules.lastMainJob],
     },
     {
       question: question(pastProxyTitle, region_code),
-      when: [rules.proxyYes, rules.lastMainJob],
+      when: [rules.isProxy, rules.lastMainJob],
     },
   ],
 }

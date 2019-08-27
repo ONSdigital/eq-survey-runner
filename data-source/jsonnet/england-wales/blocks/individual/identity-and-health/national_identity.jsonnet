@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local nonProxyTitle = 'How would you describe your national identity?';
 local proxyTitle = {
@@ -105,11 +105,11 @@ function(region_code) {
   question_variants: [
     {
       question: question(nonProxyTitle, nonProxyDefinitionContent, nonProxyDetailAnswerLabel, region_code),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle, proxyDefinitionContent, proxyDetailAnswerLabel, region_code),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
 }

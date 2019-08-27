@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title, description) = {
   id: 'past-usual-address-household-question',
@@ -61,11 +61,11 @@ local proxyDescription = 'If they had no usual address one year ago, state the a
   question_variants: [
     {
       question: question(nonProxyTitle, nonProxyDescription),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle, proxyDescription),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
   routing_rules: [

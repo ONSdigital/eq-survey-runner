@@ -1,4 +1,4 @@
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 {
   type: 'RelationshipCollector',

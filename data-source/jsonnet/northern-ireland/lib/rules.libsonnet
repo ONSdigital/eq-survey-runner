@@ -1,10 +1,10 @@
 {
-  proxyNo: {
+  isNotProxy: {
     id: 'proxy-answer',
     condition: 'equals',
     value: 'For myself',
   },
-  proxyYes: {
+  isProxy: {
     id: 'proxy-answer',
     condition: 'equals',
     value: 'For someone else',

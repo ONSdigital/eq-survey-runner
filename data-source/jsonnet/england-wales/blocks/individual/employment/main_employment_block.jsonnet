@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 {
   type: 'Interstitial',
@@ -14,7 +14,7 @@ local rules = import '../../../lib/rules.libsonnet';
           },
         ],
       },
-      when: [rules.proxyNo, rules.mainJob],
+      when: [rules.isNotProxy, rules.mainJob],
     },
     {
       content: {
@@ -28,7 +28,7 @@ local rules = import '../../../lib/rules.libsonnet';
           },
         ],
       },
-      when: [rules.proxyYes, rules.mainJob],
+      when: [rules.isProxy, rules.mainJob],
     },
     {
       content: {
@@ -39,7 +39,7 @@ local rules = import '../../../lib/rules.libsonnet';
           },
         ],
       },
-      when: [rules.proxyNo, rules.lastMainJob],
+      when: [rules.isNotProxy, rules.lastMainJob],
     },
     {
       content: {
@@ -53,7 +53,7 @@ local rules = import '../../../lib/rules.libsonnet';
           },
         ],
       },
-      when: [rules.proxyYes, rules.lastMainJob],
+      when: [rules.isProxy, rules.lastMainJob],
     },
   ],
 }

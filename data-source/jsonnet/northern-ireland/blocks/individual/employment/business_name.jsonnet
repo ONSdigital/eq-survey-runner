@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title, description, option) = {
   id: 'business-name-question',
@@ -58,19 +58,19 @@ local pastOption = 'No organisation or worked for a private individual';
   question_variants: [
     {
       question: question(nonProxyTitle, nonProxyDescription, nonProxyoption),
-      when: [rules.proxyNo, rules.mainJob],
+      when: [rules.isNotProxy, rules.mainJob],
     },
     {
       question: question(proxyTitle, proxyDescription, proxyOption),
-      when: [rules.proxyYes, rules.mainJob],
+      when: [rules.isProxy, rules.mainJob],
     },
     {
       question: question(pastNonProxyTitle, pastNonProxyDescription, pastOption),
-      when: [rules.proxyNo, rules.lastMainJob],
+      when: [rules.isNotProxy, rules.lastMainJob],
     },
     {
       question: question(pastProxyTitle, pastProxyDescription, pastOption),
-      when: [rules.proxyYes, rules.lastMainJob],
+      when: [rules.isProxy, rules.lastMainJob],
     },
   ],
 }

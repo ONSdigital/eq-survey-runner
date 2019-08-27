@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title, description) = {
   title: title,
@@ -77,11 +77,11 @@ local proxyDescription = 'Answer for the longest part, <em>by distance</em>, of 
   question_variants: [
     {
       question: question(nonProxyTitle, nonProxyDescription),
-      when: [rules.proxyNo],
+      when: [rules.isNotProxy],
     },
     {
       question: question(proxyTitle, proxyDescription),
-      when: [rules.proxyYes],
+      when: [rules.isProxy],
     },
   ],
 }

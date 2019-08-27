@@ -1,5 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local rules = import 'rules.libsonnet';
 
 local question(title) = {
   id: 'main-job-type-question',
@@ -50,19 +50,19 @@ local pastProxyTitle = {
   question_variants: [
     {
       question: question(nonProxyTitle),
-      when: [rules.proxyNo, rules.mainJob],
+      when: [rules.isNotProxy, rules.mainJob],
     },
     {
       question: question(proxyTitle),
-      when: [rules.proxyYes, rules.mainJob],
+      when: [rules.isProxy, rules.mainJob],
     },
     {
       question: question(pastNonProxyTitle),
-      when: [rules.proxyNo, rules.lastMainJob],
+      when: [rules.isNotProxy, rules.lastMainJob],
     },
     {
       question: question(pastProxyTitle),
-      when: [rules.proxyYes, rules.lastMainJob],
+      when: [rules.isProxy, rules.lastMainJob],
     },
   ],
 }
