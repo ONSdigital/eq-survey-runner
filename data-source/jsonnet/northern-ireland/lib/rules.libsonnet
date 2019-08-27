@@ -83,4 +83,27 @@
     condition: 'equals',
     value: 'Flat, maisonette or apartment',
   },
+  isPrimary: {
+    list: 'household',
+    id_selector: 'primary_person',
+    condition: 'equals',
+    comparison: {
+      source: 'location',
+      id: 'list_item_id',
+    },
+  },
+  isNotPrimary: {
+    list: 'household',
+    id_selector: 'primary_person',
+    condition: 'not equals',
+    comparison: {
+      source: 'location',
+      id: 'list_item_id',
+    },
+  },
+  hasPrimary: {
+    id: 'you-live-here-answer',
+    condition: 'equals',
+    value: 'Yes, I usually live here',
+  },
 }
