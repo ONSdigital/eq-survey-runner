@@ -33,8 +33,8 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
           description: 'With or without housing benefit',
         },
         {
-          label: 'Lives here rent free',
-          value: 'Lives here rent free',
+          label: 'Lives here rent-free',
+          value: 'Lives here rent-free',
         },
       ],
       type: 'Radio',

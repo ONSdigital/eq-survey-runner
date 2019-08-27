@@ -39,21 +39,21 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
           {
             label: 'Electric',
             value: 'Electric',
-            description: 'Including storage heaters',
+            description: 'For example storage heaters',
           },
           {
             label: 'Wood',
             value: 'Wood',
+            description: 'For example logs or waste wood',
           },
           {
             label: 'Solid fuel',
             value: 'Solid fuel',
-            description: 'Including coal',
+            description: 'For example coal',
           },
           {
-            label: 'Renewable energy',
-            value: 'Renewable energy',
-            description: 'For example wood pellets, Biomass, air or ground heat source systems',
+            label: 'Renewable heating system',
+            value: 'Renewable heating system',
           },
           {
             label: 'Other central heating',
