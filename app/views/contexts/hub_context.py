@@ -113,7 +113,7 @@ class HubContext:
 
         return url_for('questionnaire.get_section', section_id=section_id)
 
-    def _get_row_for_repeating_section(self, section_title, section_id, list_item_id):
+    def _get_row_for_repeating_section(self, section_id, list_item_id):
         repeating_title = self._schema.get_repeating_title_for_section(section_id)
 
         placeholder_renderer = PlaceholderRenderer(
@@ -153,7 +153,7 @@ class HubContext:
                 for list_item_id in self._list_store[repeating_list].items:
                     rows.append(
                         self._get_row_for_repeating_section(
-                            section_title, section_id, list_item_id
+                            section_id, list_item_id
                         )
                     )
             else:
