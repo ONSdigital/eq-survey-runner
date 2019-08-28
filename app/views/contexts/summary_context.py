@@ -1,4 +1,5 @@
 from flask import url_for
+from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
 from app.views.contexts.summary.group import Group
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
@@ -21,14 +22,16 @@ class SummaryContext:
             list_store=self._list_store,
         )
 
-    def build_groups_for_section(self, section_id, list_item_id=None, section=None):
+    def build_groups_for_section(self, section_id, list_name=None, list_item_id=None):
         """
         Build a groups context for a particular section and list_item_id.
 
         Does not support generating multiple sections at a time (i.e. passing no list_item_id for repeating section).
         """
-        section = section or self._schema.get_section(section_id)
+        section = self._schema.get_section(section_id)
         section_path = self._path_finder.routing_path(section_id, list_item_id)
+
+        location = Location(section_id, list_name=list_name, list_item_id=list_item_id)
 
         return [
             Group(
@@ -38,7 +41,7 @@ class SummaryContext:
                 self._list_store,
                 self._metadata,
                 self._schema,
-                self._current_location,
+                location
             ).serialize()
             for group in section['groups']
         ]
@@ -67,7 +70,7 @@ class SummaryContext:
         }
         return context
 
-    def build_context_for_section(self, section_id, list_item_id=None):
+    def build_context_for_section(self, section_id, list_name=None, list_item_id=None):
         """
         Builds the context for a single section
         Args:
@@ -75,7 +78,7 @@ class SummaryContext:
             list_item_id: If this is a repeating section, the list_item_id
         """
 
-        groups = self.build_groups_for_section(section_id, list_item_id)
+        groups = self.build_groups_for_section(section_id, list_name, list_item_id)
 
         context = {
             'summary': {
@@ -90,9 +93,10 @@ class SummaryContext:
         section_id = current_location.section_id
         section = self._schema.get_section(current_location.section_id)
         list_item_id = current_location.list_item_id
+        list_name = current_location.list_name
         block = self._schema.get_block(current_location.block_id)
 
-        context = self.build_context_for_section(section_id, list_item_id)
+        context = self.build_context_for_section(section_id, list_name, list_item_id)
         context['summary']['collapsible'] = block.get('collapsible', False)
         context['summary']['summary_type'] = 'SectionSummary'
 

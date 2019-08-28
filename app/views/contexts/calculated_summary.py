@@ -8,8 +8,35 @@ from app.questionnaire.schema_utils import (
     choose_question_to_display,
     get_answer_ids_in_block,
 )
+from app.questionnaire.path_finder import PathFinder
+from app.questionnaire.location import Location
+from app.views.contexts.summary.group import Group
 
-from app.views.contexts.summary_context import SummaryContext
+
+def build_groups_for_section(answer_store, list_store, metadata, schema, section):
+    path_finder = PathFinder(
+        schema,
+        answer_store,
+        metadata,
+        list_store=list_store,
+    )
+
+    section_path = path_finder.routing_path(section['id'])
+
+    location = Location(section['id'])
+
+    return [
+        Group(
+            group,
+            section_path,
+            answer_store,
+            list_store,
+            metadata,
+            schema,
+            location
+        ).serialize()
+        for group in section['groups']
+    ]
 
 
 def build_view_context_for_calculated_summary(
@@ -21,11 +48,7 @@ def build_view_context_for_calculated_summary(
         schema, block, current_location, answer_store, list_store, metadata
     )
 
-    summary_context = SummaryContext(
-        language, schema, answer_store, list_store, metadata, current_location
-    )
-
-    groups = summary_context.build_groups_for_section(calculated_section['id'], section=calculated_section)
+    groups = build_groups_for_section(answer_store, list_store, metadata, schema, calculated_section)
 
     formatted_total = _get_formatted_total(
         groups or [],

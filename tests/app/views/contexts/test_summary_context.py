@@ -85,43 +85,9 @@ class TestSummaryContext(TestStandardSummaryContext):
             self.answer_store,
             self.list_store,
             self.metadata,
-            self.current_location,
         )
         summary_groups = summary_context.build_all_groups()
         self.check_summary_rendering_context(summary_groups)
-
-    def test_build_view_context_for_summary(self):
-        summary_context = SummaryContext(
-            self.language,
-            self.schema,
-            self.answer_store,
-            self.list_store,
-            self.metadata,
-            self.current_location,
-        )
-
-        context = summary_context.final_summary()
-        self.check_context(context)
-        self.check_summary_rendering_context(context['summary']['groups'])
-        self.assertEqual(len(context['summary']), 5)
-        self.assertTrue('is_view_submission_response_enabled' in context['summary'])
-        self.assertTrue('collapsible' in context['summary'])
-
-    def test_build_view_context_for_summary_no_view_submission(self):
-        schema_json = _load_schema_file('test_summary', DEFAULT_LANGUAGE_CODE)
-        schema_json.pop('view_submitted_response')
-        schema = QuestionnaireSchema(schema_json, DEFAULT_LANGUAGE_CODE)
-        summary_context = SummaryContext(
-            self.language,
-            schema,
-            self.answer_store,
-            self.list_store,
-            self.metadata,
-            self.current_location,
-        )
-
-        context = summary_context.final_summary()
-        self.assertFalse(context['summary']['is_view_submission_response_enabled'])
 
 
 class TestSectionSummaryContext(TestStandardSummaryContext):
@@ -133,17 +99,12 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
         self.block_type = 'SectionSummary'
 
     def test_build_summary_rendering_context(self):
-        current_location = Location(
-            section_id='property-details-section', block_id='property-details-summary'
-        )
-
         summary_context = SummaryContext(
             self.language,
             self.schema,
             self.answer_store,
             self.list_store,
             self.metadata,
-            current_location,
         )
 
         single_section_context = summary_context.build_groups_for_section(
@@ -163,9 +124,8 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
             self.answer_store,
             self.list_store,
             self.metadata,
-            current_location,
         )
-        context = summary_context.section_summary()
+        context = summary_context.section_summary(current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -389,9 +349,8 @@ def test_context_for_section_list_summary(people_answer_store):
             ]
         ),
         {},
-        current_location,
     )
-    context = summary_context.section_summary()
+    context = summary_context.section_summary(current_location)
 
     expected = [
         {
@@ -456,22 +415,18 @@ def test_titles_for_repeating_section_summary(people_answer_store):
             ]
         ),
         {},
-        current_location,
     )
 
-    context = summary_context.section_summary()
+    context = summary_context.section_summary(current_location)
 
     assert context['summary']['title'] == 'Toni Morrison'
 
-    current_location = Location(
+    new_location = Location(
         block_id='personal-summary',
         section_id='personal-details-section',
         list_name='people',
         list_item_id='UHPLbX',
     )
 
-    # pylint: disable=protected-access
-    summary_context._current_location = current_location
-
-    context = summary_context.section_summary()
+    context = summary_context.section_summary(new_location)
     assert context['summary']['title'] == 'Barry Pheloung'

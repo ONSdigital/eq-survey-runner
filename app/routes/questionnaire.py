@@ -383,7 +383,7 @@ def get_view_submission(schema):  # pylint: too-many-locals
             metadata = submitted_data.get('metadata')
             language_code = get_session_store().session_data.language_code
             summary_context = SummaryContext(
-                language_code, schema, answer_store, list_store, metadata, None
+                language_code, schema, answer_store, list_store, metadata
             )
 
             summary_rendered_context = summary_context.build_all_groups()

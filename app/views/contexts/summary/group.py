@@ -11,7 +11,7 @@ class Group:
         list_store,
         metadata,
         schema,
-        current_location=None,
+        location=None,
     ):
         self.id = group_schema['id']
 
@@ -24,7 +24,7 @@ class Group:
             list_store,
             metadata,
             schema,
-            current_location,
+            location,
         )
         self.placeholder_renderer = PlaceholderRenderer(
             language='en', schema=schema, answer_store=answer_store, metadata=metadata
@@ -32,7 +32,7 @@ class Group:
 
     @staticmethod
     def _build_blocks(
-        group_schema, path, answer_store, list_store, metadata, schema, current_location
+        group_schema, path, answer_store, list_store, metadata, schema, location
     ):
         blocks = []
 
@@ -48,7 +48,7 @@ class Group:
                             list_store,
                             metadata,
                             schema,
-                            current_location,
+                            location,
                         ).serialize()
                     ]
                 )
