@@ -13,6 +13,6 @@ class Summary(Content):
             self._questionnaire_store.answer_store,
             self._questionnaire_store.list_store,
             self._questionnaire_store.metadata,
-            self._current_location,
         )
-        return summary_context.summary()
+        collapsible = self._schema.get_block(self._current_location.block_id).get('collapsible', False)
+        return summary_context.summary(collapsible)
