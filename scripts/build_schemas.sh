@@ -18,13 +18,13 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
 
         if [[ "$region_code" = "GB-NIR" ]]; then
             SOURCE_FILE="data-source/jsonnet/northern-ireland/census_${census_type}.jsonnet"
-            ADDITIONAL_LIBRARY_PATH="data-source/jsonnet/northern-ireland/lib/${census_type}/"
+            ADDITIONAL_LIBRARY_PATH="data-source/jsonnet/northern-ireland/${census_type}/lib/"
 
             jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" --jpath "${ADDITIONAL_LIBRARY_PATH}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
 
         else
             SOURCE_FILE="data-source/jsonnet/england-wales/census_${census_type}.jsonnet"
-            ADDITIONAL_LIBRARY_PATH="data-source/jsonnet/england-wales/lib/${census_type}/"
+            ADDITIONAL_LIBRARY_PATH="data-source/jsonnet/england-wales/${census_type}/lib/"
 
             jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" --tla-str census_month_year_date="${CENSUS_MONTH_YEAR_DATE}" --jpath "${ADDITIONAL_LIBRARY_PATH}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
         fi

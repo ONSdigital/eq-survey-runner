@@ -1,14 +1,4 @@
 {
-  isNotProxy: {
-    id: 'proxy-answer',
-    condition: 'equals',
-    value: 'For myself',
-  },
-  isProxy: {
-    id: 'proxy-answer',
-    condition: 'equals',
-    value: 'For someone else',
-  },
   over16: {
     id: 'date-of-birth-answer',
     condition: 'less than or equal to',
