@@ -14,7 +14,7 @@ const DateOfBirthPage = require('../../../generated_pages/repeating_section_summ
 const HubPage = require('../../../base_pages/hub.page.js');
 
 
-describe('@watch Feature: Repeating Section Summaries', function () {
+describe('Feature: Repeating Section Summaries', function () {
 
   const repeating_section_summaries_schema = 'test_repeating_section_summaries.json';
 
