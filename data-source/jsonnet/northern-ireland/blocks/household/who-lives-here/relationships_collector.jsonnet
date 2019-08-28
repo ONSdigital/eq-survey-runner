@@ -1,5 +1,5 @@
-local rules = import '../../../lib/rules.libsonnet';
 local placeholderSubs = import '../../../lib/placeholders.libsonnet';
+local rules = import '../../../lib/rules.libsonnet';
 
 {
   type: 'RelationshipCollector',

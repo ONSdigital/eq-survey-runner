@@ -64,12 +64,12 @@
           identifier: ['first-name', 'last-name'],
           list_item_selector: {
             source: 'location',
-            id: 'list_item_id'
-          }
+            id: 'list_item_id',
+          },
         },
-        delimiter: ' '
-      }
-    }]
+        delimiter: ' ',
+      },
+    }],
   },
   secondPersonPlaceholder: {
     placeholder: 'second_person_name',
@@ -81,16 +81,17 @@
           identifier: ['first-name', 'last-name'],
           list_item_selector: {
             source: 'location',
-            id: 'to_list_item_id'
-          }
+            id: 'to_list_item_id',
+          },
         },
-        delimiter: ' '
-      }
-    }]
+        delimiter: ' ',
+      },
+    }],
   },
   firstPersonNamePossessivePlaceholder: {
     placeholder: 'first_person_name_possessive',
-    transforms: [{
+    transforms: [
+      {
         transform: 'concatenate_list',
         arguments: {
           list_to_concatenate: {
@@ -98,20 +99,20 @@
             identifier: ['first-name', 'last-name'],
             list_item_selector: {
               source: 'location',
-              id: 'list_item_id'
-            }
+              id: 'list_item_id',
+            },
           },
-          delimiter: ' '
-        }
+          delimiter: ' ',
+        },
       },
       {
         transform: 'format_possessive',
         arguments: {
           string_to_format: {
-            source: 'previous_transform'
-          }
-        }
-      }
-    ]
+            source: 'previous_transform',
+          },
+        },
+      },
+    ],
   },
 }

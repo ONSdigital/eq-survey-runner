@@ -126,5 +126,3 @@
     value: 'Yes, I usually live here',
   },
 }
-
-
