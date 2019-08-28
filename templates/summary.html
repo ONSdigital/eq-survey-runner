@@ -16,7 +16,7 @@
       <strong>{{ _("Please submit this survey to complete it") }}</strong>
       <p>{{ _("You can check your answers below") }}</p>
     {% endcall %}
-  {% elif content.summary.summary_type in ('SectionSummary', 'AnswerSummary') %}
+  {% elif content.summary.summary_type in ('SectionSummary') %}
     {% set group = content.summary.groups %}
 
     <h1>{{content.summary.title}}</h1>
@@ -39,11 +39,7 @@
   {% endif %}
 
   <div class="u-mb-m">
-    {% if content.summary.summary_type == 'AnswerSummary' %}
-      {% include 'partials/summary/answer-summary.html' %}
-    {% else %}
-      {% include 'partials/summary/summary.html' %}
-    {% endif %}
+    {% include 'partials/summary/summary.html' %}
   </div>
 
   {% if content.summary.list_summaries %}
