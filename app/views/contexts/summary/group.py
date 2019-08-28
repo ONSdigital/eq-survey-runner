@@ -10,6 +10,8 @@ class Group:
 
         self.title = group_schema.get('title')
 
+        self.location = location
+
         self.blocks = self._build_blocks(
             group_schema, path, answer_store, list_store, metadata, schema, location
         )
@@ -39,5 +41,5 @@ class Group:
 
     def serialize(self):
         return self.placeholder_renderer.render(
-            {'id': self.id, 'title': self.title, 'blocks': self.blocks}, None
+            {'id': self.id, 'title': self.title, 'blocks': self.blocks}, self.location.list_item_id
         )
