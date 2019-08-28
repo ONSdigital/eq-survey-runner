@@ -144,11 +144,3 @@ class SummaryContext:
         context['summary'].update({'title': title, 'list_summaries': list_summaries})
 
         return context
-
-
-def _is_view_submitted_response_enabled(schema):
-    view_submitted_response = schema.get('view_submitted_response')
-    if view_submitted_response:
-        return view_submitted_response['enabled']
-
-    return False

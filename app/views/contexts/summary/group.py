@@ -11,7 +11,7 @@ class Group:
         list_store,
         metadata,
         schema,
-        location=None,
+        location,
     ):
         self.id = group_schema['id']
 

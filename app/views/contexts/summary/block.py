@@ -6,7 +6,7 @@ from app.views.contexts.summary.question import Question
 
 class Block:
     def __init__(
-        self, block_schema, answer_store, list_store, metadata, schema, location=None
+        self, block_schema, answer_store, list_store, metadata, schema, location
     ):
         self.id = block_schema['id']
         self.location = location
@@ -18,22 +18,19 @@ class Block:
         )
 
     def _build_link(self, block_id):
-        if self.location:
-            return url_for(
-                'questionnaire.block',
-                list_name=self.location.list_name,
-                block_id=block_id,
-                list_item_id=self.location.list_item_id,
-            )
-        else:
-            return url_for('questionnaire.block', block_id=block_id)
+        return url_for(
+            'questionnaire.block',
+            list_name=self.location.list_name,
+            block_id=block_id,
+            list_item_id=self.location.list_item_id,
+        )
 
     @staticmethod
     def get_question(
-        block_schema, answer_store, list_store, metadata, schema, location=None
+        block_schema, answer_store, list_store, metadata, schema, location
     ):
         """ Taking question variants into account, return the question which was displayed to the user """
-        list_item_id = location.list_item_id if location else None
+        list_item_id = location.list_item_id
         for variant in block_schema.get('question_variants', []):
             display_variant = evaluate_when_rules(
                 variant.get('when'),
