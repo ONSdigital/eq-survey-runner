@@ -4,14 +4,7 @@ from app.views.contexts.summary.block import Block
 
 class Group:
     def __init__(
-        self,
-        group_schema,
-        path,
-        answer_store,
-        list_store,
-        metadata,
-        schema,
-        location,
+        self, group_schema, path, answer_store, list_store, metadata, schema, location
     ):
         self.id = group_schema['id']
 
