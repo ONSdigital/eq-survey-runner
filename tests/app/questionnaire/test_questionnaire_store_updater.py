@@ -68,6 +68,44 @@ class TestQuestionnaireStoreUpdater(unittest.TestCase):
             'value': answer_value,
         }
 
+    def test_save_empty_answer_removes_existing_answer(self):
+        answer_id = 'answer'
+        answer_value = '1000'
+        list_item_id = 'abc123'
+
+        location = Location(
+            section_id='section-foo',
+            block_id='block-bar',
+            list_name='people',
+            list_item_id=list_item_id,
+        )
+
+        self.schema.get_answer_ids_for_question.return_value = [answer_id]
+
+        form = MagicMock(spec=QuestionnaireForm, data={answer_id: answer_value})
+
+        self.current_question = self.schema.get_block(location.block_id)['question']
+        self.questionnaire_store_updater = QuestionnaireStoreUpdater(
+            location, self.schema, self.questionnaire_store, self.current_question
+        )
+        self.questionnaire_store_updater.update_answers(form)
+
+        assert self.answer_store.add_or_update.call_count == 1
+
+        created_answer = self.answer_store.add_or_update.call_args[0][0]
+        assert created_answer.__dict__ == {
+            'answer_id': answer_id,
+            'list_item_id': 'abc123',
+            'value': answer_value,
+        }
+
+        form = MagicMock(spec=QuestionnaireForm, data={answer_id: ''})
+        self.questionnaire_store_updater.update_answers(form)
+
+        assert self.answer_store.remove_answer.call_count == 1
+        answer_key = self.answer_store.remove_answer.call_args[0]
+        assert answer_key == (answer_id, list_item_id)
+
     def test_default_answers_are_not_saved(self):
         answer_id = 'answer'
         default_value = 0
