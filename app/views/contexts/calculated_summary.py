@@ -25,10 +25,10 @@ def build_view_context_for_calculated_summary(
         language, schema, answer_store, list_store, metadata, current_location
     )
 
-    context = summary_context.summary(section=calculated_section)
+    groups = summary_context.build_groups_for_section(calculated_section['id'], section=calculated_section)
 
     formatted_total = _get_formatted_total(
-        context['summary'].get('groups', []),
+        groups or [],
         metadata,
         answer_store,
         list_store,
@@ -36,14 +36,19 @@ def build_view_context_for_calculated_summary(
         current_location=current_location,
     )
 
-    context['summary'].update(
-        {
+    context = {
+        'summary': {
+            'groups': groups,
+            'answers_are_editable': True,
             'calculated_question': _get_calculated_question(
                 block['calculation'], formatted_total
             ),
             'title': block.get('title') % dict(total=formatted_total),
+            'collapsible': block.get('collapsible', False),
+            'summary_type': 'CalculatedSummary',
         }
-    )
+    }
+
     return context
 
 
