@@ -3,6 +3,8 @@ from typing import List, Mapping, Union
 from flask import url_for
 from flask_babel import lazy_gettext
 
+from werkzeug.utils import cached_property
+
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.data_model.progress_store import CompletionStatus, ProgressStore
 
@@ -66,17 +68,14 @@ class HubContext:
         self._survey_complete = survey_complete
         self._placeholder_renderer = None
 
-    @property
+    @cached_property
     def placeholder_renderer(self):
-        if not self._placeholder_renderer:
-            self._placeholder_renderer = PlaceholderRenderer(
-                language=self._language,
-                schema=self._schema,
-                answer_store=self._answer_store,
-                metadata=self._metadata,
-            )
-
-        return self._placeholder_renderer
+        return PlaceholderRenderer(
+            language=self._language,
+            schema=self._schema,
+            answer_store=self._answer_store,
+            metadata=self._metadata,
+        )
 
     def get_context(self) -> Mapping:
         context = self.HUB_CONTENT_STATES[
