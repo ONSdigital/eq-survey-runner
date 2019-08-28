@@ -114,16 +114,14 @@ class SummaryContext:
                     schema=self._schema,
                     answer_store=self._answer_store,
                     metadata=self._metadata,
-                    list_item_id=list_item_id,
                 )
-                title = placeholder_renderer.render_placeholder(repeating_title)
+                title = placeholder_renderer.render_placeholder(repeating_title, list_item_id)
 
         placeholder_renderer = PlaceholderRenderer(
             language=self._language,
             schema=self._schema,
             answer_store=self._answer_store,
             metadata=self._metadata,
-            list_item_id=list_item_id,
         )
 
         list_collector_blocks = self._schema.get_visible_list_blocks_for_section(
@@ -134,7 +132,7 @@ class SummaryContext:
 
         for list_collector_block in list_collector_blocks:
             rendered_summary = placeholder_renderer.render(
-                list_collector_block['summary']
+                list_collector_block['summary'], list_item_id
             )
 
             list_summary = {

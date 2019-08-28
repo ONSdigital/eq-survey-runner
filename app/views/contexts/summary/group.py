@@ -57,5 +57,6 @@ class Group:
 
     def serialize(self):
         return self.placeholder_renderer.render(
-            {'id': self.id, 'title': self.title, 'blocks': self.blocks}
+            {'id': self.id, 'title': self.title, 'blocks': self.blocks},
+            None
         )

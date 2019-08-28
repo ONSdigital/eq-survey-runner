@@ -39,27 +39,25 @@ class PlaceholderRenderer:
     """
 
     def __init__(
-        self, language, schema, answer_store=None, metadata=None, list_item_id=None
+        self, language, schema, answer_store=None, metadata=None
     ):
         self._language = language
         self._schema = schema
         self._answer_store = answer_store or AnswerStore()
         self._metadata = metadata
-        self._list_item_id = list_item_id
-        self._placeholders = {}
 
-    def render_pointer(self, dict_to_render, pointer_to_render):
+    def render_pointer(self, dict_to_render, pointer_to_render, list_item_id):
         pointer_data = resolve_pointer(dict_to_render, pointer_to_render)
 
-        return self.render_placeholder(pointer_data)
+        return self.render_placeholder(pointer_data, list_item_id)
 
-    def render_placeholder(self, placeholder_data):
+    def render_placeholder(self, placeholder_data, list_item_id):
         placeholder_parser = PlaceholderParser(
             language=self._language,
             schema=self._schema,
             answer_store=self._answer_store,
             metadata=self._metadata,
-            list_item_id=self._list_item_id,
+            list_item_id=list_item_id,
         )
 
         if 'text' not in placeholder_data or  'placeholders' not in placeholder_data:
@@ -69,7 +67,7 @@ class PlaceholderRenderer:
 
         return placeholder_data['text'].format(**transformed_values)
 
-    def render(self, dict_to_render):
+    def render(self, dict_to_render, list_item_id):
         """
         Transform the current schema json to a fully rendered dictionary
         """
@@ -77,7 +75,7 @@ class PlaceholderRenderer:
         pointer_list = find_pointers_containing(rendered_data, 'placeholders')
 
         for pointer in pointer_list:
-            rendered_text = self.render_pointer(rendered_data, pointer)
+            rendered_text = self.render_pointer(rendered_data, pointer, list_item_id)
             set_pointer(rendered_data, pointer, rendered_text)
 
         return rendered_data

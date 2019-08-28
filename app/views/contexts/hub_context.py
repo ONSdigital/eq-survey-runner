@@ -121,10 +121,9 @@ class HubContext:
             schema=self._schema,
             answer_store=self._answer_store,
             metadata=self._metadata,
-            list_item_id=list_item_id,
         )
 
-        title = placeholder_renderer.render_placeholder(repeating_title)
+        title = placeholder_renderer.render_placeholder(repeating_title, list_item_id)
 
         return self._get_row_for_section(title, section_id, list_item_id)
 

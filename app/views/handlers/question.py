@@ -97,7 +97,8 @@ class Question(BlockHandler):
         )
 
         rendered_question = self.placeholder_renderer.render(
-            transformed_block.pop('question')
+            transformed_block.pop('question'),
+            self._current_location.list_item_id
         )
 
         return {**transformed_block, **{'question': rendered_question}}
