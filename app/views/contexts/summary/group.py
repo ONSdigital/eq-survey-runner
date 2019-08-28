@@ -41,5 +41,6 @@ class Group:
 
     def serialize(self):
         return self.placeholder_renderer.render(
-            {'id': self.id, 'title': self.title, 'blocks': self.blocks}, self.location.list_item_id
+            {'id': self.id, 'title': self.title, 'blocks': self.blocks},
+            self.location.list_item_id,
         )
