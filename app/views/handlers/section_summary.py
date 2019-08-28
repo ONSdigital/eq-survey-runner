@@ -13,6 +13,6 @@ class SectionSummary(Content):
             self._schema,
             self._questionnaire_store.answer_store,
             self._questionnaire_store.list_store,
-            self._questionnaire_store.metadata
+            self._questionnaire_store.metadata,
         )
         return summary_context.section_summary(self._current_location)

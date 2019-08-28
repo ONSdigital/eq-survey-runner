@@ -171,7 +171,6 @@ class TestQuestionnaireHub(IntegrationTestCase):
         # Go back to hub
         self.post({'visitors-anyone-else': 'No'})
 
-
         table_title_selector = '.summary__item-title'
         self.assertInSelector('John Doe', table_title_selector)
         self.assertInSelector('Anna Doe', table_title_selector)

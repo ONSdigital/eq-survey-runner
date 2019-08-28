@@ -7,9 +7,7 @@ from app.views.contexts.list_collector import build_list_items_summary_context
 
 
 class SummaryContext:
-    def __init__(
-        self, language, schema, answer_store, list_store, metadata
-    ):
+    def __init__(self, language, schema, answer_store, list_store, metadata):
         self._language = language
         self._answer_store = answer_store
         self._list_store = list_store
@@ -41,7 +39,7 @@ class SummaryContext:
                 self._list_store,
                 self._metadata,
                 self._schema,
-                location
+                location,
             ).serialize()
             for group in section['groups']
         ]
@@ -80,12 +78,7 @@ class SummaryContext:
 
         groups = self.build_groups_for_section(section_id, list_name, list_item_id)
 
-        context = {
-            'summary': {
-                'groups': groups,
-                'answers_are_editable': True,
-            }
-        }
+        context = {'summary': {'groups': groups, 'answers_are_editable': True}}
 
         return context
 
@@ -113,7 +106,9 @@ class SummaryContext:
 
             repeating_title = self._schema.get_repeating_title_for_section(section_id)
             if repeating_title:
-                title = placeholder_renderer.render_placeholder(repeating_title, list_item_id)
+                title = placeholder_renderer.render_placeholder(
+                    repeating_title, list_item_id
+                )
 
         list_collector_blocks = self._schema.get_visible_list_blocks_for_section(
             section

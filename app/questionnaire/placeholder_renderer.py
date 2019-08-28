@@ -38,9 +38,7 @@ class PlaceholderRenderer:
     strings
     """
 
-    def __init__(
-        self, language, schema, answer_store=None, metadata=None
-    ):
+    def __init__(self, language, schema, answer_store=None, metadata=None):
         self._language = language
         self._schema = schema
         self._answer_store = answer_store or AnswerStore()

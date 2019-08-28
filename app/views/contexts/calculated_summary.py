@@ -14,12 +14,7 @@ from app.views.contexts.summary.group import Group
 
 
 def build_groups_for_section(answer_store, list_store, metadata, schema, section):
-    path_finder = PathFinder(
-        schema,
-        answer_store,
-        metadata,
-        list_store=list_store,
-    )
+    path_finder = PathFinder(schema, answer_store, metadata, list_store=list_store)
 
     section_path = path_finder.routing_path(section['id'])
 
@@ -27,13 +22,7 @@ def build_groups_for_section(answer_store, list_store, metadata, schema, section
 
     return [
         Group(
-            group,
-            section_path,
-            answer_store,
-            list_store,
-            metadata,
-            schema,
-            location
+            group, section_path, answer_store, list_store, metadata, schema, location
         ).serialize()
         for group in section['groups']
     ]
@@ -48,7 +37,9 @@ def build_view_context_for_calculated_summary(
         schema, block, current_location, answer_store, list_store, metadata
     )
 
-    groups = build_groups_for_section(answer_store, list_store, metadata, schema, calculated_section)
+    groups = build_groups_for_section(
+        answer_store, list_store, metadata, schema, calculated_section
+    )
 
     formatted_total = _get_formatted_total(
         groups or [],

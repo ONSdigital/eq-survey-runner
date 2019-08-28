@@ -129,7 +129,9 @@ class HubContext:
     def _get_row_for_repeating_section(self, section_id, list_item_id):
         repeating_title = self._schema.get_repeating_title_for_section(section_id)
 
-        title = self.placeholder_renderer.render_placeholder(repeating_title, list_item_id)
+        title = self.placeholder_renderer.render_placeholder(
+            repeating_title, list_item_id
+        )
 
         return self._get_row_for_section(title, section_id, list_item_id)
 
@@ -157,9 +159,7 @@ class HubContext:
             if repeating_list:
                 for list_item_id in self._list_store[repeating_list].items:
                     rows.append(
-                        self._get_row_for_repeating_section(
-                            section_id, list_item_id
-                        )
+                        self._get_row_for_repeating_section(section_id, list_item_id)
                     )
             else:
                 rows.append(self._get_row_for_section(section_title, section_id))

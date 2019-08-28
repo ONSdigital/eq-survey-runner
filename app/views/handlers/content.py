@@ -25,5 +25,5 @@ class Content(BlockHandler):
         )
 
         return self.placeholder_renderer.render(
-            transformed_block,
-            self._current_location.list_item_id)
+            transformed_block, self._current_location.list_item_id
+        )

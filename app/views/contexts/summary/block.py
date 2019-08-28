@@ -6,13 +6,7 @@ from app.views.contexts.summary.question import Question
 
 class Block:
     def __init__(
-        self,
-        block_schema,
-        answer_store,
-        list_store,
-        metadata,
-        schema,
-        location=None,
+        self, block_schema, answer_store, list_store, metadata, schema, location=None
     ):
         self.id = block_schema['id']
         self.location = location

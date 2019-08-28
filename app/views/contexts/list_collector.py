@@ -17,15 +17,12 @@ def build_list_items_summary_context(
 
     for list_item_id in list_item_ids:
         placeholder_renderer = PlaceholderRenderer(
-            language,
-            schema=schema,
-            answer_store=answer_store,
+            language, schema=schema, answer_store=answer_store
         )
 
         try:
             rendered_summary = placeholder_renderer.render(
-                list_collector_block['summary'],
-                list_item_id
+                list_collector_block['summary'], list_item_id
             )
         except KeyError:
             return []
