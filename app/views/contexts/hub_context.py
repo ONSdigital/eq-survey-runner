@@ -64,6 +64,19 @@ class HubContext:
         self._metadata = metadata
         self._schema = schema
         self._survey_complete = survey_complete
+        self._placeholder_renderer = None
+
+    @property
+    def placeholder_renderer(self):
+        if not self._placeholder_renderer:
+            self._placeholder_renderer = PlaceholderRenderer(
+                language=self._language,
+                schema=self._schema,
+                answer_store=self._answer_store,
+                metadata=self._metadata,
+            )
+
+        return self._placeholder_renderer
 
     def get_context(self) -> Mapping:
         context = self.HUB_CONTENT_STATES[
@@ -116,14 +129,7 @@ class HubContext:
     def _get_row_for_repeating_section(self, section_id, list_item_id):
         repeating_title = self._schema.get_repeating_title_for_section(section_id)
 
-        placeholder_renderer = PlaceholderRenderer(
-            language=self._language,
-            schema=self._schema,
-            answer_store=self._answer_store,
-            metadata=self._metadata,
-        )
-
-        title = placeholder_renderer.render_placeholder(repeating_title, list_item_id)
+        title = self.placeholder_renderer.render_placeholder(repeating_title, list_item_id)
 
         return self._get_row_for_section(title, section_id, list_item_id)
 

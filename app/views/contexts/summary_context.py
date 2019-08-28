@@ -104,25 +104,18 @@ class SummaryContext:
 
         title = self._schema.get_section(section_id).get('title')
 
-        if list_item_id:
-
-            repeating_title = self._schema.get_repeating_title_for_section(section_id)
-
-            if repeating_title:
-                placeholder_renderer = PlaceholderRenderer(
-                    language=self._language,
-                    schema=self._schema,
-                    answer_store=self._answer_store,
-                    metadata=self._metadata,
-                )
-                title = placeholder_renderer.render_placeholder(repeating_title, list_item_id)
-
         placeholder_renderer = PlaceholderRenderer(
             language=self._language,
             schema=self._schema,
             answer_store=self._answer_store,
             metadata=self._metadata,
         )
+
+        if list_item_id:
+
+            repeating_title = self._schema.get_repeating_title_for_section(section_id)
+            if repeating_title:
+                title = placeholder_renderer.render_placeholder(repeating_title, list_item_id)
 
         list_collector_blocks = self._schema.get_visible_list_blocks_for_section(
             section
