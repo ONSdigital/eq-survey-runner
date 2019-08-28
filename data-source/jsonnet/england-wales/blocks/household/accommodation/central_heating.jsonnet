@@ -77,11 +77,16 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
             block: 'accommodation-section-summary',
             when: [
             {
-                id: 'people',
+                list: 'household',
                 condition: 'equals',
-                value: '0',
+                value: 0,
             },
           ],
+        },
+     },
+     {
+        goto: {
+            block: 'own-or-rent',
         },
      },
   ],
