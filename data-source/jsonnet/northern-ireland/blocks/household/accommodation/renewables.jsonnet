@@ -56,21 +56,21 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
   },
   routing_rules: [
     {
-        goto: {
-            block: 'accommodation-section-summary',
-            when: [
-            {
-                list: 'household',
-                condition: 'equals',
-                value: 0,
-            },
-          ],
-        },
-     },
-     {
-        goto: {
-            block: 'own-or-rent',
-        },
-     },
+      goto: {
+        block: 'accommodation-section-summary',
+        when: [
+          {
+            list: 'household',
+            condition: 'equals',
+            value: 0,
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'own-or-rent',
+      },
+    },
   ],
 }
