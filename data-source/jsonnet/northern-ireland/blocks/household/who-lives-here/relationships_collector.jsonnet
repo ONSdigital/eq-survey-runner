@@ -1,5 +1,69 @@
-local placeholderSubs = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
+
+local firstPersonPlaceholder = {
+  placeholder: 'first_person_name',
+  transforms: [{
+  transform: 'concatenate_list',
+  arguments: {
+    list_to_concatenate: {
+      source: 'answers',
+      identifier: ['first-name', 'last-name'],
+      list_item_selector: {
+        source: 'location',
+        id: 'list_item_id',
+      },
+    },
+    delimiter: ' ',
+  },
+  }],
+};
+
+local secondPersonPlaceholder = {
+  placeholder: 'second_person_name',
+  transforms: [{
+  transform: 'concatenate_list',
+  arguments: {
+    list_to_concatenate: {
+      source: 'answers',
+      identifier: ['first-name', 'last-name'],
+      list_item_selector: {
+        source: 'location',
+        id: 'to_list_item_id',
+      },
+    },
+    delimiter: ' ',
+  },
+  }],
+};
+
+local firstPersonNamePossessivePlaceholder = {
+  placeholder: 'first_person_name_possessive',
+  transforms: [
+  {
+    transform: 'concatenate_list',
+    arguments: {
+      list_to_concatenate: {
+        source: 'answers',
+        identifier: ['first-name', 'last-name'],
+        list_item_selector: {
+          source: 'location',
+          id: 'list_item_id',
+        },
+      },
+      delimiter: ' ',
+    },
+  },
+  {
+    transform: 'format_possessive',
+    arguments: {
+      string_to_format: {
+        source: 'previous_transform',
+      },
+    },
+  },
+  ],
+};
+
 
 {
   type: 'RelationshipCollector',
@@ -24,7 +88,7 @@ local rules = import '../../../lib/rules.libsonnet';
         type: 'General',
         title: {
           text: '{second_person_name} is your <em>...</em>',
-          placeholders: [placeholderSubs.secondPersonPlaceholder],
+          placeholders: [secondPersonPlaceholder],
         },
         description: 'Complete the sentence by selecting the appropriate relationship.',
         answers: [
@@ -34,18 +98,18 @@ local rules = import '../../../lib/rules.libsonnet';
             type: 'Relationship',
             playback: {
               text: '{second_person_name} is your <em>...</em>',
-              placeholders: [placeholderSubs.secondPersonPlaceholder],
+              placeholders: [secondPersonPlaceholder],
             },
             options: [
               {
                 label: 'Husband or wife',
                 playback: {
                   text: '{second_person_name} is your <em>husband or wife</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is your <em>husband or wife</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Husband or wife',
               },
@@ -53,11 +117,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Legally registered civil partner',
                 playback: {
                   text: '{second_person_name} is your <em>legally registered civil partner</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is your <em>legally registered civil partner</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Legally registered civil partner',
               },
@@ -65,11 +129,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Partner',
                 playback: {
                   text: '{second_person_name} is your <em>partner</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is your <em>partner</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Partner',
               },
@@ -77,11 +141,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Son or daughter',
                 playback: {
                   text: '{second_person_name} is your <em>son or daughter</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is your <em>son or daughter</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Son or daughter',
               },
@@ -89,11 +153,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Stepchild',
                 playback: {
                   text: '{second_person_name} is your <em>stepchild</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is your <em>stepchild</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Stepchild',
               },
@@ -101,11 +165,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Brother or sister',
                 playback: {
                   text: '{second_person_name} is your <em>brother or sister</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is your <em>brother or sister</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Brother or sister',
               },
@@ -113,11 +177,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Mother or father',
                 playback: {
                   text: '{second_person_name} is your <em>mother or father</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is your <em>mother or father</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Mother or father',
               },
@@ -125,11 +189,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Stepmother or stepfather',
                 playback: {
                   text: '{second_person_name} is your <em>stepmother or stepfather</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is your <em>stepmother or stepfather</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Stepmother or stepfather',
               },
@@ -137,11 +201,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Grandchild',
                 playback: {
                   text: '{second_person_name} is your <em>grandchild</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is your <em>grandchild</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Grandchild',
               },
@@ -149,11 +213,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Grandparent',
                 playback: {
                   text: '{second_person_name} is your <em>grandparent</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is your <em>grandparent</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Grandparent',
               },
@@ -161,11 +225,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Other relation',
                 playback: {
                   text: '{second_person_name} is your <em>other relation</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is your <em>other relation</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Other relation',
               },
@@ -173,11 +237,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Unrelated',
                 playback: {
                   text: '{second_person_name} is <em>unrelated</em> to you',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 title: {
                   text: '{second_person_name} is <em>unrelated</em> to you',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Unrelated',
               },
@@ -193,7 +257,7 @@ local rules = import '../../../lib/rules.libsonnet';
         type: 'General',
         title: {
           text: 'Thinking of {first_person_name}, {second_person_name} is their <em>...</em>',
-          placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+          placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
         },
         description: 'Complete the sentence by selecting the appropriate relationship.',
         answers: [
@@ -202,19 +266,19 @@ local rules = import '../../../lib/rules.libsonnet';
             mandatory: false,
             type: 'Relationship',
             playback: {
-              text: '{second_person_name} is your <em>...</em>',
-              placeholders: [placeholderSubs.secondPersonPlaceholder],
+              text: '{second_person_name} is {first_person_name_possessive} <em>...</em>',
+              placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
             },
             options: [
               {
                 label: 'Husband or wife',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Husband or wife',
               },
@@ -222,11 +286,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Legally registered civil partner',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Legally registered civil partner',
               },
@@ -234,11 +298,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Partner',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>partner</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is their <em>partner</em>',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Partner',
               },
@@ -246,11 +310,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Son or daughter',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Son or daughter',
               },
@@ -258,11 +322,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Stepchild',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>stepchild</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is their <em>stepchild</em>',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Stepchild',
               },
@@ -270,11 +334,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Brother or sister',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is their <em>brother or sister</em>',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Brother or sister',
               },
@@ -282,11 +346,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Mother or father',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>mother or father</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is their <em>mother or father</em>',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Mother or father',
               },
@@ -294,11 +358,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Stepmother or stepfather',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>stepmother or stepfather</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is their <em>stepmother or stepfather</em>',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Stepmother or stepfather',
               },
@@ -306,11 +370,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Grandchild',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>grandchild</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is their <em>grandchild</em>',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Grandchild',
               },
@@ -318,11 +382,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Grandparent',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>grandparent</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is their <em>grandparent</em>',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Grandparent',
               },
@@ -330,11 +394,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Other relation',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>other relation</em>',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonNamePossessivePlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is their <em>other relation</em>',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Other relation',
               },
@@ -342,11 +406,11 @@ local rules = import '../../../lib/rules.libsonnet';
                 label: 'Unrelated',
                 playback: {
                   text: '{second_person_name} is <em>unrelated</em> to {first_person_name}',
-                  placeholders: [placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonPlaceholder],
+                  placeholders: [secondPersonPlaceholder, firstPersonPlaceholder],
                 },
                 title: {
                   text: 'Thinking of {first_person_name}, {second_person_name} is <em>unrelated</em> to {first_person_name}',
-                  placeholders: [placeholderSubs.firstPersonPlaceholder, placeholderSubs.secondPersonPlaceholder, placeholderSubs.firstPersonPlaceholder],
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder, firstPersonPlaceholder],
                 },
                 value: 'Unrelated',
               },

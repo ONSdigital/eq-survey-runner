@@ -264,8 +264,8 @@ local firstPersonNamePossessivePlaceholder = {
             mandatory: false,
             type: 'Relationship',
             playback: {
-              text: '{second_person_name} is your <em>...</em>',
-              placeholders: [secondPersonPlaceholder],
+              text: '{second_person_name} is {first_person_name_possessive} <em>...</em>',
+              placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
             },
             options: [
               {
