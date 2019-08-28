@@ -60,7 +60,7 @@ class PlaceholderRenderer:
             list_item_id=list_item_id,
         )
 
-        if 'text' not in placeholder_data or  'placeholders' not in placeholder_data:
+        if 'text' not in placeholder_data or 'placeholders' not in placeholder_data:
             raise ValueError('No placeholder found to render')
 
         transformed_values = placeholder_parser.parse(placeholder_data['placeholders'])
