@@ -2,10 +2,10 @@ const helpers = require('../../helpers');
 
 const DoesAnyoneLiveHerePage = require('../../generated_pages/confirmation_question_within_repeating_section/list-collector.page');
 const AddPersonPage = require('../../generated_pages/confirmation_question_within_repeating_section/list-collector-add.page');
-const NumberOfEmployeesBreakdownPage = require('../../generated_pages/confirmation_question_within_repeating_section/number-of-employees-split-block.page');
-const NumberOfEmployeesTotalPage = require('../../generated_pages/confirmation_question_within_repeating_section/number-of-employees-total-block.page');
-const ConfirmZeroEmployeesPage = require('../../generated_pages/confirmation_question_within_repeating_section/confirm-zero-employees-block.page');
-const SummaryPage = require('../../generated_pages/confirmation_question_within_repeating_section/summary.page.js');
+const CarerPage = require('../../generated_pages/confirmation_question_within_repeating_section/carer-block.page');
+const DateOfBirthPage = require('../../generated_pages/confirmation_question_within_repeating_section/dob-block.page');
+const ConfirmDateOfBirthPage = require('../../generated_pages/confirmation_question_within_repeating_section/confirm-dob-block.page');
+const SectionSummaryPage = require('../../generated_pages/confirmation_question_within_repeating_section/section-summary.page');
 
 describe('Feature: Confirmation Question Within A Repeating Section', function () {
 
@@ -21,7 +21,7 @@ describe('Feature: Confirmation Question Within A Repeating Section', function (
           .click(AddPersonPage.submit())
           .click(DoesAnyoneLiveHerePage.no())
           .click(DoesAnyoneLiveHerePage.submit())
-          .getUrl().should.eventually.contain(NumberOfEmployeesTotalPage.url().split('/').slice(-1)[0]);
+          .getUrl().should.eventually.contain(DateOfBirthPage.url().split('/').slice(-1)[0]);
       });
     });
 
@@ -29,10 +29,16 @@ describe('Feature: Confirmation Question Within A Repeating Section', function (
 
       it('When I answer \'No\' to the confirmation question, Then I should be routed back to the source question', function () {
         return browser
-          .click(NumberOfEmployeesTotalPage.submit())
-          .click(ConfirmZeroEmployeesPage.no())
-          .click(ConfirmZeroEmployeesPage.submit())
-          .getUrl().should.eventually.contain(NumberOfEmployeesTotalPage.pageName);
+          // Answer question preceding confirmation question
+          .setValue(DateOfBirthPage.day(), '01')
+          .setValue(DateOfBirthPage.month(), '01')
+          .setValue(DateOfBirthPage.year(), '2007')
+          .click(DateOfBirthPage.submit())
+
+          // Answer 'No' to confirmation question
+          .click(ConfirmDateOfBirthPage.no())
+          .click(ConfirmDateOfBirthPage.submit())
+          .getUrl().should.eventually.contain(DateOfBirthPage.pageName);
       });
 
     });
@@ -41,24 +47,31 @@ describe('Feature: Confirmation Question Within A Repeating Section', function (
 
       it('When I view the summary, Then the confirmation question should not be displayed', function () {
         return browser
-          .setValue(NumberOfEmployeesTotalPage.numberOfEmployeesTotal(), 0)
-          .click(NumberOfEmployeesTotalPage.submit())
-          .click(ConfirmZeroEmployeesPage.yes())
-          .click(ConfirmZeroEmployeesPage.submit())
-          .getUrl().should.eventually.contain(SummaryPage.pageName)
-          .isExisting(SummaryPage.confirmZeroEmployeesAnswer()).should.eventually.be.false;
+          .setValue(DateOfBirthPage.day(), '01')
+          .setValue(DateOfBirthPage.month(), '01')
+          .setValue(DateOfBirthPage.year(), '2007')
+          .click(DateOfBirthPage.submit())
+
+          .click(ConfirmDateOfBirthPage.yes())
+          .click(ConfirmDateOfBirthPage.submit())
+
+          .getUrl().should.eventually.contain(SectionSummaryPage.pageName)
+          .isExisting(SectionSummaryPage.confirmDateOfBirth()).should.eventually.be.false;
       });
 
     });
 
-    describe('Given a question with a skip condition', function () {
+    describe('Given a confirmation question with a skip condition', function () {
 
-      it('When I submit an answer that is at least \'1\', Then I should be skipped past the confirmation question', function () {
+      it('When I submit an a date of birth where the age is at least \'16\', Then I should be skipped past the confirmation question and directed to the carer question', function () {
         return browser
-          .setValue(NumberOfEmployeesTotalPage.numberOfEmployeesTotal(), 3)
-          .click(NumberOfEmployeesTotalPage.submit())
-          .getUrl().should.eventually.contain(NumberOfEmployeesBreakdownPage.pageName)
-          .getText(NumberOfEmployeesBreakdownPage.questionText()).should.eventually.contain('Of the 3 total employees');
+          .setValue(DateOfBirthPage.day(), '01')
+          .setValue(DateOfBirthPage.month(), '01')
+          .setValue(DateOfBirthPage.year(), '2000')
+          .click(DateOfBirthPage.submit())
+
+          .getUrl().should.eventually.contain(CarerPage.pageName)
+          .getText(CarerPage.questionText()).should.eventually.contain('Does John Doe look');
       });
 
     });

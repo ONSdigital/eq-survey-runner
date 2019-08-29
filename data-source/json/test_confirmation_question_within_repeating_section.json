@@ -178,178 +178,288 @@
             "id": "default-section",
             "title": "Questions",
             "repeat": {
-                "for_list": "people"
+                "for_list": "people",
+                "title": {
+                    "text": "{person_name}",
+                    "placeholders": [
+                        {
+                            "placeholder": "person_name",
+                            "transforms": [
+                                {
+                                    "transform": "concatenate_list",
+                                    "arguments": {
+                                        "list_to_concatenate": {
+                                            "source": "answers",
+                                            "identifier": ["first-name", "last-name"]
+                                        },
+                                        "delimiter": " "
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
             },
             "groups": [
                 {
-                    "id": "confirmation-block",
-                    "title": "Confirmation Question Test",
+                    "id": "dob-group",
+                    "title": "Date of birth",
                     "blocks": [
                         {
-                            "id": "number-of-employees-total-block",
+                            "type": "Question",
+                            "id": "dob-block",
                             "question": {
                                 "answers": [
                                     {
-                                        "id": "number-of-employees-total",
-                                        "q_code": "50",
-                                        "label": "Total number of employees",
-                                        "mandatory": false,
-                                        "type": "Number",
-                                        "default": 0
+                                        "id": "date-of-birth-answer",
+                                        "mandatory": true,
+                                        "maximum": {
+                                            "value": "now"
+                                        },
+                                        "minimum": {
+                                            "offset_by": {
+                                                "years": -115
+                                            },
+                                            "value": "2019-10-13"
+                                        },
+                                        "type": "Date"
                                     }
                                 ],
-                                "id": "number-of-employees-total-question",
-                                "title": {
-                                    "text": "How many employees work at {company_name}?",
-                                    "placeholders": [
+                                "guidance": {
+                                    "contents": [
                                         {
-                                            "placeholder": "company_name",
-                                            "transforms": [
-                                                {
-                                                    "transform": "first_non_empty_item",
-                                                    "arguments": {
-                                                        "items": {
-                                                            "source": "metadata",
-                                                            "identifier": ["trad_as", "ru_name"]
-                                                        }
-                                                    }
-                                                }
-                                            ]
+                                            "description": "For example 31 12 1970"
                                         }
                                     ]
                                 },
+                                "id": "date-of-birth-question",
+                                "title": {
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "person_name_possessive",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "delimiter": " ",
+                                                        "list_to_concatenate": {
+                                                            "identifier": ["first-name", "last-name"],
+                                                            "source": "answers"
+                                                        }
+                                                    },
+                                                    "transform": "concatenate_list"
+                                                },
+                                                {
+                                                    "arguments": {
+                                                        "string_to_format": {
+                                                            "source": "previous_transform"
+                                                        }
+                                                    },
+                                                    "transform": "format_possessive"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "text": "What is <em>{person_name_possessive}</em> date of birth?"
+                                },
                                 "type": "General"
-                            },
-                            "type": "Question"
+                            }
                         },
                         {
                             "type": "ConfirmationQuestion",
-                            "id": "confirm-zero-employees-block",
+                            "id": "confirm-dob-block",
                             "skip_conditions": [
                                 {
                                     "when": [
                                         {
-                                            "id": "number-of-employees-total",
-                                            "condition": "greater than",
-                                            "value": 0
+                                            "condition": "less than or equal to",
+                                            "date_comparison": {
+                                                "offset_by": {
+                                                    "years": -16
+                                                },
+                                                "value": "now"
+                                            },
+                                            "id": "date-of-birth-answer"
                                         }
                                     ]
                                 }
                             ],
                             "question": {
-                                "type": "General",
                                 "answers": [
                                     {
-                                        "type": "Radio",
-                                        "id": "confirm-zero-employees-answer",
+                                        "id": "confirm-date-of-birth-answer",
+                                        "mandatory": true,
                                         "options": [
                                             {
-                                                "label": "Yes this is correct",
+                                                "label": {
+                                                    "placeholders": [
+                                                        {
+                                                            "placeholder": "person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "arguments": {
+                                                                        "delimiter": " ",
+                                                                        "list_to_concatenate": {
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "source": "answers"
+                                                                        }
+                                                                    },
+                                                                    "transform": "concatenate_list"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "placeholder": "age_in_years",
+                                                            "transforms": [
+                                                                {
+                                                                    "arguments": {
+                                                                        "first_date": {
+                                                                            "identifier": "date-of-birth-answer",
+                                                                            "source": "answers"
+                                                                        },
+                                                                        "second_date": {
+                                                                            "value": "now"
+                                                                        }
+                                                                    },
+                                                                    "transform": "calculate_years_difference"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "text": "Yes, {person_name} is {age_in_years} years old"
+                                                },
                                                 "value": "Yes"
                                             },
                                             {
-                                                "label": "No I need to change this",
+                                                "label": "No, I need to change their date of birth",
                                                 "value": "No"
                                             }
                                         ],
-                                        "mandatory": true,
-                                        "q_code": "d50"
+                                        "type": "Radio"
                                     }
                                 ],
-                                "id": "confirm-zero-employees-question",
+                                "id": "confirm-date-of-birth",
                                 "title": {
-                                    "text": "The current number of employees for {company_name} is <em>0</em>, is this correct?",
                                     "placeholders": [
                                         {
-                                            "placeholder": "company_name",
+                                            "placeholder": "person_name",
                                             "transforms": [
                                                 {
-                                                    "transform": "first_non_empty_item",
                                                     "arguments": {
-                                                        "items": {
-                                                            "source": "metadata",
-                                                            "identifier": ["trad_as", "ru_name"]
+                                                        "delimiter": " ",
+                                                        "list_to_concatenate": {
+                                                            "identifier": ["first-name", "last-name"],
+                                                            "source": "answers"
                                                         }
-                                                    }
+                                                    },
+                                                    "transform": "concatenate_list"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "placeholder": "age_in_years",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "first_date": {
+                                                            "identifier": "date-of-birth-answer",
+                                                            "source": "answers"
+                                                        },
+                                                        "second_date": {
+                                                            "value": "now"
+                                                        }
+                                                    },
+                                                    "transform": "calculate_years_difference"
                                                 }
                                             ]
                                         }
-                                    ]
-                                }
+                                    ],
+                                    "text": "{person_name} is {age_in_years} years old. Is this correct?"
+                                },
+                                "type": "General"
                             },
                             "routing_rules": [
                                 {
                                     "goto": {
+                                        "block": "dob-block",
                                         "when": [
                                             {
-                                                "value": "No",
-                                                "id": "confirm-zero-employees-answer",
-                                                "condition": "equals"
+                                                "id": "confirm-date-of-birth-answer",
+                                                "condition": "equals",
+                                                "value": "No"
                                             }
-                                        ],
-                                        "block": "number-of-employees-total-block"
+                                        ]
                                     }
                                 },
                                 {
                                     "goto": {
-                                        "group": "summary-group"
+                                        "block": "section-summary"
                                     }
                                 }
                             ]
                         },
                         {
-                            "id": "number-of-employees-split-block",
-                            "type": "Question",
+                            "id": "carer-block",
                             "question": {
-                                "answers": [
-                                    {
-                                        "id": "number-of-employees-male-more-30-hours",
-                                        "label": "Number of male employees working more than 30 hours per week",
-                                        "mandatory": false,
-                                        "q_code": "51",
-                                        "type": "Number"
-                                    },
-                                    {
-                                        "id": "number-of-employees-female-more-30-hours",
-                                        "label": "Number of female employees working more than 30 hours per week",
-                                        "mandatory": false,
-                                        "q_code": "52",
-                                        "type": "Number"
-                                    }
-                                ],
-                                "id": "number-of-employees-split-question",
+                                "id": "carer-question",
+                                "type": "General",
                                 "title": {
-                                    "text": "Of the <em>{number_of_employees_total}</em> total employees employed, how many male and female employees worked the following hours?",
                                     "placeholders": [
                                         {
-                                            "placeholder": "number_of_employees_total",
-                                            "value": {
-                                                "source": "answers",
-                                                "identifier": "number-of-employees-total"
-                                            }
+                                            "placeholder": "person_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "delimiter": " ",
+                                                        "list_to_concatenate": {
+                                                            "identifier": ["first-name", "last-name"],
+                                                            "source": "answers"
+                                                        }
+                                                    },
+                                                    "transform": "concatenate_list"
+                                                }
+                                            ]
                                         }
-                                    ]
+                                    ],
+                                    "text": "Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
                                 },
-                                "type": "General"
-                            }
+                                "answers": [
+                                    {
+                                        "id": "carer-answer",
+                                        "q_code": "50",
+                                        "label": "Carer",
+                                        "mandatory": false,
+                                        "type": "Radio",
+                                        "default": "Yes",
+                                        "options": [{ "label": "Yes", "value": "Yes" }, { "label": "No", "value": "No" }]
+                                    }
+                                ]
+                            },
+                            "type": "Question"
+                        },
+                        {
+                            "id": "section-summary",
+                            "type": "SectionSummary"
                         }
                     ]
                 }
             ]
         },
         {
-            "id": "summary-section",
-            "title": "Summary",
+            "id": "confirmation-section",
+            "title": "Confirmation",
             "groups": [
                 {
                     "blocks": [
                         {
-                            "id": "summary",
-                            "type": "Summary"
+                            "id": "confirmation-block",
+                            "type": "Confirmation",
+                            "content": {
+                                "title": "You are now ready to submit this survey"
+                            }
                         }
                     ],
-                    "id": "summary-group",
-                    "title": "Summary"
+                    "id": "confirmation-group",
+                    "title": "Confirmation"
                 }
             ]
         }
