@@ -39,13 +39,20 @@ class PlaceholderRenderer:
     """
 
     def __init__(
-        self, language, schema, answer_store=None, metadata=None, list_item_id=None
+        self,
+        language,
+        schema,
+        answer_store=None,
+        metadata=None,
+        list_item_id=None,
+        location=None,
     ):
         self._language = language
         self._schema = schema
         self._answer_store = answer_store or AnswerStore()
         self._metadata = metadata
         self._list_item_id = list_item_id
+        self._location = location
         self._placeholders = {}
 
     def render_pointer(self, dict_to_render, pointer_to_render):
@@ -55,6 +62,7 @@ class PlaceholderRenderer:
             answer_store=self._answer_store,
             metadata=self._metadata,
             list_item_id=self._list_item_id,
+            location=self._location,
         )
 
         pointer_data = resolve_pointer(dict_to_render, pointer_to_render)
@@ -62,8 +70,7 @@ class PlaceholderRenderer:
         if 'text' not in pointer_data or 'placeholders' not in pointer_data:
             raise ValueError('No placeholder found at pointer')
 
-        transformed_values = placeholder_parser.parse(pointer_data['placeholders'])
-
+        transformed_values = placeholder_parser(pointer_data['placeholders'])
         return pointer_data['text'].format(**transformed_values)
 
     def render(self, dict_to_render):
@@ -73,10 +80,11 @@ class PlaceholderRenderer:
         :return:
         """
         rendered_data = deepcopy(dict_to_render)
-        pointer_list = find_pointers_containing(rendered_data, 'placeholders')
+        pointers = find_pointers_containing(rendered_data, 'placeholders')
 
-        for pointer in pointer_list:
+        for pointer in pointers:
             rendered_text = self.render_pointer(rendered_data, pointer)
+
             set_pointer(rendered_data, pointer, rendered_text)
 
         return rendered_data

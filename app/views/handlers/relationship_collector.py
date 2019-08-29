@@ -1,7 +1,5 @@
 from app.questionnaire.location import Location
 from app.questionnaire.relationship_router import RelationshipRouter
-from app.views.contexts.question import build_question_context
-from app.views.contexts.relationship_collector import transform_relationships
 from app.views.handlers.question import Question
 
 
@@ -71,14 +69,6 @@ class RelationshipCollector(Question):
             section_id=self._current_location.section_id, block_id=self.block['id']
         )
         return self.router.get_next_location_url(parent_location, self._routing_path)
-
-    def get_context(self):
-        transformed_block = transform_relationships(
-            self.rendered_block,
-            self._questionnaire_store.answer_store,
-            self._current_location,
-        )
-        return build_question_context(transformed_block, self.form)
 
     def save_on_sign_out(self):
         self.questionnaire_store_updater.update_relationship_answer(
