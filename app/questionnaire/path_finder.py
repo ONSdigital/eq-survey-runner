@@ -199,7 +199,10 @@ class PathFinder:
                         block_id=next_block_id
                     )
                     next_location = Location(
-                        section_id=section_id_for_block_id, block_id=next_block_id
+                        section_id=section_id_for_block_id,
+                        block_id=next_block_id,
+                        list_item_id=this_location.list_item_id,
+                        list_name=this_location.list_name,
                     )
                     path.append(next_location)
                     return None
