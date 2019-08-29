@@ -166,8 +166,14 @@ def evaluate_goto(
 def _is_answer_on_path(schema, answer, routing_path):
     block_id = schema.get_block_for_answer_id(answer.answer_id)['id']
     section_id = schema.get_section_id_for_block_id(block_id)
+    list_name = schema.get_repeating_list_for_section(section_id)
 
-    location = Location(section_id=section_id, block_id=block_id)
+    location = Location(
+        section_id=section_id,
+        block_id=block_id,
+        list_item_id=answer.list_item_id,
+        list_name=list_name,
+    )
     return location in routing_path
 
 
@@ -289,6 +295,7 @@ def evaluate_when_rules(
     :return: True if the when condition has been met otherwise False
     """
     for when_rule in when_rules:
+
         list_item_id = current_location.list_item_id if current_location else None
 
         value = _get_when_rule_value(
