@@ -7,7 +7,7 @@ const NumberOfEmployeesTotalPage = require('../../generated_pages/confirmation_q
 const ConfirmZeroEmployeesPage = require('../../generated_pages/confirmation_question_within_repeating_section/confirm-zero-employees-block.page');
 const SummaryPage = require('../../generated_pages/confirmation_question_within_repeating_section/summary.page.js');
 
-describe('@watch Feature: Confirmation Question Within A Repeating Section', function () {
+describe('Feature: Confirmation Question Within A Repeating Section', function () {
 
   describe('Given I am in a repeating section', function () {
 
