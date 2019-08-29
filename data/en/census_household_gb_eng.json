@@ -3908,6 +3908,25 @@
                         },
                         "type": "General"
                      },
+                     "routing_rules": [
+                        {
+                           "goto": {
+                              "block": "accommodation-section-summary",
+                              "when": [
+                                 {
+                                    "condition": "equals",
+                                    "list": "household",
+                                    "value": 0
+                                 }
+                              ]
+                           }
+                        },
+                        {
+                           "goto": {
+                              "block": "own-or-rent"
+                           }
+                        }
+                     ],
                      "type": "Question"
                   },
                   {

@@ -3970,6 +3970,25 @@
                         },
                         "type": "MutuallyExclusive"
                      },
+                     "routing_rules": [
+                        {
+                           "goto": {
+                              "block": "accommodation-section-summary",
+                              "when": [
+                                 {
+                                    "condition": "equals",
+                                    "list": "household",
+                                    "value": 0
+                                 }
+                              ]
+                           }
+                        },
+                        {
+                           "goto": {
+                              "block": "own-or-rent"
+                           }
+                        }
+                     ],
                      "type": "Question"
                   },
                   {
@@ -4152,7 +4171,7 @@
                      "type": "Question"
                   },
                   {
-                     "id": "currency-section-summary",
+                     "id": "accommodation-section-summary",
                      "type": "SectionSummary"
                   }
                ],
