@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-28 09:19+0100\n"
+"POT-Creation-Date: 2019-08-29 09:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -563,9 +563,6 @@ msgstr ""
 msgid "Personal Details"
 msgstr ""
 
-msgid "Are you answering these questions for yourself or for someone else?"
-msgstr ""
-
 msgid "What is your date of birth?"
 msgstr ""
 
@@ -977,6 +974,9 @@ msgstr ""
 msgid ""
 "In this section, we’re going to ask you questions about "
 "<strong>{person_name}</strong>."
+msgstr ""
+
+msgid "Are you <em>{person_name}?</em>"
 msgstr ""
 
 msgid "What is <em>{person_name_possessive}</em> date of birth?"
@@ -1894,17 +1894,13 @@ msgid "Enter the number of cars or vans"
 msgstr ""
 
 #. answer-id: proxy-answer
-msgctxt ""
-"Answer for: Are you answering these questions for yourself or for someone"
-" else?"
-msgid "For myself"
+msgctxt "Answer for: Are you <em>{person_name}?</em>"
+msgid "Yes, I am"
 msgstr ""
 
 #. answer-id: proxy-answer
-msgctxt ""
-"Answer for: Are you answering these questions for yourself or for someone"
-" else?"
-msgid "For someone else"
+msgctxt "Answer for: Are you <em>{person_name}?</em>"
+msgid "No, I am answering on their behalf"
 msgstr ""
 
 #. answer-id: confirm-date-of-birth-answer
