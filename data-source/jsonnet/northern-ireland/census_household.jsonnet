@@ -29,12 +29,11 @@ local relationships_interstitial = import 'household/blocks/who-lives-here/relat
 
 // Personal Details
 local individual_interstitial = import 'household/blocks/individual/individual_interstitial.jsonnet';
-local proxy = import 'household/individual/blocks/proxy.jsonnet';
+local proxy = import 'household/blocks/individual/proxy.jsonnet';
 local confirm_dob = import 'individual/blocks/personal-details/confirm_dob.jsonnet';
 local date_of_birth = import 'individual/blocks/personal-details/date_of_birth.jsonnet';
 local in_education = import 'individual/blocks/personal-details/in_education.jsonnet';
 local marriage_type = import 'individual/blocks/personal-details/marriage_type.jsonnet';
-local proxy = import 'individual/blocks/personal-details/proxy.jsonnet';
 local sex = import 'individual/blocks/personal-details/sex.jsonnet';
 local term_time_location = import 'individual/blocks/personal-details/term_time_location.jsonnet';
 
@@ -178,6 +177,9 @@ function(region_code, census_date) {
     {
       id: 'individual-section',
       title: 'Individual Section',
+      repeat: {
+        for_list: 'household',
+      },
       groups: [
         {
           id: 'personal-details-group',

@@ -2197,24 +2197,46 @@
                      "question": {
                         "answers": [
                            {
-                              "default": "For someone else",
+                              "default": "Yes",
                               "id": "proxy-answer",
                               "mandatory": false,
                               "options": [
                                  {
-                                    "label": "For myself",
-                                    "value": "For myself"
+                                    "label": "Yes, I am",
+                                    "value": "Yes"
                                  },
                                  {
-                                    "label": "For someone else",
-                                    "value": "For someone else"
+                                    "label": "No, I am answering on their behalf",
+                                    "value": "No"
                                  }
                               ],
                               "type": "Radio"
                            }
                         ],
                         "id": "proxy-question",
-                        "title": "Are you answering these questions for yourself or for someone else?",
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "person_name",
+                                 "transforms": [
+                                    {
+                                       "arguments": {
+                                          "delimiter": " ",
+                                          "list_to_concatenate": {
+                                             "identifier": [
+                                                "first-name",
+                                                "last-name"
+                                             ],
+                                             "source": "answers"
+                                          }
+                                       },
+                                       "transform": "concatenate_list"
+                                    }
+                                 ]
+                              }
+                           ],
+                           "text": "Are you <em>{person_name}?</em>"
+                        },
                         "type": "General"
                      },
                      "type": "Question"
@@ -10854,6 +10876,9 @@
             }
          ],
          "id": "individual-section",
+         "repeat": {
+            "for_list": "household"
+         },
          "title": "Individual Section"
       }
    ],
