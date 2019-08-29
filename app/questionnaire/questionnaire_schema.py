@@ -40,6 +40,9 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def get_repeating_list_for_section(self, section_id):
         return self._sections_by_id.get(section_id).get('repeat', {}).get('for_list')
 
+    def get_repeating_title_for_section(self, section_id):
+        return self._sections_by_id.get(section_id).get('repeat', {}).get('title')
+
     def get_section_for_block_id(self, block_id):
         block = self.get_block(block_id)
 
