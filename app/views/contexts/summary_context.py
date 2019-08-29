@@ -68,20 +68,6 @@ class SummaryContext:
         }
         return context
 
-    def build_context_for_section(self, section_id, list_name=None, list_item_id=None):
-        """
-        Builds the context for a single section
-        Args:
-            section_id: The id of the target section
-            list_item_id: If this is a repeating section, the list_item_id
-        """
-
-        groups = self.build_groups_for_section(section_id, list_name, list_item_id)
-
-        context = {'summary': {'groups': groups, 'answers_are_editable': True}}
-
-        return context
-
     def section_summary(self, current_location):
         section_id = current_location.section_id
         section = self._schema.get_section(current_location.section_id)
@@ -89,9 +75,15 @@ class SummaryContext:
         list_name = current_location.list_name
         block = self._schema.get_block(current_location.block_id)
 
-        context = self.build_context_for_section(section_id, list_name, list_item_id)
-        context['summary']['collapsible'] = block.get('collapsible', False)
-        context['summary']['summary_type'] = 'SectionSummary'
+        groups = self.build_groups_for_section(section_id, list_name, list_item_id)
+        context = {
+            'summary': {
+                'groups': groups,
+                'answers_are_editable': True,
+                'collapsible': block.get('collapsible', False),
+                'summary_type': 'SectionSummary',
+            }
+        }
 
         title = self._schema.get_section(section_id).get('title')
 
