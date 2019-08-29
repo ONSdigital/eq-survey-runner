@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-28 14:02+0100\n"
+"POT-Creation-Date: 2019-08-29 14:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,64 +176,64 @@ msgid_plural "%(num)s days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/views/contexts/hub_context.py:12 app/views/contexts/hub_context.py:14
+#: app/views/contexts/hub_context.py:15 app/views/contexts/hub_context.py:17
 msgid "Submit survey"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:13 templates/summary.html:16
+#: app/views/contexts/hub_context.py:16 templates/summary.html:16
 msgid "Please submit this survey to complete it"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:17
+#: app/views/contexts/hub_context.py:20
 msgid "Choose another section to complete"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:18
+#: app/views/contexts/hub_context.py:21
 msgid "You must complete all sections in order to submit this survey"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:21 templates/confirmation.html:12
+#: app/views/contexts/hub_context.py:24 templates/confirmation.html:12
 #: templates/interstitial.html:5
 msgid "Continue"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:27
+#: app/views/contexts/hub_context.py:30
 msgid "Completed"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:29
+#: app/views/contexts/hub_context.py:32
 msgid "View answers"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:30
+#: app/views/contexts/hub_context.py:33
 msgid "View answers for {section_name}"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:34
+#: app/views/contexts/hub_context.py:37
 msgid "Partially completed"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:36
+#: app/views/contexts/hub_context.py:39
 msgid "Continue with section"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:37
+#: app/views/contexts/hub_context.py:40
 msgid "Continue with {section_name} section"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:41
+#: app/views/contexts/hub_context.py:44
 msgid "Not started"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:43
+#: app/views/contexts/hub_context.py:46
 msgid "Start section"
 msgstr ""
 
-#: app/views/contexts/hub_context.py:44
+#: app/views/contexts/hub_context.py:47
 msgid "Start {section_name} section"
 msgstr ""
 
-#: app/views/contexts/list_collector.py:36
+#: app/views/contexts/list_collector.py:33
 msgid " (You)"
 msgstr ""
 
@@ -380,7 +380,7 @@ msgstr ""
 msgid "Please review your answers and confirm these are correct"
 msgstr ""
 
-#: templates/summary.html:70
+#: templates/summary.html:66
 msgid ""
 "You will have the opportunity to view and print a copy of your answers "
 "after submitting this survey"
