@@ -1,4 +1,46 @@
+# pylint: disable=redefined-outer-name
 import pytest
+
+from app.data_model.answer_store import AnswerStore
+from app.questionnaire.location import Location
+from app.questionnaire.placeholder_parser import PlaceholderParser
+
+
+@pytest.fixture
+def placeholder_list():
+    return [
+        {
+            'placeholder': 'first_name',
+            'value': {'source': 'answers', 'identifier': 'first-name'},
+        }
+    ]
+
+
+@pytest.fixture
+def answer_store():
+    return AnswerStore([{'answer_id': 'first-name', 'value': 'Joe'}])
+
+
+@pytest.fixture
+def location():
+    return Location('test-section', 'test-block', 'test-list', 'list_item_id')
+
+
+@pytest.fixture
+def parser(answer_store, location):
+    return PlaceholderParser(
+        language='en', answer_store=answer_store, location=location
+    )
+
+
+@pytest.fixture
+def parser_with_list_item_id(answer_store, location):
+    return PlaceholderParser(
+        language='en',
+        answer_store=answer_store,
+        location=location,
+        list_item_id='test-list-item-id',
+    )
 
 
 @pytest.fixture()
