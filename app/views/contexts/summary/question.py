@@ -4,7 +4,8 @@ from app.views.contexts.summary.answer import Answer
 
 
 class Question:
-    def __init__(self, question_schema, answer_store, schema):
+    def __init__(self, question_schema, answer_store, schema, list_item_id):
+        self.list_item_id = list_item_id
         self.id = question_schema['id']
         self.type = question_schema['type']
         self.schema = schema
@@ -16,9 +17,8 @@ class Question:
         self.number = question_schema.get('number', None)
         self.answers = self._build_answers(answer_store, question_schema)
 
-    @staticmethod
-    def _get_answer(answer_store, answer_id):
-        answer = answer_store.get_answer(answer_id)
+    def _get_answer(self, answer_store, answer_id):
+        answer = answer_store.get_answer(answer_id, self.list_item_id)
         if answer:
             return answer.value
 

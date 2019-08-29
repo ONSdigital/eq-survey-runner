@@ -167,31 +167,399 @@
                             "question": {
                                 "id": "relationship-question",
                                 "type": "General",
-                                "title": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
+                                "title": {
+                                    "text": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "first_person_name",
+                                            "transforms": [
+                                                {
+                                                    "transform": "concatenate_list",
+                                                    "arguments": {
+                                                        "list_to_concatenate": {
+                                                            "source": "answers",
+                                                            "identifier": ["first-name", "last-name"],
+                                                            "list_item_selector": {
+                                                                "source": "location",
+                                                                "id": "list_item_id"
+                                                            }
+                                                        },
+                                                        "delimiter": " "
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "placeholder": "second_person_name",
+                                            "transforms": [
+                                                {
+                                                    "transform": "concatenate_list",
+                                                    "arguments": {
+                                                        "list_to_concatenate": {
+                                                            "source": "answers",
+                                                            "identifier": ["first-name", "last-name"],
+                                                            "list_item_selector": {
+                                                                "source": "location",
+                                                                "id": "to_list_item_id"
+                                                            }
+                                                        },
+                                                        "delimiter": " "
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
                                 "answers": [
                                     {
                                         "id": "relationship-answer",
                                         "mandatory": true,
                                         "type": "Relationship",
-                                        "playback": "{second_person_name} is {first_person_name_possessive} <em>…</em>",
+                                        "playback": {
+                                            "text": "{second_person_name} is {first_person_name_possessive} <em>…</em>",
+                                            "placeholders": [
+                                                {
+                                                    "placeholder": "first_person_name_possessive",
+                                                    "transforms": [
+                                                        {
+                                                            "transform": "concatenate_list",
+                                                            "arguments": {
+                                                                "list_to_concatenate": {
+                                                                    "source": "answers",
+                                                                    "identifier": ["first-name", "last-name"],
+                                                                    "list_item_selector": {
+                                                                        "source": "location",
+                                                                        "id": "list_item_id"
+                                                                    }
+                                                                },
+                                                                "delimiter": " "
+                                                            }
+                                                        },
+                                                        {
+                                                            "transform": "format_possessive",
+                                                            "arguments": {
+                                                                "string_to_format": {
+                                                                    "source": "previous_transform"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "placeholder": "second_person_name",
+                                                    "transforms": [
+                                                        {
+                                                            "transform": "concatenate_list",
+                                                            "arguments": {
+                                                                "list_to_concatenate": {
+                                                                    "source": "answers",
+                                                                    "identifier": ["first-name", "last-name"],
+                                                                    "list_item_selector": {
+                                                                        "source": "location",
+                                                                        "id": "to_list_item_id"
+                                                                    }
+                                                                },
+                                                                "delimiter": " "
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
                                         "options": [
                                             {
                                                 "label": "Husband or Wife",
                                                 "value": "Husband or Wife",
-                                                "title": "Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>",
-                                                "playback": "{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>"
+                                                "title": {
+                                                    "text": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
+                                                    "placeholders": [
+                                                        {
+                                                            "placeholder": "first_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "placeholder": "second_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "to_list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                "playback": {
+                                                    "text": "{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>",
+                                                    "placeholders": [
+                                                        {
+                                                            "placeholder": "first_person_name_possessive",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "transform": "format_possessive",
+                                                                    "arguments": {
+                                                                        "string_to_format": {
+                                                                            "source": "previous_transform"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "placeholder": "second_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "to_list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
                                             },
                                             {
                                                 "label": "Legally registered civil partner",
                                                 "value": "Legally registered civil partner",
-                                                "title": "Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>",
-                                                "playback": "{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>"
+                                                "title": {
+                                                    "text": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
+                                                    "placeholders": [
+                                                        {
+                                                            "placeholder": "first_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "placeholder": "second_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "to_list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                "playback": {
+                                                    "text": "{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>",
+                                                    "placeholders": [
+                                                        {
+                                                            "placeholder": "first_person_name_possessive",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "transform": "format_possessive",
+                                                                    "arguments": {
+                                                                        "string_to_format": {
+                                                                            "source": "previous_transform"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "placeholder": "second_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "to_list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
                                             },
                                             {
                                                 "label": "Son or daughter",
                                                 "value": "Son or daughter",
-                                                "title": "Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>",
-                                                "playback": "{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>"
+                                                "title": {
+                                                    "text": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
+                                                    "placeholders": [
+                                                        {
+                                                            "placeholder": "first_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "placeholder": "second_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "to_list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                "playback": {
+                                                    "text": "{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>",
+                                                    "placeholders": [
+                                                        {
+                                                            "placeholder": "first_person_name_possessive",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "transform": "format_possessive",
+                                                                    "arguments": {
+                                                                        "string_to_format": {
+                                                                            "source": "previous_transform"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "placeholder": "second_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "to_list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
                                             }
                                         ]
                                     }

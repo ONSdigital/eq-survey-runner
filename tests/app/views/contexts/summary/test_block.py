@@ -1,6 +1,7 @@
 from unittest import TestCase
 from mock import MagicMock, patch
 from app.views.contexts.summary.block import Block
+from app.questionnaire.location import Location
 
 
 def build_block_schema(question_schema):
@@ -30,6 +31,7 @@ class TestSection(TestCase):
     def test_create_block(self):
         # Given
         block_schema = build_block_schema({'id': 'mock_question_schema'})
+        location = Location(section_id='a-section')
 
         # When
         with patch(
@@ -44,6 +46,7 @@ class TestSection(TestCase):
                 self.list_store,
                 self.metadata,
                 self.schema,
+                location,
             )
 
         # Then

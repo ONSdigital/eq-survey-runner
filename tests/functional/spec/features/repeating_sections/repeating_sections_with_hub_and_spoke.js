@@ -15,6 +15,8 @@ const VisitorsListCollectorAddPage = require('../../../generated_pages/repeating
 const VisitorsListCollectorRemovePage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/visitors-block-remove.page');
 const VisitorsDateOfBirthPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/visitors-date-of-birth.page');
 
+const PersonalSummaryPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/personal-summary.page');
+
 const ProxyPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/proxy.page');
 const DateOfBirthPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/date-of-birth.page');
 const ConfirmDateOfBirthPage = require('../../../generated_pages/repeating_sections_with_hub_and_spoke/confirm-dob.page');
@@ -77,9 +79,10 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
 
             // Go back to the Hub
 
-            .click(SecondListCollectorPage.no()).pause(5)
-            .click(FirstListCollectorPage.submit());
-
+            .click(SecondListCollectorPage.no())
+            .click(SecondListCollectorPage.submit())
+            .click(VisitorsListCollectorPage.no())
+            .click(VisitorsListCollectorPage.submit());
         });
     });
 
@@ -91,10 +94,15 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
       return browser
         .getUrl().should.eventually.contain(HubPage.url())
 
+        .getText(HubPage.summaryRowState(1)).should.eventually.equal('Completed')
         .getText(HubPage.summaryRowState(2)).should.eventually.equal('Not started')
+        .getText(HubPage.summaryRowTitle(2)).should.eventually.equal('Marcus Twin')
         .getText(HubPage.summaryRowState(3)).should.eventually.equal('Not started')
+        .getText(HubPage.summaryRowTitle(3)).should.eventually.equal('Jean Clemens')
         .getText(HubPage.summaryRowState(4)).should.eventually.equal('Not started')
+        .getText(HubPage.summaryRowTitle(4)).should.eventually.equal('Samuel Clemens')
         .getText(HubPage.summaryRowState(5)).should.eventually.equal('Not started')
+        .getText(HubPage.summaryRowTitle(5)).should.eventually.equal('John Doe')
 
         .isExisting(HubPage.summaryRowState(6)).should.eventually.be.false;
     });
@@ -153,17 +161,17 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
         .click(SexPage.female())
         .click(SexPage.submit())
 
+        .click(PersonalSummaryPage.submit())
+
         .getUrl().should.eventually.contain(HubPage.url())
         .getText(HubPage.summaryRowState(3)).should.eventually.equal('Completed')
         .getAttribute(HubPage.summaryRowTitle(3), 'class').should.eventually.contain('summary__item-title--has-icon');
     });
 
-    it('When the user clicks \'View answers\' for a completed repeating section, Then they are taken to the last complete block', function () {
+    it('When the user clicks \'View answers\' for a completed repeating section, Then they are taken to the summary', function () {
       return browser
         .click(HubPage.summaryRowLink(3))
-
-        .getText(SexPage.questionText()).should.eventually.equal('What is Jean Clemens’ sex?')
-        .isSelected(SexPage.female()).should.eventually.be.true;
+        .getUrl().should.eventually.contain(PersonalSummaryPage.url().split('/').slice(-1)[0]);
     });
 
     it('When the user adds 2 visitors to the household then a section for each visitor should be display on the hub', function () {
@@ -172,7 +180,7 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
         .isExisting(HubPage.summaryRowState(6)).should.eventually.be.false
 
         // Start section for first visitor
-        .click(HubPage.submit())
+        .click(HubPage.summaryRowLink(1))
 
         .getText(SexPage.questionText()).should.eventually.equal('This is the visitors list collector. Add a visitor?')
 
@@ -193,7 +201,9 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
         .click(VisitorsListCollectorPage.submit())
 
         .getText(HubPage.summaryRowState(6)).should.eventually.equal('Not started')
+        .getText(HubPage.summaryRowTitle(6)).should.eventually.equal('Joe Public')
         .getText(HubPage.summaryRowState(7)).should.eventually.equal('Not started')
+        .getText(HubPage.summaryRowTitle(7)).should.eventually.equal('Yvonne Yoe')
 
         .isExisting(HubPage.summaryRowState(8)).should.eventually.be.false;
     });
@@ -254,13 +264,16 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
         .click(HubPage.submit())
         .click(SexPage.male())
         .click(SexPage.submit())
+        .click(PersonalSummaryPage.submit())
 
         .click(HubPage.submit())
         .click(SexPage.submit())
+        .click(PersonalSummaryPage.submit())
 
         .click(HubPage.submit())
         .click(SexPage.female())
         .click(SexPage.submit())
+        .click(PersonalSummaryPage.submit())
 
         .click(HubPage.submit())
         .setValue(VisitorsDateOfBirthPage.day(), '03')
