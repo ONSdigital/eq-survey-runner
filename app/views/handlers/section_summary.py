@@ -1,5 +1,5 @@
 from app.views.handlers.content import Content
-from app.views.contexts.summary_context import build_view_context_for_section_summary
+from app.views.contexts.summary_context import SummaryContext
 
 
 class SectionSummary(Content):
@@ -8,12 +8,11 @@ class SectionSummary(Content):
         return self._render_block(self.block['id'])
 
     def get_context(self):
-        return build_view_context_for_section_summary(
-            self._questionnaire_store.metadata,
+        summary_context = SummaryContext(
+            self._language,
             self._schema,
             self._questionnaire_store.answer_store,
             self._questionnaire_store.list_store,
-            self.block['type'],
-            self._current_location,
-            self._language,
+            self._questionnaire_store.metadata,
         )
+        return summary_context.section_summary(self._current_location)
