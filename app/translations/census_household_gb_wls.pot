@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-28 14:02+0100\n"
+"POT-Creation-Date: 2019-08-29 12:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,6 +69,12 @@ msgid ""
 msgstr ""
 
 msgid "Complete the sentence by selecting the appropriate relationship."
+msgstr ""
+
+msgid "Including half brother or half sister"
+msgstr ""
+
+msgid "Including foster child"
 msgstr ""
 
 msgid ""

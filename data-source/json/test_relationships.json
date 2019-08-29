@@ -216,7 +216,7 @@
                                         "mandatory": true,
                                         "type": "Relationship",
                                         "playback": {
-                                            "text": "{second_person_name} is {first_person_name_possessive} <em>…</em>",
+                                            "text": "{second_person_name} is {first_person_name_possessive} <em>...</em>",
                                             "placeholders": [
                                                 {
                                                     "placeholder": "first_person_name_possessive",
@@ -271,7 +271,7 @@
                                                 "label": "Husband or Wife",
                                                 "value": "Husband or Wife",
                                                 "title": {
-                                                    "text": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
+                                                    "text": "Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>",
                                                     "placeholders": [
                                                         {
                                                             "placeholder": "first_person_name",
@@ -369,7 +369,7 @@
                                                 "label": "Legally registered civil partner",
                                                 "value": "Legally registered civil partner",
                                                 "title": {
-                                                    "text": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
+                                                    "text": "Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>",
                                                     "placeholders": [
                                                         {
                                                             "placeholder": "first_person_name",
@@ -467,7 +467,7 @@
                                                 "label": "Son or daughter",
                                                 "value": "Son or daughter",
                                                 "title": {
-                                                    "text": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
+                                                    "text": "Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>",
                                                     "placeholders": [
                                                         {
                                                             "placeholder": "first_person_name",
@@ -560,6 +560,105 @@
                                                         }
                                                     ]
                                                 }
+                                            },
+                                            {
+                                                "label": "Brother or sister",
+                                                "value": "Brother or sister",
+                                                "title": {
+                                                    "text": "Thinking of {first_person_name}, {second_person_name} is their <em>brother or sister</em>",
+                                                    "placeholders": [
+                                                        {
+                                                            "placeholder": "first_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "placeholder": "second_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "to_list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                "playback": {
+                                                    "text": "{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>",
+                                                    "placeholders": [
+                                                        {
+                                                            "placeholder": "first_person_name_possessive",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "transform": "format_possessive",
+                                                                    "arguments": {
+                                                                        "string_to_format": {
+                                                                            "source": "previous_transform"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "placeholder": "second_person_name",
+                                                            "transforms": [
+                                                                {
+                                                                    "transform": "concatenate_list",
+                                                                    "arguments": {
+                                                                        "list_to_concatenate": {
+                                                                            "source": "answers",
+                                                                            "identifier": ["first-name", "last-name"],
+                                                                            "list_item_selector": {
+                                                                                "source": "location",
+                                                                                "id": "to_list_item_id"
+                                                                            }
+                                                                        },
+                                                                        "delimiter": " "
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                "description": "Including half brother or half sister"
                                             }
                                         ]
                                     }
