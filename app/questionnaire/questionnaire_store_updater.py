@@ -216,4 +216,6 @@ class QuestionnaireStoreUpdater:
 
                     self._answer_store.add_or_update(answer)
                 else:
-                    self._answer_store.remove_answer(answer_id)
+                    self._answer_store.remove_answer(
+                        answer_id, self._current_location.list_item_id
+                    )
