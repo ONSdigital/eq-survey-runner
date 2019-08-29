@@ -10,7 +10,7 @@ class TestPointers(unittest.TestCase):
 
         pointers = [p for p in find_pointers_containing(schema, 'test')]
 
-        assert pointers == []
+        assert pointers == ['']
 
     @staticmethod
     def test_find_pointers_containing_element():

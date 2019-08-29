@@ -4,27 +4,16 @@ from app.views.contexts.summary.block import Block
 
 class Group:
     def __init__(
-        self,
-        group_schema,
-        path,
-        answer_store,
-        list_store,
-        metadata,
-        schema,
-        current_location=None,
+        self, group_schema, path, answer_store, list_store, metadata, schema, location
     ):
         self.id = group_schema['id']
 
         self.title = group_schema.get('title')
 
+        self.location = location
+
         self.blocks = self._build_blocks(
-            group_schema,
-            path,
-            answer_store,
-            list_store,
-            metadata,
-            schema,
-            current_location,
+            group_schema, path, answer_store, list_store, metadata, schema, location
         )
         self.placeholder_renderer = PlaceholderRenderer(
             language='en', schema=schema, answer_store=answer_store, metadata=metadata
@@ -32,13 +21,7 @@ class Group:
 
     @staticmethod
     def _build_blocks(
-        group_schema,
-        path,
-        answer_store,
-        list_store,
-        metadata,
-        schema,
-        current_location=None,
+        group_schema, path, answer_store, list_store, metadata, schema, location
     ):
         blocks = []
 
@@ -49,12 +32,7 @@ class Group:
                 blocks.extend(
                     [
                         Block(
-                            block,
-                            answer_store,
-                            list_store,
-                            metadata,
-                            schema,
-                            current_location,
+                            block, answer_store, list_store, metadata, schema, location
                         ).serialize()
                     ]
                 )
@@ -63,5 +41,6 @@ class Group:
 
     def serialize(self):
         return self.placeholder_renderer.render(
-            {'id': self.id, 'title': self.title, 'blocks': self.blocks}
+            {'id': self.id, 'title': self.title, 'blocks': self.blocks},
+            self.location.list_item_id,
         )
