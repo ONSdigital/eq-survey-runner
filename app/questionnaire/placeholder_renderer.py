@@ -38,11 +38,14 @@ class PlaceholderRenderer:
     strings
     """
 
-    def __init__(self, language, schema, answer_store=None, metadata=None):
+    def __init__(
+        self, language, schema, answer_store=None, metadata=None, location=None
+    ):
         self._language = language
         self._schema = schema
         self._answer_store = answer_store or AnswerStore()
         self._metadata = metadata
+        self._location = location
 
     def render_pointer(self, dict_to_render, pointer_to_render, list_item_id):
         pointer_data = resolve_pointer(dict_to_render, pointer_to_render)
@@ -56,12 +59,13 @@ class PlaceholderRenderer:
             answer_store=self._answer_store,
             metadata=self._metadata,
             list_item_id=list_item_id,
+            location=self._location,
         )
 
         if 'text' not in placeholder_data or 'placeholders' not in placeholder_data:
             raise ValueError('No placeholder found to render')
 
-        transformed_values = placeholder_parser.parse(placeholder_data['placeholders'])
+        transformed_values = placeholder_parser(placeholder_data['placeholders'])
 
         return placeholder_data['text'].format(**transformed_values)
 
@@ -70,9 +74,9 @@ class PlaceholderRenderer:
         Transform the current schema json to a fully rendered dictionary
         """
         rendered_data = deepcopy(dict_to_render)
-        pointer_list = find_pointers_containing(rendered_data, 'placeholders')
+        pointers = find_pointers_containing(rendered_data, 'placeholders')
 
-        for pointer in pointer_list:
+        for pointer in pointers:
             rendered_text = self.render_pointer(rendered_data, pointer, list_item_id)
             set_pointer(rendered_data, pointer, rendered_text)
 

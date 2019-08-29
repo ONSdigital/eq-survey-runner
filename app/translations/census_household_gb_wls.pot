@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-23 15:19+0100\n"
+"POT-Creation-Date: 2019-08-28 14:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,97 +118,6 @@ msgstr ""
 msgid "Voluntary"
 msgstr ""
 
-msgid "{second_person_name} is your <em>...</em>"
-msgstr ""
-
-msgid "{second_person_name} is your <em>husband or wife</em>"
-msgstr ""
-
-msgid "{second_person_name} is your <em>legally registered civil partner</em>"
-msgstr ""
-
-msgid "{second_person_name} is your <em>partner</em>"
-msgstr ""
-
-msgid "{second_person_name} is your <em>son or daughter</em>"
-msgstr ""
-
-msgid "{second_person_name} is your <em>stepchild</em>"
-msgstr ""
-
-msgid "{second_person_name} is your <em>brother or sister</em>"
-msgstr ""
-
-msgid "{second_person_name} is your <em>mother or father</em>"
-msgstr ""
-
-msgid "{second_person_name} is your <em>stepmother or stepfather</em>"
-msgstr ""
-
-msgid "{second_person_name} is your <em>grandchild</em>"
-msgstr ""
-
-msgid "{second_person_name} is your <em>grandparent</em>"
-msgstr ""
-
-msgid "{second_person_name} is your <em>other relation</em>"
-msgstr ""
-
-msgid "{second_person_name} is <em>unrelated</em> to you"
-msgstr ""
-
-msgid ""
-"{second_person_name} is {first_person_name_possessive} <em>husband or "
-"wife</em>"
-msgstr ""
-
-msgid ""
-"{second_person_name} is {first_person_name_possessive} <em>legally "
-"registered civil partner</em>"
-msgstr ""
-
-msgid "{second_person_name} is {first_person_name_possessive} <em>partner</em>"
-msgstr ""
-
-msgid ""
-"{second_person_name} is {first_person_name_possessive} <em>son or "
-"daughter</em>"
-msgstr ""
-
-msgid "{second_person_name} is {first_person_name_possessive} <em>stepchild</em>"
-msgstr ""
-
-msgid ""
-"{second_person_name} is {first_person_name_possessive} <em>brother or "
-"sister</em>"
-msgstr ""
-
-msgid ""
-"{second_person_name} is {first_person_name_possessive} <em>mother or "
-"father</em>"
-msgstr ""
-
-msgid ""
-"{second_person_name} is {first_person_name_possessive} <em>stepmother or "
-"stepfather</em>"
-msgstr ""
-
-msgid "{second_person_name} is {first_person_name_possessive} <em>grandchild</em>"
-msgstr ""
-
-msgid ""
-"{second_person_name} is {first_person_name_possessive} "
-"<em>grandparent</em>"
-msgstr ""
-
-msgid ""
-"{second_person_name} is {first_person_name_possessive} <em>other "
-"relation</em>"
-msgstr ""
-
-msgid "{second_person_name} is <em>unrelated</em> to {first_person_name}"
-msgstr ""
-
 msgid "Add someone to this household"
 msgstr ""
 
@@ -258,71 +167,6 @@ msgid "Include"
 msgstr ""
 
 msgid "Household relationships"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their "
-"<em>...</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their "
-"<em>husband or wife</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their "
-"<em>legally registered civil partner</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their "
-"<em>partner</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their <em>son or"
-" daughter</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their "
-"<em>stepchild</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their "
-"<em>brother or sister</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their <em>mother"
-" or father</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their "
-"<em>stepmother or stepfather</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their "
-"<em>grandchild</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their "
-"<em>grandparent</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their <em>other "
-"relation</em>"
-msgstr ""
-
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is "
-"<em>unrelated</em> to {first_person_name}"
 msgstr ""
 
 msgid "Household accommodation"
@@ -496,6 +340,14 @@ msgid ""
 msgstr ""
 
 msgid "Visitors staying overnight on {census_date}"
+msgstr ""
+
+msgid "{second_person_name} is your <em>...</em>"
+msgstr ""
+
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>...</em>"
 msgstr ""
 
 msgid "What type of accommodation is <em>{address}</em>?"
@@ -1071,5 +923,285 @@ msgid ""
 "housemates, tenants and lodgers, students and schoolchildren who live "
 "away from home during term time, where this is their permanent or family "
 "home"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>husband or wife</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>legally registered civil partner</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>partner</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>son or daughter</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>stepchild</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>brother or sister</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>mother or father</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>stepmother or stepfather</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>grandchild</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>grandparent</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>other relation</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is <em>unrelated</em> to you"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>...</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>husband or "
+"wife</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>husband or wife</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>legally "
+"registered civil partner</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>legally registered civil partner</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>partner</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>partner</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>son or "
+"daughter</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their <em>son or"
+" daughter</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>stepchild</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>stepchild</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>brother or "
+"sister</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>brother or sister</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>mother or "
+"father</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their <em>mother"
+" or father</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>stepmother or "
+"stepfather</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>stepmother or stepfather</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>grandchild</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>grandchild</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"{second_person_name} is {first_person_name_possessive} "
+"<em>grandparent</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>grandparent</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>other "
+"relation</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their <em>other "
+"relation</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "{second_person_name} is <em>unrelated</em> to {first_person_name}"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is "
+"<em>unrelated</em> to {first_person_name}"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>...</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>...</em>"
 msgstr ""
 
