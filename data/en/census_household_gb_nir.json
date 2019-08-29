@@ -10877,7 +10877,30 @@
          ],
          "id": "individual-section",
          "repeat": {
-            "for_list": "household"
+            "for_list": "household",
+            "title": {
+               "placeholders": [
+                  {
+                     "placeholder": "person_name",
+                     "transforms": [
+                        {
+                           "arguments": {
+                              "delimiter": " ",
+                              "list_to_concatenate": {
+                                 "identifier": [
+                                    "first-name",
+                                    "last-name"
+                                 ],
+                                 "source": "answers"
+                              }
+                           },
+                           "transform": "concatenate_list"
+                        }
+                     ]
+                  }
+               ],
+               "text": "{person_name}"
+            }
          },
          "title": "Individual Section"
       }

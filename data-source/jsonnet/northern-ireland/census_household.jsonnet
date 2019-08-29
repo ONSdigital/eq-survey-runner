@@ -179,6 +179,26 @@ function(region_code, census_date) {
       title: 'Individual Section',
       repeat: {
         for_list: 'household',
+        title: {
+          text: '{person_name}',
+          placeholders: [
+            {
+              placeholder: 'person_name',
+              transforms: [
+                {
+                  transform: 'concatenate_list',
+                  arguments: {
+                    list_to_concatenate: {
+                      source: 'answers',
+                      identifier: ['first-name', 'last-name'],
+                    },
+                    delimiter: ' ',
+                  },
+                },
+              ],
+            },
+          ],
+        },
       },
       groups: [
         {
