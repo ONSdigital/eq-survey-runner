@@ -241,6 +241,7 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
             current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
+            questionnaire_store=questionnaire_store,
         )
 
     if 'action[save_sign_out]' in request.form:
@@ -289,6 +290,7 @@ def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_it
             current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
+            questionnaire_store=questionnaire_store,
         )
 
     if 'action[save_sign_out]' in request.form:
@@ -542,13 +544,25 @@ def get_page_title_for_location(schema, current_location, context):
     return safe_content(page_title)
 
 
-def _render_page(block_type, context, current_location, previous_location_url, schema):
+def _render_page(
+    block_type,
+    context,
+    current_location,
+    previous_location_url,
+    schema,
+    questionnaire_store,
+):
     if request_wants_json():
         return jsonify(context)
 
     page_title = get_page_title_for_location(schema, current_location, context)
     session_data = get_session_store().session_data
     session_timeout = get_session_timeout_in_seconds(schema)
+
+    are_hub_required_sections_complete = all(
+        questionnaire_store.progress_store.is_section_complete(section_id)
+        for section_id in schema.get_section_ids_required_for_hub()
+    )
 
     return render_template(
         template=block_type,
@@ -560,6 +574,8 @@ def _render_page(block_type, context, current_location, previous_location_url, s
         session_timeout=session_timeout,
         survey_title=schema.json.get('title'),
         legal_basis=schema.json.get('legal_basis'),
+        is_hub_enabled=schema.is_hub_enabled(),
+        are_hub_required_sections_complete=are_hub_required_sections_complete,
     )
 
 

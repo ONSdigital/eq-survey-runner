@@ -37,4 +37,12 @@
           })
       }}
   {% endblock %}
+
+  {% block cant_complete %}
+     {% if is_hub_enabled and are_hub_required_sections_complete %}
+      <p class="u-mt-xl">{{ _("Can't complete this question?") }}<br>
+      <a href="/questionnaire">{{ _("Choose another section and return to this later") }}</a></p>
+    {% endif %}
+  {% endblock %}
+
 {% endblock %}
