@@ -564,6 +564,8 @@ def _render_page(
         for section_id in schema.get_section_ids_required_for_hub()
     )
 
+    is_question = block_type == 'Question'
+
     return render_template(
         template=block_type,
         content=context,
@@ -576,6 +578,7 @@ def _render_page(
         legal_basis=schema.json.get('legal_basis'),
         is_hub_enabled=schema.is_hub_enabled(),
         are_hub_required_sections_complete=are_hub_required_sections_complete,
+        is_question=is_question,
     )
 
 
