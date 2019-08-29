@@ -39,12 +39,7 @@ class PlaceholderRenderer:
     """
 
     def __init__(
-        self,
-        language,
-        schema,
-        answer_store=None,
-        metadata=None,
-        location=None,
+        self, language, schema, answer_store=None, metadata=None, location=None
     ):
         self._language = language
         self._schema = schema
