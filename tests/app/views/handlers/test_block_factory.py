@@ -3,7 +3,7 @@ from unittest import TestCase
 from mock import Mock
 
 from app.views.handlers.block_factory import get_block_handler
-from app.questionnaire.location import InvalidLocationException, Location
+from app.questionnaire.location import InvalidLocationException
 
 
 class TestBlockFactory(TestCase):
