@@ -28,7 +28,11 @@ class Group:
         block_ids_on_path = [location.block_id for location in path]
 
         for block in group_schema['blocks']:
-            if block['id'] in block_ids_on_path and block['type'] == 'Question':
+            if (
+                block['id'] in block_ids_on_path
+                and block['type'] == 'Question'
+                and not block.get('question', {}).get('hide_on_section_summary', False)
+            ):
                 blocks.extend(
                     [
                         Block(

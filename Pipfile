@@ -30,6 +30,7 @@ fakeredis = "*"
 mypy = "*"
 black = "==19.3b0"
 pytest-flask = "*"
+pytest-mock = "*"
 
 [packages]
 colorama = "*"
