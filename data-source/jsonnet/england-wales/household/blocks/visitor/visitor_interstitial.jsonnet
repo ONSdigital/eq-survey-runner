@@ -16,7 +16,7 @@ function(census_date) {
         description: {
           text: 'In this section, we’re going to ask you about your visitor, <strong>{person_name}</strong>.',
           placeholders: [
-            placeholders.personName
+            placeholders.personName,
           ],
         },
       },
@@ -27,7 +27,7 @@ function(census_date) {
           'Usual address',
           'Sex',
         ],
-      }
+      },
     ],
   },
 }

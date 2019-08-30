@@ -170,7 +170,7 @@ function(region_code, census_date, census_month_year_date) {
       groups: [
         {
           id: 'accommodation-group',
-          title: 'Household accommodation',
+          title: '',
           blocks: [
             accommodation_introduction,
             accommodation_type,
@@ -346,7 +346,7 @@ function(region_code, census_date, census_month_year_date) {
       groups: [
         {
           id: 'visitor-group',
-          title: 'Visitor',
+          title: '',
           blocks: [
             visitor_interstitial(census_date),
             visitor_sex,
