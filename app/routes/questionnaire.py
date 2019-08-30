@@ -585,13 +585,11 @@ def request_wants_json():
 
 
 def get_return_to_hub_link(schema, block_type, hub_required_sections):
-    display_return_to_hub_link = False
-    if hub_required_sections:
-        if schema.is_hub_enabled():
-            if block_type == 'Question' or block_type == 'ConfirmationQuestion':
-                display_return_to_hub_link = True
-
-    return display_return_to_hub_link
+    return (
+        hub_required_sections
+        and schema.is_hub_enabled()
+        and block_type in ['Question', 'ConfirmationQuestion']
+    )
 
 
 def get_hub_required_sections(questionnaire_store, schema):
