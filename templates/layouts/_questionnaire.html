@@ -39,7 +39,7 @@
   {% endblock %}
 
   {% block cant_complete %}
-     {% if is_hub_link %}
+     {% if display_return_to_hub_link %}
       <p class="u-mt-xl">{{ _("Can't complete this question?") }}<br>
       <a href="/questionnaire">{{ _("Choose another section and return to this later") }}</a></p>
     {% endif %}

@@ -566,7 +566,7 @@ def _render_page(
         for section_id in schema.get_section_ids_required_for_hub()
     )
 
-    hub_link = enable_return_to_hub_link(schema, block_type, hub_required_sections)
+    display_return_to_hub_link = enable_return_to_hub_link(schema, block_type, hub_required_sections)
 
     return render_template(
         template=block_type,
@@ -578,7 +578,7 @@ def _render_page(
         session_timeout=session_timeout,
         survey_title=schema.json.get('title'),
         legal_basis=schema.json.get('legal_basis'),
-        is_hub_link=hub_link,
+        display_return_to_hub_link=display_return_to_hub_link,
     )
 
 
@@ -591,10 +591,10 @@ def request_wants_json():
 
 
 def enable_return_to_hub_link(schema, block_type, hub_required_sections):
-    return_to_hub_link = False
+    display_return_to_hub_link = False
     if hub_required_sections:
         if schema.is_hub_enabled():
             if block_type == 'Question' or block_type == 'ConfirmationQuestion':
-                return_to_hub_link = True
+                display_return_to_hub_link = True
 
-    return return_to_hub_link
+    return display_return_to_hub_link
