@@ -706,7 +706,7 @@ def relationship_collector_schema():
                                 'question': {
                                     'id': 'relationship-question',
                                     'type': 'General',
-                                    'title': 'Thinking of {first_person_name}, {second_person_name} is their <em>...</em>',
+                                    'title': 'Thinking of {first_person_name}, {second_person_name} is their <em>…</em>',
                                     'answers': [
                                         {
                                             'id': 'relationship-answer',
@@ -745,7 +745,7 @@ def relationship_collector_schema():
                                 'question': {
                                     'id': 'relationship-question',
                                     'type': 'General',
-                                    'title': 'Thinking of {first_person_name}, {second_person_name} is their <em>...</em>',
+                                    'title': 'Thinking of {first_person_name}, {second_person_name} is their <em>…</em>',
                                     'answers': [
                                         {
                                             'id': 'relationship-answer',

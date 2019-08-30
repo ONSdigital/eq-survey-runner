@@ -72,6 +72,13 @@ describe('Relationships', function() {
           .getUrl().should.eventually.contain(ListCollectorPage.pageName);
       });
 
+      it('And go to the first relationship, Then the \'Brother or Sister\' option should have the text \'Including half brother or half sister\'', function() {
+        return browser
+          .click(ListCollectorPage.no())
+          .click(ListCollectorPage.submit())
+          .getText(RelationshipsPage.brotherOrSisterLabel()).should.eventually.contain('Including half brother or half sister');
+      });
+
       it('And go to the second relationship, Then the previous link should return to the first relationship', function() {
         return browser
           .click(ListCollectorPage.no())
