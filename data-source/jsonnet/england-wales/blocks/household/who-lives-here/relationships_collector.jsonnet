@@ -87,7 +87,7 @@ local firstPersonNamePossessivePlaceholder = {
         id: 'relationship-question',
         type: 'General',
         title: {
-          text: '{second_person_name} is your <em>...</em>',
+          text: '{second_person_name} is your <em>…</em>',
           placeholders: [secondPersonPlaceholder],
         },
         description: 'Complete the sentence by selecting the appropriate relationship.',
@@ -96,7 +96,7 @@ local firstPersonNamePossessivePlaceholder = {
           mandatory: false,
           type: 'Relationship',
           playback: {
-            text: '{second_person_name} is your <em>...</em>',
+            text: '{second_person_name} is your <em>…</em>',
             placeholders: [secondPersonPlaceholder],
           },
           options: [
@@ -161,6 +161,7 @@ local firstPersonNamePossessivePlaceholder = {
               value: 'Stepchild',
             },
             {
+              description: 'Including half brother or half sister',
               label: 'Brother or sister',
               playback: {
                 text: '{second_person_name} is your <em>brother or sister</em>',
@@ -233,6 +234,7 @@ local firstPersonNamePossessivePlaceholder = {
               value: 'Other relation',
             },
             {
+              description: 'Including foster child',
               label: 'Unrelated',
               playback: {
                 text: '{second_person_name} is <em>unrelated</em> to you',
@@ -254,7 +256,7 @@ local firstPersonNamePossessivePlaceholder = {
         id: 'relationship-question',
         type: 'General',
         title: {
-          text: 'Thinking of {first_person_name}, {second_person_name} is their <em>...</em>',
+          text: 'Thinking of {first_person_name}, {second_person_name} is their <em>…</em>',
           placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
         },
         description: 'Complete the sentence by selecting the appropriate relationship.',
@@ -264,7 +266,7 @@ local firstPersonNamePossessivePlaceholder = {
             mandatory: false,
             type: 'Relationship',
             playback: {
-              text: '{second_person_name} is {first_person_name_possessive} <em>...</em>',
+              text: '{second_person_name} is {first_person_name_possessive} <em>…</em>',
               placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
             },
             options: [
