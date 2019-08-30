@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-30 09:56+0100\n"
+"POT-Creation-Date: 2019-08-30 14:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -453,6 +453,12 @@ msgid ""
 "information helps to work out local transport needs."
 msgstr ""
 
+msgid ""
+"We ask for visitor information to check that everyone is counted. This "
+"helps to produce accurate population estimates. Add any visitors, even if"
+" you think they may have been counted elsewhere."
+msgstr ""
+
 msgid "Voluntary"
 msgstr ""
 
@@ -474,13 +480,10 @@ msgstr ""
 msgid "2019 Census Test"
 msgstr ""
 
-msgid "People who live here and overnight visitors"
+msgid "People who live here"
 msgstr ""
 
 msgid "Who lives here"
-msgstr ""
-
-msgid "People who live here"
 msgstr ""
 
 msgid "You will need to know"
@@ -821,6 +824,15 @@ msgstr ""
 msgid "Summary"
 msgstr ""
 
+msgid "Visitors"
+msgstr ""
+
+msgid "Visitor"
+msgstr ""
+
+msgid "Enter details of this person’s usual UK address"
+msgstr ""
+
 msgid ""
 "Names of the people living at this address including anyone temporarily "
 "away."
@@ -927,6 +939,15 @@ msgid "provide services and share funding fairly"
 msgstr ""
 
 msgid "understand and represent everyone’s interests"
+msgstr ""
+
+msgid "Date of brith."
+msgstr ""
+
+msgid "Usual address"
+msgstr ""
+
+msgid "Sex"
 msgstr ""
 
 msgid ""
@@ -1304,6 +1325,14 @@ msgid "What is the address of <em>{person_name_possessive}</em> workplace?"
 msgstr ""
 
 msgid "What is the address of <em>{person_name_possessive}</em> depot?"
+msgstr ""
+
+msgid ""
+"In this section, we’re going to ask your about any visitors that were "
+"staying overnight at <strong>{address}</strong> on {census_date}."
+msgstr ""
+
+msgid "What is <em>{person_name_possessive}</em> usual address?"
 msgstr ""
 
 #. answer-id: first-name
@@ -1885,11 +1914,13 @@ msgid "Male"
 msgstr ""
 
 #. answer-id: sex-answer
+#. answer-id: visitor-sex-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> sex?"
 msgid "Female"
 msgstr ""
 
 #. answer-id: sex-answer
+#. answer-id: visitor-sex-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> sex?"
 msgid "Male"
 msgstr ""
@@ -4928,6 +4959,46 @@ msgstr ""
 msgctxt ""
 "Answer for: What is the address of <em>{person_name_possessive}</em> "
 "depot?"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: usual-address-household-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> usual address?"
+msgid "An address in the UK"
+msgstr ""
+
+#. answer-id: usual-address-household-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> usual address?"
+msgid "An address outside the UK"
+msgstr ""
+
+#. answer-id: usual-address-household-answer-other
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> usual address?"
+msgid "Enter the current name of the country"
+msgstr ""
+
+#. answer-id: usual-address-details-answer-building
+msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgid "Address line 1"
+msgstr ""
+
+#. answer-id: usual-address-details-answer-street
+msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgid "Address line 2"
+msgstr ""
+
+#. answer-id: usual-address-details-answer-city
+msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: usual-address-details-answer-county
+msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: usual-address-details-answer-postcode
+msgctxt "Answer for: Enter details of this person’s usual UK address"
 msgid "Postcode"
 msgstr ""
 

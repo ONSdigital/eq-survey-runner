@@ -14755,11 +14755,11 @@
                      "type": "Question"
                   },
                   {
-                     "id": "date-of-birth",
+                     "id": "visitor-date-of-birth",
                      "question": {
                         "answers": [
                            {
-                              "id": "date-of-birth-answer",
+                              "id": "visitor-date-of-birth-answer",
                               "mandatory": false,
                               "maximum": {
                                  "value": "now"
@@ -14774,7 +14774,7 @@
                            }
                         ],
                         "description": "For example 31 12 1970",
-                        "id": "date-of-birth-question",
+                        "id": "visitor-date-of-birth-question",
                         "title": {
                            "placeholders": [
                               {

@@ -4,9 +4,9 @@ local rules = import 'rules.libsonnet';
 
 function(census_date) {
   type: 'Question',
-  id: 'date-of-birth',
+  id: 'visitor-date-of-birth',
   question: {
-    id: 'date-of-birth-question',
+    id: 'visitor-date-of-birth-question',
     title: {
       text: 'What is <em>{person_name_possessive}</em> date of birth?',
       placeholders: [
@@ -17,7 +17,7 @@ function(census_date) {
     type: 'General',
     answers: [
       {
-        id: 'date-of-birth-answer',
+        id: 'visitor-date-of-birth-answer',
         mandatory: false,
         type: 'Date',
         minimum: {
