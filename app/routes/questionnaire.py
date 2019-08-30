@@ -561,12 +561,12 @@ def _render_page(
     session_data = get_session_store().session_data
     session_timeout = get_session_timeout_in_seconds(schema)
 
-    are_hub_required_sections_complete = all(
+    hub_required_sections = all(
         questionnaire_store.progress_store.is_section_complete(section_id)
         for section_id in schema.get_section_ids_required_for_hub()
     )
 
-    is_question = block_type == 'Question'
+    hub_link = enable_return_to_hub_link(schema, block_type, hub_required_sections)
 
     return render_template(
         template=block_type,
@@ -578,9 +578,7 @@ def _render_page(
         session_timeout=session_timeout,
         survey_title=schema.json.get('title'),
         legal_basis=schema.json.get('legal_basis'),
-        is_hub_enabled=schema.is_hub_enabled(),
-        are_hub_required_sections_complete=are_hub_required_sections_complete,
-        is_question=is_question,
+        is_hub_link=hub_link,
     )
 
 
@@ -590,3 +588,13 @@ def request_wants_json():
         best == 'application/json'
         and request.accept_mimetypes[best] > request.accept_mimetypes['text/html']
     )
+
+
+def enable_return_to_hub_link(schema, block_type, hub_required_sections):
+    return_to_hub_link = False
+    if hub_required_sections:
+        if schema.is_hub_enabled():
+            if block_type == 'Question' or block_type == 'ConfirmationQuestion':
+                return_to_hub_link = True
+
+    return return_to_hub_link
