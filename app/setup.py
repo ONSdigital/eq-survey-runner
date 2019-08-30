@@ -178,8 +178,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         # no cache and silence warning
         cache.init_app(application, config={'CACHE_NO_NULL_WARNING': True})
 
-    # Switch off flask default autoescaping as content is html encoded
-    # during schema/metadata/summary context (and navigition) generation
+    # Switch off flask default autoescaping as schema content can contain html
     application.jinja_env.autoescape = False
 
     # pylint: disable=no-member
