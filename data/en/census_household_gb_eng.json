@@ -14503,28 +14503,25 @@
                               "description": {
                                  "placeholders": [
                                     {
-                                       "placeholder": "address",
-                                       "value": {
-                                          "identifier": "display_address",
-                                          "source": "metadata"
-                                       }
-                                    },
-                                    {
-                                       "placeholder": "census_date",
+                                       "placeholder": "person_name",
                                        "transforms": [
                                           {
                                              "arguments": {
-                                                "date_format": "d MMMM yyyy",
-                                                "date_to_format": {
-                                                   "value": "2019-10-13"
+                                                "delimiter": " ",
+                                                "list_to_concatenate": {
+                                                   "identifier": [
+                                                      "first-name",
+                                                      "last-name"
+                                                   ],
+                                                   "source": "answers"
                                                 }
                                              },
-                                             "transform": "format_date"
+                                             "transform": "concatenate_list"
                                           }
                                        ]
                                     }
                                  ],
-                                 "text": "In this section, we’re going to ask you about any visitors that were staying overnight at <strong>{address}</strong> on {census_date}."
+                                 "text": "In this section, we’re going to ask you about your visitor, <strong>{person_name}</strong>."
                               }
                            },
                            {
@@ -14534,12 +14531,31 @@
                                  "Sex"
                               ],
                               "title": "You will need to know"
-                           },
-                           {
-                              "description": "We ask for visitor information to check that everyone is counted. This helps to produce accurate population estimates. Add any visitors, even if you think they may have been counted elsewhere."
                            }
                         ],
-                        "title": "Visitors"
+                        "title": {
+                           "placeholders": [
+                              {
+                                 "placeholder": "person_name",
+                                 "transforms": [
+                                    {
+                                       "arguments": {
+                                          "delimiter": " ",
+                                          "list_to_concatenate": {
+                                             "identifier": [
+                                                "first-name",
+                                                "last-name"
+                                             ],
+                                             "source": "answers"
+                                          }
+                                       },
+                                       "transform": "concatenate_list"
+                                    }
+                                 ]
+                              }
+                           ],
+                           "text": "{person_name}"
+                        }
                      },
                      "id": "visitor-interstitial",
                      "type": "Interstitial"
@@ -14818,7 +14834,7 @@
                      ]
                   }
                ],
-               "text": "{person_name}"
+               "text": "{person_name} (Visitor)"
             }
          },
          "title": "Visitors"

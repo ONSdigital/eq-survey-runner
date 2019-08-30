@@ -308,7 +308,7 @@ function(region_code, census_date) {
       repeat: {
         for_list: 'visitor',
         title: {
-          text: '{person_name}',
+          text: '{person_name} (Visitor)',
           placeholders: [
             {
               placeholder: 'person_name',

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-30 14:43+0100\n"
+"POT-Creation-Date: 2019-08-30 15:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -451,12 +451,6 @@ msgid ""
 "The government uses information about workplace address and method of "
 "travel to work to form transport policies and plan services. The "
 "information helps to work out local transport needs."
-msgstr ""
-
-msgid ""
-"We ask for visitor information to check that everyone is counted. This "
-"helps to produce accurate population estimates. Add any visitors, even if"
-" you think they may have been counted elsewhere."
 msgstr ""
 
 msgid "Voluntary"
@@ -1328,11 +1322,14 @@ msgid "What is the address of <em>{person_name_possessive}</em> depot?"
 msgstr ""
 
 msgid ""
-"In this section, we’re going to ask you about any visitors that were "
-"staying overnight at <strong>{address}</strong> on {census_date}."
+"In this section, we’re going to ask you about your visitor, "
+"<strong>{person_name}</strong>."
 msgstr ""
 
 msgid "What is <em>{person_name_possessive}</em> usual address?"
+msgstr ""
+
+msgid "{person_name} (Visitor)"
 msgstr ""
 
 #. answer-id: first-name

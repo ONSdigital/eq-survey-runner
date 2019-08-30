@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-30 14:43+0100\n"
+"POT-Creation-Date: 2019-08-30 15:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -326,12 +326,6 @@ msgstr ""
 msgid ""
 "Select one option only, for the longest part, by distance, of their usual"
 " journey to place of study."
-msgstr ""
-
-msgid ""
-"We ask for visitor information to check that everyone is counted. This "
-"helps to produce accurate population estimates. Add any visitors, even if"
-" you think they may have been counted elsewhere."
 msgstr ""
 
 msgid "Voluntary"
@@ -1150,11 +1144,14 @@ msgid ""
 msgstr ""
 
 msgid ""
-"In this section, we’re going to ask you about any visitors that were "
-"staying overnight at <strong>{address}</strong> on {census_date}."
+"In this section, we’re going to ask you about your visitor, "
+"<strong>{person_name}</strong>."
 msgstr ""
 
 msgid "What is <em>{person_name_possessive}</em> usual address?"
+msgstr ""
+
+msgid "{person_name} (Visitor)"
 msgstr ""
 
 #. answer-id: first-name

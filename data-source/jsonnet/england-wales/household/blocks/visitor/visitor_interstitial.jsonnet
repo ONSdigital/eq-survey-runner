@@ -5,14 +5,18 @@ function(census_date) {
   type: 'Interstitial',
   id: 'visitor-interstitial',
   content: {
-    title: 'Visitors',
+    title: {
+      text: '{person_name}',
+      placeholders: [
+        placeholders.personName,
+      ],
+    },
     contents: [
       {
         description: {
-          text: 'In this section, we’re going to ask you about any visitors that were staying overnight at <strong>{address}</strong> on {census_date}.',
+          text: 'In this section, we’re going to ask you about your visitor, <strong>{person_name}</strong>.',
           placeholders: [
-            placeholders.address,
-            placeholders.censusDate(census_date),
+            placeholders.personName
           ],
         },
       },
@@ -23,10 +27,7 @@ function(census_date) {
           'Usual address',
           'Sex',
         ],
-      },
-      {
-        description: 'We ask for visitor information to check that everyone is counted. This helps to produce accurate population estimates. Add any visitors, even if you think they may have been counted elsewhere.',
-      },
+      }
     ],
   },
 }
