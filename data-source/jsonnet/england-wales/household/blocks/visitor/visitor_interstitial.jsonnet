@@ -19,7 +19,7 @@ function(census_date) {
       {
         title: 'You will need to know',
         list: [
-          'Date of birth.',
+          'Date of birth',
           'Usual address',
           'Sex',
         ],
