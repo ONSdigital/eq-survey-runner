@@ -18,6 +18,9 @@ function display_result {
   fi
 }
 
+./scripts/lint_functional_test_specs.sh
+display_result $? 1 "Functional tests spec lint"
+
 flake8 --max-complexity 10 --count
 display_result $? 1 "Flake 8 code style check"
 
