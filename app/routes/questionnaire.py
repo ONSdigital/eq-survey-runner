@@ -109,10 +109,7 @@ def get_questionnaire(schema, questionnaire_store):
         list_store=questionnaire_store.list_store,
     )
 
-    are_hub_required_sections_complete = all(
-        questionnaire_store.progress_store.is_section_complete(section_id)
-        for section_id in schema.get_section_ids_required_for_hub()
-    )
+    are_hub_required_sections_complete = get_hub_required_sections(questionnaire_store, schema)
 
     if not schema.is_hub_enabled() or not are_hub_required_sections_complete:
         redirect_location = router.get_first_incomplete_location_in_survey()
@@ -561,12 +558,9 @@ def _render_page(
     session_data = get_session_store().session_data
     session_timeout = get_session_timeout_in_seconds(schema)
 
-    hub_required_sections = all(
-        questionnaire_store.progress_store.is_section_complete(section_id)
-        for section_id in schema.get_section_ids_required_for_hub()
-    )
+    are_hub_required_sections_complete = get_hub_required_sections(questionnaire_store, schema)
 
-    display_return_to_hub_link = enable_return_to_hub_link(schema, block_type, hub_required_sections)
+    display_return_to_hub_link = get_return_to_hub_link(schema, block_type, are_hub_required_sections_complete)
 
     return render_template(
         template=block_type,
@@ -598,3 +592,10 @@ def get_return_to_hub_link(schema, block_type, hub_required_sections):
                 display_return_to_hub_link = True
 
     return display_return_to_hub_link
+
+
+def get_hub_required_sections(questionnaire_store, schema):
+    return all(
+        questionnaire_store.progress_store.is_section_complete(section_id)
+        for section_id in schema.get_section_ids_required_for_hub()
+    )
