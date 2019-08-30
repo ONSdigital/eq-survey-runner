@@ -1617,6 +1617,7 @@
                                           "value": "Stepchild"
                                        },
                                        {
+                                          "description": "Including half brother or half sister",
                                           "label": "Brother or sister",
                                           "playback": {
                                              "placeholders": [
@@ -1965,6 +1966,7 @@
                                           "value": "Other relation"
                                        },
                                        {
+                                          "description": "Including foster child",
                                           "label": "Unrelated",
                                           "playback": {
                                              "placeholders": [
@@ -2048,7 +2050,7 @@
                                              ]
                                           }
                                        ],
-                                       "text": "{second_person_name} is your <em>...</em>"
+                                       "text": "{second_person_name} is your <em>…</em>"
                                     },
                                     "type": "Relationship"
                                  }
@@ -2080,7 +2082,7 @@
                                        ]
                                     }
                                  ],
-                                 "text": "{second_person_name} is your <em>...</em>"
+                                 "text": "{second_person_name} is your <em>…</em>"
                               },
                               "type": "General"
                            },
@@ -3493,7 +3495,7 @@
                                              ]
                                           }
                                        ],
-                                       "text": "{second_person_name} is {first_person_name_possessive} <em>...</em>"
+                                       "text": "{second_person_name} is {first_person_name_possessive} <em>…</em>"
                                     },
                                     "type": "Relationship"
                                  }
@@ -3547,7 +3549,7 @@
                                        ]
                                     }
                                  ],
-                                 "text": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>"
+                                 "text": "Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
                               },
                               "type": "General"
                            },
