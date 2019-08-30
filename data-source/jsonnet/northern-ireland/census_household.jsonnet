@@ -96,7 +96,7 @@ local work_travel = import 'individual/blocks/employment/work_travel.jsonnet';
 local visitor_dob = import 'household/blocks/visitor/date_of_birth.jsonnet';
 local visitor_sex = import 'household/blocks/visitor/sex.jsonnet';
 local usual_household_address = import 'household/blocks/visitor/usual_household_address.jsonnet';
-local usual_household_address_details = import 'household/blocks/visitor/usual_household_address_Details.jsonnet';
+local usual_household_address_details = import 'household/blocks/visitor/usual_household_address_details.jsonnet';
 local visitor_interstitial = import 'household/blocks/visitor/visitor_interstitial.jsonnet';
 
 
