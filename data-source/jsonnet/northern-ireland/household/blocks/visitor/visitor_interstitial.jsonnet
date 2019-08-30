@@ -9,7 +9,7 @@ function(census_date) {
     contents: [
       {
         description: {
-          text: 'In this section, we’re going to ask your about any visitors that were staying overnight at <strong>{address}</strong> on {census_date}.',
+          text: 'In this section, we’re going to ask you about any visitors that were staying overnight at <strong>{address}</strong> on {census_date}.',
           placeholders: [
             placeholders.address,
             placeholders.censusDate(census_date),
@@ -19,7 +19,7 @@ function(census_date) {
       {
         title: 'You will need to know',
         list: [
-          'Date of brith.',
+          'Date of birth.',
           'Usual address',
           'Sex',
         ],
