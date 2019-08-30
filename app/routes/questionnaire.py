@@ -109,7 +109,9 @@ def get_questionnaire(schema, questionnaire_store):
         list_store=questionnaire_store.list_store,
     )
 
-    are_hub_required_sections_complete = get_hub_required_sections(questionnaire_store, schema)
+    are_hub_required_sections_complete = get_hub_required_sections(
+        questionnaire_store, schema
+    )
 
     if not schema.is_hub_enabled() or not are_hub_required_sections_complete:
         redirect_location = router.get_first_incomplete_location_in_survey()
@@ -558,9 +560,13 @@ def _render_page(
     session_data = get_session_store().session_data
     session_timeout = get_session_timeout_in_seconds(schema)
 
-    are_hub_required_sections_complete = get_hub_required_sections(questionnaire_store, schema)
+    are_hub_required_sections_complete = get_hub_required_sections(
+        questionnaire_store, schema
+    )
 
-    display_return_to_hub_link = get_return_to_hub_link(schema, block_type, are_hub_required_sections_complete)
+    return_to_hub_url = get_return_to_hub_url(
+        schema, block_type, are_hub_required_sections_complete
+    )
 
     return render_template(
         template=block_type,
@@ -572,7 +578,7 @@ def _render_page(
         session_timeout=session_timeout,
         survey_title=schema.json.get('title'),
         legal_basis=schema.json.get('legal_basis'),
-        display_return_to_hub_link=display_return_to_hub_link,
+        return_to_hub_url=return_to_hub_url,
     )
 
 
@@ -584,12 +590,13 @@ def request_wants_json():
     )
 
 
-def get_return_to_hub_link(schema, block_type, hub_required_sections):
-    return (
+def get_return_to_hub_url(schema, block_type, hub_required_sections):
+    if (
         hub_required_sections
         and schema.is_hub_enabled()
         and block_type in ['Question', 'ConfirmationQuestion']
-    )
+    ):
+        return url_for('.get_questionnaire')
 
 
 def get_hub_required_sections(questionnaire_store, schema):
