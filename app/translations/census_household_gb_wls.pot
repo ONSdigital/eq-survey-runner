@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-28 14:02+0100\n"
+"POT-Creation-Date: 2019-08-29 17:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,6 +69,12 @@ msgid ""
 msgstr ""
 
 msgid "Complete the sentence by selecting the appropriate relationship."
+msgstr ""
+
+msgid "Including half brother or half sister"
+msgstr ""
+
+msgid "Including foster child"
 msgstr ""
 
 msgid ""
@@ -342,12 +348,10 @@ msgstr ""
 msgid "Visitors staying overnight on {census_date}"
 msgstr ""
 
-msgid "{second_person_name} is your <em>...</em>"
+msgid "{second_person_name} is your <em>…</em>"
 msgstr ""
 
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their "
-"<em>...</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
 msgstr ""
 
 msgid "What type of accommodation is <em>{address}</em>?"
@@ -547,146 +551,146 @@ msgid "No, I do not need to add anyone"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Husband or wife"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Legally registered civil partner"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Partner"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Son or daughter"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Stepchild"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Brother or sister"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Mother or father"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Stepmother or stepfather"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Grandchild"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Grandparent"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Other relation"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Unrelated"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Husband or wife"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Legally registered civil partner"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Partner"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Son or daughter"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Stepchild"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Brother or sister"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Mother or father"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Stepmother or stepfather"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Grandchild"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Grandparent"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Other relation"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "Unrelated"
 msgstr ""
 
@@ -926,74 +930,74 @@ msgid ""
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>husband or wife</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>legally registered civil partner</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>partner</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>son or daughter</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>stepchild</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>brother or sister</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>mother or father</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>stepmother or stepfather</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>grandchild</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>grandparent</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>other relation</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is <em>unrelated</em> to you"
 msgstr ""
 
 #. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>...</em>"
-msgid "{second_person_name} is your <em>...</em>"
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>…</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "{second_person_name} is {first_person_name_possessive} <em>husband or "
 "wife</em>"
@@ -1002,7 +1006,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>husband or wife</em>"
@@ -1011,7 +1015,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "{second_person_name} is {first_person_name_possessive} <em>legally "
 "registered civil partner</em>"
@@ -1020,7 +1024,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>legally registered civil partner</em>"
@@ -1029,14 +1033,14 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "{second_person_name} is {first_person_name_possessive} <em>partner</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>partner</em>"
@@ -1045,7 +1049,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "{second_person_name} is {first_person_name_possessive} <em>son or "
 "daughter</em>"
@@ -1054,7 +1058,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their <em>son or"
 " daughter</em>"
@@ -1063,14 +1067,14 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "{second_person_name} is {first_person_name_possessive} <em>stepchild</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>stepchild</em>"
@@ -1079,7 +1083,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "{second_person_name} is {first_person_name_possessive} <em>brother or "
 "sister</em>"
@@ -1088,7 +1092,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>brother or sister</em>"
@@ -1097,7 +1101,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "{second_person_name} is {first_person_name_possessive} <em>mother or "
 "father</em>"
@@ -1106,7 +1110,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their <em>mother"
 " or father</em>"
@@ -1115,7 +1119,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "{second_person_name} is {first_person_name_possessive} <em>stepmother or "
 "stepfather</em>"
@@ -1124,7 +1128,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>stepmother or stepfather</em>"
@@ -1133,14 +1137,14 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "{second_person_name} is {first_person_name_possessive} <em>grandchild</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>grandchild</em>"
@@ -1149,7 +1153,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "{second_person_name} is {first_person_name_possessive} "
 "<em>grandparent</em>"
@@ -1158,7 +1162,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>grandparent</em>"
@@ -1167,7 +1171,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "{second_person_name} is {first_person_name_possessive} <em>other "
 "relation</em>"
@@ -1176,7 +1180,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their <em>other "
 "relation</em>"
@@ -1185,14 +1189,14 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid "{second_person_name} is <em>unrelated</em> to {first_person_name}"
 msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
+"their <em>…</em>"
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is "
 "<em>unrelated</em> to {first_person_name}"
@@ -1201,7 +1205,7 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>...</em>"
-msgid "{second_person_name} is {first_person_name_possessive} <em>...</em>"
+"their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>…</em>"
 msgstr ""
 
