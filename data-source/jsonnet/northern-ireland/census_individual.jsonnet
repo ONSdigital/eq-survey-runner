@@ -50,9 +50,6 @@ local qualifications = import 'individual/blocks/qualifications/qualifications.j
 // Employment
 local armed_forces = import 'individual/blocks/employment/armed_forces.jsonnet';
 local business_name = import 'individual/blocks/employment/business_name.jsonnet';
-local employer_address_depot = import 'individual/blocks/employment/employer_address_depot.jsonnet';
-local employer_address_workplace = import 'individual/blocks/employment/employer_address_workplace.jsonnet';
-local employer_type_of_address = import 'individual/blocks/employment/employer_type_of_address.jsonnet';
 local employers_business = import 'individual/blocks/employment/employers_business.jsonnet';
 local employment_status = import 'individual/blocks/employment/employment_status.jsonnet';
 local employment_type = import 'individual/blocks/employment/employment_type.jsonnet';
