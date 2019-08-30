@@ -590,7 +590,7 @@ def request_wants_json():
     )
 
 
-def enable_return_to_hub_link(schema, block_type, hub_required_sections):
+def get_return_to_hub_link(schema, block_type, hub_required_sections):
     display_return_to_hub_link = False
     if hub_required_sections:
         if schema.is_hub_enabled():
