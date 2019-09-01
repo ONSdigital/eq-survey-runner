@@ -340,7 +340,7 @@ msgid "This section is now complete"
 msgstr "Mae'r adran hon nawr wedi'i chwblhau"
 
 #: templates/summary.html:36
-msgid "You can review your answers below"
+msgid "You can check your answers below"
 msgstr "Gallwch adolygu eich atebion isod"
 
 #: templates/summary.html:45
