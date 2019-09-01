@@ -110,7 +110,7 @@ describe('Checkbox with a numeric "detail_answer" option', function() {
         .setValue(CheckboxNumericDetailPage.otherDetail(), '0')
         .click(CheckboxNumericDetailPage.submit())
       // Then
-      .getText(SummaryPage.checkboxNumericDetailAnswer()).should.eventually.contain('0');
+        .getText(SummaryPage.checkboxNumericDetailAnswer()).should.eventually.contain('0');
     });
   });
 });

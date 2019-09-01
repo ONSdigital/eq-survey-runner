@@ -109,7 +109,7 @@ describe('Radio with a numeric "detail_answer" option', function() {
         .click(RadioNumericDetailPage.other())
         .setValue(RadioNumericDetailPage.otherDetail(), '0')
         .click(RadioNumericDetailPage.submit())
-        // Then
+      // Then
         .getText(SummaryPage.radioAnswerNumericDetail()).should.eventually.contain('0');
     });
   });
