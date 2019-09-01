@@ -1370,6 +1370,11 @@ msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Stepbrother or stepsister"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Mother or father"
 msgstr ""
 
@@ -1438,6 +1443,13 @@ msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
 "their <em>…</em>"
 msgid "Brother or sister"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>…</em>"
+msgid "Steprother or stepsister"
 msgstr ""
 
 #. answer-id: relationship-answer
@@ -4966,6 +4978,11 @@ msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>stepbrother or stepsister</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>mother or father</em>"
 msgstr ""
 
@@ -5101,6 +5118,15 @@ msgctxt ""
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>brother or sister</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>…</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>stepbrother or stepsister</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
