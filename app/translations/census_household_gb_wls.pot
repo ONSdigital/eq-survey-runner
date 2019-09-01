@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-30 15:27+0100\n"
+"POT-Creation-Date: 2019-09-01 17:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,6 +59,9 @@ msgid ""
 "We ask this question to help ensure that everyone is correctly counted in"
 " the census. This includes people who are staying temporarily or are "
 "away."
+msgstr ""
+
+msgid "All of the data entered about this person will be deleted"
 msgstr ""
 
 msgid ""
@@ -456,21 +459,6 @@ msgstr ""
 msgid "Voluntary"
 msgstr ""
 
-msgid "Add someone to this household"
-msgstr ""
-
-msgid "Add another visitor to this household"
-msgstr ""
-
-msgid "Add a visitor"
-msgstr ""
-
-msgid "There are no householders"
-msgstr ""
-
-msgid "There are no visitors"
-msgstr ""
-
 msgid "2019 Census Test"
 msgstr ""
 
@@ -826,7 +814,7 @@ msgstr ""
 
 msgid ""
 "Names of the people living at this address including anyone temporarily "
-"away."
+"away or who has been or intends to be in the UK for 3 months or more."
 msgstr ""
 
 msgid "Names of visitors staying overnight at this address on 13 October 2019"
@@ -972,7 +960,7 @@ msgstr ""
 
 msgid ""
 "Apart from the people already included, is there anyone who is "
-"temporarily away or staying you need to add to {address}?"
+"temporarily away or staying that you need to add to {address}?"
 msgstr ""
 
 msgid "Are there any visitors staying overnight on {census_date} at {address}?"
@@ -1436,14 +1424,14 @@ msgstr ""
 #. answer-id: anyone-else-temp-away-answer
 msgctxt ""
 "Answer for: Apart from the people already included, is there anyone who "
-"is temporarily away or staying you need to add to {address}?"
+"is temporarily away or staying that you need to add to {address}?"
 msgid "Yes, I need to add someone"
 msgstr ""
 
 #. answer-id: anyone-else-temp-away-answer
 msgctxt ""
 "Answer for: Apart from the people already included, is there anyone who "
-"is temporarily away or staying you need to add to {address}?"
+"is temporarily away or staying that you need to add to {address}?"
 msgid "No, I do not need to add anyone"
 msgstr ""
 
@@ -1548,6 +1536,11 @@ msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Stepbrother or stepsister"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Mother or father"
 msgstr ""
 
@@ -1616,6 +1609,13 @@ msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
 "their <em>…</em>"
 msgid "Brother or sister"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>…</em>"
+msgid "Stepbrother or stepsister"
 msgstr ""
 
 #. answer-id: relationship-answer
@@ -5046,6 +5046,11 @@ msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>stepbrother or stepsister</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>mother or father</em>"
 msgstr ""
 
@@ -5181,6 +5186,24 @@ msgctxt ""
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>brother or sister</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>…</em>"
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>stepbrother or"
+" stepsister</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>…</em>"
+msgid ""
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>stepbrother or stepsister</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
