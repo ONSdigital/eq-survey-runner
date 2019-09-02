@@ -456,6 +456,21 @@ msgstr ""
 msgid "Voluntary"
 msgstr ""
 
+msgid "Add someone to this household"
+msgstr ""
+
+msgid "Add another visitor to this household"
+msgstr ""
+
+msgid "Add a visitor"
+msgstr ""
+
+msgid "There are no householders"
+msgstr ""
+
+msgid "There are no visitors"
+msgstr ""
+
 msgid "2019 Census Test"
 msgstr ""
 
