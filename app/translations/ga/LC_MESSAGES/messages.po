@@ -386,7 +386,7 @@ msgid "This section is now complete"
 msgstr ""
 
 #: templates/summary.html:29
-msgid "You can check your answers below"
+msgid "You can review your answers below"
 msgstr ""
 
 #: templates/summary.html:38
