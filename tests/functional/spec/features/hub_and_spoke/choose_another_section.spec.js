@@ -40,7 +40,7 @@ describe('Choose another section link', function () {
       });
   });
 ​
-  it.only('When a user gets to a section summary and the hub is available, then the link should not be displayed', function () {
+  it('When a user gets to a section summary and the hub is available, then the link should not be displayed', function () {
     return helpers.openQuestionnaire('test_hub_complete_sections.json')
       .then(() => {
         return browser
