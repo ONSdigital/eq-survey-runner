@@ -456,21 +456,6 @@ msgstr ""
 msgid "Voluntary"
 msgstr ""
 
-msgid "Add someone to this household"
-msgstr ""
-
-msgid "Add another visitor to this household"
-msgstr ""
-
-msgid "Add a visitor"
-msgstr ""
-
-msgid "There are no householders"
-msgstr ""
-
-msgid "There are no visitors"
-msgstr ""
-
 msgid "2019 Census Test"
 msgstr ""
 
@@ -496,6 +481,9 @@ msgid "Include people who are temporarily away"
 msgstr ""
 
 msgid "Include people who are temporarily staying"
+msgstr ""
+
+msgid "All of the data entered about this person will be deleted"
 msgstr ""
 
 msgid "Include"
@@ -826,7 +814,7 @@ msgstr ""
 
 msgid ""
 "Names of the people living at this address including anyone temporarily "
-"away."
+"away or who has been or intends to be in the UK for 3 months or more."
 msgstr ""
 
 msgid "Names of visitors staying overnight at this address on 13 October 2019"
@@ -972,7 +960,7 @@ msgstr ""
 
 msgid ""
 "Apart from the people already included, is there anyone who is "
-"temporarily away or staying you need to add to {address}?"
+"temporarily away or staying that you need to add to {address}?"
 msgstr ""
 
 msgid "Are there any visitors staying overnight on {census_date} at {address}?"
@@ -1436,14 +1424,14 @@ msgstr ""
 #. answer-id: anyone-else-temp-away-answer
 msgctxt ""
 "Answer for: Apart from the people already included, is there anyone who "
-"is temporarily away or staying you need to add to {address}?"
+"is temporarily away or staying that you need to add to {address}?"
 msgid "Yes, I need to add someone"
 msgstr ""
 
 #. answer-id: anyone-else-temp-away-answer
 msgctxt ""
 "Answer for: Apart from the people already included, is there anyone who "
-"is temporarily away or staying you need to add to {address}?"
+"is temporarily away or staying that you need to add to {address}?"
 msgid "No, I do not need to add anyone"
 msgstr ""
 
@@ -1627,7 +1615,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
 "their <em>…</em>"
-msgid "Steprother or stepsister"
+msgid "Stepbrother or stepsister"
 msgstr ""
 
 #. answer-id: relationship-answer
@@ -5198,6 +5186,15 @@ msgctxt ""
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>brother or sister</em>"
+msgstr ""
+
+#. answer-id: relationship-answer
+msgctxt ""
+"Answer for: Thinking of {first_person_name}, {second_person_name} is "
+"their <em>…</em>"
+msgid ""
+"{second_person_name} is {first_person_name_possessive} <em>stepbrother or"
+" stepsister</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
