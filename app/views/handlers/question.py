@@ -112,8 +112,5 @@ class Question(BlockHandler):
         )
 
     def get_return_to_hub_url(self):
-        if (
-            self.are_hub_required_sections_complete()
-            and self._schema.is_hub_enabled()
-        ):
+        if self.are_hub_required_sections_complete() and self._schema.is_hub_enabled():
             return url_for('.get_questionnaire')

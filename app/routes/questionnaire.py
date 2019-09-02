@@ -544,13 +544,7 @@ def get_page_title_for_location(schema, current_location, context):
     return safe_content(page_title)
 
 
-def _render_page(
-    block_type,
-    context,
-    current_location,
-    previous_location_url,
-    schema,
-):
+def _render_page(block_type, context, current_location, previous_location_url, schema):
     if request_wants_json():
         return jsonify(context)
 
