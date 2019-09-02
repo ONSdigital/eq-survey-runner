@@ -1,4 +1,5 @@
 from werkzeug.utils import cached_property
+from flask import url_for
 
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
@@ -56,7 +57,9 @@ class Question(BlockHandler):
                     return action
 
     def get_context(self):
-        return build_question_context(self.rendered_block, self.form)
+        context = build_question_context(self.rendered_block, self.form)
+        context['return_to_hub_url'] = self.get_return_to_hub_url()
+        return context
 
     def handle_post(self):
         self.questionnaire_store_updater.update_answers(self.form)
@@ -101,3 +104,16 @@ class Question(BlockHandler):
         )
 
         return {**transformed_block, **{'question': rendered_question}}
+
+    def are_hub_required_sections_complete(self):
+        return all(
+            self._questionnaire_store.progress_store.is_section_complete(section_id)
+            for section_id in self._schema.get_section_ids_required_for_hub()
+        )
+
+    def get_return_to_hub_url(self):
+        if (
+            self.are_hub_required_sections_complete()
+            and self._schema.is_hub_enabled()
+        ):
+            return url_for('.get_questionnaire')

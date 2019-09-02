@@ -109,11 +109,12 @@ def get_questionnaire(schema, questionnaire_store):
         list_store=questionnaire_store.list_store,
     )
 
-    hub_required_sections_complete = are_hub_required_sections_complete(
-        questionnaire_store, schema
+    are_hub_required_sections_complete = all(
+        questionnaire_store.progress_store.is_section_complete(section_id)
+        for section_id in schema.get_section_ids_required_for_hub()
     )
 
-    if not schema.is_hub_enabled() or not hub_required_sections_complete:
+    if not schema.is_hub_enabled() or not are_hub_required_sections_complete:
         redirect_location = router.get_first_incomplete_location_in_survey()
         return redirect(redirect_location.url())
 
@@ -243,7 +244,6 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
             current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
-            questionnaire_store=questionnaire_store,
         )
 
     if 'action[save_sign_out]' in request.form:
@@ -292,7 +292,7 @@ def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_it
             current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
-            questionnaire_store=questionnaire_store,
+            url=block_handler.get_url(),
         )
 
     if 'action[save_sign_out]' in request.form:
@@ -551,7 +551,6 @@ def _render_page(
     current_location,
     previous_location_url,
     schema,
-    questionnaire_store,
 ):
     if request_wants_json():
         return jsonify(context)
@@ -559,14 +558,6 @@ def _render_page(
     page_title = get_page_title_for_location(schema, current_location, context)
     session_data = get_session_store().session_data
     session_timeout = get_session_timeout_in_seconds(schema)
-
-    hub_required_sections_complete = are_hub_required_sections_complete(
-        questionnaire_store, schema
-    )
-
-    return_to_hub_url = get_return_to_hub_url(
-        schema, block_type, hub_required_sections_complete
-    )
 
     return render_template(
         template=block_type,
@@ -578,7 +569,6 @@ def _render_page(
         session_timeout=session_timeout,
         survey_title=schema.json.get('title'),
         legal_basis=schema.json.get('legal_basis'),
-        return_to_hub_url=return_to_hub_url,
     )
 
 
@@ -587,20 +577,4 @@ def request_wants_json():
     return (
         best == 'application/json'
         and request.accept_mimetypes[best] > request.accept_mimetypes['text/html']
-    )
-
-
-def get_return_to_hub_url(schema, block_type, hub_required_sections):
-    if (
-        hub_required_sections
-        and schema.is_hub_enabled()
-        and block_type in ['Question', 'ConfirmationQuestion']
-    ):
-        return url_for('.get_questionnaire')
-
-
-def are_hub_required_sections_complete(questionnaire_store, schema):
-    return all(
-        questionnaire_store.progress_store.is_section_complete(section_id)
-        for section_id in schema.get_section_ids_required_for_hub()
     )
