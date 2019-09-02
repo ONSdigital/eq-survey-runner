@@ -292,7 +292,6 @@ def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_it
             current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
-            url=block_handler.get_url(),
         )
 
     if 'action[save_sign_out]' in request.form:
