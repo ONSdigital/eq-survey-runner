@@ -105,12 +105,6 @@ class Question(BlockHandler):
 
         return {**transformed_block, **{'question': rendered_question}}
 
-    def are_hub_required_sections_complete(self):
-        return all(
-            self._questionnaire_store.progress_store.is_section_complete(section_id)
-            for section_id in self._schema.get_section_ids_required_for_hub()
-        )
-
     def get_return_to_hub_url(self):
-        if self.are_hub_required_sections_complete() and self._schema.is_hub_enabled():
+        if self._router.can_access_hub():
             return url_for('.get_questionnaire')
