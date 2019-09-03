@@ -299,7 +299,7 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
         }
 
         # When
-        question = Question(question_schema, self.answer_store, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema, None)
 
         # Then
         self.assertEqual(len(question.answers[0]['value']), 2)
@@ -447,7 +447,7 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
         }
 
         # When
-        question = Question(question_schema, self.answer_store, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema, None)
 
         # Then
         self.assertEqual(question.answers[0]['value']['detail_answer_value'], 1)
