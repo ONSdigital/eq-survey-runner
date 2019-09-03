@@ -31,7 +31,7 @@ class Group:
             if (
                 block['id'] in block_ids_on_path
                 and block['type'] == 'Question'
-                and not block.get('question', {}).get('hide_on_section_summary', False)
+                and not block.get('hide_on_section_summary', False)
             ):
                 blocks.extend(
                     [

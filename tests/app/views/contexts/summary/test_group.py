@@ -29,6 +29,7 @@ def fixture_schema():
             {
                 'type': 'Question',
                 'id': 'number-question-two',
+                'hide_on_section_summary': True,
                 'question': {
                     'answers': [
                         {
@@ -41,7 +42,6 @@ def fixture_schema():
                     'id': 'question2',
                     'title': 'Enter an answer. It will be shown on the summary page',
                     'type': 'General',
-                    'hide_on_section_summary': True,
                 },
             },
             {'type': 'Summary', 'id': 'summary'},
@@ -83,7 +83,7 @@ def test_group_serialize_hide_on_summary_not_set(
     list_store = mocker.MagicMock()
     metadata = mocker.MagicMock()
 
-    del schema['blocks'][1]['question']['hide_on_section_summary']
+    del schema['blocks'][1]['hide_on_section_summary']
 
     group = Group(
         schema, path, answer_store, list_store, metadata, None, Location('test', 'test')
@@ -100,8 +100,8 @@ def test_group_serialize_hide_on_summary_false(
     list_store = mocker.MagicMock()
     metadata = mocker.MagicMock()
 
-    schema['blocks'][0]['question']['hide_on_section_summary'] = False
-    schema['blocks'][1]['question']['hide_on_section_summary'] = False
+    schema['blocks'][0]['hide_on_section_summary'] = False
+    schema['blocks'][1]['hide_on_section_summary'] = False
 
     group = Group(
         schema, path, answer_store, list_store, metadata, None, Location('test', 'test')
