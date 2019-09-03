@@ -3,8 +3,8 @@ from tests.integration.integration_test_case import IntegrationTestCase
 HTML_CONTENT = '"><b>some html</b>'
 ESCAPED_CONTENT = '&#34;&gt;&lt;b&gt;some html&lt;/b&gt;'
 
-class TestQuestionnaireHtmlEscaping(IntegrationTestCase):
 
+class TestQuestionnaireHtmlEscaping(IntegrationTestCase):
     def test_quotes_in_textfield(self):
         self.launchSurvey('test_textfield')
         self.post({'name-answer': HTML_CONTENT})
@@ -23,10 +23,9 @@ class TestQuestionnaireHtmlEscaping(IntegrationTestCase):
 
     def test_quotes_in_detail_answer(self):
         self.launchSurvey('test_radio_mandatory_with_mandatory_other')
-        self.post({
-            'radio-mandatory-answer': 'Other',
-            'other-answer-mandatory': HTML_CONTENT,
-        })
+        self.post(
+            {'radio-mandatory-answer': 'Other', 'other-answer-mandatory': HTML_CONTENT}
+        )
 
         self.get('/questionnaire/radio-mandatory')
 
@@ -43,10 +42,7 @@ class TestQuestionnaireHtmlEscaping(IntegrationTestCase):
             ('test_dates', 'date-range-from-answer-year'),
         ]
         for schema, answer_id in testdata:
-            # Given
-            with self.subTest(
-                schema=schema, answer_id=answer_id
-            ):
+            with self.subTest(schema=schema, answer_id=answer_id):
                 print(schema)
                 self.launchSurvey(schema)
                 self.post({answer_id: HTML_CONTENT})
