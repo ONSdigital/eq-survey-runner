@@ -48,3 +48,8 @@ class TestQuestionnaireHtmlEscaping(IntegrationTestCase):
                 self.post({answer_id: HTML_CONTENT})
 
                 assert ESCAPED_CONTENT in self.getResponseData()
+
+    def test_summary(self):
+        self.launchSurvey('test_textfield')
+        self.post({'name-answer': HTML_CONTENT})
+        assert ESCAPED_CONTENT in self.getResponseData()
