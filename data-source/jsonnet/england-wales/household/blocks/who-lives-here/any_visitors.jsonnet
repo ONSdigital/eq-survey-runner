@@ -13,12 +13,12 @@ local questionTitle(census_date) = {
 function(census_date) {
   type: 'Question',
   id: 'any-visitors',
+  hide_on_section_summary: true,
   question: {
     type: 'MutuallyExclusive',
     id: 'any-visitors-question',
     title: questionTitle(census_date),
     mandatory: true,
-    hide_on_section_summary: true,
     answers: [
       {
         id: 'any-visitors-answer',

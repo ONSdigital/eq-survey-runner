@@ -23,6 +23,7 @@ function(census_date) {
       when: [rules.hasPrimary],
     },
   ],
+  hide_on_section_summary: true,
   question: {
     type: 'General',
     id: 'anyone-usually-live-at-question',
