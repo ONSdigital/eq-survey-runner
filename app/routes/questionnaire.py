@@ -41,7 +41,8 @@ from app.views.contexts.metadata_context import (
     build_metadata_context_for_survey_completed,
 )
 from app.views.contexts.summary.block import Block
-from app.views.contexts.summary_context import build_group_summary_context
+
+from app.views.contexts.summary_context import SummaryContext
 from app.views.handlers.block_factory import get_block_handler
 
 END_BLOCKS = 'Summary', 'Confirmation'
@@ -124,8 +125,11 @@ def get_questionnaire(schema, questionnaire_store):
     language_code = get_session_store().session_data.language_code
 
     hub = HubContext(
+        language_code,
         questionnaire_store.progress_store,
         questionnaire_store.list_store,
+        questionnaire_store.answer_store,
+        questionnaire_store.metadata,
         schema,
         router.is_survey_complete(),
     )
@@ -382,15 +386,19 @@ def get_view_submission(schema):  # pylint: too-many-locals
 
             metadata = submitted_data.get('metadata')
 
+            language_code = get_session_store().session_data.language_code
+
             placeholder_renderer = PlaceholderRenderer(
-                'en', schema, answer_store, metadata
+                language_code, schema, answer_store, metadata
             )
 
             submitted_path_finder = PathFinder(schema, answer_store, metadata=metadata)
 
-            summary_rendered_context = build_group_summary_context(
-                schema=schema, path_finder=submitted_path_finder
+            summary_context = SummaryContext(
+                language_code, schema, answer_store, list_store, metadata
             )
+
+            summary_rendered_context = summary_context.build_all_groups()
 
             context = {
                 'summary': {

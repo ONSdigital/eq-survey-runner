@@ -109,7 +109,7 @@ class TestPlaceholderRenderer(AppContextTestCase):
         )
 
         rendered = renderer.render_pointer(
-            self.question_json, '/answers/0/options/0/label'
+            self.question_json, '/answers/0/options/0/label', list_item_id=None
         )
 
         assert rendered == 'Hal Abelson is 28 years old. Is this correct?'
@@ -142,7 +142,7 @@ class TestPlaceholderRenderer(AppContextTestCase):
             ),
         )
 
-        rendered_schema = renderer.render(json_to_render)
+        rendered_schema = renderer.render(json_to_render, list_item_id=None)
         rendered_label = rendered_schema['answers'][0]['options'][0]['label']
 
         assert rendered_label == 'Alfred Aho is 33 years old. Is this correct?'
@@ -151,11 +151,11 @@ class TestPlaceholderRenderer(AppContextTestCase):
         renderer = PlaceholderRenderer(language='en', schema=Mock())
 
         with self.assertRaises(ValueError):
-            renderer.render_pointer(self.question_json, '/title')
+            renderer.render_pointer(self.question_json, '/title', list_item_id=None)
 
     def test_errors_on_invalid_json(self):
         renderer = PlaceholderRenderer(language='en', schema=Mock())
 
         with self.assertRaises(ValueError):
             dict_to_render = {'invalid': {'no': 'placeholders', 'in': 'this'}}
-            renderer.render_pointer(dict_to_render, '/invalid')
+            renderer.render_pointer(dict_to_render, '/invalid', list_item_id=None)

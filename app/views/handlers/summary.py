@@ -3,6 +3,8 @@ from typing import List, Mapping
 from copy import deepcopy
 from app.views.contexts.summary.block import Block
 from app.views.contexts.summary_context import build_group_summary_context
+
+from app.views.contexts.summary_context import SummaryContext
 from app.views.handlers.content import Content
 
 
@@ -44,17 +46,15 @@ class Summary(Content):
         }
 
     def get_context(self):
-        context = self.build_context()
 
-        context = self.add_questions_to_blocks(context)
-
-        context['summary'].update(
-            {
-                'is_view_submission_response_enabled': _is_view_submitted_response_enabled(
-                    self._schema.json
-                ),
-                'collapsible': self.rendered_block.get('collapsible', False),
-            }
+        summary_context = SummaryContext(
+            self._language,
+            self._schema,
+            self._questionnaire_store.answer_store,
+            self._questionnaire_store.list_store,
+            self._questionnaire_store.metadata,
         )
-
-        return self.placeholder_renderer.render(context)
+        collapsible = self._schema.get_block(self._current_location.block_id).get(
+            'collapsible', False
+        )
+        return summary_context.summary(collapsible)

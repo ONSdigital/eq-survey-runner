@@ -16,8 +16,8 @@ def find_pointers_containing(input_data, search_key, pointer=None):
     :return: generator of the json pointer paths
     """
     if isinstance(input_data, dict):
-        if pointer and search_key in input_data:
-            yield pointer
+        if search_key in input_data:
+            yield pointer or ''
         for k, v in input_data.items():
             if isinstance(v, dict) and search_key in v:
                 yield pointer + '/' + k if pointer else '/' + k
@@ -39,44 +39,45 @@ class PlaceholderRenderer:
     """
 
     def __init__(
-        self, language, schema, answer_store=None, metadata=None, list_item_id=None
+        self, language, schema, answer_store=None, metadata=None, location=None
     ):
         self._language = language
         self._schema = schema
         self._answer_store = answer_store or AnswerStore()
         self._metadata = metadata
-        self._list_item_id = list_item_id
-        self._placeholders = {}
+        self._location = location
 
-    def render_pointer(self, dict_to_render, pointer_to_render):
+    def render_pointer(self, dict_to_render, pointer_to_render, list_item_id):
+        pointer_data = resolve_pointer(dict_to_render, pointer_to_render)
+
+        return self.render_placeholder(pointer_data, list_item_id)
+
+    def render_placeholder(self, placeholder_data, list_item_id):
         placeholder_parser = PlaceholderParser(
             language=self._language,
             schema=self._schema,
             answer_store=self._answer_store,
             metadata=self._metadata,
-            list_item_id=self._list_item_id,
+            list_item_id=list_item_id,
+            location=self._location,
         )
 
-        pointer_data = resolve_pointer(dict_to_render, pointer_to_render)
+        if 'text' not in placeholder_data or 'placeholders' not in placeholder_data:
+            raise ValueError('No placeholder found to render')
 
-        if 'text' not in pointer_data or 'placeholders' not in pointer_data:
-            raise ValueError('No placeholder found at pointer')
+        transformed_values = placeholder_parser(placeholder_data['placeholders'])
 
-        transformed_values = placeholder_parser.parse(pointer_data['placeholders'])
+        return placeholder_data['text'].format(**transformed_values)
 
-        return pointer_data['text'].format(**transformed_values)
-
-    def render(self, dict_to_render):
+    def render(self, dict_to_render, list_item_id):
         """
         Transform the current schema json to a fully rendered dictionary
-
-        :return:
         """
         rendered_data = deepcopy(dict_to_render)
-        pointer_list = find_pointers_containing(rendered_data, 'placeholders')
+        pointers = find_pointers_containing(rendered_data, 'placeholders')
 
-        for pointer in pointer_list:
-            rendered_text = self.render_pointer(rendered_data, pointer)
+        for pointer in pointers:
+            rendered_text = self.render_pointer(rendered_data, pointer, list_item_id)
             set_pointer(rendered_data, pointer, rendered_text)
 
         return rendered_data

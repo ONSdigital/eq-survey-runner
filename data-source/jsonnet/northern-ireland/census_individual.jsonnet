@@ -1,74 +1,71 @@
-// personal details
-local accommodation_type = import 'blocks/individual/personal-details/accommodation_type.jsonnet';
-local confirm_dob = import 'blocks/individual/personal-details/confirm_dob.jsonnet';
-local date_of_birth = import 'blocks/individual/personal-details/date_of_birth.jsonnet';
-local establishment_position = import 'blocks/individual/personal-details/establishment_position.jsonnet';
-local in_education = import 'blocks/individual/personal-details/in_education.jsonnet';
-local marriage_type = import 'blocks/individual/personal-details/marriage_type.jsonnet';
-local name = import 'blocks/individual/personal-details/name.jsonnet';
-local proxy = import 'blocks/individual/personal-details/proxy.jsonnet';
-local sex = import 'blocks/individual/personal-details/sex.jsonnet';
-local term_time_location = import 'blocks/individual/personal-details/term_time_location.jsonnet';
+// Personal Details
+local accommodation_type = import 'individual/blocks/personal-details/accommodation_type.jsonnet';
+local confirm_dob = import 'individual/blocks/personal-details/confirm_dob.jsonnet';
+local date_of_birth = import 'individual/blocks/personal-details/date_of_birth.jsonnet';
+local establishment_position = import 'individual/blocks/personal-details/establishment_position.jsonnet';
+local in_education = import 'individual/blocks/personal-details/in_education.jsonnet';
+local marriage_type = import 'individual/blocks/personal-details/marriage_type.jsonnet';
+local name = import 'individual/blocks/personal-details/name.jsonnet';
+local proxy = import 'individual/blocks/personal-details/proxy.jsonnet';
+local sex = import 'individual/blocks/personal-details/sex.jsonnet';
+local term_time_location = import 'individual/blocks/personal-details/term_time_location.jsonnet';
 
-// identity and health
-local arrive_in_country = import 'blocks/individual/identity-and-health/arrive_in_country.jsonnet';
-local carer = import 'blocks/individual/identity-and-health/carer.jsonnet';
-local country_of_birth = import 'blocks/individual/identity-and-health/country_of_birth.jsonnet';
-local disability = import 'blocks/individual/identity-and-health/disability.jsonnet';
-local disability_limitation = import 'blocks/individual/identity-and-health/disability_limitation.jsonnet';
-local disability_other = import 'blocks/individual/identity-and-health/disability_other.jsonnet';
-local ethnic_group = import 'blocks/individual/identity-and-health/ethnic_group.jsonnet';
-local frequency_irish = import 'blocks/individual/identity-and-health/frequency_irish.jsonnet';
-local frequency_ulster_scots = import 'blocks/individual/identity-and-health/frequency_ulster_scots.jsonnet';
-local health = import 'blocks/individual/identity-and-health/health.jsonnet';
-local language = import 'blocks/individual/identity-and-health/language.jsonnet';
-local last_year_address = import 'blocks/individual/identity-and-health/last_year_address.jsonnet';
-local national_identity = import 'blocks/individual/identity-and-health/national_identity.jsonnet';
-local no_religion = import 'blocks/individual/identity-and-health/no_religion.jsonnet';
-local passports = import 'blocks/individual/identity-and-health/passports.jsonnet';
-local past_usual_household_address = import 'blocks/individual/identity-and-health/past_usual_household_address.jsonnet';
-local religion = import 'blocks/individual/identity-and-health/religion.jsonnet';
-local sexual_identity = import 'blocks/individual/identity-and-health/sexual_identity.jsonnet';
-local speak_english = import 'blocks/individual/identity-and-health/speak_english.jsonnet';
-local understand_irish = import 'blocks/individual/identity-and-health/understand_irish.jsonnet';
-local understand_ulster_scots = import 'blocks/individual/identity-and-health/understand_ulster_scots.jsonnet';
+// Identity and Health
+local arrive_in_country = import 'individual/blocks/identity-and-health/arrive_in_country.jsonnet';
+local carer = import 'individual/blocks/identity-and-health/carer.jsonnet';
+local country_of_birth = import 'individual/blocks/identity-and-health/country_of_birth.jsonnet';
+local disability = import 'individual/blocks/identity-and-health/disability.jsonnet';
+local disability_limitation = import 'individual/blocks/identity-and-health/disability_limitation.jsonnet';
+local disability_other = import 'individual/blocks/identity-and-health/disability_other.jsonnet';
+local ethnic_group = import 'individual/blocks/identity-and-health/ethnic_group.jsonnet';
+local frequency_irish = import 'individual/blocks/identity-and-health/frequency_irish.jsonnet';
+local frequency_ulster_scots = import 'individual/blocks/identity-and-health/frequency_ulster_scots.jsonnet';
+local health = import 'individual/blocks/identity-and-health/health.jsonnet';
+local language = import 'individual/blocks/identity-and-health/language.jsonnet';
+local last_year_address = import 'individual/blocks/identity-and-health/last_year_address.jsonnet';
+local national_identity = import 'individual/blocks/identity-and-health/national_identity.jsonnet';
+local no_religion = import 'individual/blocks/identity-and-health/no_religion.jsonnet';
+local passports = import 'individual/blocks/identity-and-health/passports.jsonnet';
+local past_usual_household_address = import 'individual/blocks/identity-and-health/past_usual_household_address.jsonnet';
+local religion = import 'individual/blocks/identity-and-health/religion.jsonnet';
+local sexual_identity = import 'individual/blocks/identity-and-health/sexual_identity.jsonnet';
+local speak_english = import 'individual/blocks/identity-and-health/speak_english.jsonnet';
+local understand_irish = import 'individual/blocks/identity-and-health/understand_irish.jsonnet';
+local understand_ulster_scots = import 'individual/blocks/identity-and-health/understand_ulster_scots.jsonnet';
 
-// school
-local school_location = import 'blocks/individual/school/school_location.jsonnet';
-local school_travel = import 'blocks/individual/school/school_travel.jsonnet';
-local study_location_type = import 'blocks/individual/school/study_location_type.jsonnet';
+// School
+local school_location = import 'individual/blocks/school/school_location.jsonnet';
+local school_travel = import 'individual/blocks/school/school_travel.jsonnet';
+local study_location_type = import 'individual/blocks/school/study_location_type.jsonnet';
 
-// qualifications
-local a_level = import 'blocks/individual/qualifications/a_level.jsonnet';
-local apprenticeship = import 'blocks/individual/qualifications/apprenticeship.jsonnet';
-local degree = import 'blocks/individual/qualifications/degree.jsonnet';
-local gcse = import 'blocks/individual/qualifications/gcse.jsonnet';
-local nvq_level = import 'blocks/individual/qualifications/nvq_level.jsonnet';
-local other_qualifications = import 'blocks/individual/qualifications/other_qualifications.jsonnet';
-local qualifications = import 'blocks/individual/qualifications/qualifications.jsonnet';
+// Qualifications
+local a_level = import 'individual/blocks/qualifications/a_level.jsonnet';
+local apprenticeship = import 'individual/blocks/qualifications/apprenticeship.jsonnet';
+local degree = import 'individual/blocks/qualifications/degree.jsonnet';
+local gcse = import 'individual/blocks/qualifications/gcse.jsonnet';
+local nvq_level = import 'individual/blocks/qualifications/nvq_level.jsonnet';
+local other_qualifications = import 'individual/blocks/qualifications/other_qualifications.jsonnet';
+local qualifications = import 'individual/blocks/qualifications/qualifications.jsonnet';
 
-// employment
-local armed_forces = import 'blocks/individual/employment/armed_forces.jsonnet';
-local business_name = import 'blocks/individual/employment/business_name.jsonnet';
-local employer_address_depot = import 'blocks/individual/employment/employer_address_depot.jsonnet';
-local employer_address_workplace = import 'blocks/individual/employment/employer_address_workplace.jsonnet';
-local employer_type_of_address = import 'blocks/individual/employment/employer_type_of_address.jsonnet';
-local employers_business = import 'blocks/individual/employment/employers_business.jsonnet';
-local employment_status = import 'blocks/individual/employment/employment_status.jsonnet';
-local employment_type = import 'blocks/individual/employment/employment_type.jsonnet';
-local ever_worked = import 'blocks/individual/employment/ever_worked.jsonnet';
-local hours_worked = import 'blocks/individual/employment/hours_worked.jsonnet';
-local job_availability = import 'blocks/individual/employment/job_availability.jsonnet';
-local job_description = import 'blocks/individual/employment/job_description.jsonnet';
-local job_pending = import 'blocks/individual/employment/job_pending.jsonnet';
-local job_title = import 'blocks/individual/employment/job_title.jsonnet';
-local jobseeker = import 'blocks/individual/employment/jobseeker.jsonnet';
-local main_employment_block = import 'blocks/individual/employment/main_employment_block.jsonnet';
-local main_job_type = import 'blocks/individual/employment/main_job_type.jsonnet';
-local supervise = import 'blocks/individual/employment/supervise.jsonnet';
-local work_location = import 'blocks/individual/employment/work_location.jsonnet';
-local work_location_type = import 'blocks/individual/employment/work_location_type.jsonnet';
-local work_travel = import 'blocks/individual/employment/work_travel.jsonnet';
+// Employment
+local armed_forces = import 'individual/blocks/employment/armed_forces.jsonnet';
+local business_name = import 'individual/blocks/employment/business_name.jsonnet';
+local employers_business = import 'individual/blocks/employment/employers_business.jsonnet';
+local employment_status = import 'individual/blocks/employment/employment_status.jsonnet';
+local employment_type = import 'individual/blocks/employment/employment_type.jsonnet';
+local ever_worked = import 'individual/blocks/employment/ever_worked.jsonnet';
+local hours_worked = import 'individual/blocks/employment/hours_worked.jsonnet';
+local job_availability = import 'individual/blocks/employment/job_availability.jsonnet';
+local job_description = import 'individual/blocks/employment/job_description.jsonnet';
+local job_pending = import 'individual/blocks/employment/job_pending.jsonnet';
+local job_title = import 'individual/blocks/employment/job_title.jsonnet';
+local jobseeker = import 'individual/blocks/employment/jobseeker.jsonnet';
+local main_employment_block = import 'individual/blocks/employment/main_employment_block.jsonnet';
+local main_job_type = import 'individual/blocks/employment/main_job_type.jsonnet';
+local supervise = import 'individual/blocks/employment/supervise.jsonnet';
+local work_location = import 'individual/blocks/employment/work_location.jsonnet';
+local work_location_type = import 'individual/blocks/employment/work_location_type.jsonnet';
+local work_travel = import 'individual/blocks/employment/work_travel.jsonnet';
 
 function(region_code, census_date) {
   mime_type: 'application/json/ons/eq',
