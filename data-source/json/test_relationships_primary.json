@@ -241,7 +241,7 @@
                                         "id": "relationship-question",
                                         "type": "General",
                                         "title": {
-                                            "text": "{second_person_name} is your <em>...</em>",
+                                            "text": "{second_person_name} is your <em>…</em>",
                                             "placeholders": [
                                                 {
                                                     "placeholder": "second_person_name",
@@ -270,7 +270,7 @@
                                                 "mandatory": true,
                                                 "type": "Relationship",
                                                 "playback": {
-                                                    "text": "{second_person_name} is your <em>...</em>",
+                                                    "text": "{second_person_name} is your <em>…</em>",
                                                     "placeholders": [
                                                         {
                                                             "placeholder": "second_person_name",
@@ -523,7 +523,7 @@
                                         "id": "relationship-question",
                                         "type": "General",
                                         "title": {
-                                            "text": "Thinking of {first_person_name}, {second_person_name} is their <em>...</em>",
+                                            "text": "Thinking of {first_person_name}, {second_person_name} is their <em>…</em>",
                                             "placeholders": [
                                                 {
                                                     "placeholder": "first_person_name",
