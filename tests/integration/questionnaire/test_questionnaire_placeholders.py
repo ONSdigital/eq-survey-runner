@@ -22,7 +22,7 @@ class TestPlaceholders(IntegrationTestCase):
         self.assertInUrl('/summary/')
         self.assertInBody('What is Kevin Bacon’s date of birth?')
 
-    def test_title_placeholders_rendered_in_summary_using_correct_language_en(self):
+    def test_title_placeholders_rendered_in_summary_using_correct_language(self):
         self.launchSurvey('test_placeholder_full')
         self.assertInBody('Please enter a name')
         self.post({'first-name': 'Kevin', 'last-name': 'Bacon'})
