@@ -186,6 +186,7 @@ def test_map_list_collector_config_for_primary_person():
     assert output[0]['rowItems'][0]['actions'][0]['url'] == 'primary'
     assert output[1]['rowItems'][0]['actions'][0]['url'] == 'nonprimary'
 
+
 def test_detail_answer_raw_data_used_when_data_not_exist():
     detail_answer = Mock()
     detail_answer.data = None
