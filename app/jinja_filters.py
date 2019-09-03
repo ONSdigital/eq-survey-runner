@@ -282,8 +282,9 @@ class OtherConfig:
 
         if detail_answer.data or detail_answer.data == 0:
             self.value = detail_answer.data
-        elif detail_answer.raw_data or detail_answer.raw_data[0] == 0:
-            self.value = detail_answer.raw_data[0]
+        elif detail_answer.raw_data is not None:
+            if detail_answer.raw_data[0] or detail_answer.raw_data[0] == 0:
+                self.value = detail_answer.raw_data[0]
         else:
             self.value = ''
 
