@@ -100,6 +100,14 @@ local main_job_type = import 'individual/blocks/employment/main_job_type.jsonnet
 local supervise = import 'individual/blocks/employment/supervise.jsonnet';
 local work_travel = import 'individual/blocks/employment/work_travel.jsonnet';
 
+// Visitor
+local visitor_dob = import 'household/blocks/visitor/date_of_birth.jsonnet';
+local visitor_sex = import 'household/blocks/visitor/sex.jsonnet';
+local usual_household_address = import 'household/blocks/visitor/usual_household_address.jsonnet';
+local usual_household_address_details = import 'household/blocks/visitor/usual_household_address_details.jsonnet';
+local visitor_interstitial = import 'household/blocks/visitor/visitor_interstitial.jsonnet';
+
+
 local understandWelshBlock(region_code) = if region_code == 'GB-WLS' then [understand_welsh] else [];
 
 
@@ -136,10 +144,10 @@ function(region_code, census_date, census_month_year_date) {
   sections: [
     {
       id: 'who-lives-here-section',
-      title: 'People who live here and overnight visitors',
+      title: 'People who live here',
       groups: [
         {
-          id: 'who-lives-here--group',
+          id: 'who-lives-here-group',
           title: 'Who lives here',
           blocks: [
             who_lives_here_interstitial(census_date),
@@ -162,7 +170,7 @@ function(region_code, census_date, census_month_year_date) {
       groups: [
         {
           id: 'accommodation-group',
-          title: 'Household accommodation',
+          title: '',
           blocks: [
             accommodation_introduction,
             accommodation_type,
@@ -303,6 +311,56 @@ function(region_code, census_date, census_month_year_date) {
           blocks: [
             {
               id: 'summary',
+              type: 'SectionSummary',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'visitor-section',
+      title: 'Visitors',
+      repeat: {
+        for_list: 'visitor',
+        title: {
+          text: '{person_name} (Visitor)',
+          placeholders: [
+            {
+              placeholder: 'person_name',
+              transforms: [
+                {
+                  transform: 'concatenate_list',
+                  arguments: {
+                    list_to_concatenate: {
+                      source: 'answers',
+                      identifier: ['first-name', 'last-name'],
+                    },
+                    delimiter: ' ',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+      groups: [
+        {
+          id: 'visitor-group',
+          title: '',
+          blocks: [
+            visitor_interstitial(census_date),
+            visitor_sex,
+            visitor_dob(census_date),
+            usual_household_address,
+            usual_household_address_details,
+          ],
+        },
+        {
+          id: 'visitor-submit-group',
+          title: 'Summary',
+          blocks: [
+            {
+              id: 'visitor-summary',
               type: 'SectionSummary',
             },
           ],
