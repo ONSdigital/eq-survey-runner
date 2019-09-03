@@ -20,8 +20,7 @@ describe('Choose another section link', function () {
       .then(() => {
         return browser
           .click(HubPage.submit())
-          .getText('body').should.not.eventually.contain('Can\'t complete this question?')
-          .getText('body').should.not.eventually.have.string('Choose another section and return to this later');
+          .getText(EmploymentStatusBlockPage.hubLink('questionnaire')).should.not.eventually.contain('Choose another section and return to this later');
 
       });
   });
@@ -33,8 +32,7 @@ describe('Choose another section link', function () {
           .click(EmploymentStatusBlockPage.workingAsAnEmployee())
           .click(EmploymentStatusBlockPage.submit())
           .click(HubPage.summaryRowLink(2))
-          .getText('body').should.eventually.contain('Can\'t complete this question?')
-          .getText('body').should.eventually.have.string('Choose another section and return to this later');
+          .getText(ProxyPage.hubLink('questionnaire')).should.eventually.contain('Choose another section and return to this later');
 
       });
   });
