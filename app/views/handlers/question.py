@@ -106,5 +106,8 @@ class Question(BlockHandler):
         return {**transformed_block, **{'question': rendered_question}}
 
     def get_return_to_hub_url(self):
-        if self._router.can_access_hub():
+        if (
+            self.rendered_block['type'] in ['Question', 'ConfirmationQuestion']
+            and self._router.can_access_hub()
+        ):
             return url_for('.get_questionnaire')
