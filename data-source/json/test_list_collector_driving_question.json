@@ -33,8 +33,9 @@
                     "title": "List",
                     "blocks": [
                         {
-                            "type": "Question",
+                            "type": "ListCollectorDrivingQuestion",
                             "id": "anyone-usually-live-at",
+                            "for_list": "people",
                             "question": {
                                 "type": "General",
                                 "id": "anyone-usually-live-at-question",
@@ -87,6 +88,11 @@
                                                 "value": "No"
                                             }
                                         ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "anyone-else-live-at"
                                     }
                                 }
                             ]

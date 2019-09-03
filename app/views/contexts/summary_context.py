@@ -1,6 +1,7 @@
 from flask import url_for
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.views.contexts.summary.group import Group
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.views.contexts.list_collector import build_list_items_summary_context
@@ -95,7 +96,6 @@ class SummaryContext:
         )
 
         if list_item_id:
-
             repeating_title = self._schema.get_repeating_title_for_section(section_id)
             if repeating_title:
                 title = placeholder_renderer.render_placeholder(
@@ -108,7 +108,19 @@ class SummaryContext:
 
         list_summaries = []
 
+        section_path = self._path_finder.routing_path(section_id, list_item_id)
+        section_path_blocks = [location.block_id for location in section_path]
+
         for list_collector_block in list_collector_blocks:
+            driving_question_block = QuestionnaireSchema.get_driving_question_for_section(section, list_collector_block['for_list'])
+
+            add_link_list_name = list_collector_block['for_list']
+            add_link_block_id = list_collector_block['add_block']['id']
+
+            if driving_question_block['id'] in section_path_blocks:
+                add_link_list_name = None
+                add_link_block_id = driving_question_block['id']
+
             rendered_summary = placeholder_renderer.render(
                 list_collector_block['summary'], list_item_id
             )
@@ -117,8 +129,8 @@ class SummaryContext:
                 'title': rendered_summary['title'],
                 'add_link': url_for(
                     'questionnaire.block',
-                    list_name=list_collector_block['for_list'],
-                    block_id=list_collector_block['add_block']['id'],
+                    list_name=add_link_list_name,
+                    block_id=add_link_block_id,
                 ),
                 'add_link_text': rendered_summary['add_link_text'],
                 'empty_list_text': rendered_summary['empty_list_text'],

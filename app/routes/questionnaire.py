@@ -532,7 +532,7 @@ def get_page_title_for_location(schema, current_location, context):
         page_title = '{group_title} - {survey_title}'.format(
             group_title=group['title'], survey_title=schema.json['title']
         )
-    elif block_schema['type'] == 'Question':
+    elif schema.is_question_block_type(block_schema['type']):
         question_title = context['block']['question'].get('title')
 
         page_title = '{question_title} - {survey_title}'.format(
