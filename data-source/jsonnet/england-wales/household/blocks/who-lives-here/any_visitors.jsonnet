@@ -19,7 +19,6 @@ function(census_date) {
     id: 'any-visitors-question',
     title: questionTitle(census_date),
     mandatory: true,
-    hide_on_section_summary: true,
     answers: [
       {
         id: 'any-visitors-answer',
