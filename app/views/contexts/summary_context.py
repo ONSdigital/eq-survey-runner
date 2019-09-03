@@ -109,7 +109,7 @@ class SummaryContext:
         list_summaries = []
 
         section_path = self._path_finder.routing_path(section_id, list_item_id)
-        section_path_blocks = [location.block_id for location in section_path]
+        section_path_block_ids = [location.block_id for location in section_path]
 
         for list_collector_block in list_collector_blocks:
             driving_question_block = QuestionnaireSchema.get_driving_question_for_section(section, list_collector_block['for_list'])
@@ -117,7 +117,7 @@ class SummaryContext:
             add_link_list_name = list_collector_block['for_list']
             add_link_block_id = list_collector_block['add_block']['id']
 
-            if driving_question_block['id'] in section_path_blocks:
+            if list_collector_block['id'] not in section_path_block_ids:
                 add_link_list_name = None
                 add_link_block_id = driving_question_block['id']
 
