@@ -172,8 +172,8 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
     if not schema.is_hub_enabled():
         redirect_location = router.get_first_incomplete_location_in_survey()
         return redirect(redirect_location.url())
-
     section = schema.get_section(section_id)
+
     if not section:
         return redirect(url_for('.get_questionnaire'))
 
@@ -185,7 +185,9 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
     )
 
     if section_status == CompletionStatus.COMPLETED:
-        return redirect(routing_path[-1].url())
+        return redirect(
+            router.get_section_return_location_when_section_complete(routing_path).url()
+        )
 
     if section_status == CompletionStatus.NOT_STARTED:
         return redirect(
@@ -259,7 +261,6 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
     block_handler.handle_post()
 
     next_location_url = block_handler.get_next_location_url()
-
     return redirect(next_location_url)
 
 
