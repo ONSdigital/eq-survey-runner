@@ -394,6 +394,84 @@ def test_context_for_section_list_summary(people_answer_store):
 
 
 @pytest.mark.usefixtures('app')
+def test_context_for_driving_question_summary(people_answer_store):
+    schema = load_schema_from_name('test_list_collector_driving_question')
+    current_location = Location(block_id='summary', section_id='section')
+
+    summary_context = SummaryContext(
+        DEFAULT_LANGUAGE_CODE,
+        schema,
+        AnswerStore([{'answer_id': 'anyone-usually-live-at-answer', 'value': 'No'}]),
+        ListStore(),
+        {},
+    )
+
+    context = summary_context.section_summary(current_location)
+
+    expected = [
+        {
+            'add_link': '/questionnaire/anyone-usually-live-at/',
+            'add_link_text': 'Add someone to this household',
+            'empty_list_text': 'There are no householders',
+            'list_items': [],
+            'title': 'Household members',
+            'list_name': 'people',
+        }
+    ]
+
+    assert context['summary']['list_summaries'] == expected
+
+
+@pytest.mark.usefixtures('app')
+def test_context_for_driving_question_summary_hidden_list_collector(
+    people_answer_store
+):
+    schema = load_schema_from_name('test_list_collector_driving_question')
+    current_location = Location(block_id='summary', section_id='section')
+
+    summary_context = SummaryContext(
+        DEFAULT_LANGUAGE_CODE,
+        schema,
+        AnswerStore(
+            [
+                {'answer_id': 'anyone-usually-live-at-answer', 'value': 'No'},
+                {'answer_id': 'anyone-usually-live-at-answer', 'value': 'No'},
+                {'answer_id': 'first-name', 'value': 'Toni', 'list_item_id': 'PlwgoG'},
+                {
+                    'answer_id': 'last-name',
+                    'value': 'Morrison',
+                    'list_item_id': 'PlwgoG',
+                },
+            ]
+        ),
+        ListStore([{'items': ['PlwgoG'], 'name': 'people'}]),
+        {},
+    )
+
+    context = summary_context.section_summary(current_location)
+
+    expected = [
+        {
+            'add_link': '/questionnaire/anyone-usually-live-at/',
+            'add_link_text': 'Add someone to this household',
+            'empty_list_text': 'There are no householders',
+            'list_items': [
+                {
+                    'edit_link': '/questionnaire/people/PlwgoG/anyone-else-temp-away-edit-person/',
+                    'item_title': 'Toni Morrison',
+                    'primary_person': False,
+                    'remove_link': '/questionnaire/people/PlwgoG/anyone-else-temp-away-remove-person/',
+                }
+            ],
+            'title': 'Household members',
+            'list_name': 'people',
+        }
+    ]
+
+    assert context['summary']['list_summaries'] == expected
+
+
+@pytest.mark.usefixtures('app')
 def test_titles_for_repeating_section_summary(people_answer_store):
     schema = load_schema_from_name('test_repeating_sections_with_hub_and_spoke')
     current_location = Location(

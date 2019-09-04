@@ -102,24 +102,36 @@ class SummaryContext:
                     repeating_title, list_item_id
                 )
 
-        list_collector_blocks = self._schema.get_visible_list_blocks_for_section(
+        visible_list_collector_blocks, hidden_list_collector_blocks = self._schema.get_visible_list_blocks_for_section(
             section
         )
+
+        list_collectors = visible_list_collector_blocks + hidden_list_collector_blocks
 
         list_summaries = []
 
         section_path = self._path_finder.routing_path(section_id, list_item_id)
         section_path_block_ids = [location.block_id for location in section_path]
+        accessible_collector_blocks = [
+            block for block in list_collectors if block['id'] in section_path_block_ids
+        ]
 
-        for list_collector_block in list_collector_blocks:
-            driving_question_block = QuestionnaireSchema.get_driving_question_for_section(section, list_collector_block['for_list'])
+        for list_collector_block in visible_list_collector_blocks:
+            driving_question_block = QuestionnaireSchema.get_driving_question_for_section(
+                section, list_collector_block['for_list']
+            )
+
+            list_collector_to_summarise = list_collector_block
 
             add_link_list_name = list_collector_block['for_list']
             add_link_block_id = list_collector_block['add_block']['id']
 
             if list_collector_block['id'] not in section_path_block_ids:
-                add_link_list_name = None
-                add_link_block_id = driving_question_block['id']
+                list_collector_to_summarise = accessible_collector_blocks[0]
+
+                if driving_question_block:
+                    add_link_list_name = None
+                    add_link_block_id = driving_question_block['id']
 
             rendered_summary = placeholder_renderer.render(
                 list_collector_block['summary'], list_item_id
@@ -135,7 +147,7 @@ class SummaryContext:
                 'add_link_text': rendered_summary['add_link_text'],
                 'empty_list_text': rendered_summary['empty_list_text'],
                 'list_items': build_list_items_summary_context(
-                    list_collector_block,
+                    list_collector_to_summarise,
                     self._schema,
                     self._answer_store,
                     self._list_store,

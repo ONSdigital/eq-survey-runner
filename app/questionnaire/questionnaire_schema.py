@@ -15,10 +15,7 @@ LIST_COLLECTOR_CHILDREN = [
     'PrimaryPersonListAddOrEditQuestion',
 ]
 
-QUESTION_BLOCK_TYPES = [
-    'Question',
-    'ListCollectorDrivingQuestion'
-]
+QUESTION_BLOCK_TYPES = ['Question', 'ListCollectorDrivingQuestion']
 
 
 class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
@@ -46,7 +43,10 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def get_driving_question_for_section(section, list_name):
         for group in section['groups']:
             for block in group['blocks']:
-                if block['type'] == 'ListCollectorDrivingQuestion' and list_name == block['for_list']:
+                if (
+                    block['type'] == 'ListCollectorDrivingQuestion'
+                    and list_name == block['for_list']
+                ):
                     return block
         return None
 
@@ -173,13 +173,19 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     @staticmethod
     def get_visible_list_blocks_for_section(section):
-        list_collector_blocks = []
+        visible_list_collector_blocks = []
+        hidden_list_collector_blocks = []
+
         for group in section['groups']:
             for block in group['blocks']:
                 hidden = block.get('hide_on_section_summary', False)
-                if block['type'] == 'ListCollector' and not hidden:
-                    list_collector_blocks.append(block)
-        return list_collector_blocks
+                if block['type'] == 'ListCollector':
+                    if hidden:
+                        hidden_list_collector_blocks.append(block)
+                    else:
+                        visible_list_collector_blocks.append(block)
+
+        return visible_list_collector_blocks, hidden_list_collector_blocks
 
     @classmethod
     def get_answer_ids_for_question(cls, question):

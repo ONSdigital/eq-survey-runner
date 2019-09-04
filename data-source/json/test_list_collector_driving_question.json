@@ -3,9 +3,9 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.3",
     "survey_id": "0",
-    "title": "Test RedirectToListAddQuestion action",
+    "title": "Test ListCollectorDrivingQuestion",
     "theme": "default",
-    "description": "A questionnaire to test RedirectToListAddQuestion answer action",
+    "description": "A questionnaire to test ListCollectorDrivingQuestion",
     "metadata": [
         {
             "name": "user_id",
@@ -80,7 +80,7 @@
                             "routing_rules": [
                                 {
                                     "goto": {
-                                        "block": "summary",
+                                        "block": "anyone-else-temp-away-list-collector",
                                         "when": [
                                             {
                                                 "id": "anyone-usually-live-at-answer",
@@ -138,17 +138,6 @@
                                     "id": "add-question",
                                     "type": "General",
                                     "title": "What is the name of the person?",
-                                    "guidance": {
-                                        "contents": [
-                                            {
-                                                "title": "Previous link",
-                                                "list": [
-                                                    "If a valid <strong>return_to</strong> is in the URL and list <strong>is</strong> empty - Returns you back to the question you just came from.",
-                                                    "If the list is <strong>not</strong> empty - Go back to the list collector."
-                                                ]
-                                            }
-                                        ]
-                                    },
                                     "answers": [
                                         {
                                             "id": "first-name",
@@ -239,6 +228,219 @@
                                 "add_link_text": "Add someone to this household",
                                 "empty_list_text": "There are no householders"
                             }
+                        },
+                        {
+                           "id": "anyone-else-temp-away-list-collector",
+                           "type": "ListCollector",
+                           "for_list": "people",
+                           "hide_on_section_summary": true,
+                           "add_answer": {
+                              "id": "anyone-else-temp-away-answer",
+                              "value": "Yes, I need to add someone"
+                           },
+                           "add_block": {
+                              "id": "anyone-else-temp-away-add-person",
+                              "question": {
+                                 "answers": [
+                                    {
+                                       "id": "first-name",
+                                       "label": "First name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    },
+                                    {
+                                       "id": "last-name",
+                                       "label": "Last name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    }
+                                 ],
+                                 "id": "anyone-else-temp-away-add-question",
+                                 "title": "Who do you need to add?",
+                                 "type": "General"
+                              },
+                              "type": "ListAddQuestion"
+                           },
+                           "edit_block": {
+                              "id": "anyone-else-temp-away-edit-person",
+                              "question": {
+                                 "answers": [
+                                    {
+                                       "id": "first-name",
+                                       "label": "First name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    },
+                                    {
+                                       "id": "last-name",
+                                       "label": "Last name",
+                                       "mandatory": true,
+                                       "type": "TextField"
+                                    }
+                                 ],
+                                 "id": "anyone-else-temp-away-edit-question",
+                                 "title": {
+                                    "placeholders": [
+                                       {
+                                          "placeholder": "person_name",
+                                          "transforms": [
+                                             {
+                                                "arguments": {
+                                                   "delimiter": " ",
+                                                   "list_to_concatenate": {
+                                                      "identifier": [
+                                                         "first-name",
+                                                         "last-name"
+                                                      ],
+                                                      "source": "answers"
+                                                   }
+                                                },
+                                                "transform": "concatenate_list"
+                                             }
+                                          ]
+                                       }
+                                    ],
+                                    "text": "Change details for {person_name}"
+                                 },
+                                 "type": "General"
+                              },
+                              "type": "ListEditQuestion"
+                           },
+                           "question": {
+                              "answers": [
+                                 {
+                                    "guidance": {
+                                       "contents": [
+                                          {
+                                             "description": "We ask this question to help ensure that everyone is correctly counted in the census. This includes people who are staying temporarily or are away."
+                                          }
+                                       ],
+                                       "hide_guidance": "Why do we ask this question?",
+                                       "show_guidance": "Why do we ask this question?"
+                                    },
+                                    "id": "anyone-else-temp-away-answer",
+                                    "mandatory": true,
+                                    "options": [
+                                       {
+                                          "label": "Yes, I need to add someone",
+                                          "value": "Yes, I need to add someone"
+                                       },
+                                       {
+                                          "label": "No, I do not need to add anyone",
+                                          "value": "No, I do not need to add anyone"
+                                       }
+                                    ],
+                                    "type": "Radio"
+                                 }
+                              ],
+                              "guidance": {
+                                 "contents": [
+                                    {
+                                       "title": "Include people who are temporarily away"
+                                    },
+                                    {
+                                       "list": [
+                                          "People who work away from home within the UK if this is their permanent or family home",
+                                          "Members of the armed forces if this is their permanent or family home",
+                                          "People who are temporarily outside the UK for less than <strong>12 months</strong>",
+                                          "Other people who usually live here but are temporarily away"
+                                       ]
+                                    },
+                                    {
+                                       "title": "Include people who are temporarily staying"
+                                    },
+                                    {
+                                       "list": [
+                                          "People staying temporarily who usually live in the UK but do not have another UK address for example, relatives, friends",
+                                          "People who usually live outside the UK who are staying in the UK for <strong>3 months or more</strong>"
+                                       ]
+                                    }
+                                 ]
+                              },
+                              "id": "anyone-else-temp-away-confirmation-question",
+                              "title": "Apart from the people already included, is there anyone who is temporarily away or staying you need to add?",
+                              "type": "General"
+                           },
+                           "remove_answer": {
+                              "id": "anyone-else-temp-away-remove-confirmation",
+                              "value": "Yes, I want to remove this person"
+                           },
+                           "remove_block": {
+                              "id": "anyone-else-temp-away-remove-person",
+                              "question": {
+                                 "answers": [
+                                    {
+                                       "id": "anyone-else-temp-away-remove-confirmation",
+                                       "mandatory": true,
+                                       "options": [
+                                          {
+                                             "label": "Yes, I want to remove this person",
+                                             "value": "Yes, I want to remove this person"
+                                          },
+                                          {
+                                             "label": "No, I do not want to remove this person",
+                                             "value": "No, I do not want to remove this person"
+                                          }
+                                       ],
+                                       "type": "Radio"
+                                    }
+                                 ],
+                                 "id": "anyone-else-temp-away-remove-question",
+                                 "title": {
+                                    "placeholders": [
+                                       {
+                                          "placeholder": "person_name",
+                                          "transforms": [
+                                             {
+                                                "arguments": {
+                                                   "delimiter": " ",
+                                                   "list_to_concatenate": {
+                                                      "identifier": [
+                                                         "first-name",
+                                                         "last-name"
+                                                      ],
+                                                      "source": "answers"
+                                                   }
+                                                },
+                                                "transform": "concatenate_list"
+                                             }
+                                          ]
+                                       }
+                                    ],
+                                    "text": "Are you sure you want to remove {person_name}?"
+                                 },
+                                 "type": "General"
+                              },
+                              "type": "ListRemoveQuestion"
+                           },
+                           "summary": {
+                              "add_link_text": "Add another visitor to this household",
+                              "empty_list_text": "There are no visitors",
+                              "item_title": {
+                                 "placeholders": [
+                                    {
+                                       "placeholder": "person_name",
+                                       "transforms": [
+                                          {
+                                             "arguments": {
+                                                "delimiter": " ",
+                                                "list_to_concatenate": {
+                                                   "identifier": [
+                                                      "first-name",
+                                                      "last-name"
+                                                   ],
+                                                   "source": "answers"
+                                                }
+                                             },
+                                             "transform": "concatenate_list"
+                                          }
+                                       ]
+                                    }
+                                 ],
+                                 "text": "{person_name}"
+                              },
+                              "title": "Household members"
+                           }
                         },
                         {
                             "type": "SectionSummary",
