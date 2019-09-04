@@ -1,6 +1,7 @@
 from typing import Mapping, Sequence, Union
 
-from app.data_model.answer import Answer
+from jinja2 import escape, Markup
+
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.placeholder_transforms import PlaceholderTransforms
 
@@ -39,11 +40,11 @@ class PlaceholderParser:
 
     def _lookup_answer(
         self, answer_id: str, list_item_id: str = None
-    ) -> Union[Answer, None]:
-        try:
-            return self._answer_store.get_answer(answer_id, list_item_id).value
-        except AttributeError:
-            return None
+    ) -> Union[Markup, None]:
+        answer = self._answer_store.get_answer(answer_id, list_item_id)
+        if answer:
+            return escape(answer.value)
+        return None
 
     def _parse_placeholder(self, placeholder: Mapping) -> Mapping:
         try:

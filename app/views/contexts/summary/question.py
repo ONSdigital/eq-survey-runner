@@ -1,5 +1,7 @@
 import collections
 
+from jinja2 import escape
+
 from app.views.contexts.summary.answer import Answer
 
 
@@ -20,6 +22,8 @@ class Question:
     def _get_answer(self, answer_store, answer_id):
         answer = answer_store.get_answer(answer_id, self.list_item_id)
         if answer:
+            if isinstance(answer.value, str):
+                return escape(answer.value)
             return answer.value
 
         return None
