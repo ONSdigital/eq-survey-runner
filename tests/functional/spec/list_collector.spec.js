@@ -8,7 +8,7 @@ const ListCollectorAddPage = require('../generated_pages/list_collector/list-col
 const ListCollectorEditPage = require('../generated_pages/list_collector/list-collector-edit.page.js');
 const ListCollectorRemovePage = require('../generated_pages/list_collector/list-collector-remove.page.js');
 const NextInterstitialPage = require('../generated_pages/list_collector/next-interstitial.page.js');
-const SummaryPage = require('../generated_pages/list_collector/summary.page.js');
+const SummaryPage = require('../generated_pages/list_collector/group-summary.page.js');
 
 const PrimaryPersonListCollectorPage = require('../generated_pages/list_collector_section_summary/primary-person-list-collector.page.js');
 const PrimaryPersonListCollectorAddPage = require('../generated_pages/list_collector_section_summary/primary-person-list-collector-add.page.js');
