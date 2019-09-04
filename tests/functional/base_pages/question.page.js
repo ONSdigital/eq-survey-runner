@@ -35,7 +35,7 @@ class QuestionPage extends BasePage {
 
   switchLanguage(language_code) { return 'a[href="?language_code=' + language_code + '"]'; }
 
-  hubLink(route) { return 'a[href="/' + route + '/"]'; }
+  hubLink(route) { return 'a[href="/questionnaire/"]'; }
 }
 
 module.exports = QuestionPage;
