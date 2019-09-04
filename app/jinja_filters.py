@@ -269,9 +269,12 @@ class RelationshipRadioConfig:
         self.label = LabelConfig(option.id, option.label.text, label_description)
 
         if answer_option:
+            # the 'pre-' prefix is added to the attributes here so that html minification
+            # doesn't mess with the attribute contents (the 'pre-' is removed during minification).
+            # see https://htmlmin.readthedocs.io/en/latest/quickstart.html
             self.attributes = {
-                'data-title': answer_option['title'],
-                'data-playback': answer_option['playback'],
+                'pre-data-title': escape(answer_option['title']),
+                'pre-data-playback': escape(answer_option['playback']),
             }
 
 

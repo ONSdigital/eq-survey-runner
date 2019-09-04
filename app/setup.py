@@ -218,6 +218,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
                     response.get_data(as_text=True),
                     remove_comments=True,
                     remove_empty_space=True,
+                    remove_optional_attribute_quotes=False,
                 )
             )
 
