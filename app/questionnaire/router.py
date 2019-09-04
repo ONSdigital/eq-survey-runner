@@ -37,13 +37,10 @@ class Router:
         return False
 
     def can_access_hub(self):
-        if self._schema.is_hub_enabled() and all(
+        return self._schema.is_hub_enabled() and all(
             self._progress_store.is_section_complete(section_id)
             for section_id in self._schema.get_section_ids_required_for_hub()
-        ):
-            return True
-
-        return False
+        )
 
     def get_next_location_url(self, location, routing_path):
         """
