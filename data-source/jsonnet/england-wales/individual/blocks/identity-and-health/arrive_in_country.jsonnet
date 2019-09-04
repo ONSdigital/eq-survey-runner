@@ -94,7 +94,7 @@ function(region_code, census_month_year_date) {
     },
     {
       goto: {
-        block: 'when-arrive-in-uk',
+        block: if region_code == 'GB-WLS' then 'understand-welsh' else 'language',
       },
     },
   ],
