@@ -8,7 +8,6 @@ def build_question_context(rendered_block, form):
             'question_errors': form.question_errors,
             'mapped_errors': form.map_errors(),
             'answer_errors': {},
-            'data': {},
             'fields': {},
         },
     }
@@ -25,9 +24,6 @@ def build_question_context(rendered_block, form):
 
     for answer_id in answer_ids:
         context['form']['answer_errors'][answer_id] = form.answer_errors(answer_id)
-
-        if hasattr(form, 'get_data'):
-            context['form']['data'][answer_id] = form.get_data(answer_id)
 
         if answer_id in form:
             context['form']['fields'][answer_id] = form[answer_id]
