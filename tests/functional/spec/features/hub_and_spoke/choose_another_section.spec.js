@@ -20,7 +20,7 @@ describe('Choose another section link', function () {
       .then(() => {
         return browser
           .click(HubPage.submit())
-          .getText(EmploymentStatusBlockPage.hubLink()).should.not.eventually.contain('Choose another section and return to this later');
+          .getText(EmploymentStatusBlockPage.returnToHubLink()).should.not.eventually.contain('Choose another section and return to this later');
 
       });
   });
@@ -32,7 +32,7 @@ describe('Choose another section link', function () {
           .click(EmploymentStatusBlockPage.workingAsAnEmployee())
           .click(EmploymentStatusBlockPage.submit())
           .click(HubPage.summaryRowLink(2))
-          .getText(ProxyPage.hubLink()).should.eventually.contain('Choose another section and return to this later');
+          .getText(ProxyPage.returnToHubLink()).should.eventually.contain('Choose another section and return to this later');
 
       });
   });
