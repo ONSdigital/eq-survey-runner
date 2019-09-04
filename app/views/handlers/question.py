@@ -1,5 +1,5 @@
-from werkzeug.utils import cached_property
 from flask import url_for
+from werkzeug.utils import cached_property
 
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
