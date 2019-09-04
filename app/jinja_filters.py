@@ -279,16 +279,7 @@ class OtherConfig:
     def __init__(self, detail_answer):
         self.id = detail_answer.id
         self.name = detail_answer.name
-
-        if detail_answer.data or detail_answer.data == 0:
-            self.value = detail_answer.data
-        elif detail_answer.raw_data and (
-            detail_answer.raw_data[0] or detail_answer.raw_data[0] == 0
-        ):
-            self.value = detail_answer.raw_data[0]
-        else:
-            self.value = ''
-
+        self.value = escape(detail_answer._value())
         self.label = LabelConfig(detail_answer.id, detail_answer.label.text)
 
 
