@@ -68,7 +68,14 @@ def test_group_serialize_hide_on_summary_true(
     metadata = mocker.MagicMock()
 
     group = Group(
-        schema, path, answer_store, list_store, metadata, None, Location('test', 'test')
+        schema,
+        path,
+        answer_store,
+        list_store,
+        metadata,
+        None,
+        Location('test', 'test'),
+        'en',
     )
 
     assert len(group.blocks) == 1
@@ -86,7 +93,14 @@ def test_group_serialize_hide_on_summary_not_set(
     del schema['blocks'][1]['hide_on_section_summary']
 
     group = Group(
-        schema, path, answer_store, list_store, metadata, None, Location('test', 'test')
+        schema,
+        path,
+        answer_store,
+        list_store,
+        metadata,
+        None,
+        Location('test', 'test'),
+        'en',
     )
 
     assert len(group.blocks) == 2
@@ -104,7 +118,14 @@ def test_group_serialize_hide_on_summary_false(
     schema['blocks'][1]['hide_on_section_summary'] = False
 
     group = Group(
-        schema, path, answer_store, list_store, metadata, None, Location('test', 'test')
+        schema,
+        path,
+        answer_store,
+        list_store,
+        metadata,
+        None,
+        Location('test', 'test'),
+        'en',
     )
 
     assert len(group.blocks) == 2
