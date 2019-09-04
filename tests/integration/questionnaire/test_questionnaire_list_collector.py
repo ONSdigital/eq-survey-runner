@@ -145,9 +145,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.post({'another-anyone-else': 'No'})
 
-        self.post()
-
-        self.assertInBody('Thank you for submitting your census')
+        self.assertInBody('This section is now complete')
 
     def test_optional_list_collector_submission(self):
         self.launchSurvey('test_list_collector')
@@ -162,6 +160,4 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.post({'another-anyone-else': 'No'})
 
-        self.post()
-
-        self.assertInBody('Thank you for submitting your census')
+        self.assertInBody('This section is now complete')

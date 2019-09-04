@@ -359,7 +359,7 @@ def test_primary_person_list_item_conversion(fake_questionnaire_store):
     routing_path = [
         Location(section_id='section-1', block_id='primary-person-list-collector'),
         Location(section_id='section-1', block_id='list-collector'),
-        Location(section_id='section-2', block_id='summary'),
+        Location(section_id='section-1', block_id='group-summary'),
     ]
 
     answer_objects = [
@@ -402,7 +402,7 @@ def test_list_item_conversion(fake_questionnaire_store):
         Location(section_id='section-1', block_id='list-collector'),
         Location(section_id='section-1', block_id='next-interstitial'),
         Location(section_id='section-1', block_id='another-list-collector-block'),
-        Location(section_id='section-2', block_id='summary'),
+        Location(section_id='section-1', block_id='group-summary'),
     ]
 
     answer_objects = [
@@ -444,7 +444,7 @@ def test_list_item_conversion_empty_list(fake_questionnaire_store):
         Location(section_id='section-1', block_id='list-collector'),
         Location(section_id='section-1', block_id='next-interstitial'),
         Location(section_id='section-1', block_id='another-list-collector-block'),
-        Location(section_id='section-2', block_id='summary'),
+        Location(section_id='section-1', block_id='group-summary'),
     ]
 
     answer_objects = [
@@ -502,7 +502,7 @@ def test_list_structure_in_payload_is_as_expected(fake_questionnaire_store):
     routing_path = [
         Location(section_id='section-1', block_id='primary-person-list-collector'),
         Location(section_id='section-1', block_id='list-collector'),
-        Location(section_id='section-2', block_id='summary'),
+        Location(section_id='section-1', block_id='group-summary'),
     ]
 
     answer_objects = [
@@ -545,7 +545,7 @@ def test_primary_person_not_in_payload_when_not_answered(fake_questionnaire_stor
         Location(section_id='section-1', block_id='list-collector'),
         Location(section_id='section-1', block_id='next-interstitial'),
         Location(section_id='section-1', block_id='another-list-collector-block'),
-        Location(section_id='section-2', block_id='summary'),
+        Location(section_id='section-1', block_id='group-summary'),
     ]
 
     answer_objects = [
