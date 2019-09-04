@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-02 11:22+0100\n"
+"POT-Creation-Date: 2019-09-04 14:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -373,9 +373,6 @@ msgstr ""
 msgid "Include people who are temporarily staying"
 msgstr ""
 
-msgid "All of the data entered about this person will be deleted"
-msgstr ""
-
 msgid "Include"
 msgstr ""
 
@@ -662,7 +659,7 @@ msgstr ""
 
 msgid ""
 "Names of the people living at this address including anyone temporarily "
-"away or who has been or intends to be in the UK for 3 months or more."
+"away."
 msgstr ""
 
 msgid "Names of visitors staying overnight at this address on 13 October 2019"
@@ -802,7 +799,7 @@ msgstr ""
 
 msgid ""
 "Apart from the people already included, is there anyone who is "
-"temporarily away or staying that you need to add to {address}?"
+"temporarily away or staying you need to add to {address}?"
 msgstr ""
 
 msgid "Are there any visitors staying overnight on {census_date} at {address}?"
@@ -1261,14 +1258,14 @@ msgstr ""
 #. answer-id: anyone-else-temp-away-answer
 msgctxt ""
 "Answer for: Apart from the people already included, is there anyone who "
-"is temporarily away or staying that you need to add to {address}?"
+"is temporarily away or staying you need to add to {address}?"
 msgid "Yes, I need to add someone"
 msgstr ""
 
 #. answer-id: anyone-else-temp-away-answer
 msgctxt ""
 "Answer for: Apart from the people already included, is there anyone who "
-"is temporarily away or staying that you need to add to {address}?"
+"is temporarily away or staying you need to add to {address}?"
 msgid "No, I do not need to add anyone"
 msgstr ""
 
@@ -1348,7 +1345,7 @@ msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt "Answer for: {second_person_name} is your <em>…</em>"
-msgid "Same-sex civil partner"
+msgid "Legally registered civil partner"
 msgstr ""
 
 #. answer-id: relationship-answer
@@ -1369,11 +1366,6 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "Brother or sister"
-msgstr ""
-
-#. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>…</em>"
-msgid "Stepbrother or stepsister"
 msgstr ""
 
 #. answer-id: relationship-answer
@@ -1417,7 +1409,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
 "their <em>…</em>"
-msgid "Same-sex civil partner"
+msgid "Legally registered civil partner"
 msgstr ""
 
 #. answer-id: relationship-answer
@@ -1446,13 +1438,6 @@ msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
 "their <em>…</em>"
 msgid "Brother or sister"
-msgstr ""
-
-#. answer-id: relationship-answer
-msgctxt ""
-"Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>…</em>"
-msgid "Stepbrother or stepsister"
 msgstr ""
 
 #. answer-id: relationship-answer
@@ -4956,7 +4941,7 @@ msgstr ""
 
 #. answer-id: relationship-answer
 msgctxt "Answer for: {second_person_name} is your <em>…</em>"
-msgid "{second_person_name} is your <em>Same-sex civil partner</em>"
+msgid "{second_person_name} is your <em>legally registered civil partner</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
@@ -4977,11 +4962,6 @@ msgstr ""
 #. answer-id: relationship-answer
 msgctxt "Answer for: {second_person_name} is your <em>…</em>"
 msgid "{second_person_name} is your <em>brother or sister</em>"
-msgstr ""
-
-#. answer-id: relationship-answer
-msgctxt "Answer for: {second_person_name} is your <em>…</em>"
-msgid "{second_person_name} is your <em>stepbrother or stepsister</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
@@ -5042,8 +5022,8 @@ msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
 "their <em>…</em>"
 msgid ""
-"{second_person_name} is {first_person_name_possessive} <em>Same-sex civil"
-" partner</em>"
+"{second_person_name} is {first_person_name_possessive} <em>legally "
+"registered civil partner</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
@@ -5051,8 +5031,8 @@ msgctxt ""
 "Answer for: Thinking of {first_person_name}, {second_person_name} is "
 "their <em>…</em>"
 msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their <em>Same-"
-"sex civil partner</em>"
+"Thinking of {first_person_name}, {second_person_name} is their "
+"<em>legally registered civil partner</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
@@ -5121,24 +5101,6 @@ msgctxt ""
 msgid ""
 "Thinking of {first_person_name}, {second_person_name} is their "
 "<em>brother or sister</em>"
-msgstr ""
-
-#. answer-id: relationship-answer
-msgctxt ""
-"Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>…</em>"
-msgid ""
-"{second_person_name} is {first_person_name_possessive} <em>stepbrother or"
-" stepsister</em>"
-msgstr ""
-
-#. answer-id: relationship-answer
-msgctxt ""
-"Answer for: Thinking of {first_person_name}, {second_person_name} is "
-"their <em>…</em>"
-msgid ""
-"Thinking of {first_person_name}, {second_person_name} is their "
-"<em>stepbrother or stepsister</em>"
 msgstr ""
 
 #. answer-id: relationship-answer
