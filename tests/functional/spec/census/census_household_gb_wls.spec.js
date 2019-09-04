@@ -107,8 +107,8 @@ import AnyoneElseListCollectorEdit from '../../generated_pages/census_household_
 import MixedEthnicGroup from '../../generated_pages/census_household_gb_wls/mixed-ethnic-group.page.js';
 
 const HAS_PRIMARY = true;
-const NO_OF_HOUSEHOLDERS = 14;
-const NO_OF_HOUSEHOLDER_TEMP_AWAY = 10;
+const NO_OF_HOUSEHOLDERS = 5;
+const NO_OF_HOUSEHOLDER_TEMP_AWAY = 5;
 const NO_OF_VISITORS = 5; // Default 1
 
 const TOTAL_HOUSEHOLDERS = HAS_PRIMARY + NO_OF_HOUSEHOLDERS + NO_OF_HOUSEHOLDER_TEMP_AWAY;
@@ -152,10 +152,17 @@ const completeRelationships = () => {
   ];
 
   for (let i = 1; i <= totalRelationships; i++) {
-    chain = chain.then(() => browser
-    // Pick a random relationship
-      .click(relationships[Math.floor(Math.random() * relationships.length)]())
-      .click(Relationships.submit()));
+    chain = chain.then(() => {
+      console.log(`${i} Relationships Completed`);
+      var today = new Date();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      console.log(time);
+
+      return browser
+      // Pick a random relationship
+        .click(relationships[Math.floor(Math.random() * relationships.length)]())
+        .click(Relationships.submit());
+    });
   }
 
   return chain;
@@ -166,141 +173,148 @@ const completeHouseholderRepeatingSection = () => {
   let chain = browser.waitForVisible(IndividualInterstitial.questionText()).should.eventually.be.true;
 
   for (let i = 1; i <= TOTAL_HOUSEHOLDERS; i++) {
-    chain = chain.then(() => browser
-      .click(HubPage.submit())
-      .click(IndividualInterstitial.submit())
+    chain = chain.then(() => {
+        console.log(`${i} Householders Repeating Section Completed`);
+        var today = new Date();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        console.log(time);
 
-      .click(Proxy.no())
-      .click(Proxy.submit())
+        return browser
+          .click(HubPage.submit())
+          .click(IndividualInterstitial.submit())
 
-      .setValue(DateOfBirth.day(), 1)
-      .setValue(DateOfBirth.month(), 1)
-      .setValue(DateOfBirth.year(), 2000)
-      .click(DateOfBirth.submit())
+          .click(Proxy.no())
+          .click(Proxy.submit())
 
-      .click(ConfirmDob.confirmDateOfBirthYes())
-      .click(ConfirmDob.submit())
+          .setValue(DateOfBirth.day(), 1)
+          .setValue(DateOfBirth.month(), 1)
+          .setValue(DateOfBirth.year(), 2000)
+          .click(DateOfBirth.submit())
 
-      .click(Sex.male())
-      .click(Sex.submit())
+          .click(ConfirmDob.confirmDateOfBirthYes())
+          .click(ConfirmDob.submit())
 
-      .click(MarriageType.never())
-      .click(MarriageType.submit())
+          .click(Sex.male())
+          .click(Sex.submit())
 
-      .click(AnotherAddress.no())
-      .click(AnotherAddress.submit())
+          .click(MarriageType.never())
+          .click(MarriageType.submit())
 
-      .click(InEducation.yes())
-      .click(InEducation.submit())
+          .click(AnotherAddress.no())
+          .click(AnotherAddress.submit())
 
-      .click(TermTimeLocation.householdAddress())
-      .click(TermTimeLocation.submit())
+          .click(InEducation.yes())
+          .click(InEducation.submit())
 
-      .click(CountryOfBirth.wales())
-      .click(DateOfBirth.submit())
+          .click(TermTimeLocation.householdAddress())
+          .click(TermTimeLocation.submit())
 
-      .click(UnderstandWelsh.exclusiveNoneOfTheseApply())
-      .click(UnderstandWelsh.submit())
+          .click(CountryOfBirth.wales())
+          .click(DateOfBirth.submit())
 
-      .click(Language.englishOrWelsh())
-      .click(Language.submit())
+          .click(UnderstandWelsh.exclusiveNoneOfTheseApply())
+          .click(UnderstandWelsh.submit())
 
-      .click(NationalIdentity.welsh())
-      .click(NationalIdentity.submit())
+          .click(Language.englishOrWelsh())
+          .click(Language.submit())
 
-      .click(EthnicGroup.white())
-      .click(EthnicGroup.submit())
+          .click(NationalIdentity.welsh())
+          .click(NationalIdentity.submit())
 
-      .click(WhiteEthnicGroup.welshEnglishScottishNorthernIrishOrBritish())
-      .click(WhiteEthnicGroup.submit())
+          .click(EthnicGroup.white())
+          .click(EthnicGroup.submit())
 
-      .click(Religion.noReligion())
-      .click(Religion.submit())
+          .click(WhiteEthnicGroup.welshEnglishScottishNorthernIrishOrBritish())
+          .click(WhiteEthnicGroup.submit())
 
-      .click(PastUsualHouseholdAddress.pastUsualAddressHouseholdHouseholdAddress())
-      .click(PastUsualHouseholdAddress.submit())
+          .click(Religion.noReligion())
+          .click(Religion.submit())
 
-      .click(Passports.unitedKingdom())
-      .click(Passports.submit())
+          .click(PastUsualHouseholdAddress.pastUsualAddressHouseholdHouseholdAddress())
+          .click(PastUsualHouseholdAddress.submit())
 
-      .click(Health.veryGood())
-      .click(Health.submit())
+          .click(Passports.unitedKingdom())
+          .click(Passports.submit())
 
-      .click(Disability.yes())
-      .click(Disability.submit())
+          .click(Health.veryGood())
+          .click(Health.submit())
 
-      .click(DisabilityLimitation.yesALittle())
-      .click(DisabilityLimitation.submit())
+          .click(Disability.yes())
+          .click(Disability.submit())
 
-      .click(Carer.no())
-      .click(Carer.submit())
+          .click(DisabilityLimitation.yesALittle())
+          .click(DisabilityLimitation.submit())
 
-      .click(SexualIdentity.straightOrHeterosexual())
-      .click(SexualIdentity.submit())
+          .click(Carer.no())
+          .click(Carer.submit())
 
-      .click(BirthGender.yes())
-      .click(BirthGender.submit())
+          .click(SexualIdentity.straightOrHeterosexual())
+          .click(SexualIdentity.submit())
 
-      .click(Qualifications.submit())
+          .click(BirthGender.yes())
+          .click(BirthGender.submit())
 
-      .click(Apprenticeship.no())
-      .click(Apprenticeship.submit())
+          .click(Qualifications.submit())
 
-      .click(Degree.yes())
-      .click(Degree.submit())
+          .click(Apprenticeship.no())
+          .click(Apprenticeship.submit())
 
-      .click(NvqLevel.exclusiveNoneOfTheseApply())
-      .click(NvqLevel.submit())
+          .click(Degree.yes())
+          .click(Degree.submit())
 
-      .click(ALevel.answer2OrMoreALevels())
-      .click(ALevel.submit())
+          .click(NvqLevel.exclusiveNoneOfTheseApply())
+          .click(NvqLevel.submit())
 
-      .click(Gcse.answer5OrMoreGcses())
-      .click(Gcse.submit())
+          .click(ALevel.answer2OrMoreALevels())
+          .click(ALevel.submit())
 
-      .click(ArmedForces.no())
-      .click(ArmedForces.submit())
+          .click(Gcse.answer5OrMoreGcses())
+          .click(Gcse.submit())
 
-      .click(EmploymentStatus.workingAsAnEmployee())
-      .click(EmploymentStatus.submit())
+          .click(ArmedForces.no())
+          .click(ArmedForces.submit())
 
-      .click(MainEmploymentBlock.submit())
+          .click(EmploymentStatus.workingAsAnEmployee())
+          .click(EmploymentStatus.submit())
 
-      .click(MainJobType.employee())
-      .click(MainJobType.submit())
+          .click(MainEmploymentBlock.submit())
 
-      .setValue(BusinessName.answer(), 'ONS')
-      .click(BusinessName.submit())
+          .click(MainJobType.employee())
+          .click(MainJobType.submit())
 
-      .setValue(JobTitle.answer(), 'Part time Dev')
-      .click(JobTitle.submit())
+          .setValue(BusinessName.answer(), 'ONS')
+          .click(BusinessName.submit())
 
-      .setValue(JobDescription.answer(), 'Browse Stack Overflow')
-      .click(JobDescription.submit())
+          .setValue(JobTitle.answer(), 'Part time Dev')
+          .click(JobTitle.submit())
 
-      .setValue(EmployersBusiness.answer(), 'Publish statistics')
-      .click(EmployersBusiness.submit())
+          .setValue(JobDescription.answer(), 'Browse Stack Overflow')
+          .click(JobDescription.submit())
 
-      .click(Supervise.no())
-      .click(Supervise.submit())
+          .setValue(EmployersBusiness.answer(), 'Publish statistics')
+          .click(EmployersBusiness.submit())
 
-      .click(HoursWorked.answer0To15Hours())
-      .click(HoursWorked.submit())
+          .click(Supervise.no())
+          .click(Supervise.submit())
 
-      .click(WorkTravel.drivingACarOrVan())
-      .click(WorkTravel.submit())
+          .click(HoursWorked.answer0To15Hours())
+          .click(HoursWorked.submit())
 
-      .click(EmployerTypeOfAddress.atAWorkplace())
-      .click(EmployerTypeOfAddress.submit())
+          .click(WorkTravel.drivingACarOrVan())
+          .click(WorkTravel.submit())
 
-      .setValue(EmployerAddressWorkplace.building(), 'Government Buildings')
-      .setValue(EmployerAddressWorkplace.street(), 'Cardiff Rd')
-      .setValue(EmployerAddressWorkplace.city(), 'Duffryn, Newport')
-      .setValue(EmployerAddressWorkplace.county(), 'Gwent')
-      .setValue(EmployerAddressWorkplace.employerAdressWorkplacePostcode(), 'NP10 8XG')
-      .click(EmployerAddressWorkplace.submit())
+          .click(EmployerTypeOfAddress.atAWorkplace())
+          .click(EmployerTypeOfAddress.submit())
 
-      .click(Summary.submit())
+          .setValue(EmployerAddressWorkplace.building(), 'Government Buildings')
+          .setValue(EmployerAddressWorkplace.street(), 'Cardiff Rd')
+          .setValue(EmployerAddressWorkplace.city(), 'Duffryn, Newport')
+          .setValue(EmployerAddressWorkplace.county(), 'Gwent')
+          .setValue(EmployerAddressWorkplace.employerAdressWorkplacePostcode(), 'NP10 8XG')
+          .click(EmployerAddressWorkplace.submit())
+
+          .click(Summary.submit());
+      }
     );
   }
 
@@ -311,28 +325,36 @@ const completeVisitorRepeatingSection = () => {
   let chain = browser.waitForVisible(VisitorInterstitial.questionText()).should.eventually.be.true;
 
   for (let i = 1; i <= NO_OF_VISITORS; i++) {
-    chain = chain.then(() => browser
-      .click(HubPage.submit())
-      .click(VisitorInterstitial.submit())
+    chain = chain.then(() => {
+        console.log(`${i} Visitors Repeating Section Completed`);
+        var today = new Date();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        console.log(time);
 
-      .click(VisitorSex.female())
-      .click(VisitorSex.submit())
+        return browser
 
-      .setValue(VisitorDateOfBirth.day(), 3)
-      .setValue(VisitorDateOfBirth.month(), 7)
-      .setValue(VisitorDateOfBirth.year(), 2003)
-      .click(VisitorDateOfBirth.submit())
+          .click(HubPage.submit())
+          .click(VisitorInterstitial.submit())
 
-      .click(UsualHouseholdAddress.anAddressInTheUk())
-      .click(UsualHouseholdAddress.submit())
+          .click(VisitorSex.female())
+          .click(VisitorSex.submit())
 
-      .setValue(UsualAddressDetails.street(), '1 Evelyn Street')
-      .setValue(UsualAddressDetails.city(), 'Barry')
-      .setValue(UsualAddressDetails.county(), 'Vale of Glamorgan')
-      .setValue(UsualAddressDetails.postcode(), 'CF63 4HT')
-      .click(UsualAddressDetails.submit())
+          .setValue(VisitorDateOfBirth.day(), 3)
+          .setValue(VisitorDateOfBirth.month(), 7)
+          .setValue(VisitorDateOfBirth.year(), 2003)
+          .click(VisitorDateOfBirth.submit())
 
-      .click(VisitorSummary.submit())
+          .click(UsualHouseholdAddress.anAddressInTheUk())
+          .click(UsualHouseholdAddress.submit())
+
+          .setValue(UsualAddressDetails.street(), '1 Evelyn Street')
+          .setValue(UsualAddressDetails.city(), 'Barry')
+          .setValue(UsualAddressDetails.county(), 'Vale of Glamorgan')
+          .setValue(UsualAddressDetails.postcode(), 'CF63 4HT')
+          .click(UsualAddressDetails.submit())
+
+          .click(VisitorSummary.submit());
+      }
     );
   }
 
@@ -340,10 +362,10 @@ const completeVisitorRepeatingSection = () => {
 };
 
 
-describe('Census Household: GB-WLS', () => {
+describe('@watch Census Household: GB-WLS', () => {
 
   before('Open Questionnaire', () => helpers.openQuestionnaire('census_household_gb_wls.json')
-    .then(() => browser
+    .then(() => browser.pause(10000)
       .getUrl().should.eventually.contain(WhoLivesHereInterstitial.url())
       .click(WhoLivesHereInterstitial.submit()))
   );
