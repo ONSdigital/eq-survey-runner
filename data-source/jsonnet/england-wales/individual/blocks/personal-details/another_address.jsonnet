@@ -74,6 +74,18 @@ local proxyTitle = {
         when: [
           {
             id: 'another-address-answer',
+            condition: 'not set',
+          },
+          rules.under4,
+        ],
+      },
+    },
+    {
+      goto: {
+        group: 'identity-and-health-group',
+        when: [
+          {
+            id: 'another-address-answer',
             condition: 'equals',
             value: 'No',
           },
