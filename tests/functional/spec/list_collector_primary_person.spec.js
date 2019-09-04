@@ -4,7 +4,9 @@ const ListCollectorAddPage = require('../generated_pages/list_collector_primary_
 const ListCollectorEditPage = require('../generated_pages/list_collector_primary_person/list-collector-edit.page.js');
 const PrimaryPersonListCollectorPage = require('../generated_pages/list_collector_primary_person/primary-person-list-collector.page.js');
 const PrimaryPersonListCollectorAddPage = require('../generated_pages/list_collector_primary_person/primary-person-list-collector-add.page.js');
-const SummaryPage = require('../generated_pages/list_collector/group-summary.page.js');
+const SectionSummaryPage = require('../generated_pages/list_collector/group-summary.page.js');
+const SummaryPage = require('../generated_pages/list_collector_section_summary/summary.page.js');
+const ConfirmationPage = require('../generated_pages/list_collector/confirmation.page.js');
 const ThankYouPage = require('../base_pages/thank-you.page.js');
 
 
@@ -87,11 +89,15 @@ describe('Primary Person List Collector Survey', function() {
         .getText(ListCollectorPage.listLabel(2)).should.eventually.equal('Samuel Clemens');
     });
 
-    it('When the user attempts to submit, then they are shown the confirmation page', function () {
+    it.only('When the user attempts to submit, then they are shown the confirmation page', function () {
       return browser
+        .click(PrimaryPersonListCollectorPage.no())
+        .click(PrimaryPersonListCollectorPage.submit())
         .click(ListCollectorPage.no())
         .click(ListCollectorPage.submit())
-        .getText(SummaryPage.questionText()).should.eventually.contain('Check your answers');
+        .click(SectionSummaryPage.submit())
+        .click(SummaryPage.submit())
+        .getText(ConfirmationPage.questionText()).should.eventually.contain('Thank you');
     });
 
     it('When the user submits, then they are allowed to submit the survey', function () {
