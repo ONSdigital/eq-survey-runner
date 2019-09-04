@@ -575,7 +575,6 @@ def request_wants_json():
 
 
 def set_session_data_language_code(session_store, language_code):
-    existing_language_code = session_store.session_data.language_code
-    if language_code and existing_language_code != language_code:
+    if language_code:
         session_store.session_data.language_code = language_code
         session_store.save()
