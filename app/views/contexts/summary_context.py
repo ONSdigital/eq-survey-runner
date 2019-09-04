@@ -40,6 +40,7 @@ class SummaryContext:
                 self._metadata,
                 self._schema,
                 location,
+                self._language,
             ).serialize()
             for group in section['groups']
         ]
