@@ -5,7 +5,7 @@
 {{ onsInput({
   "id": answer.id,
   "name": input.name,
-  "value": input._value(),
+  "value": input._value() | e,
   "label": {
     "text": answer.label,
     "description": answer.description
