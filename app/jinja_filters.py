@@ -282,10 +282,7 @@ class OtherConfig:
     def __init__(self, detail_answer):
         self.id = detail_answer.id
         self.name = detail_answer.name
-        if detail_answer.data:
-            self.value = escape(detail_answer.data)
-        else:
-            self.value = ''
+        self.value = escape(detail_answer._value())
         self.label = LabelConfig(detail_answer.id, detail_answer.label.text)
 
 
@@ -373,7 +370,7 @@ class SummaryRowItemValue:
     def __init__(self, text, other=None):
         self.text = text
 
-        if other:
+        if other or other == 0:
             self.other = other
 
 

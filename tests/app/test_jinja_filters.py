@@ -14,6 +14,7 @@ from app.jinja_filters import (
     format_duration,
     get_formatted_currency,
     map_list_collector_config,
+    OtherConfig,
 )
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -184,3 +185,12 @@ def test_map_list_collector_config_for_primary_person():
 
     assert output[0]['rowItems'][0]['actions'][0]['url'] == 'primary'
     assert output[1]['rowItems'][0]['actions'][0]['url'] == 'nonprimary'
+
+
+def test_detail_answer_raw_data_used_when_data_not_exist():
+    detail_answer = Mock()
+    detail_answer.data = None
+    detail_answer.raw_data = [0]
+
+    output = OtherConfig(detail_answer)
+    assert output.value == 0
