@@ -83,6 +83,70 @@
                             }
                         },
                         {
+                            "id": "anyone-usually-live-at",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "anyone-usually-live-at-answer",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "action": {
+                                                    "params": {
+                                                        "block_id": "add-person",
+                                                        "list_name": "people"
+                                                    },
+                                                    "type": "RedirectToListAddQuestion"
+                                                },
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "description": "For example, this is a second address or holiday home",
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ],
+                                        "type": "Radio"
+                                    }
+                                ],
+                                "id": "anyone-usually-live-at-question",
+                                "title": "Does anyone usually live at your address?",
+                                "type": "General"
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "group-summary",
+                                        "when": [
+                                            {
+                                                "condition": "equals",
+                                                "id": "anyone-usually-live-at-answer",
+                                                "value": "No, no one usually lives here"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "list-collector"
+                                    }
+                                }
+                            ],
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "condition": "equals",
+                                            "id": "you-live-here",
+                                            "value": "Yes"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "Question"
+                        },
+                        {
                             "id": "list-collector",
                             "type": "ListCollector",
                             "for_list": "people",
