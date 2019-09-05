@@ -15,7 +15,7 @@ from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitte
 
 class TestCreateApp(unittest.TestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
-        self._setting_overrides = {'FLASK_DEBUG': 'True'}
+        self._setting_overrides = {}
 
     @contextmanager
     def override_settings(self):
