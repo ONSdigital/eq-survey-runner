@@ -7,7 +7,7 @@ local rules = import 'rules.libsonnet';
   id: 'usual-address-details',
   question: {
     id: 'usual-address-details-question',
-    title: 'Enter details of this person’s usual UK address',
+    title: 'Enter details of <em>{person_name_possessive}</em> usual UK address',
     type: 'General',
     answers: [
       {
