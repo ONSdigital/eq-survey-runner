@@ -74,10 +74,7 @@ def before_questionnaire_request():
     session_store = get_session_store()
     session_data = session_store.session_data
 
-    language_code = request.args.get('language_code')
-    if language_code:
-        session_data.language_code = language_code
-        session_store.save()
+    set_session_data_language_code(session_store, request.args.get('language_code'))
 
     g.schema = load_schema_from_session_data(session_data)
 
@@ -303,7 +300,8 @@ def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_it
 @login_required
 @with_schema
 def get_thank_you(schema):
-    session_data = get_session_store().session_data
+    session_store = get_session_store()
+    session_data = session_store.session_data
 
     if not session_data.submitted_time:
         return redirect(url_for('questionnaire.get_questionnaire'))
@@ -318,9 +316,12 @@ def get_thank_you(schema):
             timedelta(seconds=schema.json['view_submitted_response']['duration'])
         )
 
+    set_session_data_language_code(session_store, request.args.get('language_code'))
+
     return render_template(
         template='thank-you',
         metadata=metadata_context,
+        language_code=session_data.language_code,
         survey_id=schema.json['survey_id'],
         survey_title=safe_content(schema.json['title']),
         is_view_submitted_response_enabled=is_view_submitted_response_enabled(
@@ -567,3 +568,9 @@ def request_wants_json():
         best == 'application/json'
         and request.accept_mimetypes[best] > request.accept_mimetypes['text/html']
     )
+
+
+def set_session_data_language_code(session_store, language_code):
+    if language_code:
+        session_store.session_data.language_code = language_code
+        session_store.save()
