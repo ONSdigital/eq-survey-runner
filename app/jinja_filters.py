@@ -282,7 +282,7 @@ class OtherConfig:
     def __init__(self, detail_answer):
         self.id = detail_answer.id
         self.name = detail_answer.name
-        self.value = escape(detail_answer._value())
+        self.value = escape(detail_answer._value())  # pylint: disable=protected-access
         self.label = LabelConfig(detail_answer.id, detail_answer.label.text)
 
 
