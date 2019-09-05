@@ -222,6 +222,7 @@ def evaluate_skip_conditions(
     :return: True if the when condition has been met otherwise False
     """
     no_skip_condition = skip_conditions is None or len(skip_conditions) == 0
+
     if no_skip_condition:
         return False
 
