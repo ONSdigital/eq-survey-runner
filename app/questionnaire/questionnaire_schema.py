@@ -1,4 +1,5 @@
 from collections import OrderedDict, defaultdict
+from itertools import chain
 from typing import List, Union
 
 from flask_babel import force_locale
@@ -40,15 +41,17 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         return self._sections_by_id.get(section_id)
 
     @staticmethod
+    def get_blocks_for_section(section):
+        return chain.from_iterable([group['blocks'] for group in section['groups']])
+
+    @staticmethod
     def get_driving_question_for_section(section, list_name):
-        for group in section['groups']:
-            for block in group['blocks']:
-                if (
-                    block['type'] == 'ListCollectorDrivingQuestion'
-                    and list_name == block['for_list']
-                ):
-                    return block
-        return None
+        for block in QuestionnaireSchema.get_blocks_for_section(section):
+            if (
+                block['type'] == 'ListCollectorDrivingQuestion'
+                and list_name == block['for_list']
+            ):
+                return block
 
     def get_repeating_list_for_section(self, section_id):
         return self._sections_by_id.get(section_id).get('repeat', {}).get('for_list')
@@ -176,14 +179,13 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         visible_list_collector_blocks = []
         hidden_list_collector_blocks = []
 
-        for group in section['groups']:
-            for block in group['blocks']:
-                hidden = block.get('hide_on_section_summary', False)
-                if block['type'] == 'ListCollector':
-                    if hidden:
-                        hidden_list_collector_blocks.append(block)
-                    else:
-                        visible_list_collector_blocks.append(block)
+        for block in QuestionnaireSchema.get_blocks_for_section(section):
+            hidden = block.get('hide_on_section_summary', False)
+            if block['type'] == 'ListCollector':
+                if hidden:
+                    hidden_list_collector_blocks.append(block)
+                else:
+                    visible_list_collector_blocks.append(block)
 
         return visible_list_collector_blocks, hidden_list_collector_blocks
 

@@ -394,7 +394,7 @@ def test_context_for_section_list_summary(people_answer_store):
 
 
 @pytest.mark.usefixtures('app')
-def test_context_for_driving_question_summary(people_answer_store):
+def test_context_for_driving_question_summary():
     schema = load_schema_from_name('test_list_collector_driving_question')
     current_location = Location(block_id='summary', section_id='section')
 
@@ -423,9 +423,7 @@ def test_context_for_driving_question_summary(people_answer_store):
 
 
 @pytest.mark.usefixtures('app')
-def test_context_for_driving_question_summary_hidden_list_collector(
-    people_answer_store
-):
+def test_context_for_driving_question_summary_hidden_list_collector():
     schema = load_schema_from_name('test_list_collector_driving_question')
     current_location = Location(block_id='summary', section_id='section')
 
