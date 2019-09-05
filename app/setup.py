@@ -240,7 +240,8 @@ def setup_secure_headers(application):
         content_security_policy=csp_policy,
         content_security_policy_nonce_in=['script-src'],
         session_cookie_secure=application.config['EQ_ENABLE_SECURE_SESSION_COOKIE'],
-        force_https=False,  # this is handled at the firewall
+        force_https=True,
+        force_https_permanent=True,
         strict_transport_security=True,
         strict_transport_security_max_age=31536000,
         frame_options='DENY',

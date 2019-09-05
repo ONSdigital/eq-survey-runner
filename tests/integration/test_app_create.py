@@ -15,7 +15,7 @@ from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitte
 
 class TestCreateApp(unittest.TestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
-        self._setting_overrides = {}
+        self._setting_overrides = {'FLASK_DEBUG': 'True'}
 
     @contextmanager
     def override_settings(self):
@@ -81,6 +81,16 @@ class TestCreateApp(unittest.TestCase):  # pylint: disable=too-many-public-metho
             _, kwargs = logger.new.call_args
             self.assertTrue(UUID(kwargs['request_id'], version=4))
 
+    def test_enforces_https_with_permanent_301_redirect(self):
+        self._setting_overrides['EQ_ENABLE_LIVE_RELOAD'] = False
+        self._setting_overrides['DEBUG'] = False
+
+        with create_app(self._setting_overrides).test_client() as client:
+            response = client.get('/')
+
+            self.assertIn('https://', response.location)
+            self.assertEqual(response.status_code, 301)
+
     def test_enforces_secure_headers(self):
         self._setting_overrides['EQ_ENABLE_LIVE_RELOAD'] = False
 
@@ -89,7 +99,7 @@ class TestCreateApp(unittest.TestCase):  # pylint: disable=too-many-public-metho
                 '/',
                 headers={
                     'X-Forwarded-Proto': 'https'
-                },  # set protocal so that talisman sets HSTS headers
+                },  # set protocol so that talisman sets HSTS headers
             ).headers
 
             self.assertEqual(
