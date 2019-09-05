@@ -114,16 +114,16 @@ local firstPersonNamePossessivePlaceholder = {
                 value: 'Husband or wife',
               },
               {
-                label: 'Legally registered civil partner',
+                label: 'Same-sex civil partner',
                 playback: {
-                  text: '{second_person_name} is your <em>legally registered civil partner</em>',
+                  text: '{second_person_name} is your <em>Same-sex civil partner</em>',
                   placeholders: [secondPersonPlaceholder],
                 },
                 title: {
-                  text: '{second_person_name} is your <em>legally registered civil partner</em>',
+                  text: '{second_person_name} is your <em>Same-sex civil partner</em>',
                   placeholders: [secondPersonPlaceholder],
                 },
-                value: 'Legally registered civil partner',
+                value: 'Same-sex civil partner',
               },
               {
                 label: 'Partner',
@@ -173,6 +173,18 @@ local firstPersonNamePossessivePlaceholder = {
                   placeholders: [secondPersonPlaceholder],
                 },
                 value: 'Brother or sister',
+              },
+              {
+                label: 'Stepbrother or stepsister',
+                playback: {
+                  text: '{second_person_name} is your <em>stepbrother or stepsister</em>',
+                  placeholders: [secondPersonPlaceholder],
+                },
+                title: {
+                  text: '{second_person_name} is your <em>stepbrother or stepsister</em>',
+                  placeholders: [secondPersonPlaceholder],
+                },
+                value: 'Stepbrother or stepsister',
               },
               {
                 label: 'Mother or father',
@@ -285,16 +297,16 @@ local firstPersonNamePossessivePlaceholder = {
                 value: 'Husband or wife',
               },
               {
-                label: 'Legally registered civil partner',
+                label: 'Same-sex civil partner',
                 playback: {
-                  text: '{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>',
+                  text: '{second_person_name} is {first_person_name_possessive} <em>Same-sex civil partner</em>',
                   placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
                 },
                 title: {
-                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>',
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>Same-sex civil partner</em>',
                   placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
-                value: 'Legally registered civil partner',
+                value: 'Same-sex civil partner',
               },
               {
                 label: 'Partner',
@@ -343,6 +355,18 @@ local firstPersonNamePossessivePlaceholder = {
                   placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Brother or sister',
+              },
+              {
+                label: 'Stepbrother or stepsister',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>stepbrother or stepsister</em>',
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>stepbrother or stepsister</em>',
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
+                },
+                value: 'Stepbrother or stepsister',
               },
               {
                 label: 'Mother or father',

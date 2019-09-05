@@ -159,6 +159,11 @@ function(census_date) {
     question: {
       id: 'visitor-remove-question',
       type: 'General',
+      guidance: {
+        contents: [{
+          title: 'All of the data entered about this person will be deleted',
+        }],
+      },
       title: removePersonQuestionTitle,
       answers: [
         {

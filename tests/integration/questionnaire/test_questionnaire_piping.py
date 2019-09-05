@@ -18,8 +18,32 @@ class TestQuestionnairePiping(IntegrationTestCase):
         # Then
         self.get(self.last_url)
         self.assertStatusOK()
-        self.assertInSelectorCSS(
-            'Does <em>Joe Bloggs "Junior"</em> live at <em>44 hill side</em>', 'h1'
+        # Using raw response data rather than assertInSelectorCSS as otherwise the
+        # content will be unescaped by BeautifulSoup
+        assert (
+            'Does <em>Joe Bloggs &#34;Junior&#34;</em> live at <em>44 hill side</em>'
+            in self.getResponseData()
+        )
+
+    def test_given_html_in_answer_when_piped_into_page_then_html_escaped_on_page(self):
+        # Given
+        self.launchSurvey('test_multiple_piping')
+        self.post(action='start_questionnaire')
+        self.post({'address-line-1': '44 hill side'})
+        self.post(action='save_continue')
+
+        # When
+        self.post({'first-text': 'Joe', 'second-text': 'Bloggs <b>Junior</b>'})
+        self.post(action='save_continue')
+
+        # Then
+        self.get(self.last_url)
+        self.assertStatusOK()
+        # Using raw response data rather than assertInSelectorCSS as otherwise the
+        # content will be unescaped by BeautifulSoup
+        assert (
+            'Does <em>Joe Bloggs &lt;b&gt;Junior&lt;/b&gt;</em> live at <em>44 hill side</em>'
+            in self.getResponseData()
         )
 
     def test_given_backslash_in_answer_when_piped_into_page_then_backslash_on_page(

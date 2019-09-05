@@ -57,6 +57,9 @@ class TestQuestionnaireHub(IntegrationTestCase):
         self.post({})
         self.post(action='submit')
         self.post(action='submit')
+        self.post({'does-anyone-live-here-answer': 'No'})
+        self.post(action='submit')
+        self.post(action='submit')
 
         # Then I should see the thank you page
         self.assertEqualUrl('/submitted/thank-you/')

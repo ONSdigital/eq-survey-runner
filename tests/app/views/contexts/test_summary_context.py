@@ -162,12 +162,12 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         )
 
         context = build_view_context_for_calculated_summary(
-            self.metadata,
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
+            self.metadata,
             current_location,
+            language='en',
         )
 
         self.check_context(context)
@@ -200,12 +200,12 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         skip_answer = Answer('skip-fourth-block-answer', 'Yes')
         self.answer_store.add_or_update(skip_answer)
         context = build_view_context_for_calculated_summary(
-            self.metadata,
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
+            self.metadata,
             current_location,
+            language='en',
         )
 
         self.check_context(context)
@@ -228,19 +228,19 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             context_summary['calculated_question']['answers'][0]['value'], '£12.00'
         )
 
-    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='cy'))
     def test_build_view_context_for_unit_calculated_summary(self):
         current_location = Location(
             section_id='default-section', block_id='unit-total-playback'
         )
 
         context = build_view_context_for_calculated_summary(
-            self.metadata,
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
+            self.metadata,
             current_location,
+            language='cy',
         )
 
         self.check_context(context)
@@ -268,12 +268,12 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         )
 
         context = build_view_context_for_calculated_summary(
-            self.metadata,
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
+            self.metadata,
             current_location,
+            language='en',
         )
 
         self.check_context(context)
@@ -295,19 +295,19 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             context_summary['calculated_question']['answers'][0]['value'], '20%'
         )
 
-    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='cy'))
     def test_build_view_context_for_number_calculated_summary(self):
         current_location = Location(
             section_id='default-section', block_id='number-total-playback'
         )
 
         context = build_view_context_for_calculated_summary(
-            self.metadata,
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
+            self.metadata,
             current_location,
+            language='cy',
         )
 
         self.check_context(context)
