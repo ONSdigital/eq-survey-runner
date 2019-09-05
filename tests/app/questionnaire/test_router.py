@@ -395,3 +395,135 @@ class TestRouter(AppContextTestCase):
             last_complete_location,
             Location(section_id='property-details-section', block_id='insurance-type'),
         )
+
+    def test_get_section_return_location_when_section_complete_section_summary_mid_section(
+        self
+    ):
+        schema = load_schema_from_name('test_hub_and_spoke')
+        router = Router(schema)
+
+        routing_path = [
+            Location(section_id='household-section', block_id='does-anyone-live-here'),
+            Location(section_id='household-section', block_id='household-summary'),
+            Location(
+                section_id='who-lives-here-section',
+                block_id='how-many-people-live-here',
+            ),
+        ]
+
+        location_when_section_complete = router.get_section_return_location_when_section_complete(
+            routing_path=routing_path
+        )
+
+        self.assertEqual(
+            location_when_section_complete,
+            Location(section_id='household-section', block_id='household-summary'),
+        )
+
+    def get_section_return_location_when_section_complete_section_summary_last_block(
+        self
+    ):
+        schema = load_schema_from_name('test_hub_and_spoke')
+        router = Router(schema)
+
+        routing_path = [Location(section_id='accommodation-section', block_id='proxy')]
+        location_when_section_complete = router.get_section_return_location_when_section_complete(
+            routing_path=routing_path
+        )
+        self.assertEqual(
+            location_when_section_complete,
+            Location(
+                section_id='accommodation-section',
+                block_id='accommodation-details-summary',
+            ),
+        )
+
+    def test_get_section_return_location_when_section_complete_no_section_summary(self):
+        schema = load_schema_from_name('test_hub_and_spoke')
+        router = Router(schema)
+
+        routing_path = [
+            Location(section_id='employment-section', block_id='employment-status'),
+            Location(section_id='employment-section', block_id='employment-type'),
+        ]
+
+        location_when_section_complete = router.get_section_return_location_when_section_complete(
+            routing_path=routing_path
+        )
+
+        self.assertEqual(
+            location_when_section_complete,
+            Location(section_id='employment-section', block_id='employment-status'),
+        )
+
+    def test_get_next_location_url_for_mid_section_summary_when_section_complete(self):
+        schema = load_schema_from_name('test_hub_and_spoke')
+        progress_store = ProgressStore(
+            [
+                {
+                    'section_id': 'household-section',
+                    'locations': [
+                        {
+                            'section_id': 'household-section',
+                            'block_id': 'does-anyone-live-here',
+                        }
+                    ],
+                    'status': 'COMPLETED',
+                }
+            ]
+        )
+        router = Router(schema, progress_store)
+
+        routing_path = [
+            Location(section_id='household-section', block_id='does-anyone-live-here'),
+            Location(section_id='household-section', block_id='household-summary'),
+            Location(
+                section_id='household-section', block_id='how-many-people-live-here'
+            ),
+        ]
+
+        with self.app_request_context('/questionnaire'):
+            current_location = Location(
+                section_id='household-section', block_id='household-summary'
+            )
+            next_location = router.get_next_location_url(current_location, routing_path)
+            self.assertEqual(next_location, url_for('questionnaire.get_questionnaire'))
+
+    def test_get_next_location_url_for_mid_section_summary_when_section_in_progress(
+        self
+    ):
+        schema = load_schema_from_name('test_hub_and_spoke')
+        progress_store = ProgressStore(
+            [
+                {
+                    'section_id': 'household-section',
+                    'locations': [
+                        {
+                            'section_id': 'household-section',
+                            'block_id': 'does-anyone-live-here',
+                        }
+                    ],
+                    'status': 'IN_PROGRESS',
+                }
+            ]
+        )
+        router = Router(schema, progress_store)
+
+        routing_path = [
+            Location(section_id='household-section', block_id='does-anyone-live-here'),
+            Location(section_id='household-section', block_id='household-summary'),
+            Location(
+                section_id='household-section', block_id='how-many-people-live-here'
+            ),
+        ]
+
+        with self.app_request_context('/questionnaire'):
+            current_location = Location(
+                section_id='household-section', block_id='household-summary'
+            )
+            expected_location = Location(
+                section_id='household-section', block_id='how-many-people-live-here'
+            ).url()
+
+            next_location = router.get_next_location_url(current_location, routing_path)
+            self.assertEqual(next_location, expected_location)
