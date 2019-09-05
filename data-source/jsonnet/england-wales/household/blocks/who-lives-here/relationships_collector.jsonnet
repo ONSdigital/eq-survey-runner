@@ -174,6 +174,18 @@ local firstPersonNamePossessivePlaceholder = {
               value: 'Brother or sister',
             },
             {
+              label: 'Stepbrother or stepsister',
+              playback: {
+                text: '{second_person_name} is your <em>stepbrother or stepsister</em>',
+                placeholders: [secondPersonPlaceholder],
+              },
+              title: {
+                text: '{second_person_name} is your <em>stepbrother or stepsister</em>',
+                placeholders: [secondPersonPlaceholder],
+              },
+              value: 'Stepbrother or stepsister',
+            },
+            {
               label: 'Mother or father',
               playback: {
                 text: '{second_person_name} is your <em>mother or father</em>',
@@ -341,6 +353,18 @@ local firstPersonNamePossessivePlaceholder = {
                   placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
                 },
                 value: 'Brother or sister',
+              },
+              {
+                label: 'Stepbrother or stepsister',
+                playback: {
+                  text: '{second_person_name} is {first_person_name_possessive} <em>stepbrother or stepsister</em>',
+                  placeholders: [secondPersonPlaceholder, firstPersonNamePossessivePlaceholder],
+                },
+                title: {
+                  text: 'Thinking of {first_person_name}, {second_person_name} is their <em>stepbrother or stepsister</em>',
+                  placeholders: [firstPersonPlaceholder, secondPersonPlaceholder],
+                },
+                value: 'Stepbrother or stepsister',
               },
               {
                 label: 'Mother or father',
