@@ -42,7 +42,7 @@ class Group:
             if (
                 block['id'] in block_ids_on_path
                 and block['type'] == 'Question'
-                and not block.get('hide_on_section_summary', False)
+                and block.get('show_on_section_summary', True)
             ):
                 blocks.extend(
                     [
