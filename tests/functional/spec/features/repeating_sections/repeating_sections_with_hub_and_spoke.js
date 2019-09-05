@@ -181,7 +181,11 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
 
         // Start section for first visitor
         .click(HubPage.summaryRowLink(1))
-
+        .click(PrimaryPersonPage.submit())
+        .click(PrimaryPersonAddPage.submit())
+        .click(FirstListCollectorPage.submit())
+        .click(SecondListCollectorInterstitialPage.submit())
+        .click(SecondListCollectorPage.submit())
         .getText(SexPage.questionText()).should.eventually.equal('This is the visitors list collector. Add a visitor?')
 
         // Add first visitor
@@ -294,6 +298,11 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
     it('When the user adds a new member to the household, Then the Hub should not be in the completed state', function () {
       return browser
         .click(HubPage.summaryRowLink(1))
+        .click(PrimaryPersonPage.submit())
+        .click(PrimaryPersonAddPage.submit())
+        .click(FirstListCollectorPage.submit())
+        .click(SecondListCollectorInterstitialPage.submit())
+        .click(SecondListCollectorPage.submit())
 
         // Add another householder
         .click(VisitorsListCollectorPage.yes())
@@ -323,6 +332,11 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
         .isExisting(HubPage.summaryRowState(8)).should.eventually.be.true
 
         .click(HubPage.summaryRowLink(1))
+        .click(PrimaryPersonPage.submit())
+        .click(PrimaryPersonAddPage.submit())
+        .click(FirstListCollectorPage.submit())
+        .click(SecondListCollectorInterstitialPage.submit())
+        .click(SecondListCollectorPage.submit())
 
         // Remove final householder
         .click(VisitorsListCollectorPage.listRemoveLink(3))
