@@ -30,7 +30,7 @@ describe('Radio with multiple "detail_answer" options', function() {
     });
   });
 
-  it('Given a selected checkbox answer with an error for a mandatory detail answer, When I enter valid value and submit the page, Then the error is cleared and I navigate to next page.', function() {
+  it('Given a selected radio answer with an error for a mandatory detail answer, When I enter valid value and submit the page, Then the error is cleared and I navigate to next page.', function() {
     // Given
     return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
