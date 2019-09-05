@@ -19,6 +19,7 @@ const SectionSummaryListCollectorRemovePage = require('../generated_pages/list_c
 const VisitorListCollectorPage = require('../generated_pages/list_collector_section_summary/visitor-list-collector.page.js');
 const VisitorListCollectorAddPage = require('../generated_pages/list_collector_section_summary/visitor-list-collector-add.page.js');
 const PeopleListSectionSummaryPage = require('../generated_pages/list_collector_section_summary/people-list-section-summary.page.js');
+const ConfirmationPage = require('../generated_pages/list_collector/confirmation.page.js');
 
 function checkPeopleInList(peopleExpected) {
   let chain = browser.waitForVisible(ListCollectorPage.listLabel(1)).should.eventually.be.true;
@@ -175,6 +176,7 @@ describe('List Collector', function() {
     it('The questionnaire allows submission', function() {
       return browser
         .click(SummaryPage.submit())
+        .click(ConfirmationPage.submit())
         .getUrl().should.eventually.contain('thank-you');
     });
 
