@@ -503,6 +503,14 @@ msgstr ""
 msgid "Save and continue"
 msgstr ""
 
+#: templates/layouts/_questionnaire.html:43
+msgid "Can't complete this question?"
+msgstr ""
+
+#: templates/layouts/_questionnaire.html:44
+msgid "Choose another section and return to this later"
+msgstr ""
+
 #: templates/layouts/configs/_feedback.html:3
 msgid "Give feedback and help us improve this service"
 msgstr ""
