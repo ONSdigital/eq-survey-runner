@@ -102,7 +102,7 @@ class SummaryContext:
                     repeating_title, list_item_id
                 )
 
-        visible_list_collector_blocks, hidden_list_collector_blocks = self._schema.get_visible_list_blocks_for_section(
+        visible_list_collector_blocks, hidden_list_collector_blocks = self._schema.get_list_blocks_for_section(
             section
         )
 
@@ -117,10 +117,6 @@ class SummaryContext:
         ]
 
         for list_collector_block in visible_list_collector_blocks:
-            driving_question_block = QuestionnaireSchema.get_driving_question_for_section(
-                section, list_collector_block['for_list']
-            )
-
             list_collector_to_summarise = list_collector_block
 
             add_link_list_name = list_collector_block['for_list']
@@ -128,6 +124,10 @@ class SummaryContext:
 
             if list_collector_block['id'] not in section_path_block_ids:
                 list_collector_to_summarise = accessible_collector_blocks[0]
+
+                driving_question_block = QuestionnaireSchema.get_driving_question_for_section(
+                    section, list_collector_block['for_list']
+                )
 
                 if driving_question_block:
                     add_link_list_name = None

@@ -172,7 +172,7 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         return False
 
     @staticmethod
-    def get_visible_list_blocks_for_section(section):
+    def get_list_blocks_for_section(section):
         visible_list_collector_blocks = []
         hidden_list_collector_blocks = []
 
