@@ -268,6 +268,43 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
         self.assertEqual(len(question.answers[0]['value']), 2)
         self.assertEqual(question.answers[0]['value'][1].detail_answer_value, 'Test')
 
+    def test_checkbox_answer_with_numeric_detail_answer_returns_number(self):
+        # Given
+        self.answer_store.add_or_update(
+            Answer(answer_id='answer_1', value=[1, 'Other'])
+        )
+        self.answer_store.add_or_update(Answer(answer_id='child_answer', value=2))
+
+        options = [
+            {'label': 1, 'value': 1},
+            {
+                'label': 'Other',
+                'value': 'Other',
+                'detail_answer': {'id': 'child_answer', 'type': 'Number'},
+            },
+        ]
+        answer_schema = [
+            {
+                'id': 'answer_1',
+                'label': 'How many cakes have you had today?',
+                'type': 'Checkbox',
+                'options': options,
+            }
+        ]
+        question_schema = {
+            'id': 'question_id',
+            'title': 'question_title',
+            'type': 'GENERAL',
+            'answers': answer_schema,
+        }
+
+        # When
+        question = Question(question_schema, self.answer_store, self.schema, None)
+
+        # Then
+        self.assertEqual(len(question.answers[0]['value']), 2)
+        self.assertEqual(question.answers[0]['value'][1].detail_answer_value, 2)
+
     def test_checkbox_button_other_option_text(self):
         # Given
         self.answer_store.add_or_update(
@@ -381,6 +418,39 @@ class TestQuestion(AppContextTestCase):  # pylint: disable=too-many-public-metho
 
         # Then
         self.assertEqual(question.answers[0]['value']['detail_answer_value'], 'Test')
+
+    def test_radio_answer_with_numeric_detail_answer_returns_number(self):
+        # Given
+        self.answer_store.add_or_update(Answer(answer_id='answer_1', value='Other'))
+        self.answer_store.add_or_update(Answer(answer_id='child_answer', value=1))
+        options = [
+            {'label': 1, 'value': 1},
+            {
+                'label': 'Other',
+                'value': 'Other',
+                'detail_answer': {'id': 'child_answer', 'type': 'Number'},
+            },
+        ]
+        answer_schema = [
+            {
+                'id': 'answer_1',
+                'label': 'How many cakes have you had today?',
+                'type': 'Radio',
+                'options': options,
+            }
+        ]
+        question_schema = {
+            'id': 'question_id',
+            'title': 'question_title',
+            'type': 'GENERAL',
+            'answers': answer_schema,
+        }
+
+        # When
+        question = Question(question_schema, self.answer_store, self.schema, None)
+
+        # Then
+        self.assertEqual(question.answers[0]['value']['detail_answer_value'], 1)
 
     def test_dropdown_none_selected_should_be_none(self):
         # Given

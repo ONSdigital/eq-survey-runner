@@ -1,0 +1,90 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Numeric Radio with other",
+    "theme": "default",
+    "messages": {
+        "NUMBER_TOO_LARGE": "Number is too large",
+        "NUMBER_TOO_SMALL": "Number cannot be less than zero",
+        "INVALID_NUMBER": "Please enter an integer"
+    },
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "id": "radio",
+                    "title": "Numeric Radio with other",
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "radio-numeric-detail",
+                            "question": {
+                                "type": "General",
+                                "id": "radio-question-numeric-detail",
+                                "title": "How many items would you like on your breakfast?",
+                                "answers": [
+                                    {
+                                        "type": "Radio",
+                                        "validation": {
+                                            "messages": {}
+                                        },
+                                        "id": "radio-answer-numeric-detail",
+                                        "mandatory": false,
+                                        "options": [
+                                            {
+                                                "label": "1",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "label": "2",
+                                                "value": "2"
+                                            },
+                                            {
+                                                "label": "None",
+                                                "value": "None"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "value": "Other",
+                                                "detail_answer": {
+                                                    "mandatory": false,
+                                                    "id": "other-answer",
+                                                    "label": "Please enter a number of items",
+                                                    "type": "Number",
+                                                    "max_value": {
+                                                        "value": 20
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
