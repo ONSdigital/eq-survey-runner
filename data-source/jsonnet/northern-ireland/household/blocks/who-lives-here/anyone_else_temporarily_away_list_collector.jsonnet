@@ -3,7 +3,7 @@ local rules = import 'rules.libsonnet';
 
 
 local questionTitle = {
-  text: 'Apart from the people already included, is there anyone who is temporarily away or staying you need to add to {address}?',
+  text: 'Apart from the people already included, is there anyone who is temporarily away or staying that you need to add to {address}?',
   placeholders: [
     placeholders.address,
   ],
@@ -187,6 +187,11 @@ local editQuestion(questionTitle) = {
     question: {
       id: 'anyone-else-temp-away-remove-question',
       type: 'General',
+      guidance: {
+        contents: [{
+          title: 'All of the data entered about this person will be deleted',
+        }],
+      },
       title: removePersonQuestionTitle,
       answers: [
         {
