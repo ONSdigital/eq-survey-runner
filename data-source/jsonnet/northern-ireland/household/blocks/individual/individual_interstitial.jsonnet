@@ -23,12 +23,12 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
       {
         title: 'You will need to know',
         list: [
-          'Personal details such as date of birth, country of birth, religion etc.',
-          'Education and qualifications',
-          'Employment and travel to work',
-          'Second or holiday homes',
-          'Unpaid care and health',
-          'Languages',
+          'Personal details such as date of birth, country of birth, religion',
+          'Main language',
+          'Health',
+          'Unpaid care provided',
+          'Qualifications',
+          'Employment details',
         ],
       },
     ],
