@@ -7,9 +7,10 @@ const PrimaryPersonListCollectorAddPage = require('../generated_pages/list_colle
 const SectionSummaryPage = require('../generated_pages/list_collector/group-summary.page.js');
 const ConfirmationPage = require('../generated_pages/list_collector/confirmation.page.js');
 const ThankYouPage = require('../base_pages/thank-you.page.js');
+const AnyoneUsuallyLiveAtPage = require('../generated_pages/list_collector_primary_person/anyone-usually-live-at.page.js');
 
 
-describe('Primary Person List Collector Survey', function() {
+describe.only('Primary Person List Collector Survey', function() {
 
   describe('Given the user starts on the \'do you live here\' question', function() {
     before('Load the survey', function () {
@@ -58,6 +59,7 @@ describe('Primary Person List Collector Survey', function() {
         .click(ListCollectorPage.previous())
         .click(PrimaryPersonListCollectorPage.no())
         .click(PrimaryPersonListCollectorPage.submit())
+        .click(AnyoneUsuallyLiveAtPage.yes())
         .getText(ListCollectorPage.listLabel(1)).should.eventually.equal('Samuel Clemens');
     });
 
