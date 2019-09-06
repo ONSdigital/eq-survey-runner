@@ -149,6 +149,8 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.post()
 
+        self.post()
+
         self.assertInUrl('thank-you')
 
     def test_optional_list_collector_submission(self):
@@ -165,6 +167,8 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
         self.post({'another-anyone-else': 'No'})
 
         self.assertInBody('This section is now complete')
+
+        self.post()
 
         self.post()
 
