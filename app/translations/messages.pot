@@ -49,6 +49,18 @@ msgstr ""
 msgid "Select an answer"
 msgstr ""
 
+#: app/helpers/template_helper.py:17
+msgid "Office for National Statistics logo"
+msgstr ""
+
+#: app/helpers/template_helper.py:26 app/helpers/template_helper.py:34
+msgid "Census 2021"
+msgstr ""
+
+#: app/helpers/template_helper.py:30
+msgid "Northern Ireland Statistics and Research Agency logo"
+msgstr ""
+
 #: app/validation/error_messages.py:5 app/validation/error_messages.py:6
 #: app/validation/error_messages.py:7 app/validation/error_messages.py:8
 msgid "Enter an answer to continue."
