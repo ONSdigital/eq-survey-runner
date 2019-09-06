@@ -16,8 +16,6 @@ LIST_COLLECTOR_CHILDREN = [
     'PrimaryPersonListAddOrEditQuestion',
 ]
 
-QUESTION_BLOCK_TYPES = ['Question', 'ListCollectorDrivingQuestion']
-
 
 class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def __init__(self, questionnaire_json, language_code=DEFAULT_LANGUAGE_CODE):
@@ -170,7 +168,7 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     def group_has_questions(self, group_id):
         for block in self.get_group(group_id)['blocks']:
-            if block['type'] == 'Question':
+            if QuestionnaireSchema.is_question_block_type(block['type']):
                 return True
         return False
 
@@ -301,7 +299,7 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     @staticmethod
     def is_question_block_type(block_type):
-        return block_type in QUESTION_BLOCK_TYPES
+        return block_type in ['Question', 'ListCollectorDrivingQuestion']
 
     def _parse_schema(self):
         self._sections_by_id = self._get_sections_by_id()
