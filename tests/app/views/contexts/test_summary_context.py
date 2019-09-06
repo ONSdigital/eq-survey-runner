@@ -106,8 +106,8 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
             self.metadata,
         )
 
-        single_section_context = summary_context.build_groups_for_section(
-            'property-details-section'
+        single_section_context = summary_context.build_groups_for_location(
+            Location(section_id='property-details-section')
         )
 
         self.check_summary_rendering_context(single_section_context)
