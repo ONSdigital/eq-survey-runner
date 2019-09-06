@@ -1,5 +1,5 @@
 from collections import OrderedDict, defaultdict
-from itertools import chain
+
 from typing import List, Union
 
 from flask_babel import force_locale
@@ -42,7 +42,7 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     @staticmethod
     def get_blocks_for_section(section):
-        return chain.from_iterable([group['blocks'] for group in section['groups']])
+        return (block for group in section['groups'] for block in group['blocks'])
 
     @staticmethod
     def get_driving_question_for_section(section, list_name):
