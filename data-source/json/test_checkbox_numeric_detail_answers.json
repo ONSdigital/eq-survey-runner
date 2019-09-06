@@ -1,0 +1,98 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Other input fields",
+    "theme": "default",
+    "description": "A questionnaire to demo checkbox field Other input.",
+    "messages": {
+        "NUMBER_TOO_LARGE": "Number is too large",
+        "NUMBER_TOO_SMALL": "Number cannot be less than zero",
+        "INVALID_NUMBER": "Please enter an integer"
+    },
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "checkbox-numeric-detail",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "checkbox-numeric-detail-answer",
+                                        "label": "",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "None",
+                                                "value": "None"
+                                            },
+                                            {
+                                                "label": "1",
+                                                "value": "1",
+                                                "q_code": "1"
+                                            },
+                                            {
+                                                "label": "2",
+                                                "value": "2",
+                                                "q_code": "2"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "q_code": "3",
+                                                "description": "Choose any number of toppings",
+                                                "value": "Other",
+                                                "detail_answer": {
+                                                    "mandatory": false,
+                                                    "id": "other-answer",
+                                                    "label": "Please specify other",
+                                                    "type": "Number",
+                                                    "max_value": {
+                                                        "value": 20
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "type": "Checkbox",
+                                        "validation": {
+                                            "messages": {}
+                                        }
+                                    }
+                                ],
+                                "description": "",
+                                "id": "checkbox-question-numeric-detail",
+                                "title": "How many pizza toppings would you like?",
+                                "type": "General"
+                            },
+                            "routing_rules": []
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "checkboxes",
+                    "title": ""
+                }
+            ]
+        }
+    ]
+}

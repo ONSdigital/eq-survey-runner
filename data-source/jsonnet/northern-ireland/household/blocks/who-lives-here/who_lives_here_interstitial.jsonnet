@@ -20,7 +20,7 @@ function(census_date) {
       {
         title: 'You will need to know',
         list: [
-          'Names of the people living at this address including anyone temporarily away.',
+          'Names of the people living at this address including anyone temporarily away or who has been or intends to be in the UK for 3 months or more.',
           'Names of visitors staying overnight at this address on 13 October 2019',
           // This date is currently hard coded as validator currently does not allow placeholders within list object.
         ],

@@ -71,7 +71,7 @@ describe('Checkbox with "other" option', function() {
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.equal('No answer provided');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('No answer provided');
     });
   });
 
@@ -86,7 +86,7 @@ describe('Checkbox with "other" option', function() {
         .click(NonMandatoryCheckboxPage.other())
         .click(NonMandatoryCheckboxPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.have.string('Other');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('Other');
     });
 
   });
@@ -103,7 +103,7 @@ describe('Checkbox with "other" option', function() {
         .setValue(NonMandatoryCheckboxPage.otherDetail(), 'The other value')
         .click(NonMandatoryCheckboxPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.have.string('The other value');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.contain('The other value');
 
     });
 

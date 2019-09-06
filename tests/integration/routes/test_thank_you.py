@@ -43,3 +43,36 @@ class TestThankYou(IntegrationTestCase):
         # sign out and check we're on the signed out page
         self.post(action='sign_out')
         self.assertEqualUrl('/signed-out')
+
+    def test_can_switch_language_on_thank_you_page(self):
+        self.launchSurvey('test_currency')
+
+        # We fill in our answers
+        form_data = {
+            'answer': '12',
+            'answer-usd': '345',
+            'answer-eur': '67.89',
+            'answer-jpy': '0',
+        }
+
+        # We submit the form
+        self.post(form_data)
+
+        # Submit answers
+        self.post(action=None)
+
+        # Ensure we're on the thank you page
+        self.assertInUrl('thank-you')
+
+        # Ensure translation is as expected using language toggle links
+        # Toggle link text displays 'English' when in Welsh, and 'Cymraeg' when in English
+        self.assertNotInBody('English')
+        self.assertInBody('Cymraeg')
+
+        # Switch language to Welsh
+        self.get(f'{self.last_url}?language_code=cy')
+        self.assertInUrl('?language_code=cy')
+
+        # Ensure translation is now in Welsh
+        self.assertInBody('English')
+        self.assertNotInBody('Cymraeg')

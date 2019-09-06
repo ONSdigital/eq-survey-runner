@@ -2,9 +2,11 @@ const helpers = require('../../../helpers');
 
 const EmploymentStatusBlockPage = require('../../../generated_pages/hub_and_spoke/employment-status.page.js');
 const EmploymentTypeBlockPage = require('../../../generated_pages/hub_and_spoke/employment-type.page.js');
-
+const HouseholdSummary = require('../../../generated_pages/hub_and_spoke/household-summary.page.js');
+const HowManyPeopleLiveHere = require('../../../generated_pages/hub_and_spoke/how-many-people-live-here.page.js');
 const ProxyPage = require('../../../generated_pages/hub_and_spoke/proxy.page.js');
 const AccomodationDetailsSummaryBlockPage = require('../../../generated_pages/hub_and_spoke/accommodation-details-summary.page.js');
+const DoesAnyoneLiveHere = require('../../../generated_pages/hub_and_spoke/does-anyone-live-here.page.js');
 
 const HubPage = require('../../../base_pages/hub.page.js');
 
@@ -140,11 +142,11 @@ describe('Feature: Hub and Spoke', function () {
         .getAttribute(HubPage.summaryRowTitle(1), 'class').should.eventually.contain('summary__item-title--has-icon');
     });
 
-    it('When the user returns to the Hub and clicks the \'View answers\' link on the Hub, Then they should be taken to the last page in that section', function () {
+    it('When the user returns to the Hub and clicks the \'View answers\' link on the Hub, if this no summary they are returned to the first block', function () {
       return browser
         .click(EmploymentTypeBlockPage.submit())
         .click(HubPage.summaryRowLink(1))
-        .getUrl().should.eventually.contain(EmploymentTypeBlockPage.url());
+        .getUrl().should.eventually.contain(EmploymentStatusBlockPage.url());
     });
 
     it('When the user returns to the Hub and continues, Then they should progress to the next section', function () {
@@ -156,7 +158,6 @@ describe('Feature: Hub and Spoke', function () {
     });
 
   });
-
 
   describe('Given a user has completed a section and is on the Hub page', function () {
 
@@ -210,7 +211,11 @@ describe('Feature: Hub and Spoke', function () {
             .click(HubPage.submit())
             .click(ProxyPage.yes())
             .click(ProxyPage.submit())
-            .click(AccomodationDetailsSummaryBlockPage.submit());
+            .click(AccomodationDetailsSummaryBlockPage.submit())
+            .click(HubPage.submit())
+            .click(DoesAnyoneLiveHere.no())
+            .click(DoesAnyoneLiveHere.submit())
+            .click(HouseholdSummary.submit());
         });
     });
 
@@ -250,6 +255,48 @@ describe('Feature: Hub and Spoke', function () {
             .click(EmploymentTypeBlockPage.submit())
             .getUrl().should.eventually.contain(HubPage.url());
        });
+    });
+  });
+
+    describe('Given the user has completed a section with a summary mid section', function () {
+    it('When the user clicks \'View answers\' it will return to that section summary', function () {
+      return helpers.openQuestionnaire('test_hub_and_spoke.json')
+        .then(() => {
+          return browser
+            .click(HubPage.summaryRowLink(3))
+            .click(DoesAnyoneLiveHere.no())
+            .click(DoesAnyoneLiveHere.submit())
+            .click(HouseholdSummary.submit())
+            .click(HubPage.summaryRowLink(3))
+            .getUrl().should.eventually.contain(HouseholdSummary.url());
+       });
+    });
+  });
+    describe('Given a section is complete and the user has been returned to a section summary by clicking the \'View answers\' link ', function () {
+      beforeEach('Complete section', function () {
+      return helpers.openQuestionnaire(hub_and_spoke_schema)
+        .then(() => {
+          return browser
+            .click(HubPage.summaryRowLink(3))
+            .click(DoesAnyoneLiveHere.no())
+            .click(DoesAnyoneLiveHere.submit())
+            .click(HouseholdSummary.submit());
+        });
+    });
+    it('When there are no changes, continue returns directly to the hub', function () {
+          return browser
+            .click(HubPage.summaryRowLink(3))
+            .click(HouseholdSummary.submit())
+            .getUrl().should.eventually.contain(HubPage.url());
+    });
+    it('When there are changes which would set the section to in_progress it routes accordingly', function () {
+          return browser
+            .click(HubPage.summaryRowLink(3))
+            .click(HouseholdSummary.doesAnyoneLiveHereAnswerEdit())
+            .click(DoesAnyoneLiveHere.yes())
+            .click(DoesAnyoneLiveHere.submit())
+            .click(HouseholdSummary.submit())
+            .getUrl().should.eventually.contain(HowManyPeopleLiveHere.url());
     });
   });
 });

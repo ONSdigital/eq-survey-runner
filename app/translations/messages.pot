@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-02 11:22+0100\n"
+"POT-Creation-Date: 2019-09-05 16:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -501,6 +501,14 @@ msgstr ""
 
 #: templates/layouts/_questionnaire.html:31
 msgid "Save and continue"
+msgstr ""
+
+#: templates/layouts/_questionnaire.html:42
+msgid "Can't complete this question?"
+msgstr ""
+
+#: templates/layouts/_questionnaire.html:43
+msgid "Choose another section and return to this later"
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:3

@@ -1,3 +1,4 @@
+from flask import url_for
 from werkzeug.utils import cached_property
 
 from app.questionnaire.location import Location
@@ -56,7 +57,9 @@ class Question(BlockHandler):
                     return action
 
     def get_context(self):
-        return build_question_context(self.rendered_block, self.form)
+        context = build_question_context(self.rendered_block, self.form)
+        context['return_to_hub_url'] = self.get_return_to_hub_url()
+        return context
 
     def handle_post(self):
         self.questionnaire_store_updater.update_answers(self.form)
@@ -101,3 +104,10 @@ class Question(BlockHandler):
         )
 
         return {**transformed_block, **{'question': rendered_question}}
+
+    def get_return_to_hub_url(self):
+        if (
+            self.rendered_block['type'] in ['Question', 'ConfirmationQuestion']
+            and self._router.can_access_hub()
+        ):
+            return url_for('.get_questionnaire')

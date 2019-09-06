@@ -74,10 +74,7 @@ def before_questionnaire_request():
     session_store = get_session_store()
     session_data = session_store.session_data
 
-    language_code = request.args.get('language_code')
-    if language_code:
-        session_data.language_code = language_code
-        session_store.save()
+    set_session_data_language_code(session_store, request.args.get('language_code'))
 
     g.schema = load_schema_from_session_data(session_data)
 
@@ -109,12 +106,7 @@ def get_questionnaire(schema, questionnaire_store):
         list_store=questionnaire_store.list_store,
     )
 
-    are_hub_required_sections_complete = all(
-        questionnaire_store.progress_store.is_section_complete(section_id)
-        for section_id in schema.get_section_ids_required_for_hub()
-    )
-
-    if not schema.is_hub_enabled() or not are_hub_required_sections_complete:
+    if not router.can_access_hub():
         redirect_location = router.get_first_incomplete_location_in_survey()
         return redirect(redirect_location.url())
 
@@ -172,8 +164,8 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
     if not schema.is_hub_enabled():
         redirect_location = router.get_first_incomplete_location_in_survey()
         return redirect(redirect_location.url())
-
     section = schema.get_section(section_id)
+
     if not section:
         return redirect(url_for('.get_questionnaire'))
 
@@ -185,7 +177,9 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
     )
 
     if section_status == CompletionStatus.COMPLETED:
-        return redirect(routing_path[-1].url())
+        return redirect(
+            router.get_section_return_location_when_section_complete(routing_path).url()
+        )
 
     if section_status == CompletionStatus.NOT_STARTED:
         return redirect(
@@ -259,7 +253,6 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
     block_handler.handle_post()
 
     next_location_url = block_handler.get_next_location_url()
-
     return redirect(next_location_url)
 
 
@@ -307,7 +300,8 @@ def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_it
 @login_required
 @with_schema
 def get_thank_you(schema):
-    session_data = get_session_store().session_data
+    session_store = get_session_store()
+    session_data = session_store.session_data
 
     if not session_data.submitted_time:
         return redirect(url_for('questionnaire.get_questionnaire'))
@@ -322,9 +316,12 @@ def get_thank_you(schema):
             timedelta(seconds=schema.json['view_submitted_response']['duration'])
         )
 
+    set_session_data_language_code(session_store, request.args.get('language_code'))
+
     return render_template(
         template='thank-you',
         metadata=metadata_context,
+        language_code=session_data.language_code,
         survey_id=schema.json['survey_id'],
         survey_title=safe_content(schema.json['title']),
         is_view_submitted_response_enabled=is_view_submitted_response_enabled(
@@ -571,3 +568,9 @@ def request_wants_json():
         best == 'application/json'
         and request.accept_mimetypes[best] > request.accept_mimetypes['text/html']
     )
+
+
+def set_session_data_language_code(session_store, language_code):
+    if language_code:
+        session_store.session_data.language_code = language_code
+        session_store.save()
