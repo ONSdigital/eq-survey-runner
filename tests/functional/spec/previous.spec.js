@@ -1,6 +1,8 @@
 const helpers = require('../helpers');
 const EmploymentStatusBlockPage = require('../generated_pages/hub_and_spoke/employment-status.page.js');
+const EmploymentTypePage = require('../generated_pages/hub_and_spoke/employment-type.page.js');
 const HubPage = require('../base_pages/hub.page.js');
+const ProxyPage = require('../generated_pages/hub_and_spoke/proxy.page.js');
 const schema = 'test_hub_complete_sections.json';
 
 describe('Choose another section link', function () {
@@ -9,7 +11,7 @@ describe('Choose another section link', function () {
     return helpers.openQuestionnaire(schema)
       .then(() => {
         return browser
-          .getSource().should.not.eventually.contain('Previous link click');
+          .isExisting(EmploymentStatusBlockPage.previous()).should.eventually.be.false;
 
       });
   });
@@ -20,7 +22,7 @@ describe('Choose another section link', function () {
         return browser
           .click(EmploymentStatusBlockPage.workingAsAnEmployee())
           .click(EmploymentStatusBlockPage.submit())
-          .getSource().should.not.eventually.contain('Previous link click');
+          .isExisting(HubPage.previous()).should.eventually.be.false;
 
       });
   });
@@ -31,7 +33,7 @@ describe('Choose another section link', function () {
         return browser
           .click(EmploymentStatusBlockPage.exclusiveNoneOfTheseApply())
           .click(EmploymentStatusBlockPage.submit())
-          .getSource().should.eventually.contain('Previous link click');
+          .isExisting(EmploymentTypePage.previous()).should.eventually.be.true;
 
       });
   });
@@ -43,7 +45,7 @@ describe('Choose another section link', function () {
           .click(EmploymentStatusBlockPage.workingAsAnEmployee())
           .click(EmploymentStatusBlockPage.submit())
           .click(HubPage.summaryRowLink(2))
-          .getSource().should.eventually.contain('Previous link click');
+          .isExisting(ProxyPage.previous()).should.eventually.be.true;
 
       });
   });
