@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-05 16:12+0100\n"
+"POT-Creation-Date: 2019-09-06 11:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -297,8 +297,7 @@ msgstr ""
 msgid "It is now safe to close this window"
 msgstr ""
 
-#: templates/errors/session-expired.html:22 templates/feedback_sent.html:12
-#: templates/signed-out.html:9
+#: templates/feedback_sent.html:12 templates/signed-out.html:9
 msgid "Return to your account"
 msgstr ""
 
@@ -493,6 +492,18 @@ msgstr ""
 
 #: templates/errors/session-expired.html:18
 msgid "To help protect your information we have signed you out"
+msgstr ""
+
+#: templates/errors/session-expired.html:22
+msgid "We have saved your progress and you will need to "
+msgstr ""
+
+#: templates/errors/session-expired.html:23
+msgid "enter your unique code"
+msgstr ""
+
+#: templates/errors/session-expired.html:24
+msgid " to access the survey again."
 msgstr ""
 
 #: templates/layouts/_questionnaire.html:16
