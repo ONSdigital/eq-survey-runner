@@ -189,7 +189,7 @@ msgstr "Er enghraifft, BTEC Cenedlaethol, OND neu ONC, Crefft Uwch City and Guil
 msgid "For example, BTEC General, City and Guilds Craft"
 msgstr "Er enghraifft, BTEC Cyffredinol, Crefft City and Guilds"
 
-msgid "Questions on A levels and GCSEs and equivalents will follow"
+msgid "Questions on A levels, GCSEs and equivalents will follow"
 msgstr "Bydd cwestiynau am gymwysterau Lefel A (Safon Uwch) a TGAU, a chymwysterau cyfatebol yn dilyn"
 
 msgid "Include 4 or more AS levels"
