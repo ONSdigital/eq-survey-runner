@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-05 16:12+0100\n"
+"POT-Creation-Date: 2019-09-06 12:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,18 @@ msgstr ""
 
 #: app/forms/fields.py:231
 msgid "Select an answer"
+msgstr ""
+
+#: app/helpers/template_helper.py:17
+msgid "Office for National Statistics logo"
+msgstr ""
+
+#: app/helpers/template_helper.py:26 app/helpers/template_helper.py:34
+msgid "Census 2021"
+msgstr ""
+
+#: app/helpers/template_helper.py:30
+msgid "Northern Ireland Statistics and Research Agency logo"
 msgstr ""
 
 #: app/validation/error_messages.py:5 app/validation/error_messages.py:6

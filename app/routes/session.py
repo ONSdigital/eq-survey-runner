@@ -12,7 +12,7 @@ from werkzeug.exceptions import Unauthorized
 from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
 from app.globals import get_session_timeout_in_seconds
-from app.helpers.template_helper import safe_content, render_template
+from app.helpers.template_helper import render_template
 from app.storage.metadata_parser import (
     validate_questionnaire_claims,
     validate_runner_claims,
@@ -130,7 +130,4 @@ def get_sign_out():
     if account_service_log_out_url:
         return redirect(account_service_log_out_url)
 
-    return render_template(
-        template='signed-out',
-        survey_title=safe_content(cookie_session.get('survey_title')),
-    )
+    return render_template(template='signed-out')
