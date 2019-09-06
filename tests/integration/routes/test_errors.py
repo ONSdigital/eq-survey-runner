@@ -38,10 +38,6 @@ class TestErrors(IntegrationTestCase):
             self.get('/hfjdskahfjdkashfsa')
             self.assertStatusNotFound()
 
-            # Test that my account link uses account_service_url that's passed in via the payload
-            self.assertInBody('My account')
-            self.assertInBody('href="http://correct.place"')
-
     def test_errors_500(self):
         # Given
         payload_without_account_service_url = self.example_payload.copy()
@@ -61,10 +57,6 @@ class TestErrors(IntegrationTestCase):
             self.post({'answer': '5000000'})
             self.assertStatusCode(500)
 
-            # Test that my account link doesn't show as it wasn't passed in via the payload.
-            self.assertNotInBody('My account')
-            self.assertNotInBody('href="http://correct.place"')
-
     def test_errors_500_with_payload(self):
         # Given
         with patch('tests.integration.create_token.PAYLOAD', self.example_payload):
@@ -79,6 +71,3 @@ class TestErrors(IntegrationTestCase):
                 self.post({'answer': '5000000'})
                 self.assertStatusCode(500)
 
-                # Test that my account link uses account_service_url that's passed in via the payload
-                self.assertInBody('My account')
-                self.assertInBody('href="http://correct.place"')
