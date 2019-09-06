@@ -147,7 +147,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.post()
 
-        self.assertInBody('Thank you for submitting your census')
+        self.assertInUrl('thank-you')
 
     def test_optional_list_collector_submission(self):
         self.launchSurvey('test_list_collector')
@@ -164,4 +164,4 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.post()
 
-        self.assertInBody('Thank you for submitting your census')
+        self.assertInUrl('thank-you')
