@@ -10,7 +10,7 @@ const ThankYouPage = require('../base_pages/thank-you.page.js');
 const AnyoneUsuallyLiveAtPage = require('../generated_pages/list_collector_primary_person/anyone-usually-live-at.page.js');
 
 
-describe.only('Primary Person List Collector Survey', function() {
+describe('Primary Person List Collector Survey', function() {
 
   describe('Given the user starts on the \'do you live here\' question', function() {
     before('Load the survey', function () {
@@ -59,13 +59,15 @@ describe.only('Primary Person List Collector Survey', function() {
         .click(ListCollectorPage.previous())
         .click(PrimaryPersonListCollectorPage.no())
         .click(PrimaryPersonListCollectorPage.submit())
-        .click(AnyoneUsuallyLiveAtPage.yes())
+        .click(AnyoneUsuallyLiveAtPage.no())
+        .click(AnyoneUsuallyLiveAtPage.submit())
         .getText(ListCollectorPage.listLabel(1)).should.eventually.equal('Samuel Clemens');
     });
 
     it('When the user adds the primary person again, then the primary person is first in the list', function () {
       return browser
         .click(ListCollectorPage.previous())
+        .click(AnyoneUsuallyLiveAtPage.previous())
         .click(PrimaryPersonListCollectorPage.yes())
         .click(PrimaryPersonListCollectorPage.submit())
         .setValue(PrimaryPersonListCollectorAddPage.firstName(), 'Mark')
@@ -80,6 +82,7 @@ describe.only('Primary Person List Collector Survey', function() {
         .isExisting(ListCollectorPage.listRemoveLink(2)).should.eventually.be.true;
     });
 
+
     it('When the user changes the primary person\'s name on the summary, then the name should be updated', function () {
       return browser
         .click(ListCollectorPage.listEditLink(1))
@@ -90,10 +93,15 @@ describe.only('Primary Person List Collector Survey', function() {
         .getText(ListCollectorPage.listLabel(2)).should.eventually.equal('Samuel Clemens');
     });
 
+    it('When the user views the summary, then it does not show the does anyone usually live here question', function () {
+        return browser
+          .click(ListCollectorPage.no())
+          .click(ListCollectorPage.submit())
+          .getText('body').should.not.eventually.equal('usually live here');
+    });
+
     it('When the user attempts to submit, then they are shown the confirmation page', function () {
       return browser
-        .click(ListCollectorPage.no())
-        .click(ListCollectorPage.submit())
         .click(SectionSummaryPage.submit())
         .getText('body').should.eventually.contain('Thank you for your answers, do you wish to submit');
     });

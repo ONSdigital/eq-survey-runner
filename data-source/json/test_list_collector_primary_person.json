@@ -144,7 +144,8 @@
                                     ]
                                 }
                             ],
-                            "type": "Question"
+                            "type": "Question",
+                            "show_on_section_summary": false
                         },
                         {
                             "id": "list-collector",
