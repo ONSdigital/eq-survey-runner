@@ -70,4 +70,3 @@ class TestErrors(IntegrationTestCase):
             ):
                 self.post({'answer': '5000000'})
                 self.assertStatusCode(500)
-

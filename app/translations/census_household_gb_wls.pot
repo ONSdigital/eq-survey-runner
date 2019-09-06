@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-06 12:11+0100\n"
+"POT-Creation-Date: 2019-09-06 12:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -341,7 +341,7 @@ msgstr ""
 msgid "For example, BTEC General, City and Guilds Craft"
 msgstr ""
 
-msgid "Questions on A levels and GCSEs and equivalents will follow"
+msgid "Questions on A levels, GCSEs and equivalents will follow"
 msgstr ""
 
 msgid "Include 4 or more AS levels"
@@ -605,7 +605,7 @@ msgstr ""
 msgid "When did you most recently arrive to live in the United Kingdom?"
 msgstr ""
 
-msgid "Did you arrive in the UK, on or after 13 October 2018"
+msgid "Did you arrive in the UK, on or after 13 October 2018?"
 msgstr ""
 
 msgid ""
@@ -824,9 +824,6 @@ msgstr ""
 msgid "Visitors"
 msgstr ""
 
-msgid "Enter details of this person’s usual UK address"
-msgstr ""
-
 msgid ""
 "Names of the people living at this address including anyone temporarily "
 "away or who has been or intends to be in the UK for 3 months or more."
@@ -911,22 +908,22 @@ msgstr ""
 msgid "Type of central heating"
 msgstr ""
 
-msgid "Personal details such as date of birth, country of birth, religion etc."
-msgstr ""
-
-msgid "Education and qualifications"
-msgstr ""
-
-msgid "Employment and travel to work"
+msgid "Personal details such as date of birth, country of birth, religion"
 msgstr ""
 
 msgid "Second or holiday homes"
 msgstr ""
 
-msgid "Unpaid care and health"
+msgid "Main language"
 msgstr ""
 
-msgid "Languages"
+msgid "Health"
+msgstr ""
+
+msgid "Unpaid care provided"
+msgstr ""
+
+msgid "Employment details"
 msgstr ""
 
 msgid "provide services and share funding fairly"
@@ -938,10 +935,10 @@ msgstr ""
 msgid "Date of birth"
 msgstr ""
 
-msgid "Usual address"
+msgid "Sex"
 msgstr ""
 
-msgid "Sex"
+msgid "Usual address"
 msgstr ""
 
 msgid ""
@@ -1094,7 +1091,7 @@ msgid ""
 "United Kingdom?"
 msgstr ""
 
-msgid "Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018"
+msgid "Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018?"
 msgstr ""
 
 msgid ""
@@ -1327,6 +1324,9 @@ msgid ""
 msgstr ""
 
 msgid "What is <em>{person_name_possessive}</em> usual address?"
+msgstr ""
+
+msgid "Enter details of <em>{person_name_possessive}</em> usual UK address"
 msgstr ""
 
 msgid "{person_name} (Visitor)"
@@ -2614,26 +2614,26 @@ msgid "Enter the current name of the country"
 msgstr ""
 
 #. answer-id: when-arrive-in-uk-answer
-msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018"
+msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018?"
 msgid "Yes"
 msgstr ""
 
 #. answer-id: when-arrive-in-uk-answer
-msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018"
+msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018?"
 msgid "No"
 msgstr ""
 
 #. answer-id: when-arrive-in-uk-answer
 msgctxt ""
 "Answer for: Did <em>{person_name}</em> arrive in the UK, on or after 13 "
-"October 2018"
+"October 2018?"
 msgid "Yes"
 msgstr ""
 
 #. answer-id: when-arrive-in-uk-answer
 msgctxt ""
 "Answer for: Did <em>{person_name}</em> arrive in the UK, on or after 13 "
-"October 2018"
+"October 2018?"
 msgid "No"
 msgstr ""
 
@@ -4987,27 +4987,37 @@ msgid "Enter the current name of the country"
 msgstr ""
 
 #. answer-id: usual-address-details-answer-building
-msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> usual UK "
+"address"
 msgid "Address line 1"
 msgstr ""
 
 #. answer-id: usual-address-details-answer-street
-msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> usual UK "
+"address"
 msgid "Address line 2"
 msgstr ""
 
 #. answer-id: usual-address-details-answer-city
-msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> usual UK "
+"address"
 msgid "Town or city"
 msgstr ""
 
 #. answer-id: usual-address-details-answer-county
-msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> usual UK "
+"address"
 msgid "County (optional)"
 msgstr ""
 
 #. answer-id: usual-address-details-answer-postcode
-msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> usual UK "
+"address"
 msgid "Postcode"
 msgstr ""
 
