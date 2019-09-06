@@ -345,6 +345,7 @@ local firstPersonNamePossessivePlaceholder = {
                 value: 'Stepchild',
               },
               {
+                description: 'Including half brother or half sister',
                 label: 'Brother or sister',
                 playback: {
                   text: '{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>',
@@ -429,6 +430,7 @@ local firstPersonNamePossessivePlaceholder = {
                 value: 'Other relation',
               },
               {
+                description: 'Including foster child',
                 label: 'Unrelated',
                 playback: {
                   text: '{second_person_name} is <em>unrelated</em> to {first_person_name}',
