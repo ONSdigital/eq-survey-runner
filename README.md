@@ -305,42 +305,17 @@ SUBMISSION_BUCKET_NAME=census-eq-dev-1234567-survey-runner-submission ./k8s/depl
 
 ## Internationalisation
 
-We use flask-babel to do internationalisation. To extract messages from source, in the project root run the following command.
+We use Crowdin to do internationalisation. To extract messages from source and create the messages.pot file, in the project root run the following command.
 
 ```
-pipenv run pybabel extract -F babel.cfg -o app/translations/messages.pot .
+make translation-templates
 ```
 
-This will extract messages and place them in the translations/messages.pot file ready for translation.
+This will extract messages and place them in the .pot files ready for translation.
 
-You should only need to create the language files once.
+These .pot files will then be uploaded to Crowdin to be translated. The Crowdin translation process is documented in Confluence [here](https://collaborate2.ons.gov.uk/confluence/display/SDC/Translation+Process)
 
-To create Welsh language files, run the following command
-
-```
-pipenv run pybabel init -i app/translations/messages.pot -d app/translations -l cy
-```
-
-To create the gaelic language files, use the following:
-
-```
-pipenv run pybabel init -i app/translations/messages.pot -d app/translations -l gd
-```
-
-### Compiling the translations
-
-To compile the language files for use in the application, use the following:
-
-```
-pipenv run pybabel compile -d app/translations
-```
-
-As strings are added to the application, you will need to update but not overwrite the translations for the various languages.
-To update the language strings, use:
-
-```
-pipenv run pybabel update -i app/translations/messages.pot -d app/translations
-```
+Once the .po files are downloaded from Crowdin they can be added to the source code and used by the application
 
 ---
 
