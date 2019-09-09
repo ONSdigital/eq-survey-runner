@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 11:37+0100\n"
+"POT-Creation-Date: 2019-09-09 11:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -657,9 +657,6 @@ msgstr ""
 msgid "Visitors"
 msgstr ""
 
-msgid "Enter details of this person’s usual UK address"
-msgstr ""
-
 msgid ""
 "Names of the people living at this address including anyone temporarily "
 "away or who has been or intends to be in the UK for 3 months or more."
@@ -744,31 +741,28 @@ msgstr ""
 msgid "Type of central heating"
 msgstr ""
 
-msgid "Personal details such as date of birth, country of birth, religion etc."
+msgid "Personal details such as date of birth, country of birth, religion"
 msgstr ""
 
-msgid "Education and qualifications"
+msgid "Main language"
 msgstr ""
 
-msgid "Employment and travel to work"
+msgid "Health"
 msgstr ""
 
-msgid "Second or holiday homes"
+msgid "Unpaid care provided"
 msgstr ""
 
-msgid "Unpaid care and health"
-msgstr ""
-
-msgid "Languages"
+msgid "Employment details"
 msgstr ""
 
 msgid "Date of birth"
 msgstr ""
 
-msgid "Usual address"
+msgid "Sex"
 msgstr ""
 
-msgid "Sex"
+msgid "Usual address"
 msgstr ""
 
 msgid ""
@@ -1149,6 +1143,9 @@ msgid ""
 msgstr ""
 
 msgid "What is <em>{person_name_possessive}</em> usual address?"
+msgstr ""
+
+msgid "Enter details of <em>{person_name_possessive}</em> usual UK address"
 msgstr ""
 
 msgid "{person_name} (Visitor)"
@@ -4907,27 +4904,37 @@ msgid "Please enter the country"
 msgstr ""
 
 #. answer-id: usual-address-details-answer-building
-msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> usual UK "
+"address"
 msgid "Address line 1"
 msgstr ""
 
 #. answer-id: usual-address-details-answer-street
-msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> usual UK "
+"address"
 msgid "Address line 2"
 msgstr ""
 
 #. answer-id: usual-address-details-answer-city
-msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> usual UK "
+"address"
 msgid "Town or city"
 msgstr ""
 
 #. answer-id: usual-address-details-answer-county
-msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> usual UK "
+"address"
 msgid "County (optional)"
 msgstr ""
 
 #. answer-id: usual-address-details-answer-postcode
-msgctxt "Answer for: Enter details of this person’s usual UK address"
+msgctxt ""
+"Answer for: Enter details of <em>{person_name_possessive}</em> usual UK "
+"address"
 msgid "Postcode"
 msgstr ""
 
