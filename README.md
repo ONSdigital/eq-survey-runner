@@ -313,7 +313,7 @@ make translation-templates
 
 This will extract messages and place them in the .pot files ready for translation.
 
-These .pot files will then be translated. The translation process is documented in Confluence [here](https://collaborate2.ons.gov.uk/confluence/display/SDC/Translation+Process)
+These .pot files will then need to be translated. The translation process is documented in Confluence [here](https://collaborate2.ons.gov.uk/confluence/display/SDC/Translation+Process)
 
 Once we have the translated .po files they can be added to the source code and used by the application
 
