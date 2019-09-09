@@ -86,10 +86,7 @@
                                                     "arguments": {
                                                         "delimiter": " ",
                                                         "list_to_concatenate": {
-                                                            "identifier": [
-                                                                "first-name",
-                                                                "last-name"
-                                                            ],
+                                                            "identifier": ["first-name", "last-name"],
                                                             "source": "answers"
                                                         }
                                                     },
@@ -145,10 +142,7 @@
                                                     "arguments": {
                                                         "list_to_concatenate": {
                                                             "source": "answers",
-                                                            "identifier": [
-                                                                "first-name",
-                                                                "last-name"
-                                                            ]
+                                                            "identifier": ["first-name", "last-name"]
                                                         },
                                                         "delimiter": " "
                                                     }
@@ -192,10 +186,7 @@
                                                                     "arguments": {
                                                                         "list_to_concatenate": {
                                                                             "source": "answers",
-                                                                            "identifier": [
-                                                                                "first-name",
-                                                                                "last-name"
-                                                                            ]
+                                                                            "identifier": ["first-name", "last-name"]
                                                                         },
                                                                         "delimiter": " "
                                                                     }
