@@ -305,7 +305,7 @@ SUBMISSION_BUCKET_NAME=census-eq-dev-1234567-survey-runner-submission ./k8s/depl
 
 ## Internationalisation
 
-We use Crowdin to do internationalisation. To extract messages from source and create the messages.pot file, in the project root run the following command.
+We use flask-babel to do internationalisation. To extract messages from source and create the messages.pot file, in the project root run the following command.
 
 ```
 make translation-templates
