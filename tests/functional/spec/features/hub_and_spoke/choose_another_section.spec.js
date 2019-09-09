@@ -19,8 +19,8 @@ describe('Choose another section link', function () {
     return helpers.openQuestionnaire('test_hub_complete_sections.json')
       .then(() => {
         return browser
-          .click(HubPage.submit())
-          .getText(EmploymentStatusBlockPage.returnToHubLink()).should.not.eventually.contain('Choose another section and return to this later');
+          .getText('body').should.eventually.not.contain('Can\'t complete this question?')
+          .getText('body').should.eventually.not.have.string('Choose another section and return to this later');
 
       });
   });
