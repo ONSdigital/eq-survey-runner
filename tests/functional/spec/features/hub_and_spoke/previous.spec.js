@@ -1,8 +1,8 @@
-const helpers = require('../helpers');
-const EmploymentStatusBlockPage = require('../generated_pages/hub_and_spoke/employment-status.page.js');
-const EmploymentTypePage = require('../generated_pages/hub_and_spoke/employment-type.page.js');
-const HubPage = require('../base_pages/hub.page.js');
-const ProxyPage = require('../generated_pages/hub_and_spoke/proxy.page.js');
+const helpers = require('../../../helpers');
+const EmploymentStatusBlockPage = require('../../../generated_pages/hub_and_spoke/employment-status.page.js');
+const EmploymentTypePage = require('../../../generated_pages/hub_and_spoke/employment-type.page.js');
+const HubPage = require('../../../base_pages/hub.page.js');
+const ProxyPage = require('../../../generated_pages/hub_and_spoke/proxy.page.js');
 const schema = 'test_hub_complete_sections.json';
 
 describe('Choose another section link', function () {
