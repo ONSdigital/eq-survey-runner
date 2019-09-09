@@ -33,7 +33,17 @@ class PathFinder:
         self.list_store = list_store
 
     def is_path_complete(self, path):
-        return not self.get_first_incomplete_location(path)
+        location = self.get_first_incomplete_location(path)
+        if not location:
+            return True
+
+        if (
+            location == path[-1]
+            and self.schema.get_block(location.block_id)['type'] == 'SectionSummary'
+        ):
+            return True
+
+        return False
 
     def get_first_incomplete_location(self, path):
         if path:
@@ -50,7 +60,6 @@ class PathFinder:
                 )
 
                 if not is_location_complete and block_type not in [
-                    'SectionSummary',
                     'Summary',
                     'Confirmation',
                 ]:
