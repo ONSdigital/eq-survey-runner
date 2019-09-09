@@ -2,7 +2,8 @@ import pytest
 
 from app.questionnaire.location import Location
 from app.views.contexts.summary.group import Group
-
+from app.data_model.answer_store import AnswerStore
+from app.data_model.list_store import ListStore
 
 @pytest.fixture(name='schema')
 def fixture_schema():
@@ -60,12 +61,12 @@ def fixture_path():
 
 
 def test_group_serialize_hide_on_summary_true(
-    app, mocker, schema, path
+    app, schema, path
 ):  # pylint: disable=unused-argument
 
-    answer_store = mocker.MagicMock()
-    list_store = mocker.MagicMock()
-    metadata = mocker.MagicMock()
+    answer_store = AnswerStore()
+    list_store = ListStore()
+    metadata = None
 
     group = Group(
         schema,
@@ -83,12 +84,12 @@ def test_group_serialize_hide_on_summary_true(
 
 
 def test_group_serialize_hide_on_summary_not_set(
-    app, mocker, schema, path
+    app, schema, path
 ):  # pylint: disable=unused-argument
 
-    answer_store = mocker.MagicMock()
-    list_store = mocker.MagicMock()
-    metadata = mocker.MagicMock()
+    answer_store = AnswerStore()
+    list_store = ListStore()
+    metadata = None
 
     del schema['blocks'][1]['show_on_section_summary']
 
@@ -108,11 +109,11 @@ def test_group_serialize_hide_on_summary_not_set(
 
 
 def test_group_serialize_hide_on_summary_false(
-    app, mocker, schema, path
+    app, schema, path
 ):  # pylint: disable=unused-argument
-    answer_store = mocker.MagicMock()
-    list_store = mocker.MagicMock()
-    metadata = mocker.MagicMock()
+    answer_store = AnswerStore()
+    list_store = ListStore()
+    metadata = None
 
     schema['blocks'][0]['show_on_section_summary'] = True
     schema['blocks'][1]['show_on_section_summary'] = True
