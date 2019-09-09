@@ -238,6 +238,7 @@ def set_up_talisman(application):
 
     talisman = Talisman(
         application,
+        content_security_policy=csp_policy,
         content_security_policy_nonce_in=['script-src'],
         session_cookie_secure=application.config['EQ_ENABLE_SECURE_SESSION_COOKIE'],
         force_https=True,
