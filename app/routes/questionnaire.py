@@ -23,6 +23,7 @@ from app.globals import (
     get_session_timeout_in_seconds,
 )
 from app.helpers.form_helper import get_form_for_location, post_form_for_block
+from app.helpers.language_helper import handle_language
 from app.helpers.path_finder_helper import path_finder
 from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_questionnaire_store
@@ -71,12 +72,10 @@ def before_questionnaire_request():
         'questionnaire request', method=request.method, url_path=request.full_path
     )
 
+    handle_language()
+
     session_store = get_session_store()
-    session_data = session_store.session_data
-
-    set_session_data_language_code(session_store, request.args.get('language_code'))
-
-    g.schema = load_schema_from_session_data(session_data)
+    g.schema = load_schema_from_session_data(session_store.session_data)
 
 
 @post_submission_blueprint.before_request
@@ -86,6 +85,9 @@ def before_post_submission_request():
         raise NoTokenException(401)
 
     session_data = session_store.session_data
+
+    handle_language()
+
     g.schema = load_schema_from_session_data(session_data)
 
     logger.bind(tx_id=session_data.tx_id, schema_name=session_data.schema_name)
@@ -315,8 +317,6 @@ def get_thank_you(schema):
         view_submission_duration = humanize.naturaldelta(
             timedelta(seconds=schema.json['view_submitted_response']['duration'])
         )
-
-    set_session_data_language_code(session_store, request.args.get('language_code'))
 
     return render_template(
         template='thank-you',
@@ -565,9 +565,3 @@ def request_wants_json():
         best == 'application/json'
         and request.accept_mimetypes[best] > request.accept_mimetypes['text/html']
     )
-
-
-def set_session_data_language_code(session_store, language_code):
-    if language_code:
-        session_store.session_data.language_code = language_code
-        session_store.save()
