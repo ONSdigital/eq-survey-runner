@@ -19,6 +19,7 @@ from google.cloud import datastore
 from htmlmin.main import minify
 from sdc.crypto.key_store import KeyStore, validate_required_keys
 from structlog import get_logger
+
 from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
@@ -151,7 +152,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     setup_secure_cookies(application)
 
-    setup_secure_headers(application)
+    talisman = set_up_talisman(application)
 
     setup_babel(application)
 
@@ -165,7 +166,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     login_manager.init_app(application)
 
-    add_safe_health_check(application)
+    add_safe_health_check(application, talisman)
 
     compress.init_app(application)
 
@@ -228,16 +229,15 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     return application
 
 
-def setup_secure_headers(application):
+def set_up_talisman(application):
     csp_policy = copy.deepcopy(CSP_POLICY)
 
     if application.config['EQ_ENABLE_LIVE_RELOAD']:
         # browsersync is configured to bind on port 5075
         csp_policy['connect-src'] += ['ws://localhost:35729']
 
-    Talisman(
+    talisman = Talisman(
         application,
-        content_security_policy=csp_policy,
         content_security_policy_nonce_in=['script-src'],
         session_cookie_secure=application.config['EQ_ENABLE_SECURE_SESSION_COOKIE'],
         force_https=True,
@@ -246,6 +246,8 @@ def setup_secure_headers(application):
         strict_transport_security_max_age=31536000,
         frame_options='DENY',
     )
+
+    return talisman
 
 
 def setup_storage(application):
@@ -436,8 +438,9 @@ def setup_babel(application):
         return 'Europe/London'
 
 
-def add_safe_health_check(application):
+def add_safe_health_check(application, talisman):
     @application.route('/status')
+    @talisman(force_https=False)
     def safe_health_check():  # pylint: disable=unused-variable
         data = {'status': 'OK', 'version': application.config['EQ_APPLICATION_VERSION']}
         return json.dumps(data)
