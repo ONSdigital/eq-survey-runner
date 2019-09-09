@@ -311,11 +311,28 @@ We use flask-babel to do internationalisation. To extract messages from source a
 make translation-templates
 ```
 
+make translation-templates is a command that runs:
+
+    ```
+    pipenv run pybabel init -i app/translations/messages.pot -d app/translations -l cy
+    ```
+
+    To create Welsh language files and
+
+    ```
+    pipenv run pybabel init -i app/translations/messages.pot -d app/translations -l gd
+    ```
+
+    To create the gaelic language files
+
+
 This will extract messages and place them in the .pot files ready for translation.
 
 These .pot files will then need to be translated. The translation process is documented in Confluence [here](https://collaborate2.ons.gov.uk/confluence/display/SDC/Translation+Process)
 
 Once we have the translated .po files they can be added to the source code and used by the application
+
+If the .po file being added is a new po file it will also need to be added to the translate_schemas.py build script
 
 ---
 
