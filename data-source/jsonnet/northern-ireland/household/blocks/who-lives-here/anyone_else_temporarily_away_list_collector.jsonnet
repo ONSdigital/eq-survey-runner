@@ -218,5 +218,5 @@ local editQuestion(questionTitle) = {
     add_link_text: 'Add another visitor to this household',
     empty_list_text: 'There are no visitors',
   },
-  hide_on_section_summary: true,
+  show_on_section_summary: false,
 }

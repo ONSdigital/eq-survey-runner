@@ -5,6 +5,7 @@ from app.views.contexts.summary.group import Group
 from app.data_model.answer_store import AnswerStore
 from app.data_model.list_store import ListStore
 
+
 @pytest.fixture(name='schema')
 def fixture_schema():
     return {
