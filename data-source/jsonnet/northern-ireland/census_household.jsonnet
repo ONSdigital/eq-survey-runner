@@ -107,7 +107,7 @@ function(region_code, census_date) {
   survey_id: 'census',
   title: '2019 Census Test',
   description: 'Census Northern Ireland Household Schema',
-  theme: 'census',
+  theme: 'census-nisra',
   legal_basis: 'Voluntary',
   navigation: {
     visible: false,
@@ -334,8 +334,8 @@ function(region_code, census_date) {
           title: '',
           blocks: [
             visitor_interstitial(census_date),
-            visitor_sex,
             visitor_dob(census_date),
+            visitor_sex,
             usual_household_address,
             usual_household_address_details,
           ],

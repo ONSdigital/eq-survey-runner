@@ -24,9 +24,9 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle = 'Did you arrive in the UK, on or after 13 October 2018';
+local nonProxyTitle = 'Did you arrive in the UK, on or after 13 October 2018?';
 local proxyTitle = {
-  text: 'Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018',
+  text: 'Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018?',
   placeholders: [
     placeholders.personName,
   ],
