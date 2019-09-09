@@ -29,3 +29,7 @@ def contact():
 @contact_blueprint.route('/cookies-privacy', methods=['GET'])
 def legal():
     return render_template(template='static/cookies-privacy')
+
+@contact_blueprint.route('/privacy', methods=['GET'])
+def privacy():
+    return render_template(template='static/privacy')
