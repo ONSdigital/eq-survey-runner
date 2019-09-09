@@ -9,13 +9,9 @@
 
 {% set page = {
   "title": page_title if page_title else survey_title,
-  "header": {
-    "title": survey_title
-  }
+  "theme": theme,
+  "header": page_header
 } %}
-
-{# TODO: Needs to be wrapped in some condition to only include this if the theme is census #}
-{% include 'layouts/configs/_census-theme.html' %}
 
 {% include 'layouts/configs/_languages.html' %}
 {% include 'layouts/configs/_service-links.html' %}
