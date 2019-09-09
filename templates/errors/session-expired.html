@@ -19,9 +19,9 @@
   {% endcall %}
 
   {% if account_service_url %}
-    <p>{{ _("We have saved your progress and you will need to ") }}
-      <a href="{{account_service_url}}">{{ _("enter your unique code") }}</a>
-      {{ _(" to access the survey again.") }}</p>
+    <p>
+    {{ _('We have saved your progress and you will need to %(enter_your_unique_code)s to access the survey again.', enter_your_unique_code=('<a href="' ~ account_service_url ~ '">%s</a>' % _('enter your unique code'))) }}
+    </p>
   {% endif %}
 
 {% endblock %}
