@@ -3,8 +3,6 @@
 {% from "components/button/_macro.njk" import onsButton %}
 
 {% set survey_title  = survey_title or _("ONS Business Surveys") %}
-<!-- get the region code in the page linking to this and pass it in -->
-{% set nisra  = true %}
 
 {% block main %}
   {% do page | setAttribute("feedback", "") %}
@@ -22,7 +20,7 @@
     <li>{{ _("Sunday - closed") }}</li>
   </ul>
 
-  {% if nisra %}
+  {% if schema_theme == "census-nisra" %}
 
     <p>{{ _("Telephone: %(telephone_number)s",telephone_number = helpers.telephone_number(tel="0800 328 2021")) }}</p>
 

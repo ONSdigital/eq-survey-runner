@@ -65,6 +65,7 @@ def render_template(template, **kwargs):
         google_tag_manager_preview=current_app.config['EQ_GOOGLE_TAG_MANAGER_PREVIEW'],
         page_header=page_header_context,
         theme=_map_theme(cookie_session.get('theme')),
+        schema_theme=cookie_session.get('theme'),
         **kwargs,
     )
 
