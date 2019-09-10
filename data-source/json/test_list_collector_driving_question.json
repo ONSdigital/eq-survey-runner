@@ -101,7 +101,7 @@
                             "id": "anyone-else-live-at",
                             "type": "ListCollector",
                             "for_list": "people",
-                            "hide_on_section_summary": false,
+                            "show_on_section_summary": true,
                             "add_answer": {
                                 "id": "anyone-else-live-at-answer",
                                 "value": "Yes"
