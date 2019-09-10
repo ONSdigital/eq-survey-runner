@@ -20,10 +20,18 @@
     <li>{{ _("Sunday - closed") }}</li>
   </ul>
 
+<!-- this wales/england-->
+
   <h3>{{ _("England") }}</h3>
   <p>{{ _("Telephone: %(telephone_number)s",telephone_number = helpers.telephone_number(tel="0800 141 2021")) }}</p>
   <h3>{{ _("Wales") }}</h3>
   <p>{{ _("Telephone: %(telephone_number)s (Option 1 for Welsh, option 2 for English)",telephone_number = helpers.telephone_number(tel="0800 169 2021")) }}</p>
+
+<!-- or this nisra-->
+
+  <p>{{ _("Telephone: %(telephone_number)s",telephone_number = helpers.telephone_number(tel="0800 328 2021")) }}</p>
+
+<!-- -->
 
   <h3>{{ _("Other languages") }}</h3>
   <p>{{ _("If you need to speak to us in another language phone %(telephone_number)s",telephone_number = helpers.telephone_number(tel="0800 587 2021")) }}</p>
@@ -53,7 +61,8 @@
   {{
     onsButton({
         "type": 'button',
-        "text": 'Start live chat'
+        "text": 'Start live chat',
+        "url": 'https://sdc-prototypes.netlify.com/webchat'
     })
   }}
 

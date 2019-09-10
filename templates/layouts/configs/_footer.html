@@ -6,20 +6,42 @@
 } %}
 
 {% if use_transactional_footer %}
-  {% do footer | setAttribute("rows", [
+  {% do footer | setAttribute("cols", [
       {
           "itemsList": [
               {
-                  "text": _('Contact us'),
-                  "url": '/contact-us'
+                    "text": _('Contact us'),
+                    "url": '/contact-us',
+                    "target": "_blank"
               },
               {
-                  "text": _('Cookies and privacy'),
-                  "url": '/cookies-privacy'
+                    "text": _('Help'),
+                    "url": 'http://census.gov.uk/help/how-to-answer-questions/online-questions-help-ew/',
+                    "target": "_blank"
+              }
+          ]
+      },
+      {
+          "itemsList": [
+              {
+                  "text": _("Cookies"),
+                  "url": "#",
+                  "target": "_blank"
+              },
+              {
+                  "text": _("Privacy and data protection"),
+                  "url": "/privacy",
+                  "target": "_blank"
+              },
+              {
+                  "text": _("Accessibility"),
+                  "url": "#",
+                  "target": "_blank"
               }
           ]
       }
-  ]) %}
+    ]) %}
+
 {% else %}
   {% do footer | setAttribute("cols", [
     {
