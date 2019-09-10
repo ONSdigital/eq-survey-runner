@@ -26,6 +26,14 @@
 
 {% block preHeader %}
   <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}"/>
+
+  {{
+    onsCookiesBanner({
+        "html": 'We use cookies to improve your experience of census.gov.uk',
+        "secondaryButtonUrl": '#'
+    })
+  }}
+
 {% endblock %}
 
 
@@ -62,12 +70,9 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
   {% endif %}
-  {{
-    onsCookiesBanner({
-        "html": 'We use cookies to improve your experience of census.gov.uk',
-        "secondaryButtonUrl": '#'
-  })
-}}
+
+
+
 {% endblock %}
 
 
