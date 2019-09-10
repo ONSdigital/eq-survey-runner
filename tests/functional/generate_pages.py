@@ -391,7 +391,7 @@ def process_calculated_summary(answers, page_spec):
 
 def process_summary(schema_data, page_spec):
     for section in schema_data['sections']:
-        list_collector_blocks, _ = QuestionnaireSchema.get_list_blocks_for_section(
+        list_collector_blocks = QuestionnaireSchema.get_visible_list_blocks_for_section(
             section
         )
         for group in section['groups']:

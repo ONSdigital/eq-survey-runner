@@ -4,10 +4,6 @@ const AnyoneUsuallyLiveAtPage = require('../generated_pages/list_collector_drivi
 const AnyoneElseLiveAtListCollectorPage = require('../generated_pages/list_collector_driving_question/anyone-else-live-at.page.js');
 const AnyoneElseLiveAtListCollectorAddPage = require('../generated_pages/list_collector_driving_question/anyone-else-live-at-add.page.js');
 const AnyoneElseLiveAtListCollectorRemovePage = require('../generated_pages/list_collector_driving_question/anyone-else-live-at-remove.page.js');
-const AnyoneElseLiveAtTempAwayListCollectorPage = require('../generated_pages/list_collector_driving_question/anyone-else-temp-away-list-collector.page.js');
-const AnyoneElseLiveAtTempAwayListCollectorAddPage = require('../generated_pages/list_collector_driving_question/anyone-else-temp-away-list-collector-add.page.js');
-const AnyoneElseLiveAtTempAwayListCollectorEditPage = require('../generated_pages/list_collector_driving_question/anyone-else-temp-away-list-collector-edit.page.js');
-const AnyoneElseLiveAtTempAwayListCollectorRemovePage = require('../generated_pages/list_collector_driving_question/anyone-else-temp-away-list-collector-remove.page.js');
 const SummaryPage = require('../generated_pages/list_collector_driving_question/summary.page.js');
 
 function checkPeopleInList(peopleExpected) {
@@ -40,15 +36,13 @@ describe('List Collector Driving Question', function() {
         .setValue(AnyoneElseLiveAtListCollectorAddPage.firstName(), 'Marcus')
         .setValue(AnyoneElseLiveAtListCollectorAddPage.lastName(), 'Twin')
         .click(AnyoneElseLiveAtListCollectorAddPage.submit())
+        .click(AnyoneElseLiveAtListCollectorPage.yes())
+        .click(AnyoneElseLiveAtListCollectorPage.submit())
+        .setValue(AnyoneElseLiveAtListCollectorAddPage.firstName(), 'Suzy')
+        .setValue(AnyoneElseLiveAtListCollectorAddPage.lastName(), 'Clemens')
+        .click(AnyoneElseLiveAtListCollectorAddPage.submit())
         .click(AnyoneElseLiveAtListCollectorPage.no())
         .click(AnyoneElseLiveAtListCollectorPage.submit())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.yesINeedToAddSomeone())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.submit())
-        .setValue(AnyoneElseLiveAtTempAwayListCollectorAddPage.firstName(), 'Suzy')
-        .setValue(AnyoneElseLiveAtTempAwayListCollectorAddPage.lastName(), 'Clemens')
-        .click(AnyoneElseLiveAtTempAwayListCollectorAddPage.submit())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.noIDoNotNeedToAddAnyone())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.submit())
         .then(() => {
           const peopleExpected = ['Marcus Twin', 'Suzy Clemens'];
 
@@ -62,57 +56,8 @@ describe('List Collector Driving Question', function() {
       return browser
         .click(AnyoneUsuallyLiveAtPage.no())
         .click(AnyoneUsuallyLiveAtPage.submit())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.noIDoNotNeedToAddAnyone())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.submit())
         .click(SummaryPage.peopleListAddLink())
         .getUrl().should.eventually.contain(AnyoneUsuallyLiveAtPage.url());
-    });
-  });
-
-  describe('Given the user answers no to the driving question adds someone on a subsequent list collector', function() {
-    it('The summary add link returns to the driving question', function() {
-      return browser
-        .click(AnyoneUsuallyLiveAtPage.no())
-        .click(AnyoneUsuallyLiveAtPage.submit())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.yesINeedToAddSomeone())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.submit())
-        .setValue(AnyoneElseLiveAtTempAwayListCollectorAddPage.firstName(), 'Suzy')
-        .setValue(AnyoneElseLiveAtTempAwayListCollectorAddPage.lastName(), 'Clemens')
-        .click(AnyoneElseLiveAtTempAwayListCollectorAddPage.submit())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.noIDoNotNeedToAddAnyone())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.submit())
-        .click(SummaryPage.peopleListAddLink())
-        .getUrl().should.eventually.contain(AnyoneUsuallyLiveAtPage.url());
-    });
-
-    it('The change link for a person should return to the original list collector', function() {
-      return browser
-        .click(AnyoneUsuallyLiveAtPage.no())
-        .click(AnyoneUsuallyLiveAtPage.submit())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.yesINeedToAddSomeone())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.submit())
-        .setValue(AnyoneElseLiveAtTempAwayListCollectorAddPage.firstName(), 'Suzy')
-        .setValue(AnyoneElseLiveAtTempAwayListCollectorAddPage.lastName(), 'Clemens')
-        .click(AnyoneElseLiveAtTempAwayListCollectorAddPage.submit())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.noIDoNotNeedToAddAnyone())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.submit())
-        .click(SummaryPage.peopleListEditLink(1))
-        .getUrl().should.eventually.contain(AnyoneElseLiveAtTempAwayListCollectorEditPage.pageName);
-    });
-
-    it('The remove link for a person should return to the original list collector', function() {
-      return browser
-        .click(AnyoneUsuallyLiveAtPage.no())
-        .click(AnyoneUsuallyLiveAtPage.submit())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.yesINeedToAddSomeone())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.submit())
-        .setValue(AnyoneElseLiveAtTempAwayListCollectorAddPage.firstName(), 'Marcus')
-        .setValue(AnyoneElseLiveAtTempAwayListCollectorAddPage.lastName(), 'Twin')
-        .click(AnyoneElseLiveAtTempAwayListCollectorAddPage.submit())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.noIDoNotNeedToAddAnyone())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.submit())
-        .click(SummaryPage.peopleListRemoveLink(1))
-        .getUrl().should.eventually.contain(AnyoneElseLiveAtTempAwayListCollectorRemovePage.pageName);
     });
   });
 
@@ -127,8 +72,6 @@ describe('List Collector Driving Question', function() {
         .click(AnyoneElseLiveAtListCollectorAddPage.submit())
         .click(AnyoneElseLiveAtListCollectorPage.no())
         .click(AnyoneElseLiveAtListCollectorPage.submit())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.noIDoNotNeedToAddAnyone())
-        .click(AnyoneElseLiveAtTempAwayListCollectorPage.submit())
         .click(SummaryPage.peopleListRemoveLink(1))
         .click(AnyoneElseLiveAtListCollectorRemovePage.yes())
         .click(AnyoneElseLiveAtListCollectorRemovePage.submit())

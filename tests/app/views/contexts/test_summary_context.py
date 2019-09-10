@@ -394,7 +394,7 @@ def test_context_for_section_list_summary(people_answer_store):
 
 
 @pytest.mark.usefixtures('app')
-def test_context_for_driving_question_summary():
+def test_context_for_driving_question_summary_empty_list():
     schema = load_schema_from_name('test_list_collector_driving_question')
     current_location = Location(block_id='summary', section_id='section')
 
@@ -423,7 +423,7 @@ def test_context_for_driving_question_summary():
 
 
 @pytest.mark.usefixtures('app')
-def test_context_for_driving_question_summary_hidden_list_collector():
+def test_context_for_driving_question_summary():
     schema = load_schema_from_name('test_list_collector_driving_question')
     current_location = Location(block_id='summary', section_id='section')
 
@@ -432,8 +432,7 @@ def test_context_for_driving_question_summary_hidden_list_collector():
         schema,
         AnswerStore(
             [
-                {'answer_id': 'anyone-usually-live-at-answer', 'value': 'No'},
-                {'answer_id': 'anyone-usually-live-at-answer', 'value': 'No'},
+                {'answer_id': 'anyone-usually-live-at-answer', 'value': 'Yes'},
                 {'answer_id': 'first-name', 'value': 'Toni', 'list_item_id': 'PlwgoG'},
                 {
                     'answer_id': 'last-name',
@@ -450,15 +449,15 @@ def test_context_for_driving_question_summary_hidden_list_collector():
 
     expected = [
         {
-            'add_link': '/questionnaire/anyone-usually-live-at/',
+            'add_link': '/questionnaire/people/add-person/',
             'add_link_text': 'Add someone to this household',
             'empty_list_text': 'There are no householders',
             'list_items': [
                 {
-                    'edit_link': '/questionnaire/people/PlwgoG/anyone-else-temp-away-edit-person/',
+                    'edit_link': '/questionnaire/people/PlwgoG/edit-person/',
                     'item_title': 'Toni Morrison',
                     'primary_person': False,
-                    'remove_link': '/questionnaire/people/PlwgoG/anyone-else-temp-away-remove-person/',
+                    'remove_link': '/questionnaire/people/PlwgoG/remove-person/',
                 }
             ],
             'title': 'Household members',
