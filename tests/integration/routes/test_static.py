@@ -1,4 +1,3 @@
-import mock
 from flask import json
 
 from tests.integration.integration_test_case import IntegrationTestCase
@@ -8,11 +7,10 @@ with open('data/en/test_checkbox.json') as json_data:
 
 
 class TestStatic(IntegrationTestCase):
-    @mock.patch('app.utilities.schema.load_schema_from_session_data')
-    def test_contact(self, mock_contact):
-        mock_contact.return_value = data
-        self.launchSurvey('test_checkbox')
+
+    def test_contact(self):
         self.get('/contact-us')
+        self.assertInBody('Contact us if you have any questions')
 
     def test_contact_with_no_session(self):
         self.get('/contact-us')
@@ -23,3 +21,8 @@ class TestStatic(IntegrationTestCase):
         self.assertInBody(
             'We can only use your information for research and statistical purposes. '
         )
+
+    def test_privacy(self):
+        self.get('/privacy')
+        self.assertInBody('Who can access the information?')
+
