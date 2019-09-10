@@ -7,18 +7,6 @@
 {% set form = content.form %}
 {% set use_transactional_footer = true %}
 
-{% block preHeader %}
-  <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}"/>
-
-  {{
-    onsCookiesBanner({
-        "html": 'We use cookies to improve your experience of census.gov.uk',
-        "secondaryButtonUrl": '#'
-    })
-  }}
-
-{% endblock %}
-
 {% block main %}
   {% if previous_location_url %}
     <div class="u-mb-s">
