@@ -1,5 +1,3 @@
-from flask import json
-
 from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestStatic(IntegrationTestCase):
