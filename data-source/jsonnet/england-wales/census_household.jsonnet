@@ -349,8 +349,8 @@ function(region_code, census_date, census_month_year_date) {
           title: '',
           blocks: [
             visitor_interstitial(census_date),
-            visitor_sex,
             visitor_dob(census_date),
+            visitor_sex,
             usual_household_address,
             usual_household_address_details,
           ],

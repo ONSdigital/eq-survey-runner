@@ -108,7 +108,7 @@ class Router:
 
             return previous_location.url()
 
-        if self._schema.is_hub_enabled():
+        if self.can_access_hub():
             return url_for('questionnaire.get_questionnaire')
 
         return None

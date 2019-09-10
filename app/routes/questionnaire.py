@@ -323,7 +323,6 @@ def get_thank_you(schema):
         metadata=metadata_context,
         language_code=session_data.language_code,
         survey_id=schema.json['survey_id'],
-        survey_title=safe_content(schema.json['title']),
         is_view_submitted_response_enabled=is_view_submitted_response_enabled(
             schema.json
         ),
@@ -400,7 +399,6 @@ def get_view_submission(schema):  # pylint: too-many-locals
                 metadata=metadata_context,
                 content=context,
                 survey_id=schema.json['survey_id'],
-                survey_title=safe_content(schema.json['title']),
             )
 
     return redirect(url_for('post_submission.get_thank_you'))
@@ -557,7 +555,6 @@ def _render_page(block_type, context, current_location, previous_location_url, s
         page_title=page_title,
         language_code=session_data.language_code,
         session_timeout=session_timeout,
-        survey_title=schema.json.get('title'),
         legal_basis=schema.json.get('legal_basis'),
     )
 

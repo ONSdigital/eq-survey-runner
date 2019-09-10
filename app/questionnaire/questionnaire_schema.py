@@ -174,14 +174,13 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     @staticmethod
     def get_visible_list_blocks_for_section(section):
-        visible_list_collector_blocks = []
-
-        for block in QuestionnaireSchema.get_blocks_for_section(section):
-            hidden = block.get('hide_on_section_summary', False)
-            if block['type'] == 'ListCollector' and not hidden:
-                visible_list_collector_blocks.append(block)
-
-        return visible_list_collector_blocks
+        list_collector_blocks = []
+        for group in section['groups']:
+            for block in group['blocks']:
+                shown = block.get('show_on_section_summary', True)
+                if block['type'] == 'ListCollector' and shown:
+                    list_collector_blocks.append(block)
+        return list_collector_blocks
 
     @classmethod
     def get_answer_ids_for_question(cls, question):
