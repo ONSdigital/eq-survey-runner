@@ -23,6 +23,7 @@
     "sections": [
         {
             "id": "section",
+            "title": "Who Lives Here",
             "groups": [
                 {
                     "id": "group",
@@ -135,6 +136,8 @@
                                 }
                             },
                             "summary": {
+                                "add_link_text": "Add someone to this household",
+                                "empty_list_text": "There are no householders",
                                 "title": "Household members",
                                 "item_title": {
                                     "text": "{person_name}",
@@ -283,6 +286,8 @@
                                 }
                             },
                             "summary": {
+                                "add_link_text": "Add someone to this household",
+                                "empty_list_text": "There are no householders",
                                 "title": "Household members",
                                 "item_title": {
                                     "text": "{person_name}",
@@ -307,10 +312,29 @@
                             }
                         },
                         {
-                            "id": "summary",
-                            "type": "Summary"
+                            "id": "group-summary",
+                            "type": "SectionSummary"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "id": "submit-answers",
+            "title": "Submit answers",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Confirmation",
+                            "id": "confirmation",
+                            "content": {
+                                "title": "Thank you for your answers, do you wish to submit"
+                            }
+                        }
+                    ],
+                    "id": "confirmation-group",
+                    "title": "Submit answers"
                 }
             ]
         }

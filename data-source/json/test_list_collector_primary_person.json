@@ -83,6 +83,71 @@
                             }
                         },
                         {
+                            "id": "anyone-usually-live-at",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "anyone-usually-live-at-answer",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "action": {
+                                                    "params": {
+                                                        "block_id": "add-person",
+                                                        "list_name": "people"
+                                                    },
+                                                    "type": "RedirectToListAddQuestion"
+                                                },
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "description": "For example, this is a second address or holiday home",
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ],
+                                        "type": "Radio"
+                                    }
+                                ],
+                                "id": "anyone-usually-live-at-question",
+                                "title": "Does anyone usually live at your address?",
+                                "type": "General"
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "group-summary",
+                                        "when": [
+                                            {
+                                                "condition": "equals",
+                                                "id": "anyone-usually-live-at-answer",
+                                                "value": "No, no one usually lives here"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "list-collector"
+                                    }
+                                }
+                            ],
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "condition": "equals",
+                                            "id": "you-live-here",
+                                            "value": "Yes"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "Question",
+                            "show_on_section_summary": false
+                        },
+                        {
                             "id": "list-collector",
                             "type": "ListCollector",
                             "for_list": "people",
@@ -207,6 +272,8 @@
                                 }
                             },
                             "summary": {
+                                "add_link_text": "Add someone to this household",
+                                "empty_list_text": "There are no householders",
                                 "title": "Household members",
                                 "item_title": {
                                     "text": "{person_name}",
@@ -231,10 +298,29 @@
                             }
                         },
                         {
-                            "id": "summary",
-                            "type": "Summary"
+                            "id": "group-summary",
+                            "type": "SectionSummary"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "id": "submit-answers",
+            "title": "Submit answers",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Confirmation",
+                            "id": "confirmation",
+                            "content": {
+                                "title": "Thank you for your answers, do you wish to submit"
+                            }
+                        }
+                    ],
+                    "id": "confirmation-group",
+                    "title": "Submit answers"
                 }
             ]
         }

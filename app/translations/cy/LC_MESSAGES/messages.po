@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-13 10:55+0100\n"
-"PO-Revision-Date: 2019-08-01 09:42\n"
+"POT-Creation-Date: 2019-09-04 15:21+0100\n"
+"PO-Revision-Date: 2019-09-09 11:22\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.7.0\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ((n == 1) ? 1 : ((n == 2) ? 2 : ((n == 3) ? 3 : ((n == 6) ? 4 : 5))));\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: eq-census\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File: messages.pot\n"
 "Language: cy_GB\n"
 
-#: app/jinja_filters.py:79 app/validation/validators.py:354
+#: app/jinja_filters.py:79 app/validation/validators.py:340
 #, python-format
 msgid "%(num)s year"
 msgid_plural "%(num)s years"
@@ -28,7 +28,7 @@ msgstr[3] "%(num)s blwyddyn"
 msgstr[4] "%(num)s blwyddyn"
 msgstr[5] "%(num)s blwyddyn"
 
-#: app/jinja_filters.py:87 app/validation/validators.py:358
+#: app/jinja_filters.py:87 app/validation/validators.py:344
 #, python-format
 msgid "%(num)s month"
 msgid_plural "%(num)s months"
@@ -47,13 +47,13 @@ msgstr "%(date)s am %(time)s"
 #: app/jinja_filters.py:141
 #, python-format
 msgid "%(from_date)s to %(to_date)s"
-msgstr "%(from_date)s i %(to_date)s"
+msgstr "rhwng %(from_date)s a/ac %(to_date)s"
 
 #: app/forms/custom_fields.py:130
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Ddim yn ddewis dilys"
 
-#: app/forms/fields.py:227
+#: app/forms/fields.py:231
 msgid "Select an answer"
 msgstr "Dewiswch ateb"
 
@@ -96,88 +96,88 @@ msgstr "Nodwch ateb mwy na %(min)s."
 #: app/validation/error_messages.py:17
 #, python-format
 msgid "Enter an answer less than %(max)s."
-msgstr ""
+msgstr "Rhowch ateb o dan %(max)s."
 
 #: app/validation/error_messages.py:18
 #, python-format
 msgid "Enter answers that add up to %(total)s"
-msgstr "Nodwch atebion sy'n adio hyd at %(total)s."
+msgstr "Nodwch atebion sy'n creu cyfanswm o %(total)s."
 
 #: app/validation/error_messages.py:19
 #, python-format
 msgid "Enter answers that add up to or are less than %(total)s"
-msgstr "Nodwch atebion sy'n adio hyd at neu sy'n llai na %(total)s"
+msgstr "Nodwch atebion sy'n creu cyfanswm o neu sydd o dan %(total)s"
 
 #: app/validation/error_messages.py:22
 #, python-format
 msgid "Enter answers that add up to less than %(total)s"
-msgstr "Nodwch atebion sy'n adio hyd at lai na %(total)s"
+msgstr "Nodwch atebion sy'n creu cyfanswm sydd o dan %(total)s"
 
-#: app/validation/error_messages.py:23
+#: app/validation/error_messages.py:25
 #, python-format
 msgid "Enter answers that add up to greater than %(total)s"
-msgstr "Nodwch atebion sy'n adio hyd at fwy na %(total)s"
+msgstr "Nodwch atebion sy'n creu cyfanswm sydd dros %(total)s"
 
-#: app/validation/error_messages.py:26
+#: app/validation/error_messages.py:28
 #, python-format
 msgid "Enter answers that add up to or are greater than %(total)s"
-msgstr "Nodwch atebion sy'n adio hyd at neu sy'n fwy na %(total)s"
+msgstr "Nodwch atebion sy'n creu cyfanswm o neu sydd dros %(total)s"
 
-#: app/validation/error_messages.py:29
+#: app/validation/error_messages.py:31
 msgid "Enter a number."
 msgstr "Nodwch rif."
 
-#: app/validation/error_messages.py:30
+#: app/validation/error_messages.py:32
 msgid "Enter a whole number."
 msgstr "Nodwch gyfanrif."
 
-#: app/validation/error_messages.py:31
+#: app/validation/error_messages.py:33
 #, python-format
 msgid "Enter a number rounded to %(max)d decimal places."
-msgstr "Nodwch rif a ddalgrynnir %(max)d i bwyntiau digid."
-
-#: app/validation/error_messages.py:32
-#, python-format
-msgid "Your answer is too long, it has to be less than %(max)d characters."
-msgstr "Mae eich ateb yn rhy hir, rhaid iddo fod yn llai na %(max)d o lythrennau "
-
-#: app/validation/error_messages.py:35
-msgid "Enter a valid date."
-msgstr "Nodwch ddyddiad dilys"
+msgstr "Nodwch rif wedi'i dalgrynnu i %(max)d lle degol."
 
 #: app/validation/error_messages.py:36
-msgid "Enter a 'period to' date later than the 'period from' date."
-msgstr "Nodwch ddyddiad 'cyfnod i' yn hwyrach na'r dyddiad 'cyfnod o'."
+#, python-format
+msgid "Your answer is too long, it has to be less than %(max)d characters."
+msgstr "Mae eich ateb yn rhy hir, rhaid iddo fod o dan %(max)d llythyren "
 
 #: app/validation/error_messages.py:39
-msgid "Enter a valid duration."
-msgstr "Nodwch gyfnod o amser dilys"
+msgid "Enter a valid date."
+msgstr "Nodwch ddyddiad dilys."
 
 #: app/validation/error_messages.py:40
+msgid "Enter a 'period to' date later than the 'period from' date."
+msgstr "Nodwch ddyddiad 'cyfnod i' sy'n hwyrach na'r dyddiad 'cyfnod o'."
+
+#: app/validation/error_messages.py:43
+msgid "Enter a valid duration."
+msgstr "Nodwch gyfnod o amser dilys."
+
+#: app/validation/error_messages.py:44
 #, python-format
 msgid "Enter a reporting period greater than or equal to %(min)s."
 msgstr "Nodwch gyfnod adrodd sy'n fwy na neu'n hafal i %(min)s."
 
-#: app/validation/error_messages.py:43
+#: app/validation/error_messages.py:47
 #, python-format
 msgid "Enter a reporting period less than or equal to %(max)s."
 msgstr "Nodwch gyfnod adrodd sy'n llai na neu'n hafal i %(max)s."
 
-#: app/validation/error_messages.py:46
+#: app/validation/error_messages.py:50
 #, python-format
 msgid "Enter a date after %(min)s."
 msgstr "Nodwch ddyddiad ar ôl %(min)s."
 
-#: app/validation/error_messages.py:47
+#: app/validation/error_messages.py:51
 #, python-format
 msgid "Enter a date before %(max)s."
 msgstr "Nodwch ddyddiad cyn %(max)s."
 
-#: app/validation/error_messages.py:48
+#: app/validation/error_messages.py:52
 msgid "Remove an answer to continue."
 msgstr "Dilëwch ateb i barhau."
 
-#: app/validation/validators.py:365
+#: app/validation/validators.py:351
 #, python-format
 msgid "%(num)s day"
 msgid_plural "%(num)s days"
@@ -188,13 +188,70 @@ msgstr[3] "%(num)s diwrnod"
 msgstr[4] "%(num)s diwrnod"
 msgstr[5] "%(num)s diwrnod"
 
-#: templates/confirmation.html:6 templates/confirmation.html:37
-msgid "Submit answers"
-msgstr "Cyflwynwch atebion"
+#: app/views/contexts/hub_context.py:15 app/views/contexts/hub_context.py:17
+msgid "Submit survey"
+msgstr "Cyflwyno'r arolwg"
 
-#: templates/confirmation.html:12 templates/interstitial.html:5
+#: app/views/contexts/hub_context.py:16 templates/summary.html:16
+msgid "Please submit this survey to complete it"
+msgstr "Cyflwynwch yr arolwg hwn i'w gwblhau"
+
+#: app/views/contexts/hub_context.py:20
+msgid "Choose another section to complete"
+msgstr "Dewiswch adran arall i'w chwblhau"
+
+#: app/views/contexts/hub_context.py:21
+msgid "You must complete all sections in order to submit this survey"
+msgstr "Rhaid i chi gwblhau pob adran er mwyn cyflwyno'r arolwg hwn"
+
+#: app/views/contexts/hub_context.py:24 templates/confirmation.html:12
+#: templates/interstitial.html:5
 msgid "Continue"
 msgstr "Parhau"
+
+#: app/views/contexts/hub_context.py:30
+msgid "Completed"
+msgstr "Cwblhawyd"
+
+#: app/views/contexts/hub_context.py:32
+msgid "View answers"
+msgstr "Gweld yr atebion"
+
+#: app/views/contexts/hub_context.py:33
+msgid "View answers for {section_name}"
+msgstr "Gweld yr atebion ar gyfer {section_name}"
+
+#: app/views/contexts/hub_context.py:37
+msgid "Partially completed"
+msgstr "Cwblhawyd yn rhannol"
+
+#: app/views/contexts/hub_context.py:39
+msgid "Continue with section"
+msgstr "Parhau â'r adran"
+
+#: app/views/contexts/hub_context.py:40
+msgid "Continue with {section_name} section"
+msgstr "Parhau ag adran {section_name}"
+
+#: app/views/contexts/hub_context.py:44
+msgid "Not started"
+msgstr "Heb ddechrau"
+
+#: app/views/contexts/hub_context.py:46
+msgid "Start section"
+msgstr "Dechrau'r adran"
+
+#: app/views/contexts/hub_context.py:47
+msgid "Start {section_name} section"
+msgstr "Dechrau adran {section_name}"
+
+#: app/views/contexts/list_collector.py:33
+msgid " (You)"
+msgstr " (Chi)"
+
+#: templates/confirmation.html:6 templates/confirmation.html:37
+msgid "Submit answers"
+msgstr "Cyflwyno atebion"
 
 #: templates/confirmation.html:22
 msgid "Yes, I confirm these are correct"
@@ -206,7 +263,7 @@ msgstr "Yn cyflwyno"
 
 #: templates/feedback.html:7 templates/feedback.html:14
 msgid "Survey feedback"
-msgstr "Adborth yr arolwg"
+msgstr "Adborth o'r arolwg"
 
 #: templates/feedback.html:21 templates/layouts/configs/_feedback.html:25
 msgid "How can we improve this survey"
@@ -215,12 +272,12 @@ msgstr "Sut y gallwn wella'r arolwg hwn"
 #: templates/feedback.html:24 templates/layouts/configs/_feedback.html:29
 #: templates/partials/answers/textarea.html:14
 msgid "You have {x} character remaining"
-msgstr "Mae gennych {x} gymeriad ar ôl"
+msgstr "Mae gennych {x} nod ar ôl"
 
 #: templates/feedback.html:25 templates/layouts/configs/_feedback.html:30
 #: templates/partials/answers/textarea.html:15
 msgid "You have {x} characters remaining"
-msgstr "Mae gennych {x} o gymeriadau ar ôl"
+msgstr "Mae gennych {x} o nodau ar ôl"
 
 #: templates/feedback.html:32 templates/layouts/configs/_feedback.html:35
 msgid "Name (optional)"
@@ -242,7 +299,7 @@ msgstr "Anfon adborth"
 msgid "Thank you for your feedback"
 msgstr "Diolch am eich adborth"
 
-#: templates/feedback_sent.html:6 templates/thank-you.html:8
+#: templates/feedback_sent.html:6
 msgid "Submission successful"
 msgstr "Cyflwynwyd yn llwyddiannus"
 
@@ -250,7 +307,7 @@ msgstr "Cyflwynwyd yn llwyddiannus"
 msgid "It is now safe to close this window"
 msgstr "Mae nawr yn ddiogel i gau'r ffenestr hon"
 
-#: templates/feedback_sent.html:12 templates/session-expired.html:22
+#: templates/errors/session-expired.html:22 templates/feedback_sent.html:12
 #: templates/signed-out.html:9
 msgid "Return to your account"
 msgstr "Dychwelyd i'ch cyfrif"
@@ -274,12 +331,24 @@ msgstr "Os yw manylion neu strwythur y cwmni wedi newid, cysylltwch â ni ar %(t
 msgid "Your response is legally required"
 msgstr "Mae eich ymateb yn ofynnol yn gyfreithiol"
 
+#: templates/multiple_survey.html:4 templates/multiple_survey.html:7
+msgid "Information"
+msgstr "Gwybodaeth"
+
+#: templates/multiple_survey.html:16
+msgid "Unfortunately you can only complete one survey at a time"
+msgstr "Yn anffodus, dim ond un arolwg y gallwch chi ei gwblhau ar y tro"
+
+#: templates/multiple_survey.html:17
+msgid "Close this window to continue with your current survey"
+msgstr "Caewch y ffenestr hon i barhau â'ch arolwg presennol"
+
 #: templates/question.html:16
 #, python-format
 msgid "This page has an error"
 msgid_plural "This page has %(num)s errors"
 msgstr[0] "Mae gwall ar y dudalen hon"
-msgstr[1] "Mae %(num)s wall ar y dudalen hon"
+msgstr[1] "Mae %(num)s gwall ar y dudalen hon"
 msgstr[2] "Mae %(num)s wall ar y dudalen hon"
 msgstr[3] "Mae %(num)s wall ar y dudalen hon"
 msgstr[4] "Mae %(num)s wall ar y dudalen hon"
@@ -290,30 +359,18 @@ msgid "This <strong>must be corrected</strong> to continue"
 msgid_plural "These <strong>must be corrected</strong> to continue"
 msgstr[0] "Mae'n <strong>rhaid cywiro hwn<strong> cyn parhau"
 msgstr[1] "Mae'n <strong>rhaid cywiro'r rhain<strong> cyn parhau"
-msgstr[2] "Mae'n <strong>rhaid cywiro hwn<strong> cyn parhau"
-msgstr[3] "Mae'n <strong>rhaid cywiro hwn<strong> cyn parhau"
-msgstr[4] "Mae'n <strong>rhaid cywiro hwn<strong> cyn parhau"
-msgstr[5] "Mae'n <strong>rhaid cywiro hwn<strong> cyn parhau"
-
-#: templates/session-expired.html:6
-msgid "Session expired"
-msgstr "Daeth y sesiwn i ben"
-
-#: templates/session-expired.html:10
-msgid "Your session has expired"
-msgstr "Mae eich sesiwn wedi dod I ben"
-
-#: templates/session-expired.html:18
-msgid "To help protect your information we have signed you out"
-msgstr "Er mwyn helpu i ddiogelu eich gwybodaeth rydym wedi'ch allgofnodi"
+msgstr[2] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
+msgstr[3] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
+msgstr[4] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
+msgstr[5] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
 
 #: templates/signed-out.html:3
 msgid "Signed out"
-msgstr "Fe'ch allgofnodwyd"
+msgstr "Wedi allgofnodi"
 
 #: templates/signed-out.html:6
 msgid "Your survey answers have been saved. You are now signed out"
-msgstr "Mae atebion eich arolwg wedi'u cadw. Rydych chi nawr wedi'ch allgofnodi"
+msgstr "Mae eich atebion i'r arolwg wedi'u cadw. Rydych chi nawr wedi'ch allgofnodi"
 
 #: templates/summary.html:6
 msgid "Summary"
@@ -323,80 +380,33 @@ msgstr "Crynodeb"
 msgid "Check your answers and submit"
 msgstr "Gwiriwch eich atebion a'u cyflwyno"
 
-#: templates/summary.html:17
-msgid "Please remember to submit these answers"
-msgstr "Cofiwch gyflwyno'r atebion hyn"
-
-#: templates/summary.html:23
-msgid "Please submit this survey to complete it"
-msgstr "Cyflwynwch yr arolwg hwn i'w gwblhau"
-
-#: templates/summary.html:24
+#: templates/summary.html:17 templates/summary.html:28
 msgid "You can check your answers below"
 msgstr "Gallwch wirio eich atebion isod"
 
-#: templates/summary.html:35
+#: templates/summary.html:27
 msgid "This section is now complete"
 msgstr "Mae'r adran hon nawr wedi'i chwblhau"
 
-#: templates/summary.html:36
-msgid "You can review your answers below"
-msgstr "Gallwch adolygu eich atebion isod"
-
-#: templates/summary.html:45
+#: templates/summary.html:37
 msgid "Please review your answers and confirm these are correct"
 msgstr "Adolygwch eich atebion a chadarnhewch fod y rhain yn gywir"
 
-#: templates/summary.html:59
+#: templates/summary.html:66
 msgid "You will have the opportunity to view and print a copy of your answers after submitting this survey"
 msgstr "Byddwch yn cael y cyfle i weld ac argraffu copi o'ch atebion ar ôl cyflwyno'r arolwg hwn"
 
-#: templates/thank-you.html:4
+#: templates/thank-you.html:3
 msgid "We've received your answers"
 msgstr "Rydym wedi derbyn eich atebion"
 
-#: templates/thank-you.html:17
-#, python-format
-msgid "Your answers were submitted for <span>%(ru_name)s</span> (%(trading_as_name)s) on %(submitted_date_time)s"
-msgstr "Cyflwynwyd eich atebion ar gyfer <span>%(ru_name)s</span> (%(trading_as_name)s) ar %(submitted_date_time)s"
+#: templates/thank-you.html:8
+msgid "Thank you for submitting your census"
+msgstr "Diolch am gyflwyno eich cyfrifiad"
 
-#: templates/thank-you.html:22
-#, python-format
-msgid "Your answers were submitted for <span>%(ru_name)s</span> on %(submitted_date_time)s"
-msgstr "Cyflwynwyd eich atebion ar gyfer <span>%(ru_name)s</span> ar %(submitted_date_time)s"
-
-#: templates/thank-you.html:27 templates/view-submission.html:30
-msgid "Transaction ID"
-msgstr "ID Gweithredu"
-
-#: templates/thank-you.html:30
-msgid "Your answers will be processed in the next few weeks"
-msgstr "Bydd eich atebion yn cael eu prosesu yn yr wythnosau nesaf"
-
-#: templates/thank-you.html:31
-msgid "We may contact you to query your answers via phone or secure message"
-msgstr "Efallai y byddwn yn cysylltu â chi i holi am eich atebion drwy eich ffonio neu drwy neges ddiogel"
-
-#: templates/thank-you.html:36
-msgid "View and print a copy of your answers"
-msgstr "Edrychwch ar eich atebion ac argraffwch gopi ohonynt"
-
-#: templates/thank-you.html:37
-#, python-format
-msgid "Your answers will only be available for <b>%(duration)s</b> to keep them secure."
-msgstr "Bydd eich atebion ar gael am <b>%(duration)s</b> yn unig i'w cadw'n ddiogel"
-
-#: templates/thank-you.html:45
-msgid "You are no longer able to view and print your answers"
-msgstr "Nid ydych bellach yn gallu gweld ac argraffu eich atebion"
-
-#: templates/thank-you.html:46
-msgid "The link expires to maintain the security of your information"
-msgstr "Mae'r ddolen yn dod i ben er mwyn cadw eich gwybodaeth yn ddiogel"
-
-#: templates/thank-you.html:52
-msgid "For more information on how we use this data"
-msgstr "I gael mwy o wybodaeth ynghylch sut rydym yn defnyddio'r data hwn"
+#: templates/thank-you.html:10
+msgid "We have received your answers and you do not need to do anything else."
+msgstr "Rydym ni wedi cael eich atebion ac nid oes angen i chi wneud unrhyw beth arall."
 
 #: templates/view-submission.html:8
 msgid "Submission"
@@ -416,34 +426,94 @@ msgstr "Cyflwynwyd eich atebion ar gyfer <span>%(ru_name)s</span> (%(trading_as_
 msgid "Your answers were submitted for <span>%(ru_name)s</span> on %(submitted_time)s"
 msgstr "Cyflwynwyd eich atebion ar gyfer  <span>%(ru_name)s</span> ar %(submitted_time)s"
 
+#: templates/view-submission.html:30
+msgid "Transaction ID"
+msgstr "Rhif Adnabod y Trafodiad"
+
 #: templates/view-submission.html:37
 msgid "Print this page"
 msgstr "Argraffu'r dudalen hon"
 
-#: templates/layouts/_error.html:5 templates/layouts/_error.html:8
-msgid "Error"
-msgstr "Gwall"
+#: templates/errors/403.html:3
+msgid "Authorisation refused"
+msgstr "Awdurdodiad wedi'i wrthod"
 
-#: templates/layouts/_error.html:13
-msgid "Sorry, something has gone wrong"
-msgstr "Mae'n ddrwg gennym, mae rhywbeth wedi mynd o'i le"
+#: templates/errors/403.html:3 templates/errors/404.html:3
+#: templates/errors/500.html:3
+msgid "Office for National Statistics"
+msgstr "Swyddfa Ystadegau Gwladol"
 
-#: templates/layouts/_error.html:15
-msgid "Please quote this reference for any support queries"
-msgstr "Dyfynnwch y cyfeirnod hwn ar gyfer unrhyw ymholiadau cymorth"
+#: templates/errors/403.html:6
+msgid "Sorry, there is a problem"
+msgstr "Mae'n ddrwg gennym, mae problem wedi codi"
 
-#: templates/layouts/_error.html:27
-msgid "Your system information"
-msgstr "Eich gwybodaeth system"
+#: templates/errors/403.html:7
+msgid "To access this page you need to <a href='#'>enter your unique access code.</a>"
+msgstr "I fynd i'r dudalen hon, mae angen i chi <a href='#'>roi eich cod mynediad unigryw.</a>"
 
-#: templates/layouts/_questionnaire.html:11
-#: templates/layouts/_questionnaire.html:32
+#: templates/errors/404.html:3 templates/errors/404.html:6
+msgid "Page not found"
+msgstr "Heb ddod o hyd i'r dudalen"
+
+#: templates/errors/404.html:7
+msgid "If you entered a web address, check it is correct."
+msgstr "Os gwnaethoch chi roi cyfeiriad gwe, gwnewch yn siŵr ei fod yn gywir."
+
+#: templates/errors/404.html:8
+msgid "If you pasted the web address, check you copied the whole address."
+msgstr "Os gwnaethoch chi ludo'r cyfeiriad gwe, gwnewch yn siŵr eich bod wedi copïo'r cyfeiriad cyfan."
+
+#: templates/errors/404.html:9
+msgid "If the web address is correct or you selected a link or button, <a href='/contact-us'>contact us</a> for more help."
+msgstr "Os yw'r cyfeiriad gwe yn gywir, neu os gwnaethoch chi ddewis dolen neu fotwm, <a href='/contact-us'>cysylltwch â ni</a> am fwy o help."
+
+#: templates/errors/500.html:3
+msgid "An error has occurred"
+msgstr "Mae gwall wedi digwydd"
+
+#: templates/errors/500.html:6
+msgid "Sorry, there is a problem with this service"
+msgstr "Mae'n ddrwg gennym, mae problem gyda'r gwasanaeth hwn"
+
+#: templates/errors/500.html:7
+msgid "Try again later."
+msgstr "Rhowch gynnig arall arni yn nes ymlaen."
+
+#: templates/errors/500.html:8
+msgid "If you have started a survey, your answers have been saved."
+msgstr "Os ydych chi wedi dechrau arolwg, mae eich atebion wedi cael eu cadw."
+
+#: templates/errors/500.html:9
+msgid "<a href='/contact-us'>Contact us</a> if you need to speak to someone about your survey."
+msgstr "<a href='/contact-us'>Cysylltwch â ni</a> os oes angen i chi siarad â rhywun am eich arolwg."
+
+#: templates/errors/session-expired.html:6
+msgid "Session expired"
+msgstr "Daeth y sesiwn i ben"
+
+#: templates/errors/session-expired.html:10
+msgid "Your session has expired"
+msgstr "Mae eich sesiwn wedi dod i ben"
+
+#: templates/errors/session-expired.html:18
+msgid "To help protect your information we have signed you out"
+msgstr "Er mwyn helpu i ddiogelu eich gwybodaeth rydym wedi'ch allgofnodi"
+
+#: templates/layouts/_questionnaire.html:16
+msgid "Previous"
+msgstr "Blaenorol"
+
+#: templates/layouts/_questionnaire.html:31
 msgid "Save and continue"
 msgstr "Cadw a pharhau"
 
-#: templates/layouts/_questionnaire.html:17
-msgid "Previous"
-msgstr "Blaenorol"
+#: templates/layouts/_questionnaire.html:43
+msgid "Can't complete this question?"
+msgstr ""
+
+#: templates/layouts/_questionnaire.html:44
+msgid "Choose another section and return to this later"
+msgstr ""
 
 #: templates/layouts/configs/_feedback.html:3
 msgid "Give feedback and help us improve this service"
@@ -460,7 +530,8 @@ msgstr "Diolch am eich adborth"
 #: templates/layouts/configs/_feedback.html:56
 msgid "There was an error sending your feedback.\n"
 "(Error code: {x})"
-msgstr ""
+msgstr "Digwyddodd gwall wrth anfon eich adborth.\n"
+"(Cod y gwall: {x})"
 
 #: templates/layouts/configs/_footer.html:4
 #, python-format
@@ -513,11 +584,11 @@ msgstr "Newyddion"
 msgid "Save and sign out"
 msgstr "Cadw ac allgofnodi"
 
-#: templates/layouts/configs/_save-sign-out-button.html:17
+#: templates/layouts/configs/_save-sign-out-button.html:18
 msgid "Sign out"
-msgstr ""
+msgstr "Allgofnodi"
 
-#: templates/layouts/configs/_save-sign-out-button.html:30
+#: templates/layouts/configs/_save-sign-out-button.html:32
 msgid "Save and complete later"
 msgstr "Cadw a chwblhau yn nes ymlaen"
 
@@ -525,64 +596,64 @@ msgstr "Cadw a chwblhau yn nes ymlaen"
 msgid "My account"
 msgstr "Fy nghyfrif"
 
-#: templates/partials/answer-guidance.html:14
-#: templates/partials/question-definition.html:15
+#: templates/partials/answer-guidance.html:13
+#: templates/partials/question-definition.html:14
 msgid "Hide this"
 msgstr "Cuddio hwn"
 
-#: templates/partials/question.html:37
-msgid "Selecting this will clear your answer"
-msgstr ""
-
 #: templates/partials/question.html:38
+msgid "Selecting this will clear your answer"
+msgstr "Bydd dewis hwn yn clirio eich ateb"
+
+#: templates/partials/question.html:39
 msgid "cleared"
-msgstr ""
+msgstr "wedi'i glirio"
 
-#: templates/partials/question.html:41
+#: templates/partials/question.html:42
 msgid "Selecting this will deselect any selected options"
-msgstr ""
+msgstr "Bydd dewis hwn yn dad-ddewis unrhyw opsiynau sydd wedi'u dewis"
 
-#: templates/partials/question.html:42 templates/partials/question.html:57
+#: templates/partials/question.html:43 templates/partials/question.html:51
 msgid "deselected"
 msgstr "dad-ddewiswyd"
 
-#: templates/partials/question.html:46
+#: templates/partials/question.html:47
 msgid "Or"
 msgstr "Neu"
 
-#: templates/partials/answers/checkbox.html:5
+#: templates/partials/answers/checkbox.html:7
 msgid "Select all that apply"
 msgstr "Dewiswch bob un sy'n berthnasol"
 
-#: templates/partials/answers/date.html:28
+#: templates/partials/answers/date.html:23
 msgid "Day"
 msgstr "Diwrnod"
 
-#: templates/partials/answers/date.html:43
+#: templates/partials/answers/date.html:38
 msgid "Month"
 msgstr "Mis"
 
-#: templates/partials/answers/date.html:58
+#: templates/partials/answers/date.html:53
 msgid "Year"
 msgstr "Blwyddyn"
 
-#: templates/partials/introduction/preview.html:61
-#: templates/partials/summary/collapsible-summary.html:12
+#: templates/partials/introduction/preview.html:29
+#: templates/partials/summary/collapsible-summary.html:13
 msgid "Show"
 msgstr "Dangos"
 
-#: templates/partials/introduction/preview.html:62
-#: templates/partials/summary/collapsible-summary.html:13
+#: templates/partials/introduction/preview.html:30
+#: templates/partials/summary/collapsible-summary.html:14
 msgid "Hide"
 msgstr "Cuddio"
 
-#: templates/partials/introduction/preview.html:80
-#: templates/partials/summary/collapsible-summary.html:39
+#: templates/partials/introduction/preview.html:48
+#: templates/partials/summary/collapsible-summary.html:41
 msgid "Show all"
 msgstr "Dangos popeth"
 
-#: templates/partials/introduction/preview.html:81
-#: templates/partials/summary/collapsible-summary.html:40
+#: templates/partials/introduction/preview.html:49
+#: templates/partials/summary/collapsible-summary.html:42
 msgid "Hide all"
 msgstr "Cuddio popeth"
 
@@ -590,25 +661,25 @@ msgstr "Cuddio popeth"
 msgid "Start survey"
 msgstr "Cychwyn yr arolwg"
 
-#: templates/partials/summary/collapsible-summary.html:26
+#: templates/partials/summary/collapsible-summary.html:27
 #: templates/partials/summary/summary.html:9
 msgid "No answer provided"
 msgstr "Ni roddwyd ateb"
 
-#: templates/partials/summary/collapsible-summary.html:26
+#: templates/partials/summary/collapsible-summary.html:27
 #: templates/partials/summary/list-summary.html:8
 #: templates/partials/summary/summary.html:9
 msgid "Change"
 msgstr "Newid"
 
-#: templates/partials/summary/collapsible-summary.html:26
+#: templates/partials/summary/collapsible-summary.html:27
 #: templates/partials/summary/summary.html:9
 msgid "Change your answer for:"
-msgstr ""
+msgstr "Newidiwch eich ateb ar gyfer:"
 
 #: templates/partials/summary/list-summary.html:9
 msgid "Change details for {item_name}"
-msgstr ""
+msgstr "Newid manylion ar gyfer {item_name}"
 
 #: templates/partials/summary/list-summary.html:10
 msgid "Remove"
@@ -616,7 +687,7 @@ msgstr "Dileu"
 
 #: templates/partials/summary/list-summary.html:11
 msgid "Remove {item_name}"
-msgstr ""
+msgstr "Tynnu {item_name}"
 
 #: templates/static/contact-us.html:4 templates/static/cookies-privacy.html:4
 msgid "ONS Business Surveys"
@@ -664,7 +735,7 @@ msgstr "E-bost"
 
 #: templates/static/contact-us.html:35
 msgid "Post"
-msgstr ""
+msgstr "Anfon"
 
 #: templates/static/cookies-privacy.html:9
 msgid "Cookies and Privacy"
@@ -910,7 +981,7 @@ msgstr "Mae timau arolwg unigol yn gyfrifol am y cynnwys (y cwestiynau a ofynnir
 
 #: templates/static/cookies-privacy.html:293
 msgid "The lawful reason for which your personal data is collected through the Survey Data Collection platform is Public task. The processing is necessary for us to perform a task in the public interest or for our official functions, and the task or function has a clear basis in law."
-msgstr ""
+msgstr "Y rheswm cyfreithiol dros gasglu eich data personol drwy'r llwyfan Casglu Data Arolwg yw Tasg gyhoeddus. Mae'r prosesu'n angenrheidiol er mwyn i ni gyflawni tasg er budd y cyhoedd neu ar gyfer ein swyddogaethau swyddogol, ac mae i'r dasg neu'r swyddogaeth sail glir yn y gyfraith."
 
 #: templates/static/cookies-privacy.html:295
 msgid "When we collect your data"
@@ -1012,7 +1083,7 @@ msgstr "Arolwg Blynyddol o Oriau ac Enillion "
 
 #: templates/static/cookies-privacy.html:375
 msgid "The legal basis for undertaking the Annual Survey of Hours and Earnings (ASHE) is the Statistics of Trade Act 1947. This means the General Data Protection Regulation has not changed the fact that this is mandatory for the organisations selected to be part of the sample. The personal data an organisation returns as part of this submission does not require the permission of the employees who form the data subjects and the subjects do not have any option to opt-out. The ASHE survey collects the following items of personal data"
-msgstr ""
+msgstr "Y sail gyfreithiol dros gynnal yr Arolwg Blynyddol o Oriau ac Enillion (ASHE) yw Deddf Ystadegau Masnach 1947. Golyga hyn nad yw'r Rheoliad Cyffredinol ar Ddiogelu Data wedi newid y ffaith bod hyn yn orfodol ar gyfer y sefydliadau a ddewiswyd i fod yn rhan o'r sampl. Nid oes angen caniatâd y cyflogeion sy'n destun y data personol a ddychwelir gan sefydliad fel rhan o'r cyflwyniad hwn ac nid oes gan y testunau hynny unrhyw opsiwn i optio allan. Mae arolwg ASHE yn casglu'r eitemau canlynol o ddata personol"
 
 #: templates/static/cookies-privacy.html:377
 msgid "National insurance number"
@@ -1068,7 +1139,7 @@ msgstr "Gyda phwy rydym yn rhannu eich data personol "
 
 #: templates/static/cookies-privacy.html:405
 msgid "We use several (1st and 3rd) parties to collect and process personal data. These include (but are not limited to) government departments and approved researchers. Further information can be found on the following articles"
-msgstr ""
+msgstr "Rydym yn defnyddio sawl parti (partïon cyntaf a thrydydd partïon) i gasglu a phrosesu data personol. Mae'r rhain yn cynnwys adrannau'r llywodraeth ac ymchwilwyr cymeradwy, ymhlith eraill. Mae rhagor o wybodaeth i'w chael yn yr erthyglau canlynol"
 
 #: templates/static/cookies-privacy.html:408
 msgid "Approved Researcher Scheme"
@@ -1152,7 +1223,7 @@ msgstr "Yr hawl i ddileu"
 
 #: templates/static/cookies-privacy.html:479
 msgid "The right to restrict processing"
-msgstr ""
+msgstr "Yr hawl i gyfyngu ar brosesu"
 
 #: templates/static/cookies-privacy.html:480
 msgid "The right to data portability"
@@ -1176,7 +1247,7 @@ msgstr "Nid oes unrhyw wneud penderfyniadau awtomatig neu broffilio'n digwydd ar
 
 #: templates/static/cookies-privacy.html:484
 msgid "These rights are subject to exemptions."
-msgstr ""
+msgstr "Mae'r hawliau hyn yn amodol ar eithriadau."
 
 #: templates/static/cookies-privacy.html:487
 msgid "Contacting the Data Protection Office"
@@ -1196,5 +1267,5 @@ msgstr "Rydym yn croesawu’r cyfle i fedru ateb unrhyw gwestiynau neu bryderon 
 
 #: templates/static/cookies-privacy.html:507
 msgid "The Information Commissioner’s Office provides guidance to the public on raising a concern with an organisation at the following location"
-msgstr ""
+msgstr "Mae Swyddfa'r Comisiynydd Gwybodaeth yn darparu canllawiau i'r cyhoedd ar godi pryder gyda sefydliad yn y lleoliad canlynol"
 

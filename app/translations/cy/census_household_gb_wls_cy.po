@@ -1,0 +1,4409 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: eq-census\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-09-05 16:12+0100\n"
+"PO-Revision-Date: 2019-09-09 11:27\n"
+"Last-Translator: ONS_Census\n"
+"Language-Team: Welsh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ((n == 1) ? 1 : ((n == 2) ? 2 : ((n == 3) ? 3 : ((n == 6) ? 4 : 5))));\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: eq-census\n"
+"X-Crowdin-Language: cy\n"
+"X-Crowdin-File: census_household.pot\n"
+"Language: cy_GB\n"
+
+msgid "Why do we ask this question?"
+msgstr "Pam ydym ni’n gofyn y cwestiwn hwn?"
+
+msgid "Why do I have to include visitors?"
+msgstr "Pam mae rhaid i mi gynnwys ymwelwyr?"
+
+msgid "Why your answer is important"
+msgstr "Pam mae eich ateb yn bwysig"
+
+msgid "Why do I need to answer if I am retired or long-term sick or disabled?"
+msgstr "Pam mae angen i mi ateb os ydw i wedi ymddeol neu wedi bod yn sâl neu'n anabl am gyfnod hir?"
+
+msgid "Why do I need to answer if they have retired or are long-term sick or disabled?"
+msgstr "Pam mae angen i mi ateb os yw wedi ymddeol neu wedi bod yn sâl neu'n anabl am gyfnod hir?"
+
+msgid "Census England Household Schema"
+msgstr ""
+
+msgid "It means the address at which you generally spend most time. For most people, this will be their permanent or family home."
+msgstr "Mae’n golygu’r cyfeiriad lle rydych chi’n treulio'r rhan fwyaf o amser ar y cyfan. I'r rhan fwyaf o bobl, hwn fydd eu cartref parhaol neu gartref y teulu."
+
+msgid "<strong>Full-time students</strong>, include yourself at your term time address."
+msgstr "<strong>Fyfyrwyr amser llawn</strong>, dylech gynnwys eich hun yn eich cyfeiriad yn ystod y tymor."
+
+msgid "<strong>Armed forces members</strong>, include yourself at your home address if you have one."
+msgstr "<strong>Aelodau o'r lluoedd arfog</strong>, dylech gynnwys eich hun yn eich cyfeiriad cartref os oes un gennych chi."
+
+msgid "For example, this is a second address or holiday home"
+msgstr "Er enghraifft, ail gyfeiriad neu dŷ gwyliau yw hwn"
+
+msgid "We ask this question to help ensure that everyone is correctly counted in the census. This includes people who are staying temporarily or are away."
+msgstr "Rydym ni’n gofyn y cwestiwn hwn er mwyn helpu i wneud yn siŵr bod pawb yn cael eu cyfrif yn gywir yn y cyfrifiad. Mae hyn yn cynnwys pobl sy'n aros dros dro neu bobl sydd i ffwrdd o’r cartref dros dro."
+
+msgid "We ask for visitor information to ensure that everyone is counted. This helps to produce accurate population estimates. Add any visitors, even if you think they may have been included on a census form at another address."
+msgstr "Rydym ni’n gofyn am wybodaeth am ymwelwyr er mwyn gwneud yn siŵr bod pawb yn cael eu cyfrif. Mae hyn yn helpu i roi amcangyfrifon cywir o'r boblogaeth. Ychwanegwch unrhyw ymwelwyr, hyd yn oed os ydych chi’n credu eu bod wedi cael eu cynnwys ar ffurflen cyfrifiad mewn cyfeiriad arall."
+
+msgid "In this section, we’ll ask you how the people who usually live in this household are related to each other."
+msgstr "Yn yr adran hon, byddwn yn gofyn i chi sut mae'r bobl sydd fel arfer yn byw yn y cartref hwn yn perthyn i'w gilydd."
+
+msgid "For the displayed household members, select the appropriate relationship from the options shown. The selected relationship will display at the bottom of the page for you to check."
+msgstr "Ar gyfer pob aelod o'r cartref a ddangosir, dewiswch y berthynas briodol o'r opsiynau a roddir. Bydd y berthynas a ddewisir yn ymddangos ar waelod y dudalen i chi ei gweld."
+
+msgid "Complete the sentence by selecting the appropriate relationship."
+msgstr "Cwblhewch y frawddeg drwy ddewis y berthynas briodol."
+
+msgid "Including half brother or half sister"
+msgstr "Gan gynnwys hanner brawd a hanner chwaer"
+
+msgid "Including foster child"
+msgstr "Gan gynnwys plentyn maeth"
+
+msgid "In this section, we’re going to ask you about the accommodation you live in."
+msgstr "Yn yr adran hon, byddwn yn gofyn i chi am y cartref rydych chi'n byw ynddo."
+
+msgid "Including purpose-built flats and flats within converted and shared houses"
+msgstr "Gan gynnwys fflatiau a adeiladwyd yn bwrpasol a fflatiau mewn tai wedi'u haddasu a thai sy'n cael eu rhannu"
+
+msgid "Including end-terrace"
+msgstr "Gan gynnwys ar y pen"
+
+msgid "Including bedsits"
+msgstr "Gan gynnwys fflatiau un ystafell"
+
+msgid "For example, in an office building, hotel, or over a shop"
+msgstr "Er enghraifft, mewn adeilad o swyddfeydd, gwesty, neu uwchben siop"
+
+msgid "One person living alone; or a group of people, who are not necessarily related, living at the same address who share cooking facilities and share a living room or sitting room or dining area."
+msgstr "Un person sy'n byw ar ei ben ei hun; neu grŵp o bobl, nad oes rhaid iddyn nhw fod yn perthyn i’w gilydd, sy’n byw yn yr un cyfeiriad, ac sy’n rhannu cyfleusterau coginio ac ystafell fyw neu lolfa neu le bwyta."
+
+msgid "Including storage heaters"
+msgstr "Gan gynnwys gwresogyddion stôr"
+
+msgid "For example, logs, waste wood or pellets"
+msgstr "Er enghraifft, boncyffion, pren gwastraff neu belenni"
+
+msgid "For example, coal"
+msgstr "Er enghraifft, glo"
+
+msgid "For example, solar thermal or heat pumps"
+msgstr "Er enghraifft, pympiau gwres neu solar thermol"
+
+msgid "Shared ownership"
+msgstr "Cynllun rhanberchnogaeth"
+
+msgid "With or without housing benefit"
+msgstr "Gyda chymorth budd-dal tai neu hebddo"
+
+msgid "Select to enter number"
+msgstr "Dewiswch i nodi rhif"
+
+msgid "For example 31 12 1970"
+msgstr "Er enghraifft 31 12 1970"
+
+msgid "A question about gender will follow"
+msgstr "Bydd cwestiwn am rywedd yn dilyn yn nes ymlaen"
+
+msgid "This could be more than 30 days in a row or divided across the year"
+msgstr "Gallai hyn fod yn fwy na 30 diwrnod un ar ôl y llall neu wedi'u rhannu ar hyd y flwyddyn"
+
+msgid "Select to enter answer"
+msgstr "Dewiswch i roi ateb"
+
+msgid "We mean a different address to the one at the start of this survey. This might be another parent or guardian’s address, a term-time address, a partner’s address or a holiday home."
+msgstr "Rydym ni’n golygu cyfeiriad gwahanol i'r un ar ddechrau'r arolwg hwn. Gall fod yn gyfeiriad rhiant neu warcheidwad arall, cyfeiriad yn ystod y tymor, cyfeiriad partner, neu gyfeiriad tŷ gwyliau."
+
+msgid "Select to enter country"
+msgstr "Dewiswch i nodi gwlad"
+
+msgid "Do not count short visits away from the UK"
+msgstr "Peidiwch â chyfrif ymweliadau byr i ffwrdd o'r Deyrnas Unedig"
+
+msgid "Your main language is the language you use most naturally. It could be the language you use at home."
+msgstr "Eich prif iaith yw’r iaith rydych chi’n ei defnyddio’n fwyaf naturiol. Yr iaith rydych chi’n ei defnyddio gartref."
+
+msgid "Their main language is the language they use most naturally. It could be the language they use at home."
+msgstr "Prif iaith yr unigolyn yw’r iaith mae’n ei defnyddio’n fwyaf naturiol. Gallai fod yr iaith mae’n ei defnyddio gartref."
+
+msgid "National identity is not dependent on your ethnic group or citizenship."
+msgstr "Nid yw hunaniaeth genedlaethol yn dibynnu ar eich grŵp ethnig na'ch dinasyddiaeth."
+
+msgid "It is about the country or countries where you feel you belong or think of as home."
+msgstr "Gallai olygu'r wlad neu'r gwledydd lle rydych chi’n teimlo eich bod yn perthyn, neu sy'n teimlo fel cartref i chi."
+
+msgid "National identity is not dependent on their ethnic group or citizenship."
+msgstr "Nid yw hunaniaeth genedlaethol yn dibynnu ar grŵp ethnig na dinasyddiaeth."
+
+msgid "It is about the country or countries where they feel they belong or think of as home."
+msgstr "Gallai olygu'r wlad neu'r gwledydd lle mae person yn teimlo ei fod yn perthyn, neu sy'n teimlo fel cartref."
+
+msgid "Your answer will help to support equality and fairness in your community. Councils and government use information on ethnic group to make sure they"
+msgstr "Bydd eich ateb yn helpu i gefnogi cydraddoldeb a thegwch yn eich cymuned. Mae cynghorau a’r llywodraeth yn defnyddio gwybodaeth am grŵp ethnig i wneud yn siŵr eu bod yn"
+
+msgid "Includes Welsh, British, Northern Irish, Irish, Gypsy, Irish Traveller, Roma or any other White background"
+msgstr "Yn cynnwys Cymreig, Prydeinig, Gwyddelig Gogledd Iwerddon, Gwyddelig, Sipsi, Teithiwr Gwyddelig, Roma neu unrhyw gefndir"
+
+msgid "Includes White and Black Caribbean, White and Black African, White and Asian or any other Mixed or Multiple background"
+msgstr "Yn cynnwys Gwyn a Du Caribïaidd, Gwyn a Du Affricanaidd, Gwyn ac Asiaidd neu unrhyw gefndir Cymysg neu Aml-ethnig arall"
+
+msgid "Includes Indian, Pakistani, Bangladeshi, Chinese or any other Asian background"
+msgstr "Yn cynnwys Indiaidd, Pacistanaidd, Bangladeshaidd, Tsieineaidd neu unrhyw gefndir Asiaidd arall"
+
+msgid "Includes Black British, Caribbean, African or any other Black background"
+msgstr "Yn cynnwys Du Prydeinig, Caribïaidd, Affricanaidd neu unrhyw gefndir Du arall"
+
+msgid "Includes Arab or any other ethnic group"
+msgstr "Yn cynnwys Arabaidd neu unrhyw grŵp ethnig arall"
+
+msgid "All denominations"
+msgstr "Pob enwad"
+
+msgid "This question is <strong>voluntary</strong>"
+msgstr "Mae'r cwestiwn hwn yn <strong>wirfoddol</strong>"
+
+msgid "If you had no usual address one year ago, state the address where you were staying"
+msgstr "Os nad oedd gennych gyfeiriad arferol flwyddyn yn ôl, nodwch y cyfeiriad lle roeddech chi’n aros"
+
+msgid "If they had no usual address one year ago, state the address where they were staying"
+msgstr "Os nad oedd gan yr unigolyn gyfeiriad arferol flwyddyn yn ôl, nodwch y cyfeiriad lle roedd yn aros"
+
+msgid "You may have other travel documents that show you are a citizen of a particular country. Please complete this question as if your travel documents are passports."
+msgstr "Efallai bod gennych ddogfennau teithio eraill sy'n dangos eich bod yn ddinesydd gwlad benodol. Cwblhewch y cwestiwn hwn fel petai eich dogfennau teithio yn basbortau."
+
+msgid "They may have other travel documents that show they are a citizen of a particular country. Please complete this question as if their travel documents are passports."
+msgstr "Gallai fod ganddynt ddogfennau teithio eraill sy'n dangos eu bod yn ddinesydd gwlad benodol. Cwblhewch y cwestiwn hwn fel petai eu dogfennau teithio yn basbortau."
+
+msgid "This refers to health conditions, illnesses or impairments you may have."
+msgstr "Mae hyn yn golygu cyflwr iechyd, salwch neu nam a all fod gennych."
+
+msgid "Consider conditions that always affect you and those that flare up from time to time. These may include, for example, sensory conditions, developmental conditions or learning impairments."
+msgstr "Dylech ystyried cyflyrau sydd bob amser yn effeithio arnoch chi a’r rhai sy’n ailgodi o bryd i’w gilydd. Gall hyn gynnwys, er enghraifft, cyflwr synhwyraidd, cyflwr datblygiadol neu anhawster dysgu."
+
+msgid "This refers to health conditions, illnesses or impairments they may have."
+msgstr "Mae hyn yn golygu cyflwr iechyd, salwch neu nam a all fod gan yr unigolyn."
+
+msgid "Consider conditions that always affect them and those that flare up from time to time. These may include, for example, sensory conditions, developmental conditions or learning impairments."
+msgstr "Dylech ystyried cyflyrau sydd bob amser yn effeithio ar yr unigolyn a’r rhai sy’n ailgodi o bryd i’w gilydd. Gall hyn gynnwys, er enghraifft, cyflwr synhwyraidd, cyflwr datblygiadol neu anhawster dysgu."
+
+msgid "We mean whether your health condition or illness currently affects your ability to carry out day-to-day activities."
+msgstr "Rydym ni’n golygu faint o effaith mae eich cyflwr iechyd neu'ch salwch yn ei chael ar eich gallu i wneud gweithgareddau pob dydd."
+
+msgid "Consider whether you are still affected while receiving any treatment, medication or using any devices for your condition or illness."
+msgstr "Dylech ystyried a yw eich cyflwr neu'ch salwch yn dal i effeithio arnoch wrth i chi gael unrhyw driniaeth neu feddyginiaeth, neu wrth i chi ddefnyddio unrhyw ddyfeisiau ar ei gyfer."
+
+msgid "For example, if you need a hearing aid and by using the device you experience no restriction in carrying out your day-to-day activities, then you should select “Not at all”."
+msgstr "Er enghraifft, os oes angen i chi ddefnyddio cymorth clyw, ac nad yw eich gallu i wneud gweithgareddau pob dydd yn cael ei gyfyngu o gwbl wrth i chi ei ddefnyddio, dylech ddewis \"Ddim o gwbl\"."
+
+msgid "You should select “Yes, a lot” if you usually need some level of support from family members, friends or personal social services for most normal daily activities."
+msgstr "Dylech ddewis “Ydy, yn fawr” os oes angen rhywfaint o gymorth, fel arfer, gan aelodau o'r teulu, ffrindiau neu wasanaethau cymdeithasol personol ar gyfer y rhan fwyaf o weithgareddau arferol, pob dydd."
+
+msgid "We mean whether their health condition or illness currently affects their ability to carry out day-to-day activities."
+msgstr "Rydym ni’n golygu faint o effaith mae cyflwr iechyd neu salwch yr unigolyn yn ei chael ar y gallu i wneud gweithgareddau pob dydd."
+
+msgid "Consider whether they are still affected while receiving any treatment, medication or using any devices for their condition or illness."
+msgstr "Dylech ystyried a yw'r cyflwr neu’r salwch yn dal i gael effaith ar yr unigolyn wrth gael unrhyw driniaeth neu feddyginiaeth, neu wrth ddefnyddio unrhyw ddyfeisiau ar ei gyfer."
+
+msgid "For example, if they need a hearing aid and by using the device they experience no restriction in carrying out their day-to-day activities, then you should select “Not at all”."
+msgstr "Er enghraifft, os oes angen i’r unigolyn ddefnyddio cymorth clyw, ac nad yw’r gallu i wneud gweithgareddau pob dydd yn cael ei gyfyngu o gwbl wrth ei ddefnyddio, dylech ddewis \"Ddim o gwbl\"."
+
+msgid "You should select “Yes, a lot” if they usually need some level of support from family members, friends or personal social services for most normal daily activities."
+msgstr "Dylech ddewis “Ydy, yn fawr” os oes angen rhywfaint o gymorth ar yr unigolyn fel arfer, gan aelodau o'r teulu, ffrindiau neu wasanaethau cymdeithasol personol ar gyfer y rhan fwyaf o weithgareddau arferol, pob dydd."
+
+msgid "Exclude anything you do as part of your paid employment"
+msgstr "Peidiwch â chyfrif unrhyw beth y byddwch chi’n derbyn cyflog am ei wneud"
+
+msgid "Exclude anything they do as part of their paid employment"
+msgstr "Peidiwch â chyfrif unrhyw beth y bydd yn derbyn cyflog am ei wneud"
+
+msgid "An option to enter gender will follow"
+msgstr "Bydd cwestiwn am rywedd yn dilyn yn nes ymlaen"
+
+msgid "The next set of questions is about any qualifications you have ever achieved in Wales, England or worldwide, including equivalents, even if you are not using them now."
+msgstr "Mae'r gyfres nesaf o gwestiynau yn ymwneud ag unrhyw gymwysterau rydych chi wedi’u hennill erioed yng Nghymru, Lloegr neu unrhyw le arall yn y byd, gan gynnwys cymwysterau cyfatebol, hyd yn oed os nad ydych yn eu defnyddio erbyn hyn."
+
+msgid "For example, trade, higher, foundation or modern"
+msgstr "Er enghraifft, crefft, uwch, sylfaen neu fodern"
+
+msgid "Include equivalent apprenticeships completed anywhere outside Wales and England"
+msgstr "Dylech gynnwys prentisiaethau cyfatebol sydd wedi eu cwblhau unrhyw le y tu allan"
+
+msgid "For example, degree, foundation degree, HND or HNC, NVQ level 4 and above, teaching or nursing"
+msgstr "Er enghraifft, gradd, gradd sylfaen, HND neu HNC, NVQ lefel 4 ac uwch, addysgu neu nyrsio"
+
+msgid "Questions on other NVQs, A levels, GCSEs and equivalents will follow"
+msgstr "Bydd cwestiynau am gymwysterau NVQ eraill, Lefel A (Safon Uwch), TGAU a chymwysterau cyfatebol yn dilyn"
+
+msgid "Include equivalent qualifications achieved anywhere outside Wales and England"
+msgstr "Dylech gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
+
+msgid "For example, BTEC National, OND or ONC, City and Guilds Advanced Craft"
+msgstr "Er enghraifft, BTEC Cenedlaethol, OND neu ONC, Crefft Uwch City and Guilds"
+
+msgid "For example, BTEC General, City and Guilds Craft"
+msgstr "Er enghraifft, BTEC Cyffredinol, Crefft City and Guilds"
+
+msgid "Questions on A levels, GCSEs and equivalents will follow"
+msgstr "Bydd cwestiynau am gymwysterau Lefel A (Safon Uwch) a TGAU, a chymwysterau cyfatebol yn dilyn"
+
+msgid "Include 4 or more AS levels"
+msgstr "Dylech gynnwys 4 neu fwy o gymwysterau Lefel AS (Safon UG)"
+
+msgid "Include 2 to 3 AS levels"
+msgstr "Dylech gynnwys 2-3 Lefel AS (Safon UG)"
+
+msgid "Questions on GCSEs and equivalents will follow"
+msgstr "Bydd cwestiynau am gymwysterau TGAU a chymwysterau cyfatebol yn dilyn"
+
+msgid "Include 5 or more O level passes or CSEs grades 1"
+msgstr "Dylech gynnwys 5 neu fwy o gymwysterau Lefel O (llwyddo) neu gymwysterau TAU (gradd 1)"
+
+msgid "Include any other O levels or CSEs at any grades"
+msgstr "Dylech gynnwys unrhyw gymwysterau Lefel O neu TAU eraill (unrhyw radd)"
+
+msgid "Skills for life, literacy, numeracy and language"
+msgstr "Sgiliau bywyd, llythrennedd, rhifedd ac iaith"
+
+msgid "We are measuring the number of people who have served in the UK Armed Forces and have now left. Government and councils need this information to carry out their commitments made under the Armed Forces Covenant. This is a promise by the nation ensuring that those who serve or who have served in the armed forces, and their families, are not disadvantaged."
+msgstr "Rydym ni’n mesur faint o bobl sydd wedi gwasanaethu yn Lluoedd Arfog y Deyrnas Unedig ac sydd bellach wedi gadael. Mae angen i’r llywodraeth a chynghorau gael y wybodaeth hon er mwyn cyflawni eu hymrwymiadau o dan Gyfamod y Lluoedd Arfog. Addewid gan y genedl yw hwn, sy'n sicrhau nad yw’r rhai sy'n gwasanaethu neu sydd wedi gwasanaethu yn y lluoedd arfog, na'u teuluoedd, o dan anfantais."
+
+msgid "Current serving members should only select “No”"
+msgstr "Aelodau sy'n gwasanaethu ar hyn o bryd, dewiswch \"Nac ydw\"/ \"Nac ydy\" yn unig"
+
+msgid "Freelance means that you are self-employed and work for different companies or people on particular pieces of work"
+msgstr "Mae ar eich liwt eich hun yn golygu eich bod yn hunangyflogedig ac yn gweithio i wahanol gwmnïau neu bobl ar ddarnau penodol o waith. Gair arall am hyn yw llawrydd"
+
+msgid "Include casual or temporary work, even if only for one hour"
+msgstr "Dylech gynnwys gwaith achlysurol neu dros dro, hyd yn oed os mai dim ond am awr"
+
+msgid "Freelance means that they are self-employed and work for different companies or people on particular pieces of work"
+msgstr "Mae ar ei liwt ei hun yn golygu bod yr unigolyn yn hunangyflogedig ac yn gweithio i wahanol gwmnïau neu bobl ar ddarnau penodol o waith. Gair arall am hyn yw llawrydd"
+
+msgid "Whether receiving a pension or not"
+msgstr "Gan dderbyn pensiwn neu beidio"
+
+msgid "To get a true picture of the UK working population, we ask this question of everyone who is not currently working. We ask people who are retired because the number of people continuing to work after retirement age is increasing. We ask people who are long-term sick or disabled because some intend to go back to work."
+msgstr "I gael darlun cywir o'r boblogaeth o oedran gweithio yn y Deyrnas Unedig, rydym ni’n gofyn y cwestiwn hwn i bawb sydd ddim yn gweithio ar hyn o bryd. Rydym ni’n gofyn i bobl sydd wedi ymddeol am fod mwy a mwy o bobl yn parhau i weithio ar ôl oedran ymddeol. Rydym ni’n gofyn i bobl sydd wedi bod yn sâl neu'n anabl am gyfnod hir am fod rhai ohonyn nhw’n bwriadu mynd yn ôl i'r gwaith."
+
+msgid "The next set of questions is about your main job. Your main job is the job in which you usually work the most hours."
+msgstr "Atebwch y gyfres nesaf o gwestiynau ar gyfer eich prif swydd.\n"
+"Eich prif swydd yw’r swydd rydych chi fel arfer yn gweithio’r nifer fwyaf o oriau ynddi."
+
+msgid "The next set of questions is about your last main job. Your main job is the job in which you usually worked the most hours."
+msgstr "Atebwch y gyfres nesaf o gwestiynau ar gyfer eich prif swydd ddiwethaf. Eich prif swydd yw’r swydd roeddech chi fel arfer yn gweithio’r nifer fwyaf o oriau ynddi."
+
+msgid "If you are self-employed in your own business, give the business name."
+msgstr "Os ydych chi’n hunangyflogedig yn eich busnes eich hun, nodwch enw eich busnes."
+
+msgid "If they are self-employed in their own business, give the business name."
+msgstr "Os yw’r person yn hunangyflogedig yn ei fusnes ei hun, nodwch enw’r busnes."
+
+msgid "If you were self-employed in your own business, give the business name."
+msgstr "Os oeddech chi’n hunangyflogedig yn eich busnes eich hun, nodwch enw eich busnes."
+
+msgid "If they were self-employed in their own business, give the business name."
+msgstr "Os oedd y person yn hunangyflogedig yn ei fusnes ei hun, nodwch enw’r busnes."
+
+msgid "For example, retail assistant, office cleaner, district nurse, primary school teacher. Do not state your grade or pay band"
+msgstr "Er enghraifft, gweithiwr siop, glanhäwr swyddfa, nyrs ardal, athro ysgol gynradd. Peidiwch â nodi eich gradd na band eich cyflog"
+
+msgid "For example, retail assistant, office cleaner, district nurse, primary school teacher. Do not state their grade or pay band"
+msgstr "Er enghraifft, gweithiwr siop, glanhäwr swyddfa, nyrs ardal, athro ysgol gynradd. Peidiwch â nodi eich gradd na band eich cyflog"
+
+msgid "For example, clothing retail, general hospital, primary education, food wholesale, civil service (Welsh Government), local government (housing)."
+msgstr "Er enghraifft, gwerthu dillad, ysbyty cyffredinol, addysg gynradd, gwerthu bwyd i fusnesau, y gwasanaeth sifil (Llywodraeth Cymru), llywodraeth leol (tai)."
+
+msgid "Include paid and unpaid overtime"
+msgstr "Dylech gynnwys oriau ychwanegol am dâl neu heb dâl"
+
+msgid "Answer for the longest part, <em>by distance</em>, of your usual journey to work"
+msgstr "Atebwch ar gyfer y rhan hiraf, <em>o ran pellter</em>, o’ch taith arferol i’r gwaith"
+
+msgid "Answer for the longest part, <em>by distance</em>, of their usual journey to work"
+msgstr "Atebwch ar gyfer y rhan hiraf, <em>yn ôl pellter</em>, o daith arferol yr unigolyn hwn i’r gwaith"
+
+msgid "The government uses information about workplace address and method of travel to work to form transport policies and plan services. The information helps to work out local transport needs."
+msgstr "Mae’r llywodraeth yn defnyddio gwybodaeth am gyfeiriad y gweithle a’r dull o deithio i’r gwaith er mwyn llunio polisïau trafnidiaeth a chynllunio gwasanaethau. Mae’r wybodaeth yn helpu i asesu pa ddarpariaeth trafnidiaeth sydd ei hangen yn lleol."
+
+msgid "Voluntary"
+msgstr "Wirfoddol"
+
+msgid "Add someone to this household"
+msgstr "Ychwanegu rhywun at y cartref hwn"
+
+msgid "Add another visitor to this household"
+msgstr ""
+
+msgid "Add a visitor"
+msgstr "Ychwanegu ymwelydd"
+
+msgid "There are no householders"
+msgstr ""
+
+msgid "There are no visitors"
+msgstr ""
+
+msgid "2019 Census Test"
+msgstr "Prawf Cyfrifiad 2019"
+
+msgid "People who live here"
+msgstr "Pobl sy'n byw yma"
+
+msgid "Who lives here"
+msgstr "Pwy sy'n byw yma"
+
+msgid "You will need to know"
+msgstr "Bydd angen i chi wybod"
+
+msgid "What is your name?"
+msgstr "Beth yw eich enw?"
+
+msgid "What does \"usually live\" mean?"
+msgstr "Beth mae “byw fel arfer” yn ei olygu?"
+
+msgid "All of the data entered about this person will be deleted"
+msgstr "Caiff yr holl ddata sy'n gysylltiedig â'r person hwn eu dileu"
+
+msgid "Household members"
+msgstr "Aelodau o’r cartref"
+
+msgid "Include people who are temporarily away"
+msgstr "Cofiwch gynnwys pobl sydd i ffwrdd dros dro"
+
+msgid "Include people who are temporarily staying"
+msgstr "Cofiwch gynnwys pobl sy'n aros dros dro"
+
+msgid "Include"
+msgstr "Dylech gynnwys"
+
+msgid "Household relationships"
+msgstr "Perthynas aelodau o'r cartref â’i gilydd"
+
+msgid "Household accommodation"
+msgstr "Y cartref"
+
+msgid "Which of the following is your house or bungalow?"
+msgstr "Pa un o'r canlynol yw eich tŷ neu eich byngalo?"
+
+msgid "Where is your flat, maisonette or apartment?"
+msgstr "Ble mae eich fflat neu maisonette?"
+
+msgid "Are all the rooms in this accommodation, including the kitchen, bathroom and toilet, behind a door that only this household can use?"
+msgstr "Ydy pob ystafell yn y cartref, gan gynnwys y gegin, yr ystafell ymolchi a'r toiled, y tu ôl i ddrws sydd ddim ond yn cael ei ddefnyddio gan aelodau o'r cartref hwn?"
+
+msgid "What is a “household”?"
+msgstr "Pwy sy’n cael eu cyfrif yn aelodau o’r \"cartref\"?"
+
+msgid "How many bedrooms are available for use only by this household?"
+msgstr "Sawl ystafell wely sydd at ddefnydd aelodau o'r cartref hwn yn unig?"
+
+msgid "Include all rooms built or converted for use as bedrooms"
+msgstr "Dylech gynnwys pob ystafell a gafodd ei hadeiladu neu ei throi i’w defnyddio fel ystafell wely"
+
+msgid "Include central heating systems that generate heat for multiple rooms whether or not you use them"
+msgstr "Dylech gynnwys systemau gwres canolog sy'n cynhyrchu gwres ar gyfer sawl ystafell p'un a ydych yn eu defnyddio ai peidio"
+
+msgid "Who is your landlord?"
+msgstr "Pwy yw eich landlord?"
+
+msgid "In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgstr "Sawl car neu fan sy’n eiddo i aelodau o’r cartref hwn, neu sydd ar gael i’w defnyddio ganddynt?"
+
+msgid "Include any company cars or vans available for private use."
+msgstr "Dylech gynnwys unrhyw geir neu faniau cwmni os ydynt ar gael at ddefnydd preifat."
+
+msgid "Individual Section"
+msgstr ""
+
+msgid "Personal Details"
+msgstr "Manylion Personol"
+
+msgid "What is your date of birth?"
+msgstr "Beth yw eich dyddiad geni?"
+
+msgid "What is your sex?"
+msgstr "Beth yw eich rhyw?"
+
+msgid "Who is your legal marriage to?"
+msgstr "Pwy yw eich priod cyfreithiol?"
+
+msgid "Who was your legal marriage to?"
+msgstr "Pwy oedd eich priod cyfreithiol?"
+
+msgid "Who is your registered civil partnership to?"
+msgstr "Pwy yw eich partner sifil cofrestredig?"
+
+msgid "Who was your registered civil partnership to?"
+msgstr "Pwy oedd eich partner sifil cofrestredig?"
+
+msgid "Do you stay at another address for more than 30 days a year?"
+msgstr "Ydych chi'n aros mewn cyfeiriad arall am fwy na 30 diwrnod y flwyddyn?"
+
+msgid "What do we mean by “another address”?"
+msgstr "Beth mae “cyfeiriad arall” yn ei olygu?"
+
+msgid "Enter details of the other UK address where you stay for more than 30 days a year."
+msgstr "Rhowch fanylion y cyfeiriad arall yn y Deyrnas Unedig lle rydych chi'n aros am fwy na 30 diwrnod y flwyddyn."
+
+msgid "Are you a student in full-time education?"
+msgstr "Ydych chi'n blentyn ysgol neu'n fyfyriwr mewn addysg amser llawn?"
+
+msgid "Are you a schoolchild or student in full-time education?"
+msgstr "Ydych chi'n blentyn ysgol neu'n fyfyriwr mewn addysg amser llawn?"
+
+msgid "During term time, where do you usually live?"
+msgstr "Yn ystod y tymor, ble ydych chi'n byw fel arfer?"
+
+msgid "Is this address in the UK?"
+msgstr "Ydy’r cyfeiriad hwn yn y Deyrnas Unedig?"
+
+msgid "Enter details of the UK address where you usually stay during term time."
+msgstr "Rhowch fanylion y cyfeiriad yn y Deyrnas Unedig lle rydych chi'n aros fel arfer yn ystod y tymor."
+
+msgid "Identity and Health"
+msgstr "Hunaniaeth ac Iechyd"
+
+msgid "What is your country of birth?"
+msgstr "Ym mha wlad y cawsoch chi eich geni?"
+
+msgid "When did you most recently arrive to live in the United Kingdom?"
+msgstr "Pryd ddaethoch chi i fyw yn y Deyrnas Unedig ddiwethaf?"
+
+msgid "Did you arrive in the UK, on or after 13 October 2018?"
+msgstr "Wnaethoch chi ddod i’r Deyrnas Unedig ar 13 Hydref 2018 neu ar ôl hynny?"
+
+msgid "Including the time already spent here, how long do you intend to stay in the United Kingdom?"
+msgstr "Gan gynnwys yr amser rydych chi wedi’i dreulio yma’n barod, am faint ydych chi’n bwriadu aros yn y Deyrnas Unedig?"
+
+msgid "Can you understand, speak, read or write Welsh?"
+msgstr "Ydych chi’n gallu deall, siarad, darllen neu ysgrifennu Cymraeg?"
+
+msgid "What is your main language?"
+msgstr "Beth yw eich prif iaith?"
+
+msgid "What do we mean by “main language”?"
+msgstr "Beth mae “prif iaith” yn ei olygu?"
+
+msgid "How well can you speak English?"
+msgstr "Pa mor dda ydych chi’n gallu siarad Saesneg?"
+
+msgid "How would you describe your national identity?"
+msgstr "Sut fyddech chi'n disgrifio eich hunaniaeth genedlaethol?"
+
+msgid "What do we mean by “national identity”?"
+msgstr "Beth mae “hunaniaeth genedlaethol” yn ei olygu?"
+
+msgid "What is your ethnic group?"
+msgstr "Beth yw eich grŵp ethnig?"
+
+msgid "Which one best describes your White ethnic group or background?"
+msgstr "Pa un sy’n disgrifio orau eich grŵp ethnig neu eich cefndir Gwyn?"
+
+msgid "Which one best describes your Mixed or Multiple ethnic group or background?"
+msgstr "Pa un sy’n disgrifio orau eich grŵp ethnig neu eich cefndir Cymysg neu Aml-ethnig?"
+
+msgid "Which one best describes your Asian or Asian British ethnic group or background?"
+msgstr "Pa un sy’n disgrifio orau eich grŵp ethnig neu eich cefndir Asiaidd neu Asiaidd Prydeinig?"
+
+msgid "Which one best describes your Black, Black British, Caribbean or African ethnic group or background?"
+msgstr "Pa un sy’n disgrifio orau eich grŵp ethnig neu eich cefndir Du, Du Prydeinig, Caribïaidd neu Affricanaidd?"
+
+msgid "Which one best describes your other ethnic group or background?"
+msgstr "Pa un sy’n disgrifio orau eich grŵp ethnig neu eich cefndir arall?"
+
+msgid "What is your religion?"
+msgstr "Beth yw eich crefydd?"
+
+msgid "One year ago, what was your usual address?"
+msgstr "Flwyddyn yn ôl, beth oedd eich cyfeiriad arferol?"
+
+msgid "Enter details of your address one year ago."
+msgstr "Rhowch fanylion eich cyfeiriad flwyddyn yn ôl."
+
+msgid "What passports do you hold?"
+msgstr "Pa basbortau sydd gennych chi?"
+
+msgid "What official documents can be included?"
+msgstr "Pa ddogfennau swyddogol y gellir eu cynnwys?"
+
+msgid "How is your health in general?"
+msgstr "Sut mae eich iechyd yn gyffredinol?"
+
+msgid "Do you have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?"
+msgstr "Oes gennych chi gyflwr neu salwch corfforol neu feddyliol sydd wedi para neu sy’n debygol o bara 12 mis neu fwy?"
+
+msgid "What do we mean by “physical and mental health conditions or illnesses”?"
+msgstr "Beth mae \"cyflwr neu salwch corfforol neu feddyliol” yn ei olygu?"
+
+msgid "Do any of your conditions or illnesses reduce your ability to carry out day-to-day activities?"
+msgstr "Ydy unrhyw gyflwr neu salwch sydd gennych chi’n lleihau eich gallu i wneud gweithgareddau pob dydd?"
+
+msgid "What do we mean by “reduce your ability”?"
+msgstr "Beth mae “lleihau eich gallu” yn ei olygu?"
+
+msgid "What do we mean by “reduce their ability”?"
+msgstr "Beth mae “lleihau gallu” yn ei olygu’?"
+
+msgid "Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgstr "Ydych chi’n gofalu am unrhyw un, neu’n cynnig unrhyw help neu gefnogaeth i unrhyw un, oherwydd cyflwr neu salwch corfforol neu feddyliol hir dymor, neu broblemau sy’n gysylltiedig â henaint?"
+
+msgid "Which of the following best describes your sexual orientation?"
+msgstr "Pa un o’r canlynol sy’n disgrifio orau eich cyfeiriadedd rhywiol?"
+
+msgid "Is your gender the same as the sex you were registered at birth?"
+msgstr "Ydy eich rhywedd yr un peth â’r rhyw a gofrestrwyd pan gawsoch chi eich geni?"
+
+msgid "Qualifications"
+msgstr "Cymwysterau"
+
+msgid "Have you completed an apprenticeship?"
+msgstr "Ydych chi wedi cwblhau prentisiaeth?"
+
+msgid "Have you achieved a qualification at degree level or above?"
+msgstr "Oes gennych chi gymhwyster ar lefel gradd neu uwch?"
+
+msgid "Have you achieved an NVQ or equivalent qualification?"
+msgstr "Oes gennych chi NVQ neu gymhwyster cyfatebol?"
+
+msgid "Have you achieved an AS, A level or equivalent qualification?"
+msgstr "Oes gennych chi Lefel AS (Safon UG), Lefel A (Safon Uwch) neu gymhwyster cyfatebol?"
+
+msgid "Have you achieved a GCSE or equivalent qualification?"
+msgstr "Oes gennych chi gymhwyster TGAU neu gymhwyster cyfatebol?"
+
+msgid "Have you achieved any other qualifications?"
+msgstr "Oes gennych chi unrhyw gymwysterau eraill?"
+
+msgid "Employment"
+msgstr "Cyflogaeth"
+
+msgid "Have you previously served in the UK Armed Forces?"
+msgstr "Ydych chi wedi gwasanaethu yn Lluoedd Arfog y Deyrnas Unedig yn y gorffennol (er enghraifft, y fyddin)?"
+
+msgid "In the last seven days, were you doing any of the following?"
+msgstr "Yn ystod y 7 diwrnod diwethaf, oeddech chi’n gwneud unrhyw un o’r canlynol?"
+
+msgid "Which of the following describes what you were doing in the last seven days?"
+msgstr "Pa un o’r canlynol sy’n disgrifio’r hyn roeddech chi’n ei wneud yn ystod y 7 diwrnod diwethaf?"
+
+msgid "In the last four weeks, were you actively looking for any kind of paid work?"
+msgstr "Yn ystod y 4 wythnos diwethaf, oeddech chi wrthi'n chwilio am unrhyw fath o waith am dâl?"
+
+msgid "Are you available to start work in the next two weeks?"
+msgstr "Ydych chi ar gael i ddechrau gweithio yn y pythefnos nesaf?"
+
+msgid "In the last seven days, were you waiting to start a job already accepted?"
+msgstr "Yn ystod y 7 diwrnod diwethaf, oeddech chi’n aros i ddechrau swydd roeddech chi eisoes wedi’i derbyn?"
+
+msgid "Have you ever done any paid work?"
+msgstr "Ydych chi erioed wedi gwneud unrhyw waith am dâl?"
+
+msgid "Main job"
+msgstr "Prif swydd"
+
+msgid "Last main job"
+msgstr "Prif swydd ddiwethaf"
+
+msgid "In your main job, what is your employment status?"
+msgstr "Yn eich prif swydd, beth yw eich statws cyflogaeth?"
+
+msgid "In your main job, what was your employment status?"
+msgstr "Yn eich prif swydd, beth oedd eich statws cyflogaeth?"
+
+msgid "What is the name of the organisation or business you work for?"
+msgstr "Beth yw enw’r sefydliad neu’r busnes rydych chi’n gweithio iddo?"
+
+msgid "What was the name of the organisation or business you worked for?"
+msgstr "Beth oedd enw’r sefydliad neu’r busnes roeddech chi’n gweithio iddo?"
+
+msgid "What is your full job title?"
+msgstr "Beth yw teitl llawn eich swydd?"
+
+msgid "What was your full job title?"
+msgstr "Beth oedd teitl llawn eich swydd?"
+
+msgid "Briefly describe what you do in your main job."
+msgstr "Beth ydych chi'n ei wneud yn eich prif swydd?"
+
+msgid "Briefly describe what you did in your main job."
+msgstr "Beth oeddech chi'n ei wneud yn eich prif swydd?"
+
+msgid "What is the main activity of your organisation, business or freelance work?"
+msgstr "Beth yw prif weithgarwch eich sefydliad, busnes neu’ch gwaith ar eich liwt eich hun?"
+
+msgid "What was the main activity of your organisation, business or freelance work?"
+msgstr "Beth oedd prif weithgarwch eich sefydliad, busnes neu’ch gwaith ar eich liwt eich hun?"
+
+msgid "Do you supervise or oversee the work of other employees on a day-to-day basis?"
+msgstr "Ydych chi’n goruchwylio neu’n cadw golwg ar waith gweithwyr eraill o ddydd i ddydd?"
+
+msgid "Did you supervise or oversee the work of other employees on a day-to-day basis?"
+msgstr "Oeddech chi’n goruchwylio neu’n cadw golwg ar waith gweithwyr eraill o ddydd i ddydd?"
+
+msgid "In your main job, how many hours a week do you usually work?"
+msgstr "Yn eich prif swydd, sawl awr yr wythnos ydych chi’n gweithio fel arfer?"
+
+msgid "How do you usually travel to work?"
+msgstr "Sut ydych chi'n teithio i'r gwaith fel arfer?"
+
+msgid "Where do you mainly work?"
+msgstr "Ble ydych chi’n gweithio’n bennaf?"
+
+msgid "What is the address of your workplace?"
+msgstr "Beth yw cyfeiriad eich gweithle?"
+
+msgid "What is the address of your depot?"
+msgstr "Beth yw cyfeiriad eich depo?"
+
+msgid "Summary"
+msgstr "Crynodeb"
+
+msgid "Visitors"
+msgstr "Ymwelwyr"
+
+msgid "Names of the people living at this address including anyone temporarily away or who has been or intends to be in the UK for 3 months or more."
+msgstr "Enwau'r bobl sy'n byw yn y cyfeiriad hwn gan gynnwys unrhyw un sydd i ffwrdd o'r cartref dros dro neu sydd wedi bod, neu sy'n bwriadu bod, yn y Deyrnas Unedig am 3 mis neu fwy."
+
+msgid "Names of visitors staying overnight at this address on 13 October 2019"
+msgstr "Enwau ymwelwyr sy'n aros dros nos yn y cyfeiriad hwn ar 13 Hydref 2019"
+
+msgid "h"
+msgstr ""
+
+msgid "o"
+msgstr ""
+
+msgid "u"
+msgstr ""
+
+msgid "s"
+msgstr ""
+
+msgid "e"
+msgstr ""
+
+msgid "l"
+msgstr ""
+
+msgid "d"
+msgstr ""
+
+msgid "People who work away from home within the UK if this is their permanent or family home"
+msgstr "Pobl sy'n gweithio i ffwrdd o'r cartref yn y Deyrnas Unedig, os mai hwn yw eu cartref parhaol neu gartref y teulu"
+
+msgid "Members of the armed forces if this is their permanent or family home"
+msgstr "Aelodau o'r lluoedd arfog (er enghraifft, y fyddin), os mai hwn yw eu cartref parhaol neu gartref y teulu"
+
+msgid "People who are temporarily outside the UK for less than <strong>12 months</strong>"
+msgstr "Pobl sydd y tu allan i'r Deyrnas Unedig dros dro am lai na <strong>12 mis</strong>"
+
+msgid "Other people who usually live here but are temporarily away"
+msgstr "Pobl eraill sy’n byw yma fel arfer ond sydd i ffwrdd dros dro"
+
+msgid "People staying temporarily who usually live in the UK but do not have another UK address for example, relatives, friends"
+msgstr "Pobl sy'n aros dros dro, sy'n byw yn y Deyrnas Unedig fel arfer, ond sydd heb gyfeiriad arall yn y Deyrnas Unedig, er enghraifft, perthnasau, ffrindiau"
+
+msgid "People who usually live outside the UK who are staying in the UK for <strong>3 months or more</strong>"
+msgstr "Pobl sy'n byw y tu allan i'r Deyrnas Unedig fel arfer, ond sy'n aros yn y Deyrnas Unedig am <strong>3 mis</strong> neu fwy"
+
+msgid "People who usually live somewhere else in the UK, for example boy/girlfriends, friends or relatives"
+msgstr "Pobl sydd fel arfer yn byw rywle arall yn y Deyrnas Unedig, er enghraifft, cariadon, ffrindiau neu berthnasau"
+
+msgid "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere"
+msgstr "Pobl sy'n aros yma gan mai dyma eu hail gyfeiriad, er enghraifft, oherwydd gwaith. Mae eu cartref parhaol neu gartref y teulu rywle arall"
+
+msgid "People who usually live outside the UK who are staying in the UK for less than three months"
+msgstr "Pobl sy'n byw y tu allan i’r Deyrnas Unedig fel arfer, ond sy'n aros yn y Deyrnas Unedig am lai na 3 mis"
+
+msgid "People here on holiday"
+msgstr "Pobl sydd ar wyliau yma"
+
+msgid "Type of property, and if it’s owned or rented"
+msgstr "Y math o eiddo, ac a ydych chi'n berchen arno neu'n ei rentu"
+
+msgid "Type of landlord if rented, for example housing association, council or private"
+msgstr "Y math o landlord os ydych chi'n ei rentu, er enghraifft, cymdeithas dai, cyngor neu landlord preifat"
+
+msgid "Type of central heating"
+msgstr "Y math o wres canolog"
+
+msgid "Personal details such as date of birth, country of birth, religion"
+msgstr "Manylion personol fel dyddiad geni, gwlad enedigol, crefydd"
+
+msgid "Second or holiday homes"
+msgstr "Ail gartrefi neu gartrefi gwyliau"
+
+msgid "Main language"
+msgstr "Prif iaith"
+
+msgid "Health"
+msgstr "Iechyd"
+
+msgid "Unpaid care provided"
+msgstr "Gofal di-dâl sy'n cael ei ddarparu"
+
+msgid "Employment details"
+msgstr "Manylion cyflogaeth"
+
+msgid "provide services and share funding fairly"
+msgstr "darparu gwasanaethau a rhannu cyllid yn deg"
+
+msgid "understand and represent everyone’s interests"
+msgstr "deall a chynrychioli buddiannau pawb"
+
+msgid "Date of birth"
+msgstr "Dyddiad geni"
+
+msgid "Sex"
+msgstr "Rhyw"
+
+msgid "Usual address"
+msgstr "Cyfeiriad arferol"
+
+msgid "In this section, we’re going to ask you about the people living or staying at {address}."
+msgstr "Yn yr adran hon, byddwn yn gofyn i chi am y bobl sy'n byw neu'n aros yn {address}."
+
+msgid "Do you usually live at {address}?"
+msgstr "Ydych chi'n byw yn {address} fel arfer?"
+
+msgid "Does anyone usually live at {address}?"
+msgstr "Oes unrhyw un yn byw yn {address} fel arfer?"
+
+msgid "Who do you need to add to {address}?"
+msgstr "Pwy y mae angen i chi ei ychwanegu at {address}?"
+
+msgid "Change details for {person_name} (You)"
+msgstr "Newid manylion ar gyfer {person_name} (Chi)"
+
+msgid "Change details for {person_name}"
+msgstr "Newid manylion ar gyfer {person_name}"
+
+msgid "Does anyone else live at {address}?"
+msgstr "Oes unrhyw un arall yn byw yn {address}?"
+
+msgid "Are you sure you want to remove {person_name}?"
+msgstr "Ydych chi'n siŵr eich bod am ddileu {person_name}?"
+
+msgid "{person_name}"
+msgstr "{person_name}"
+
+msgid "Apart from the people already included, is there anyone who is temporarily away or staying that you need to add to {address}?"
+msgstr "Ar wahân i'r bobl sydd wedi'u cynnwys eisoes, oes unrhyw un sydd i ffwrdd o'r cartref dros dro neu sy'n aros dros dro y mae angen i chi ei ychwanegu at {address}?"
+
+msgid "Are there any visitors staying overnight on {census_date} at {address}?"
+msgstr "Oes unrhyw ymwelwyr yn aros dros nos ar {census_date} yn {address}?"
+
+msgid "What is the name of the visitor staying overnight on {census_date} at {address}?"
+msgstr "Beth yw enw'r ymwelydd sy'n aros dros nos ar {census_date} yn {address}?"
+
+msgid "Are there any other visitors staying overnight on {census_date} at {address}?"
+msgstr "Oes unrhyw ymwelwyr eraill yn aros dros nos ar {census_date} yn {address}?"
+
+msgid "Visitors staying overnight on {census_date}"
+msgstr "Ymwelwyr sy’n aros dros nos ar {census_date}"
+
+msgid "{second_person_name} is your <em>…</em>"
+msgstr "{second_person_name} yw eich <em>...</em>"
+
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgstr "Gan feddwl am {first_person_name}, mae {second_person_name} yn <em>...</em> i {first_person_name}"
+
+msgid "What type of accommodation is <em>{address}</em>?"
+msgstr "Pa fath o gartref yw <em>{address}</em>?"
+
+msgid "What type of central heating does <em>{address}</em> have?"
+msgstr "Pa fath o wres canolog sydd yn <em>{address}</em>?"
+
+msgid "Does your household own or rent <em>{address}</em>?"
+msgstr "Oes aelod neu aelodau o'ch cartref yn berchen ar <em>{address}</em> neu'n ei rentu?"
+
+msgid "In this section, we’re going to ask you questions about <strong>{person_name}</strong>."
+msgstr "Yn yr adran hon, byddwn yn gofyn cwestiynau i chi am <strong>{person_name}</strong>."
+
+msgid "Are you <em>{person_name}?</em>"
+msgstr "Ai chi yw <em>{person_name}?</em>"
+
+msgid "What is <em>{person_name_possessive}</em> date of birth?"
+msgstr "Beth yw dyddiad geni <em>{person_name_possessive}</em>?"
+
+msgid "You are {age_in_years} years old. Is this correct?"
+msgstr "Rydych chi’n {age_in_years} oed. Ydy hyn yn gywir?"
+
+msgid "{person_name} is {age_in_years} years old. Is this correct?"
+msgstr "Mae {person_name} yn {age_in_years} oed. Ydy hyn yn gywir?"
+
+msgid "What is <em>{person_name_possessive}</em> sex?"
+msgstr "Beth yw rhyw <em>{person_name_possessive}</em>?"
+
+msgid "On {census_date}, what is your legal marital or registered civil partnership status?"
+msgstr "Yn gyfreithiol, beth yw eich statws priodasol neu statws eich partneriaeth sifil gofrestredig ar {census_date}?"
+
+msgid "On {census_date}, what is <em>{person_name_possessive}</em> legal marital or registered civil partnership status?"
+msgstr "Yn gyfreithiol, beth yw statws priodasol neu statws partneriaeth sifil gofrestredig <em>{person_name_possessive}</em> ar {census_date}?"
+
+msgid "Who is <em>{person_name_possessive}</em> legal marriage to?"
+msgstr "Pwy yw priod cyfreithiol <em>{person_name_possessive}</em>?"
+
+msgid "Who was <em>{person_name_possessive}</em> legal marriage to?"
+msgstr "Pwy oedd priod cyfreithiol <em>{person_name_possessive}</em>?"
+
+msgid "Who is <em>{person_name_possessive}</em> registered civil partnership to?"
+msgstr "Pwy yw partner sifil cofrestredig <em>{person_name_possessive}</em>?"
+
+msgid "Who was <em>{person_name_possessive}</em> registered civil partnership to?"
+msgstr "Pwy oedd partner sifil cofrestredig <em>{person_name_possessive}</em>?"
+
+msgid "Does <em>{person_name}</em> stay at another address for more than 30 days a year?"
+msgstr "Ydy <em>{person_name}</em> yn aros mewn cyfeiriad arall am fwy na 30 diwrnod y flwyddyn?"
+
+msgid "Enter details of the other UK address where <em>{person_name}</em> stays for more than 30 days a year."
+msgstr "Rhowch fanylion y cyfeiriad arall yn y Deyrnas Unedig lle mae <em>{person_name}</em> yn aros am fwy na 30 diwrnod y flwyddyn."
+
+msgid "What type of address is <em>{address}</em>?"
+msgstr "What type of address is <em>{address}</em>?"
+
+msgid "What type of address is your address in <em>{country}</em>?"
+msgstr "Pa fath o gyfeiriad yw eich cyfeiriad yn: <em>{country}</em>?"
+
+msgid "What type of address is <em>{person_name_possessive}</em> address in {country}?"
+msgstr "Pa fath o gyfeiriad yw cyfeiriad <em>{person_name_possessive}</em> yn: {country}?"
+
+msgid "Is <em>{person_name}</em> a student in full-time education?"
+msgstr "Ydy <em>{person_name}</em> yn blentyn ysgol neu’n fyfyriwr mewn addysg amser llawn?"
+
+msgid "Is <em>{person_name}</em> a schoolchild or student in full-time education?"
+msgstr "Ydy <em>{person_name}</em> yn blentyn ysgol neu’n fyfyriwr mewn addysg amser llawn?"
+
+msgid "During term time, where does <em>{person_name}</em> usually live?"
+msgstr "Yn ystod y tymor, ble mae <em>{person_name}</em> yn byw fel arfer?"
+
+msgid "Enter details of the UK address where <em>{person_name}</em> usually stays during term time."
+msgstr "Rhowch fanylion y cyfeiriad yn y Deyrnas Unedig lle mae <em>{person_name}</em> yn aros fel arfer yn ystod y tymor."
+
+msgid "What is <em>{person_name_possessive}</em> country of birth?"
+msgstr "Ym mha wlad y ganwyd <em>{person_name_possessive}</em>?"
+
+msgid "When did <em>{person_name}</em> most recently arrive to live in the United Kingdom?"
+msgstr "Pryd ddaeth <em>{person_name}</em> i fyw yn y Deyrnas Unedig ddiwethaf?"
+
+msgid "Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018?"
+msgstr "Wnaeth <em>{person_name}</em> ddod i’r Deyrnas Unedig ar [13 Hydref 2018] neu ar ôl hynny?"
+
+msgid "Including the time already spent here, how long does <em>{person_name}</em> intend to stay in the United Kingdom?"
+msgstr "Gan gynnwys yr amser y mae wedi’i dreulio yma’n barod, am faint mae <em>{person_name}</em> yn bwriadu aros yn y Deyrnas Unedig?"
+
+msgid "Can <em>{person_name}</em> understand, speak, read or write Welsh?"
+msgstr "Ydy <em>{person_name}</em> yn gallu deall, siarad, darllen neu ysgrifennu Cymraeg?"
+
+msgid "What is <em>{person_name_possessive}</em> main language?"
+msgstr "Beth yw prif iaith <em>{person_name_possessive}</em>?"
+
+msgid "How well can <em>{person_name}</em> speak English?"
+msgstr "Pa mor dda mae <em>{person_name}</em> yn gallu siarad Saesneg?"
+
+msgid "How would <em>{person_name}</em> describe their national identity?"
+msgstr "Sut fyddai <em>{person_name}</em> yn disgrifio ei hunaniaeth genedlaethol?"
+
+msgid "What is <em>{person_name_possessive}</em> ethnic group?"
+msgstr "Beth yw grŵp ethnig <em>{person_name_possessive}</em>?"
+
+msgid "Which one best describes <em>{person_name_possessive}</em> White ethnic group or background?"
+msgstr "Pa un sy’n disgrifio orau grŵp ethnig neu gefndir Gwyn <em>{person_name_possessive}</em>?"
+
+msgid "Which one best describes <em>{person_name_possessive}</em> Mixed or Multiple ethnic group or background?"
+msgstr "Pa un sy’n disgrifio orau grŵp ethnig neu gefndir Cymysg neu Aml-ethnig <em>{person_name_possessive}</em>?"
+
+msgid "Which one best describes <em>{person_name_possessive}</em> Asian or Asian British ethnic group or background?"
+msgstr "Pa un sy’n disgrifio orau grŵp ethnig neu gefndir Asiaidd neu Asiaidd Prydeinig <em>{person_name_possessive}</em>?"
+
+msgid "Which one best describes <em>{person_name_possessive}</em> Black, Black British, Caribbean or African ethnic group or background?"
+msgstr "Pa un sy’n disgrifio orau grŵp ethnig neu gefndir Du, Du Prydeinig, Caribïaidd neu Affricanaidd <em>{person_name_possessive}</em>?"
+
+msgid "Which one best describes <em>{person_name_possessive}</em> other ethnic group or background?"
+msgstr "Pa un sy’n disgrifio orau grŵp ethnig neu gefndir arall <em>{person_name_possessive}</em>?"
+
+msgid "What is <em>{person_name_possessive}</em> religion?"
+msgstr "Beth yw crefydd <em>{person_name_possessive}</em>?"
+
+msgid "One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgstr "Flwyddyn yn ôl, beth oedd cyfeiriad arferol <em>{person_name_possessive}</em>?"
+
+msgid "Enter details of <em>{person_name_possessive}</em> address one year ago."
+msgstr "Rhowch fanylion cyfeiriad <em>{person_name_possessive}</em> flwyddyn yn ôl."
+
+msgid "What passports does <em>{person_name}</em> hold?"
+msgstr "Pa basbortau sydd gan <em>{person_name}</em>?"
+
+msgid "How is <em>{person_name_possessive}</em> health in general?"
+msgstr "Sut mae iechyd <em>{person_name_possessive}</em> yn gyffredinol?"
+
+msgid "Does <em>{person_name}</em> have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?"
+msgstr "Oes gan <em>{person_name}</em> gyflwr neu salwch corfforol neu feddyliol sydd wedi para neu sy’n debygol o bara 12 mis neu fwy?"
+
+msgid "Does any of <em>{person_name_possessive}</em> conditions or illnesses reduce their ability to carry out day-to-day activities?"
+msgstr "Ydy unrhyw gyflwr neu salwch sydd gan <em>{person_name_possessive}</em> yn lleihau’r gallu i wneud gweithgareddau pob dydd?"
+
+msgid "Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgstr "Ydy <em>{person_name}</em> yn gofalu am unrhyw un, neu’n cynnig unrhyw help neu gefnogaeth i unrhyw un, oherwydd cyflwr neu salwch corfforol neu feddyliol hir dymor, neu broblemau sy’n gysylltiedig â henaint?"
+
+msgid "Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgstr "Pa un o’r canlynol sy’n disgrifio orau gyfeiriadedd rhywiol <em>{person_name_possessive}</em>?"
+
+msgid "Is <em>{person_name_possessive}</em> gender the same as the sex they were registered at birth?"
+msgstr "Ydy rhywedd <em>{person_name_possessive}</em> yr un peth â’r rhyw a gofrestrwyd pan y’i ganwyd?"
+
+msgid "The next set of questions is about any qualifications <em>{person_name}</em> has ever achieved in Wales, England or worldwide, including equivalents, even if they are not using them now."
+msgstr "Mae’r gyfres nesaf o gwestiynau yn ymwneud ag unrhyw gymwysterau y mae <em>{person_name}</em> wedi’u hennill erioed yng Nghymru, Lloegr neu unrhyw le arall yn y byd, gan gynnwys cymwysterau cyfatebol, hyd yn oed os nad yw’n eu defnyddio erbyn hyn."
+
+msgid "Has <em>{person_name}</em> completed an apprenticeship?"
+msgstr "Ydy <em>{person_name}</em> wedi cwblhau prentisiaeth?"
+
+msgid "Has <em>{person_name}</em> achieved a qualification at degree level or above?"
+msgstr "Oes gan <em>{person_name}</em> gymhwyster ar lefel gradd neu uwch?"
+
+msgid "Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgstr "Oes gan <em>{person_name}</em> NVQ neu gymhwyster cyfatebol?"
+
+msgid "Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
+msgstr "Oes gan <em>{person_name}</em> gymhwyster Lefel AS (Safon UG), Lefel A (Safon Uwch) neu gymhwyster cyfatebol?"
+
+msgid "Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgstr "Oes gan <em>{person_name}</em> gymhwyster TGAU neu gymhwyster cyfatebol?"
+
+msgid "Has <em>{person_name}</em> achieved any other qualifications?"
+msgstr "Oes gan <em>{person_name}</em> unrhyw gymwysterau eraill?"
+
+msgid "Has <em>{person_name}</em> previously served in the UK Armed Forces?"
+msgstr "Ydy <em>{person_name}</em> wedi gwasanaethu yn Lluoedd Arfog y Deyrnas Unedig yn y gorffennol (er enghraifft, y fyddin)?"
+
+msgid "In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgstr "Yn ystod y 7 diwrnod diwethaf, oedd <em>{person_name}</em> yn gwneud unrhyw un o’r canlynol?"
+
+msgid "Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgstr "Pa un o’r canlynol sy’n disgrifio’r hyn roedd <em>{person_name}</em> yn ei wneud yn ystod y 7 diwrnod diwethaf?"
+
+msgid "In the last four weeks, was <em>{person_name}</em> actively looking for any kind of paid work?"
+msgstr "Yn ystod y 4 wythnos diwethaf, oedd <em>{person_name}</em> wrthi’n chwilio am unrhyw fath o waith am dâl?"
+
+msgid "Is <em>{person_name}</em> available to start work in the next two weeks?"
+msgstr "Ydy <em>{person_name}</em> ar gael i ddechrau gweithio yn y pythefnos nesaf?"
+
+msgid "In the last seven days, was <em>{person_name}</em> waiting to start a job already accepted?"
+msgstr "Yn ystod y 7 diwrnod diwethaf, oedd <em>{person_name}</em> yn aros i ddechrau swydd roedd eisoes wedi’i derbyn?"
+
+msgid "Has <em>{person_name}</em> ever done any paid work?"
+msgstr "Ydy <em>{person_name}</em> erioed wedi gwneud unrhyw waith am dâl?"
+
+msgid "The next set of questions is about <em>{person_name_possessive}</em> main job. Their main job is the job in which they usually work the most hours."
+msgstr "Atebwch y gyfres nesaf o gwestiynau ar gyfer prif swydd <em>{person_name_possessive}</em>. Prif swydd yr unigolyn hwn yw’r swydd y mae fel arfer yn gweithio’r nifer fwyaf o oriau ynddi."
+
+msgid "The next set of questions is about <em>{person_name_possessive}</em> last main job. Their main job is the job in which they usually worked the most hours."
+msgstr "Atebwch y gyfres nesaf o gwestiynau ar gyfer prif swydd ddiwethaf <em>{person_name_possessive}</em>. Prif swydd yr unigolyn hwn yw’r swydd yr oedd fel arfer yn gweithio’r nifer fwyaf o oriau ynddi."
+
+msgid "In their main job, what is <em>{person_name_possessive}</em> employment status?"
+msgstr "Yn y brif swydd, beth yw statws cyflogaeth <em>{person_name_possessive}</em>?"
+
+msgid "In their main job, what was <em>{person_name_possessive}</em> employment status?"
+msgstr "Yn y brif swydd, beth oedd statws cyflogaeth <em>{person_name_possessive}</em>?"
+
+msgid "What is the name of the organisation or business <em>{person_name}</em> works for?"
+msgstr "Beth yw enw’r sefydliad neu’r busnes mae <em>{person_name}</em> yn gweithio iddo?"
+
+msgid "What was the name of the organisation or business <em>{person_name}</em> worked for?"
+msgstr "Beth oedd enw’r sefydliad neu’r busnes roedd <em>{person_name}</em> yn gweithio iddo?"
+
+msgid "What is <em>{person_name_possessive}</em> full job title?"
+msgstr "Beth yw teitl llawn swydd <em>{person_name_possessive}</em>?"
+
+msgid "What was <em>{person_name_possessive}</em> full job title?"
+msgstr "Beth oedd teitl llawn swydd <em>{person_name_possessive}</em>?"
+
+msgid "Briefly describe what <em>{person_name}</em> does in their main job."
+msgstr "Beth mae <em>{person_name}</em> yn ei wneud yn y brif swydd?"
+
+msgid "Briefly describe what <em>{person_name}</em> did in their main job."
+msgstr "Beth oedd <em>{person_name}</em> yn ei wneud yn y brif swydd?"
+
+msgid "What is the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
+msgstr "Beth yw prif weithgarwch sefydliad, busnes neu waith ar ei liwt ei hun <em>{person_name_possessive}</em>?"
+
+msgid "What was the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
+msgstr "Beth oedd prif weithgarwch sefydliad, busnes neu waith ar ei liwt ei hun <em>{person_name_possessive}</em>?"
+
+msgid "Does <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgstr "Ydy <em>{person_name}</em> yn goruchwylio neu’n cadw golwg ar waith gweithwyr eraill o ddydd i ddydd?"
+
+msgid "Did <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgstr "Oedd <em>{person_name}</em> yn goruchwylio neu’n cadw golwg ar waith gweithwyr eraill o ddydd i ddydd?"
+
+msgid "In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
+msgstr "Ym mhrif swydd <em>{person_name_possessive}</em>, sawl awr yr wythnos mae’n gweithio fel arfer?"
+
+msgid "How does <em>{person_name}</em> usually travel to work?"
+msgstr "Sut mae <em>{person_name}</em> yn teithio i’r gwaith fel arfer?"
+
+msgid "Where does <em>{person_name}</em> mainly work?"
+msgstr "Ble mae <em>{person_name}</em> yn gweithio’n bennaf?"
+
+msgid "What is the address of <em>{person_name_possessive}</em> workplace?"
+msgstr "Beth yw cyfeiriad gweithle <em>{person_name_possessive}</em>?"
+
+msgid "What is the address of <em>{person_name_possessive}</em> depot?"
+msgstr "Beth yw cyfeiriad depo <em>{person_name_possessive}</em>?"
+
+msgid "In this section, we’re going to ask you about your visitor, <strong>{person_name}</strong>."
+msgstr ""
+
+msgid "What is <em>{person_name_possessive}</em> usual address?"
+msgstr "Beth yw cyfeiriad arferol <em>{person_name_possessive}</em>?"
+
+msgid "Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgstr ""
+
+msgid "{person_name} (Visitor)"
+msgstr "{person_name} (ymwelydd)"
+
+#. answer-id: first-name
+msgctxt "Answer for: What is your name?"
+msgid "First name"
+msgstr "Enw cyntaf"
+
+#. answer-id: middle-names
+msgctxt "Answer for: What is your name?"
+msgid "Middle names"
+msgstr "Enwau canol"
+
+#. answer-id: last-name
+msgctxt "Answer for: What is your name?"
+msgid "Last name"
+msgstr "Cyfenw"
+
+#. answer-id: you-live-here-answer
+msgctxt "Answer for: Do you usually live at {address}?"
+msgid "Yes, I usually live here"
+msgstr "Ydw, rwy'n byw yma fel arfer"
+
+#. answer-id: you-live-here-answer
+msgctxt "Answer for: Do you usually live at {address}?"
+msgid "No, I don’t usually live here"
+msgstr "Nac ydw, nid wyf yn byw yma fel arfer"
+
+#. answer-id: anyone-usually-live-at-answer
+msgctxt "Answer for: Does anyone usually live at {address}?"
+msgid "Yes, I need to add someone"
+msgstr "Oes, mae angen i mi ychwanegu rhywun"
+
+#. answer-id: anyone-usually-live-at-answer
+msgctxt "Answer for: Does anyone usually live at {address}?"
+msgid "No, no one usually lives here"
+msgstr "Nac oes, nid oes neb yn byw yma fel arfer"
+
+#. answer-id: first-name
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "First name"
+msgstr "Enw cyntaf"
+
+#. answer-id: middle-names
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "Middle names"
+msgstr "Enwau canol"
+
+#. answer-id: last-name
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "Last name"
+msgstr "Cyfenw"
+
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "First name"
+msgstr "Enw cyntaf"
+
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Middle names"
+msgstr "Enwau canol"
+
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Last name"
+msgstr "Cyfenw"
+
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "First name"
+msgstr "Enw cyntaf"
+
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Middle names"
+msgstr "Enwau canol"
+
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Last name"
+msgstr "Cyfenw"
+
+#. answer-id: anyone-else-answer
+msgctxt "Answer for: Does anyone else live at {address}?"
+msgid "Yes, I need to add someone"
+msgstr "Oes, mae angen i mi ychwanegu rhywun"
+
+#. answer-id: anyone-else-answer
+msgctxt "Answer for: Does anyone else live at {address}?"
+msgid "No, I do not need to add anyone"
+msgstr "Nac oes, nid oes angen i mi ychwanegu unrhyw un"
+
+#. answer-id: remove-confirmation
+#. answer-id: anyone-else-temp-away-remove-confirmation
+#. answer-id: visitor-remove-confirmation
+msgctxt "Answer for: Are you sure you want to remove {person_name}?"
+msgid "Yes, I want to remove this person"
+msgstr "Ydw, rwyf am ddileu’r person hwn"
+
+#. answer-id: remove-confirmation
+#. answer-id: anyone-else-temp-away-remove-confirmation
+#. answer-id: visitor-remove-confirmation
+msgctxt "Answer for: Are you sure you want to remove {person_name}?"
+msgid "No, I do not want to remove this person"
+msgstr "Nac ydw, nid wyf am ddileu’r person hwn"
+
+#. answer-id: anyone-else-temp-away-answer
+msgctxt "Answer for: Apart from the people already included, is there anyone who is temporarily away or staying that you need to add to {address}?"
+msgid "Yes, I need to add someone"
+msgstr "Oes, mae angen i mi ychwanegu rhywun"
+
+#. answer-id: anyone-else-temp-away-answer
+msgctxt "Answer for: Apart from the people already included, is there anyone who is temporarily away or staying that you need to add to {address}?"
+msgid "No, I do not need to add anyone"
+msgstr "Nac oes, nid oes angen i mi ychwanegu unrhyw un"
+
+#. answer-id: any-visitors-answer
+msgctxt "Answer for: Are there any visitors staying overnight on {census_date} at {address}?"
+msgid "People who usually live somewhere else in the UK, for example boy/girlfriends, friends or relatives"
+msgstr "Pobl sydd fel arfer yn byw rywle arall yn y Deyrnas Unedig, er enghraifft, cariadon, ffrindiau neu berthnasau"
+
+#. answer-id: any-visitors-answer
+msgctxt "Answer for: Are there any visitors staying overnight on {census_date} at {address}?"
+msgid "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere"
+msgstr "Pobl sy'n aros yma gan mai dyma eu hail gyfeiriad, er enghraifft, oherwydd gwaith. Mae eu cartref parhaol neu gartref y teulu rywle arall"
+
+#. answer-id: any-visitors-answer
+msgctxt "Answer for: Are there any visitors staying overnight on {census_date} at {address}?"
+msgid "People who usually live outside the UK who are staying in the UK for less than three months"
+msgstr "Pobl sy'n byw y tu allan i’r Deyrnas Unedig fel arfer, ond sy'n aros yn y Deyrnas Unedig am lai na 3 mis"
+
+#. answer-id: any-visitors-answer
+msgctxt "Answer for: Are there any visitors staying overnight on {census_date} at {address}?"
+msgid "People here on holiday"
+msgstr "Pobl sydd ar wyliau yma"
+
+#. answer-id: any-visitors-answer-exclusive
+msgctxt "Answer for: Are there any visitors staying overnight on {census_date} at {address}?"
+msgid "No, there are no visitors staying overnight on 13 October 2019"
+msgstr "Nac oes, nid oes unrhyw ymwelwyr yn aros dros nos ar 13 Hydref 2019"
+
+#. answer-id: first-name
+msgctxt "Answer for: What is the name of the visitor staying overnight on {census_date} at {address}?"
+msgid "First name"
+msgstr "Enw cyntaf"
+
+#. answer-id: last-name
+msgctxt "Answer for: What is the name of the visitor staying overnight on {census_date} at {address}?"
+msgid "Last name"
+msgstr "Cyfenw"
+
+#. answer-id: visitor-answer
+msgctxt "Answer for: Are there any other visitors staying overnight on {census_date} at {address}?"
+msgid "Yes, I need to add someone"
+msgstr "Oes, mae angen i mi ychwanegu rhywun"
+
+#. answer-id: visitor-answer
+msgctxt "Answer for: Are there any other visitors staying overnight on {census_date} at {address}?"
+msgid "No, I do not need to add anyone"
+msgstr "Nac oes, nid oes angen i mi ychwanegu unrhyw un"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Husband or wife"
+msgstr "Gŵr neu wraig"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Legally registered civil partner"
+msgstr "Partner sifil cofrestredig cyfreithiol"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Partner"
+msgstr "Partner"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Son or daughter"
+msgstr "Mab neu ferch"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Stepchild"
+msgstr "Llysblentyn"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Brother or sister"
+msgstr "Brawd neu chwaer"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Stepbrother or stepsister"
+msgstr "Llysfrawd neu lyschwaer"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Mother or father"
+msgstr "Mam neu dad"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Stepmother or stepfather"
+msgstr "Llysfam neu lystad"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Grandchild"
+msgstr "Ŵyr neu wyres"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Grandparent"
+msgstr "Taid/tad-cu neu nain/mam-gu"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Other relation"
+msgstr "Perthynas arall"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Unrelated"
+msgstr "Ddim yn perthyn"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Husband or wife"
+msgstr "Gŵr neu wraig"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Legally registered civil partner"
+msgstr "Partner sifil cofrestredig cyfreithiol"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Partner"
+msgstr "Partner"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Son or daughter"
+msgstr "Mab neu ferch"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Stepchild"
+msgstr "Llysblentyn"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Brother or sister"
+msgstr "Brawd neu chwaer"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Stepbrother or stepsister"
+msgstr "Llysfrawd neu lyschwaer"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Mother or father"
+msgstr "Ŵyr neu wyres"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Stepmother or stepfather"
+msgstr "Llysfam neu lystad"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Grandchild"
+msgstr "Ŵyr neu wyres"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Grandparent"
+msgstr "Taid/tad-cu neu nain/mam-gu"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Other relation"
+msgstr "Perthynas arall"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Unrelated"
+msgstr "Ddim yn perthyn"
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
+msgid "Whole house or bungalow"
+msgstr "Tŷ neu fyngalo cyfan"
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
+msgid "Flat, maisonette or apartment"
+msgstr "Fflat neu maisonette"
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
+msgid "Caravan or other mobile or temporary structure"
+msgstr "Carafán neu fath arall o gartref symudol neu dros dro"
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Detached"
+msgstr "Adeilad ar wahân"
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Semi-detached"
+msgstr "Tŷ neu fyngalo semi"
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Terraced"
+msgstr "Tŷ neu fyngalo mewn teras"
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "In a purpose-built block of flats or tenement"
+msgstr "Mewn bloc o fflatiau neu denement a adeiladwyd yn bwrpasol"
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "Part of a converted or shared house"
+msgstr "Yn rhan o dŷ wedi’i addasu neu dŷ sy’n cael ei rannu"
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "In a commercial building"
+msgstr "Mewn adeilad masnachol"
+
+#. answer-id: self-contained-answer
+msgctxt "Answer for: Are all the rooms in this accommodation, including the kitchen, bathroom and toilet, behind a door that only this household can use?"
+msgid "Yes"
+msgstr "Ydy"
+
+#. answer-id: self-contained-answer
+msgctxt "Answer for: Are all the rooms in this accommodation, including the kitchen, bathroom and toilet, behind a door that only this household can use?"
+msgid "No, one or more rooms are shared with another household"
+msgstr "Nac ydy, mae o leiaf un o'r ystafelloedd yn cael eu rhannu â chartref arall"
+
+#. answer-id: number-of-bedrooms-answer
+msgctxt "Answer for: How many bedrooms are available for use only by this household?"
+msgid "Number of bedrooms"
+msgstr "Nifer yr ystafelloedd gwely"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "No central heating"
+msgstr "Dim gwres canolog"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Mains gas"
+msgstr "Prif gyflenwad nwy"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Tank or bottled gas"
+msgstr "Nwy tanc neu botel"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Electric"
+msgstr "Trydan"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Oil"
+msgstr "Olew"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Wood"
+msgstr "Coed"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Solid fuel"
+msgstr "Tanwydd solet"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Renewable energy"
+msgstr "Ynni adnewyddadwy"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "District or communal heat networks"
+msgstr "Rhwydweithiau gwres rhanbarthol neu gymunedol"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Owns outright"
+msgstr "Yn berchen arno’n gyfan gwbl"
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Owns with a mortgage or loan"
+msgstr "Yn berchen arno gyda morgais neu fenthyciad"
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Part owns and part rents"
+msgstr "Yn berchen arno’n rhannol ac yn ei rentu’n rhannol"
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Rents"
+msgstr "Yn ei rentu"
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Lives here rent free"
+msgstr "Yn byw yma heb dalu rhent"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Housing association, housing co-operative, charitable trust, registered social landlord"
+msgstr "Cymdeithas dai, cwmni tai cydweithredol, ymddiriedolaeth elusennol, landlord cymdeithasol cofrestredig"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Council or local authority"
+msgstr "Y cyngor neu'r awdurdod lleol"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Private landlord or letting agency"
+msgstr "Landlord preifat neu asiantaeth gosod tai"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Employer of a household member"
+msgstr "Cyflogwr aelod o’r cartref"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Relative or friend of a household member"
+msgstr "Perthynas neu ffrind i aelod o’r cartref"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: number-of-vehicles-answer
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "None"
+msgstr "Dim un"
+
+#. answer-id: number-of-vehicles-answer
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "1"
+msgstr "1"
+
+#. answer-id: number-of-vehicles-answer
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "2"
+msgstr "2"
+
+#. answer-id: number-of-vehicles-answer
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "3"
+msgstr "3"
+
+#. answer-id: number-of-vehicles-answer
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "4 or more"
+msgstr "4 neu ragor"
+
+#. answer-id: number-of-vehicles-answer-other
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "Enter the number of cars or vans"
+msgstr "Nodwch nifer y ceir neu'r faniau"
+
+#. answer-id: proxy-answer
+msgctxt "Answer for: Are you <em>{person_name}?</em>"
+msgid "Yes, I am"
+msgstr "Ie"
+
+#. answer-id: proxy-answer
+msgctxt "Answer for: Are you <em>{person_name}?</em>"
+msgid "No, I am answering on their behalf"
+msgstr "Na, rwy’n ateb ar ran yr unigolyn hwn"
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
+msgid "No, I need to change my date of birth"
+msgstr "Nac ydy, mae angen i mi newid fy nyddiad geni"
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: {person_name} is {age_in_years} years old. Is this correct?"
+msgid "No, I need to change their date of birth"
+msgstr "Nac ydy, mae angen i mi newid dyddiad geni’r unigolyn hwn"
+
+#. answer-id: sex-answer
+msgctxt "Answer for: What is your sex?"
+msgid "Female"
+msgstr "Benyw"
+
+#. answer-id: sex-answer
+msgctxt "Answer for: What is your sex?"
+msgid "Male"
+msgstr "Gwryw"
+
+#. answer-id: sex-answer
+#. answer-id: visitor-sex-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> sex?"
+msgid "Female"
+msgstr "Benyw"
+
+#. answer-id: sex-answer
+#. answer-id: visitor-sex-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> sex?"
+msgid "Male"
+msgstr "Gwryw"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is your legal marital or registered civil partnership status?"
+msgid "Never married and never registered a civil partnership"
+msgstr "Erioed wedi priodi na chofrestru partneriaeth sifil"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is your legal marital or registered civil partnership status?"
+msgid "Married"
+msgstr "Priod"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is your legal marital or registered civil partnership status?"
+msgid "In a registered civil partnership"
+msgstr "Mewn partneriaeth sifil gofrestredig"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is your legal marital or registered civil partnership status?"
+msgid "Separated, but still legally married"
+msgstr "Wedi gwahanu, ond yn gyfreithiol yn dal i fod yn briod"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is your legal marital or registered civil partnership status?"
+msgid "Separated, but still legally in a civil partnership"
+msgstr "Wedi gwahanu, ond yn gyfreithiol yn dal i fod mewn partneriaeth sifil"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is your legal marital or registered civil partnership status?"
+msgid "Divorced"
+msgstr "Wedi ysgaru"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is your legal marital or registered civil partnership status?"
+msgid "Formerly in a civil partnership which is now legally dissolved"
+msgstr "Wedi bod mewn partneriaeth sifil sydd bellach wedi’i diddymu’n gyfreithiol"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is your legal marital or registered civil partnership status?"
+msgid "Widowed"
+msgstr "Person gweddw"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is your legal marital or registered civil partnership status?"
+msgid "Surviving partner from a registered civil partnership"
+msgstr "Wedi colli partner sifil cofrestredig drwy farwolaeth"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is <em>{person_name_possessive}</em> legal marital or registered civil partnership status?"
+msgid "Never married and never registered a civil partnership"
+msgstr "Erioed wedi priodi na chofrestru partneriaeth sifil"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is <em>{person_name_possessive}</em> legal marital or registered civil partnership status?"
+msgid "Married"
+msgstr "Priod"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is <em>{person_name_possessive}</em> legal marital or registered civil partnership status?"
+msgid "In a registered civil partnership"
+msgstr "Mewn partneriaeth sifil gofrestredig"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is <em>{person_name_possessive}</em> legal marital or registered civil partnership status?"
+msgid "Separated, but still legally married"
+msgstr "Wedi gwahanu, ond yn gyfreithiol yn dal i fod yn briod"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is <em>{person_name_possessive}</em> legal marital or registered civil partnership status?"
+msgid "Separated, but still legally in a civil partnership"
+msgstr "Wedi gwahanu, ond yn gyfreithiol yn dal i fod mewn partneriaeth sifil"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is <em>{person_name_possessive}</em> legal marital or registered civil partnership status?"
+msgid "Divorced"
+msgstr "Wedi ysgaru"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is <em>{person_name_possessive}</em> legal marital or registered civil partnership status?"
+msgid "Formerly in a civil partnership which is now legally dissolved"
+msgstr "Wedi bod mewn partneriaeth sifil sydd bellach wedi’i diddymu’n gyfreithiol"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is <em>{person_name_possessive}</em> legal marital or registered civil partnership status?"
+msgid "Widowed"
+msgstr "Person gweddw"
+
+#. answer-id: marriage-type-answer
+msgctxt "Answer for: On {census_date}, what is <em>{person_name_possessive}</em> legal marital or registered civil partnership status?"
+msgid "Surviving partner from a registered civil partnership"
+msgstr "Wedi colli partner sifil cofrestredig drwy farwolaeth"
+
+#. answer-id: current-marriage-status-answer
+msgctxt "Answer for: Who is your legal marriage to?"
+msgid "Someone of the opposite sex"
+msgstr "Person o’r rhyw arall"
+
+#. answer-id: current-marriage-status-answer
+msgctxt "Answer for: Who is your legal marriage to?"
+msgid "Someone of the same sex"
+msgstr "Person o’r un rhyw"
+
+#. answer-id: current-marriage-status-answer
+msgctxt "Answer for: Who is <em>{person_name_possessive}</em> legal marriage to?"
+msgid "Someone of the opposite sex"
+msgstr "Person o’r rhyw arall"
+
+#. answer-id: current-marriage-status-answer
+msgctxt "Answer for: Who is <em>{person_name_possessive}</em> legal marriage to?"
+msgid "Someone of the same sex"
+msgstr "Person o’r un rhyw"
+
+#. answer-id: previous-marriage-status-answer
+msgctxt "Answer for: Who was your legal marriage to?"
+msgid "Someone of the opposite sex"
+msgstr "Person o’r rhyw arall"
+
+#. answer-id: previous-marriage-status-answer
+msgctxt "Answer for: Who was your legal marriage to?"
+msgid "Someone of the same sex"
+msgstr "Person o’r un rhyw"
+
+#. answer-id: previous-marriage-status-answer
+msgctxt "Answer for: Who was <em>{person_name_possessive}</em> legal marriage to?"
+msgid "Someone of the opposite sex"
+msgstr "Person o’r rhyw arall"
+
+#. answer-id: previous-marriage-status-answer
+msgctxt "Answer for: Who was <em>{person_name_possessive}</em> legal marriage to?"
+msgid "Someone of the same sex"
+msgstr "Person o’r un rhyw"
+
+#. answer-id: current-partnership-status-answer
+msgctxt "Answer for: Who is your registered civil partnership to?"
+msgid "Someone of the opposite sex"
+msgstr "Person o’r rhyw arall"
+
+#. answer-id: current-partnership-status-answer
+msgctxt "Answer for: Who is your registered civil partnership to?"
+msgid "Someone of the same sex"
+msgstr "Person o’r un rhyw"
+
+#. answer-id: current-partnership-status-answer
+msgctxt "Answer for: Who is <em>{person_name_possessive}</em> registered civil partnership to?"
+msgid "Someone of the opposite sex"
+msgstr "Person o’r rhyw arall"
+
+#. answer-id: current-partnership-status-answer
+msgctxt "Answer for: Who is <em>{person_name_possessive}</em> registered civil partnership to?"
+msgid "Someone of the same sex"
+msgstr "Person o’r un rhyw"
+
+#. answer-id: previous-partnership-status-answer
+msgctxt "Answer for: Who was your registered civil partnership to?"
+msgid "Someone of the opposite sex"
+msgstr "Person o’r rhyw arall"
+
+#. answer-id: previous-partnership-status-answer
+msgctxt "Answer for: Who was your registered civil partnership to?"
+msgid "Someone of the same sex"
+msgstr "Person o’r un rhyw"
+
+#. answer-id: previous-partnership-status-answer
+msgctxt "Answer for: Who was <em>{person_name_possessive}</em> registered civil partnership to?"
+msgid "Someone of the opposite sex"
+msgstr "Person o’r rhyw arall"
+
+#. answer-id: previous-partnership-status-answer
+msgctxt "Answer for: Who was <em>{person_name_possessive}</em> registered civil partnership to?"
+msgid "Someone of the same sex"
+msgstr "Person o’r un rhyw"
+
+#. answer-id: another-address-answer
+msgctxt "Answer for: Do you stay at another address for more than 30 days a year?"
+msgid "No"
+msgstr "Nac ydw"
+
+#. answer-id: another-address-answer
+msgctxt "Answer for: Do you stay at another address for more than 30 days a year?"
+msgid "Yes, an address within the UK"
+msgstr "Ydw, mewn cyfeiriad yn y Deyrnas Unedig"
+
+#. answer-id: another-address-answer
+msgctxt "Answer for: Do you stay at another address for more than 30 days a year?"
+msgid "Yes, an address outside the UK"
+msgstr "Ydw, mewn cyfeiriad y tu allan i’r Deyrnas Unedig"
+
+#. answer-id: another-address-answer-other-country
+msgctxt "Answer for: Do you stay at another address for more than 30 days a year?"
+msgid "Enter the current name of the country"
+msgstr "Nodwch enw presennol y wlad"
+
+#. answer-id: another-address-answer
+msgctxt "Answer for: Does <em>{person_name}</em> stay at another address for more than 30 days a year?"
+msgid "No"
+msgstr "Nac ydy"
+
+#. answer-id: another-address-answer
+msgctxt "Answer for: Does <em>{person_name}</em> stay at another address for more than 30 days a year?"
+msgid "Yes, an address within the UK"
+msgstr "Ydy, mewn cyfeiriad yn y Deyrnas Unedig"
+
+#. answer-id: another-address-answer
+msgctxt "Answer for: Does <em>{person_name}</em> stay at another address for more than 30 days a year?"
+msgid "Yes, an address outside the UK"
+msgstr "Ydy, mewn cyfeiriad y tu allan i’r Deyrnas Unedig"
+
+#. answer-id: another-address-answer-other-country
+msgctxt "Answer for: Does <em>{person_name}</em> stay at another address for more than 30 days a year?"
+msgid "Enter the current name of the country"
+msgstr "Nodwch enw presennol y wlad"
+
+#. answer-id: other-address-answer-building
+msgctxt "Answer for: Enter details of the other UK address where you stay for more than 30 days a year."
+msgid "Address line 1"
+msgstr "Llinell cyfeiriad 1"
+
+#. answer-id: other-address-answer-street
+msgctxt "Answer for: Enter details of the other UK address where you stay for more than 30 days a year."
+msgid "Address line 2"
+msgstr "Llinell cyfeiriad 2"
+
+#. answer-id: other-address-answer-city
+msgctxt "Answer for: Enter details of the other UK address where you stay for more than 30 days a year."
+msgid "Town or city"
+msgstr "Tref neu ddinas"
+
+#. answer-id: other-address-answer-county
+msgctxt "Answer for: Enter details of the other UK address where you stay for more than 30 days a year."
+msgid "County (optional)"
+msgstr "Sir (dewisol)"
+
+#. answer-id: other-address-answer-postcode
+msgctxt "Answer for: Enter details of the other UK address where you stay for more than 30 days a year."
+msgid "Postcode"
+msgstr "Cod post"
+
+#. answer-id: other-address-answer-building
+msgctxt "Answer for: Enter details of the other UK address where <em>{person_name}</em> stays for more than 30 days a year."
+msgid "Address line 1"
+msgstr "Llinell cyfeiriad 1"
+
+#. answer-id: other-address-answer-street
+msgctxt "Answer for: Enter details of the other UK address where <em>{person_name}</em> stays for more than 30 days a year."
+msgid "Address line 2"
+msgstr "Llinell cyfeiriad 2"
+
+#. answer-id: other-address-answer-city
+msgctxt "Answer for: Enter details of the other UK address where <em>{person_name}</em> stays for more than 30 days a year."
+msgid "Town or city"
+msgstr "Tref neu ddinas"
+
+#. answer-id: other-address-answer-county
+msgctxt "Answer for: Enter details of the other UK address where <em>{person_name}</em> stays for more than 30 days a year."
+msgid "County (optional)"
+msgstr "Sir (dewisol)"
+
+#. answer-id: other-address-answer-postcode
+msgctxt "Answer for: Enter details of the other UK address where <em>{person_name}</em> stays for more than 30 days a year."
+msgid "Postcode"
+msgstr "Cod post"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{address}</em>?"
+msgid "Armed forces base address"
+msgstr "Cyfeiriad un o ganolfannau’r lluoedd arfog"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{address}</em>?"
+msgid "Another address when working away from home"
+msgstr "Cyfeiriad arall wrth weithio i ffwrdd o’r cartref"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{address}</em>?"
+msgid "Student’s home address"
+msgstr "Cyfeiriad cartref myfyriwr"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{address}</em>?"
+msgid "Student’s term-time address"
+msgstr "Cyfeiriad myfyriwr yn ystod y tymor"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{address}</em>?"
+msgid "Another parent or guardian’s address"
+msgstr "Cyfeiriad rhiant neu warcheidwad arall"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{address}</em>?"
+msgid "Partner’s address"
+msgstr "Cyfeiriad partner"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{address}</em>?"
+msgid "Holiday home"
+msgstr "Cyfeiriad tŷ gwyliau"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{address}</em>?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is your address in <em>{country}</em>?"
+msgid "Armed forces base address"
+msgstr "Cyfeiriad un o ganolfannau’r lluoedd arfog"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is your address in <em>{country}</em>?"
+msgid "Another address when working away from home"
+msgstr "Cyfeiriad arall wrth weithio i ffwrdd o’r cartref"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is your address in <em>{country}</em>?"
+msgid "Student’s home address"
+msgstr "Cyfeiriad cartref myfyriwr"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is your address in <em>{country}</em>?"
+msgid "Student’s term-time address"
+msgstr "Cyfeiriad myfyriwr yn ystod y tymor"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is your address in <em>{country}</em>?"
+msgid "Another parent or guardian’s address"
+msgstr "Cyfeiriad rhiant neu warcheidwad arall"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is your address in <em>{country}</em>?"
+msgid "Partner’s address"
+msgstr "Cyfeiriad partner"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is your address in <em>{country}</em>?"
+msgid "Holiday home"
+msgstr "Cyfeiriad tŷ gwyliau"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is your address in <em>{country}</em>?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{person_name_possessive}</em> address in {country}?"
+msgid "Armed forces base address"
+msgstr "Cyfeiriad un o ganolfannau’r lluoedd arfog"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{person_name_possessive}</em> address in {country}?"
+msgid "Another address when working away from home"
+msgstr "Cyfeiriad arall wrth weithio i ffwrdd o’r cartref"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{person_name_possessive}</em> address in {country}?"
+msgid "Student’s home address"
+msgstr "Cyfeiriad cartref myfyriwr"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{person_name_possessive}</em> address in {country}?"
+msgid "Student’s term-time address"
+msgstr "Cyfeiriad myfyriwr yn ystod y tymor"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{person_name_possessive}</em> address in {country}?"
+msgid "Another parent or guardian’s address"
+msgstr "Cyfeiriad rhiant neu warcheidwad arall"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{person_name_possessive}</em> address in {country}?"
+msgid "Partner’s address"
+msgstr "Cyfeiriad partner"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{person_name_possessive}</em> address in {country}?"
+msgid "Holiday home"
+msgstr "Cyfeiriad tŷ gwyliau"
+
+#. answer-id: address-type-answer
+msgctxt "Answer for: What type of address is <em>{person_name_possessive}</em> address in {country}?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Are you a student in full-time education?"
+msgid "Yes"
+msgstr "Ydw"
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Are you a student in full-time education?"
+msgid "No"
+msgstr "Nac ydw"
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Is <em>{person_name}</em> a student in full-time education?"
+msgid "Yes"
+msgstr "Ydy"
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Is <em>{person_name}</em> a student in full-time education?"
+msgid "No"
+msgstr "Nac ydy"
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Are you a schoolchild or student in full-time education?"
+msgid "Yes"
+msgstr "Ydw"
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Are you a schoolchild or student in full-time education?"
+msgid "No"
+msgstr "Nac ydw"
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Is <em>{person_name}</em> a schoolchild or student in full-time education?"
+msgid "Yes"
+msgstr "Ydy"
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: Is <em>{person_name}</em> a schoolchild or student in full-time education?"
+msgid "No"
+msgstr "Nac ydy"
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where do you usually live?"
+msgid "Another address"
+msgstr "Cyfeiriad arall"
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where does <em>{person_name}</em> usually live?"
+msgid "Another address"
+msgstr "Cyfeiriad arall"
+
+#. answer-id: term-time-address-country-answer
+msgctxt "Answer for: Is this address in the UK?"
+msgid "Yes"
+msgstr "Ydy"
+
+#. answer-id: term-time-address-country-answer
+msgctxt "Answer for: Is this address in the UK?"
+msgid "No"
+msgstr "Nac ydy"
+
+#. answer-id: term-time-address-country-answer-other
+msgctxt "Answer for: Is this address in the UK?"
+msgid "Enter the current name of the country"
+msgstr "Nodwch enw presennol y wlad"
+
+#. answer-id: term-time-address-details-answer-building
+msgctxt "Answer for: Enter details of the UK address where you usually stay during term time."
+msgid "Address line 1"
+msgstr "Llinell cyfeiriad 1"
+
+#. answer-id: term-time-address-details-answer-street
+msgctxt "Answer for: Enter details of the UK address where you usually stay during term time."
+msgid "Address line 2"
+msgstr "Llinell cyfeiriad 2"
+
+#. answer-id: term-time-address-details-answer-city
+msgctxt "Answer for: Enter details of the UK address where you usually stay during term time."
+msgid "Town or city"
+msgstr "Tref neu ddinas"
+
+#. answer-id: term-time-address-details-answer-county
+msgctxt "Answer for: Enter details of the UK address where you usually stay during term time."
+msgid "County (optional)"
+msgstr "Sir (dewisol)"
+
+#. answer-id: term-time-address-details-answer-postcode
+msgctxt "Answer for: Enter details of the UK address where you usually stay during term time."
+msgid "Postcode"
+msgstr "Cod post"
+
+#. answer-id: term-time-address-details-answer-building
+msgctxt "Answer for: Enter details of the UK address where <em>{person_name}</em> usually stays during term time."
+msgid "Address line 1"
+msgstr "Llinell cyfeiriad 1"
+
+#. answer-id: term-time-address-details-answer-street
+msgctxt "Answer for: Enter details of the UK address where <em>{person_name}</em> usually stays during term time."
+msgid "Address line 2"
+msgstr "Llinell cyfeiriad 2"
+
+#. answer-id: term-time-address-details-answer-city
+msgctxt "Answer for: Enter details of the UK address where <em>{person_name}</em> usually stays during term time."
+msgid "Town or city"
+msgstr "Tref neu ddinas"
+
+#. answer-id: term-time-address-details-answer-county
+msgctxt "Answer for: Enter details of the UK address where <em>{person_name}</em> usually stays during term time."
+msgid "County (optional)"
+msgstr "Sir (dewisol)"
+
+#. answer-id: term-time-address-details-answer-postcode
+msgctxt "Answer for: Enter details of the UK address where <em>{person_name}</em> usually stays during term time."
+msgid "Postcode"
+msgstr "Cod post"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "Wales"
+msgstr "Cymru"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "England"
+msgstr "Lloegr"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "Scotland"
+msgstr "Yr Alban"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "Northern Ireland"
+msgstr "Gogledd Iwerddon"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "Republic of Ireland"
+msgstr "Gweriniaeth Iwerddon"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is your country of birth?"
+msgid "Elsewhere"
+msgstr "Rhywle arall"
+
+#. answer-id: country-of-birth-answer-other
+msgctxt "Answer for: What is your country of birth?"
+msgid "Enter the current name of the country"
+msgstr "Nodwch enw presennol y wlad"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Wales"
+msgstr "Cymru"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "England"
+msgstr "Lloegr"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Scotland"
+msgstr "Yr Alban"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Northern Ireland"
+msgstr "Gogledd Iwerddon"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Republic of Ireland"
+msgstr "Gweriniaeth Iwerddon"
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Elsewhere"
+msgstr "Rhywle arall"
+
+#. answer-id: country-of-birth-answer-other
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
+msgid "Enter the current name of the country"
+msgstr "Nodwch enw presennol y wlad"
+
+#. answer-id: when-arrive-in-uk-answer
+msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018?"
+msgid "Yes"
+msgstr "Do"
+
+#. answer-id: when-arrive-in-uk-answer
+msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018?"
+msgid "No"
+msgstr "Naddo"
+
+#. answer-id: when-arrive-in-uk-answer
+msgctxt "Answer for: Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018?"
+msgid "Yes"
+msgstr "Do"
+
+#. answer-id: when-arrive-in-uk-answer
+msgctxt "Answer for: Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018?"
+msgid "No"
+msgstr "Naddo"
+
+#. answer-id: length-of-stay-answer
+msgctxt "Answer for: Including the time already spent here, how long do you intend to stay in the United Kingdom?"
+msgid "Less than 12 months"
+msgstr "Llai na 12 mis"
+
+#. answer-id: length-of-stay-answer
+msgctxt "Answer for: Including the time already spent here, how long do you intend to stay in the United Kingdom?"
+msgid "12 months or more"
+msgstr "12 mis neu fwy"
+
+#. answer-id: length-of-stay-answer
+msgctxt "Answer for: Including the time already spent here, how long does <em>{person_name}</em> intend to stay in the United Kingdom?"
+msgid "Less than 12 months"
+msgstr "Llai na 12 mis"
+
+#. answer-id: length-of-stay-answer
+msgctxt "Answer for: Including the time already spent here, how long does <em>{person_name}</em> intend to stay in the United Kingdom?"
+msgid "12 months or more"
+msgstr "12 mis neu fwy"
+
+#. answer-id: understand-welsh-answer
+msgctxt "Answer for: Can you understand, speak, read or write Welsh?"
+msgid "Understand spoken Welsh"
+msgstr "Deall Cymraeg llafar"
+
+#. answer-id: understand-welsh-answer
+msgctxt "Answer for: Can you understand, speak, read or write Welsh?"
+msgid "Speak Welsh"
+msgstr "Siarad Cymraeg"
+
+#. answer-id: understand-welsh-answer
+msgctxt "Answer for: Can you understand, speak, read or write Welsh?"
+msgid "Read Welsh"
+msgstr "Darllen Cymraeg"
+
+#. answer-id: understand-welsh-answer
+msgctxt "Answer for: Can you understand, speak, read or write Welsh?"
+msgid "Write Welsh"
+msgstr "Ysgrifennu Cymraeg"
+
+#. answer-id: understand-welsh-answer-exclusive
+msgctxt "Answer for: Can you understand, speak, read or write Welsh?"
+msgid "None of these apply"
+msgstr "Dim un o'r rhain"
+
+#. answer-id: understand-welsh-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Welsh?"
+msgid "Understand spoken Welsh"
+msgstr "Deall Cymraeg llafar"
+
+#. answer-id: understand-welsh-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Welsh?"
+msgid "Speak Welsh"
+msgstr "Siarad Cymraeg"
+
+#. answer-id: understand-welsh-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Welsh?"
+msgid "Read Welsh"
+msgstr "Darllen Cymraeg"
+
+#. answer-id: understand-welsh-answer
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Welsh?"
+msgid "Write Welsh"
+msgstr "Ysgrifennu Cymraeg"
+
+#. answer-id: understand-welsh-answer-exclusive
+msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Welsh?"
+msgid "None of these apply"
+msgstr "Dim un o'r rhain"
+
+#. answer-id: language-answer
+msgctxt "Answer for: What is your main language?"
+msgid "English or Welsh"
+msgstr "Cymraeg neu Saesneg"
+
+#. answer-id: language-answer
+msgctxt "Answer for: What is your main language?"
+msgid "Other, including British Sign Language"
+msgstr "Arall, gan gynnwys laith Arwyddion Prydain"
+
+#. answer-id: language-answer-other
+msgctxt "Answer for: What is your main language?"
+msgid "Enter main language"
+msgstr "Nodwch y brif iaith"
+
+#. answer-id: language-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
+msgid "English or Welsh"
+msgstr "Cymraeg neu Saesneg"
+
+#. answer-id: language-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
+msgid "Other, including British Sign Language"
+msgstr "Arall, gan gynnwys laith Arwyddion Prydain"
+
+#. answer-id: language-answer-other
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
+msgid "Enter main language"
+msgstr "Nodwch y brif iaith"
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can you speak English?"
+msgid "Very well"
+msgstr "Da iawn"
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can you speak English?"
+msgid "Well"
+msgstr "Da"
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can you speak English?"
+msgid "Not well"
+msgstr "Ddim yn dda"
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can you speak English?"
+msgid "Not at all"
+msgstr "Ddim o gwbl"
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
+msgid "Very well"
+msgstr "Da iawn"
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
+msgid "Well"
+msgstr "Da"
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
+msgid "Not well"
+msgstr "Ddim yn dda"
+
+#. answer-id: english-answer
+msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
+msgid "Not at all"
+msgstr "Ddim o gwbl"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "Welsh"
+msgstr "Cymro/Cymraes"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "English"
+msgstr "Sais/Saesnes"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "Scottish"
+msgstr "Albanwr/Albanes"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "Northern Irish"
+msgstr "Gwyddel/Gwyddeles o Ogledd Iwerddon"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "British"
+msgstr "Prydeiniwr/Prydeinwraig"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: national-identity-answer-other
+msgctxt "Answer for: How would you describe your national identity?"
+msgid "Describe your national identity"
+msgstr "Disgrifiwch eich hunaniaeth genedlaethol"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "Welsh"
+msgstr "Cymro/Cymraes"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "English"
+msgstr "Sais/Saesnes"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "Scottish"
+msgstr "Albanwr/Albanes"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "Northern Irish"
+msgstr "Gwyddel/Gwyddeles o Ogledd Iwerddon"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "British"
+msgstr "Prydeiniwr/Prydeinwraig"
+
+#. answer-id: national-identity-answer
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: national-identity-answer-other
+msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
+msgid "Describe their national identity"
+msgstr "Disgrifiwch ei hunaniaeth genedlaethol"
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "White"
+msgstr "Gwyn"
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Mixed or Multiple ethnic groups"
+msgstr "Grwpiau Cymysg neu Aml-ethnig"
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Asian or Asian British"
+msgstr "Asiaidd neu Asiaidd Prydeinig"
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Black, Black British, Caribbean or African"
+msgstr "Du, Du Prydeinig, Caribïaidd neu Affricanaidd"
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Other ethnic group"
+msgstr "Grŵp ethnig arall"
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "White"
+msgstr "Gwyn"
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Mixed or Multiple ethnic groups"
+msgstr "Grwpiau Cymysg neu Aml-ethnig"
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Asian or Asian British"
+msgstr "Asiaidd neu Asiaidd Prydeinig"
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Black, Black British, Caribbean or African"
+msgstr "Du, Du Prydeinig, Caribïaidd neu Affricanaidd"
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Other ethnic group"
+msgstr "Grŵp ethnig arall"
+
+#. answer-id: white-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your White ethnic group or background?"
+msgid "Welsh, English, Scottish, Northern Irish or British"
+msgstr "Cymreig, Seisnig, Albanaidd, Gwyddelig Gogledd Iwerddon neu Brydeinig"
+
+#. answer-id: white-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your White ethnic group or background?"
+msgid "Irish"
+msgstr "Gwyddelig"
+
+#. answer-id: white-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your White ethnic group or background?"
+msgid "Gypsy or Irish Traveller"
+msgstr "Sipsi neu Deithiwr Gwyddelig"
+
+#. answer-id: white-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your White ethnic group or background?"
+msgid "Roma"
+msgstr "Roma"
+
+#. answer-id: white-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your White ethnic group or background?"
+msgid "Any other White background"
+msgstr "Unrhyw gefndir Gwyn arall"
+
+#. answer-id: white-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes your White ethnic group or background?"
+msgid "Enter White background"
+msgstr "Nodwch y cefndir Gwyn"
+
+#. answer-id: white-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> White ethnic group or background?"
+msgid "Welsh, English, Scottish, Northern Irish or British"
+msgstr "Cymreig, Seisnig, Albanaidd, Gwyddelig Gogledd Iwerddon neu Brydeinig"
+
+#. answer-id: white-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> White ethnic group or background?"
+msgid "Irish"
+msgstr "Gwyddelig"
+
+#. answer-id: white-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> White ethnic group or background?"
+msgid "Gypsy or Irish Traveller"
+msgstr "Sipsi neu Deithiwr Gwyddelig"
+
+#. answer-id: white-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> White ethnic group or background?"
+msgid "Roma"
+msgstr "Roma"
+
+#. answer-id: white-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> White ethnic group or background?"
+msgid "Any other White background"
+msgstr "Unrhyw gefndir Gwyn arall"
+
+#. answer-id: white-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> White ethnic group or background?"
+msgid "Enter White background"
+msgstr "Nodwch y cefndir Gwyn"
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Mixed or Multiple ethnic group or background?"
+msgid "White and Black Caribbean"
+msgstr "Gwyn a Du Caribïaidd"
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Mixed or Multiple ethnic group or background?"
+msgid "White and Black African"
+msgstr "Gwyn a Du Affricanaidd"
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Mixed or Multiple ethnic group or background?"
+msgid "White and Asian"
+msgstr "Gwyn ac Asiaidd"
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Mixed or Multiple ethnic group or background?"
+msgid "Any other Mixed or Multiple background"
+msgstr "Unrhyw gefndir Cymysg neu Aml-ethnig arall"
+
+#. answer-id: mixed-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes your Mixed or Multiple ethnic group or background?"
+msgid "Enter Mixed or Multiple background"
+msgstr "Nodwch y cefndir Cymysg neu Aml-ethnig"
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Mixed or Multiple ethnic group or background?"
+msgid "White and Black Caribbean"
+msgstr "Gwyn a Du Caribïaidd"
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Mixed or Multiple ethnic group or background?"
+msgid "White and Black African"
+msgstr "Gwyn a Du Affricanaidd"
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Mixed or Multiple ethnic group or background?"
+msgid "White and Asian"
+msgstr "Gwyn ac Asiaidd"
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Mixed or Multiple ethnic group or background?"
+msgid "Any other Mixed or Multiple background"
+msgstr "Unrhyw gefndir Cymysg neu Aml-ethnig arall"
+
+#. answer-id: mixed-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Mixed or Multiple ethnic group or background?"
+msgid "Enter Mixed or Multiple background"
+msgstr "Nodwch y cefndir Cymysg neu Aml-ethnig"
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Asian or Asian British ethnic group or background?"
+msgid "Indian"
+msgstr "Indiaidd"
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Asian or Asian British ethnic group or background?"
+msgid "Pakistani"
+msgstr "Pacistanaidd"
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Asian or Asian British ethnic group or background?"
+msgid "Bangladeshi"
+msgstr "Bangladeshaidd"
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Asian or Asian British ethnic group or background?"
+msgid "Chinese"
+msgstr "Tsieineaidd"
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Asian or Asian British ethnic group or background?"
+msgid "Any other Asian background"
+msgstr "Unrhyw gefndir Asiaidd arall"
+
+#. answer-id: asian-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes your Asian or Asian British ethnic group or background?"
+msgid "Enter Asian background"
+msgstr "Nodwch y cefndir Asiaidd"
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Asian or Asian British ethnic group or background?"
+msgid "Indian"
+msgstr "Indiaidd"
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Asian or Asian British ethnic group or background?"
+msgid "Pakistani"
+msgstr "Pacistanaidd"
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Asian or Asian British ethnic group or background?"
+msgid "Bangladeshi"
+msgstr "Bangladeshaidd"
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Asian or Asian British ethnic group or background?"
+msgid "Chinese"
+msgstr "Tsieineaidd"
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Asian or Asian British ethnic group or background?"
+msgid "Any other Asian background"
+msgstr "Unrhyw gefndir Asiaidd arall"
+
+#. answer-id: asian-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Asian or Asian British ethnic group or background?"
+msgid "Enter Asian background"
+msgstr "Nodwch y cefndir Asiaidd"
+
+#. answer-id: black-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Black, Black British, Caribbean or African ethnic group or background?"
+msgid "Caribbean"
+msgstr "Caribïaidd"
+
+#. answer-id: black-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Black, Black British, Caribbean or African ethnic group or background?"
+msgid "African"
+msgstr "Affricanaidd"
+
+#. answer-id: african-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes your Black, Black British, Caribbean or African ethnic group or background?"
+msgid "Enter African background"
+msgstr "Nodwch y cefndir Affricanaidd"
+
+#. answer-id: black-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your Black, Black British, Caribbean or African ethnic group or background?"
+msgid "Any other Black, Black British or Caribbean background"
+msgstr "Unrhyw gefndir Du, Du Prydeinig neu Garibïaidd arall"
+
+#. answer-id: black-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes your Black, Black British, Caribbean or African ethnic group or background?"
+msgid "Enter Black, Black British or Caribbean background"
+msgstr "Nodwch y cefndir Du, Du Prydeinig neu Garibïaidd"
+
+#. answer-id: black-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Black, Black British, Caribbean or African ethnic group or background?"
+msgid "Caribbean"
+msgstr "Caribïaidd"
+
+#. answer-id: black-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Black, Black British, Caribbean or African ethnic group or background?"
+msgid "African"
+msgstr "Affricanaidd"
+
+#. answer-id: african-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Black, Black British, Caribbean or African ethnic group or background?"
+msgid "Enter African background"
+msgstr "Nodwch y cefndir Affricanaidd"
+
+#. answer-id: black-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Black, Black British, Caribbean or African ethnic group or background?"
+msgid "Any other Black, Black British or Caribbean background"
+msgstr "Unrhyw gefndir Du, Du Prydeinig neu Garibïaidd arall"
+
+#. answer-id: black-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> Black, Black British, Caribbean or African ethnic group or background?"
+msgid "Enter Black, Black British or Caribbean background"
+msgstr "Nodwch y cefndir Du, Du Prydeinig neu Garibïaidd"
+
+#. answer-id: other-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your other ethnic group or background?"
+msgid "Arab"
+msgstr "Arabaidd"
+
+#. answer-id: other-ethnic-group-answer
+msgctxt "Answer for: Which one best describes your other ethnic group or background?"
+msgid "Any other ethnic group"
+msgstr "Unrhyw grŵp ethnig arall"
+
+#. answer-id: other-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes your other ethnic group or background?"
+msgid "Enter other ethnic group"
+msgstr "Nodwch y grŵp ethnig arall"
+
+#. answer-id: other-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> other ethnic group or background?"
+msgid "Arab"
+msgstr "Arabaidd"
+
+#. answer-id: other-ethnic-group-answer
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> other ethnic group or background?"
+msgid "Any other ethnic group"
+msgstr "Unrhyw grŵp ethnig arall"
+
+#. answer-id: other-ethnic-group-answer-other
+msgctxt "Answer for: Which one best describes <em>{person_name_possessive}</em> other ethnic group or background?"
+msgid "Enter other ethnic group"
+msgstr "Nodwch y grŵp ethnig arall"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is your religion?"
+msgid "No religion"
+msgstr "Dim crefydd"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is your religion?"
+msgid "Christian"
+msgstr "Cristnogaeth"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is your religion?"
+msgid "Buddhist"
+msgstr "Bwdhaeth"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is your religion?"
+msgid "Hindu"
+msgstr "Hindŵaeth"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is your religion?"
+msgid "Jewish"
+msgstr "Iddewiaeth"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is your religion?"
+msgid "Muslim"
+msgstr "Islam"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is your religion?"
+msgid "Sikh"
+msgstr "Siciaeth"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is your religion?"
+msgid "Any other religion"
+msgstr "Unrhyw grefydd arall"
+
+#. answer-id: religion-answer-other
+msgctxt "Answer for: What is your religion?"
+msgid "Enter religion"
+msgstr "Nodwch y grefydd"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> religion?"
+msgid "No religion"
+msgstr "Dim crefydd"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> religion?"
+msgid "Christian"
+msgstr "Cristnogaeth"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> religion?"
+msgid "Buddhist"
+msgstr "Bwdhaeth"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> religion?"
+msgid "Hindu"
+msgstr "Hindŵaeth"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> religion?"
+msgid "Jewish"
+msgstr "Iddewiaeth"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> religion?"
+msgid "Muslim"
+msgstr "Islam"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> religion?"
+msgid "Sikh"
+msgstr "Siciaeth"
+
+#. answer-id: religion-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> religion?"
+msgid "Any other religion"
+msgstr "Unrhyw grefydd arall"
+
+#. answer-id: religion-answer-other
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> religion?"
+msgid "Enter religion"
+msgstr "Nodwch y grefydd"
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was your usual address?"
+msgid "Student term-time or boarding school address in the UK"
+msgstr "Cyfeiriad myfyriwr yn ystod y tymor neu gyfeiriad ysgol breswyl yn y Deyrnas Unedig"
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was your usual address?"
+msgid "Another address in the UK"
+msgstr "Cyfeiriad arall yn y Deyrnas Unedig"
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was your usual address?"
+msgid "An address outside the UK"
+msgstr "Cyfeiriad y tu allan i’r Deyrnas Unedig"
+
+#. answer-id: past-usual-address-household-answer-other
+msgctxt "Answer for: One year ago, what was your usual address?"
+msgid "Enter the current name of the country"
+msgstr "Nodwch enw presennol y wlad"
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgid "Student term-time or boarding school address in the UK"
+msgstr "Cyfeiriad myfyriwr yn ystod y tymor neu gyfeiriad ysgol breswyl yn y Deyrnas Unedig"
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgid "Another address in the UK"
+msgstr "Cyfeiriad arall yn y Deyrnas Unedig"
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgid "An address outside the UK"
+msgstr "Cyfeiriad y tu allan i’r Deyrnas Unedig"
+
+#. answer-id: past-usual-address-household-answer-other
+msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgid "Enter the current name of the country"
+msgstr "Nodwch enw presennol y wlad"
+
+#. answer-id: last-year-address-answer-building
+msgctxt "Answer for: Enter details of your address one year ago."
+msgid "Address line 1"
+msgstr "Llinell cyfeiriad 1"
+
+#. answer-id: last-year-address-answer-street
+msgctxt "Answer for: Enter details of your address one year ago."
+msgid "Address line 2"
+msgstr "Llinell cyfeiriad 2"
+
+#. answer-id: last-year-address-answer-city
+msgctxt "Answer for: Enter details of your address one year ago."
+msgid "Town or city"
+msgstr "Tref neu ddinas"
+
+#. answer-id: last-year-address-answer-county
+msgctxt "Answer for: Enter details of your address one year ago."
+msgid "County (optional)"
+msgstr "Sir (dewisol)"
+
+#. answer-id: last-year-address-answer-postcode
+msgctxt "Answer for: Enter details of your address one year ago."
+msgid "Postcode"
+msgstr "Cod post"
+
+#. answer-id: last-year-address-answer-building
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> address one year ago."
+msgid "Address line 1"
+msgstr "Llinell cyfeiriad 1"
+
+#. answer-id: last-year-address-answer-street
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> address one year ago."
+msgid "Address line 2"
+msgstr "Llinell cyfeiriad 2"
+
+#. answer-id: last-year-address-answer-city
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> address one year ago."
+msgid "Town or city"
+msgstr "Tref neu ddinas"
+
+#. answer-id: last-year-address-answer-county
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> address one year ago."
+msgid "County (optional)"
+msgstr "Sir (dewisol)"
+
+#. answer-id: last-year-address-answer-postcode
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> address one year ago."
+msgid "Postcode"
+msgstr "Cod post"
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports do you hold?"
+msgid "United Kingdom"
+msgstr "Y Deyrnas Unedig"
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports do you hold?"
+msgid "Ireland"
+msgstr "Iwerddon"
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports do you hold?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: passport-answer-other
+msgctxt "Answer for: What passports do you hold?"
+msgid "Enter the passports you hold"
+msgstr "Nodwch y pasbortau sydd gennych chi"
+
+#. answer-id: passports-answer-exclusive
+msgctxt "Answer for: What passports do you hold?"
+msgid "None"
+msgstr "Dim un"
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
+msgid "United Kingdom"
+msgstr "Y Deyrnas Unedig"
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
+msgid "Ireland"
+msgstr "Iwerddon"
+
+#. answer-id: passports-answer
+msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: passport-answer-other
+msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
+msgid "Enter passports held"
+msgstr "Nodwch y pasbortau sydd gan yr unigolyn"
+
+#. answer-id: passports-answer-exclusive
+msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
+msgid "None"
+msgstr "Dim un"
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is your health in general?"
+msgid "Very good"
+msgstr "Da iawn"
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is your health in general?"
+msgid "Good"
+msgstr "Da"
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is your health in general?"
+msgid "Fair"
+msgstr "Gweddol"
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is your health in general?"
+msgid "Bad"
+msgstr "Gwael"
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is your health in general?"
+msgid "Very bad"
+msgstr "Gwael iawn"
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
+msgid "Very good"
+msgstr "Da iawn"
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
+msgid "Good"
+msgstr "Da"
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
+msgid "Fair"
+msgstr "Gweddol"
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
+msgid "Bad"
+msgstr "Gwael"
+
+#. answer-id: health-answer
+msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
+msgid "Very bad"
+msgstr "Gwael iawn"
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Do you have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Yes"
+msgstr "Oes"
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Do you have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "No"
+msgstr "Nac oes"
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "Yes"
+msgstr "Oes"
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Does <em>{person_name}</em> have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?"
+msgid "No"
+msgstr "Nac oes"
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Do any of your conditions or illnesses reduce your ability to carry out day-to-day activities?"
+msgid "Yes, a lot"
+msgstr "Ydy, yn fawr"
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Do any of your conditions or illnesses reduce your ability to carry out day-to-day activities?"
+msgid "Yes, a little"
+msgstr "Ydy, ychydig"
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Do any of your conditions or illnesses reduce your ability to carry out day-to-day activities?"
+msgid "Not at all"
+msgstr "Ddim o gwbl"
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Does any of <em>{person_name_possessive}</em> conditions or illnesses reduce their ability to carry out day-to-day activities?"
+msgid "Yes, a lot"
+msgstr "Ydy, yn fawr"
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Does any of <em>{person_name_possessive}</em> conditions or illnesses reduce their ability to carry out day-to-day activities?"
+msgid "Yes, a little"
+msgstr "Ydy, ychydig"
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Does any of <em>{person_name_possessive}</em> conditions or illnesses reduce their ability to carry out day-to-day activities?"
+msgid "Not at all"
+msgstr "Ddim o gwbl"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "No"
+msgstr "Nac ydw"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 9 hours a week or less"
+msgstr "Ydw, 9 awr neu lai yr wythnos"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 10 to 19 hours a week"
+msgstr "Ydw, 10 i 19 awr yr wythnos"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 20 to 34 hours a week"
+msgstr "Ydw, 20 i 34 awr yr wythnos"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 35 to 49 hours a week"
+msgstr "Ydw, 35 i 49 awr yr wythnos"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 50 or more hours a week"
+msgstr "Ydw, 50 awr neu fwy yr wythnos"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "No"
+msgstr "Nac ydy"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 9 hours a week or less"
+msgstr "Ydy, 9 awr neu lai yr wythnos"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 10 to 19 hours a week"
+msgstr "Ydy, 10 i 19 awr yr wythnos"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 20 to 34 hours a week"
+msgstr "Ydy, 10 i 19 awr yr wythnos"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 35 to 49 hours a week"
+msgstr "Ydy, 35 i 49 awr yr wythnos"
+
+#. answer-id: carer-answer
+msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgid "Yes, 50 or more hours a week"
+msgstr "Ydy, 50 awr neu fwy yr wythnos"
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes your sexual orientation?"
+msgid "Straight or Heterosexual"
+msgstr "Heterorywiol / Strêt"
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes your sexual orientation?"
+msgid "Gay or Lesbian"
+msgstr "Hoyw neu Lesbiaidd"
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes your sexual orientation?"
+msgid "Bisexual"
+msgstr "Deurywiol / Bi"
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes your sexual orientation?"
+msgid "Other sexual orientation"
+msgstr "Cyfeiriadedd rhywiol arall"
+
+#. answer-id: sexual-identity-answer-other
+msgctxt "Answer for: Which of the following best describes your sexual orientation?"
+msgid "Enter your sexual orientation"
+msgstr "Nodwch eich cyfeiriadedd rhywiol"
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgid "Straight or Heterosexual"
+msgstr "Heterorywiol/Strêt"
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgid "Gay or Lesbian"
+msgstr "Hoyw neu Lesbiaidd"
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgid "Bisexual"
+msgstr "Deurywiol/Bi"
+
+#. answer-id: sexual-identity-answer
+msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgid "Other sexual orientation"
+msgstr "Cyfeiriadedd rhywiol arall"
+
+#. answer-id: sexual-identity-answer-other
+msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
+msgid "Enter their sexual orientation"
+msgstr "Nodwch gyfeiriadedd rhywiol yr unigolyn"
+
+#. answer-id: birth-gender-answer
+msgctxt "Answer for: Is your gender the same as the sex you were registered at birth?"
+msgid "Yes"
+msgstr "Ydy"
+
+#. answer-id: birth-gender-answer
+msgctxt "Answer for: Is your gender the same as the sex you were registered at birth?"
+msgid "No"
+msgstr "Nac ydy"
+
+#. answer-id: birth-gender-answer-other
+msgctxt "Answer for: Is your gender the same as the sex you were registered at birth?"
+msgid "Enter gender"
+msgstr "Nodwch eich rhywedd"
+
+#. answer-id: birth-gender-answer
+msgctxt "Answer for: Is <em>{person_name_possessive}</em> gender the same as the sex they were registered at birth?"
+msgid "Yes"
+msgstr "Ydy"
+
+#. answer-id: birth-gender-answer
+msgctxt "Answer for: Is <em>{person_name_possessive}</em> gender the same as the sex they were registered at birth?"
+msgid "No"
+msgstr "Nac ydy"
+
+#. answer-id: birth-gender-answer-other
+msgctxt "Answer for: Is <em>{person_name_possessive}</em> gender the same as the sex they were registered at birth?"
+msgid "Enter gender"
+msgstr "Nodwch y rhywedd"
+
+#. answer-id: apprenticeship-answer
+msgctxt "Answer for: Have you completed an apprenticeship?"
+msgid "Yes"
+msgstr "Ydw"
+
+#. answer-id: apprenticeship-answer
+msgctxt "Answer for: Have you completed an apprenticeship?"
+msgid "No"
+msgstr "Nac ydw"
+
+#. answer-id: apprenticeship-answer
+msgctxt "Answer for: Has <em>{person_name}</em> completed an apprenticeship?"
+msgid "Yes"
+msgstr "Ydy"
+
+#. answer-id: apprenticeship-answer
+msgctxt "Answer for: Has <em>{person_name}</em> completed an apprenticeship?"
+msgid "No"
+msgstr "Nac ydy"
+
+#. answer-id: degree-answer
+msgctxt "Answer for: Have you achieved a qualification at degree level or above?"
+msgid "Yes"
+msgstr "Oes"
+
+#. answer-id: degree-answer
+msgctxt "Answer for: Have you achieved a qualification at degree level or above?"
+msgid "No"
+msgstr "Nac oes"
+
+#. answer-id: degree-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a qualification at degree level or above?"
+msgid "Yes"
+msgstr "Oes"
+
+#. answer-id: degree-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a qualification at degree level or above?"
+msgid "No"
+msgstr "Nac oes"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 3 or equivalent"
+msgstr "NVQ lefel 3 neu gymhwyster cyfatebol"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 2 or equivalent"
+msgstr "NVQ lefel 2 neu gymhwyster cyfatebol"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 1 or equivalent"
+msgstr "NVQ lefel 1 neu gymhwyster cyfatebol"
+
+#. answer-id: nvq-level-answer-exclusive
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "None of these apply"
+msgstr "Dim un o’r rhain"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 3 or equivalent"
+msgstr "NVQ lefel 3 neu gymhwyster cyfatebol"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 2 or equivalent"
+msgstr "NVQ lefel 2 neu gymhwyster cyfatebol"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 1 or equivalent"
+msgstr "NVQ lefel 1 neu gymhwyster cyfatebol"
+
+#. answer-id: nvq-level-answer-exclusive
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "None of these apply"
+msgstr "Dim un o’r rhain"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
+msgid "2 or more A levels"
+msgstr "2 neu fwy o gymwysterau Lefel A (Safon Uwch)"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
+msgid "1 A level"
+msgstr "1 Lefel A (Safon Uwch)"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
+msgid "1 AS level"
+msgstr "1 Lefel AS (Safon UG)"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
+msgid "Advanced Welsh Baccalaureate"
+msgstr "Bagloriaeth Cymru – Uwch"
+
+#. answer-id: a-level-answer-exclusive
+msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
+msgid "None of these apply"
+msgstr "Dim un o’r rhain"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
+msgid "2 or more A levels"
+msgstr "2 neu fwy o gymwysterau Lefel A (Safon Uwch)"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
+msgid "1 A level"
+msgstr "1 Lefel A (Safon Uwch)"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
+msgid "1 AS level"
+msgstr "1 Lefel AS (Safon UG)"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
+msgid "Advanced Welsh Baccalaureate"
+msgstr "Bagloriaeth Cymru – Uwch"
+
+#. answer-id: a-level-answer-exclusive
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
+msgid "None of these apply"
+msgstr "Dim un o’r rhain"
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "5 or more GCSEs grades A* to C or 9 to 4"
+msgstr "Dylech gynnwys 5 neu fwy o gymwysterau Lefel O (llwyddo) neu gymwysterau TAU (gradd 1)"
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "Any other GCSEs"
+msgstr "Unrhyw gymwysterau TGAU eraill"
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "Basic Skills course"
+msgstr "Cwrs Sgiliau Sylfaenol"
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "Intermediate or National Welsh Baccalaureate"
+msgstr "Bagloriaeth Cymru – Canolradd neu Genedlaethol"
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "Foundation Welsh Baccalaureate"
+msgstr "Bagloriaeth Cymru – Sylfaen"
+
+#. answer-id: gcse-answer-exclusive
+msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
+msgid "None of these apply"
+msgstr "Dim un o’r rhain"
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgid "5 or more GCSEs grades A* to C or 9 to 4"
+msgstr "5 neu fwy o gymwysterau TGAU (A*-C neu 9-4)"
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgid "Any other GCSEs"
+msgstr "Unrhyw gymwysterau TGAU eraill"
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgid "Basic Skills course"
+msgstr "Cwrs Sgiliau Sylfaenol"
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgid "Intermediate or National Welsh Baccalaureate"
+msgstr "Bagloriaeth Cymru – Canolradd neu Genedlaethol"
+
+#. answer-id: gcse-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgid "Foundation Welsh Baccalaureate"
+msgstr "Bagloriaeth Cymru – Sylfaen"
+
+#. answer-id: gcse-answer-exclusive
+msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
+msgid "None of these apply"
+msgstr "Dim un o’r rhain"
+
+#. answer-id: other-qualifications-answer
+msgctxt "Answer for: Have you achieved any other qualifications?"
+msgid "Yes, in Wales or England"
+msgstr "Oes, yng Nghymru neu yn Lloegr"
+
+#. answer-id: other-qualifications-answer
+msgctxt "Answer for: Have you achieved any other qualifications?"
+msgid "Yes, anywhere outside of Wales and England"
+msgstr "Oes, unrhyw le y tu allan i Gymru a Lloegr"
+
+#. answer-id: other-qualifications-answer-exclusive
+msgctxt "Answer for: Have you achieved any other qualifications?"
+msgid "No qualifications"
+msgstr "Dim cymwysterau"
+
+#. answer-id: other-qualifications-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved any other qualifications?"
+msgid "Yes, in Wales or England"
+msgstr "Oes, yng Nghymru neu yn Lloegr"
+
+#. answer-id: other-qualifications-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved any other qualifications?"
+msgid "Yes, anywhere outside of Wales and England"
+msgstr "Oes, unrhyw le y tu allan i Gymru a Lloegr"
+
+#. answer-id: other-qualifications-answer-exclusive
+msgctxt "Answer for: Has <em>{person_name}</em> achieved any other qualifications?"
+msgid "No qualifications"
+msgstr "Dim cymwysterau"
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Have you previously served in the UK Armed Forces?"
+msgid "No"
+msgstr "Nac ydw"
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Have you previously served in the UK Armed Forces?"
+msgid "Yes, previously served in Regular Armed Forces"
+msgstr "Ydw, wedi gwasanaethu yn y Lluoedd Arfog Rheolaidd yn y gorffennol"
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Have you previously served in the UK Armed Forces?"
+msgid "Yes, previously served in Reserve Armed Forces"
+msgstr "Ydw, wedi gwasanaethu yn y Lluoedd Arfog Wrth Gefn yn y gorffennol"
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Has <em>{person_name}</em> previously served in the UK Armed Forces?"
+msgid "No"
+msgstr "Nac ydy"
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Has <em>{person_name}</em> previously served in the UK Armed Forces?"
+msgid "Yes, previously served in Regular Armed Forces"
+msgstr "Ydy, wedi gwasanaethu yn y Lluoedd Arfog Rheolaidd yn y gorffennol"
+
+#. answer-id: armed-forces-answer
+msgctxt "Answer for: Has <em>{person_name}</em> previously served in the UK Armed Forces?"
+msgid "Yes, previously served in Reserve Armed Forces"
+msgstr "Ydy, wedi gwasanaethu yn y Lluoedd Arfog Wrth Gefn yn y gorffennol"
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "Working as an employee"
+msgstr "Gwaith cyflogedig"
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "Self-employed or freelance"
+msgstr "Gwaith hunangyflogedig neu ar eich liwt eich hun"
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "Temporarily away from work ill, on holiday or temporarily laid off"
+msgstr "I ffwrdd o’ch gwaith dros dro yn sâl, ar wyliau, neu wedi’ch cadw o’ch gwaith dros dro am na all eich cyflogwr gynnig gwaith ar hyn o bryd"
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "On maternity or paternity leave"
+msgstr "Ar gyfnod mamolaeth neu dadolaeth"
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "Doing any other kind of paid work"
+msgstr "Unrhyw fath arall o waith am dâl"
+
+#. answer-id: employment-status-answer-exclusive
+msgctxt "Answer for: In the last seven days, were you doing any of the following?"
+msgid "None of these apply"
+msgstr "Dim un o’r rhain"
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "Working as an employee"
+msgstr "Gwaith cyflogedig"
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "Self-employed or freelance"
+msgstr "Gwaith hunangyflogedig neu ar ei liwt ei hun"
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "Temporarily away from work ill, on holiday or temporarily laid off"
+msgstr "I ffwrdd o'r gwaith dros dro yn sâl, ar wyliau, neu mae'r unigolyn wedi'i gadw o'r gwaith dros dro am na all y cyflogwr gynnig gwaith ar hyn o bryd"
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "On maternity or paternity leave"
+msgstr "Ar gyfnod mamolaeth neu dadolaeth"
+
+#. answer-id: employment-status-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "Doing any other kind of paid work"
+msgstr "Unrhyw fath arall o waith am dâl"
+
+#. answer-id: employment-status-answer-exclusive
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
+msgid "None of these apply"
+msgstr "Dim un o’r rhain"
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
+msgid "Retired"
+msgstr "Wedi ymddeol"
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
+msgid "Studying"
+msgstr "Astudio"
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
+msgid "Looking after home or family"
+msgstr "Gofalu am y cartref neu am y teulu"
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
+msgid "Long-term sick or disabled"
+msgstr "Anabl neu yn sâl am gyfnod hir"
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgid "Retired"
+msgstr "Wedi ymddeol"
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgid "Studying"
+msgstr "Astudio"
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgid "Looking after home or family"
+msgstr "Gofalu am y cartref neu am y teulu"
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgid "Long-term sick or disabled"
+msgstr "Anabl neu yn sâl am gyfnod hir"
+
+#. answer-id: employment-type-answer
+msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: jobseeker-answer
+msgctxt "Answer for: In the last four weeks, were you actively looking for any kind of paid work?"
+msgid "Yes"
+msgstr "Oeddwn"
+
+#. answer-id: jobseeker-answer
+msgctxt "Answer for: In the last four weeks, were you actively looking for any kind of paid work?"
+msgid "No"
+msgstr "Nac oeddwn"
+
+#. answer-id: jobseeker-answer
+msgctxt "Answer for: In the last four weeks, was <em>{person_name}</em> actively looking for any kind of paid work?"
+msgid "Yes"
+msgstr "Oedd"
+
+#. answer-id: jobseeker-answer
+msgctxt "Answer for: In the last four weeks, was <em>{person_name}</em> actively looking for any kind of paid work?"
+msgid "No"
+msgstr "Nac oedd"
+
+#. answer-id: job-availability-answer
+msgctxt "Answer for: Are you available to start work in the next two weeks?"
+msgid "Yes"
+msgstr "Ydw"
+
+#. answer-id: job-availability-answer
+msgctxt "Answer for: Are you available to start work in the next two weeks?"
+msgid "No"
+msgstr "Nac ydw"
+
+#. answer-id: job-availability-answer
+msgctxt "Answer for: Is <em>{person_name}</em> available to start work in the next two weeks?"
+msgid "Yes"
+msgstr "Ydy"
+
+#. answer-id: job-availability-answer
+msgctxt "Answer for: Is <em>{person_name}</em> available to start work in the next two weeks?"
+msgid "No"
+msgstr "Nac ydy"
+
+#. answer-id: job-pending-answer
+msgctxt "Answer for: In the last seven days, were you waiting to start a job already accepted?"
+msgid "Yes"
+msgstr "Oeddwn"
+
+#. answer-id: job-pending-answer
+msgctxt "Answer for: In the last seven days, were you waiting to start a job already accepted?"
+msgid "No"
+msgstr "Nac oeddwn"
+
+#. answer-id: job-pending-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> waiting to start a job already accepted?"
+msgid "Yes"
+msgstr "Oedd"
+
+#. answer-id: job-pending-answer
+msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> waiting to start a job already accepted?"
+msgid "No"
+msgstr "Nac oedd"
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Have you ever done any paid work?"
+msgid "Yes, in the last 12 months"
+msgstr "Ydw, yn ystod y 12 mis diwethaf"
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Have you ever done any paid work?"
+msgid "Yes, but not in the last 12 months"
+msgstr "Ydw, ond nid yn ystod y 12 mis diwethaf"
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Have you ever done any paid work?"
+msgid "No, have never worked"
+msgstr "Nac ydw, erioed wedi gweithio"
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Has <em>{person_name}</em> ever done any paid work?"
+msgid "Yes, in the last 12 months"
+msgstr "Ydy, yn ystod y 12 mis diwethaf"
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Has <em>{person_name}</em> ever done any paid work?"
+msgid "Yes, but not in the last 12 months"
+msgstr "Ydy, ond nid yn ystod y 12 mis diwethaf"
+
+#. answer-id: ever-worked-answer
+msgctxt "Answer for: Has <em>{person_name}</em> ever done any paid work?"
+msgid "No, has never worked"
+msgstr "Nac ydy, erioed wedi gweithio"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what is your employment status?"
+msgid "Employee"
+msgstr "Gweithiwr cyflogedig"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what is your employment status?"
+msgid "Self-employed or freelance without employees"
+msgstr "Hunangyflogedig neu’n gweithio ar eich liwt eich hun heb gyflogi gweithwyr eraill"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what is your employment status?"
+msgid "Self-employed with employees"
+msgstr "Hunangyflogedig ac yn cyflogi gweithwyr eraill"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what is <em>{person_name_possessive}</em> employment status?"
+msgid "Employee"
+msgstr "Gweithiwr cyflogedig"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what is <em>{person_name_possessive}</em> employment status?"
+msgid "Self-employed or freelance without employees"
+msgstr "Hunangyflogedig neu’n gweithio ar ei liwt ei hun heb gyflogi gweithwyr eraill"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what is <em>{person_name_possessive}</em> employment status?"
+msgid "Self-employed with employees"
+msgstr "Hunangyflogedig ac yn cyflogi gweithwyr eraill"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what was your employment status?"
+msgid "Employee"
+msgstr "Gweithiwr cyflogedig"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what was your employment status?"
+msgid "Self-employed or freelance without employees"
+msgstr "Hunangyflogedig neu’n gweithio ar eich liwt eich hun heb gyflogi gweithwyr eraill"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In your main job, what was your employment status?"
+msgid "Self-employed with employees"
+msgstr "Hunangyflogedig ac yn cyflogi gweithwyr eraill"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what was <em>{person_name_possessive}</em> employment status?"
+msgid "Employee"
+msgstr "Gweithiwr cyflogedig"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what was <em>{person_name_possessive}</em> employment status?"
+msgid "Self-employed or freelance without employees"
+msgstr "Hunangyflogedig neu’n gweithio ar ei liwt ei hun heb gyflogi gweithwyr eraill"
+
+#. answer-id: main-job-type-answer
+msgctxt "Answer for: In their main job, what was <em>{person_name_possessive}</em> employment status?"
+msgid "Self-employed with employees"
+msgstr "Hunangyflogedig ac yn cyflogi gweithwyr eraill"
+
+#. answer-id: business-name-answer
+msgctxt "Answer for: What is the name of the organisation or business you work for?"
+msgid "Organisation or business name"
+msgstr "Enw’r sefydliad neu’r busnes"
+
+#. answer-id: no-business-name-answer
+msgctxt "Answer for: What is the name of the organisation or business you work for?"
+msgid "No organisation or work for a private individual"
+msgstr "Dim sefydliad neu’n gweithio i unigolyn preifat"
+
+#. answer-id: business-name-answer
+msgctxt "Answer for: What is the name of the organisation or business <em>{person_name}</em> works for?"
+msgid "Organisation or business name"
+msgstr "Enw’r sefydliad neu’r busnes"
+
+#. answer-id: no-business-name-answer
+msgctxt "Answer for: What is the name of the organisation or business <em>{person_name}</em> works for?"
+msgid "No organisation or works for a private individual"
+msgstr "Dim sefydliad neu’n gweithio i unigolyn preifat"
+
+#. answer-id: business-name-answer
+msgctxt "Answer for: What was the name of the organisation or business you worked for?"
+msgid "Organisation or business name"
+msgstr "Enw’r sefydliad neu’r busnes"
+
+#. answer-id: no-business-name-answer
+msgctxt "Answer for: What was the name of the organisation or business you worked for?"
+msgid "No organisation or worked for a private individual"
+msgstr "Dim sefydliad neu’n gweithio i unigolyn preifat"
+
+#. answer-id: business-name-answer
+msgctxt "Answer for: What was the name of the organisation or business <em>{person_name}</em> worked for?"
+msgid "Organisation or business name"
+msgstr "Enw’r sefydliad neu’r busnes"
+
+#. answer-id: no-business-name-answer
+msgctxt "Answer for: What was the name of the organisation or business <em>{person_name}</em> worked for?"
+msgid "No organisation or worked for a private individual"
+msgstr "Dim sefydliad neu’n gweithio i unigolyn preifat"
+
+#. answer-id: job-title-answer
+msgctxt "Answer for: What is your full job title?"
+msgid "Job title"
+msgstr "Teitl swydd"
+
+#. answer-id: job-title-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> full job title?"
+msgid "Job title"
+msgstr "Teitl swydd"
+
+#. answer-id: job-title-answer
+msgctxt "Answer for: What was your full job title?"
+msgid "Job title"
+msgstr "Teitl swydd"
+
+#. answer-id: job-title-answer
+msgctxt "Answer for: What was <em>{person_name_possessive}</em> full job title?"
+msgid "Job title"
+msgstr "Teitl swydd"
+
+#. answer-id: job-description-answer
+msgctxt "Answer for: Briefly describe what you do in your main job."
+msgid "Job description"
+msgstr "Disgrifiad swydd"
+
+#. answer-id: job-description-answer
+msgctxt "Answer for: Briefly describe what <em>{person_name}</em> does in their main job."
+msgid "Job description"
+msgstr "Disgrifiad swydd"
+
+#. answer-id: job-description-answer
+msgctxt "Answer for: Briefly describe what you did in your main job."
+msgid "Job description"
+msgstr "Disgrifiad swydd"
+
+#. answer-id: job-description-answer
+msgctxt "Answer for: Briefly describe what <em>{person_name}</em> did in their main job."
+msgid "Job description"
+msgstr "Disgrifiad swydd"
+
+#. answer-id: employers-business-answer
+msgctxt "Answer for: What is the main activity of your organisation, business or freelance work?"
+msgid "Main activity"
+msgstr "Prif weithgarwch"
+
+#. answer-id: employers-business-answer
+msgctxt "Answer for: What is the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
+msgid "Main activity"
+msgstr "Prif weithgarwch"
+
+#. answer-id: employers-business-answer
+msgctxt "Answer for: What was the main activity of your organisation, business or freelance work?"
+msgid "Main activity"
+msgstr "Prif weithgarwch"
+
+#. answer-id: employers-business-answer
+msgctxt "Answer for: What was the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
+msgid "Main activity"
+msgstr "Prif weithgarwch"
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Do you supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "Yes"
+msgstr "Ydw"
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Do you supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "No"
+msgstr "Nac ydw"
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Does <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "Yes"
+msgstr "Ydy"
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Does <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "No"
+msgstr "Nac ydy"
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Did you supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "Yes"
+msgstr "Oeddwn"
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Did you supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "No"
+msgstr "Nac oeddwn"
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Did <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "Yes"
+msgstr "Oedd"
+
+#. answer-id: supervise-answer
+msgctxt "Answer for: Did <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
+msgid "No"
+msgstr "Nac oedd"
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
+msgid "0 to 15 hours"
+msgstr "0 i 15 awr"
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
+msgid "16 to 30 hours"
+msgstr "16 i 30 awr"
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
+msgid "31 to 48 hours"
+msgstr "31 i 48 awr"
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
+msgid "49 hours or more"
+msgstr "49 awr neu fwy"
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
+msgid "0 to 15 hours"
+msgstr "0 i 15 awr"
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
+msgid "16 to 30 hours"
+msgstr "16 i 30 awr"
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
+msgid "31 to 48 hours"
+msgstr "31 i 48 awr"
+
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
+msgid "49 hours or more"
+msgstr "49 awr neu fwy"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Work mainly at or from home"
+msgstr "Gweithio gartref neu o'r cartref yn bennaf"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Underground, metro, light rail or tram"
+msgstr "Trên tanddaearol, metro, tram, neu reilffordd ysgafn"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Train"
+msgstr "Trên"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Bus, minibus or coach"
+msgstr "Bws neu fws mini"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Taxi"
+msgstr "Tacsi"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Motorcycle, scooter or moped"
+msgstr "Beic modur, moped neu sgwter"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Driving a car or van"
+msgstr "Gyrru car neu fan"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Passenger in a car or van"
+msgstr "Teithiwr mewn car neu fan"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Bicycle"
+msgstr "Beic"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "On foot"
+msgstr "Cerdded"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to work?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Work mainly at or from home"
+msgstr "Gweithio gartref neu o'r cartref yn bennaf"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Underground, metro, light rail or tram"
+msgstr "Trên tanddaearol, metro, tram, neu reilffordd ysgafn"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Train"
+msgstr "Trên"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Bus, minibus or coach"
+msgstr "Bws neu fws mini"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Taxi"
+msgstr "Tacsi"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Motorcycle, scooter or moped"
+msgstr "Beic modur, moped neu sgwter"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Driving a car or van"
+msgstr "Gyrru car neu fan"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Passenger in a car or van"
+msgstr "Teithiwr mewn car neu fan"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Bicycle"
+msgstr "Beic"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "On foot"
+msgstr "Cerdded"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
+msgid "Other"
+msgstr "Arall"
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "At a workplace"
+msgstr "Mewn gweithle"
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "Report to a depot"
+msgstr "Adrodd i ddepo"
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "At or from home"
+msgstr "Gartref neu o’r cartref"
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "An offshore installation"
+msgstr "Ar safle ar y môr"
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where do you mainly work?"
+msgid "No fixed place"
+msgstr "Dim man penodol"
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "At a workplace"
+msgstr "Mewn gweithle"
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "Report to a depot"
+msgstr "Adrodd i ddepo"
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "At or from home"
+msgstr "Gartref neu o’r cartref"
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "An offshore installation"
+msgstr "Ar safle ar y môr"
+
+#. answer-id: employer-type-of-address-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
+msgid "No fixed place"
+msgstr "Dim man penodol"
+
+#. answer-id: employer-address-workplace-answer-building
+msgctxt "Answer for: What is the address of your workplace?"
+msgid "Address line 1"
+msgstr "Llinell cyfeiriad 1"
+
+#. answer-id: employer-address-workplace-answer-street
+msgctxt "Answer for: What is the address of your workplace?"
+msgid "Address line 2"
+msgstr "Llinell cyfeiriad 2"
+
+#. answer-id: employer-address-workplace-answer-city
+msgctxt "Answer for: What is the address of your workplace?"
+msgid "Town or city"
+msgstr "Tref neu ddinas"
+
+#. answer-id: employer-address-workplace-answer-county
+msgctxt "Answer for: What is the address of your workplace?"
+msgid "County (optional)"
+msgstr "Sir (dewisol)"
+
+#. answer-id: employer-adress-workplace-answer-postcode
+msgctxt "Answer for: What is the address of your workplace?"
+msgid "Postcode"
+msgstr "Cod post"
+
+#. answer-id: employer-address-workplace-answer-building
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+msgid "Address line 1"
+msgstr "Llinell cyfeiriad 1"
+
+#. answer-id: employer-address-workplace-answer-street
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+msgid "Address line 2"
+msgstr "Llinell cyfeiriad 2"
+
+#. answer-id: employer-address-workplace-answer-city
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+msgid "Town or city"
+msgstr "Tref neu ddinas"
+
+#. answer-id: employer-address-workplace-answer-county
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+msgid "County (optional)"
+msgstr "Sir (dewisol)"
+
+#. answer-id: employer-adress-workplace-answer-postcode
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+msgid "Postcode"
+msgstr "Cod post"
+
+#. answer-id: employer-address-depot-answer-building
+msgctxt "Answer for: What is the address of your depot?"
+msgid "Address line 1"
+msgstr "Llinell cyfeiriad 1"
+
+#. answer-id: employer-address-depot-answer-street
+msgctxt "Answer for: What is the address of your depot?"
+msgid "Address line 2"
+msgstr "Llinell cyfeiriad 2"
+
+#. answer-id: employer-address-depot-answer-city
+msgctxt "Answer for: What is the address of your depot?"
+msgid "Town or city"
+msgstr "Tref neu ddinas"
+
+#. answer-id: employer-address-depot-answer-county
+msgctxt "Answer for: What is the address of your depot?"
+msgid "County (optional)"
+msgstr "Sir (dewisol)"
+
+#. answer-id: employer-adress-depot-answer-postcode
+msgctxt "Answer for: What is the address of your depot?"
+msgid "Postcode"
+msgstr "Cod post"
+
+#. answer-id: employer-address-depot-answer-building
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+msgid "Address line 1"
+msgstr "Llinell cyfeiriad 1"
+
+#. answer-id: employer-address-depot-answer-street
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+msgid "Address line 2"
+msgstr "Llinell cyfeiriad 2"
+
+#. answer-id: employer-address-depot-answer-city
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+msgid "Town or city"
+msgstr "Tref neu ddinas"
+
+#. answer-id: employer-address-depot-answer-county
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+msgid "County (optional)"
+msgstr "Sir (dewisol)"
+
+#. answer-id: employer-adress-depot-answer-postcode
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+msgid "Postcode"
+msgstr "Cod post"
+
+#. answer-id: usual-address-household-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> usual address?"
+msgid "An address in the UK"
+msgstr "Cyfeiriad yn y Deyrnas Unedig"
+
+#. answer-id: usual-address-household-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> usual address?"
+msgid "An address outside the UK"
+msgstr "Cyfeiriad y tu allan i’r Deyrnas Unedig"
+
+#. answer-id: usual-address-household-answer-other
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> usual address?"
+msgid "Enter the current name of the country"
+msgstr "Nodwch enw presennol y wlad"
+
+#. answer-id: usual-address-details-answer-building
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgid "Address line 1"
+msgstr "Llinell cyfeiriad 1"
+
+#. answer-id: usual-address-details-answer-street
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgid "Address line 2"
+msgstr "Llinell cyfeiriad 2"
+
+#. answer-id: usual-address-details-answer-city
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgid "Town or city"
+msgstr "Tref neu ddinas"
+
+#. answer-id: usual-address-details-answer-county
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgid "County (optional)"
+msgstr "Sir (dewisol)"
+
+#. answer-id: usual-address-details-answer-postcode
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgid "Postcode"
+msgstr "Cod post"
+
+#. answer-id: anyone-usually-live-at-answer
+msgctxt "Answer for: Does anyone usually live at {address}?"
+msgid "Include partners, children, babies born on or before {census_date}, housemates, tenants and lodgers, students and schoolchildren who live away from home during term time, where this is their permanent or family home"
+msgstr "Dylech gynnwys partneriaid, plant, babanod a anwyd ar {census_date} neu cyn hynny, pobl sy’n rhannu cartref â chi, tenantiaid a lojers, myfyrwyr a phlant ysgol sy'n byw i ffwrdd o'r cartref yn ystod y tymor, os mai hwn yw eu cartref parhaol neu gartref y teulu"
+
+#. answer-id: anyone-else-answer
+msgctxt "Answer for: Does anyone else live at {address}?"
+msgid "Include partners, children, babies born on or before {census_date}, housemates, tenants and lodgers, students and schoolchildren who live away from home during term time, where this is their permanent or family home"
+msgstr "Dylech gynnwys partneriaid, plant, babanod a anwyd ar {census_date} neu cyn hynny, pobl sy’n rhannu cartref â chi, tenantiaid a lojers, myfyrwyr a phlant ysgol sy'n byw i ffwrdd o'r cartref yn ystod y tymor, os mai hwn yw eu cartref parhaol neu gartref y teulu"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>husband or wife</em>"
+msgstr "{second_person_name} yw eich <em>gŵr neu wraig</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>legally registered civil partner</em>"
+msgstr "{second_person_name} yw eich <em>partner sifil cofrestredig cyfreithiol</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>partner</em>"
+msgstr "{second_person_name} yw eich <em>partner</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>son or daughter</em>"
+msgstr "{second_person_name} yw eich <em>mab neu ferch</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>stepchild</em>"
+msgstr "{second_person_name} yw eich <em>llysblentyn</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>brother or sister</em>"
+msgstr "{second_person_name} yw eich <em>brawd neu chwaer</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>stepbrother or stepsister</em>"
+msgstr "{second_person_name} yw eich <em>llysfrawd neu lyschwaer</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>mother or father</em>"
+msgstr "{second_person_name} yw eich <em>mam neu dad</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>stepmother or stepfather</em>"
+msgstr "{second_person_name} yw eich <em>llysfam neu lystad</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>grandchild</em>"
+msgstr "{second_person_name} yw eich <em>ŵyr neu wyres</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>grandparent</em>"
+msgstr "{second_person_name} yw eich <em>taid/tad-cu neu nain/mam-gu</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>other relation</em>"
+msgstr "{second_person_name} yw eich <em>perthynas arall</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is <em>unrelated</em> to you"
+msgstr "Nid yw {second_person_name} yn <em>perthyn</em> i chi"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>…</em>"
+msgstr "{second_person_name} yw eich <em>...</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>"
+msgstr "{second_person_name} yw <em>gŵr neu wraig</em> {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>"
+msgstr "Gan feddwl am {first_person_name_possessive}, mae {second_person_name} yn <em>ŵr neu wraig</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>legally registered civil partner</em>"
+msgstr "{second_person_name} yw <em>partner sifil cofrestredig cyfreithiol</em> {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>legally registered civil partner</em>"
+msgstr "Gan feddwl am {first_person_name}, mae {second_person_name} yn <em>bartner sifil cofrestredig cyfreithiol</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>partner</em>"
+msgstr "{second_person_name} yw <em>partner</em> {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>partner</em>"
+msgstr "Gan feddwl am {first_person_name}, mae {second_person_name} yn <em>bartner</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>"
+msgstr "{second_person_name} yw <em>mab neu ferch</em> {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>"
+msgstr "Gan feddwl am {first_person_name}, mae {second_person_name} yn <em>fab neu ferch</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>stepchild</em>"
+msgstr "{second_person_name} yw <em>llysblentyn</em> {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>stepchild</em>"
+msgstr "Gan feddwl am {first_person_name}, mae {second_person_name} yn llysblentyn i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>"
+msgstr "{second_person_name} yw <em>brawd neu chwaer</em> {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>brother or sister</em>"
+msgstr "Gan feddwl am {first_person_name}, mae {second_person_name} yn <em>frawd neu chwaer</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>stepbrother or stepsister</em>"
+msgstr "{second_person_name} yw <em>llysfrawd neu lyschwaer</em> {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>stepbrother or stepsister</em>"
+msgstr "Gan feddwl am {first_person_name}, mae {second_person_name} yn <em>llysfrawd neu lyschwaer</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>mother or father</em>"
+msgstr "{second_person_name} yw <em>mam neu dad</em> {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>mother or father</em>"
+msgstr "Gan feddwl am {first_person_name}, mae {second_person_name} yn <em>fam neu dad</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>stepmother or stepfather</em>"
+msgstr "{second_person_name} yw <em></em>llysfam neu lystad {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>stepmother or stepfather</em>"
+msgstr "Gan feddwl am {first_person_name}, mae {second_person_name} yn <em>llysfam neu lystad</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>grandchild</em>"
+msgstr "{second_person_name} yw <em>ŵyr neu wyres</em> {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>grandchild</em>"
+msgstr "Gan feddwl am {first_person_name}, mae {second_person_name} yn <em>ŵyr neu wyres</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>grandparent</em>"
+msgstr "{second_person_name} yw <em>taid/tad-cu neu nain/mam-gu</em> {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>grandparent</em>"
+msgstr "Gan feddwl am {first_person_name}, mae [{second_person_name} yn <em>daid/tad-cu neu nain/mam-gu</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>other relation</em>"
+msgstr "{second_person_name} yw <em>perthynas arall</em> {first_person_name_possessive}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>other relation</em>"
+msgstr "Gan feddwl am {first_person_name}, mae [{second_person_name} yn <em>berthynas arall</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is <em>unrelated</em> to {first_person_name}"
+msgstr "Nid yw {second_person_name} yn <em>perthyn</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is <em>unrelated</em> to {first_person_name}"
+msgstr "Gan feddwl am {first_person_name}, nid yw {second_person_name} yn <em>perthyn</em> i {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>…</em>"
+msgstr "{second_person_name} yw <em>...</em> {first_person_name_possessive}"
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
+msgid "Yes, I am {age_in_years} years old"
+msgstr "Ydy, rwy’n {age_in_years} oed"
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: {person_name} is {age_in_years} years old. Is this correct?"
+msgid "Yes, {person_name} is {age_in_years} years old"
+msgstr "Ydy, mae {person_name} yn {age_in_years} oed"
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where do you usually live?"
+msgid "{address}"
+msgstr "{address}"
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where do you usually live?"
+msgid "The address in {country}"
+msgstr "Y cyfeiriad yn: {country}"
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where does <em>{person_name}</em> usually live?"
+msgid "{address}"
+msgstr "{address}"
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where does <em>{person_name}</em> usually live?"
+msgid "The address in {country}"
+msgstr "Y cyfeiriad yn: {country}"
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was your usual address?"
+msgid "{address}"
+msgstr "{address}"
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
+msgid "{address}"
+msgstr "{address}"
+
