@@ -3,6 +3,8 @@
 {% from "components/button/_macro.njk" import onsButton %}
 
 {% set survey_title  = survey_title or _("ONS Business Surveys") %}
+<!-- get the region code in the page linking to this and pass it in -->
+{% set nisra  = true %}
 
 {% block main %}
   {% do page | setAttribute("feedback", "") %}
@@ -20,18 +22,18 @@
     <li>{{ _("Sunday - closed") }}</li>
   </ul>
 
-<!-- this wales/england-->
+  {% if nisra %}
 
-  <h3>{{ _("England") }}</h3>
-  <p>{{ _("Telephone: %(telephone_number)s",telephone_number = helpers.telephone_number(tel="0800 141 2021")) }}</p>
-  <h3>{{ _("Wales") }}</h3>
-  <p>{{ _("Telephone: %(telephone_number)s (Option 1 for Welsh, option 2 for English)",telephone_number = helpers.telephone_number(tel="0800 169 2021")) }}</p>
+    <p>{{ _("Telephone: %(telephone_number)s",telephone_number = helpers.telephone_number(tel="0800 328 2021")) }}</p>
 
-<!-- or this nisra-->
+  {% else %}
 
-  <p>{{ _("Telephone: %(telephone_number)s",telephone_number = helpers.telephone_number(tel="0800 328 2021")) }}</p>
+    <h3>{{ _("England") }}</h3>
+    <p>{{ _("Telephone: %(telephone_number)s",telephone_number = helpers.telephone_number(tel="0800 141 2021")) }}</p>
+    <h3>{{ _("Wales") }}</h3>
+    <p>{{ _("Telephone: %(telephone_number)s (Option 1 for Welsh, option 2 for English)",telephone_number = helpers.telephone_number(tel="0800 169 2021")) }}</p>
 
-<!-- -->
+  {% endif %}
 
   <h3>{{ _("Other languages") }}</h3>
   <p>{{ _("If you need to speak to us in another language phone %(telephone_number)s",telephone_number = helpers.telephone_number(tel="0800 587 2021")) }}</p>
