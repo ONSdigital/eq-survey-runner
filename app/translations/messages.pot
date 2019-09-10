@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 14:04+0100\n"
+"POT-Creation-Date: 2019-09-10 08:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -506,15 +506,12 @@ msgstr ""
 msgid "To help protect your information we have signed you out"
 msgstr ""
 
-#: templates/errors/session-expired.html:23
+#: templates/errors/session-expired.html:22
 #, python-format
 msgid ""
-"We have saved your progress and you will need to "
-"%(enter_your_unique_code)s to access the survey again."
-msgstr ""
-
-#: templates/errors/session-expired.html:23
-msgid "enter your unique code"
+"We have saved your progress and you will need to <a "
+"href=\"%(account_service_link)s\">enter your unique code</a> to access "
+"the survey again."
 msgstr ""
 
 #: templates/layouts/_questionnaire.html:16
