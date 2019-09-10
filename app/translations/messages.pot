@@ -560,45 +560,58 @@ msgid ""
 msgstr ""
 
 #: templates/layouts/configs/_footer.html:13
-#: templates/layouts/configs/_footer.html:44
+#: templates/layouts/configs/_footer.html:66
 #: templates/static/contact-us.html:10
 msgid "Contact us"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:17
-#: templates/layouts/configs/_footer.html:29
-msgid "Cookies and privacy"
+#: templates/layouts/configs/_footer.html:18
+msgid "Help"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:26
-msgid "Legal information"
+#: templates/layouts/configs/_footer.html:27
+#: templates/static/cookies-privacy.html:27
+msgid "Cookies"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:36
-msgid "About ONS"
+#: templates/layouts/configs/_footer.html:32 templates/static/privacy.html:9
+msgid "Privacy and data protection"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:39
-msgid "What we do"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:49
+#: templates/layouts/configs/_footer.html:37
+#: templates/layouts/configs/_footer.html:71
 msgid "Accessibility"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:56
+#: templates/layouts/configs/_footer.html:48
+msgid "Legal information"
+msgstr ""
+
+#: templates/layouts/configs/_footer.html:51
+msgid "Cookies and privacy"
+msgstr ""
+
+#: templates/layouts/configs/_footer.html:58
+msgid "About ONS"
+msgstr ""
+
+#: templates/layouts/configs/_footer.html:61
+msgid "What we do"
+msgstr ""
+
+#: templates/layouts/configs/_footer.html:78
 msgid "Statistics"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:59
+#: templates/layouts/configs/_footer.html:81
 msgid "UK Statistics Authority"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:64
+#: templates/layouts/configs/_footer.html:86
 msgid "Release calendar"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:69
+#: templates/layouts/configs/_footer.html:91
 msgid "News"
 msgstr ""
 
@@ -721,179 +734,172 @@ msgid ""
 msgstr ""
 
 #: templates/static/contact-us.html:15
-#: templates/static/cookies-privacy.html:285
-#: templates/static/cookies-privacy.html:495
-#: templates/static/cookies-privacy.html:506
+#: templates/static/cookies-privacy.html:282
+#: templates/static/cookies-privacy.html:492
+#: templates/static/cookies-privacy.html:503
 msgid "Telephone"
 msgstr ""
 
-#: templates/static/contact-us.html:16 templates/static/contact-us.html:36
-#: templates/static/contact-us.html:46
+#: templates/static/contact-us.html:16 templates/static/contact-us.html:44
+#: templates/static/contact-us.html:54
 msgid "We will have advisers available to help you at the following times:"
 msgstr ""
 
-#: templates/static/contact-us.html:18 templates/static/contact-us.html:38
-#: templates/static/contact-us.html:48
+#: templates/static/contact-us.html:18 templates/static/contact-us.html:46
+#: templates/static/contact-us.html:56
 msgid "Monday to Friday - 8am – 7pm"
 msgstr ""
 
-#: templates/static/contact-us.html:19 templates/static/contact-us.html:39
-#: templates/static/contact-us.html:49
+#: templates/static/contact-us.html:19 templates/static/contact-us.html:47
+#: templates/static/contact-us.html:57
 msgid "Saturday - 8am - 1pm"
 msgstr ""
 
-#: templates/static/contact-us.html:20 templates/static/contact-us.html:40
-#: templates/static/contact-us.html:50
+#: templates/static/contact-us.html:20 templates/static/contact-us.html:48
+#: templates/static/contact-us.html:58
 msgid "Sunday - closed"
 msgstr ""
 
-#: templates/static/contact-us.html:23
-msgid "England"
-msgstr ""
-
-#: templates/static/contact-us.html:24 templates/static/privacy.html:156
-#: templates/static/privacy.html:178 templates/static/privacy.html:202
+#: templates/static/contact-us.html:25 templates/static/contact-us.html:30
+#: templates/static/privacy.html:156 templates/static/privacy.html:178
+#: templates/static/privacy.html:202
 #, python-format
 msgid "Telephone: %(telephone_number)s"
 msgstr ""
 
-#: templates/static/contact-us.html:25
+#: templates/static/contact-us.html:29
+msgid "England"
+msgstr ""
+
+#: templates/static/contact-us.html:31
 msgid "Wales"
 msgstr ""
 
-#: templates/static/contact-us.html:26
+#: templates/static/contact-us.html:32
 #, python-format
 msgid "Telephone: %(telephone_number)s (Option 1 for Welsh, option 2 for English)"
 msgstr ""
 
-#: templates/static/contact-us.html:28
+#: templates/static/contact-us.html:36
 msgid "Other languages"
 msgstr ""
 
-#: templates/static/contact-us.html:29
+#: templates/static/contact-us.html:37
 #, python-format
 msgid "If you need to speak to us in another language phone %(telephone_number)s"
 msgstr ""
 
-#: templates/static/contact-us.html:31
+#: templates/static/contact-us.html:39
 msgid "Text relay"
 msgstr ""
 
-#: templates/static/contact-us.html:32
+#: templates/static/contact-us.html:40
 msgid "NGT users dial 18001 followed by the phone number you need"
 msgstr ""
 
-#: templates/static/contact-us.html:34
+#: templates/static/contact-us.html:42
 msgid "SMS text message"
 msgstr ""
 
-#: templates/static/contact-us.html:35
+#: templates/static/contact-us.html:43
 msgid "Text 86677"
 msgstr ""
 
-#: templates/static/contact-us.html:44
+#: templates/static/contact-us.html:52
 msgid "Online"
 msgstr ""
 
-#: templates/static/contact-us.html:45
+#: templates/static/contact-us.html:53
 msgid "Web chat"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:10
-msgid "pri"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:12
+#: templates/static/cookies-privacy.html:9
 msgid "Cookies and Privacy"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:14
+#: templates/static/cookies-privacy.html:11
 msgid ""
 "The Office for National Statistics (ONS) has created this cookies and "
 "privacy statement in order to demonstrate our firm commitment to privacy."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:16
+#: templates/static/cookies-privacy.html:13
 msgid ""
 "The following is a description of what data is collected when you use the"
 " Survey Data Collection (SDC) service, how it is stored and what it is "
 "used for."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:18
+#: templates/static/cookies-privacy.html:15
 msgid "Privacy"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:20
+#: templates/static/cookies-privacy.html:17
 msgid ""
 "Your privacy is very important to us. We comply with confidentiality "
 "requirements set out in the Statistics and Registration Service Act 2007 "
 "and the Data Protection Act 1998."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:22
+#: templates/static/cookies-privacy.html:19
 msgid ""
 "We can only use your information for research and statistical purposes. "
 "None of your personal information is disclosed through our statistics."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:24
+#: templates/static/cookies-privacy.html:21
 msgid "Security"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:26
+#: templates/static/cookies-privacy.html:23
 msgid ""
 "We ensure that the information you provide is kept safe and secure. We "
 "have security measures in place to protect the loss, misuse and "
 "alteration of information under our control."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:28
+#: templates/static/cookies-privacy.html:25
 msgid ""
 "We use leading security technologies such as industry-standard encryption"
 " software. This service has been accredited in accordance with government"
 " technical and security standards."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:30
-msgid "Cookies"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:32
+#: templates/static/cookies-privacy.html:29
 msgid ""
 "We use small files (known as ‘cookies’) to collect information about how "
 "you browse the site."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:34
+#: templates/static/cookies-privacy.html:31
 msgid "Cookies are used to"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:36
+#: templates/static/cookies-privacy.html:33
 msgid ""
 "Measure how you use the website so it can be updated and improved based "
 "on your needs"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:37
+#: templates/static/cookies-privacy.html:34
 msgid ""
 "Remember the notifications you’ve seen so that we don’t show them to you "
 "again"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:41
+#: templates/static/cookies-privacy.html:38
 msgid "Our cookies are not used to identify you personally."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:43
+#: templates/static/cookies-privacy.html:40
 msgid "How cookies are used"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:45
+#: templates/static/cookies-privacy.html:42
 msgid "Measuring website usage (Google Analytics)"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:47
+#: templates/static/cookies-privacy.html:44
 msgid ""
 "We use Google Analytics software to collect information about how you use"
 " this service. We do this to help make sure the site is meeting the needs"
@@ -901,40 +907,40 @@ msgid ""
 "site search."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:49
+#: templates/static/cookies-privacy.html:46
 msgid "Google Analytics stores information about"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:51
+#: templates/static/cookies-privacy.html:48
 msgid "The pages you visit"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:52
+#: templates/static/cookies-privacy.html:49
 msgid "How long you spend on each page"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:53
+#: templates/static/cookies-privacy.html:50
 msgid "How you got to the site"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:54
+#: templates/static/cookies-privacy.html:51
 msgid "What you click on while you’re visiting the site"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:58
+#: templates/static/cookies-privacy.html:55
 msgid ""
 "We don’t use Google Analytics to collect or store your personal "
 "information (for example your name or address)."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:60
+#: templates/static/cookies-privacy.html:57
 msgid ""
 "The information we collect through our cookies does not include personal "
 "details such as your name, age, telephone number, postal address or email"
 " address, nor does it allow personal identification of a user."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:62
+#: templates/static/cookies-privacy.html:59
 #, python-format
 msgid ""
 "You can manage these small files yourself and learn more about them "
@@ -942,167 +948,167 @@ msgid ""
 "manage them.</a>"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:64
+#: templates/static/cookies-privacy.html:61
 msgid "Find out more information"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:66
+#: templates/static/cookies-privacy.html:63
 #, python-format
 msgid ""
 "If you have any questions about this privacy statement, you can contact "
 "us at %(email_link)s"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:68
+#: templates/static/cookies-privacy.html:65
 msgid "Universal Analytics"
+msgstr ""
+
+#: templates/static/cookies-privacy.html:70
+#: templates/static/cookies-privacy.html:128
+#: templates/static/cookies-privacy.html:159
+msgid "Name"
 msgstr ""
 
 #: templates/static/cookies-privacy.html:73
 #: templates/static/cookies-privacy.html:131
 #: templates/static/cookies-privacy.html:162
-msgid "Name"
+#: templates/static/cookies-privacy.html:420
+msgid "Purpose"
 msgstr ""
 
 #: templates/static/cookies-privacy.html:76
 #: templates/static/cookies-privacy.html:134
 #: templates/static/cookies-privacy.html:165
-#: templates/static/cookies-privacy.html:423
-msgid "Purpose"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:79
-#: templates/static/cookies-privacy.html:137
-#: templates/static/cookies-privacy.html:168
 msgid "Expires"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:89
-#: templates/static/cookies-privacy.html:102
+#: templates/static/cookies-privacy.html:86
+#: templates/static/cookies-privacy.html:99
 msgid ""
 "This helps us count how many people visit our website by tracking if "
 "you’ve visited before"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:92
+#: templates/static/cookies-privacy.html:89
 msgid "2 years"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:105
+#: templates/static/cookies-privacy.html:102
 msgid "24 hours"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:115
+#: templates/static/cookies-privacy.html:112
 msgid "Used to manage the rate at which page view requests are made"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:118
+#: templates/static/cookies-privacy.html:115
 msgid "10 minutes"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:126
+#: templates/static/cookies-privacy.html:123
 msgid "Completing a survey (eq.ons.gov.uk)"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:144
+#: templates/static/cookies-privacy.html:141
 msgid "Session"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:147
+#: templates/static/cookies-privacy.html:144
 msgid "To keep you signed in when completing a survey"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:150
+#: templates/static/cookies-privacy.html:147
 msgid ""
 "When a user logs out or closes the browser. Or when their cookie cache is"
 " cleared"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:157
+#: templates/static/cookies-privacy.html:154
 msgid "Your account"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:178
+#: templates/static/cookies-privacy.html:175
 msgid "To check that your browser can support cookies"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:181
-#: templates/static/cookies-privacy.html:194
-#: templates/static/cookies-privacy.html:207
-#: templates/static/cookies-privacy.html:220
-#: templates/static/cookies-privacy.html:233
-#: templates/static/cookies-privacy.html:246
-#: templates/static/cookies-privacy.html:259
-#: templates/static/cookies-privacy.html:272
+#: templates/static/cookies-privacy.html:178
+#: templates/static/cookies-privacy.html:191
+#: templates/static/cookies-privacy.html:204
+#: templates/static/cookies-privacy.html:217
+#: templates/static/cookies-privacy.html:230
+#: templates/static/cookies-privacy.html:243
+#: templates/static/cookies-privacy.html:256
+#: templates/static/cookies-privacy.html:269
 msgid "When a user closes the browser or when their cookie cache is cleared"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:191
+#: templates/static/cookies-privacy.html:188
 msgid ""
 "To store your preferred language so that certain content can be displayed"
 " in your own language"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:204
+#: templates/static/cookies-privacy.html:201
 msgid ""
 "To keep your session active when using your account to access portfolio "
 "and messages"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:217
-#: templates/static/cookies-privacy.html:230
+#: templates/static/cookies-privacy.html:214
+#: templates/static/cookies-privacy.html:227
 msgid ""
 "To store an encrypted identifier which is used to retrieve the "
 "information associated to your account"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:243
+#: templates/static/cookies-privacy.html:240
 msgid "To store the universally unique identifier created for your account"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:256
+#: templates/static/cookies-privacy.html:253
 msgid ""
 "To store the timestamp of the last request so that the session expiry "
 "warning message can be displayed"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:269
+#: templates/static/cookies-privacy.html:266
 msgid ""
 "To store the flash object identifier for the most recent action you have "
 "performed"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:279
+#: templates/static/cookies-privacy.html:276
 msgid "Data controller"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:281
+#: templates/static/cookies-privacy.html:278
 msgid "The Data Controller for ONS Surveys is"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:283
+#: templates/static/cookies-privacy.html:280
 msgid ""
 "For questions regarding the Survey Data Collection service please contact"
 " us on"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:286
-#: templates/static/cookies-privacy.html:496
-#: templates/static/cookies-privacy.html:508
+#: templates/static/cookies-privacy.html:283
+#: templates/static/cookies-privacy.html:493
+#: templates/static/cookies-privacy.html:505
 msgid "Email"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:290
+#: templates/static/cookies-privacy.html:287
 msgid "Why we collect your data"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:292
+#: templates/static/cookies-privacy.html:289
 msgid ""
 "The Survey Data Collection service is used as the online collection "
 "mechanism for a number of our surveys. More surveys will be offered via "
 "this service over time."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:294
+#: templates/static/cookies-privacy.html:291
 msgid ""
 "Individual survey teams are responsible for the content (the questions "
 "asked) and form (Excel spreadsheet to download, complete and return; or "
@@ -1111,7 +1117,7 @@ msgid ""
 " platform."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:296
+#: templates/static/cookies-privacy.html:293
 msgid ""
 "The lawful reason for which your personal data is collected through the "
 "Survey Data Collection platform is Public task. The processing is "
@@ -1119,85 +1125,85 @@ msgid ""
 "official functions, and the task or function has a clear basis in law."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:298
+#: templates/static/cookies-privacy.html:295
 msgid "When we collect your data"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:300
+#: templates/static/cookies-privacy.html:297
 msgid "Your data is collected when"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:302
+#: templates/static/cookies-privacy.html:299
 msgid "you create an account and sign in to the ONS Surveys platform"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:303
+#: templates/static/cookies-privacy.html:300
 msgid "you complete a survey"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:304
+#: templates/static/cookies-privacy.html:301
 msgid "you contact us by any means"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:305
+#: templates/static/cookies-privacy.html:302
 msgid "you visit a website that comprises the Survey Data Collection platform"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:309
+#: templates/static/cookies-privacy.html:306
 msgid "What data we collect"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:311
+#: templates/static/cookies-privacy.html:308
 msgid ""
 "Personal data items required for the operation of the Survey Data "
 "Collection Platform"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:316
+#: templates/static/cookies-privacy.html:313
 msgid "Data item"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:319
-#: templates/static/cookies-privacy.html:426
+#: templates/static/cookies-privacy.html:316
+#: templates/static/cookies-privacy.html:423
 msgid "Description"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:326
-#: templates/static/cookies-privacy.html:392
+#: templates/static/cookies-privacy.html:323
+#: templates/static/cookies-privacy.html:389
 msgid "Email address"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:330
+#: templates/static/cookies-privacy.html:327
 msgid ""
 "Survey Data Collection captures and stores the email address of those who"
 " register with the platform. Registration is required in order to "
 "complete a survey return."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:332
+#: templates/static/cookies-privacy.html:329
 msgid ""
 "Email address is used as a unique user identifier. Once registered the "
 "email address and password created is required to identify you each time "
 "you use the service."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:334
+#: templates/static/cookies-privacy.html:331
 msgid ""
 "Additionally, the email address is used to send communications for "
 "purposes of account management and reminders of survey responses."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:342
+#: templates/static/cookies-privacy.html:339
 msgid "Business Name"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:346
+#: templates/static/cookies-privacy.html:343
 msgid ""
 "Business names are pre-loaded into the Survey Data Collection platform as"
 " part of a business having been selected for a survey."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:348
+#: templates/static/cookies-privacy.html:345
 msgid ""
 "The name of the business that has been selected for a given survey will "
 "have been provided to Survey Data Collection by another part of the "
@@ -1205,15 +1211,15 @@ msgid ""
 "Survey Data Collection stores and processes this."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:356
+#: templates/static/cookies-privacy.html:353
 msgid "IP address"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:360
+#: templates/static/cookies-privacy.html:357
 msgid "Internet Protocol address"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:362
+#: templates/static/cookies-privacy.html:359
 msgid ""
 "All devices connected to the internet will have an IP address and this is"
 " used for one device (e.g. the computer you use to provide a survey "
@@ -1221,28 +1227,28 @@ msgid ""
 "Survey Data Collection web site) over the internet."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:364
+#: templates/static/cookies-privacy.html:361
 msgid ""
 "The logs of IP address activity against the Survey Data Collection "
 "service are kept for a limited period of time to facilitate "
 "investigations in the case of any problems."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:372
+#: templates/static/cookies-privacy.html:369
 msgid ""
 "Surveys that are conducted on the Survey Data Collection platform may "
 "collect additional items of personal data."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:374
+#: templates/static/cookies-privacy.html:371
 msgid "Business surveys that require personal data"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:376
+#: templates/static/cookies-privacy.html:373
 msgid "Annual Survey of Hours and Earnings"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:378
+#: templates/static/cookies-privacy.html:375
 msgid ""
 "The legal basis for undertaking the Annual Survey of Hours and Earnings "
 "(ASHE) is the Statistics of Trade Act 1947. This means the General Data "
@@ -1254,62 +1260,62 @@ msgid ""
 " items of personal data"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:380
+#: templates/static/cookies-privacy.html:377
 msgid "National insurance number"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:381
+#: templates/static/cookies-privacy.html:378
 msgid "Date of birth"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:382
+#: templates/static/cookies-privacy.html:379
 msgid "Postcode"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:386
+#: templates/static/cookies-privacy.html:383
 msgid "Communication outside of the Survey Data Collection Platform"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:388
+#: templates/static/cookies-privacy.html:385
 msgid ""
 "The Survey Data Collection platform contains both a telephone number and "
 "email address which can be used for both queries and issues with the "
 "platform and survey hosted on the platform."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:390
+#: templates/static/cookies-privacy.html:387
 msgid "If you contact us via email, we will process the following data items"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:393
+#: templates/static/cookies-privacy.html:390
 msgid "IP address of the server from which the email was sent"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:394
+#: templates/static/cookies-privacy.html:391
 msgid "Any items of personal data within the email"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:398
+#: templates/static/cookies-privacy.html:395
 msgid "If you contact us via telephone, we will process the following data items"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:400
+#: templates/static/cookies-privacy.html:397
 msgid "Telephone number"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:401
+#: templates/static/cookies-privacy.html:398
 msgid "Name of the caller"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:402
+#: templates/static/cookies-privacy.html:399
 msgid "Any items of personal data disclosed during the call"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:406
+#: templates/static/cookies-privacy.html:403
 msgid "Who we share your personal data with"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:408
+#: templates/static/cookies-privacy.html:405
 msgid ""
 "We use several (1st and 3rd) parties to collect and process personal "
 "data. These include (but are not limited to) government departments and "
@@ -1317,113 +1323,113 @@ msgid ""
 "articles"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:411
+#: templates/static/cookies-privacy.html:408
 msgid "Approved Researcher Scheme"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:414
+#: templates/static/cookies-privacy.html:411
 msgid ""
 "Access to unpublished ONS research data by government organisations for "
 "statistical research"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:419
+#: templates/static/cookies-privacy.html:416
 msgid ""
 "Data is also processed by 3rd party IT companies who support our systems "
 "for the following purposes"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:433
+#: templates/static/cookies-privacy.html:430
 msgid "Cloud infrastructure"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:436
+#: templates/static/cookies-privacy.html:433
 msgid ""
 "Used to support the platform on which the Survey Data Collection service "
 "runs."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:443
+#: templates/static/cookies-privacy.html:440
 msgid "Email notification service"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:446
+#: templates/static/cookies-privacy.html:443
 msgid ""
 "A service used to send email messages to the active accounts registered "
 "to the Survey Data Collection service."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:453
+#: templates/static/cookies-privacy.html:450
 msgid "Secure file transfer"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:456
+#: templates/static/cookies-privacy.html:453
 msgid ""
 "This is used for the behind the scenes transfer of data that identify the"
 " businesses that have been selected for participation in a given survey."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:464
+#: templates/static/cookies-privacy.html:461
 msgid "How long we keep your data"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:466
+#: templates/static/cookies-privacy.html:463
 msgid "Log Retention"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:468
+#: templates/static/cookies-privacy.html:465
 msgid ""
 "Standard logs from the Survey Data Collection service are retained for a "
 "period of 30 days. Exceptional events may be retained for longer."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:470
+#: templates/static/cookies-privacy.html:467
 msgid ""
 "Our general retention period for data collected via annual surveys is 3 "
 "years."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:472
+#: templates/static/cookies-privacy.html:469
 msgid ""
 "Personal data used for account access will be retained as long as the "
 "account is active."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:474
+#: templates/static/cookies-privacy.html:471
 msgid "Your rights over your personal data"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:476
+#: templates/static/cookies-privacy.html:473
 msgid ""
 "The General Data Protection Regulation (GDPR) details eight rights of "
 "individuals"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:478
+#: templates/static/cookies-privacy.html:475
 msgid "The right to be informed"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:479
+#: templates/static/cookies-privacy.html:476
 msgid "The right of access"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:480
+#: templates/static/cookies-privacy.html:477
 msgid "The right to rectification"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:481
+#: templates/static/cookies-privacy.html:478
 msgid "The right to erasure"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:482
+#: templates/static/cookies-privacy.html:479
 msgid "The right to restrict processing"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:483
+#: templates/static/cookies-privacy.html:480
 msgid "The right to data portability"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:483
+#: templates/static/cookies-privacy.html:480
 msgid ""
 "This right only exists if the lawful basis used is either consent or "
 "contract. Neither the Survey Data Collection service nor any surveys "
@@ -1431,37 +1437,37 @@ msgid ""
 "this right is not applicable."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:484
+#: templates/static/cookies-privacy.html:481
 msgid "The right to object"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:485
+#: templates/static/cookies-privacy.html:482
 msgid "Rights in relation to automated decision making and profiling."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:485
+#: templates/static/cookies-privacy.html:482
 msgid "No automated decision making or profiling occurs at the personal level."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:487
+#: templates/static/cookies-privacy.html:484
 msgid "These rights are subject to exemptions."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:490
+#: templates/static/cookies-privacy.html:487
 msgid "Contacting the Data Protection Office"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:492
+#: templates/static/cookies-privacy.html:489
 msgid ""
 "The Data Protection Officer for the Office for National Statistics can be"
 " contacted as follows"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:500
+#: templates/static/cookies-privacy.html:497
 msgid "Contacting the Information Commissioner’s Office"
 msgstr ""
 
-#: templates/static/cookies-privacy.html:502
+#: templates/static/cookies-privacy.html:499
 msgid ""
 "We welcome the opportunity to be able to answer any questions or concerns"
 " you may have around the information provided here. If you are unhappy "
@@ -1470,14 +1476,10 @@ msgid ""
 " the Information Commissioner’s Office."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:510
+#: templates/static/cookies-privacy.html:507
 msgid ""
 "The Information Commissioner’s Office provides guidance to the public on "
 "raising a concern with an organisation at the following location"
-msgstr ""
-
-#: templates/static/privacy.html:9
-msgid "Privacy and data protection"
 msgstr ""
 
 #: templates/static/privacy.html:10
