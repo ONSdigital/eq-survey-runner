@@ -1,5 +1,8 @@
 import pytest
-from app.utilities.schema import get_allowed_languages, get_schema_name_from_census_params
+from app.utilities.schema import (
+    get_allowed_languages,
+    get_schema_name_from_census_params,
+)
 
 
 def test_transform_schema_name_good_scenarios():
