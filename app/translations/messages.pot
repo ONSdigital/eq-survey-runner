@@ -397,41 +397,41 @@ msgstr ""
 msgid "We've received your answers"
 msgstr ""
 
-#: templates/thank-you.html:8
+#: templates/thank-you.html:7
 msgid "Thank you for submitting your census"
 msgstr ""
 
-#: templates/thank-you.html:10
+#: templates/thank-you.html:9
 msgid "We have received your answers and you do not need to do anything else."
 msgstr ""
 
-#: templates/view-submission.html:8
+#: templates/view-submission.html:7
 msgid "Submission"
 msgstr ""
 
-#: templates/view-submission.html:11
+#: templates/view-submission.html:10
 msgid "Submitted answers"
 msgstr ""
 
-#: templates/view-submission.html:20
+#: templates/view-submission.html:19
 #, python-format
 msgid ""
 "Your answers were submitted for <span>%(ru_name)s</span> "
 "(%(trading_as_name)s) on %(submitted_time)s"
 msgstr ""
 
-#: templates/view-submission.html:25
+#: templates/view-submission.html:24
 #, python-format
 msgid ""
 "Your answers were submitted for <span>%(ru_name)s</span> on "
 "%(submitted_time)s"
 msgstr ""
 
-#: templates/view-submission.html:30
+#: templates/view-submission.html:29
 msgid "Transaction ID"
 msgstr ""
 
-#: templates/view-submission.html:37
+#: templates/view-submission.html:36
 msgid "Print this page"
 msgstr ""
 
@@ -514,23 +514,23 @@ msgid ""
 "the survey again."
 msgstr ""
 
-#: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:15
+#: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:14
 msgid "We use cookies to improve your experience of census.gov.uk"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:25
+#: templates/layouts/_questionnaire.html:24
 msgid "Previous"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:40
+#: templates/layouts/_questionnaire.html:39
 msgid "Save and continue"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:51
+#: templates/layouts/_questionnaire.html:50
 msgid "Can't complete this question?"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:52
+#: templates/layouts/_questionnaire.html:51
 msgid "Choose another section and return to this later"
 msgstr ""
 
@@ -559,59 +559,25 @@ msgid ""
 "v3.0%(class_close)s, except where otherwise stated"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:13
-#: templates/layouts/configs/_footer.html:66
-#: templates/static/contact-us.html:11
+#: templates/layouts/configs/_footer.html:12
+#: templates/static/contact-us.html:10
 msgid "Contact us"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:18
+#: templates/layouts/configs/_footer.html:17
 msgid "Help"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:27
+#: templates/layouts/configs/_footer.html:26
 msgid "Cookies"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:32 templates/static/privacy.html:10
+#: templates/layouts/configs/_footer.html:31 templates/static/privacy.html:9
 msgid "Privacy and data protection"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:37
-#: templates/layouts/configs/_footer.html:71
+#: templates/layouts/configs/_footer.html:36
 msgid "Accessibility"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:48
-msgid "Legal information"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:51
-msgid "Cookies and privacy"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:58
-msgid "About ONS"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:61
-msgid "What we do"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:78
-msgid "Statistics"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:81
-msgid "UK Statistics Authority"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:86
-msgid "Release calendar"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:91
-msgid "News"
 msgstr ""
 
 #: templates/layouts/configs/_save-sign-out-button.html:5
@@ -723,104 +689,104 @@ msgstr ""
 msgid "ONS Business Surveys"
 msgstr ""
 
-#: templates/static/contact-us.html:13
+#: templates/static/contact-us.html:12
 msgid ""
 "Contact us if you have any questions about filling in the census online "
 "or on paper. You can use any of these options if you need information or "
 "a census in an alternative format like Braille or large print."
 msgstr ""
 
-#: templates/static/contact-us.html:15
+#: templates/static/contact-us.html:14
 msgid "Telephone"
 msgstr ""
 
-#: templates/static/contact-us.html:16 templates/static/contact-us.html:44
-#: templates/static/contact-us.html:54
+#: templates/static/contact-us.html:15 templates/static/contact-us.html:43
+#: templates/static/contact-us.html:53
 msgid "We will have advisers available to help you at the following times:"
+msgstr ""
+
+#: templates/static/contact-us.html:17 templates/static/contact-us.html:45
+#: templates/static/contact-us.html:55
+msgid "Monday to Friday - 8am – 7pm"
 msgstr ""
 
 #: templates/static/contact-us.html:18 templates/static/contact-us.html:46
 #: templates/static/contact-us.html:56
-msgid "Monday to Friday - 8am – 7pm"
+msgid "Saturday - 8am - 1pm"
 msgstr ""
 
 #: templates/static/contact-us.html:19 templates/static/contact-us.html:47
 #: templates/static/contact-us.html:57
-msgid "Saturday - 8am - 1pm"
-msgstr ""
-
-#: templates/static/contact-us.html:20 templates/static/contact-us.html:48
-#: templates/static/contact-us.html:58
 msgid "Sunday - closed"
 msgstr ""
 
-#: templates/static/contact-us.html:25 templates/static/contact-us.html:30
-#: templates/static/privacy.html:124 templates/static/privacy.html:139
+#: templates/static/contact-us.html:24 templates/static/contact-us.html:29
+#: templates/static/privacy.html:123 templates/static/privacy.html:138
 msgid "Telephone: {telephone_number}"
 msgstr ""
 
-#: templates/static/contact-us.html:29
+#: templates/static/contact-us.html:28
 msgid "England"
 msgstr ""
 
-#: templates/static/contact-us.html:31
+#: templates/static/contact-us.html:30
 msgid "Wales"
 msgstr ""
 
-#: templates/static/contact-us.html:32
+#: templates/static/contact-us.html:31
 msgid "Telephone: {telephone_number} (Option 1 for Welsh, option 2 for English)"
 msgstr ""
 
-#: templates/static/contact-us.html:36
+#: templates/static/contact-us.html:35
 msgid "Other languages"
 msgstr ""
 
-#: templates/static/contact-us.html:37
+#: templates/static/contact-us.html:36
 msgid "If you need to speak to us in another language phone {telephone_number}"
 msgstr ""
 
-#: templates/static/contact-us.html:39
+#: templates/static/contact-us.html:38
 msgid "Text relay"
 msgstr ""
 
-#: templates/static/contact-us.html:40
+#: templates/static/contact-us.html:39
 msgid "NGT users dial 18001 followed by the phone number you need"
 msgstr ""
 
-#: templates/static/contact-us.html:42
+#: templates/static/contact-us.html:41
 msgid "SMS text message"
 msgstr ""
 
-#: templates/static/contact-us.html:43
+#: templates/static/contact-us.html:42
 msgid "Text 86677"
 msgstr ""
 
-#: templates/static/contact-us.html:52
+#: templates/static/contact-us.html:51
 msgid "Online"
 msgstr ""
 
-#: templates/static/contact-us.html:53
+#: templates/static/contact-us.html:52
 msgid "Web chat"
 msgstr ""
 
-#: templates/static/privacy.html:11
+#: templates/static/privacy.html:10
 msgid ""
 "The information you provide when you fill in your census rehearsal "
 "questionnaire is protected by law."
 msgstr ""
 
-#: templates/static/privacy.html:12
+#: templates/static/privacy.html:11
 msgid ""
 "Here we detail why we need your information. We also describe all the "
 "steps that we take to make sure your information and your privacy are "
 "safe."
 msgstr ""
 
-#: templates/static/privacy.html:15
+#: templates/static/privacy.html:14
 msgid "How and why we use your information"
 msgstr ""
 
-#: templates/static/privacy.html:17
+#: templates/static/privacy.html:16
 msgid ""
 "We collect information from your questionnaire under our statutory "
 "objective to promote and safeguard the production of official statistics "
@@ -830,14 +796,14 @@ msgid ""
 "research."
 msgstr ""
 
-#: templates/static/privacy.html:19
+#: templates/static/privacy.html:18
 msgid ""
 "Every 10 years, the census gathers vital information that helps the "
 "government and local authorities plan services like health services, "
 "roads and libraries."
 msgstr ""
 
-#: templates/static/privacy.html:21
+#: templates/static/privacy.html:20
 msgid ""
 "By running a rehearsal for Census 2021, we can test our processes, "
 "systems and services and make sure everything goes smoothly for the real "
@@ -847,7 +813,7 @@ msgid ""
 "researchers from other organisations."
 msgstr ""
 
-#: templates/static/privacy.html:23
+#: templates/static/privacy.html:22
 msgid ""
 "We may occasionally record information about a property or an individual,"
 " in the interests of safeguarding the wellbeing of both those being "
@@ -856,24 +822,24 @@ msgid ""
 "personal data needed to meet these purposes."
 msgstr ""
 
-#: templates/static/privacy.html:25
+#: templates/static/privacy.html:24
 msgid ""
 "For online completion, we’ll collect information about how people fill in"
 " their questionnaires online to provide us with knowledge of how to "
 "improve our online services."
 msgstr ""
 
-#: templates/static/privacy.html:28
+#: templates/static/privacy.html:27
 msgid "Who can access the information?"
 msgstr ""
 
-#: templates/static/privacy.html:30
+#: templates/static/privacy.html:29
 msgid ""
 "During the rehearsal we’ll employ third-party providers to assist us with"
 " parts of the operation. These third parties work under our instruction."
 msgstr ""
 
-#: templates/static/privacy.html:31
+#: templates/static/privacy.html:30
 msgid ""
 "We treat the information we hold with respect, keeping it secure and "
 "confidential. Data may be made available to approved researchers where "
@@ -883,18 +849,18 @@ msgid ""
 "href='{url2}'>approved researchers</a> who we’ve granted access to."
 msgstr ""
 
-#: templates/static/privacy.html:34
+#: templates/static/privacy.html:33
 msgid "How long are personal data kept?"
 msgstr ""
 
-#: templates/static/privacy.html:36
+#: templates/static/privacy.html:35
 msgid ""
 "Data protection law requires that personal data are kept for no longer "
 "than is needed to fulfil the purposes for which they were originally "
 "collected."
 msgstr ""
 
-#: templates/static/privacy.html:38
+#: templates/static/privacy.html:37
 msgid ""
 "The law allows that information held for statistical purposes only, such "
 "as information from your questionnaire, may be kept for longer periods. "
@@ -906,7 +872,7 @@ msgid ""
 "and will be deleted when they are no longer required."
 msgstr ""
 
-#: templates/static/privacy.html:40
+#: templates/static/privacy.html:39
 msgid ""
 "Safeguarding data, such as information about a property or an individual,"
 " will be held for the duration of the rehearsal. Most of the information "
@@ -915,7 +881,7 @@ msgid ""
 "safeguarding purposes."
 msgstr ""
 
-#: templates/static/privacy.html:42
+#: templates/static/privacy.html:41
 msgid ""
 "Metrics containing information about how people fill in their "
 "questionnaires will be held in an identifiable form only until the "
@@ -924,11 +890,11 @@ msgid ""
 "services."
 msgstr ""
 
-#: templates/static/privacy.html:45
+#: templates/static/privacy.html:44
 msgid "How the law protects your information"
 msgstr ""
 
-#: templates/static/privacy.html:47
+#: templates/static/privacy.html:46
 msgid ""
 "The <a href='{url}'>General Data Protection Regulation</a> and the <a "
 "href='{url2}'>Data Protection Act 2018</a>determine how, when and why any"
@@ -940,7 +906,7 @@ msgid ""
 "information."
 msgstr ""
 
-#: templates/static/privacy.html:49
+#: templates/static/privacy.html:48
 msgid ""
 "The ONS is a statutory body, meaning it was created by legislation, "
 "specifically the <a href='{url}'>Statistics and Registration Service Act "
@@ -950,7 +916,7 @@ msgid ""
 "Act or other UK legislation."
 msgstr ""
 
-#: templates/static/privacy.html:51
+#: templates/static/privacy.html:50
 msgid ""
 "The census rehearsal questionnaire has been assessed as compatible with "
 "the <a href='{url}'>Human Rights Act 1998</a>, specifically Article 8 "
@@ -958,17 +924,17 @@ msgid ""
 "of thought, conscience and religion) of the convention rights."
 msgstr ""
 
-#: templates/static/privacy.html:54
+#: templates/static/privacy.html:53
 msgid "Legal basis for processing your data"
 msgstr ""
 
-#: templates/static/privacy.html:56
+#: templates/static/privacy.html:55
 msgid ""
 "Data protection legislation requires that all processing of personal data"
 " is undertaken under one or more conditions."
 msgstr ""
 
-#: templates/static/privacy.html:58
+#: templates/static/privacy.html:57
 msgid ""
 "For the census rehearsal, we’ll process information from your "
 "questionnaire, information about a property or an individual and "
@@ -976,14 +942,14 @@ msgid ""
 "following condition:"
 msgstr ""
 
-#: templates/static/privacy.html:61
+#: templates/static/privacy.html:60
 msgid ""
 "processing is necessary for the performance of a task carried out in the "
 "public interest or in the exercise of official authority vested in the "
 "controller."
 msgstr ""
 
-#: templates/static/privacy.html:64
+#: templates/static/privacy.html:63
 msgid ""
 "Under data protection legislation, an additional condition is required "
 "for the processing of special category personal data. These data include "
@@ -992,7 +958,7 @@ msgid ""
 "sexual orientation. They also include genetic and biometric data."
 msgstr ""
 
-#: templates/static/privacy.html:66
+#: templates/static/privacy.html:65
 msgid ""
 "For the rehearsal, we’ll process special category personal data on race, "
 "ethnicity, religion, philosophical beliefs and sexual orientation. "
@@ -1000,29 +966,29 @@ msgid ""
 "conditions:"
 msgstr ""
 
-#: templates/static/privacy.html:69
+#: templates/static/privacy.html:68
 msgid ""
 "processing is necessary for archiving in the public interest, scientific "
 "or historical research purposes or statistical purposes based on UK law."
 msgstr ""
 
-#: templates/static/privacy.html:70 templates/static/privacy.html:76
+#: templates/static/privacy.html:69 templates/static/privacy.html:75
 msgid "processing is necessary for reasons of substantial public interest."
 msgstr ""
 
-#: templates/static/privacy.html:73
+#: templates/static/privacy.html:72
 msgid ""
 "We’ll process special category data on information about a property or an"
 " individual under the following condition:"
 msgstr ""
 
-#: templates/static/privacy.html:79
+#: templates/static/privacy.html:78
 msgid ""
 "We’ll ensure the principle of data minimisation and have measures in "
 "place to delete or de-identify personal data where appropriate."
 msgstr ""
 
-#: templates/static/privacy.html:81
+#: templates/static/privacy.html:80
 msgid ""
 "The census rehearsal gives us invaluable information about the systems "
 "and processes required for Census 2021. It’ll help us complete one of our"
@@ -1030,18 +996,18 @@ msgid ""
 "provide numerous benefits for the wider society."
 msgstr ""
 
-#: templates/static/privacy.html:83
+#: templates/static/privacy.html:82
 msgid ""
 "There’s substantial public interest in the collection of safeguarding "
 "data to ensure the safety of both interviewers and respondents. We’re "
 "required to ensure the safety of our staff and the public."
 msgstr ""
 
-#: templates/static/privacy.html:86
+#: templates/static/privacy.html:85
 msgid "Your rights"
 msgstr ""
 
-#: templates/static/privacy.html:88
+#: templates/static/privacy.html:87
 msgid ""
 "As a data subject (someone whose personal data we hold), you have rights "
 "available to you under data protection law. If you wish to exercise any "
@@ -1051,7 +1017,7 @@ msgid ""
 " out in the Data Protection Act 2018."
 msgstr ""
 
-#: templates/static/privacy.html:90
+#: templates/static/privacy.html:89
 msgid ""
 "You have the right to request from any controller that holds your "
 "personal data access to the information they hold about you. You can ask "
@@ -1059,64 +1025,64 @@ msgid ""
 "You have the right to object to your personal data being processed."
 msgstr ""
 
-#: templates/static/privacy.html:92
+#: templates/static/privacy.html:91
 msgid "You have the right, in some circumstances, to ask for any controller to:"
 msgstr ""
 
-#: templates/static/privacy.html:95
+#: templates/static/privacy.html:94
 msgid "erase any personal data they may hold about you"
 msgstr ""
 
-#: templates/static/privacy.html:96
+#: templates/static/privacy.html:95
 msgid "stop processing your personal data"
 msgstr ""
 
-#: templates/static/privacy.html:97
+#: templates/static/privacy.html:96
 msgid "pass any information they hold about you to another controller"
 msgstr ""
 
-#: templates/static/privacy.html:100
+#: templates/static/privacy.html:99
 msgid ""
 "You can get further information on the rights available to you and the "
 "circumstances under which you can exercise them from the <a "
 "href='{url}'>Information Commissioner’s Office</a>."
 msgstr ""
 
-#: templates/static/privacy.html:103
+#: templates/static/privacy.html:102
 msgid "The data controller"
 msgstr ""
 
-#: templates/static/privacy.html:105
+#: templates/static/privacy.html:104
 msgid ""
 "The controller is the person or organisation that decides which personal "
 "data will be processed and for what purpose. For the census rehearsal, "
 "the ONS is the controller and makes those decisions."
 msgstr ""
 
-#: templates/static/privacy.html:107
+#: templates/static/privacy.html:106
 msgid "You can contact us by:"
 msgstr ""
 
-#: templates/static/privacy.html:109
+#: templates/static/privacy.html:108
 #, python-format
 msgid "Telephone: %(telephone_number)s"
 msgstr ""
 
-#: templates/static/privacy.html:111
+#: templates/static/privacy.html:110
 #, python-format
 msgid "Email: %(email_address)s"
 msgstr ""
 
-#: templates/static/privacy.html:113 templates/static/privacy.html:128
-#: templates/static/privacy.html:143
+#: templates/static/privacy.html:112 templates/static/privacy.html:127
+#: templates/static/privacy.html:142
 msgid "Post:"
 msgstr ""
 
-#: templates/static/privacy.html:118
+#: templates/static/privacy.html:117
 msgid "How to contact the data protection officer"
 msgstr ""
 
-#: templates/static/privacy.html:120
+#: templates/static/privacy.html:119
 msgid ""
 "Our data protection officer is the person charged with providing us with "
 "advice and guidance on the ways we can best protect the information we "
@@ -1125,19 +1091,19 @@ msgid ""
 "our use of your data, or wish to exercise any of your rights."
 msgstr ""
 
-#: templates/static/privacy.html:122
+#: templates/static/privacy.html:121
 msgid "You can contact the data protection officer by:"
 msgstr ""
 
-#: templates/static/privacy.html:126 templates/static/privacy.html:141
+#: templates/static/privacy.html:125 templates/static/privacy.html:140
 msgid "Email: {email_address}"
 msgstr ""
 
-#: templates/static/privacy.html:133
+#: templates/static/privacy.html:132
 msgid "The Information Commissioner’s Office"
 msgstr ""
 
-#: templates/static/privacy.html:135
+#: templates/static/privacy.html:134
 msgid ""
 "The Information Commissioner’s Office (ICO) is the independent "
 "organisation tasked with regulating data protection in the UK. The ICO "
@@ -1146,7 +1112,7 @@ msgid ""
 "use of your information."
 msgstr ""
 
-#: templates/static/privacy.html:137
+#: templates/static/privacy.html:136
 msgid "You can contact the ICO by:"
 msgstr ""
 
