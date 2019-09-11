@@ -88,8 +88,6 @@ def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
         payload['case_id'] = metadata['case_id']
     if metadata.get('case_ref'):
         payload['case_ref'] = metadata['case_ref']
-    if metadata.get('display_address'):
-        payload['display_address'] = metadata['display_address']
 
     if schema.json['data_version'] == '0.0.3':
         payload['data'] = {
@@ -124,6 +122,8 @@ def _build_metadata(metadata):
         downstream_metadata['ref_period_start_date'] = metadata['ref_p_start_date']
     if metadata.get('ref_p_end_date'):
         downstream_metadata['ref_period_end_date'] = metadata['ref_p_end_date']
+    if metadata.get('display_address'):
+        downstream_metadata['display_address'] = metadata['display_address']
 
     return downstream_metadata
 
