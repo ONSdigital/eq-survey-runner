@@ -2,6 +2,7 @@
 {% import 'macros/helpers.html' as helpers %}
 
 {% set survey_title = survey_title or _("ONS Business Surveys") %}
+{% set use_transactional_footer = true %}
 
 {% block main %}
   {% do page | setAttribute("feedback", "") %}
