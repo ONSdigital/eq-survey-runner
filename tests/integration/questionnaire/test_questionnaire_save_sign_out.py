@@ -127,6 +127,7 @@ class TestSaveSignOut(IntegrationTestCase):
         self.post({'visitor-answer': 'No, I do not need to add anyone'})
 
         # And I sign out
+        self.assertInUrl('/who-lives-here-section-summary')
         self.post(action='sign_out')
 
         # When I launch the survey again, I should be taken to the who lives here
