@@ -145,6 +145,10 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.post({'another-anyone-else': 'No'})
 
+        self.assertInBody('This section is now complete')
+
+        self.post()
+
         self.post()
 
         self.assertInUrl('thank-you')
@@ -161,6 +165,10 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
         self.post(action='save_continue')
 
         self.post({'another-anyone-else': 'No'})
+
+        self.assertInBody('This section is now complete')
+
+        self.post()
 
         self.post()
 

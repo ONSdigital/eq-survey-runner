@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-06 12:04+0100\n"
+"POT-Creation-Date: 2019-09-10 16:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -309,8 +309,7 @@ msgstr ""
 msgid "It is now safe to close this window"
 msgstr ""
 
-#: templates/errors/session-expired.html:22 templates/feedback_sent.html:12
-#: templates/signed-out.html:9
+#: templates/feedback_sent.html:12 templates/signed-out.html:9
 msgid "Return to your account"
 msgstr ""
 
@@ -507,19 +506,31 @@ msgstr ""
 msgid "To help protect your information we have signed you out"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:16
+#: templates/errors/session-expired.html:22
+#, python-format
+msgid ""
+"We have saved your progress and you will need to <a "
+"href=\"%(account_service_link)s\">enter your unique code</a> to access "
+"the survey again."
+msgstr ""
+
+#: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:15
+msgid "We use cookies to improve your experience of census.gov.uk"
+msgstr ""
+
+#: templates/layouts/_questionnaire.html:25
 msgid "Previous"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:31
+#: templates/layouts/_questionnaire.html:40
 msgid "Save and continue"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:42
+#: templates/layouts/_questionnaire.html:51
 msgid "Can't complete this question?"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:43
+#: templates/layouts/_questionnaire.html:52
 msgid "Choose another section and return to this later"
 msgstr ""
 
@@ -600,10 +611,6 @@ msgstr ""
 
 #: templates/layouts/configs/_save-sign-out-button.html:32
 msgid "Save and complete later"
-msgstr ""
-
-#: templates/layouts/configs/_service-links.html:8
-msgid "My account"
 msgstr ""
 
 #: templates/partials/answer-guidance.html:13

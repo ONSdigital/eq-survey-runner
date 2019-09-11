@@ -1,4 +1,5 @@
 {% extends "layout/_template.njk" %}
+{% from "components/cookies-banner/_macro.njk" import onsCookiesBanner %}
 
 {% set form = {
   "attributes": {
@@ -14,7 +15,6 @@
 } %}
 
 {% include 'layouts/configs/_languages.html' %}
-{% include 'layouts/configs/_service-links.html' %}
 {% include 'layouts/configs/_save-sign-out-button.html' %}
 {% include 'layouts/configs/_footer.html' %}
 {% include 'layouts/configs/_feedback.html' %}
@@ -26,6 +26,14 @@
 
 {% block preHeader %}
   <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}"/>
+
+  {{
+    onsCookiesBanner({
+        "html": _('We use cookies to improve your experience of census.gov.uk'),
+        "secondaryButtonUrl": '#'
+    })
+  }}
+
 {% endblock %}
 
 
@@ -62,6 +70,9 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
   {% endif %}
+
+
+
 {% endblock %}
 
 
