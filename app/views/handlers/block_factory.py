@@ -16,6 +16,7 @@ from app.views.handlers.summary import Summary
 BLOCK_MAPPINGS = {
     'Question': Question,
     'ConfirmationQuestion': Question,
+    'ListCollectorDrivingQuestion': Question,
     'ListCollector': ListCollector,
     'ListAddQuestion': ListAddQuestion,
     'ListEditQuestion': ListEditQuestion,
