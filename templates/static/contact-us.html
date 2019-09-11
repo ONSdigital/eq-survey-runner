@@ -2,7 +2,7 @@
 {% import 'macros/helpers.html' as helpers %}
 {% from "components/button/_macro.njk" import onsButton %}
 
-{% set survey_title  = survey_title or _("ONS Business Surveys") %}
+{% set survey_title = survey_title or _("ONS Business Surveys") %}
 
 {% block main %}
   {% do page | setAttribute("feedback", "") %}
@@ -62,7 +62,7 @@
     onsButton({
         "type": 'button',
         "text": 'Start live chat',
-        "url": 'https://sdc-prototypes.netlify.com/webchat'
+        "url": '#'
     })
   }}
 

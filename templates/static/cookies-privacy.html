@@ -1,7 +1,7 @@
 {% extends 'layouts/_base.html' %}
 {% from "components/table/_macro.njk" import onsTable %}
 
-{% set survey_title  = survey_title or _("ONS Business Surveys") %}
+{% set survey_title = survey_title or _("ONS Business Surveys") %}
 
 {% block main %}
   {% do page | setAttribute("feedback", "") %}
