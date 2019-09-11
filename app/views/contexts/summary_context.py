@@ -89,17 +89,21 @@ class SummaryContext:
         list_summaries = []
 
         for list_collector_block in visible_list_collector_blocks:
-            add_link_list_name = list_collector_block['for_list']
-            add_link_block_id = list_collector_block['add_block']['id']
+            add_link = url_for(
+                'questionnaire.block',
+                list_name=list_collector_block['for_list'],
+                block_id=list_collector_block['add_block']['id'],
+            )
 
             if list_collector_block['id'] not in section_path_block_ids:
-                driving_question_block = QuestionnaireSchema.get_driving_question_for_section(
+                driving_question_block = QuestionnaireSchema.get_driving_question_for_list(
                     section, list_collector_block['for_list']
                 )
 
                 if driving_question_block:
-                    add_link_list_name = None
-                    add_link_block_id = driving_question_block['id']
+                    add_link = url_for(
+                        'questionnaire.block', block_id=driving_question_block['id']
+                    )
 
             rendered_summary = self._placeholder_renderer.render(
                 list_collector_block['summary'], current_location.list_item_id
@@ -107,11 +111,7 @@ class SummaryContext:
 
             list_summary = {
                 'title': rendered_summary['title'],
-                'add_link': url_for(
-                    'questionnaire.block',
-                    list_name=add_link_list_name,
-                    block_id=add_link_block_id,
-                ),
+                'add_link': add_link,
                 'add_link_text': rendered_summary['add_link_text'],
                 'empty_list_text': rendered_summary['empty_list_text'],
                 'list_items': build_list_items_summary_context(
