@@ -132,7 +132,9 @@ def test_display_address_should_be_set_in_payload_metadata(
         fake_questionnaire_schema, fake_questionnaire_store, {}
     )
 
-    assert answer_object['metadata']['display_address'], fake_questionnaire_store.metadata['display_address']
+    assert answer_object['metadata'][
+        'display_address'
+    ], fake_questionnaire_store.metadata['display_address']
 
 
 def test_converter_raises_runtime_error_for_unsupported_version(
