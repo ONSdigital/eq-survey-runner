@@ -294,7 +294,11 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     @staticmethod
     def is_question_block_type(block_type):
-        return block_type in ['Question', 'ListCollectorDrivingQuestion', 'ConfirmationQuestion']
+        return block_type in [
+            'Question',
+            'ListCollectorDrivingQuestion',
+            'ConfirmationQuestion',
+        ]
 
     def _parse_schema(self):
         self._sections_by_id = self._get_sections_by_id()
