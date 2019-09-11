@@ -1,6 +1,7 @@
 from flask import url_for
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.views.contexts.summary.group import Group
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.views.contexts.list_collector import build_list_items_summary_context
@@ -20,16 +21,23 @@ class SummaryContext:
             list_store=self._list_store,
         )
 
-    def build_groups_for_section(self, section_id, list_name=None, list_item_id=None):
+        self._placeholder_renderer = PlaceholderRenderer(
+            language=self._language,
+            schema=self._schema,
+            answer_store=self._answer_store,
+            metadata=self._metadata,
+        )
+
+    def build_groups_for_location(self, location):
         """
-        Build a groups context for a particular section and list_item_id.
+        Build a groups context for a particular location.
 
         Does not support generating multiple sections at a time (i.e. passing no list_item_id for repeating section).
         """
-        section = self._schema.get_section(section_id)
-        section_path = self._path_finder.routing_path(section_id, list_item_id)
-
-        location = Location(section_id, list_name=list_name, list_item_id=list_item_id)
+        section = self._schema.get_section(location.section_id)
+        section_path = self._path_finder.routing_path(
+            location.section_id, location.list_item_id
+        )
 
         return [
             Group(
@@ -50,9 +58,9 @@ class SummaryContext:
         all_groups = []
 
         for section in self._schema.get_sections():
-            section_id = section['id']
-
-            all_groups.extend(self.build_groups_for_section(section_id))
+            all_groups.extend(
+                self.build_groups_for_location(Location(section_id=section['id']))
+            )
 
         return all_groups
 
@@ -69,58 +77,41 @@ class SummaryContext:
         }
         return context
 
-    def section_summary(self, current_location):
-        section_id = current_location.section_id
+    def get_list_summaries(self, current_location):
         section = self._schema.get_section(current_location.section_id)
-        list_item_id = current_location.list_item_id
-        list_name = current_location.list_name
-        block = self._schema.get_block(current_location.block_id)
-
-        groups = self.build_groups_for_section(section_id, list_name, list_item_id)
-        context = {
-            'summary': {
-                'groups': groups,
-                'answers_are_editable': True,
-                'collapsible': block.get('collapsible', False),
-                'summary_type': 'SectionSummary',
-            }
-        }
-
-        title = self._schema.get_section(section_id).get('title')
-
-        placeholder_renderer = PlaceholderRenderer(
-            language=self._language,
-            schema=self._schema,
-            answer_store=self._answer_store,
-            metadata=self._metadata,
-        )
-
-        if list_item_id:
-
-            repeating_title = self._schema.get_repeating_title_for_section(section_id)
-            if repeating_title:
-                title = placeholder_renderer.render_placeholder(
-                    repeating_title, list_item_id
-                )
-
-        list_collector_blocks = self._schema.get_visible_list_blocks_for_section(
+        visible_list_collector_blocks = self._schema.get_visible_list_blocks_for_section(
             section
         )
-
+        section_path = self._path_finder.routing_path(
+            section['id'], current_location.list_item_id
+        )
+        section_path_block_ids = [location.block_id for location in section_path]
         list_summaries = []
 
-        for list_collector_block in list_collector_blocks:
-            rendered_summary = placeholder_renderer.render(
-                list_collector_block['summary'], list_item_id
+        for list_collector_block in visible_list_collector_blocks:
+            add_link = url_for(
+                'questionnaire.block',
+                list_name=list_collector_block['for_list'],
+                block_id=list_collector_block['add_block']['id'],
+            )
+
+            if list_collector_block['id'] not in section_path_block_ids:
+                driving_question_block = QuestionnaireSchema.get_driving_question_for_list(
+                    section, list_collector_block['for_list']
+                )
+
+                if driving_question_block:
+                    add_link = url_for(
+                        'questionnaire.block', block_id=driving_question_block['id']
+                    )
+
+            rendered_summary = self._placeholder_renderer.render(
+                list_collector_block['summary'], current_location.list_item_id
             )
 
             list_summary = {
                 'title': rendered_summary['title'],
-                'add_link': url_for(
-                    'questionnaire.block',
-                    list_name=list_collector_block['for_list'],
-                    block_id=list_collector_block['add_block']['id'],
-                ),
+                'add_link': add_link,
                 'add_link_text': rendered_summary['add_link_text'],
                 'empty_list_text': rendered_summary['empty_list_text'],
                 'list_items': build_list_items_summary_context(
@@ -134,6 +125,31 @@ class SummaryContext:
             }
             list_summaries.append(list_summary)
 
-        context['summary'].update({'title': title, 'list_summaries': list_summaries})
+        return list_summaries
 
-        return context
+    def get_title_for_location(self, location):
+        title = self._schema.get_section(location.section_id).get('title')
+
+        if location.list_item_id:
+            repeating_title = self._schema.get_repeating_title_for_section(
+                location.section_id
+            )
+            if repeating_title:
+                title = self._placeholder_renderer.render_placeholder(
+                    repeating_title, location.list_item_id
+                )
+        return title
+
+    def section_summary(self, current_location):
+        block = self._schema.get_block(current_location.block_id)
+
+        return {
+            'summary': {
+                'groups': self.build_groups_for_location(current_location),
+                'answers_are_editable': True,
+                'collapsible': block.get('collapsible', False),
+                'summary_type': 'SectionSummary',
+                'title': self.get_title_for_location(current_location),
+                'list_summaries': self.get_list_summaries(current_location),
+            }
+        }
