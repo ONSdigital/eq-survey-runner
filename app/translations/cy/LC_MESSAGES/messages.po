@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-04 15:21+0100\n"
-"PO-Revision-Date: 2019-09-09 11:22\n"
+"POT-Creation-Date: 2019-09-09 14:31+0100\n"
+"PO-Revision-Date: 2019-09-11 07:07\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -56,6 +56,18 @@ msgstr "Ddim yn ddewis dilys"
 #: app/forms/fields.py:231
 msgid "Select an answer"
 msgstr "Dewiswch ateb"
+
+#: app/helpers/template_helper.py:17
+msgid "Office for National Statistics logo"
+msgstr ""
+
+#: app/helpers/template_helper.py:26 app/helpers/template_helper.py:34
+msgid "Census 2021"
+msgstr ""
+
+#: app/helpers/template_helper.py:30
+msgid "Northern Ireland Statistics and Research Agency logo"
+msgstr ""
 
 #: app/validation/error_messages.py:5 app/validation/error_messages.py:6
 #: app/validation/error_messages.py:7 app/validation/error_messages.py:8
@@ -307,8 +319,7 @@ msgstr "Cyflwynwyd yn llwyddiannus"
 msgid "It is now safe to close this window"
 msgstr "Mae nawr yn ddiogel i gau'r ffenestr hon"
 
-#: templates/errors/session-expired.html:22 templates/feedback_sent.html:12
-#: templates/signed-out.html:9
+#: templates/feedback_sent.html:12 templates/signed-out.html:9
 msgid "Return to your account"
 msgstr "Dychwelyd i'ch cyfrif"
 
@@ -499,6 +510,18 @@ msgstr "Mae eich sesiwn wedi dod i ben"
 msgid "To help protect your information we have signed you out"
 msgstr "Er mwyn helpu i ddiogelu eich gwybodaeth rydym wedi'ch allgofnodi"
 
+#: templates/errors/session-expired.html:22
+msgid "We have saved your progress and you will need to "
+msgstr ""
+
+#: templates/errors/session-expired.html:23
+msgid "enter your unique code"
+msgstr ""
+
+#: templates/errors/session-expired.html:24
+msgid " to access the survey again."
+msgstr ""
+
 #: templates/layouts/_questionnaire.html:16
 msgid "Previous"
 msgstr "Blaenorol"
@@ -507,11 +530,11 @@ msgstr "Blaenorol"
 msgid "Save and continue"
 msgstr "Cadw a pharhau"
 
-#: templates/layouts/_questionnaire.html:43
+#: templates/layouts/_questionnaire.html:42
 msgid "Can't complete this question?"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:44
+#: templates/layouts/_questionnaire.html:43
 msgid "Choose another section and return to this later"
 msgstr ""
 
@@ -539,7 +562,8 @@ msgid "All content is available under the %(class_open)sOpen Government Licence 
 msgstr "Mae'r holl gynnwys ar gael o dan %(class_open)s y Drwydded Llywodraeth Leol v3.0 %(class_close)s, oni bai y nodir fel arall"
 
 #: templates/layouts/configs/_footer.html:13
-#: templates/layouts/configs/_footer.html:44 templates/static/contact-us.html:9
+#: templates/layouts/configs/_footer.html:44
+#: templates/static/contact-us.html:10
 msgid "Contact us"
 msgstr "Cysylltu â ni"
 
@@ -689,583 +713,955 @@ msgstr "Dileu"
 msgid "Remove {item_name}"
 msgstr "Tynnu {item_name}"
 
-#: templates/static/contact-us.html:4 templates/static/cookies-privacy.html:4
+#: templates/static/contact-us.html:5 templates/static/cookies-privacy.html:4
+#: templates/static/privacy.html:4
 msgid "ONS Business Surveys"
 msgstr "Arolygon Busnes y SYG"
 
-#: templates/static/contact-us.html:11
-#: templates/static/cookies-privacy.html:282
-#: templates/static/cookies-privacy.html:492
-#: templates/static/cookies-privacy.html:503
+#: templates/static/contact-us.html:12
+msgid "Contact us if you have any questions about filling in the census online or on paper.\n"
+"  You can use any of these options if you need information or a census in an alternative format like Braille or large print."
+msgstr ""
+
+#: templates/static/contact-us.html:15
+#: templates/static/cookies-privacy.html:285
+#: templates/static/cookies-privacy.html:495
+#: templates/static/cookies-privacy.html:506
 msgid "Telephone"
 msgstr "Ffôn"
 
-#: templates/static/contact-us.html:16
-#, python-format
-msgid "Please quote the reference <b>%(ru_ref)s</b> when contacting ONS about this survey."
-msgstr "Dyfynnwch y cyfeirnod <b>% (ru_ref) s </ b> wrth gysylltu â'r SYG am yr arolwg hwn."
+#: templates/static/contact-us.html:16 templates/static/contact-us.html:36
+#: templates/static/contact-us.html:46
+msgid "We will have advisers available to help you at the following times:"
+msgstr ""
 
-#: templates/static/contact-us.html:18
-#, python-format
-msgid "Your Survey ID is <b>%(survey_id)s</b>."
-msgstr "Eich ID Arolwg yw <b>%(survey_id)s</b>."
+#: templates/static/contact-us.html:18 templates/static/contact-us.html:38
+#: templates/static/contact-us.html:48
+msgid "Monday to Friday - 8am – 7pm"
+msgstr ""
 
-#: templates/static/contact-us.html:22
-msgid "Opening hours"
-msgstr "Oriau agor"
+#: templates/static/contact-us.html:19 templates/static/contact-us.html:39
+#: templates/static/contact-us.html:49
+msgid "Saturday - 8am - 1pm"
+msgstr ""
+
+#: templates/static/contact-us.html:20 templates/static/contact-us.html:40
+#: templates/static/contact-us.html:50
+msgid "Sunday - closed"
+msgstr ""
+
+#: templates/static/contact-us.html:23
+msgid "England"
+msgstr ""
+
+#: templates/static/contact-us.html:24 templates/static/privacy.html:156
+#: templates/static/privacy.html:178 templates/static/privacy.html:202
+#, python-format
+msgid "Telephone: %(telephone_number)s"
+msgstr ""
 
 #: templates/static/contact-us.html:25
-msgid "Monday to Thursday 8:30am – 5:00pm"
-msgstr "Dydd Llun i ddydd Iau 8:30am - 5:00pm"
+msgid "Wales"
+msgstr ""
 
 #: templates/static/contact-us.html:26
-msgid "Friday 8:30am - 4:30pm"
-msgstr "Dydd Gwener 8:30am - 4:30pm"
+#, python-format
+msgid "Telephone: %(telephone_number)s (Option 1 for Welsh, option 2 for English)"
+msgstr ""
+
+#: templates/static/contact-us.html:28
+msgid "Other languages"
+msgstr ""
 
 #: templates/static/contact-us.html:29
-msgid "This office is closed during public holidays"
-msgstr "Mae'r swyddfa hon ar gau yn ystod gwyliau cyhoeddus"
+#, python-format
+msgid "If you need to speak to us in another language phone %(telephone_number)s"
+msgstr ""
 
 #: templates/static/contact-us.html:31
-#: templates/static/cookies-privacy.html:283
-#: templates/static/cookies-privacy.html:493
-#: templates/static/cookies-privacy.html:505
-msgid "Email"
-msgstr "E-bost"
+msgid "Text relay"
+msgstr ""
+
+#: templates/static/contact-us.html:32
+msgid "NGT users dial 18001 followed by the phone number you need"
+msgstr ""
+
+#: templates/static/contact-us.html:34
+msgid "SMS text message"
+msgstr ""
 
 #: templates/static/contact-us.html:35
-msgid "Post"
-msgstr "Anfon"
+msgid "Text 86677"
+msgstr ""
 
-#: templates/static/cookies-privacy.html:9
+#: templates/static/contact-us.html:44
+msgid "Online"
+msgstr ""
+
+#: templates/static/contact-us.html:45
+msgid "Web chat"
+msgstr ""
+
+#: templates/static/cookies-privacy.html:10
+msgid "pri"
+msgstr ""
+
+#: templates/static/cookies-privacy.html:12
 msgid "Cookies and Privacy"
 msgstr "Cwcis a phreifatrwydd"
 
-#: templates/static/cookies-privacy.html:11
+#: templates/static/cookies-privacy.html:14
 msgid "The Office for National Statistics (ONS) has created this cookies and privacy statement in order to demonstrate our firm commitment to privacy."
 msgstr "Mae'r Swyddfa Ystadegau Gwladol (y SYG) wedi creu'r cwcis a'r datganiad preifatrwydd hwn er mwyn dangos ein hymrwymiad cadarn i breifatrwydd."
 
-#: templates/static/cookies-privacy.html:13
+#: templates/static/cookies-privacy.html:16
 msgid "The following is a description of what data is collected when you use the Survey Data Collection (SDC) service, how it is stored and what it is used for."
 msgstr "Mae'r canlynol yn ddisgrifiad o ba ddata a gesglir pan fyddwch chi'n defnyddio'r gwasanaeth Casglu Data Arolwg (SDC), sut y cânt eu storio ac i ba ddiben y maent yn cael eu defnyddio."
 
-#: templates/static/cookies-privacy.html:15
+#: templates/static/cookies-privacy.html:18
 msgid "Privacy"
 msgstr "Preifatrwydd"
 
-#: templates/static/cookies-privacy.html:17
+#: templates/static/cookies-privacy.html:20
 msgid "Your privacy is very important to us. We comply with confidentiality requirements set out in the Statistics and Registration Service Act 2007 and the Data Protection Act 1998."
 msgstr "Mae eich preifatrwydd yn bwysig iawn i ni. Rydym yn cydymffurfio â gofynion cyfrinachedd a nodir yn Neddf y Gwasanaeth Ystadegau a Chofrestru 2007 a Deddf Diogelu Data 1998."
 
-#: templates/static/cookies-privacy.html:19
+#: templates/static/cookies-privacy.html:22
 msgid "We can only use your information for research and statistical purposes. None of your personal information is disclosed through our statistics."
 msgstr "Gallwn ddefnyddio'ch gwybodaeth yn unig ar gyfer dibenion ymchwil ac ystadegol. Ni ddatgelir dim o'ch gwybodaeth bersonol trwy ein hystadegau."
 
-#: templates/static/cookies-privacy.html:21
+#: templates/static/cookies-privacy.html:24
 msgid "Security"
 msgstr "Diogelwch"
 
-#: templates/static/cookies-privacy.html:23
+#: templates/static/cookies-privacy.html:26
 msgid "We ensure that the information you provide is kept safe and secure. We have security measures in place to protect the loss, misuse and alteration of information under our control."
 msgstr "Rydym yn sicrhau bod y wybodaeth a ddarperir gennych yn cael ei chadw'n ddiogel. Mae gennym fesurau diogelwch ar waith i ddiogelu colled, camddefnydd ac addasu gwybodaeth o dan ein rheolaeth."
 
-#: templates/static/cookies-privacy.html:25
+#: templates/static/cookies-privacy.html:28
 msgid "We use leading security technologies such as industry-standard encryption software. This service has been accredited in accordance with government technical and security standards."
 msgstr "Rydym yn defnyddio technolegau diogelwch blaenllaw megis meddalwedd amgryptio safonol y diwydiant. Mae'r gwasanaeth hwn wedi'i achredu yn unol â safonau technegol a diogelwch y llywodraeth."
 
-#: templates/static/cookies-privacy.html:27
+#: templates/static/cookies-privacy.html:30
 msgid "Cookies"
 msgstr "Cwcis"
 
-#: templates/static/cookies-privacy.html:29
+#: templates/static/cookies-privacy.html:32
 msgid "We use small files (known as ‘cookies’) to collect information about how you browse the site."
 msgstr "Rydym yn defnyddio ffeiliau bach (a elwir yn 'cwcis') i gasglu gwybodaeth am sut rydych yn pori'r wefan."
 
-#: templates/static/cookies-privacy.html:31
+#: templates/static/cookies-privacy.html:34
 msgid "Cookies are used to"
 msgstr "Defnyddir cwcis ar gyfer"
 
-#: templates/static/cookies-privacy.html:33
+#: templates/static/cookies-privacy.html:36
 msgid "Measure how you use the website so it can be updated and improved based on your needs"
 msgstr "Mesur sut rydych yn defnyddio'r wefan fel y gellir ei diweddaru a'i gwella yn seiliedig ar eich anghenion"
 
-#: templates/static/cookies-privacy.html:34
+#: templates/static/cookies-privacy.html:37
 msgid "Remember the notifications you’ve seen so that we don’t show them to you again"
 msgstr "Cofiwch yr hysbysiadau rydych wedi'u gweld fel na fyddwn yn eu dangos i chi eto"
 
-#: templates/static/cookies-privacy.html:38
+#: templates/static/cookies-privacy.html:41
 msgid "Our cookies are not used to identify you personally."
 msgstr "Ni ddefnyddir ein cwcis i'ch adnabod yn bersonol."
 
-#: templates/static/cookies-privacy.html:40
+#: templates/static/cookies-privacy.html:43
 msgid "How cookies are used"
 msgstr "Sut y defnyddir y cwcis"
 
-#: templates/static/cookies-privacy.html:42
+#: templates/static/cookies-privacy.html:45
 msgid "Measuring website usage (Google Analytics)"
 msgstr "Mesur defnydd gwefan (Google Analytics)"
 
-#: templates/static/cookies-privacy.html:44
+#: templates/static/cookies-privacy.html:47
 msgid "We use Google Analytics software to collect information about how you use this service. We do this to help make sure the site is meeting the needs of its users and to help us make improvements, for example improving site search."
 msgstr "Rydym yn defnyddio meddalwedd Google Analytics i gasglu gwybodaeth am sut rydych yn defnyddio'r gwasanaeth hwn. Rydym yn gwneud hyn i helpu i sicrhau bod y wefan yn bodloni anghenion ei defnyddwyr ac i'n helpu i wneud gwelliannau, er enghraifft gwella'r safle i chwilio."
 
-#: templates/static/cookies-privacy.html:46
+#: templates/static/cookies-privacy.html:49
 msgid "Google Analytics stores information about"
 msgstr "Mae Google Analytics yn cadw gwybodaeth am"
 
-#: templates/static/cookies-privacy.html:48
+#: templates/static/cookies-privacy.html:51
 msgid "The pages you visit"
 msgstr "Y tudalennau rydych yn edrych arnynt"
 
-#: templates/static/cookies-privacy.html:49
+#: templates/static/cookies-privacy.html:52
 msgid "How long you spend on each page"
 msgstr "Faint o amser rydych yn ei dreulio ar bob tudalen"
 
-#: templates/static/cookies-privacy.html:50
+#: templates/static/cookies-privacy.html:53
 msgid "How you got to the site"
 msgstr "Sut aethoch i edrych ar y wefan"
 
-#: templates/static/cookies-privacy.html:51
+#: templates/static/cookies-privacy.html:54
 msgid "What you click on while you’re visiting the site"
 msgstr "Yr hyn rydych yn clicio arno wrth edrych ar y wefan"
 
-#: templates/static/cookies-privacy.html:55
+#: templates/static/cookies-privacy.html:58
 msgid "We don’t use Google Analytics to collect or store your personal information (for example your name or address)."
 msgstr "Nid ydym yn defnyddio Google Analytics i gasglu neu storio eich gwybodaeth bersonol (er enghraifft, eich enw neu'ch cyfeiriad)."
 
-#: templates/static/cookies-privacy.html:57
+#: templates/static/cookies-privacy.html:60
 msgid "The information we collect through our cookies does not include personal details such as your name, age, telephone number, postal address or email address, nor does it allow personal identification of a user."
 msgstr "Nid yw'r wybodaeth rydym yn ei chasglu trwy ein cwcis yn cynnwys manylion personol fel eich enw, oedran, rhif ffôn, cyfeiriad post neu gyfeiriad e-bost, ac nid yw'n caniatáu enwi defnyddiwr."
 
-#: templates/static/cookies-privacy.html:59
+#: templates/static/cookies-privacy.html:62
 #, python-format
 msgid "You can manage these small files yourself and learn more about them through <a %(href)s>internet browser cookies – what they are and how to manage them.</a>"
 msgstr "Gallwch chi reoli'r ffeiliau bach hyn eich hun a dysgu mwy amdanynt trwy <a %(href)s> gwcis porwr rhyngrwyd - beth ydyn nhw a sut i'w rheoli. </a>"
 
-#: templates/static/cookies-privacy.html:61
+#: templates/static/cookies-privacy.html:64
 msgid "Find out more information"
 msgstr "Cael mwy o wybodaeth"
 
-#: templates/static/cookies-privacy.html:63
+#: templates/static/cookies-privacy.html:66
 #, python-format
 msgid "If you have any questions about this privacy statement, you can contact us at %(email_link)s"
 msgstr "Os oes gennych unrhyw gwestiynau am y datganiad preifatrwydd hwn, gallwch gysylltu â ni yn % (email_link)s"
 
-#: templates/static/cookies-privacy.html:65
+#: templates/static/cookies-privacy.html:68
 msgid "Universal Analytics"
 msgstr "Dadansoddiadau Cyffredinol"
-
-#: templates/static/cookies-privacy.html:70
-#: templates/static/cookies-privacy.html:128
-#: templates/static/cookies-privacy.html:159
-msgid "Name"
-msgstr "Enw "
 
 #: templates/static/cookies-privacy.html:73
 #: templates/static/cookies-privacy.html:131
 #: templates/static/cookies-privacy.html:162
-#: templates/static/cookies-privacy.html:420
-msgid "Purpose"
-msgstr "Diben"
+msgid "Name"
+msgstr "Enw "
 
 #: templates/static/cookies-privacy.html:76
 #: templates/static/cookies-privacy.html:134
 #: templates/static/cookies-privacy.html:165
+#: templates/static/cookies-privacy.html:423
+msgid "Purpose"
+msgstr "Diben"
+
+#: templates/static/cookies-privacy.html:79
+#: templates/static/cookies-privacy.html:137
+#: templates/static/cookies-privacy.html:168
 msgid "Expires"
 msgstr "Yn dod i ben"
 
-#: templates/static/cookies-privacy.html:86
-#: templates/static/cookies-privacy.html:99
+#: templates/static/cookies-privacy.html:89
+#: templates/static/cookies-privacy.html:102
 msgid "This helps us count how many people visit our website by tracking if you’ve visited before"
 msgstr "Mae hyn yn ein helpu i gyfrif faint o bobl sy'n ymweld â'n gwefan trwy gadw cofnod os ydych wedi edrych arni o'r blaen"
 
-#: templates/static/cookies-privacy.html:89
+#: templates/static/cookies-privacy.html:92
 msgid "2 years"
 msgstr "2 flynedd"
 
-#: templates/static/cookies-privacy.html:102
+#: templates/static/cookies-privacy.html:105
 msgid "24 hours"
 msgstr "24 awr"
 
-#: templates/static/cookies-privacy.html:112
+#: templates/static/cookies-privacy.html:115
 msgid "Used to manage the rate at which page view requests are made"
 msgstr "Defnyddir i reoli'r gyfradd y gwneir ceisiadau edrych ar dudalen "
 
-#: templates/static/cookies-privacy.html:115
+#: templates/static/cookies-privacy.html:118
 msgid "10 minutes"
 msgstr "10 munud"
 
-#: templates/static/cookies-privacy.html:123
+#: templates/static/cookies-privacy.html:126
 msgid "Completing a survey (eq.ons.gov.uk)"
 msgstr "Cwblhau arolwg (eq.ons.gov.uk)"
 
-#: templates/static/cookies-privacy.html:141
+#: templates/static/cookies-privacy.html:144
 msgid "Session"
 msgstr "Sesiwn"
 
-#: templates/static/cookies-privacy.html:144
+#: templates/static/cookies-privacy.html:147
 msgid "To keep you signed in when completing a survey"
 msgstr "I'ch cadw wedi mewngofnodi wrth gwblhau arolwg"
 
-#: templates/static/cookies-privacy.html:147
+#: templates/static/cookies-privacy.html:150
 msgid "When a user logs out or closes the browser. Or when their cookie cache is cleared"
 msgstr "Pan fydd defnyddiwr yn allgofnodi neu'n cau'r porwr. Neu pan fydd eu storfa cwcis yn cael ei chlirio"
 
-#: templates/static/cookies-privacy.html:154
+#: templates/static/cookies-privacy.html:157
 msgid "Your account"
 msgstr "Eich cyfrif"
 
-#: templates/static/cookies-privacy.html:175
+#: templates/static/cookies-privacy.html:178
 msgid "To check that your browser can support cookies"
 msgstr "I wirio bod eich porwr yn gallu cefnogi cwcis"
 
-#: templates/static/cookies-privacy.html:178
-#: templates/static/cookies-privacy.html:191
-#: templates/static/cookies-privacy.html:204
-#: templates/static/cookies-privacy.html:217
-#: templates/static/cookies-privacy.html:230
-#: templates/static/cookies-privacy.html:243
-#: templates/static/cookies-privacy.html:256
-#: templates/static/cookies-privacy.html:269
+#: templates/static/cookies-privacy.html:181
+#: templates/static/cookies-privacy.html:194
+#: templates/static/cookies-privacy.html:207
+#: templates/static/cookies-privacy.html:220
+#: templates/static/cookies-privacy.html:233
+#: templates/static/cookies-privacy.html:246
+#: templates/static/cookies-privacy.html:259
+#: templates/static/cookies-privacy.html:272
 msgid "When a user closes the browser or when their cookie cache is cleared"
 msgstr "Pan fydd defnyddiwr yn cau'r porwr neu pan fydd eu storfa cwcis yn cael ei chlirio"
 
-#: templates/static/cookies-privacy.html:188
+#: templates/static/cookies-privacy.html:191
 msgid "To store your preferred language so that certain content can be displayed in your own language"
 msgstr "I storio'r iaith sydd yn well gennych fel y gall peth cynnwys gael ei arddangos yn eich iaith eich hun"
 
-#: templates/static/cookies-privacy.html:201
+#: templates/static/cookies-privacy.html:204
 msgid "To keep your session active when using your account to access portfolio and messages"
 msgstr "I gadw'ch sesiwn yn weithredol wrth ddefnyddio'ch cyfrif i gael mynediad i bortffolio a negeseuon"
 
-#: templates/static/cookies-privacy.html:214
-#: templates/static/cookies-privacy.html:227
+#: templates/static/cookies-privacy.html:217
+#: templates/static/cookies-privacy.html:230
 msgid "To store an encrypted identifier which is used to retrieve the information associated to your account"
 msgstr "I storio dynodwr amgryptiedig a ddefnyddir i adfer y wybodaeth sy'n gysylltiedig â'ch cyfrif"
 
-#: templates/static/cookies-privacy.html:240
+#: templates/static/cookies-privacy.html:243
 msgid "To store the universally unique identifier created for your account"
 msgstr "I storio'r dynodwr unigryw cyffredinol a grëwyd ar gyfer eich cyfrif"
 
-#: templates/static/cookies-privacy.html:253
+#: templates/static/cookies-privacy.html:256
 msgid "To store the timestamp of the last request so that the session expiry warning message can be displayed"
 msgstr "I storio stamp amser y cais olaf fel bod modd dangos y neges rhybudd dod â'r sesiwn i ben"
 
-#: templates/static/cookies-privacy.html:266
+#: templates/static/cookies-privacy.html:269
 msgid "To store the flash object identifier for the most recent action you have performed"
 msgstr "I storio dynodwr y gwrthrych fflach ar gyfer y weithred ddiweddaraf rydych wedi'i pherfformio"
 
-#: templates/static/cookies-privacy.html:276
+#: templates/static/cookies-privacy.html:279
 msgid "Data controller"
 msgstr "Rheolwr data"
 
-#: templates/static/cookies-privacy.html:278
+#: templates/static/cookies-privacy.html:281
 msgid "The Data Controller for ONS Surveys is"
 msgstr "Y Rheolwr Data ar gyfer Arolygon SYG yw"
 
-#: templates/static/cookies-privacy.html:280
+#: templates/static/cookies-privacy.html:283
 msgid "For questions regarding the Survey Data Collection service please contact us on"
 msgstr "Ar gyfer cwestiynau ynghylch y gwasanaeth Casglu Data Arolwg, cysylltwch â ni ar"
 
-#: templates/static/cookies-privacy.html:287
+#: templates/static/cookies-privacy.html:286
+#: templates/static/cookies-privacy.html:496
+#: templates/static/cookies-privacy.html:508
+msgid "Email"
+msgstr "E-bost"
+
+#: templates/static/cookies-privacy.html:290
 msgid "Why we collect your data"
 msgstr "Pam rydym yn casglu'ch data"
 
-#: templates/static/cookies-privacy.html:289
+#: templates/static/cookies-privacy.html:292
 msgid "The Survey Data Collection service is used as the online collection mechanism for a number of our surveys. More surveys will be offered via this service over time."
 msgstr "Defnyddir gwasanaeth Casglu Data'r Arolwg fel y dull casglu ar-lein ar gyfer nifer o'n harolygon. Cynigir mwy o arolygon trwy'r gwasanaeth hwn dros amser."
 
-#: templates/static/cookies-privacy.html:291
+#: templates/static/cookies-privacy.html:294
 msgid "Individual survey teams are responsible for the content (the questions asked) and form (Excel spreadsheet to download, complete and return; or online questionnaire) of their respective surveys. Survey Data Collection does need some personal data in its own right for the functioning of the platform."
 msgstr "Mae timau arolwg unigol yn gyfrifol am y cynnwys (y cwestiynau a ofynnir) a ffurf (taenlen Excel i’w lawrlwytho, ei chwblhau a’i dychwelyd) o’u harolygon priodol. Mae angen peth data personol ar Gaglu Data’r Arolwg ynddo’i hun ar gyfer gweithredu’r llwyfan.  "
 
-#: templates/static/cookies-privacy.html:293
+#: templates/static/cookies-privacy.html:296
 msgid "The lawful reason for which your personal data is collected through the Survey Data Collection platform is Public task. The processing is necessary for us to perform a task in the public interest or for our official functions, and the task or function has a clear basis in law."
 msgstr "Y rheswm cyfreithiol dros gasglu eich data personol drwy'r llwyfan Casglu Data Arolwg yw Tasg gyhoeddus. Mae'r prosesu'n angenrheidiol er mwyn i ni gyflawni tasg er budd y cyhoedd neu ar gyfer ein swyddogaethau swyddogol, ac mae i'r dasg neu'r swyddogaeth sail glir yn y gyfraith."
 
-#: templates/static/cookies-privacy.html:295
+#: templates/static/cookies-privacy.html:298
 msgid "When we collect your data"
 msgstr "Pryd rydym yn casglu eich data"
 
-#: templates/static/cookies-privacy.html:297
+#: templates/static/cookies-privacy.html:300
 msgid "Your data is collected when"
 msgstr "Cesglir eich data pan fyddwch"
 
-#: templates/static/cookies-privacy.html:299
+#: templates/static/cookies-privacy.html:302
 msgid "you create an account and sign in to the ONS Surveys platform"
 msgstr "yn creu cyfrif ac yn mewngofnodi i lwyfan Arolygon y SYG"
 
-#: templates/static/cookies-privacy.html:300
+#: templates/static/cookies-privacy.html:303
 msgid "you complete a survey"
 msgstr "yn cwblhau arolwg"
 
-#: templates/static/cookies-privacy.html:301
+#: templates/static/cookies-privacy.html:304
 msgid "you contact us by any means"
 msgstr "yn cysylltu â ni mewn unrhyw fodd"
 
-#: templates/static/cookies-privacy.html:302
+#: templates/static/cookies-privacy.html:305
 msgid "you visit a website that comprises the Survey Data Collection platform"
 msgstr "yn ymweld â gwefan sy'n cynnwys y llwyfan Casglu Data'r Arolwg"
 
-#: templates/static/cookies-privacy.html:306
+#: templates/static/cookies-privacy.html:309
 msgid "What data we collect"
 msgstr "Pa ddata rydym yn eu casglu"
 
-#: templates/static/cookies-privacy.html:308
+#: templates/static/cookies-privacy.html:311
 msgid "Personal data items required for the operation of the Survey Data Collection Platform"
 msgstr "Eitemau data personol sydd eu hangen ar gyfer gweithredu Llwyfan Casglu Data'r Arolwg"
 
-#: templates/static/cookies-privacy.html:313
+#: templates/static/cookies-privacy.html:316
 msgid "Data item"
 msgstr "Eitem data"
 
-#: templates/static/cookies-privacy.html:316
-#: templates/static/cookies-privacy.html:423
+#: templates/static/cookies-privacy.html:319
+#: templates/static/cookies-privacy.html:426
 msgid "Description"
 msgstr "Disgrifiad"
 
-#: templates/static/cookies-privacy.html:323
-#: templates/static/cookies-privacy.html:389
+#: templates/static/cookies-privacy.html:326
+#: templates/static/cookies-privacy.html:392
 msgid "Email address"
 msgstr "Cyfeiriad e-bost"
 
-#: templates/static/cookies-privacy.html:327
+#: templates/static/cookies-privacy.html:330
 msgid "Survey Data Collection captures and stores the email address of those who register with the platform. Registration is required in order to complete a survey return."
 msgstr "Mae Casglu Data'r Arolwg yn casglu ac yn storio cyfeiriad e-bost y rhai sy'n cofrestru gyda'r llwyfan. Mae angen cofrestru er mwyn cwblhau arolwg."
 
-#: templates/static/cookies-privacy.html:329
+#: templates/static/cookies-privacy.html:332
 msgid "Email address is used as a unique user identifier. Once registered the email address and password created is required to identify you each time you use the service."
 msgstr "Defnyddir cyfeiriad e-bost fel dynodwr defnyddiwr unigryw. Ar ôl cofrestru, gofynnir am eich cyfeiriad e-bost a'r cyfrinair i'ch adnabod bob tro y byddwch yn defnyddio'r gwasanaeth."
 
-#: templates/static/cookies-privacy.html:331
+#: templates/static/cookies-privacy.html:334
 msgid "Additionally, the email address is used to send communications for purposes of account management and reminders of survey responses."
 msgstr "Yn ogystal, defnyddir y cyfeiriad e-bost i anfon cyfathrebiadau at ddibenion rheoli cyfrifon a nodiadau atgoffa ynghylch ymatebion i'r arolwg."
 
-#: templates/static/cookies-privacy.html:339
+#: templates/static/cookies-privacy.html:342
 msgid "Business Name"
 msgstr "Enw Busnes"
 
-#: templates/static/cookies-privacy.html:343
+#: templates/static/cookies-privacy.html:346
 msgid "Business names are pre-loaded into the Survey Data Collection platform as part of a business having been selected for a survey."
 msgstr "Llwythir enwau busnes ymlaen llaw i lwyfan Casglu Data'r Arolwg fel rhan o fusnes a ddewiswyd ar gyfer arolwg."
 
-#: templates/static/cookies-privacy.html:345
+#: templates/static/cookies-privacy.html:348
 msgid "The name of the business that has been selected for a given survey will have been provided to Survey Data Collection by another part of the Office for National Statistics responsible for the survey in question. Survey Data Collection stores and processes this."
 msgstr "Bydd enw'r fusnes a ddewiswyd ar gyfer arolwg penodol wedi'i roi i Gasglu Data'r Arolwg gan ran arall o'r Swyddfa Ystadegau Gwladol sy'n gyfrifol am yr arolwg dan sylw. Mae Casglu Data'r Arolwg yn storio ac yn prosesu hyn."
 
-#: templates/static/cookies-privacy.html:353
+#: templates/static/cookies-privacy.html:356
 msgid "IP address"
 msgstr "Cyfeiriad IP"
 
-#: templates/static/cookies-privacy.html:357
+#: templates/static/cookies-privacy.html:360
 msgid "Internet Protocol address"
 msgstr "Cyfeiriad Protocol y Rhyngrwyd"
 
-#: templates/static/cookies-privacy.html:359
+#: templates/static/cookies-privacy.html:362
 msgid "All devices connected to the internet will have an IP address and this is used for one device (e.g. the computer you use to provide a survey response at your place of work) to be able to talk to another (e.g. the Survey Data Collection web site) over the internet."
 msgstr "Bydd gan bob dyfais a gysylltwyd â’r rhyngrwyd gyfeiriad IP ac fe’i defnyddir ar gyfer un ddyfais (e.e. y cyfrifiadur a ddefnyddir gennych i roi ymateb arolwg yn eich gweithle) i allu siarad ag un arall (e.e. gwefan Casglu Data’r Arolwg) dros y rhyngrwyd."
 
-#: templates/static/cookies-privacy.html:361
+#: templates/static/cookies-privacy.html:364
 msgid "The logs of IP address activity against the Survey Data Collection service are kept for a limited period of time to facilitate investigations in the case of any problems."
 msgstr "Cedwir cofnodion gweithgarwch cyfeiriad IP yn erbyn gwasanaeth Casglu Data’r Arolwg am gyfnod cyfyngedig i hwyluso ymchwiliadau pan geir problemau."
 
-#: templates/static/cookies-privacy.html:369
+#: templates/static/cookies-privacy.html:372
 msgid "Surveys that are conducted on the Survey Data Collection platform may collect additional items of personal data."
 msgstr "Gall arolygon a gynhelir ar lwyfan Casglu Data'r Arolwg gasglu eitemau ychwanegol o ddata personol."
 
-#: templates/static/cookies-privacy.html:371
+#: templates/static/cookies-privacy.html:374
 msgid "Business surveys that require personal data"
 msgstr "Arolygon busnes y mae angen data personol arnynt"
 
-#: templates/static/cookies-privacy.html:373
+#: templates/static/cookies-privacy.html:376
 msgid "Annual Survey of Hours and Earnings"
 msgstr "Arolwg Blynyddol o Oriau ac Enillion "
 
-#: templates/static/cookies-privacy.html:375
+#: templates/static/cookies-privacy.html:378
 msgid "The legal basis for undertaking the Annual Survey of Hours and Earnings (ASHE) is the Statistics of Trade Act 1947. This means the General Data Protection Regulation has not changed the fact that this is mandatory for the organisations selected to be part of the sample. The personal data an organisation returns as part of this submission does not require the permission of the employees who form the data subjects and the subjects do not have any option to opt-out. The ASHE survey collects the following items of personal data"
 msgstr "Y sail gyfreithiol dros gynnal yr Arolwg Blynyddol o Oriau ac Enillion (ASHE) yw Deddf Ystadegau Masnach 1947. Golyga hyn nad yw'r Rheoliad Cyffredinol ar Ddiogelu Data wedi newid y ffaith bod hyn yn orfodol ar gyfer y sefydliadau a ddewiswyd i fod yn rhan o'r sampl. Nid oes angen caniatâd y cyflogeion sy'n destun y data personol a ddychwelir gan sefydliad fel rhan o'r cyflwyniad hwn ac nid oes gan y testunau hynny unrhyw opsiwn i optio allan. Mae arolwg ASHE yn casglu'r eitemau canlynol o ddata personol"
 
-#: templates/static/cookies-privacy.html:377
+#: templates/static/cookies-privacy.html:380
 msgid "National insurance number"
 msgstr "Rhif yswiriant cenedlaethol"
 
-#: templates/static/cookies-privacy.html:378
+#: templates/static/cookies-privacy.html:381
 msgid "Date of birth"
 msgstr "Dyddiad geni"
 
-#: templates/static/cookies-privacy.html:379
+#: templates/static/cookies-privacy.html:382
 msgid "Postcode"
 msgstr "Cod post"
 
-#: templates/static/cookies-privacy.html:383
+#: templates/static/cookies-privacy.html:386
 msgid "Communication outside of the Survey Data Collection Platform"
 msgstr "Cyfathrebu'r tu allan i Lwyfan Casglu Data'r Arolwg"
 
-#: templates/static/cookies-privacy.html:385
+#: templates/static/cookies-privacy.html:388
 msgid "The Survey Data Collection platform contains both a telephone number and email address which can be used for both queries and issues with the platform and survey hosted on the platform."
 msgstr "Mae llwyfan Casglu Data'r Arolwg yn cynnwys rhif ffôn yn ogystal â chyfeiriad e-bost y gellir eu defnyddio ar gyfer ymholiadau'n ogystal â phroblemau gyda'r llwyfan a'r arolwg a geir ar y llwyfan."
 
-#: templates/static/cookies-privacy.html:387
+#: templates/static/cookies-privacy.html:390
 msgid "If you contact us via email, we will process the following data items"
 msgstr "Os byddwch yn cysylltu â ni drwy e-bost, byddwn yn prosesu'r eitemau data canlynol"
 
-#: templates/static/cookies-privacy.html:390
+#: templates/static/cookies-privacy.html:393
 msgid "IP address of the server from which the email was sent"
 msgstr "Cyfeiriad IP y gweinyddwr yr anfonwyd yr e-bost ohono"
 
-#: templates/static/cookies-privacy.html:391
+#: templates/static/cookies-privacy.html:394
 msgid "Any items of personal data within the email"
 msgstr "Unrhyw eitemau o ddata personol o fewn yr e-bost"
 
-#: templates/static/cookies-privacy.html:395
+#: templates/static/cookies-privacy.html:398
 msgid "If you contact us via telephone, we will process the following data items"
 msgstr "Os byddwch yn cysylltu â ni drwy ffonio, byddwn yn prosesu'r eitemau data canlynol"
 
-#: templates/static/cookies-privacy.html:397
+#: templates/static/cookies-privacy.html:400
 msgid "Telephone number"
 msgstr "Rhif ffôn"
 
-#: templates/static/cookies-privacy.html:398
+#: templates/static/cookies-privacy.html:401
 msgid "Name of the caller"
 msgstr "Enw'r galwr"
 
-#: templates/static/cookies-privacy.html:399
+#: templates/static/cookies-privacy.html:402
 msgid "Any items of personal data disclosed during the call"
 msgstr "Unrhyw eitemau o ddata personol a ddatgelir yn ystod yr alwad"
 
-#: templates/static/cookies-privacy.html:403
+#: templates/static/cookies-privacy.html:406
 msgid "Who we share your personal data with"
 msgstr "Gyda phwy rydym yn rhannu eich data personol "
 
-#: templates/static/cookies-privacy.html:405
+#: templates/static/cookies-privacy.html:408
 msgid "We use several (1st and 3rd) parties to collect and process personal data. These include (but are not limited to) government departments and approved researchers. Further information can be found on the following articles"
 msgstr "Rydym yn defnyddio sawl parti (partïon cyntaf a thrydydd partïon) i gasglu a phrosesu data personol. Mae'r rhain yn cynnwys adrannau'r llywodraeth ac ymchwilwyr cymeradwy, ymhlith eraill. Mae rhagor o wybodaeth i'w chael yn yr erthyglau canlynol"
 
-#: templates/static/cookies-privacy.html:408
+#: templates/static/cookies-privacy.html:411
 msgid "Approved Researcher Scheme"
 msgstr "Cynllun Ymchwilwyr Cymeradwy"
 
-#: templates/static/cookies-privacy.html:411
+#: templates/static/cookies-privacy.html:414
 msgid "Access to unpublished ONS research data by government organisations for statistical research"
 msgstr "Mynediad i ddata ymchwil y SYG heb eu cyhoeddi gan sefydliadau'r llywodraeth ar gyfer ymchwil ystadegol"
 
-#: templates/static/cookies-privacy.html:416
+#: templates/static/cookies-privacy.html:419
 msgid "Data is also processed by 3rd party IT companies who support our systems for the following purposes"
 msgstr "Mae data hefyd yn cael eu prosesu gan gwmnïau TG trydydd parti sy'n cefnogi ein systemau at y dibenion canlynol"
 
-#: templates/static/cookies-privacy.html:430
+#: templates/static/cookies-privacy.html:433
 msgid "Cloud infrastructure"
 msgstr "Isadeiledd cwmwl"
 
-#: templates/static/cookies-privacy.html:433
+#: templates/static/cookies-privacy.html:436
 msgid "Used to support the platform on which the Survey Data Collection service runs."
 msgstr "Fe'u defnyddir i gefnogi'r llwyfan y mae gwasanaeth Casglu Data'r Arolwg yn ei gynnal."
 
-#: templates/static/cookies-privacy.html:440
+#: templates/static/cookies-privacy.html:443
 msgid "Email notification service"
 msgstr "Gwasanaeth hysbysu e-bost"
 
-#: templates/static/cookies-privacy.html:443
+#: templates/static/cookies-privacy.html:446
 msgid "A service used to send email messages to the active accounts registered to the Survey Data Collection service."
 msgstr "Gwasanaeth a ddefnyddir i anfon negeseuon e-bost i'r cyfrifon gweithredol a gofrestrwyd i wasanaeth Casglu Data'r Arolwg."
 
-#: templates/static/cookies-privacy.html:450
+#: templates/static/cookies-privacy.html:453
 msgid "Secure file transfer"
 msgstr "Trosglwyddo ffeil yn ddiogel"
 
-#: templates/static/cookies-privacy.html:453
+#: templates/static/cookies-privacy.html:456
 msgid "This is used for the behind the scenes transfer of data that identify the businesses that have been selected for participation in a given survey."
 msgstr "Fe'i defnyddir ar gyfer trosglwyddo data tu ôl i'r llenni sy'n nodi'r busnesau sydd wedi'u dewis ar gyfer cymryd rhan mewn arolwg penodol."
 
-#: templates/static/cookies-privacy.html:461
+#: templates/static/cookies-privacy.html:464
 msgid "How long we keep your data"
 msgstr "Pa mor hir rydym yn cadw eich data"
 
-#: templates/static/cookies-privacy.html:463
+#: templates/static/cookies-privacy.html:466
 msgid "Log Retention"
 msgstr "Cadw Cofnod"
 
-#: templates/static/cookies-privacy.html:465
+#: templates/static/cookies-privacy.html:468
 msgid "Standard logs from the Survey Data Collection service are retained for a period of 30 days. Exceptional events may be retained for longer."
 msgstr "Cedwir cofnodion sylfaenol gan wasanaeth Casglu Data'r Arolwg am gyfnod o 30 niwrnod. Gellir cadw digwyddiadau arbennig am gyfnod hwy."
 
-#: templates/static/cookies-privacy.html:467
+#: templates/static/cookies-privacy.html:470
 msgid "Our general retention period for data collected via annual surveys is 3 years."
 msgstr "Ein cyfnod cadw cyffredinol ar gyfer data a gesglir drwy arolygon blynyddol yw 3 blynedd. "
 
-#: templates/static/cookies-privacy.html:469
+#: templates/static/cookies-privacy.html:472
 msgid "Personal data used for account access will be retained as long as the account is active."
 msgstr "Cedwir data personol a ddefnyddir ar gyfer mynediad i gyfrif cyhyd ag y bo'r cyfrif yn weithredol."
 
-#: templates/static/cookies-privacy.html:471
+#: templates/static/cookies-privacy.html:474
 msgid "Your rights over your personal data"
 msgstr "Eich hawliau dros eich data personol"
 
-#: templates/static/cookies-privacy.html:473
+#: templates/static/cookies-privacy.html:476
 msgid "The General Data Protection Regulation (GDPR) details eight rights of individuals"
 msgstr "Mae'r Rheoliad Diogelu Data Cyffredinol (GDPR) yn rhoi manylion wyth hawl sydd gan unigolion"
 
-#: templates/static/cookies-privacy.html:475
+#: templates/static/cookies-privacy.html:478
 msgid "The right to be informed"
 msgstr "Yr hawl i gael eu hysbysu"
 
-#: templates/static/cookies-privacy.html:476
+#: templates/static/cookies-privacy.html:479
 msgid "The right of access"
 msgstr "Yr hawl mynediad"
 
-#: templates/static/cookies-privacy.html:477
+#: templates/static/cookies-privacy.html:480
 msgid "The right to rectification"
 msgstr "Yr hawl i gywiro"
 
-#: templates/static/cookies-privacy.html:478
+#: templates/static/cookies-privacy.html:481
 msgid "The right to erasure"
 msgstr "Yr hawl i ddileu"
 
-#: templates/static/cookies-privacy.html:479
+#: templates/static/cookies-privacy.html:482
 msgid "The right to restrict processing"
 msgstr "Yr hawl i gyfyngu ar brosesu"
 
-#: templates/static/cookies-privacy.html:480
+#: templates/static/cookies-privacy.html:483
 msgid "The right to data portability"
 msgstr "Yr hawl i gludadwyedd data"
 
-#: templates/static/cookies-privacy.html:480
+#: templates/static/cookies-privacy.html:483
 msgid "This right only exists if the lawful basis used is either consent or contract. Neither the Survey Data Collection service nor any surveys hosted on this platform rely on either of the lawful basis and therefore this right is not applicable."
 msgstr "Mae’r hawl hwn yn bodoli’n unig os yw’r sail gyfreithiol a ddefnyddir yn naill ai’n ganiatâd neu’n gytundeb. Nid yw naill ai gwasanaeth Casglu Data’r Arolwg neu unrhyw arolygon a geir ar y llwyfan hwn yn dibynnu ar y naill neu'r llall o’r sail gyfreithiol ac felly nid yw’r hawl hwn yn gymwys."
 
-#: templates/static/cookies-privacy.html:481
+#: templates/static/cookies-privacy.html:484
 msgid "The right to object"
 msgstr "Yr hawl i wrthwynebu"
 
-#: templates/static/cookies-privacy.html:482
+#: templates/static/cookies-privacy.html:485
 msgid "Rights in relation to automated decision making and profiling."
 msgstr "Hawliau sy'n gysylltiedig â gwneud penderfyniadau awtomatig a phroffilio."
 
-#: templates/static/cookies-privacy.html:482
+#: templates/static/cookies-privacy.html:485
 msgid "No automated decision making or profiling occurs at the personal level."
 msgstr "Nid oes unrhyw wneud penderfyniadau awtomatig neu broffilio'n digwydd ar y lefel bersonol."
 
-#: templates/static/cookies-privacy.html:484
+#: templates/static/cookies-privacy.html:487
 msgid "These rights are subject to exemptions."
 msgstr "Mae'r hawliau hyn yn amodol ar eithriadau."
 
-#: templates/static/cookies-privacy.html:487
+#: templates/static/cookies-privacy.html:490
 msgid "Contacting the Data Protection Office"
 msgstr "Cysylltu â'r Swyddfa Diogelu Data"
 
-#: templates/static/cookies-privacy.html:489
+#: templates/static/cookies-privacy.html:492
 msgid "The Data Protection Officer for the Office for National Statistics can be contacted as follows"
 msgstr "Gellir cysylltu â'r Swyddog Diogelu Data ar gyfer y Swyddfa Ystadegau Cenedlaethol fel a ganlyn"
 
-#: templates/static/cookies-privacy.html:497
+#: templates/static/cookies-privacy.html:500
 msgid "Contacting the Information Commissioner’s Office"
 msgstr "Cysylltu â Swyddfa'r Comisiynydd Gwybodaeth"
 
-#: templates/static/cookies-privacy.html:499
+#: templates/static/cookies-privacy.html:502
 msgid "We welcome the opportunity to be able to answer any questions or concerns you may have around the information provided here. If you are unhappy with our response to any of your requests or you have concerns around how your data has been handled, you have the right to lodge a complaint with the Information Commissioner’s Office."
 msgstr "Rydym yn croesawu’r cyfle i fedru ateb unrhyw gwestiynau neu bryderon a allai fod gennych ynghylch y wybodaeth a ddarperir yma. Os byddwch yn anhapus gyda’n hymateb i unrhyw un o’ch ceisiadau neu os bydd gennych bryderon ynghylch sut y trafodwyd eich data, mae gennych yr hawl i gwyno i Swyddfa’r Comisiynydd Gwybodaeth."
 
-#: templates/static/cookies-privacy.html:507
+#: templates/static/cookies-privacy.html:510
 msgid "The Information Commissioner’s Office provides guidance to the public on raising a concern with an organisation at the following location"
 msgstr "Mae Swyddfa'r Comisiynydd Gwybodaeth yn darparu canllawiau i'r cyhoedd ar godi pryder gyda sefydliad yn y lleoliad canlynol"
+
+#: templates/static/privacy.html:9
+msgid "Privacy and data protection"
+msgstr ""
+
+#: templates/static/privacy.html:10
+msgid "The information you provide when you fill in your census rehearsal questionnaire is protected by law."
+msgstr ""
+
+#: templates/static/privacy.html:11
+msgid "Here we detail why we need your information. We also describe all the steps that we take to make sure your\n"
+"  information and your privacy are safe."
+msgstr ""
+
+#: templates/static/privacy.html:15
+msgid "How and why we use your information"
+msgstr ""
+
+#: templates/static/privacy.html:17
+msgid "We collect information from your questionnaire under our statutory objective to promote and\n"
+"  safeguard the production of official statistics that serve the public good. This means that any personal data we collect will only\n"
+"  ever be used to produce statistics or undertake statistical research. People will not be identified within those statistics or research."
+msgstr ""
+
+#: templates/static/privacy.html:21
+msgid "Every 10 years, the census gathers vital information that helps the government and local authorities\n"
+"  plan services like health services, roads and libraries."
+msgstr ""
+
+#: templates/static/privacy.html:24
+msgid "By running a rehearsal for Census 2021, we can test our processes, systems and services and make\n"
+"  sure everything goes smoothly for the real thing. The personal data you provide on your questionnaire will also be used to undertake\n"
+"  research and produce statistics that serve the public good, both by the Office for National Statistics (ONS) and accredited\n"
+"  researchers from other organisations."
+msgstr ""
+
+#: templates/static/privacy.html:29
+msgid "We may occasionally record information about a property or an individual, in the interests of safeguarding the wellbeing\n"
+"  of both those being interviewed and interviewers, as well as to assist people in the completion of their questionnaires. We’ll hold the minimum\n"
+"  amount of personal data needed to meet these purposes."
+msgstr ""
+
+#: templates/static/privacy.html:33
+msgid "For online completion, we’ll collect information about how people fill in their questionnaires online to provide us with\n"
+"  knowledge of how to improve our online services."
+msgstr ""
+
+#: templates/static/privacy.html:37
+msgid "Who can access the information?"
+msgstr ""
+
+#: templates/static/privacy.html:39
+msgid "During the rehearsal we’ll employ third-party providers to assist us with parts of the operation.\n"
+"  These third parties work under our instruction."
+msgstr ""
+
+#: templates/static/privacy.html:41
+msgid "We treat the information we hold with respect, keeping it secure and confidential. Data may be made available to approved\n"
+"  researchers where there is a clear public value and it’s safe and lawful to do so. More information on"
+msgstr ""
+
+#: templates/static/privacy.html:44
+msgid "how we allow access to data for research"
+msgstr ""
+
+#: templates/static/privacy.html:44
+msgid "is available. We also publish a full list of all the"
+msgstr ""
+
+#: templates/static/privacy.html:45
+msgid "approved researchers"
+msgstr ""
+
+#: templates/static/privacy.html:46
+msgid "who we’ve granted access to."
+msgstr ""
+
+#: templates/static/privacy.html:49
+msgid "How long are personal data kept?"
+msgstr ""
+
+#: templates/static/privacy.html:51
+msgid "Data protection law requires that personal data are kept for no longer than is needed to fulfil the purposes\n"
+"  for which they were originally collected."
+msgstr ""
+
+#: templates/static/privacy.html:54
+msgid "The law allows that information held for statistical purposes only, such as information from your questionnaire,\n"
+"  may be kept for longer periods. We’ll only continue to hold personal data where they are still used to produce statistics.\n"
+"  Data used by approved researchers will be held within our "
+msgstr ""
+
+#: templates/static/privacy.html:57
+msgid "Secure Research Service"
+msgstr ""
+
+#: templates/static/privacy.html:58
+msgid ". Any personal data that we do not need, such as names and addresses, will be removed from the data at the earliest opportunity.\n"
+"  The data will undergo regular reviews and will be deleted when they are no longer required."
+msgstr ""
+
+#: templates/static/privacy.html:61
+msgid "Safeguarding data, such as information about a property or an individual, will be held for the duration of the rehearsal.\n"
+"  Most of the information will be deleted at the end of the rehearsal. In some instances, data will be held for longer periods, where\n"
+"  keeping them continues to serve safeguarding purposes."
+msgstr ""
+
+#: templates/static/privacy.html:65
+msgid "Metrics containing information about how people fill in their questionnaires will be held in an identifiable form only until the necessary\n"
+"  statistical matching has taken place. After this point the data will be de-identified and used for the purposes of improving our services."
+msgstr ""
+
+#: templates/static/privacy.html:69
+msgid "How the law protects your information"
+msgstr ""
+
+#: templates/static/privacy.html:71
+msgid "The "
+msgstr ""
+
+#: templates/static/privacy.html:71
+msgid "General Data Protection Regulation"
+msgstr ""
+
+#: templates/static/privacy.html:72
+msgid " and the "
+msgstr ""
+
+#: templates/static/privacy.html:72
+msgid "Data Protection Act 2018"
+msgstr ""
+
+#: templates/static/privacy.html:73
+msgid "determine how, when and why any organisation can process your personal data. Personal data is any information that can identify a living\n"
+"  individual. These laws exist to make sure your data are managed safely and used responsibly. They also give you certain rights about\n"
+"  your data and create a responsibility on the ONS, as a user of personal data, to provide you with certain information."
+msgstr ""
+
+#: templates/static/privacy.html:77
+msgid "The ONS is a statutory body, meaning it was created by legislation, specifically the "
+msgstr ""
+
+#: templates/static/privacy.html:78
+msgid "Statistics and Registration Service Act 2007"
+msgstr ""
+
+#: templates/static/privacy.html:79
+msgid ". Our objective is to promote and safeguard the production and publication of official statistics that serve the public good.\n"
+"  All our collection and use of data comes from powers that can be found in that Act or other UK legislation."
+msgstr ""
+
+#: templates/static/privacy.html:82
+msgid "The census rehearsal questionnaire has been assessed as compatible with the "
+msgstr ""
+
+#: templates/static/privacy.html:83
+msgid "Human Rights Act 1998"
+msgstr ""
+
+#: templates/static/privacy.html:83
+msgid ", specifically Article 8\n"
+"  (right to respect for a private and family life) and Article 9 (freedom of thought, conscience and religion) of the convention rights."
+msgstr ""
+
+#: templates/static/privacy.html:87
+msgid "Legal basis for processing your data"
+msgstr ""
+
+#: templates/static/privacy.html:89
+msgid "Data protection legislation requires that all processing of personal data is undertaken under one or more conditions."
+msgstr ""
+
+#: templates/static/privacy.html:91
+msgid "For the census rehearsal, we’ll process information from your questionnaire, information about a property or an individual and\n"
+"  information about how people fill in their questionnaires under the following condition:"
+msgstr ""
+
+#: templates/static/privacy.html:95
+msgid "processing is necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller."
+msgstr ""
+
+#: templates/static/privacy.html:98
+msgid "Under data protection legislation, an additional condition is required for the processing of special category personal data.\n"
+"  These data include information about your racial or ethnic origin, political opinions, religious or philosophical beliefs,\n"
+"  trade union membership, sex life or sexual orientation. They also include genetic and biometric data."
+msgstr ""
+
+#: templates/static/privacy.html:102
+msgid "For the rehearsal, we’ll process special category personal data on race, ethnicity, religion, philosophical beliefs and sexual orientation.\n"
+"  nformation from your questionnaire is processed under the following two conditions:"
+msgstr ""
+
+#: templates/static/privacy.html:106
+msgid "processing is necessary for archiving in the public interest, scientific or historical research purposes or statistical purposes based on UK law."
+msgstr ""
+
+#: templates/static/privacy.html:107 templates/static/privacy.html:113
+msgid "processing is necessary for reasons of substantial public interest."
+msgstr ""
+
+#: templates/static/privacy.html:110
+msgid "We’ll process special category data on information about a property or an individual under the following condition:"
+msgstr ""
+
+#: templates/static/privacy.html:116
+msgid "We’ll ensure the principle of data minimisation and have measures in place to delete or de-identify personal data where appropriate."
+msgstr ""
+
+#: templates/static/privacy.html:118
+msgid "The census rehearsal gives us invaluable information about the systems and processes required for Census 2021. It’ll help us complete one of\n"
+"  our main functions in delivering Census 2021, which will subsequently provide numerous benefits for the wider society."
+msgstr ""
+
+#: templates/static/privacy.html:121
+msgid "There’s substantial public interest in the collection of safeguarding data to ensure the safety of both interviewers and respondents.\n"
+"  We’re required to ensure the safety of our staff and the public."
+msgstr ""
+
+#: templates/static/privacy.html:125
+msgid "Your rights"
+msgstr ""
+
+#: templates/static/privacy.html:127
+msgid "As a data subject (someone whose personal data we hold), you have rights available to you under data protection law.\n"
+"  If you wish to exercise any of these rights, please contact our data protection officer. However, please be aware that we may\n"
+"  not be required to comply if the data are being held for statistical purposes only.\n"
+"  Compliance requirements are set out in the Data Protection Act 2018."
+msgstr ""
+
+#: templates/static/privacy.html:132
+msgid "You have the right to request from any controller that holds your personal data access to the information they\n"
+"  hold about you. You can ask them to amend any wrong or inaccurate information they hold about you. You have the right to\n"
+"  object to your personal data being processed."
+msgstr ""
+
+#: templates/static/privacy.html:136
+msgid "You have the right, in some circumstances, to ask for any controller to:"
+msgstr ""
+
+#: templates/static/privacy.html:139
+msgid "erase any personal data they may hold about you"
+msgstr ""
+
+#: templates/static/privacy.html:140
+msgid "stop processing your personal data"
+msgstr ""
+
+#: templates/static/privacy.html:141
+msgid "pass any information they hold about you to another controller"
+msgstr ""
+
+#: templates/static/privacy.html:144
+msgid "You can get further information on the rights available to you and the circumstances under which you can exercise them from the "
+msgstr ""
+
+#: templates/static/privacy.html:145
+msgid "Information Commissioner’s Office"
+msgstr ""
+
+#: templates/static/privacy.html:146
+msgid "."
+msgstr ""
+
+#: templates/static/privacy.html:149
+msgid "The data controller"
+msgstr ""
+
+#: templates/static/privacy.html:151
+msgid "The controller is the person or organisation that decides which personal data will be processed and for what purpose. For the census rehearsal, the\n"
+"  ONS is the controller and makes those decisions."
+msgstr ""
+
+#: templates/static/privacy.html:154
+msgid "You can contact us by:"
+msgstr ""
+
+#: templates/static/privacy.html:158 templates/static/privacy.html:180
+#: templates/static/privacy.html:204
+#, python-format
+msgid "Email: %(email_address)s"
+msgstr ""
+
+#: templates/static/privacy.html:160 templates/static/privacy.html:182
+#: templates/static/privacy.html:206
+msgid "Post:"
+msgstr ""
+
+#: templates/static/privacy.html:170
+msgid "How to contact the data protection officer"
+msgstr ""
+
+#: templates/static/privacy.html:172
+msgid "Our data protection officer is the person charged with providing us with advice and guidance on the ways we can best protect the information\n"
+"  we collect and use. They are involved in all the major decisions we make in relation to personal data. If you have any queries or concerns regarding our\n"
+"  use of your data, or wish to exercise any of your rights."
+msgstr ""
+
+#: templates/static/privacy.html:176
+msgid "You can contact the data protection officer by:"
+msgstr ""
+
+#: templates/static/privacy.html:193
+msgid "The Information Commissioner’s Office"
+msgstr ""
+
+#: templates/static/privacy.html:195
+msgid "The Information Commissioner’s Office (ICO) is the independent organisation tasked with regulating data protection in the UK. The ICO can give you "
+msgstr ""
+
+#: templates/static/privacy.html:196
+msgid "extra information about data protection"
+msgstr ""
+
+#: templates/static/privacy.html:197
+msgid " and your rights and will deal with any complaints you may have\n"
+"  about our use of your information."
+msgstr ""
+
+#: templates/static/privacy.html:200
+msgid "You can contact the ICO by:"
+msgstr ""
 

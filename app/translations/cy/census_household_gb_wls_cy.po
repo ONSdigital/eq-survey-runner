@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-05 16:12+0100\n"
-"PO-Revision-Date: 2019-09-09 11:27\n"
+"PO-Revision-Date: 2019-09-11 07:04\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -4240,7 +4240,7 @@ msgstr "{second_person_name} yw <em>gŵr neu wraig</em> {first_person_name_posse
 #. answer-id: relationship-answer
 msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
 msgid "Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>"
-msgstr "Gan feddwl am {first_person_name_possessive}, mae {second_person_name} yn <em>ŵr neu wraig</em> i {first_person_name}"
+msgstr "Gan feddwl am {first_person_name}, mae {second_person_name} yn <em>ŵr neu wraig</em> i {first_person_name}"
 
 #. answer-id: relationship-answer
 msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
