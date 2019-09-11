@@ -4,6 +4,7 @@ from app.jinja_filters import (
     format_unit,
     format_percentage,
 )
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.schema_utils import (
     choose_question_to_display,
     get_answer_ids_in_block,
@@ -89,7 +90,7 @@ def _build_calculated_summary_section(
     unique_blocks = list({block['id']: block for block in blocks_to_calculate}.values())
 
     for block in unique_blocks:
-        if block['type'] == 'Question':
+        if QuestionnaireSchema.is_question_block_type(block['type']):
             transformed_block = _remove_unwanted_questions_answers(
                 block,
                 answers_to_calculate,
