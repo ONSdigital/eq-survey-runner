@@ -5,96 +5,40 @@
   }
 } %}
 
-{% if use_transactional_footer %}
-  {% do footer | setAttribute("cols", [
-      {
-          "itemsList": [
-              {
-                    "text": _('Contact us'),
-                    "url": '/contact-us',
-                    "target": "_blank"
-              },
-              {
-                    "text": _('Help'),
-                    "url": '#',
-                    "target": "_blank"
-              }
-          ]
-      },
-      {
-          "itemsList": [
-              {
-                  "text": _("Cookies"),
-                  "url": "#",
-                  "target": "_blank"
-              },
-              {
-                  "text": _("Privacy and data protection"),
-                  "url": "/privacy",
-                  "target": "_blank"
-              },
-              {
-                  "text": _("Accessibility"),
-                  "url": "#",
-                  "target": "_blank"
-              }
-          ]
-      }
-    ]) %}
-
-{% else %}
-  {% do footer | setAttribute("cols", [
+{% do footer | setAttribute("cols", [
     {
-        "title": _("Legal information"),
         "itemsList": [
             {
-                "text": _("Cookies and privacy"),
-                "url": "#",
-                "target": "_blank"
+                  "text": _('Contact us'),
+                  "url": '/contact-us',
+                  "target": "_blank"
+            },
+            {
+                  "text": _('Help'),
+                  "url": '#',
+                  "target": "_blank"
             }
         ]
     },
     {
-        "title": _("About ONS"),
         "itemsList": [
             {
-                "text": _("What we do"),
-                "url": "https://www.ons.gov.uk/aboutus/whatwedo",
+                "text": _("Cookies"),
+                "url": "#",
                 "target": "_blank"
             },
             {
-                "text": _("Contact us"),
-                "url": "/contact-us",
+                "text": _("Privacy and data protection"),
+                "url": "/privacy",
                 "target": "_blank"
             },
             {
                 "text": _("Accessibility"),
-                "url": "https://www.ons.gov.uk/help/accessibility",
-                "target": "_blank"
-            }
-        ]
-    },
-    {
-        "title": _("Statistics"),
-        "itemsList": [
-            {
-                "text": _("UK Statistics Authority"),
-                "url": "https://www.statisticsauthority.gov.uk/about-the-authority/",
-                "target": "_blank"
-            },
-            {
-                "text": _("Release calendar"),
-                "url": "https://www.ons.gov.uk/releasecalendar",
-                "target": "_blank"
-            },
-            {
-                "text": _("News"),
-                "url": "https://www.ons.gov.uk/news",
+                "url": "#",
                 "target": "_blank"
             }
         ]
     }
   ]) %}
-{% endif %}
 
 {% do page | setAttribute("footer", footer) %}
