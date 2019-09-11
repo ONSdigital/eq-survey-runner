@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-10 08:52+0100\n"
+"POT-Creation-Date: 2019-09-10 16:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -514,19 +514,23 @@ msgid ""
 "the survey again."
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:16
+#: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:15
+msgid "We use cookies to improve your experience of census.gov.uk"
+msgstr ""
+
+#: templates/layouts/_questionnaire.html:25
 msgid "Previous"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:31
+#: templates/layouts/_questionnaire.html:40
 msgid "Save and continue"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:42
+#: templates/layouts/_questionnaire.html:51
 msgid "Can't complete this question?"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:43
+#: templates/layouts/_questionnaire.html:52
 msgid "Choose another section and return to this later"
 msgstr ""
 
