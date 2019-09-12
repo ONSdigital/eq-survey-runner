@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-12 11:23+0100\n"
+"POT-Creation-Date: 2019-09-12 12:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,17 +17,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-msgid "A questionnaire to demonstrate english language"
+msgid "A questionnaire to demonstrate language switching"
 msgstr ""
 
-msgid "English Language Survey"
+msgid "Enter your date of birth"
 msgstr ""
 
-msgid "English Questionnaire - Date with month and year"
+msgid "Test Language Survey"
 msgstr ""
 
-#. answer-id: month-year-answer
-msgctxt "Answer for: English Questionnaire - Date with month and year"
-msgid "Date"
+msgid "Please enter a name"
+msgstr ""
+
+msgid "What is {person_name_possessive} date of birth?"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: Please enter a name"
+msgid "First Name"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: Please enter a name"
+msgid "Last Name"
+msgstr ""
+
+#. answer-id: date-of-birth-answer
+msgctxt "Answer for: What is {person_name_possessive} date of birth?"
+msgid "Date of Birth"
 msgstr ""
 
