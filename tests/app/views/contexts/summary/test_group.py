@@ -61,7 +61,7 @@ def fixture_path():
     ]
 
 
-def test_group_serialize_hide_on_summary_true(
+def test_group_serialize_show_on_summary_false(
     app, schema, path
 ):  # pylint: disable=unused-argument
 
@@ -84,7 +84,7 @@ def test_group_serialize_hide_on_summary_true(
     assert group.blocks[0]['id'] == 'number-question-one'
 
 
-def test_group_serialize_hide_on_summary_not_set(
+def test_group_serialize_show_on_summary_not_set(
     app, schema, path
 ):  # pylint: disable=unused-argument
 
@@ -109,7 +109,7 @@ def test_group_serialize_hide_on_summary_not_set(
     assert group.blocks[1]['id'] == 'number-question-two'
 
 
-def test_group_serialize_hide_on_summary_false(
+def test_group_serialize_show_on_summary_true(
     app, schema, path
 ):  # pylint: disable=unused-argument
     answer_store = AnswerStore()

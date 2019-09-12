@@ -1,4 +1,5 @@
 from collections import OrderedDict, defaultdict
+
 from typing import List, Union
 
 from flask_babel import force_locale
@@ -36,6 +37,19 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     def get_section(self, section_id: str):
         return self._sections_by_id.get(section_id)
+
+    @staticmethod
+    def get_blocks_for_section(section):
+        return (block for group in section['groups'] for block in group['blocks'])
+
+    @staticmethod
+    def get_driving_question_for_list(section, list_name):
+        for block in QuestionnaireSchema.get_blocks_for_section(section):
+            if (
+                block['type'] == 'ListCollectorDrivingQuestion'
+                and list_name == block['for_list']
+            ):
+                return block
 
     def get_repeating_list_for_section(self, section_id):
         return self._sections_by_id.get(section_id).get('repeat', {}).get('for_list')
@@ -154,7 +168,7 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     def group_has_questions(self, group_id):
         for block in self.get_group(group_id)['blocks']:
-            if block['type'] == 'Question':
+            if QuestionnaireSchema.is_question_block_type(block['type']):
                 return True
         return False
 
@@ -277,6 +291,14 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def is_list_block_type(block_type):
         list_blocks = ['ListCollector'] + LIST_COLLECTOR_CHILDREN
         return block_type in list_blocks
+
+    @staticmethod
+    def is_question_block_type(block_type):
+        return block_type in [
+            'Question',
+            'ListCollectorDrivingQuestion',
+            'ConfirmationQuestion',
+        ]
 
     def _parse_schema(self):
         self._sections_by_id = self._get_sections_by_id()
