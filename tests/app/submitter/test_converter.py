@@ -128,13 +128,11 @@ def test_display_address_should_be_set_in_payload_metadata(
     fake_questionnaire_schema, fake_questionnaire_store
 ):
 
-    payload = convert_answers(
-        fake_questionnaire_schema, fake_questionnaire_store, {}
-    )
+    payload = convert_answers(fake_questionnaire_schema, fake_questionnaire_store, {})
 
-    assert payload['metadata'][
+    assert payload['metadata']['display_address'], fake_questionnaire_store.metadata[
         'display_address'
-    ], fake_questionnaire_store.metadata['display_address']
+    ]
 
 
 def test_converter_raises_runtime_error_for_unsupported_version(
