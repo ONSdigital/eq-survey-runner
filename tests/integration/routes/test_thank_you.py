@@ -45,18 +45,17 @@ class TestThankYou(IntegrationTestCase):
         self.assertEqualUrl('/signed-out')
 
     def test_can_switch_language_on_thank_you_page(self):
-        self.launchSurvey('test_currency')
+        self.launchSurvey('test_language')
 
         # We fill in our answers
-        form_data = {
-            'answer': '12',
-            'answer-usd': '345',
-            'answer-eur': '67.89',
-            'answer-jpy': '0',
-        }
-
-        # We submit the form
-        self.post(form_data)
+        self.post({'first-name': 'Kevin', 'last-name': 'Bacon'})
+        self.post(
+            {
+                'date-of-birth-answer-day': 1,
+                'date-of-birth-answer-month': 2,
+                'date-of-birth-answer-year': 1999,
+            }
+        )
 
         # Submit answers
         self.post(action=None)

@@ -396,10 +396,10 @@ def add_blueprints(application):
 
     application.register_blueprint(filter_blueprint)
 
-    from app.routes.static import contact_blueprint
+    from app.routes.static import static_blueprint
 
-    application.register_blueprint(contact_blueprint)
-    contact_blueprint.config = application.config.copy()
+    application.register_blueprint(static_blueprint)
+    static_blueprint.config = application.config.copy()
 
     from app.routes.schema import schema_blueprint
 
