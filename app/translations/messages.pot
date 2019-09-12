@@ -552,6 +552,34 @@ msgid ""
 "(Error code: {x})"
 msgstr ""
 
+#: templates/layouts/configs/_footer.html:4
+#, python-format
+msgid ""
+"All content is available under the %(class_open)sOpen Government Licence "
+"v3.0%(class_close)s, except where otherwise stated"
+msgstr ""
+
+#: templates/layouts/configs/_footer.html:12
+#: templates/static/contact-us.html:10
+msgid "Contact us"
+msgstr ""
+
+#: templates/layouts/configs/_footer.html:17
+msgid "Help"
+msgstr ""
+
+#: templates/layouts/configs/_footer.html:26
+msgid "Cookies"
+msgstr ""
+
+#: templates/layouts/configs/_footer.html:31 templates/static/privacy.html:9
+msgid "Privacy and data protection"
+msgstr ""
+
+#: templates/layouts/configs/_footer.html:36
+msgid "Accessibility"
+msgstr ""
+
 #: templates/layouts/configs/_save-sign-out-button.html:5
 msgid "Save and sign out"
 msgstr ""
@@ -661,10 +689,6 @@ msgstr ""
 msgid "ONS Business Surveys"
 msgstr ""
 
-#: templates/static/contact-us.html:10
-msgid "Contact us"
-msgstr ""
-
 #: templates/static/contact-us.html:12
 msgid ""
 "Contact us if you have any questions about filling in the census online "
@@ -743,10 +767,6 @@ msgstr ""
 
 #: templates/static/contact-us.html:52
 msgid "Web chat"
-msgstr ""
-
-#: templates/static/privacy.html:9
-msgid "Privacy and data protection"
 msgstr ""
 
 #: templates/static/privacy.html:10
