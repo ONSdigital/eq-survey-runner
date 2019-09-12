@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-11 11:21+0100\n"
+"POT-Creation-Date: 2019-09-12 11:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -553,10 +553,9 @@ msgid ""
 msgstr ""
 
 #: templates/layouts/configs/_footer.html:4
-#, python-format
 msgid ""
-"All content is available under the %(class_open)sOpen Government Licence "
-"v3.0%(class_close)s, except where otherwise stated"
+"All content is available under the {class_open} Open Government Licence "
+"v3.0 {class_close}, except where otherwise stated"
 msgstr ""
 
 #: templates/layouts/configs/_footer.html:12
