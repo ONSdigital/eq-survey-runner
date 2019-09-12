@@ -67,6 +67,7 @@ def render_template(template, **kwargs):
         page_header=page_header_context,
         theme=_map_theme(cookie_session.get('theme')),
         languages=get_languages_context(),
+        schema_theme=cookie_session.get('theme'),
         **kwargs,
     )
 
