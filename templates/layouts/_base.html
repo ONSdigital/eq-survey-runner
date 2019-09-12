@@ -11,10 +11,10 @@
 {% set page = {
   "title": page_title if page_title else survey_title,
   "theme": theme,
-  "header": page_header
+  "header": page_header,
+  "language": languages,
 } %}
 
-{% include 'layouts/configs/_languages.html' %}
 {% include 'layouts/configs/_save-sign-out-button.html' %}
 {% include 'layouts/configs/_footer.html' %}
 {% include 'layouts/configs/_feedback.html' %}

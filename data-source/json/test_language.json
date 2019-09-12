@@ -3,9 +3,9 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.3",
     "survey_id": "0",
-    "title": "English Language Survey",
+    "title": "Test Language Survey",
     "theme": "social",
-    "description": "A questionnaire to demonstrate english language",
+    "description": "A questionnaire to demonstrate language switching",
     "metadata": [
         {
             "name": "user_id",
@@ -26,21 +26,74 @@
                     "blocks": [
                         {
                             "type": "Question",
-                            "id": "language-block",
+                            "id": "name-block",
                             "question": {
+                                "description": "",
+                                "id": "name-question",
+                                "title": "Please enter a name",
+                                "type": "General",
                                 "answers": [
                                     {
-                                        "id": "month-year-answer",
-                                        "label": "Date",
+                                        "id": "first-name",
+                                        "description": "",
+                                        "label": "First Name",
                                         "mandatory": true,
-                                        "q_code": "11",
-                                        "type": "MonthYearDate"
+                                        "type": "TextField"
+                                    },
+                                    {
+                                        "id": "last-name",
+                                        "description": "",
+                                        "label": "Last Name",
+                                        "mandatory": false,
+                                        "type": "TextField"
                                     }
-                                ],
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Question",
+                            "id": "dob-block",
+                            "question": {
                                 "description": "",
-                                "id": "month-year-question",
-                                "title": "English Questionnaire - Date with month and year",
-                                "type": "General"
+                                "id": "dob-question",
+                                "title": {
+                                    "text": "What is {person_name_possessive} date of birth?",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "person_name_possessive",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "delimiter": " ",
+                                                        "list_to_concatenate": {
+                                                            "identifier": ["first-name", "last-name"],
+                                                            "source": "answers"
+                                                        }
+                                                    },
+                                                    "transform": "concatenate_list"
+                                                },
+                                                {
+                                                    "arguments": {
+                                                        "string_to_format": {
+                                                            "source": "previous_transform"
+                                                        }
+                                                    },
+                                                    "transform": "format_possessive"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "id": "date-of-birth-answer",
+                                        "description": "Enter your date of birth",
+                                        "label": "Date of Birth",
+                                        "mandatory": true,
+                                        "type": "Date"
+                                    }
+                                ]
                             }
                         },
                         {
