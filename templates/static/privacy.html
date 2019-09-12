@@ -27,7 +27,7 @@
   <h2>{{ _("Who can access the information?") }}</h2>
 
   <p>{{ _("During the rehearsal we’ll employ third-party providers to assist us with parts of the operation. These third parties work under our instruction.") }}</p>
-  <p>{{ _("We treat the information we hold with respect, keeping it secure and confidential. Data may be made available to approved researchers where there is a clear public value and it’s safe and lawful to do so. More information on <a href='{url}'>how we allow access to data for research</a> is available. We also publish a full list of all the <a href='{url2}'>approved researchers</a> who we’ve granted access to.").format(url='https://www.ons.gov.uk/aboutus/transparencyandgovernance/lookingafterandusingdataforpublicbenefit/policies', url2='https://www.ons.gov.uk/aboutus/whatwedo/statistics/requestingstatistics/approvedresearcherscheme') }}</p>
+  <p>{{ _("We treat the information we hold with respect, keeping it secure and confidential. Data may be made available to approved researchers where there is a clear public value and it’s safe and lawful to do so. More information on <a href='{policies_url}'>how we allow access to data for research</a> is available. We also publish a full list of all the <a href='{researchers_url}'>approved researchers</a> who we’ve granted access to.").format(policies_url='https://www.ons.gov.uk/aboutus/transparencyandgovernance/lookingafterandusingdataforpublicbenefit/policies', researchers_url='https://www.ons.gov.uk/aboutus/whatwedo/statistics/requestingstatistics/approvedresearcherscheme') }}</p>
 
   <br>
   <h2>{{ _("How long are personal data kept?") }}</h2>
@@ -43,7 +43,7 @@
   <br>
   <h2>{{ _("How the law protects your information") }}</h2>
 
-  <p>{{ _("The <a href='{url}'>General Data Protection Regulation</a> and the <a href='{url2}'>Data Protection Act 2018</a>determine how, when and why any organisation can process your personal data. Personal data is any information that can identify a living individual. These laws exist to make sure your data are managed safely and used responsibly. They also give you certain rights about your data and create a responsibility on the ONS, as a user of personal data, to provide you with certain information.").format(url='https://eugdpr.org/', url2='http://www.legislation.gov.uk/ukpga/2018/12/contents/enacted') }}</p>
+  <p>{{ _("The <a href='{data_protection_url}'>General Data Protection Regulation</a> and the <a href='{data_protection_act_url}'>Data Protection Act 2018</a> determine how, when and why any organisation can process your personal data. Personal data is any information that can identify a living individual. These laws exist to make sure your data are managed safely and used responsibly. They also give you certain rights about your data and create a responsibility on the ONS, as a user of personal data, to provide you with certain information.").format(data_protection_url='https://eugdpr.org/', data_protection_act_url='http://www.legislation.gov.uk/ukpga/2018/12/contents/enacted') }}</p>
 
   <p>{{ _("The ONS is a statutory body, meaning it was created by legislation, specifically the <a href='{url}'>Statistics and Registration Service Act 2007</a>. Our objective is to promote and safeguard the production and publication of official statistics that serve the public good. All our collection and use of data comes from powers that can be found in that Act or other UK legislation.").format(url='https://www.legislation.gov.uk/ukpga/2007/18/contents') }}</p>
 
@@ -111,7 +111,12 @@
 
   <p>{{ _("Post:") }}</p>
 
-  <p>Census Customer Services<br>Office for National Statistics<br>Titchfield<br>Fareham<br>Hampshire<br>PO15 5RR</p>
+  <p>Census Customer Services
+  <br>Office for National Statistics
+  <br>Titchfield
+  <br>Fareham
+  <br>Hampshire
+  <br>PO15 5RR</p>
 
   <br>
   <h2>{{ _("How to contact the data protection officer") }}</h2>
@@ -126,7 +131,13 @@
 
   <p>{{ _("Post:") }}</p>
 
-  <p>Data Protection Officer<br>Census Customer Services<br>Office for National Statistics<br>Titchfield<br>Fareham<br>Hampshire<br>PO15 5RR</p>
+  <p>Data Protection Officer
+  <br>Census Customer Services
+  <br>Office for National Statistics
+  <br>Titchfield
+  <br>Fareham
+  <br>Hampshire
+  <br>PO15 5RR</p>
 
   <br>
   <h2>{{ _("The Information Commissioner’s Office") }}</h2>
@@ -141,6 +152,11 @@
 
   <p>{{ _("Post:") }}</p>
 
-  <p>Information Commissioner’s Office<br>Wycliffe House<br>Water Lane<br>Wilmslow<br>Cheshire<br>SK9 5AF</p>
+  <p>Information Commissioner’s Office
+  <br>Wycliffe House
+  <br>Water Lane
+  <br>Wilmslow
+  <br>Cheshire
+  <br>SK9 5AF</p>
 
 {% endblock %}
