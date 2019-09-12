@@ -122,6 +122,8 @@ def _build_metadata(metadata):
         downstream_metadata['ref_period_start_date'] = metadata['ref_p_start_date']
     if metadata.get('ref_p_end_date'):
         downstream_metadata['ref_period_end_date'] = metadata['ref_p_end_date']
+    if metadata.get('display_address'):
+        downstream_metadata['display_address'] = metadata['display_address']
 
     return downstream_metadata
 
