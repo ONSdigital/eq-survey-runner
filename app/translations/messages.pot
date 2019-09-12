@@ -552,34 +552,6 @@ msgid ""
 "(Error code: {x})"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:4
-#, python-format
-msgid ""
-"All content is available under the %(class_open)sOpen Government Licence "
-"v3.0%(class_close)s, except where otherwise stated"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:12
-#: templates/static/contact-us.html:10
-msgid "Contact us"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:17
-msgid "Help"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:26
-msgid "Cookies"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:31 templates/static/privacy.html:9
-msgid "Privacy and data protection"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:36
-msgid "Accessibility"
-msgstr ""
-
 #: templates/layouts/configs/_save-sign-out-button.html:5
 msgid "Save and sign out"
 msgstr ""
@@ -689,6 +661,10 @@ msgstr ""
 msgid "ONS Business Surveys"
 msgstr ""
 
+#: templates/static/contact-us.html:10
+msgid "Contact us"
+msgstr ""
+
 #: templates/static/contact-us.html:12
 msgid ""
 "Contact us if you have any questions about filling in the census online "
@@ -721,7 +697,7 @@ msgid "Sunday - closed"
 msgstr ""
 
 #: templates/static/contact-us.html:24 templates/static/contact-us.html:29
-#: templates/static/privacy.html:123 templates/static/privacy.html:138
+#: templates/static/privacy.html:128 templates/static/privacy.html:149
 msgid "Telephone: {telephone_number}"
 msgstr ""
 
@@ -767,6 +743,10 @@ msgstr ""
 
 #: templates/static/contact-us.html:52
 msgid "Web chat"
+msgstr ""
+
+#: templates/static/privacy.html:9
+msgid "Privacy and data protection"
 msgstr ""
 
 #: templates/static/privacy.html:10
@@ -844,9 +824,10 @@ msgid ""
 "We treat the information we hold with respect, keeping it secure and "
 "confidential. Data may be made available to approved researchers where "
 "there is a clear public value and it’s safe and lawful to do so. More "
-"information on <a href='{url}'>how we allow access to data for "
+"information on <a href='{policies_url}'>how we allow access to data for "
 "research</a> is available. We also publish a full list of all the <a "
-"href='{url2}'>approved researchers</a> who we’ve granted access to."
+"href='{researchers_url}'>approved researchers</a> who we’ve granted "
+"access to."
 msgstr ""
 
 #: templates/static/privacy.html:33
@@ -896,14 +877,14 @@ msgstr ""
 
 #: templates/static/privacy.html:46
 msgid ""
-"The <a href='{url}'>General Data Protection Regulation</a> and the <a "
-"href='{url2}'>Data Protection Act 2018</a>determine how, when and why any"
-" organisation can process your personal data. Personal data is any "
-"information that can identify a living individual. These laws exist to "
-"make sure your data are managed safely and used responsibly. They also "
-"give you certain rights about your data and create a responsibility on "
-"the ONS, as a user of personal data, to provide you with certain "
-"information."
+"The <a href='{data_protection_url}'>General Data Protection "
+"Regulation</a> and the <a href='{data_protection_act_url}'>Data "
+"Protection Act 2018</a> determine how, when and why any organisation can "
+"process your personal data. Personal data is any information that can "
+"identify a living individual. These laws exist to make sure your data are"
+" managed safely and used responsibly. They also give you certain rights "
+"about your data and create a responsibility on the ONS, as a user of "
+"personal data, to provide you with certain information."
 msgstr ""
 
 #: templates/static/privacy.html:48
@@ -1073,16 +1054,16 @@ msgstr ""
 msgid "Email: %(email_address)s"
 msgstr ""
 
-#: templates/static/privacy.html:112 templates/static/privacy.html:127
-#: templates/static/privacy.html:142
+#: templates/static/privacy.html:112 templates/static/privacy.html:132
+#: templates/static/privacy.html:153
 msgid "Post:"
 msgstr ""
 
-#: templates/static/privacy.html:117
+#: templates/static/privacy.html:122
 msgid "How to contact the data protection officer"
 msgstr ""
 
-#: templates/static/privacy.html:119
+#: templates/static/privacy.html:124
 msgid ""
 "Our data protection officer is the person charged with providing us with "
 "advice and guidance on the ways we can best protect the information we "
@@ -1091,19 +1072,19 @@ msgid ""
 "our use of your data, or wish to exercise any of your rights."
 msgstr ""
 
-#: templates/static/privacy.html:121
+#: templates/static/privacy.html:126
 msgid "You can contact the data protection officer by:"
 msgstr ""
 
-#: templates/static/privacy.html:125 templates/static/privacy.html:140
+#: templates/static/privacy.html:130 templates/static/privacy.html:151
 msgid "Email: {email_address}"
 msgstr ""
 
-#: templates/static/privacy.html:132
+#: templates/static/privacy.html:143
 msgid "The Information Commissioner’s Office"
 msgstr ""
 
-#: templates/static/privacy.html:134
+#: templates/static/privacy.html:145
 msgid ""
 "The Information Commissioner’s Office (ICO) is the independent "
 "organisation tasked with regulating data protection in the UK. The ICO "
@@ -1112,7 +1093,7 @@ msgid ""
 "use of your information."
 msgstr ""
 
-#: templates/static/privacy.html:136
+#: templates/static/privacy.html:147
 msgid "You can contact the ICO by:"
 msgstr ""
 
