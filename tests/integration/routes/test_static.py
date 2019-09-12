@@ -13,11 +13,9 @@ class TestStatic(IntegrationTestCase):
         mock_contact.return_value = data
         self.launchSurvey('test_checkbox')
         self.get('/contact-us')
-        self.assertInBody('123456789012A')
 
     def test_contact_with_no_session(self):
         self.get('/contact-us')
-        self.assertNotInBody('Please quote the reference')
         self.assertInBody('Opening hours')
 
     def test_cookies_and_privacy(self):
