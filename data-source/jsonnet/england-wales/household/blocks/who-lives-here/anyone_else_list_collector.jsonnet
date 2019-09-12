@@ -121,7 +121,7 @@ function(census_date) {
           },
         ],
       },
-      when: [rules.listIsEmpty('household')]
+      when: [rules.listIsEmpty('household')],
     },
     {
       question: {
@@ -147,8 +147,8 @@ function(census_date) {
           },
         ],
       },
-      when: [rules.listIsNotEmpty('household')]
-    }
+      when: [rules.listIsNotEmpty('household')],
+    },
   ],
   add_block: {
     id: 'add-person',
