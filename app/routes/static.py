@@ -19,6 +19,6 @@ def contact():
     return render_template('static/contact-us')
 
 
-@static_blueprint.route('/cookies-privacy', methods=['GET'])
-def legal():
-    return render_template('static/cookies-privacy')
+@static_blueprint.route('/privacy', methods=['GET'])
+def privacy():
+    return render_template('static/privacy')
