@@ -14,8 +14,14 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: eq-census-nisra\n"
 "X-Crowdin-Language: ga-IE\n"
-"X-Crowdin-File: census_individual_gb_nir.pot\n"
+"X-Crowdin-File: census_household_gb_nir.pot\n"
 "Language: ga_IE\n"
+
+msgid "Why do we ask this question?"
+msgstr "Cén fáth a gcuireann muid an cheist seo?"
+
+msgid "Why do I have to include visitors?"
+msgstr "Cén fáth a gcaithfidh mé cuairteoirí a chur san áireamh?"
 
 msgid "Why do I need to answer if I am retired or long-term sick or disabled?"
 msgstr "Cén fáth a bhfuil orm freagra a thabhairt má tá mé ar scor nó tinn nó míchumasach san fhadtéarma?"
@@ -23,23 +29,77 @@ msgstr "Cén fáth a bhfuil orm freagra a thabhairt má tá mé ar scor nó tinn
 msgid "Why do I need to answer if they have retired or are long-term sick or disabled?"
 msgstr "Cén fáth a bhfuil orm freagra a thabhairt má tá siad ar scor nó tinn nó míchumasach san fhadtéarma?"
 
-msgid "Census England Individual Schema"
-msgstr "Scéimre Aonair Dhaonáireamh Shasana"
+msgid "Census Northern Ireland Household Schema"
+msgstr "Scéimre Líon Tí Dhaonáireamh Thuaisceart Éireann"
 
-msgid "For example, student hall of residence, boarding school, armed forces base, hospital, care home, prison"
-msgstr "Mar shampla, árais chónaithe mac léinn, scoil chónaithe, bunáit fórsaí armtha, otharlann, teach cúraim, príosún"
+msgid "It means the address at which you generally spend most time. For most people, this will be their permanent or family home."
+msgstr "Ciallaíonn sé an seoladh ina gcaitheann tú an méid is mó ama de ghnáth. Don chuid is mó daoine, is é seo a dteach buan nó teaghlaigh."
 
-msgid "A communal establishment is a place providing managed residential accommodation. “Managed” here means full-time or part-time supervision of the accommodation"
-msgstr "Is áit a chuireann cóiríocht chónaithe bhainistithe ar fáil áit chomhroinnte. Ciallaíonn 'bainistithe' anseo maoirseacht lánaimseartha nó pháirt-aimseartha ar an chóiríocht"
+msgid "<strong>Full-time students</strong>, include yourself at your term time address."
+msgstr "<strong>Mic léinn lánaimseartha</strong>, bígí do bhur gcur isteach féin ag an seoladh i rith an téarma."
 
-msgid "For example, student, member of armed forces, patient, detainee"
-msgstr "Mar shampla, mac léinn, ball de na fórsaí armtha, othar, duine atá á choinneáil"
+msgid "<strong>Armed forces members</strong>, include yourself at your home address if you have one."
+msgstr "<strong>Baill de na fórsaí armtha</strong>, bígí do bhur gcur isteach féin ag bhur seoladh baile má tá seoladh agaibh."
 
-msgid "No usual UK address"
-msgstr "Gan gnáthsheoladh sa UK"
+msgid "For example, this is a second address or holiday home"
+msgstr "Mar shampla, is é seo an dara seoladh nó is teach saoire é"
 
-msgid "A communal establishment is an establishment providing managed residential accommodation. ‘Managed’ in this context means full-time or part-time supervision of the accommodation. Examples of communal establishments include student halls of residence, boarding schools, armed forces bases, hospitals, care homes and prisons"
-msgstr "Is áit chomhroinnte áit a gcuireann cóiríocht chónaithe bhainistithe ar fáil. Ciallaíonn 'bainistithe' sa chomhthéacs seo maoirseacht lánaimseartha nó pháirt-aimseartha ar an chóiríocht. I measc samplaí d'áiteanna comhroinnte tá árais chónaithe do mhic léinn, scoileana cónaithe, bunáiteanna fórsaí armtha, otharlanna, tithe cúraim agus príosúin"
+msgid "We ask this question to help ensure that everyone is correctly counted in the census. This includes people who are staying temporarily or are away."
+msgstr "Cuireann muid an cheist seo chun cinntiú go n-áirítear gach duine i gceart sa daonáireamh. San áireamh tá daoine atá ag fanacht go sealadach nó atá ar shiúl."
+
+msgid "We ask for visitor information to ensure that everyone is counted. This helps to produce accurate population estimates. Add any visitors, even if you think they may have been included on a census form at another address."
+msgstr "Iarrann muid ar eolas faoi chuairteoirí le cinntiú go n-áirítear gach duine. Cuidíonn sé seo le meastacháin chruinne ar an daonáireamh a dhéanamh. Cuir cuairteoir ar bith san áireamh, fiú má shíleann tú gur cuireadh san áireamh ar fhoirm daonáirimh ag seoladh eile iad."
+
+msgid "In this section, we’ll ask you how the people who usually live in this household are related to each other."
+msgstr "Sa chuid seo, cuirfidh muid ceist ort faoi na daoine a chónaíonn sa líon tí seo de ghnáth atá gaolta lena chéile."
+
+msgid "For the displayed household members, select the appropriate relationship from the options shown. The selected relationship will display at the bottom of the page for you to check."
+msgstr "Do na baill den líon tí atá á léiriú, roghnaigh an gaol cuí ó na roghnanna atá á dtaispeáint. Léireofar an gaol roghnaithe ag bun an leathanaigh sa dóigh is gur féidir leat seiceáil a dhéanamh."
+
+msgid "Complete the sentence by selecting the appropriate relationship."
+msgstr "Críochnaigh an abairt leis an ghaol chuí a roghnú."
+
+msgid "Including half brother or half sister"
+msgstr "Cuir leathdheartháir nó leathdheirfiúr san áireamh"
+
+msgid "Including foster child"
+msgstr "Cuir páiste altrama san áireamh"
+
+msgid "In this section, we’re going to ask you about the accommodation you live in."
+msgstr "Sa chuid seo, beidh muid ag dul ceisteanna a chur ort faoin chóiríocht ina gcónaíonn tú."
+
+msgid "Including purpose-built flats and flats within converted and shared houses"
+msgstr "Árasáin shaintógtha agus árasáin taobh istigh de thithe athchóirithe agus comhroinnte san áireamh"
+
+msgid "Including end-terrace"
+msgstr "Teach sraithe deiridh san áireamh"
+
+msgid "Including bedsits"
+msgstr "Mionárasáin san áireamh"
+
+msgid "For example, in an office building, hotel, or over a shop"
+msgstr "Mar shampla, i bhfoirgneamh oifige, in óstán, nó thar siopa"
+
+msgid "For example downstairs bathroom"
+msgstr "Mar shampla, seomra folctha thíos staighre"
+
+msgid "For example a ramp"
+msgstr "Mar shampla, rampa"
+
+msgid "For example storage heaters"
+msgstr "Mar shampla, taiscthéitheoirí"
+
+msgid "For example logs or waste wood"
+msgstr "Mar shampla, lomáin nó dramhadhmad"
+
+msgid "For example coal"
+msgstr "Mar shampla, gual"
+
+msgid "Shared ownership"
+msgstr "Comhúinéireacht"
+
+msgid "With or without housing benefit"
+msgstr "Le nó gan liúntas tithíochta"
 
 msgid "For example 31 12 1970"
 msgstr "Mar shampla, 31 12 1970"
@@ -174,7 +234,7 @@ msgid "For example, retail assistant, office cleaner, district nurse, primary sc
 msgstr "Mar shampla, cúntóir miondíola, glantóir oifige, banaltra ceantair, múinteoir bunscoile. Ná luaigh a ngrád nó a mbanda pá"
 
 msgid "For example clothing retail, general hospital, primary education, food wholesale, civil service, local government housing."
-msgstr "Mar shampla, éadaí miondíola, otharlann ghinearálta, bunscolaíocht, bia mórdhíola, státseirbhís, tithíocht rialtais áitiúil."
+msgstr "Mar shampla, éadaí miondíola, otharlann ghinearálta, bunscolaíocht, bia mórdhíola, státseirbhís Rop, tithíocht rialtais áitiúil."
 
 msgid "Include paid and unpaid overtime"
 msgstr "Luaigh ragobair íoctha agus neamhíoctha"
@@ -186,7 +246,7 @@ msgid "Answer for the place where you spent the most time."
 msgstr "Freagair don áit inar chaith tú an méid ba mhó ama."
 
 msgid "Select one option only, for the longest part, by distance, of your usual journey to place of work."
-msgstr "Roghnaigh ceann amháin, don chuid is mó, de réir faid, de do ghnáth-thuras go dtí d'áit oibre."
+msgstr "Roghnaigh ceann amháin, don chuid is mó, de réir faid, de do ghnáth-thuras go dtí d'áit staidéir."
 
 msgid "Select one option only, for the longest part, by distance, of their usual journey to place of work."
 msgstr "Roghnaigh ceann amháin, don chuid is mó, de réir faid, dá ngnáth-thuras go dtí a n-áit oibre."
@@ -203,32 +263,83 @@ msgstr "Roghnaigh ceann amháin, don chuid is mó, de réir faid, dá ngnáth-th
 msgid "Voluntary"
 msgstr "Deonach"
 
+msgid "Add someone to this household"
+msgstr "Cuir duine éigin leis an líon tí seo"
+
+msgid "Add another visitor to this household"
+msgstr "Cuir cuairteoir eile leis an líon tí seo"
+
+msgid "Add a visitor"
+msgstr "Cuir cuairteoir leis"
+
+msgid "There are no householders"
+msgstr "Níl sealbhóir tí ar bith ann"
+
+msgid "There are no visitors"
+msgstr "Níl cuairteoir ar bith ann"
+
 msgid "2019 Census Test"
 msgstr "Teist Daonáirimh 2019"
+
+msgid "People who live here"
+msgstr "Daoine a chónaíonn anseo"
+
+msgid "Who lives here"
+msgstr "Cé a chónaíonn anseo"
+
+msgid "You will need to know"
+msgstr "Caithfear eolas bheith agat ar"
+
+msgid "What is your name?"
+msgstr "Cad é an t-ainm atá ort?"
+
+msgid "What does \"usually live\" mean?"
+msgstr "Cad é a chiallaíonn 'a chónaíonn de ghnáth'?"
+
+msgid "All of the data entered about this person will be deleted"
+msgstr "Scriosfar an t-eolas uilig a cuireadh isteach faoin duine seo"
+
+msgid "Household members"
+msgstr "Baill den Líon Tí"
+
+msgid "Include people who are temporarily away"
+msgstr "Cuir daoine a chónaíonn ar shiúl go sealadach san áireamh"
+
+msgid "Include people who are temporarily staying"
+msgstr "Cuir daoine atá ag fanacht go sealadach san áireamh"
+
+msgid "Include"
+msgstr "Cuir san áireamh"
+
+msgid "Household relationships"
+msgstr "Gaolta líon tí"
+
+msgid "Household accommodation"
+msgstr "Cóiríocht líon tí"
+
+msgid "Which of the following is your house or bungalow?"
+msgstr "Cé acu de na rudaí seo a leanas arb é do thach nó do bhungaló é?"
+
+msgid "Where is your flat, maisonette or apartment?"
+msgstr "Cá bhfuil d'árasán, do mhaisonette nó d'árasán?"
+
+msgid "Include central heating systems that generate heat for multiple rooms whether or not you use them"
+msgstr "Cuir na córais teasa lárnaigh a ghineann teas d'ilsheomraí cé acu a úsáideann tú nó nach n-úsáideann tú iad san áireamh"
+
+msgid "Who do you rent from?"
+msgstr "Cé óna bhfaigheann tú an réadmhaoin ar cíos?"
+
+msgid "In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgstr "San iomlán, cá mhéad gluaisteán nó veain ar le baill den líon tí seo iad nó atá ar fáil le húsáid acu?"
+
+msgid "Include any company cars or vans available for private use."
+msgstr "Cuir gluaisteán no veain comhlachta ar bith atá ar fáil le húsáid go príobháideach san áireamh."
 
 msgid "Individual Section"
 msgstr "Mír don Duine Aonair"
 
 msgid "Personal Details"
 msgstr "Sonraí Pearsanta"
-
-msgid "What is a communal establishment?"
-msgstr "Cad í an rud í áit chomhroinnte?"
-
-msgid "Are you answering these questions for yourself or for someone else?"
-msgstr "An bhfuil tú ag freagairt na gceisteanna seo ar do shon féin nó ar son duine éigin eile?"
-
-msgid "What is your name?"
-msgstr "Cad é an t-ainm atá ort?"
-
-msgid "What is their name?"
-msgstr "Cad é an t-ainm atá orthu?"
-
-msgid "What is your position in this establishment?"
-msgstr "Cad é an post atá agat san áit seo?"
-
-msgid "What is an establishment?"
-msgstr "Cad í an rud í áit?"
 
 msgid "What is your date of birth?"
 msgstr "Cad é do dháta breithe?"
@@ -246,7 +357,7 @@ msgid "Are you a schoolchild or student in full-time education?"
 msgstr "An páiste scoile nó mac léinn thú atá in oideachas lánaimseartha?"
 
 msgid "During term time, where do you usually live?"
-msgstr "I rith am an téarma, cá bhfuil tú i do chónaí?"
+msgstr "I rith am an téarma, cá bhfuil tú i do chónaí de ghnáth?"
 
 msgid "Identity and Health"
 msgstr "Féiniúlacht agus Sláinte"
@@ -288,7 +399,7 @@ msgid "What do we mean by “main language”?"
 msgstr "Cad é a chiallaíonn muid nuair a deir muid \"príomhtheanga\"?"
 
 msgid "How well can you speak English?"
-msgstr "Cé chomh maith agus a labhraíonn tú Béarla?"
+msgstr "Cé chomh maith agus a labhraíonn tú Gaeilge?"
 
 msgid "Can you understand, speak, read or write Irish?"
 msgstr "An féidir leat Gaeilge a thuiscint, a labhairt a léamh nó a scríobh?"
@@ -351,7 +462,7 @@ msgid "In the last seven days, were you doing any of the following?"
 msgstr "Sna seacht lá seo a chuaigh thart, an raibh tú ag déanamh ceann ar bith de na rudaí seo a leanas?"
 
 msgid "Which of the following describes what you were doing in the last seven days?"
-msgstr "Cé acu de na rudaí seo a leanas a bhí tú ag déanamh sna seacht lá seo a chuaigh thart?"
+msgstr "Cé acu de na rudaí seo a leanas a dhéanann cur síos ar na rudaí a bhí tú ag déanamh sna seacht lá seo a chuaigh thart?"
 
 msgid "In the last four weeks, were you actively looking for any kind of paid work?"
 msgstr "Sna ceithre seachtaine seo a chuaigh thart, an raibh tú ag iarraidh obair íoctha de chineál ar bith go gníomhach?"
@@ -372,7 +483,7 @@ msgid "Last main job"
 msgstr "An chéad phríomhphost roimhe"
 
 msgid "In your main job, what is your employment status?"
-msgstr "Cad é do phríomhphost, cad é do stádas fostaíochta?"
+msgstr "I do phríomhphost, cad é atá do stádas fostaíochta?"
 
 msgid "In your main job, what was your employment status?"
 msgstr "I do phríomhphost, cad é a bhí do stádas fostaíochta?"
@@ -399,7 +510,7 @@ msgid "What is the main activity of your organisation, business or freelance wor
 msgstr "Cad í príomhghníomhaíocht d'eagraíochta, do ghnó nó d'fhéinfhostaíochta?"
 
 msgid "What was the main activity of your organisation, business or freelance work?"
-msgstr "Cad í príomhghníomhaíocht a bhí i d'eagraíochta, do ghnó nó d'fhéinfhostaíochta?"
+msgstr "Cad í an phríomhghníomhaíocht a bhí i d'eagraíocht, do ghnó nó d'fhéinfhostaíochta?"
 
 msgid "Do you supervise or oversee the work of other employees on a day-to-day basis?"
 msgstr "An ndéanann tú maoirseacht ar obair fhostaithe eile ó lá go lá?"
@@ -443,20 +554,170 @@ msgstr "Cad é an seoladh atá ag do phríomháit staidéir, do scoil san áirea
 msgid "How do you usually travel to your main place of study, including school?"
 msgstr "Cad é mar a thaistealaíonn tú go dtí do phríomháit staidéir, an scoil san áireamh?"
 
-msgid "Submit answers"
-msgstr "Cuir isteach do fhreagraí"
+msgid "Summary"
+msgstr "Achoimre"
 
-msgid "Enter a first name to continue"
-msgstr "Cuir an chéad ainm isteach le leanstan ar aghaidh"
+msgid "Visitors"
+msgstr "Cuairteoirí"
 
-msgid "Enter a last name to continue"
-msgstr "Cuir sloinne isteach le leanstan ar aghaidh"
+msgid "Names of the people living at this address including anyone temporarily away or who has been or intends to be in the UK for 3 months or more."
+msgstr "Ainmneacha na ndaoine a chónaíonn ag an seoladh seo, duine ar bith a chónaíonn ar shiúl go sealadach nó a bhfuil rún acu bheith sa UK le 3 mhí nó níos mó."
+
+msgid "Names of visitors staying overnight at this address on 13 October 2019"
+msgstr "Ainmneacha na gcuairteoirí a bheidh ag fanacht thar oíche ag an seoladh seo ar 13 Deireadh Fómhair 2019"
+
+msgid "h"
+msgstr ""
+
+msgid "o"
+msgstr ""
+
+msgid "u"
+msgstr ""
+
+msgid "s"
+msgstr ""
+
+msgid "e"
+msgstr ""
+
+msgid "l"
+msgstr ""
+
+msgid "d"
+msgstr ""
+
+msgid "People who work away from home within the UK if this is their permanent or family home"
+msgstr "Daoine a oibríonn ar shiúl ón bhaile taobh istigh den UK más é seo a dteach buan nó teaghlaigh"
+
+msgid "Members of the armed forces if this is their permanent or family home"
+msgstr "Baill de na fórsaí armtha más é seo a dteach buan nó teaghlaigh"
+
+msgid "People who are temporarily outside the UK for less than <strong>12 months</strong>"
+msgstr "Daoine atá taobh amuigh den UK go sealadach do níos lú ná <strong>12 mhí</strong>"
+
+msgid "Other people who usually live here but are temporarily away"
+msgstr "Daoine eile a chónaíonn anseo de ghnáth ach atá ar shiúl go sealadach"
+
+msgid "People staying temporarily who usually live in the UK but do not have another UK address for example, relatives, friends"
+msgstr "Daoine a bheidh ag fanacht go sealadach a chónaíonn sa UK ach nach bhfuil seoladh ar bith eile acu sa UK, mar shampla, gaolta, cairde"
+
+msgid "People who usually live outside the UK who are staying in the UK for <strong>3 months or more</strong>"
+msgstr "Daoine a chónaíonntaobh amuigh den UK de ghnáth atá ag fanacht sa UK ar feadh <strong>3 mhí nó níos mó</strong>"
+
+msgid "People who usually live somewhere else in the UK, for example boy/girlfriends, friends or relatives"
+msgstr "Daoine a chonaíonn áit éigin eile sa UK de ghnáth, mar shampla, buachaillí/cailíní, cairde nó gaolta"
+
+msgid "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere"
+msgstr "Daoine atá ag fanacht anseo mar gheall gurb é seo an dara seoladh atá acu, mar shampla, d'obair. Tá a dteach buan nó teaghlaigh suite in áit éigin eile"
+
+msgid "People who usually live outside the UK who are staying in the UK for less than three months"
+msgstr "Daoine a chónaíonn taobh amuigh den UK de ghnáth atá ag fanacht sa UK ar feadh níos lú ná trí mhí"
+
+msgid "People here on holiday"
+msgstr "Daoine atá anseo ar saoire"
+
+msgid "Type of property, and if it’s owned or rented"
+msgstr "An sórt réadmhaoine, agus más le duine éigin é nó má thógtar ar cíos é"
+
+msgid "Type of landlord if rented, for example housing association, council or private"
+msgstr "An sórt tiarna talún, má thógtar an réadmhaoin ar cíos, mar shampla, ó chumann tithíochta, ó chomhairle nó go príobháideach"
+
+msgid "Type of central heating"
+msgstr "An sórt teasa lárnaigh"
+
+msgid "Personal details such as date of birth, country of birth, religion"
+msgstr "Sonraí pearsanta amhail dáta breithe, an tír bhreithe, reiligiún"
+
+msgid "Main language"
+msgstr "Príomhtheanga"
+
+msgid "Health"
+msgstr "Sláinte"
+
+msgid "Unpaid care provided"
+msgstr "Cúram neamhíoctha tugtha"
+
+msgid "Employment details"
+msgstr "Sonraí fostaíochta"
+
+msgid "Date of birth"
+msgstr "Dáta breithe"
+
+msgid "Sex"
+msgstr "Inscne"
+
+msgid "Usual address"
+msgstr "An gnáthsheoladh"
+
+msgid "In this section, we’re going to ask you about the people living or staying at {address}."
+msgstr "Sa chuid seo, beidh muid ag dul ceist a chur ort faoi na daoine a chónaíonn nó atá ag fanacht ag an {address}."
+
+msgid "Do you usually live at {address}?"
+msgstr "An gcónaíonn tú ag {address} de ghnáth?"
+
+msgid "Does anyone usually live at {address}?"
+msgstr "An gcónaíonn duine ar bith ag {address} de ghnáth?"
+
+msgid "Who do you need to add to {address}?"
+msgstr "Cé is gá duit cur isteach ag an {address} chomh maith?"
+
+msgid "Change details for {person_name} (You)"
+msgstr "Athraigh na sonraí do {person_name} (Tusa)"
+
+msgid "Change details for {person_name}"
+msgstr "Athraigh na sonraí do {person_name}"
+
+msgid "Does anyone else live at {address}?"
+msgstr "An gcónaíonn duine ar bith eile ag {address} de ghnáth?"
+
+msgid "Are you sure you want to remove {person_name}?"
+msgstr "An bhfuil tú cinnte gur mhaith leat {person_name} a bhaint?"
+
+msgid "{person_name}"
+msgstr "{person_name}"
+
+msgid "Apart from the people already included, is there anyone who is temporarily away or staying that you need to add to {address}?"
+msgstr "Seachas na daoine atá curtha isteach cheana féin, an bhfuil duine ar bith eile atá ar shiúl nó ag fanacht go sealadach gur gá duit cur san áireamh ag {address}?"
+
+msgid "Are there any visitors staying overnight on {census_date} at {address}?"
+msgstr "An mbeidh cuairteoir ar bith ag fanacht thar oíche anseo ar {census_date} ag {address}?"
+
+msgid "What is the name of the visitor staying overnight on {census_date} at {address}?"
+msgstr "Cad é an t-ainm atá ar an chuairteoir a bheidh ag fanacht thar oíche ar {census_date} ag {address}?"
+
+msgid "Are there any other visitors staying overnight on {census_date} at {address}?"
+msgstr "An mbeidh cuairteoir ar bith eile ag fanacht thar oíche anseo ar {census_date} ag {address}?"
+
+msgid "Visitors staying overnight on {census_date}"
+msgstr "Cuairteoir a bheidh ag fanacht thar oíche ar {census_date}"
+
+msgid "{second_person_name} is your <em>…</em>"
+msgstr "{second_person_name} is ea do <em>…</em>"
+
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, {second_person_name} is é/í seo a <em>…</em>"
 
 msgid "What type of accommodation is <em>{address}</em>?"
 msgstr "Cén sórt cóiríochta é <em>{address}</em>?"
 
-msgid "What is <em>{person_name_possessive}</em> position in this establishment?"
-msgstr "Cad í an fhreagracht atá ag <em>{person_name_possessive}</em> san áit seo?"
+msgid "Has <em>{address}</em> been designed or adapted for any of the following?"
+msgstr "Ar dearadh nó ar oiriúnaíodh <em>{address}</em> do cheann ar bith de na rudaí seo a leanas?"
+
+msgid "What type of central heating does <em>{address}</em> have?"
+msgstr "Cén sórt teasa lárnaigh atá ag <em>{address}</em>?"
+
+msgid "What type of renewable energy systems does <em>{address}</em> have?"
+msgstr "Cén sórt córas fuinnimh in-athnuaite atá ag <em>{address}</em>?"
+
+msgid "Does your household own or rent <em>{address}</em>?"
+msgstr "An le do líon tí <em>{address}</em>nó an dtógann sé ar cios é?"
+
+msgid "In this section, we’re going to ask you questions about <strong>{person_name}</strong>."
+msgstr "Sa cuid seo, beidh muid ag dul ceist a chur ort faoi <strong>{person_name}</strong>."
+
+msgid "Are you <em>{person_name}?</em>"
+msgstr "An tusa <em>{person_name}?</em>"
 
 msgid "What is <em>{person_name_possessive}</em> date of birth?"
 msgstr "Cad é dáta breithe <em>{person_name_possessive}</em>?"
@@ -507,7 +768,7 @@ msgid "What religion, religious denomination or body does <em>{person_name}</em>
 msgstr "Cén reiligiún, creideamh reiligiúnach nó cén eagraíocht reiligiúnach dá bhfuil <em>{person_name}</em> ina b(h)all?"
 
 msgid "What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
-msgstr "Cén reiligiún, creideamh reiligiúnach nó cén eagraíocht reiligiúnach <em>inar tógadh</em> {person_name}?"
+msgstr "Cén reiligiún, creideamh reiligiúnach nó cén eagraíocht reiligiúnach inar tógadh {person_name} <em>brought up</em>?"
 
 msgid "What is <em>{person_name_possessive}</em> main language?"
 msgstr "Cad í príomhtheanga <em>{person_name_possessive}</em>?"
@@ -537,7 +798,7 @@ msgid "Does {person_name} have any of the following <em>physical health conditio
 msgstr "An bhfuil ceann ar bith de na <em>fadhbanna sláinte fisicí</em> seo a leanas ag {person_name} go fóill nó a bhfuiltear ag súil leis go mbeidh sé acu ar feadh 12 mhí ar a laghad?"
 
 msgid "Does {person_name} have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
-msgstr "An bhfuil ceann ar bith de na <em>fadhbanna sláinte eile</em> seo a leanas ag {person_name} go fóill nó a bhfuiltear ag súil leis go mbeidh sé acu ar feadh 12 mhí nó níos mó?"
+msgstr "An bhfuil ceann ar bith de na <em>fadhbanna sláinte eile</em> seo a leanas ag {person_name} go fóill nó a bhfuiltear ag súil leis go mbeidh sé acu ar feadh 12 mhí ar a laghad?"
 
 msgid "Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
 msgstr "An dtugann <em>{person_name}</em> aire do, nó an dtugann siad tacaíocht do dhuine ar bith mar go bhfuil fadhb sláinte fisicí nó meabhrach fadtéarmaí acu nó tinnis orthu, nó fadhbanna acu mar gheall ar sheanaois?"
@@ -546,7 +807,7 @@ msgid "Which of the following best describes <em>{person_name_possessive}</em> s
 msgstr "Cé acu de na rudaí seo a leanas a dhéanann cur síos níos fearr ar chlaonadh gnéis <em>{person_name_possessive}</em>?"
 
 msgid "The next set of questions is about the qualifications <em>{person_name}</em> has achieved in Northern Ireland or worldwide, even if they are not using them now."
-msgstr "Tá na chéad cheisteanna eile faoi na cáilíochtaí a bhain <em>{person_name}</em> amach i dTuaisceart Éireann nó ar fud an domhain, fiú nuair nach bhfuil siad á n-úsáid anois."
+msgstr "Tá na chéad cheisteanna eile faoi na cáilíochtaí a bhain <em>{person_name}</em> amach i dTuaisceart Éireann nó ar fud an domhain, fiú nuair nach bhfuil siad á n-úsáid anois acu."
 
 msgid "Has <em>{person_name}</em> achieved a qualification at degree level or above?"
 msgstr "Ar bhain <em>{person_name}</em> cáilíocht ar leibhéal céime nó níos airde ná sin amach?"
@@ -591,7 +852,7 @@ msgid "The next set of questions is about <em>{person_name_possessive}</em> main
 msgstr "Tá an chéad tacar eile de cheisteanna faoi phríomhphost <em>{person_name_possessive}</em>. Is é a bpríomhphost an post ina n-oibríonn siad an méid is mó uaireanta de ghnáth."
 
 msgid "The next set of questions is about <em>{person_name_possessive}</em> last main job. Their main job is the job in which they usually worked the most hours."
-msgstr "Tá an chéad tacar eile de cheisteanna faoin phríomhphost deireanach a bhí ag <em>{person_name_possessive}</em>. Is é a bpríomhphost an post inar oibrigh siad an méid ba mhó uaireanta de ghnáth."
+msgstr "Tá an chéad tacar eile de cheisteanna faoin phríomhphost deireanach a bhí ag <em>{person_name_possessive}</em>. Is é a bpríomhphost an post ina n-oibríonn siad an méid is mó uaireanta de ghnáth."
 
 msgid "In their main job, what is <em>{person_name_possessive}</em> employment status?"
 msgstr "Ina bpríomhphost, cad é an stádas fostaíochta atá ag <em>{person_name_possessive}</em>?"
@@ -654,10 +915,10 @@ msgid "What was the address of <em>{person_name_possessive}</em> main place of w
 msgstr "Cad é an seoladh a bhí ag príomháit oibre <em>{person_name_possessive}</em>?"
 
 msgid "How does <em>{person_name}</em> usually travel to their main place of work?"
-msgstr "Cad é mar a thaistealaíonn <em>{person_name}</em> go dtí a bpríomháit oibre de ghnáth?"
+msgstr "Cad é mar a thaistealaíonn <em>{person_name}</em> go dtí n-áit oibre de ghnáth?"
 
 msgid "How did <em>{person_name}</em> usually travel to their main place of work?"
-msgstr "Cad é mar a thaistil <em>{person_name}</em> go dtí a bpríomháit oibre de ghnáth?"
+msgstr "Cad é mar a thaistil <em>{person_name}</em> go dtí n-áit oibre de ghnáth?"
 
 msgid "Answer for the place where <em>{person_name}</em> spends the most time. If student or schoolchild, answer for their study address."
 msgstr "Freagair don áit ina gcaitheann <em>{person_name}</em> an méid is mó dá c(h)uid ama. Más mac léinn nó páiste scoile é/í, freagair dá seoladh staidéir."
@@ -671,25 +932,17 @@ msgstr "Cad é an seoladh atá ag príomháit staidéir <em>{person_name_possess
 msgid "How does <em>{person_name}</em> usually travel to their main place of study, including school?"
 msgstr "Cad é mar a thaistealaíonn <em>{person_name}</em> go dtí a bpríomháit staidéir, scoil san áireamh?"
 
-#. answer-id: accommodation-type-answer
-msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
-msgid "A communal establishment"
-msgstr "Áit chomhroinnte"
+msgid "In this section, we’re going to ask you about your visitor, <strong>{person_name}</strong>."
+msgstr "Sa cuid seo, beidh muid ag dul ceisteanna a chur ort faoi <strong>{person_name}</strong>."
 
-#. answer-id: accommodation-type-answer
-msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
-msgid "A private or family household"
-msgstr "Teach príomháideach nó teaghlaigh"
+msgid "What is <em>{person_name_possessive}</em> usual address?"
+msgstr "Cad é gnáthsheoladh <em>{person_name_possessive}</em>?"
 
-#. answer-id: proxy-answer
-msgctxt "Answer for: Are you answering these questions for yourself or for someone else?"
-msgid "For myself"
-msgstr "Dom féin"
+msgid "Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgstr "Cuir isteach sonraí de ghnáthsheoladh <em>{person_name_possessive}</em> sa UK"
 
-#. answer-id: proxy-answer
-msgctxt "Answer for: Are you answering these questions for yourself or for someone else?"
-msgid "For someone else"
-msgstr "Do dhuine éigin eile"
+msgid "{person_name} (Visitor)"
+msgstr "{person_name} (Cuairteoir)"
 
 #. answer-id: first-name
 msgctxt "Answer for: What is your name?"
@@ -706,60 +959,539 @@ msgctxt "Answer for: What is your name?"
 msgid "Last name"
 msgstr "Sloinne"
 
+#. answer-id: you-live-here-answer
+msgctxt "Answer for: Do you usually live at {address}?"
+msgid "Yes, I usually live here"
+msgstr "Cónaím anseo de ghnáth"
+
+#. answer-id: you-live-here-answer
+msgctxt "Answer for: Do you usually live at {address}?"
+msgid "No, I don’t usually live here"
+msgstr "Ní chónaím anseo de ghnáth"
+
+#. answer-id: anyone-usually-live-at-answer
+msgctxt "Answer for: Does anyone usually live at {address}?"
+msgid "Yes, I need to add someone"
+msgstr "Cónaíonn, caithfidh mé duine éigin a chur isteach"
+
+#. answer-id: anyone-usually-live-at-answer
+msgctxt "Answer for: Does anyone usually live at {address}?"
+msgid "No, no one usually lives here"
+msgstr "Ní chónaíonn duine ar bith anseo de ghnáth"
+
 #. answer-id: first-name
-msgctxt "Answer for: What is their name?"
+msgctxt "Answer for: Who do you need to add to {address}?"
 msgid "First name"
 msgstr "Céad Ainm"
 
 #. answer-id: middle-names
-msgctxt "Answer for: What is their name?"
+msgctxt "Answer for: Who do you need to add to {address}?"
 msgid "Middle names"
 msgstr "Lárainmneacha"
 
 #. answer-id: last-name
-msgctxt "Answer for: What is their name?"
+msgctxt "Answer for: Who do you need to add to {address}?"
 msgid "Last name"
 msgstr "Sloinne"
 
-#. answer-id: establishment-position-answer
-msgctxt "Answer for: What is your position in this establishment?"
-msgid "Resident"
-msgstr "Cónaitheoir"
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "First name"
+msgstr "Céad Ainm"
 
-#. answer-id: establishment-position-answer
-msgctxt "Answer for: What is your position in this establishment?"
-msgid "Staff or owner"
-msgstr "Ball foirne nó úinéir"
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Middle names"
+msgstr "Lárainmneacha"
 
-#. answer-id: establishment-position-answer
-msgctxt "Answer for: What is your position in this establishment?"
-msgid "Family member or partner of staff or owner"
-msgstr "Ball teaghlaigh nó páirtnéir bhall foirne nó an úinéara"
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Last name"
+msgstr "Sloinne"
 
-#. answer-id: establishment-position-answer
-msgctxt "Answer for: What is your position in this establishment?"
-msgid "Staying temporarily"
-msgstr "Ag fanacht go sealadach"
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "First name"
+msgstr "Céad Ainm"
 
-#. answer-id: establishment-position-answer
-msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
-msgid "Resident"
-msgstr "Cónaitheoir"
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Middle names"
+msgstr "Lárainmneacha"
 
-#. answer-id: establishment-position-answer
-msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
-msgid "Staff or owner"
-msgstr "Ball foirne nó úinéir"
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Last name"
+msgstr "Sloinne"
 
-#. answer-id: establishment-position-answer
-msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
-msgid "Family member or partner of staff or owner"
-msgstr "Ball teaghlaigh nó páirtnéir bhall foirne nó úinéara"
+#. answer-id: anyone-else-answer
+msgctxt "Answer for: Does anyone else live at {address}?"
+msgid "Yes, I need to add someone"
+msgstr "Cónaíonn, caithfidh mé duine éigin a chur isteach"
 
-#. answer-id: establishment-position-answer
-msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
-msgid "Staying temporarily"
-msgstr "Ag fanacht go sealadach"
+#. answer-id: anyone-else-answer
+msgctxt "Answer for: Does anyone else live at {address}?"
+msgid "No, I do not need to add anyone"
+msgstr "Ní bheidh, ní chaithfidh mé duine éigin a chur isteach"
+
+#. answer-id: remove-confirmation
+#. answer-id: anyone-else-temp-away-remove-confirmation
+#. answer-id: visitor-remove-confirmation
+msgctxt "Answer for: Are you sure you want to remove {person_name}?"
+msgid "Yes, I want to remove this person"
+msgstr "Tá, ba mhaith liom an duine seo a bhaint"
+
+#. answer-id: remove-confirmation
+#. answer-id: anyone-else-temp-away-remove-confirmation
+#. answer-id: visitor-remove-confirmation
+msgctxt "Answer for: Are you sure you want to remove {person_name}?"
+msgid "No, I do not want to remove this person"
+msgstr "Níl, níor mhaith liom an duine seo a bhaint"
+
+#. answer-id: anyone-else-temp-away-answer
+msgctxt "Answer for: Apart from the people already included, is there anyone who is temporarily away or staying that you need to add to {address}?"
+msgid "Yes, I need to add someone"
+msgstr "Beidh, caithfidh mé duine éigin a chur isteach"
+
+#. answer-id: anyone-else-temp-away-answer
+msgctxt "Answer for: Apart from the people already included, is there anyone who is temporarily away or staying that you need to add to {address}?"
+msgid "No, I do not need to add anyone"
+msgstr "Ní bheidh, ní chaithfidh mé duine éigin a chur isteach"
+
+#. answer-id: any-visitors-answer
+msgctxt "Answer for: Are there any visitors staying overnight on {census_date} at {address}?"
+msgid "People who usually live somewhere else in the UK, for example boy/girlfriends, friends or relatives"
+msgstr "Daoine a chonaíonn áit éigin eile sa UK de ghnáth, mar shampla, buachaillí/cailíní, cairde nó gaolta"
+
+#. answer-id: any-visitors-answer
+msgctxt "Answer for: Are there any visitors staying overnight on {census_date} at {address}?"
+msgid "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere"
+msgstr "Daoine atá ag fanacht anseo mar gheall gurb é seo an dara seoladh atá acu, mar shampla, d'obair. Tá a dteach buan nó teaghlaigh suite in áit éigin eile"
+
+#. answer-id: any-visitors-answer
+msgctxt "Answer for: Are there any visitors staying overnight on {census_date} at {address}?"
+msgid "People who usually live outside the UK who are staying in the UK for less than three months"
+msgstr "Daoine a chónaíonn taobh amuigh den UK de ghnáth atá ag fanacht sa UK ar feadh níos lú ná trí mhí"
+
+#. answer-id: any-visitors-answer
+msgctxt "Answer for: Are there any visitors staying overnight on {census_date} at {address}?"
+msgid "People here on holiday"
+msgstr "Daoine atá anseo ar saoire"
+
+#. answer-id: any-visitors-answer-exclusive
+msgctxt "Answer for: Are there any visitors staying overnight on {census_date} at {address}?"
+msgid "No, there are no visitors staying overnight on 13 October 2019"
+msgstr "Ní bheidh, ní bheidh cuairteoir ar bith ag fanacht thar oíche ar 13 Deireadh Fómhair 2019"
+
+#. answer-id: first-name
+msgctxt "Answer for: What is the name of the visitor staying overnight on {census_date} at {address}?"
+msgid "First name"
+msgstr "Céad Ainm"
+
+#. answer-id: last-name
+msgctxt "Answer for: What is the name of the visitor staying overnight on {census_date} at {address}?"
+msgid "Last name"
+msgstr "Sloinne"
+
+#. answer-id: visitor-answer
+msgctxt "Answer for: Are there any other visitors staying overnight on {census_date} at {address}?"
+msgid "Yes, I need to add someone"
+msgstr "Beidh, caithfidh mé duine eile a chur isteach"
+
+#. answer-id: visitor-answer
+msgctxt "Answer for: Are there any other visitors staying overnight on {census_date} at {address}?"
+msgid "No, I do not need to add anyone"
+msgstr "Ní bheidh, ní chaithfidh mé duine eile a chur isteach"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Husband or wife"
+msgstr "Fear céile nó bean chéile"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Same-sex civil partner"
+msgstr "Páirtnéir sibhialta comhghnéis"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Partner"
+msgstr "Páirtnéir"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Son or daughter"
+msgstr "Mac nó iníon"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Stepchild"
+msgstr "Leaspháiste"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Brother or sister"
+msgstr "Deartháir nó deirfiúr"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Stepbrother or stepsister"
+msgstr "Leasdheartháir nó leasdheirfiúr"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Mother or father"
+msgstr "Máthair nó athair"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Stepmother or stepfather"
+msgstr "Leasmháthair nó leasathair"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Grandchild"
+msgstr "Garpháiste"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Grandparent"
+msgstr "Seantuismitheoir"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Other relation"
+msgstr "Gaol eile"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "Unrelated"
+msgstr "Neamhghaolta"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Husband or wife"
+msgstr "Fear céile nó bean chéile"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Same-sex civil partner"
+msgstr "Páirtnéir sibhialta comhghnéis"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Partner"
+msgstr "Páirtnéir"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Son or daughter"
+msgstr "Mac nó iníon"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Stepchild"
+msgstr "Leaspháiste"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Brother or sister"
+msgstr "Deartháir nó deirfiúr"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Stepbrother or stepsister"
+msgstr "Leasdheartháir nó leasdheirfiúr"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Mother or father"
+msgstr "Máthair nó athair"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Stepmother or stepfather"
+msgstr "Leasmháthair nó leasathair"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Grandchild"
+msgstr "Garpháiste"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Grandparent"
+msgstr "Seantuismitheoir"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Other relation"
+msgstr "Gaol eile"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Unrelated"
+msgstr "Neamhghaolta"
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
+msgid "Whole house or bungalow"
+msgstr "Teach no bungaló iomlán"
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
+msgid "Flat, maisonette or apartment"
+msgstr "Árasán, maisonette nó árasán"
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
+msgid "Caravan or other mobile or temporary structure"
+msgstr "Carbhán nó struchtúr gluaisteach nó sealadach eile"
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Detached"
+msgstr "Teach no bungaló scoite"
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Semi-detached"
+msgstr "Teach no bungaló leathscoite"
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Terraced"
+msgstr "Teach nó bungaló sraithe"
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "In a purpose-built block of flats"
+msgstr "I mbloc árasán saintógtha"
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "Part of a converted or shared house"
+msgstr "Mar chuid de theach comhroinnte athchóirithe"
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "In a commercial building"
+msgstr "I bhfoirgneamh tráchtála"
+
+#. answer-id: adapted-answer
+msgctxt "Answer for: Has <em>{address}</em> been designed or adapted for any of the following?"
+msgid "Internal wheelchair usage"
+msgstr "Úsáid inmheánach do dhaoine i gcathaoireacha rothaí"
+
+#. answer-id: adapted-answer
+msgctxt "Answer for: Has <em>{address}</em> been designed or adapted for any of the following?"
+msgid "External wheelchair access"
+msgstr "Rochtain sheachtrach do dhaoine i gcathaoireacha rothaí"
+
+#. answer-id: adapted-answer
+msgctxt "Answer for: Has <em>{address}</em> been designed or adapted for any of the following?"
+msgid "Other physical or mobility difficulties"
+msgstr "Deacrachtaí fisiceacha nó gluaiseachta eile"
+
+#. answer-id: adapted-answer
+msgctxt "Answer for: Has <em>{address}</em> been designed or adapted for any of the following?"
+msgid "Visual difficulties"
+msgstr "Deacrachtaí amhairc"
+
+#. answer-id: adapted-answer
+msgctxt "Answer for: Has <em>{address}</em> been designed or adapted for any of the following?"
+msgid "Hearing difficulties"
+msgstr "Deacrachtaí éisteachta"
+
+#. answer-id: adapted-answer
+msgctxt "Answer for: Has <em>{address}</em> been designed or adapted for any of the following?"
+msgid "Other"
+msgstr "Eile"
+
+#. answer-id: adapted-answer-other
+msgctxt "Answer for: Has <em>{address}</em> been designed or adapted for any of the following?"
+msgid "Enter adaptation"
+msgstr "Cuir isteach an t-oiriúnú"
+
+#. answer-id: adapted-answer-exclusive
+msgctxt "Answer for: Has <em>{address}</em> been designed or adapted for any of the following?"
+msgid "None of these"
+msgstr "Ceann ar bith díobh seo"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Oil"
+msgstr "Ola"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Mains gas"
+msgstr "Gás príomhlíne"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Tank or bottled gas"
+msgstr "Gás taisceadáin nó buidéalaithe"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Electric"
+msgstr "Leictreach"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Wood"
+msgstr "Adhmad"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Solid fuel"
+msgstr "Breosla soladach"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Renewable heating system"
+msgstr "Córas teasa in-athnuaite"
+
+#. answer-id: central-heating-answer
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "Other central heating"
+msgstr "Teas lárnach eile"
+
+#. answer-id: central-heating-answer-exclusive
+msgctxt "Answer for: What type of central heating does <em>{address}</em> have?"
+msgid "No central heating"
+msgstr "Gan teas lárnach"
+
+#. answer-id: renewables-answer
+msgctxt "Answer for: What type of renewable energy systems does <em>{address}</em> have?"
+msgid "Solar panels for electricity"
+msgstr "Painéil ghréine do leictreachas"
+
+#. answer-id: renewables-answer
+msgctxt "Answer for: What type of renewable energy systems does <em>{address}</em> have?"
+msgid "Solar panels for heating water"
+msgstr "Painéil ghréine le huisce a théamh"
+
+#. answer-id: renewables-answer
+msgctxt "Answer for: What type of renewable energy systems does <em>{address}</em> have?"
+msgid "Wind turbine"
+msgstr "Tuirbín gaoithe"
+
+#. answer-id: renewables-answer
+msgctxt "Answer for: What type of renewable energy systems does <em>{address}</em> have?"
+msgid "Other"
+msgstr "Eile"
+
+#. answer-id: renewables-answer-other
+msgctxt "Answer for: What type of renewable energy systems does <em>{address}</em> have?"
+msgid "Enter renewable energy system"
+msgstr "Cuir isteach an córas fuinnimh in-athnuaite"
+
+#. answer-id: renewables-answer-exclusive
+msgctxt "Answer for: What type of renewable energy systems does <em>{address}</em> have?"
+msgid "No renewable energy systems"
+msgstr "Gan córas fuinnimh in-athnuaite"
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Owns outright"
+msgstr "Is leis amach is amach é"
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Owns with a mortgage or loan"
+msgstr "Is leis é le morgáiste nó iasacht"
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Part owns and part rents"
+msgstr "Is páirtúinéir é nó páirt-thógann sé ar cíos é"
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Rents"
+msgstr "Tógann sé ar cíos é"
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent <em>{address}</em>?"
+msgid "Lives here rent-free"
+msgstr "Cónaíonn sé anseo gan cíos ar bith a ioc"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who do you rent from?"
+msgid "Northern Ireland Housing Executive"
+msgstr "Feidhmeannas Tithíochta Thuaisceart Éireann"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who do you rent from?"
+msgid "Housing association or charitable trust"
+msgstr "Cumann Tithíochta nó iontaobhas carthanachta"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who do you rent from?"
+msgid "Private landlord"
+msgstr "Tiarna talún príobháideach"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who do you rent from?"
+msgid "Private renting with a letting agent"
+msgstr "Tógáil ar cíos phríobhaideach le gníomhaire ligin"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who do you rent from?"
+msgid "Employer of a household member"
+msgstr "Fostóir bhall den líon tí"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who do you rent from?"
+msgid "Relative or friend of a household member"
+msgstr "Gaol nó cara bhall den líon tí"
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who do you rent from?"
+msgid "Other"
+msgstr "Eile"
+
+#. answer-id: number-of-vehicles-answer
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "None"
+msgstr "Ceann ar bith"
+
+#. answer-id: number-of-vehicles-answer
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "1"
+msgstr "1"
+
+#. answer-id: number-of-vehicles-answer
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "2"
+msgstr "2"
+
+#. answer-id: number-of-vehicles-answer
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "3"
+msgstr "3"
+
+#. answer-id: number-of-vehicles-answer
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "4 or more"
+msgstr "4 nó níos mó"
+
+#. answer-id: number-of-vehicles-answer-other
+msgctxt "Answer for: In total, how many cars or vans are owned, or available for use, by members of this household?"
+msgid "Enter the number of cars or vans"
+msgstr "Cuir isteach méid na ngluaisteán nó na veaineanna"
+
+#. answer-id: proxy-answer
+msgctxt "Answer for: Are you <em>{person_name}?</em>"
+msgid "Yes, I am"
+msgstr "Is ea, Is mise"
+
+#. answer-id: proxy-answer
+msgctxt "Answer for: Are you <em>{person_name}?</em>"
+msgid "No, I am answering on their behalf"
+msgstr "Ní hea, tá mé ag freagairt ar a son"
 
 #. answer-id: confirm-date-of-birth-answer
 msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
@@ -782,11 +1514,13 @@ msgid "Male"
 msgstr "Fear"
 
 #. answer-id: sex-answer
+#. answer-id: visitor-sex-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> sex?"
 msgid "Female"
 msgstr "Bean"
 
 #. answer-id: sex-answer
+#. answer-id: visitor-sex-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> sex?"
 msgid "Male"
 msgstr "Fear"
@@ -1139,7 +1873,7 @@ msgstr "Luaigh na pasanna atá agat le do thoil"
 #. answer-id: passports-answer-exclusive
 msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
 msgid "None"
-msgstr "Ceann ar bith"
+msgstr "Eile"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would you describe your national identity?"
@@ -1444,7 +2178,7 @@ msgstr "Luaigh reiligiún, creideamh nó comhlacht reiligiúnach eile le do thoi
 #. answer-id: no-religion-answer-exclusive
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
 msgid "None"
-msgstr "Eile"
+msgstr "Ceann ar bith"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
@@ -1529,7 +2263,7 @@ msgstr "Gan go maith"
 #. answer-id: english-answer
 msgctxt "Answer for: How well can you speak English?"
 msgid "Not at all"
-msgstr "Gan ar chor ar bith"
+msgstr "Ar chor ar bith"
 
 #. answer-id: english-answer
 msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
@@ -3280,6 +4014,261 @@ msgstr "Ag siúl"
 msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of study, including school?"
 msgid "Other"
 msgstr "Eile"
+
+#. answer-id: usual-address-household-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> usual address?"
+msgid "An address in the UK"
+msgstr "Seoladh sa UK"
+
+#. answer-id: usual-address-household-answer
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> usual address?"
+msgid "An address outside the UK"
+msgstr "Seoladh taobh amuigh den UK"
+
+#. answer-id: usual-address-household-answer-other
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> usual address?"
+msgid "Please enter the country"
+msgstr "Cuir isteach an tír le do thoil"
+
+#. answer-id: usual-address-details-answer-building
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgid "Address line 1"
+msgstr "Seoladh 1"
+
+#. answer-id: usual-address-details-answer-street
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgid "Address line 2"
+msgstr "Seoladh 2"
+
+#. answer-id: usual-address-details-answer-city
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgid "Town or city"
+msgstr "Baile nó cathair"
+
+#. answer-id: usual-address-details-answer-county
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgid "County (optional)"
+msgstr "Contae (roghnach)"
+
+#. answer-id: usual-address-details-answer-postcode
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> usual UK address"
+msgid "Postcode"
+msgstr "Cód Poist"
+
+#. answer-id: anyone-usually-live-at-answer
+msgctxt "Answer for: Does anyone usually live at {address}?"
+msgid "Include partners, children, babies born on or before {census_date}, housemates, tenants and lodgers, students and schoolchildren who live away from home during term time, where this is their permanent or family home"
+msgstr "Cuir isteach páirtneirí, leanaí, páistí a rugadh ar nó roimh {census_date}, páirtithe tí, tionóntaithe agus lóisteoirí, mic léinn agus páistí scoile a chónaíonn ar shiúl ón bhaile i rith an téarma, mar arb é seo a dteach buan no teaghlaigh é"
+
+#. answer-id: anyone-else-answer
+msgctxt "Answer for: Does anyone else live at {address}?"
+msgid "Include partners, children, babies born on or before {census_date}, housemates, tenants and lodgers, students and schoolchildren who live away from home during term time, where this is their permanent or family home"
+msgstr "Cuir isteach páirtneirí, leanaí, páistí a rugadh ar nó roimh {census_date}, páirtithe tí, tionóntaithe agus lóisteoirí, mic léinn agus páistí scoile a chónaíonn ar shiúl ón bhaile i rith an téarma, mar arb é seo a dteach buan no teaghlaigh é"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>husband or wife</em>"
+msgstr "Is é/í {second_person_name} d' <em>fhear céile nó do bhean chéile</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>Same-sex civil partner</em>"
+msgstr "Is é/í {second_person_name} do <em>pháirtnéir sibhialta comhghnéis</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>partner</em>"
+msgstr "Is é/í {second_person_name} do <em>pháirtnéir</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>son or daughter</em>"
+msgstr "Is é/í {second_person_name} do <em>mhac nó d'iníon</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>stepchild</em>"
+msgstr "Is é/í {second_person_name} do <em>leaspháiste</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>brother or sister</em>"
+msgstr "Is é/í {second_person_name} do <em>dheartháir nó do dheirfiúr</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>stepbrother or stepsister</em>"
+msgstr "Is é/í {second_person_name} do <em>leasdheartháir nó do leasdheirfiúr</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>mother or father</em>"
+msgstr "Is é/í {second_person_name} do <em>mháthair nó d'athair</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>stepmother or stepfather</em>"
+msgstr "Is é/í {second_person_name} do <em>leasmháthair nó do leasathair</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>grandchild</em>"
+msgstr "Is é/í {second_person_name} do <em>gharpháiste</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>grandparent</em>"
+msgstr "Is é/í {second_person_name} do <em>sheantuismitheoir</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>other relation</em>"
+msgstr "Is é/í {second_person_name} do <em>ghaol eile</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is <em>unrelated</em> to you"
+msgstr "Tá {second_person_name} <em>neamhghaolta</em> leat"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: {second_person_name} is your <em>…</em>"
+msgid "{second_person_name} is your <em>…</em>"
+msgstr "Is é/í {second_person_name} do <em>…</em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>husband or wife</em>"
+msgstr "Is é/í {second_person_name} fear céile nó bean chéile {first_person_name_possessive} <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>husband or wife</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name} a bhfear céile nó a mbean chéile é/í <em>…</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>Same-sex civil partner</em>"
+msgstr "Is é/í {second_person_name} páirtnéir sibhialta comhghnéis {first_person_name_possessive} <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>Same-sex civil partner</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name} a bpáirtnéir sibhialta comhghnéis é/í <em>…</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>partner</em>"
+msgstr "Is é/í {second_person_name} páirtnéir {first_person_name_possessive} <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>partner</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name} <em> a bpáirtnéir </em> é/í"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>son or daughter</em>"
+msgstr "Ag smaoineamh ar {second_person_name}, is é/í {first_person_name_possessive} mac nó iníon <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>son or daughter</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name}, a mac nó a n-iníon <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>stepchild</em>"
+msgstr "Is é/í {second_person_name} leaspháiste {first_person_name_possessive} <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>stepchild</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name}, a leaspháiste <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>brother or sister</em>"
+msgstr "Is é/í {second_person_name} deartháir nó deirfiúr {first_person_name_possessive} <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>brother or sister</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name}, a ndeartháir nó a ndeirfiúr <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>stepbrother or stepsister</em>"
+msgstr "Is é/í {second_person_name} leasdheartháir nó leasdheirfiúr {first_person_name_possessive} <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>stepbrother or stepsister</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name}, a leasdheartháir nó a leasdheirfiúr <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>mother or father</em>"
+msgstr "Is é/í {second_person_name} máthair nó athair {first_person_name_possessive} <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>mother or father</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name}, a máthair nó a n-athair<em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>stepmother or stepfather</em>"
+msgstr "Is é/í {second_person_name} leasmháthair nó leasathair {first_person_name_possessive} <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>stepmother or stepfather</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name}, a leasmhátháir nó a leasathair <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>grandchild</em>"
+msgstr "Is é/í {second_person_name} garpháiste {first_person_name_possessive} <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>grandchild</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name}, a ngarpháiste <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>grandparent</em>"
+msgstr "Is é/í {second_person_name} seantuismitheoir {first_person_name_possessive} <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>grandparent</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name}, a seantuismitheoir <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>other relation</em>"
+msgstr "Is é/í {second_person_name} gaol eile {first_person_name_possessive} <em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is their <em>other relation</em>"
+msgstr "Ag smaoineamh ar {first_person_name}, is é/í {second_person_name}, a ngaol eile<em>é/í</em>"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is <em>unrelated</em> to {first_person_name}"
+msgstr "Tá {second_person_name} <em>neamhghaolta</em> le {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "Thinking of {first_person_name}, {second_person_name} is <em>unrelated</em> to {first_person_name}"
+msgstr "Ag smaoineamh ar {first_person_name}, tá {second_person_name} <em>neamhghaolta</em> le {first_person_name}"
+
+#. answer-id: relationship-answer
+msgctxt "Answer for: Thinking of {first_person_name}, {second_person_name} is their <em>…</em>"
+msgid "{second_person_name} is {first_person_name_possessive} <em>…</em>"
+msgstr "Is é/í {second_person_name} <em>…</em> {first_person_name_possessive}"
 
 #. answer-id: confirm-date-of-birth-answer
 msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
