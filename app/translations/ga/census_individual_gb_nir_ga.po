@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census-nisra\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-05 16:12+0100\n"
-"PO-Revision-Date: 2019-09-12 11:05\n"
+"POT-Creation-Date: 2019-09-12 12:18+0100\n"
+"PO-Revision-Date: 2019-09-13 08:52\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Irish\n"
 "MIME-Version: 1.0\n"
@@ -186,7 +186,7 @@ msgid "Answer for the place where you spent the most time."
 msgstr "Freagair don áit inar chaith tú an méid ba mhó ama."
 
 msgid "Select one option only, for the longest part, by distance, of your usual journey to place of work."
-msgstr "Roghnaigh ceann amháin, don chuid is mó, de réir faid, de do ghnáth-thuras go dtí d'áit staidéir."
+msgstr "Roghnaigh ceann amháin, don chuid is mó, de réir faid, de do ghnáth-thuras go dtí d'áit oibre."
 
 msgid "Select one option only, for the longest part, by distance, of their usual journey to place of work."
 msgstr "Roghnaigh ceann amháin, don chuid is mó, de réir faid, dá ngnáth-thuras go dtí a n-áit oibre."
@@ -540,7 +540,7 @@ msgid "Does {person_name} have any of the following <em>other health conditions<
 msgstr "An bhfuil ceann ar bith de na <em>fadhbanna sláinte eile</em> seo a leanas ag {person_name} go fóill nó a bhfuiltear ag súil leis go mbeidh sé acu ar feadh 12 mhí nó níos mó?"
 
 msgid "Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
-msgstr "An dtugann <em>{person_name}</em> aire do, nó an dtugann <em>{person_name}</em> tacaíocht do dhuine ar bith mar go bhfuil fadhb sláinte fisicí nó meabhrach fadtéarmaí acu nó tinnis orthu, nó fadhbanna acu mar gheall ar sheanaois?"
+msgstr "An dtugann <em>{person_name}</em> aire do, nó an dtugann siad tacaíocht do dhuine ar bith mar go bhfuil fadhb sláinte fisicí nó meabhrach fadtéarmaí acu nó tinnis orthu, nó fadhbanna acu mar gheall ar sheanaois?"
 
 msgid "Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
 msgstr "Cé acu de na rudaí seo a leanas a dhéanann cur síos níos fearr ar chlaonadh gnéis <em>{person_name_possessive}</em>?"
@@ -591,7 +591,7 @@ msgid "The next set of questions is about <em>{person_name_possessive}</em> main
 msgstr "Tá an chéad tacar eile de cheisteanna faoi phríomhphost <em>{person_name_possessive}</em>. Is é a bpríomhphost an post ina n-oibríonn siad an méid is mó uaireanta de ghnáth."
 
 msgid "The next set of questions is about <em>{person_name_possessive}</em> last main job. Their main job is the job in which they usually worked the most hours."
-msgstr "Tá an chéad tacar eile de cheisteanna faoin phríomhphost deireanach a bhí ag <em>{person_name_possessive}</em>. Is é a bpríomhphost an post ina n-oibríonn siad an méid is mó uaireanta de ghnáth."
+msgstr "Tá an chéad tacar eile de cheisteanna faoin phríomhphost deireanach a bhí ag <em>{person_name_possessive}</em>. Is é a bpríomhphost an post inar oibrigh siad an méid ba mhó uaireanta de ghnáth."
 
 msgid "In their main job, what is <em>{person_name_possessive}</em> employment status?"
 msgstr "Ina bpríomhphost, cad é an stádas fostaíochta atá ag <em>{person_name_possessive}</em>?"
@@ -618,10 +618,10 @@ msgid "Briefly describe what <em>{person_name}</em> did in their main job."
 msgstr "Déan cur síos go hachomair ar a rinne <em>{person_name}</em> ina bpríomhphost."
 
 msgid "What is the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
-msgstr "Cad í príomhghníomhaíocht <em>{person_name}</em> san eagraíocht, sa ghnó, nó sa tsaorobair?"
+msgstr "Cad í príomhghníomhaíocht <em>{person_name_possessive}</em> san eagraíocht, sa ghnó, nó sa tsaorobair?"
 
 msgid "What was the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
-msgstr "Cad í príomhghníomhaíocht a bhí ag <em>{person_name}</em> san eagraíocht. sa ghnó, nó sa tsaorobair?"
+msgstr "Cad í príomhghníomhaíocht a bhí ag <em>{person_name_possessive}</em> san eagraíocht. sa ghnó, nó sa tsaorobair?"
 
 msgid "Does <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
 msgstr "An ndéanann <em>{person_name}</em> maoirseacht ar obair fhostaithe eile ó lá go lá?"
@@ -654,13 +654,13 @@ msgid "What was the address of <em>{person_name_possessive}</em> main place of w
 msgstr "Cad é an seoladh a bhí ag príomháit oibre <em>{person_name_possessive}</em>?"
 
 msgid "How does <em>{person_name}</em> usually travel to their main place of work?"
-msgstr "Cad é mar a thaistealaíonn <em>{person_name}</em> go dtí n-áit oibre de ghnáth?"
+msgstr "Cad é mar a thaistealaíonn <em>{person_name}</em> go dtí a bpríomháit oibre de ghnáth?"
 
 msgid "How did <em>{person_name}</em> usually travel to their main place of work?"
-msgstr "Cad é mar a thaistil <em>{person_name}</em> go dtí n-áit oibre de ghnáth?"
+msgstr "Cad é mar a thaistil <em>{person_name}</em> go dtí a bpríomháit oibre de ghnáth?"
 
 msgid "Answer for the place where <em>{person_name}</em> spends the most time. If student or schoolchild, answer for their study address."
-msgstr "Freagair don áit ina gcaitheann <em>{person_name}</em> an chuid is mó dá c(h) uid ama. Más mac léinn nó páiste scoile é/í, freagair dá seoladh staidéir."
+msgstr "Freagair don áit ina gcaitheann <em>{person_name}</em> an méid is mó dá c(h)uid ama. Más mac léinn nó páiste scoile é/í, freagair dá seoladh staidéir."
 
 msgid "Where does <em>{person_name}</em> mainly study?"
 msgstr "Cá ndéanann <em>{person_name}</em> staidéar go príomha?"
@@ -2254,12 +2254,12 @@ msgstr "Ní dhearna"
 #. answer-id: armed-forces-answer
 msgctxt "Answer for: Has <em>{person_name}</em> <em>previously</em> served in the UK Armed Forces?"
 msgid "Yes, previously served in Regular Armed Forces"
-msgstr "Rinne <em>{person_name}</em> <em> seirbhís sna Fórsaí Armtha Rialta roimhe"
+msgstr "Rinne mé seirbhís sna Fórsaí Armtha Rialta roimhe"
 
 #. answer-id: armed-forces-answer
 msgctxt "Answer for: Has <em>{person_name}</em> <em>previously</em> served in the UK Armed Forces?"
 msgid "Yes, previously served in Reserve Armed Forces"
-msgstr "Rinne <em>{person_name}</em> <em> seirbhís sna Fórsaí Armtha Cúltaca roimhe"
+msgstr "Rinne mé seirbhís sna Fórsaí Armtha Cúltaca roimhe"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: In the last seven days, were you doing any of the following?"
@@ -2459,7 +2459,7 @@ msgstr "Rinne, ach gan sna 12 mhí déanacha"
 #. answer-id: ever-worked-answer
 msgctxt "Answer for: Has <em>{person_name}</em> ever done any paid work?"
 msgid "No, has never worked"
-msgstr "Ní dhearna <em>{person_name}</em> obair ar bith riamh roimhe"
+msgstr "Ní dhearna obair ar bith riamh roimhe"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In your main job, what is your employment status?"

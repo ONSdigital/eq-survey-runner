@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: eq-census-nisra\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-12 12:18+0100\n"
-"PO-Revision-Date: 2019-09-12 13:02\n"
+"PO-Revision-Date: 2019-09-13 08:52\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Irish\n"
 "MIME-Version: 1.0\n"
@@ -121,12 +121,12 @@ msgstr "Cuir freagraí isteach a shuimíonn go nó atá níos lú ná %(total)s"
 #: app/validation/error_messages.py:22
 #, python-format
 msgid "Enter answers that add up to less than %(total)s"
-msgstr "Cuir freagraí isteach a shuimíonn go nó atá níos lú ná %(total)s"
+msgstr "Cuir freagraí isteach a shuimíonn go níos lú ná %(total)s"
 
 #: app/validation/error_messages.py:25
 #, python-format
 msgid "Enter answers that add up to greater than %(total)s"
-msgstr "Cuir freagraí isteach a shuimíonn go nó atá níos mó ná %(total)s"
+msgstr "Cuir freagraí isteach a shuimíonn go níos mó ná %(total)s"
 
 #: app/validation/error_messages.py:28
 #, python-format
@@ -355,7 +355,7 @@ msgstr "Druid an fhuinneog le leanstan ar aghaidh le do shuirbhé reatha"
 #, python-format
 msgid "This page has an error"
 msgid_plural "This page has %(num)s errors"
-msgstr[0] ""
+msgstr[0] "Tá earráid ar an leathanach seo"
 msgstr[1] "Tá %(num)s earráid ar an leathanach seo"
 msgstr[2] "Tá %(num)s earráid ar an leathanach seo"
 msgstr[3] "Tá %(num)s earráid ar an leathanach seo"
@@ -455,7 +455,7 @@ msgstr "Tá brón orm, tá fadhb ann"
 
 #: templates/errors/403.html:7
 msgid "To access this page you need to <a href='#'>enter your unique access code.</a>"
-msgstr "Le rochtain bheith agat ar an leathanach seo caithfidh tú <a href='#'> do chód rochtana uathúil a chur isteach"
+msgstr "Le rochtain bheith agat ar an leathanach seo caithfidh tú <a href='#'> do chód rochtana uathúil a chur isteach.</a>"
 
 #: templates/errors/404.html:3 templates/errors/404.html:6
 msgid "Page not found"
@@ -508,11 +508,11 @@ msgstr "Le do chuid eolais a chosaint bhí muid do do shíniú amach"
 #: templates/errors/session-expired.html:22
 #, python-format
 msgid "We have saved your progress and you will need to <a href=\"%(account_service_link)s\">enter your unique code</a> to access the survey again."
-msgstr ""
+msgstr "Táimid tar éis do dhul chun cinn a shábháil agus beidh ort <a href=\"%(account_service_link)s\"> do chód uathúil a iontráil </a> chun teacht ar an suirbhé arís."
 
 #: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:14
 msgid "We use cookies to improve your experience of census.gov.uk"
-msgstr ""
+msgstr "Bainimid úsáid as fianáin chun do thaithí ar census.gov.uk a fheabhsú"
 
 #: templates/layouts/_questionnaire.html:24
 msgid "Previous"
@@ -549,7 +549,7 @@ msgstr "Bhí earráid ann agus tusa ag cur d'aiseolais chugainn. (Error code: {x
 
 #: templates/layouts/configs/_footer.html:4
 msgid "All content is available under the Open Government Licence v3.0, except where otherwise stated"
-msgstr ""
+msgstr "Tá gach ábhar ar fáil faoiCeadúnas Oscailte Rialtais v3.0 seachas má luaitear a mhalairt"
 
 #: templates/layouts/configs/_footer.html:12
 #: templates/static/contact-us.html:10
@@ -558,7 +558,7 @@ msgstr "Déan teagmháil linn"
 
 #: templates/layouts/configs/_footer.html:17
 msgid "Help"
-msgstr ""
+msgstr "Cabhair"
 
 #: templates/layouts/configs/_footer.html:26
 msgid "Cookies"
@@ -683,7 +683,7 @@ msgstr "Suirbhéanna Gnó ONS"
 
 #: templates/static/contact-us.html:12
 msgid "Contact us if you have any questions about filling in the census online or on paper. You can use any of these options if you need information or a census in an alternative format like Braille or large print."
-msgstr ""
+msgstr "Téigh i dteagmháil linn má tá aon cheist agat maidir leis an daonáireamh a chomhlánú ar líne nó ar pháipéar. Is féidir leat aon cheann de na roghanna seo a úsáid má tá faisnéis nó daonáireamh de dhíth ort i bhformáid eile, mar shampla i mBraille nó i gcló mór."
 
 #: templates/static/contact-us.html:14
 msgid "Telephone"
@@ -712,7 +712,7 @@ msgstr "An Domhnach - druidte"
 #: templates/static/contact-us.html:24 templates/static/contact-us.html:29
 #: templates/static/privacy.html:128 templates/static/privacy.html:149
 msgid "Telephone: {telephone_number}"
-msgstr ""
+msgstr "Guthán: {telephone_number}"
 
 #: templates/static/contact-us.html:28
 msgid "England"
@@ -724,7 +724,7 @@ msgstr "An Bhreatain Bheag"
 
 #: templates/static/contact-us.html:31
 msgid "Telephone: {telephone_number} (Option 1 for Welsh, option 2 for English)"
-msgstr ""
+msgstr "Guthán: {telephone_number} (Rogha 1 i mBreatnais, Rogha 2 i mBéarla)"
 
 #: templates/static/contact-us.html:35
 msgid "Other languages"
@@ -732,7 +732,7 @@ msgstr "Teangacha eile"
 
 #: templates/static/contact-us.html:36
 msgid "If you need to speak to us in another language phone {telephone_number}"
-msgstr ""
+msgstr "Más gá duit labhairt linn i dteanga ar bith eile cuir scairt ghutháin ar {telephone_number}"
 
 #: templates/static/contact-us.html:38
 msgid "Text relay"
@@ -764,7 +764,7 @@ msgstr "Beidh an t-eolas a thabharfaidh tú dúinn nuair a líonfaidh tú an ré
 
 #: templates/static/privacy.html:11
 msgid "Here we detail why we need your information. We also describe all the steps that we take to make sure your information and your privacy are safe."
-msgstr ""
+msgstr "Cuireann muid in iúl anseo an fáth a mbeidh d'eolas de dhíth orainn. Déanann muid cur síos ar na céimeanna uilig a ghlacann muid le cinntiú go mbeidh d'eolas agus do phríobháideacht slán sábháilte."
 
 #: templates/static/privacy.html:14
 msgid "How and why we use your information"
@@ -772,23 +772,23 @@ msgstr "Seo an dóigh agus na fáthanna a n-úsáideann muid d'eolas"
 
 #: templates/static/privacy.html:16
 msgid "We collect information from your questionnaire under our statutory objective to promote and safeguard the production of official statistics that serve the public good. This means that any personal data we collect will only ever be used to produce statistics or undertake statistical research. People will not be identified within those statistics or research."
-msgstr ""
+msgstr "Bailíonn muid eolas ó do cheistiúchán de réir ár gcuspóra reachtúil le staidreamh oifigiúil ar mhaithe leis an ghnáthphobal a dhéanamh go forásach agus go slán sábháilte. Ciallaíonn sé seo nach n-úsáidfear cibé eolas a bhaileoidh muid ach le staidreamh nó le taighde staidrimh a dhéanamh. Ní aithneofar daoine taobh istigh den staidreamh nó den taighde sin."
 
 #: templates/static/privacy.html:18
 msgid "Every 10 years, the census gathers vital information that helps the government and local authorities plan services like health services, roads and libraries."
-msgstr ""
+msgstr "Gach 10 mbliana, bailíonn an daonáireamh eolas barrthábhachtach a chuidíonn leis an rialtas agus leis na húdaráis áitiúla seirbhísí amhail seirbhísí sláinte, na bóithre agus na leabharlanna, a phleanáil."
 
 #: templates/static/privacy.html:20
 msgid "By running a rehearsal for Census 2021, we can test our processes, systems and services and make sure everything goes smoothly for the real thing. The personal data you provide on your questionnaire will also be used to undertake research and produce statistics that serve the public good, both by the Office for National Statistics (ONS) and accredited researchers from other organisations."
-msgstr ""
+msgstr "Trí chleachtadh a reáchtáil do Dhaonáireamh 2021, is féidir linn ár bpróisis, ár gcórais agus ár seirbhísí a thástáil agus a chinntiú go dtéann gach rud go réidh don rud fíor. Úsáidfear na sonraí pearsanta a sholáthraíonn tú ar do cheistneoir freisin chun taighde a dhéanamh agus staitisticí a sholáthar a fhreastalaíonn ar leas an phobail, ag an Oifig Náisiúnta Staidrimh (ONS) agus ag taighdeoirí creidiúnaithe ó eagraíochtaí eile."
 
 #: templates/static/privacy.html:22
 msgid "We may occasionally record information about a property or an individual, in the interests of safeguarding the wellbeing of both those being interviewed and interviewers, as well as to assist people in the completion of their questionnaires. We’ll hold the minimum amount of personal data needed to meet these purposes."
-msgstr ""
+msgstr "Ó am go ham, d'fhéadfadh muid eolas a chlárú faoi réadmhaoin no faoi dhuine, ar mhaithe le leas na ndaoine sin a chuirfear faoi agallamh agus na n-agallaithe, chomh maith le cuidiú le daoine a gceistiúcháin a líonadh isteach. Coinneoidh muid an t-íosmhéid sonraí pearsanta a bheidh de dhíth le riaradh do na cuspóirí sin."
 
 #: templates/static/privacy.html:24
 msgid "For online completion, we’ll collect information about how people fill in their questionnaires online to provide us with knowledge of how to improve our online services."
-msgstr ""
+msgstr "Don cheistiúchán a líonfar ar líne, baileoidh muid eolas ar an dóigh a líonfaidh daoine a gceistiúcháin ar líne le eolas a thabhairt dúinn ar an bhealach lenár seirbhísí ar líne a fheabhsú."
 
 #: templates/static/privacy.html:27
 msgid "Who can access the information?"
@@ -796,11 +796,11 @@ msgstr "Cé ar féidir leo rochtain bheith acu ar an eolas?"
 
 #: templates/static/privacy.html:29
 msgid "During the rehearsal we’ll employ third-party providers to assist us with parts of the operation. These third parties work under our instruction."
-msgstr ""
+msgstr "I rith an réamhchleachtaidh, fostóidh muid soláthraithe tríú páirtí chun cuidiú linn le cuid den oibríocht. Beidh na tríú páirtithe ag obair faoinár treoir."
 
 #: templates/static/privacy.html:30
 msgid "We treat the information we hold with respect, keeping it secure and confidential. Data may be made available to approved researchers where there is a clear public value and it’s safe and lawful to do so. More information on <a href='{policies_url}'>how we allow access to data for research</a> is available. We also publish a full list of all the <a href='{researchers_url}'>approved researchers</a> who we’ve granted access to."
-msgstr ""
+msgstr "Caithfimid leis an bhfaisnéis atá againn le meas, ag coinneáil slán agus rúnda í. D'fhéadfaí sonraí a chur ar fáil do thaighdeoirí faofa áit a bhfuil luach poiblí soiléir agus go bhfuil sé sábháilte agus dleathach é sin a dhéanamh. Tá tuilleadh eolais ar fáil ar <a href='{policies_url}'>conas a cheadaímid rochtain ar shonraí taighde</a>. Foilsímid liosta iomlán freisin de na taighdeoirí faofa <a href='{researchers_url}'> </a> a bhfuil rochtain againn orthu."
 
 #: templates/static/privacy.html:33
 msgid "How long are personal data kept?"
@@ -808,19 +808,19 @@ msgstr "Cá fhad a choinneofar na sonraí pearsanta?"
 
 #: templates/static/privacy.html:35
 msgid "Data protection law requires that personal data are kept for no longer than is needed to fulfil the purposes for which they were originally collected."
-msgstr ""
+msgstr "Tá dualgas faoin dlí um chosaint sonraí nach gcoinneofar sonraí pearsanta gan níos faide ach ar feadh na tréimhse a bheidh de dhíth leis na cuspóirí dar bailíodh ar dtús iad."
 
 #: templates/static/privacy.html:37
 msgid "The law allows that information held for statistical purposes only, such as information from your questionnaire, may be kept for longer periods. We’ll only continue to hold personal data where they are still used to produce statistics. Data used by approved researchers will be held within our <a href='{url}'>Secure Research Service</a>. Any personal data that we do not need, such as names and addresses, will be removed from the data at the earliest opportunity. The data will undergo regular reviews and will be deleted when they are no longer required."
-msgstr ""
+msgstr "Ceadaíonn an dlí go bhféadfar faisnéis a choinnítear chun críocha staitistiúla amháin, amhail faisnéis ó do cheistneoir, a choinneáil ar feadh tréimhsí níos faide. Ní leanfaimid orainn ag coimeád sonraí pearsanta ach amháin nuair a úsáidtear iad chun staitisticí a tháirgeadh. Tionólfar sonraí a úsáideann taighdeoirí faofa laistigh dár <a href='{url}'> Seirbhís Taighde Slán </a>. Bainfear aon sonraí pearsanta nach gá dúinn, amhail ainmneacha agus seoltaí, as na sonraí a luaithe is féidir. Déanfar athbhreithnithe rialta ar na sonraí agus scriosfar iad nuair nach bhfuil gá leo a thuilleadh."
 
 #: templates/static/privacy.html:39
 msgid "Safeguarding data, such as information about a property or an individual, will be held for the duration of the rehearsal. Most of the information will be deleted at the end of the rehearsal. In some instances, data will be held for longer periods, where keeping them continues to serve safeguarding purposes."
-msgstr ""
+msgstr "Coinneofar sonraí sábháilteachta, amhail eolas faoi réadmhaoin nó faoi dhuine éigin, ar feadh fad an réamhchleachtaidh. Scriosfar an chuid is mó den eolas ag deireadh an réamhchleachtaidh. I roinnt cásanna, coinneofar sonraí ar feadh tréimhsí níos faide, más féidir linn iad a úsáid do chuspóirí sábháilteachta agus sinne a gcoinneáil."
 
 #: templates/static/privacy.html:41
 msgid "Metrics containing information about how people fill in their questionnaires will be held in an identifiable form only until the necessary statistical matching has taken place. After this point the data will be de-identified and used for the purposes of improving our services."
-msgstr ""
+msgstr "Coinneofar meadarachtaí ina bhfuil eolas ar an dóigh a líonann daoine a gceistiúcháin isteach i bhfoirm inaitheanta go dtí go ndéanfar an mheaitseáil staitisticiúil riachtanach. Ina dhiaidh seo, dí-aithneofar na sonraí agus úsáidfear iad lenár seirbhísí a fheabhsú."
 
 #: templates/static/privacy.html:44
 msgid "How the law protects your information"
@@ -828,15 +828,15 @@ msgstr "An dóigh a gcosnaíonn an dlí d'eolas"
 
 #: templates/static/privacy.html:46
 msgid "The <a href='{data_protection_url}'>General Data Protection Regulation</a> and the <a href='{data_protection_act_url}'>Data Protection Act 2018</a> determine how, when and why any organisation can process your personal data. Personal data is any information that can identify a living individual. These laws exist to make sure your data are managed safely and used responsibly. They also give you certain rights about your data and create a responsibility on the ONS, as a user of personal data, to provide you with certain information."
-msgstr ""
+msgstr "Socraíonn an <a href='{data_protection_url}'> an Rialachán Ginearálta um Chosaint Sonraí </a> agus an <a href='{data_protection_act_url}'> an tAcht um Chosaint Sonraí 2018 </a> conas, cén uair agus cén fáth ar féidir le heagraíocht ar bith do phróiseas a phróiseáil sonraí pearsanta. Is éard is sonraí pearsanta ann aon fhaisnéis a fhéadann duine beo a aithint. Tá na dlíthe seo ann lena chinntiú go ndéantar do shonraí a bhainistiú go sábháilte agus a úsáid go freagrach. Tugann siad cearta áirithe duit freisin maidir le do shonraí agus cruthaíonn siad freagracht ar ONS, mar úsáideoir sonraí pearsanta, chun faisnéis áirithe a sholáthar duit."
 
 #: templates/static/privacy.html:48
 msgid "The ONS is a statutory body, meaning it was created by legislation, specifically the <a href='{url}'>Statistics and Registration Service Act 2007</a>. Our objective is to promote and safeguard the production and publication of official statistics that serve the public good. All our collection and use of data comes from powers that can be found in that Act or other UK legislation."
-msgstr ""
+msgstr "Is comhlacht reachtúil é an Oifig Náisiúnta Staidrimh (ONS), rud a chiallaíonn gur cruthaíodh é le reachtaíocht, go háirithe an<a href='{url}'>tAcht um Sheirbhísí Staitisticí agus Clárúcháin 2007</a>. Is é ár gcuspóir táirgeadh agus foilsiú staitisticí oifigiúla a chur chun cinn agus a chosaint a chuireann leas an phobail chun cinn. Tagann gach bailiú agus úsáid sonraí ó chumhachtaí atá san Acht sin nó i reachtaíocht eile sa Ríocht Aontaithe."
 
 #: templates/static/privacy.html:50
 msgid "The census rehearsal questionnaire has been assessed as compatible with the <a href='{url}'>Human Rights Act 1998</a>, specifically Article 8 (right to respect for a private and family life) and Article 9 (freedom of thought, conscience and religion) of the convention rights."
-msgstr ""
+msgstr "Rinneadh measúnú ar cheistneoir an daonáirimh a bheith comhoiriúnach leis an <a href='{url}'>Acht um Chearta an Duine, 1998</a>, go háirithe Airteagal 8 (ceart meas ar shaol príobháideach agus teaghlaigh) agus Airteagal 9 (saoirse smaoinimh, coinsiasa agus reiligiúin) ar chearta na coinbhinsiún."
 
 #: templates/static/privacy.html:53
 msgid "Legal basis for processing your data"
@@ -848,7 +848,7 @@ msgstr "De réir na reachtaíochta um chosaint sonraí, caithfear próiseáil so
 
 #: templates/static/privacy.html:57
 msgid "For the census rehearsal, we’ll process information from your questionnaire, information about a property or an individual and information about how people fill in their questionnaires under the following condition:"
-msgstr ""
+msgstr "Do réamhchleachtadh an daonáirimh, próiseálfaidh muid eolas ó do cheistiúchán faoi réadmhaoin nó faoi dhuine agus eolas ar an dóigh a líonann daoine a gcesistiúcháin isteach faoin choinníoll seo a leanas:"
 
 #: templates/static/privacy.html:60
 msgid "processing is necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller."
@@ -856,11 +856,11 @@ msgstr "tá próiseáil riachtanach d'fheidhmiú taisc a dhéantar ar mhaithe le
 
 #: templates/static/privacy.html:63
 msgid "Under data protection legislation, an additional condition is required for the processing of special category personal data. These data include information about your racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, sex life or sexual orientation. They also include genetic and biometric data."
-msgstr ""
+msgstr "Faoin reachtaíocht um chosaint sonraí, tá coinníoll breise de dhíth le catagóir speisialta de shonraí pearsanta a phróiseáil. I measc na sonraí tá eolas ar do bhunús ciníoch nó eitneach, ar do chreideamh reiligiúnach nó fealsúnachta, ar do bhallraíocht de cheardchumann, do shaol gnéis nó do chlaonadh gnéis. Ina measc tá sonraí géiniteacha agus bithmhéadracha chomh maith."
 
 #: templates/static/privacy.html:65
 msgid "For the rehearsal, we’ll process special category personal data on race, ethnicity, religion, philosophical beliefs and sexual orientation. nformation from your questionnaire is processed under the following two conditions:"
-msgstr ""
+msgstr "Don réamhchleachtadh seo, phróiseálfaidh muid sonraí pearsanta de chatagóirí speisialta ar chine, eitneacht, reiligiún, creideamh fealsúnachta agus claonadh gnéis. Próiseáiltear eolas ar do cheistiúchán faoin dá choinníoll seo a leanas:"
 
 #: templates/static/privacy.html:68
 msgid "processing is necessary for archiving in the public interest, scientific or historical research purposes or statistical purposes based on UK law."
@@ -880,11 +880,11 @@ msgstr "Cinnteoidh muid prionsabal an laghdaithe ar shonraí agus beidh bearta i
 
 #: templates/static/privacy.html:80
 msgid "The census rehearsal gives us invaluable information about the systems and processes required for Census 2021. It’ll help us complete one of our main functions in delivering Census 2021, which will subsequently provide numerous benefits for the wider society."
-msgstr ""
+msgstr "Tugann an réamhchleachtadh daonáirimh eolas fíorúsáideach dúinn ar na córais agus ar na próisis a bheidh de dhíth don Dhaonáireamh 2021, Cuideoidh sé linn ceann dár bpríomfheidhmeanna a chomhlíonadh le Daonáireamh 2021 a dhéanamh, a rachaidh chun leasa go mór don gnáthphobal i gcoitinne."
 
 #: templates/static/privacy.html:82
 msgid "There’s substantial public interest in the collection of safeguarding data to ensure the safety of both interviewers and respondents. We’re required to ensure the safety of our staff and the public."
-msgstr ""
+msgstr "Tá suim an-mhór ag an ghnáthphobal i mbailiú sonraí cosanta le sábháilteacht agallaithe agus freagróirí a chinntiú. Tá ceangal dlí orainn sábháilteacht ár bhfoirne agus an ghnáthphobail a chinntiú."
 
 #: templates/static/privacy.html:85
 msgid "Your rights"
@@ -892,11 +892,11 @@ msgstr "Do chearta"
 
 #: templates/static/privacy.html:87
 msgid "As a data subject (someone whose personal data we hold), you have rights available to you under data protection law. If you wish to exercise any of these rights, please contact our data protection officer. However, please be aware that we may not be required to comply if the data are being held for statistical purposes only. Compliance requirements are set out in the Data Protection Act 2018."
-msgstr ""
+msgstr "Mar dhamhna sonraí (duine a bhfuil a s(h)onraí againn orthu), tá cearta agat de réir an dlí um chosaint sonraí. Más mian leat ceann ar bith de na cearta seo a fheidhmiú, déan teagmháil lenár n-oifigeach um chosaint sonraí le do thoil. Bi ar an eolas áfach nach bhféadfadh dualgas dlí bheith orainn cloí leis dá mbeadh na sonraí á gcoinneáil againn do chuspóirí staitisticiúla amháin. Tá na riachtanais chomhlíonta leagtha amach san Acht um Chosaint Sonraí 2018."
 
 #: templates/static/privacy.html:89
 msgid "You have the right to request from any controller that holds your personal data access to the information they hold about you. You can ask them to amend any wrong or inaccurate information they hold about you. You have the right to object to your personal data being processed."
-msgstr ""
+msgstr "Tá an ceart agat iarraidh ar rialaitheoir ar bith a bhfuil do shonraí pearsa aige rochtain bheith agat ar an eolas atá acu fút. Is féidir leat iarraidh orthu eolas mícheart nó míchruinn atá acu fút a athrú. Tá an ceart agat cur i gcoinne próiseáil do shonraí pearsanta."
 
 #: templates/static/privacy.html:91
 msgid "You have the right, in some circumstances, to ask for any controller to:"
@@ -916,7 +916,7 @@ msgstr "eolas ar bith atá acu fút a thabhairt do rialaitheoir eile"
 
 #: templates/static/privacy.html:99
 msgid "You can get further information on the rights available to you and the circumstances under which you can exercise them from the <a href='{url}'>Information Commissioner’s Office</a>."
-msgstr ""
+msgstr "Is féidir leat tuilleadh eolais a fháil maidir leis na cearta atá ar fáil duit agus na cúinsí faoinar féidir leat iad a fheidhmiú ó <a href='{url}'>Oifig an Choimisinéara Faisnéise</a>."
 
 #: templates/static/privacy.html:102
 msgid "The data controller"
@@ -924,7 +924,7 @@ msgstr "An rialaitheoir sonraí"
 
 #: templates/static/privacy.html:104
 msgid "The controller is the person or organisation that decides which personal data will be processed and for what purpose. For the census rehearsal, the ONS is the controller and makes those decisions."
-msgstr ""
+msgstr "Is rialaitheoir é nó í an duine nó an eagraíocht a chinneann ar na sonraí pearsanta a bheidh le próiseáil agus ar na cuspóirí dá bpróiseáil. Don réamhchleachtadh daonáirimh, is é an ONS an rialaitheoir a dhéanann na cinntí sin."
 
 #: templates/static/privacy.html:106
 msgid "You can contact us by:"
@@ -951,7 +951,7 @@ msgstr "An dóigh chun teagmháil a dhéanamh leis an oifigeach um chosaint sonr
 
 #: templates/static/privacy.html:124
 msgid "Our data protection officer is the person charged with providing us with advice and guidance on the ways we can best protect the information we collect and use. They are involved in all the major decisions we make in relation to personal data. If you have any queries or concerns regarding our use of your data, or wish to exercise any of your rights."
-msgstr ""
+msgstr "Is é/í an t-oifigeach um chosaint sonraí an duine atá freagrach as comhairle agus treoir a thabhairt dúinn ar na dóigheanna is fearr ar féidir linn an chosaint a chur ar an eolas a bhailíonn agus úsáideann muid. Tá baint acu leis na príomhchinntí go léir a dhéanann muid maidir le sonraí pearsanta. Má bhíonn ceist nó buairt ar bith agat maidir leis na dóigheanna a n-úsaideann muid do shonraí, nó más mian leat ceann ar bith de do chearta a fheidhmiú."
 
 #: templates/static/privacy.html:126
 msgid "You can contact the data protection officer by:"
@@ -959,7 +959,7 @@ msgstr "Is féidir leat teagmháil a dhéanamh leis an oifigeach um chosaint son
 
 #: templates/static/privacy.html:130 templates/static/privacy.html:151
 msgid "Email: {email_address}"
-msgstr ""
+msgstr "Ríomhphost: {email_address}"
 
 #: templates/static/privacy.html:143
 msgid "The Information Commissioner’s Office"
@@ -967,7 +967,7 @@ msgstr "Oifig an Choimisinéara Eolais"
 
 #: templates/static/privacy.html:145
 msgid "The Information Commissioner’s Office (ICO) is the independent organisation tasked with regulating data protection in the UK. The ICO can give you <a href='{url}'>extra information about data protection</a> and your rights and will deal with any complaints you may have about our use of your information."
-msgstr ""
+msgstr "Is í Oifig an Choimisinéara Faisnéise (ICO) an eagraíocht neamhspleách a bhfuil sé de chúram uirthi cosaint sonraí a rialáil sa Ríocht Aontaithe. Is féidir leis an ICO<a href='{url}'>faisnéis bhreise a thabhairt duit faoi chosaint sonraí</a> agus do chearta agus déileálfaidh sé le haon ghearáin a d'fhéadfadh a bheith agat maidir lenár n-úsáid."
 
 #: templates/static/privacy.html:147
 msgid "You can contact the ICO by:"
