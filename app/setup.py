@@ -417,7 +417,7 @@ def setup_secure_cookies(application):
 
 
 def setup_babel(application):
-    application.babel = Babel(application, default_locale='en_GB')
+    application.babel = Babel(application)
     application.jinja_env.add_extension('jinja2.ext.i18n')
 
     @application.babel.localeselector
