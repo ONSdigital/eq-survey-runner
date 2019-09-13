@@ -43,11 +43,14 @@ def get_languages_context():
 
 
 def _get_language_context(language_code):
+    current_language_code = str(get_locale())
+    if current_language_code == 'en_GB':
+        current_language_code = 'en'
     return {
         'ISOCode': language_code,
         'url': '?language_code=' + language_code,
         'text': LANGUAGE_TEXT.get(language_code),
-        'current': language_code == str(get_locale()),
+        'current': language_code == current_language_code,
     }
 
 
