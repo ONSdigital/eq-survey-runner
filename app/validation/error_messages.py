@@ -30,9 +30,7 @@ error_messages = {
     ),
     'INVALID_NUMBER': gettext('Enter a number.'),
     'INVALID_INTEGER': gettext('Enter a whole number.'),
-    'INVALID_DECIMAL': gettext(
-        'Enter a number rounded to %(max)d decimal places.'
-    ),
+    'INVALID_DECIMAL': gettext('Enter a number rounded to %(max)d decimal places.'),
     'MAX_LENGTH_EXCEEDED': gettext(
         'Your answer is too long, it has to be less than %(max)d characters.'
     ),
