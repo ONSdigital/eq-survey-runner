@@ -11,8 +11,9 @@ metadata:
   annotations:
       kubernetes.io/ingress.global-static-ip-name: survey-runner
       ingress.gcp.kubernetes.io/pre-shared-cert: runner
+      kubernetes.io/ingress.allow-http: "false"
 spec:
   backend:
     serviceName: {{ .Chart.Name }}
-    servicePort: 80
+    servicePort: {{ .Values.service.port }}
 {{- end }}
