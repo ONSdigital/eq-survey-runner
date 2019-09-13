@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-13 09:11+0100\n"
+"POT-Creation-Date: 2019-09-13 10:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1016,32 +1016,40 @@ msgid ""
 "Digital Accessibility Centre (DAC)."
 msgstr ""
 
+#: templates/static/accessibility.html:122
+msgid "<a href='{url}' download>DAC Report - September 2019</a>"
+msgstr ""
+
 #: templates/static/accessibility.html:124
 msgid "You can read the last full accessibility test report from 28 June 2019."
 msgstr ""
 
-#: templates/static/accessibility.html:129
+#: templates/static/accessibility.html:126
+msgid "<a href='{url}' download>DAC Report - June 2019</a>"
+msgstr ""
+
+#: templates/static/accessibility.html:128
 msgid "What we’re doing to improve accessibility"
 msgstr ""
 
-#: templates/static/accessibility.html:131
+#: templates/static/accessibility.html:130
 msgid ""
 "We are continuing to work with various charities and local deaf "
 "communities to understand their needs for the census."
 msgstr ""
 
-#: templates/static/accessibility.html:133
+#: templates/static/accessibility.html:132
 msgid ""
 "We are looking at designs to see if it is possible to have British Sign "
 "Language on every page. This is challenging as we have been unable to "
 "find another service that does this, but we continue to investigate."
 msgstr ""
 
-#: templates/static/accessibility.html:135
+#: templates/static/accessibility.html:134
 msgid "We will act on feedback from the 2019 Rehearsal in October."
 msgstr ""
 
-#: templates/static/accessibility.html:137
+#: templates/static/accessibility.html:136
 msgid "This statement was prepared on 11 September."
 msgstr ""
 
