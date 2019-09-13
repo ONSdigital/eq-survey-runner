@@ -5,7 +5,6 @@
 
 {% set block = content.block %}
 {% set form = content.form %}
-{% set use_transactional_footer = true %}
 
 {% block preHeader %}
   <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}"/>

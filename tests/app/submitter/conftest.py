@@ -26,6 +26,7 @@ def fake_metadata():
         {'name': 'period_id', 'type': 'string'},
         {'name': 'ref_p_start_date', 'type': 'string'},
         {'name': 'ref_p_end_date', 'type': 'string'},
+        {'name': 'display_address', 'type': 'string'},
         {'name': 'case_ref', 'type': 'string'},
     ]
 
@@ -45,6 +46,7 @@ def fake_metadata():
             'ru_name': 'Apple',
             'return_by': '2016-07-07',
             'case_id': str(uuid.uuid4()),
+            'display_address': '68 Abingdon Road, Goathill',
             'questionnaire_id': '0123456789000000',
             'case_ref': '1000000000000001',
             'jti': str(uuid.uuid4()),

@@ -8,6 +8,7 @@ from flask import (
 from flask_babel import get_locale, lazy_gettext
 
 from app.setup import cache
+from app.helpers.language_helper import get_languages_context
 
 
 @cache.memoize()
@@ -65,6 +66,8 @@ def render_template(template, **kwargs):
         google_tag_manager_preview=current_app.config['EQ_GOOGLE_TAG_MANAGER_PREVIEW'],
         page_header=page_header_context,
         theme=_map_theme(cookie_session.get('theme')),
+        languages=get_languages_context(),
+        schema_theme=cookie_session.get('theme'),
         **kwargs,
     )
 
