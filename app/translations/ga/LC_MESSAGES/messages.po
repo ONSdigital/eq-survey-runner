@@ -1,1398 +1,975 @@
-# Scottish Gaelic translations for PROJECT.
-# Copyright (C) 2019 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
+"Project-Id-Version: eq-census-nisra\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 13:21+0100\n"
-"PO-Revision-Date: 2019-07-18 09:11+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: gd\n"
-"Language-Team: gd <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2019-09-12 12:18+0100\n"
+"PO-Revision-Date: 2019-09-13 08:52\n"
+"Last-Translator: ONS_Census\n"
+"Language-Team: Irish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: eq-census-nisra\n"
+"X-Crowdin-Language: ga-IE\n"
+"X-Crowdin-File: messages.pot\n"
+"Language: ga_IE\n"
 
 #: app/jinja_filters.py:79 app/validation/validators.py:340
 #, python-format
 msgid "%(num)s year"
 msgid_plural "%(num)s years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s bliain"
+msgstr[1] "%(num)s blianta"
+msgstr[2] "%(num)s bliain"
+msgstr[3] "%(num)s blianta"
+msgstr[4] "%(num)s blianta"
 
 #: app/jinja_filters.py:87 app/validation/validators.py:344
 #, python-format
 msgid "%(num)s month"
 msgid_plural "%(num)s months"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s mí"
+msgstr[1] "%(num)s míonna"
+msgstr[2] "%(num)s mí"
+msgstr[3] "%(num)s míonna"
+msgstr[4] "%(num)s míonna"
 
 #: app/jinja_filters.py:130
 #, python-format
 msgid "%(date)s at %(time)s"
-msgstr ""
+msgstr "%(date)s ag %(time)s"
 
 #: app/jinja_filters.py:141
 #, python-format
 msgid "%(from_date)s to %(to_date)s"
-msgstr ""
+msgstr "%(from_date)s go %(to_date)s"
 
 #: app/forms/custom_fields.py:130
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Ní rogha bhailí í seo"
 
 #: app/forms/fields.py:231
 msgid "Select an answer"
-msgstr ""
+msgstr "Roghnaigh freagra"
 
-#: app/templating/hub_context.py:12 app/templating/hub_context.py:14
-msgid "Submit survey"
-msgstr ""
+#: app/helpers/template_helper.py:18
+msgid "Office for National Statistics logo"
+msgstr "Lógó Oifig an Staidrimh Náisiúnta"
 
-#: app/templating/hub_context.py:13 templates/summary.html:16
-msgid "Please submit this survey to complete it"
-msgstr ""
+#: app/helpers/template_helper.py:27 app/helpers/template_helper.py:35
+msgid "Census 2021"
+msgstr "Daonáireamh 2021"
 
-#: app/templating/hub_context.py:17
-msgid "Choose another section to complete"
-msgstr ""
-
-#: app/templating/hub_context.py:18
-msgid "You must complete all sections in order to submit this survey"
-msgstr ""
-
-#: app/templating/hub_context.py:21 templates/confirmation.html:12
-#: templates/interstitial.html:5
-msgid "Continue"
-msgstr ""
-
-#: app/templating/hub_context.py:27
-msgid "Completed"
-msgstr ""
-
-#: app/templating/hub_context.py:29
-msgid "View answers"
-msgstr ""
-
-#: app/templating/hub_context.py:30
-msgid "View answers for {section_name}"
-msgstr ""
-
-#: app/templating/hub_context.py:34
-msgid "Partially completed"
-msgstr ""
-
-#: app/templating/hub_context.py:36
-msgid "Continue with section"
-msgstr ""
-
-#: app/templating/hub_context.py:37
-msgid "Continue with {section_name} section"
-msgstr ""
-
-#: app/templating/hub_context.py:41
-msgid "Not started"
-msgstr ""
-
-#: app/templating/hub_context.py:43
-msgid "Start section"
-msgstr ""
-
-#: app/templating/hub_context.py:44
-msgid "Start {section_name} section"
-msgstr ""
-
-#: app/templating/view_context.py:118
-msgid " (You)"
-msgstr ""
+#: app/helpers/template_helper.py:31
+msgid "Northern Ireland Statistics and Research Agency logo"
+msgstr "Lógó na Gníomhaireachta um Staidreamh agus Thaighde Thuaisceart Éireann"
 
 #: app/validation/error_messages.py:5 app/validation/error_messages.py:6
 #: app/validation/error_messages.py:7 app/validation/error_messages.py:8
 msgid "Enter an answer to continue."
-msgstr ""
+msgstr "Cuir freagra isteach le leanstan ar aghaidh."
 
 #: app/validation/error_messages.py:9 app/validation/error_messages.py:10
 msgid "Select an answer to continue."
-msgstr ""
+msgstr "Roghnaigh freagra le leanstan ar aghaidh."
 
 #: app/validation/error_messages.py:11
 msgid "Select all that apply to continue."
-msgstr ""
+msgstr "Roghnaigh na cinn uilig lena mbaineann siad le leanstan ar aghaidh."
 
 #: app/validation/error_messages.py:12
 msgid "Enter a date to continue."
-msgstr ""
+msgstr "Cuir dáta isteach le leanstan ar aghaidh."
 
 #: app/validation/error_messages.py:13
 msgid "Enter a duration to continue."
-msgstr ""
+msgstr "Cuir fad an ama isteach le leanstan ar aghaidh."
 
 #: app/validation/error_messages.py:14
 #, python-format
 msgid "Enter an answer more than or equal to %(min)s."
-msgstr ""
+msgstr "Cuir freagra isteach atá níos mó ná nó cothrom le %(min)s."
 
 #: app/validation/error_messages.py:15
 #, python-format
 msgid "Enter an answer less than or equal to %(max)s."
-msgstr ""
+msgstr "Cuir freagra isteach atá níos lú ná nó cothrom le %(max)s."
 
 #: app/validation/error_messages.py:16
 #, python-format
 msgid "Enter an answer more than %(min)s."
-msgstr ""
+msgstr "Cuir freagra isteach atá níos mó ná %(min)s."
 
 #: app/validation/error_messages.py:17
 #, python-format
 msgid "Enter an answer less than %(max)s."
-msgstr ""
+msgstr "Cuir freagra isteach atá níos lú ná %(max)s."
 
 #: app/validation/error_messages.py:18
 #, python-format
 msgid "Enter answers that add up to %(total)s"
-msgstr ""
+msgstr "Cuir freagraí isteach a shuimíonn go %(total)s ar fad"
 
 #: app/validation/error_messages.py:19
 #, python-format
 msgid "Enter answers that add up to or are less than %(total)s"
-msgstr ""
+msgstr "Cuir freagraí isteach a shuimíonn go nó atá níos lú ná %(total)s"
 
 #: app/validation/error_messages.py:22
 #, python-format
 msgid "Enter answers that add up to less than %(total)s"
-msgstr ""
+msgstr "Cuir freagraí isteach a shuimíonn go níos lú ná %(total)s"
 
-#: app/validation/error_messages.py:23
+#: app/validation/error_messages.py:25
 #, python-format
 msgid "Enter answers that add up to greater than %(total)s"
-msgstr ""
+msgstr "Cuir freagraí isteach a shuimíonn go níos mó ná %(total)s"
 
-#: app/validation/error_messages.py:26
+#: app/validation/error_messages.py:28
 #, python-format
 msgid "Enter answers that add up to or are greater than %(total)s"
-msgstr ""
-
-#: app/validation/error_messages.py:29
-msgid "Enter a number."
-msgstr ""
-
-#: app/validation/error_messages.py:30
-msgid "Enter a whole number."
-msgstr ""
+msgstr "Cuir freagraí isteach a shuimíonn go nó atá níos mó ná %(total)s"
 
 #: app/validation/error_messages.py:31
-#, python-format
-msgid "Enter a number rounded to %(max)d decimal places."
-msgstr ""
+msgid "Enter a number."
+msgstr "Cuir uimhir isteach."
 
 #: app/validation/error_messages.py:32
-#, python-format
-msgid "Your answer is too long, it has to be less than %(max)d characters."
-msgstr ""
+msgid "Enter a whole number."
+msgstr "Cuir slánuimhir isteach."
 
-#: app/validation/error_messages.py:35
-msgid "Enter a valid date."
-msgstr ""
+#: app/validation/error_messages.py:33
+#, python-format
+msgid "Enter a number rounded to %(max)d decimal places."
+msgstr "Cuir uimhir isteach atá slánaithe go %(max)d ionad deachúlach."
 
 #: app/validation/error_messages.py:36
-msgid "Enter a 'period to' date later than the 'period from' date."
-msgstr ""
+#, python-format
+msgid "Your answer is too long, it has to be less than %(max)d characters."
+msgstr "Tá do fhreagra rófhada, caithfidh sé bheith níos lú ná %(max)d carachtar."
 
 #: app/validation/error_messages.py:39
-msgid "Enter a valid duration."
-msgstr ""
+msgid "Enter a valid date."
+msgstr "Cuir isteach dáta bailí."
 
 #: app/validation/error_messages.py:40
-#, python-format
-msgid "Enter a reporting period greater than or equal to %(min)s."
-msgstr ""
+msgid "Enter a 'period to' date later than the 'period from' date."
+msgstr "Cuir isteach 'tréimhse go' dáta níos moille ná an 'tréimhse ó' dáta."
 
 #: app/validation/error_messages.py:43
-#, python-format
-msgid "Enter a reporting period less than or equal to %(max)s."
-msgstr ""
+msgid "Enter a valid duration."
+msgstr "Cuir isteach fad ama bailí."
 
-#: app/validation/error_messages.py:46
+#: app/validation/error_messages.py:44
 #, python-format
-msgid "Enter a date after %(min)s."
-msgstr ""
+msgid "Enter a reporting period greater than or equal to %(min)s."
+msgstr "Cuir isteach tréimhse tuairiscithe níos mó ná nó cothrom le %(min)s."
 
 #: app/validation/error_messages.py:47
 #, python-format
-msgid "Enter a date before %(max)s."
-msgstr ""
+msgid "Enter a reporting period less than or equal to %(max)s."
+msgstr "Cuir isteach tréimhse tuairiscithe níos lú ná nó cothrom le %(max)s."
 
-#: app/validation/error_messages.py:48
+#: app/validation/error_messages.py:50
+#, python-format
+msgid "Enter a date after %(min)s."
+msgstr "Cuir isteach dáta i ndiaidh %(min)s."
+
+#: app/validation/error_messages.py:51
+#, python-format
+msgid "Enter a date before %(max)s."
+msgstr "Cuir isteach dáta roimh %(max)s."
+
+#: app/validation/error_messages.py:52
 msgid "Remove an answer to continue."
-msgstr ""
+msgstr "Bain freagra le leanstan ar aghaidh."
 
 #: app/validation/validators.py:351
 #, python-format
 msgid "%(num)s day"
 msgid_plural "%(num)s days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s lá"
+msgstr[1] "%(num)s laethanta"
+msgstr[2] "%(num)s lá"
+msgstr[3] "%(num)s laethanta"
+msgstr[4] "%(num)s laethanta"
+
+#: app/views/contexts/hub_context.py:15 app/views/contexts/hub_context.py:17
+msgid "Submit survey"
+msgstr "Cuir an suirbhé isteach"
+
+#: app/views/contexts/hub_context.py:16 templates/summary.html:16
+msgid "Please submit this survey to complete it"
+msgstr "Cuir isteach an suirbhé seo lena chríochnú le do thoil"
+
+#: app/views/contexts/hub_context.py:20
+msgid "Choose another section to complete"
+msgstr "Roghnaigh mír eile le líonadh isteach"
+
+#: app/views/contexts/hub_context.py:21
+msgid "You must complete all sections in order to submit this survey"
+msgstr "Caithfidh tú na míreanna uilig a líonadh isteach leis an suirbhé a chur isteach"
+
+#: app/views/contexts/hub_context.py:24 templates/confirmation.html:12
+#: templates/interstitial.html:5
+msgid "Continue"
+msgstr "Lean ar aghaidh"
+
+#: app/views/contexts/hub_context.py:30
+msgid "Completed"
+msgstr "Déanta"
+
+#: app/views/contexts/hub_context.py:32
+msgid "View answers"
+msgstr "Amharc ar na freagraí"
+
+#: app/views/contexts/hub_context.py:33
+msgid "View answers for {section_name}"
+msgstr "Amharc ar na freagraí do {section_name}"
+
+#: app/views/contexts/hub_context.py:37
+msgid "Partially completed"
+msgstr "Cuid de déanta"
+
+#: app/views/contexts/hub_context.py:39
+msgid "Continue with section"
+msgstr "Lean ar aghaidh leis an mhír"
+
+#: app/views/contexts/hub_context.py:40
+msgid "Continue with {section_name} section"
+msgstr "Lean ar aghaidh leis an mhír {section_name}"
+
+#: app/views/contexts/hub_context.py:44
+msgid "Not started"
+msgstr "Níl sé tosaithe go fóill"
+
+#: app/views/contexts/hub_context.py:46
+msgid "Start section"
+msgstr "Tosaigh an mhír"
+
+#: app/views/contexts/hub_context.py:47
+msgid "Start {section_name} section"
+msgstr "Tosaigh an mhír {section_name}"
+
+#: app/views/contexts/list_collector.py:33
+msgid " (You)"
+msgstr " (Tusa)"
 
 #: templates/confirmation.html:6 templates/confirmation.html:37
 msgid "Submit answers"
-msgstr ""
+msgstr "Cuir isteach na freagraí"
 
 #: templates/confirmation.html:22
 msgid "Yes, I confirm these are correct"
-msgstr ""
+msgstr "Tá, dearbhaím go bhfuil siad ceart"
 
 #: templates/confirmation.html:41
 msgid "Submitting"
-msgstr ""
+msgstr "Ag cur isteach"
 
 #: templates/feedback.html:7 templates/feedback.html:14
 msgid "Survey feedback"
-msgstr ""
+msgstr "Aiseolas suirbhé"
 
 #: templates/feedback.html:21 templates/layouts/configs/_feedback.html:25
 msgid "How can we improve this survey"
-msgstr ""
+msgstr "Cad é mar is féidir linn an suirbhé seo a fheabhsú"
 
 #: templates/feedback.html:24 templates/layouts/configs/_feedback.html:29
 #: templates/partials/answers/textarea.html:14
 msgid "You have {x} character remaining"
-msgstr ""
+msgstr "Tá {x} carachtar fágtha agat"
 
 #: templates/feedback.html:25 templates/layouts/configs/_feedback.html:30
 #: templates/partials/answers/textarea.html:15
 msgid "You have {x} characters remaining"
-msgstr ""
+msgstr "Tá {x} carachtar fágtha agat"
 
 #: templates/feedback.html:32 templates/layouts/configs/_feedback.html:35
 msgid "Name (optional)"
-msgstr ""
+msgstr "Ainm (roghnach)"
 
 #: templates/feedback.html:33 templates/layouts/configs/_feedback.html:36
-msgid ""
-"Please include your name and email address if you’re interested in taking"
-" part in further research to improve this survey"
-msgstr ""
+msgid "Please include your name and email address if you’re interested in taking part in further research to improve this survey"
+msgstr "Cuir isteach d'ainm agus do sheoladh ríomhphoist le do thoil má tá suim agat páirt a ghlacadh i dtuilleadh taighde leis an suirbhé seo a fheabhsú"
 
 #: templates/feedback.html:42 templates/layouts/configs/_feedback.html:42
 msgid "Email address (optional)"
-msgstr ""
+msgstr "Seoladh ríomhphoist (roghnach)"
 
 #: templates/feedback.html:48 templates/layouts/configs/_feedback.html:46
 msgid "Send feedback"
-msgstr ""
+msgstr "Cuir aiseolas ar ais"
 
 #: templates/feedback_sent.html:3 templates/feedback_sent.html:7
 msgid "Thank you for your feedback"
-msgstr ""
+msgstr "Go raibh maith agat as d'aiseolas"
 
-#: templates/feedback_sent.html:6 templates/thank-you.html:8
+#: templates/feedback_sent.html:6
 msgid "Submission successful"
-msgstr ""
+msgstr "D'éirigh le d'aighneacht"
 
 #: templates/feedback_sent.html:9
 msgid "It is now safe to close this window"
-msgstr ""
+msgstr "Tá sé slán sábháilte anois an fhuinneog seo a dhruidim"
 
-#: templates/feedback_sent.html:12 templates/session-expired.html:22
-#: templates/signed-out.html:9
+#: templates/feedback_sent.html:12 templates/signed-out.html:9
 msgid "Return to your account"
-msgstr ""
+msgstr "Gabh ar ais chuig do chuntas"
 
 #: templates/introduction.html:15
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)"
-msgstr ""
+msgstr "Tá tú ag líonadh seo isteach do for <span>%(ru_name)s</span> (%(trading_as_name)s)"
 
 #: templates/introduction.html:19
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span>"
-msgstr ""
+msgstr "Tá tú ag líonadh isteach seo do <span>%(ru_name)s</span>"
 
 #: templates/introduction.html:23
 #, python-format
-msgid ""
-"If the company details or structure have changed contact us on "
-"%(telephone_number)s or email %(email_address)s"
-msgstr ""
+msgid "If the company details or structure have changed contact us on %(telephone_number)s or email %(email_address)s"
+msgstr "Má tá sonraí an chomhlachta nó an struchtúir athraithe déan teagmháil linn ar %(telephone_number)s ar ríomhphost ag %(email_address)s"
 
 #: templates/introduction.html:38
 msgid "Your response is legally required"
-msgstr ""
+msgstr "Tá do fhreagra de dhíth go dlíthiúil"
 
 #: templates/multiple_survey.html:4 templates/multiple_survey.html:7
 msgid "Information"
-msgstr ""
+msgstr "Eolas"
 
 #: templates/multiple_survey.html:16
 msgid "Unfortunately you can only complete one survey at a time"
-msgstr ""
+msgstr "Ar an drochuair, ní féidir leat ach suirbhé amháin a líonadh isteach ag aon am amháin"
 
 #: templates/multiple_survey.html:17
 msgid "Close this window to continue with your current survey"
-msgstr ""
+msgstr "Druid an fhuinneog le leanstan ar aghaidh le do shuirbhé reatha"
 
 #: templates/question.html:16
 #, python-format
 msgid "This page has an error"
 msgid_plural "This page has %(num)s errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tá earráid ar an leathanach seo"
+msgstr[1] "Tá %(num)s earráid ar an leathanach seo"
+msgstr[2] "Tá %(num)s earráid ar an leathanach seo"
+msgstr[3] "Tá %(num)s earráid ar an leathanach seo"
+msgstr[4] "Tá %(num)s earráid ar an leathanach seo"
 
 #: templates/question.html:22
 msgid "This <strong>must be corrected</strong> to continue"
 msgid_plural "These <strong>must be corrected</strong> to continue"
-msgstr[0] ""
-msgstr[1] ""
-
-#: templates/session-expired.html:6
-msgid "Session expired"
-msgstr ""
-
-#: templates/session-expired.html:10
-msgid "Your session has expired"
-msgstr ""
-
-#: templates/session-expired.html:18
-msgid "To help protect your information we have signed you out"
-msgstr ""
+msgstr[0] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
+msgstr[1] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
+msgstr[2] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
+msgstr[3] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
+msgstr[4] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
 
 #: templates/signed-out.html:3
 msgid "Signed out"
-msgstr ""
+msgstr "Sínithe amach"
 
 #: templates/signed-out.html:6
 msgid "Your survey answers have been saved. You are now signed out"
-msgstr ""
+msgstr "Sábháladh do fhreagraí don suirbhé. Tá tú sínithe amach anois"
 
 #: templates/summary.html:6
 msgid "Summary"
-msgstr ""
+msgstr "Achoimre"
 
 #: templates/summary.html:11
 msgid "Check your answers and submit"
-msgstr ""
+msgstr "Déan seiceáil ar do fhreagraí agus cuir isteach iad"
 
-#: templates/summary.html:17
+#: templates/summary.html:17 templates/summary.html:28
 msgid "You can check your answers below"
-msgstr ""
+msgstr "Is féidir leat do fhreagraí a sheiceáil thíos"
 
-#: templates/summary.html:28
+#: templates/summary.html:27
 msgid "This section is now complete"
-msgstr ""
+msgstr "Tá an chuid seo críochnaithe anois"
 
-#: templates/summary.html:29
-msgid "You can review your answers below"
-msgstr ""
-
-#: templates/summary.html:38
+#: templates/summary.html:37
 msgid "Please review your answers and confirm these are correct"
-msgstr ""
+msgstr "Déan athbhreithniú ar do fhreagraí le do thoil agus dearbhaigh go bhfuil siad seo ceart"
 
-#: templates/summary.html:52
-msgid ""
-"You will have the opportunity to view and print a copy of your answers "
-"after submitting this survey"
-msgstr ""
+#: templates/summary.html:66
+msgid "You will have the opportunity to view and print a copy of your answers after submitting this survey"
+msgstr "Beidh deis agat amharc ar do fhreagraí agus cóip díobh a phriontáil i ndiaidh duit an suirbhé seo a chur isteach"
 
-#: templates/thank-you.html:4
+#: templates/thank-you.html:3
 msgid "We've received your answers"
-msgstr ""
+msgstr "Fuair muid do fhreagraí"
 
-#: templates/thank-you.html:17
-#, python-format
-msgid ""
-"Your answers were submitted for <span>%(ru_name)s</span> "
-"(%(trading_as_name)s) on %(submitted_date_time)s"
-msgstr ""
+#: templates/thank-you.html:7
+msgid "Thank you for submitting your census"
+msgstr "Go raibh maith agat as d'fhoirm daonáirimh a chur isteach"
 
-#: templates/thank-you.html:22
-#, python-format
-msgid ""
-"Your answers were submitted for <span>%(ru_name)s</span> on "
-"%(submitted_date_time)s"
-msgstr ""
+#: templates/thank-you.html:9
+msgid "We have received your answers and you do not need to do anything else."
+msgstr "Tá do chuid freagraí faighte againn agus ní gá duit rud ar bith eile a dhéanamh."
 
-#: templates/thank-you.html:27 templates/view-submission.html:30
-msgid "Transaction ID"
-msgstr ""
-
-#: templates/thank-you.html:30
-msgid "Your answers will be processed in the next few weeks"
-msgstr ""
-
-#: templates/thank-you.html:31
-msgid "We may contact you to query your answers via phone or secure message"
-msgstr ""
-
-#: templates/thank-you.html:36
-msgid "View and print a copy of your answers"
-msgstr ""
-
-#: templates/thank-you.html:37
-#, python-format
-msgid ""
-"Your answers will only be available for <b>%(duration)s</b> to keep them "
-"secure."
-msgstr ""
-
-#: templates/thank-you.html:45
-msgid "You are no longer able to view and print your answers"
-msgstr ""
-
-#: templates/thank-you.html:46
-msgid "The link expires to maintain the security of your information"
-msgstr ""
-
-#: templates/thank-you.html:52
-msgid "For more information on how we use this data"
-msgstr ""
-
-#: templates/view-submission.html:8
+#: templates/view-submission.html:7
 msgid "Submission"
-msgstr ""
+msgstr "Aighneacht"
 
-#: templates/view-submission.html:11
+#: templates/view-submission.html:10
 msgid "Submitted answers"
-msgstr ""
+msgstr "Freagraí curtha isteach"
 
-#: templates/view-submission.html:20
+#: templates/view-submission.html:19
 #, python-format
-msgid ""
-"Your answers were submitted for <span>%(ru_name)s</span> "
-"(%(trading_as_name)s) on %(submitted_time)s"
-msgstr ""
+msgid "Your answers were submitted for <span>%(ru_name)s</span> (%(trading_as_name)s) on %(submitted_time)s"
+msgstr "Cuireadh do fhreagraí isteach do <span>%(ru_name)s</span>(%(trading_as_name)s) ar %(submitted_time)s"
 
-#: templates/view-submission.html:25
+#: templates/view-submission.html:24
 #, python-format
-msgid ""
-"Your answers were submitted for <span>%(ru_name)s</span> on "
-"%(submitted_time)s"
-msgstr ""
+msgid "Your answers were submitted for <span>%(ru_name)s</span> on %(submitted_time)s"
+msgstr "Cuireadh do fhreagraí isteach do <span>%(ru_name)s</span> ar %(submitted_time)s"
 
-#: templates/view-submission.html:37
+#: templates/view-submission.html:29
+msgid "Transaction ID"
+msgstr "Aitheantas idirbhirt"
+
+#: templates/view-submission.html:36
 msgid "Print this page"
-msgstr ""
+msgstr "Priontáil an leathanach seo"
 
-#: templates/layouts/_error.html:5 templates/layouts/_error.html:8
-msgid "Error"
-msgstr ""
+#: templates/errors/403.html:3
+msgid "Authorisation refused"
+msgstr "Údarú diúltaithe"
 
-#: templates/layouts/_error.html:13
-msgid "Sorry, something has gone wrong"
-msgstr ""
+#: templates/errors/403.html:3 templates/errors/404.html:3
+#: templates/errors/500.html:3
+msgid "Office for National Statistics"
+msgstr "Oifig an Staidrimh Náisiúnta"
 
-#: templates/layouts/_error.html:15
-msgid "Please quote this reference for any support queries"
-msgstr ""
+#: templates/errors/403.html:6
+msgid "Sorry, there is a problem"
+msgstr "Tá brón orm, tá fadhb ann"
 
-#: templates/layouts/_error.html:27
-msgid "Your system information"
-msgstr ""
+#: templates/errors/403.html:7
+msgid "To access this page you need to <a href='#'>enter your unique access code.</a>"
+msgstr "Le rochtain bheith agat ar an leathanach seo caithfidh tú <a href='#'> do chód rochtana uathúil a chur isteach.</a>"
 
-#: templates/layouts/_questionnaire.html:11
-#: templates/layouts/_questionnaire.html:32
-msgid "Save and continue"
-msgstr ""
+#: templates/errors/404.html:3 templates/errors/404.html:6
+msgid "Page not found"
+msgstr "Níl teacht ar bith ar an leathanach"
 
-#: templates/layouts/_questionnaire.html:17
+#: templates/errors/404.html:7
+msgid "If you entered a web address, check it is correct."
+msgstr "Má chuir tú seoladh idirlín isteach, déan seiceáil go bhfuil sé ceart."
+
+#: templates/errors/404.html:8
+msgid "If you pasted the web address, check you copied the whole address."
+msgstr "Má ghreamaigh tú an seoladh idirlín isteach, déan seiceáil gur chópáil tú an seoladh iomlán isteach."
+
+#: templates/errors/404.html:9
+msgid "If the web address is correct or you selected a link or button, <a href='/contact-us'>contact us</a> for more help."
+msgstr "Má tá an seoladh idirlín ceart nó má roghnaigh tú nasc nó cnaipe, <a href='/contact-us'> déan teagmháil linn </a> do thuilleadh cuidithe."
+
+#: templates/errors/500.html:3
+msgid "An error has occurred"
+msgstr "Tharla earráid"
+
+#: templates/errors/500.html:6
+msgid "Sorry, there is a problem with this service"
+msgstr "Tá brón orm, tá fadhb ann leis an tseirbhís seo"
+
+#: templates/errors/500.html:7
+msgid "Try again later."
+msgstr "Bain triail as arís níos moille."
+
+#: templates/errors/500.html:8
+msgid "If you have started a survey, your answers have been saved."
+msgstr "Má thosaigh tú ar shuirbhé, sábháladh do fhreagraí."
+
+#: templates/errors/500.html:9
+msgid "<a href='/contact-us'>Contact us</a> if you need to speak to someone about your survey."
+msgstr "<a href='/contact-us'> Déan teagmháil linn </a> más gá duit labhairt le duine éigin faoi do shuirbhé."
+
+#: templates/errors/session-expired.html:6
+msgid "Session expired"
+msgstr "Tá an seisiún caite"
+
+#: templates/errors/session-expired.html:10
+msgid "Your session has expired"
+msgstr "Tá do sheisiún caite"
+
+#: templates/errors/session-expired.html:18
+msgid "To help protect your information we have signed you out"
+msgstr "Le do chuid eolais a chosaint bhí muid do do shíniú amach"
+
+#: templates/errors/session-expired.html:22
+#, python-format
+msgid "We have saved your progress and you will need to <a href=\"%(account_service_link)s\">enter your unique code</a> to access the survey again."
+msgstr "Táimid tar éis do dhul chun cinn a shábháil agus beidh ort <a href=\"%(account_service_link)s\"> do chód uathúil a iontráil </a> chun teacht ar an suirbhé arís."
+
+#: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:14
+msgid "We use cookies to improve your experience of census.gov.uk"
+msgstr "Bainimid úsáid as fianáin chun do thaithí ar census.gov.uk a fheabhsú"
+
+#: templates/layouts/_questionnaire.html:24
 msgid "Previous"
-msgstr ""
+msgstr "Roimhe"
+
+#: templates/layouts/_questionnaire.html:39
+msgid "Save and continue"
+msgstr "Sábháil agus lean ar aghaidh"
+
+#: templates/layouts/_questionnaire.html:50
+msgid "Can't complete this question?"
+msgstr "Nach féidir leat an cheist seo a fhreagairt?"
+
+#: templates/layouts/_questionnaire.html:51
+msgid "Choose another section and return to this later"
+msgstr "Roghnaigh mír eile agus tar ar ais go dtí an ceann seo níos moille"
 
 #: templates/layouts/configs/_feedback.html:3
 msgid "Give feedback and help us improve this service"
-msgstr ""
+msgstr "Tabhair aiseolas agus cuidigh linn an tseirbhís seo a fheabhsú"
 
 #: templates/layouts/configs/_feedback.html:5
 msgid "I don't want to provide feedback"
-msgstr ""
+msgstr "Níor mhaith liom aiseolas a thabhairt"
 
 #: templates/layouts/configs/_feedback.html:55
 msgid "Thanks for your feedback"
-msgstr ""
+msgstr "Go raibh maith agat as d'aiseolas"
 
 #: templates/layouts/configs/_feedback.html:56
-msgid ""
-"There was an error sending your feedback.\n"
+msgid "There was an error sending your feedback.\n"
 "(Error code: {x})"
-msgstr ""
+msgstr "Bhí earráid ann agus tusa ag cur d'aiseolais chugainn. (Error code: {x})"
 
 #: templates/layouts/configs/_footer.html:4
-#, python-format
-msgid ""
-"All content is available under the %(class_open)sOpen Government Licence "
-"v3.0%(class_close)s, except where otherwise stated"
-msgstr ""
+msgid "All content is available under the Open Government Licence v3.0, except where otherwise stated"
+msgstr "Tá gach ábhar ar fáil faoiCeadúnas Oscailte Rialtais v3.0 seachas má luaitear a mhalairt"
 
-#: templates/layouts/configs/_footer.html:13
-#: templates/layouts/configs/_footer.html:44 templates/static/contact-us.html:9
+#: templates/layouts/configs/_footer.html:12
+#: templates/static/contact-us.html:10
 msgid "Contact us"
-msgstr ""
+msgstr "Déan teagmháil linn"
 
 #: templates/layouts/configs/_footer.html:17
-#: templates/layouts/configs/_footer.html:29
-msgid "Cookies and privacy"
-msgstr ""
+msgid "Help"
+msgstr "Cabhair"
 
 #: templates/layouts/configs/_footer.html:26
-msgid "Legal information"
-msgstr ""
+msgid "Cookies"
+msgstr "Fianáin"
+
+#: templates/layouts/configs/_footer.html:31 templates/static/privacy.html:9
+msgid "Privacy and data protection"
+msgstr "Príobháideacht agus cosaint sonraí"
 
 #: templates/layouts/configs/_footer.html:36
-msgid "About ONS"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:39
-msgid "What we do"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:49
 msgid "Accessibility"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:56
-msgid "Statistics"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:59
-msgid "UK Statistics Authority"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:64
-msgid "Release calendar"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:69
-msgid "News"
-msgstr ""
+msgstr "Rochtain"
 
 #: templates/layouts/configs/_save-sign-out-button.html:5
 msgid "Save and sign out"
-msgstr ""
+msgstr "Sábháil agus sínigh amach"
 
-#: templates/layouts/configs/_save-sign-out-button.html:17
+#: templates/layouts/configs/_save-sign-out-button.html:18
 msgid "Sign out"
-msgstr ""
+msgstr "Sínigh amach"
 
-#: templates/layouts/configs/_save-sign-out-button.html:30
+#: templates/layouts/configs/_save-sign-out-button.html:32
 msgid "Save and complete later"
-msgstr ""
-
-#: templates/layouts/configs/_service-links.html:8
-msgid "My account"
-msgstr ""
+msgstr "Sábháil agus críochnaigh níos moille"
 
 #: templates/partials/answer-guidance.html:13
 #: templates/partials/question-definition.html:14
 msgid "Hide this"
-msgstr ""
+msgstr "Cuir é seo i bhfolach"
 
 #: templates/partials/question.html:38
 msgid "Selecting this will clear your answer"
-msgstr ""
+msgstr "Má roghnaíonn tú seo scriosfaidh sé seo do fhreagra"
 
 #: templates/partials/question.html:39
 msgid "cleared"
-msgstr ""
+msgstr "scriosta"
 
 #: templates/partials/question.html:42
 msgid "Selecting this will deselect any selected options"
-msgstr ""
+msgstr "Má roghnaíonn tú seo díroghnóidh tú rogha ar bith roghnaithe"
 
 #: templates/partials/question.html:43 templates/partials/question.html:51
 msgid "deselected"
-msgstr ""
+msgstr "díroghnaithe"
 
 #: templates/partials/question.html:47
 msgid "Or"
-msgstr ""
+msgstr "Nó"
 
 #: templates/partials/answers/checkbox.html:7
 msgid "Select all that apply"
-msgstr ""
+msgstr "Roghnaigh na cinn uilig lena mbaineann siad"
 
-#: templates/partials/answers/date.html:22
+#: templates/partials/answers/date.html:23
 msgid "Day"
-msgstr ""
+msgstr "Lá"
 
-#: templates/partials/answers/date.html:37
+#: templates/partials/answers/date.html:38
 msgid "Month"
-msgstr ""
+msgstr "Mí"
 
-#: templates/partials/answers/date.html:52
+#: templates/partials/answers/date.html:53
 msgid "Year"
-msgstr ""
+msgstr "Bliain"
 
 #: templates/partials/introduction/preview.html:29
 #: templates/partials/summary/collapsible-summary.html:13
 msgid "Show"
-msgstr ""
+msgstr "Taispeáin"
 
 #: templates/partials/introduction/preview.html:30
 #: templates/partials/summary/collapsible-summary.html:14
 msgid "Hide"
-msgstr ""
+msgstr "Cuir i bhfolach"
 
 #: templates/partials/introduction/preview.html:48
 #: templates/partials/summary/collapsible-summary.html:41
 msgid "Show all"
-msgstr ""
+msgstr "Taispeáin iad go léir"
 
 #: templates/partials/introduction/preview.html:49
 #: templates/partials/summary/collapsible-summary.html:42
 msgid "Hide all"
-msgstr ""
+msgstr "Cuir iad go léir i bhfolach"
 
 #: templates/partials/introduction/start-survey.html:5
 msgid "Start survey"
-msgstr ""
+msgstr "Tosaigh an suirbhé"
 
 #: templates/partials/summary/collapsible-summary.html:27
 #: templates/partials/summary/summary.html:9
 msgid "No answer provided"
-msgstr ""
+msgstr "Níor tugadh freagra ar bith"
 
 #: templates/partials/summary/collapsible-summary.html:27
 #: templates/partials/summary/list-summary.html:8
 #: templates/partials/summary/summary.html:9
 msgid "Change"
-msgstr ""
+msgstr "Athraigh"
 
 #: templates/partials/summary/collapsible-summary.html:27
 #: templates/partials/summary/summary.html:9
 msgid "Change your answer for:"
-msgstr ""
+msgstr "Athraigh do fhreagra do:"
 
 #: templates/partials/summary/list-summary.html:9
 msgid "Change details for {item_name}"
-msgstr ""
+msgstr "Athraigh na sonraí do {item_name}"
 
 #: templates/partials/summary/list-summary.html:10
 msgid "Remove"
-msgstr ""
+msgstr "Bain"
 
 #: templates/partials/summary/list-summary.html:11
 msgid "Remove {item_name}"
-msgstr ""
+msgstr "Bain {item_name}"
 
-#: templates/static/contact-us.html:4 templates/static/cookies-privacy.html:4
+#: templates/static/contact-us.html:5 templates/static/privacy.html:4
 msgid "ONS Business Surveys"
-msgstr ""
+msgstr "Suirbhéanna Gnó ONS"
 
-#: templates/static/contact-us.html:11
-#: templates/static/cookies-privacy.html:282
-#: templates/static/cookies-privacy.html:492
-#: templates/static/cookies-privacy.html:503
+#: templates/static/contact-us.html:12
+msgid "Contact us if you have any questions about filling in the census online or on paper. You can use any of these options if you need information or a census in an alternative format like Braille or large print."
+msgstr "Téigh i dteagmháil linn má tá aon cheist agat maidir leis an daonáireamh a chomhlánú ar líne nó ar pháipéar. Is féidir leat aon cheann de na roghanna seo a úsáid má tá faisnéis nó daonáireamh de dhíth ort i bhformáid eile, mar shampla i mBraille nó i gcló mór."
+
+#: templates/static/contact-us.html:14
 msgid "Telephone"
-msgstr ""
+msgstr "Guthán"
 
-#: templates/static/contact-us.html:16
-#, python-format
-msgid ""
-"Please quote the reference <b>%(ru_ref)s</b> when contacting ONS about "
-"this survey."
-msgstr ""
+#: templates/static/contact-us.html:15 templates/static/contact-us.html:43
+#: templates/static/contact-us.html:53
+msgid "We will have advisers available to help you at the following times:"
+msgstr "Beidh comhairleoirí againn ar fáil chun cuidiú leat ag na huaireanta seo a leanas:"
 
-#: templates/static/contact-us.html:18
-#, python-format
-msgid "Your Survey ID is <b>%(survey_id)s</b>."
-msgstr ""
+#: templates/static/contact-us.html:17 templates/static/contact-us.html:45
+#: templates/static/contact-us.html:55
+msgid "Monday to Friday - 8am – 7pm"
+msgstr "An Luan go dtí An Aoine - 8r.n. – 7i.n."
 
-#: templates/static/contact-us.html:22
-msgid "Opening hours"
-msgstr ""
+#: templates/static/contact-us.html:18 templates/static/contact-us.html:46
+#: templates/static/contact-us.html:56
+msgid "Saturday - 8am - 1pm"
+msgstr "An Satharn - 8r.n. - 1i.n."
 
-#: templates/static/contact-us.html:25
-msgid "Monday to Thursday 8:30am – 5:00pm"
-msgstr ""
+#: templates/static/contact-us.html:19 templates/static/contact-us.html:47
+#: templates/static/contact-us.html:57
+msgid "Sunday - closed"
+msgstr "An Domhnach - druidte"
 
-#: templates/static/contact-us.html:26
-msgid "Friday 8:30am - 4:30pm"
-msgstr ""
+#: templates/static/contact-us.html:24 templates/static/contact-us.html:29
+#: templates/static/privacy.html:128 templates/static/privacy.html:149
+msgid "Telephone: {telephone_number}"
+msgstr "Guthán: {telephone_number}"
 
-#: templates/static/contact-us.html:29
-msgid "This office is closed during public holidays"
-msgstr ""
+#: templates/static/contact-us.html:28
+msgid "England"
+msgstr "Sasana"
+
+#: templates/static/contact-us.html:30
+msgid "Wales"
+msgstr "An Bhreatain Bheag"
 
 #: templates/static/contact-us.html:31
-#: templates/static/cookies-privacy.html:283
-#: templates/static/cookies-privacy.html:493
-#: templates/static/cookies-privacy.html:505
-msgid "Email"
-msgstr ""
+msgid "Telephone: {telephone_number} (Option 1 for Welsh, option 2 for English)"
+msgstr "Guthán: {telephone_number} (Rogha 1 i mBreatnais, Rogha 2 i mBéarla)"
 
 #: templates/static/contact-us.html:35
-msgid "Post"
-msgstr ""
+msgid "Other languages"
+msgstr "Teangacha eile"
 
-#: templates/static/cookies-privacy.html:9
-msgid "Cookies and Privacy"
-msgstr ""
+#: templates/static/contact-us.html:36
+msgid "If you need to speak to us in another language phone {telephone_number}"
+msgstr "Más gá duit labhairt linn i dteanga ar bith eile cuir scairt ghutháin ar {telephone_number}"
 
-#: templates/static/cookies-privacy.html:11
-msgid ""
-"The Office for National Statistics (ONS) has created this cookies and "
-"privacy statement in order to demonstrate our firm commitment to privacy."
-msgstr ""
+#: templates/static/contact-us.html:38
+msgid "Text relay"
+msgstr "Rialaí téacs"
 
-#: templates/static/cookies-privacy.html:13
-msgid ""
-"The following is a description of what data is collected when you use the"
-" Survey Data Collection (SDC) service, how it is stored and what it is "
-"used for."
-msgstr ""
+#: templates/static/contact-us.html:39
+msgid "NGT users dial 18001 followed by the phone number you need"
+msgstr "D'úsáideoirí NGT diallaigh 18001 agus ansin an uimhir ghutháin a bheidh de dhíth ort"
 
-#: templates/static/cookies-privacy.html:15
-msgid "Privacy"
-msgstr ""
+#: templates/static/contact-us.html:41
+msgid "SMS text message"
+msgstr "Teachtaireacht téacs SMS"
 
-#: templates/static/cookies-privacy.html:17
-msgid ""
-"Your privacy is very important to us. We comply with confidentiality "
-"requirements set out in the Statistics and Registration Service Act 2007 "
-"and the Data Protection Act 1998."
-msgstr ""
+#: templates/static/contact-us.html:42
+msgid "Text 86677"
+msgstr "Cuir téacs chuig 86677"
 
-#: templates/static/cookies-privacy.html:19
-msgid ""
-"We can only use your information for research and statistical purposes. "
-"None of your personal information is disclosed through our statistics."
-msgstr ""
+#: templates/static/contact-us.html:51
+msgid "Online"
+msgstr "Ar líne"
 
-#: templates/static/cookies-privacy.html:21
-msgid "Security"
-msgstr ""
+#: templates/static/contact-us.html:52
+msgid "Web chat"
+msgstr "Comhrá ar líne"
 
-#: templates/static/cookies-privacy.html:23
-msgid ""
-"We ensure that the information you provide is kept safe and secure. We "
-"have security measures in place to protect the loss, misuse and "
-"alteration of information under our control."
-msgstr ""
+#: templates/static/privacy.html:10
+msgid "The information you provide when you fill in your census rehearsal questionnaire is protected by law."
+msgstr "Beidh an t-eolas a thabharfaidh tú dúinn nuair a líonfaidh tú an réamhchleachtadh de cheistiúchán daonáirih isteach á chosaint ag an dlí."
 
-#: templates/static/cookies-privacy.html:25
-msgid ""
-"We use leading security technologies such as industry-standard encryption"
-" software. This service has been accredited in accordance with government"
-" technical and security standards."
-msgstr ""
+#: templates/static/privacy.html:11
+msgid "Here we detail why we need your information. We also describe all the steps that we take to make sure your information and your privacy are safe."
+msgstr "Cuireann muid in iúl anseo an fáth a mbeidh d'eolas de dhíth orainn. Déanann muid cur síos ar na céimeanna uilig a ghlacann muid le cinntiú go mbeidh d'eolas agus do phríobháideacht slán sábháilte."
 
-#: templates/static/cookies-privacy.html:27
-msgid "Cookies"
-msgstr ""
+#: templates/static/privacy.html:14
+msgid "How and why we use your information"
+msgstr "Seo an dóigh agus na fáthanna a n-úsáideann muid d'eolas"
 
-#: templates/static/cookies-privacy.html:29
-msgid ""
-"We use small files (known as ‘cookies’) to collect information about how "
-"you browse the site."
-msgstr ""
+#: templates/static/privacy.html:16
+msgid "We collect information from your questionnaire under our statutory objective to promote and safeguard the production of official statistics that serve the public good. This means that any personal data we collect will only ever be used to produce statistics or undertake statistical research. People will not be identified within those statistics or research."
+msgstr "Bailíonn muid eolas ó do cheistiúchán de réir ár gcuspóra reachtúil le staidreamh oifigiúil ar mhaithe leis an ghnáthphobal a dhéanamh go forásach agus go slán sábháilte. Ciallaíonn sé seo nach n-úsáidfear cibé eolas a bhaileoidh muid ach le staidreamh nó le taighde staidrimh a dhéanamh. Ní aithneofar daoine taobh istigh den staidreamh nó den taighde sin."
 
-#: templates/static/cookies-privacy.html:31
-msgid "Cookies are used to"
-msgstr ""
+#: templates/static/privacy.html:18
+msgid "Every 10 years, the census gathers vital information that helps the government and local authorities plan services like health services, roads and libraries."
+msgstr "Gach 10 mbliana, bailíonn an daonáireamh eolas barrthábhachtach a chuidíonn leis an rialtas agus leis na húdaráis áitiúla seirbhísí amhail seirbhísí sláinte, na bóithre agus na leabharlanna, a phleanáil."
 
-#: templates/static/cookies-privacy.html:33
-msgid ""
-"Measure how you use the website so it can be updated and improved based "
-"on your needs"
-msgstr ""
+#: templates/static/privacy.html:20
+msgid "By running a rehearsal for Census 2021, we can test our processes, systems and services and make sure everything goes smoothly for the real thing. The personal data you provide on your questionnaire will also be used to undertake research and produce statistics that serve the public good, both by the Office for National Statistics (ONS) and accredited researchers from other organisations."
+msgstr "Trí chleachtadh a reáchtáil do Dhaonáireamh 2021, is féidir linn ár bpróisis, ár gcórais agus ár seirbhísí a thástáil agus a chinntiú go dtéann gach rud go réidh don rud fíor. Úsáidfear na sonraí pearsanta a sholáthraíonn tú ar do cheistneoir freisin chun taighde a dhéanamh agus staitisticí a sholáthar a fhreastalaíonn ar leas an phobail, ag an Oifig Náisiúnta Staidrimh (ONS) agus ag taighdeoirí creidiúnaithe ó eagraíochtaí eile."
 
-#: templates/static/cookies-privacy.html:34
-msgid ""
-"Remember the notifications you’ve seen so that we don’t show them to you "
-"again"
-msgstr ""
+#: templates/static/privacy.html:22
+msgid "We may occasionally record information about a property or an individual, in the interests of safeguarding the wellbeing of both those being interviewed and interviewers, as well as to assist people in the completion of their questionnaires. We’ll hold the minimum amount of personal data needed to meet these purposes."
+msgstr "Ó am go ham, d'fhéadfadh muid eolas a chlárú faoi réadmhaoin no faoi dhuine, ar mhaithe le leas na ndaoine sin a chuirfear faoi agallamh agus na n-agallaithe, chomh maith le cuidiú le daoine a gceistiúcháin a líonadh isteach. Coinneoidh muid an t-íosmhéid sonraí pearsanta a bheidh de dhíth le riaradh do na cuspóirí sin."
 
-#: templates/static/cookies-privacy.html:38
-msgid "Our cookies are not used to identify you personally."
-msgstr ""
+#: templates/static/privacy.html:24
+msgid "For online completion, we’ll collect information about how people fill in their questionnaires online to provide us with knowledge of how to improve our online services."
+msgstr "Don cheistiúchán a líonfar ar líne, baileoidh muid eolas ar an dóigh a líonfaidh daoine a gceistiúcháin ar líne le eolas a thabhairt dúinn ar an bhealach lenár seirbhísí ar líne a fheabhsú."
 
-#: templates/static/cookies-privacy.html:40
-msgid "How cookies are used"
-msgstr ""
+#: templates/static/privacy.html:27
+msgid "Who can access the information?"
+msgstr "Cé ar féidir leo rochtain bheith acu ar an eolas?"
 
-#: templates/static/cookies-privacy.html:42
-msgid "Measuring website usage (Google Analytics)"
-msgstr ""
+#: templates/static/privacy.html:29
+msgid "During the rehearsal we’ll employ third-party providers to assist us with parts of the operation. These third parties work under our instruction."
+msgstr "I rith an réamhchleachtaidh, fostóidh muid soláthraithe tríú páirtí chun cuidiú linn le cuid den oibríocht. Beidh na tríú páirtithe ag obair faoinár treoir."
 
-#: templates/static/cookies-privacy.html:44
-msgid ""
-"We use Google Analytics software to collect information about how you use"
-" this service. We do this to help make sure the site is meeting the needs"
-" of its users and to help us make improvements, for example improving "
-"site search."
-msgstr ""
+#: templates/static/privacy.html:30
+msgid "We treat the information we hold with respect, keeping it secure and confidential. Data may be made available to approved researchers where there is a clear public value and it’s safe and lawful to do so. More information on <a href='{policies_url}'>how we allow access to data for research</a> is available. We also publish a full list of all the <a href='{researchers_url}'>approved researchers</a> who we’ve granted access to."
+msgstr "Caithfimid leis an bhfaisnéis atá againn le meas, ag coinneáil slán agus rúnda í. D'fhéadfaí sonraí a chur ar fáil do thaighdeoirí faofa áit a bhfuil luach poiblí soiléir agus go bhfuil sé sábháilte agus dleathach é sin a dhéanamh. Tá tuilleadh eolais ar fáil ar <a href='{policies_url}'>conas a cheadaímid rochtain ar shonraí taighde</a>. Foilsímid liosta iomlán freisin de na taighdeoirí faofa <a href='{researchers_url}'> </a> a bhfuil rochtain againn orthu."
 
-#: templates/static/cookies-privacy.html:46
-msgid "Google Analytics stores information about"
-msgstr ""
+#: templates/static/privacy.html:33
+msgid "How long are personal data kept?"
+msgstr "Cá fhad a choinneofar na sonraí pearsanta?"
 
-#: templates/static/cookies-privacy.html:48
-msgid "The pages you visit"
-msgstr ""
+#: templates/static/privacy.html:35
+msgid "Data protection law requires that personal data are kept for no longer than is needed to fulfil the purposes for which they were originally collected."
+msgstr "Tá dualgas faoin dlí um chosaint sonraí nach gcoinneofar sonraí pearsanta gan níos faide ach ar feadh na tréimhse a bheidh de dhíth leis na cuspóirí dar bailíodh ar dtús iad."
 
-#: templates/static/cookies-privacy.html:49
-msgid "How long you spend on each page"
-msgstr ""
+#: templates/static/privacy.html:37
+msgid "The law allows that information held for statistical purposes only, such as information from your questionnaire, may be kept for longer periods. We’ll only continue to hold personal data where they are still used to produce statistics. Data used by approved researchers will be held within our <a href='{url}'>Secure Research Service</a>. Any personal data that we do not need, such as names and addresses, will be removed from the data at the earliest opportunity. The data will undergo regular reviews and will be deleted when they are no longer required."
+msgstr "Ceadaíonn an dlí go bhféadfar faisnéis a choinnítear chun críocha staitistiúla amháin, amhail faisnéis ó do cheistneoir, a choinneáil ar feadh tréimhsí níos faide. Ní leanfaimid orainn ag coimeád sonraí pearsanta ach amháin nuair a úsáidtear iad chun staitisticí a tháirgeadh. Tionólfar sonraí a úsáideann taighdeoirí faofa laistigh dár <a href='{url}'> Seirbhís Taighde Slán </a>. Bainfear aon sonraí pearsanta nach gá dúinn, amhail ainmneacha agus seoltaí, as na sonraí a luaithe is féidir. Déanfar athbhreithnithe rialta ar na sonraí agus scriosfar iad nuair nach bhfuil gá leo a thuilleadh."
 
-#: templates/static/cookies-privacy.html:50
-msgid "How you got to the site"
-msgstr ""
+#: templates/static/privacy.html:39
+msgid "Safeguarding data, such as information about a property or an individual, will be held for the duration of the rehearsal. Most of the information will be deleted at the end of the rehearsal. In some instances, data will be held for longer periods, where keeping them continues to serve safeguarding purposes."
+msgstr "Coinneofar sonraí sábháilteachta, amhail eolas faoi réadmhaoin nó faoi dhuine éigin, ar feadh fad an réamhchleachtaidh. Scriosfar an chuid is mó den eolas ag deireadh an réamhchleachtaidh. I roinnt cásanna, coinneofar sonraí ar feadh tréimhsí níos faide, más féidir linn iad a úsáid do chuspóirí sábháilteachta agus sinne a gcoinneáil."
 
-#: templates/static/cookies-privacy.html:51
-msgid "What you click on while you’re visiting the site"
-msgstr ""
+#: templates/static/privacy.html:41
+msgid "Metrics containing information about how people fill in their questionnaires will be held in an identifiable form only until the necessary statistical matching has taken place. After this point the data will be de-identified and used for the purposes of improving our services."
+msgstr "Coinneofar meadarachtaí ina bhfuil eolas ar an dóigh a líonann daoine a gceistiúcháin isteach i bhfoirm inaitheanta go dtí go ndéanfar an mheaitseáil staitisticiúil riachtanach. Ina dhiaidh seo, dí-aithneofar na sonraí agus úsáidfear iad lenár seirbhísí a fheabhsú."
 
-#: templates/static/cookies-privacy.html:55
-msgid ""
-"We don’t use Google Analytics to collect or store your personal "
-"information (for example your name or address)."
-msgstr ""
+#: templates/static/privacy.html:44
+msgid "How the law protects your information"
+msgstr "An dóigh a gcosnaíonn an dlí d'eolas"
 
-#: templates/static/cookies-privacy.html:57
-msgid ""
-"The information we collect through our cookies does not include personal "
-"details such as your name, age, telephone number, postal address or email"
-" address, nor does it allow personal identification of a user."
-msgstr ""
+#: templates/static/privacy.html:46
+msgid "The <a href='{data_protection_url}'>General Data Protection Regulation</a> and the <a href='{data_protection_act_url}'>Data Protection Act 2018</a> determine how, when and why any organisation can process your personal data. Personal data is any information that can identify a living individual. These laws exist to make sure your data are managed safely and used responsibly. They also give you certain rights about your data and create a responsibility on the ONS, as a user of personal data, to provide you with certain information."
+msgstr "Socraíonn an <a href='{data_protection_url}'> an Rialachán Ginearálta um Chosaint Sonraí </a> agus an <a href='{data_protection_act_url}'> an tAcht um Chosaint Sonraí 2018 </a> conas, cén uair agus cén fáth ar féidir le heagraíocht ar bith do phróiseas a phróiseáil sonraí pearsanta. Is éard is sonraí pearsanta ann aon fhaisnéis a fhéadann duine beo a aithint. Tá na dlíthe seo ann lena chinntiú go ndéantar do shonraí a bhainistiú go sábháilte agus a úsáid go freagrach. Tugann siad cearta áirithe duit freisin maidir le do shonraí agus cruthaíonn siad freagracht ar ONS, mar úsáideoir sonraí pearsanta, chun faisnéis áirithe a sholáthar duit."
 
-#: templates/static/cookies-privacy.html:59
+#: templates/static/privacy.html:48
+msgid "The ONS is a statutory body, meaning it was created by legislation, specifically the <a href='{url}'>Statistics and Registration Service Act 2007</a>. Our objective is to promote and safeguard the production and publication of official statistics that serve the public good. All our collection and use of data comes from powers that can be found in that Act or other UK legislation."
+msgstr "Is comhlacht reachtúil é an Oifig Náisiúnta Staidrimh (ONS), rud a chiallaíonn gur cruthaíodh é le reachtaíocht, go háirithe an<a href='{url}'>tAcht um Sheirbhísí Staitisticí agus Clárúcháin 2007</a>. Is é ár gcuspóir táirgeadh agus foilsiú staitisticí oifigiúla a chur chun cinn agus a chosaint a chuireann leas an phobail chun cinn. Tagann gach bailiú agus úsáid sonraí ó chumhachtaí atá san Acht sin nó i reachtaíocht eile sa Ríocht Aontaithe."
+
+#: templates/static/privacy.html:50
+msgid "The census rehearsal questionnaire has been assessed as compatible with the <a href='{url}'>Human Rights Act 1998</a>, specifically Article 8 (right to respect for a private and family life) and Article 9 (freedom of thought, conscience and religion) of the convention rights."
+msgstr "Rinneadh measúnú ar cheistneoir an daonáirimh a bheith comhoiriúnach leis an <a href='{url}'>Acht um Chearta an Duine, 1998</a>, go háirithe Airteagal 8 (ceart meas ar shaol príobháideach agus teaghlaigh) agus Airteagal 9 (saoirse smaoinimh, coinsiasa agus reiligiúin) ar chearta na coinbhinsiún."
+
+#: templates/static/privacy.html:53
+msgid "Legal basis for processing your data"
+msgstr "An bunús dlíthiúil le do shonraí a phróiseáil"
+
+#: templates/static/privacy.html:55
+msgid "Data protection legislation requires that all processing of personal data is undertaken under one or more conditions."
+msgstr "De réir na reachtaíochta um chosaint sonraí, caithfear próiseáil sonraí pearsanta a dhéanamh faoi cheann amháin nó níos mó coinníollacha."
+
+#: templates/static/privacy.html:57
+msgid "For the census rehearsal, we’ll process information from your questionnaire, information about a property or an individual and information about how people fill in their questionnaires under the following condition:"
+msgstr "Do réamhchleachtadh an daonáirimh, próiseálfaidh muid eolas ó do cheistiúchán faoi réadmhaoin nó faoi dhuine agus eolas ar an dóigh a líonann daoine a gcesistiúcháin isteach faoin choinníoll seo a leanas:"
+
+#: templates/static/privacy.html:60
+msgid "processing is necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller."
+msgstr "tá próiseáil riachtanach d'fheidhmiú taisc a dhéantar ar mhaithe leis an ghnáthphobal nó san údarás oifigiúil a thiteann leis an rialtóir."
+
+#: templates/static/privacy.html:63
+msgid "Under data protection legislation, an additional condition is required for the processing of special category personal data. These data include information about your racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, sex life or sexual orientation. They also include genetic and biometric data."
+msgstr "Faoin reachtaíocht um chosaint sonraí, tá coinníoll breise de dhíth le catagóir speisialta de shonraí pearsanta a phróiseáil. I measc na sonraí tá eolas ar do bhunús ciníoch nó eitneach, ar do chreideamh reiligiúnach nó fealsúnachta, ar do bhallraíocht de cheardchumann, do shaol gnéis nó do chlaonadh gnéis. Ina measc tá sonraí géiniteacha agus bithmhéadracha chomh maith."
+
+#: templates/static/privacy.html:65
+msgid "For the rehearsal, we’ll process special category personal data on race, ethnicity, religion, philosophical beliefs and sexual orientation. nformation from your questionnaire is processed under the following two conditions:"
+msgstr "Don réamhchleachtadh seo, phróiseálfaidh muid sonraí pearsanta de chatagóirí speisialta ar chine, eitneacht, reiligiún, creideamh fealsúnachta agus claonadh gnéis. Próiseáiltear eolas ar do cheistiúchán faoin dá choinníoll seo a leanas:"
+
+#: templates/static/privacy.html:68
+msgid "processing is necessary for archiving in the public interest, scientific or historical research purposes or statistical purposes based on UK law."
+msgstr "tá próiseáil eolais i gcartlanna riachtanach ar mhaithe leis an ghnáthphobal, le cuspóirí taighde nó stairiúla nó le cuspóirí staitisticiúla bunaithe ar dhlíthe na UK."
+
+#: templates/static/privacy.html:69 templates/static/privacy.html:75
+msgid "processing is necessary for reasons of substantial public interest."
+msgstr "tá próiseáil riachtanach ar mhaithe le fáthanna de shuim mhór phoiblí."
+
+#: templates/static/privacy.html:72
+msgid "We’ll process special category data on information about a property or an individual under the following condition:"
+msgstr "Próiseálann muid sonraí de chatagóirí speisialta ar eolas faoi réadmhaoin nó ar dhuine faoin choinníoll seo a leanas:"
+
+#: templates/static/privacy.html:78
+msgid "We’ll ensure the principle of data minimisation and have measures in place to delete or de-identify personal data where appropriate."
+msgstr "Cinnteoidh muid prionsabal an laghdaithe ar shonraí agus beidh bearta i bhfeidhm againn le sonraí pearsanta a scriosadh nó a dhí-aithint nuair is cuí é."
+
+#: templates/static/privacy.html:80
+msgid "The census rehearsal gives us invaluable information about the systems and processes required for Census 2021. It’ll help us complete one of our main functions in delivering Census 2021, which will subsequently provide numerous benefits for the wider society."
+msgstr "Tugann an réamhchleachtadh daonáirimh eolas fíorúsáideach dúinn ar na córais agus ar na próisis a bheidh de dhíth don Dhaonáireamh 2021, Cuideoidh sé linn ceann dár bpríomfheidhmeanna a chomhlíonadh le Daonáireamh 2021 a dhéanamh, a rachaidh chun leasa go mór don gnáthphobal i gcoitinne."
+
+#: templates/static/privacy.html:82
+msgid "There’s substantial public interest in the collection of safeguarding data to ensure the safety of both interviewers and respondents. We’re required to ensure the safety of our staff and the public."
+msgstr "Tá suim an-mhór ag an ghnáthphobal i mbailiú sonraí cosanta le sábháilteacht agallaithe agus freagróirí a chinntiú. Tá ceangal dlí orainn sábháilteacht ár bhfoirne agus an ghnáthphobail a chinntiú."
+
+#: templates/static/privacy.html:85
+msgid "Your rights"
+msgstr "Do chearta"
+
+#: templates/static/privacy.html:87
+msgid "As a data subject (someone whose personal data we hold), you have rights available to you under data protection law. If you wish to exercise any of these rights, please contact our data protection officer. However, please be aware that we may not be required to comply if the data are being held for statistical purposes only. Compliance requirements are set out in the Data Protection Act 2018."
+msgstr "Mar dhamhna sonraí (duine a bhfuil a s(h)onraí againn orthu), tá cearta agat de réir an dlí um chosaint sonraí. Más mian leat ceann ar bith de na cearta seo a fheidhmiú, déan teagmháil lenár n-oifigeach um chosaint sonraí le do thoil. Bi ar an eolas áfach nach bhféadfadh dualgas dlí bheith orainn cloí leis dá mbeadh na sonraí á gcoinneáil againn do chuspóirí staitisticiúla amháin. Tá na riachtanais chomhlíonta leagtha amach san Acht um Chosaint Sonraí 2018."
+
+#: templates/static/privacy.html:89
+msgid "You have the right to request from any controller that holds your personal data access to the information they hold about you. You can ask them to amend any wrong or inaccurate information they hold about you. You have the right to object to your personal data being processed."
+msgstr "Tá an ceart agat iarraidh ar rialaitheoir ar bith a bhfuil do shonraí pearsa aige rochtain bheith agat ar an eolas atá acu fút. Is féidir leat iarraidh orthu eolas mícheart nó míchruinn atá acu fút a athrú. Tá an ceart agat cur i gcoinne próiseáil do shonraí pearsanta."
+
+#: templates/static/privacy.html:91
+msgid "You have the right, in some circumstances, to ask for any controller to:"
+msgstr "Tá an ceart agat, i dtosca áirithe, iarraidh ar rialaitheoir ar bith:"
+
+#: templates/static/privacy.html:94
+msgid "erase any personal data they may hold about you"
+msgstr "sonra pearsanta ar bith a d'fhéadfadh bheith acu fút a scrios"
+
+#: templates/static/privacy.html:95
+msgid "stop processing your personal data"
+msgstr "stop a chur le próiseáil do shonraí pearsanta"
+
+#: templates/static/privacy.html:96
+msgid "pass any information they hold about you to another controller"
+msgstr "eolas ar bith atá acu fút a thabhairt do rialaitheoir eile"
+
+#: templates/static/privacy.html:99
+msgid "You can get further information on the rights available to you and the circumstances under which you can exercise them from the <a href='{url}'>Information Commissioner’s Office</a>."
+msgstr "Is féidir leat tuilleadh eolais a fháil maidir leis na cearta atá ar fáil duit agus na cúinsí faoinar féidir leat iad a fheidhmiú ó <a href='{url}'>Oifig an Choimisinéara Faisnéise</a>."
+
+#: templates/static/privacy.html:102
+msgid "The data controller"
+msgstr "An rialaitheoir sonraí"
+
+#: templates/static/privacy.html:104
+msgid "The controller is the person or organisation that decides which personal data will be processed and for what purpose. For the census rehearsal, the ONS is the controller and makes those decisions."
+msgstr "Is rialaitheoir é nó í an duine nó an eagraíocht a chinneann ar na sonraí pearsanta a bheidh le próiseáil agus ar na cuspóirí dá bpróiseáil. Don réamhchleachtadh daonáirimh, is é an ONS an rialaitheoir a dhéanann na cinntí sin."
+
+#: templates/static/privacy.html:106
+msgid "You can contact us by:"
+msgstr "Is féidir leat teagmháil a dhéanamh linn trí:"
+
+#: templates/static/privacy.html:108
 #, python-format
-msgid ""
-"You can manage these small files yourself and learn more about them "
-"through <a %(href)s>internet browser cookies – what they are and how to "
-"manage them.</a>"
-msgstr ""
+msgid "Telephone: %(telephone_number)s"
+msgstr "Guthán: %(telephone_number)s"
 
-#: templates/static/cookies-privacy.html:61
-msgid "Find out more information"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:63
+#: templates/static/privacy.html:110
 #, python-format
-msgid ""
-"If you have any questions about this privacy statement, you can contact "
-"us at %(email_link)s"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:65
-msgid "Universal Analytics"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:70
-#: templates/static/cookies-privacy.html:128
-#: templates/static/cookies-privacy.html:159
-msgid "Name"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:73
-#: templates/static/cookies-privacy.html:131
-#: templates/static/cookies-privacy.html:162
-#: templates/static/cookies-privacy.html:420
-msgid "Purpose"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:76
-#: templates/static/cookies-privacy.html:134
-#: templates/static/cookies-privacy.html:165
-msgid "Expires"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:86
-#: templates/static/cookies-privacy.html:99
-msgid ""
-"This helps us count how many people visit our website by tracking if "
-"you’ve visited before"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:89
-msgid "2 years"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:102
-msgid "24 hours"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:112
-msgid "Used to manage the rate at which page view requests are made"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:115
-msgid "10 minutes"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:123
-msgid "Completing a survey (eq.ons.gov.uk)"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:141
-msgid "Session"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:144
-msgid "To keep you signed in when completing a survey"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:147
-msgid ""
-"When a user logs out or closes the browser. Or when their cookie cache is"
-" cleared"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:154
-msgid "Your account"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:175
-msgid "To check that your browser can support cookies"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:178
-#: templates/static/cookies-privacy.html:191
-#: templates/static/cookies-privacy.html:204
-#: templates/static/cookies-privacy.html:217
-#: templates/static/cookies-privacy.html:230
-#: templates/static/cookies-privacy.html:243
-#: templates/static/cookies-privacy.html:256
-#: templates/static/cookies-privacy.html:269
-msgid "When a user closes the browser or when their cookie cache is cleared"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:188
-msgid ""
-"To store your preferred language so that certain content can be displayed"
-" in your own language"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:201
-msgid ""
-"To keep your session active when using your account to access portfolio "
-"and messages"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:214
-#: templates/static/cookies-privacy.html:227
-msgid ""
-"To store an encrypted identifier which is used to retrieve the "
-"information associated to your account"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:240
-msgid "To store the universally unique identifier created for your account"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:253
-msgid ""
-"To store the timestamp of the last request so that the session expiry "
-"warning message can be displayed"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:266
-msgid ""
-"To store the flash object identifier for the most recent action you have "
-"performed"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:276
-msgid "Data controller"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:278
-msgid "The Data Controller for ONS Surveys is"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:280
-msgid ""
-"For questions regarding the Survey Data Collection service please contact"
-" us on"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:287
-msgid "Why we collect your data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:289
-msgid ""
-"The Survey Data Collection service is used as the online collection "
-"mechanism for a number of our surveys. More surveys will be offered via "
-"this service over time."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:291
-msgid ""
-"Individual survey teams are responsible for the content (the questions "
-"asked) and form (Excel spreadsheet to download, complete and return; or "
-"online questionnaire) of their respective surveys. Survey Data Collection"
-" does need some personal data in its own right for the functioning of the"
-" platform."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:293
-msgid ""
-"The lawful reason for which your personal data is collected through the "
-"Survey Data Collection platform is Public task. The processing is "
-"necessary for us to perform a task in the public interest or for our "
-"official functions, and the task or function has a clear basis in law."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:295
-msgid "When we collect your data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:297
-msgid "Your data is collected when"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:299
-msgid "you create an account and sign in to the ONS Surveys platform"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:300
-msgid "you complete a survey"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:301
-msgid "you contact us by any means"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:302
-msgid "you visit a website that comprises the Survey Data Collection platform"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:306
-msgid "What data we collect"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:308
-msgid ""
-"Personal data items required for the operation of the Survey Data "
-"Collection Platform"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:313
-msgid "Data item"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:316
-#: templates/static/cookies-privacy.html:423
-msgid "Description"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:323
-#: templates/static/cookies-privacy.html:389
-msgid "Email address"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:327
-msgid ""
-"Survey Data Collection captures and stores the email address of those who"
-" register with the platform. Registration is required in order to "
-"complete a survey return."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:329
-msgid ""
-"Email address is used as a unique user identifier. Once registered the "
-"email address and password created is required to identify you each time "
-"you use the service."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:331
-msgid ""
-"Additionally, the email address is used to send communications for "
-"purposes of account management and reminders of survey responses."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:339
-msgid "Business Name"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:343
-msgid ""
-"Business names are pre-loaded into the Survey Data Collection platform as"
-" part of a business having been selected for a survey."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:345
-msgid ""
-"The name of the business that has been selected for a given survey will "
-"have been provided to Survey Data Collection by another part of the "
-"Office for National Statistics responsible for the survey in question. "
-"Survey Data Collection stores and processes this."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:353
-msgid "IP address"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:357
-msgid "Internet Protocol address"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:359
-msgid ""
-"All devices connected to the internet will have an IP address and this is"
-" used for one device (e.g. the computer you use to provide a survey "
-"response at your place of work) to be able to talk to another (e.g. the "
-"Survey Data Collection web site) over the internet."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:361
-msgid ""
-"The logs of IP address activity against the Survey Data Collection "
-"service are kept for a limited period of time to facilitate "
-"investigations in the case of any problems."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:369
-msgid ""
-"Surveys that are conducted on the Survey Data Collection platform may "
-"collect additional items of personal data."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:371
-msgid "Business surveys that require personal data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:373
-msgid "Annual Survey of Hours and Earnings"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:375
-msgid ""
-"The legal basis for undertaking the Annual Survey of Hours and Earnings "
-"(ASHE) is the Statistics of Trade Act 1947. This means the General Data "
-"Protection Regulation has not changed the fact that this is mandatory for"
-" the organisations selected to be part of the sample. The personal data "
-"an organisation returns as part of this submission does not require the "
-"permission of the employees who form the data subjects and the subjects "
-"do not have any option to opt-out. The ASHE survey collects the following"
-" items of personal data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:377
-msgid "National insurance number"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:378
-msgid "Date of birth"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:379
-msgid "Postcode"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:383
-msgid "Communication outside of the Survey Data Collection Platform"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:385
-msgid ""
-"The Survey Data Collection platform contains both a telephone number and "
-"email address which can be used for both queries and issues with the "
-"platform and survey hosted on the platform."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:387
-msgid "If you contact us via email, we will process the following data items"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:390
-msgid "IP address of the server from which the email was sent"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:391
-msgid "Any items of personal data within the email"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:395
-msgid "If you contact us via telephone, we will process the following data items"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:397
-msgid "Telephone number"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:398
-msgid "Name of the caller"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:399
-msgid "Any items of personal data disclosed during the call"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:403
-msgid "Who we share your personal data with"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:405
-msgid ""
-"We use several (1st and 3rd) parties to collect and process personal "
-"data. These include (but are not limited to) government departments and "
-"approved researchers. Further information can be found on the following "
-"articles"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:408
-msgid "Approved Researcher Scheme"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:411
-msgid ""
-"Access to unpublished ONS research data by government organisations for "
-"statistical research"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:416
-msgid ""
-"Data is also processed by 3rd party IT companies who support our systems "
-"for the following purposes"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:430
-msgid "Cloud infrastructure"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:433
-msgid ""
-"Used to support the platform on which the Survey Data Collection service "
-"runs."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:440
-msgid "Email notification service"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:443
-msgid ""
-"A service used to send email messages to the active accounts registered "
-"to the Survey Data Collection service."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:450
-msgid "Secure file transfer"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:453
-msgid ""
-"This is used for the behind the scenes transfer of data that identify the"
-" businesses that have been selected for participation in a given survey."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:461
-msgid "How long we keep your data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:463
-msgid "Log Retention"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:465
-msgid ""
-"Standard logs from the Survey Data Collection service are retained for a "
-"period of 30 days. Exceptional events may be retained for longer."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:467
-msgid ""
-"Our general retention period for data collected via annual surveys is 3 "
-"years."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:469
-msgid ""
-"Personal data used for account access will be retained as long as the "
-"account is active."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:471
-msgid "Your rights over your personal data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:473
-msgid ""
-"The General Data Protection Regulation (GDPR) details eight rights of "
-"individuals"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:475
-msgid "The right to be informed"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:476
-msgid "The right of access"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:477
-msgid "The right to rectification"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:478
-msgid "The right to erasure"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:479
-msgid "The right to restrict processing"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:480
-msgid "The right to data portability"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:480
-msgid ""
-"This right only exists if the lawful basis used is either consent or "
-"contract. Neither the Survey Data Collection service nor any surveys "
-"hosted on this platform rely on either of the lawful basis and therefore "
-"this right is not applicable."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:481
-msgid "The right to object"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:482
-msgid "Rights in relation to automated decision making and profiling."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:482
-msgid "No automated decision making or profiling occurs at the personal level."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:484
-msgid "These rights are subject to exemptions."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:487
-msgid "Contacting the Data Protection Office"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:489
-msgid ""
-"The Data Protection Officer for the Office for National Statistics can be"
-" contacted as follows"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:497
-msgid "Contacting the Information Commissioner’s Office"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:499
-msgid ""
-"We welcome the opportunity to be able to answer any questions or concerns"
-" you may have around the information provided here. If you are unhappy "
-"with our response to any of your requests or you have concerns around how"
-" your data has been handled, you have the right to lodge a complaint with"
-" the Information Commissioner’s Office."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:507
-msgid ""
-"The Information Commissioner’s Office provides guidance to the public on "
-"raising a concern with an organisation at the following location"
-msgstr ""
+msgid "Email: %(email_address)s"
+msgstr "Ríomhphost: %(email_address)s"
+
+#: templates/static/privacy.html:112 templates/static/privacy.html:132
+#: templates/static/privacy.html:153
+msgid "Post:"
+msgstr "Post:"
+
+#: templates/static/privacy.html:122
+msgid "How to contact the data protection officer"
+msgstr "An dóigh chun teagmháil a dhéanamh leis an oifigeach um chosaint sonraí"
+
+#: templates/static/privacy.html:124
+msgid "Our data protection officer is the person charged with providing us with advice and guidance on the ways we can best protect the information we collect and use. They are involved in all the major decisions we make in relation to personal data. If you have any queries or concerns regarding our use of your data, or wish to exercise any of your rights."
+msgstr "Is é/í an t-oifigeach um chosaint sonraí an duine atá freagrach as comhairle agus treoir a thabhairt dúinn ar na dóigheanna is fearr ar féidir linn an chosaint a chur ar an eolas a bhailíonn agus úsáideann muid. Tá baint acu leis na príomhchinntí go léir a dhéanann muid maidir le sonraí pearsanta. Má bhíonn ceist nó buairt ar bith agat maidir leis na dóigheanna a n-úsaideann muid do shonraí, nó más mian leat ceann ar bith de do chearta a fheidhmiú."
+
+#: templates/static/privacy.html:126
+msgid "You can contact the data protection officer by:"
+msgstr "Is féidir leat teagmháil a dhéanamh leis an oifigeach um chosaint sonraí trí:"
+
+#: templates/static/privacy.html:130 templates/static/privacy.html:151
+msgid "Email: {email_address}"
+msgstr "Ríomhphost: {email_address}"
+
+#: templates/static/privacy.html:143
+msgid "The Information Commissioner’s Office"
+msgstr "Oifig an Choimisinéara Eolais"
+
+#: templates/static/privacy.html:145
+msgid "The Information Commissioner’s Office (ICO) is the independent organisation tasked with regulating data protection in the UK. The ICO can give you <a href='{url}'>extra information about data protection</a> and your rights and will deal with any complaints you may have about our use of your information."
+msgstr "Is í Oifig an Choimisinéara Faisnéise (ICO) an eagraíocht neamhspleách a bhfuil sé de chúram uirthi cosaint sonraí a rialáil sa Ríocht Aontaithe. Is féidir leis an ICO<a href='{url}'>faisnéis bhreise a thabhairt duit faoi chosaint sonraí</a> agus do chearta agus déileálfaidh sé le haon ghearáin a d'fhéadfadh a bheith agat maidir lenár n-úsáid."
+
+#: templates/static/privacy.html:147
+msgid "You can contact the ICO by:"
+msgstr "Is féidir leat teagmháil a dhéanamh leis an ICO trí:"
 
