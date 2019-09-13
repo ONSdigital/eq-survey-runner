@@ -5,12 +5,29 @@
   }
 } %}
 
+{% if schema_theme == "census-nisra" %}
+
+  {% set contact_us_url = "https://census.gov.uk//ni/contact-us/" %}
+  {% set cookies_url = "https://census.gov.uk/ni/cookies-information/" %}
+
+{% elif language_code == "cy" %}
+
+  {% set contact_us_url = "https://cyfrifiad.gov.uk/cysylltu-a-ni/" %}
+  {% set cookies_url = "https://cyfrifiad.gov.uk/cwcis/" %}
+
+{% else %}
+
+  {% set contact_us_url = "https://census.gov.uk/contact-us/" %}
+  {% set cookies_url = "https://census.gov.uk/cookies-information/" %}
+
+{% endif %}
+
 {% do footer | setAttribute("cols", [
     {
         "itemsList": [
             {
                   "text": _('Contact us'),
-                  "url": '/contact-us',
+                  "url": contact_us_url,
                   "target": "_blank"
             },
             {
@@ -24,7 +41,7 @@
         "itemsList": [
             {
                 "text": _("Cookies"),
-                "url": "https://census.gov.uk/cookies-information/",
+                "url": cookies_url,
                 "target": "_blank"
             },
             {
