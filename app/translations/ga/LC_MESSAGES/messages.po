@@ -368,7 +368,7 @@ msgstr[0] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
 msgstr[1] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
 msgstr[2] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
 msgstr[3] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
-msgstr[4] "Caithfear<strong>seo a cheartú</strong>le leanstan ar aghaidh"
+msgstr[4] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
 
 #: templates/signed-out.html:3
 msgid "Signed out"
