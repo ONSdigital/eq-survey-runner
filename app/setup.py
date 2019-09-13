@@ -425,8 +425,6 @@ def setup_babel(application):
         session = get_session_store()
 
         if session and session.session_data:
-            if session.session_data.language_code == 'en':
-                return 'en_GB'
             return session.session_data.language_code
 
         return None
