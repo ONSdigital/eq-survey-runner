@@ -231,6 +231,9 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 def setup_secure_headers(application):
     csp_policy = copy.deepcopy(CSP_POLICY)
 
+    if application.config['EQ_FEEDBACK_SERVICE_URL']:
+        csp_policy['connect-src'] += [application.config['EQ_FEEDBACK_SERVICE_URL']]
+
     if application.config['EQ_ENABLE_LIVE_RELOAD']:
         # browsersync is configured to bind on port 5075
         csp_policy['connect-src'] += ['ws://localhost:35729']
@@ -364,11 +367,6 @@ def add_blueprints(application):
 
     application.register_blueprint(post_submission_blueprint)
     post_submission_blueprint.config = application.config.copy()
-
-    from app.routes.feedback import feedback_blueprint
-
-    application.register_blueprint(feedback_blueprint)
-    feedback_blueprint.config = application.config.copy()
 
     from app.routes.session import session_blueprint
 

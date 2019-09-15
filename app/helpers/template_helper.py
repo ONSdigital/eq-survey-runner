@@ -61,6 +61,7 @@ def render_template(template, **kwargs):
         template,
         account_service_url=cookie_session.get('account_service_url'),
         account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
+        feedback_url=current_app.config['EQ_FEEDBACK_SERVICE_URL'],
         google_tag_manager_id=current_app.config['EQ_GOOGLE_TAG_MANAGER_ID'],
         google_tag_manager_auth=current_app.config['EQ_GOOGLE_TAG_MANAGER_AUTH'],
         google_tag_manager_preview=current_app.config['EQ_GOOGLE_TAG_MANAGER_PREVIEW'],

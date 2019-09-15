@@ -17,7 +17,9 @@
 
 {% include 'layouts/configs/_save-sign-out-button.html' %}
 {% include 'layouts/configs/_footer.html' %}
+{% if feedback_url %}
 {% include 'layouts/configs/_feedback.html' %}
+{%  endif %}
 
 {# if there is not a previous link add extra margin top to the page #}
 {% if not previous_location_url %}

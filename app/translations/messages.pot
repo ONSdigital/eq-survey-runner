@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-12 12:18+0100\n"
+"POT-Creation-Date: 2019-09-15 13:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -261,58 +261,6 @@ msgstr ""
 msgid "Submitting"
 msgstr ""
 
-#: templates/feedback.html:7 templates/feedback.html:14
-msgid "Survey feedback"
-msgstr ""
-
-#: templates/feedback.html:21 templates/layouts/configs/_feedback.html:25
-msgid "How can we improve this survey"
-msgstr ""
-
-#: templates/feedback.html:24 templates/layouts/configs/_feedback.html:29
-#: templates/partials/answers/textarea.html:14
-msgid "You have {x} character remaining"
-msgstr ""
-
-#: templates/feedback.html:25 templates/layouts/configs/_feedback.html:30
-#: templates/partials/answers/textarea.html:15
-msgid "You have {x} characters remaining"
-msgstr ""
-
-#: templates/feedback.html:32 templates/layouts/configs/_feedback.html:35
-msgid "Name (optional)"
-msgstr ""
-
-#: templates/feedback.html:33 templates/layouts/configs/_feedback.html:36
-msgid ""
-"Please include your name and email address if you’re interested in taking"
-" part in further research to improve this survey"
-msgstr ""
-
-#: templates/feedback.html:42 templates/layouts/configs/_feedback.html:42
-msgid "Email address (optional)"
-msgstr ""
-
-#: templates/feedback.html:48 templates/layouts/configs/_feedback.html:46
-msgid "Send feedback"
-msgstr ""
-
-#: templates/feedback_sent.html:3 templates/feedback_sent.html:7
-msgid "Thank you for your feedback"
-msgstr ""
-
-#: templates/feedback_sent.html:6
-msgid "Submission successful"
-msgstr ""
-
-#: templates/feedback_sent.html:9
-msgid "It is now safe to close this window"
-msgstr ""
-
-#: templates/feedback_sent.html:12 templates/signed-out.html:9
-msgid "Return to your account"
-msgstr ""
-
 #: templates/introduction.html:15
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)"
@@ -365,6 +313,10 @@ msgstr ""
 
 #: templates/signed-out.html:6
 msgid "Your survey answers have been saved. You are now signed out"
+msgstr ""
+
+#: templates/signed-out.html:9
+msgid "Return to your account"
 msgstr ""
 
 #: templates/summary.html:6
@@ -514,7 +466,7 @@ msgid ""
 "the survey again."
 msgstr ""
 
-#: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:14
+#: templates/layouts/_base.html:34 templates/layouts/_questionnaire.html:14
 msgid "We use cookies to improve your experience of census.gov.uk"
 msgstr ""
 
@@ -540,6 +492,38 @@ msgstr ""
 
 #: templates/layouts/configs/_feedback.html:5
 msgid "I don't want to provide feedback"
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:25
+msgid "How can we improve this survey"
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:29
+#: templates/partials/answers/textarea.html:14
+msgid "You have {x} character remaining"
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:30
+#: templates/partials/answers/textarea.html:15
+msgid "You have {x} characters remaining"
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:35
+msgid "Name (optional)"
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:36
+msgid ""
+"Please include your name and email address if you’re interested in taking"
+" part in further research to improve this survey"
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:42
+msgid "Email address (optional)"
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:46
+msgid "Send feedback"
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:55

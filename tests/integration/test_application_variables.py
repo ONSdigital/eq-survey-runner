@@ -10,6 +10,7 @@ class TestApplicationVariables(IntegrationTestCase):
         settings.EQ_GOOGLE_TAG_MANAGER_ID = 'TestId'
         settings.EQ_GOOGLE_TAG_MANAGER_AUTH = 'TestAuth'
         settings.EQ_GOOGLE_TAG_MANAGER_PREVIEW = 'TestPreview'
+        settings.EQ_FEEDBACK_SERVICE_URL = 'https://localhost/feedback'
         super().setUp()
 
     def tearDown(self):
@@ -20,6 +21,7 @@ class TestApplicationVariables(IntegrationTestCase):
         settings.EQ_GOOGLE_TAG_MANAGER_ID = None
         settings.EQ_GOOGLE_TAG_MANAGER_AUTH = None
         settings.EQ_GOOGLE_TAG_MANAGER_PREVIEW = None
+        settings.EQ_FEEDBACK_SERVICE_URL = None
 
     def test_flask_toolbar_is_displayed(self):
         self.launchSurvey('test_textfield')
@@ -32,6 +34,11 @@ class TestApplicationVariables(IntegrationTestCase):
         self.assertInHead('gtm.start')
         self.assertInHead('dataLayer = [];')
         self.assertInBody('https://www.googletagmanager.com')
+
+    def test_feedback_form_rendered(self):
+        self.launchSurvey('test_textfield')
+        self.assertStatusOK()
+        self.assertInBody('https://localhost/feedback')
 
     def test_livereload_script_rendered(self):
         self.launchSurvey('test_textfield')

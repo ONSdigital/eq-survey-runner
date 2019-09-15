@@ -18,5 +18,6 @@ helm tiller run \
     --set googleTagManagerId=${GOOGLE_TAG_MANAGER_ID} \
     --set googleTagManagerAuth=${GOOGLE_TAG_MANAGER_AUTH} \
     --set googleTagManagerPreview=${GOOGLE_TAG_MANAGER_PREVIEW} \
+    --set feedbackServiceUrl=${FEEDBACK_SERVICE_URL} \
     --set image.repository=${DOCKER_REGISTRY}/eq-survey-runner \
     --set image.tag=${IMAGE_TAG}

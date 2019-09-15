@@ -288,6 +288,7 @@ The following environment variables can be set when deploying the app.
 - GOOGLE_TAG_MANAGER_ID *(optional)*
 - GOOGLE_TAG_MANAGER_AUTH *(optional)*
 - GOOGLE_TAG_MANAGER_PREVIEW *(optional)*
+- FEEDBACK_SERVICE_URL *(optional)*
 
 To deploy the app to the cluster, run the following command:
 
@@ -363,6 +364,7 @@ The following env variables can be used
 | EQ_DYNAMODB_ENDPOINT                      |                       |                                                                                               |
 | EQ_REDIS_HOST                             |                       | Hostname of Redis instance used for ephemeral storage                                         |
 | EQ_REDIS_PORT                             |                       | Port number of Redis instance used for ephemeral storage                                      |
+| EQ_FEEDBACK_SERVICE_URL                   |                       | The URL of a service to POST user feedback to                                                 |
 | EQ_DYNAMODB_MAX_RETRIES                   | 5                     |                                                                                               |
 | EQ_DYNAMODB_MAX_POOL_CONNECTIONS          | 30                    |                                                                                               |
 | EQ_SUBMITTED_RESPONSES_TABLE_NAME         |                       |                                                                                               |

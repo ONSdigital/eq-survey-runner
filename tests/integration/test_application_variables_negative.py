@@ -6,6 +6,7 @@ class TestApplicationVariablesNegative(IntegrationTestCase):
     def setUp(self):
         settings.EQ_DEV_MODE = True
         settings.EQ_ENABLE_LIVE_RELOAD = False
+        settings.EQ_FEEDBACK_SERVICE_URL = None
         super().setUp()
 
     def test_flask_toolbar_is_not_displayed(self):
@@ -17,3 +18,8 @@ class TestApplicationVariablesNegative(IntegrationTestCase):
         self.launchSurvey('test_textfield')
         self.assertStatusOK()
         self.assertFalse('__bs_script__' in self.getResponseData())
+
+    def test_feedback_form_not_rendered(self):
+        self.launchSurvey('test_textfield')
+        self.assertStatusOK()
+        self.assertNotInBody('https://localhost/feedback')
