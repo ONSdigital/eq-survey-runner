@@ -22,7 +22,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         # Then
         self.assertInUrl(
-            '/questionnaire/people/add-person/?return_to=anyone-usually-live-at'
+            '/questionnaire/people/add-person/?previous=anyone-usually-live-at'
         )
 
     def test_previous_link_when_list_empty_with_return_to_query_string(self):
@@ -60,7 +60,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.get(url_with_invalid_return_to)
 
-        self.assertInUrl('?return_to=anyone-usually-live-at-invalid')
+        self.assertInUrl('?previous=anyone-usually-live-at-invalid')
 
         # When
         self.get(self.get_previous_link())
