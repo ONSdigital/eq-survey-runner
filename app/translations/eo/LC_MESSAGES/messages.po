@@ -958,6 +958,3 @@ msgstr ""
 #: templates/static/privacy.html:147
 msgid "You can contact the ICO by:"
 msgstr ""
-
-msgid "October"
-msgstr "OOOOOOOO"
