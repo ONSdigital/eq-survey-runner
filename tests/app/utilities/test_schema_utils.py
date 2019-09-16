@@ -36,7 +36,7 @@ def test_transform_schema_name_bad_case_type_raises_error():
         ('census_individual_gb_wls', 'cy', ['en', 'cy']),
         ('census_individual_gb_nir', 'en', ['en']),
         ('census_individual_gb_nir', 'ga', ['en', 'ga']),
-        ('census_individual_gb_nir', 'en_US', ['en', 'en_US']),
+        ('census_individual_gb_nir', 'eo', ['en', 'eo']),
         ('invalid_schema_name', 'en', ['en']),
         ('test_language', 'invalid_language', ['en']),
         ('test_language', None, ['en']),
