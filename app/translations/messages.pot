@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-13 11:18+0100\n"
+"POT-Creation-Date: 2019-09-16 17:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,44 +140,44 @@ msgstr ""
 msgid "Enter a number rounded to %(max)d decimal places."
 msgstr ""
 
-#: app/validation/error_messages.py:36
+#: app/validation/error_messages.py:34
 #, python-format
 msgid "Your answer is too long, it has to be less than %(max)d characters."
 msgstr ""
 
-#: app/validation/error_messages.py:39
+#: app/validation/error_messages.py:37
 msgid "Enter a valid date."
 msgstr ""
 
-#: app/validation/error_messages.py:40
+#: app/validation/error_messages.py:38
 msgid "Enter a 'period to' date later than the 'period from' date."
 msgstr ""
 
-#: app/validation/error_messages.py:43
+#: app/validation/error_messages.py:41
 msgid "Enter a valid duration."
 msgstr ""
 
-#: app/validation/error_messages.py:44
+#: app/validation/error_messages.py:42
 #, python-format
 msgid "Enter a reporting period greater than or equal to %(min)s."
 msgstr ""
 
-#: app/validation/error_messages.py:47
+#: app/validation/error_messages.py:45
 #, python-format
 msgid "Enter a reporting period less than or equal to %(max)s."
 msgstr ""
 
-#: app/validation/error_messages.py:50
+#: app/validation/error_messages.py:48
 #, python-format
 msgid "Enter a date after %(min)s."
 msgstr ""
 
-#: app/validation/error_messages.py:51
+#: app/validation/error_messages.py:49
 #, python-format
 msgid "Enter a date before %(max)s."
 msgstr ""
 
-#: app/validation/error_messages.py:52
+#: app/validation/error_messages.py:50
 msgid "Remove an answer to continue."
 msgstr ""
 
