@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG', logger=logger, fmt='%(message)s')
 
 SCHEMAS_TO_EXTRACT = [
+    'test_language',
     'census_individual_gb_wls',
     'census_individual_gb_nir',
     'census_household_gb_wls',

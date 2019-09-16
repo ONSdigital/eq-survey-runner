@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census-nisra\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-30 17:23+0100\n"
-"PO-Revision-Date: 2019-07-18 08:05\n"
+"POT-Creation-Date: 2019-09-12 12:18+0100\n"
+"PO-Revision-Date: 2019-09-13 08:52\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Irish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.7.0\n"
 "Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: eq-census-nisra\n"
@@ -17,3093 +17,3297 @@ msgstr ""
 "X-Crowdin-File: census_individual_gb_nir.pot\n"
 "Language: ga_IE\n"
 
-msgid "Why your answer is important"
-msgstr ""
+msgid "Why do I need to answer if I am retired or long-term sick or disabled?"
+msgstr "Cén fáth a bhfuil orm freagra a thabhairt má tá mé ar scor nó tinn nó míchumasach san fhadtéarma?"
 
-msgid "Why do I need to answer if I am retired or long term sick or disabled?"
-msgstr ""
-
-msgid "Why do I need to answer if they have retired or are long term sick or disabled?"
-msgstr ""
+msgid "Why do I need to answer if they have retired or are long-term sick or disabled?"
+msgstr "Cén fáth a bhfuil orm freagra a thabhairt má tá siad ar scor nó tinn nó míchumasach san fhadtéarma?"
 
 msgid "Census England Individual Schema"
-msgstr ""
+msgstr "Scéimre Aonair Dhaonáireamh Shasana"
 
 msgid "For example, student hall of residence, boarding school, armed forces base, hospital, care home, prison"
-msgstr ""
+msgstr "Mar shampla, árais chónaithe mac léinn, scoil chónaithe, bunáit fórsaí armtha, otharlann, teach cúraim, príosún"
 
-msgid "For example, student, member of Armed Forces, patient, detainee"
-msgstr ""
+msgid "A communal establishment is a place providing managed residential accommodation. “Managed” here means full-time or part-time supervision of the accommodation"
+msgstr "Is áit a chuireann cóiríocht chónaithe bhainistithe ar fáil áit chomhroinnte. Ciallaíonn 'bainistithe' anseo maoirseacht lánaimseartha nó pháirt-aimseartha ar an chóiríocht"
+
+msgid "For example, student, member of armed forces, patient, detainee"
+msgstr "Mar shampla, mac léinn, ball de na fórsaí armtha, othar, duine atá á choinneáil"
 
 msgid "No usual UK address"
-msgstr ""
+msgstr "Gan gnáthsheoladh sa UK"
 
 msgid "A communal establishment is an establishment providing managed residential accommodation. ‘Managed’ in this context means full-time or part-time supervision of the accommodation. Examples of communal establishments include student halls of residence, boarding schools, armed forces bases, hospitals, care homes and prisons"
-msgstr ""
+msgstr "Is áit chomhroinnte áit a gcuireann cóiríocht chónaithe bhainistithe ar fáil. Ciallaíonn 'bainistithe' sa chomhthéacs seo maoirseacht lánaimseartha nó pháirt-aimseartha ar an chóiríocht. I measc samplaí d'áiteanna comhroinnte tá árais chónaithe do mhic léinn, scoileana cónaithe, bunáiteanna fórsaí armtha, otharlanna, tithe cúraim agus príosúin"
+
+msgid "For example 31 12 1970"
+msgstr "Mar shampla, 31 12 1970"
 
 msgid "If you had no usual address one year ago, state the address where you were staying"
-msgstr ""
+msgstr "Muna raibh gnáthsheoladh agat bliain amháin ó shin, cuir an seoladh ina raibh tú ag fanacht in iúl"
 
 msgid "If they had no usual address one year ago, state the address where they were staying"
-msgstr ""
+msgstr "Muna raibh gnáthsheoladh acu bliain amháin ó shin, cuir an seoladh ina raibh siad ag fanacht in iúl"
 
-msgid "National identity is not dependent on your ethnic group or citizenship."
-msgstr ""
+msgid "You may have other travel documents that show you are a citizen of a particular country. Please complete this question as if your travel documents are passports."
+msgstr "D'fhéadfá cáipéisí taistil eile bheith agat a léiríonn gur saoránach de thír ar leith thú. Freagair an cheist seo dá mba phasanna do cháipéisí taistil le do thoil."
 
-msgid "It is about the country or countries where you feel you belong or think of as home."
-msgstr ""
+msgid "They may have other travel documents that show they are a citizen of a particular country. Please complete this question as if their travel documents are passports."
+msgstr "D'fhéadfadh siad cáipéisí taistil eile bheith acu a léiríonn gur saoránach de thír ar leith iad. Freagair an cheist seo dá mba phasanna a gcáipéisí taistil le do thoil."
 
-msgid "National identity is not dependent on their ethnic group or citizenship."
-msgstr ""
-
-msgid "It is about the country or countries where they feel they belong or think of as home."
-msgstr ""
-
-msgid "Including British or Irish Sign Language"
-msgstr ""
+msgid "Including British Sign Language or Irish Sign Language"
+msgstr "Teanga Chomharthaíochta na Breataine nó na hÉireann san áireamh"
 
 msgid "Main language is your first or preferred language."
-msgstr ""
+msgstr "Is í an phríomhtheanga do chéad teanga nó an teanga is fearr leat."
 
 msgid "Main language is their first or preferred language."
-msgstr ""
-
-msgid "For example walking or dressing"
-msgstr ""
-
-msgid "For example Asthma"
-msgstr ""
-
-msgid "The next set of questions is about the qualifications you have ever acheived in Northern Ireland or worldwide, even if you are not using them now."
-msgstr ""
-
-msgid "For example degree, foundation degree, HND or HNC, NVQ level 4 and above, teaching or nursing"
-msgstr ""
-
-msgid "Questions on other NVQs, A levels, GCSEs and equivalents will follow"
-msgstr ""
-
-msgid "For example BTEC National, OND or ONC, City and Guilds Advanced Craft"
-msgstr ""
-
-msgid "For example BTEC General, City and Guilds Craft"
-msgstr ""
-
-msgid "Questions on A levels, GCSEs and equivalents will follow"
-msgstr ""
-
-msgid "Include 4 or more AS levels"
-msgstr ""
-
-msgid "Include 2 to 3 AS levels"
-msgstr ""
-
-msgid "Questions on GCSEs and equivalents will follow"
-msgstr ""
-
-msgid "Include 5 or more O level passes or CSEs grades 1"
-msgstr ""
-
-msgid "Include any other O levels or CSEs at any grades"
-msgstr ""
-
-msgid "Skills for life, literacy, numeracy and language"
-msgstr ""
-
-msgid "For example trade, advanced, foundation or modern apprenticeships"
-msgstr ""
-
-msgid "We are measuring the number of people who have served in the UK Armed Forces and have now left. Government and councils need this information to carry out their commitments made under the Armed Forces Covenant. This is a promise by the nation ensuring that those who serve or who have served in the armed forces, and their families, are not disadvantaged."
-msgstr ""
-
-msgid "Whether receiving a pension or not"
-msgstr ""
-
-msgid "To get a true picture of the UK working population, we ask this question of everyone who is not currently working. We ask people who are retired because the number of people continuing to work after retirement age is increasing. We ask people who are long-term sick or disabled because some intend to go back to work."
-msgstr ""
-
-msgid "The next set of questions is about your main job. Your main job is the job in which you usually work the most hours"
-msgstr ""
-
-msgid "The next set of questions is about your last main job. Your main job is the job in which you usually worked the most hours"
-msgstr ""
-
-msgid "If you are self-employed in your own business, give the business name."
-msgstr ""
-
-msgid "If they are self-employed in their own business, give the business name."
-msgstr ""
-
-msgid "If you were self-employed in your own business, give the business name."
-msgstr ""
-
-msgid "If they were self-employed in their own business, give the business name."
-msgstr ""
-
-msgid "For example clothing retail, general hospital, primary education, food wholesale, civil service DWP, local government housing."
-msgstr ""
-
-msgid "Answer for the longest part, by distance, of your usual journey to work"
-msgstr ""
-
-msgid "Answer for the longest part, by distance, of their usual journey to work"
-msgstr ""
-
-msgid "The government uses information about workplace address and method of travel to work to form transport policies and plan services. The information helps to work out local transport needs."
-msgstr ""
-
-msgid "Thank you for taking part in the 2017 Census Test"
-msgstr ""
-
-msgid "Voluntary"
-msgstr ""
-
-msgid "2017 Census Test"
-msgstr ""
-
-msgid "Individual Section"
-msgstr ""
-
-msgid "Personal Details"
-msgstr ""
-
-msgid "Are you answering the questions on behalf of someone else?"
-msgstr ""
-
-msgid "What is your name?"
-msgstr ""
-
-msgid "What is their name?"
-msgstr ""
-
-msgid "What is your position in this establishment?"
-msgstr ""
-
-msgid "What is an establishment?"
-msgstr ""
-
-msgid "What is your date of birth?"
-msgstr ""
-
-msgid "What is your sex?"
-msgstr ""
-
-msgid "What is your marital or same-sex civil partnership status?"
-msgstr ""
-
-msgid "Are you a student in full-time education?"
-msgstr ""
-
-msgid "Are you a schoolchild or student in full-time education?"
-msgstr ""
-
-msgid "During term time, where do you usually live?"
-msgstr ""
-
-msgid "Identity and Health"
-msgstr ""
-
-msgid "What is your country of birth?"
-msgstr ""
-
-msgid "What year did you come to live in Northern Ireland?"
-msgstr ""
-
-msgid "One year ago, what was your usual address?"
-msgstr ""
-
-msgid "Enter details of your address one year ago"
-msgstr ""
-
-msgid "Enter details of their address one year ago"
-msgstr ""
-
-msgid "What passports do you hold?"
-msgstr ""
-
-msgid "How would you describe your national identity?"
-msgstr ""
-
-msgid "What do we mean by “national identity”?"
-msgstr ""
-
-msgid "What is your ethnic group?"
-msgstr ""
-
-msgid "What religion, religious denomination or body do you belong to?"
-msgstr ""
-
-msgid "What religion, religious denomination or body were you <em>brought up</em> in?"
-msgstr ""
-
-msgid "What is your main language?"
-msgstr ""
-
-msgid "What do we mean by “main language”?"
-msgstr ""
-
-msgid "How well can you speak English?"
-msgstr ""
-
-msgid "Can you understand, speak, read or write Irish?"
-msgstr ""
-
-msgid "How often do you speak Irish?"
-msgstr ""
-
-msgid "Can you understand, speak, read or write Ulster-Scots?"
-msgstr ""
-
-msgid "How often do you speak Ulster-Scots?"
-msgstr ""
-
-msgid "How is your health in general?"
-msgstr ""
-
-msgid "Are your day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
-msgstr ""
+msgstr "Is í an phríomhtheanga an chéad teanga s'acu nó an teanga is fearr leo."
 
 msgid "Include problems relating to old age"
-msgstr ""
+msgstr "Luaigh fadhbanna a bhaineann le seanaois"
 
-msgid "Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
-msgstr ""
+msgid "For example walking or dressing"
+msgstr "Mar shampla ag siúl nó ag gléasadh"
 
-msgid "Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgstr ""
+msgid "For example Asthma"
+msgstr "Mar shampla Asma"
 
-msgid "Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
-msgstr ""
+msgid "For example Down syndrome"
+msgstr "Mar shampla, siondróm Down"
 
-msgid "Exclude anything you do as part of your paid employment"
-msgstr ""
+msgid "For example dyslexia"
+msgstr "Mar shampla disléicse"
 
-msgid "Exclude anything they do as part of their paid employment"
-msgstr ""
+msgid "For example depression or schizophrenia"
+msgstr "Mar shampla, dúlagar nó scitsifréine"
 
-msgid "Which of the following best describes your sexual orientation?"
-msgstr ""
+msgid "For example dementia"
+msgstr "Mar shampla néaltrú"
 
-msgid "School"
-msgstr ""
+msgid "For example cancer, diabetes or heart disease"
+msgstr "Mar shampla, ailse, diaibéiteas nó galar croí"
 
-msgid "What address do you travel to for your course of study, including school?"
-msgstr ""
+msgid "Exclude anything you do in paid employment"
+msgstr "Fág rud ar bith ar lár a dhéanann tú mar chuid de d'fhostaíocht íoctha"
 
-msgid "How do you usually travel to your place of study, including school?"
-msgstr ""
+msgid "Exclude anything they do in paid employment"
+msgstr "Fág rud ar bith ar lár a dhéanann siad mar chuid dá bhfostaíocht íoctha"
 
-msgid "Select one option only, for the longest part, by distance, of your usual journey to place of study."
-msgstr ""
+msgid "The next set of questions is about the qualifications you have achieved in Northern Ireland or worldwide, even if you are not using them now."
+msgstr "Tá na chéad cheisteanna eile faoi na cáilíochtaí a bhain tú amach i dTuaisceart Éireann nó ar fud an domhain, fiú nuair nach bhfuil tú á n-úsáid anois."
 
-msgid "Select one option only, for the longest part, by distance, of their usual journey to place of study."
-msgstr ""
+msgid "For example degree, foundation degree, HND or HNC, NVQ level 4 and above, teaching or nursing"
+msgstr "Mar shampla céim, bonnchéim, HND, nó HNC, NVQ leibhéal 4 nó níos airde, céim mhúinteoireachta nó bhanaltrachta"
 
-msgid "Qualifications"
-msgstr ""
-
-msgid "Have you achieved a qualification at degree level or above?"
-msgstr ""
+msgid "Questions on GCSEs, A levels, other NVQs and equivalents will follow"
+msgstr "Leanfaidh ceisteanna ar GCSEanna, Ardleibhéil, NVQanna eile agus a gcomhionann"
 
 msgid "Include equivalent qualifications achieved anywhere outside Northern Ireland"
-msgstr ""
+msgstr "Luaigh comhcháilíochtaí bainte amach áit ar bith taobh amuigh de Thuaisceart Éireann"
 
-msgid "Have you achieved an NVQ or equivalent qualification?"
-msgstr ""
+msgid "Include 5 or more O level passes or CSEs grades 1"
+msgstr "Cuir isteach 5 nó níos mó pasanna O leibhéil nó CSEanna gráid 1"
 
-msgid "Have you achieved an AS, A level or equivalent qualification?"
-msgstr ""
+msgid "Include any other O levels or CSEs at any grades"
+msgstr "Cuir isteach O leibhéil ar bith eile no CSEanna ag grád ar bith"
 
-msgid "Have you achieved a GCSE or equivalent qualification?"
-msgstr ""
+msgid "Questions on A levels, NVQs and equivalents will follow"
+msgstr "Leanfaidh ceisteanna ar Ardleibhéil, NVQanna eile agus a gcomhionann"
 
-msgid "Have you achieved any other qualifications, either within or outside of Northern Ireland?"
-msgstr ""
+msgid "Include 4 or more AS levels"
+msgstr "Cuir isteach 4 nó níos mó leibhéil AS"
 
-msgid "Have you completed an apprenticeship?"
-msgstr ""
+msgid "Include 2 or 3 AS levels"
+msgstr "Cuir isteach 2 go 3 leibhéil AS"
+
+msgid "Questions on NVQs and equivalents will follow"
+msgstr "Leanfaidh ceisteanna ar NVQanna eile agus a gcomhionann"
+
+msgid "For example BTEC National, OND or ONC, City and Guilds Advanced Craft"
+msgstr "Mar shampla BTEC Náisiúnta, OND nó ONC, Ardcheardaíocht City and Guilds"
+
+msgid "For example BTEC General, City and Guilds Craft"
+msgstr "Mar shampla BTEC Ginearálta agus Ceardaíocht City and Guilds"
+
+msgid "For example, trade, advanced, foundation or modern apprenticeships"
+msgstr "Mar shampla, trádáil, ardphrintíseachtaí, bunphrintíseachtaí, nó printíseachtaí nua-aimseartha"
 
 msgid "Include equivalent apprenticeships completed anywhere outside Northern Ireland"
-msgstr ""
+msgstr "Luaigh printíseachtaí comhionanna críochnaithe áit ar bith taobh amuigh de Thuaisceart Éireann"
 
-msgid "Employment"
-msgstr ""
-
-msgid "Have you previously served in the UK Armed Forces?"
-msgstr ""
-
-msgid "Current serving members should select “No”"
-msgstr ""
-
-msgid "In the last seven days, were you doing any of the following?"
-msgstr ""
+msgid "Current serving members should only select “No”"
+msgstr "Ba chóir do bhaill atá ag déanamh seirbhíse faoi láthair \"Níl\" a roghnú"
 
 msgid "Include casual or temporary work, even if only for one hour"
-msgstr ""
+msgstr "Luaigh obair ócáideach nó shealadach, fiú má oibríonn tú ar feadh aon uair amháin"
 
-msgid "Which of the following describes what you were doing in the last seven days?"
-msgstr ""
+msgid "Whether receiving a pension or not"
+msgstr "Cé acu atá tú nó nach bhfuil tú ag fáil pinsin"
 
-msgid "In the last four weeks, were you actively looking for any kind of paid work?"
-msgstr ""
+msgid "To get a true picture of the UK working population, we ask this question of everyone who is not currently working. We ask people who are retired because the number of people continuing to work after retirement age is increasing. We ask people who are long-term sick or disabled because some intend to go back to work."
+msgstr "Le fíorléargas de dhaonra lucht oibre na UK a fháil, cuireann muid an cheist seo ar gach duine nach bhfuil ag obair faoi láthair. Cuireann muid an cheist ar dhaoine atá ar scor mar tá líon na ndaoine atá ag obair go fóill thar an aois scoir ag méadú. Cuireann muid an cheist ar dhaoine atá tinn san fhadtéarma nó atá faoi mhíchumas mar tá sé ar intinn ag roinnt daoine dul ar ais ag obair."
 
-msgid "Are you available to start work in the next two weeks?"
-msgstr ""
+msgid "The next set of questions is about your main job. Your main job is the job in which you usually work the most hours."
+msgstr "Tá an chéad tacar eile de cheisteanna faoi do phríomhphost. Is é do phríomhphost an post ina n-oibríonn tú an méid is mó uaireanta de ghnáth."
 
-msgid "In the last seven days, were you waiting to start a job already accepted?"
-msgstr ""
+msgid "The next set of questions is about your last main job. Your main job is the job in which you usually worked the most hours."
+msgstr "Tá an chéad tacar eile de cheisteanna faoin phríomhphost dheireanach a bhí agat. Is é do phríomhphost an post inar oibrigh tú an méid is mó uaireanta de ghnáth."
 
-msgid "Have you ever done any paid work?"
-msgstr ""
+msgid "If you are self-employed in your own business, give the business name."
+msgstr "Má tá tú féinfhostaithe i do ghnó féin, tabhair ainm an ghnó dúinn."
 
-msgid "Main job"
-msgstr ""
+msgid "If they are self-employed in their own business, give the business name."
+msgstr "Má tá siad féinfhostaithe ina ngnó féin, tabhair ainm an ghnó dúinn."
 
-msgid "Last main job"
-msgstr ""
+msgid "If you were self-employed in your own business, give the business name."
+msgstr "Má bhí tú féinfhostaithe i do ghnó féin, tabhair ainm an ghnó dúinn."
 
-msgid "In your main job, what is your employment status?"
-msgstr ""
+msgid "If they were self-employed in their own business, give the business name."
+msgstr "Má bhí siad féinfhostaithe ina ngnó féin, tabhair ainm an ghnó dúinn."
 
-msgid "In your main job, what was your employment status?"
-msgstr ""
+msgid "For example, retail assistant, office cleaner, district nurse, primary school teacher. Do not state your grade or pay band"
+msgstr "Mar shampla, cúntóir miondíola, glantóir oifige, banaltra ceantair, múinteoir bunscoile. Ná luaigh do ghrád nó do bhanda pá"
 
-msgid "What is the name of the organisation or business you work for?"
-msgstr ""
+msgid "For example, retail assistant, office cleaner, district nurse, primary school teacher. Do not state their grade or pay band"
+msgstr "Mar shampla, cúntóir miondíola, glantóir oifige, banaltra ceantair, múinteoir bunscoile. Ná luaigh a ngrád nó a mbanda pá"
 
-msgid "What was the name of the organisation or business you worked for?"
-msgstr ""
-
-msgid "What is your full job title?"
-msgstr ""
-
-msgid "What was your full job title?"
-msgstr ""
-
-msgid "Briefly describe what you do in your main job?"
-msgstr ""
-
-msgid "Briefly describe what you did in your main job?"
-msgstr ""
-
-msgid "What is the main activity of your organisation, business or freelance work?"
-msgstr ""
-
-msgid "What was the main activity of your organisation, business or freelance work?"
-msgstr ""
-
-msgid "Do you supervise or oversee the work of other employees on a day-to-day basis?"
-msgstr ""
-
-msgid "Did you supervise or oversee the work of other employees on a day-to-day basis?"
-msgstr ""
-
-msgid "In your main job, how many hours a week do you usually work?"
-msgstr ""
+msgid "For example clothing retail, general hospital, primary education, food wholesale, civil service, local government housing."
+msgstr "Mar shampla, éadaí miondíola, otharlann ghinearálta, bunscolaíocht, bia mórdhíola, státseirbhís, tithíocht rialtais áitiúil."
 
 msgid "Include paid and unpaid overtime"
-msgstr ""
+msgstr "Luaigh ragobair íoctha agus neamhíoctha"
 
-msgid "How do you usually travel to work?"
-msgstr ""
+msgid "Answer for the place where you spend the most time. Even if ill, on maternity leave, holiday or temporarily laid off provide details of your main place of work."
+msgstr "Freagair don áit ina gcaitheann tú an méid is mó ama. Fiú má tá tú tinn, ar shaoire mháithreachais nó scaoilte chun bealaigh go sealadach, tabhair sonraí ar do phríomháit oibre."
+
+msgid "Answer for the place where you spent the most time."
+msgstr "Freagair don áit inar chaith tú an méid ba mhó ama."
+
+msgid "Select one option only, for the longest part, by distance, of your usual journey to place of work."
+msgstr "Roghnaigh ceann amháin, don chuid is mó, de réir faid, de do ghnáth-thuras go dtí d'áit oibre."
+
+msgid "Select one option only, for the longest part, by distance, of their usual journey to place of work."
+msgstr "Roghnaigh ceann amháin, don chuid is mó, de réir faid, dá ngnáth-thuras go dtí a n-áit oibre."
+
+msgid "Answer for the place where you spend the most time. If student or schoolchild, answer for your study address."
+msgstr "Freagair don áit ina gcaitheann tú an méid is mó ama. Más mac léinn nó páiste scoile thú, freagair do do sheoladh staidéir."
+
+msgid "Select one option only, for the longest part, by distance, of your usual journey to place of study."
+msgstr "Roghnaigh ceann amháin, don chuid is mó, de réir faid, de do ghnáth-thuras go dtí d'áit staidéir."
+
+msgid "Select one option only, for the longest part, by distance, of their usual journey to place of study."
+msgstr "Roghnaigh ceann amháin, don chuid is mó, de réir faid, dá ngnáth-thuras go dtí a n-áit staidéir."
+
+msgid "Voluntary"
+msgstr "Deonach"
+
+msgid "2019 Census Test"
+msgstr "Teist Daonáirimh 2019"
+
+msgid "Individual Section"
+msgstr "Mír don Duine Aonair"
+
+msgid "Personal Details"
+msgstr "Sonraí Pearsanta"
+
+msgid "What is a communal establishment?"
+msgstr "Cad í an rud í áit chomhroinnte?"
+
+msgid "Are you answering these questions for yourself or for someone else?"
+msgstr "An bhfuil tú ag freagairt na gceisteanna seo ar do shon féin nó ar son duine éigin eile?"
+
+msgid "What is your name?"
+msgstr "Cad é an t-ainm atá ort?"
+
+msgid "What is their name?"
+msgstr "Cad é an t-ainm atá orthu?"
+
+msgid "What is your position in this establishment?"
+msgstr "Cad é an post atá agat san áit seo?"
+
+msgid "What is an establishment?"
+msgstr "Cad í an rud í áit?"
+
+msgid "What is your date of birth?"
+msgstr "Cad é do dháta breithe?"
+
+msgid "What is your sex?"
+msgstr "Cad í d'inscne?"
+
+msgid "What is your marital or same-sex civil partnership status?"
+msgstr "Cad é do stádas pósta nó stádas do pháirtnéireachta sibhialta comhghnéis?"
+
+msgid "Are you a student in full-time education?"
+msgstr "An mac léinn thú atá in oideachas lánaimseartha?"
+
+msgid "Are you a schoolchild or student in full-time education?"
+msgstr "An páiste scoile nó mac léinn thú atá in oideachas lánaimseartha?"
+
+msgid "During term time, where do you usually live?"
+msgstr "I rith am an téarma, cá bhfuil tú i do chónaí?"
+
+msgid "Identity and Health"
+msgstr "Féiniúlacht agus Sláinte"
+
+msgid "What is your country of birth?"
+msgstr "Cad í an tír inar rugadh thú?"
+
+msgid "What year did you come to live in Northern Ireland?"
+msgstr "Cén bhliain a tháinig tú le bheith i do chónaí i dTuaisceart Éireann?"
+
+msgid "One year ago, what was your usual address?"
+msgstr "Bliain amháin ó shin, cad é do ghnáthsheoladh?"
+
+msgid "Enter details of your address one year ago."
+msgstr "Cuir isteach sonraí do sheolta bliain amháin ó shin."
+
+msgid "What passports do you hold?"
+msgstr "Cad iad na pasanna atá agat?"
+
+msgid "What official documents can be included?"
+msgstr "Cad iad na cáipéisí oifigiúla is féidir cur isteach?"
+
+msgid "How would you describe your national identity?"
+msgstr "Cad é mar a dhéanfá cur síos ar d'fhéiniúlacht náisiúnta?"
+
+msgid "What is your ethnic group?"
+msgstr "Cad é do ghrúpa eitneach?"
+
+msgid "What religion, religious denomination or body do you belong to?"
+msgstr "Cad é do reiligiún, do chreideamh reiligiúnach nó cén eagraíocht reiligiúnach dá bhfuil tú i do bhall?"
+
+msgid "What religion, religious denomination or body were you <em>brought up</em> in?"
+msgstr "Cad é do reiligiún, do chreideamh reiligiúnach nó cén eagraíocht reiligiúnach <em> inar tógadh </em>thú?"
+
+msgid "What is your main language?"
+msgstr "Cad í do phríomhtheanga?"
+
+msgid "What do we mean by “main language”?"
+msgstr "Cad é a chiallaíonn muid nuair a deir muid \"príomhtheanga\"?"
+
+msgid "How well can you speak English?"
+msgstr "Cé chomh maith agus a labhraíonn tú Béarla?"
+
+msgid "Can you understand, speak, read or write Irish?"
+msgstr "An féidir leat Gaeilge a thuiscint, a labhairt a léamh nó a scríobh?"
+
+msgid "How often do you speak Irish?"
+msgstr "Cé chomh minic agus a labhraíonn tú Gaeilge?"
+
+msgid "Can you understand, speak, read or write Ulster-Scots?"
+msgstr "An féidir leat Albanais Uladh a thuiscint, a labhairt, a léamh nó a scríobh?"
+
+msgid "How often do you speak Ulster-Scots?"
+msgstr "Cé chomh minic agus a labhraíonn tú Albanais Uladh?"
+
+msgid "How is your health in general?"
+msgstr "Cad é mar atá do shláinte go ginearálta?"
+
+msgid "Are your day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
+msgstr "An bhfuil do ghníomhaíochtaí laethúla teoranta de dheasca faidhbe sláinte, nó míchumais atá ann go fóill, nó a bhfuiltear ag súil leis go mbeidh sé agat ar feadh 12 mhí ar a laghad?"
+
+msgid "Do you have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgstr "An bhfuil ceann ar bith de na <em>fadhbanna sláinte fisicí</em> seo a leanas agat go fóill nó a bhfuiltear ag súil leis go mbeidh sé agat ar feadh 12 mhí ar a laghad?"
+
+msgid "Do you have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgstr "An bhfuil ceann ar bith de na <em>fadhbanna sláinte eile</em> seo a leanas agat go fóill nó a bhfuiltear ag súil leis go mbeidh sé agat ar feadh 12 mhí ar a laghad?"
+
+msgid "Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
+msgstr "An dtugann tú aire do, nó an dtugann tú tacaíocht do dhuine ar bith mar go bhfuil fadhb sláinte fisicí nó meabhrach fadtéarmaí acu nó tinnis orthu, nó fadhbanna acu mar gheall ar sheanaois?"
+
+msgid "Which of the following best describes your sexual orientation?"
+msgstr "Cé acu de na rudaí seo a leanas a dhéanann an cur síos is fearr ar do chlaonadh gnéis?"
+
+msgid "Qualifications"
+msgstr "Cáilíochtaí"
+
+msgid "Have you achieved a qualification at degree level or above?"
+msgstr "Ar bhain tú cáilíocht ar leibhéal céime nó níos airde ná sin amach?"
+
+msgid "Have you achieved a GCSE or equivalent qualification?"
+msgstr "Ar bhain tú cáilíocht GCSE nó a chomhionann amach?"
+
+msgid "Have you achieved an A level, AS level or equivalent qualifications?"
+msgstr "Ar bhain tú cáilíocht Ardleibhéil, leibhéal AS nó a gcomhionann amach?"
+
+msgid "Have you achieved an NVQ or equivalent qualification?"
+msgstr "Ar bhain tú cáilíocht NVQ nó a chomhionann amach?"
+
+msgid "Have you achieved any other qualifications, either within or outside of Northern Ireland?"
+msgstr "Ar bhain tú cáilíocht ar bith eile amach taobh istigh nó taobh amuigh de Thuaisceart Éireann?"
+
+msgid "Have you completed an apprenticeship?"
+msgstr "Ar chríochnaigh tú do phrintíseacht?"
+
+msgid "Employment"
+msgstr "Fostaíocht"
+
+msgid "Have you <em>previously</em> served in the UK Armed Forces?"
+msgstr "An ndearna tú seirbhís i bhFórsaí Armtha na UK <em>roimhe</em>?"
+
+msgid "In the last seven days, were you doing any of the following?"
+msgstr "Sna seacht lá seo a chuaigh thart, an raibh tú ag déanamh ceann ar bith de na rudaí seo a leanas?"
+
+msgid "Which of the following describes what you were doing in the last seven days?"
+msgstr "Cé acu de na rudaí seo a leanas a bhí tú ag déanamh sna seacht lá seo a chuaigh thart?"
+
+msgid "In the last four weeks, were you actively looking for any kind of paid work?"
+msgstr "Sna ceithre seachtaine seo a chuaigh thart, an raibh tú ag iarraidh obair íoctha de chineál ar bith go gníomhach?"
+
+msgid "If a job became available now, could you start it within two weeks?"
+msgstr "Dá mbeadh post ar fáil anois, an bhféadfá toiseacht ann taobh istigh de dhá sheachtain?"
+
+msgid "In the last seven days, were you waiting to start a job already accepted?"
+msgstr "Sna seacht lá seo a chuaigh thart, an raibh tú ag fanacht le hobair a thoiseacht i bpost ar ghlac tú leis cheana féin?"
+
+msgid "Have you ever done any paid work?"
+msgstr "An ndearna tú obair íoctha ar bith riamh roimhe?"
+
+msgid "Main job"
+msgstr "Príomhphost"
+
+msgid "Last main job"
+msgstr "An chéad phríomhphost roimhe"
+
+msgid "In your main job, what is your employment status?"
+msgstr "Cad é do phríomhphost, cad é do stádas fostaíochta?"
+
+msgid "In your main job, what was your employment status?"
+msgstr "I do phríomhphost, cad é a bhí do stádas fostaíochta?"
+
+msgid "What is the name of the organisation or business you work for?"
+msgstr "Cad é an t-ainm atá ar an eagraíocht nó ar an ghnó dá n-oibríonn tú?"
+
+msgid "What was the name of the organisation or business you worked for?"
+msgstr "Cad é an t-ainm a bhí ar an eagraíocht nó ar an ghnó dár oibrigh tú?"
+
+msgid "What is your full job title?"
+msgstr "Cad é an teideal iomlán atá ar do phost?"
+
+msgid "What was your full job title?"
+msgstr "Cad é an teideal iomlán a bhí ar do phost?"
+
+msgid "Briefly describe what you do in your main job."
+msgstr "Déan cur síos go hachomair ar na rudaí a dhéanann tú i do phríomhphost."
+
+msgid "Briefly describe what you did in your main job."
+msgstr "Déan cur síos go hachomair ar na rudaí a rinne tú i do phríomhphost."
+
+msgid "What is the main activity of your organisation, business or freelance work?"
+msgstr "Cad í príomhghníomhaíocht d'eagraíochta, do ghnó nó d'fhéinfhostaíochta?"
+
+msgid "What was the main activity of your organisation, business or freelance work?"
+msgstr "Cad í príomhghníomhaíocht a bhí i d'eagraíochta, do ghnó nó d'fhéinfhostaíochta?"
+
+msgid "Do you supervise or oversee the work of other employees on a day-to-day basis?"
+msgstr "An ndéanann tú maoirseacht ar obair fhostaithe eile ó lá go lá?"
+
+msgid "Did you supervise or oversee the work of other employees on a day-to-day basis?"
+msgstr "An ndearna tú maoirseacht ar obair fhostaithe eile ó lá go lá?"
+
+msgid "In your main job, how many hours a week do you usually work?"
+msgstr "I do phríomhphost, cá mhéad uair sa tseachtain a oibríonn tú de ghnáth?"
+
+msgid "In your main job, how many hours a week did you usually work?"
+msgstr "I do phríomhphost, cá mhéad uair sa tseachtain a d'oibrigh tú de ghnáth?"
 
 msgid "Where do you mainly work?"
-msgstr ""
+msgstr "Cá n-oibríonn tú go príomha?"
 
-msgid "What is the address of your workplace?"
-msgstr ""
+msgid "Where did you mainly work?"
+msgstr "Cár oibrigh tú go príomha?"
 
-msgid "What is the address of your depot?"
-msgstr ""
+msgid "What is the address of your main place of work?"
+msgstr "Cad é an seoladh atá ag do phríomháit oibre?"
 
-msgid "Comments"
-msgstr ""
+msgid "What was the address of your main place of work?"
+msgstr "Cad é an seoladh a bhí ag do phríomháit oibre?"
 
-msgid "Thanks you are done!"
-msgstr ""
+msgid "How do you usually travel to your main place of work?"
+msgstr "Cad é mar a thaistealaíonn tú go dtí do phríomháit oibre de ghnáth?"
+
+msgid "How did you usually travel to your main place of work?"
+msgstr "Cad é mar a thaistil tú go dtí do phríomháit oibre de ghnáth?"
+
+msgid "School"
+msgstr "Scoil"
+
+msgid "Where do you mainly study?"
+msgstr "Cá ndéanann tú staidéar go príomha?"
+
+msgid "What is the address of your main place of study, including school?"
+msgstr "Cad é an seoladh atá ag do phríomháit staidéir, do scoil san áireamh?"
+
+msgid "How do you usually travel to your main place of study, including school?"
+msgstr "Cad é mar a thaistealaíonn tú go dtí do phríomháit staidéir, an scoil san áireamh?"
 
 msgid "Submit answers"
-msgstr ""
+msgstr "Cuir isteach do fhreagraí"
 
-msgid "You’re ready to submit your 2017 Census Test"
-msgstr ""
+msgid "Enter a first name to continue"
+msgstr "Cuir an chéad ainm isteach le leanstan ar aghaidh"
 
-msgid "Please note:"
-msgstr ""
-
-msgid "Please enter a name or remove the person to continue"
-msgstr ""
-
-#, python-format
-msgid "Your answer has to be less than %(max)d characters long"
-msgstr ""
-
-msgid "by submitting your responses, you are declaring that you have completed to the best of your knowledge and belief."
-msgstr ""
-
-msgid "if you do not submit, your responses will be automatically submitted when the Census 2017 Test closes."
-msgstr ""
-
-msgid "after submission you will have an opportunity to provide feedback on your experience."
-msgstr ""
+msgid "Enter a last name to continue"
+msgstr "Cuir sloinne isteach le leanstan ar aghaidh"
 
 msgid "What type of accommodation is <em>{address}</em>?"
-msgstr ""
+msgstr "Cén sórt cóiríochta é <em>{address}</em>?"
 
 msgid "What is <em>{person_name_possessive}</em> position in this establishment?"
-msgstr ""
+msgstr "Cad í an fhreagracht atá ag <em>{person_name_possessive}</em> san áit seo?"
 
 msgid "What is <em>{person_name_possessive}</em> date of birth?"
-msgstr ""
+msgstr "Cad é dáta breithe <em>{person_name_possessive}</em>?"
 
 msgid "You are {age_in_years} years old. Is this correct?"
-msgstr ""
+msgstr "Tá tú {age_in_years} bliain d'aois. An bhfuil sé seo ceart?"
 
 msgid "{person_name} is {age_in_years} years old. Is this correct?"
-msgstr ""
+msgstr "Tá {person_name} {age_in_years} bliain d'aois. An bhfuil sé seo ceart?"
 
 msgid "What is <em>{person_name_possessive}</em> sex?"
-msgstr ""
+msgstr "Cad í inscne <em>{person_name_possessive}</em>?"
 
 msgid "What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
-msgstr ""
+msgstr "Cad é an stádas pósta nó an stádas páirtnéireachta sibhialta comhghnéis atá ag <em>{person_name_possessive}</em>?"
 
 msgid "Is <em>{person_name}</em> a student in full-time education?"
-msgstr ""
+msgstr "An mac léinn <em>{person_name}</em> atá in oideachas lánaimseartha?"
 
 msgid "Is <em>{person_name}</em> a schoolchild or student in full-time education?"
-msgstr ""
+msgstr "An páiste scoile nó mac léinn <em>{person_name}</em> atá in oideachas lánaimseartha?"
 
 msgid "During term time, where does <em>{person_name}</em> usually live?"
-msgstr ""
+msgstr "I rith am an téarma, cá gcónaíonn <em>{person_name}</em>>?"
 
 msgid "What is <em>{person_name_possessive}</em> country of birth?"
-msgstr ""
+msgstr "Cad í tír bhreithe <em>{person_name_possessive}</em>?"
 
 msgid "What year did <em>{person_name}</em> come to live in Northern Ireland?"
-msgstr ""
+msgstr "Cén bhliain a tháinig <em>{person_name}</em> le cónaí i dTuaisceart Éireann?"
 
 msgid "One year ago, what was <em>{person_name_possessive}</em> usual address?"
-msgstr ""
+msgstr "Bliain amháin ó shin, cad é an gnáthsheoladh a bhí ag <em>{person_name_possessive}</em>?"
+
+msgid "Enter details of <em>{person_name_possessive}</em> address one year ago."
+msgstr "Cuir isteach sonraí de sheoladh <em>{person_name_possessive}</em> bliain amháin ó shin."
 
 msgid "What passports does <em>{person_name}</em> hold?"
-msgstr ""
+msgstr "Cad iad na pasanna atá ag <em>{person_name}</em>?"
 
 msgid "How would <em>{person_name}</em> describe their national identity?"
-msgstr ""
+msgstr "Cad é mar a dhéanfadh <em>{person_name}</em> cur síos ar a bhféiniúlacht náisiúnta?"
 
 msgid "What is <em>{person_name_possessive}</em> ethnic group?"
-msgstr ""
+msgstr "Cad é grúpa eitneach <em>{person_name_possessive}</em>?"
 
 msgid "What religion, religious denomination or body does <em>{person_name}</em> belong to?"
-msgstr ""
+msgstr "Cén reiligiún, creideamh reiligiúnach nó cén eagraíocht reiligiúnach dá bhfuil <em>{person_name}</em> ina b(h)all?"
 
 msgid "What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
-msgstr ""
+msgstr "Cén reiligiún, creideamh reiligiúnach nó cén eagraíocht reiligiúnach <em>inar tógadh</em> {person_name}?"
 
 msgid "What is <em>{person_name_possessive}</em> main language?"
-msgstr ""
+msgstr "Cad í príomhtheanga <em>{person_name_possessive}</em>?"
 
 msgid "How well can <em>{person_name}</em> speak English?"
-msgstr ""
+msgstr "Cé chomh maith agus is féidir le <em>{person_name}</em> Béarla a labhairt?"
 
 msgid "Can <em>{person_name}</em> understand, speak, read or write Irish?"
-msgstr ""
+msgstr "An féidir le <em>{person_name}</em> Gaeilge a thuiscint, a labhairt, a léamh nó a scríobh?"
 
 msgid "How often does <em>{person_name}</em> speak Irish?"
-msgstr ""
+msgstr "Cé chomh minic a labhraíonn <em>{person_name}</em> Gaeilge?"
 
 msgid "Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
-msgstr ""
+msgstr "An féidir le <em>{person_name}</em> Albanais Uladh a thuiscint, a labhairt, a léamh nó a scríobh?"
 
 msgid "How often does <em>{person_name}</em> speak Ulster-Scots?"
-msgstr ""
+msgstr "Cé chomh minic a labhraíonn <em>{person_name}</em> Albanais Uladh?"
 
 msgid "How is <em>{person_name_possessive}</em> health in general?"
-msgstr ""
+msgstr "Cad é mar atá sláinte <em>{person_name_possessive}</em> go ginearálta?"
 
 msgid "Are <em>{person_name_possessive}</em> day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
-msgstr ""
+msgstr "An bhfuil gníomhaíochtaí laethúla <em>{person_name_possessive}</em> teoranta de dheasca faidhbe sláinte, nó míchumais atá ann go fóill, nó a bhfuiltear ag súil leis go mbeidh sé ann ar feadh 12 mhí ar a laghad?"
 
-msgid "Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
-msgstr ""
+msgid "Does {person_name} have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgstr "An bhfuil ceann ar bith de na <em>fadhbanna sláinte fisicí</em> seo a leanas ag {person_name} go fóill nó a bhfuiltear ag súil leis go mbeidh sé acu ar feadh 12 mhí ar a laghad?"
 
-msgid "Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgstr ""
+msgid "Does {person_name} have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgstr "An bhfuil ceann ar bith de na <em>fadhbanna sláinte eile</em> seo a leanas ag {person_name} go fóill nó a bhfuiltear ag súil leis go mbeidh sé acu ar feadh 12 mhí nó níos mó?"
 
 msgid "Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
-msgstr ""
+msgstr "An dtugann <em>{person_name}</em> aire do, nó an dtugann siad tacaíocht do dhuine ar bith mar go bhfuil fadhb sláinte fisicí nó meabhrach fadtéarmaí acu nó tinnis orthu, nó fadhbanna acu mar gheall ar sheanaois?"
 
 msgid "Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
-msgstr ""
+msgstr "Cé acu de na rudaí seo a leanas a dhéanann cur síos níos fearr ar chlaonadh gnéis <em>{person_name_possessive}</em>?"
 
-msgid "What address does <em>{person_name}</em> travel to for their course of study, including school?"
-msgstr ""
-
-msgid "How does <em>{person_name}</em> usually travel to their place of study, including school?"
-msgstr ""
-
-msgid "The next set of questions is about the qualifications <em>{person_name}</em> has ever acheived in Northern Ireland or worldwide, even if they are not using them now."
-msgstr ""
+msgid "The next set of questions is about the qualifications <em>{person_name}</em> has achieved in Northern Ireland or worldwide, even if they are not using them now."
+msgstr "Tá na chéad cheisteanna eile faoi na cáilíochtaí a bhain <em>{person_name}</em> amach i dTuaisceart Éireann nó ar fud an domhain, fiú nuair nach bhfuil siad á n-úsáid anois."
 
 msgid "Has <em>{person_name}</em> achieved a qualification at degree level or above?"
-msgstr ""
-
-msgid "Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
-msgstr ""
-
-msgid "Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
-msgstr ""
+msgstr "Ar bhain <em>{person_name}</em> cáilíocht ar leibhéal céime nó níos airde ná sin amach?"
 
 msgid "Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
-msgstr ""
+msgstr "Ar bhain <em>{person_name}</em> GCSE nó chomhionann amach?"
+
+msgid "Has <em>{person_name}</em> achieved an A level, AS level or equivalent qualifications?"
+msgstr "Ar bhain <em>{person_name}</em> cáilíocht Ardleibhéil, leibhéal AS nó a gcomhionann amach?"
+
+msgid "Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgstr "Ar bhain <em>{person_name}</em> NVQ nó cáilíocht chomhionann amach?"
 
 msgid "Has <em>{person_name}</em> achieved any other qualifications?"
-msgstr ""
+msgstr "Ar bhain <em>{person_name}</em> cáilíocht ar bith amach?"
 
 msgid "Has <em>{person_name}</em> completed an apprenticeship?"
-msgstr ""
+msgstr "Ar chríochnaigh <em>{person_name}</em> printíseacht?"
 
-msgid "Has <em>{person_name}</em> previously served in the UK Armed Forces?"
-msgstr ""
+msgid "Has <em>{person_name}</em> <em>previously</em> served in the UK Armed Forces?"
+msgstr "An ndearna <em>{person_name}</em>seirbhís i bhFórsaí Armtha na UK <em>roimhe</em>?"
 
 msgid "In the last seven days, was <em>{person_name}</em> doing any of the following?"
-msgstr ""
+msgstr "Sna seacht lá seo a chuaigh thart, an raibh <em>{person_name}</em> ag déanamh ceann ar bith de na rudaí seo a leanas?"
 
 msgid "Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
-msgstr ""
+msgstr "Cé acu de na rudaí seo a leanas a dhéanann cur síos ar na rudaí a bhí <em>{person_name}</em> ag déanamh sna seacht lá seo a chuaigh thart?"
 
 msgid "In the last four weeks, was <em>{person_name}</em> actively looking for any kind of paid work?"
-msgstr ""
+msgstr "Sna ceithre seachtaine seo a chuaigh thart, an raibh <em>{person_name}</em> ag iarraidh obair íoctha de chineál ar bith a dhéanamh go gníomhach?"
 
-msgid "Is <em>{person_name}</em> available to start work in the next two weeks?"
-msgstr ""
+msgid "If a job became available now, could <em>{person_name}</em> start it within two weeks?"
+msgstr "Dá mbeadh post ar fáil anois, an bhféadfadh <em>{person_name}</em> toiseacht ann taobh istigh de dhá sheachtain?"
 
 msgid "In the last seven days, was <em>{person_name}</em> waiting to start a job already accepted?"
-msgstr ""
+msgstr "Sna seacht lá seo a chuaigh thart, an raibh <em>{person_name}</em> ag fanacht le hobair a thoiseacht i bpost ar ghlacadh leis cheana féin?"
 
 msgid "Has <em>{person_name}</em> ever done any paid work?"
-msgstr ""
+msgstr "An ndearna <em>{person_name}</em> obair íoctha ar bith riamh?"
 
-msgid "The next set of questions is about <em>{person_name_possessive}</em> main job. Their main job is the job in which they usually work the most hours"
-msgstr ""
+msgid "The next set of questions is about <em>{person_name_possessive}</em> main job. Their main job is the job in which they usually work the most hours."
+msgstr "Tá an chéad tacar eile de cheisteanna faoi phríomhphost <em>{person_name_possessive}</em>. Is é a bpríomhphost an post ina n-oibríonn siad an méid is mó uaireanta de ghnáth."
 
-msgid "The next set of questions is about <em>{person_name_possessive}</em> last main job. Their main job is the job in which they usually worked the most hours"
-msgstr ""
+msgid "The next set of questions is about <em>{person_name_possessive}</em> last main job. Their main job is the job in which they usually worked the most hours."
+msgstr "Tá an chéad tacar eile de cheisteanna faoin phríomhphost deireanach a bhí ag <em>{person_name_possessive}</em>. Is é a bpríomhphost an post inar oibrigh siad an méid ba mhó uaireanta de ghnáth."
 
 msgid "In their main job, what is <em>{person_name_possessive}</em> employment status?"
-msgstr ""
+msgstr "Ina bpríomhphost, cad é an stádas fostaíochta atá ag <em>{person_name_possessive}</em>?"
 
 msgid "In their main job, what was <em>{person_name_possessive}</em> employment status?"
-msgstr ""
+msgstr "Ina bpríomhphost, cad é an stádas fostaíochta a bhí ag <em>{person_name_possessive}</em>?"
 
 msgid "What is the name of the organisation or business <em>{person_name}</em> works for?"
-msgstr ""
+msgstr "Cad é an t-ainm atá ar an eagraíocht nó ar an ghnó dá n-oibríonn <em>{person_name}</em>?"
 
 msgid "What was the name of the organisation or business <em>{person_name}</em> worked for?"
-msgstr ""
+msgstr "Cad é an t-ainm a bhí ar an eagraíocht nó ar an ghnó dár oibrigh <em>{person_name}</em>?"
 
 msgid "What is <em>{person_name_possessive}</em> full job title?"
-msgstr ""
+msgstr "Cad é an teideal iomlán atá ar phost <em>{person_name_possessive}</em>?"
 
 msgid "What was <em>{person_name_possessive}</em> full job title?"
-msgstr ""
+msgstr "Cad é an teideal iomlán a bhí ar phost <em>{person_name_possessive}</em>?"
 
-msgid "Briefly describe what <em>{person_name}</em> does in their main job?"
-msgstr ""
+msgid "Briefly describe what <em>{person_name}</em> does in their main job."
+msgstr "Déan cur síos go hachomair ar a dhéanann <em>{person_name}</em> ina bpríomhphost."
 
-msgid "Briefly describe what <em>{person_name}</em> did in their main job?"
-msgstr ""
+msgid "Briefly describe what <em>{person_name}</em> did in their main job."
+msgstr "Déan cur síos go hachomair ar a rinne <em>{person_name}</em> ina bpríomhphost."
 
 msgid "What is the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
-msgstr ""
+msgstr "Cad í príomhghníomhaíocht <em>{person_name_possessive}</em> san eagraíocht, sa ghnó, nó sa tsaorobair?"
 
 msgid "What was the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
-msgstr ""
+msgstr "Cad í príomhghníomhaíocht a bhí ag <em>{person_name_possessive}</em> san eagraíocht. sa ghnó, nó sa tsaorobair?"
 
 msgid "Does <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
-msgstr ""
+msgstr "An ndéanann <em>{person_name}</em> maoirseacht ar obair fhostaithe eile ó lá go lá?"
 
 msgid "Did <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
-msgstr ""
+msgstr "An ndearna <em>{person_name}</em> maoirseacht ar obair fhostaithe eile ó lá go lá?"
 
 msgid "In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
-msgstr ""
+msgstr "I bpríomhphost <em>{person_name_possessive}</em>, cá mhéad uair sa tseachtain a oibríonn siad de ghnáth?"
 
-msgid "How does <em>{person_name}</em> usually travel to work?"
-msgstr ""
+msgid "In <em>{person_name_possessive}</em> main job, how many hours a week did they usually work?"
+msgstr "I bpríomhphost <em>{person_name_possessive}</em>, cá mhéad uair sa tseachtain a d'oibrigh siad de ghnáth?"
+
+msgid "Answer for the place where <em>{person_name}</em> spends the most time. Even if ill, on maternity leave, holiday or temporarily laid off provide details of their main place of work."
+msgstr "Freagair don áit ina gcaitheann <em>{person_name}</em> an méid is mó ama. Fiú má tá siad tinn, ar shaoire mháithreachais nó scaoilte chun bealaigh go sealadach, tabhair sonraí ar a bpríomháit oibre."
 
 msgid "Where does <em>{person_name}</em> mainly work?"
-msgstr ""
+msgstr "Cá n-oibríonn <em>{person_name}</em> go príomha?"
 
-msgid "What is the address of <em>{person_name_possessive}</em> workplace?"
-msgstr ""
+msgid "Answer for the place where <em>{person_name}</em> spent the most time."
+msgstr "Freagair don áit inar chaith <em>{person_name}</em> an méid ba mhó ama."
 
-msgid "What is the address of <em>{person_name_possessive}</em> depot?"
-msgstr ""
+msgid "Where did <em>{person_name}</em> mainly work?"
+msgstr "Cár oibrigh <em>{person_name}</em> go príomha?"
+
+msgid "What is the address of <em>{person_name_possessive}</em> main place of work?"
+msgstr "Cad é an seoladh atá ag príomháit oibre <em>{person_name_possessive}</em>?"
+
+msgid "What was the address of <em>{person_name_possessive}</em> main place of work?"
+msgstr "Cad é an seoladh a bhí ag príomháit oibre <em>{person_name_possessive}</em>?"
+
+msgid "How does <em>{person_name}</em> usually travel to their main place of work?"
+msgstr "Cad é mar a thaistealaíonn <em>{person_name}</em> go dtí a bpríomháit oibre de ghnáth?"
+
+msgid "How did <em>{person_name}</em> usually travel to their main place of work?"
+msgstr "Cad é mar a thaistil <em>{person_name}</em> go dtí a bpríomháit oibre de ghnáth?"
+
+msgid "Answer for the place where <em>{person_name}</em> spends the most time. If student or schoolchild, answer for their study address."
+msgstr "Freagair don áit ina gcaitheann <em>{person_name}</em> an méid is mó dá c(h)uid ama. Más mac léinn nó páiste scoile é/í, freagair dá seoladh staidéir."
+
+msgid "Where does <em>{person_name}</em> mainly study?"
+msgstr "Cá ndéanann <em>{person_name}</em> staidéar go príomha?"
+
+msgid "What is the address of <em>{person_name_possessive}</em> main place of study, including school?"
+msgstr "Cad é an seoladh atá ag príomháit staidéir <em>{person_name_possessive}</em>, an scoil san áireamh?"
+
+msgid "How does <em>{person_name}</em> usually travel to their main place of study, including school?"
+msgstr "Cad é mar a thaistealaíonn <em>{person_name}</em> go dtí a bpríomháit staidéir, scoil san áireamh?"
 
 #. answer-id: accommodation-type-answer
 msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
 msgid "A communal establishment"
-msgstr ""
+msgstr "Áit chomhroinnte"
 
 #. answer-id: accommodation-type-answer
 msgctxt "Answer for: What type of accommodation is <em>{address}</em>?"
 msgid "A private or family household"
-msgstr ""
+msgstr "Teach príomháideach nó teaghlaigh"
 
 #. answer-id: proxy-answer
-msgctxt "Answer for: Are you answering the questions on behalf of someone else?"
-msgid "No, I’m answering for myself"
-msgstr ""
+msgctxt "Answer for: Are you answering these questions for yourself or for someone else?"
+msgid "For myself"
+msgstr "Dom féin"
 
 #. answer-id: proxy-answer
-msgctxt "Answer for: Are you answering the questions on behalf of someone else?"
-msgid "Yes"
-msgstr ""
+msgctxt "Answer for: Are you answering these questions for yourself or for someone else?"
+msgid "For someone else"
+msgstr "Do dhuine éigin eile"
 
 #. answer-id: first-name
 msgctxt "Answer for: What is your name?"
 msgid "First name"
-msgstr ""
+msgstr "Céad Ainm"
 
 #. answer-id: middle-names
 msgctxt "Answer for: What is your name?"
 msgid "Middle names"
-msgstr ""
+msgstr "Lárainmneacha"
 
 #. answer-id: last-name
 msgctxt "Answer for: What is your name?"
 msgid "Last name"
-msgstr ""
+msgstr "Sloinne"
 
 #. answer-id: first-name
 msgctxt "Answer for: What is their name?"
 msgid "First name"
-msgstr ""
+msgstr "Céad Ainm"
 
 #. answer-id: middle-names
 msgctxt "Answer for: What is their name?"
 msgid "Middle names"
-msgstr ""
+msgstr "Lárainmneacha"
 
 #. answer-id: last-name
 msgctxt "Answer for: What is their name?"
 msgid "Last name"
-msgstr ""
+msgstr "Sloinne"
 
 #. answer-id: establishment-position-answer
 msgctxt "Answer for: What is your position in this establishment?"
 msgid "Resident"
-msgstr ""
+msgstr "Cónaitheoir"
 
 #. answer-id: establishment-position-answer
 msgctxt "Answer for: What is your position in this establishment?"
 msgid "Staff or owner"
-msgstr ""
+msgstr "Ball foirne nó úinéir"
 
 #. answer-id: establishment-position-answer
 msgctxt "Answer for: What is your position in this establishment?"
 msgid "Family member or partner of staff or owner"
-msgstr ""
+msgstr "Ball teaghlaigh nó páirtnéir bhall foirne nó an úinéara"
 
 #. answer-id: establishment-position-answer
 msgctxt "Answer for: What is your position in this establishment?"
 msgid "Staying temporarily"
-msgstr ""
+msgstr "Ag fanacht go sealadach"
 
 #. answer-id: establishment-position-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
 msgid "Resident"
-msgstr ""
+msgstr "Cónaitheoir"
 
 #. answer-id: establishment-position-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
 msgid "Staff or owner"
-msgstr ""
+msgstr "Ball foirne nó úinéir"
 
 #. answer-id: establishment-position-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
 msgid "Family member or partner of staff or owner"
-msgstr ""
+msgstr "Ball teaghlaigh nó páirtnéir bhall foirne nó úinéara"
 
 #. answer-id: establishment-position-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> position in this establishment?"
 msgid "Staying temporarily"
-msgstr ""
+msgstr "Ag fanacht go sealadach"
 
 #. answer-id: confirm-date-of-birth-answer
 msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
 msgid "No, I need to change my date of birth"
-msgstr ""
+msgstr "Níl, caithfidh mé mo dháta breithe a athrú"
 
 #. answer-id: confirm-date-of-birth-answer
 msgctxt "Answer for: {person_name} is {age_in_years} years old. Is this correct?"
 msgid "No, I need to change their date of birth"
-msgstr ""
+msgstr "Níl, caithfidh mé a ndáta breithe a athrú"
 
 #. answer-id: sex-answer
 msgctxt "Answer for: What is your sex?"
 msgid "Female"
-msgstr ""
+msgstr "Bean"
 
 #. answer-id: sex-answer
 msgctxt "Answer for: What is your sex?"
 msgid "Male"
-msgstr ""
+msgstr "Fear"
 
 #. answer-id: sex-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> sex?"
 msgid "Female"
-msgstr ""
+msgstr "Bean"
 
 #. answer-id: sex-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> sex?"
 msgid "Male"
-msgstr ""
+msgstr "Fear"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
 msgid "Single, never married and never in a same-sex civil partnership"
-msgstr ""
+msgstr "Singil, gan pósadh agus gan bheith i bpáirtnéireacht shibhialta chomhghnéis riamh"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
 msgid "Married"
-msgstr ""
+msgstr "Pósta"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
 msgid "In a same-sex civil partnership"
-msgstr ""
+msgstr "I bpáirtnéireacht shibhialta chomhghnéis"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
 msgid "Separated, but still legally married"
-msgstr ""
+msgstr "Scartha, ach pósta go dlíthiúil go fóill"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
 msgid "Separated, but still legally in a same-sex civil partnership"
-msgstr ""
+msgstr "Scartha, ach i bpáirtnéireacht shibhialta chomhghnéis go dlíthiúil go fóill"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
 msgid "Divorced"
-msgstr ""
+msgstr "Colscartha"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
 msgid "Formerly in a same-sex civil partnership which is now legally dissolved"
-msgstr ""
+msgstr "Bhítí i bpáirtnéireacht shibhialta chomhghnéis atá curtha ar ceal go dlíthiúil anois"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
 msgid "Widowed"
-msgstr ""
+msgstr "Baintreach"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is your marital or same-sex civil partnership status?"
 msgid "Surviving partner from a same-sex civil partnership"
-msgstr ""
+msgstr "Páirtnéir a mhaireann ó pháirtnéireacht shibhialta chomhghnéis"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
 msgid "Single, never married and never in a same-sex civil partnership"
-msgstr ""
+msgstr "Singil, gan pósadh agus gan bheith i bpáirtnéireacht shibhialta chomhghnéis riamh"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
 msgid "Married"
-msgstr ""
+msgstr "Pósta"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
 msgid "In a same-sex civil partnership"
-msgstr ""
+msgstr "I bpáirtnéireacht shibhialta chomhghnéis"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
 msgid "Separated, but still legally married"
-msgstr ""
+msgstr "Scartha, ach pósta go dlíthiúil go fóill"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
 msgid "Separated, but still legally in a same-sex civil partnership"
-msgstr ""
+msgstr "Scartha, ach i bpáirtnéireacht shibhialta chomhghnéis go dlíthiúil go fóill"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
 msgid "Divorced"
-msgstr ""
+msgstr "Colscartha"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
 msgid "Formerly in a same-sex civil partnership which is now legally dissolved"
-msgstr ""
+msgstr "Bhítí i bpáirtnéireacht shibhialta chomhghnéis atá curtha ar ceal go dlíthiúil anois"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
 msgid "Widowed"
-msgstr ""
+msgstr "Baintreach"
 
 #. answer-id: marriage-type-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
 msgid "Surviving partner from a same-sex civil partnership"
-msgstr ""
+msgstr "Páirtnéir a mhaireann ó pháirtnéireacht shibhialta chomhghnéis"
 
 #. answer-id: in-education-answer
 msgctxt "Answer for: Are you a student in full-time education?"
 msgid "Yes"
-msgstr ""
+msgstr "Is ea"
 
 #. answer-id: in-education-answer
 msgctxt "Answer for: Are you a student in full-time education?"
 msgid "No"
-msgstr ""
+msgstr "Ní hea"
 
 #. answer-id: in-education-answer
 msgctxt "Answer for: Is <em>{person_name}</em> a student in full-time education?"
 msgid "Yes"
-msgstr ""
+msgstr "Is ea"
 
 #. answer-id: in-education-answer
 msgctxt "Answer for: Is <em>{person_name}</em> a student in full-time education?"
 msgid "No"
-msgstr ""
+msgstr "Ní hea"
 
 #. answer-id: in-education-answer
 msgctxt "Answer for: Are you a schoolchild or student in full-time education?"
 msgid "Yes"
-msgstr ""
+msgstr "Is ea"
 
 #. answer-id: in-education-answer
 msgctxt "Answer for: Are you a schoolchild or student in full-time education?"
 msgid "No"
-msgstr ""
+msgstr "Ní hea"
 
 #. answer-id: in-education-answer
 msgctxt "Answer for: Is <em>{person_name}</em> a schoolchild or student in full-time education?"
 msgid "Yes"
-msgstr ""
+msgstr "Is ea"
 
 #. answer-id: in-education-answer
 msgctxt "Answer for: Is <em>{person_name}</em> a schoolchild or student in full-time education?"
 msgid "No"
-msgstr ""
+msgstr "Ní hea"
 
 #. answer-id: term-time-location-answer
 msgctxt "Answer for: During term time, where do you usually live?"
-msgid "Another address"
-msgstr ""
+msgid "At another address"
+msgstr "Ag seoladh eile"
 
 #. answer-id: term-time-location-answer
 msgctxt "Answer for: During term time, where does <em>{person_name}</em> usually live?"
-msgid "Another address"
-msgstr ""
+msgid "At another address"
+msgstr "Ag seoladh eile"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is your country of birth?"
 msgid "Northern Ireland"
-msgstr ""
+msgstr "Tuaisceart Éireann"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is your country of birth?"
 msgid "England"
-msgstr ""
+msgstr "Sasana"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is your country of birth?"
 msgid "Scotland"
-msgstr ""
+msgstr "Albain"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is your country of birth?"
 msgid "Wales"
-msgstr ""
+msgstr "An Bhreatain Bheag"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is your country of birth?"
 msgid "Republic of Ireland"
-msgstr ""
+msgstr "Poblacht na hÉireann"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is your country of birth?"
 msgid "Elsewhere"
-msgstr ""
+msgstr "Áit eile"
 
 #. answer-id: country-of-birth-answer-other
 msgctxt "Answer for: What is your country of birth?"
 msgid "Please specify current name of country"
-msgstr ""
+msgstr "Luaigh ainm reatha na tíre go sonrach le do thoil"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
 msgid "Northern Ireland"
-msgstr ""
+msgstr "Tuaisceart Éireann"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
 msgid "England"
-msgstr ""
+msgstr "Sasana"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
 msgid "Scotland"
-msgstr ""
+msgstr "Albain"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
 msgid "Wales"
-msgstr ""
+msgstr "An Bhreatain Bheag"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
 msgid "Republic of Ireland"
-msgstr ""
+msgstr "Poblacht na hÉireann"
 
 #. answer-id: country-of-birth-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
 msgid "Elsewhere"
-msgstr ""
+msgstr "Áit eile"
 
 #. answer-id: country-of-birth-answer-other
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> country of birth?"
 msgid "Please specify current name of country"
-msgstr ""
+msgstr "Luaigh ainm reatha na tíre go sonrach le do thoil"
 
 #. answer-id: past-usual-address-household-answer
 msgctxt "Answer for: One year ago, what was your usual address?"
-msgid "Student term time address in the UK"
-msgstr ""
+msgid "Student term-time address in the UK"
+msgstr "Seoladh mic léinn i rith an téarma sa UK"
 
 #. answer-id: past-usual-address-household-answer
 msgctxt "Answer for: One year ago, what was your usual address?"
 msgid "Another address in the UK"
-msgstr ""
+msgstr "Seoladh eile sa UK"
 
 #. answer-id: past-usual-address-household-answer
 msgctxt "Answer for: One year ago, what was your usual address?"
 msgid "An address outside the UK"
-msgstr ""
+msgstr "Seoladh taobh amuigh den UK"
 
 #. answer-id: past-usual-address-household-answer-other
 msgctxt "Answer for: One year ago, what was your usual address?"
 msgid "Please enter the country"
-msgstr ""
+msgstr "Cuir isteach an tír le do thoil"
 
 #. answer-id: past-usual-address-household-answer
 msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
-msgid "Student term time address in the UK"
-msgstr ""
+msgid "Student term-time address in the UK"
+msgstr "Seoladh mic léinn i rith an téarma sa UK"
 
 #. answer-id: past-usual-address-household-answer
 msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
 msgid "Another address in the UK"
-msgstr ""
+msgstr "Seoladh eile sa UK"
 
 #. answer-id: past-usual-address-household-answer
 msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
 msgid "An address outside the UK"
-msgstr ""
+msgstr "Seoladh taobh amuigh den UK"
 
 #. answer-id: past-usual-address-household-answer-other
 msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
 msgid "Please enter the country"
-msgstr ""
+msgstr "Cuir isteach an tír le do thoil"
 
 #. answer-id: last-year-address-answer-building
-msgctxt "Answer for: Enter details of your address one year ago"
-msgid "House name or number"
-msgstr ""
+msgctxt "Answer for: Enter details of your address one year ago."
+msgid "Address line 1"
+msgstr "Seoladh 1"
 
 #. answer-id: last-year-address-answer-street
-msgctxt "Answer for: Enter details of your address one year ago"
-msgid "Street"
-msgstr ""
+msgctxt "Answer for: Enter details of your address one year ago."
+msgid "Address line 2"
+msgstr "Seoladh 2"
 
 #. answer-id: last-year-address-answer-city
-msgctxt "Answer for: Enter details of your address one year ago"
+msgctxt "Answer for: Enter details of your address one year ago."
 msgid "Town or city"
-msgstr ""
+msgstr "Baile nó cathair"
 
 #. answer-id: last-year-address-answer-county
-msgctxt "Answer for: Enter details of your address one year ago"
+msgctxt "Answer for: Enter details of your address one year ago."
 msgid "County (optional)"
-msgstr ""
+msgstr "Contae (roghnach)"
 
 #. answer-id: last-year-address-answer-postcode
-msgctxt "Answer for: Enter details of your address one year ago"
+msgctxt "Answer for: Enter details of your address one year ago."
 msgid "Postcode"
-msgstr ""
+msgstr "Cód Poist"
 
 #. answer-id: last-year-address-answer-building
-msgctxt "Answer for: Enter details of their address one year ago"
-msgid "House name or number"
-msgstr ""
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> address one year ago."
+msgid "Address line 1"
+msgstr "Seoladh 1"
 
 #. answer-id: last-year-address-answer-street
-msgctxt "Answer for: Enter details of their address one year ago"
-msgid "Street"
-msgstr ""
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> address one year ago."
+msgid "Address line 2"
+msgstr "Seoladh 2"
 
 #. answer-id: last-year-address-answer-city
-msgctxt "Answer for: Enter details of their address one year ago"
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> address one year ago."
 msgid "Town or city"
-msgstr ""
+msgstr "Baile nó cathair"
 
 #. answer-id: last-year-address-answer-county
-msgctxt "Answer for: Enter details of their address one year ago"
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> address one year ago."
 msgid "County (optional)"
-msgstr ""
+msgstr "Contae (roghnach)"
 
 #. answer-id: last-year-address-answer-postcode
-msgctxt "Answer for: Enter details of their address one year ago"
+msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> address one year ago."
 msgid "Postcode"
-msgstr ""
+msgstr "Cód Poist"
 
 #. answer-id: passports-answer
 msgctxt "Answer for: What passports do you hold?"
 msgid "United Kingdom"
-msgstr ""
+msgstr "An Ríocht Aontaithe"
 
 #. answer-id: passports-answer
 msgctxt "Answer for: What passports do you hold?"
 msgid "Ireland"
-msgstr ""
+msgstr "Éire"
 
 #. answer-id: passports-answer
 msgctxt "Answer for: What passports do you hold?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: passport-answer-other
 msgctxt "Answer for: What passports do you hold?"
 msgid "Please specify the passports you hold"
-msgstr ""
+msgstr "Luaigh na pasanna atá agat le do thoil"
 
 #. answer-id: passports-answer-exclusive
 msgctxt "Answer for: What passports do you hold?"
 msgid "None"
-msgstr ""
+msgstr "Ceann ar bith"
 
 #. answer-id: passports-answer
 msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
 msgid "United Kingdom"
-msgstr ""
+msgstr "An Ríocht Aontaithe"
 
 #. answer-id: passports-answer
 msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
 msgid "Ireland"
-msgstr ""
+msgstr "Éire"
 
 #. answer-id: passports-answer
 msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: passport-answer-other
 msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
 msgid "Please specify the passports held"
-msgstr ""
+msgstr "Luaigh na pasanna atá agat le do thoil"
 
 #. answer-id: passports-answer-exclusive
 msgctxt "Answer for: What passports does <em>{person_name}</em> hold?"
 msgid "None"
-msgstr ""
+msgstr "Ceann ar bith"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would you describe your national identity?"
 msgid "British"
-msgstr ""
+msgstr "Briotanach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would you describe your national identity?"
 msgid "Irish"
-msgstr ""
+msgstr "Éireannach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would you describe your national identity?"
 msgid "Northern Irish"
-msgstr ""
+msgstr "Éireannach Tuaisceartach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would you describe your national identity?"
 msgid "English"
-msgstr ""
+msgstr "Sasanach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would you describe your national identity?"
 msgid "Scottish"
-msgstr ""
+msgstr "Albanach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would you describe your national identity?"
 msgid "Welsh"
-msgstr ""
+msgstr "Breatnach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would you describe your national identity?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: national-identity-answer-other
 msgctxt "Answer for: How would you describe your national identity?"
 msgid "Please describe your national identity"
-msgstr ""
+msgstr "Déan cur síos ar d'fhéiniúlacht náisiúnta le do thoil"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
 msgid "British"
-msgstr ""
+msgstr "Briotanach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
 msgid "Irish"
-msgstr ""
+msgstr "Éireannach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
 msgid "Northern Irish"
-msgstr ""
+msgstr "Éireannach Tuaisceartach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
 msgid "English"
-msgstr ""
+msgstr "Sasanach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
 msgid "Scottish"
-msgstr ""
+msgstr "Albanach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
 msgid "Welsh"
-msgstr ""
+msgstr "Breatnach"
 
 #. answer-id: national-identity-answer
 msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: national-identity-answer-other
 msgctxt "Answer for: How would <em>{person_name}</em> describe their national identity?"
 msgid "Please describe their national identity"
-msgstr ""
+msgstr "Déan cur síos ar a bhféiniúlacht náisiúnta le do thoil"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is your ethnic group?"
 msgid "White"
-msgstr ""
+msgstr "Duine geal"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is your ethnic group?"
 msgid "Chinese"
-msgstr ""
+msgstr "Síneach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is your ethnic group?"
 msgid "Irish Traveller"
-msgstr ""
+msgstr "Taistealaí Éireannach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is your ethnic group?"
 msgid "Roma"
-msgstr ""
+msgstr "Romach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is your ethnic group?"
 msgid "Indian"
-msgstr ""
+msgstr "Indiach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is your ethnic group?"
 msgid "Filipino"
-msgstr ""
+msgstr "Filipíneach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is your ethnic group?"
 msgid "Black African"
-msgstr ""
+msgstr "Duine gorm Afracach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is your ethnic group?"
 msgid "Black other"
-msgstr ""
+msgstr "Duine gorm eile"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is your ethnic group?"
 msgid "Mixed ethnic group"
-msgstr ""
+msgstr "Grúpa eitneach measctha"
+
+#. answer-id: ethnic-group-mixed
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Please specify mixed ethnic group"
+msgstr "Luaigh do ghrúpa eitneach measctha go sonrach le do thoil"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is your ethnic group?"
-msgid "Other ethnic group"
-msgstr ""
+msgid "Any other ethnic group"
+msgstr "Grúpa eitneach ar bith eile"
 
-#. answer-id: ehtnic-group-other
+#. answer-id: ethnic-group-other
 msgctxt "Answer for: What is your ethnic group?"
-msgid "Please specify other religion"
-msgstr ""
+msgid "Please specify other ethnic group"
+msgstr "Luaigh do ghrúpa eitneach eile go sonrach le do thoil"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
 msgid "White"
-msgstr ""
+msgstr "Duine geal"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
 msgid "Chinese"
-msgstr ""
+msgstr "Síneach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
 msgid "Irish Traveller"
-msgstr ""
+msgstr "Taistealaí Éireannach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
 msgid "Roma"
-msgstr ""
+msgstr "Romach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
 msgid "Indian"
-msgstr ""
+msgstr "Indiach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
 msgid "Filipino"
-msgstr ""
+msgstr "Filipíneach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
 msgid "Black African"
-msgstr ""
+msgstr "Duine gorm Afracach"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
 msgid "Black other"
-msgstr ""
+msgstr "Duine gorm eile"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
 msgid "Mixed ethnic group"
-msgstr ""
+msgstr "Grúpa eitneach measctha"
+
+#. answer-id: ethnic-group-mixed
+msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
+msgid "Please specify mixed ethnic group"
+msgstr "Luaigh do ghrúpa eitneach measctha go sonrach le do thoil"
 
 #. answer-id: ethnic-group-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
-msgid "Other ethnic group"
-msgstr ""
+msgid "Any other ethnic group"
+msgstr "Grúpa eitneach ar bith eile"
 
-#. answer-id: ehtnic-group-other
+#. answer-id: ethnic-group-other
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> ethnic group?"
-msgid "Please specify other religion"
-msgstr ""
+msgid "Please specify other ethnic group"
+msgstr "Luaigh do ghrúpa eitneach eile go sonrach le do thoil"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
 msgid "Roman Catholic"
-msgstr ""
+msgstr "Caitliceach Rómhánach"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
 msgid "Presbyterian Church in Ireland"
-msgstr ""
+msgstr "Eaglais Phreispitéireach na hÉireann"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
 msgid "Church of Ireland"
-msgstr ""
+msgstr "Eaglais na hÉireann"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
 msgid "Methodist Church in Ireland"
-msgstr ""
+msgstr "Eaglais Mhodhach na hÉireann"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: religion-answer-other
 msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
 msgid "Please specify religion, religious denomination or body"
-msgstr ""
+msgstr "Luaigh reiligiún, creideamh nó comhlacht reiligiúnach eile le do thoil"
 
-#. answer-id: religion-answer
+#. answer-id: religion-answer-exclusive
 msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
 msgid "None"
-msgstr ""
+msgstr "Ceann ar bith"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
 msgid "Roman Catholic"
-msgstr ""
+msgstr "Caitliceach Rómhánach"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
 msgid "Presbyterian Church in Ireland"
-msgstr ""
+msgstr "Eaglais Phreispitéireach na hÉireann"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
 msgid "Church of Ireland"
-msgstr ""
+msgstr "Eaglais na hÉireann"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
 msgid "Methodist Church in Ireland"
-msgstr ""
+msgstr "Eaglais Mhodhach na hÉireann"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: religion-answer-other
 msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
 msgid "Please specify religion, religious denomination or body"
-msgstr ""
+msgstr "Luaigh reiligiún, creideamh nó comhlacht reiligiúnach eile le do thoil"
 
-#. answer-id: religion-answer
+#. answer-id: religion-answer-exclusive
 msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
 msgid "None"
-msgstr ""
-
-#. answer-id: no-religion-answer
-msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
-msgid "Select one option only"
-msgstr ""
+msgstr "Ceann ar bith"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
 msgid "Roman Catholic"
-msgstr ""
+msgstr "Caitliceach Rómhánach"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
 msgid "Presbyterian Church in Ireland"
-msgstr ""
+msgstr "Eaglais Phreispitéireach na hÉireann"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
 msgid "Church of Ireland"
-msgstr ""
+msgstr "Eaglais na hÉireann"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
 msgid "Methodist Church in Ireland"
-msgstr ""
+msgstr "Eaglais Mhodhach na hÉireann"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: no-religion-answer-other
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
 msgid "Please specify religion, religious denomination or body"
-msgstr ""
+msgstr "Luaigh reiligiún, creideamh nó comhlacht reiligiúnach eile le do thoil"
 
-#. answer-id: no-religion-answer
+#. answer-id: no-religion-answer-exclusive
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
 msgid "None"
-msgstr ""
-
-#. answer-id: no-religion-answer
-msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
-msgid "Select one option only"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
 msgid "Roman Catholic"
-msgstr ""
+msgstr "Caitliceach Rómhánach"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
 msgid "Presbyterian Church in Ireland"
-msgstr ""
+msgstr "Eaglais Phreispitéireach na hÉireann"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
 msgid "Church of Ireland"
-msgstr ""
+msgstr "Eaglais na hÉireann"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
 msgid "Methodist Church in Ireland"
-msgstr ""
+msgstr "Eaglais Mhodhach na hÉireann"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: no-religion-answer-other
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
 msgid "Please specify religion, religious denomination or body"
-msgstr ""
+msgstr "Luaigh reiligiún, creideamh nó comhlacht reiligiúnach eile le do thoil"
 
-#. answer-id: no-religion-answer
+#. answer-id: no-religion-answer-exclusive
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
 msgid "None"
-msgstr ""
+msgstr "Ceann ar bith"
 
 #. answer-id: language-answer
 msgctxt "Answer for: What is your main language?"
 msgid "English"
-msgstr ""
+msgstr "Sasanach"
 
 #. answer-id: language-answer
 msgctxt "Answer for: What is your main language?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: language-answer-other
 msgctxt "Answer for: What is your main language?"
 msgid "Please specify main language"
-msgstr ""
+msgstr "Luaigh an phríomhtheanga go sonrach le do thoil"
 
 #. answer-id: language-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
 msgid "English"
-msgstr ""
+msgstr "Sasanach"
 
 #. answer-id: language-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: language-answer-other
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> main language?"
 msgid "Please specify main language"
-msgstr ""
+msgstr "Luaigh an phríomhtheanga go sonrach le do thoil"
 
 #. answer-id: english-answer
 msgctxt "Answer for: How well can you speak English?"
 msgid "Very well"
-msgstr ""
+msgstr "Go hiontach maith"
 
 #. answer-id: english-answer
 msgctxt "Answer for: How well can you speak English?"
 msgid "Well"
-msgstr ""
+msgstr "Go maith"
 
 #. answer-id: english-answer
 msgctxt "Answer for: How well can you speak English?"
 msgid "Not well"
-msgstr ""
+msgstr "Gan go maith"
 
 #. answer-id: english-answer
 msgctxt "Answer for: How well can you speak English?"
 msgid "Not at all"
-msgstr ""
+msgstr "Gan ar chor ar bith"
 
 #. answer-id: english-answer
 msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
 msgid "Very well"
-msgstr ""
+msgstr "Go hiontach maith"
 
 #. answer-id: english-answer
 msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
 msgid "Well"
-msgstr ""
+msgstr "Go maith"
 
 #. answer-id: english-answer
 msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
 msgid "Not well"
-msgstr ""
+msgstr "Gan go maith"
 
 #. answer-id: english-answer
 msgctxt "Answer for: How well can <em>{person_name}</em> speak English?"
 msgid "Not at all"
-msgstr ""
+msgstr "Ar chor ar bith"
 
 #. answer-id: understand-irish-answer
 msgctxt "Answer for: Can you understand, speak, read or write Irish?"
-msgid "Understand spoken Irish"
-msgstr ""
+msgid "Understand Irish"
+msgstr "Tuigim Gaeilge"
 
 #. answer-id: understand-irish-answer
 msgctxt "Answer for: Can you understand, speak, read or write Irish?"
 msgid "Speak Irish"
-msgstr ""
+msgstr "Labhraím Gaeilge"
 
 #. answer-id: understand-irish-answer
 msgctxt "Answer for: Can you understand, speak, read or write Irish?"
 msgid "Read Irish"
-msgstr ""
+msgstr "Léim i nGaeilge"
 
 #. answer-id: understand-irish-answer
 msgctxt "Answer for: Can you understand, speak, read or write Irish?"
 msgid "Write Irish"
-msgstr ""
+msgstr "Scríobhaim i nGaeilge"
 
 #. answer-id: understand-irish-answer-exclusive
 msgctxt "Answer for: Can you understand, speak, read or write Irish?"
 msgid "No ability"
-msgstr ""
+msgstr "Gan ábaltacht ar bith"
 
 #. answer-id: understand-irish-answer
 msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Irish?"
-msgid "Understand spoken Irish"
-msgstr ""
+msgid "Understand Irish"
+msgstr "Tuigim Gaeilge"
 
 #. answer-id: understand-irish-answer
 msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Irish?"
 msgid "Speak Irish"
-msgstr ""
+msgstr "Labhraím Gaeilge"
 
 #. answer-id: understand-irish-answer
 msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Irish?"
 msgid "Read Irish"
-msgstr ""
+msgstr "Léim i nGaeilge"
 
 #. answer-id: understand-irish-answer
 msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Irish?"
 msgid "Write Irish"
-msgstr ""
+msgstr "Scríobhaim i nGaeilge"
 
 #. answer-id: understand-irish-answer-exclusive
 msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Irish?"
 msgid "No ability"
-msgstr ""
+msgstr "Gan ábaltacht ar bith"
 
 #. answer-id: frequency-irish-answer
 msgctxt "Answer for: How often do you speak Irish?"
 msgid "Daily"
-msgstr ""
+msgstr "Go laethúil"
 
 #. answer-id: frequency-irish-answer
 msgctxt "Answer for: How often do you speak Irish?"
 msgid "Weekly"
-msgstr ""
+msgstr "Go seachtainiúil"
 
 #. answer-id: frequency-irish-answer
 msgctxt "Answer for: How often do you speak Irish?"
 msgid "Less often"
-msgstr ""
+msgstr "Níos lú minice"
 
 #. answer-id: frequency-irish-answer
 msgctxt "Answer for: How often do you speak Irish?"
 msgid "Never"
-msgstr ""
+msgstr "Ar chor ar bith"
 
 #. answer-id: frequency-irish-answer
 msgctxt "Answer for: How often does <em>{person_name}</em> speak Irish?"
 msgid "Daily"
-msgstr ""
+msgstr "Go laethúil"
 
 #. answer-id: frequency-irish-answer
 msgctxt "Answer for: How often does <em>{person_name}</em> speak Irish?"
 msgid "Weekly"
-msgstr ""
+msgstr "Go seachtainiúil"
 
 #. answer-id: frequency-irish-answer
 msgctxt "Answer for: How often does <em>{person_name}</em> speak Irish?"
 msgid "Less often"
-msgstr ""
+msgstr "Níos lú minice"
 
 #. answer-id: frequency-irish-answer
 msgctxt "Answer for: How often does <em>{person_name}</em> speak Irish?"
 msgid "Never"
-msgstr ""
+msgstr "Ar chor ar bith"
 
 #. answer-id: understand-ulster-scots-answer
 msgctxt "Answer for: Can you understand, speak, read or write Ulster-Scots?"
-msgid "Understand spoken Ulster-Scots"
-msgstr ""
+msgid "Understand Ulster-Scots"
+msgstr "Tuigim Albanais Uladh"
 
 #. answer-id: understand-ulster-scots-answer
 msgctxt "Answer for: Can you understand, speak, read or write Ulster-Scots?"
 msgid "Speak Ulster-Scots"
-msgstr ""
+msgstr "Labhraím Albanais Uladh"
 
 #. answer-id: understand-ulster-scots-answer
 msgctxt "Answer for: Can you understand, speak, read or write Ulster-Scots?"
 msgid "Read Ulster-Scots"
-msgstr ""
+msgstr "Léim in Albanais Uladh"
 
 #. answer-id: understand-ulster-scots-answer
 msgctxt "Answer for: Can you understand, speak, read or write Ulster-Scots?"
 msgid "Write Ulster-Scots"
-msgstr ""
+msgstr "Scríobhaim in Albanais Uladh"
 
 #. answer-id: understand-ulster-scots-answer-exclusive
 msgctxt "Answer for: Can you understand, speak, read or write Ulster-Scots?"
 msgid "No ability"
-msgstr ""
+msgstr "Gan ábaltacht ar bith"
 
 #. answer-id: understand-ulster-scots-answer
 msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
-msgid "Understand spoken Ulster-Scots"
-msgstr ""
+msgid "Understand Ulster-Scots"
+msgstr "Tuigim Albanais Uladh"
 
 #. answer-id: understand-ulster-scots-answer
 msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
 msgid "Speak Ulster-Scots"
-msgstr ""
+msgstr "Labhraím Albanais Uladh"
 
 #. answer-id: understand-ulster-scots-answer
 msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
 msgid "Read Ulster-Scots"
-msgstr ""
+msgstr "Léim in Albanais Uladh"
 
 #. answer-id: understand-ulster-scots-answer
 msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
 msgid "Write Ulster-Scots"
-msgstr ""
+msgstr "Scríobhaim in Albanais Uladh"
 
 #. answer-id: understand-ulster-scots-answer-exclusive
 msgctxt "Answer for: Can <em>{person_name}</em> understand, speak, read or write Ulster-Scots?"
 msgid "No ability"
-msgstr ""
+msgstr "Gan ábaltacht ar bith"
 
 #. answer-id: frequency-ulster-scots-answer
 msgctxt "Answer for: How often do you speak Ulster-Scots?"
 msgid "Daily"
-msgstr ""
+msgstr "Go laethúil"
 
 #. answer-id: frequency-ulster-scots-answer
 msgctxt "Answer for: How often do you speak Ulster-Scots?"
 msgid "Weekly"
-msgstr ""
+msgstr "Go seachtainiúil"
 
 #. answer-id: frequency-ulster-scots-answer
 msgctxt "Answer for: How often do you speak Ulster-Scots?"
 msgid "Less often"
-msgstr ""
+msgstr "Níos lú minice"
 
 #. answer-id: frequency-ulster-scots-answer
 msgctxt "Answer for: How often do you speak Ulster-Scots?"
 msgid "Never"
-msgstr ""
+msgstr "Ar chor ar bith"
 
 #. answer-id: frequency-ulster-scots-answer
 msgctxt "Answer for: How often does <em>{person_name}</em> speak Ulster-Scots?"
 msgid "Daily"
-msgstr ""
+msgstr "Go laethúil"
 
 #. answer-id: frequency-ulster-scots-answer
 msgctxt "Answer for: How often does <em>{person_name}</em> speak Ulster-Scots?"
 msgid "Weekly"
-msgstr ""
+msgstr "Go seachtainiúil"
 
 #. answer-id: frequency-ulster-scots-answer
 msgctxt "Answer for: How often does <em>{person_name}</em> speak Ulster-Scots?"
 msgid "Less often"
-msgstr ""
+msgstr "Níos lú minice"
 
 #. answer-id: frequency-ulster-scots-answer
 msgctxt "Answer for: How often does <em>{person_name}</em> speak Ulster-Scots?"
 msgid "Never"
-msgstr ""
+msgstr "Ar chor ar bith"
 
 #. answer-id: health-answer
 msgctxt "Answer for: How is your health in general?"
 msgid "Very good"
-msgstr ""
+msgstr "Go hiontach maith"
 
 #. answer-id: health-answer
 msgctxt "Answer for: How is your health in general?"
 msgid "Good"
-msgstr ""
+msgstr "Go maith"
 
 #. answer-id: health-answer
 msgctxt "Answer for: How is your health in general?"
 msgid "Fair"
-msgstr ""
+msgstr "Go measartha"
 
 #. answer-id: health-answer
 msgctxt "Answer for: How is your health in general?"
 msgid "Bad"
-msgstr ""
+msgstr "Go dona"
 
 #. answer-id: health-answer
 msgctxt "Answer for: How is your health in general?"
 msgid "Very bad"
-msgstr ""
+msgstr "Go hiontach dona"
 
 #. answer-id: health-answer
 msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
 msgid "Very good"
-msgstr ""
+msgstr "Go hiontach maith"
 
 #. answer-id: health-answer
 msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
 msgid "Good"
-msgstr ""
+msgstr "Go maith"
 
 #. answer-id: health-answer
 msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
 msgid "Fair"
-msgstr ""
+msgstr "Go measartha"
 
 #. answer-id: health-answer
 msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
 msgid "Bad"
-msgstr ""
+msgstr "Go dona"
 
 #. answer-id: health-answer
 msgctxt "Answer for: How is <em>{person_name_possessive}</em> health in general?"
 msgid "Very bad"
-msgstr ""
-
-#. answer-id: disability-limitation-answer
-msgctxt "Answer for: Are your day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
-msgid "Yes"
-msgstr ""
+msgstr "Go hiontach dona"
 
 #. answer-id: disability-limitation-answer
 msgctxt "Answer for: Are your day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
 msgid "No"
-msgstr ""
+msgstr "Níl"
 
 #. answer-id: disability-limitation-answer
-msgctxt "Answer for: Are <em>{person_name_possessive}</em> day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
-msgid "Yes"
-msgstr ""
+msgctxt "Answer for: Are your day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
+msgid "Yes, limited a little"
+msgstr "Tá, tá siad giota beag teoranta"
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Are your day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
+msgid "Yes, limited a lot"
+msgstr "Tá, tá siad teoranta go mór"
 
 #. answer-id: disability-limitation-answer
 msgctxt "Answer for: Are <em>{person_name_possessive}</em> day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
 msgid "No"
-msgstr ""
+msgstr "Níl"
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Are <em>{person_name_possessive}</em> day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
+msgid "Yes, limited a little"
+msgstr "Tá, tá siad giota beag teoranta"
+
+#. answer-id: disability-limitation-answer
+msgctxt "Answer for: Are <em>{person_name_possessive}</em> day-to-day activities limited because of a health problem, or disability which has lasted, or is expected to last, at least 12 months?"
+msgid "Yes, limited a lot"
+msgstr "Tá, tá siad teoranta go mór"
 
 #. answer-id: disability-answer
-msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Do you have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "Deafness or partial hearing loss"
-msgstr ""
+msgstr "Bodhaire nó páirtchaillteanas éisteachta"
 
 #. answer-id: disability-answer
-msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Do you have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "Blindness or partial sight loss"
-msgstr ""
+msgstr "Daille nó páirtchaillteanas radhairc"
 
 #. answer-id: disability-answer
-msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "A mobility or dexterity difficulty that limits basic physical activities"
-msgstr ""
-
-#. answer-id: disability-answer
-msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Do you have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "A mobility or dexterity difficulty, which requires the use of a wheelchair in the home"
-msgstr ""
+msgstr "Mar gheall ar dheacracht lúith nó deaslámhachta, caithfear cathaoir rothaí a úsáid sa teach"
 
 #. answer-id: disability-answer
-msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Do you have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "A mobility or dexterity difficulty that limits basic physical activities"
+msgstr "Deacracht lúith nó deaslámhachta a chuireann srian ar bhunghníomhaíochtaí fisiceacha"
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Do you have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "Shortness of breath or difficulty breathing"
-msgstr ""
+msgstr "Gearranáil nó deacracht ag análú"
 
 #. answer-id: disability-answer-exclusive
-msgctxt "Answer for: Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Do you have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "None of these conditions"
-msgstr ""
+msgstr "Ceann ar bith de na fadhbanna sláinte seo"
 
 #. answer-id: disability-answer
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Does {person_name} have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "Deafness or partial hearing loss"
-msgstr ""
+msgstr "Bodhaire nó páirtchaillteanas éisteachta"
 
 #. answer-id: disability-answer
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Does {person_name} have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "Blindness or partial sight loss"
-msgstr ""
+msgstr "Daille nó páirtchaillteanas radhairc"
 
 #. answer-id: disability-answer
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "A mobility or dexterity difficulty that limits basic physical activities"
-msgstr ""
-
-#. answer-id: disability-answer
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Does {person_name} have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "A mobility or dexterity difficulty, which requires the use of a wheelchair in the home"
-msgstr ""
+msgstr "Mar gheall ar dheacracht lúith nó deaslámhachta, caithfear cathaoir rothaí a úsáid sa teach"
 
 #. answer-id: disability-answer
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Does {person_name} have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "A mobility or dexterity difficulty that limits basic physical activities"
+msgstr "Deacracht lúith nó deaslámhachta a chuireann srian ar bhunghníomhaíochtaí fisiceacha"
+
+#. answer-id: disability-answer
+msgctxt "Answer for: Does {person_name} have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "Shortness of breath or difficulty breathing"
-msgstr ""
+msgstr "Gearranáil nó deacracht ag análú"
 
 #. answer-id: disability-answer-exclusive
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Does {person_name} have any of the following <em>physical health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "None of these conditions"
-msgstr ""
+msgstr "Ceann ar bith de na fadhbanna sláinte seo"
 
 #. answer-id: disability-other-answer
-msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "Deafness or partial hearing loss"
-msgstr ""
+msgctxt "Answer for: Do you have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "An intellectual or learning disability"
+msgstr "Míchumas intleachtúil nó foghlama"
 
 #. answer-id: disability-other-answer
-msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "Blindness or partial sight loss"
-msgstr ""
+msgctxt "Answer for: Do you have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "A learning difficulty"
+msgstr "Deacracht foghlama"
 
 #. answer-id: disability-other-answer
-msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "A mobility or dexterity difficulty that limits basic physical activities"
-msgstr ""
+msgctxt "Answer for: Do you have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "Autism or Asperger syndrome"
+msgstr "Siondróm uathachais nó Asperger"
 
 #. answer-id: disability-other-answer
-msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "A mobility or dexterity difficulty, which requires the use of a wheelchair in the home"
-msgstr ""
+msgctxt "Answer for: Do you have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "An emotional, psychological or mental health condition"
+msgstr "Fadhb mhothúchánach, shíceolaíoch nó mheabhair-shláinte"
 
 #. answer-id: disability-other-answer
-msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "Shortness of breath or difficulty breathing"
-msgstr ""
+msgctxt "Answer for: Do you have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "Frequent periods of confusion or memory loss"
+msgstr "Tréimhsí minice de mhearbhall nó de dhíchuimhne"
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Do you have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "Long-term pain or discomfort"
+msgstr "Pian nó míchompord fadtéarmach"
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Do you have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "Other condition"
+msgstr "Fadhb eile"
 
 #. answer-id: disability-other-answer-exclusive
-msgctxt "Answer for: Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Do you have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "None of these conditions"
-msgstr ""
+msgstr "Ceann ar bith de na fadhbanna sláinte seo"
 
 #. answer-id: disability-other-answer
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "Deafness or partial hearing loss"
-msgstr ""
+msgctxt "Answer for: Does {person_name} have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "An intellectual or learning disability"
+msgstr "Míchumas intleachtúil nó foghlama"
 
 #. answer-id: disability-other-answer
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "Blindness or partial sight loss"
-msgstr ""
+msgctxt "Answer for: Does {person_name} have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "A learning difficulty"
+msgstr "Deacracht foghlama"
 
 #. answer-id: disability-other-answer
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "A mobility or dexterity difficulty that limits basic physical activities"
-msgstr ""
+msgctxt "Answer for: Does {person_name} have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "Autism or Asperger syndrome"
+msgstr "Siondróm uathachais nó Asperger"
 
 #. answer-id: disability-other-answer
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "A mobility or dexterity difficulty, which requires the use of a wheelchair in the home"
-msgstr ""
+msgctxt "Answer for: Does {person_name} have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "An emotional, psychological or mental health condition"
+msgstr "Fadhb mhothúchánach, shíceolaíoch nó mheabhair-shláinte"
 
 #. answer-id: disability-other-answer
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
-msgid "Shortness of breath or difficulty breathing"
-msgstr ""
+msgctxt "Answer for: Does {person_name} have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "Frequent periods of confusion or memory loss"
+msgstr "Tréimhsí minice de mhearbhall nó de dhíchuimhne"
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Does {person_name} have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "Long-term pain or discomfort"
+msgstr "Pian nó míchompord fadtéarmach"
+
+#. answer-id: disability-other-answer
+msgctxt "Answer for: Does {person_name} have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
+msgid "Other condition"
+msgstr "Fadhb eile"
 
 #. answer-id: disability-other-answer-exclusive
-msgctxt "Answer for: Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?"
+msgctxt "Answer for: Does {person_name} have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?"
 msgid "None of these conditions"
-msgstr ""
+msgstr "Ceann ar bith de na fadhbanna sláinte seo"
 
 #. answer-id: carer-answer
 msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
 msgid "No"
-msgstr ""
+msgstr "Ní thugaim"
 
 #. answer-id: carer-answer
 msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
-msgid "Yes, 9 hours a week or less"
-msgstr ""
-
-#. answer-id: carer-answer
-msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
-msgid "Yes, 10 to 19 hours a week"
-msgstr ""
+msgid "Yes, 19 hours or less a week"
+msgstr "Tugaim, 19 uair nó níos lú sa tseachtain"
 
 #. answer-id: carer-answer
 msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
 msgid "Yes, 20 to 34 hours a week"
-msgstr ""
+msgstr "Tugaim, 20 go 34 uair sa tseachtain"
 
 #. answer-id: carer-answer
 msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
 msgid "Yes, 35 to 49 hours a week"
-msgstr ""
+msgstr "Tugaim, 35 go 49 uair sa tseachtain"
 
 #. answer-id: carer-answer
 msgctxt "Answer for: Do you look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
-msgid "Yes, 50 or more hours a week"
-msgstr ""
+msgid "Yes, 50 hours or more a week"
+msgstr "Tugaim, 50 uair nó níos mó sa tseachtain"
 
 #. answer-id: carer-answer
 msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
 msgid "No"
-msgstr ""
+msgstr "Ni thugann"
 
 #. answer-id: carer-answer
 msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
-msgid "Yes, 9 hours a week or less"
-msgstr ""
-
-#. answer-id: carer-answer
-msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
-msgid "Yes, 10 to 19 hours a week"
-msgstr ""
+msgid "Yes, 19 hours or less a week"
+msgstr "Tugann, 19 uair nó níos lú sa tseachtain"
 
 #. answer-id: carer-answer
 msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
 msgid "Yes, 20 to 34 hours a week"
-msgstr ""
+msgstr "Tugann, 20 go 34 uair sa tseachtain"
 
 #. answer-id: carer-answer
 msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
 msgid "Yes, 35 to 49 hours a week"
-msgstr ""
+msgstr "Tugann, 35 go 49 uair sa tseachtain"
 
 #. answer-id: carer-answer
 msgctxt "Answer for: Does <em>{person_name}</em> look after, or give any help or support to, anyone because they have long-term physical or mental health conditions or illnesses, or problems related to old age?"
-msgid "Yes, 50 or more hours a week"
-msgstr ""
+msgid "Yes, 50 hours or more a week"
+msgstr "Tugann, 50 uair nó níos mó sa tseachtain"
 
 #. answer-id: sexual-identity-answer
 msgctxt "Answer for: Which of the following best describes your sexual orientation?"
 msgid "Straight or Heterosexual"
-msgstr ""
+msgstr "Heitrighnéasach"
 
 #. answer-id: sexual-identity-answer
 msgctxt "Answer for: Which of the following best describes your sexual orientation?"
 msgid "Gay or Lesbian"
-msgstr ""
+msgstr "Aerach nó Leispiach"
 
 #. answer-id: sexual-identity-answer
 msgctxt "Answer for: Which of the following best describes your sexual orientation?"
 msgid "Bisexual"
-msgstr ""
+msgstr "Déghnéasach"
 
 #. answer-id: sexual-identity-answer
 msgctxt "Answer for: Which of the following best describes your sexual orientation?"
 msgid "Other sexual orientation"
-msgstr ""
+msgstr "Claonadh gnéis eile"
 
 #. answer-id: sexual-identity-answer-other
 msgctxt "Answer for: Which of the following best describes your sexual orientation?"
-msgid "Please specify their sexual orientation"
-msgstr ""
+msgid "Please specify sexual orientation"
+msgstr "Luaigh do chlaonadh gnéis go sonrach le do thoil"
 
-#. answer-id: sexual-identity-answer
+#. answer-id: sexual-identity-answer-exclusive
 msgctxt "Answer for: Which of the following best describes your sexual orientation?"
 msgid "Prefer not to say"
-msgstr ""
+msgstr "Níorbh fhearr liom a rá"
 
 #. answer-id: sexual-identity-answer
 msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
 msgid "Straight or Heterosexual"
-msgstr ""
+msgstr "Heitrighnéasach"
 
 #. answer-id: sexual-identity-answer
 msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
 msgid "Gay or Lesbian"
-msgstr ""
+msgstr "Aerach nó Leispiach"
 
 #. answer-id: sexual-identity-answer
 msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
 msgid "Bisexual"
-msgstr ""
+msgstr "Déghnéasach"
 
 #. answer-id: sexual-identity-answer
 msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
 msgid "Other sexual orientation"
-msgstr ""
+msgstr "Claonadh gnéis eile"
 
 #. answer-id: sexual-identity-answer-other
 msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
-msgid "Please specify their sexual orientation"
-msgstr ""
+msgid "Please specify sexual orientation"
+msgstr "Luaigh a gclaonadh gnéis go sonrach le do thoil"
 
-#. answer-id: sexual-identity-answer
+#. answer-id: sexual-identity-answer-exclusive
 msgctxt "Answer for: Which of the following best describes <em>{person_name_possessive}</em> sexual orientation?"
 msgid "Prefer not to say"
-msgstr ""
-
-#. answer-id: school-address-details-answer-building
-msgctxt "Answer for: What address do you travel to for your course of study, including school?"
-msgid "Building name or number"
-msgstr ""
-
-#. answer-id: school-address-details-answer-street
-msgctxt "Answer for: What address do you travel to for your course of study, including school?"
-msgid "Street"
-msgstr ""
-
-#. answer-id: school-address-details-answer-city
-msgctxt "Answer for: What address do you travel to for your course of study, including school?"
-msgid "Town or city"
-msgstr ""
-
-#. answer-id: school-address-details-answer-county
-msgctxt "Answer for: What address do you travel to for your course of study, including school?"
-msgid "County (optional)"
-msgstr ""
-
-#. answer-id: school-address-details-answer-postcode
-msgctxt "Answer for: What address do you travel to for your course of study, including school?"
-msgid "Postcode"
-msgstr ""
-
-#. answer-id: school-address-details-answer-building
-msgctxt "Answer for: What address does <em>{person_name}</em> travel to for their course of study, including school?"
-msgid "Building name or number"
-msgstr ""
-
-#. answer-id: school-address-details-answer-street
-msgctxt "Answer for: What address does <em>{person_name}</em> travel to for their course of study, including school?"
-msgid "Street"
-msgstr ""
-
-#. answer-id: school-address-details-answer-city
-msgctxt "Answer for: What address does <em>{person_name}</em> travel to for their course of study, including school?"
-msgid "Town or city"
-msgstr ""
-
-#. answer-id: school-address-details-answer-county
-msgctxt "Answer for: What address does <em>{person_name}</em> travel to for their course of study, including school?"
-msgid "County (optional)"
-msgstr ""
-
-#. answer-id: school-address-details-answer-postcode
-msgctxt "Answer for: What address does <em>{person_name}</em> travel to for their course of study, including school?"
-msgid "Postcode"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How do you usually travel to your place of study, including school?"
-msgid "Driving a car or van"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How do you usually travel to your place of study, including school?"
-msgid "Passenger in a car or van"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How do you usually travel to your place of study, including school?"
-msgid "Car or van pool, sharing driving"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How do you usually travel to your place of study, including school?"
-msgid "Bus, minibus or coach (public or private)"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How do you usually travel to your place of study, including school?"
-msgid "On foot"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How do you usually travel to your place of study, including school?"
-msgid "Taxi"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How do you usually travel to your place of study, including school?"
-msgid "Train"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How do you usually travel to your place of study, including school?"
-msgid "Bicycle"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How do you usually travel to your place of study, including school?"
-msgid "Motorcycle, scooter or moped"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How do you usually travel to your place of study, including school?"
-msgid "Other"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
-msgid "Driving a car or van"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
-msgid "Passenger in a car or van"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
-msgid "Car or van pool, sharing driving"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
-msgid "Bus, minibus or coach (public or private)"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
-msgid "On foot"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
-msgid "Taxi"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
-msgid "Train"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
-msgid "Bicycle"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
-msgid "Motorcycle, scooter or moped"
-msgstr ""
-
-#. answer-id: school-travel-mode-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their place of study, including school?"
-msgid "Other"
-msgstr ""
+msgstr "Níorbh fhearr liom a rá"
 
 #. answer-id: degree-answer
 msgctxt "Answer for: Have you achieved a qualification at degree level or above?"
 msgid "Yes"
-msgstr ""
+msgstr "Bhain"
 
 #. answer-id: degree-answer
 msgctxt "Answer for: Have you achieved a qualification at degree level or above?"
 msgid "No"
-msgstr ""
+msgstr "Níor bhain"
 
 #. answer-id: degree-answer
 msgctxt "Answer for: Has <em>{person_name}</em> achieved a qualification at degree level or above?"
 msgid "Yes"
-msgstr ""
+msgstr "Bhain"
 
 #. answer-id: degree-answer
 msgctxt "Answer for: Has <em>{person_name}</em> achieved a qualification at degree level or above?"
 msgid "No"
-msgstr ""
-
-#. answer-id: nvq-level-answer
-msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
-msgid "NVQ level 3 or equivalent"
-msgstr ""
-
-#. answer-id: nvq-level-answer
-msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
-msgid "NVQ level 2 or equivalent"
-msgstr ""
-
-#. answer-id: nvq-level-answer
-msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
-msgid "NVQ level 1 or equivalent"
-msgstr ""
-
-#. answer-id: nvq-level-answer-exclusive
-msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
-msgid "None of these apply"
-msgstr ""
-
-#. answer-id: nvq-level-answer
-msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
-msgid "NVQ level 3 or equivalent"
-msgstr ""
-
-#. answer-id: nvq-level-answer
-msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
-msgid "NVQ level 2 or equivalent"
-msgstr ""
-
-#. answer-id: nvq-level-answer
-msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
-msgid "NVQ level 1 or equivalent"
-msgstr ""
-
-#. answer-id: nvq-level-answer-exclusive
-msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
-msgid "None of these apply"
-msgstr ""
-
-#. answer-id: a-level-answer
-msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
-msgid "2 or more A levels"
-msgstr ""
-
-#. answer-id: a-level-answer
-msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
-msgid "1 A level"
-msgstr ""
-
-#. answer-id: a-level-answer
-msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
-msgid "1 AS level"
-msgstr ""
-
-#. answer-id: a-level-answer-exclusive
-msgctxt "Answer for: Have you achieved an AS, A level or equivalent qualification?"
-msgid "None of these apply"
-msgstr ""
-
-#. answer-id: a-level-answer
-msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
-msgid "2 or more A levels"
-msgstr ""
-
-#. answer-id: a-level-answer
-msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
-msgid "1 A level"
-msgstr ""
-
-#. answer-id: a-level-answer
-msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
-msgid "1 AS level"
-msgstr ""
-
-#. answer-id: a-level-answer-exclusive
-msgctxt "Answer for: Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?"
-msgid "None of these apply"
-msgstr ""
+msgstr "Níor bhain"
 
 #. answer-id: gcse-answer
 msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
 msgid "5 or more GCSEs grades A* to C or 9 to 4"
-msgstr ""
+msgstr "5 GCSE nó níos mó gráid A* go C nó 9 go 4"
 
 #. answer-id: gcse-answer
 msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
 msgid "Any other GCSEs"
-msgstr ""
-
-#. answer-id: gcse-answer
-msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
-msgid "Basic skills course"
-msgstr ""
+msgstr "GCSE ar bith eile"
 
 #. answer-id: gcse-answer-exclusive
 msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
 msgid "None of these apply"
-msgstr ""
+msgstr "Ní bhaineann ceann ar bith díobh seo"
 
 #. answer-id: gcse-answer
 msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
 msgid "5 or more GCSEs grades A* to C or 9 to 4"
-msgstr ""
+msgstr "5 GCSE nó níos mó gráid A* go C nó 9 go 4"
 
 #. answer-id: gcse-answer
 msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
 msgid "Any other GCSEs"
-msgstr ""
-
-#. answer-id: gcse-answer
-msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
-msgid "Basic skills course"
-msgstr ""
+msgstr "GCSE ar bith eile"
 
 #. answer-id: gcse-answer-exclusive
 msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
 msgid "None of these apply"
-msgstr ""
+msgstr "Ní bhaineann ceann ar bith díobh seo"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Have you achieved an A level, AS level or equivalent qualifications?"
+msgid "2 or more A levels"
+msgstr "2 Ardleibhéal nó níos mó"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Have you achieved an A level, AS level or equivalent qualifications?"
+msgid "1 A level"
+msgstr "1 Ardleibhéal"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Have you achieved an A level, AS level or equivalent qualifications?"
+msgid "1 AS level"
+msgstr "1 leibhéal AS"
+
+#. answer-id: a-level-answer-exclusive
+msgctxt "Answer for: Have you achieved an A level, AS level or equivalent qualifications?"
+msgid "None of these apply"
+msgstr "Ní bhaineann ceann ar bith díobh seo"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an A level, AS level or equivalent qualifications?"
+msgid "2 or more A levels"
+msgstr "2 Ardleibhéal nó níos mó"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an A level, AS level or equivalent qualifications?"
+msgid "1 A level"
+msgstr "1 Ardleibhéal"
+
+#. answer-id: a-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an A level, AS level or equivalent qualifications?"
+msgid "1 AS level"
+msgstr "1 leibhéal AS"
+
+#. answer-id: a-level-answer-exclusive
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an A level, AS level or equivalent qualifications?"
+msgid "None of these apply"
+msgstr "Ní bhaineann ceann ar bith díobh seo"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 3 or equivalent"
+msgstr "NVQ leibhéal 3 nó a chomhionann"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 2 or equivalent"
+msgstr "NVQ leibhéal 2 nó a chomhionann"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 1 or equivalent"
+msgstr "NVQ leibhéal 1 nó a chomhionann"
+
+#. answer-id: nvq-level-answer-exclusive
+msgctxt "Answer for: Have you achieved an NVQ or equivalent qualification?"
+msgid "None of these apply"
+msgstr "Ní bhaineann ceann ar bith díobh seo"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 3 or equivalent"
+msgstr "NVQ leibhéal 3 nó a chomhionann"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 2 or equivalent"
+msgstr "NVQ leibhéal 2 nó a chomhionann"
+
+#. answer-id: nvq-level-answer
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "NVQ level 1 or equivalent"
+msgstr "NVQ leibhéal 1 nó a chomhionann"
+
+#. answer-id: nvq-level-answer-exclusive
+msgctxt "Answer for: Has <em>{person_name}</em> achieved an NVQ or equivalent qualification?"
+msgid "None of these apply"
+msgstr "Ní bhaineann ceann ar bith díobh seo"
 
 #. answer-id: other-qualifications-answer
 msgctxt "Answer for: Have you achieved any other qualifications, either within or outside of Northern Ireland?"
-msgid "Yes, in England or Wales"
-msgstr ""
+msgid "Yes"
+msgstr "Bhain"
 
 #. answer-id: other-qualifications-answer
-msgctxt "Answer for: Have you achieved any other qualifications, either within or outside of Northern Ireland?"
-msgid "Yes, anywhere outside of England and Wales"
-msgstr ""
-
-#. answer-id: other-qualifications-answer-exclusive
 msgctxt "Answer for: Have you achieved any other qualifications, either within or outside of Northern Ireland?"
 msgid "No qualifications"
-msgstr ""
+msgstr "Gan cáilíocht ar bith"
 
 #. answer-id: other-qualifications-answer
 msgctxt "Answer for: Has <em>{person_name}</em> achieved any other qualifications?"
-msgid "Yes, in England or Wales"
-msgstr ""
+msgid "Yes"
+msgstr "Bhain"
 
 #. answer-id: other-qualifications-answer
-msgctxt "Answer for: Has <em>{person_name}</em> achieved any other qualifications?"
-msgid "Yes, anywhere outside of England and Wales"
-msgstr ""
-
-#. answer-id: other-qualifications-answer-exclusive
 msgctxt "Answer for: Has <em>{person_name}</em> achieved any other qualifications?"
 msgid "No qualifications"
-msgstr ""
+msgstr "Gan cáilíocht ar bith"
 
 #. answer-id: apprenticeship-answer
 msgctxt "Answer for: Have you completed an apprenticeship?"
 msgid "Yes"
-msgstr ""
+msgstr "Chríochnaigh"
 
 #. answer-id: apprenticeship-answer
 msgctxt "Answer for: Have you completed an apprenticeship?"
 msgid "No"
-msgstr ""
+msgstr "Níor chríochnaigh"
 
 #. answer-id: apprenticeship-answer
 msgctxt "Answer for: Has <em>{person_name}</em> completed an apprenticeship?"
 msgid "Yes"
-msgstr ""
+msgstr "Chríochnaigh"
 
 #. answer-id: apprenticeship-answer
 msgctxt "Answer for: Has <em>{person_name}</em> completed an apprenticeship?"
 msgid "No"
-msgstr ""
+msgstr "Níor chríochnaigh"
 
 #. answer-id: armed-forces-answer
-msgctxt "Answer for: Have you previously served in the UK Armed Forces?"
+msgctxt "Answer for: Have you <em>previously</em> served in the UK Armed Forces?"
 msgid "No"
-msgstr ""
+msgstr "Ní dhearna"
 
 #. answer-id: armed-forces-answer
-msgctxt "Answer for: Have you previously served in the UK Armed Forces?"
+msgctxt "Answer for: Have you <em>previously</em> served in the UK Armed Forces?"
 msgid "Yes, previously served in Regular Armed Forces"
-msgstr ""
+msgstr "Rinne mé seirbhís sna Fórsaí Armtha Rialta roimhe"
 
 #. answer-id: armed-forces-answer
-msgctxt "Answer for: Have you previously served in the UK Armed Forces?"
+msgctxt "Answer for: Have you <em>previously</em> served in the UK Armed Forces?"
 msgid "Yes, previously served in Reserve Armed Forces"
-msgstr ""
+msgstr "Rinne mé seirbhís sna Fórsaí Armtha Cúltaca roimhe"
 
 #. answer-id: armed-forces-answer
-msgctxt "Answer for: Has <em>{person_name}</em> previously served in the UK Armed Forces?"
+msgctxt "Answer for: Has <em>{person_name}</em> <em>previously</em> served in the UK Armed Forces?"
 msgid "No"
-msgstr ""
+msgstr "Ní dhearna"
 
 #. answer-id: armed-forces-answer
-msgctxt "Answer for: Has <em>{person_name}</em> previously served in the UK Armed Forces?"
+msgctxt "Answer for: Has <em>{person_name}</em> <em>previously</em> served in the UK Armed Forces?"
 msgid "Yes, previously served in Regular Armed Forces"
-msgstr ""
+msgstr "Rinne mé seirbhís sna Fórsaí Armtha Rialta roimhe"
 
 #. answer-id: armed-forces-answer
-msgctxt "Answer for: Has <em>{person_name}</em> previously served in the UK Armed Forces?"
+msgctxt "Answer for: Has <em>{person_name}</em> <em>previously</em> served in the UK Armed Forces?"
 msgid "Yes, previously served in Reserve Armed Forces"
-msgstr ""
+msgstr "Rinne mé seirbhís sna Fórsaí Armtha Cúltaca roimhe"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: In the last seven days, were you doing any of the following?"
 msgid "Working as an employee"
-msgstr ""
+msgstr "Ag obair mar fhostaí"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: In the last seven days, were you doing any of the following?"
 msgid "Self-employed or freelance"
-msgstr ""
+msgstr "Féinfhostaithe nó ag obair ar bhonn neamhspleách"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: In the last seven days, were you doing any of the following?"
 msgid "Temporarily away from work ill, on holiday or temporarily laid off"
-msgstr ""
+msgstr "Ar shiúl ón obair go sealadach de dheasca tinnis, ar saoire nó scaoilte chun bealaigh go sealadach"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: In the last seven days, were you doing any of the following?"
 msgid "On maternity or paternity leave"
-msgstr ""
+msgstr "Ar saoire mháithreachais nó atharthachta"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: In the last seven days, were you doing any of the following?"
 msgid "Doing any other kind of paid work"
-msgstr ""
+msgstr "Ag déanamh obair íoctha ar bith eile"
 
 #. answer-id: employment-status-answer-exclusive
 msgctxt "Answer for: In the last seven days, were you doing any of the following?"
 msgid "None of these apply"
-msgstr ""
+msgstr "Ní bhaineann ceann ar bith díobh seo"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
 msgid "Working as an employee"
-msgstr ""
+msgstr "Ag obair mar fhostaí"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
 msgid "Self-employed or freelance"
-msgstr ""
+msgstr "Féinfhostaithe nó ag obair ar bhonn neamhspleách"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
 msgid "Temporarily away from work ill, on holiday or temporarily laid off"
-msgstr ""
+msgstr "Ar shiúl ón obair go sealadach de dheasca tinnis, ar saoire nó scaoilte chun bealaigh go sealadach"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
 msgid "On maternity or paternity leave"
-msgstr ""
+msgstr "Ar saoire mháithreachais nó atharthachta"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
 msgid "Doing any other kind of paid work"
-msgstr ""
+msgstr "Ag déanamh obair íoctha ar bith eile"
 
 #. answer-id: employment-status-answer-exclusive
 msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> doing any of the following?"
 msgid "None of these apply"
-msgstr ""
+msgstr "Ní bhaineann ceann ar bith díobh seo"
 
 #. answer-id: employment-type-answer
 msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
 msgid "Retired"
-msgstr ""
+msgstr "Ar scor"
 
 #. answer-id: employment-type-answer
 msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
 msgid "Studying"
-msgstr ""
+msgstr "Ag staidéar"
 
 #. answer-id: employment-type-answer
 msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
 msgid "Looking after home or family"
-msgstr ""
+msgstr "Ag tabhairt aire don teach nó don teaghlach"
 
 #. answer-id: employment-type-answer
 msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
 msgid "Long-term sick or disabled"
-msgstr ""
+msgstr "Tinn nó míchumasach san fhadtéarma"
 
 #. answer-id: employment-type-answer
 msgctxt "Answer for: Which of the following describes what you were doing in the last seven days?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: employment-type-answer
 msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
 msgid "Retired"
-msgstr ""
+msgstr "Ar scor"
 
 #. answer-id: employment-type-answer
 msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
 msgid "Studying"
-msgstr ""
+msgstr "Ag staidéar"
 
 #. answer-id: employment-type-answer
 msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
 msgid "Looking after home or family"
-msgstr ""
+msgstr "Ag tabhairt aire don teach nó don teaghlach"
 
 #. answer-id: employment-type-answer
 msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
 msgid "Long-term sick or disabled"
-msgstr ""
+msgstr "Tinn nó míchumasach san fhadtéarma"
 
 #. answer-id: employment-type-answer
 msgctxt "Answer for: Which of the following describes what <em>{person_name}</em> was doing in the last seven days?"
 msgid "Other"
-msgstr ""
+msgstr "Eile"
 
 #. answer-id: jobseeker-answer
 msgctxt "Answer for: In the last four weeks, were you actively looking for any kind of paid work?"
 msgid "Yes"
-msgstr ""
+msgstr "Bhí"
 
 #. answer-id: jobseeker-answer
 msgctxt "Answer for: In the last four weeks, were you actively looking for any kind of paid work?"
 msgid "No"
-msgstr ""
+msgstr "Ní raibh"
 
 #. answer-id: jobseeker-answer
 msgctxt "Answer for: In the last four weeks, was <em>{person_name}</em> actively looking for any kind of paid work?"
 msgid "Yes"
-msgstr ""
+msgstr "Bhí"
 
 #. answer-id: jobseeker-answer
 msgctxt "Answer for: In the last four weeks, was <em>{person_name}</em> actively looking for any kind of paid work?"
 msgid "No"
-msgstr ""
+msgstr "Ní raibh"
 
 #. answer-id: job-availability-answer
-msgctxt "Answer for: Are you available to start work in the next two weeks?"
+msgctxt "Answer for: If a job became available now, could you start it within two weeks?"
 msgid "Yes"
-msgstr ""
+msgstr "D’fhéadfainn"
 
 #. answer-id: job-availability-answer
-msgctxt "Answer for: Are you available to start work in the next two weeks?"
+msgctxt "Answer for: If a job became available now, could you start it within two weeks?"
 msgid "No"
-msgstr ""
+msgstr "Ní fhéadfainn"
 
 #. answer-id: job-availability-answer
-msgctxt "Answer for: Is <em>{person_name}</em> available to start work in the next two weeks?"
+msgctxt "Answer for: If a job became available now, could <em>{person_name}</em> start it within two weeks?"
 msgid "Yes"
-msgstr ""
+msgstr "D’fhéadfadh sé/sí"
 
 #. answer-id: job-availability-answer
-msgctxt "Answer for: Is <em>{person_name}</em> available to start work in the next two weeks?"
+msgctxt "Answer for: If a job became available now, could <em>{person_name}</em> start it within two weeks?"
 msgid "No"
-msgstr ""
+msgstr "Ní fhéadfadh sé/sí"
 
 #. answer-id: job-pending-answer
 msgctxt "Answer for: In the last seven days, were you waiting to start a job already accepted?"
 msgid "Yes"
-msgstr ""
+msgstr "Bhí"
 
 #. answer-id: job-pending-answer
 msgctxt "Answer for: In the last seven days, were you waiting to start a job already accepted?"
 msgid "No"
-msgstr ""
+msgstr "Ní raibh"
 
 #. answer-id: job-pending-answer
 msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> waiting to start a job already accepted?"
 msgid "Yes"
-msgstr ""
+msgstr "Bhí"
 
 #. answer-id: job-pending-answer
 msgctxt "Answer for: In the last seven days, was <em>{person_name}</em> waiting to start a job already accepted?"
 msgid "No"
-msgstr ""
+msgstr "Ní raibh"
 
 #. answer-id: ever-worked-answer
 msgctxt "Answer for: Have you ever done any paid work?"
 msgid "Yes, in the last 12 months"
-msgstr ""
+msgstr "Rinne, sna 12 mhí déanacha"
 
 #. answer-id: ever-worked-answer
 msgctxt "Answer for: Have you ever done any paid work?"
 msgid "Yes, but not in the last 12 months"
-msgstr ""
+msgstr "Rinne, ach gan sna 12 mhí déanacha"
 
 #. answer-id: ever-worked-answer
 msgctxt "Answer for: Have you ever done any paid work?"
 msgid "No, have never worked"
-msgstr ""
+msgstr "Ní dhearna mé obair ar bith riamh roimhe"
 
 #. answer-id: ever-worked-answer
 msgctxt "Answer for: Has <em>{person_name}</em> ever done any paid work?"
 msgid "Yes, in the last 12 months"
-msgstr ""
+msgstr "Rinne, sna 12 mhí déanacha"
 
 #. answer-id: ever-worked-answer
 msgctxt "Answer for: Has <em>{person_name}</em> ever done any paid work?"
 msgid "Yes, but not in the last 12 months"
-msgstr ""
+msgstr "Rinne, ach gan sna 12 mhí déanacha"
 
 #. answer-id: ever-worked-answer
 msgctxt "Answer for: Has <em>{person_name}</em> ever done any paid work?"
 msgid "No, has never worked"
-msgstr ""
+msgstr "Ní dhearna obair ar bith riamh roimhe"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In your main job, what is your employment status?"
 msgid "Employee"
-msgstr ""
+msgstr "Fostaí"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In your main job, what is your employment status?"
 msgid "Self-employed or freelance without employees"
-msgstr ""
+msgstr "Féinfhostaithe nó ag obair go neamhspleách gan fostaí ar bith"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In your main job, what is your employment status?"
 msgid "Self-employed with employees"
-msgstr ""
+msgstr "Féinfhostaithe le fostaithe"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In their main job, what is <em>{person_name_possessive}</em> employment status?"
 msgid "Employee"
-msgstr ""
+msgstr "Fostaí"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In their main job, what is <em>{person_name_possessive}</em> employment status?"
 msgid "Self-employed or freelance without employees"
-msgstr ""
+msgstr "Féinfhostaithe nó ag obair go neamhspleách gan fostaí ar bith"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In their main job, what is <em>{person_name_possessive}</em> employment status?"
 msgid "Self-employed with employees"
-msgstr ""
+msgstr "Féinfhostaithe le fostaithe"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In your main job, what was your employment status?"
 msgid "Employee"
-msgstr ""
+msgstr "Fostaí"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In your main job, what was your employment status?"
 msgid "Self-employed or freelance without employees"
-msgstr ""
+msgstr "Féinfhostaithe nó ag obair go neamhspleách gan fostaí ar bith"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In your main job, what was your employment status?"
 msgid "Self-employed with employees"
-msgstr ""
+msgstr "Féinfhostaithe le fostaithe"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In their main job, what was <em>{person_name_possessive}</em> employment status?"
 msgid "Employee"
-msgstr ""
+msgstr "Fostaí"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In their main job, what was <em>{person_name_possessive}</em> employment status?"
 msgid "Self-employed or freelance without employees"
-msgstr ""
+msgstr "Féinfhostaithe nó ag obair go neamhspleách gan fostaí ar bith"
 
 #. answer-id: main-job-type-answer
 msgctxt "Answer for: In their main job, what was <em>{person_name_possessive}</em> employment status?"
 msgid "Self-employed with employees"
-msgstr ""
+msgstr "Féinfhostaithe le fostaithe"
 
 #. answer-id: business-name-answer
 msgctxt "Answer for: What is the name of the organisation or business you work for?"
 msgid "Organisation or business name"
-msgstr ""
+msgstr "Ainm na heagraíochta nó an ghnó"
 
 #. answer-id: no-business-name-answer
 msgctxt "Answer for: What is the name of the organisation or business you work for?"
 msgid "No organisation or work for a private individual"
-msgstr ""
+msgstr "Eagraíocht nó obair ar bith do dhuine aonair príobháideach"
 
 #. answer-id: business-name-answer
 msgctxt "Answer for: What is the name of the organisation or business <em>{person_name}</em> works for?"
 msgid "Organisation or business name"
-msgstr ""
+msgstr "Ainm na heagraíochta nó an ghnó"
 
 #. answer-id: no-business-name-answer
 msgctxt "Answer for: What is the name of the organisation or business <em>{person_name}</em> works for?"
-msgid "No organisation or work for a private individual"
-msgstr ""
+msgid "No organisation or works for a private individual"
+msgstr "Eagraíocht nó obair ar bith do dhuine aonair príobháideach"
 
 #. answer-id: business-name-answer
 msgctxt "Answer for: What was the name of the organisation or business you worked for?"
 msgid "Organisation or business name"
-msgstr ""
+msgstr "Ainm na heagraíochta nó an ghnó"
 
 #. answer-id: no-business-name-answer
 msgctxt "Answer for: What was the name of the organisation or business you worked for?"
 msgid "No organisation or worked for a private individual"
-msgstr ""
+msgstr "Eagraíocht nó obair ar bith do dhuine aonair príobháideach"
 
 #. answer-id: business-name-answer
 msgctxt "Answer for: What was the name of the organisation or business <em>{person_name}</em> worked for?"
 msgid "Organisation or business name"
-msgstr ""
+msgstr "Ainm na heagraíochta nó an ghnó"
 
 #. answer-id: no-business-name-answer
 msgctxt "Answer for: What was the name of the organisation or business <em>{person_name}</em> worked for?"
 msgid "No organisation or worked for a private individual"
-msgstr ""
+msgstr "Eagraíocht nó obair ar bith do dhuine aonair príobháideach"
 
 #. answer-id: job-title-answer
 msgctxt "Answer for: What is your full job title?"
 msgid "Job title"
-msgstr ""
+msgstr "Teideal poist"
 
 #. answer-id: job-title-answer
 msgctxt "Answer for: What is <em>{person_name_possessive}</em> full job title?"
 msgid "Job title"
-msgstr ""
+msgstr "Teideal poist"
 
 #. answer-id: job-title-answer
 msgctxt "Answer for: What was your full job title?"
 msgid "Job title"
-msgstr ""
+msgstr "Teideal poist"
 
 #. answer-id: job-title-answer
 msgctxt "Answer for: What was <em>{person_name_possessive}</em> full job title?"
 msgid "Job title"
-msgstr ""
+msgstr "Teideal poist"
 
 #. answer-id: job-description-answer
-msgctxt "Answer for: Briefly describe what you do in your main job?"
-msgid "Description"
-msgstr ""
+msgctxt "Answer for: Briefly describe what you do in your main job."
+msgid "Job description"
+msgstr "Cur síos poist"
 
 #. answer-id: job-description-answer
-msgctxt "Answer for: Briefly describe what <em>{person_name}</em> does in their main job?"
-msgid "Description"
-msgstr ""
+msgctxt "Answer for: Briefly describe what <em>{person_name}</em> does in their main job."
+msgid "Job description"
+msgstr "Cur síos poist"
 
 #. answer-id: job-description-answer
-msgctxt "Answer for: Briefly describe what you did in your main job?"
-msgid "Description"
-msgstr ""
+msgctxt "Answer for: Briefly describe what you did in your main job."
+msgid "Job description"
+msgstr "Cur síos poist"
 
 #. answer-id: job-description-answer
-msgctxt "Answer for: Briefly describe what <em>{person_name}</em> did in their main job?"
-msgid "Description"
-msgstr ""
+msgctxt "Answer for: Briefly describe what <em>{person_name}</em> did in their main job."
+msgid "Job description"
+msgstr "Cur síos poist"
 
 #. answer-id: employers-business-answer
 msgctxt "Answer for: What is the main activity of your organisation, business or freelance work?"
-msgid "Description"
-msgstr ""
+msgid "Main activity"
+msgstr "Príomhghníomhaíocht"
 
 #. answer-id: employers-business-answer
 msgctxt "Answer for: What is the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
-msgid "Description"
-msgstr ""
+msgid "Main activity"
+msgstr "Príomhghníomhaíocht"
 
 #. answer-id: employers-business-answer
 msgctxt "Answer for: What was the main activity of your organisation, business or freelance work?"
-msgid "Description"
-msgstr ""
+msgid "Main activity"
+msgstr "Príomhghníomhaíocht"
 
 #. answer-id: employers-business-answer
 msgctxt "Answer for: What was the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
-msgid "Description"
-msgstr ""
+msgid "Main activity"
+msgstr "Príomhghníomhaíocht"
 
 #. answer-id: supervise-answer
 msgctxt "Answer for: Do you supervise or oversee the work of other employees on a day-to-day basis?"
 msgid "Yes"
-msgstr ""
+msgstr "Déanaim"
 
 #. answer-id: supervise-answer
 msgctxt "Answer for: Do you supervise or oversee the work of other employees on a day-to-day basis?"
 msgid "No"
-msgstr ""
+msgstr "Ní dhéanaim"
 
 #. answer-id: supervise-answer
 msgctxt "Answer for: Does <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
 msgid "Yes"
-msgstr ""
+msgstr "Déanann"
 
 #. answer-id: supervise-answer
 msgctxt "Answer for: Does <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
 msgid "No"
-msgstr ""
+msgstr "Ní dhéanann"
 
 #. answer-id: supervise-answer
 msgctxt "Answer for: Did you supervise or oversee the work of other employees on a day-to-day basis?"
 msgid "Yes"
-msgstr ""
+msgstr "Rinne mé"
 
 #. answer-id: supervise-answer
 msgctxt "Answer for: Did you supervise or oversee the work of other employees on a day-to-day basis?"
 msgid "No"
-msgstr ""
+msgstr "Ní dhearna mé"
 
 #. answer-id: supervise-answer
 msgctxt "Answer for: Did <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
 msgid "Yes"
-msgstr ""
+msgstr "Rinne"
 
 #. answer-id: supervise-answer
 msgctxt "Answer for: Did <em>{person_name}</em> supervise or oversee the work of other employees on a day-to-day basis?"
 msgid "No"
-msgstr ""
+msgstr "Ní dhearna"
 
 #. answer-id: hours-worked-answer
 msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
 msgid "0 to 15 hours"
-msgstr ""
+msgstr "0 go 15 huaire"
 
 #. answer-id: hours-worked-answer
 msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
 msgid "16 to 30 hours"
-msgstr ""
+msgstr "16 go 30 uair"
 
 #. answer-id: hours-worked-answer
 msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
 msgid "31 to 48 hours"
-msgstr ""
+msgstr "31 go 48 uair"
 
 #. answer-id: hours-worked-answer
 msgctxt "Answer for: In your main job, how many hours a week do you usually work?"
 msgid "49 hours or more"
-msgstr ""
+msgstr "49 uair nó níos mó"
 
 #. answer-id: hours-worked-answer
 msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
 msgid "0 to 15 hours"
-msgstr ""
+msgstr "0 go 15 huaire"
 
 #. answer-id: hours-worked-answer
 msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
 msgid "16 to 30 hours"
-msgstr ""
+msgstr "16 go 30 uair"
 
 #. answer-id: hours-worked-answer
 msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
 msgid "31 to 48 hours"
-msgstr ""
+msgstr "31 go 48 uair"
 
 #. answer-id: hours-worked-answer
 msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week do they usually work?"
 msgid "49 hours or more"
-msgstr ""
+msgstr "49 uair nó níos mó"
 
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to work?"
-msgid "Work mainly at or from home"
-msgstr ""
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week did you usually work?"
+msgid "0 to 15 hours"
+msgstr "0 go 15 huaire"
 
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to work?"
-msgid "Underground, metro, light rail or tram"
-msgstr ""
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week did you usually work?"
+msgid "16 to 30 hours"
+msgstr "16 go 30 uair"
 
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to work?"
-msgid "Train"
-msgstr ""
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week did you usually work?"
+msgid "31 to 48 hours"
+msgstr "31 go 48 uair"
 
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to work?"
-msgid "Bus, minibus or coach"
-msgstr ""
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In your main job, how many hours a week did you usually work?"
+msgid "49 hours or more"
+msgstr "49 uair nó níos mó"
 
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to work?"
-msgid "Taxi"
-msgstr ""
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week did they usually work?"
+msgid "0 to 15 hours"
+msgstr "0 go 15 huaire"
 
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to work?"
-msgid "Motorcycle, scooter or moped"
-msgstr ""
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week did they usually work?"
+msgid "16 to 30 hours"
+msgstr "16 go 30 uair"
 
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to work?"
-msgid "Driving a car or van"
-msgstr ""
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week did they usually work?"
+msgid "31 to 48 hours"
+msgstr "31 go 48 uair"
 
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to work?"
-msgid "Passenger in a car or van"
-msgstr ""
+#. answer-id: hours-worked-answer
+msgctxt "Answer for: In <em>{person_name_possessive}</em> main job, how many hours a week did they usually work?"
+msgid "49 hours or more"
+msgstr "49 uair nó níos mó"
 
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to work?"
-msgid "Bicycle"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to work?"
-msgid "On foot"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How do you usually travel to work?"
-msgid "Other"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
-msgid "Work mainly at or from home"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
-msgid "Underground, metro, light rail or tram"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
-msgid "Train"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
-msgid "Bus, minibus or coach"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
-msgid "Taxi"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
-msgid "Motorcycle, scooter or moped"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
-msgid "Driving a car or van"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
-msgid "Passenger in a car or van"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
-msgid "Bicycle"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
-msgid "On foot"
-msgstr ""
-
-#. answer-id: work-travel-answer
-msgctxt "Answer for: How does <em>{person_name}</em> usually travel to work?"
-msgid "Other"
-msgstr ""
-
-#. answer-id: employer-type-of-address-answer
+#. answer-id: work-location-type-answer
 msgctxt "Answer for: Where do you mainly work?"
 msgid "At a workplace"
-msgstr ""
+msgstr "San áit oibre"
 
-#. answer-id: employer-type-of-address-answer
-msgctxt "Answer for: Where do you mainly work?"
-msgid "Report to a depot"
-msgstr ""
-
-#. answer-id: employer-type-of-address-answer
+#. answer-id: work-location-type-answer
 msgctxt "Answer for: Where do you mainly work?"
 msgid "At or from home"
-msgstr ""
+msgstr "Sa nó ón teach"
 
-#. answer-id: employer-type-of-address-answer
+#. answer-id: work-location-type-answer
 msgctxt "Answer for: Where do you mainly work?"
 msgid "No fixed place"
-msgstr ""
+msgstr "Gan in áit sheasta"
 
-#. answer-id: employer-type-of-address-answer
+#. answer-id: work-location-type-answer
 msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
 msgid "At a workplace"
-msgstr ""
+msgstr "San áit oibre"
 
-#. answer-id: employer-type-of-address-answer
-msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
-msgid "Report to a depot"
-msgstr ""
-
-#. answer-id: employer-type-of-address-answer
+#. answer-id: work-location-type-answer
 msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
 msgid "At or from home"
-msgstr ""
+msgstr "Sa nó ón teach"
 
-#. answer-id: employer-type-of-address-answer
+#. answer-id: work-location-type-answer
 msgctxt "Answer for: Where does <em>{person_name}</em> mainly work?"
 msgid "No fixed place"
-msgstr ""
+msgstr "Gan in áit sheasta"
 
-#. answer-id: employer-address-workplace-answer-building
-msgctxt "Answer for: What is the address of your workplace?"
-msgid "Building"
-msgstr ""
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did you mainly work?"
+msgid "At a workplace"
+msgstr "San áit oibre"
 
-#. answer-id: employer-address-workplace-answer-street
-msgctxt "Answer for: What is the address of your workplace?"
-msgid "Street"
-msgstr ""
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did you mainly work?"
+msgid "At or from home"
+msgstr "Sa nó ón teach"
 
-#. answer-id: employer-address-workplace-answer-city
-msgctxt "Answer for: What is the address of your workplace?"
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did you mainly work?"
+msgid "No fixed place"
+msgstr "Gan in áit sheasta"
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did <em>{person_name}</em> mainly work?"
+msgid "At a workplace"
+msgstr "San áit oibre"
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did <em>{person_name}</em> mainly work?"
+msgid "At or from home"
+msgstr "Sa nó ón teach"
+
+#. answer-id: work-location-type-answer
+msgctxt "Answer for: Where did <em>{person_name}</em> mainly work?"
+msgid "No fixed place"
+msgstr "Gan in áit sheasta"
+
+#. answer-id: work-address-details-answer-building
+msgctxt "Answer for: What is the address of your main place of work?"
+msgid "Address line 1"
+msgstr "Seoladh 1"
+
+#. answer-id: work-address-details-answer-street
+msgctxt "Answer for: What is the address of your main place of work?"
+msgid "Address line 2"
+msgstr "Seoladh 2"
+
+#. answer-id: work-address-details-answer-city
+msgctxt "Answer for: What is the address of your main place of work?"
 msgid "Town or city"
-msgstr ""
+msgstr "Baile nó cathair"
 
-#. answer-id: employer-address-workplace-answer-county
-msgctxt "Answer for: What is the address of your workplace?"
+#. answer-id: work-address-details-answer-county
+msgctxt "Answer for: What is the address of your main place of work?"
 msgid "County (optional)"
-msgstr ""
+msgstr "Contae (roghnach)"
 
-#. answer-id: employer-adress-workplace-answer-postcode
-msgctxt "Answer for: What is the address of your workplace?"
+#. answer-id: work-address-details-answer-postcode
+msgctxt "Answer for: What is the address of your main place of work?"
 msgid "Postcode"
-msgstr ""
+msgstr "Cód Poist"
 
-#. answer-id: employer-address-workplace-answer-building
-msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
-msgid "Building"
-msgstr ""
+#. answer-id: work-address-details-answer-building
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> main place of work?"
+msgid "Address line 1"
+msgstr "Seoladh 1"
 
-#. answer-id: employer-address-workplace-answer-street
-msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
-msgid "Street"
-msgstr ""
+#. answer-id: work-address-details-answer-street
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> main place of work?"
+msgid "Address line 2"
+msgstr "Seoladh 2"
 
-#. answer-id: employer-address-workplace-answer-city
-msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+#. answer-id: work-address-details-answer-city
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> main place of work?"
 msgid "Town or city"
-msgstr ""
+msgstr "Baile nó cathair"
 
-#. answer-id: employer-address-workplace-answer-county
-msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+#. answer-id: work-address-details-answer-county
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> main place of work?"
 msgid "County (optional)"
-msgstr ""
+msgstr "Contae (roghnach)"
 
-#. answer-id: employer-adress-workplace-answer-postcode
-msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> workplace?"
+#. answer-id: work-address-details-answer-postcode
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> main place of work?"
 msgid "Postcode"
-msgstr ""
+msgstr "Cód Poist"
 
-#. answer-id: employer-address-depot-answer-building
-msgctxt "Answer for: What is the address of your depot?"
-msgid "Building"
-msgstr ""
+#. answer-id: work-address-details-answer-building
+msgctxt "Answer for: What was the address of your main place of work?"
+msgid "Address line 1"
+msgstr "Seoladh 1"
 
-#. answer-id: employer-address-depot-answer-street
-msgctxt "Answer for: What is the address of your depot?"
-msgid "Street"
-msgstr ""
+#. answer-id: work-address-details-answer-street
+msgctxt "Answer for: What was the address of your main place of work?"
+msgid "Address line 2"
+msgstr "Seoladh 2"
 
-#. answer-id: employer-address-depot-answer-city
-msgctxt "Answer for: What is the address of your depot?"
+#. answer-id: work-address-details-answer-city
+msgctxt "Answer for: What was the address of your main place of work?"
 msgid "Town or city"
-msgstr ""
+msgstr "Baile nó cathair"
 
-#. answer-id: employer-address-depot-answer-county
-msgctxt "Answer for: What is the address of your depot?"
+#. answer-id: work-address-details-answer-county
+msgctxt "Answer for: What was the address of your main place of work?"
 msgid "County (optional)"
-msgstr ""
+msgstr "Contae (roghnach)"
 
-#. answer-id: employer-adress-depot-answer-postcode
-msgctxt "Answer for: What is the address of your depot?"
+#. answer-id: work-address-details-answer-postcode
+msgctxt "Answer for: What was the address of your main place of work?"
 msgid "Postcode"
-msgstr ""
+msgstr "Cód Poist"
 
-#. answer-id: employer-address-depot-answer-building
-msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
-msgid "Building"
-msgstr ""
+#. answer-id: work-address-details-answer-building
+msgctxt "Answer for: What was the address of <em>{person_name_possessive}</em> main place of work?"
+msgid "Address line 1"
+msgstr "Seoladh 1"
 
-#. answer-id: employer-address-depot-answer-street
-msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
-msgid "Street"
-msgstr ""
+#. answer-id: work-address-details-answer-street
+msgctxt "Answer for: What was the address of <em>{person_name_possessive}</em> main place of work?"
+msgid "Address line 2"
+msgstr "Seoladh 2"
 
-#. answer-id: employer-address-depot-answer-city
-msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+#. answer-id: work-address-details-answer-city
+msgctxt "Answer for: What was the address of <em>{person_name_possessive}</em> main place of work?"
 msgid "Town or city"
-msgstr ""
+msgstr "Baile nó cathair"
 
-#. answer-id: employer-address-depot-answer-county
-msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+#. answer-id: work-address-details-answer-county
+msgctxt "Answer for: What was the address of <em>{person_name_possessive}</em> main place of work?"
 msgid "County (optional)"
-msgstr ""
+msgstr "Contae (roghnach)"
 
-#. answer-id: employer-adress-depot-answer-postcode
-msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> depot?"
+#. answer-id: work-address-details-answer-postcode
+msgctxt "Answer for: What was the address of <em>{person_name_possessive}</em> main place of work?"
 msgid "Postcode"
-msgstr ""
+msgstr "Cód Poist"
 
-#. answer-id: comments-answer
-msgctxt "Answer for: Thanks you are done!"
-msgid "Comments"
-msgstr ""
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of work?"
+msgid "Driving a car or van"
+msgstr "Ag tiomáint gluaisteáin nó veain"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of work?"
+msgid "Passenger in a car or van"
+msgstr "Paisinéir i ngluaisteán nó i veain"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of work?"
+msgid "Car or van pool, sharing driving"
+msgstr "Ag roinnt gluaisteáin nó veain, na tiomána"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of work?"
+msgid "Bus, minibus or coach (public or private)"
+msgstr "Ar an bhus, ar an mhionbus nó ar an chóiste (poiblí nó príobháideach)"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of work?"
+msgid "Taxi"
+msgstr "I dtacsaí"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of work?"
+msgid "Train"
+msgstr "Ar an traein"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of work?"
+msgid "Motorcycle, scooter or moped"
+msgstr "Ar ghluaisrothar, ar scútar nó ar mhóipéid"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of work?"
+msgid "Bicycle"
+msgstr "Ar an rothar"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of work?"
+msgid "On foot"
+msgstr "Ag siúl"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of work?"
+msgid "Other"
+msgstr "Eile"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Driving a car or van"
+msgstr "Ag tiomáint gluaisteáin nó veain"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Passenger in a car or van"
+msgstr "Paisinéir i ngluaisteán nó i veain"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Car or van pool, sharing driving"
+msgstr "Ag roinnt gluaisteáin nó veain, na tiomána"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Bus, minibus or coach (public or private)"
+msgstr "Ar an bhus, ar an mhionbus nó ar an chóiste (poiblí nó príobháideach)"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Taxi"
+msgstr "I dtacsaí"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Train"
+msgstr "Ar an traein"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Motorcycle, scooter or moped"
+msgstr "Ar ghluaisrothar, ar scútar nó ar mhóipéid"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Bicycle"
+msgstr "Ar an rothar"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of work?"
+msgid "On foot"
+msgstr "Ag siúl"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Other"
+msgstr "Eile"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did you usually travel to your main place of work?"
+msgid "Driving a car or van"
+msgstr "Ag tiomáint gluaisteáin nó veain"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did you usually travel to your main place of work?"
+msgid "Passenger in a car or van"
+msgstr "Paisinéir i ngluaisteán nó i veain"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did you usually travel to your main place of work?"
+msgid "Car or van pool, sharing driving"
+msgstr "Ag roinnt gluaisteáin nó veain, na tiomána"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did you usually travel to your main place of work?"
+msgid "Bus, minibus or coach (public or private)"
+msgstr "Ar an bhus, ar an mhionbus nó ar an chóiste (poiblí nó príobháideach)"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did you usually travel to your main place of work?"
+msgid "Taxi"
+msgstr "I dtacsaí"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did you usually travel to your main place of work?"
+msgid "Train"
+msgstr "Ar an traein"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did you usually travel to your main place of work?"
+msgid "Motorcycle, scooter or moped"
+msgstr "Ar ghluaisrothar, ar scútar nó ar mhóipéid"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did you usually travel to your main place of work?"
+msgid "Bicycle"
+msgstr "Ar an rothar"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did you usually travel to your main place of work?"
+msgid "On foot"
+msgstr "Ag siúl"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did you usually travel to your main place of work?"
+msgid "Other"
+msgstr "Eile"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Driving a car or van"
+msgstr "Ag tiomáint gluaisteáin nó veain"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Passenger in a car or van"
+msgstr "Paisinéir i ngluaisteán nó i veain"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Car or van pool, sharing driving"
+msgstr "Ag roinnt gluaisteáin nó veain, na tiomána"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Bus, minibus or coach (public or private)"
+msgstr "Ar an bhus, ar an mhionbus nó ar an chóiste (poiblí nó príobháideach)"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Taxi"
+msgstr "I dtacsaí"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Train"
+msgstr "Ar an traein"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Motorcycle, scooter or moped"
+msgstr "Ar ghluaisrothar, ar scútar nó ar mhóipéid"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Bicycle"
+msgstr "Ar an rothar"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did <em>{person_name}</em> usually travel to their main place of work?"
+msgid "On foot"
+msgstr "Ag siúl"
+
+#. answer-id: work-travel-answer
+msgctxt "Answer for: How did <em>{person_name}</em> usually travel to their main place of work?"
+msgid "Other"
+msgstr "Eile"
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where do you mainly study?"
+msgid "At a campus or school"
+msgstr "Ag campas nó ar scoil"
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where do you mainly study?"
+msgid "At or from home"
+msgstr "Sa nó ón teach"
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where do you mainly study?"
+msgid "No fixed place"
+msgstr "Gan in áit sheasta"
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly study?"
+msgid "At a campus or school"
+msgstr "Ag campas nó ar scoil"
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly study?"
+msgid "At or from home"
+msgstr "Sa nó ón teach"
+
+#. answer-id: study-location-type-answer
+msgctxt "Answer for: Where does <em>{person_name}</em> mainly study?"
+msgid "No fixed place"
+msgstr "Gan in áit sheasta"
+
+#. answer-id: school-address-details-answer-building
+msgctxt "Answer for: What is the address of your main place of study, including school?"
+msgid "Address line 1"
+msgstr "Seoladh 1"
+
+#. answer-id: school-address-details-answer-street
+msgctxt "Answer for: What is the address of your main place of study, including school?"
+msgid "Address line 2"
+msgstr "Seoladh 2"
+
+#. answer-id: school-address-details-answer-city
+msgctxt "Answer for: What is the address of your main place of study, including school?"
+msgid "Town or city"
+msgstr "Baile nó cathair"
+
+#. answer-id: school-address-details-answer-county
+msgctxt "Answer for: What is the address of your main place of study, including school?"
+msgid "County (optional)"
+msgstr "Contae (roghnach)"
+
+#. answer-id: school-address-details-answer-postcode
+msgctxt "Answer for: What is the address of your main place of study, including school?"
+msgid "Postcode"
+msgstr "Cód Poist"
+
+#. answer-id: school-address-details-answer-building
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> main place of study, including school?"
+msgid "Address line 1"
+msgstr "Seoladh 1"
+
+#. answer-id: school-address-details-answer-street
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> main place of study, including school?"
+msgid "Address line 2"
+msgstr "Seoladh 2"
+
+#. answer-id: school-address-details-answer-city
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> main place of study, including school?"
+msgid "Town or city"
+msgstr "Baile nó cathair"
+
+#. answer-id: school-address-details-answer-county
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> main place of study, including school?"
+msgid "County (optional)"
+msgstr "Contae (roghnach)"
+
+#. answer-id: school-address-details-answer-postcode
+msgctxt "Answer for: What is the address of <em>{person_name_possessive}</em> main place of study, including school?"
+msgid "Postcode"
+msgstr "Cód Poist"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of study, including school?"
+msgid "Driving a car or van"
+msgstr "Ag tiomáint gluaisteáin nó veain"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of study, including school?"
+msgid "Passenger in a car or van"
+msgstr "Paisinéir i ngluaisteán nó i veain"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of study, including school?"
+msgid "Car or van pool, sharing driving"
+msgstr "Ag roinnt gluaisteáin nó veain, na tiomána"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of study, including school?"
+msgid "Bus, minibus or coach (public or private)"
+msgstr "Ar an bhus, ar an mhionbus nó ar an chóiste (poiblí nó príobháideach)"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of study, including school?"
+msgid "Taxi"
+msgstr "I dtacsaí"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of study, including school?"
+msgid "Train"
+msgstr "Ar an traein"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of study, including school?"
+msgid "Motorcycle, scooter or moped"
+msgstr "Ar ghluaisrothar, ar scútar nó ar mhóipéid"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of study, including school?"
+msgid "Bicycle"
+msgstr "Ar an rothar"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of study, including school?"
+msgid "On foot"
+msgstr "Ag siúl"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How do you usually travel to your main place of study, including school?"
+msgid "Other"
+msgstr "Eile"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of study, including school?"
+msgid "Driving a car or van"
+msgstr "Ag tiomáint gluaisteáin nó veain"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of study, including school?"
+msgid "Passenger in a car or van"
+msgstr "Paisinéir i ngluaisteán nó i veain"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of study, including school?"
+msgid "Car or van pool, sharing driving"
+msgstr "Ag roinnt gluaisteáin nó veain, na tiomána"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of study, including school?"
+msgid "Bus, minibus or coach (public or private)"
+msgstr "Ar an bhus, ar an mhionbus nó ar an chóiste (poiblí nó príobháideach)"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of study, including school?"
+msgid "Taxi"
+msgstr "I dtacsaí"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of study, including school?"
+msgid "Train"
+msgstr "Ar an traein"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of study, including school?"
+msgid "Motorcycle, scooter or moped"
+msgstr "Ar ghluaisrothar, ar scútar nó ar mhóipéid"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of study, including school?"
+msgid "Bicycle"
+msgstr "Ar an rothar"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of study, including school?"
+msgid "On foot"
+msgstr "Ag siúl"
+
+#. answer-id: school-travel-answer
+msgctxt "Answer for: How does <em>{person_name}</em> usually travel to their main place of study, including school?"
+msgid "Other"
+msgstr "Eile"
 
 #. answer-id: confirm-date-of-birth-answer
 msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
 msgid "Yes, I am {age_in_years} years old"
-msgstr ""
+msgstr "Tá. Tá mé {age_in_years} bliain d'aois"
 
 #. answer-id: confirm-date-of-birth-answer
 msgctxt "Answer for: {person_name} is {age_in_years} years old. Is this correct?"
 msgid "Yes, {person_name} is {age_in_years} years old"
-msgstr ""
+msgstr "Tá. Tá {person_name} {age_in_years} bliain d'aois"
 
 #. answer-id: term-time-location-answer
 msgctxt "Answer for: During term time, where do you usually live?"
 msgid "{address}"
-msgstr ""
+msgstr "Seoladh {address}"
 
 #. answer-id: term-time-location-answer
 msgctxt "Answer for: During term time, where does <em>{person_name}</em> usually live?"
 msgid "{address}"
-msgstr ""
+msgstr "Seoladh {address}"
 
 #. answer-id: past-usual-address-household-answer
 msgctxt "Answer for: One year ago, what was your usual address?"
 msgid "{address}"
-msgstr ""
+msgstr "Seoladh {address}"
 
 #. answer-id: past-usual-address-household-answer
 msgctxt "Answer for: One year ago, what was <em>{person_name_possessive}</em> usual address?"
 msgid "{address}"
-msgstr ""
+msgstr "Seoladh {address}"
 

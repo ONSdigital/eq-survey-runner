@@ -19,7 +19,7 @@
   {% endcall %}
 
   {% if account_service_url %}
-    <a href="{{account_service_url}}">{{ _("Return to your account") }}</a>
+    {{ _('We have saved your progress and you will need to <a href="%(account_service_link)s">enter your unique code</a> to access the survey again.', account_service_link=account_service_url) }}
   {% endif %}
 
 {% endblock %}

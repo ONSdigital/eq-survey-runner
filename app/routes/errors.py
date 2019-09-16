@@ -7,6 +7,7 @@ from ua_parser import user_agent_parser
 
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
+from app.helpers.language_helper import handle_language
 from app.helpers.template_helper import render_template
 from app.submitter.submission_failed import SubmissionFailedException
 
@@ -58,6 +59,7 @@ def log_exception(error, status_code):
 
 
 def _render_error_page(status_code, template=None):
+    handle_language()
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
     template = template or status_code
 

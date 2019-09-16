@@ -15,6 +15,21 @@ logger = get_logger()
 
 DEFAULT_SCHEMA_DIR = 'data'
 
+LANGUAGES_MAP = {
+    'test_language': [['en', 'cy']],
+    'census_household_gb_wls': [['en', 'cy']],
+    'census_individual_gb_wls': [['en', 'cy']],
+    'census_household_gb_nir': [['en'], ['en', 'ga'], ['en', 'eo']],
+    'census_individual_gb_nir': [['en'], ['en', 'ga'], ['en', 'eo']],
+}
+
+
+def get_allowed_languages(schema_name, launch_language):
+    for language_combination in LANGUAGES_MAP.get(schema_name, []):
+        if launch_language in language_combination:
+            return language_combination
+    return [DEFAULT_LANGUAGE_CODE]
+
 
 def load_schema_from_metadata(metadata):
     if metadata.get('survey_url'):

@@ -142,14 +142,6 @@ def get_format_date_range(start_date, end_date):
     )
 
 
-@blueprint.app_template_filter()
-def language_urls(languages, current_language):
-    if not any(language[0] == current_language for language in languages):
-        current_language = 'en'
-
-    return [LanguageConfig(language, current_language) for language in languages]
-
-
 @blueprint.app_context_processor
 def format_unit_processor():
     return dict(format_unit=format_unit)
@@ -163,11 +155,6 @@ def format_unit_input_label_processor():
 @blueprint.app_context_processor
 def get_currency_symbol_processor():
     return dict(get_currency_symbol=get_currency_symbol)
-
-
-@blueprint.app_context_processor
-def language_urls_processor():
-    return dict(language_urls=language_urls)
 
 
 def mark_safe(context, value):
@@ -340,14 +327,6 @@ def map_select_config(select):
 @blueprint.app_context_processor
 def map_select_config_processor():
     return dict(map_select_config=map_select_config)
-
-
-class LanguageConfig:
-    def __init__(self, language, current_language):
-        self.ISOCode = language[0]
-        self.url = '?language_code=' + self.ISOCode
-        self.text = language[1]
-        self.current = self.ISOCode == current_language
 
 
 class SummaryAction:

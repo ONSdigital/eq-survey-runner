@@ -37,7 +37,7 @@ describe('Answer Action: Redirect To List Add Question (Radio)', function () {
         .click(AnyoneUsuallyLiveAt.yes())
         .click(AnyoneUsuallyLiveAt.submit())
         .getUrl().should.eventually.contain(AnyoneLiveAtListCollectorAddPage.pageName)
-        .getUrl().should.eventually.contain('?return_to=anyone-usually-live-at');
+        .getUrl().should.eventually.contain('?previous=anyone-usually-live-at');
     });
 
     it('When the user clicks the "Previous" link from the add question then they should be taken to the block they came from, not the list collector', function () {
