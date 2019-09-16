@@ -75,8 +75,6 @@ describe('List Collector Driving Question', function() {
         .click(SummaryPage.peopleListRemoveLink(1))
         .click(AnyoneElseLiveAtListCollectorRemovePage.yes())
         .click(AnyoneElseLiveAtListCollectorRemovePage.submit())
-        .click(AnyoneElseLiveAtListCollectorPage.no())
-        .click(AnyoneElseLiveAtListCollectorPage.submit())
         .click(SummaryPage.peopleListAddLink())
         .getUrl().should.eventually.contain(AnyoneElseLiveAtListCollectorAddPage.pageName);
     });

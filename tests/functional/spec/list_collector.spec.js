@@ -222,8 +222,6 @@ describe('List Collector', function() {
         .setValue(VisitorListCollectorAddPage.firstNameVisitor(), 'Joe')
         .setValue(VisitorListCollectorAddPage.lastNameVisitor(), 'Bloggs')
         .click(VisitorListCollectorAddPage.submit())
-        .click(VisitorListCollectorPage.no())
-        .click(VisitorListCollectorPage.submit())
         .getText(PeopleListSectionSummaryPage.visitorsListLabel(2)).should.eventually.contain('Joe Bloggs');
     });
 
@@ -232,8 +230,6 @@ describe('List Collector', function() {
         .click(PeopleListSectionSummaryPage.peopleListRemoveLink(2))
         .click(SectionSummaryListCollectorRemovePage.yes())
         .click(SectionSummaryListCollectorRemovePage.submit())
-        .click(SectionSummaryListCollectorPage.no())
-        .click(SectionSummaryListCollectorPage.submit())
         .isExisting(PeopleListSectionSummaryPage.visitorsListLabel(2)).should.eventually.equal(false);
     });
 
@@ -243,8 +239,6 @@ describe('List Collector', function() {
         .setValue(SectionSummaryListCollectorEditPage.firstName(), 'Mark')
         .setValue(SectionSummaryListCollectorEditPage.lastName(), 'Twain')
         .click(SectionSummaryListCollectorEditPage.submit())
-        .click(SectionSummaryListCollectorPage.no())
-        .click(SectionSummaryListCollectorPage.submit())
         .getText(PeopleListSectionSummaryPage.peopleListLabel(1)).should.eventually.contain('Mark Twain (You)');
     });
   });
