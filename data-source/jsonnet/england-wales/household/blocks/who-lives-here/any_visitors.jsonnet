@@ -11,7 +11,8 @@ local questionTitle(census_date) = {
 
 
 function(census_date) {
-  type: 'Question',
+  type: 'ListCollectorDrivingQuestion',
+  for_list: 'visitor',
   id: 'any-visitors',
   show_on_section_summary: false,
   question: {

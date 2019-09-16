@@ -1,4 +1,5 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
+local rules = import 'rules.libsonnet';
 
 {
   type: 'Question',
@@ -75,13 +76,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
     {
       goto: {
         block: 'accommodation-section-summary',
-        when: [
-          {
-            list: 'household',
-            condition: 'equals',
-            value: 0,
-          },
-        ],
+        when: [rules.listIsEmpty('household')],
       },
     },
     {
