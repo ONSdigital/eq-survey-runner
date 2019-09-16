@@ -93,6 +93,7 @@ class SummaryContext:
                 'questionnaire.block',
                 list_name=list_collector_block['for_list'],
                 block_id=list_collector_block['add_block']['id'],
+                return_to=current_location.block_id,
             )
 
             if list_collector_block['id'] not in section_path_block_ids:
@@ -120,6 +121,7 @@ class SummaryContext:
                     self._answer_store,
                     self._list_store,
                     self._language,
+                    return_to=current_location.block_id,
                 ),
                 'list_name': list_collector_block['for_list'],
             }
