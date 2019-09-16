@@ -39,7 +39,7 @@ class Question(BlockHandler):
 
             return Location(
                 section_id=section_id, block_id=block_id, list_name=list_name
-            ).url(return_to=self.current_location.block_id)
+            ).url(previous=self.current_location.block_id)
 
     def _get_answer_action(self):
         answers = self.rendered_block['question']['answers']
