@@ -19,8 +19,8 @@ LANGUAGES_MAP = {
     'test_language': [['en', 'cy']],
     'census_household_gb_wls': [['en', 'cy']],
     'census_individual_gb_wls': [['en', 'cy']],
-    'census_household_gb_nir': [['en'], ['en', 'ga'], ['en', 'en_US']],
-    'census_individual_gb_nir': [['en'], ['en', 'ga'], ['en', 'en_US']],
+    'census_household_gb_nir': [['en'], ['en', 'ga'], ['en', 'eo']],
+    'census_individual_gb_nir': [['en'], ['en', 'ga'], ['en', 'eo']],
 }
 
 

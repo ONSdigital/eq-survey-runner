@@ -558,24 +558,23 @@ msgid ""
 "where otherwise stated"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:12
-#: templates/static/contact-us.html:10
+#: templates/layouts/configs/_footer.html:29
 msgid "Contact us"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:17
+#: templates/layouts/configs/_footer.html:34
 msgid "Help"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:26
+#: templates/layouts/configs/_footer.html:43
 msgid "Cookies"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:31 templates/static/privacy.html:9
+#: templates/layouts/configs/_footer.html:48 templates/static/privacy.html:9
 msgid "Privacy and data protection"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:36
+#: templates/layouts/configs/_footer.html:53
 msgid "Accessibility"
 msgstr ""
 
@@ -1054,87 +1053,8 @@ msgid "This statement was prepared on 11 September."
 msgstr ""
 
 #: templates/static/contact-us.html:5 templates/static/privacy.html:4
+
 msgid "ONS Business Surveys"
-msgstr ""
-
-#: templates/static/contact-us.html:12
-msgid ""
-"Contact us if you have any questions about filling in the census online "
-"or on paper. You can use any of these options if you need information or "
-"a census in an alternative format like Braille or large print."
-msgstr ""
-
-#: templates/static/contact-us.html:14
-msgid "Telephone"
-msgstr ""
-
-#: templates/static/contact-us.html:15 templates/static/contact-us.html:43
-#: templates/static/contact-us.html:53
-msgid "We will have advisers available to help you at the following times:"
-msgstr ""
-
-#: templates/static/contact-us.html:17 templates/static/contact-us.html:45
-#: templates/static/contact-us.html:55
-msgid "Monday to Friday - 8am – 7pm"
-msgstr ""
-
-#: templates/static/contact-us.html:18 templates/static/contact-us.html:46
-#: templates/static/contact-us.html:56
-msgid "Saturday - 8am - 1pm"
-msgstr ""
-
-#: templates/static/contact-us.html:19 templates/static/contact-us.html:47
-#: templates/static/contact-us.html:57
-msgid "Sunday - closed"
-msgstr ""
-
-#: templates/static/contact-us.html:24 templates/static/contact-us.html:29
-#: templates/static/privacy.html:128 templates/static/privacy.html:149
-msgid "Telephone: {telephone_number}"
-msgstr ""
-
-#: templates/static/contact-us.html:28
-msgid "England"
-msgstr ""
-
-#: templates/static/contact-us.html:30
-msgid "Wales"
-msgstr ""
-
-#: templates/static/contact-us.html:31
-msgid "Telephone: {telephone_number} (Option 1 for Welsh, option 2 for English)"
-msgstr ""
-
-#: templates/static/contact-us.html:35
-msgid "Other languages"
-msgstr ""
-
-#: templates/static/contact-us.html:36
-msgid "If you need to speak to us in another language phone {telephone_number}"
-msgstr ""
-
-#: templates/static/contact-us.html:38
-msgid "Text relay"
-msgstr ""
-
-#: templates/static/contact-us.html:39
-msgid "NGT users dial 18001 followed by the phone number you need"
-msgstr ""
-
-#: templates/static/contact-us.html:41
-msgid "SMS text message"
-msgstr ""
-
-#: templates/static/contact-us.html:42
-msgid "Text 86677"
-msgstr ""
-
-#: templates/static/contact-us.html:51
-msgid "Online"
-msgstr ""
-
-#: templates/static/contact-us.html:52
-msgid "Web chat"
 msgstr ""
 
 #: templates/static/privacy.html:10
@@ -1462,6 +1382,10 @@ msgstr ""
 
 #: templates/static/privacy.html:126
 msgid "You can contact the data protection officer by:"
+msgstr ""
+
+#: templates/static/privacy.html:128 templates/static/privacy.html:149
+msgid "Telephone: {telephone_number}"
 msgstr ""
 
 #: templates/static/privacy.html:130 templates/static/privacy.html:151

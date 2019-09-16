@@ -14,11 +14,6 @@ def before_static_request():
     handle_language()
 
 
-@static_blueprint.route('/contact-us', methods=['GET'])
-def contact():
-    return render_template('static/contact-us')
-
-
 @static_blueprint.route('/privacy', methods=['GET'])
 def privacy():
     return render_template('static/privacy')

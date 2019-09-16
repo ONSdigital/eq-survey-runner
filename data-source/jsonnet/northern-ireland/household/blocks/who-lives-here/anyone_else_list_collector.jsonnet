@@ -9,6 +9,13 @@ local anyoneElseOptionDescription(census_date) = {
 };
 
 local questionTitle = {
+  text: 'Does anyone usually live at {address}?',
+  placeholders: [
+    placeholders.address,
+  ],
+};
+
+local questionVariantTitle = {
   text: 'Does anyone else live at {address}?',
   placeholders: [
     placeholders.address,
@@ -88,29 +95,61 @@ function(census_date) {
     id: 'remove-confirmation',
     value: 'Yes, I want to remove this person',
   },
-  question: {
-    id: 'anyone-else-confirmation-question',
-    type: 'General',
-    title: questionTitle,
-    answers: [
-      {
-        id: 'anyone-else-answer',
-        mandatory: true,
-        type: 'Radio',
-        options: [
+  question_variants: [
+    {
+      question: {
+        type: 'General',
+        id: 'anyone-usually-live-at-question',
+        title: questionTitle,
+        answers: [
           {
-            label: 'Yes, I need to add someone',
-            value: 'Yes, I need to add someone',
-            description: anyoneElseOptionDescription(census_date),
-          },
-          {
-            label: 'No, I do not need to add anyone',
-            value: 'No, I do not need to add anyone',
+            id: 'anyone-else-answer',
+            mandatory: true,
+            type: 'Radio',
+            options: [
+              {
+                label: 'Yes, I need to add someone',
+                value: 'Yes, I need to add someone',
+                description: anyoneElseOptionDescription(census_date),
+              },
+              {
+                label: 'No, no one usually lives here',
+                value: 'No, no one usually lives here',
+                description: 'For example, this is a second address or holiday home',
+              },
+            ],
           },
         ],
       },
-    ],
-  },
+      when: [rules.listIsEmpty('household')],
+    },
+    {
+      question: {
+        id: 'anyone-usually-live-at-question',
+        type: 'General',
+        title: questionVariantTitle,
+        answers: [
+          {
+            id: 'anyone-else-answer',
+            mandatory: true,
+            type: 'Radio',
+            options: [
+              {
+                label: 'Yes, I need to add someone',
+                value: 'Yes, I need to add someone',
+                description: anyoneElseOptionDescription(census_date),
+              },
+              {
+                label: 'No, I do not need to add anyone',
+                value: 'No, I do not need to add anyone',
+              },
+            ],
+          },
+        ],
+      },
+      when: [rules.listIsNotEmpty('household')],
+    },
+  ],
   add_block: {
     id: 'add-person',
     type: 'ListAddQuestion',
