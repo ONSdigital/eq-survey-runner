@@ -127,8 +127,9 @@ class Question(BlockHandler):
             self._current_location,
         )
 
-        rendered_question = self.placeholder_renderer.render(
-            transformed_block.pop('question'), self._current_location.list_item_id
-        )
+        if transformed_block['question']['title']['text']:
+            question_title = transformed_block['question']['title']['text']
+        else:
+            question_title = transformed_block['question']['title']
 
-        return re.sub('<em>.*?</em>', '...', rendered_question['title'])
+        return question_title
