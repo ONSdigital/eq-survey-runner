@@ -1,6 +1,6 @@
 from flask import url_for
 from werkzeug.utils import cached_property
-import re
+from app.helpers.template_helper import safe_content
 
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
@@ -100,13 +100,13 @@ class Question(BlockHandler):
             self._current_location,
         )
 
+        self.page_title = self._get_page_title(transformed_block)
+
         rendered_question = self.placeholder_renderer.render(
             transformed_block.pop('question'), self._current_location.list_item_id
         )
 
-        question_title = re.sub('<em>.*?</em>', '...', rendered_question['title'])
-
-        return {**transformed_block, **{'question': rendered_question}, **{'question_title': question_title}}
+        return {**transformed_block, **{'question': rendered_question}}
 
     def get_return_to_hub_url(self):
         if (
@@ -115,18 +115,7 @@ class Question(BlockHandler):
         ):
             return url_for('.get_questionnaire')
 
-    def get_page_title(self):
-        block_schema = self._schema.get_block(self.block['id'])
-
-        transformed_block = transform_variants(
-            block_schema,
-            self._schema,
-            self._questionnaire_store.metadata,
-            self._questionnaire_store.answer_store,
-            self._questionnaire_store.list_store,
-            self._current_location,
-        )
-
+    def _get_page_title(self, transformed_block):
         if type(transformed_block['question']['title']) is str:
             question_title = transformed_block['question']['title']
         else:
@@ -136,4 +125,4 @@ class Question(BlockHandler):
             question_title=question_title, survey_title=self._schema.json['title']
         )
 
-        return page_title
+        return safe_content(page_title)

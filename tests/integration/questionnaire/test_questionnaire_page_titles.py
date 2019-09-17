@@ -55,14 +55,14 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         # Then
         self.assertEqualPageTitle('Session expired')
 
-    def test_should_have_group_title_in_page_title_when_interstitial(self):
+    def test_should_have_content_title_in_page_title_when_interstitial(self):
         # Given
         self.launchSurvey('test_interstitial_page')
         self.post(action='start_questionnaire')
         # When
         self.post({'favourite-breakfast': ''})
         # Then
-        self.assertEqualPageTitle('Favourite food - Interstitial Pages')
+        self.assertEqualPageTitle('Breakfast interstitial - Interstitial Pages')
 
     def test_html_stripped_from_page_titles(self):
         """
@@ -73,3 +73,27 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         # When
         # Then
         self.assertEqualPageTitle('This is a title with emphasis - Markup test')
+
+    def test_should_have_question_title_in_page_title_when_question(self):
+        # Given
+        self.launchSurvey('test_checkbox')
+        # When
+        # Then
+        self.assertEqualPageTitle('Which pizza toppings would you like? - Other input fields')
+
+    def test_should_not_use_names_in_question_page_titles(self):
+        # Given
+        self.launchSurvey('test_placeholder_full')
+        self.post({'first-name': 'Kevin', 'last-name': 'Bacon'})
+        # When
+        # Then
+        self.assertEqualPageTitle('What is … date of birth? - Placeholder Test')
+
+    def test_content_page_should_use_nested_content_text_in_page_title_if_it_exists(self):
+        # Given
+        self.launchSurvey('test_interstitial_page_title')
+        # When
+        # Then
+        self.assertEqualPageTitle('The Content Title - Interstitial Page Titles')
+
+

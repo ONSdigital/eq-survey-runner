@@ -3,7 +3,7 @@
 
 {% set save_on_signout = true %}
 
-{% set page_title = summary_page_title | default(_("Submit answers") + " - " + page_title) %}
+{% set page_title = summary_page_title | default(_("Submit answers") + " - " + survey_title) %}
 
 {% block submit_button %}
   {% if content.summary and content.summary.summary_type == 'SectionSummary' %}

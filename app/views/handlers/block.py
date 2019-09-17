@@ -30,6 +30,7 @@ class BlockHandler:
         self._router = None
         self._routing_path = self._get_routing_path()
         self.form = None
+        self.page_title = None
 
         if not self.is_location_valid():
             raise InvalidLocationException(
@@ -144,6 +145,3 @@ class BlockHandler:
             section_id=location.section_id,
             list_item_id=location.list_item_id,
         )
-
-    def get_page_title(self):
-        return self._schema.json['title']

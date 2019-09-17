@@ -1,6 +1,6 @@
 from app.questionnaire.schema_utils import transform_variants
 from app.views.handlers.block import BlockHandler
-
+from app.helpers.template_helper import safe_content
 
 class Content(BlockHandler):
     @property
@@ -24,16 +24,22 @@ class Content(BlockHandler):
             self._current_location,
         )
 
+        self.page_title = self._get_page_title(transformed_block)
+
         return self.placeholder_renderer.render(
             transformed_block, self._current_location.list_item_id
         )
 
-    def get_page_title(self):
-        if self.rendered_block['type'] == 'Interstitial':
-            block_schema = self._schema.get_block(self.current_location.block_id)
-            group = self._schema.get_group_for_block_id(block_schema['id'])
-            return '{group_title} - {survey_title}'.format(
-                group_title=group['title'], survey_title=self._schema.json['title']
+    def _get_page_title(self, transformed_block):
+        if 'content' in transformed_block:
+            if type(transformed_block['content']['title']) is str:
+                content_title = transformed_block['content']['title']
+            else:
+                content_title = transformed_block['content']['title']['text']
+
+            page_title = '{content_title} - {survey_title}'.format(
+                content_title=content_title, survey_title=self._schema.json['title']
             )
-        else:
-            return self._schema.json['title']
+
+            return safe_content(page_title)
+
