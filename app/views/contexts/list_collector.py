@@ -6,7 +6,7 @@ from app.views.contexts.question import build_question_context
 
 
 def build_list_items_summary_context(
-    list_collector_block, schema, answer_store, list_store, language
+    list_collector_block, schema, answer_store, list_store, language, return_to=None
 ):
     list_name = list_collector_block['for_list']
     list_item_ids = list_store[list_name].items
@@ -40,12 +40,14 @@ def build_list_items_summary_context(
                     list_name=list_name,
                     block_id=list_collector_block['edit_block']['id'],
                     list_item_id=list_item_id,
+                    return_to=return_to,
                 ),
                 'remove_link': url_for(
                     'questionnaire.block',
                     list_name=list_name,
                     block_id=list_collector_block['remove_block']['id'],
                     list_item_id=list_item_id,
+                    return_to=return_to,
                 ),
                 'primary_person': is_primary,
             }

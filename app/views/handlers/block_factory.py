@@ -41,7 +41,7 @@ def get_block_handler(
     language,
     list_name=None,
     to_list_item_id=None,
-    return_to=None,
+    request_args=None,
 ):
     block = schema.get_block(block_id)
     if not block:
@@ -78,4 +78,4 @@ def get_block_handler(
             list_item_id=list_item_id,
         )
 
-    return block_class(schema, questionnaire_store, language, location, return_to)
+    return block_class(schema, questionnaire_store, language, location, request_args)
