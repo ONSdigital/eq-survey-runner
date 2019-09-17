@@ -17,7 +17,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
       {
         id: 'proxy-answer',
         mandatory: false,
-        default: 'Yes',
+        default: 'No',
         options: [
           {
             label: 'Yes, I am',
