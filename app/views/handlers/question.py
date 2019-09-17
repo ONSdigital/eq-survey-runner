@@ -115,7 +115,7 @@ class Question(BlockHandler):
         ):
             return url_for('.get_questionnaire')
 
-    def get_question_title(self):
+    def get_page_title(self):
         block_schema = self._schema.get_block(self.block['id'])
 
         transformed_block = transform_variants(

@@ -27,3 +27,13 @@ class Content(BlockHandler):
         return self.placeholder_renderer.render(
             transformed_block, self._current_location.list_item_id
         )
+
+    def get_page_title(self):
+        if self.rendered_block['type'] == 'Interstitial':
+            block_schema = self._schema.get_block(self.current_location.block_id)
+            group = self._schema.get_group_for_block_id(block_schema['id'])
+            return '{group_title} - {survey_title}'.format(
+                group_title=group['title'], survey_title=self._schema.json['title']
+            )
+        else:
+            return self._schema.json['title']
