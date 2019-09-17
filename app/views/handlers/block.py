@@ -144,3 +144,6 @@ class BlockHandler:
             section_id=location.section_id,
             list_item_id=location.list_item_id,
         )
+
+    def get_question_title(self):
+        return self._schema.json['title']

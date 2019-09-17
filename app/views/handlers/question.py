@@ -1,5 +1,6 @@
 from flask import url_for
 from werkzeug.utils import cached_property
+import re
 
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
@@ -103,7 +104,9 @@ class Question(BlockHandler):
             transformed_block.pop('question'), self._current_location.list_item_id
         )
 
-        return {**transformed_block, **{'question': rendered_question}}
+        question_title = re.sub('<em>.*?</em>', '...', rendered_question['title'])
+
+        return {**transformed_block, **{'question': rendered_question}, **{'question_title': question_title}}
 
     def get_return_to_hub_url(self):
         if (
@@ -111,3 +114,21 @@ class Question(BlockHandler):
             and self._router.can_access_hub()
         ):
             return url_for('.get_questionnaire')
+
+    def get_question_title(self):
+        block_schema = self._schema.get_block(self.block['id'])
+
+        transformed_block = transform_variants(
+            block_schema,
+            self._schema,
+            self._questionnaire_store.metadata,
+            self._questionnaire_store.answer_store,
+            self._questionnaire_store.list_store,
+            self._current_location,
+        )
+
+        rendered_question = self.placeholder_renderer.render(
+            transformed_block.pop('question'), self._current_location.list_item_id
+        )
+
+        return re.sub('<em>.*?</em>', '...', rendered_question['title'])

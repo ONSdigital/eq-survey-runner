@@ -240,6 +240,7 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
             current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
+            question_title=block_handler.get_question_title(),
         )
 
     if 'action[save_sign_out]' in request.form:
@@ -287,6 +288,7 @@ def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_it
             current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
+            question_title=block_handler.get_question_title(),
         )
 
     if 'action[save_sign_out]' in request.form:
@@ -528,8 +530,7 @@ def get_page_title_for_location(schema, current_location, context):
             group_title=group['title'], survey_title=schema.json['title']
         )
     elif schema.is_question_block_type(block_schema['type']):
-        question_title = context['block']['question'].get('title')
-
+        question_title = context.get('block').get('question_title')
         page_title = '{question_title} - {survey_title}'.format(
             question_title=question_title, survey_title=schema.json['title']
         )
@@ -539,10 +540,11 @@ def get_page_title_for_location(schema, current_location, context):
     return safe_content(page_title)
 
 
-def _render_page(block_type, context, current_location, previous_location_url, schema):
+def _render_page(block_type, context, current_location, previous_location_url, schema, question_title):
     if request_wants_json():
         return jsonify(context)
 
+    print(question_title)
     page_title = get_page_title_for_location(schema, current_location, context)
     session_data = get_session_store().session_data
     session_timeout = get_session_timeout_in_seconds(schema)
