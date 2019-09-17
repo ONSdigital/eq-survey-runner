@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-16 17:39+0100\n"
+"POT-Creation-Date: 2019-09-17 09:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -835,7 +835,7 @@ msgstr ""
 msgid ""
 "This service is partially compliant with the <a href='{url}'>Web Content "
 "Accessibility Guidelines version 2.1</a> AA standard, due to the non-"
-"compliances list"
+"compliances listed"
 msgstr ""
 
 #: templates/static/accessibility.html:65
@@ -930,126 +930,120 @@ msgstr ""
 
 #: templates/static/accessibility.html:93
 msgid ""
-"The colour used to indicate focus state does not meet the minimum "
-"required contrast ratio. Fails on WCAG AA 2.1 number 1.4.11."
-msgstr ""
-
-#: templates/static/accessibility.html:95
-msgid ""
 "Some text is highlighted, such as addresses and names that a user has "
 "confirmed. Highlighting is not accessible for some users. This does not "
 "conform to Government Digital Service (GDS) guidelines."
 msgstr ""
 
-#: templates/static/accessibility.html:97
+#: templates/static/accessibility.html:95
 msgid ""
 "Some radio inputs on the relationships page do not conform to GDS "
 "guidelines. When selected, three different elements on the page are "
 "updated."
 msgstr ""
 
-#: templates/static/accessibility.html:99
+#: templates/static/accessibility.html:97
 msgid ""
 "On ‘Who lives here?’ there is a ‘Previous’ link on the page that does not"
 " conform with GDS guidelines. The text used should read as ‘Back’."
 msgstr ""
 
-#: templates/static/accessibility.html:101
+#: templates/static/accessibility.html:99
 msgid ""
 "Error messages do not result in a change to the page title to reflect "
 "that an error has been made. This does not conform to GDS guidelines."
 msgstr ""
 
-#: templates/static/accessibility.html:103
+#: templates/static/accessibility.html:101
 msgid "How we tested this questionnaire"
 msgstr ""
 
-#: templates/static/accessibility.html:105
+#: templates/static/accessibility.html:103
 msgid "Over the last few years we have tested the full questionnaire, including:"
 msgstr ""
 
-#: templates/static/accessibility.html:108
+#: templates/static/accessibility.html:106
 msgid ""
 "<a href='{url}'>Digital Accessibility Centre (DAC)</a> carrying out a "
 "professional, technical audit"
 msgstr ""
 
-#: templates/static/accessibility.html:109
+#: templates/static/accessibility.html:107
 msgid ""
 "user testing with the public on different devices, different locations, "
 "in their homes with various assistive technologies including free and "
 "paid versions"
 msgstr ""
 
-#: templates/static/accessibility.html:110
+#: templates/static/accessibility.html:108
 msgid "testing with charities, such as Scope and RNIB in their labs"
 msgstr ""
 
-#: templates/static/accessibility.html:111
+#: templates/static/accessibility.html:109
 msgid "using job centres and libraries for pop-up testing"
 msgstr ""
 
-#: templates/static/accessibility.html:112
+#: templates/static/accessibility.html:110
 msgid "covering a wide range of ages, additional needs and disabilities"
 msgstr ""
 
-#: templates/static/accessibility.html:113
+#: templates/static/accessibility.html:111
 msgid ""
 "making sure the offline journey and non-digital products were considered "
 "in the end-to-end journey"
 msgstr ""
 
-#: templates/static/accessibility.html:114
+#: templates/static/accessibility.html:112
 msgid ""
 "changing designs based on feedback from user testing, such as letter "
 "structure and the summary of sections and progress through questionnaire"
 msgstr ""
 
-#: templates/static/accessibility.html:117
+#: templates/static/accessibility.html:115
 msgid "Digital Accessibility Centre testing"
 msgstr ""
 
-#: templates/static/accessibility.html:119
+#: templates/static/accessibility.html:117
 msgid ""
 "Parts of this questionnaire were last tested on 3 September 2019 by the "
 "Digital Accessibility Centre (DAC)."
 msgstr ""
 
-#: templates/static/accessibility.html:122
+#: templates/static/accessibility.html:120
 msgid "<a href='{url}' download>DAC Report - September 2019</a>"
 msgstr ""
 
-#: templates/static/accessibility.html:124
+#: templates/static/accessibility.html:122
 msgid "You can read the last full accessibility test report from 28 June 2019."
 msgstr ""
 
-#: templates/static/accessibility.html:126
+#: templates/static/accessibility.html:124
 msgid "<a href='{url}' download>DAC Report - June 2019</a>"
 msgstr ""
 
-#: templates/static/accessibility.html:128
+#: templates/static/accessibility.html:126
 msgid "What we’re doing to improve accessibility"
 msgstr ""
 
-#: templates/static/accessibility.html:130
+#: templates/static/accessibility.html:128
 msgid ""
 "We are continuing to work with various charities and local deaf "
 "communities to understand their needs for the census."
 msgstr ""
 
-#: templates/static/accessibility.html:132
+#: templates/static/accessibility.html:130
 msgid ""
 "We are looking at designs to see if it is possible to have British Sign "
 "Language on every page. This is challenging as we have been unable to "
 "find another service that does this, but we continue to investigate."
 msgstr ""
 
-#: templates/static/accessibility.html:134
+#: templates/static/accessibility.html:132
 msgid "We will act on feedback from the 2019 Rehearsal in October."
 msgstr ""
 
-#: templates/static/accessibility.html:136
-msgid "This statement was prepared on 11 September."
+#: templates/static/accessibility.html:134
+msgid "This statement was prepared on 17 September and published on 17 September."
 msgstr ""
 
 #: templates/static/privacy.html:4
