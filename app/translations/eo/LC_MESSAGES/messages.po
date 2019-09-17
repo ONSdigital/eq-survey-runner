@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: eq-census-nisra\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-12 12:18+0100\n"
-"PO-Revision-Date: 2019-09-16 11:40\n"
+"PO-Revision-Date: 2019-09-17 10:00\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Ulster Scots\n"
 "MIME-Version: 1.0\n"
@@ -51,15 +51,15 @@ msgstr "Ootwale a repone"
 
 #: app/helpers/template_helper.py:18
 msgid "Office for National Statistics logo"
-msgstr "Oaffys fur Kintrie Nummerin"
+msgstr "Offys fur Kintrie Nummerin"
 
 #: app/helpers/template_helper.py:27 app/helpers/template_helper.py:35
 msgid "Census 2021"
-msgstr "Census 2021"
+msgstr "Census 20an21"
 
 #: app/helpers/template_helper.py:31
 msgid "Northern Ireland Statistics and Research Agency logo"
-msgstr "Norlin Airlan Statistics an Research Agentrie"
+msgstr "Norlin Airlann Nummerin an Screengin Agentrie logo"
 
 #: app/validation/error_messages.py:5 app/validation/error_messages.py:6
 #: app/validation/error_messages.py:7 app/validation/error_messages.py:8
@@ -393,7 +393,7 @@ msgstr "We hae gat yer repones"
 
 #: templates/thank-you.html:7
 msgid "Thank you for submitting your census"
-msgstr "We'r ableeged tae ye fur pittin in yer heid-coont"
+msgstr "We'r ableeged tae ye fur pittin in yer heid-coont foarm"
 
 #: templates/thank-you.html:9
 msgid "We have received your answers and you do not need to do anything else."
@@ -432,7 +432,7 @@ msgstr "Warrandice pit bak"
 #: templates/errors/403.html:3 templates/errors/404.html:3
 #: templates/errors/500.html:3
 msgid "Office for National Statistics"
-msgstr "Oaffys fur Kintrie Nummerin"
+msgstr "Offys fur Kintrie Nummerin"
 
 #: templates/errors/403.html:6
 msgid "Sorry, there is a problem"
@@ -552,7 +552,7 @@ msgstr "Cookies"
 
 #: templates/layouts/configs/_footer.html:31 templates/static/privacy.html:9
 msgid "Privacy and data protection"
-msgstr "Hiddlins an wittins hap"
+msgstr "Hiddlins an gien taxt hainin"
 
 #: templates/layouts/configs/_footer.html:36
 msgid "Accessibility"
@@ -758,7 +758,7 @@ msgstr "Whut wye an fur why we uise yer wittins"
 
 #: templates/static/privacy.html:16
 msgid "We collect information from your questionnaire under our statutory objective to promote and safeguard the production of official statistics that serve the public good. This means that any personal data we collect will only ever be used to produce statistics or undertake statistical research. People will not be identified within those statistics or research."
-msgstr "We gaither wittins frae yer spierin foarm unnèr oor ettlin laid doon bae tha laa tae fordèr an hain tha ootcum o offeecial nummerin 'at warks fur tha guid o resydentèrs. Owre tha haid o this, onie wittins anent yer ainsel 'at we gaither wull jist be uised fur naethin mair nor risin nummerin ur tae tak oan hann nummerin screengin. Fowk wullnae be fun oot athin thae nummerins ur screengin."
+msgstr "We gaither wittins frae yer spierin foarm unnèr oor ettlin laid doon bae tha laa tae fordèr an hain tha ootcum o offeecial nummerin 'at warks fur tha guid o resydentèrs. Owre tha haid o this, onie gien taxt anent yer ainsel 'at we gaither wull jist be uised fur naethin mair nor risin nummerin ur tae tak oan hann nummerin screengin. Fowk wullnae be fun oot athin thae nummerins ur screengin."
 
 #: templates/static/privacy.html:18
 msgid "Every 10 years, the census gathers vital information that helps the government and local authorities plan services like health services, roads and libraries."
@@ -766,11 +766,11 @@ msgstr "Ilka 10 twalmonds, tha heid-coont gaithers necessar wittins 'at gies tha
 
 #: templates/static/privacy.html:20
 msgid "By running a rehearsal for Census 2021, we can test our processes, systems and services and make sure everything goes smoothly for the real thing. The personal data you provide on your questionnaire will also be used to undertake research and produce statistics that serve the public good, both by the Office for National Statistics (ONS) and accredited researchers from other organisations."
-msgstr "Wi rinnin a preein fur Heid-Coont 20an21, we'll can pruive oor throch-pittins, gates and fennin an mak siccar aathin rins richt an gleg whanivver it's daen iver sae. Forbye, tha wittins anent yer ainsel 'at ye gie oan yer spierin foarm wull be uised tae tak oan hann screengin an rise nummerin 'at warks fur tha guid o resydentèrs, bae baith tha Offys fur Kintrie Nummerin (OKN) an homologatit bodies o skeel frae ither curns."
+msgstr "Wi rinnin a preein fur Heid-Coont 20an21, we'll can pruive oor throch-pittins, gates and fennin an mak siccar aathin rins richt an gleg whanivver it's daen iver sae. Forbye, tha gien taxt anent yer ainsel 'at ye gie oan yer spierin foarm wull be uised tae tak oan hann screengin an rise nummerin 'at warks fur tha guid o resydentèrs, bae baith tha Offys fur Kintrie Nummerin (ONS) an homologatit bodies o skeel frae ither curns."
 
 #: templates/static/privacy.html:22
 msgid "We may occasionally record information about a property or an individual, in the interests of safeguarding the wellbeing of both those being interviewed and interviewers, as well as to assist people in the completion of their questionnaires. We’ll hold the minimum amount of personal data needed to meet these purposes."
-msgstr "Betimes we micht tak a scrow o wittins anent a haudin ur a bodie thairsel, tha wye we'll can hain tha guid o baith tha yins pittin spierins an thaim 'at's giein spierin repones, forbye giein fowk a heeze wi throchin thair spierin foarms. We'll haud tha wee'est smitch o wittins anent a bodie's sel we maun hae tae shuit thir ettlins."
+msgstr "Betimes we micht tak a scrow o wittins anent a haudin ur a bodie thairsel, tha wye we'll can hain tha guid o baith tha yins pittin spierins an thaim 'at's giein spierin repones, forbye giein fowk a heeze wi throchin thair spierin foarms. We'll haud tha wee'est smitch o gien taxt anent a bodie's sel we maun hae tae shuit thir ettlins."
 
 #: templates/static/privacy.html:24
 msgid "For online completion, we’ll collect information about how people fill in their questionnaires online to provide us with knowledge of how to improve our online services."
@@ -786,27 +786,27 @@ msgstr "Throch tha preein we'll tak oan ootbye consarns tae gie iz a heeze wi pa
 
 #: templates/static/privacy.html:30
 msgid "We treat the information we hold with respect, keeping it secure and confidential. Data may be made available to approved researchers where there is a clear public value and it’s safe and lawful to do so. More information on <a href='{policies_url}'>how we allow access to data for research</a> is available. We also publish a full list of all the <a href='{researchers_url}'>approved researchers</a> who we’ve granted access to."
-msgstr "We guide tha wittins we haud wi mense, haudin it siccar an hiddlie. Wittins cud be pit tae tha han o homologatit bodies o skeel whar thar's a straucht-forrit guid fur resydentèrs an it's siccar an no agin tha laa tae dae't. Mair wittins anent <a href='{policies_url}'>whut wye we lat ingang til wittins fur screengin</a> is pit tae yer han. Forbye, we ootset a fu leet o aa tha <a href='{researchers_url}'>homologatit bodies o skeel</a> 'at we hae lat ingang it."
+msgstr "We guide tha wittins we haud wi mense, haudin it siccar an hiddlie. Gien taxt cud be pit tae tha han o homologatit bodies o skeel whar thar's a straucht-forrit guid fur resydentèrs an it's siccar an no agin tha laa tae dae't. Mair wittins anent <a href='{policies_url}'>whut wye we lat ingang til gien taxt fur screengin</a> is pit tae yer han. Forbye, we ootset a fu leet o aa tha <a href='{researchers_url}'>homologatit bodies o skeel</a> 'at we hae lat ingang it."
 
 #: templates/static/privacy.html:33
 msgid "How long are personal data kept?"
-msgstr "Hoo lang wud wittins anent a bodie's sel be hauden?"
+msgstr "Hoo lang wud gien taxt anent a bodie's sel be hauden?"
 
 #: templates/static/privacy.html:35
 msgid "Data protection law requires that personal data are kept for no longer than is needed to fulfil the purposes for which they were originally collected."
-msgstr "Tha laa anent tha fennin o wittins gars fowk haud wittins anent a bodie's sel fur nae langer nor whut's necessar tae shuit tha ettlins the' wur ingaithert fur at tha furst."
+msgstr "Tha laa anent tha hainin o gien taxt gars fowk haud gien taxt anent a bodie's sel fur nae langer nor whut's necessar tae shuit tha ettlins the' wur ingaithert fur at tha furst."
 
 #: templates/static/privacy.html:37
 msgid "The law allows that information held for statistical purposes only, such as information from your questionnaire, may be kept for longer periods. We’ll only continue to hold personal data where they are still used to produce statistics. Data used by approved researchers will be held within our <a href='{url}'>Secure Research Service</a>. Any personal data that we do not need, such as names and addresses, will be removed from the data at the earliest opportunity. The data will undergo regular reviews and will be deleted when they are no longer required."
-msgstr "Tha laa gies lave 'at wittins hauden fur nummerin ettlins alane, tha like o wittins frae yer spierin foarm, micht be hauden fur langer tacks. We'll jist haud tae hingin oan tae wittins anent a bodie's sel whar the'r bein uised yit tae rise nummerin. Wittins uised wi homologatit bodies o skeel wull be hauden inbye oor <a href='{url}'>Siccar Screengin Fennin</a>. Onie wittins anent a bodie's sel we dinnae be tae hae, tha like o whut the' cry fowk an thair bakkins, wull be taen oot o tha pose o wittins at tha furst inlat. We'r fur haein reglar scances o tha wittins pose an blorryin it oot whan we dinnae be tae hae it onie mair."
+msgstr "Tha laa gies lave 'at wittins hauden fur nummerin ettlins alane, tha like o wittins frae yer spierin foarm, micht be hauden fur langer tacks. We'll jist haud tae hingin oan tae gien taxt anent a bodie's sel whar the'r bein uised yit fur tae rise nummerin. Gien taxt uised wi homologatit bodies o skeel wull be hauden inbye oor <a href='{url}'>Siccar Screengin Fennin</a>. Onie gien taxt anent a bodie's sel we dinnae be tae hae, tha like o whut the' cry fowk an thair bakkins, wull be taen oot o tha pose o gien taxt at tha furst inlat. We'r fur haein reglar scances o tha gien taxt pose an blorryin it oot whan we dinnae be tae hae it onie mair."
 
 #: templates/static/privacy.html:39
 msgid "Safeguarding data, such as information about a property or an individual, will be held for the duration of the rehearsal. Most of the information will be deleted at the end of the rehearsal. In some instances, data will be held for longer periods, where keeping them continues to serve safeguarding purposes."
-msgstr "Hainin wittins, tha like o wittins anent a haudin ur a bodie's sel, wull be hauden fur tha tack o tha preein. Maist o tha wittins wull be blorried oot at the enn o tha preein. In a feck o tha wyes o't, wittins wull be hauden fur langer tacks, whar haudin oan til thaim hauds tae shuitin tha hainin ettlins."
+msgstr "Hainin gien taxt, tha like o wittins anent a haudin ur a bodie's sel, wull be hauden fur tha tack o tha preein. Maist o tha wittins wull be blorried oot at the enn o tha preein. In a feck o tha wyes o't, gien taxt wull be hauden fur langer tacks, whar haudin oan til thaim hauds tae shuitin tha hainin ettlins."
 
 #: templates/static/privacy.html:41
 msgid "Metrics containing information about how people fill in their questionnaires will be held in an identifiable form only until the necessary statistical matching has taken place. After this point the data will be de-identified and used for the purposes of improving our services."
-msgstr "Metrics haudin wittins anent whut wye fowk fïlls in thair spierin foarms wull be hauden in a lay-oot whar a bodie cud be fun oot jist tae tha necessar marrowin fur nummerin is daen. Syne tha wittins wull be redd o onie mairks o tha bodie's sel an uised fur tha ettlins o fordèrin oor fennin."
+msgstr "Metrics haudin wittins anent whut wye fowk fïlls in thair spierin foarms wull be hauden in a lay-oot whar a bodie cud be fun oot jist tae tha necessar marrowin fur nummerin is daen. Syne tha gien taxt wull be redd o onie mairks o tha bodie's sel an uised tae mint at fordèrin oor fennin."
 
 #: templates/static/privacy.html:44
 msgid "How the law protects your information"
@@ -814,11 +814,11 @@ msgstr "Whut wye tha laa fens yer wittins"
 
 #: templates/static/privacy.html:46
 msgid "The <a href='{data_protection_url}'>General Data Protection Regulation</a> and the <a href='{data_protection_act_url}'>Data Protection Act 2018</a> determine how, when and why any organisation can process your personal data. Personal data is any information that can identify a living individual. These laws exist to make sure your data are managed safely and used responsibly. They also give you certain rights about your data and create a responsibility on the ONS, as a user of personal data, to provide you with certain information."
-msgstr "Tha <a href='{data_protection_url}'> Oweraa Wittins Fennin Disponin</a> an tha <a href='{data_protection_act_url}'> Wittins Fennin Ect 20an18</a> desarns hoo, whaniver an fur why onie curn cud throch-pit wittins anent yer ainsel. Wittins anent yer ainsel bes onie wittins 'at cud mairk oot a parteeklar leevin bodie. Thir laas is tae tha fore furtae mak siccar yer wittins is guidit siccarly an uised stievely. Forbye, the' gie ye sindèrie richts adae wi yer wittins an pit an ontak oan tha ONS, seein it uises wittins anent a bodie's sel, tae gie ye parteeklar wittins."
+msgstr "Tha <a href='{data_protection_url}'> Oweraa Gien Taxt Hainin Disponin</a> an tha <a href='{data_protection_act_url}'> Gien Taxt Hainin Ect 20an18</a> desarns hoo, whaniver an fur why onie curn cud throch-pit wittins anent yer ainsel. Gien taxt anent yer ainsel bes onie wittins 'at cud mairk oot a parteeklar leevin bodie. Thir laas is tae tha fore furtae mak siccar yer gien taxt is guidit siccarly an uised stievely. Forbye, the' gie ye sindèrie richts adae wi yer gien taxt an pit an ontak oan tha ONS, seein it uises gien taxt anent a bodie's sel, tae gie ye parteeklar wittins."
 
 #: templates/static/privacy.html:48
 msgid "The ONS is a statutory body, meaning it was created by legislation, specifically the <a href='{url}'>Statistics and Registration Service Act 2007</a>. Our objective is to promote and safeguard the production and publication of official statistics that serve the public good. All our collection and use of data comes from powers that can be found in that Act or other UK legislation."
-msgstr "Tha ONS bes a laa-stellit curn, mintin it wus foondit wi govermin laa, namely tha <a href='{url}'>Nummerin an Registratin Fennin Ect 20an07</a>. We'r ettlin at fordèrin an hainin tha risin an ootsettin o offeecial nummerin 'at fens tha guid o resydentèrs. Aa tha ingaitherin an uise o wittins 'at we dae cums frae pooers ye'll can fyn in thon Ect ur ither CK laas."
+msgstr "Tha ONS bes a laa-stellit curn, mintin it wus foondit wi govermin laa, namely tha <a href='{url}'>Nummerin an Registratin Fennin Ect 20an07</a>. We'r ettlin at fordèrin an hainin tha risin an ootsettin o offeecial nummerin 'at fens tha guid o resydentèrs. Aa tha ingaitherin an uise o gien taxt 'at we dae cums frae pooers ye'll can fyn in thon Ect ur ither CK laas."
 
 #: templates/static/privacy.html:50
 msgid "The census rehearsal questionnaire has been assessed as compatible with the <a href='{url}'>Human Rights Act 1998</a>, specifically Article 8 (right to respect for a private and family life) and Article 9 (freedom of thought, conscience and religion) of the convention rights."
@@ -826,11 +826,11 @@ msgstr "Tha heid-coont preein spierin foarm has bin wechtit as answerin tha <a h
 
 #: templates/static/privacy.html:53
 msgid "Legal basis for processing your data"
-msgstr "Foonds in laa fur throch-pittin yer wittins"
+msgstr "Foonds in laa fur throch-pittin yer gien taxt"
 
 #: templates/static/privacy.html:55
 msgid "Data protection legislation requires that all processing of personal data is undertaken under one or more conditions."
-msgstr "Laas anent wittins hainin threaps 'at aa throch-pittin o wittins adae wi a bodie's sel is daen unnèr yin ur mair sets."
+msgstr "Laas anent gien taxt hainin threaps 'at aa throch-pittin o gien taxt adae wi a bodie's sel is daen unnèr yin ur mair wyes o't."
 
 #: templates/static/privacy.html:57
 msgid "For the census rehearsal, we’ll process information from your questionnaire, information about a property or an individual and information about how people fill in their questionnaires under the following condition:"
@@ -842,11 +842,11 @@ msgstr "throch-pittin's a maun-dae fur tha implymentin o a darg cairried oot fur
 
 #: templates/static/privacy.html:63
 msgid "Under data protection legislation, an additional condition is required for the processing of special category personal data. These data include information about your racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, sex life or sexual orientation. They also include genetic and biometric data."
-msgstr "Unnèr wittins hainin laas, we'r gart hae an eikit set fur tha throch-pittin o by-ordnar soarts o wittins adae wi a bodie's sel. Thir gien wut taks in wittins anent tha kine o ye ur tha kin curn ye wur raired in, thochts adae wi pairtie, releegious ur warlview trowin, memmership o wark unions, sex daeins ur sex airtin. Forbye, the' tak in genetic ur biometric wittins."
+msgstr "Unnèr gien taxt hainin laas, we'r gart hae an eikit set fur tha throch-pittin o by-ordnar soarts o wittins adae wi a bodie's sel. This gien taxt taks in wittins anent tha kine o ye ur tha kin curn ye wur raired in, thochts adae wi pairtie, releegious ur warlview trowin, memmership o wark unions, sex daeins ur sex airtin. Forbye, the' tak in genetic ur biometric gien taxt."
 
 #: templates/static/privacy.html:65
 msgid "For the rehearsal, we’ll process special category personal data on race, ethnicity, religion, philosophical beliefs and sexual orientation. nformation from your questionnaire is processed under the following two conditions:"
-msgstr "Fur tha preein, we'r fur throch-pittin by-ordnar soarts o wittins adae wi a bodie's sel anent tha kine o thaim, tha kin curn the' wur raired in, warlview trowin an sex airtin. Wittins frae yer spierin foarm is pit throu-hans unner tha follaein twa wyes o't:"
+msgstr "Fur tha preein, we'r fur throch-pittin by-ordnar soarts o gien taxt adae wi a bodie's sel anent tha kine o thaim, tha kin curn the' wur raired in, warlview trowin an sex airtin. Wittins frae yer spierin foarm is pit throu-hans unnèr tha follaein twa wyes o't:"
 
 #: templates/static/privacy.html:68
 msgid "processing is necessary for archiving in the public interest, scientific or historical research purposes or statistical purposes based on UK law."
@@ -882,39 +882,39 @@ msgstr "Sin ye'r a spaik o tha gien taxt (a bodie whase gien taxt anent yer ains
 
 #: templates/static/privacy.html:89
 msgid "You have the right to request from any controller that holds your personal data access to the information they hold about you. You can ask them to amend any wrong or inaccurate information they hold about you. You have the right to object to your personal data being processed."
-msgstr ""
+msgstr "Ye hae tha richt tae spier o onie owersman 'at hauds tha gien taxt adae wi yer ainsel fur ingang til tha wittins the' haud anent ye. Ye'll can ax thaim tae cheynge onie wrang ur gley wittins the' haud anent yersel. Ye hae tha richt tae reclaim agin tha throch-pittin o tha gien taxt adae wi yer ainsel."
 
 #: templates/static/privacy.html:91
 msgid "You have the right, in some circumstances, to ask for any controller to:"
-msgstr ""
+msgstr "Ye hae tha richt, in a wheen o wyes o't, tae ax fur onie owersman tae:"
 
 #: templates/static/privacy.html:94
 msgid "erase any personal data they may hold about you"
-msgstr ""
+msgstr "blorry onie gien taxt adae wi yer ainsel the' micht haud anent ye"
 
 #: templates/static/privacy.html:95
 msgid "stop processing your personal data"
-msgstr ""
+msgstr "quat throch-pittin tha gien taxt anent yer ainsel"
 
 #: templates/static/privacy.html:96
 msgid "pass any information they hold about you to another controller"
-msgstr ""
+msgstr "rax onie wittins the' haud adae wi ye til anither owersman"
 
 #: templates/static/privacy.html:99
 msgid "You can get further information on the rights available to you and the circumstances under which you can exercise them from the <a href='{url}'>Information Commissioner’s Office</a>."
-msgstr ""
+msgstr "Ye'll can hae mair wittins anent tha richts 'at's pit tae yer han an whut haes tae be forrit fur ye tae implyment thaim frae tha <a href='{url}'>Wittins Bailzie's Offys</a>."
 
 #: templates/static/privacy.html:102
 msgid "The data controller"
-msgstr ""
+msgstr "Tha gien taxt owersman"
 
 #: templates/static/privacy.html:104
 msgid "The controller is the person or organisation that decides which personal data will be processed and for what purpose. For the census rehearsal, the ONS is the controller and makes those decisions."
-msgstr ""
+msgstr "Tha owersman wud be tha bodie ur curn 'at desarns whut gien taxt adae wi a bodie's sel wull be throch-pit an fur whut ettlin. Fur tha preein heid-coont, tha ONS wud be tha owersman an cum til thae desarns."
 
 #: templates/static/privacy.html:106
 msgid "You can contact us by:"
-msgstr ""
+msgstr "Ye'll can awn wi iz bae:"
 
 #: templates/static/privacy.html:108
 #, python-format
@@ -929,19 +929,19 @@ msgstr "L-poast bakkin: %(email_address)s"
 #: templates/static/privacy.html:112 templates/static/privacy.html:132
 #: templates/static/privacy.html:153
 msgid "Post:"
-msgstr ""
+msgstr "Póast:"
 
 #: templates/static/privacy.html:122
 msgid "How to contact the data protection officer"
-msgstr ""
+msgstr "Whut wye tae awn wi tha gien taxt hainin offyser"
 
 #: templates/static/privacy.html:124
 msgid "Our data protection officer is the person charged with providing us with advice and guidance on the ways we can best protect the information we collect and use. They are involved in all the major decisions we make in relation to personal data. If you have any queries or concerns regarding our use of your data, or wish to exercise any of your rights."
-msgstr ""
+msgstr "Oor gien taxt hainin offyser is tha bodie wi tha ontak o giein iz wyce an airtin anent tha wyes we'll can gleg hain tha wittins we ingaither an uise. The' hae thair pairt in aa tha foremaist desarns we cum til effeirin til gien taxt adae wi a bodie's sel. Gin ye hae onie spierins ur fashes tae dae wi oor uise o yer gien taxt, ur ye'r leukkin tae implyment onie o yer richts."
 
 #: templates/static/privacy.html:126
 msgid "You can contact the data protection officer by:"
-msgstr ""
+msgstr "Ye'll can own wi tha gien taxt hainin offyser wi:"
 
 #: templates/static/privacy.html:130 templates/static/privacy.html:151
 msgid "Email: {email_address}"
@@ -949,13 +949,13 @@ msgstr "L-poast bakkin: {email_address}"
 
 #: templates/static/privacy.html:143
 msgid "The Information Commissioner’s Office"
-msgstr ""
+msgstr "Tha Wittins Bailzie's Offys"
 
 #: templates/static/privacy.html:145
 msgid "The Information Commissioner’s Office (ICO) is the independent organisation tasked with regulating data protection in the UK. The ICO can give you <a href='{url}'>extra information about data protection</a> and your rights and will deal with any complaints you may have about our use of your information."
-msgstr ""
+msgstr "Tha Wittins Bailzie's Offys (ICO) wud be tha scowth curn wi tha hannlin o gien taxt hainin in tha CK. Tha ICO cud gie ye <a href='{url}'>mair wittins anent gien taxt hainin</a> an yer richts an wud be fur pittin throu-hanns onie pleens ye micht hae anent oor uise o yer wittins."
 
 #: templates/static/privacy.html:147
 msgid "You can contact the ICO by:"
-msgstr ""
+msgstr "Ye'll can awn wi tha WBO bae:"
 
