@@ -161,7 +161,7 @@
         "eq-translations": {
             "editable": true,
             "git": "https://github.com/ONSDigital/eq-translations.git",
-            "ref": "bd81e39a5b2143f89c54b2ae633cfe0800690166"
+            "ref": "6f51ba9d1492f226697aaf4f197183162f9b1735"
         },
         "flask": {
             "hashes": [
