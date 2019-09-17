@@ -127,9 +127,13 @@ class Question(BlockHandler):
             self._current_location,
         )
 
-        if transformed_block['question']['title']['text']:
-            question_title = transformed_block['question']['title']['text']
-        else:
+        if type(transformed_block['question']['title']) is str:
             question_title = transformed_block['question']['title']
+        else:
+            question_title = transformed_block['question']['title']['text']
 
-        return question_title
+        page_title = '{question_title} - {survey_title}'.format(
+            question_title=question_title, survey_title=self._schema.json['title']
+        )
+
+        return page_title
