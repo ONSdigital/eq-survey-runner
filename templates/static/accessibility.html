@@ -4,7 +4,21 @@
 {% block main %}
   {% do page | setAttribute("feedback", "") %}
 
-  <h1>{{ _("Census questionnaire accessibility statement") }}</h1>
+  {% if schema_theme == "census-nisra" %}
+
+  {% set contact_us_url = "https://census.gov.uk/ni/contact-us/" %}
+
+{% elif language_code == "cy" %}
+
+  {% set contact_us_url = "https://cyfrifiad.gov.uk/cysylltu-a-ni/" %}
+
+{% else %}
+
+  {% set contact_us_url = "https://census.gov.uk/contact-us/" %}
+
+{% endif %}
+
+  <h1>{{ _("Accessibility statement") }}</h1>
 
   <p>{{ _("This census is run by the Office for National Statistics. We want as many people as possible to be able to do the census online. For example, that means you should be able to:") }}</p>
 
@@ -45,7 +59,7 @@
 
   <h3>{{ _("Reporting accessibility problems") }}</h3>
 
-  <p>{{ _("We’re always looking to improve the accessibility of this service. If you find any problems that are not listed on this page or think we’re not meeting accessibility requirements, you can contact us.") }}</p>
+  <p>{{ _("We’re always looking to improve the accessibility of this service. If you find any problems that are not listed on this page or think we’re not meeting accessibility requirements, you can <a href='{url}'>contact us</a>.").format(url = contact_us_url) }}</p>
 
   <h3>{{ _("Enforcement procedure") }}</h3>
 
