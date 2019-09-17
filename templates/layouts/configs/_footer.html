@@ -8,7 +8,7 @@
 {% if schema_theme == "census-nisra" %}
 
   {% set contact_us_url = "https://census.gov.uk/ni/contact-us/" %}
-  {% set cookies_url = "https://census.gov.uk/ni/cookies-information/" %}
+  {% set cookies_url = "https://census.gov.uk/ni/cookies/" %}
 
 {% elif language_code == "cy" %}
 
@@ -18,7 +18,7 @@
 {% else %}
 
   {% set contact_us_url = "https://census.gov.uk/contact-us/" %}
-  {% set cookies_url = "https://census.gov.uk/cookies-information/" %}
+  {% set cookies_url = "https://census.gov.uk/cookies/" %}
 
 {% endif %}
 
@@ -32,7 +32,7 @@
             },
             {
                   "text": _('Help'),
-                  "url": '#',
+                  "url": 'https://census.gov.uk/help/how-to-answer-questions/online-questions-help-ew/',
                   "target": "_blank"
             }
         ]
@@ -51,7 +51,7 @@
             },
             {
                 "text": _("Accessibility"),
-                "url": "#",
+                "url": "/accessibility",
                 "target": "_blank"
             }
         ]

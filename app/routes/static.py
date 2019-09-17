@@ -17,3 +17,8 @@ def before_static_request():
 @static_blueprint.route('/privacy', methods=['GET'])
 def privacy():
     return render_template('static/privacy')
+
+
+@static_blueprint.route('/accessibility', methods=['GET'])
+def accessibility():
+    return render_template('static/accessibility')
