@@ -31,6 +31,7 @@ RUN mkdir -p /runner
 WORKDIR /runner
 
 ENV GUNICORN_WORKERS 3
+ENV GUNICORN_KEEP_ALIVE 2
 
 COPY Pipfile Pipfile
 COPY Pipfile.lock Pipfile.lock
