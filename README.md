@@ -311,6 +311,9 @@ We use flask-babel to do internationalisation. To extract messages from source a
 make translation-templates
 ```
 
+```make translation-templates``` is a command that uses pybabel to extract static messages and eq-translations to extract schema messages
+
+
 This will extract messages and place them in the .pot files ready for translation.
 
 These .pot files will then need to be translated. The translation process is documented in Confluence [here](https://collaborate2.ons.gov.uk/confluence/display/SDC/Translation+Process)
@@ -321,7 +324,9 @@ Once we have the translated .po files they can be added to the source code and u
 
 ### Translating the schemas
 
-The schemas can be translated assuming `.po` files are available. This can be done through the `scripts/translate_schemas.py` script.
+The schemas can be translated assuming `.po` files are available. This can be done through ```make translate``` and will be done automatically as part of the build process.
+
+If the .po file being added is a new po file it will also need to be added to the translate_schemas.py build script
 
 ## Environment Variables
 
