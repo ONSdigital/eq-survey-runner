@@ -15,13 +15,13 @@ logger = get_logger()
 
 class BlockHandler:
     def __init__(
-        self, schema, questionnaire_store, language, current_location, return_to
+        self, schema, questionnaire_store, language, current_location, request_args
     ):
         self._schema = schema
         self._questionnaire_store = questionnaire_store
         self._language = language
         self._current_location = current_location
-        self._return_to = return_to
+        self._request_args = request_args or {}
         self.block = self._schema.get_block(current_location.block_id)
 
         self._questionnaire_store_updater = None

@@ -214,7 +214,7 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
             list_item_id=list_item_id,
             questionnaire_store=questionnaire_store,
             language=flask_babel.get_locale().language,
-            return_to=request.args.get('return_to'),
+            request_args=request.args,
         )
     except InvalidLocationException:
         return redirect(url_for('.get_questionnaire'))

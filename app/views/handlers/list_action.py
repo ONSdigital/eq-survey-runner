@@ -29,17 +29,14 @@ class ListAction(Question):
         return True
 
     def get_previous_location_url(self):
-        if self._return_to:
-            block_id = self._return_to
-
-            if self._schema.is_block_valid(block_id):
-                section_id = self._schema.get_section_id_for_block_id(block_id)
-                return Location(section_id=section_id, block_id=block_id).url()
-
-        return self.parent_location.url()
+        block_id = self._request_args.get('previous') or self._request_args.get(
+            'return_to'
+        )
+        return self._get_location_url(block_id)
 
     def get_next_location_url(self):
-        return self.parent_location.url()
+        block_id = self._request_args.get('return_to')
+        return self._get_location_url(block_id)
 
     def get_context(self):
         return build_question_context(self.rendered_block, self.form)
@@ -51,3 +48,10 @@ class ListAction(Question):
         )
         self.questionnaire_store_updater.remove_answers(answer_ids_to_remove)
         self.questionnaire_store_updater.save()
+
+    def _get_location_url(self, block_id):
+        if block_id and self._schema.is_block_valid(block_id):
+            section_id = self._schema.get_section_id_for_block_id(block_id)
+            return Location(section_id=section_id, block_id=block_id).url()
+
+        return self.parent_location.url()

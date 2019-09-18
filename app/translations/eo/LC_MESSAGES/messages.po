@@ -3,973 +3,959 @@ msgstr ""
 "Project-Id-Version: eq-census-nisra\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-12 12:18+0100\n"
-"PO-Revision-Date: 2019-09-16 11:42\n"
+"PO-Revision-Date: 2019-09-17 10:00\n"
 "Last-Translator: ONS_Census\n"
-"Language-Team: Irish\n"
+"Language-Team: Ulster Scots\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
-"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: eq-census-nisra\n"
-"X-Crowdin-Language: ga-IE\n"
+"X-Crowdin-Language: sco-ulster\n"
 "X-Crowdin-File: messages.pot\n"
-"Language: ga_IE\n"
+"Language: sco_ulster\n"
 
 #: app/jinja_filters.py:79 app/validation/validators.py:340
 #, python-format
 msgid "%(num)s year"
 msgid_plural "%(num)s years"
-msgstr[0] "%(num)s bliain"
-msgstr[1] "%(num)s blianta"
-msgstr[2] "%(num)s bliain"
-msgstr[3] "%(num)s blianta"
-msgstr[4] "%(num)s blianta"
+msgstr[0] "%(num)s yeir"
+msgstr[1] "%(num)s yeir"
 
 #: app/jinja_filters.py:87 app/validation/validators.py:344
 #, python-format
 msgid "%(num)s month"
 msgid_plural "%(num)s months"
-msgstr[0] "%(num)s mí"
-msgstr[1] "%(num)s míonna"
-msgstr[2] "%(num)s mí"
-msgstr[3] "%(num)s míonna"
-msgstr[4] "%(num)s míonna"
+msgstr[0] "%(num)s mond"
+msgstr[1] "%(num)s monds"
 
 #: app/jinja_filters.py:130
 #, python-format
 msgid "%(date)s at %(time)s"
-msgstr "%(date)s ag %(time)s"
+msgstr "%(date)s at %(time)s"
 
 #: app/jinja_filters.py:141
 #, python-format
 msgid "%(from_date)s to %(to_date)s"
-msgstr "%(from_date)s go %(to_date)s"
+msgstr "%(from_date)s tae %(to_date)s"
 
 #: app/forms/custom_fields.py:130
 msgid "Not a valid choice"
-msgstr "Ní rogha bhailí í seo"
+msgstr "No a richt walin"
 
 #: app/forms/fields.py:231
 msgid "Select an answer"
-msgstr "Roghnaigh freagra"
+msgstr "Ootwale a repone"
 
 #: app/helpers/template_helper.py:18
 msgid "Office for National Statistics logo"
-msgstr "Lógó Oifig an Staidrimh Náisiúnta"
+msgstr "Offys fur Kintrie Nummerin"
 
 #: app/helpers/template_helper.py:27 app/helpers/template_helper.py:35
 msgid "Census 2021"
-msgstr "Daonáireamh 2021"
+msgstr "Census 20an21"
 
 #: app/helpers/template_helper.py:31
 msgid "Northern Ireland Statistics and Research Agency logo"
-msgstr "Lógó na Gníomhaireachta um Staidreamh agus Thaighde Thuaisceart Éireann"
+msgstr "Norlin Airlann Nummerin an Screengin Agentrie logo"
 
 #: app/validation/error_messages.py:5 app/validation/error_messages.py:6
 #: app/validation/error_messages.py:7 app/validation/error_messages.py:8
 msgid "Enter an answer to continue."
-msgstr "Cuir freagra isteach le leanstan ar aghaidh."
+msgstr "Pit in a repone furtae haud."
 
 #: app/validation/error_messages.py:9 app/validation/error_messages.py:10
 msgid "Select an answer to continue."
-msgstr "Roghnaigh freagra le leanstan ar aghaidh."
+msgstr "Wale a repone furtae haud."
 
 #: app/validation/error_messages.py:11
 msgid "Select all that apply to continue."
-msgstr "Roghnaigh na cinn uilig lena mbaineann siad le leanstan ar aghaidh."
+msgstr "Ootwale aa tha yins 'at effeirs furtae haud."
 
 #: app/validation/error_messages.py:12
 msgid "Enter a date to continue."
-msgstr "Cuir dáta isteach le leanstan ar aghaidh."
+msgstr "Pit in a date furtae haud."
 
 #: app/validation/error_messages.py:13
 msgid "Enter a duration to continue."
-msgstr "Cuir fad an ama isteach le leanstan ar aghaidh."
+msgstr "Pit in a tack furtae haud."
 
 #: app/validation/error_messages.py:14
 #, python-format
 msgid "Enter an answer more than or equal to %(min)s."
-msgstr "Cuir freagra isteach atá níos mó ná nó cothrom le %(min)s."
+msgstr "Pit in a repone mair nor, ur even'd wi, %(min)s."
 
 #: app/validation/error_messages.py:15
 #, python-format
 msgid "Enter an answer less than or equal to %(max)s."
-msgstr "Cuir freagra isteach atá níos lú ná nó cothrom le %(max)s."
+msgstr "Pit in a repone ablow ur evened wi %(max)s."
 
 #: app/validation/error_messages.py:16
 #, python-format
 msgid "Enter an answer more than %(min)s."
-msgstr "Cuir freagra isteach atá níos mó ná %(min)s."
+msgstr "Pit in a repone mair nor %(min)s."
 
 #: app/validation/error_messages.py:17
 #, python-format
 msgid "Enter an answer less than %(max)s."
-msgstr "Cuir freagra isteach atá níos lú ná %(max)s."
+msgstr "Pit in a repone ablow %(max)s."
 
 #: app/validation/error_messages.py:18
 #, python-format
 msgid "Enter answers that add up to %(total)s"
-msgstr "Cuir freagraí isteach a shuimíonn go %(total)s ar fad"
+msgstr "Pit in repones 'at eiks til %(total)s"
 
 #: app/validation/error_messages.py:19
 #, python-format
 msgid "Enter answers that add up to or are less than %(total)s"
-msgstr "Cuir freagraí isteach a shuimíonn go nó atá níos lú ná %(total)s"
+msgstr "Pit in repones 'at eiks til ur bes ablow %(total)s"
 
 #: app/validation/error_messages.py:22
 #, python-format
 msgid "Enter answers that add up to less than %(total)s"
-msgstr "Cuir freagraí isteach a shuimíonn go níos lú ná %(total)s"
+msgstr "Pit in repones 'at eiks til ablow %(total)s"
 
 #: app/validation/error_messages.py:25
 #, python-format
 msgid "Enter answers that add up to greater than %(total)s"
-msgstr "Cuir freagraí isteach a shuimíonn go níos mó ná %(total)s"
+msgstr "Pit in repones 'at eiks til mair nor %(total)s"
 
 #: app/validation/error_messages.py:28
 #, python-format
 msgid "Enter answers that add up to or are greater than %(total)s"
-msgstr "Cuir freagraí isteach a shuimíonn go nó atá níos mó ná %(total)s"
+msgstr "Pit in repones 'at eiks til ur is mair nor %(total)s"
 
 #: app/validation/error_messages.py:31
 msgid "Enter a number."
-msgstr "Cuir uimhir isteach."
+msgstr "Pit in a nummer."
 
 #: app/validation/error_messages.py:32
 msgid "Enter a whole number."
-msgstr "Cuir slánuimhir isteach."
+msgstr "Pit in a hail nummer."
 
 #: app/validation/error_messages.py:33
 #, python-format
 msgid "Enter a number rounded to %(max)d decimal places."
-msgstr "Cuir uimhir isteach atá slánaithe go %(max)d ionad deachúlach."
+msgstr "Pit in a nummer adjistit tae %(max)d decymal places."
 
 #: app/validation/error_messages.py:36
 #, python-format
 msgid "Your answer is too long, it has to be less than %(max)d characters."
-msgstr "Tá do fhreagra rófhada, caithfidh sé bheith níos lú ná %(max)d carachtar."
+msgstr "Yer repone's owre lang; it maun be ablow %(max)d teeps."
 
 #: app/validation/error_messages.py:39
 msgid "Enter a valid date."
-msgstr "Cuir isteach dáta bailí."
+msgstr "Pit in a richt date."
 
 #: app/validation/error_messages.py:40
 msgid "Enter a 'period to' date later than the 'period from' date."
-msgstr "Cuir isteach 'tréimhse go' dáta níos moille ná an 'tréimhse ó' dáta."
+msgstr "Pit in a 'tack til' date eftèr tha 'tack frae' date."
 
 #: app/validation/error_messages.py:43
 msgid "Enter a valid duration."
-msgstr "Cuir isteach fad ama bailí."
+msgstr "Pit in a richt lestin."
 
 #: app/validation/error_messages.py:44
 #, python-format
 msgid "Enter a reporting period greater than or equal to %(min)s."
-msgstr "Cuir isteach tréimhse tuairiscithe níos mó ná nó cothrom le %(min)s."
+msgstr "Pit in a fynnin tack mair nor ur marrowed wi %(min)s."
 
 #: app/validation/error_messages.py:47
 #, python-format
 msgid "Enter a reporting period less than or equal to %(max)s."
-msgstr "Cuir isteach tréimhse tuairiscithe níos lú ná nó cothrom le %(max)s."
+msgstr "Pit in a fynnin tack ablow ur marrowed wi %(max)s."
 
 #: app/validation/error_messages.py:50
 #, python-format
 msgid "Enter a date after %(min)s."
-msgstr "Cuir isteach dáta i ndiaidh %(min)s."
+msgstr "Pit in a date eftèr %(min)s."
 
 #: app/validation/error_messages.py:51
 #, python-format
 msgid "Enter a date before %(max)s."
-msgstr "Cuir isteach dáta roimh %(max)s."
+msgstr "Pit in a date afore %(max)s."
 
 #: app/validation/error_messages.py:52
 msgid "Remove an answer to continue."
-msgstr "Bain freagra le leanstan ar aghaidh."
+msgstr "Tak oot a repone furtae haud."
 
 #: app/validation/validators.py:351
 #, python-format
 msgid "%(num)s day"
 msgid_plural "%(num)s days"
-msgstr[0] "%(num)s lá"
-msgstr[1] "%(num)s laethanta"
-msgstr[2] "%(num)s lá"
-msgstr[3] "%(num)s laethanta"
-msgstr[4] "%(num)s laethanta"
+msgstr[0] "%(num)s day"
+msgstr[1] "%(num)s days"
 
 #: app/views/contexts/hub_context.py:15 app/views/contexts/hub_context.py:17
 msgid "Submit survey"
-msgstr "Cuir an suirbhé isteach"
+msgstr "Pit in scance"
 
 #: app/views/contexts/hub_context.py:16 templates/summary.html:16
 msgid "Please submit this survey to complete it"
-msgstr "Cuir isteach an suirbhé seo lena chríochnú le do thoil"
+msgstr "Ableeged gin ye'd pit in this scance furtae throch it"
 
 #: app/views/contexts/hub_context.py:20
 msgid "Choose another section to complete"
-msgstr "Roghnaigh mír eile le líonadh isteach"
+msgstr "Ootwale anither shaidin furtae throch"
 
 #: app/views/contexts/hub_context.py:21
 msgid "You must complete all sections in order to submit this survey"
-msgstr "Caithfidh tú na míreanna uilig a líonadh isteach leis an suirbhé a chur isteach"
+msgstr "Ye maun throch aa tha shaidins furtae pit in this scance"
 
 #: app/views/contexts/hub_context.py:24 templates/confirmation.html:12
 #: templates/interstitial.html:5
 msgid "Continue"
-msgstr "Lean ar aghaidh"
+msgstr "Haud"
 
 #: app/views/contexts/hub_context.py:30
 msgid "Completed"
-msgstr "Déanta"
+msgstr "Throcht"
 
 #: app/views/contexts/hub_context.py:32
 msgid "View answers"
-msgstr "Amharc ar na freagraí"
+msgstr "Hae a leuk at repones"
 
 #: app/views/contexts/hub_context.py:33
 msgid "View answers for {section_name}"
-msgstr "Amharc ar na freagraí do {section_name}"
+msgstr "Hae a leuk at repones fur {section_name}"
 
 #: app/views/contexts/hub_context.py:37
 msgid "Partially completed"
-msgstr "Cuid de déanta"
+msgstr "A feck o't throcht"
 
 #: app/views/contexts/hub_context.py:39
 msgid "Continue with section"
-msgstr "Lean ar aghaidh leis an mhír"
+msgstr "Haud til shaidin"
 
 #: app/views/contexts/hub_context.py:40
 msgid "Continue with {section_name} section"
-msgstr "Lean ar aghaidh leis an mhír {section_name}"
+msgstr "Haud til {section_name} shaidin"
 
 #: app/views/contexts/hub_context.py:44
 msgid "Not started"
-msgstr "Níl sé tosaithe go fóill"
+msgstr "No stairtit"
 
 #: app/views/contexts/hub_context.py:46
 msgid "Start section"
-msgstr "Tosaigh an mhír"
+msgstr "Stairt shaidin"
 
 #: app/views/contexts/hub_context.py:47
 msgid "Start {section_name} section"
-msgstr "Tosaigh an mhír {section_name}"
+msgstr "Stairt {section_name} shaidin"
 
 #: app/views/contexts/list_collector.py:33
 msgid " (You)"
-msgstr " (Tusa)"
+msgstr " (Yersel)"
 
 #: templates/confirmation.html:6 templates/confirmation.html:37
 msgid "Submit answers"
-msgstr "Cuir isteach na freagraí"
+msgstr "Pit in repones"
 
 #: templates/confirmation.html:22
 msgid "Yes, I confirm these are correct"
-msgstr "Tá, dearbhaím go bhfuil siad ceart"
+msgstr "Aye, A warrant the'r richt"
 
 #: templates/confirmation.html:41
 msgid "Submitting"
-msgstr "Ag cur isteach"
+msgstr "Pittin in"
 
 #: templates/feedback.html:7 templates/feedback.html:14
 msgid "Survey feedback"
-msgstr "Aiseolas suirbhé"
+msgstr "Scance affcum"
 
 #: templates/feedback.html:21 templates/layouts/configs/_feedback.html:25
 msgid "How can we improve this survey"
-msgstr "Cad é mar is féidir linn an suirbhé seo a fheabhsú?"
+msgstr "Hoo cud we fordèr this scance"
 
 #: templates/feedback.html:24 templates/layouts/configs/_feedback.html:29
 #: templates/partials/answers/textarea.html:14
 msgid "You have {x} character remaining"
-msgstr "Tá {x} carachtar fágtha agat"
+msgstr "Ye hae {x} teep owre"
 
 #: templates/feedback.html:25 templates/layouts/configs/_feedback.html:30
 #: templates/partials/answers/textarea.html:15
 msgid "You have {x} characters remaining"
-msgstr "Tá {x} carachtar fágtha agat"
+msgstr "Ye hae {x} teeps owre"
 
 #: templates/feedback.html:32 templates/layouts/configs/_feedback.html:35
 msgid "Name (optional)"
-msgstr "Ainm (roghnach)"
+msgstr "Naem (no a maun-dae)"
 
 #: templates/feedback.html:33 templates/layouts/configs/_feedback.html:36
 msgid "Please include your name and email address if you’re interested in taking part in further research to improve this survey"
-msgstr "Cuir isteach d'ainm agus do sheoladh ríomhphoist le do thoil má tá suim agat páirt a ghlacadh i dtuilleadh taighde leis an suirbhé seo a fheabhsú"
+msgstr "Ableeged gin ye'd lap in yer naem an l-poast bakkin gin ye wud leuk tha gate o takkin pairt in mair screengin furtae fordèr this scance"
 
 #: templates/feedback.html:42 templates/layouts/configs/_feedback.html:42
 msgid "Email address (optional)"
-msgstr "Seoladh ríomhphoist (roghnach)"
+msgstr "L-poast bakkin (no a maun-dae)"
 
 #: templates/feedback.html:48 templates/layouts/configs/_feedback.html:46
 msgid "Send feedback"
-msgstr "Cuir aiseolas ar ais"
+msgstr "Senn affcum"
 
 #: templates/feedback_sent.html:3 templates/feedback_sent.html:7
 msgid "Thank you for your feedback"
-msgstr "Go raibh maith agat as d'aiseolas"
+msgstr "We'r ableeged tae ye fur yer affcum"
 
 #: templates/feedback_sent.html:6
 msgid "Submission successful"
-msgstr "D'éirigh le d'aighneacht"
+msgstr "Ye hae cum speed wi pittin in"
 
 #: templates/feedback_sent.html:9
 msgid "It is now safe to close this window"
-msgstr "Tá sé slán sábháilte anois an fhuinneog seo a dhruidim"
+msgstr "Noo it's siccar tae steek this wundae"
 
 #: templates/feedback_sent.html:12 templates/signed-out.html:9
 msgid "Return to your account"
-msgstr "Gabh ar ais chuig do chuntas"
+msgstr "Beck-cum tae yer accoont"
 
 #: templates/introduction.html:15
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)"
-msgstr "Tá tú ag líonadh seo isteach do for <span>%(ru_name)s</span> (%(trading_as_name)s)"
+msgstr "Ye'r throchin this fur <span>%(ru_name)s</span>(%(trading_as_name)s)"
 
 #: templates/introduction.html:19
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span>"
-msgstr "Tá tú ag líonadh isteach seo do <span>%(ru_name)s</span>"
+msgstr "Ye'r throchin this fur <span>%(ru_name)s</span>"
 
 #: templates/introduction.html:23
 #, python-format
 msgid "If the company details or structure have changed contact us on %(telephone_number)s or email %(email_address)s"
-msgstr "Má tá sonraí an chomhlachta nó an struchtúir athraithe déan teagmháil linn ar %(telephone_number)s ar ríomhphost ag %(email_address)s"
+msgstr "Gin tha rinnins anent tha consarn ur steidin haes cheynged awn wi iz oan %(telephone_number)s ur l-poast %(email_address)s"
 
 #: templates/introduction.html:38
 msgid "Your response is legally required"
-msgstr "Tá do fhreagra de dhíth go dlíthiúil"
+msgstr "Ye'r gart mak repone bae tha laa"
 
 #: templates/multiple_survey.html:4 templates/multiple_survey.html:7
 msgid "Information"
-msgstr "Eolas"
+msgstr "Wittins"
 
 #: templates/multiple_survey.html:16
 msgid "Unfortunately you can only complete one survey at a time"
-msgstr "Ar an drochuair, ní féidir leat ach suirbhé amháin a líonadh isteach ag aon am amháin"
+msgstr "Misfortunatly ye'll can throch nae mair nor tha yin scance at tha yin time"
 
 #: templates/multiple_survey.html:17
 msgid "Close this window to continue with your current survey"
-msgstr "Druid an fhuinneog le leanstan ar aghaidh le do shuirbhé reatha"
+msgstr "Steek this wundae furtae haud wi tha scance ye'r daein thenoo"
 
 #: templates/question.html:16
 #, python-format
 msgid "This page has an error"
 msgid_plural "This page has %(num)s errors"
-msgstr[0] "Tá earráid ar an leathanach seo"
-msgstr[1] "Tá %(num)s earráid ar an leathanach seo"
-msgstr[2] "Tá %(num)s earráid ar an leathanach seo"
-msgstr[3] "Tá %(num)s earráid ar an leathanach seo"
-msgstr[4] "Tá %(num)s earráid ar an leathanach seo"
+msgstr[0] "This blaud haes a mislearin"
+msgstr[1] "This blaud haes %(num)s mislearins"
 
 #: templates/question.html:22
 msgid "This <strong>must be corrected</strong> to continue"
 msgid_plural "These <strong>must be corrected</strong> to continue"
-msgstr[0] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
-msgstr[1] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
-msgstr[2] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
-msgstr[3] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
-msgstr[4] "Caithfear <strong>seo a cheartú</strong>le leanstan ar aghaidh"
+msgstr[0] "This <strong>maun be richtent</strong> furtae haud"
+msgstr[1] "Thae-yins <strong>maun be richtent</strong> furtae haud"
 
 #: templates/signed-out.html:3
 msgid "Signed out"
-msgstr "Sínithe amach"
+msgstr "Wised oot"
 
 #: templates/signed-out.html:6
 msgid "Your survey answers have been saved. You are now signed out"
-msgstr "Sábháladh do fhreagraí don suirbhé. Tá tú sínithe amach anois"
+msgstr "Yer repones tae tha scance is hained. Noo ye'r wised oot"
 
 #: templates/summary.html:6
 msgid "Summary"
-msgstr "Achoimre"
+msgstr "Shoart wittins"
 
 #: templates/summary.html:11
 msgid "Check your answers and submit"
-msgstr "Déan seiceáil ar do fhreagraí agus cuir isteach iad"
+msgstr "Leuk owre yer repones an inpit thaim"
 
 #: templates/summary.html:17 templates/summary.html:28
 msgid "You can check your answers below"
-msgstr "Is féidir leat do fhreagraí a sheiceáil thíos"
+msgstr "Ye'll can leuk owre yer repones ablow"
 
 #: templates/summary.html:27
 msgid "This section is now complete"
-msgstr "Tá an chuid seo críochnaithe anois"
+msgstr "This shaidin's throcht noo"
 
 #: templates/summary.html:37
 msgid "Please review your answers and confirm these are correct"
-msgstr "Déan athbhreithniú ar do fhreagraí le do thoil agus dearbhaigh go bhfuil siad seo ceart"
+msgstr "Ableeged gin ye'd scance yer repones an uphaud the'r richt"
 
 #: templates/summary.html:66
 msgid "You will have the opportunity to view and print a copy of your answers after submitting this survey"
-msgstr "Beidh deis agat amharc ar do fhreagraí agus cóip díobh a phriontáil i ndiaidh duit an suirbhé seo a chur isteach"
+msgstr "Ye'll hae tha inlat o leukkin owre an prentin a scrow o yer repones eftèr pittin in this scance"
 
 #: templates/thank-you.html:3
 msgid "We've received your answers"
-msgstr "Fuair muid do fhreagraí"
+msgstr "We hae gat yer repones"
 
 #: templates/thank-you.html:7
 msgid "Thank you for submitting your census"
-msgstr "Go raibh maith agat as d'fhoirm daonáirimh a chur isteach"
+msgstr "We'r ableeged tae ye fur pittin in yer heid-coont foarm"
 
 #: templates/thank-you.html:9
 msgid "We have received your answers and you do not need to do anything else."
-msgstr "Tá do chuid freagraí faighte againn agus ní gá duit rud ar bith eile a dhéanamh."
+msgstr "We hae gat yer repones an ye daenae hae tae dae ocht mair."
 
 #: templates/view-submission.html:7
 msgid "Submission"
-msgstr "Aighneacht"
+msgstr "Pittin in"
 
 #: templates/view-submission.html:10
 msgid "Submitted answers"
-msgstr "Freagraí curtha isteach"
+msgstr "Inpit repones"
 
 #: templates/view-submission.html:19
 #, python-format
 msgid "Your answers were submitted for <span>%(ru_name)s</span> (%(trading_as_name)s) on %(submitted_time)s"
-msgstr "Cuireadh do fhreagraí isteach do <span>%(ru_name)s</span>(%(trading_as_name)s) ar %(submitted_time)s"
+msgstr "Yer repones wus pit in fur <span>%(ru_name)s</span>(%(trading_as_name)s) oan %(submitted_time)s"
 
 #: templates/view-submission.html:24
 #, python-format
 msgid "Your answers were submitted for <span>%(ru_name)s</span> on %(submitted_time)s"
-msgstr "Cuireadh do fhreagraí isteach do <span>%(ru_name)s</span> ar %(submitted_time)s"
+msgstr "Yer repones wus pit in fur <span>%(ru_name)s</span> oan %(submitted_time)s"
 
 #: templates/view-submission.html:29
 msgid "Transaction ID"
-msgstr "Aitheantas idirbhirt"
+msgstr "Trokin ID"
 
 #: templates/view-submission.html:36
 msgid "Print this page"
-msgstr "Priontáil an leathanach seo"
+msgstr "Prent this blaud"
 
 #: templates/errors/403.html:3
 msgid "Authorisation refused"
-msgstr "Údarú diúltaithe"
+msgstr "Warrandice pit bak"
 
 #: templates/errors/403.html:3 templates/errors/404.html:3
 #: templates/errors/500.html:3
 msgid "Office for National Statistics"
-msgstr "Oifig an Staidrimh Náisiúnta"
+msgstr "Offys fur Kintrie Nummerin"
 
 #: templates/errors/403.html:6
 msgid "Sorry, there is a problem"
-msgstr "Tá brón orm, tá fadhb ann"
+msgstr "We'r hairt-sair, thar's a pall"
 
 #: templates/errors/403.html:7
 msgid "To access this page you need to <a href='#'>enter your unique access code.</a>"
-msgstr "Le rochtain bheith agat ar an leathanach seo caithfidh tú <a href='#'> do chód rochtana uathúil a chur isteach.</a>"
+msgstr "Furtae ingang this blaud ye may <a href='#'>inpit yer yinsum ingang code.</a>"
 
 #: templates/errors/404.html:3 templates/errors/404.html:6
 msgid "Page not found"
-msgstr "Níl teacht ar bith ar an leathanach"
+msgstr "Blaud no fun"
 
 #: templates/errors/404.html:7
 msgid "If you entered a web address, check it is correct."
-msgstr "Má chuir tú seoladh idirlín isteach, déan seiceáil go bhfuil sé ceart."
+msgstr "Gin ye inpit a wabsteid bakkin, mine an mak siccar it's richt."
 
 #: templates/errors/404.html:8
 msgid "If you pasted the web address, check you copied the whole address."
-msgstr "Má ghreamaigh tú an seoladh idirlín isteach, déan seiceáil gur chópáil tú an seoladh iomlán isteach."
+msgstr "Gin ye battert tha wabsteid bakkin, mine an mak siccar ye taen a scrow o tha hail bakkin."
 
 #: templates/errors/404.html:9
 msgid "If the web address is correct or you selected a link or button, <a href='/contact-us'>contact us</a> for more help."
-msgstr "Má tá an seoladh idirlín ceart nó má roghnaigh tú nasc nó cnaipe, <a href='/contact-us'> déan teagmháil linn </a> do thuilleadh cuidithe."
+msgstr "Gin tha wabsteid bakkin is richt ur ye ootwaled a cleek ur button, <a href='/contact-us'>awn wi iz</a> fur mair o a heeze."
 
 #: templates/errors/500.html:3
 msgid "An error has occurred"
-msgstr "Tharla earráid"
+msgstr "Thar wus a mistak"
 
 #: templates/errors/500.html:6
 msgid "Sorry, there is a problem with this service"
-msgstr "Tá brón orm, tá fadhb ann leis an tseirbhís seo"
+msgstr "We'r hairt-sair - thar's a pall wi this fennin, but"
 
 #: templates/errors/500.html:7
 msgid "Try again later."
-msgstr "Bain triail as arís níos moille."
+msgstr "Ettle at it agane eftèrhin."
 
 #: templates/errors/500.html:8
 msgid "If you have started a survey, your answers have been saved."
-msgstr "Má thosaigh tú ar shuirbhé, sábháladh do fhreagraí."
+msgstr "Gin ye hae stairtit a scance, yer repones is hained."
 
 #: templates/errors/500.html:9
 msgid "<a href='/contact-us'>Contact us</a> if you need to speak to someone about your survey."
-msgstr "<a href='/contact-us'> Déan teagmháil linn </a> más gá duit labhairt le duine éigin faoi do shuirbhé."
+msgstr "<a href='/contact-us'>Awn wi iz</a> gin ye maun taak tae a bodie anent yer scance."
 
 #: templates/errors/session-expired.html:6
 msgid "Session expired"
-msgstr "Tá an seisiún caite"
+msgstr "Tack wared oot"
 
 #: templates/errors/session-expired.html:10
 msgid "Your session has expired"
-msgstr "Tá do sheisiún caite"
+msgstr "Yer tack haes wared oot"
 
 #: templates/errors/session-expired.html:18
 msgid "To help protect your information we have signed you out"
-msgstr "Le do chuid eolais a chosaint bhí muid do do shíniú amach"
+msgstr "Furtae gie a heeze wi fennin yer wittins we hae wised ye oot"
 
 #: templates/errors/session-expired.html:22
 #, python-format
 msgid "We have saved your progress and you will need to <a href=\"%(account_service_link)s\">enter your unique code</a> to access the survey again."
-msgstr "Táimid i ndiaidh do dhul chun cinn a shábháil agus beidh ort <a href=\"%(account_service_link)s\"> do chód uathúil a iontráil </a> chun teacht ar an suirbhé arís."
+msgstr "We hae hained yer oncum an ye may <a href=\"%(account_service_link)s\">pit in yer yinsum code</a> furtae ingang tha scance agane."
 
 #: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:14
 msgid "We use cookies to improve your experience of census.gov.uk"
-msgstr "Bainimid úsáid as fianáin chun do thaithí ar census.gov.uk a fheabhsú"
+msgstr "We uise cookies furtae fordèr yer pruivin o census.gov.uk"
 
 #: templates/layouts/_questionnaire.html:24
 msgid "Previous"
-msgstr "Roimhe"
+msgstr "Yin afore"
 
 #: templates/layouts/_questionnaire.html:39
 msgid "Save and continue"
-msgstr "Sábháil agus lean ar aghaidh"
+msgstr "Hain an haud til't"
 
 #: templates/layouts/_questionnaire.html:50
 msgid "Can't complete this question?"
-msgstr "Nach féidir leat an cheist seo a fhreagairt?"
+msgstr "Cannae throch this spierin?"
 
 #: templates/layouts/_questionnaire.html:51
 msgid "Choose another section and return to this later"
-msgstr "Roghnaigh mír eile agus tar ar ais go dtí an ceann seo níos moille"
+msgstr "Ootwale anither shaidin an bak-cum tae this eftèr"
 
 #: templates/layouts/configs/_feedback.html:3
 msgid "Give feedback and help us improve this service"
-msgstr "Tabhair aiseolas agus cuidigh linn an tseirbhís seo a fheabhsú"
+msgstr "Gie affcum an gie iz a heeze wi fordèrin this fennin"
 
 #: templates/layouts/configs/_feedback.html:5
 msgid "I don't want to provide feedback"
-msgstr "Níor mhaith liom aiseolas a thabhairt"
+msgstr "A'm no fur giein affcum"
 
 #: templates/layouts/configs/_feedback.html:55
 msgid "Thanks for your feedback"
-msgstr "Go raibh maith agat as d'aiseolas"
+msgstr "We'r ableeged tae ye fur yer affcum"
 
 #: templates/layouts/configs/_feedback.html:56
 msgid "There was an error sending your feedback.\n"
 "(Error code: {x})"
-msgstr "Bhí earráid ann agus tusa ag cur d'aiseolais chugainn. (Cód earráide: {x})"
+msgstr "Thar wus a mislearin sennin yer affcum.\n"
+"(Mislearin code: {x})"
 
 #: templates/layouts/configs/_footer.html:4
 msgid "All content is available under the Open Government Licence v3.0, except where otherwise stated"
-msgstr "Tá gach ábhar ar fáil faoi Ceadúnas Oscailte Rialtais v3.0 seachas má luaitear a mhalairt"
+msgstr "Aa tha innins is pit tae yer han unnèr tha Apen Govermin Leeshins v3.0, oottaken whar thar's a spaik tae tha contrar"
 
 #: templates/layouts/configs/_footer.html:12
 #: templates/static/contact-us.html:10
 msgid "Contact us"
-msgstr "Déan teagmháil linn"
+msgstr "Awn wi iz"
 
 #: templates/layouts/configs/_footer.html:17
 msgid "Help"
-msgstr "Cuidiú"
+msgstr "Heeze"
 
 #: templates/layouts/configs/_footer.html:26
 msgid "Cookies"
-msgstr "Fianáin"
+msgstr "Cookies"
 
 #: templates/layouts/configs/_footer.html:31 templates/static/privacy.html:9
 msgid "Privacy and data protection"
-msgstr "Príobháideacht agus cosaint sonraí"
+msgstr "Hiddlins an gien taxt hainin"
 
 #: templates/layouts/configs/_footer.html:36
 msgid "Accessibility"
-msgstr "Rochtain"
+msgstr "Aise o ingang"
 
 #: templates/layouts/configs/_save-sign-out-button.html:5
 msgid "Save and sign out"
-msgstr "Sábháil agus sínigh amach"
+msgstr "Hain an wise oot"
 
 #: templates/layouts/configs/_save-sign-out-button.html:18
 msgid "Sign out"
-msgstr "Sínigh amach"
+msgstr "Wise oot"
 
 #: templates/layouts/configs/_save-sign-out-button.html:32
 msgid "Save and complete later"
-msgstr "Sábháil agus críochnaigh níos moille"
+msgstr "Hain an throch eftèr"
 
 #: templates/partials/answer-guidance.html:13
 #: templates/partials/question-definition.html:14
 msgid "Hide this"
-msgstr "Cuir é seo i bhfolach"
+msgstr "Hiddle this"
 
 #: templates/partials/question.html:38
 msgid "Selecting this will clear your answer"
-msgstr "Má roghnaíonn tú seo scriosfaidh sé seo do fhreagra"
+msgstr "Ootwalin this wull red yer repone"
 
 #: templates/partials/question.html:39
 msgid "cleared"
-msgstr "scriosta"
+msgstr "redd"
 
 #: templates/partials/question.html:42
 msgid "Selecting this will deselect any selected options"
-msgstr "Má roghnaíonn tú seo díroghnóidh tú rogha ar bith roghnaithe"
+msgstr "Ootwalin this wull tak oot onie ootwaled walins"
 
 #: templates/partials/question.html:43 templates/partials/question.html:51
 msgid "deselected"
-msgstr "díroghnaithe"
+msgstr "taen oot"
 
 #: templates/partials/question.html:47
 msgid "Or"
-msgstr "Nó"
+msgstr "Ur"
 
 #: templates/partials/answers/checkbox.html:7
 msgid "Select all that apply"
-msgstr "Roghnaigh na cinn uilig lena mbaineann siad"
+msgstr "Ootwale aa tha yins 'at effeirs"
 
 #: templates/partials/answers/date.html:23
 msgid "Day"
-msgstr "Lá"
+msgstr "Day"
 
 #: templates/partials/answers/date.html:38
 msgid "Month"
-msgstr "Mí"
+msgstr "Mond"
 
 #: templates/partials/answers/date.html:53
 msgid "Year"
-msgstr "Bliain"
+msgstr "Twalmond"
 
 #: templates/partials/introduction/preview.html:29
 #: templates/partials/summary/collapsible-summary.html:13
 msgid "Show"
-msgstr "Taispeáin"
+msgstr "Kythe"
 
 #: templates/partials/introduction/preview.html:30
 #: templates/partials/summary/collapsible-summary.html:14
 msgid "Hide"
-msgstr "Cuir i bhfolach"
+msgstr "Hiddle"
 
 #: templates/partials/introduction/preview.html:48
 #: templates/partials/summary/collapsible-summary.html:41
 msgid "Show all"
-msgstr "Taispeáin iad go léir"
+msgstr "Kythe aa"
 
 #: templates/partials/introduction/preview.html:49
 #: templates/partials/summary/collapsible-summary.html:42
 msgid "Hide all"
-msgstr "Cuir iad go léir i bhfolach"
+msgstr "Hiddle aa"
 
 #: templates/partials/introduction/start-survey.html:5
 msgid "Start survey"
-msgstr "Tosaigh an suirbhé"
+msgstr "Stairt tha scance"
 
 #: templates/partials/summary/collapsible-summary.html:27
 #: templates/partials/summary/summary.html:9
 msgid "No answer provided"
-msgstr "Níor tugadh freagra ar bith"
+msgstr "Nae repone gien"
 
 #: templates/partials/summary/collapsible-summary.html:27
 #: templates/partials/summary/list-summary.html:8
 #: templates/partials/summary/summary.html:9
 msgid "Change"
-msgstr "Athraigh"
+msgstr "Cheynge"
 
 #: templates/partials/summary/collapsible-summary.html:27
 #: templates/partials/summary/summary.html:9
 msgid "Change your answer for:"
-msgstr "Athraigh do fhreagra do:"
+msgstr "Cheynge yer repone fur:"
 
 #: templates/partials/summary/list-summary.html:9
 msgid "Change details for {item_name}"
-msgstr "Athraigh na sonraí do {item_name}"
+msgstr "Cheynge rinnins fur {item_name}"
 
 #: templates/partials/summary/list-summary.html:10
 msgid "Remove"
-msgstr "Bain"
+msgstr "Redd"
 
 #: templates/partials/summary/list-summary.html:11
 msgid "Remove {item_name}"
-msgstr "Bain {item_name}"
+msgstr "Redd {item_name}"
 
 #: templates/static/contact-us.html:5 templates/static/privacy.html:4
 msgid "ONS Business Surveys"
-msgstr "Suirbhéanna Gnó ONS"
+msgstr "ONS Hannlin Scances"
 
 #: templates/static/contact-us.html:12
 msgid "Contact us if you have any questions about filling in the census online or on paper. You can use any of these options if you need information or a census in an alternative format like Braille or large print."
-msgstr "Téigh i dteagmháil linn má tá aon cheist agat maidir leis an daonáireamh a chomhlánú ar líne nó ar pháipéar. Is féidir leat aon cheann de na roghanna seo a úsáid má tá faisnéis nó daonáireamh de dhíth ort i bhformáid eile, mar shampla i mBraille nó i gcló mór."
+msgstr "Awn wi iz gin ye hae onie spierins anent fïllin in tha heid-coont ower tha wab ur oan paiper. Ye'll can uise onie o thae walins gin ye'r leukkin wittins ur a heid-coont in anither lay-oot tha like o Braille ur muckle prent."
 
 #: templates/static/contact-us.html:14
 msgid "Telephone"
-msgstr "Guthán"
+msgstr "Langbl'r"
 
 #: templates/static/contact-us.html:15 templates/static/contact-us.html:43
 #: templates/static/contact-us.html:53
 msgid "We will have advisers available to help you at the following times:"
-msgstr "Beidh comhairleoirí againn ar fáil chun cuidiú leat ag na huaireanta seo a leanas:"
+msgstr "We'r fur haein fowk tae tha fore tae gie ye a heeze wi wyce at tha follaein oors:"
 
 #: templates/static/contact-us.html:17 templates/static/contact-us.html:45
 #: templates/static/contact-us.html:55
 msgid "Monday to Friday - 8am – 7pm"
-msgstr "An Luan go dtí An Aoine - 8r.n. – 7i.n."
+msgstr "Monday tae Friday - echt i' tha forenuin tae seivin i' tha e'en"
 
 #: templates/static/contact-us.html:18 templates/static/contact-us.html:46
 #: templates/static/contact-us.html:56
 msgid "Saturday - 8am - 1pm"
-msgstr "An Satharn - 8r.n. - 1i.n."
+msgstr "Settèrday - echt i' tha forenuin tae yin i' tha eftèrnuin"
 
 #: templates/static/contact-us.html:19 templates/static/contact-us.html:47
 #: templates/static/contact-us.html:57
 msgid "Sunday - closed"
-msgstr "An Domhnach - druidte"
+msgstr "Tha Sawbith - steekit"
 
 #: templates/static/contact-us.html:24 templates/static/contact-us.html:29
 #: templates/static/privacy.html:128 templates/static/privacy.html:149
 msgid "Telephone: {telephone_number}"
-msgstr "Guthán: {telephone_number}"
+msgstr "Langbl'r: {telephone_number}"
 
 #: templates/static/contact-us.html:28
 msgid "England"
-msgstr "Sasana"
+msgstr "Inglann"
 
 #: templates/static/contact-us.html:30
 msgid "Wales"
-msgstr "An Bhreatain Bheag"
+msgstr "Wales"
 
 #: templates/static/contact-us.html:31
 msgid "Telephone: {telephone_number} (Option 1 for Welsh, option 2 for English)"
-msgstr "Guthán: {telephone_number} (Rogha 1 i mBreatnais, Rogha 2 i mBéarla)"
+msgstr "Langbl'r: {telephone_number} (Walin 1 fur Welsh, walin 2 fur Inglisch)"
 
 #: templates/static/contact-us.html:35
 msgid "Other languages"
-msgstr "Teangacha eile"
+msgstr "Ither leids"
 
 #: templates/static/contact-us.html:36
 msgid "If you need to speak to us in another language phone {telephone_number}"
-msgstr "Más gá duit labhairt linn i dteanga ar bith eile cuir scairt ghutháin ar {telephone_number}"
+msgstr "Gin ye hae tae taak tae iz in anither leid phóane {telephone_number}"
 
 #: templates/static/contact-us.html:38
 msgid "Text relay"
-msgstr "Rialaí téacs"
+msgstr "Taxt han-ower"
 
 #: templates/static/contact-us.html:39
 msgid "NGT users dial 18001 followed by the phone number you need"
-msgstr "D'úsáideoirí NGT diallaigh 18001 agus ansin an uimhir ghutháin a bheidh de dhíth ort"
+msgstr "Yins uisin NGT dyal 18001 follaed wi tha phóane nummer ye'r leukkin"
 
 #: templates/static/contact-us.html:41
 msgid "SMS text message"
-msgstr "Teachtaireacht téacs SMS"
+msgstr "SMS taxt wurd"
 
 #: templates/static/contact-us.html:42
 msgid "Text 86677"
-msgstr "Cuir téacs chuig 86677"
+msgstr "Taxt 86677"
 
 #: templates/static/contact-us.html:51
 msgid "Online"
-msgstr "Ar líne"
+msgstr "Owre tha wab"
 
 #: templates/static/contact-us.html:52
 msgid "Web chat"
-msgstr "Comhrá ar líne"
+msgstr "Wab crack"
 
 #: templates/static/privacy.html:10
 msgid "The information you provide when you fill in your census rehearsal questionnaire is protected by law."
-msgstr "Beidh an t-eolas a thabharfaidh tú dúinn nuair a líonfaidh tú an réamhchleachtadh de cheistiúchán daonáirimh isteach á chosaint ag an dlí."
+msgstr "Tha wittins ye gie whanivver ye fïll in yer heid-coont preein spierins is fendit wi tha laa."
 
 #: templates/static/privacy.html:11
 msgid "Here we detail why we need your information. We also describe all the steps that we take to make sure your information and your privacy are safe."
-msgstr "Cuireann muid in iúl anseo an fáth a bhfuil d'eolas de dhíth orainn. Déanann muid cur síos ar na céimeanna uilig a ghlacann muid le cinntiú go mbeidh d'eolas agus do phríobháideacht slán sábháilte."
+msgstr "Here we'r giein tha bak an forrits o why we maun hae yer wittins. Forbye, we'r giein aa oot aa tha wyes we see tae mak shuir yer wittins an yer hiddlins is siccar."
 
 #: templates/static/privacy.html:14
 msgid "How and why we use your information"
-msgstr "Seo an dóigh agus na fáthanna a n-úsáideann muid d'eolas"
+msgstr "Whut wye an fur why we uise yer wittins"
 
 #: templates/static/privacy.html:16
 msgid "We collect information from your questionnaire under our statutory objective to promote and safeguard the production of official statistics that serve the public good. This means that any personal data we collect will only ever be used to produce statistics or undertake statistical research. People will not be identified within those statistics or research."
-msgstr "Bailíonn muid eolas ó do cheistiúchán de réir ár gcuspóra reachtúil le staidreamh oifigiúil ar mhaithe leis an ghnáthphobal a dhéanamh go forásach agus go slán sábháilte. Ciallaíonn sé seo nach n-úsáidfear cibé eolas a bhaileoidh muid ach le staidreamh nó le taighde staidrimh a dhéanamh. Ní aithneofar daoine taobh istigh den staidreamh nó den taighde sin."
+msgstr "We gaither wittins frae yer spierin foarm unnèr oor ettlin laid doon bae tha laa tae fordèr an hain tha ootcum o offeecial nummerin 'at warks fur tha guid o resydentèrs. Owre tha haid o this, onie gien taxt anent yer ainsel 'at we gaither wull jist be uised fur naethin mair nor risin nummerin ur tae tak oan hann nummerin screengin. Fowk wullnae be fun oot athin thae nummerins ur screengin."
 
 #: templates/static/privacy.html:18
 msgid "Every 10 years, the census gathers vital information that helps the government and local authorities plan services like health services, roads and libraries."
-msgstr "Gach 10 mbliana, bailíonn an daonáireamh eolas barrthábhachtach a chuidíonn leis an rialtas agus leis na húdaráis áitiúla seirbhísí amhail seirbhísí sláinte, na bóithre agus na leabharlanna, a phleanáil."
+msgstr "Ilka 10 twalmonds, tha heid-coont gaithers necessar wittins 'at gies tha governmin an locyal owerances a heeze wi mintin fennin tha like o guidin fennin adae wi poust, gates and bibliothecks."
 
 #: templates/static/privacy.html:20
 msgid "By running a rehearsal for Census 2021, we can test our processes, systems and services and make sure everything goes smoothly for the real thing. The personal data you provide on your questionnaire will also be used to undertake research and produce statistics that serve the public good, both by the Office for National Statistics (ONS) and accredited researchers from other organisations."
-msgstr "Trí chleachtadh a reáchtáil do Dhaonáireamh 2021, is féidir linn ár bpróisis, ár gcórais agus ár seirbhísí a thástáil agus a chinntiú go dtéann gach rud go réidh don rud fíor. Úsáidfear na sonraí pearsanta a sholáthróidh tú ar do cheistneoir freisin chun taighde a dhéanamh agus staitisticí a chumadh a fhreastalóidh ar leas an phobail, ag an Oifig Náisiúnta Staidrimh (ONS) agus ag taighdeoirí creidiúnaithe ó eagraíochtaí eile."
+msgstr "Wi rinnin a preein fur Heid-Coont 20an21, we'll can pruive oor throch-pittins, gates and fennin an mak siccar aathin rins richt an gleg whanivver it's daen iver sae. Forbye, tha gien taxt anent yer ainsel 'at ye gie oan yer spierin foarm wull be uised tae tak oan hann screengin an rise nummerin 'at warks fur tha guid o resydentèrs, bae baith tha Offys fur Kintrie Nummerin (ONS) an homologatit bodies o skeel frae ither curns."
 
 #: templates/static/privacy.html:22
 msgid "We may occasionally record information about a property or an individual, in the interests of safeguarding the wellbeing of both those being interviewed and interviewers, as well as to assist people in the completion of their questionnaires. We’ll hold the minimum amount of personal data needed to meet these purposes."
-msgstr "Ó am go ham, d'fhéadfadh muid eolas a chlárú faoi réadmhaoin no faoi dhuine, ar mhaithe le leas na ndaoine sin a chuirfear faoi agallamh agus na n-agallaithe, chomh maith le cuidiú le daoine a gceistiúcháin a líonadh isteach. Coinneoidh muid an t-íosmhéid sonraí pearsanta a bheidh de dhíth leis na cuspóirí sin a chomhlíonadh."
+msgstr "Betimes we micht tak a scrow o wittins anent a haudin ur a bodie thairsel, tha wye we'll can hain tha guid o baith tha yins pittin spierins an thaim 'at's giein spierin repones, forbye giein fowk a heeze wi throchin thair spierin foarms. We'll haud tha wee'est smitch o gien taxt anent a bodie's sel we maun hae tae shuit thir ettlins."
 
 #: templates/static/privacy.html:24
 msgid "For online completion, we’ll collect information about how people fill in their questionnaires online to provide us with knowledge of how to improve our online services."
-msgstr "Don cheistiúchán a líonfar ar líne, baileoidh muid eolas ar an dóigh a líonfaidh daoine a gceistiúcháin ar líne le eolas a thabhairt dúinn ar an bhealach lenár seirbhísí ar líne a fheabhsú."
+msgstr "Fur throchin owre tha wab, we'll ingaither wittins anent tha wye fowk fïlls in thair spierin foarms ower tha wab, furtae aise kennin o whut wye tae fordèr oor fennin owre tha wab."
 
 #: templates/static/privacy.html:27
 msgid "Who can access the information?"
-msgstr "Cé ar féidir leo rochtain bheith acu ar an eolas?"
+msgstr "Wha cud ingang tha wittins?"
 
 #: templates/static/privacy.html:29
 msgid "During the rehearsal we’ll employ third-party providers to assist us with parts of the operation. These third parties work under our instruction."
-msgstr "I rith an réamhchleachtaidh, fostóidh muid soláthraithe tríú páirtí chun cuidiú linn le cuid den oibríocht. Beidh na tríú páirtithe ag obair faoinár dtreoir."
+msgstr "Throch tha preein we'll tak oan ootbye consarns tae gie iz a heeze wi pairts o tha traffeckin. Thir ootbye consarns daes thair darg unnèr oor airtin."
 
 #: templates/static/privacy.html:30
 msgid "We treat the information we hold with respect, keeping it secure and confidential. Data may be made available to approved researchers where there is a clear public value and it’s safe and lawful to do so. More information on <a href='{policies_url}'>how we allow access to data for research</a> is available. We also publish a full list of all the <a href='{researchers_url}'>approved researchers</a> who we’ve granted access to."
-msgstr "Caithfidh muid leis an eolas atá againn le meas, ag coinneáil slán agus rúnda í. D'fhéadfaí sonraí a chur ar fáil do thaighdeoirí faofa áit a bhfuil luach poiblí soiléir agus go bhfuil sé sábháilte agus dleathach é sin a dhéanamh. Tá tuilleadh eolais ar fáil ar <a href='{policies_url}'>ar an bhealach a cheadaíonn muid rochtain ar shonraí taighde</a>. Foilsíonn muid liosta iomlán freisin de na taighdeoirí faofa <a href='{researchers_url}'> </a> a bhfuil rochtain againn orthu."
+msgstr "We guide tha wittins we haud wi mense, haudin it siccar an hiddlie. Gien taxt cud be pit tae tha han o homologatit bodies o skeel whar thar's a straucht-forrit guid fur resydentèrs an it's siccar an no agin tha laa tae dae't. Mair wittins anent <a href='{policies_url}'>whut wye we lat ingang til gien taxt fur screengin</a> is pit tae yer han. Forbye, we ootset a fu leet o aa tha <a href='{researchers_url}'>homologatit bodies o skeel</a> 'at we hae lat ingang it."
 
 #: templates/static/privacy.html:33
 msgid "How long are personal data kept?"
-msgstr "Cá fhad a choinneofar na sonraí pearsanta?"
+msgstr "Hoo lang wud gien taxt anent a bodie's sel be hauden?"
 
 #: templates/static/privacy.html:35
 msgid "Data protection law requires that personal data are kept for no longer than is needed to fulfil the purposes for which they were originally collected."
-msgstr "Tá dualgas faoin dlí um chosaint sonraí nach gcoinneofar sonraí pearsanta gan níos faide ná an tréimhse a bheidh de dhíth leis na cuspóirí dar bailíodh ar dtús iad a chomhlíonadh."
+msgstr "Tha laa anent tha hainin o gien taxt gars fowk haud gien taxt anent a bodie's sel fur nae langer nor whut's necessar tae shuit tha ettlins the' wur ingaithert fur at tha furst."
 
 #: templates/static/privacy.html:37
 msgid "The law allows that information held for statistical purposes only, such as information from your questionnaire, may be kept for longer periods. We’ll only continue to hold personal data where they are still used to produce statistics. Data used by approved researchers will be held within our <a href='{url}'>Secure Research Service</a>. Any personal data that we do not need, such as names and addresses, will be removed from the data at the earliest opportunity. The data will undergo regular reviews and will be deleted when they are no longer required."
-msgstr "Ceadaíonn an dlí go bhféadfar eolas a choinnítear chun críocha staitistiúla amháin, amhail eolas ó do cheistneoir, a choinneáil ar feadh tréimhsí níos faide. Ní leanfaidh muid orainn ag coimeád sonraí pearsanta ach amháin nuair a úsáidtear iad chun staitisticí a tháirgeadh. Tionólfar sonraí a úsáideann taighdeoirí faofa laistigh dár <a href='{url}'> Seirbhís Taighde Slán </a>. Bainfear aon sonraí pearsanta nach gá dúinn, amhail ainmneacha agus seoltaí, as na sonraí a luaithe is féidir. Déanfar athbhreithnithe rialta ar na sonraí agus scriosfar iad nuair nach mbeidh gá leo a thuilleadh."
+msgstr "Tha laa gies lave 'at wittins hauden fur nummerin ettlins alane, tha like o wittins frae yer spierin foarm, micht be hauden fur langer tacks. We'll jist haud tae hingin oan tae gien taxt anent a bodie's sel whar the'r bein uised yit fur tae rise nummerin. Gien taxt uised wi homologatit bodies o skeel wull be hauden inbye oor <a href='{url}'>Siccar Screengin Fennin</a>. Onie gien taxt anent a bodie's sel we dinnae be tae hae, tha like o whut the' cry fowk an thair bakkins, wull be taen oot o tha pose o gien taxt at tha furst inlat. We'r fur haein reglar scances o tha gien taxt pose an blorryin it oot whan we dinnae be tae hae it onie mair."
 
 #: templates/static/privacy.html:39
 msgid "Safeguarding data, such as information about a property or an individual, will be held for the duration of the rehearsal. Most of the information will be deleted at the end of the rehearsal. In some instances, data will be held for longer periods, where keeping them continues to serve safeguarding purposes."
-msgstr "Coinneofar sonraí sábháilteachta, amhail eolas faoi réadmhaoin nó faoi dhuine éigin, ar feadh fad an réamhchleachtaidh. Scriosfar an chuid is mó den eolas ag deireadh an réamhchleachtaidh. I roinnt cásanna, coinneofar sonraí ar feadh tréimhsí níos faide, más féidir linn iad a úsáid do chuspóirí sábháilteachta agus sinne a gcoinneáil."
+msgstr "Hainin gien taxt, tha like o wittins anent a haudin ur a bodie's sel, wull be hauden fur tha tack o tha preein. Maist o tha wittins wull be blorried oot at the enn o tha preein. In a feck o tha wyes o't, gien taxt wull be hauden fur langer tacks, whar haudin oan til thaim hauds tae shuitin tha hainin ettlins."
 
 #: templates/static/privacy.html:41
 msgid "Metrics containing information about how people fill in their questionnaires will be held in an identifiable form only until the necessary statistical matching has taken place. After this point the data will be de-identified and used for the purposes of improving our services."
-msgstr "Coinneofar meadarachtaí ina bhfuil eolas ar an dóigh a líonann daoine a gceistiúcháin isteach i bhfoirm inaitheanta go dtí go ndéanfar an mheaitseáil staitisticiúil riachtanach. Ina dhiaidh seo, dí-aithneofar na sonraí agus úsáidfear iad lenár seirbhísí a fheabhsú."
+msgstr "Metrics haudin wittins anent whut wye fowk fïlls in thair spierin foarms wull be hauden in a lay-oot whar a bodie cud be fun oot jist tae tha necessar marrowin fur nummerin is daen. Syne tha gien taxt wull be redd o onie mairks o tha bodie's sel an uised tae mint at fordèrin oor fennin."
 
 #: templates/static/privacy.html:44
 msgid "How the law protects your information"
-msgstr "An dóigh a gcosnaíonn an dlí d'eolas"
+msgstr "Whut wye tha laa fens yer wittins"
 
 #: templates/static/privacy.html:46
 msgid "The <a href='{data_protection_url}'>General Data Protection Regulation</a> and the <a href='{data_protection_act_url}'>Data Protection Act 2018</a> determine how, when and why any organisation can process your personal data. Personal data is any information that can identify a living individual. These laws exist to make sure your data are managed safely and used responsibly. They also give you certain rights about your data and create a responsibility on the ONS, as a user of personal data, to provide you with certain information."
-msgstr "Socraíonn an <a href='{data_protection_url}'> an Rialachán Ginearálta um Chosaint Sonraí </a> agus an <a href='{data_protection_act_url}'> an tAcht um Chosaint Sonraí 2018 </a> cad é mar, cén uair agus cén fáth ar féidir le heagraíocht ar bith do shonraí pearsanta a phróiseáil. Is éard is sonraí pearsanta ann aon eolas a fhéadann duine beo a aithint. Tá na dlíthe seo ann lena chinntiú go ndéantar do shonraí a bhainistiú go sábháilte agus a úsáid go freagrach. Tugann siad cearta áirithe duit freisin maidir le do shonraí agus cruthaíonn siad freagracht ar ONS, mar úsáideoir sonraí pearsanta, chun eolas áirithe a sholáthar duit."
+msgstr "Tha <a href='{data_protection_url}'> Oweraa Gien Taxt Hainin Disponin</a> an tha <a href='{data_protection_act_url}'> Gien Taxt Hainin Ect 20an18</a> desarns hoo, whaniver an fur why onie curn cud throch-pit wittins anent yer ainsel. Gien taxt anent yer ainsel bes onie wittins 'at cud mairk oot a parteeklar leevin bodie. Thir laas is tae tha fore furtae mak siccar yer gien taxt is guidit siccarly an uised stievely. Forbye, the' gie ye sindèrie richts adae wi yer gien taxt an pit an ontak oan tha ONS, seein it uises gien taxt anent a bodie's sel, tae gie ye parteeklar wittins."
 
 #: templates/static/privacy.html:48
 msgid "The ONS is a statutory body, meaning it was created by legislation, specifically the <a href='{url}'>Statistics and Registration Service Act 2007</a>. Our objective is to promote and safeguard the production and publication of official statistics that serve the public good. All our collection and use of data comes from powers that can be found in that Act or other UK legislation."
-msgstr "Is comhlacht reachtúil é an Oifig Náisiúnta Staidrimh (ONS), rud a chiallaíonn gur cruthaíodh é le reachtaíocht, go háirithe an<a href='{url}'>tAcht um Sheirbhísí Staitisticí agus Clárúcháin 2007</a>. Is é ár gcuspóir táirgeadh agus foilsiú staitisticí oifigiúla a chur chun cinn agus a chosaint a chuireann leas an phobail chun cinn. Tagann gach bailiú agus úsáid sonraí ó chumhachtaí atá san Acht sin nó i reachtaíocht eile sa Ríocht Aontaithe."
+msgstr "Tha ONS bes a laa-stellit curn, mintin it wus foondit wi govermin laa, namely tha <a href='{url}'>Nummerin an Registratin Fennin Ect 20an07</a>. We'r ettlin at fordèrin an hainin tha risin an ootsettin o offeecial nummerin 'at fens tha guid o resydentèrs. Aa tha ingaitherin an uise o gien taxt 'at we dae cums frae pooers ye'll can fyn in thon Ect ur ither CK laas."
 
 #: templates/static/privacy.html:50
 msgid "The census rehearsal questionnaire has been assessed as compatible with the <a href='{url}'>Human Rights Act 1998</a>, specifically Article 8 (right to respect for a private and family life) and Article 9 (freedom of thought, conscience and religion) of the convention rights."
-msgstr "Rinneadh measúnú ar cheistneoir an daonáirimh a bheith comhoiriúnach leis an <a href='{url}'>Acht um Chearta an Duine, 1998</a>, go háirithe Alt 8 (ceart meas ar shaol príobháideach agus teaghlaigh) agus Alt 9 (saoirse smaoinimh, coinsiasa agus reiligiúin) ar chearta na coinbhinsiún."
+msgstr "Tha heid-coont preein spierin foarm has bin wechtit as answerin tha <a href='{url}'>Boadie-Kynn Richts Ect 19an98</a>, siccarly Airticle 8 (richt tae wicelike hannlin o hiddlie an faimlie leevin) an Airticle 9 (scowth fur thocht, conscience an releegion) o tha convenerie richts."
 
 #: templates/static/privacy.html:53
 msgid "Legal basis for processing your data"
-msgstr "An bunús dlíthiúil le do shonraí a phróiseáil"
+msgstr "Foonds in laa fur throch-pittin yer gien taxt"
 
 #: templates/static/privacy.html:55
 msgid "Data protection legislation requires that all processing of personal data is undertaken under one or more conditions."
-msgstr "De réir na reachtaíochta um chosaint sonraí, caithfear próiseáil sonraí pearsanta a dhéanamh faoi cheann amháin nó níos mó coinníollacha."
+msgstr "Laas anent gien taxt hainin threaps 'at aa throch-pittin o gien taxt adae wi a bodie's sel is daen unnèr yin ur mair wyes o't."
 
 #: templates/static/privacy.html:57
 msgid "For the census rehearsal, we’ll process information from your questionnaire, information about a property or an individual and information about how people fill in their questionnaires under the following condition:"
-msgstr "Do réamhchleachtadh an daonáirimh, próiseálfaidh muid eolas ó do cheistiúchán faoi réadmhaoin nó faoi dhuine agus eolas ar an dóigh a líonann daoine a gceistiúcháin isteach faoin choinníoll seo a leanas:"
+msgstr "Fur tha heid-coont preein, we'r fur throch-pittin wittins frae yer spierin foarm, wittins anent a haudin ur a bodie's sel an wittins anent whut wye fowk f ïlls in thair spierin foarm unnèr tha follaein set:"
 
 #: templates/static/privacy.html:60
 msgid "processing is necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller."
-msgstr "tá próiseáil riachtanach d'fheidhmiú taisc a dhéantar ar mhaithe leis an ghnáthphobal nó san údarás oifigiúil a thiteann leis an rialaitheoir."
+msgstr "throch-pittin's a maun-dae fur tha implymentin o a darg cairried oot fur tha guid o resydentèrs ur in tha hannlin o offeecial owerance vestit in tha owersman."
 
 #: templates/static/privacy.html:63
 msgid "Under data protection legislation, an additional condition is required for the processing of special category personal data. These data include information about your racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, sex life or sexual orientation. They also include genetic and biometric data."
-msgstr "Faoin reachtaíocht um chosaint sonraí, tá coinníoll breise de dhíth le catagóir speisialta de shonraí pearsanta a phróiseáil. I measc na sonraí tá eolas ar do bhunús ciníoch nó eitneach, ar do chreideamh reiligiúnach nó fealsúnachta, ar do bhallraíocht de cheardchumann, do shaol gnéis nó do chlaonadh gnéis. Ina measc tá sonraí géiniteacha agus bithmhéadracha chomh maith."
+msgstr "Unnèr gien taxt hainin laas, we'r gart hae an eikit set fur tha throch-pittin o by-ordnar soarts o wittins adae wi a bodie's sel. This gien taxt taks in wittins anent tha kine o ye ur tha kin curn ye wur raired in, thochts adae wi pairtie, releegious ur warlview trowin, memmership o wark unions, sex daeins ur sex airtin. Forbye, the' tak in genetic ur biometric gien taxt."
 
 #: templates/static/privacy.html:65
 msgid "For the rehearsal, we’ll process special category personal data on race, ethnicity, religion, philosophical beliefs and sexual orientation. nformation from your questionnaire is processed under the following two conditions:"
-msgstr "Don réamhchleachtadh seo, phróiseálfaidh muid sonraí pearsanta de chatagóirí speisialta ar chine, eitneacht, reiligiún, creideamh fealsúnachta agus claonadh gnéis. Próiseáiltear eolas ar do cheistiúchán faoin dá choinníoll seo a leanas:"
+msgstr "Fur tha preein, we'r fur throch-pittin by-ordnar soarts o gien taxt adae wi a bodie's sel anent tha kine o thaim, tha kin curn the' wur raired in, warlview trowin an sex airtin. Wittins frae yer spierin foarm is pit throu-hans unnèr tha follaein twa wyes o't:"
 
 #: templates/static/privacy.html:68
 msgid "processing is necessary for archiving in the public interest, scientific or historical research purposes or statistical purposes based on UK law."
-msgstr "tá próiseáil eolais i gcartlanna riachtanach ar mhaithe leis an ghnáthphobal, le cuspóirí taighde nó stairiúla nó le cuspóirí staitisticiúla bunaithe ar dhlíthe na UK."
+msgstr "throch-pittin's necessar fur pittin wittins by fur tha guid o resydentèrs, fur ettlins adae wi screengin intil seeince ur historie ur ettlins adae wi nummerin foondit oan CK laas."
 
 #: templates/static/privacy.html:69 templates/static/privacy.html:75
 msgid "processing is necessary for reasons of substantial public interest."
-msgstr "tá próiseáil riachtanach ar mhaithe le fáthanna de shuim mhór phoiblí."
+msgstr "throch-pittin's necessar acause o tha stieve guid o resydentèrs."
 
 #: templates/static/privacy.html:72
 msgid "We’ll process special category data on information about a property or an individual under the following condition:"
-msgstr "Próiseálann muid sonraí de chatagóirí speisialta ar eolas faoi réadmhaoin nó ar dhuine faoin choinníoll seo a leanas:"
+msgstr "We'r fur throch-pittin by-ordnar soarts o gien taxt oan wittins anent haudins ur a bodie's sel unnèr tha follaein wye o't:"
 
 #: templates/static/privacy.html:78
 msgid "We’ll ensure the principle of data minimisation and have measures in place to delete or de-identify personal data where appropriate."
-msgstr "Cinnteoidh muid prionsabal an laghdaithe ar shonraí agus beidh bearta i bhfeidhm againn le sonraí pearsanta a scriosadh nó a dhí-aithint nuair is cuí é."
+msgstr "We'r fur makkin siccar o tha weel-guidit gate o inlaikin gien taxt an hae mizhures stellit tae blorry ur mak unkent gien taxt anent a bodie's sel whar it's effeirin."
 
 #: templates/static/privacy.html:80
 msgid "The census rehearsal gives us invaluable information about the systems and processes required for Census 2021. It’ll help us complete one of our main functions in delivering Census 2021, which will subsequently provide numerous benefits for the wider society."
-msgstr "Tugann an réamhchleachtadh daonáirimh eolas fíorúsáideach dúinn ar na córais agus ar na próisis a bheidh de dhíth don Dhaonáireamh 2021. Cuideoidh sé linn ceann dár bpríomfheidhmeanna a chomhlíonadh le Daonáireamh 2021 a dhéanamh, a rachaidh chun leasa go mór don gnáthphobal i gcoitinne."
+msgstr "Tha heid-coont preein gies iz wittins o unco warth anent tha gates an throch-pittins we maun hae fur Heid-Coont 20an21. It wull gie iz a heeze in throchin yin o oor foremaist dargs in pittin Heid-Coont 20an21 throu-hans, an resydentèrs oweraa wull ken tha muckle guid o't eftèrhin."
 
 #: templates/static/privacy.html:82
 msgid "There’s substantial public interest in the collection of safeguarding data to ensure the safety of both interviewers and respondents. We’re required to ensure the safety of our staff and the public."
-msgstr "Tá suim an-mhór ag an ghnáthphobal i mbailiú sonraí cosanta le sábháilteacht agallaithe agus freagróirí a chinntiú. Tá ceangal dlí orainn sábháilteacht ár bhfoirne agus an ghnáthphobail a chinntiú."
+msgstr "Thar's stieve guid fur resydentèrs in tha ingaitherin o hainin gien taxt furtae mak siccar o tha safétie o baith yins pittin spierins an yins makkin repone. We'r gart mak siccar o tha safétie o oor darg-bann an resydentèrs."
 
 #: templates/static/privacy.html:85
 msgid "Your rights"
-msgstr "Do chearta"
+msgstr "Yer richts"
 
 #: templates/static/privacy.html:87
 msgid "As a data subject (someone whose personal data we hold), you have rights available to you under data protection law. If you wish to exercise any of these rights, please contact our data protection officer. However, please be aware that we may not be required to comply if the data are being held for statistical purposes only. Compliance requirements are set out in the Data Protection Act 2018."
-msgstr "Mar dhamhna sonraí (duine a bhfuil a s(h)onraí againn orthu), tá cearta agat de réir an dlí um chosaint sonraí. Más mian leat ceann ar bith de na cearta seo a fheidhmiú, déan teagmháil lenár n-oifigeach um chosaint sonraí le do thoil. Bí ar an eolas áfach nach bhféadfadh dualgas dlí bheith orainn cloí leis dá mbeadh na sonraí á gcoinneáil againn do chuspóirí staitisticiúla amháin. Tá na riachtanais chomhlíonta leagtha amach san Acht um Chosaint Sonraí 2018."
+msgstr "Sin ye'r a spaik o tha gien taxt (a bodie whase gien taxt anent yer ainsel we haud), ye hae richts pit tae yer han unnèr tha laas o gien taxt hainin. Gin ye wud consate tae implyment onie o thae richts, we'd be ableeged gin ye'd awn wi oor gien taxt hainin offyser. Still an withal, but, wud ye ivver tak tent 'at we micht no be tae compluther gin tha gien taxt is hauden fur nummerin ettlins alane. Stannèrts fur complutherin bes laid doon wi tha Gien Taxt Hainin Ect 20an18."
 
 #: templates/static/privacy.html:89
 msgid "You have the right to request from any controller that holds your personal data access to the information they hold about you. You can ask them to amend any wrong or inaccurate information they hold about you. You have the right to object to your personal data being processed."
-msgstr "Tá an ceart agat iarraidh ar rialaitheoir ar bith a bhfuil do shonraí pearsa aige rochtain bheith agat ar an eolas atá acu fút. Is féidir leat iarraidh orthu eolas mícheart nó míchruinn atá acu fút a athrú. Tá an ceart agat cur i gcoinne próiseáil do shonraí pearsanta."
+msgstr "Ye hae tha richt tae spier o onie owersman 'at hauds tha gien taxt adae wi yer ainsel fur ingang til tha wittins the' haud anent ye. Ye'll can ax thaim tae cheynge onie wrang ur gley wittins the' haud anent yersel. Ye hae tha richt tae reclaim agin tha throch-pittin o tha gien taxt adae wi yer ainsel."
 
 #: templates/static/privacy.html:91
 msgid "You have the right, in some circumstances, to ask for any controller to:"
-msgstr "Tá an ceart agat, i dtosca áirithe, iarraidh ar rialaitheoir ar bith:"
+msgstr "Ye hae tha richt, in a wheen o wyes o't, tae ax fur onie owersman tae:"
 
 #: templates/static/privacy.html:94
 msgid "erase any personal data they may hold about you"
-msgstr "sonra pearsanta ar bith a d'fhéadfadh bheith acu fút a scrios"
+msgstr "blorry onie gien taxt adae wi yer ainsel the' micht haud anent ye"
 
 #: templates/static/privacy.html:95
 msgid "stop processing your personal data"
-msgstr "stop a chur le próiseáil do shonraí pearsanta"
+msgstr "quat throch-pittin tha gien taxt anent yer ainsel"
 
 #: templates/static/privacy.html:96
 msgid "pass any information they hold about you to another controller"
-msgstr "eolas ar bith atá acu fút a thabhairt do rialaitheoir eile"
+msgstr "rax onie wittins the' haud adae wi ye til anither owersman"
 
 #: templates/static/privacy.html:99
 msgid "You can get further information on the rights available to you and the circumstances under which you can exercise them from the <a href='{url}'>Information Commissioner’s Office</a>."
-msgstr "Is féidir leat tuilleadh eolais a fháil maidir leis na cearta atá ar fáil duit agus na cúinsí faoinar féidir leat iad a fheidhmiú ó <a href='{url}'>Oifig an Choimisinéara Eolais</a>."
+msgstr "Ye'll can hae mair wittins anent tha richts 'at's pit tae yer han an whut haes tae be forrit fur ye tae implyment thaim frae tha <a href='{url}'>Wittins Bailzie's Offys</a>."
 
 #: templates/static/privacy.html:102
 msgid "The data controller"
-msgstr "An rialaitheoir sonraí"
+msgstr "Tha gien taxt owersman"
 
 #: templates/static/privacy.html:104
 msgid "The controller is the person or organisation that decides which personal data will be processed and for what purpose. For the census rehearsal, the ONS is the controller and makes those decisions."
-msgstr "Is rialaitheoir é nó í an duine nó an eagraíocht a chinneann ar na sonraí pearsanta a bheidh le próiseáil agus ar na cuspóirí dá bpróiseáil. Don réamhchleachtadh daonáirimh, is é an ONS an rialaitheoir a dhéanann na cinntí sin."
+msgstr "Tha owersman wud be tha bodie ur curn 'at desarns whut gien taxt adae wi a bodie's sel wull be throch-pit an fur whut ettlin. Fur tha preein heid-coont, tha ONS wud be tha owersman an cum til thae desarns."
 
 #: templates/static/privacy.html:106
 msgid "You can contact us by:"
-msgstr "Is féidir leat teagmháil a dhéanamh linn trí:"
+msgstr "Ye'll can awn wi iz bae:"
 
 #: templates/static/privacy.html:108
 #, python-format
 msgid "Telephone: %(telephone_number)s"
-msgstr "Guthán: %(telephone_number)s"
+msgstr "Langbl'r: %(telephone_number)s"
 
 #: templates/static/privacy.html:110
 #, python-format
 msgid "Email: %(email_address)s"
-msgstr "Ríomhphost: %(email_address)s"
+msgstr "L-poast bakkin: %(email_address)s"
 
 #: templates/static/privacy.html:112 templates/static/privacy.html:132
 #: templates/static/privacy.html:153
 msgid "Post:"
-msgstr "Post:"
+msgstr "Póast:"
 
 #: templates/static/privacy.html:122
 msgid "How to contact the data protection officer"
-msgstr "An dóigh chun teagmháil a dhéanamh leis an oifigeach um chosaint sonraí"
+msgstr "Whut wye tae awn wi tha gien taxt hainin offyser"
 
 #: templates/static/privacy.html:124
 msgid "Our data protection officer is the person charged with providing us with advice and guidance on the ways we can best protect the information we collect and use. They are involved in all the major decisions we make in relation to personal data. If you have any queries or concerns regarding our use of your data, or wish to exercise any of your rights."
-msgstr "Is é/í an t-oifigeach um chosaint sonraí an duine atá freagrach as comhairle agus treoir a thabhairt dúinn ar na dóigheanna is fearr ar féidir linn an chosaint a chur ar an eolas a bhailíonn agus úsáideann muid. Tá baint acu leis na príomhchinntí go léir a dhéanann muid maidir le sonraí pearsanta. Má bhíonn ceist nó buairt ar bith agat maidir leis na dóigheanna a n-úsaideann muid do shonraí, nó más mian leat ceann ar bith de do chearta a fheidhmiú."
+msgstr "Oor gien taxt hainin offyser is tha bodie wi tha ontak o giein iz wyce an airtin anent tha wyes we'll can gleg hain tha wittins we ingaither an uise. The' hae thair pairt in aa tha foremaist desarns we cum til effeirin til gien taxt adae wi a bodie's sel. Gin ye hae onie spierins ur fashes tae dae wi oor uise o yer gien taxt, ur ye'r leukkin tae implyment onie o yer richts."
 
 #: templates/static/privacy.html:126
 msgid "You can contact the data protection officer by:"
-msgstr "Is féidir leat teagmháil a dhéanamh leis an oifigeach um chosaint sonraí trí:"
+msgstr "Ye'll can own wi tha gien taxt hainin offyser wi:"
 
 #: templates/static/privacy.html:130 templates/static/privacy.html:151
 msgid "Email: {email_address}"
-msgstr "Ríomhphost: {email_address}"
+msgstr "L-poast bakkin: {email_address}"
 
 #: templates/static/privacy.html:143
 msgid "The Information Commissioner’s Office"
-msgstr "Oifig an Choimisinéara Eolais"
+msgstr "Tha Wittins Bailzie's Offys"
 
 #: templates/static/privacy.html:145
 msgid "The Information Commissioner’s Office (ICO) is the independent organisation tasked with regulating data protection in the UK. The ICO can give you <a href='{url}'>extra information about data protection</a> and your rights and will deal with any complaints you may have about our use of your information."
-msgstr "Is í Oifig an Choimisinéara Eolais (ICO) an eagraíocht neamhspleách a bhfuil sé de chúram uirthi cosaint sonraí a rialáil sa Ríocht Aontaithe. Is féidir leis an ICO<a href='{url}'>eolas breise a thabhairt duit faoi chosaint sonraí</a> agus do chearta agus déileálfaidh sé le haon ghearáin a d'fhéadfadh a bheith agat maidir lenár n-úsáid."
+msgstr "Tha Wittins Bailzie's Offys (ICO) wud be tha scowth curn wi tha hannlin o gien taxt hainin in tha CK. Tha ICO cud gie ye <a href='{url}'>mair wittins anent gien taxt hainin</a> an yer richts an wud be fur pittin throu-hanns onie pleens ye micht hae anent oor uise o yer wittins."
 
 #: templates/static/privacy.html:147
 msgid "You can contact the ICO by:"
-msgstr "Is féidir leat teagmháil a dhéanamh leis an ICO trí:"
+msgstr "Ye'll can awn wi tha WBO bae:"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-12 12:18+0100\n"
+"POT-Creation-Date: 2019-09-17 09:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -665,27 +665,6 @@ msgstr ""
 msgid "Names of visitors staying overnight at this address on 13 October 2019"
 msgstr ""
 
-msgid "h"
-msgstr ""
-
-msgid "o"
-msgstr ""
-
-msgid "u"
-msgstr ""
-
-msgid "s"
-msgstr ""
-
-msgid "e"
-msgstr ""
-
-msgid "l"
-msgstr ""
-
-msgid "d"
-msgstr ""
-
 msgid ""
 "People who work away from home within the UK if this is their permanent "
 "or family home"
@@ -773,9 +752,6 @@ msgstr ""
 msgid "Do you usually live at {address}?"
 msgstr ""
 
-msgid "Does anyone usually live at {address}?"
-msgstr ""
-
 msgid "Who do you need to add to {address}?"
 msgstr ""
 
@@ -783,6 +759,9 @@ msgid "Change details for {person_name} (You)"
 msgstr ""
 
 msgid "Change details for {person_name}"
+msgstr ""
+
+msgid "Does anyone usually live at {address}?"
 msgstr ""
 
 msgid "Does anyone else live at {address}?"
@@ -1176,59 +1155,59 @@ msgctxt "Answer for: Do you usually live at {address}?"
 msgid "No, I don’t usually live here"
 msgstr ""
 
-#. answer-id: anyone-usually-live-at-answer
+#. answer-id: first-name
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: anyone-else-answer
 msgctxt "Answer for: Does anyone usually live at {address}?"
 msgid "Yes, I need to add someone"
 msgstr ""
 
-#. answer-id: anyone-usually-live-at-answer
+#. answer-id: anyone-else-answer
 msgctxt "Answer for: Does anyone usually live at {address}?"
 msgid "No, no one usually lives here"
-msgstr ""
-
-#. answer-id: first-name
-msgctxt "Answer for: Who do you need to add to {address}?"
-msgid "First name"
-msgstr ""
-
-#. answer-id: middle-names
-msgctxt "Answer for: Who do you need to add to {address}?"
-msgid "Middle names"
-msgstr ""
-
-#. answer-id: last-name
-msgctxt "Answer for: Who do you need to add to {address}?"
-msgid "Last name"
-msgstr ""
-
-#. answer-id: first-name
-msgctxt "Answer for: Change details for {person_name} (You)"
-msgid "First name"
-msgstr ""
-
-#. answer-id: middle-names
-msgctxt "Answer for: Change details for {person_name} (You)"
-msgid "Middle names"
-msgstr ""
-
-#. answer-id: last-name
-msgctxt "Answer for: Change details for {person_name} (You)"
-msgid "Last name"
-msgstr ""
-
-#. answer-id: first-name
-msgctxt "Answer for: Change details for {person_name}"
-msgid "First name"
-msgstr ""
-
-#. answer-id: middle-names
-msgctxt "Answer for: Change details for {person_name}"
-msgid "Middle names"
-msgstr ""
-
-#. answer-id: last-name
-msgctxt "Answer for: Change details for {person_name}"
-msgid "Last name"
 msgstr ""
 
 #. answer-id: anyone-else-answer
@@ -4938,7 +4917,7 @@ msgctxt ""
 msgid "Postcode"
 msgstr ""
 
-#. answer-id: anyone-usually-live-at-answer
+#. answer-id: anyone-else-answer
 msgctxt "Answer for: Does anyone usually live at {address}?"
 msgid ""
 "Include partners, children, babies born on or before {census_date}, "
