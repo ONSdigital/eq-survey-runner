@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-17 09:41+0100\n"
-"PO-Revision-Date: 2019-09-18 09:40\n"
+"PO-Revision-Date: 2019-09-18 11:17\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -368,8 +368,8 @@ msgstr[5] "Mae %(num)s wall ar y dudalen hon"
 #: templates/question.html:22
 msgid "This <strong>must be corrected</strong> to continue"
 msgid_plural "These <strong>must be corrected</strong> to continue"
-msgstr[0] "Mae'n <strong>rhaid cywiro hwn<strong> cyn parhau"
-msgstr[1] "Mae'n <strong>rhaid cywiro'r rhain<strong> cyn parhau"
+msgstr[0] "Mae'n <strong>rhaid cywiro</strong> hwn cyn parhau"
+msgstr[1] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
 msgstr[2] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
 msgstr[3] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
 msgstr[4] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
@@ -435,7 +435,7 @@ msgstr "Cyflwynwyd eich atebion ar gyfer <span>%(ru_name)s</span> (%(trading_as_
 #: templates/view-submission.html:24
 #, python-format
 msgid "Your answers were submitted for <span>%(ru_name)s</span> on %(submitted_time)s"
-msgstr "Cyflwynwyd eich atebion ar gyfer  <span>%(ru_name)s</span> ar %(submitted_time)s"
+msgstr "Cyflwynwyd eich atebion ar gyfer <span>%(ru_name)s</span> ar %(submitted_time)s"
 
 #: templates/view-submission.html:29
 msgid "Transaction ID"
@@ -925,7 +925,7 @@ msgstr "Cafodd rhannau o'r holiadur hwn eu profi ddiwethaf ar 3 Medi 2019 gan y 
 
 #: templates/static/accessibility.html:120
 msgid "<a href='{url}' download>DAC Report - September 2019</a>"
-msgstr "<a href='{url}' download>DAC Report - Medi 2019</a>"
+msgstr "<a href='{url}' download>Adroddiad DAC - Medi 2019</a>"
 
 #: templates/static/accessibility.html:122
 msgid "You can read the last full accessibility test report from 28 June 2019."
@@ -933,7 +933,7 @@ msgstr "Gallwch ddarllen yr adroddiad ar y prawf hygyrchedd llawn diwethaf o 28 
 
 #: templates/static/accessibility.html:124
 msgid "<a href='{url}' download>DAC Report - June 2019</a>"
-msgstr "<a href='{url}' download>DAC Report - Mehefin 2019</a>"
+msgstr "<a href='{url}' download>Adroddiad DAC - Mehefin 2019</a>"
 
 #: templates/static/accessibility.html:126
 msgid "What we’re doing to improve accessibility"
@@ -1134,7 +1134,7 @@ msgstr "Gallwch gysylltu â ni fel a ganlyn:"
 #: templates/static/privacy.html:108
 #, python-format
 msgid "Telephone: %(telephone_number)s"
-msgstr "Ffôn:%(telephone_number)s"
+msgstr "Ffôn: %(telephone_number)s"
 
 #: templates/static/privacy.html:110
 #, python-format
@@ -1160,7 +1160,7 @@ msgstr "Gallwch gysylltu â'r swyddog diogelu data fel a ganlyn:"
 
 #: templates/static/privacy.html:128 templates/static/privacy.html:149
 msgid "Telephone: {telephone_number}"
-msgstr "Ffôn:{telephone_number}"
+msgstr "Ffôn: {telephone_number}"
 
 #: templates/static/privacy.html:130 templates/static/privacy.html:151
 msgid "Email: {email_address}"
