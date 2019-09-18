@@ -189,6 +189,17 @@ local otherNonUkAddressOptions = {
     },
     {
       goto: {
+        block: 'term-time-address-country',
+        when: [
+          {
+            id: 'another-address-answer',
+            condition: 'not set',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
         group: 'submit-group',
         when: [
           {
