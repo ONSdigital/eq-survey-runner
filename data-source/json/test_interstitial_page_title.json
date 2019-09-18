@@ -39,7 +39,7 @@
                                         {
                                             "placeholder": "case_id",
                                             "value": {
-                                                "identifier": "case_id",
+                                                "identifier": "case-id",
                                                 "source": "metadata"
                                             }
                                         }
