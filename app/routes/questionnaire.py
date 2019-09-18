@@ -36,7 +36,7 @@ from app.helpers.language_helper import handle_language
 from app.helpers.path_finder_helper import path_finder
 from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_questionnaire_store
-from app.helpers.template_helper import render_template, safe_content
+from app.helpers.template_helper import render_template
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.questionnaire.location import InvalidLocationException
 from app.questionnaire.router import Router
@@ -249,6 +249,7 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
             current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
+            page_title=block_handler.page_title,
         )
 
     if 'action[save_sign_out]' in request.form:
@@ -296,6 +297,7 @@ def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_it
             current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
+            page_title=block_handler.page_title,
         )
 
     if 'action[save_sign_out]' in request.form:
@@ -532,30 +534,12 @@ def _is_submission_viewable(schema, submitted_time):
     return False
 
 
-def get_page_title_for_location(schema, current_location, context):
-    block_schema = schema.get_block(current_location.block_id)
-    if block_schema['type'] == 'Interstitial':
-        group = schema.get_group_for_block_id(block_schema['id'])
-        page_title = '{group_title} - {survey_title}'.format(
-            group_title=group['title'], survey_title=schema.json['title']
-        )
-    elif schema.is_question_block_type(block_schema['type']):
-        question_title = context['block']['question'].get('title')
-
-        page_title = '{question_title} - {survey_title}'.format(
-            question_title=question_title, survey_title=schema.json['title']
-        )
-    else:
-        page_title = schema.json['title']
-
-    return safe_content(page_title)
-
-
-def _render_page(block_type, context, current_location, previous_location_url, schema):
+def _render_page(
+    block_type, context, current_location, previous_location_url, schema, page_title
+):
     if request_wants_json():
         return jsonify(context)
 
-    page_title = get_page_title_for_location(schema, current_location, context)
     session_data = get_session_store().session_data
     session_timeout = get_session_timeout_in_seconds(schema)
 
@@ -564,10 +548,10 @@ def _render_page(block_type, context, current_location, previous_location_url, s
         content=context,
         current_location=current_location,
         previous_location_url=previous_location_url,
-        page_title=page_title,
         language_code=session_data.language_code,
         session_timeout=session_timeout,
         legal_basis=schema.json.get('legal_basis'),
+        page_title=page_title,
     )
 
 
