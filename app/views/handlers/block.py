@@ -30,6 +30,7 @@ class BlockHandler:
         self._router = None
         self._routing_path = self._get_routing_path()
         self.form = None
+        self.page_title = None
 
         if not self.is_location_valid():
             raise InvalidLocationException(
