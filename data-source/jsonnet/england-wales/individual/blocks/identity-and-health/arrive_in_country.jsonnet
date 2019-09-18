@@ -59,6 +59,17 @@ function(region_code, census_month_year_date) {
     },
     {
       goto: {
+        block: 'when-arrive-in-uk',
+        when: [
+          {
+            id: 'arrive-in-country-answer',
+            condition: 'not set',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
         block: 'length-of-stay',
         when: [
           {
