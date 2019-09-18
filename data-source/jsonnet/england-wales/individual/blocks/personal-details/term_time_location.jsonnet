@@ -193,7 +193,7 @@ local otherNonUkAddressOptions = {
         when: [
           {
             id: 'another-address-answer',
-            condition: 'not set'
+            condition: 'not set',
           },
         ],
       },
