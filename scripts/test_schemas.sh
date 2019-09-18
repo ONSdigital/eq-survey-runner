@@ -40,7 +40,7 @@ done
 exit=0
 
 if [ $# -eq 0 ] || [ "$1" == "--local" ]; then
-    file_path="./data/en"
+    file_path="./data"
 else
     file_path="$1"
 fi
