@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census-nisra\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-12 12:18+0100\n"
-"PO-Revision-Date: 2019-09-16 11:29\n"
+"POT-Creation-Date: 2019-09-13 11:18+0100\n"
+"PO-Revision-Date: 2019-09-18 09:15\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Irish\n"
 "MIME-Version: 1.0\n"
@@ -198,7 +198,7 @@ msgid "Include equivalent apprenticeships completed anywhere outside Northern Ir
 msgstr "Luaigh printíseachtaí comhionanna críochnaithe áit ar bith taobh amuigh de Thuaisceart Éireann"
 
 msgid "Current serving members should only select “No”"
-msgstr "Ba chóir do bhaill atá ag déanamh seirbhíse faoi láthair \"Níl\" a roghnú"
+msgstr "Ba chóir do bhaill atá ag déanamh seirbhíse faoi láthair \"Ní dhearna\" a roghnú"
 
 msgid "Include casual or temporary work, even if only for one hour"
 msgstr "Luaigh obair ócáideach nó shealadach, fiú má oibríonn tú ar feadh aon uair amháin"
@@ -567,25 +567,25 @@ msgid "Names of visitors staying overnight at this address on 13 October 2019"
 msgstr "Ainmneacha na gcuairteoirí a bheidh ag fanacht thar oíche ag an seoladh seo ar 13 Deireadh Fómhair 2019"
 
 msgid "h"
-msgstr ""
+msgstr "h"
 
 msgid "o"
-msgstr ""
+msgstr "o"
 
 msgid "u"
-msgstr ""
+msgstr "u"
 
 msgid "s"
-msgstr ""
+msgstr "s"
 
 msgid "e"
-msgstr ""
+msgstr "e"
 
 msgid "l"
-msgstr ""
+msgstr "l"
 
 msgid "d"
-msgstr ""
+msgstr "d"
 
 msgid "People who work away from home within the UK if this is their permanent or family home"
 msgstr "Daoine a oibríonn ar shiúl ón bhaile taobh istigh den UK más é seo a dteach buan nó teaghlaigh"
@@ -656,9 +656,6 @@ msgstr "Sa chuid seo, beidh muid ag dul ceist a chur ort faoi na daoine a chóna
 msgid "Do you usually live at {address}?"
 msgstr "An gcónaíonn tú ag {address} de ghnáth?"
 
-msgid "Does anyone usually live at {address}?"
-msgstr "An gcónaíonn duine ar bith ag {address} de ghnáth?"
-
 msgid "Who do you need to add to {address}?"
 msgstr "Cé is gá duit cur isteach ag an {address} chomh maith?"
 
@@ -667,6 +664,9 @@ msgstr "Athraigh na sonraí do {person_name} (Tusa)"
 
 msgid "Change details for {person_name}"
 msgstr "Athraigh na sonraí do {person_name}"
+
+msgid "Does anyone usually live at {address}?"
+msgstr "An gcónaíonn duine ar bith ag {address} de ghnáth?"
 
 msgid "Does anyone else live at {address}?"
 msgstr "An gcónaíonn duine ar bith eile ag {address} de ghnáth?"
@@ -969,60 +969,60 @@ msgctxt "Answer for: Do you usually live at {address}?"
 msgid "No, I don’t usually live here"
 msgstr "Ní chónaím anseo de ghnáth"
 
-#. answer-id: anyone-usually-live-at-answer
+#. answer-id: first-name
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "First name"
+msgstr "Céad Ainm"
+
+#. answer-id: middle-names
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "Middle names"
+msgstr "Lárainmneacha"
+
+#. answer-id: last-name
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "Last name"
+msgstr "Sloinne"
+
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "First name"
+msgstr "Céad Ainm"
+
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Middle names"
+msgstr "Lárainmneacha"
+
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Last name"
+msgstr "Sloinne"
+
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "First name"
+msgstr "Céad Ainm"
+
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Middle names"
+msgstr "Lárainmneacha"
+
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Last name"
+msgstr "Sloinne"
+
+#. answer-id: anyone-else-answer
 msgctxt "Answer for: Does anyone usually live at {address}?"
 msgid "Yes, I need to add someone"
 msgstr "Cónaíonn, caithfidh mé duine éigin a chur isteach"
 
-#. answer-id: anyone-usually-live-at-answer
+#. answer-id: anyone-else-answer
 msgctxt "Answer for: Does anyone usually live at {address}?"
 msgid "No, no one usually lives here"
 msgstr "Ní chónaíonn duine ar bith anseo de ghnáth"
-
-#. answer-id: first-name
-msgctxt "Answer for: Who do you need to add to {address}?"
-msgid "First name"
-msgstr "Céad Ainm"
-
-#. answer-id: middle-names
-msgctxt "Answer for: Who do you need to add to {address}?"
-msgid "Middle names"
-msgstr "Lárainmneacha"
-
-#. answer-id: last-name
-msgctxt "Answer for: Who do you need to add to {address}?"
-msgid "Last name"
-msgstr "Sloinne"
-
-#. answer-id: first-name
-msgctxt "Answer for: Change details for {person_name} (You)"
-msgid "First name"
-msgstr "Céad Ainm"
-
-#. answer-id: middle-names
-msgctxt "Answer for: Change details for {person_name} (You)"
-msgid "Middle names"
-msgstr "Lárainmneacha"
-
-#. answer-id: last-name
-msgctxt "Answer for: Change details for {person_name} (You)"
-msgid "Last name"
-msgstr "Sloinne"
-
-#. answer-id: first-name
-msgctxt "Answer for: Change details for {person_name}"
-msgid "First name"
-msgstr "Céad Ainm"
-
-#. answer-id: middle-names
-msgctxt "Answer for: Change details for {person_name}"
-msgid "Middle names"
-msgstr "Lárainmneacha"
-
-#. answer-id: last-name
-msgctxt "Answer for: Change details for {person_name}"
-msgid "Last name"
-msgstr "Sloinne"
 
 #. answer-id: anyone-else-answer
 msgctxt "Answer for: Does anyone else live at {address}?"
@@ -2083,7 +2083,7 @@ msgstr "Caitliceach Rómhánach"
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
 msgid "Presbyterian Church in Ireland"
-msgstr "Eaglais Phreispitéireach na hÉireann"
+msgstr "Eaglais Phreispitéireach in Éirinn"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
@@ -2093,7 +2093,7 @@ msgstr "Eaglais na hÉireann"
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
 msgid "Methodist Church in Ireland"
-msgstr "Eaglais Mhodhach na hÉireann"
+msgstr "Eaglais Mhodhach in Éirinn"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body do you belong to?"
@@ -2118,7 +2118,7 @@ msgstr "Caitliceach Rómhánach"
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
 msgid "Presbyterian Church in Ireland"
-msgstr "Eaglais Phreispitéireach na hÉireann"
+msgstr "Eaglais Phreispitéireach in Éirinn"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
@@ -2128,7 +2128,7 @@ msgstr "Eaglais na hÉireann"
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
 msgid "Methodist Church in Ireland"
-msgstr "Eaglais Mhodhach na hÉireann"
+msgstr "Eaglais Mhodhach in Éirinn"
 
 #. answer-id: religion-answer
 msgctxt "Answer for: What religion, religious denomination or body does <em>{person_name}</em> belong to?"
@@ -2153,7 +2153,7 @@ msgstr "Caitliceach Rómhánach"
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
 msgid "Presbyterian Church in Ireland"
-msgstr "Eaglais Phreispitéireach na hÉireann"
+msgstr "Eaglais Phreispitéireach in Éirinn"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
@@ -2163,7 +2163,7 @@ msgstr "Eaglais na hÉireann"
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
 msgid "Methodist Church in Ireland"
-msgstr "Eaglais Mhodhach na hÉireann"
+msgstr "Eaglais Mhodhach in Éirinn"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body were you <em>brought up</em> in?"
@@ -2188,7 +2188,7 @@ msgstr "Caitliceach Rómhánach"
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
 msgid "Presbyterian Church in Ireland"
-msgstr "Eaglais Phreispitéireach na hÉireann"
+msgstr "Eaglais Phreispitéireach in Éirinn"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
@@ -2198,7 +2198,7 @@ msgstr "Eaglais na hÉireann"
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
 msgid "Methodist Church in Ireland"
-msgstr "Eaglais Mhodhach na hÉireann"
+msgstr "Eaglais Mhodhach in Éirinn"
 
 #. answer-id: no-religion-answer
 msgctxt "Answer for: What religion, religious denomination or body was {person_name} <em>brought up</em> in?"
@@ -4055,7 +4055,7 @@ msgctxt "Answer for: Enter details of <em>{person_name_possessive}</em> usual UK
 msgid "Postcode"
 msgstr "Cód Poist"
 
-#. answer-id: anyone-usually-live-at-answer
+#. answer-id: anyone-else-answer
 msgctxt "Answer for: Does anyone usually live at {address}?"
 msgid "Include partners, children, babies born on or before {census_date}, housemates, tenants and lodgers, students and schoolchildren who live away from home during term time, where this is their permanent or family home"
 msgstr "Cuir isteach páirtneirí, leanaí, páistí a rugadh ar nó roimh {census_date}, páirtithe tí, tionóntaithe agus lóisteoirí, mic léinn agus páistí scoile a chónaíonn ar shiúl ón bhaile i rith an téarma, mar arb é seo a dteach buan no teaghlaigh é"
