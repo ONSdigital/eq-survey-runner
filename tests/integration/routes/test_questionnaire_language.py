@@ -57,3 +57,12 @@ class TestQuestionnaireLanguage(IntegrationTestCase):
         self.assertInUrl('/summary/?language_code=cy')
         self.assertInBody('Beth yw dyddiad geni Kevin Bacon?')
         self.assertInBody('1 Chwefror 1999')
+
+    def test_error_messages(self):
+        # load a english survey
+        self.launchSurvey('test_language', language_code='cy')
+        # Submit and check the error message is in Welsh
+        self.post({})
+        self.assertInBody('Mae 1 gwall ar y dudalen hon')
+        self.assertInBody("Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau")
+        self.assertInBody('Nodwch ateb i barhau')
