@@ -23,6 +23,10 @@
         {
             "name": "ru_name",
             "type": "string"
+        },
+        {
+            "name": "case_id",
+            "type": "string"
         }
     ],
     "sections": [
@@ -39,7 +43,7 @@
                                         {
                                             "placeholder": "case_id",
                                             "value": {
-                                                "identifier": "case-id",
+                                                "identifier": "case_id",
                                                 "source": "metadata"
                                             }
                                         }
