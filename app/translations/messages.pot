@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-18 08:43+0100\n"
+"POT-Creation-Date: 2019-09-18 08:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -261,56 +261,6 @@ msgstr ""
 msgid "Submitting"
 msgstr ""
 
-#: templates/feedback.html:7 templates/feedback.html:14
-msgid "Survey feedback"
-msgstr ""
-
-#: templates/feedback.html:21
-msgid "How can we improve this survey"
-msgstr ""
-
-#: templates/feedback.html:24 templates/partials/answers/textarea.html:14
-msgid "You have {x} character remaining"
-msgstr ""
-
-#: templates/feedback.html:25 templates/partials/answers/textarea.html:15
-msgid "You have {x} characters remaining"
-msgstr ""
-
-#: templates/feedback.html:32
-msgid "Name (optional)"
-msgstr ""
-
-#: templates/feedback.html:33
-msgid ""
-"Please include your name and email address if you’re interested in taking"
-" part in further research to improve this survey"
-msgstr ""
-
-#: templates/feedback.html:42
-msgid "Email address (optional)"
-msgstr ""
-
-#: templates/feedback.html:48
-msgid "Send feedback"
-msgstr ""
-
-#: templates/feedback_sent.html:3 templates/feedback_sent.html:7
-msgid "Thank you for your feedback"
-msgstr ""
-
-#: templates/feedback_sent.html:6
-msgid "Submission successful"
-msgstr ""
-
-#: templates/feedback_sent.html:9
-msgid "It is now safe to close this window"
-msgstr ""
-
-#: templates/feedback_sent.html:12 templates/signed-out.html:9
-msgid "Return to your account"
-msgstr ""
-
 #: templates/introduction.html:15
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)"
@@ -363,6 +313,10 @@ msgstr ""
 
 #: templates/signed-out.html:6
 msgid "Your survey answers have been saved. You are now signed out"
+msgstr ""
+
+#: templates/signed-out.html:9
+msgid "Return to your account"
 msgstr ""
 
 #: templates/summary.html:6
@@ -617,6 +571,14 @@ msgstr ""
 
 #: templates/partials/answers/date.html:53
 msgid "Year"
+msgstr ""
+
+#: templates/partials/answers/textarea.html:14
+msgid "You have {x} character remaining"
+msgstr ""
+
+#: templates/partials/answers/textarea.html:15
+msgid "You have {x} characters remaining"
 msgstr ""
 
 #: templates/partials/introduction/preview.html:29
