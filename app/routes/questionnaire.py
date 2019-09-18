@@ -4,7 +4,16 @@ import flask_babel
 import humanize
 import simplejson as json
 from dateutil.tz import tzutc
-from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
+from flask import (
+    Blueprint,
+    g,
+    redirect,
+    request,
+    url_for,
+    current_app,
+    jsonify,
+    session as cookie_session,
+)
 from flask_login import current_user, login_required
 from jwcrypto.common import base64url_decode
 from sdc.crypto.encrypter import encrypt
@@ -317,6 +326,9 @@ def get_thank_you(schema):
         view_submission_duration = humanize.naturaldelta(
             timedelta(seconds=schema.json['view_submitted_response']['duration'])
         )
+
+    cookie_session.pop('account_service_log_out_url', None)
+    cookie_session.pop('account_service_url', None)
 
     return render_template(
         template='thank-you',
