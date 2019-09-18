@@ -31,15 +31,14 @@ class Content(BlockHandler):
         )
 
     def _get_page_title(self, transformed_block):
-        if 'content' in transformed_block:
-            if type(transformed_block['content']['title']) is str:
-                content_title = transformed_block['content']['title']
+        content = transformed_block.get('content')
+        if content:
+            if isinstance(content['title'], str):
+                content_title = content['title']
             else:
-                content_title = transformed_block['content']['title']['text']
+                content_title = content['title']['text']
 
-            page_title = '{content_title} - {survey_title}'.format(
-                content_title=content_title, survey_title=self._schema.json['title']
-            )
+            page_title = f'{content_title} - {self._schema.json["title"]}'
 
             return safe_content(page_title)
 

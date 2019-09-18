@@ -116,13 +116,13 @@ class Question(BlockHandler):
             return url_for('.get_questionnaire')
 
     def _get_page_title(self, transformed_block):
-        if type(transformed_block['question']['title']) is str:
-            question_title = transformed_block['question']['title']
-        else:
-            question_title = transformed_block['question']['title']['text']
+        question = transformed_block.get('question')
+        if question:
+            if isinstance(question['title'], str):
+                question_title = question['title']
+            else:
+                question_title = question['title']['text']
 
-        page_title = '{question_title} - {survey_title}'.format(
-            question_title=question_title, survey_title=self._schema.json['title']
-        )
+            page_title = f'{question_title} - {self._schema.json["title"]}'
 
-        return safe_content(page_title)
+            return safe_content(page_title)
