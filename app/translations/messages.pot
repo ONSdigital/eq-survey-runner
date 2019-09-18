@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-18 16:21+0100\n"
+"POT-Creation-Date: 2019-09-18 18:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -484,6 +484,32 @@ msgstr ""
 
 #: templates/layouts/_questionnaire.html:51
 msgid "Choose another section and return to this later"
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:3
+msgid "Give us feedback and help us improve this service"
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:12
+msgid "Tell us what you think of this website by emailing"
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:13
+msgid ""
+"This email is for feedback only and we will not be able to reply, do not "
+"include any personal details."
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:14
+msgid "Census 2021 feedback: "
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:15
+msgid ""
+"This email is for feedback on the census rehearsal, which will help us to"
+" improve Census 2021. We are unable to respond to these emails.\n"
+"If you need help with your census, visit https://www.census.gov.uk"
+"/contact-us."
 msgstr ""
 
 #: templates/layouts/configs/_footer.html:33
