@@ -1,12 +1,10 @@
-{% set footer = {
-  "poweredByONS": true,
-  "OGLLink": ""
-} %}
-
 {% if schema_theme == "census-nisra" %}
 
   {% set contact_us_url = "https://census.gov.uk/ni/contact-us/" %}
   {% set cookies_url = "https://census.gov.uk/ni/cookies/" %}
+  {% set logo = "nisra-logo-black-en" %}
+  {% set alt = "Nisra Logo" %}
+  {% set class_small_logo = "footer__poweredby-img--small" %}
 
 {% elif language_code == "cy" %}
 
@@ -20,7 +18,15 @@
 
 {% endif %}
 
-{% do footer | setAttribute("cols", [
+{% set footer = {
+  "poweredBy": {
+    "logo": logo,
+    "classes": class_small_logo,
+    "alt": ""
+  }
+} %}
+
+{% do footer | setAttribute("rows", [
     {
         "itemsList": [
             {
