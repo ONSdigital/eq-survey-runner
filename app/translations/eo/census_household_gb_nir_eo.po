@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: eq-census-nisra\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-13 11:18+0100\n"
-"PO-Revision-Date: 2019-09-17 10:00\n"
+"PO-Revision-Date: 2019-09-18 16:28\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Ulster Scots\n"
 "MIME-Version: 1.0\n"
@@ -567,25 +567,25 @@ msgid "Names of visitors staying overnight at this address on 13 October 2019"
 msgstr "Whut the' cry tha fowk landit at this bakkin an steyin tha nicht oan 13t October 20an19"
 
 msgid "h"
-msgstr ""
+msgstr "h"
 
 msgid "o"
-msgstr ""
+msgstr "o"
 
 msgid "u"
-msgstr ""
+msgstr "u"
 
 msgid "s"
-msgstr ""
+msgstr "s"
 
 msgid "e"
-msgstr ""
+msgstr "e"
 
 msgid "l"
-msgstr ""
+msgstr "l"
 
 msgid "d"
-msgstr ""
+msgstr "d"
 
 msgid "People who work away from home within the UK if this is their permanent or family home"
 msgstr "Fowk 'at warks awa frae the hame athin the CK, gin this wad be thair ayebidin ur\n"
@@ -731,7 +731,7 @@ msgid "{person_name} is {age_in_years} years old. Is this correct?"
 msgstr "{person_name} bes {age_in_years} yeir auld. Wud this be richt?"
 
 msgid "What is <em>{person_name_possessive}</em> sex?"
-msgstr "Whut sex wud <em>{person_name}</em> be?"
+msgstr "Whut sex wud <em>{person_name_possessive}</em> be?"
 
 msgid "What is <em>{person_name_possessive}</em> marital or same-sex civil partnership status?"
 msgstr "Whut wud <em>{person_name_possessive}</em> stannin be adae wi merridge ur yin-sex ceevil pairtnerin?"
