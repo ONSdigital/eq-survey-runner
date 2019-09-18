@@ -1,5 +1,6 @@
 from flask import url_for
 from werkzeug.utils import cached_property
+from app.helpers.template_helper import safe_content
 
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
@@ -99,6 +100,8 @@ class Question(BlockHandler):
             self._current_location,
         )
 
+        self.page_title = self._get_page_title(transformed_block)
+
         rendered_question = self.placeholder_renderer.render(
             transformed_block.pop('question'), self._current_location.list_item_id
         )
@@ -111,3 +114,15 @@ class Question(BlockHandler):
             and self._router.can_access_hub()
         ):
             return url_for('.get_questionnaire')
+
+    def _get_page_title(self, transformed_block):
+        question = transformed_block.get('question')
+        if question:
+            if isinstance(question['title'], str):
+                question_title = question['title']
+            else:
+                question_title = question['title']['text']
+
+            page_title = f'{question_title} - {self._schema.json["title"]}'
+
+            return safe_content(page_title)
