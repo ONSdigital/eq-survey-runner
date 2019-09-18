@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-17 09:41+0100\n"
-"PO-Revision-Date: 2019-09-18 08:45\n"
+"PO-Revision-Date: 2019-09-18 09:40\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -889,7 +889,7 @@ msgstr "Dros y blynyddoedd diwethaf, rydym wedi profi'r holiadur llawn, gan gynn
 
 #: templates/static/accessibility.html:106
 msgid "<a href='{url}'>Digital Accessibility Centre (DAC)</a> carrying out a professional, technical audit"
-msgstr "●\tCael y <a href='{url}'>Ganolfan Hygyrchedd Digidol (DAC)</a> i gynnal archwiliad technegol proffesiynol"
+msgstr "cael y <a href='{url}'>Ganolfan Hygyrchedd Digidol (DAC)</a> i gynnal archwiliad technegol proffesiynol"
 
 #: templates/static/accessibility.html:107
 msgid "user testing with the public on different devices, different locations, in their homes with various assistive technologies including free and paid versions"
@@ -1053,7 +1053,7 @@ msgstr "Ar gyfer ymarfer y cyfrifiad, byddwn yn prosesu gwybodaeth o'ch holiadur
 
 #: templates/static/privacy.html:60
 msgid "processing is necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller."
-msgstr "•\tmae prosesu yn angenrheidiol er mwyn cyflawni tasg a wneir er budd y cyhoedd neu wrth arfer awdurdod swyddogol sydd gan y rheolydd."
+msgstr "mae prosesu yn angenrheidiol er mwyn cyflawni tasg a wneir er budd y cyhoedd neu wrth arfer awdurdod swyddogol sydd gan y rheolydd."
 
 #: templates/static/privacy.html:63
 msgid "Under data protection legislation, an additional condition is required for the processing of special category personal data. These data include information about your racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, sex life or sexual orientation. They also include genetic and biometric data."
@@ -1065,11 +1065,11 @@ msgstr "Ar gyfer yr ymarfer, byddwn yn prosesu data personol categori arbennig a
 
 #: templates/static/privacy.html:68
 msgid "processing is necessary for archiving in the public interest, scientific or historical research purposes or statistical purposes based on UK law."
-msgstr "•\tmae prosesu yn angenrheidiol ar gyfer archifo er budd y cyhoedd, at ddibenion ymchwil wyddonol neu hanesyddol neu at ddibenion ystadegol yn seiliedig ar gyfraith y DU."
+msgstr "mae prosesu yn angenrheidiol ar gyfer archifo er budd y cyhoedd, at ddibenion ymchwil wyddonol neu hanesyddol neu at ddibenion ystadegol yn seiliedig ar gyfraith y DU."
 
 #: templates/static/privacy.html:69 templates/static/privacy.html:75
 msgid "processing is necessary for reasons of substantial public interest."
-msgstr "•\tmae prosesu yn angenrheidiol ar sail budd sylweddol i'r cyhoedd."
+msgstr "mae prosesu yn angenrheidiol ar sail budd sylweddol i'r cyhoedd."
 
 #: templates/static/privacy.html:72
 msgid "We’ll process special category data on information about a property or an individual under the following condition:"
@@ -1105,15 +1105,15 @@ msgstr "Mae gennych hawl, o dan rai amgylchiadau, i ofyn i unrhyw reolydd wneud 
 
 #: templates/static/privacy.html:94
 msgid "erase any personal data they may hold about you"
-msgstr "•\tdileu unrhyw ddata personol sydd ganddo amdanoch"
+msgstr "dileu unrhyw ddata personol sydd ganddo amdanoch"
 
 #: templates/static/privacy.html:95
 msgid "stop processing your personal data"
-msgstr "•\trhoi'r gorau i brosesu eich data personol"
+msgstr "rhoi'r gorau i brosesu eich data personol"
 
 #: templates/static/privacy.html:96
 msgid "pass any information they hold about you to another controller"
-msgstr "•\ttrosglwyddo unrhyw wybodaeth sydd ganddo amdanoch i reolydd arall"
+msgstr "trosglwyddo unrhyw wybodaeth sydd ganddo amdanoch i reolydd arall"
 
 #: templates/static/privacy.html:99
 msgid "You can get further information on the rights available to you and the circumstances under which you can exercise them from the <a href='{url}'>Information Commissioner’s Office</a>."
