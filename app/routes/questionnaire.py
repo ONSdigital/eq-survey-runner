@@ -522,7 +522,9 @@ def _is_submission_viewable(schema, submitted_time):
     return False
 
 
-def _render_page(block_type, context, current_location, previous_location_url, schema, page_title):
+def _render_page(
+    block_type, context, current_location, previous_location_url, schema, page_title
+):
     if request_wants_json():
         return jsonify(context)
 

@@ -35,7 +35,16 @@
                             "id": "breakfast-interstitial",
                             "content": {
                                 "title": {
-                                    "text": "The Content Title"
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "case_id",
+                                            "value": {
+                                                "identifier": "case_id",
+                                                "source": "metadata"
+                                            }
+                                        }
+                                    ],
+                                    "text": "This is the content title <em>{case_id}</em>"
                                 },
                                 "contents": [
                                     {

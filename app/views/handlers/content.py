@@ -2,6 +2,7 @@ from app.questionnaire.schema_utils import transform_variants
 from app.views.handlers.block import BlockHandler
 from app.helpers.template_helper import safe_content
 
+
 class Content(BlockHandler):
     @property
     def rendered_block(self):
@@ -41,4 +42,3 @@ class Content(BlockHandler):
             page_title = f'{content_title} - {self._schema.json["title"]}'
 
             return safe_content(page_title)
-
