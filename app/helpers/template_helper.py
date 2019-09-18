@@ -68,6 +68,7 @@ def render_template(template, **kwargs):
         theme=_map_theme(cookie_session.get('theme')),
         languages=get_languages_context(),
         schema_theme=cookie_session.get('theme'),
+        survey_title=cookie_session.get('survey_title'),
         **kwargs,
     )
 
