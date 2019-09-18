@@ -57,7 +57,7 @@ describe('SaveSignOut', function() {
           .click(IntroConfirmationPage.submit())
 
           .getUrl()
-          .getText(IntroThankYouPagePage.signOut()).should.eventually.contain('Sign out');
+          .isExisting(IntroThankYouPagePage.signOut()).should.eventually.be.false;
       });
   });
 

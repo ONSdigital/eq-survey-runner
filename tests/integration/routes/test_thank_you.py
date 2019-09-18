@@ -21,7 +21,7 @@ class TestThankYou(IntegrationTestCase):
         'account_service_url': 'http://upstream.url',
     }
 
-    def test_thank_you_page_sign_out(self):
+    def test_thank_you_page_no_sign_out(self):
         self.launchSurvey('test_currency')
 
         # We fill in our answers
@@ -37,12 +37,9 @@ class TestThankYou(IntegrationTestCase):
         # Submit answers
         self.post(action=None)
 
-        # check we're on the thank you page
+        # check we're on the thank you page and there's no sign out
         self.assertInUrl('thank-you')
-
-        # sign out and check we're on the signed out page
-        self.post(action='sign_out')
-        self.assertEqualUrl('/signed-out')
+        self.assertNotInBody('Sign out')
 
     def test_can_switch_language_on_thank_you_page(self):
         self.launchSurvey('test_language')
