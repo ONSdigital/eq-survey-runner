@@ -98,4 +98,6 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         self.launchSurvey('test_interstitial_page_title')
         # When
         # Then
-        self.assertEqualPageTitle('This is the content title … - Interstitial Page Titles')
+        self.assertEqualPageTitle(
+            'This is the content title … - Interstitial Page Titles'
+        )

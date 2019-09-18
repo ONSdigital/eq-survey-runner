@@ -22,4 +22,3 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def tearDown(self):
         self._application_context.pop()
-
