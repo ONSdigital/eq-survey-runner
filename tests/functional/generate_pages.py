@@ -363,7 +363,7 @@ def process_question(question, page_spec, num_questions, page_name):
     long_names = long_names_required(question, num_questions)
 
     if 'definitions' in question:
-        for index, definition in enumerate(question['definitions'], 1):
+        for index, definition in enumerate(question['definitions'], 2):
             definition_context = {'definitionIndex': index}
             page_spec.write(
                 QUESTION_DEFINITION_TITLE_GETTER.substitute(definition_context)
