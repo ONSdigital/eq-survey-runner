@@ -2,9 +2,18 @@
 
 {% set page_title = _("Page not found") + " - " + _("Office for National Statistics") %}
 
+{% if schema_theme == "census-nisra" %}
+  {% set contact_us_url = "https://census.gov.uk/ni/contact-us/" %}
+{% elif language_code == "cy" %}
+  {% set contact_us_url = "https://cyfrifiad.gov.uk/cysylltu-a-ni/" %}
+{% else %}
+  {% set contact_us_url = "https://census.gov.uk/contact-us/" %}
+{% endif %}
+
 {% block main %}
 <h1>{{ _("Page not found") }}</h1>
 <p>{{ _("If you entered a web address, check it is correct.") }}</p>
 <p>{{ _("If you pasted the web address, check you copied the whole address.") }}</p>
-<p>{{ _("If the web address is correct or you selected a link or button, <a href='/contact-us'>contact us</a> for more help.") }}</p>
+<p>{{ _("If the web address is correct or you selected a link or button, <a href='{url}'>contact us</a> for more help.").format(url = contact_us_url) }}</p>
 {% endblock %}
+
