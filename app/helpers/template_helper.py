@@ -4,7 +4,7 @@ from flask import (
     current_app,
     session as cookie_session,
     render_template as flask_render_template,
-    request
+    request,
 )
 from flask_babel import get_locale, lazy_gettext
 
@@ -80,7 +80,9 @@ def get_google_tag_mananger_context():
         return {
             'google_tag_manager_id': current_app.config['EQ_GOOGLE_TAG_MANAGER_ID'],
             'google_tag_manager_auth': current_app.config['EQ_GOOGLE_TAG_MANAGER_AUTH'],
-            'google_tag_manager_preview': current_app.config['EQ_GOOGLE_TAG_MANAGER_PREVIEW'],
+            'google_tag_manager_preview': current_app.config[
+                'EQ_GOOGLE_TAG_MANAGER_PREVIEW'
+            ],
         }
     return {}
 
