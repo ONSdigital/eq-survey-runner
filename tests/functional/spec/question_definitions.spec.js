@@ -17,7 +17,7 @@ describe('Component: Definition', function() {
         // When
         .click(DefinitionPage.definitionTitle2())
 
-        // // Then
+        // Then
         .waitForVisible(DefinitionPage.definitionContent2(), 300)
         .waitForVisible(DefinitionPage.definitionButton2(), 300);
 
