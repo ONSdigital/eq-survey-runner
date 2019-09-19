@@ -11,7 +11,6 @@ from app.helpers.language_helper import handle_language
 from app.helpers.template_helper import render_template
 from app.submitter.submission_failed import SubmissionFailedException
 
-
 logger = get_logger()
 
 errors_blueprint = Blueprint('errors', __name__)
@@ -34,8 +33,18 @@ def forbidden(error=None):
 @errors_blueprint.app_errorhandler(SubmissionFailedException)
 @errors_blueprint.app_errorhandler(Exception)
 def internal_server_error(error=None):
-    log_exception(error, 500)
-    return _render_error_page(500)
+    try:
+        log_exception(error, 500)
+        return _render_error_page(500)
+    except Exception as ex:  # pylint:disable-broad-except
+        logger.error(
+            'an error has occurred',
+            initial_error=error,
+            final_error=str(ex),
+            url=request.url,
+            status_code=500,
+        )
+        return _render_error_page(500, store_language=False)
 
 
 @errors_blueprint.app_errorhandler(403)
@@ -58,8 +67,10 @@ def log_exception(error, status_code):
     )
 
 
-def _render_error_page(status_code, template=None):
-    handle_language()
+def _render_error_page(status_code, template=None, store_language=True):
+    if store_language:
+        handle_language()
+
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
     template = template or status_code
 

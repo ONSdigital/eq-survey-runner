@@ -70,3 +70,23 @@ class TestErrors(IntegrationTestCase):
             ):
                 self.post({'answer': '5000000'})
                 self.assertStatusCode(500)
+
+    def test_errors_500_exception_during_error_handling(self):
+        # Given
+        with patch('tests.integration.create_token.PAYLOAD', self.example_payload):
+            self.launchSurvey('test_percentage')
+            # When
+
+            # Patch out a class in post to raise an exception so that the application error handler
+            # gets called
+            with patch(
+                'app.routes.questionnaire.get_block_handler',
+                side_effect=Exception('You broked it'),
+            ):
+                # Another exception occurs during exception handling
+                with patch(
+                    'app.routes.errors.log_exception',
+                    side_effect=Exception('You broked it again'),
+                ):
+                    self.post({'answer': '5000000'})
+                    self.assertStatusCode(500)
