@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-19 08:16+0100\n"
+"POT-Creation-Date: 2019-09-19 11:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,15 +49,15 @@ msgstr ""
 msgid "Select an answer"
 msgstr ""
 
-#: app/helpers/template_helper.py:18
+#: app/helpers/template_helper.py:19
 msgid "Office for National Statistics logo"
 msgstr ""
 
-#: app/helpers/template_helper.py:27 app/helpers/template_helper.py:35
+#: app/helpers/template_helper.py:28 app/helpers/template_helper.py:36
 msgid "Census 2021"
 msgstr ""
 
-#: app/helpers/template_helper.py:31
+#: app/helpers/template_helper.py:32
 msgid "Northern Ireland Statistics and Research Agency logo"
 msgstr ""
 
@@ -645,113 +645,113 @@ msgstr ""
 msgid "Remove {item_name}"
 msgstr ""
 
-#: templates/static/accessibility.html:21
+#: templates/static/accessibility.html:19
 msgid "Accessibility statement"
 msgstr ""
 
-#: templates/static/accessibility.html:23
+#: templates/static/accessibility.html:21
 msgid ""
 "This census is run by the Office for National Statistics. We want as many"
 " people as possible to be able to do the census online. For example, that"
 " means you should be able to:"
 msgstr ""
 
-#: templates/static/accessibility.html:26
+#: templates/static/accessibility.html:24
 msgid "change colours, contrast levels and fonts"
 msgstr ""
 
-#: templates/static/accessibility.html:27
+#: templates/static/accessibility.html:25
 #, python-format
 msgid "zoom in up to 300%% without the text spilling off the screen"
 msgstr ""
 
-#: templates/static/accessibility.html:28
+#: templates/static/accessibility.html:26
 msgid "navigate most of the questionnaire using just a keyboard"
 msgstr ""
 
-#: templates/static/accessibility.html:29
+#: templates/static/accessibility.html:27
 msgid "navigate most of the questionnaire using speech recognition software"
 msgstr ""
 
-#: templates/static/accessibility.html:30
+#: templates/static/accessibility.html:28
 msgid ""
 "listen to most of the questionnaire using a screen reader (including the "
 "most recent versions of JAWS, NVDA and VoiceOver)"
 msgstr ""
 
-#: templates/static/accessibility.html:33
+#: templates/static/accessibility.html:31
 msgid "We’ve used simple language as much as possible."
 msgstr ""
 
-#: templates/static/accessibility.html:35
+#: templates/static/accessibility.html:33
 msgid ""
 "<a href='{url}'>AbilityNet</a> has advice on making your device easier to"
 " use if you have a disability."
 msgstr ""
 
-#: templates/static/accessibility.html:37
+#: templates/static/accessibility.html:35
 msgid "How accessible is this questionnaire?"
 msgstr ""
 
-#: templates/static/accessibility.html:39
+#: templates/static/accessibility.html:37
 msgid ""
 "We know that the following parts of this questionnaire are not fully "
 "accessible:"
 msgstr ""
 
-#: templates/static/accessibility.html:42
+#: templates/static/accessibility.html:40
 msgid "you cannot modify the line height or spacing of text"
 msgstr ""
 
-#: templates/static/accessibility.html:43
+#: templates/static/accessibility.html:41
 msgid ""
 "the online system for getting a new census code has not been fully tested"
 " so parts of it may not be accessible to all users"
 msgstr ""
 
-#: templates/static/accessibility.html:44
+#: templates/static/accessibility.html:42
 msgid "the Web chat tool may not be fully accessible"
 msgstr ""
 
-#: templates/static/accessibility.html:45
+#: templates/static/accessibility.html:43
 msgid ""
 "some page titles may not accurately reflect the content on the page for "
 "audio users"
 msgstr ""
 
-#: templates/static/accessibility.html:48
+#: templates/static/accessibility.html:46
 msgid "What to do if you need guidance"
 msgstr ""
 
-#: templates/static/accessibility.html:50
+#: templates/static/accessibility.html:48
 msgid "Our <a href='{url}'>guidance leaflets about the census</a> are available:"
 msgstr ""
 
-#: templates/static/accessibility.html:53
+#: templates/static/accessibility.html:51
 msgid "in Braille"
 msgstr ""
 
-#: templates/static/accessibility.html:54
+#: templates/static/accessibility.html:52
 msgid "in British Sign Language (BSL)"
 msgstr ""
 
-#: templates/static/accessibility.html:55
+#: templates/static/accessibility.html:53
 msgid "as an easy read version (which uses pictures to explain the census)"
 msgstr ""
 
-#: templates/static/accessibility.html:56
+#: templates/static/accessibility.html:54
 msgid "as a Welsh audio"
 msgstr ""
 
-#: templates/static/accessibility.html:57
+#: templates/static/accessibility.html:55
 msgid "as large print in English or large print in Welsh"
 msgstr ""
 
-#: templates/static/accessibility.html:60
+#: templates/static/accessibility.html:58
 msgid "Reporting accessibility problems"
 msgstr ""
 
-#: templates/static/accessibility.html:62
+#: templates/static/accessibility.html:60
 msgid ""
 "We’re always looking to improve the accessibility of this service. If you"
 " find any problems that are not listed on this page or think we’re not "
@@ -759,11 +759,11 @@ msgid ""
 "us</a>."
 msgstr ""
 
-#: templates/static/accessibility.html:64
+#: templates/static/accessibility.html:62
 msgid "Enforcement procedure"
 msgstr ""
 
-#: templates/static/accessibility.html:66
+#: templates/static/accessibility.html:64
 msgid ""
 "The Equality and Human Rights Commission (EHRC) is responsible for "
 "enforcing the Public Sector Bodies (Website and Mobile Applications) (No."
@@ -771,58 +771,58 @@ msgid ""
 "you’re not happy with how we respond to your complaint, contact the:"
 msgstr ""
 
-#: templates/static/accessibility.html:69
+#: templates/static/accessibility.html:67
 msgid ""
 "<a href='{url}'>Equality Advisory and Support Service (EASS)</a> if you "
 "live in England or Wales"
 msgstr ""
 
-#: templates/static/accessibility.html:70
+#: templates/static/accessibility.html:68
 msgid ""
 "<a href='{url}'>Equalities Commission for Northern Ireland (ECNI)</a> if "
 "you live in Northern Ireland"
 msgstr ""
 
-#: templates/static/accessibility.html:73
+#: templates/static/accessibility.html:71
 msgid "Technical information about this questionnaire’s accessibility"
 msgstr ""
 
-#: templates/static/accessibility.html:75
+#: templates/static/accessibility.html:73
 msgid ""
 "The Office for National Statistics is committed to making its website "
 "accessible, in accordance with the Public Sector Bodies (Website and "
 "Mobile Applications) (No. 2) Accessibility Regulations 2018."
 msgstr ""
 
-#: templates/static/accessibility.html:77
+#: templates/static/accessibility.html:75
 msgid ""
 "This service is partially compliant with the <a href='{url}'>Web Content "
 "Accessibility Guidelines version 2.1</a> AA standard, due to the non-"
 "compliances listed."
 msgstr ""
 
-#: templates/static/accessibility.html:79
+#: templates/static/accessibility.html:77
 msgid "Non-accessible content"
 msgstr ""
 
-#: templates/static/accessibility.html:81
+#: templates/static/accessibility.html:79
 msgid ""
 "The content listed is non-accessible for the following reasons. We are "
 "planning to fix the following issues for Census 2021."
 msgstr ""
 
-#: templates/static/accessibility.html:83
+#: templates/static/accessibility.html:81
 msgid "Non-compliance with the accessibility regulations"
 msgstr ""
 
-#: templates/static/accessibility.html:85
+#: templates/static/accessibility.html:83
 msgid ""
 "Non-descriptive form elements. On the ‘Check your answers’ summary page "
 "there is an option to “change” items, but the link does not describe "
 "where it goes to. Fails on WCAG 2.1 A number 1.3.1."
 msgstr ""
 
-#: templates/static/accessibility.html:87
+#: templates/static/accessibility.html:85
 msgid ""
 "Error messages are too generic. If the text in a field is incorrect or in"
 " the wrong format, the answer validation page says the answer is "
@@ -830,28 +830,28 @@ msgid ""
 "number 3.3.1."
 msgstr ""
 
-#: templates/static/accessibility.html:89
+#: templates/static/accessibility.html:87
 msgid ""
 "Form label issue. On the ‘What is your name?’ page, middle name is "
 "optional but this is not clear to the user. Fails on WCAG 2.1 A number "
 "3.3.2."
 msgstr ""
 
-#: templates/static/accessibility.html:91
+#: templates/static/accessibility.html:89
 msgid ""
 "Form label issue. When selecting the appropriate relationship, it is "
 "possible to ‘Save and continue’ without selecting an option. Fails on "
 "WCAG 2.1 A number 2.4.6."
 msgstr ""
 
-#: templates/static/accessibility.html:93
+#: templates/static/accessibility.html:91
 msgid ""
 "On the ‘Is this address correct?’ page, the title may not accurately "
 "reflect the content on the page for audio users. The ‘Submit survey’ page"
 " does not have a page title. Fails on WCAG 2.1 A number 2.4.2."
 msgstr ""
 
-#: templates/static/accessibility.html:95
+#: templates/static/accessibility.html:93
 msgid ""
 "Timeout issue. Users are not informed of a time limit and service times "
 "out without warning. During the validation process there is no return "
@@ -859,153 +859,153 @@ msgid ""
 "AAA number 2.2.6."
 msgstr ""
 
-#: templates/static/accessibility.html:97
+#: templates/static/accessibility.html:95
 msgid ""
 "The ‘Hide this’ button text on accordions such as ‘What does “usually "
 "live” mean?’ is non-descriptive for JAWS users as the text above it is "
 "read back to users. Fails on WCAG 2.1 AA number 2.4.6."
 msgstr ""
 
-#: templates/static/accessibility.html:99
+#: templates/static/accessibility.html:97
 msgid ""
 "Screen readers may not let users know when an accordion is expanded or "
 "collapsed. Fails on WCAG 2.1 A number 2.4.4."
 msgstr ""
 
-#: templates/static/accessibility.html:101
+#: templates/static/accessibility.html:99
 msgid ""
 "Non-descriptive headings. On the relationships page, the heading does not"
 " accurately describe the content for screen readers. Fails on WCAG 2.1 A "
 "number 2.4.6."
 msgstr ""
 
-#: templates/static/accessibility.html:103
+#: templates/static/accessibility.html:101
 msgid ""
 "Some links are not descriptive enough for screen reader users. Fails on "
 "WCAG 2.1 AAA number 2.4.9."
 msgstr ""
 
-#: templates/static/accessibility.html:105
+#: templates/static/accessibility.html:103
 msgid ""
 "Some headings do not follow a logical hierarchical structure. Fails on "
 "WCAG AAA 2.1 number 2.4.10."
 msgstr ""
 
-#: templates/static/accessibility.html:107
+#: templates/static/accessibility.html:105
 msgid ""
 "Some text is highlighted, such as addresses and names that a user has "
 "confirmed. Highlighting is not accessible for some users. This does not "
 "conform to Government Digital Service (GDS) guidelines."
 msgstr ""
 
-#: templates/static/accessibility.html:109
+#: templates/static/accessibility.html:107
 msgid ""
 "Some radio inputs on the relationships page do not conform to GDS "
 "guidelines. When selected, three different elements on the page are "
 "updated."
 msgstr ""
 
-#: templates/static/accessibility.html:111
+#: templates/static/accessibility.html:109
 msgid ""
 "On ‘Who lives here?’ there is a ‘Previous’ link on the page that does not"
 " conform with GDS guidelines. The text used should read as ‘Back’."
 msgstr ""
 
-#: templates/static/accessibility.html:113
+#: templates/static/accessibility.html:111
 msgid ""
 "Error messages do not result in a change to the page title to reflect "
 "that an error has been made. This does not conform to GDS guidelines."
 msgstr ""
 
-#: templates/static/accessibility.html:115
+#: templates/static/accessibility.html:113
 msgid "How we tested this questionnaire"
 msgstr ""
 
-#: templates/static/accessibility.html:117
+#: templates/static/accessibility.html:115
 msgid "Over the last few years we have tested the full questionnaire, including:"
 msgstr ""
 
-#: templates/static/accessibility.html:120
+#: templates/static/accessibility.html:118
 msgid ""
 "<a href='{url}'>Digital Accessibility Centre (DAC)</a> carrying out a "
 "professional, technical audit"
 msgstr ""
 
-#: templates/static/accessibility.html:121
+#: templates/static/accessibility.html:119
 msgid ""
 "user testing with the public on different devices, different locations, "
 "in their homes with various assistive technologies including free and "
 "paid versions"
 msgstr ""
 
-#: templates/static/accessibility.html:122
+#: templates/static/accessibility.html:120
 msgid "testing with charities, such as Scope and RNIB in their labs"
 msgstr ""
 
-#: templates/static/accessibility.html:123
+#: templates/static/accessibility.html:121
 msgid "using job centres and libraries for pop-up testing"
 msgstr ""
 
-#: templates/static/accessibility.html:124
+#: templates/static/accessibility.html:122
 msgid "covering a wide range of ages, additional needs and disabilities"
 msgstr ""
 
-#: templates/static/accessibility.html:125
+#: templates/static/accessibility.html:123
 msgid ""
 "making sure the offline journey and non-digital products were considered "
 "in the end-to-end journey"
 msgstr ""
 
-#: templates/static/accessibility.html:126
+#: templates/static/accessibility.html:124
 msgid ""
 "changing designs based on feedback from user testing, such as letter "
 "structure and the summary of sections and progress through questionnaire"
 msgstr ""
 
-#: templates/static/accessibility.html:129
+#: templates/static/accessibility.html:127
 msgid "Digital Accessibility Centre testing"
 msgstr ""
 
-#: templates/static/accessibility.html:131
+#: templates/static/accessibility.html:129
 msgid ""
 "Parts of this questionnaire were last tested on 3 September 2019 by the "
 "Digital Accessibility Centre (DAC)."
 msgstr ""
 
-#: templates/static/accessibility.html:134
+#: templates/static/accessibility.html:132
 msgid "<a href='{url}' download>DAC Report - September 2019</a>"
 msgstr ""
 
-#: templates/static/accessibility.html:136
+#: templates/static/accessibility.html:134
 msgid "You can read the last full accessibility test report from 28 June 2019."
 msgstr ""
 
-#: templates/static/accessibility.html:138
+#: templates/static/accessibility.html:136
 msgid "<a href='{url}' download>DAC Report - June 2019</a>"
 msgstr ""
 
-#: templates/static/accessibility.html:140
+#: templates/static/accessibility.html:138
 msgid "What we’re doing to improve accessibility"
 msgstr ""
 
-#: templates/static/accessibility.html:142
+#: templates/static/accessibility.html:140
 msgid ""
 "We are continuing to work with various charities and local deaf "
 "communities to understand their needs for the census."
 msgstr ""
 
-#: templates/static/accessibility.html:144
+#: templates/static/accessibility.html:142
 msgid ""
 "We are looking at designs to see if it is possible to have British Sign "
 "Language on every page. This is challenging as we have been unable to "
 "find another service that does this, but we continue to investigate."
 msgstr ""
 
-#: templates/static/accessibility.html:146
+#: templates/static/accessibility.html:144
 msgid "We will act on feedback from the 2019 Rehearsal in October."
 msgstr ""
 
-#: templates/static/accessibility.html:148
+#: templates/static/accessibility.html:146
 msgid ""
 "This statement was prepared on 17 September. It was last updated on 17 "
 "September."
