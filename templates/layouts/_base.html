@@ -49,15 +49,11 @@
 
     <!-- Google Tag Manager -->
     <script nonce="{{ csp_nonce() }}">
-      // depending on the cookie settings this if will allow the gtm snippet to load or stop it from loading
-      var gtmCookieSettings = /^(.*)?\s*'usage':true\s*[^;]+(.*)?$/;
-      if (document.cookie.match(gtmCookieSettings)) {
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '&gtm_auth={{ google_tag_manager_auth }}&gtm_preview={{ google_tag_manager_preview }}&gtm_cookies_win=x';f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','{{ google_tag_manager_id }}');
-      }
     </script>
     <!-- End Google Tag Manager -->
   {% endif %}
