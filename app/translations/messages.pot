@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-17 09:41+0100\n"
+"POT-Creation-Date: 2019-09-19 12:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,123 +61,123 @@ msgstr ""
 msgid "Northern Ireland Statistics and Research Agency logo"
 msgstr ""
 
-#: app/validation/error_messages.py:5 app/validation/error_messages.py:6
 #: app/validation/error_messages.py:7 app/validation/error_messages.py:8
+#: app/validation/error_messages.py:9 app/validation/error_messages.py:10
 msgid "Enter an answer to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:9 app/validation/error_messages.py:10
+#: app/validation/error_messages.py:11 app/validation/error_messages.py:12
 msgid "Select an answer to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:11
+#: app/validation/error_messages.py:13
 msgid "Select all that apply to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:12
+#: app/validation/error_messages.py:14
 msgid "Enter a date to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:13
-msgid "Enter a duration to continue."
-msgstr ""
-
-#: app/validation/error_messages.py:14
-#, python-format
-msgid "Enter an answer more than or equal to %(min)s."
-msgstr ""
-
 #: app/validation/error_messages.py:15
-#, python-format
-msgid "Enter an answer less than or equal to %(max)s."
+msgid "Enter a duration to continue."
 msgstr ""
 
 #: app/validation/error_messages.py:16
 #, python-format
-msgid "Enter an answer more than %(min)s."
+msgid "Enter an answer more than or equal to %(min)s."
 msgstr ""
 
 #: app/validation/error_messages.py:17
 #, python-format
-msgid "Enter an answer less than %(max)s."
+msgid "Enter an answer less than or equal to %(max)s."
 msgstr ""
 
 #: app/validation/error_messages.py:18
 #, python-format
-msgid "Enter answers that add up to %(total)s"
+msgid "Enter an answer more than %(min)s."
 msgstr ""
 
 #: app/validation/error_messages.py:19
 #, python-format
+msgid "Enter an answer less than %(max)s."
+msgstr ""
+
+#: app/validation/error_messages.py:20
+#, python-format
+msgid "Enter answers that add up to %(total)s"
+msgstr ""
+
+#: app/validation/error_messages.py:21
+#, python-format
 msgid "Enter answers that add up to or are less than %(total)s"
 msgstr ""
 
-#: app/validation/error_messages.py:22
+#: app/validation/error_messages.py:24
 #, python-format
 msgid "Enter answers that add up to less than %(total)s"
 msgstr ""
 
-#: app/validation/error_messages.py:25
+#: app/validation/error_messages.py:27
 #, python-format
 msgid "Enter answers that add up to greater than %(total)s"
 msgstr ""
 
-#: app/validation/error_messages.py:28
+#: app/validation/error_messages.py:30
 #, python-format
 msgid "Enter answers that add up to or are greater than %(total)s"
 msgstr ""
 
-#: app/validation/error_messages.py:31
+#: app/validation/error_messages.py:33
 msgid "Enter a number."
 msgstr ""
 
-#: app/validation/error_messages.py:32
+#: app/validation/error_messages.py:34
 msgid "Enter a whole number."
 msgstr ""
 
-#: app/validation/error_messages.py:33
+#: app/validation/error_messages.py:35
 #, python-format
 msgid "Enter a number rounded to %(max)d decimal places."
 msgstr ""
 
-#: app/validation/error_messages.py:34
+#: app/validation/error_messages.py:38
 #, python-format
 msgid "Your answer is too long, it has to be less than %(max)d characters."
 msgstr ""
 
-#: app/validation/error_messages.py:37
+#: app/validation/error_messages.py:41
 msgid "Enter a valid date."
 msgstr ""
 
-#: app/validation/error_messages.py:38
+#: app/validation/error_messages.py:42
 msgid "Enter a 'period to' date later than the 'period from' date."
 msgstr ""
 
-#: app/validation/error_messages.py:41
+#: app/validation/error_messages.py:45
 msgid "Enter a valid duration."
 msgstr ""
 
-#: app/validation/error_messages.py:42
+#: app/validation/error_messages.py:46
 #, python-format
 msgid "Enter a reporting period greater than or equal to %(min)s."
 msgstr ""
 
-#: app/validation/error_messages.py:45
+#: app/validation/error_messages.py:49
 #, python-format
 msgid "Enter a reporting period less than or equal to %(max)s."
 msgstr ""
 
-#: app/validation/error_messages.py:48
+#: app/validation/error_messages.py:52
 #, python-format
 msgid "Enter a date after %(min)s."
 msgstr ""
 
-#: app/validation/error_messages.py:49
+#: app/validation/error_messages.py:53
 #, python-format
 msgid "Enter a date before %(max)s."
 msgstr ""
 
-#: app/validation/error_messages.py:50
+#: app/validation/error_messages.py:54
 msgid "Remove an answer to continue."
 msgstr ""
 
@@ -454,44 +454,44 @@ msgid ""
 "code.</a>"
 msgstr ""
 
-#: templates/errors/404.html:3 templates/errors/404.html:6
+#: templates/errors/404.html:3 templates/errors/404.html:14
 msgid "Page not found"
 msgstr ""
 
-#: templates/errors/404.html:7
+#: templates/errors/404.html:15
 msgid "If you entered a web address, check it is correct."
 msgstr ""
 
-#: templates/errors/404.html:8
+#: templates/errors/404.html:16
 msgid "If you pasted the web address, check you copied the whole address."
 msgstr ""
 
-#: templates/errors/404.html:9
+#: templates/errors/404.html:17
 msgid ""
-"If the web address is correct or you selected a link or button, <a href"
-"='/contact-us'>contact us</a> for more help."
+"If the web address is correct or you selected a link or button, <a "
+"href='{url}'>contact us</a> for more help."
 msgstr ""
 
 #: templates/errors/500.html:3
 msgid "An error has occurred"
 msgstr ""
 
-#: templates/errors/500.html:6
+#: templates/errors/500.html:14
 msgid "Sorry, there is a problem with this service"
 msgstr ""
 
-#: templates/errors/500.html:7
+#: templates/errors/500.html:15
 msgid "Try again later."
 msgstr ""
 
-#: templates/errors/500.html:8
+#: templates/errors/500.html:16
 msgid "If you have started a survey, your answers have been saved."
 msgstr ""
 
-#: templates/errors/500.html:9
+#: templates/errors/500.html:17
 msgid ""
-"<a href='/contact-us'>Contact us</a> if you need to speak to someone "
-"about your survey."
+"<a href='{url}'>Contact us</a> if you need to speak to someone about your"
+" survey."
 msgstr ""
 
 #: templates/errors/session-expired.html:6
