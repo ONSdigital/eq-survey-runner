@@ -22,8 +22,8 @@ ingress:
   enabled: true
 
 resources:
-  requests:
-    cpu: "3"
+  limit:
+    cpu: "1"
 
 autoscaler:
     minReplicas: 3
