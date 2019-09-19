@@ -9,8 +9,6 @@ const IntroInterstitialPage = require('../generated_pages/introduction/general-b
 const IntroConfirmationPage = require('../generated_pages/introduction/confirmation.page');
 const IntroThankYouPagePage = require('../base_pages/thank-you.page');
 
-const FeedbackForm = require('../base_pages/feedback-form');
-
 describe('SaveSignOut', function() {
 
   const responseId = utilities.getRandomString(16);
@@ -82,35 +80,4 @@ describe('SaveSignOut', function() {
           .isExisting(IntroductionPage.signOut()).should.eventually.be.false;
       });
   });
-
-  it('Given a logout url is set, when I load the feedback page, then I see the sign out button', function() {
-    return helpers.openQuestionnaire('test_numbers.json', { includeLogoutUrl: true }).then(() => {
-        return browser
-          .url(FeedbackForm.url())
-          .getUrl()
-          .isExisting(FeedbackForm.signOut()).should.eventually.be.true
-          .getText(FeedbackForm.signOut()).should.eventually.contain('Sign out');
-      });
-  });
-
-  it('Given a logout url is not set, when I load the feedback page, then there should be no sign out button', function() {
-    return helpers.openQuestionnaire('test_numbers.json', { includeLogoutUrl: false }).then(() => {
-        return browser
-          .url(FeedbackForm.url())
-          .getUrl()
-          .isExisting(FeedbackForm.signOut()).should.eventually.be.false;
-      });
-  });
-
-  it('Given a logout url is set and I load the feedback page, when I sign out, then I should be on the account service logged out page', function() {
-    return helpers.openQuestionnaire('test_numbers.json', { includeLogoutUrl: true }).then(() => {
-        return browser
-          .url(FeedbackForm.url())
-          .getUrl()
-          .isExisting(FeedbackForm.signOut()).should.eventually.be.true
-          .click(FeedbackForm.signOut())
-          .getUrl().should.eventually.contain('http://localhost:8000');
-      });
-  });
-
 });
