@@ -1,6 +1,7 @@
 import contextlib
 import unittest
 
+import fakeredis
 from google.cloud.datastore import Key
 from mock import patch
 
@@ -45,6 +46,9 @@ class AppContextTestCase(unittest.TestCase):
     def setUp(self):
         self._ds = patch('app.setup.datastore.Client', MockDatastore)
         self._ds.start()
+
+        self._redis = patch('app.setup.redis.Redis', fakeredis.FakeStrictRedis)
+        self._redis.start()
 
         setting_overrides = {'LOGIN_DISABLED': self.LOGIN_DISABLED}
         setting_overrides.update(self.setting_overrides)
