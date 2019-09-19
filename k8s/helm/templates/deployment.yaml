@@ -97,4 +97,6 @@ spec:
                 configMapKeyRef:
                   name: runner-config
                   key: redis_port
+             - name: COOKIE_SETTINGS_URL
+               value: "{{- .Values.cookieSettingsUrl }}"
 
