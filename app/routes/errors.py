@@ -36,7 +36,7 @@ def internal_server_error(error=None):
     try:
         log_exception(error, 500)
         return _render_error_page(500)
-    except Exception as ex:  # pylint:disable-broad-except
+    except Exception as ex:  # pylint:disable=broad-except
         logger.error(
             'an error has occurred',
             initial_error=error,
