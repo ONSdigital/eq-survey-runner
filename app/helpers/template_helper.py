@@ -76,7 +76,7 @@ def render_template(template, **kwargs):
 
 def get_google_tag_mananger_context():
     cookie = request.cookies.get('ons_cookie_policy')
-    if cookie and '\'usage\':true' in cookie:
+    if cookie and "\'usage\':true" in cookie:
         return {
             'google_tag_manager_id': current_app.config['EQ_GOOGLE_TAG_MANAGER_ID'],
             'google_tag_manager_auth': current_app.config['EQ_GOOGLE_TAG_MANAGER_AUTH'],
