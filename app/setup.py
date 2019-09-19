@@ -365,11 +365,6 @@ def add_blueprints(application):
     application.register_blueprint(post_submission_blueprint)
     post_submission_blueprint.config = application.config.copy()
 
-    from app.routes.feedback import feedback_blueprint
-
-    application.register_blueprint(feedback_blueprint)
-    feedback_blueprint.config = application.config.copy()
-
     from app.routes.session import session_blueprint
 
     csrf.exempt(session_blueprint)
