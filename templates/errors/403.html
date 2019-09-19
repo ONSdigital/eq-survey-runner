@@ -3,6 +3,8 @@
 {% set page_title = _("Authorisation refused") + " - " + _('Office for National Statistics') %}
 
 {% block main %}
-<h1>{{ _("Sorry, there is a problem") }}</h1>
-<p>{{ _("To access this page you need to <a href='#'>enter your unique access code.</a>") }}</p>
+  <h1>{{ _('Sorry, there is a problem') }}</h1>
+  {% if account_service_url %}
+    <p>{{ _('To access this page you need to <a href="%(account_service_link)s">enter your unique access code.</a>', account_service_link=account_service_url) }}</p>
+  {% endif %}
 {% endblock %}
