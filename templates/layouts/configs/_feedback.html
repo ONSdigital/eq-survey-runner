@@ -1,22 +1,22 @@
 {% do page | setAttribute("feedback", {
-   "id": "feedback",
-        "title": _("Give us feedback and help us improve this service"),
-        "pageTitle": {
-            "value": page.title
-        },
-        "pageURL": {
-            "value": page.url
-        },
-        "mailto": {
-            "address": "census2021.feedback@ons.gov.uk",
-            "textBefore": _("Tell us what you think of this website by emailing"),
-            "textAfter": _("This email is for feedback only and we will not be able to reply, do not include any personal details."),
-            "subject": _("Census 2021 feedback: "),
-            "body": ("\n\n\n---\n" ~ _("This email is for feedback on the census rehearsal, which will help us to improve Census 2021. We are unable to respond to these emails.\nIf you need help with your census, visit https://www.census.gov.uk/contact-us.")) | urlencode,
-            "target":"_blank"
-        },
-        "button":{
-          "close": {},
-          "send": {}
-        }
+  "id": "feedback",
+    "title": _("Give us feedback and help us improve this service"),
+    "pageTitle": {
+      "value": page.title
+    },
+    "pageURL": {
+      "value": page.url
+    },
+    "mailto": {
+      "address": "census2021.feedback@ons.gov.uk",
+      "textBefore": _("Tell us what you think of this website by emailing"),
+      "textAfter": _("This email is for feedback only and we will not be able to reply, do not include any personal details."),
+      "subject": _("Census 2021 feedback: "),
+      "body": ("\n\n\n---\n" ~ _("This email is for feedback on the census rehearsal, which will help us to improve Census 2021. We are unable to respond to these emails.\nIf you need help with your census, visit https://www.census.gov.uk/contact-us.")) | urlencode,
+      "target":"_blank"
+    },
+    "button":{
+      "close": {},
+      "send": {}
+    }
 }) %}
