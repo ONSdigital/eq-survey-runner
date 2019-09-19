@@ -4,6 +4,7 @@ from flask import (
     current_app,
     session as cookie_session,
     render_template as flask_render_template,
+    request
 )
 from flask_babel import get_locale, lazy_gettext
 
@@ -57,20 +58,31 @@ def render_template(template, **kwargs):
     )
     page_header_context.update({'title': cookie_session.get('survey_title')})
 
+    google_tag_mananger_context = get_google_tag_mananger_context()
+
     return flask_render_template(
         template,
         account_service_url=cookie_session.get('account_service_url'),
         account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
-        google_tag_manager_id=current_app.config['EQ_GOOGLE_TAG_MANAGER_ID'],
-        google_tag_manager_auth=current_app.config['EQ_GOOGLE_TAG_MANAGER_AUTH'],
-        google_tag_manager_preview=current_app.config['EQ_GOOGLE_TAG_MANAGER_PREVIEW'],
         page_header=page_header_context,
         theme=_map_theme(cookie_session.get('theme')),
         languages=get_languages_context(),
         schema_theme=cookie_session.get('theme'),
         survey_title=cookie_session.get('survey_title'),
+        **google_tag_mananger_context,
         **kwargs,
     )
+
+
+def get_google_tag_mananger_context():
+    cookie = request.cookies.get('ons_cookie_policy')
+    if cookie and '\'usage\':true' in cookie:
+        return {
+            'google_tag_manager_id': current_app.config['EQ_GOOGLE_TAG_MANAGER_ID'],
+            'google_tag_manager_auth': current_app.config['EQ_GOOGLE_TAG_MANAGER_AUTH'],
+            'google_tag_manager_preview': current_app.config['EQ_GOOGLE_TAG_MANAGER_PREVIEW'],
+        }
+    return {}
 
 
 def safe_content(content):
