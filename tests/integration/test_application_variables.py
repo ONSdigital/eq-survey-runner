@@ -28,6 +28,10 @@ class TestApplicationVariables(IntegrationTestCase):
 
     def test_google_analytics_code_is_present(self):
         self.launchSurvey('test_textfield')
+        self._client.set_cookie(
+            'localhost', key='ons_cookie_policy', value="\'usage\':true"
+        )
+        self.get('/questionnaire/name-block/')
         self.assertStatusOK()
         self.assertInHead('gtm.start')
         self.assertInHead('dataLayer = [];')
