@@ -4,19 +4,17 @@
 {% block main %}
   {% do page | setAttribute("feedback", "") %}
 
-  {% if schema_theme == "census-nisra" %}
-
-  {% set contact_us_url = "https://census.gov.uk/ni/contact-us/" %}
-
-{% elif language_code == "cy" %}
-
-  {% set contact_us_url = "https://cyfrifiad.gov.uk/cysylltu-a-ni/" %}
-
-{% else %}
-
   {% set contact_us_url = "https://census.gov.uk/contact-us/" %}
 
-{% endif %}
+  {% if schema_theme == "census-nisra" %}
+
+    {% set contact_us_url = "https://census.gov.uk/ni/contact-us/" %}
+
+  {% elif language_code == "cy" %}
+
+    {% set contact_us_url = "https://cyfrifiad.gov.uk/cysylltu-a-ni/" %}
+
+  {% endif %}
 
   <h1>{{ _("Accessibility statement") }}</h1>
 
