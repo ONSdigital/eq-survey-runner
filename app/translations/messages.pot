@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-19 13:06+0100\n"
+"POT-Creation-Date: 2019-09-19 14:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -496,7 +496,7 @@ msgstr ""
 
 #: templates/layouts/configs/_feedback.html:13
 msgid ""
-"This email is for feedback only and we will not be able to reply, do not "
+"This email is for feedback only and we will not be able to reply. Do not "
 "include any personal details."
 msgstr ""
 
