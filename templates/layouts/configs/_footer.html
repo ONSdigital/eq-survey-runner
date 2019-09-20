@@ -1,7 +1,12 @@
+  {% set contact_us_url = "https://census.gov.uk/contact-us/" %}
+  {% set cookies_url = "https://census.gov.uk/cookies/" %}
+  {% set help_url = "https://census.gov.uk/help/how-to-answer-questions/online-questions-help/" %}
+
 {% if schema_theme == "census-nisra" %}
 
   {% set contact_us_url = "https://census.gov.uk/ni/contact-us/" %}
   {% set cookies_url = "https://census.gov.uk/ni/cookies/" %}
+  {% set help_url = "https://census.gov.uk/ni/help/how-to-answer-questions/online-questions-help/" %}
   {% set logo = "nisra-logo-black-en" %}
   {% set alt = "Nisra Logo" %}
   {% set class_small_logo = "footer__poweredby-img--small" %}
@@ -10,11 +15,7 @@
 
   {% set contact_us_url = "https://cyfrifiad.gov.uk/cysylltu-a-ni/" %}
   {% set cookies_url = "https://cyfrifiad.gov.uk/cwcis/" %}
-
-{% else %}
-
-  {% set contact_us_url = "https://census.gov.uk/contact-us/" %}
-  {% set cookies_url = "https://census.gov.uk/cookies/" %}
+  {% set help_url = "https://cyfrifiad.gov.uk/help/sut-i-ateb-y-cwestiynau/help-y-cwestiynau-ar-lein-ew/" %}
 
 {% endif %}
 
@@ -36,7 +37,7 @@
             },
             {
                   "text": _('Help'),
-                  "url": 'https://census.gov.uk/help/how-to-answer-questions/online-questions-help-ew/',
+                  "url": help_url,
                   "target": "_blank"
             }
         ]
@@ -45,8 +46,7 @@
         "itemsList": [
             {
                 "text": _("Cookies"),
-                "url": cookies_url,
-                "target": "_blank"
+                "url": cookies_url
             },
             {
                 "text": _("Privacy and data protection"),
