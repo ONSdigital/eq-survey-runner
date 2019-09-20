@@ -27,13 +27,14 @@
 {% block preHeader %}
   <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}"/>
 
-  {{
-    onsCookiesBanner({
-        "html": _('We use cookies to improve your experience of census.gov.uk'),
-        "secondaryButtonUrl": cookie_settings_url
-    })
-  }}
-
+  {% if cookie_settings_url %}
+    {{
+      onsCookiesBanner({
+          "html": _('We use cookies to improve your experience of census.gov.uk'),
+          "secondaryButtonUrl": cookie_settings_url
+      })
+    }}
+  {% endif %}
 {% endblock %}
 
 
