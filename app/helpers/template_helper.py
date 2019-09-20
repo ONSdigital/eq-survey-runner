@@ -64,6 +64,7 @@ def render_template(template, **kwargs):
         template,
         account_service_url=cookie_session.get('account_service_url'),
         account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
+        cookie_settings_url=current_app.config['COOKIE_SETTINGS_URL'],
         page_header=page_header_context,
         theme=_map_theme(cookie_session.get('theme')),
         languages=get_languages_context(),
