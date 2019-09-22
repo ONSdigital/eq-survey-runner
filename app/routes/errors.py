@@ -3,7 +3,6 @@ from flask_login import current_user
 from flask_wtf.csrf import CSRFError
 from sdc.crypto.exceptions import InvalidTokenException
 from structlog import get_logger
-from ua_parser import user_agent_parser
 
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
@@ -36,15 +35,11 @@ def internal_server_error(error=None):
     try:
         log_exception(error, 500)
         return _render_error_page(500)
-    except Exception as ex:  # pylint:disable=broad-except
+    except Exception:  # pylint:disable=broad-except
         logger.error(
-            'an error has occurred',
-            initial_error=error,
-            final_error=str(ex),
-            url=request.url,
-            status_code=500,
+            'an error has occurred', exc_info=True, url=request.url, status_code=500
         )
-        return _render_error_page(500, store_language=False)
+        return render_template(template=f'errors/500'), 500
 
 
 @errors_blueprint.app_errorhandler(403)
@@ -67,11 +62,9 @@ def log_exception(error, status_code):
     )
 
 
-def _render_error_page(status_code, template=None, store_language=True):
-    if store_language:
-        handle_language()
+def _render_error_page(status_code, template=None):
+    handle_language()
 
-    user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
     template = template or status_code
 
-    return render_template(template=f'errors/{template}', ua=user_agent), status_code
+    return render_template(template=f'errors/{template}'), status_code
