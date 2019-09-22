@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-19 11:56+0100\n"
+"POT-Creation-Date: 2019-09-20 09:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -406,44 +406,44 @@ msgid ""
 "code.</a>"
 msgstr ""
 
-#: templates/errors/404.html:3 templates/errors/404.html:6
+#: templates/errors/404.html:3 templates/errors/404.html:13
 msgid "Page not found"
 msgstr ""
 
-#: templates/errors/404.html:7
+#: templates/errors/404.html:14
 msgid "If you entered a web address, check it is correct."
 msgstr ""
 
-#: templates/errors/404.html:8
+#: templates/errors/404.html:15
 msgid "If you pasted the web address, check you copied the whole address."
 msgstr ""
 
-#: templates/errors/404.html:9
+#: templates/errors/404.html:16
 msgid ""
-"If the web address is correct or you selected a link or button, <a href"
-"='/contact-us'>contact us</a> for more help."
+"If the web address is correct or you selected a link or button, <a "
+"href='{url}'>contact us</a> for more help."
 msgstr ""
 
 #: templates/errors/500.html:3
 msgid "An error has occurred"
 msgstr ""
 
-#: templates/errors/500.html:6
+#: templates/errors/500.html:13
 msgid "Sorry, there is a problem with this service"
 msgstr ""
 
-#: templates/errors/500.html:7
+#: templates/errors/500.html:14
 msgid "Try again later."
 msgstr ""
 
-#: templates/errors/500.html:8
+#: templates/errors/500.html:15
 msgid "If you have started a survey, your answers have been saved."
 msgstr ""
 
-#: templates/errors/500.html:9
+#: templates/errors/500.html:16
 msgid ""
-"<a href='/contact-us'>Contact us</a> if you need to speak to someone "
-"about your survey."
+"<a href='{url}'>Contact us</a> if you need to speak to someone about your"
+" survey."
 msgstr ""
 
 #: templates/errors/session-expired.html:6
@@ -496,7 +496,7 @@ msgstr ""
 
 #: templates/layouts/configs/_feedback.html:13
 msgid ""
-"This email is for feedback only and we will not be able to reply, do not "
+"This email is for feedback only and we will not be able to reply. Do not "
 "include any personal details."
 msgstr ""
 
