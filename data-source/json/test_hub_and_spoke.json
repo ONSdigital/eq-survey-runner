@@ -192,6 +192,89 @@
                     "title": ""
                 }
             ]
+        },
+        {
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "id": "does-anyone-live-here",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "does-anyone-live-here-answer",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ],
+                                        "type": "Radio"
+                                    }
+                                ],
+                                "id": "does-anyone-live-here-question",
+                                "title": "Does anyone live here? ",
+                                "type": "General"
+                            },
+                            "type": "Question"
+                        },
+                        {
+                            "id": "household-summary",
+                            "type": "SectionSummary"
+                        },
+                        {
+                            "id": "how-many-people-live-here",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "how-many-people-live-here",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "1",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "label": "2",
+                                                "value": "2"
+                                            },
+                                            {
+                                                "label": "3+",
+                                                "value": "3+"
+                                            }
+                                        ],
+                                        "type": "Radio"
+                                    }
+                                ],
+                                "id": "how-many-people-live-here-question",
+                                "title": "How many people live here?",
+                                "type": "General"
+                            },
+                            "type": "Question",
+                            "skip_conditions": [
+                                {
+                                    "when": [
+                                        {
+                                            "id": "does-anyone-live-here-answer",
+                                            "condition": "equals",
+                                            "value": "No"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "household-question-group",
+                    "title": "Household residents"
+                }
+            ],
+            "id": "household-section",
+            "title": "Household residents"
         }
     ]
 }

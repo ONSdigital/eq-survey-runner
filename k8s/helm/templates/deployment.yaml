@@ -77,6 +77,8 @@ spec:
               value: gcs
             - name: GUNICORN_WORKERS
               value: "9"
+            - name: GUNICORN_KEEP_ALIVE
+              value: "650"
             - name: EQ_GCS_SUBMISSION_BUCKET_ID
               value: "{{- .Values.submissionBucket }}"
             - name: EQ_GOOGLE_TAG_MANAGER_ID
@@ -85,6 +87,8 @@ spec:
               value: "{{- .Values.googleTagManagerAuth }}"
             - name: EQ_GOOGLE_TAG_MANAGER_PREVIEW
               value: "{{- .Values.googleTagManagerPreview }}"
+            - name: COOKIE_SETTINGS_URL
+              value: "{{- .Values.cookieSettingsUrl }}"
             - name: EQ_REDIS_HOST
               valueFrom:
                 configMapKeyRef:
@@ -95,4 +99,3 @@ spec:
                 configMapKeyRef:
                   name: runner-config
                   key: redis_port
-

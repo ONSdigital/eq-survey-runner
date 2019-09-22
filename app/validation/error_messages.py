@@ -1,6 +1,8 @@
 from flask_babel import lazy_gettext
 
 # Set up default error and warning messages
+# lazy_gettext is used as the string needs to be resolved at runtime
+# for translations to work.
 error_messages = {
     'MANDATORY_QUESTION': lazy_gettext('Enter an answer to continue.'),
     'MANDATORY_TEXTFIELD': lazy_gettext('Enter an answer to continue.'),

@@ -1,4 +1,6 @@
+from flask import url_for
 from werkzeug.utils import cached_property
+from app.helpers.template_helper import safe_content
 
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
@@ -38,7 +40,7 @@ class Question(BlockHandler):
 
             return Location(
                 section_id=section_id, block_id=block_id, list_name=list_name
-            ).url(return_to=self.current_location.block_id)
+            ).url(previous=self.current_location.block_id)
 
     def _get_answer_action(self):
         answers = self.rendered_block['question']['answers']
@@ -56,7 +58,9 @@ class Question(BlockHandler):
                     return action
 
     def get_context(self):
-        return build_question_context(self.rendered_block, self.form)
+        context = build_question_context(self.rendered_block, self.form)
+        context['return_to_hub_url'] = self.get_return_to_hub_url()
+        return context
 
     def handle_post(self):
         self.questionnaire_store_updater.update_answers(self.form)
@@ -96,8 +100,29 @@ class Question(BlockHandler):
             self._current_location,
         )
 
+        self.page_title = self._get_page_title(transformed_block)
+
         rendered_question = self.placeholder_renderer.render(
             transformed_block.pop('question'), self._current_location.list_item_id
         )
 
         return {**transformed_block, **{'question': rendered_question}}
+
+    def get_return_to_hub_url(self):
+        if (
+            self.rendered_block['type'] in ['Question', 'ConfirmationQuestion']
+            and self._router.can_access_hub()
+        ):
+            return url_for('.get_questionnaire')
+
+    def _get_page_title(self, transformed_block):
+        question = transformed_block.get('question')
+        if question:
+            if isinstance(question['title'], str):
+                question_title = question['title']
+            else:
+                question_title = question['title']['text']
+
+            page_title = f'{question_title} - {self._schema.json["title"]}'
+
+            return safe_content(page_title)

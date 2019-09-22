@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-19 16:18+0100\n"
-"PO-Revision-Date: 2019-08-21 08:18\n"
+"POT-Creation-Date: 2019-09-16 17:39+0100\n"
+"PO-Revision-Date: 2019-09-18 09:56\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -27,13 +27,13 @@ msgid "Why do I need to answer if they have retired or are long-term sick or dis
 msgstr "Pam mae angen i mi ateb os yw wedi ymddeol neu wedi bod yn sâl neu'n anabl am gyfnod hir?"
 
 msgid "Census England Individual Schema"
-msgstr "Crynodeb Unigol Cyfrifiad Lloegr"
+msgstr "Crynodeb Unigol Cyfrifiad Cymru"
 
 msgid "For example, student hall of residence, boarding school, armed forces base, hospital, care home, prison"
 msgstr "Er enghraifft, neuadd breswyl i fyfyrwyr, ysgol breswyl, un o ganolfannau’r lluoedd arfog, ysbyty, cartref gofal, carchar"
 
 msgid "A communal establishment is a place providing managed residential accommodation. “Managed” here means full-time or part-time supervision of the accommodation"
-msgstr "Sefydliad sy’n cynnig llety preswyl wedi'i reoli yw sefydliad cymunedol. Ystyr “wedi'i reoli” yn y cyd-destun hwn yw bod y llety’n cael ei oruchwylio drwy’r amser neu am ran o’r amser."
+msgstr "Sefydliad sy’n cynnig llety preswyl wedi'i reoli yw sefydliad cymunedol. Ystyr “wedi'i reoli” yn y cyd-destun hwn yw bod y llety’n cael ei oruchwylio drwy’r amser neu am ran o’r amser"
 
 msgid "For example, student, member of armed forces, patient, detainee"
 msgstr "Er enghraifft, myfyriwr, aelod o’r lluoedd arfog, claf, carcharor"
@@ -42,8 +42,7 @@ msgid "No usual UK address"
 msgstr "Dim cyfeiriad arferol yn y Deyrnas Unedig"
 
 msgid "A communal establishment is an establishment providing managed residential accommodation. ‘Managed’ in this context means full-time or part-time supervision of the accommodation. Examples of communal establishments include student halls of residence, boarding schools, armed forces bases, hospitals, care homes and prisons"
-msgstr "Sefydliad sy’n cynnig llety preswyl wedi'i reoli yw sefydliad cymunedol. Ystyr “wedi'i reoli” yn y cyd-destun hwn\n"
-"yw bod y llety’n cael ei oruchwylio drwy’r amser neu am ran o’r amser. Mae enghreifftiau o sefydliadau cymunedol yn cynnwys neuadd breswyl i fyfyrwyr, ysgol breswyl, un o ganolfannau’r lluoedd arfog, ysbyty, cartref gofal a charchar."
+msgstr "Sefydliad sy’n cynnig llety preswyl wedi'i reoli yw sefydliad cymunedol. Ystyr 'wedi'i reoli' yn y cyd-destun hwn yw bod y llety’n cael ei oruchwylio drwy’r amser neu am ran o’r amser. Mae enghreifftiau o sefydliadau cymunedol yn cynnwys neuadd breswyl i fyfyrwyr, ysgol breswyl, un o ganolfannau’r lluoedd arfog, ysbyty, cartref gofal a charchar"
 
 msgid "For example 31 12 1970"
 msgstr "Er enghraifft, 31 12 1970"
@@ -67,7 +66,7 @@ msgid "Do not count short visits away from the UK"
 msgstr "Peidiwch â chyfrif ymweliadau byr i ffwrdd o'r Deyrnas Unedig"
 
 msgid "Your main language is the language you use most naturally. It could be the language you use at home."
-msgstr "Eich prif iaith yw’r iaith rydych chi’n ei defnyddio’n fwyaf naturiol. Yr iaith rydych chi’n ei defnyddio gartref."
+msgstr "Eich prif iaith yw’r iaith rydych chi’n ei defnyddio’n fwyaf naturiol. Gallai fod yr iaith rydych chi’n ei defnyddio gartref."
 
 msgid "Their main language is the language they use most naturally. It could be the language they use at home."
 msgstr "Prif iaith yr unigolyn yw’r iaith mae’n ei defnyddio’n fwyaf naturiol. Gallai fod yr iaith mae’n ei defnyddio gartref."
@@ -189,14 +188,14 @@ msgstr "Er enghraifft, BTEC Cenedlaethol, OND neu ONC, Crefft Uwch City and Guil
 msgid "For example, BTEC General, City and Guilds Craft"
 msgstr "Er enghraifft, BTEC Cyffredinol, Crefft City and Guilds"
 
-msgid "Questions on A levels and GCSEs and equivalents will follow"
+msgid "Questions on A levels, GCSEs and equivalents will follow"
 msgstr "Bydd cwestiynau am gymwysterau Lefel A (Safon Uwch) a TGAU, a chymwysterau cyfatebol yn dilyn"
 
 msgid "Include 4 or more AS levels"
 msgstr "Dylech gynnwys 4 neu fwy o gymwysterau Lefel AS (Safon UG)"
 
 msgid "Include 2 to 3 AS levels"
-msgstr "Dylech gynnwys 2-3 Lefel AS (Safon UG)"
+msgstr "Dylech gynnwys 2–3 Lefel AS (Safon UG)"
 
 msgid "Questions on GCSEs and equivalents will follow"
 msgstr "Bydd cwestiynau am gymwysterau TGAU a chymwysterau cyfatebol yn dilyn"
@@ -351,7 +350,7 @@ msgstr "Ym mha wlad y cawsoch chi eich geni?"
 msgid "When did you most recently arrive to live in the United Kingdom?"
 msgstr "Pryd ddaethoch chi i fyw yn y Deyrnas Unedig ddiwethaf?"
 
-msgid "Did you arrive in the UK, on or after 13 October 2018"
+msgid "Did you arrive in the UK, on or after 13 October 2018?"
 msgstr "Wnaethoch chi ddod i’r Deyrnas Unedig ar 13 Hydref 2018 neu ar ôl hynny?"
 
 msgid "Including the time already spent here, how long do you intend to stay in the United Kingdom?"
@@ -505,10 +504,10 @@ msgid "What was your full job title?"
 msgstr "Beth oedd teitl llawn eich swydd?"
 
 msgid "Briefly describe what you do in your main job."
-msgstr "Beth ydych chi'n ei wneud yn eich prif swydd."
+msgstr "Beth ydych chi'n ei wneud yn eich prif swydd?"
 
 msgid "Briefly describe what you did in your main job."
-msgstr "Beth oeddech chi'n ei wneud yn eich prif swydd."
+msgstr "Beth oeddech chi'n ei wneud yn eich prif swydd?"
 
 msgid "What is the main activity of your organisation, business or freelance work?"
 msgstr "Beth yw prif weithgarwch eich sefydliad, busnes neu’ch gwaith ar eich liwt eich hun?"
@@ -621,8 +620,8 @@ msgstr "Ym mha wlad y ganwyd <em>{person_name_possessive}</em>?"
 msgid "When did <em>{person_name}</em> most recently arrive to live in the United Kingdom?"
 msgstr "Pryd ddaeth <em>{person_name}</em> i fyw yn y Deyrnas Unedig ddiwethaf?"
 
-msgid "Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018"
-msgstr "Wnaeth <em>{person_name}</em> ddod i’r Deyrnas Unedig ar [13 Hydref 2018] neu ar ôl hynny?"
+msgid "Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018?"
+msgstr "Wnaeth <em>{person_name}</em> ddod i’r Deyrnas Unedig ar 13 Hydref 2018 neu ar ôl hynny?"
 
 msgid "Including the time already spent here, how long does <em>{person_name}</em> intend to stay in the United Kingdom?"
 msgstr "Gan gynnwys yr amser y mae wedi’i dreulio yma’n barod, am faint mae <em>{person_name}</em> yn bwriadu aros yn y Deyrnas Unedig?"
@@ -754,10 +753,10 @@ msgid "What was <em>{person_name_possessive}</em> full job title?"
 msgstr "Beth oedd teitl llawn swydd <em>{person_name_possessive}</em>?"
 
 msgid "Briefly describe what <em>{person_name}</em> does in their main job."
-msgstr "Beth mae <em>{person_name}</em> yn ei wneud yn y brif swydd."
+msgstr "Beth mae <em>{person_name}</em> yn ei wneud yn y brif swydd?"
 
 msgid "Briefly describe what <em>{person_name}</em> did in their main job."
-msgstr "Beth oedd <em>{person_name}</em> yn ei wneud yn y brif swydd."
+msgstr "Beth oedd <em>{person_name}</em> yn ei wneud yn y brif swydd?"
 
 msgid "What is the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?"
 msgstr "Beth yw prif weithgarwch sefydliad, busnes neu waith ar ei liwt ei hun <em>{person_name_possessive}</em>?"
@@ -1472,22 +1471,22 @@ msgid "Enter the current name of the country"
 msgstr "Nodwch enw presennol y wlad"
 
 #. answer-id: when-arrive-in-uk-answer
-msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018"
+msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018?"
 msgid "Yes"
 msgstr "Do"
 
 #. answer-id: when-arrive-in-uk-answer
-msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018"
+msgctxt "Answer for: Did you arrive in the UK, on or after 13 October 2018?"
 msgid "No"
 msgstr "Naddo"
 
 #. answer-id: when-arrive-in-uk-answer
-msgctxt "Answer for: Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018"
+msgctxt "Answer for: Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018?"
 msgid "Yes"
 msgstr "Do"
 
 #. answer-id: when-arrive-in-uk-answer
-msgctxt "Answer for: Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018"
+msgctxt "Answer for: Did <em>{person_name}</em> arrive in the UK, on or after 13 October 2018?"
 msgid "No"
 msgstr "Naddo"
 
@@ -2604,7 +2603,7 @@ msgstr "Dim un o’r rhain"
 #. answer-id: gcse-answer
 msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
 msgid "5 or more GCSEs grades A* to C or 9 to 4"
-msgstr "5 neu fwy o gymwysterau TGAU (A*-C neu 9-4)"
+msgstr "5 neu fwy o gymwysterau TGAU (A*–C neu 9–4)"
 
 #. answer-id: gcse-answer
 msgctxt "Answer for: Have you achieved a GCSE or equivalent qualification?"
@@ -2634,7 +2633,7 @@ msgstr "Dim un o’r rhain"
 #. answer-id: gcse-answer
 msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"
 msgid "5 or more GCSEs grades A* to C or 9 to 4"
-msgstr "5 neu fwy o gymwysterau TGAU (A*-C neu 9-4)"
+msgstr "5 neu fwy o gymwysterau TGAU (A*–C neu 9–4)"
 
 #. answer-id: gcse-answer
 msgctxt "Answer for: Has <em>{person_name}</em> achieved a GCSE or equivalent qualification?"

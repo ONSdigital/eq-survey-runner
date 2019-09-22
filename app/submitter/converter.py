@@ -122,48 +122,7 @@ def _build_metadata(metadata):
         downstream_metadata['ref_period_start_date'] = metadata['ref_p_start_date']
     if metadata.get('ref_p_end_date'):
         downstream_metadata['ref_period_end_date'] = metadata['ref_p_end_date']
+    if metadata.get('display_address'):
+        downstream_metadata['display_address'] = metadata['display_address']
 
     return downstream_metadata
-
-
-def convert_feedback(message, name, email, url, metadata, survey_id):
-    """
-    Create the JSON answer format for down stream processing
-    :param metadata: metadata for the questionnaire
-    :param feedback_json: the feedback json
-    :param survey_id: the string representing the survey id
-    :return: a JSON object in the following format:
-      {
-        'tx_id': '0f534ffc-9442-414c-b39f-a756b4adc6cb',
-        'type' : 'uk.gov.ons.edc.eq:feedback',
-        'version' : '0.0.1',
-        'origin' : 'uk.gov.ons.edc.eq',
-        'survey_id': '021',
-        'collection':{
-          'exercise_sid': 'hfjdskf',
-          'schema_name': 'yui789',
-          'period': '201602'
-        },
-        'submitted_at': '2016-03-07T15:28:05Z',
-        'metadata': {
-          'user_id': '789473423',
-          'ru_ref': '432423423423'
-        },
-        'data': {}
-      }
-    """
-    submitted_at = datetime.utcnow()
-    payload = {
-        'tx_id': metadata['tx_id'],
-        'type': 'uk.gov.ons.edc.eq:feedback',
-        'version': '0.0.1',
-        'origin': 'uk.gov.ons.edc.eq',
-        'survey_id': survey_id,
-        'submitted_at': submitted_at.isoformat(),
-        'collection': _build_collection(metadata),
-        'metadata': _build_metadata(metadata),
-    }
-
-    payload['data'] = {'message': message, 'name': name, 'email': email, 'url': url}
-
-    return payload

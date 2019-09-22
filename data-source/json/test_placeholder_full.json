@@ -38,7 +38,7 @@
                             "question": {
                                 "description": "",
                                 "id": "primary-name-question",
-                                "title": "Please enter your name",
+                                "title": "Please enter a name",
                                 "type": "General",
                                 "answers": [
                                     {
@@ -77,20 +77,28 @@
                                 "description": "",
                                 "id": "dob-question",
                                 "title": {
-                                    "text": "What is the date of birth for {person_name}?",
+                                    "text": "What is {person_name_possessive} date of birth?",
                                     "placeholders": [
                                         {
-                                            "placeholder": "person_name",
+                                            "placeholder": "person_name_possessive",
                                             "transforms": [
                                                 {
-                                                    "transform": "concatenate_list",
                                                     "arguments": {
+                                                        "delimiter": " ",
                                                         "list_to_concatenate": {
-                                                            "source": "answers",
-                                                            "identifier": ["first-name", "last-name"]
-                                                        },
-                                                        "delimiter": " "
-                                                    }
+                                                            "identifier": ["first-name", "last-name"],
+                                                            "source": "answers"
+                                                        }
+                                                    },
+                                                    "transform": "concatenate_list"
+                                                },
+                                                {
+                                                    "arguments": {
+                                                        "string_to_format": {
+                                                            "source": "previous_transform"
+                                                        }
+                                                    },
+                                                    "transform": "format_possessive"
                                                 }
                                             ]
                                         }

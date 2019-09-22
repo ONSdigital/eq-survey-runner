@@ -232,7 +232,7 @@
                                 "add_link_text": "Add someone to this household",
                                 "empty_list_text": "There are no householders"
                             },
-                            "hide_on_section_summary": false
+                            "show_on_section_summary": true
                         },
                         {
                             "id": "visitor-list-collector",
@@ -383,7 +383,7 @@
                                 "add_link_text": "Add another visitor to this household",
                                 "empty_list_text": "There are no visitors"
                             },
-                            "hide_on_section_summary": false
+                            "show_on_section_summary": true
                         },
                         {
                             "id": "people-list-section-summary",

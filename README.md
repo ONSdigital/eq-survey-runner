@@ -305,48 +305,28 @@ SUBMISSION_BUCKET_NAME=census-eq-dev-1234567-survey-runner-submission ./k8s/depl
 
 ## Internationalisation
 
-We use flask-babel to do internationalisation. To extract messages from source, in the project root run the following command.
+We use flask-babel to do internationalisation. To extract messages from source and create the messages.pot file, in the project root run the following command.
 
 ```
-pipenv run pybabel extract -F babel.cfg -o app/translations/messages.pot .
+make translation-templates
 ```
 
-This will extract messages and place them in the translations/messages.pot file ready for translation.
+```make translation-templates``` is a command that uses pybabel to extract static messages and eq-translations to extract schema messages
 
-You should only need to create the language files once.
 
-To create Welsh language files, run the following command
+This will extract messages and place them in the .pot files ready for translation.
 
-```
-pipenv run pybabel init -i app/translations/messages.pot -d app/translations -l cy
-```
+These .pot files will then need to be translated. The translation process is documented in Confluence [here](https://collaborate2.ons.gov.uk/confluence/display/SDC/Translation+Process)
 
-To create the gaelic language files, use the following:
-
-```
-pipenv run pybabel init -i app/translations/messages.pot -d app/translations -l gd
-```
-
-### Compiling the translations
-
-To compile the language files for use in the application, use the following:
-
-```
-pipenv run pybabel compile -d app/translations
-```
-
-As strings are added to the application, you will need to update but not overwrite the translations for the various languages.
-To update the language strings, use:
-
-```
-pipenv run pybabel update -i app/translations/messages.pot -d app/translations
-```
+Once we have the translated .po files they can be added to the source code and used by the application
 
 ---
 
 ### Translating the schemas
 
-The schemas can be translated assuming `.po` files are available. This can be done through the `scripts/translate_schemas.py` script.
+The schemas can be translated assuming `.po` files are available. This can be done through ```make translate``` and will be done automatically as part of the build process.
+
+If the .po file being added is a new po file it will also need to be added to the translate_schemas.py build script
 
 ## Environment Variables
 
@@ -397,6 +377,7 @@ The following env variables can be used
 | EQ_NEW_RELIC_ENABLED                      | False                 | Enable New Relic monitoring                                                                   |
 | NEW_RELIC_LICENSE_KEY                     |                       | Enable new relic monitoring by supplying a New Relic licence key                              |
 | NEW_RELIC_APP_NAME                        |                       | The name to display for the application in New Relic                                          |
+| COOKIE_SETTINGS_URL                       |                       | URL for the Webstie Cookie Settings page                                                      |
 ```
 
 The following env variables can be used when running tests

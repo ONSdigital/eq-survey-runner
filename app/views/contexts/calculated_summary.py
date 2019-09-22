@@ -4,6 +4,7 @@ from app.jinja_filters import (
     format_unit,
     format_percentage,
 )
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.schema_utils import (
     choose_question_to_display,
     get_answer_ids_in_block,
@@ -13,7 +14,9 @@ from app.questionnaire.location import Location
 from app.views.contexts.summary.group import Group
 
 
-def build_groups_for_section(answer_store, list_store, metadata, schema, section):
+def build_groups_for_section(
+    answer_store, list_store, metadata, schema, section, language
+):
     path_finder = PathFinder(schema, answer_store, metadata, list_store=list_store)
 
     section_path = path_finder.routing_path(section['id'])
@@ -22,14 +25,21 @@ def build_groups_for_section(answer_store, list_store, metadata, schema, section
 
     return [
         Group(
-            group, section_path, answer_store, list_store, metadata, schema, location
+            group,
+            section_path,
+            answer_store,
+            list_store,
+            metadata,
+            schema,
+            location,
+            language,
         ).serialize()
         for group in section['groups']
     ]
 
 
 def build_view_context_for_calculated_summary(
-    language, schema, answer_store, list_store, metadata, current_location
+    schema, answer_store, list_store, metadata, current_location, language
 ):
     block = schema.get_block(current_location.block_id)
 
@@ -38,7 +48,7 @@ def build_view_context_for_calculated_summary(
     )
 
     groups = build_groups_for_section(
-        answer_store, list_store, metadata, schema, calculated_section
+        answer_store, list_store, metadata, schema, calculated_section, language
     )
 
     formatted_total = _get_formatted_total(
@@ -80,7 +90,7 @@ def _build_calculated_summary_section(
     unique_blocks = list({block['id']: block for block in blocks_to_calculate}.values())
 
     for block in unique_blocks:
-        if block['type'] == 'Question':
+        if QuestionnaireSchema.is_question_block_type(block['type']):
             transformed_block = _remove_unwanted_questions_answers(
                 block,
                 answers_to_calculate,

@@ -106,8 +106,8 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
             self.metadata,
         )
 
-        single_section_context = summary_context.build_groups_for_section(
-            'property-details-section'
+        single_section_context = summary_context.build_groups_for_location(
+            Location(section_id='property-details-section')
         )
 
         self.check_summary_rendering_context(single_section_context)
@@ -162,12 +162,12 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         )
 
         context = build_view_context_for_calculated_summary(
-            self.metadata,
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
+            self.metadata,
             current_location,
+            language='en',
         )
 
         self.check_context(context)
@@ -200,12 +200,12 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         skip_answer = Answer('skip-fourth-block-answer', 'Yes')
         self.answer_store.add_or_update(skip_answer)
         context = build_view_context_for_calculated_summary(
-            self.metadata,
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
+            self.metadata,
             current_location,
+            language='en',
         )
 
         self.check_context(context)
@@ -228,19 +228,19 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             context_summary['calculated_question']['answers'][0]['value'], '£12.00'
         )
 
-    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='cy'))
     def test_build_view_context_for_unit_calculated_summary(self):
         current_location = Location(
             section_id='default-section', block_id='unit-total-playback'
         )
 
         context = build_view_context_for_calculated_summary(
-            self.metadata,
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
+            self.metadata,
             current_location,
+            language='cy',
         )
 
         self.check_context(context)
@@ -268,12 +268,12 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         )
 
         context = build_view_context_for_calculated_summary(
-            self.metadata,
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
+            self.metadata,
             current_location,
+            language='en',
         )
 
         self.check_context(context)
@@ -295,19 +295,19 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             context_summary['calculated_question']['answers'][0]['value'], '20%'
         )
 
-    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='cy'))
     def test_build_view_context_for_number_calculated_summary(self):
         current_location = Location(
             section_id='default-section', block_id='number-total-playback'
         )
 
         context = build_view_context_for_calculated_summary(
-            self.metadata,
             self.schema,
             self.answer_store,
             self.list_store,
-            self.block_type,
+            self.metadata,
             current_location,
+            language='cy',
         )
 
         self.check_context(context)
@@ -353,41 +353,116 @@ def test_context_for_section_list_summary(people_answer_store):
 
     expected = [
         {
-            'add_link': '/questionnaire/people/add-person/',
+            'add_link': '/questionnaire/people/add-person/?return_to=people-list-section-summary',
             'add_link_text': 'Add someone to this household',
             'empty_list_text': 'There are no householders',
             'list_items': [
                 {
-                    'edit_link': '/questionnaire/people/PlwgoG/edit-person/',
+                    'edit_link': '/questionnaire/people/PlwgoG/edit-person/?return_to=people-list-section-summary',
                     'item_title': 'Toni Morrison',
                     'primary_person': False,
-                    'remove_link': '/questionnaire/people/PlwgoG/remove-person/',
+                    'remove_link': '/questionnaire/people/PlwgoG/remove-person/?return_to=people-list-section-summary',
                 },
                 {
-                    'edit_link': '/questionnaire/people/UHPLbX/edit-person/',
+                    'edit_link': '/questionnaire/people/UHPLbX/edit-person/?return_to=people-list-section-summary',
                     'item_title': 'Barry Pheloung',
                     'primary_person': False,
-                    'remove_link': '/questionnaire/people/UHPLbX/remove-person/',
+                    'remove_link': '/questionnaire/people/UHPLbX/remove-person/?return_to=people-list-section-summary',
                 },
             ],
             'title': 'Household members on 13 October 2019',
             'list_name': 'people',
         },
         {
-            'add_link': '/questionnaire/visitors/add-visitor/',
+            'add_link': '/questionnaire/visitors/add-visitor/?return_to=people-list-section-summary',
             'add_link_text': 'Add another visitor to this household',
             'empty_list_text': 'There are no visitors',
             'list_items': [
                 {
-                    'edit_link': '/questionnaire/visitors/gTrlio/edit-visitor-person/',
+                    'edit_link': '/questionnaire/visitors/gTrlio/edit-visitor-person/?return_to=people-list-section-summary',
                     'item_title': '',
                     'primary_person': False,
-                    'remove_link': '/questionnaire/visitors/gTrlio/remove-visitor/',
+                    'remove_link': '/questionnaire/visitors/gTrlio/remove-visitor/?return_to=people-list-section-summary',
                 }
             ],
             'title': 'Visitors staying overnight on 13 October 2019',
             'list_name': 'visitors',
         },
+    ]
+
+    assert context['summary']['list_summaries'] == expected
+
+
+@pytest.mark.usefixtures('app')
+def test_context_for_driving_question_summary_empty_list():
+    schema = load_schema_from_name('test_list_collector_driving_question')
+    current_location = Location(block_id='summary', section_id='section')
+
+    summary_context = SummaryContext(
+        DEFAULT_LANGUAGE_CODE,
+        schema,
+        AnswerStore([{'answer_id': 'anyone-usually-live-at-answer', 'value': 'No'}]),
+        ListStore(),
+        {},
+    )
+
+    context = summary_context.section_summary(current_location)
+
+    expected = [
+        {
+            'add_link': '/questionnaire/anyone-usually-live-at/',
+            'add_link_text': 'Add someone to this household',
+            'empty_list_text': 'There are no householders',
+            'list_items': [],
+            'title': 'Household members',
+            'list_name': 'people',
+        }
+    ]
+
+    assert context['summary']['list_summaries'] == expected
+
+
+@pytest.mark.usefixtures('app')
+def test_context_for_driving_question_summary():
+    schema = load_schema_from_name('test_list_collector_driving_question')
+    current_location = Location(block_id='summary', section_id='section')
+
+    summary_context = SummaryContext(
+        DEFAULT_LANGUAGE_CODE,
+        schema,
+        AnswerStore(
+            [
+                {'answer_id': 'anyone-usually-live-at-answer', 'value': 'Yes'},
+                {'answer_id': 'first-name', 'value': 'Toni', 'list_item_id': 'PlwgoG'},
+                {
+                    'answer_id': 'last-name',
+                    'value': 'Morrison',
+                    'list_item_id': 'PlwgoG',
+                },
+            ]
+        ),
+        ListStore([{'items': ['PlwgoG'], 'name': 'people'}]),
+        {},
+    )
+
+    context = summary_context.section_summary(current_location)
+
+    expected = [
+        {
+            'add_link': '/questionnaire/people/add-person/?return_to=summary',
+            'add_link_text': 'Add someone to this household',
+            'empty_list_text': 'There are no householders',
+            'list_items': [
+                {
+                    'edit_link': '/questionnaire/people/PlwgoG/edit-person/?return_to=summary',
+                    'item_title': 'Toni Morrison',
+                    'primary_person': False,
+                    'remove_link': '/questionnaire/people/PlwgoG/remove-person/?return_to=summary',
+                }
+            ],
+            'title': 'Household members',
+            'list_name': 'people',
+        }
     ]
 
     assert context['summary']['list_summaries'] == expected

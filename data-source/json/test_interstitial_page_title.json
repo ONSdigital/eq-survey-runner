@@ -1,0 +1,75 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Interstitial Page Titles",
+    "theme": "default",
+    "description": "A questionnaire to demo interstitial pages titles.",
+    "messages": {
+        "NUMBER_TOO_LARGE": "Number is too large",
+        "NUMBER_TOO_SMALL": "Number cannot be less than zero",
+        "INVALID_NUMBER": "Please enter an integer"
+    },
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        },
+        {
+            "name": "case_id",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "id": "breakfast-interstitial",
+                            "content": {
+                                "title": {
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "case_id",
+                                            "value": {
+                                                "identifier": "case_id",
+                                                "source": "metadata"
+                                            }
+                                        }
+                                    ],
+                                    "text": "This is the content title <em>{case_id}</em>"
+                                },
+                                "contents": [
+                                    {
+                                        "description": "You have successfully completed the breakfast section. Next we want to know about your lunch."
+                                    }
+                                ]
+                            },
+                            "type": "Interstitial"
+                        },
+                        {
+                            "type": "Confirmation",
+                            "id": "confirmation",
+                            "content": {
+                                "title": "Thank you for your answers, do you wish to submit"
+                            }
+                        }
+                    ],
+                    "id": "favourite-foods",
+                    "title": "Favourite food"
+                }
+            ]
+        }
+    ]
+}

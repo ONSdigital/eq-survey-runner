@@ -21,7 +21,7 @@ class TestThankYou(IntegrationTestCase):
         'account_service_url': 'http://upstream.url',
     }
 
-    def test_thank_you_page_sign_out(self):
+    def test_thank_you_page_no_sign_out(self):
         self.launchSurvey('test_currency')
 
         # We fill in our answers
@@ -37,9 +37,38 @@ class TestThankYou(IntegrationTestCase):
         # Submit answers
         self.post(action=None)
 
-        # check we're on the thank you page
+        # check we're on the thank you page and there's no sign out
+        self.assertInUrl('thank-you')
+        self.assertNotInBody('Sign out')
+
+    def test_can_switch_language_on_thank_you_page(self):
+        self.launchSurvey('test_language')
+
+        # We fill in our answers
+        self.post({'first-name': 'Kevin', 'last-name': 'Bacon'})
+        self.post(
+            {
+                'date-of-birth-answer-day': 1,
+                'date-of-birth-answer-month': 2,
+                'date-of-birth-answer-year': 1999,
+            }
+        )
+
+        # Submit answers
+        self.post(action=None)
+
+        # Ensure we're on the thank you page
         self.assertInUrl('thank-you')
 
-        # sign out and check we're on the signed out page
-        self.post(action='sign_out')
-        self.assertEqualUrl('/signed-out')
+        # Ensure translation is as expected using language toggle links
+        # Toggle link text displays 'English' when in Welsh, and 'Cymraeg' when in English
+        self.assertNotInBody('English')
+        self.assertInBody('Cymraeg')
+
+        # Switch language to Welsh
+        self.get(f'{self.last_url}?language_code=cy')
+        self.assertInUrl('?language_code=cy')
+
+        # Ensure translation is now in Welsh
+        self.assertInBody('English')
+        self.assertNotInBody('Cymraeg')

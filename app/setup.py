@@ -178,8 +178,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         # no cache and silence warning
         cache.init_app(application, config={'CACHE_NO_NULL_WARNING': True})
 
-    # Switch off flask default autoescaping as content is html encoded
-    # during schema/metadata/summary context (and navigition) generation
+    # Switch off flask default autoescaping as schema content can contain html
     application.jinja_env.autoescape = False
 
     # pylint: disable=no-member
@@ -219,6 +218,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
                     response.get_data(as_text=True),
                     remove_comments=True,
                     remove_empty_space=True,
+                    remove_optional_attribute_quotes=False,
                 )
             )
 
@@ -365,11 +365,6 @@ def add_blueprints(application):
     application.register_blueprint(post_submission_blueprint)
     post_submission_blueprint.config = application.config.copy()
 
-    from app.routes.feedback import feedback_blueprint
-
-    application.register_blueprint(feedback_blueprint)
-    feedback_blueprint.config = application.config.copy()
-
     from app.routes.session import session_blueprint
 
     csrf.exempt(session_blueprint)
@@ -396,10 +391,10 @@ def add_blueprints(application):
 
     application.register_blueprint(filter_blueprint)
 
-    from app.routes.static import contact_blueprint
+    from app.routes.static import static_blueprint
 
-    application.register_blueprint(contact_blueprint)
-    contact_blueprint.config = application.config.copy()
+    application.register_blueprint(static_blueprint)
+    static_blueprint.config = application.config.copy()
 
     from app.routes.schema import schema_blueprint
 

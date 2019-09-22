@@ -1,7 +1,0 @@
-{% if language_code %}
-  {% set page = page | setAttributes({
-    "language": {
-      "languages": language_urls([['cy', 'Cymraeg'], ['en', 'English']], language_code)
-    }
-  }) %}
-{% endif %}

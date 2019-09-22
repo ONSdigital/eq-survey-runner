@@ -1,5 +1,6 @@
 from app.questionnaire.schema_utils import transform_variants
 from app.views.handlers.block import BlockHandler
+from app.helpers.template_helper import safe_content
 
 
 class Content(BlockHandler):
@@ -24,6 +25,20 @@ class Content(BlockHandler):
             self._current_location,
         )
 
+        self.page_title = self._get_page_title(transformed_block)
+
         return self.placeholder_renderer.render(
             transformed_block, self._current_location.list_item_id
         )
+
+    def _get_page_title(self, transformed_block):
+        content = transformed_block.get('content')
+        if content:
+            if isinstance(content['title'], str):
+                content_title = content['title']
+            else:
+                content_title = content['title']['text']
+
+            page_title = f'{content_title} - {self._schema.json["title"]}'
+
+            return safe_content(page_title)

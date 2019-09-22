@@ -159,6 +159,11 @@ function(census_date) {
     question: {
       id: 'visitor-remove-question',
       type: 'General',
+      guidance: {
+        contents: [{
+          title: 'All of the data entered about this person will be deleted',
+        }],
+      },
       title: removePersonQuestionTitle,
       answers: [
         {
@@ -185,5 +190,5 @@ function(census_date) {
     add_link_text: 'Add a visitor',
     empty_list_text: 'There are no visitors',
   },
-  hide_on_section_summary: false,
+  show_on_section_summary: true,
 }

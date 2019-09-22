@@ -4,7 +4,16 @@ import flask_babel
 import humanize
 import simplejson as json
 from dateutil.tz import tzutc
-from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
+from flask import (
+    Blueprint,
+    g,
+    redirect,
+    request,
+    url_for,
+    current_app,
+    jsonify,
+    session as cookie_session,
+)
 from flask_login import current_user, login_required
 from jwcrypto.common import base64url_decode
 from sdc.crypto.encrypter import encrypt
@@ -23,10 +32,11 @@ from app.globals import (
     get_session_timeout_in_seconds,
 )
 from app.helpers.form_helper import get_form_for_location, post_form_for_block
+from app.helpers.language_helper import handle_language
 from app.helpers.path_finder_helper import path_finder
 from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_questionnaire_store
-from app.helpers.template_helper import render_template, safe_content
+from app.helpers.template_helper import render_template
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.questionnaire.location import InvalidLocationException
 from app.questionnaire.router import Router
@@ -71,15 +81,10 @@ def before_questionnaire_request():
         'questionnaire request', method=request.method, url_path=request.full_path
     )
 
+    handle_language()
+
     session_store = get_session_store()
-    session_data = session_store.session_data
-
-    language_code = request.args.get('language_code')
-    if language_code:
-        session_data.language_code = language_code
-        session_store.save()
-
-    g.schema = load_schema_from_session_data(session_data)
+    g.schema = load_schema_from_session_data(session_store.session_data)
 
 
 @post_submission_blueprint.before_request
@@ -89,6 +94,9 @@ def before_post_submission_request():
         raise NoTokenException(401)
 
     session_data = session_store.session_data
+
+    handle_language()
+
     g.schema = load_schema_from_session_data(session_data)
 
     logger.bind(tx_id=session_data.tx_id, schema_name=session_data.schema_name)
@@ -109,12 +117,7 @@ def get_questionnaire(schema, questionnaire_store):
         list_store=questionnaire_store.list_store,
     )
 
-    are_hub_required_sections_complete = all(
-        questionnaire_store.progress_store.is_section_complete(section_id)
-        for section_id in schema.get_section_ids_required_for_hub()
-    )
-
-    if not schema.is_hub_enabled() or not are_hub_required_sections_complete:
+    if not router.can_access_hub():
         redirect_location = router.get_first_incomplete_location_in_survey()
         return redirect(redirect_location.url())
 
@@ -172,8 +175,8 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
     if not schema.is_hub_enabled():
         redirect_location = router.get_first_incomplete_location_in_survey()
         return redirect(redirect_location.url())
-
     section = schema.get_section(section_id)
+
     if not section:
         return redirect(url_for('.get_questionnaire'))
 
@@ -185,7 +188,9 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
     )
 
     if section_status == CompletionStatus.COMPLETED:
-        return redirect(routing_path[-1].url())
+        return redirect(
+            router.get_section_return_location_when_section_complete(routing_path).url()
+        )
 
     if section_status == CompletionStatus.NOT_STARTED:
         return redirect(
@@ -218,7 +223,7 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
             list_item_id=list_item_id,
             questionnaire_store=questionnaire_store,
             language=flask_babel.get_locale().language,
-            return_to=request.args.get('return_to'),
+            request_args=request.args,
         )
     except InvalidLocationException:
         return redirect(url_for('.get_questionnaire'))
@@ -244,6 +249,7 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
             current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
+            page_title=block_handler.page_title,
         )
 
     if 'action[save_sign_out]' in request.form:
@@ -259,7 +265,6 @@ def block(schema, questionnaire_store, block_id, list_name=None, list_item_id=No
     block_handler.handle_post()
 
     next_location_url = block_handler.get_next_location_url()
-
     return redirect(next_location_url)
 
 
@@ -292,6 +297,7 @@ def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_it
             current_location=block_handler.current_location,
             previous_location_url=block_handler.get_previous_location_url(),
             schema=schema,
+            page_title=block_handler.page_title,
         )
 
     if 'action[save_sign_out]' in request.form:
@@ -307,7 +313,8 @@ def relationship(schema, questionnaire_store, block_id, list_item_id, to_list_it
 @login_required
 @with_schema
 def get_thank_you(schema):
-    session_data = get_session_store().session_data
+    session_store = get_session_store()
+    session_data = session_store.session_data
 
     if not session_data.submitted_time:
         return redirect(url_for('questionnaire.get_questionnaire'))
@@ -322,11 +329,14 @@ def get_thank_you(schema):
             timedelta(seconds=schema.json['view_submitted_response']['duration'])
         )
 
+    cookie_session.pop('account_service_log_out_url', None)
+    cookie_session.pop('account_service_url', None)
+
     return render_template(
         template='thank-you',
         metadata=metadata_context,
+        language_code=session_data.language_code,
         survey_id=schema.json['survey_id'],
-        survey_title=safe_content(schema.json['title']),
         is_view_submitted_response_enabled=is_view_submitted_response_enabled(
             schema.json
         ),
@@ -403,7 +413,6 @@ def get_view_submission(schema):  # pylint: too-many-locals
                 metadata=metadata_context,
                 content=context,
                 survey_id=schema.json['survey_id'],
-                survey_title=safe_content(schema.json['title']),
             )
 
     return redirect(url_for('post_submission.get_thank_you'))
@@ -525,30 +534,12 @@ def _is_submission_viewable(schema, submitted_time):
     return False
 
 
-def get_page_title_for_location(schema, current_location, context):
-    block_schema = schema.get_block(current_location.block_id)
-    if block_schema['type'] == 'Interstitial':
-        group = schema.get_group_for_block_id(block_schema['id'])
-        page_title = '{group_title} - {survey_title}'.format(
-            group_title=group['title'], survey_title=schema.json['title']
-        )
-    elif block_schema['type'] == 'Question':
-        question_title = context['block']['question'].get('title')
-
-        page_title = '{question_title} - {survey_title}'.format(
-            question_title=question_title, survey_title=schema.json['title']
-        )
-    else:
-        page_title = schema.json['title']
-
-    return safe_content(page_title)
-
-
-def _render_page(block_type, context, current_location, previous_location_url, schema):
+def _render_page(
+    block_type, context, current_location, previous_location_url, schema, page_title
+):
     if request_wants_json():
         return jsonify(context)
 
-    page_title = get_page_title_for_location(schema, current_location, context)
     session_data = get_session_store().session_data
     session_timeout = get_session_timeout_in_seconds(schema)
 
@@ -557,11 +548,10 @@ def _render_page(block_type, context, current_location, previous_location_url, s
         content=context,
         current_location=current_location,
         previous_location_url=previous_location_url,
-        page_title=page_title,
         language_code=session_data.language_code,
         session_timeout=session_timeout,
-        survey_title=schema.json.get('title'),
         legal_basis=schema.json.get('legal_basis'),
+        page_title=page_title,
     )
 
 

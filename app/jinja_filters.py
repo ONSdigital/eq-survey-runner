@@ -142,14 +142,6 @@ def get_format_date_range(start_date, end_date):
     )
 
 
-@blueprint.app_template_filter()
-def language_urls(languages, current_language):
-    if not any(language[0] == current_language for language in languages):
-        current_language = 'en'
-
-    return [LanguageConfig(language, current_language) for language in languages]
-
-
 @blueprint.app_context_processor
 def format_unit_processor():
     return dict(format_unit=format_unit)
@@ -163,11 +155,6 @@ def format_unit_input_label_processor():
 @blueprint.app_context_processor
 def get_currency_symbol_processor():
     return dict(get_currency_symbol=get_currency_symbol)
-
-
-@blueprint.app_context_processor
-def language_urls_processor():
-    return dict(language_urls=language_urls)
 
 
 def mark_safe(context, value):
@@ -269,9 +256,12 @@ class RelationshipRadioConfig:
         self.label = LabelConfig(option.id, option.label.text, label_description)
 
         if answer_option:
+            # the 'pre-' prefix is added to the attributes here so that html minification
+            # doesn't mess with the attribute contents (the 'pre-' is removed during minification).
+            # see https://htmlmin.readthedocs.io/en/latest/quickstart.html
             self.attributes = {
-                'data-title': answer_option['title'],
-                'data-playback': answer_option['playback'],
+                'pre-data-title': escape(answer_option['title']),
+                'pre-data-playback': escape(answer_option['playback']),
             }
 
 
@@ -279,7 +269,7 @@ class OtherConfig:
     def __init__(self, detail_answer):
         self.id = detail_answer.id
         self.name = detail_answer.name
-        self.value = detail_answer.data or ''
+        self.value = escape(detail_answer._value())  # pylint: disable=protected-access
         self.label = LabelConfig(detail_answer.id, detail_answer.label.text)
 
 
@@ -339,14 +329,6 @@ def map_select_config_processor():
     return dict(map_select_config=map_select_config)
 
 
-class LanguageConfig:
-    def __init__(self, language, current_language):
-        self.ISOCode = language[0]
-        self.url = '?language_code=' + self.ISOCode
-        self.text = language[1]
-        self.current = self.ISOCode == current_language
-
-
 class SummaryAction:
     def __init__(
         self, block, answer, answer_title, edit_link_text, edit_link_aria_label
@@ -367,7 +349,7 @@ class SummaryRowItemValue:
     def __init__(self, text, other=None):
         self.text = text
 
-        if other:
+        if other or other == 0:
             self.other = other
 
 

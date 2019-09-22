@@ -95,6 +95,18 @@ local proxyDefinitionContent = [
     },
     {
       goto: {
+        group: 'submit-group',
+        when: [
+          {
+            id: 'disability-answer',
+            condition: 'not set',
+          },
+          rules.under5,
+        ],
+      },
+    },
+    {
+      goto: {
         block: 'carer',
       },
     },

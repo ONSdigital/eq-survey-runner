@@ -1,4 +1,5 @@
 {% extends "layout/_template.njk" %}
+{% from "components/cookies-banner/_macro.njk" import onsCookiesBanner %}
 
 {% set form = {
   "attributes": {
@@ -9,16 +10,11 @@
 
 {% set page = {
   "title": page_title if page_title else survey_title,
-  "header": {
-    "title": survey_title
-  }
+  "theme": theme,
+  "header": page_header,
+  "language": languages,
 } %}
 
-{# TODO: Needs to be wrapped in some condition to only include this if the theme is census #}
-{% include 'layouts/configs/_census-theme.html' %}
-
-{% include 'layouts/configs/_languages.html' %}
-{% include 'layouts/configs/_service-links.html' %}
 {% include 'layouts/configs/_save-sign-out-button.html' %}
 {% include 'layouts/configs/_footer.html' %}
 {% include 'layouts/configs/_feedback.html' %}
@@ -30,6 +26,15 @@
 
 {% block preHeader %}
   <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}"/>
+
+  {% if cookie_settings_url %}
+    {{
+      onsCookiesBanner({
+          "html": _('We use cookies to improve your experience of census.gov.uk'),
+          "secondaryButtonUrl": cookie_settings_url
+      })
+    }}
+  {% endif %}
 {% endblock %}
 
 
@@ -66,6 +71,9 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
   {% endif %}
+
+
+
 {% endblock %}
 
 

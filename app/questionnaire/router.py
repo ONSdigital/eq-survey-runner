@@ -36,6 +36,12 @@ class Router:
 
         return False
 
+    def can_access_hub(self):
+        return self._schema.is_hub_enabled() and all(
+            self._progress_store.is_section_complete(section_id)
+            for section_id in self._schema.get_section_ids_required_for_hub()
+        )
+
     def get_next_location_url(self, location, routing_path):
         """
         Get the first incomplete block in section/survey if trying to access the section/survey end,
@@ -44,10 +50,15 @@ class Router:
         current_block_type = self._schema.get_block(location.block_id)['type']
         last_block_location = routing_path[-1]
         last_block_type = self._schema.get_block(last_block_location.block_id)['type']
+        hub_enabled = self._schema.is_hub_enabled()
 
+        # A section summary doesn't always have to be the last block
         if (
-            self._schema.is_hub_enabled()
-            and location.block_id == last_block_location.block_id
+            hub_enabled
+            and (
+                location.block_id == last_block_location.block_id
+                or current_block_type == 'SectionSummary'
+            )
             and self._progress_store.is_section_complete(
                 location.section_id, location.list_item_id
             )
@@ -64,10 +75,9 @@ class Router:
         ):
             return last_block_location.url()
 
-        if self.is_survey_complete():
+        if self.is_survey_complete() and not hub_enabled:
             last_section_id = self._schema.get_section_ids()[-1]
             last_block_id = self._schema.get_last_block_id_for_section(last_section_id)
-
             return Location(section_id=last_section_id, block_id=last_block_id).url()
 
         location_index = routing_path.index(location)
@@ -98,7 +108,7 @@ class Router:
 
             return previous_location.url()
 
-        if self._schema.is_hub_enabled():
+        if self.can_access_hub():
             return url_for('questionnaire.get_questionnaire')
 
         return None
@@ -162,6 +172,11 @@ class Router:
 
         return True
 
+    def get_section_return_location_when_section_complete(
+        self, routing_path
+    ) -> Location:
+        return self._get_location_of_section_summary(routing_path) or routing_path[0]
+
     def _get_allowable_path(self, routing_path):
         """
         The allowable path is the completed path plus the next location
@@ -216,3 +231,9 @@ class Router:
                 if block_type in ['Summary', 'Confirmation']:
                     return True
         return False
+
+    def _get_location_of_section_summary(self, routing_path):
+        for location in routing_path[::-1]:
+            block = self._schema.get_block(location.block_id)
+            if block['type'] == 'SectionSummary':
+                return location

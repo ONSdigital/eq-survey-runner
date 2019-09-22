@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-02 11:22+0100\n"
+"POT-Creation-Date: 2019-09-20 09:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,123 +49,135 @@ msgstr ""
 msgid "Select an answer"
 msgstr ""
 
-#: app/validation/error_messages.py:5 app/validation/error_messages.py:6
+#: app/helpers/template_helper.py:19
+msgid "Office for National Statistics logo"
+msgstr ""
+
+#: app/helpers/template_helper.py:28 app/helpers/template_helper.py:36
+msgid "Census 2021"
+msgstr ""
+
+#: app/helpers/template_helper.py:32
+msgid "Northern Ireland Statistics and Research Agency logo"
+msgstr ""
+
 #: app/validation/error_messages.py:7 app/validation/error_messages.py:8
+#: app/validation/error_messages.py:9 app/validation/error_messages.py:10
 msgid "Enter an answer to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:9 app/validation/error_messages.py:10
+#: app/validation/error_messages.py:11 app/validation/error_messages.py:12
 msgid "Select an answer to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:11
+#: app/validation/error_messages.py:13
 msgid "Select all that apply to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:12
+#: app/validation/error_messages.py:14
 msgid "Enter a date to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:13
-msgid "Enter a duration to continue."
-msgstr ""
-
-#: app/validation/error_messages.py:14
-#, python-format
-msgid "Enter an answer more than or equal to %(min)s."
-msgstr ""
-
 #: app/validation/error_messages.py:15
-#, python-format
-msgid "Enter an answer less than or equal to %(max)s."
+msgid "Enter a duration to continue."
 msgstr ""
 
 #: app/validation/error_messages.py:16
 #, python-format
-msgid "Enter an answer more than %(min)s."
+msgid "Enter an answer more than or equal to %(min)s."
 msgstr ""
 
 #: app/validation/error_messages.py:17
 #, python-format
-msgid "Enter an answer less than %(max)s."
+msgid "Enter an answer less than or equal to %(max)s."
 msgstr ""
 
 #: app/validation/error_messages.py:18
 #, python-format
-msgid "Enter answers that add up to %(total)s"
+msgid "Enter an answer more than %(min)s."
 msgstr ""
 
 #: app/validation/error_messages.py:19
 #, python-format
+msgid "Enter an answer less than %(max)s."
+msgstr ""
+
+#: app/validation/error_messages.py:20
+#, python-format
+msgid "Enter answers that add up to %(total)s"
+msgstr ""
+
+#: app/validation/error_messages.py:21
+#, python-format
 msgid "Enter answers that add up to or are less than %(total)s"
 msgstr ""
 
-#: app/validation/error_messages.py:22
+#: app/validation/error_messages.py:24
 #, python-format
 msgid "Enter answers that add up to less than %(total)s"
 msgstr ""
 
-#: app/validation/error_messages.py:25
+#: app/validation/error_messages.py:27
 #, python-format
 msgid "Enter answers that add up to greater than %(total)s"
 msgstr ""
 
-#: app/validation/error_messages.py:28
+#: app/validation/error_messages.py:30
 #, python-format
 msgid "Enter answers that add up to or are greater than %(total)s"
 msgstr ""
 
-#: app/validation/error_messages.py:31
+#: app/validation/error_messages.py:33
 msgid "Enter a number."
 msgstr ""
 
-#: app/validation/error_messages.py:32
+#: app/validation/error_messages.py:34
 msgid "Enter a whole number."
 msgstr ""
 
-#: app/validation/error_messages.py:33
+#: app/validation/error_messages.py:35
 #, python-format
 msgid "Enter a number rounded to %(max)d decimal places."
 msgstr ""
 
-#: app/validation/error_messages.py:36
+#: app/validation/error_messages.py:38
 #, python-format
 msgid "Your answer is too long, it has to be less than %(max)d characters."
 msgstr ""
 
-#: app/validation/error_messages.py:39
+#: app/validation/error_messages.py:41
 msgid "Enter a valid date."
 msgstr ""
 
-#: app/validation/error_messages.py:40
+#: app/validation/error_messages.py:42
 msgid "Enter a 'period to' date later than the 'period from' date."
 msgstr ""
 
-#: app/validation/error_messages.py:43
+#: app/validation/error_messages.py:45
 msgid "Enter a valid duration."
 msgstr ""
 
-#: app/validation/error_messages.py:44
+#: app/validation/error_messages.py:46
 #, python-format
 msgid "Enter a reporting period greater than or equal to %(min)s."
 msgstr ""
 
-#: app/validation/error_messages.py:47
+#: app/validation/error_messages.py:49
 #, python-format
 msgid "Enter a reporting period less than or equal to %(max)s."
 msgstr ""
 
-#: app/validation/error_messages.py:50
+#: app/validation/error_messages.py:52
 #, python-format
 msgid "Enter a date after %(min)s."
 msgstr ""
 
-#: app/validation/error_messages.py:51
+#: app/validation/error_messages.py:53
 #, python-format
 msgid "Enter a date before %(max)s."
 msgstr ""
 
-#: app/validation/error_messages.py:52
+#: app/validation/error_messages.py:54
 msgid "Remove an answer to continue."
 msgstr ""
 
@@ -249,59 +261,6 @@ msgstr ""
 msgid "Submitting"
 msgstr ""
 
-#: templates/feedback.html:7 templates/feedback.html:14
-msgid "Survey feedback"
-msgstr ""
-
-#: templates/feedback.html:21 templates/layouts/configs/_feedback.html:25
-msgid "How can we improve this survey"
-msgstr ""
-
-#: templates/feedback.html:24 templates/layouts/configs/_feedback.html:29
-#: templates/partials/answers/textarea.html:14
-msgid "You have {x} character remaining"
-msgstr ""
-
-#: templates/feedback.html:25 templates/layouts/configs/_feedback.html:30
-#: templates/partials/answers/textarea.html:15
-msgid "You have {x} characters remaining"
-msgstr ""
-
-#: templates/feedback.html:32 templates/layouts/configs/_feedback.html:35
-msgid "Name (optional)"
-msgstr ""
-
-#: templates/feedback.html:33 templates/layouts/configs/_feedback.html:36
-msgid ""
-"Please include your name and email address if you’re interested in taking"
-" part in further research to improve this survey"
-msgstr ""
-
-#: templates/feedback.html:42 templates/layouts/configs/_feedback.html:42
-msgid "Email address (optional)"
-msgstr ""
-
-#: templates/feedback.html:48 templates/layouts/configs/_feedback.html:46
-msgid "Send feedback"
-msgstr ""
-
-#: templates/feedback_sent.html:3 templates/feedback_sent.html:7
-msgid "Thank you for your feedback"
-msgstr ""
-
-#: templates/feedback_sent.html:6
-msgid "Submission successful"
-msgstr ""
-
-#: templates/feedback_sent.html:9
-msgid "It is now safe to close this window"
-msgstr ""
-
-#: templates/errors/session-expired.html:22 templates/feedback_sent.html:12
-#: templates/signed-out.html:9
-msgid "Return to your account"
-msgstr ""
-
 #: templates/introduction.html:15
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)"
@@ -356,6 +315,10 @@ msgstr ""
 msgid "Your survey answers have been saved. You are now signed out"
 msgstr ""
 
+#: templates/signed-out.html:9
+msgid "Return to your account"
+msgstr ""
+
 #: templates/summary.html:6
 msgid "Summary"
 msgstr ""
@@ -386,41 +349,41 @@ msgstr ""
 msgid "We've received your answers"
 msgstr ""
 
-#: templates/thank-you.html:8
+#: templates/thank-you.html:7
 msgid "Thank you for submitting your census"
 msgstr ""
 
-#: templates/thank-you.html:10
+#: templates/thank-you.html:9
 msgid "We have received your answers and you do not need to do anything else."
 msgstr ""
 
-#: templates/view-submission.html:8
+#: templates/view-submission.html:7
 msgid "Submission"
 msgstr ""
 
-#: templates/view-submission.html:11
+#: templates/view-submission.html:10
 msgid "Submitted answers"
 msgstr ""
 
-#: templates/view-submission.html:20
+#: templates/view-submission.html:19
 #, python-format
 msgid ""
 "Your answers were submitted for <span>%(ru_name)s</span> "
 "(%(trading_as_name)s) on %(submitted_time)s"
 msgstr ""
 
-#: templates/view-submission.html:25
+#: templates/view-submission.html:24
 #, python-format
 msgid ""
 "Your answers were submitted for <span>%(ru_name)s</span> on "
 "%(submitted_time)s"
 msgstr ""
 
-#: templates/view-submission.html:30
+#: templates/view-submission.html:29
 msgid "Transaction ID"
 msgstr ""
 
-#: templates/view-submission.html:37
+#: templates/view-submission.html:36
 msgid "Print this page"
 msgstr ""
 
@@ -443,44 +406,44 @@ msgid ""
 "code.</a>"
 msgstr ""
 
-#: templates/errors/404.html:3 templates/errors/404.html:6
+#: templates/errors/404.html:3 templates/errors/404.html:13
 msgid "Page not found"
 msgstr ""
 
-#: templates/errors/404.html:7
+#: templates/errors/404.html:14
 msgid "If you entered a web address, check it is correct."
 msgstr ""
 
-#: templates/errors/404.html:8
+#: templates/errors/404.html:15
 msgid "If you pasted the web address, check you copied the whole address."
 msgstr ""
 
-#: templates/errors/404.html:9
+#: templates/errors/404.html:16
 msgid ""
-"If the web address is correct or you selected a link or button, <a href"
-"='/contact-us'>contact us</a> for more help."
+"If the web address is correct or you selected a link or button, <a "
+"href='{url}'>contact us</a> for more help."
 msgstr ""
 
 #: templates/errors/500.html:3
 msgid "An error has occurred"
 msgstr ""
 
-#: templates/errors/500.html:6
+#: templates/errors/500.html:13
 msgid "Sorry, there is a problem with this service"
 msgstr ""
 
-#: templates/errors/500.html:7
+#: templates/errors/500.html:14
 msgid "Try again later."
 msgstr ""
 
-#: templates/errors/500.html:8
+#: templates/errors/500.html:15
 msgid "If you have started a survey, your answers have been saved."
 msgstr ""
 
-#: templates/errors/500.html:9
+#: templates/errors/500.html:16
 msgid ""
-"<a href='/contact-us'>Contact us</a> if you need to speak to someone "
-"about your survey."
+"<a href='{url}'>Contact us</a> if you need to speak to someone about your"
+" survey."
 msgstr ""
 
 #: templates/errors/session-expired.html:6
@@ -495,79 +458,78 @@ msgstr ""
 msgid "To help protect your information we have signed you out"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:16
+#: templates/errors/session-expired.html:22
+#, python-format
+msgid ""
+"We have saved your progress and you will need to <a "
+"href=\"%(account_service_link)s\">enter your unique code</a> to access "
+"the survey again."
+msgstr ""
+
+#: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:14
+msgid "We use cookies to improve your experience of census.gov.uk"
+msgstr ""
+
+#: templates/layouts/_questionnaire.html:24
 msgid "Previous"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:31
+#: templates/layouts/_questionnaire.html:39
 msgid "Save and continue"
 msgstr ""
 
+#: templates/layouts/_questionnaire.html:50
+msgid "Can't complete this question?"
+msgstr ""
+
+#: templates/layouts/_questionnaire.html:51
+msgid "Choose another section and return to this later"
+msgstr ""
+
 #: templates/layouts/configs/_feedback.html:3
-msgid "Give feedback and help us improve this service"
+msgid "Give us feedback and help us improve this service"
 msgstr ""
 
-#: templates/layouts/configs/_feedback.html:5
-msgid "I don't want to provide feedback"
+#: templates/layouts/configs/_feedback.html:12
+msgid "Tell us what you think of this website by emailing"
 msgstr ""
 
-#: templates/layouts/configs/_feedback.html:55
-msgid "Thanks for your feedback"
-msgstr ""
-
-#: templates/layouts/configs/_feedback.html:56
+#: templates/layouts/configs/_feedback.html:13
 msgid ""
-"There was an error sending your feedback.\n"
-"(Error code: {x})"
+"This email is for feedback only and we will not be able to reply. Do not "
+"include any personal details."
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:4
-#, python-format
+#: templates/layouts/configs/_feedback.html:14
+msgid "Census 2021 feedback: "
+msgstr ""
+
+#: templates/layouts/configs/_feedback.html:15
 msgid ""
-"All content is available under the %(class_open)sOpen Government Licence "
-"v3.0%(class_close)s, except where otherwise stated"
+"This email is for feedback on the census rehearsal, which will help us to"
+" improve Census 2021. We are unable to respond to these emails.\n"
+"If you need help with your census, visit https://www.census.gov.uk"
+"/contact-us."
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:13
-#: templates/layouts/configs/_footer.html:44 templates/static/contact-us.html:9
+#: templates/layouts/configs/_footer.html:33
 msgid "Contact us"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:17
-#: templates/layouts/configs/_footer.html:29
-msgid "Cookies and privacy"
+#: templates/layouts/configs/_footer.html:38
+msgid "Help"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:26
-msgid "Legal information"
+#: templates/layouts/configs/_footer.html:47
+msgid "Cookies"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:36
-msgid "About ONS"
+#: templates/layouts/configs/_footer.html:52 templates/static/privacy.html:9
+msgid "Privacy and data protection"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:39
-msgid "What we do"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:49
+#: templates/layouts/configs/_footer.html:57
 msgid "Accessibility"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:56
-msgid "Statistics"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:59
-msgid "UK Statistics Authority"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:64
-msgid "Release calendar"
-msgstr ""
-
-#: templates/layouts/configs/_footer.html:69
-msgid "News"
 msgstr ""
 
 #: templates/layouts/configs/_save-sign-out-button.html:5
@@ -580,10 +542,6 @@ msgstr ""
 
 #: templates/layouts/configs/_save-sign-out-button.html:32
 msgid "Save and complete later"
-msgstr ""
-
-#: templates/layouts/configs/_service-links.html:8
-msgid "My account"
 msgstr ""
 
 #: templates/partials/answer-guidance.html:13
@@ -625,6 +583,14 @@ msgstr ""
 
 #: templates/partials/answers/date.html:53
 msgid "Year"
+msgstr ""
+
+#: templates/partials/answers/textarea.html:14
+msgid "You have {x} character remaining"
+msgstr ""
+
+#: templates/partials/answers/textarea.html:15
+msgid "You have {x} characters remaining"
 msgstr ""
 
 #: templates/partials/introduction/preview.html:29
@@ -679,720 +645,733 @@ msgstr ""
 msgid "Remove {item_name}"
 msgstr ""
 
-#: templates/static/contact-us.html:4 templates/static/cookies-privacy.html:4
+#: templates/static/accessibility.html:19
+msgid "Accessibility statement"
+msgstr ""
+
+#: templates/static/accessibility.html:21
+msgid ""
+"This census is run by the Office for National Statistics. We want as many"
+" people as possible to be able to do the census online. For example, that"
+" means you should be able to:"
+msgstr ""
+
+#: templates/static/accessibility.html:24
+msgid "change colours, contrast levels and fonts"
+msgstr ""
+
+#: templates/static/accessibility.html:25
+#, python-format
+msgid "zoom in up to 300%% without the text spilling off the screen"
+msgstr ""
+
+#: templates/static/accessibility.html:26
+msgid "navigate most of the questionnaire using just a keyboard"
+msgstr ""
+
+#: templates/static/accessibility.html:27
+msgid "navigate most of the questionnaire using speech recognition software"
+msgstr ""
+
+#: templates/static/accessibility.html:28
+msgid ""
+"listen to most of the questionnaire using a screen reader (including the "
+"most recent versions of JAWS, NVDA and VoiceOver)"
+msgstr ""
+
+#: templates/static/accessibility.html:31
+msgid "We’ve used simple language as much as possible."
+msgstr ""
+
+#: templates/static/accessibility.html:33
+msgid ""
+"<a href='{url}'>AbilityNet</a> has advice on making your device easier to"
+" use if you have a disability."
+msgstr ""
+
+#: templates/static/accessibility.html:35
+msgid "How accessible is this questionnaire?"
+msgstr ""
+
+#: templates/static/accessibility.html:37
+msgid ""
+"We know that the following parts of this questionnaire are not fully "
+"accessible:"
+msgstr ""
+
+#: templates/static/accessibility.html:40
+msgid "you cannot modify the line height or spacing of text"
+msgstr ""
+
+#: templates/static/accessibility.html:41
+msgid ""
+"the online system for getting a new census code has not been fully tested"
+" so parts of it may not be accessible to all users"
+msgstr ""
+
+#: templates/static/accessibility.html:42
+msgid "the Web chat tool may not be fully accessible"
+msgstr ""
+
+#: templates/static/accessibility.html:43
+msgid ""
+"some page titles may not accurately reflect the content on the page for "
+"audio users"
+msgstr ""
+
+#: templates/static/accessibility.html:46
+msgid "What to do if you need guidance"
+msgstr ""
+
+#: templates/static/accessibility.html:48
+msgid "Our <a href='{url}'>guidance leaflets about the census</a> are available:"
+msgstr ""
+
+#: templates/static/accessibility.html:51
+msgid "in Braille"
+msgstr ""
+
+#: templates/static/accessibility.html:52
+msgid "in British Sign Language (BSL)"
+msgstr ""
+
+#: templates/static/accessibility.html:53
+msgid "as an easy read version (which uses pictures to explain the census)"
+msgstr ""
+
+#: templates/static/accessibility.html:54
+msgid "as a Welsh audio"
+msgstr ""
+
+#: templates/static/accessibility.html:55
+msgid "as large print in English or large print in Welsh"
+msgstr ""
+
+#: templates/static/accessibility.html:58
+msgid "Reporting accessibility problems"
+msgstr ""
+
+#: templates/static/accessibility.html:60
+msgid ""
+"We’re always looking to improve the accessibility of this service. If you"
+" find any problems that are not listed on this page or think we’re not "
+"meeting accessibility requirements, you can <a href='{url}'>contact "
+"us</a>."
+msgstr ""
+
+#: templates/static/accessibility.html:62
+msgid "Enforcement procedure"
+msgstr ""
+
+#: templates/static/accessibility.html:64
+msgid ""
+"The Equality and Human Rights Commission (EHRC) is responsible for "
+"enforcing the Public Sector Bodies (Website and Mobile Applications) (No."
+" 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If "
+"you’re not happy with how we respond to your complaint, contact the:"
+msgstr ""
+
+#: templates/static/accessibility.html:67
+msgid ""
+"<a href='{url}'>Equality Advisory and Support Service (EASS)</a> if you "
+"live in England or Wales"
+msgstr ""
+
+#: templates/static/accessibility.html:68
+msgid ""
+"<a href='{url}'>Equalities Commission for Northern Ireland (ECNI)</a> if "
+"you live in Northern Ireland"
+msgstr ""
+
+#: templates/static/accessibility.html:71
+msgid "Technical information about this questionnaire’s accessibility"
+msgstr ""
+
+#: templates/static/accessibility.html:73
+msgid ""
+"The Office for National Statistics is committed to making its website "
+"accessible, in accordance with the Public Sector Bodies (Website and "
+"Mobile Applications) (No. 2) Accessibility Regulations 2018."
+msgstr ""
+
+#: templates/static/accessibility.html:75
+msgid ""
+"This service is partially compliant with the <a href='{url}'>Web Content "
+"Accessibility Guidelines version 2.1</a> AA standard, due to the non-"
+"compliances listed."
+msgstr ""
+
+#: templates/static/accessibility.html:77
+msgid "Non-accessible content"
+msgstr ""
+
+#: templates/static/accessibility.html:79
+msgid ""
+"The content listed is non-accessible for the following reasons. We are "
+"planning to fix the following issues for Census 2021."
+msgstr ""
+
+#: templates/static/accessibility.html:81
+msgid "Non-compliance with the accessibility regulations"
+msgstr ""
+
+#: templates/static/accessibility.html:83
+msgid ""
+"Non-descriptive form elements. On the ‘Check your answers’ summary page "
+"there is an option to “change” items, but the link does not describe "
+"where it goes to. Fails on WCAG 2.1 A number 1.3.1."
+msgstr ""
+
+#: templates/static/accessibility.html:85
+msgid ""
+"Error messages are too generic. If the text in a field is incorrect or in"
+" the wrong format, the answer validation page says the answer is "
+"incorrect without explaining what you need to do. Fails on WCAG 2.1 A "
+"number 3.3.1."
+msgstr ""
+
+#: templates/static/accessibility.html:87
+msgid ""
+"Form label issue. On the ‘What is your name?’ page, middle name is "
+"optional but this is not clear to the user. Fails on WCAG 2.1 A number "
+"3.3.2."
+msgstr ""
+
+#: templates/static/accessibility.html:89
+msgid ""
+"Form label issue. When selecting the appropriate relationship, it is "
+"possible to ‘Save and continue’ without selecting an option. Fails on "
+"WCAG 2.1 A number 2.4.6."
+msgstr ""
+
+#: templates/static/accessibility.html:91
+msgid ""
+"On the ‘Is this address correct?’ page, the title may not accurately "
+"reflect the content on the page for audio users. The ‘Submit survey’ page"
+" does not have a page title. Fails on WCAG 2.1 A number 2.4.2."
+msgstr ""
+
+#: templates/static/accessibility.html:93
+msgid ""
+"Timeout issue. Users are not informed of a time limit and service times "
+"out without warning. During the validation process there is no return "
+"link on the session timeout page. Fails on WCAG 2.1 A number 2.2.1 and "
+"AAA number 2.2.6."
+msgstr ""
+
+#: templates/static/accessibility.html:95
+msgid ""
+"The ‘Hide this’ button text on accordions such as ‘What does “usually "
+"live” mean?’ is non-descriptive for JAWS users as the text above it is "
+"read back to users. Fails on WCAG 2.1 AA number 2.4.6."
+msgstr ""
+
+#: templates/static/accessibility.html:97
+msgid ""
+"Screen readers may not let users know when an accordion is expanded or "
+"collapsed. Fails on WCAG 2.1 A number 2.4.4."
+msgstr ""
+
+#: templates/static/accessibility.html:99
+msgid ""
+"Non-descriptive headings. On the relationships page, the heading does not"
+" accurately describe the content for screen readers. Fails on WCAG 2.1 A "
+"number 2.4.6."
+msgstr ""
+
+#: templates/static/accessibility.html:101
+msgid ""
+"Some links are not descriptive enough for screen reader users. Fails on "
+"WCAG 2.1 AAA number 2.4.9."
+msgstr ""
+
+#: templates/static/accessibility.html:103
+msgid ""
+"Some headings do not follow a logical hierarchical structure. Fails on "
+"WCAG AAA 2.1 number 2.4.10."
+msgstr ""
+
+#: templates/static/accessibility.html:105
+msgid ""
+"Some text is highlighted, such as addresses and names that a user has "
+"confirmed. Highlighting is not accessible for some users. This does not "
+"conform to Government Digital Service (GDS) guidelines."
+msgstr ""
+
+#: templates/static/accessibility.html:107
+msgid ""
+"Some radio inputs on the relationships page do not conform to GDS "
+"guidelines. When selected, three different elements on the page are "
+"updated."
+msgstr ""
+
+#: templates/static/accessibility.html:109
+msgid ""
+"On ‘Who lives here?’ there is a ‘Previous’ link on the page that does not"
+" conform with GDS guidelines. The text used should read as ‘Back’."
+msgstr ""
+
+#: templates/static/accessibility.html:111
+msgid ""
+"Error messages do not result in a change to the page title to reflect "
+"that an error has been made. This does not conform to GDS guidelines."
+msgstr ""
+
+#: templates/static/accessibility.html:113
+msgid "How we tested this questionnaire"
+msgstr ""
+
+#: templates/static/accessibility.html:115
+msgid "Over the last few years we have tested the full questionnaire, including:"
+msgstr ""
+
+#: templates/static/accessibility.html:118
+msgid ""
+"<a href='{url}'>Digital Accessibility Centre (DAC)</a> carrying out a "
+"professional, technical audit"
+msgstr ""
+
+#: templates/static/accessibility.html:119
+msgid ""
+"user testing with the public on different devices, different locations, "
+"in their homes with various assistive technologies including free and "
+"paid versions"
+msgstr ""
+
+#: templates/static/accessibility.html:120
+msgid "testing with charities, such as Scope and RNIB in their labs"
+msgstr ""
+
+#: templates/static/accessibility.html:121
+msgid "using job centres and libraries for pop-up testing"
+msgstr ""
+
+#: templates/static/accessibility.html:122
+msgid "covering a wide range of ages, additional needs and disabilities"
+msgstr ""
+
+#: templates/static/accessibility.html:123
+msgid ""
+"making sure the offline journey and non-digital products were considered "
+"in the end-to-end journey"
+msgstr ""
+
+#: templates/static/accessibility.html:124
+msgid ""
+"changing designs based on feedback from user testing, such as letter "
+"structure and the summary of sections and progress through questionnaire"
+msgstr ""
+
+#: templates/static/accessibility.html:127
+msgid "Digital Accessibility Centre testing"
+msgstr ""
+
+#: templates/static/accessibility.html:129
+msgid ""
+"Parts of this questionnaire were last tested on 3 September 2019 by the "
+"Digital Accessibility Centre (DAC)."
+msgstr ""
+
+#: templates/static/accessibility.html:132
+msgid "<a href='{url}' download>DAC Report - September 2019</a>"
+msgstr ""
+
+#: templates/static/accessibility.html:134
+msgid "You can read the last full accessibility test report from 28 June 2019."
+msgstr ""
+
+#: templates/static/accessibility.html:136
+msgid "<a href='{url}' download>DAC Report - June 2019</a>"
+msgstr ""
+
+#: templates/static/accessibility.html:138
+msgid "What we’re doing to improve accessibility"
+msgstr ""
+
+#: templates/static/accessibility.html:140
+msgid ""
+"We are continuing to work with various charities and local deaf "
+"communities to understand their needs for the census."
+msgstr ""
+
+#: templates/static/accessibility.html:142
+msgid ""
+"We are looking at designs to see if it is possible to have British Sign "
+"Language on every page. This is challenging as we have been unable to "
+"find another service that does this, but we continue to investigate."
+msgstr ""
+
+#: templates/static/accessibility.html:144
+msgid "We will act on feedback from the 2019 Rehearsal in October."
+msgstr ""
+
+#: templates/static/accessibility.html:146
+msgid ""
+"This statement was prepared on 17 September. It was last updated on 17 "
+"September."
+msgstr ""
+
+#: templates/static/privacy.html:4
 msgid "ONS Business Surveys"
 msgstr ""
 
-#: templates/static/contact-us.html:11
-#: templates/static/cookies-privacy.html:282
-#: templates/static/cookies-privacy.html:492
-#: templates/static/cookies-privacy.html:503
-msgid "Telephone"
+#: templates/static/privacy.html:10
+msgid ""
+"The information you provide when you fill in your census rehearsal "
+"questionnaire is protected by law."
 msgstr ""
 
-#: templates/static/contact-us.html:16
+#: templates/static/privacy.html:11
+msgid ""
+"Here we detail why we need your information. We also describe all the "
+"steps that we take to make sure your information and your privacy are "
+"safe."
+msgstr ""
+
+#: templates/static/privacy.html:14
+msgid "How and why we use your information"
+msgstr ""
+
+#: templates/static/privacy.html:16
+msgid ""
+"We collect information from your questionnaire under our statutory "
+"objective to promote and safeguard the production of official statistics "
+"that serve the public good. This means that any personal data we collect "
+"will only ever be used to produce statistics or undertake statistical "
+"research. People will not be identified within those statistics or "
+"research."
+msgstr ""
+
+#: templates/static/privacy.html:18
+msgid ""
+"Every 10 years, the census gathers vital information that helps the "
+"government and local authorities plan services like health services, "
+"roads and libraries."
+msgstr ""
+
+#: templates/static/privacy.html:20
+msgid ""
+"By running a rehearsal for Census 2021, we can test our processes, "
+"systems and services and make sure everything goes smoothly for the real "
+"thing. The personal data you provide on your questionnaire will also be "
+"used to undertake research and produce statistics that serve the public "
+"good, both by the Office for National Statistics (ONS) and accredited "
+"researchers from other organisations."
+msgstr ""
+
+#: templates/static/privacy.html:22
+msgid ""
+"We may occasionally record information about a property or an individual,"
+" in the interests of safeguarding the wellbeing of both those being "
+"interviewed and interviewers, as well as to assist people in the "
+"completion of their questionnaires. We’ll hold the minimum amount of "
+"personal data needed to meet these purposes."
+msgstr ""
+
+#: templates/static/privacy.html:24
+msgid ""
+"For online completion, we’ll collect information about how people fill in"
+" their questionnaires online to provide us with knowledge of how to "
+"improve our online services."
+msgstr ""
+
+#: templates/static/privacy.html:26
+msgid ""
+"If you provide feedback by email we will ensure your email address is "
+"deleted promptly after the feedback has been received. We will never "
+"share your details with anyone else. The feedback you give us will be "
+"used for research purposes only."
+msgstr ""
+
+#: templates/static/privacy.html:29
+msgid "Who can access the information?"
+msgstr ""
+
+#: templates/static/privacy.html:31
+msgid ""
+"During the rehearsal we’ll employ third-party providers to assist us with"
+" parts of the operation. These third parties work under our instruction."
+msgstr ""
+
+#: templates/static/privacy.html:32
+msgid ""
+"We treat the information we hold with respect, keeping it secure and "
+"confidential. Data may be made available to approved researchers where "
+"there is a clear public value and it’s safe and lawful to do so. More "
+"information on <a href='{policies_url}'>how we allow access to data for "
+"research</a> is available. We also publish a full list of all the <a "
+"href='{researchers_url}'>approved researchers</a> who we’ve granted "
+"access to."
+msgstr ""
+
+#: templates/static/privacy.html:35
+msgid "How long are personal data kept?"
+msgstr ""
+
+#: templates/static/privacy.html:37
+msgid ""
+"Data protection law requires that personal data are kept for no longer "
+"than is needed to fulfil the purposes for which they were originally "
+"collected."
+msgstr ""
+
+#: templates/static/privacy.html:39
+msgid ""
+"The law allows that information held for statistical purposes only, such "
+"as information from your questionnaire, may be kept for longer periods. "
+"We’ll only continue to hold personal data where they are still used to "
+"produce statistics. Data used by approved researchers will be held within"
+" our <a href='{url}'>Secure Research Service</a>. Any personal data that "
+"we do not need, such as names and addresses, will be removed from the "
+"data at the earliest opportunity. The data will undergo regular reviews "
+"and will be deleted when they are no longer required."
+msgstr ""
+
+#: templates/static/privacy.html:41
+msgid ""
+"Safeguarding data, such as information about a property or an individual,"
+" will be held for the duration of the rehearsal. Most of the information "
+"will be deleted at the end of the rehearsal. In some instances, data will"
+" be held for longer periods, where keeping them continues to serve "
+"safeguarding purposes."
+msgstr ""
+
+#: templates/static/privacy.html:43
+msgid ""
+"Metrics containing information about how people fill in their "
+"questionnaires will be held in an identifiable form only until the "
+"necessary statistical matching has taken place. After this point the data"
+" will be de-identified and used for the purposes of improving our "
+"services."
+msgstr ""
+
+#: templates/static/privacy.html:46
+msgid "How the law protects your information"
+msgstr ""
+
+#: templates/static/privacy.html:48
+msgid ""
+"The <a href='{data_protection_url}'>General Data Protection "
+"Regulation</a> and the <a href='{data_protection_act_url}'>Data "
+"Protection Act 2018</a> determine how, when and why any organisation can "
+"process your personal data. Personal data is any information that can "
+"identify a living individual. These laws exist to make sure your data are"
+" managed safely and used responsibly. They also give you certain rights "
+"about your data and create a responsibility on the ONS, as a user of "
+"personal data, to provide you with certain information."
+msgstr ""
+
+#: templates/static/privacy.html:50
+msgid ""
+"The ONS is a statutory body, meaning it was created by legislation, "
+"specifically the <a href='{url}'>Statistics and Registration Service Act "
+"2007</a>. Our objective is to promote and safeguard the production and "
+"publication of official statistics that serve the public good. All our "
+"collection and use of data comes from powers that can be found in that "
+"Act or other UK legislation."
+msgstr ""
+
+#: templates/static/privacy.html:52
+msgid ""
+"The census rehearsal questionnaire has been assessed as compatible with "
+"the <a href='{url}'>Human Rights Act 1998</a>, specifically Article 8 "
+"(right to respect for a private and family life) and Article 9 (freedom "
+"of thought, conscience and religion) of the convention rights."
+msgstr ""
+
+#: templates/static/privacy.html:55
+msgid "Legal basis for processing your data"
+msgstr ""
+
+#: templates/static/privacy.html:57
+msgid ""
+"Data protection legislation requires that all processing of personal data"
+" is undertaken under one or more conditions."
+msgstr ""
+
+#: templates/static/privacy.html:59
+msgid ""
+"For the census rehearsal, we’ll process information from your "
+"questionnaire, information about a property or an individual and "
+"information about how people fill in their questionnaires under the "
+"following condition:"
+msgstr ""
+
+#: templates/static/privacy.html:62
+msgid ""
+"processing is necessary for the performance of a task carried out in the "
+"public interest or in the exercise of official authority vested in the "
+"controller."
+msgstr ""
+
+#: templates/static/privacy.html:65
+msgid ""
+"Under data protection legislation, an additional condition is required "
+"for the processing of special category personal data. These data include "
+"information about your racial or ethnic origin, political opinions, "
+"religious or philosophical beliefs, trade union membership, sex life or "
+"sexual orientation. They also include genetic and biometric data."
+msgstr ""
+
+#: templates/static/privacy.html:67
+msgid ""
+"For the rehearsal, we’ll process special category personal data on race, "
+"ethnicity, religion, philosophical beliefs and sexual orientation. "
+"nformation from your questionnaire is processed under the following two "
+"conditions:"
+msgstr ""
+
+#: templates/static/privacy.html:70
+msgid ""
+"processing is necessary for archiving in the public interest, scientific "
+"or historical research purposes or statistical purposes based on UK law."
+msgstr ""
+
+#: templates/static/privacy.html:71 templates/static/privacy.html:77
+msgid "processing is necessary for reasons of substantial public interest."
+msgstr ""
+
+#: templates/static/privacy.html:74
+msgid ""
+"We’ll process special category data on information about a property or an"
+" individual under the following condition:"
+msgstr ""
+
+#: templates/static/privacy.html:80
+msgid ""
+"We’ll ensure the principle of data minimisation and have measures in "
+"place to delete or de-identify personal data where appropriate."
+msgstr ""
+
+#: templates/static/privacy.html:82
+msgid ""
+"The census rehearsal gives us invaluable information about the systems "
+"and processes required for Census 2021. It’ll help us complete one of our"
+" main functions in delivering Census 2021, which will subsequently "
+"provide numerous benefits for the wider society."
+msgstr ""
+
+#: templates/static/privacy.html:84
+msgid ""
+"There’s substantial public interest in the collection of safeguarding "
+"data to ensure the safety of both interviewers and respondents. We’re "
+"required to ensure the safety of our staff and the public."
+msgstr ""
+
+#: templates/static/privacy.html:87
+msgid "Your rights"
+msgstr ""
+
+#: templates/static/privacy.html:89
+msgid ""
+"As a data subject (someone whose personal data we hold), you have rights "
+"available to you under data protection law. If you wish to exercise any "
+"of these rights, please contact our data protection officer. However, "
+"please be aware that we may not be required to comply if the data are "
+"being held for statistical purposes only. Compliance requirements are set"
+" out in the Data Protection Act 2018."
+msgstr ""
+
+#: templates/static/privacy.html:91
+msgid ""
+"You have the right to request from any controller that holds your "
+"personal data access to the information they hold about you. You can ask "
+"them to amend any wrong or inaccurate information they hold about you. "
+"You have the right to object to your personal data being processed."
+msgstr ""
+
+#: templates/static/privacy.html:93
+msgid "You have the right, in some circumstances, to ask for any controller to:"
+msgstr ""
+
+#: templates/static/privacy.html:96
+msgid "erase any personal data they may hold about you"
+msgstr ""
+
+#: templates/static/privacy.html:97
+msgid "stop processing your personal data"
+msgstr ""
+
+#: templates/static/privacy.html:98
+msgid "pass any information they hold about you to another controller"
+msgstr ""
+
+#: templates/static/privacy.html:101
+msgid ""
+"You can get further information on the rights available to you and the "
+"circumstances under which you can exercise them from the <a "
+"href='{url}'>Information Commissioner’s Office</a>."
+msgstr ""
+
+#: templates/static/privacy.html:104
+msgid "The data controller"
+msgstr ""
+
+#: templates/static/privacy.html:106
+msgid ""
+"The controller is the person or organisation that decides which personal "
+"data will be processed and for what purpose. For the census rehearsal, "
+"the ONS is the controller and makes those decisions."
+msgstr ""
+
+#: templates/static/privacy.html:108
+msgid "You can contact us by:"
+msgstr ""
+
+#: templates/static/privacy.html:110
 #, python-format
-msgid ""
-"Please quote the reference <b>%(ru_ref)s</b> when contacting ONS about "
-"this survey."
+msgid "Telephone: %(telephone_number)s"
 msgstr ""
 
-#: templates/static/contact-us.html:18
+#: templates/static/privacy.html:112
 #, python-format
-msgid "Your Survey ID is <b>%(survey_id)s</b>."
+msgid "Email: %(email_address)s"
 msgstr ""
 
-#: templates/static/contact-us.html:22
-msgid "Opening hours"
+#: templates/static/privacy.html:114 templates/static/privacy.html:134
+#: templates/static/privacy.html:155
+msgid "Post:"
 msgstr ""
 
-#: templates/static/contact-us.html:25
-msgid "Monday to Thursday 8:30am – 5:00pm"
+#: templates/static/privacy.html:124
+msgid "How to contact the data protection officer"
 msgstr ""
 
-#: templates/static/contact-us.html:26
-msgid "Friday 8:30am - 4:30pm"
-msgstr ""
-
-#: templates/static/contact-us.html:29
-msgid "This office is closed during public holidays"
-msgstr ""
-
-#: templates/static/contact-us.html:31
-#: templates/static/cookies-privacy.html:283
-#: templates/static/cookies-privacy.html:493
-#: templates/static/cookies-privacy.html:505
-msgid "Email"
-msgstr ""
-
-#: templates/static/contact-us.html:35
-msgid "Post"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:9
-msgid "Cookies and Privacy"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:11
+#: templates/static/privacy.html:126
 msgid ""
-"The Office for National Statistics (ONS) has created this cookies and "
-"privacy statement in order to demonstrate our firm commitment to privacy."
+"Our data protection officer is the person charged with providing us with "
+"advice and guidance on the ways we can best protect the information we "
+"collect and use. They are involved in all the major decisions we make in "
+"relation to personal data. If you have any queries or concerns regarding "
+"our use of your data, or wish to exercise any of your rights."
 msgstr ""
 
-#: templates/static/cookies-privacy.html:13
+#: templates/static/privacy.html:128
+msgid "You can contact the data protection officer by:"
+msgstr ""
+
+#: templates/static/privacy.html:130 templates/static/privacy.html:151
+msgid "Telephone: {telephone_number}"
+msgstr ""
+
+#: templates/static/privacy.html:132 templates/static/privacy.html:153
+msgid "Email: {email_address}"
+msgstr ""
+
+#: templates/static/privacy.html:145
+msgid "The Information Commissioner’s Office"
+msgstr ""
+
+#: templates/static/privacy.html:147
 msgid ""
-"The following is a description of what data is collected when you use the"
-" Survey Data Collection (SDC) service, how it is stored and what it is "
-"used for."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:15
-msgid "Privacy"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:17
-msgid ""
-"Your privacy is very important to us. We comply with confidentiality "
-"requirements set out in the Statistics and Registration Service Act 2007 "
-"and the Data Protection Act 1998."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:19
-msgid ""
-"We can only use your information for research and statistical purposes. "
-"None of your personal information is disclosed through our statistics."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:21
-msgid "Security"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:23
-msgid ""
-"We ensure that the information you provide is kept safe and secure. We "
-"have security measures in place to protect the loss, misuse and "
-"alteration of information under our control."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:25
-msgid ""
-"We use leading security technologies such as industry-standard encryption"
-" software. This service has been accredited in accordance with government"
-" technical and security standards."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:27
-msgid "Cookies"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:29
-msgid ""
-"We use small files (known as ‘cookies’) to collect information about how "
-"you browse the site."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:31
-msgid "Cookies are used to"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:33
-msgid ""
-"Measure how you use the website so it can be updated and improved based "
-"on your needs"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:34
-msgid ""
-"Remember the notifications you’ve seen so that we don’t show them to you "
-"again"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:38
-msgid "Our cookies are not used to identify you personally."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:40
-msgid "How cookies are used"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:42
-msgid "Measuring website usage (Google Analytics)"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:44
-msgid ""
-"We use Google Analytics software to collect information about how you use"
-" this service. We do this to help make sure the site is meeting the needs"
-" of its users and to help us make improvements, for example improving "
-"site search."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:46
-msgid "Google Analytics stores information about"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:48
-msgid "The pages you visit"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:49
-msgid "How long you spend on each page"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:50
-msgid "How you got to the site"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:51
-msgid "What you click on while you’re visiting the site"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:55
-msgid ""
-"We don’t use Google Analytics to collect or store your personal "
-"information (for example your name or address)."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:57
-msgid ""
-"The information we collect through our cookies does not include personal "
-"details such as your name, age, telephone number, postal address or email"
-" address, nor does it allow personal identification of a user."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:59
-#, python-format
-msgid ""
-"You can manage these small files yourself and learn more about them "
-"through <a %(href)s>internet browser cookies – what they are and how to "
-"manage them.</a>"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:61
-msgid "Find out more information"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:63
-#, python-format
-msgid ""
-"If you have any questions about this privacy statement, you can contact "
-"us at %(email_link)s"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:65
-msgid "Universal Analytics"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:70
-#: templates/static/cookies-privacy.html:128
-#: templates/static/cookies-privacy.html:159
-msgid "Name"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:73
-#: templates/static/cookies-privacy.html:131
-#: templates/static/cookies-privacy.html:162
-#: templates/static/cookies-privacy.html:420
-msgid "Purpose"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:76
-#: templates/static/cookies-privacy.html:134
-#: templates/static/cookies-privacy.html:165
-msgid "Expires"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:86
-#: templates/static/cookies-privacy.html:99
-msgid ""
-"This helps us count how many people visit our website by tracking if "
-"you’ve visited before"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:89
-msgid "2 years"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:102
-msgid "24 hours"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:112
-msgid "Used to manage the rate at which page view requests are made"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:115
-msgid "10 minutes"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:123
-msgid "Completing a survey (eq.ons.gov.uk)"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:141
-msgid "Session"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:144
-msgid "To keep you signed in when completing a survey"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:147
-msgid ""
-"When a user logs out or closes the browser. Or when their cookie cache is"
-" cleared"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:154
-msgid "Your account"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:175
-msgid "To check that your browser can support cookies"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:178
-#: templates/static/cookies-privacy.html:191
-#: templates/static/cookies-privacy.html:204
-#: templates/static/cookies-privacy.html:217
-#: templates/static/cookies-privacy.html:230
-#: templates/static/cookies-privacy.html:243
-#: templates/static/cookies-privacy.html:256
-#: templates/static/cookies-privacy.html:269
-msgid "When a user closes the browser or when their cookie cache is cleared"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:188
-msgid ""
-"To store your preferred language so that certain content can be displayed"
-" in your own language"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:201
-msgid ""
-"To keep your session active when using your account to access portfolio "
-"and messages"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:214
-#: templates/static/cookies-privacy.html:227
-msgid ""
-"To store an encrypted identifier which is used to retrieve the "
-"information associated to your account"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:240
-msgid "To store the universally unique identifier created for your account"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:253
-msgid ""
-"To store the timestamp of the last request so that the session expiry "
-"warning message can be displayed"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:266
-msgid ""
-"To store the flash object identifier for the most recent action you have "
-"performed"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:276
-msgid "Data controller"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:278
-msgid "The Data Controller for ONS Surveys is"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:280
-msgid ""
-"For questions regarding the Survey Data Collection service please contact"
-" us on"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:287
-msgid "Why we collect your data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:289
-msgid ""
-"The Survey Data Collection service is used as the online collection "
-"mechanism for a number of our surveys. More surveys will be offered via "
-"this service over time."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:291
-msgid ""
-"Individual survey teams are responsible for the content (the questions "
-"asked) and form (Excel spreadsheet to download, complete and return; or "
-"online questionnaire) of their respective surveys. Survey Data Collection"
-" does need some personal data in its own right for the functioning of the"
-" platform."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:293
-msgid ""
-"The lawful reason for which your personal data is collected through the "
-"Survey Data Collection platform is Public task. The processing is "
-"necessary for us to perform a task in the public interest or for our "
-"official functions, and the task or function has a clear basis in law."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:295
-msgid "When we collect your data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:297
-msgid "Your data is collected when"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:299
-msgid "you create an account and sign in to the ONS Surveys platform"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:300
-msgid "you complete a survey"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:301
-msgid "you contact us by any means"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:302
-msgid "you visit a website that comprises the Survey Data Collection platform"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:306
-msgid "What data we collect"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:308
-msgid ""
-"Personal data items required for the operation of the Survey Data "
-"Collection Platform"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:313
-msgid "Data item"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:316
-#: templates/static/cookies-privacy.html:423
-msgid "Description"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:323
-#: templates/static/cookies-privacy.html:389
-msgid "Email address"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:327
-msgid ""
-"Survey Data Collection captures and stores the email address of those who"
-" register with the platform. Registration is required in order to "
-"complete a survey return."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:329
-msgid ""
-"Email address is used as a unique user identifier. Once registered the "
-"email address and password created is required to identify you each time "
-"you use the service."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:331
-msgid ""
-"Additionally, the email address is used to send communications for "
-"purposes of account management and reminders of survey responses."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:339
-msgid "Business Name"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:343
-msgid ""
-"Business names are pre-loaded into the Survey Data Collection platform as"
-" part of a business having been selected for a survey."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:345
-msgid ""
-"The name of the business that has been selected for a given survey will "
-"have been provided to Survey Data Collection by another part of the "
-"Office for National Statistics responsible for the survey in question. "
-"Survey Data Collection stores and processes this."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:353
-msgid "IP address"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:357
-msgid "Internet Protocol address"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:359
-msgid ""
-"All devices connected to the internet will have an IP address and this is"
-" used for one device (e.g. the computer you use to provide a survey "
-"response at your place of work) to be able to talk to another (e.g. the "
-"Survey Data Collection web site) over the internet."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:361
-msgid ""
-"The logs of IP address activity against the Survey Data Collection "
-"service are kept for a limited period of time to facilitate "
-"investigations in the case of any problems."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:369
-msgid ""
-"Surveys that are conducted on the Survey Data Collection platform may "
-"collect additional items of personal data."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:371
-msgid "Business surveys that require personal data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:373
-msgid "Annual Survey of Hours and Earnings"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:375
-msgid ""
-"The legal basis for undertaking the Annual Survey of Hours and Earnings "
-"(ASHE) is the Statistics of Trade Act 1947. This means the General Data "
-"Protection Regulation has not changed the fact that this is mandatory for"
-" the organisations selected to be part of the sample. The personal data "
-"an organisation returns as part of this submission does not require the "
-"permission of the employees who form the data subjects and the subjects "
-"do not have any option to opt-out. The ASHE survey collects the following"
-" items of personal data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:377
-msgid "National insurance number"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:378
-msgid "Date of birth"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:379
-msgid "Postcode"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:383
-msgid "Communication outside of the Survey Data Collection Platform"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:385
-msgid ""
-"The Survey Data Collection platform contains both a telephone number and "
-"email address which can be used for both queries and issues with the "
-"platform and survey hosted on the platform."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:387
-msgid "If you contact us via email, we will process the following data items"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:390
-msgid "IP address of the server from which the email was sent"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:391
-msgid "Any items of personal data within the email"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:395
-msgid "If you contact us via telephone, we will process the following data items"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:397
-msgid "Telephone number"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:398
-msgid "Name of the caller"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:399
-msgid "Any items of personal data disclosed during the call"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:403
-msgid "Who we share your personal data with"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:405
-msgid ""
-"We use several (1st and 3rd) parties to collect and process personal "
-"data. These include (but are not limited to) government departments and "
-"approved researchers. Further information can be found on the following "
-"articles"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:408
-msgid "Approved Researcher Scheme"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:411
-msgid ""
-"Access to unpublished ONS research data by government organisations for "
-"statistical research"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:416
-msgid ""
-"Data is also processed by 3rd party IT companies who support our systems "
-"for the following purposes"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:430
-msgid "Cloud infrastructure"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:433
-msgid ""
-"Used to support the platform on which the Survey Data Collection service "
-"runs."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:440
-msgid "Email notification service"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:443
-msgid ""
-"A service used to send email messages to the active accounts registered "
-"to the Survey Data Collection service."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:450
-msgid "Secure file transfer"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:453
-msgid ""
-"This is used for the behind the scenes transfer of data that identify the"
-" businesses that have been selected for participation in a given survey."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:461
-msgid "How long we keep your data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:463
-msgid "Log Retention"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:465
-msgid ""
-"Standard logs from the Survey Data Collection service are retained for a "
-"period of 30 days. Exceptional events may be retained for longer."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:467
-msgid ""
-"Our general retention period for data collected via annual surveys is 3 "
-"years."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:469
-msgid ""
-"Personal data used for account access will be retained as long as the "
-"account is active."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:471
-msgid "Your rights over your personal data"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:473
-msgid ""
-"The General Data Protection Regulation (GDPR) details eight rights of "
-"individuals"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:475
-msgid "The right to be informed"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:476
-msgid "The right of access"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:477
-msgid "The right to rectification"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:478
-msgid "The right to erasure"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:479
-msgid "The right to restrict processing"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:480
-msgid "The right to data portability"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:480
-msgid ""
-"This right only exists if the lawful basis used is either consent or "
-"contract. Neither the Survey Data Collection service nor any surveys "
-"hosted on this platform rely on either of the lawful basis and therefore "
-"this right is not applicable."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:481
-msgid "The right to object"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:482
-msgid "Rights in relation to automated decision making and profiling."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:482
-msgid "No automated decision making or profiling occurs at the personal level."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:484
-msgid "These rights are subject to exemptions."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:487
-msgid "Contacting the Data Protection Office"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:489
-msgid ""
-"The Data Protection Officer for the Office for National Statistics can be"
-" contacted as follows"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:497
-msgid "Contacting the Information Commissioner’s Office"
-msgstr ""
-
-#: templates/static/cookies-privacy.html:499
-msgid ""
-"We welcome the opportunity to be able to answer any questions or concerns"
-" you may have around the information provided here. If you are unhappy "
-"with our response to any of your requests or you have concerns around how"
-" your data has been handled, you have the right to lodge a complaint with"
-" the Information Commissioner’s Office."
-msgstr ""
-
-#: templates/static/cookies-privacy.html:507
-msgid ""
-"The Information Commissioner’s Office provides guidance to the public on "
-"raising a concern with an organisation at the following location"
+"The Information Commissioner’s Office (ICO) is the independent "
+"organisation tasked with regulating data protection in the UK. The ICO "
+"can give you <a href='{url}'>extra information about data protection</a> "
+"and your rights and will deal with any complaints you may have about our "
+"use of your information."
+msgstr ""
+
+#: templates/static/privacy.html:149
+msgid "You can contact the ICO by:"
 msgstr ""
 

@@ -4,7 +4,15 @@ from app.views.contexts.summary.block import Block
 
 class Group:
     def __init__(
-        self, group_schema, path, answer_store, list_store, metadata, schema, location
+        self,
+        group_schema,
+        path,
+        answer_store,
+        list_store,
+        metadata,
+        schema,
+        location,
+        language,
     ):
         self.id = group_schema['id']
 
@@ -16,7 +24,10 @@ class Group:
             group_schema, path, answer_store, list_store, metadata, schema, location
         )
         self.placeholder_renderer = PlaceholderRenderer(
-            language='en', schema=schema, answer_store=answer_store, metadata=metadata
+            language=language,
+            schema=schema,
+            answer_store=answer_store,
+            metadata=metadata,
         )
 
     @staticmethod
@@ -28,7 +39,11 @@ class Group:
         block_ids_on_path = [location.block_id for location in path]
 
         for block in group_schema['blocks']:
-            if block['id'] in block_ids_on_path and block['type'] == 'Question':
+            if (
+                block['id'] in block_ids_on_path
+                and block['type'] == 'Question'
+                and block.get('show_on_section_summary', True)
+            ):
                 blocks.extend(
                     [
                         Block(

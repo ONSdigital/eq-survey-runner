@@ -15,7 +15,6 @@ local who_rent_from = import 'household/blocks/accommodation/who_rent_from.jsonn
 local any_visitors = import 'household/blocks/who-lives-here/any_visitors.jsonnet';
 local anyone_else_list_collector = import 'household/blocks/who-lives-here/anyone_else_list_collector.jsonnet';
 local anyone_else_temporarily_away_list_collector = import 'household/blocks/who-lives-here/anyone_else_temporarily_away_list_collector.jsonnet';
-local anyone_usually_live_at = import 'household/blocks/who-lives-here/anyone_usually_live_at.jsonnet';
 local primary_person_list_collector = import 'household/blocks/who-lives-here/primary_person_list_collector.jsonnet';
 local visitor_list_collector = import 'household/blocks/who-lives-here/visitor_list_collector.jsonnet';
 local who_lives_here_interstitial = import 'household/blocks/who-lives-here/who_lives_here_interstitial.jsonnet';
@@ -107,7 +106,7 @@ function(region_code, census_date) {
   survey_id: 'census',
   title: '2019 Census Test',
   description: 'Census Northern Ireland Household Schema',
-  theme: 'census',
+  theme: 'census-nisra',
   legal_basis: 'Voluntary',
   navigation: {
     visible: false,
@@ -141,7 +140,6 @@ function(region_code, census_date) {
           blocks: [
             who_lives_here_interstitial(census_date),
             primary_person_list_collector,
-            anyone_usually_live_at(census_date),
             anyone_else_list_collector(census_date),
             anyone_else_temporarily_away_list_collector,
             any_visitors(census_date),
@@ -334,8 +332,8 @@ function(region_code, census_date) {
           title: '',
           blocks: [
             visitor_interstitial(census_date),
-            visitor_sex,
             visitor_dob(census_date),
+            visitor_sex,
             usual_household_address,
             usual_household_address_details,
           ],

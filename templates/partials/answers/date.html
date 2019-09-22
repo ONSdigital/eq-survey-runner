@@ -26,7 +26,7 @@
         }
       },
       "name": day_field.name,
-      "value": day_field._value()
+      "value": day_field._value() | e
     }
   }) -%}
 {%- endif -%}
@@ -41,7 +41,7 @@
         }
       },
       "name": month_field.name,
-      "value": month_field._value()
+      "value": month_field._value() | e
     }
   }) -%}
 {%- endif -%}
@@ -56,7 +56,7 @@
         }
       },
       "name": year_field.name,
-      "value": year_field._value()
+      "value": year_field._value() | e
     }
   }) -%}
 {%- endif -%}
