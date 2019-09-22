@@ -39,7 +39,7 @@ def internal_server_error(error=None):
         logger.error(
             'an error has occurred', exc_info=True, url=request.url, status_code=500
         )
-        return render_template(template=f'errors/500'), 500
+        return render_template(template='errors/500'), 500
 
 
 @errors_blueprint.app_errorhandler(403)
