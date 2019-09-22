@@ -1,6 +1,6 @@
-  {% set contact_us_url = "https://census.gov.uk/contact-us/" %}
-  {% set cookies_url = "https://census.gov.uk/cookies/" %}
-  {% set help_url = "https://census.gov.uk/help/how-to-answer-questions/online-questions-help/" %}
+{% set contact_us_url = "https://census.gov.uk/contact-us/" %}
+{% set cookies_url = "https://census.gov.uk/cookies/" %}
+{% set help_url = "https://census.gov.uk/help/how-to-answer-questions/online-questions-help/" %}
 
 {% if schema_theme == "census-nisra" %}
 
@@ -28,38 +28,38 @@
 } %}
 
 {% do footer | setAttribute("rows", [
-    {
-        "itemsList": [
-            {
-                  "text": _('Contact us'),
-                  "url": contact_us_url,
-                  "target": "_blank"
-            },
-            {
-                  "text": _('Help'),
-                  "url": help_url,
-                  "target": "_blank"
-            }
-        ]
-    },
-    {
-        "itemsList": [
-            {
-                "text": _("Cookies"),
-                "url": cookies_url
-            },
-            {
-                "text": _("Privacy and data protection"),
-                "url": "/privacy",
-                "target": "_blank"
-            },
-            {
-                "text": _("Accessibility"),
-                "url": "/accessibility",
-                "target": "_blank"
-            }
-        ]
-    }
-  ]) %}
+  {
+    "itemsList": [
+      {
+        "text": _('Contact us'),
+        "url": contact_us_url,
+        "target": "_blank"
+      },
+      {
+        "text": _('Help'),
+        "url": help_url,
+        "target": "_blank"
+      }
+    ]
+  },
+  {
+    "itemsList": [
+      {
+        "text": _("Cookies"),
+        "url": cookies_url
+      },
+      {
+        "text": _("Privacy and data protection"),
+        "url": "/privacy",
+        "target": "_blank"
+      },
+      {
+        "text": _("Accessibility"),
+        "url": "/accessibility",
+        "target": "_blank"
+      }
+    ]
+  }
+]) %}
 
 {% do page | setAttribute("footer", footer) %}
