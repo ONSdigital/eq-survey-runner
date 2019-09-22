@@ -107,9 +107,9 @@ import AnyoneElseListCollectorEdit from '../../generated_pages/census_household_
 import MixedEthnicGroup from '../../generated_pages/census_household_gb_wls/mixed-ethnic-group.page.js';
 
 const HAS_PRIMARY = true;
-const NO_OF_HOUSEHOLDERS = 5;
-const NO_OF_HOUSEHOLDER_TEMP_AWAY = 5;
-const NO_OF_VISITORS = 5; // Default 1
+const NO_OF_HOUSEHOLDERS = 2;
+const NO_OF_HOUSEHOLDER_TEMP_AWAY = 2;
+const NO_OF_VISITORS = 2; // Default 1
 
 const TOTAL_HOUSEHOLDERS = HAS_PRIMARY + NO_OF_HOUSEHOLDERS + NO_OF_HOUSEHOLDER_TEMP_AWAY;
 
@@ -119,6 +119,7 @@ const addPeople = (noOfPeople, listCollectorScreen, listCollectorAddScreen, firs
 
   for (let i = 1; i <= noOfPeople; i++) {
     chain = chain.then(() => browser
+
       .click(listCollectorScreen.yesINeedToAddSomeone())
       .click(listCollectorScreen.submit())
 
@@ -365,7 +366,7 @@ const completeVisitorRepeatingSection = () => {
 describe('@watch Census Household: GB-WLS', () => {
 
   before('Open Questionnaire', () => helpers.openQuestionnaire('census_household_gb_wls.json')
-    .then(() => browser.pause(10000)
+    .then(() => browser.pause(3000)
       .getUrl().should.eventually.contain(WhoLivesHereInterstitial.url())
       .click(WhoLivesHereInterstitial.submit()))
   );
