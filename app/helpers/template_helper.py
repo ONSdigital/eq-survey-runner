@@ -17,6 +17,7 @@ def get_page_header_context(language, theme):
     default_context = {
         'logo': 'ons-logo-pos-' + language,
         'logoAlt': lazy_gettext('Office for National Statistics logo'),
+        'language_code': language,
     }
     context = {
         'default': default_context,
@@ -69,6 +70,7 @@ def render_template(template, **kwargs):
         theme=_map_theme(cookie_session.get('theme')),
         languages=get_languages_context(),
         schema_theme=cookie_session.get('theme'),
+        language_code=page_header_context.get('language_code'),
         survey_title=cookie_session.get('survey_title'),
         **google_tag_mananger_context,
         **kwargs,
