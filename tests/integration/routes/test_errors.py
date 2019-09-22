@@ -89,4 +89,6 @@ class TestErrors(IntegrationTestCase):
                     side_effect=Exception('You broked it again'),
                 ):
                     self.post({'answer': '5000000'})
+
                     self.assertStatusCode(500)
+                    self.assertInBody('Sorry, there is a problem with this service')
