@@ -133,9 +133,7 @@ def get_questionnaire(schema, questionnaire_store):
         router.is_survey_complete(),
     )
 
-    return render_template(
-        'hub', content=hub.get_context()
-    )
+    return render_template('hub', content=hub.get_context())
 
 
 @questionnaire_blueprint.route('/', methods=['POST'])

@@ -16,7 +16,7 @@ from app.helpers.language_helper import get_languages_context
 def get_page_header_context(language, theme):
     default_context = {
         'logo': 'ons-logo-pos-' + language,
-        'logoAlt': lazy_gettext('Office for National Statistics logo')
+        'logoAlt': lazy_gettext('Office for National Statistics logo'),
     }
     context = {
         'default': default_context,
