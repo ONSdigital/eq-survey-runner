@@ -37,7 +37,10 @@ def internal_server_error(error=None):
         return _render_error_page(500)
     except Exception:  # pylint:disable=broad-except
         logger.error(
-            'an error has occurred', exc_info=True, url=request.url, status_code=500
+            'an error has occurred when rendering 500 error"',
+            exc_info=True,
+            url=request.url,
+            status_code=500,
         )
         return render_template(template='errors/500'), 500
 
