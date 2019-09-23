@@ -133,9 +133,7 @@ def get_questionnaire(schema, questionnaire_store):
         router.is_survey_complete(),
     )
 
-    return render_template(
-        'hub', content=hub.get_context(), language_code=language_code
-    )
+    return render_template('hub', content=hub.get_context())
 
 
 @questionnaire_blueprint.route('/', methods=['POST'])
@@ -335,7 +333,6 @@ def get_thank_you(schema):
     return render_template(
         template='thank-you',
         metadata=metadata_context,
-        language_code=session_data.language_code,
         survey_id=schema.json['survey_id'],
         is_view_submitted_response_enabled=is_view_submitted_response_enabled(
             schema.json
@@ -540,7 +537,6 @@ def _render_page(
     if request_wants_json():
         return jsonify(context)
 
-    session_data = get_session_store().session_data
     session_timeout = get_session_timeout_in_seconds(schema)
 
     return render_template(
@@ -548,7 +544,6 @@ def _render_page(
         content=context,
         current_location=current_location,
         previous_location_url=previous_location_url,
-        language_code=session_data.language_code,
         session_timeout=session_timeout,
         legal_basis=schema.json.get('legal_basis'),
         page_title=page_title,
