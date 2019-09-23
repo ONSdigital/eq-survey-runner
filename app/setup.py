@@ -132,6 +132,19 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
             version=application.config['EQ_APPLICATION_VERSION'],
         )
 
+    # IMPORTANT: This must be initialised *before* any other Flask plugins that add
+    # before_request hooks. Otherwise any logging by the plugin in their before
+    # request will use the logger context of the previous request.
+    @application.before_request
+    def before_request():  # pylint: disable=unused-variable
+
+        # While True the session lives for permanent_session_lifetime seconds
+        # Needed to be able to set the client-side cookie expiration
+        cookie_session.permanent = True
+
+        request_id = str(uuid4())
+        logger.new(request_id=request_id)
+
     if application.config['EQ_NEW_RELIC_ENABLED']:
         setup_newrelic()
 
@@ -183,16 +196,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     # pylint: disable=no-member
     application.jinja_env.add_extension('jinja2.ext.do')
-
-    @application.before_request
-    def before_request():  # pylint: disable=unused-variable
-
-        # While True the session lives for permanent_session_lifetime seconds
-        # Needed to be able to set the client-side cookie expiration
-        cookie_session.permanent = True
-
-        request_id = str(uuid4())
-        logger.new(request_id=request_id)
 
     @application.after_request
     def apply_caching(response):  # pylint: disable=unused-variable
