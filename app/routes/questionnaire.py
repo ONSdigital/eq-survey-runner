@@ -537,7 +537,6 @@ def _render_page(
     if request_wants_json():
         return jsonify(context)
 
-    session_data = get_session_store().session_data
     session_timeout = get_session_timeout_in_seconds(schema)
 
     return render_template(
