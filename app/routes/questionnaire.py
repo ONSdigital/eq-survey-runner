@@ -134,7 +134,7 @@ def get_questionnaire(schema, questionnaire_store):
     )
 
     return render_template(
-        'hub', content=hub.get_context(), language_code=language_code
+        'hub', content=hub.get_context()
     )
 
 
@@ -335,7 +335,6 @@ def get_thank_you(schema):
     return render_template(
         template='thank-you',
         metadata=metadata_context,
-        language_code=session_data.language_code,
         survey_id=schema.json['survey_id'],
         is_view_submitted_response_enabled=is_view_submitted_response_enabled(
             schema.json
@@ -548,7 +547,6 @@ def _render_page(
         content=context,
         current_location=current_location,
         previous_location_url=previous_location_url,
-        language_code=session_data.language_code,
         session_timeout=session_timeout,
         legal_basis=schema.json.get('legal_basis'),
         page_title=page_title,
