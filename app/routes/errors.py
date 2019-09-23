@@ -3,14 +3,12 @@ from flask_login import current_user
 from flask_wtf.csrf import CSRFError
 from sdc.crypto.exceptions import InvalidTokenException
 from structlog import get_logger
-from ua_parser import user_agent_parser
 
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
 from app.helpers.language_helper import handle_language
 from app.helpers.template_helper import render_template
 from app.submitter.submission_failed import SubmissionFailedException
-
 
 logger = get_logger()
 
@@ -34,8 +32,17 @@ def forbidden(error=None):
 @errors_blueprint.app_errorhandler(SubmissionFailedException)
 @errors_blueprint.app_errorhandler(Exception)
 def internal_server_error(error=None):
-    log_exception(error, 500)
-    return _render_error_page(500)
+    try:
+        log_exception(error, 500)
+        return _render_error_page(500)
+    except Exception:  # pylint:disable=broad-except
+        logger.error(
+            'an error has occurred when rendering 500 error',
+            exc_info=True,
+            url=request.url,
+            status_code=500,
+        )
+        return render_template(template='errors/500'), 500
 
 
 @errors_blueprint.app_errorhandler(403)
@@ -60,7 +67,7 @@ def log_exception(error, status_code):
 
 def _render_error_page(status_code, template=None):
     handle_language()
-    user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
+
     template = template or status_code
 
-    return render_template(template=f'errors/{template}', ua=user_agent), status_code
+    return render_template(template=f'errors/{template}'), status_code
