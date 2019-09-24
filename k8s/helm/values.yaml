@@ -27,5 +27,5 @@ resources:
 
 autoscaler:
     minReplicas: 3
-    maxReplicas: 24
+    maxReplicas: 96
     targetCPUUtilizationPercentage: 50
