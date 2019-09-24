@@ -76,7 +76,7 @@ spec:
             - name: EQ_SUBMISSION_BACKEND
               value: gcs
             - name: GUNICORN_WORKERS
-              value: "9"
+              value: "7"
             - name: GUNICORN_KEEP_ALIVE
               value: "650"
             - name: EQ_GCS_SUBMISSION_BUCKET_ID
