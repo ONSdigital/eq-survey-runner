@@ -1,6 +1,6 @@
 // Who lives here
 
-local who_lives_here_interstitial = import 'coverage/blocks/who-lives-here/who_lives_here_interstitial.jsonnet';
+local who_lives_here_interstitial = import 'coverage-survey/blocks/who-lives-here/who_lives_here_interstitial.jsonnet';
 
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
