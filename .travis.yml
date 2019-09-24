@@ -55,8 +55,8 @@ after_success:
     - pyenv global $(cat .python-version)
     - pipenv run pip install codecov
     - pipenv run codecov
-    - pipenv run pip install codacy-coverage
-    - pipenv run python-codacy-coverage -r coverage.xml
+    - pipenv run pip install codacy-ccs
+    - pipenv run python-codacy-ccs -r ccs.xml
 branches:
     only:
         - v3

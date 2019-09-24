@@ -1,6 +1,7 @@
 // Who lives here
+local who_lives_here_interstitial = import 'ccs/blocks/who-lives-here/who_lives_here_interstitial.jsonnet';
+local who_lives_here_section_summary = import 'ccs/blocks/who-lives-here/who_lives_here_section_summary.jsonnet';
 
-local who_lives_here_interstitial = import 'coverage-survey/blocks/who-lives-here/who_lives_here_interstitial.jsonnet';
 
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
@@ -28,7 +29,11 @@ function(region_code, census_date, census_month_year_date) {
       type: 'string',
     },
   ],
-    sections: [
+  hub: {
+    enabled: true,
+    required_completed_sections: ['who-lives-here-section'],
+  },
+  sections: [
     {
       id: 'who-lives-here-section',
       title: 'People who live here',
@@ -38,9 +43,11 @@ function(region_code, census_date, census_month_year_date) {
           title: 'Who lives here',
           blocks: [
             who_lives_here_interstitial(census_date),
+            who_lives_here_section_summary,
           ],
         },
       ],
     },
   ],
 }
+

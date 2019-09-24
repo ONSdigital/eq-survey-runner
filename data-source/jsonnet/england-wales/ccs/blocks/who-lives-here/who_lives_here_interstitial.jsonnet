@@ -7,7 +7,7 @@ function(census_date) {
     title: 'Household definition',
     contents: [
       {
-        description: 'All the questions are about the people in your household on {census_date}.',
+        description: 'All the questions are about the people in your household on 13th October 2019.',
       },
       {
         description: 'A <em>household</em> is one person living alone, or a group of people (not necessarily related), who share cooking facilities, and share a

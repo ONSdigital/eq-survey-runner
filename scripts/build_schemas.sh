@@ -12,7 +12,7 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
     CENSUS_DATE="2019-10-13"
     CENSUS_MONTH_YEAR_DATE="2019-10"
 
-    for census_type in "individual" "household" "coverage-survey"; do
+    for census_type in "individual" "household"; do
 
         DESTINATION_FILE="data/en/census_${census_type}_${FORMATTED_REGION_CODE}.json"
 
@@ -29,6 +29,24 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
             jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" --tla-str census_month_year_date="${CENSUS_MONTH_YEAR_DATE}" --jpath "${ADDITIONAL_LIBRARY_PATH}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
         fi
 
+        echo "Built ${DESTINATION_FILE}"
+    done
+    for census_type in "household"; do
+
+        DESTINATION_FILE="data/en/ccs_${census_type}_${FORMATTED_REGION_CODE}.json"
+
+        if [[ "$region_code" = "GB-NIR" ]]; then
+            SOURCE_FILE="data-source/jsonnet/northern-ireland/ccs_${census_type}.jsonnet"
+            ADDITIONAL_LIBRARY_PATH="data-source/jsonnet/northern-ireland/${census_type}/lib/"
+
+            jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" --jpath "${ADDITIONAL_LIBRARY_PATH}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
+
+        else
+            SOURCE_FILE="data-source/jsonnet/england-wales/ccs_household.jsonnet"
+            ADDITIONAL_LIBRARY_PATH="data-source/jsonnet/england-wales/ccs/lib/"
+
+            jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" --tla-str census_month_year_date="${CENSUS_MONTH_YEAR_DATE}" --jpath "${ADDITIONAL_LIBRARY_PATH}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
+        fi
         echo "Built ${DESTINATION_FILE}"
     done
 done
