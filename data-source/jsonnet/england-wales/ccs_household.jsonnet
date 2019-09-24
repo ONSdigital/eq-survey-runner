@@ -1,6 +1,9 @@
 // Who lives here
 local who_lives_here_interstitial = import 'ccs/blocks/who-lives-here/who_lives_here_interstitial.jsonnet';
 local who_lives_here_section_summary = import 'ccs/blocks/who-lives-here/who_lives_here_section_summary.jsonnet';
+local primary_person_list_collector = import 'ccs/blocks/who-lives-here/primary_person_list_collector.jsonnet';
+local anyone_else_usually_living = import 'ccs/blocks/who-lives-here/anyone_else_usually_living.jsonnet';
+local household_usual_address = import 'ccs/blocks/who-lives-here/household_usual_address.jsonnet';
 
 
 function(region_code, census_date, census_month_year_date) {
@@ -43,6 +46,9 @@ function(region_code, census_date, census_month_year_date) {
           title: 'Who lives here',
           blocks: [
             who_lives_here_interstitial(census_date),
+            primary_person_list_collector,
+            anyone_else_usually_living,
+            household_usual_address,
             who_lives_here_section_summary,
           ],
         },
