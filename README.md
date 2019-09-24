@@ -288,6 +288,12 @@ The following environment variables can be set when deploying the app.
 - GOOGLE_TAG_MANAGER_ID *(optional)*
 - GOOGLE_TAG_MANAGER_AUTH *(optional)*
 - GOOGLE_TAG_MANAGER_PREVIEW *(optional)*
+- REQUESTED_CPU_PER_POD *(optional)* - No. of CPUs to request per Pod
+- ROLLING_UPDATE_MAX_UNAVAILABLE *(optional)* - Specifies the maximum number of Pods that can be unavailable during the update process.
+- ROLLING_UPDATE_MAX_SURGE *(optional)* - Specifies the maximum number of Pods that can be created over the desired number of Pods.
+- MIN_REPLICAS *(optional)* - Minimum no. of replicated Pods
+- MAX_REPLICAS *(optional)* - Maximum no. of replicated Pods
+- TARGET_CPU_UTILIZATION_PERCENTAGE *(optional)* - The average CPU utilization usage before auto scaling applies
 
 To deploy the app to the cluster, run the following command:
 
