@@ -6,7 +6,11 @@ local anyone_else_usually_living = import 'ccs/blocks/who-lives-here/anyone_else
 local household_usual_address = import 'ccs/blocks/who-lives-here/household_usual_address.jsonnet';
 local anyone_else_list_collector = import 'ccs/blocks/who-lives-here/anyone_else_list_collector.jsonnet';
 local interviewer_note_interstitial = import 'ccs/blocks/who-lives-here/interviewer_note_interstitial.jsonnet';
-local visitors_list_collector = import 'ccs/blocks/who-lives-here/visitors_list_collector.jsonnet';
+local anyone_else_temp_away_list_collector = import 'ccs/blocks/who-lives-here/anyone_else_temp_away_list_collector.jsonnet';
+local relationships = import 'ccs/blocks/who-lives-here/relationships.jsonnet';
+local any_visitors = import 'ccs/blocks/who-lives-here/any_visitors.jsonnet';
+local visitor_list_collector = import 'ccs/blocks/who-lives-here/visitor_list_collector.jsonnet';
+
 
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
@@ -53,7 +57,10 @@ function(region_code, census_date, census_month_year_date) {
             interviewer_note_interstitial,
             household_usual_address,
             anyone_else_list_collector(census_date),
-            visitors_list_collector,
+            anyone_else_temp_away_list_collector,
+            relationships,
+            any_visitors(census_date),
+            visitor_list_collector(census_date),
             who_lives_here_section_summary,
           ],
         },
