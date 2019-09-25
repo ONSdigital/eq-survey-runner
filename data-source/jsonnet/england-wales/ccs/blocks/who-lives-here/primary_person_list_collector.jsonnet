@@ -66,6 +66,25 @@ local questionTitle = {
       },
    ],
  },
+ routing_rules: [
+    {
+        goto: {
+            block: 'anyone-else-usually-living',
+            when: [
+            {
+                id: 'you-live-here-answer',
+                condition: 'equals',
+                value: 'No',
+             },
+           ],
+        },
+    },
+    {
+        goto: {
+            block: 'anyone-else-list-collector',
+        },
+    },
+  ],
 }
 
 
