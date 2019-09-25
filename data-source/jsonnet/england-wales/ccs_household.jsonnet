@@ -11,6 +11,11 @@ local relationships = import 'ccs/blocks/who-lives-here/relationships.jsonnet';
 local any_visitors = import 'ccs/blocks/who-lives-here/any_visitors.jsonnet';
 local visitor_list_collector = import 'ccs/blocks/who-lives-here/visitor_list_collector.jsonnet';
 
+// Household
+local accommodation_introduction = import 'ccs/blocks/accommodation/accommodation_introduction.jsonnet';
+local accommodation_type = import 'ccs/blocks/accommodation/accommodation_type.jsonnet';
+local type_of_house = import 'ccs/blocks/accommodation/type_of_house.jsonnet';
+local type_of_flat = import 'ccs/blocks/accommodation/type_of_flat.jsonnet';
 
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
@@ -62,6 +67,22 @@ function(region_code, census_date, census_month_year_date) {
             any_visitors(census_date),
             visitor_list_collector(census_date),
             who_lives_here_section_summary,
+          ],
+        },
+      ],
+    },
+        {
+      id: 'accommodation-section',
+      title: 'Household accommodation',
+      groups: [
+        {
+          id: 'accommodation-group',
+          title: '',
+          blocks: [
+            accommodation_introduction,
+            accommodation_type,
+            type_of_house,
+            type_of_flat,
           ],
         },
       ],
