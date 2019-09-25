@@ -6,7 +6,7 @@ local anyone_else_usually_living = import 'ccs/blocks/who-lives-here/anyone_else
 local household_usual_address = import 'ccs/blocks/who-lives-here/household_usual_address.jsonnet';
 local anyone_else_list_collector = import 'ccs/blocks/who-lives-here/anyone_else_list_collector.jsonnet';
 local interviewer_note_interstitial = import 'ccs/blocks/who-lives-here/interviewer_note_interstitial.jsonnet';
-
+local visitors_list_collector = import 'ccs/blocks/who-lives-here/visitors_list_collector.jsonnet';
 
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
@@ -53,6 +53,7 @@ function(region_code, census_date, census_month_year_date) {
             interviewer_note_interstitial,
             household_usual_address,
             anyone_else_list_collector(census_date),
+            visitors_list_collector,
             who_lives_here_section_summary,
           ],
         },

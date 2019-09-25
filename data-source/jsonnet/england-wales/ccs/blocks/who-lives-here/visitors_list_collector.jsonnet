@@ -1,20 +1,6 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import 'rules.libsonnet';
 
-local questionTitle = {
-  text: 'Did anyone usually live at {address}?',
-  placeholders: [
-    placeholders.address,
-  ],
-};
-
-local questionVariantTitle = {
-  text: 'Did anyone else live at {address}?',
-  placeholders: [
-    placeholders.address,
-  ],
-};
-
 local summaryTitlePersonName = {
   text: '{person_name}',
   placeholders: [
@@ -51,7 +37,7 @@ local removePersonQuestionTitle = {
 };
 
 local editQuestion(questionTitle) = {
-  id: 'edit-question',
+  id: 'anyone-else-temp-away-edit-question',
   type: 'General',
   title: questionTitle,
   answers: [
@@ -76,89 +62,60 @@ local editQuestion(questionTitle) = {
   ],
 };
 
-function(census_date) {
-  id: 'anyone-else-list-collector',
+
+{
+  id: 'anyone-else-temp-away-list-collector',
   type: 'ListCollector',
   for_list: 'household',
   add_answer: {
-    id: 'anyone-else-answer',
+    id: 'anyone-else-temp-away-answer',
     value: 'Yes',
   },
   remove_answer: {
-    id: 'remove-confirmation',
+    id: 'anyone-else-temp-away-remove-confirmation',
     value: 'Yes, I want to remove this person',
   },
-  question_variants: [
-    {
-      question: {
-        type: 'General',
-        id: 'anyone-usually-live-at-question',
-        title: questionTitle,
-        guidance: {
-            contents: [
-              {
-                description: 'Remember to include only those people who share cooking facilities and share a living room or dining area',
-              },
-            ],
+  question: {
+    id: 'anyone-else-temp-away-confirmation-question',
+    type: 'General',
+    title: 'Apart from the people already included, is there anyone who was temporarily away or staying that you need to add?',
+    guidance: {
+      contents: [
+        {
+          list: [
+            'People from outside the UK who were staying in the UK for <strong>3 months or more</strong>',
+            'Members of the armed forces',
+            'Prisoners with a sentence of <strong>less than 12 months</strong>',
+            'People expecting to stay in an establishment such as a hospital, care home or hostel for <strong>less than 6 months</strong>',
+            'People who are temporarily outside the UK for <strong>less than 12 months</strong>',
+            'People staying temporarily who did not have another UK address',
+          ],
         },
-        answers: [
+      ],
+    },
+    answers: [
+      {
+        id: 'anyone-else-temp-away-answer',
+        mandatory: true,
+        type: 'Radio',
+        options: [
           {
-            id: 'anyone-else-answer',
-            mandatory: true,
-            type: 'Radio',
-            options: [
-              {
-                label: 'Yes',
-                value: 'Yes',
-              },
-              {
-                label: 'No',
-                value: 'No',
-              },
-            ],
+            label: 'Yes',
+            value: 'Yes',
+          },
+          {
+            label: 'No',
+            value: 'No',
           },
         ],
       },
-      when: [rules.listIsEmpty('household')],
-    },
-    {
-      question: {
-        id: 'anyone-usually-live-at-question',
-        type: 'General',
-        title: questionVariantTitle,
-        guidance: {
-            contents: [
-              {
-                description: 'Remember to include only those people who share cooking facilities and share a living room or dining area',
-              },
-            ],
-        },
-        answers: [
-          {
-            id: 'anyone-else-answer',
-            mandatory: true,
-            type: 'Radio',
-            options: [
-              {
-                label: 'Yes',
-                value: 'Yes',
-              },
-              {
-                label: 'No',
-                value: 'No',
-              },
-            ],
-          },
-        ],
-      },
-      when: [rules.listIsNotEmpty('household')],
-    },
-  ],
+    ],
+  },
   add_block: {
-    id: 'add-person',
+    id: 'anyone-else-temp-away-add-person',
     type: 'ListAddQuestion',
     question: {
-      id: 'add-question',
+      id: 'anyone-else-temp-away-add-question',
       type: 'General',
       title: addPersonQuestionTitle,
       answers: [
@@ -184,7 +141,7 @@ function(census_date) {
     },
   },
   edit_block: {
-    id: 'edit-person',
+    id: 'anyone-else-temp-away-edit-person',
     type: 'ListEditQuestion',
     question_variants: [
       {
@@ -198,10 +155,10 @@ function(census_date) {
     ],
   },
   remove_block: {
-    id: 'remove-person',
+    id: 'anyone-else-temp-away-remove-person',
     type: 'ListRemoveQuestion',
     question: {
-      id: 'remove-question',
+      id: 'anyone-else-temp-away-remove-question',
       type: 'General',
       guidance: {
         contents: [{
@@ -211,7 +168,7 @@ function(census_date) {
       title: removePersonQuestionTitle,
       answers: [
         {
-          id: 'remove-confirmation',
+          id: 'anyone-else-temp-away-remove-confirmation',
           mandatory: true,
           type: 'Radio',
           options: [
@@ -231,10 +188,8 @@ function(census_date) {
   summary: {
     title: 'Household members',
     item_title: summaryTitlePersonName,
-    add_link_text: 'Add someone to this household',
-    empty_list_text: 'There are no householders',
+    add_link_text: 'Add another visitor to this household',
+    empty_list_text: 'There are no visitors',
   },
+  show_on_section_summary: false,
 }
-
-
-
