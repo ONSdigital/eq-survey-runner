@@ -16,6 +16,12 @@ local accommodation_introduction = import 'ccs/blocks/accommodation/accommodatio
 local accommodation_type = import 'ccs/blocks/accommodation/accommodation_type.jsonnet';
 local type_of_house = import 'ccs/blocks/accommodation/type_of_house.jsonnet';
 local type_of_flat = import 'ccs/blocks/accommodation/type_of_flat.jsonnet';
+local self_contained = import 'ccs/blocks/accommodation/self_contained.jsonnet';
+local own_or_rent = import 'ccs/blocks/accommodation/own_or_rent.jsonnet';
+local who_rent_from = import 'ccs/blocks/accommodation/who_rent_from.jsonnet';
+local internet = import 'ccs/blocks/accommodation/internet.jsonnet';
+local government_services = import 'ccs/blocks/accommodation/government_services.jsonnet';
+local other_living_accommodation = import 'ccs/blocks/accommodation/other_living_accommodation.jsonnet';
 
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
@@ -83,6 +89,12 @@ function(region_code, census_date, census_month_year_date) {
             accommodation_type,
             type_of_house,
             type_of_flat,
+            self_contained,
+            own_or_rent,
+            who_rent_from,
+            internet,
+            government_services,
+            other_living_accommodation,
           ],
         },
       ],
