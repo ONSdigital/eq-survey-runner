@@ -88,7 +88,7 @@ function(census_date) {
   routing_rules: [
     {
       goto: {
-        block: 'who-lives-here-section-summary',
+        block: 'accommodation-introduction',
         when: [{
           id: 'any-visitors-answer-exclusive',
           condition: 'set',

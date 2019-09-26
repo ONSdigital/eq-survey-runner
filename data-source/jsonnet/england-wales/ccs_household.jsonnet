@@ -11,7 +11,7 @@ local relationships = import 'ccs/blocks/who-lives-here/relationships.jsonnet';
 local any_visitors = import 'ccs/blocks/who-lives-here/any_visitors.jsonnet';
 local visitor_list_collector = import 'ccs/blocks/who-lives-here/visitor_list_collector.jsonnet';
 
-// Household
+// Accommodation
 local accommodation_introduction = import 'ccs/blocks/accommodation/accommodation_introduction.jsonnet';
 local accommodation_type = import 'ccs/blocks/accommodation/accommodation_type.jsonnet';
 local type_of_house = import 'ccs/blocks/accommodation/type_of_house.jsonnet';
@@ -22,6 +22,10 @@ local who_rent_from = import 'ccs/blocks/accommodation/who_rent_from.jsonnet';
 local internet = import 'ccs/blocks/accommodation/internet.jsonnet';
 local government_services = import 'ccs/blocks/accommodation/government_services.jsonnet';
 local other_living_accommodation = import 'ccs/blocks/accommodation/other_living_accommodation.jsonnet';
+
+// Individual
+local individual_interstitial = import 'ccs/blocks/individual/individual_interstitial.jsonnet';
+local proxy = import 'ccs/blocks/individual/proxy.jsonnet';
 
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
@@ -72,19 +76,6 @@ function(region_code, census_date, census_month_year_date) {
             relationships,
             any_visitors(census_date),
             visitor_list_collector(census_date),
-            who_lives_here_section_summary,
-          ],
-        },
-      ],
-    },
-        {
-      id: 'accommodation-section',
-      title: 'Household accommodation',
-      groups: [
-        {
-          id: 'accommodation-group',
-          title: '',
-          blocks: [
             accommodation_introduction,
             accommodation_type,
             type_of_house,
@@ -95,6 +86,44 @@ function(region_code, census_date, census_month_year_date) {
             internet,
             government_services,
             other_living_accommodation,
+            who_lives_here_section_summary,
+          ],
+        },
+      ],
+    },
+    {
+      id: 'individual-section',
+      title: 'Individual Section',
+      repeat: {
+        for_list: 'household',
+        title: {
+          text: '{person_name}',
+          placeholders: [
+            {
+              placeholder: 'person_name',
+              transforms: [
+                {
+                  transform: 'concatenate_list',
+                  arguments: {
+                    list_to_concatenate: {
+                      source: 'answers',
+                      identifier: ['first-name', 'last-name'],
+                    },
+                    delimiter: ' ',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+      groups: [
+        {
+          id: 'personal-details-group',
+          title: 'Personal Details',
+          blocks: [
+            individual_interstitial,
+            proxy,
           ],
         },
       ],
