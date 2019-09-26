@@ -26,6 +26,11 @@ local other_living_accommodation = import 'ccs/blocks/accommodation/other_living
 // Individual
 local individual_interstitial = import 'ccs/blocks/individual/individual_interstitial.jsonnet';
 local proxy = import 'ccs/blocks/individual/proxy.jsonnet';
+local date_of_birth = import 'ccs/blocks/individual/date_of_birth.jsonnet';
+local confirm_dob = import 'ccs/blocks/individual/confirm_dob.jsonnet';
+local sex = import 'ccs/blocks/individual/sex.jsonnet';
+local country_of_birth = import 'ccs/blocks/individual/country_of_birth.jsonnet';
+local marriage_type = import 'ccs/blocks/individual/marriage_type.jsonnet';
 
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
@@ -124,6 +129,11 @@ function(region_code, census_date, census_month_year_date) {
           blocks: [
             individual_interstitial,
             proxy,
+            date_of_birth(census_date),
+            confirm_dob,
+            sex,
+            country_of_birth,
+            marriage_type(census_date),
           ],
         },
       ],

@@ -13,7 +13,7 @@
         options: [
           {
             label: 'Yes, they are answering for themselves',
-            value: 'Yes, they are answering for themselves',
+            value: 'Yes',
           },
           {
             label: 'No, they are answering on someone else\'s behalf',
