@@ -351,11 +351,11 @@
         },
         "marshmallow": {
             "hashes": [
-                "sha256:9cedfc5b6f568d57e8a2cf3d293fbd81b05e5ef557854008d03e25660a39ccfd",
-                "sha256:a4d99922116a76e5abd8f997ec0519086e24814b7e1e1344bebe2a312ba50235"
+                "sha256:ee20892f41b2ac51f9f1927f30696a2fb91b99fe9e12bf54624e78654612cba7",
+                "sha256:f88fdf8b9cad487bf74cc03382e0e3792dd740144d4ef3395d74b03f31dcd9cf"
             ],
             "index": "pypi",
-            "version": "==2.19.5"
+            "version": "==2.20.5"
         },
         "newrelic": {
             "hashes": [
