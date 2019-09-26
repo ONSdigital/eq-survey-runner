@@ -29,7 +29,7 @@ def check_answer_values():
             )
 
             for answer_id, option in found_options.items():
-                print(f"{answer_id} : {option['label']} : {option['value']}")
+                print(f"{answer_id} : '{option['label']}' : '{option['value']}'")
 
 
 if __name__ == '__main__':
