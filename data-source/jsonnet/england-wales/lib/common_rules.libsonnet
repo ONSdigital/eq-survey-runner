@@ -19,6 +19,16 @@
       },
     },
   },
+  under16: {
+    id: 'date-of-birth-answer',
+    condition: 'greater than',
+    date_comparison: {
+      value: 'now',
+      offset_by: {
+        years: -16,
+      },
+    },
+  },
   over15: {
     id: 'date-of-birth-answer',
     condition: 'less than or equal to',

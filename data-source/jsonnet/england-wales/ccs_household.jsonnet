@@ -31,6 +31,16 @@ local confirm_dob = import 'ccs/blocks/individual/confirm_dob.jsonnet';
 local sex = import 'ccs/blocks/individual/sex.jsonnet';
 local country_of_birth = import 'ccs/blocks/individual/country_of_birth.jsonnet';
 local marriage_type = import 'ccs/blocks/individual/marriage_type.jsonnet';
+local ethnic_group = import 'ccs/blocks/individual/ethnic_group.jsonnet';
+local ethnic_group_asian = import 'ccs/blocks/individual/ethnic_group_asian.jsonnet';
+local ethnic_group_black = import 'ccs/blocks/individual/ethnic_group_black.jsonnet';
+local ethnic_group_mixed = import 'ccs/blocks/individual/ethnic_group_mixed.jsonnet';
+local ethnic_group_other = import 'ccs/blocks/individual/ethnic_group_other.jsonnet';
+local ethnic_group_white = import 'ccs/blocks/individual/ethnic_group_white.jsonnet';
+local in_education = import 'ccs/blocks/individual/in_education.jsonnet';
+local term_time_location = import 'ccs/blocks/individual/term_time_location.jsonnet';
+local another_uk_address = import 'ccs/blocks/individual/another_uk_address.jsonnet';
+local past_usual_household_address = import 'ccs/blocks/individual/past_usual_household_address.jsonnet';
 
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
@@ -134,6 +144,16 @@ function(region_code, census_date, census_month_year_date) {
             sex,
             country_of_birth,
             marriage_type(census_date),
+            ethnic_group,
+            ethnic_group_white(region_code),
+            ethnic_group_mixed,
+            ethnic_group_asian,
+            ethnic_group_black,
+            ethnic_group_other,
+            in_education,
+            term_time_location,
+            past_usual_household_address,
+            another_uk_address,
           ],
         },
       ],
