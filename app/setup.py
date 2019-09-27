@@ -8,7 +8,7 @@ import boto3
 import redis
 import yaml
 from botocore.config import Config
-from flask import Flask, session as cookie_session
+from flask import Flask, request, session as cookie_session
 from flask_babel import Babel
 from flask_caching import Cache
 from flask_compress import Compress
@@ -145,6 +145,23 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         request_id = str(uuid4())
         logger.new(request_id=request_id)
 
+        session_cookie_present = False
+        csrf_token_present = False
+        if 'session' in request.cookies:
+            session_cookie_present = True
+            if 'csrf_token' in cookie_session:
+                csrf_token_present = True
+
+        logger.info(
+            'request',
+            method=request.method,
+            url_path=request.full_path,
+            session_cookie_present=session_cookie_present,
+            csrf_token_present=csrf_token_present,
+            cookies=request.cookies,
+            user_agent=request.user_agent.string,
+        )
+
     if application.config['EQ_NEW_RELIC_ENABLED']:
         setup_newrelic()
 
@@ -226,6 +243,19 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
             )
 
             return response
+        return response
+
+    @application.after_request
+    def after_request(response):
+        # We're using the stringified version of the Flask session to get a rough
+        # length for the cookie. The real length won't be known yet as Flask
+        # serialises and adds the cookie header after this method is called.
+        logger.info(
+            'response',
+            status_code=response.status_code,
+            session_cookie_content_length=len(str(cookie_session)),
+            session_modified=cookie_session.modified,
+        )
         return response
 
     return application
