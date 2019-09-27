@@ -87,4 +87,20 @@ local question(title) = {
       when: [rules.isProxy],
     },
   ],
+  routing_rules: [
+    {
+      goto: {
+        block: 'individual-section-summary',
+        when: [{
+          id: 'another-uk-address-answer-exclusive',
+          condition: 'set',
+        }],
+      },
+    },
+    {
+      goto: {
+        block: 'other-census-address',
+      },
+    },
+  ],
 }

@@ -41,6 +41,11 @@ local in_education = import 'ccs/blocks/individual/in_education.jsonnet';
 local term_time_location = import 'ccs/blocks/individual/term_time_location.jsonnet';
 local another_uk_address = import 'ccs/blocks/individual/another_uk_address.jsonnet';
 local past_usual_household_address = import 'ccs/blocks/individual/past_usual_household_address.jsonnet';
+local employment_status = import 'ccs/blocks/individual/employment_status.jsonnet';
+local employment_type = import 'ccs/blocks/individual/employment_type.jsonnet';
+local length_of_stay = import 'ccs/blocks/individual/length_of_stay.jsonnet';
+local other_census_address = import 'ccs/blocks/individual/other_census_address.jsonnet';
+local individual_section_summary = import 'ccs/blocks/individual/individual_section_summary.jsonnet';
 
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
@@ -153,7 +158,12 @@ function(region_code, census_date, census_month_year_date) {
             in_education,
             term_time_location,
             past_usual_household_address,
+            length_of_stay,
+            employment_status,
+            employment_type,
             another_uk_address,
+            other_census_address,
+            individual_section_summary,
           ],
         },
       ],
