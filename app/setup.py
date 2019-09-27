@@ -145,19 +145,12 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         request_id = str(uuid4())
         logger.new(request_id=request_id)
 
-        session_cookie_present = False
-        csrf_token_present = False
-        if 'session' in request.cookies:
-            session_cookie_present = True
-            if 'csrf_token' in cookie_session:
-                csrf_token_present = True
-
         logger.info(
             'request',
             method=request.method,
             url_path=request.full_path,
-            session_cookie_present=session_cookie_present,
-            csrf_token_present=csrf_token_present,
+            session_cookie_present='session' in request.cookies,
+            csrf_token_present='csrf_token' in cookie_session,
             cookies=request.cookies,
             user_agent=request.user_agent.string,
         )
