@@ -47,6 +47,13 @@ local length_of_stay = import 'ccs/blocks/individual/length_of_stay.jsonnet';
 local other_census_address = import 'ccs/blocks/individual/other_census_address.jsonnet';
 local individual_section_summary = import 'ccs/blocks/individual/individual_section_summary.jsonnet';
 
+//visitor
+local visitor_dob = import 'ccs/blocks/visitor/date_of_birth.jsonnet';
+local visitor_sex = import 'ccs/blocks/visitor/sex.jsonnet';
+local usual_household_address = import 'ccs/blocks/visitor/usual_household_address.jsonnet';
+local usual_household_address_details = import 'ccs/blocks/visitor/usual_household_address_details.jsonnet';
+local visitor_interstitial = import 'ccs/blocks/visitor/visitor_interstitial.jsonnet';
+
 function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
   schema_version: '0.0.1',
@@ -164,6 +171,56 @@ function(region_code, census_date, census_month_year_date) {
             another_uk_address,
             other_census_address,
             individual_section_summary,
+          ],
+        },
+      ],
+    },
+        {
+      id: 'visitor-section',
+      title: 'Visitors',
+      repeat: {
+        for_list: 'visitor',
+        title: {
+          text: '{person_name} (Visitor)',
+          placeholders: [
+            {
+              placeholder: 'person_name',
+              transforms: [
+                {
+                  transform: 'concatenate_list',
+                  arguments: {
+                    list_to_concatenate: {
+                      source: 'answers',
+                      identifier: ['first-name', 'last-name'],
+                    },
+                    delimiter: ' ',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+      groups: [
+        {
+          id: 'visitor-group',
+          title: '',
+          blocks: [
+            visitor_interstitial(census_date),
+            visitor_dob(census_date),
+            visitor_sex,
+            usual_household_address,
+            usual_household_address_details,
+          ],
+        },
+        {
+          id: 'visitor-submit-group',
+          title: 'Summary',
+          blocks: [
+            {
+              id: 'visitor-summary',
+              type: 'SectionSummary',
+            },
           ],
         },
       ],
