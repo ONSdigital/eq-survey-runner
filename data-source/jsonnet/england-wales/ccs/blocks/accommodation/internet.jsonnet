@@ -4,7 +4,7 @@
   question: {
     id: 'internet-question',
     title: 'How do you and the people in your household connect to the internet?',
-    description: '',
+    description: 'Tell respondent to turn to <strong>Showcard 6</strong>',
     type: 'MutuallyExclusive',
     mandatory: false,
     answers: [

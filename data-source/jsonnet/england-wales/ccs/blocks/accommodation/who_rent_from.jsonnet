@@ -4,6 +4,7 @@
   question: {
     id: 'who-rent-from-question',
     title: 'Who is your landlord?',
+    description: 'Tell respondent to turn to <strong>Showcard 5</strong>',
     type: 'General',
     answers: [{
       id: 'who-rent-from-answer',

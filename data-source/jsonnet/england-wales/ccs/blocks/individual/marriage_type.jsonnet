@@ -4,6 +4,7 @@ local rules = import 'rules.libsonnet';
 local question(title) = {
   id: 'marriage-type-question',
   title: title,
+  description: 'Tell respondent to turn to <strong>Showcard 8</strong>',
   type: 'General',
   answers: [
     {
