@@ -16,6 +16,9 @@
     "classes": "u-mb-s"
   }) %}
     <p>{{ _("To help protect your information we have signed you out") }}.</p>
+    {% if using_edge %}
+    <p>If you have been timed out unexpectedly on more than one occasion, please try using a different browser. If you’re still having problems completing the Census, <a href="https://census.gov.uk/contact-us/">contact us</a>.</p>
+    {% endif %}
   {% endcall %}
 
   {% if account_service_url %}
