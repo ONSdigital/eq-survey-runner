@@ -1,4 +1,5 @@
 from app.data_model.answer_store import AnswerStore
+from app.data_model.list_store import ListStore, ListModel
 from app.questionnaire.placeholder_parser import PlaceholderParser
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
@@ -24,6 +25,81 @@ def test_metadata_placeholder():
 
     placeholders = parser(placeholder_list)
     assert period_str == placeholders['period']
+
+
+def test_list_placeholder():
+    placeholder_list = [
+        {
+            'placeholder': 'person_list',
+            'value': {
+                'source': 'list_store',
+                'list_name': 'people',
+                'identifiers': ['first_name', 'last_name'],
+            },
+        }
+    ]
+    parser = PlaceholderParser(
+        language='en',
+        answer_store=AnswerStore(
+            [
+                {'answer_id': 'first_name', 'value': 'Joe', 'list_item_id': 'sdfsdf'},
+                {'answer_id': 'last_name', 'value': 'Bloggs', 'list_item_id': 'sdfsdf'},
+                {
+                    'answer_id': 'first_name',
+                    'value': 'Josephine',
+                    'list_item_id': 'kjasdn',
+                },
+                {'answer_id': 'last_name', 'value': 'Bloggs', 'list_item_id': 'kjasdn'},
+            ]
+        ),
+        list_store=ListStore([{'name': 'people', 'items': ['sdfsdf', 'kjasdn']}]),
+    )
+
+    placeholders = parser(placeholder_list)
+
+    assert [['Joe', 'Bloggs'], ['Josephine', 'Bloggs']] == placeholders['person_list']
+
+
+def test_concatenate_lists_transform():
+    list_transform = [
+        {
+            "placeholder": "person_list",
+            "transforms": [
+                {
+                    "arguments": {
+                        "delimiter": " ",
+                        "lists_to_concatenate": {
+                            "identifiers": ["first_name", "last_name"],
+                            "list_name": "people",
+                            "source": "list_store",
+                        },
+                    },
+                    "transform": "concatenate_lists",
+                }
+            ],
+        }
+    ]
+
+    parser = PlaceholderParser(
+        language='en',
+        answer_store=AnswerStore(
+            [
+                {'answer_id': 'first_name', 'value': 'Joe', 'list_item_id': 'sdfsdf'},
+                {'answer_id': 'last_name', 'value': 'Bloggs', 'list_item_id': 'sdfsdf'},
+                {
+                    'answer_id': 'first_name',
+                    'value': 'Josephine',
+                    'list_item_id': 'kjasdn',
+                },
+                {'answer_id': 'last_name', 'value': 'Bloggs', 'list_item_id': 'kjasdn'},
+            ]
+        ),
+        list_store=ListStore([{'name': 'people', 'items': ['sdfsdf', 'kjasdn']}]),
+    )
+
+    placeholders = parser(list_transform)
+
+    assert ['Joe Bloggs', 'Josephine Bloggs'] == placeholders['person_list']
 
 
 def test_previous_answer_transform_placeholder():

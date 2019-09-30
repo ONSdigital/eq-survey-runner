@@ -59,6 +59,15 @@ class PlaceholderTransforms:
         filtered_list = self.remove_empty_from_list(list_to_concatenate)
         return delimiter.join(filtered_list)
 
+    def concatenate_lists(self, lists_to_concatenate, delimiter):
+        filtered_lists = self.remove_empty_from_list(lists_to_concatenate)
+        results = []
+        for lists_to_concatenate in filtered_lists:
+            filtered_list = self.remove_empty_from_list(lists_to_concatenate)
+            filtered_result = delimiter.join(filtered_list)
+            results.append(filtered_result)
+        return results
+
     def format_possessive(self, string_to_format):
         if string_to_format and self.language == 'en':
             lowered_string = string_to_format.lower()

@@ -3,6 +3,7 @@ from typing import Mapping, Sequence, Union
 from jinja2 import escape, Markup
 
 from app.data_model.answer_store import AnswerStore
+from app.data_model.list_store import ListStore, ListModel
 from app.questionnaire.placeholder_transforms import PlaceholderTransforms
 
 
@@ -17,6 +18,7 @@ class PlaceholderParser:
         language,
         schema=None,
         answer_store=None,
+        list_store=None,
         metadata=None,
         list_item_id=None,
         location=None,
@@ -24,6 +26,7 @@ class PlaceholderParser:
 
         self._schema = schema
         self._answer_store = answer_store or AnswerStore()
+        self._list_store = list_store or ListStore()
         self._metadata = metadata
         self._list_item_id = list_item_id
         self._location = location
@@ -46,6 +49,20 @@ class PlaceholderParser:
             return escape(answer.value)
         return None
 
+    def _lookup_list(self, list_name: str, identifiers: Sequence[str]) -> Sequence:
+        list_model = self._list_store.get(list_name)
+        list_answers = []
+
+        for list_item_id in list_model.items:
+            list_answer = []
+            for list_item_answer_id in identifiers:
+                answer = self._answer_store.get_answer(
+                    list_item_answer_id, list_item_id
+                )
+                list_answer.append(answer.value)
+            list_answers.append(list_answer)
+        return list_answers
+
     def _parse_placeholder(self, placeholder: Mapping) -> Mapping:
         try:
             return self._parse_transforms(placeholder['transforms'])
@@ -54,11 +71,16 @@ class PlaceholderParser:
 
     def _parse_value_source(self, placeholder: Mapping):
         source = placeholder['value']['source']
-        source_id = placeholder['value']['identifier']
 
         if source == 'answers':
-            return self._lookup_answer(source_id, self._list_item_id)
-        return self._metadata[source_id]
+            return self._lookup_answer(
+                placeholder['value']['identifier'], self._list_item_id
+            )
+        elif source == 'list_store':
+            return self._lookup_list(
+                placeholder['value']['list_name'], placeholder['value']['identifiers']
+            )
+        return self._metadata[placeholder['value']['identifier']]
 
     def _parse_transforms(self, transform_list: Sequence[Mapping]):
         transformed_value = None
@@ -86,6 +108,10 @@ class PlaceholderParser:
                         transform_args[arg_key] = self._lookup_answer(
                             arg_value['identifier'], list_item_id
                         )
+                elif arg_value['source'] == 'list_store':
+                    transform_args[arg_key] = self._lookup_list(
+                        arg_value['list_name'], arg_value['identifiers']
+                    )
                 elif arg_value['source'] == 'metadata':
                     if isinstance(arg_value['identifier'], list):
                         transform_args[arg_key] = [
