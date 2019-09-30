@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 11:18+0100\n"
+"POT-Creation-Date: 2019-09-30 12:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -491,9 +491,7 @@ msgid "Give us feedback and help us improve this service"
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:12
-msgid ""
-"Give us feedback and help us improve this service.<br>Tell us what you "
-"think of this service by emailing"
+msgid "Tell us what you think of this service by emailing"
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:13
