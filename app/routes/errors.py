@@ -68,7 +68,7 @@ def log_exception(error, status_code):
 def _render_error_page(status_code, template=None):
     handle_language()
     template = template or status_code
-    using_edge = 'edge' in request.user_agent.string.lower()
+    using_edge = request.user_agent.browser == 'edge'
 
     return (
         render_template(template=f'errors/{template}', using_edge=using_edge),
