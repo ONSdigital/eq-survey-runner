@@ -58,4 +58,20 @@ function(census_date) {
       when: [rules.isProxy],
     },
   ],
+  routing_rules: [
+    {
+      goto: {
+        block: 'visitor-sex',
+        when: [{
+          id: 'visitor-date-of-birth-answer',
+          condition: 'set',
+        }],
+      },
+    },
+    {
+      goto: {
+        block: 'visitor-age-last-birthday',
+      },
+    },
+  ],
 }

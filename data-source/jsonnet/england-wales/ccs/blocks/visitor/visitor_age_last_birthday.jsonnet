@@ -2,16 +2,17 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import 'rules.libsonnet';
 
 local question(title, census_date) = {
-    id: 'date-of-birth-question',
+    id: 'visitor-age-last-birthday-question',
     description: '',
-    type: 'MutuallyExclusive',
+    type: 'General',
     title: title,
     mandatory: false,
     answers: [
         {
-            id: 'date-of-birth-answer',
-            mandatory: false,
-            type: 'Date',
+            id: 'visitor-age-last-birthday-answer',
+            label: 'Age',
+            mandatory: true,
+            type: 'TextField',
             minimum: {
                 value: census_date,
                 offset_by: {
@@ -23,23 +24,24 @@ local question(title, census_date) = {
             },
         },
         {
-            id: 'date-of-birth-exclusive-answer',
+            id: 'visitor-age-estimate-answer',
             mandatory: false,
+            label: '',
             type: 'Checkbox',
             options: [
                 {
-                    label: 'Date of birth is not known',
-                    value: 'Date of birth is not known',
+                    label: 'Estimate',
+                    value: 'Estimate',
                 },
             ],
         },
     ],
 };
 
-local nonProxyTitle = 'What is your date of birth?';
+local nonProxyTitle = 'What was your age on your last birthday?';
 
 local proxyTitle = {
-  text: 'What is <em>{person_name_possessive}</em> date of birth?',
+  text: 'What was <em>{person_name_possessive}</em> on their last birthday?',
   placeholders: [
     placeholders.personNamePossessive,
   ],
@@ -47,7 +49,7 @@ local proxyTitle = {
 
 function(census_date) {
   type: 'Question',
-  id: 'date-of-birth',
+  id: 'visitor-age-last-birthday',
   question_variants: [
     {
       question: question(nonProxyTitle, census_date),
@@ -61,16 +63,7 @@ function(census_date) {
   routing_rules: [
     {
       goto: {
-        block: 'confirm-dob',
-        when: [{
-          id: 'date-of-birth-answer',
-          condition: 'set',
-        }],
-      },
-    },
-    {
-      goto: {
-        block: 'age-last-birthday',
+        block: 'visitor-sex',
       },
     },
   ],
