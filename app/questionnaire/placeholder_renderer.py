@@ -3,6 +3,7 @@ from copy import deepcopy
 from jsonpointer import set_pointer, resolve_pointer
 
 from app.data_model.answer_store import AnswerStore
+from app.data_model.list_store import ListStore
 from app.questionnaire.placeholder_parser import PlaceholderParser
 
 
@@ -39,11 +40,12 @@ class PlaceholderRenderer:
     """
 
     def __init__(
-        self, language, schema, answer_store=None, metadata=None, location=None
+        self, language, schema, answer_store=None, list_store=None, metadata=None, location=None
     ):
         self._language = language
         self._schema = schema
         self._answer_store = answer_store or AnswerStore()
+        self._list_store = list_store or ListStore()
         self._metadata = metadata
         self._location = location
 
@@ -57,6 +59,7 @@ class PlaceholderRenderer:
             language=self._language,
             schema=self._schema,
             answer_store=self._answer_store,
+            list_store=self._list_store,
             metadata=self._metadata,
             list_item_id=list_item_id,
             location=self._location,

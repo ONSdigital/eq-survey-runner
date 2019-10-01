@@ -71,6 +71,7 @@ class BlockHandler:
                 self._language,
                 schema=self._schema,
                 answer_store=self._questionnaire_store.answer_store,
+                list_store=self._questionnaire_store.list_store,
                 metadata=self._questionnaire_store.metadata,
                 location=self._current_location,
             )
