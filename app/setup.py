@@ -136,8 +136,14 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     # request will use the logger context of the previous request.
     @application.before_request
     def before_request():  # pylint: disable=unused-variable
+        span, trace = _get_span_and_trace(flask_request)
+
+        # While True the session lives for permanent_session_lifetime seconds
+        # Needed to be able to set the client-side cookie expiration
+        cookie_session.permanent = True
+
         request_id = str(uuid4())
-        logger.new(request_id=request_id)
+        logger.new(request_id=request_id, span=span, trace=trace)
 
         logger.info(
             'request',
@@ -232,20 +238,14 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
             return response
         return response
 
-    @application.after_request
-    def after_request(response):  # pylint: disable=unused-variable
-        # We're using the stringified version of the Flask session to get a rough
-        # length for the cookie. The real length won't be known yet as Flask
-        # serialises and adds the cookie header after this method is called.
-        logger.info(
-            'response',
-            status_code=response.status_code,
-            session_cookie_content_length=len(str(cookie_session)),
-            session_modified=cookie_session.modified,
-        )
-        return response
-
     return application
+
+
+def _get_span_and_trace(request):
+    trace, span = flask_request.headers.get('X-Cloud-Trace-Context', ' / ').split('/')
+    if span:
+        span = span.split(';')[0]
+    return trace, span
 
 
 def setup_secure_headers(application):

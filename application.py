@@ -2,6 +2,7 @@
 
 import logging
 import os
+import sys
 
 from structlog import configure
 from structlog.dev import ConsoleRenderer
@@ -15,24 +16,29 @@ EQ_WERKZEUG_LOG_LEVEL = os.getenv('EQ_WERKZEUG_LOG_LEVEL', 'INFO')
 EQ_DEVELOPER_LOGGING = os.getenv('EQ_DEVELOPER_LOGGING', 'False').upper() == 'TRUE'
 
 
+class _LogLevelFilter():
+    def __init__(self, max_level):
+        self.max_level = max_level
+
+    def filter(self, record):
+        return record.levelno <= self.max_level
+
+
 def configure_logging():
-    # set up some sane logging, as opposed to what flask does by default
     log_format = "%(message)s"
-    levels = {
-        'CRITICAL': logging.CRITICAL,
-        'ERROR': logging.ERROR,
-        'WARNING': logging.WARNING,
-        'INFO': logging.INFO,
-        'DEBUG': logging.DEBUG,
-    }
-    handler = logging.StreamHandler()
-    logging.basicConfig(
-        level=levels[EQ_LOG_LEVEL], format=log_format, handlers=[handler]
-    )
+
+    info_handler = logging.StreamHandler(sys.stdout)
+    info_handler.setLevel(logging.getLevelName(EQ_LOG_LEVEL))
+    info_handler.addFilter(_LogLevelFilter(logging.WARNING))
+
+    error_handler = logging.StreamHandler(sys.stderr)
+    error_handler.setLevel(logging.ERROR)
+
+    logging.basicConfig(level=logging.getLevelName(EQ_LOG_LEVEL), format=log_format, handlers=[error_handler, info_handler])
 
     # Set werkzeug logging level
     werkzeug_logger = logging.getLogger('werkzeug')
-    werkzeug_logger.setLevel(level=levels[EQ_WERKZEUG_LOG_LEVEL])
+    werkzeug_logger.setLevel(level=logging.getLevelName(EQ_WERKZEUG_LOG_LEVEL))
 
     def parse_exception(_, __, event_dict):
         if EQ_DEVELOPER_LOGGING:
@@ -52,6 +58,7 @@ def configure_logging():
         parse_exception,
         renderer_processor,
     ]
+
     configure(
         context_class=wrap_dict(dict),
         logger_factory=LoggerFactory(),
