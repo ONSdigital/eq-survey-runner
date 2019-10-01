@@ -309,7 +309,8 @@
                                         }
                                     ]
                                 }
-                            }
+                            },
+                            "show_on_section_summary": false
                         },
                         {
                             "type": "Question",
@@ -319,7 +320,7 @@
                                 "id": "radio-placeholder-question",
                                 "title": "Are any of these people related to one another?",
                                 "description": {
-                                    "text": "Hello {person_list}",
+                                    "text": "{person_list}",
                                     "placeholders": [
                                         {
                                             "placeholder": "person_list",
