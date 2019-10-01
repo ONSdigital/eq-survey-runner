@@ -41,7 +41,7 @@
   routing_rules: [
     {
       goto: {
-        block: 'primary-person-list-collector',
+        block: 'who-lives-here-section-summary',
       },
     },
   ],
