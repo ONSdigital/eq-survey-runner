@@ -41,7 +41,7 @@ local proxyTitle = {
       when: [rules.isNotProxy, rules.over16],
     },
     {
-      question: question(proxyTitle)
+      question: question(proxyTitle),
     },
     {
       question: question(nonProxyTitle),

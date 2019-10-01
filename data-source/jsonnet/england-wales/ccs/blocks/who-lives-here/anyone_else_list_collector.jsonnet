@@ -95,11 +95,11 @@ function(census_date) {
         id: 'anyone-usually-live-at-question',
         title: questionTitle,
         guidance: {
-            contents: [
-              {
-                description: 'Remember to include only those people who share cooking facilities and share a living room or dining area',
-              },
-            ],
+          contents: [
+            {
+              description: 'Remember to include only those people who share cooking facilities and share a living room or dining area',
+            },
+          ],
         },
         description: 'Tell respondent to turn to <strong>Showcard 2</strong>',
         answers: [
@@ -128,11 +128,11 @@ function(census_date) {
         type: 'General',
         title: questionVariantTitle,
         guidance: {
-            contents: [
-              {
-                description: 'Remember to include only those people who share cooking facilities and share a living room or dining area',
-              },
-            ],
+          contents: [
+            {
+              description: 'Remember to include only those people who share cooking facilities and share a living room or dining area',
+            },
+          ],
         },
         description: 'Tell respondent to turn to <strong>Showcard 2</strong>',
         answers: [
@@ -238,6 +238,3 @@ function(census_date) {
     empty_list_text: 'There are no householders',
   },
 }
-
-
-

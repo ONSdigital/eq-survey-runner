@@ -3,7 +3,7 @@
   id: 'proxy',
   question: {
     id: 'proxy-question',
-    title: 'Are they answering the questions for themselves or on someone else\'s behalf?',
+    title: "Are they answering the questions for themselves or on someone else's behalf?",
     type: 'General',
     answers: [
       {
@@ -16,7 +16,7 @@
             value: 'Yes',
           },
           {
-            label: 'No, they are answering on someone else\'s behalf',
+            label: "No, they are answering on someone else's behalf",
             value: 'No',
           },
         ],

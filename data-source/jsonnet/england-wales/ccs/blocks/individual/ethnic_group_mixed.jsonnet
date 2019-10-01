@@ -77,25 +77,25 @@ local proxyTitle = {
     {
       goto: {
         block: 'another-uk-address',
-        when: [ rules.under1 ],
+        when: [rules.under1],
       },
     },
     {
       goto: {
         block: 'another-uk-address',
-        when: [ rules.estimatedAgeUnder1 ],
+        when: [rules.estimatedAgeUnder1],
       },
     },
     {
       goto: {
         block: 'past-usual-household-address',
-        when: [ rules.under4 ],
+        when: [rules.under4],
       },
     },
     {
       goto: {
         block: 'past-usual-household-address',
-        when: [ rules.estimatedAgeUnder4 ],
+        when: [rules.estimatedAgeUnder4],
       },
     },
     {

@@ -1,10 +1,10 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 
 local questionTitle = {
-    text: 'Were you usually living at {address} on 13th October 2019?',
-        placeholders: [
-            placeholders.address,
-    ],
+  text: 'Were you usually living at {address} on 13th October 2019?',
+  placeholders: [
+    placeholders.address,
+  ],
 };
 
 {
@@ -65,27 +65,25 @@ local questionTitle = {
           },
         ],
       },
-   ],
- },
- routing_rules: [
+    ],
+  },
+  routing_rules: [
     {
-        goto: {
-            block: 'anyone-else-usually-living',
-            when: [
-            {
-                id: 'you-live-here-answer',
-                condition: 'equals',
-                value: 'No',
-             },
-           ],
-        },
+      goto: {
+        block: 'anyone-else-usually-living',
+        when: [
+          {
+            id: 'you-live-here-answer',
+            condition: 'equals',
+            value: 'No',
+          },
+        ],
+      },
     },
     {
-        goto: {
-            block: 'anyone-else-list-collector',
-        },
+      goto: {
+        block: 'anyone-else-list-collector',
+      },
     },
   ],
 }
-
-

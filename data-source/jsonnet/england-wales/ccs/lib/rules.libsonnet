@@ -13,33 +13,33 @@ local listIsNotEmpty(listName) = {
 };
 
 local estimatedAgeOver16 = {
-    id: 'age-last-birthday-answer',
-    condition: 'greater than or equal to',
-    value: 16,
+  id: 'age-last-birthday-answer',
+  condition: 'greater than or equal to',
+  value: 16,
 };
 
 local estimatedAgeOver15 = {
-    id: 'age-last-birthday-answer',
-    condition: 'greater than or equal to',
-    value: 15,
+  id: 'age-last-birthday-answer',
+  condition: 'greater than or equal to',
+  value: 15,
 };
 
 local estimatedAgeUnder16 = {
-    id: 'age-last-birthday-answer',
-    condition: 'less than',
-    value: 16,
+  id: 'age-last-birthday-answer',
+  condition: 'less than',
+  value: 16,
 };
 
 local estimatedAgeUnder4 = {
-    id: 'age-last-birthday-answer',
-    condition: 'less than',
-    value: 4,
+  id: 'age-last-birthday-answer',
+  condition: 'less than',
+  value: 4,
 };
 
 local estimatedAgeUnder1 = {
-    id: 'age-last-birthday-answer',
-    condition: 'less than',
-    value: 1,
+  id: 'age-last-birthday-answer',
+  condition: 'less than',
+  value: 1,
 };
 
 {

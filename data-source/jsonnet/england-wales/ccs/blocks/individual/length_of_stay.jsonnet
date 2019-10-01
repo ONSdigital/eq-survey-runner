@@ -65,7 +65,7 @@ local proxyTitle = {
     },
     {
       goto: {
-        block: 'another-uk-address'
+        block: 'another-uk-address',
       },
     },
   ],

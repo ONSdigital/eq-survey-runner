@@ -2,37 +2,37 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import 'rules.libsonnet';
 
 local question(title, census_date) = {
-    id: 'age-last-birthday-question',
-    description: '',
-    type: 'General',
-    title: title,
-    mandatory: false,
-    answers: [
+  id: 'age-last-birthday-question',
+  description: '',
+  type: 'General',
+  title: title,
+  mandatory: false,
+  answers: [
+    {
+      id: 'age-last-birthday-answer',
+      label: 'Age',
+      mandatory: true,
+      type: 'Number',
+      min_value: {
+        value: 0,
+      },
+      max_value: {
+        value: 115,
+      },
+    },
+    {
+      id: 'age-estimate-answer',
+      mandatory: false,
+      label: '',
+      type: 'Checkbox',
+      options: [
         {
-            id: 'age-last-birthday-answer',
-            label: 'Age',
-            mandatory: true,
-            type: 'Number',
-            min_value: {
-                value: 0,
-            },
-            max_value: {
-                value: 115,
-            },
+          label: 'Estimate',
+          value: 'Estimate',
         },
-        {
-            id: 'age-estimate-answer',
-            mandatory: false,
-            label: '',
-            type: 'Checkbox',
-            options: [
-                {
-                    label: 'Estimate',
-                    value: 'Estimate',
-                },
-            ],
-        },
-    ],
+      ],
+    },
+  ],
 };
 
 local nonProxyTitle = 'What was your age on your last birthday?';
@@ -65,5 +65,3 @@ function(census_date) {
     },
   ],
 }
-
-

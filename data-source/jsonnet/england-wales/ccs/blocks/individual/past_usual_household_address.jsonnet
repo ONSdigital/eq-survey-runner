@@ -67,7 +67,7 @@ local proxyDescription = 'If they had no usual address one year ago, state the a
             condition: 'not equals',
             value: 'Other',
           },
-          rules.under16
+          rules.under16,
         ],
       },
     },
@@ -80,7 +80,7 @@ local proxyDescription = 'If they had no usual address one year ago, state the a
             condition: 'not equals',
             value: 'Other',
           },
-          rules.estimatedAgeUnder16
+          rules.estimatedAgeUnder16,
         ],
       },
     },
@@ -93,7 +93,7 @@ local proxyDescription = 'If they had no usual address one year ago, state the a
             condition: 'not equals',
             value: 'Other',
           },
-          rules.over16
+          rules.over16,
         ],
       },
     },
@@ -106,7 +106,7 @@ local proxyDescription = 'If they had no usual address one year ago, state the a
             condition: 'not equals',
             value: 'Other',
           },
-          rules.estimatedAgeOver16
+          rules.estimatedAgeOver16,
         ],
       },
     },

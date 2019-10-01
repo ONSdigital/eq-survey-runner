@@ -32,21 +32,21 @@ local questionTitle = {
   },
   routing_rules: [
     {
-        goto: {
-            block: 'household-usual-address',
-            when: [
-            {
-                id: 'anyone-else-usually-living-answer',
-                condition: 'equals',
-                value: 'No',
-             },
-           ],
-        },
+      goto: {
+        block: 'household-usual-address',
+        when: [
+          {
+            id: 'anyone-else-usually-living-answer',
+            condition: 'equals',
+            value: 'No',
+          },
+        ],
+      },
     },
     {
-        goto: {
-            block: 'interviewer-note-interstitial',
-        },
+      goto: {
+        block: 'interviewer-note-interstitial',
+      },
     },
   ],
 }

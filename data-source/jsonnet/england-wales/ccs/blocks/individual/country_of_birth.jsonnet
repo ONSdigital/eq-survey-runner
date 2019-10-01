@@ -45,7 +45,7 @@ local proxyTitle = {
       when: [rules.isProxy],
     },
   ],
-    routing_rules: [
+  routing_rules: [
     {
       goto: {
         block: 'marriage-type',

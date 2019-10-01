@@ -10,53 +10,53 @@ local proxyTitle = {
 };
 
 local question(title) = {
-    id: 'another-uk-address-question',
-    title: title,
-    description: '<em> Tell respondent to turn to showcard 12</em>',
-    type: 'MutuallyExclusive',
-    mandatory: false,
-    answers: [
+  id: 'another-uk-address-question',
+  title: title,
+  description: '<em> Tell respondent to turn to showcard 12</em>',
+  type: 'MutuallyExclusive',
+  mandatory: false,
+  answers: [
+    {
+      id: 'another-uk-address-question',
+      mandatory: false,
+      type: 'Checkbox',
+      options: [
         {
-            id: 'another-uk-address-question',
-            mandatory: false,
-            type: 'Checkbox',
-            options: [
-        {
-            label: 'Previous home',
-            value: 'Previous home',
-            description: 'Moved since 13 October 2019',
+          label: 'Previous home',
+          value: 'Previous home',
+          description: 'Moved since 13 October 2019',
         },
         {
-            label: 'Armed forces base address',
-            value: 'Armed forces base address',
+          label: 'Armed forces base address',
+          value: 'Armed forces base address',
         },
         {
-            label: 'Another address when working away from home',
-            value: 'Another address when working away from home',
+          label: 'Another address when working away from home',
+          value: 'Another address when working away from home',
         },
         {
-            label: 'Student\'s home address',
-            value: 'Student\'s home address',
+          label: "Student's home address",
+          value: "Student's home address",
         },
         {
-            label: 'Student\'s term-time address',
-            value: 'Student\'s term-time address',
+          label: "Student's term-time address",
+          value: "Student's term-time address",
         },
         {
-            label: 'Another parent or guardian\'s address',
-            value: 'Another parent or guardian\'s address',
+          label: "Another parent or guardian's address",
+          value: "Another parent or guardian's address",
         },
         {
-            label: 'Partner\'s address',
-            value: 'Partner\'s address',
+          label: "Partner's address",
+          value: "Partner's address",
         },
         {
-            label: 'Holiday in the UK',
-            value: 'Holiday in the UK',
+          label: 'Holiday in the UK',
+          value: 'Holiday in the UK',
         },
         {
-            label: 'Other UK address',
-            value: 'Other UK address',
+          label: 'Other UK address',
+          value: 'Other UK address',
         },
       ],
     },
@@ -71,7 +71,7 @@ local question(title) = {
         },
       ],
     },
-   ],
+  ],
 };
 
 {
