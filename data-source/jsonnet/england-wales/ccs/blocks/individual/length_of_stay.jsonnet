@@ -57,6 +57,14 @@ local proxyTitle = {
     },
     {
       goto: {
+        block: 'employment-status',
+        when: [
+          rules.estimatedAgeOver16,
+        ],
+      },
+    },
+    {
+      goto: {
         block: 'another-uk-address'
       },
     },

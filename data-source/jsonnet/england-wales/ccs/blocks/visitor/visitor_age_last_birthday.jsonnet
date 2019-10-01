@@ -12,15 +12,12 @@ local question(title, census_date) = {
             id: 'visitor-age-last-birthday-answer',
             label: 'Age',
             mandatory: true,
-            type: 'TextField',
-            minimum: {
-                value: census_date,
-                offset_by: {
-                years: -115,
+            type: 'Number',
+            min_value: {
+                value: 0,
             },
-        },
-            maximum: {
-                value: 'now',
+            max_value: {
+                value: 115,
             },
         },
         {
