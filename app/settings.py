@@ -104,3 +104,5 @@ USER_IK = 'user_ik'
 EQ_SESSION_ID = 'eq-session-id'
 
 EQ_LIST_ITEM_ID_LENGTH = 6
+
+COOKIE_SETTINGS_URL = os.getenv('COOKIE_SETTINGS_URL')

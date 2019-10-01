@@ -1,61 +1,65 @@
-{% set footer = {
-  "assetsURL": page.assetsURL,
-  "OGLLink": {
-    "HTML": _("All content is available under the Open Government Licence v3.0, except where otherwise stated")
-  }
-} %}
+{% set contact_us_url = "https://census.gov.uk/contact-us/" %}
+{% set cookies_url = "https://census.gov.uk/cookies/" %}
+{% set help_url = "https://census.gov.uk/help/how-to-answer-questions/online-questions-help/" %}
 
 {% if schema_theme == "census-nisra" %}
 
   {% set contact_us_url = "https://census.gov.uk/ni/contact-us/" %}
   {% set cookies_url = "https://census.gov.uk/ni/cookies/" %}
+  {% set help_url = "https://census.gov.uk/ni/help/help-with-the-questions/online-questions-help/" %}
+  {% set logo = "nisra-logo-black-en" %}
+  {% set alt = "Nisra Logo" %}
+  {% set class_small_logo = "footer__poweredby-img--small" %}
 
 {% elif language_code == "cy" %}
 
   {% set contact_us_url = "https://cyfrifiad.gov.uk/cysylltu-a-ni/" %}
   {% set cookies_url = "https://cyfrifiad.gov.uk/cwcis/" %}
-
-{% else %}
-
-  {% set contact_us_url = "https://census.gov.uk/contact-us/" %}
-  {% set cookies_url = "https://census.gov.uk/cookies/" %}
+  {% set help_url = "https://cyfrifiad.gov.uk/help/sut-i-ateb-y-cwestiynau/help-y-cwestiynau-ar-lein/" %}
 
 {% endif %}
 
-{% do footer | setAttribute("cols", [
-    {
-        "itemsList": [
-            {
-                  "text": _('Contact us'),
-                  "url": contact_us_url,
-                  "target": "_blank"
-            },
-            {
-                  "text": _('Help'),
-                  "url": 'https://census.gov.uk/help/how-to-answer-questions/online-questions-help-ew/',
-                  "target": "_blank"
-            }
-        ]
-    },
-    {
-        "itemsList": [
-            {
-                "text": _("Cookies"),
-                "url": cookies_url,
-                "target": "_blank"
-            },
-            {
-                "text": _("Privacy and data protection"),
-                "url": "/privacy",
-                "target": "_blank"
-            },
-            {
-                "text": _("Accessibility"),
-                "url": "/accessibility",
-                "target": "_blank"
-            }
-        ]
-    }
-  ]) %}
+{% set footer = {
+  "poweredBy": {
+    "logo": logo,
+    "classes": class_small_logo,
+    "alt": ""
+  }
+} %}
+
+{% do footer | setAttribute("rows", [
+  {
+    "itemsList": [
+      {
+        "text": _("Contact us"),
+        "url": contact_us_url,
+        "target": "_blank"
+      },
+      {
+        "text": _("Help"),
+        "url": help_url,
+        "target": "_blank"
+      }
+    ]
+  },
+  {
+    "itemsList": [
+      {
+        "text": _("Cookies"),
+        "url": cookies_url
+      },
+      {
+        "text": _("Privacy and data protection"),
+        "url": "/privacy",
+        "target": "_blank"
+      },
+      {
+        "text": _("Accessibility"),
+        "url": "/accessibility",
+        "target": "_blank"
+      }
+    ]
+  }
+]) %}
 
 {% do page | setAttribute("footer", footer) %}
