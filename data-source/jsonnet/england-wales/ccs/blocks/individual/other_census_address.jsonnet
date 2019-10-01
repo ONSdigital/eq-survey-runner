@@ -8,31 +8,31 @@ local question(title) = {
     type: 'General',
     answers: [
       {
-        id: 'household-usual-address-answer-building',
+        id: 'other-census-address-answer-building',
         label: 'Address line 1',
         mandatory: false,
         type: 'TextField',
       },
       {
-        id: 'household-usual-address-answer-street',
+        id: 'other-census-address-answer-street',
         label: 'Address line 2',
         mandatory: false,
         type: 'TextField',
       },
       {
-        id: 'household-usual-address-answer-city',
+        id: 'other-census-address-answer-city',
         label: 'Town or city',
         mandatory: false,
         type: 'TextField',
       },
       {
-        id: 'household-usual-address-answer-county',
+        id: 'other-census-address-answer-county',
         label: 'County (optional)',
         mandatory: false,
         type: 'TextField',
       },
       {
-        id: 'household-usual-address-answer-postcode',
+        id: 'other-census-address-answer-postcode',
         label: 'Postcode',
         mandatory: false,
         type: 'TextField',

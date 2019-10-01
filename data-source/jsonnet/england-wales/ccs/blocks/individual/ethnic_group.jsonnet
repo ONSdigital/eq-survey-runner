@@ -123,7 +123,55 @@ local question(title) = (
     },
     {
       goto: {
-        block: 'religion',
+        block: 'another-uk-address',
+        when: [
+          {
+            id: 'ethnic-group-answer',
+            condition: 'not set',
+          },
+          rules.under1,
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'another-uk-address',
+        when: [
+          {
+            id: 'ethnic-group-answer',
+            condition: 'not set',
+          },
+          rules.estimatedAgeUnder1,
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'past-usual-household-address',
+        when: [
+          {
+            id: 'ethnic-group-answer',
+            condition: 'not set',
+          },
+          rules.under4,
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'past-usual-household-address',
+        when: [
+          {
+            id: 'ethnic-group-answer',
+            condition: 'not set',
+          },
+          rules.estimatedAgeUnder4,
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'in-education',
       },
     },
   ],
