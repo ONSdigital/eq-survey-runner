@@ -5,6 +5,7 @@ from app.helpers.template_helper import safe_content
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.schema_utils import transform_variants
+from app.views.contexts.list_collector import build_list_items_summary_context
 from app.views.contexts.question import build_question_context
 from app.views.handlers.block import BlockHandler
 
@@ -91,7 +92,7 @@ class Question(BlockHandler):
     def _render_block(self, block_id):
         block_schema = self._schema.get_block(block_id)
 
-        transformed_block = transform_variants(
+        variant_block = transform_variants(
             block_schema,
             self._schema,
             self._questionnaire_store.metadata,
@@ -100,13 +101,23 @@ class Question(BlockHandler):
             self._current_location,
         )
 
-        self.page_title = self._get_page_title(transformed_block)
+        self.page_title = self._get_page_title(variant_block)
 
+        variant_question = variant_block.pop('question')
         rendered_question = self.placeholder_renderer.render(
-            transformed_block.pop('question'), self._current_location.list_item_id
+            variant_question, self._current_location.list_item_id
         )
 
-        return {**transformed_block, **{'question': rendered_question}}
+        if 'summary' in variant_question:
+            list_summary_context = build_list_items_summary_context(
+                variant_block,
+                self._schema,
+                self._questionnaire_store.answer_store,
+                self._questionnaire_store.list_store,
+                self._language,
+            )
+
+        return {**variant_block, **{'question': rendered_question}}
 
     def get_return_to_hub_url(self):
         if (
