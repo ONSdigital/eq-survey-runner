@@ -1,9 +1,14 @@
+local placeholders = import '../../../lib/placeholders.libsonnet';
+
 {
   type: 'Question',
   id: 'internet',
   question: {
     id: 'internet-question',
-    title: 'How do you and the people in your household connect to the internet at {address}?',
+    title: {
+      text: 'How do you and the people in your household connect to the internet at {address}?',
+      placeholders: [placeholders.address],
+    },
     description: 'Tell respondent to turn to <strong>Showcard 6</strong>',
     type: 'MutuallyExclusive',
     mandatory: false,

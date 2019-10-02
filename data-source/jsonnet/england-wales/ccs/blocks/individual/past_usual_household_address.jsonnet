@@ -37,7 +37,7 @@ local question(title, description) = {
 local nonProxyTitle = 'One year ago, on 13 October 2019 what was your usual address?';
 local nonProxyDescription = 'If you had no usual address one year ago, state the address where you were staying';
 local proxyTitle = {
-  text: 'One year ago on 13 October 2019, what was <em>{person_name_possessive}</em> usual address?',
+  text: 'One year ago, on 13 October 2019, what was <em>{person_name_possessive}</em> usual address?',
   placeholders: [
     placeholders.personNamePossessive,
   ],

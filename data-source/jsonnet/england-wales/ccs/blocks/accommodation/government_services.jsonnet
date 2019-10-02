@@ -23,10 +23,12 @@
           {
             label: 'Completing forms online',
             value: 'Completing forms online',
+            description: 'For example, taxing a car, registering to vote, applying for school places',
           },
           {
             label: 'Applying for official documents',
             value: 'Applying for official documents',
+            description: 'For example, passports, visas',
           },
           {
             label: 'Used paper-based services',

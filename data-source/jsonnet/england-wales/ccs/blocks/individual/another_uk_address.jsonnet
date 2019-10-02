@@ -10,7 +10,7 @@ local proxyTitle = {
 };
 
 local question(title) = {
-  id: 'another-uk-address-question',
+  id: 'another-uk-address',
   title: title,
   description: '<em> Tell respondent to turn to showcard 12</em>',
   type: 'MutuallyExclusive',
