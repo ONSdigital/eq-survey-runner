@@ -108,16 +108,19 @@ class Question(BlockHandler):
             variant_question, self._current_location.list_item_id
         )
 
-        if 'summary' in variant_question:
+        response = {**variant_block, **{'question': rendered_question}}
+
+        if 'list_summary' in variant_question:
             list_summary_context = build_list_items_summary_context(
-                variant_block,
+                block_schema['question']['list_summary'],
                 self._schema,
                 self._questionnaire_store.answer_store,
                 self._questionnaire_store.list_store,
                 self._language,
             )
+            response['question']['list_items'] = list_summary_context
 
-        return {**variant_block, **{'question': rendered_question}}
+        return response
 
     def get_return_to_hub_url(self):
         if (
