@@ -42,6 +42,7 @@ local proxyTitle = {
     },
     {
       question: question(proxyTitle),
+      when: [rules.isProxy, rules.over16],
     },
     {
       question: question(nonProxyTitle),
@@ -50,6 +51,14 @@ local proxyTitle = {
     {
       question: question(proxyTitle),
       when: [rules.isProxy],
+    },
+    {
+      question: question(nonProxyTitle),
+      when: [rules.isNotProxy, rules.estimatedAgeOver16],
+    },
+    {
+      question: question(proxyTitle),
+      when: [rules.isProxy, rules.estimatedAgeOver16],
     },
   ],
 }
