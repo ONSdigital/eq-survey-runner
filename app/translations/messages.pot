@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-20 09:01+0100\n"
+"POT-Creation-Date: 2019-09-30 12:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -466,23 +466,23 @@ msgid ""
 "the survey again."
 msgstr ""
 
-#: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:14
+#: templates/layouts/_base.html:33
 msgid "We use cookies to improve your experience of census.gov.uk"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:24
+#: templates/layouts/_questionnaire.html:12
 msgid "Previous"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:39
+#: templates/layouts/_questionnaire.html:27
 msgid "Save and continue"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:50
+#: templates/layouts/_questionnaire.html:38
 msgid "Can't complete this question?"
 msgstr ""
 
-#: templates/layouts/_questionnaire.html:51
+#: templates/layouts/_questionnaire.html:39
 msgid "Choose another section and return to this later"
 msgstr ""
 
@@ -491,13 +491,11 @@ msgid "Give us feedback and help us improve this service"
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:12
-msgid "Tell us what you think of this website by emailing"
+msgid "Tell us what you think of this service by emailing"
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:13
-msgid ""
-"This email is for feedback only and we will not be able to reply. Do not "
-"include any personal details."
+msgid "If you need help with your census, get in touch with our contact centre."
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:14
@@ -507,20 +505,20 @@ msgstr ""
 #: templates/layouts/configs/_feedback.html:15
 msgid ""
 "This email is for feedback on the census rehearsal, which will help us to"
-" improve Census 2021. We are unable to respond to these emails.\n"
+" improve Census 2021.\n"
 "If you need help with your census, visit https://www.census.gov.uk"
 "/contact-us."
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:33
+#: templates/layouts/configs/_footer.html:34
 msgid "Contact us"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:38
+#: templates/layouts/configs/_footer.html:39
 msgid "Help"
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:47
+#: templates/layouts/configs/_footer.html:48
 msgid "Cookies"
 msgstr ""
 
