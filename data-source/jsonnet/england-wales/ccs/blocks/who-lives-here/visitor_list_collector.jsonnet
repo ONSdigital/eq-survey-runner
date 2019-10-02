@@ -85,12 +85,12 @@ function(census_date) {
         type: 'Radio',
         options: [
           {
-            label: 'Yes, I need to add someone',
-            value: 'Yes, I need to add someone',
+            label: 'Yes',
+            value: 'Yes',
           },
           {
-            label: 'No, I do not need to add anyone',
-            value: 'No, I do not need to add anyone',
+            label: 'No',
+            value: 'No',
           },
         ],
       },
@@ -163,12 +163,12 @@ function(census_date) {
           type: 'Radio',
           options: [
             {
-              label: 'Yes, I want to remove this person',
-              value: 'Yes, I want to remove this person',
+              label: 'Yes',
+              value: 'Yes',
             },
             {
-              label: 'No, I do not want to remove this person',
-              value: 'No, I do not want to remove this person',
+              label: 'No',
+              value: 'No',
             },
           ],
         },

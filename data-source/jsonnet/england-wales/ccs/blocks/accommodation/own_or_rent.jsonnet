@@ -6,7 +6,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
   question: {
     id: 'own-or-rent-question',
     title: {
-      text: 'Did your household own or rent <em>{address}</em>?',
+      text: 'Does your household own or rent <em>{address}</em>?',
       placeholders: [placeholders.address],
     },
     description: 'Tell respondent to turn to <strong>Showcard 4</strong>',
@@ -48,6 +48,26 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
           id: 'own-or-rent-answer',
           condition: 'equals',
           value: 'Rents with or without housing benefit',
+        }],
+      },
+    },
+    {
+      goto: {
+        block: 'who-rent-from',
+        when: [{
+          id: 'own-or-rent-answer',
+          condition: 'equals',
+          value: 'Part owns and part rents',
+        }],
+      },
+    },
+    {
+      goto: {
+        block: 'who-rent-from',
+        when: [{
+          id: 'own-or-rent-answer',
+          condition: 'equals',
+          value: 'Lives here rent free',
         }],
       },
     },

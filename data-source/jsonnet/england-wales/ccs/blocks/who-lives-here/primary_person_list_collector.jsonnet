@@ -21,7 +21,7 @@ local questionTitle = {
     question: {
       id: 'primary-person-add-or-edit-question',
       type: 'General',
-      title: 'What is your name?',
+      title: 'What is your full name?',
       answers: [
         {
           id: 'first-name',

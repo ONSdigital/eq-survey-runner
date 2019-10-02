@@ -2,7 +2,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import 'rules.libsonnet';
 
 local questionTitle(census_date) = {
-  text: 'Were there any visitors staying overnight on {census_date} at {address}? A visitor is a person staying overnight in your household who usually lives at another address',
+  text: 'Were there any visitors staying with your household at {address} on {census_date}? A visitor is a person staying overnight in your household who usually lives at another address.',
   placeholders: [
     placeholders.censusDate(census_date),
     placeholders.address,

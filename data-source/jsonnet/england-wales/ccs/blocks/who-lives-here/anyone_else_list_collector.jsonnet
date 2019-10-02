@@ -2,14 +2,14 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import 'rules.libsonnet';
 
 local questionTitle = {
-  text: 'Did anyone usually live at {address}?',
+  text: 'Did anyone usually live at {address} on Sunday 13 October 2019?',
   placeholders: [
     placeholders.address,
   ],
 };
 
 local questionVariantTitle = {
-  text: 'Did anyone else live at {address}?',
+  text: 'Did anyone else live at {address} on Sunday 13 October 2019?',
   placeholders: [
     placeholders.address,
   ],
