@@ -1,7 +1,6 @@
 import copy
 import json
 import logging
-from datetime import timedelta
 from uuid import uuid4
 
 import boto3
@@ -137,11 +136,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     # request will use the logger context of the previous request.
     @application.before_request
     def before_request():  # pylint: disable=unused-variable
-
-        # While True the session lives for permanent_session_lifetime seconds
-        # Needed to be able to set the client-side cookie expiration
-        cookie_session.permanent = True
-
         request_id = str(uuid4())
         logger.new(request_id=request_id)
 
@@ -429,11 +423,9 @@ def add_blueprints(application):
 
 
 def setup_secure_cookies(application):
-    session_timeout = application.config['EQ_SESSION_TIMEOUT_SECONDS']
     application.secret_key = application.eq['secret_store'].get_secret_by_name(
         'EQ_SECRET_KEY'
     )
-    application.permanent_session_lifetime = timedelta(seconds=session_timeout)
     application.session_interface = SHA256SecureCookieSessionInterface()
 
 
