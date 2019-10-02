@@ -8,9 +8,9 @@ local rules = import 'rules.libsonnet';
   question: {
     id: 'usual-address-household-question',
     title: {
-      text: 'What is <em>{person_name_possessive}</em> usual address?',
+      text: 'Did <em>{person_name}</em> usually live in the United Kingdom?',
       placeholders: [
-        placeholders.personNamePossessive,
+        placeholders.personName,
       ],
     },
     type: 'General',

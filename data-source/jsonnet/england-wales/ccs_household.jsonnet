@@ -211,7 +211,7 @@ function(region_code, census_date, census_month_year_date) {
           blocks: [
             visitor_interstitial(census_date),
             visitor_dob(census_date),
-            visitor_age_last_birthday(census_date),
+            visitor_age_last_birthday,
             visitor_sex,
             usual_household_address,
             usual_household_address_details,
