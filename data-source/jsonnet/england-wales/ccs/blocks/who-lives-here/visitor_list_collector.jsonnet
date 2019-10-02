@@ -66,11 +66,11 @@ function(census_date) {
   for_list: 'visitor',
   add_answer: {
     id: 'visitor-answer',
-    value: 'Yes, I need to add someone',
+    value: 'Yes',
   },
   remove_answer: {
     id: 'visitor-remove-confirmation',
-    value: 'Yes, I want to remove this person',
+    value: 'Yes',
   },
   question: {
     id: 'visitor-confirmation-question',
