@@ -23,7 +23,6 @@ local question(title, census_date) = {
     {
       id: 'age-estimate-answer',
       mandatory: false,
-      label: '',
       type: 'Checkbox',
       options: [
         {
