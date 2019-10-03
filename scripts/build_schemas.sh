@@ -39,15 +39,16 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
             SOURCE_FILE="data-source/jsonnet/northern-ireland/ccs_${census_type}.jsonnet"
             ADDITIONAL_LIBRARY_PATH="data-source/jsonnet/northern-ireland/${census_type}/lib/"
 
-            jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" --jpath "${ADDITIONAL_LIBRARY_PATH}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
+            echo "NI CCS survey not currently available"
 
         else
             SOURCE_FILE="data-source/jsonnet/england-wales/ccs_household.jsonnet"
             ADDITIONAL_LIBRARY_PATH="data-source/jsonnet/england-wales/ccs/lib/"
 
             jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" --tla-str census_month_year_date="${CENSUS_MONTH_YEAR_DATE}" --jpath "${ADDITIONAL_LIBRARY_PATH}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
+            echo "Built ${DESTINATION_FILE}"
         fi
-        echo "Built ${DESTINATION_FILE}"
+
     done
 done
 
