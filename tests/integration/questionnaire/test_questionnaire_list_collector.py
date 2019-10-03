@@ -145,7 +145,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.post({'another-anyone-else': 'No'})
 
-        self.assertInBody('This section is now complete')
+        self.assertInBody('Check your answers before continuing')
 
         self.post()
 
@@ -166,7 +166,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.post({'another-anyone-else': 'No'})
 
-        self.assertInBody('This section is now complete')
+        self.assertInBody('Check your answers before continuing')
 
         self.post()
 

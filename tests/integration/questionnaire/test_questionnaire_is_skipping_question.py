@@ -18,12 +18,12 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         # Given I launched a survey and have answered all questions
         self.launchSurvey('test_is_skipping_to_end')
         self.post({'test-skipping-answer': 'No'})
-        self.assertInBody('This section is now complete')
+        self.assertInBody('Check your answers before continuing')
         self.assertInBody('Were you forced to complete section 1?')
         self.post(action='save_continue')
 
         self.post({'test-skipping-answer-2': 'No'})
-        self.assertInBody('This section is now complete')
+        self.assertInBody('Check your answers before continuing')
         self.assertInBody('Were you forced to complete section 2?')
         self.post(action='save_continue')
 
