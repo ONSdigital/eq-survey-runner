@@ -21,11 +21,10 @@
 
     <h1>{{content.summary.title}}</h1>
       {% call onsPanel({
-        "type": "success",
+        "type": "info",
         "classes": "print__hidden u-mb-l"
       }) %}
-        <strong>{{ _("This section is now complete") }}</strong>
-        <p>{{ _("You can check your answers below") }}</p>
+        <p>{{ _("Check your answers before continuing") }}</p>
       {% endcall %}
   {% elif content.summary.summary_type == 'CalculatedSummary' %}
     <h1 data-qa="calculated-summary-title">{{content.summary.title}}</h1>
