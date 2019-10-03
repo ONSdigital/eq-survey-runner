@@ -14,18 +14,16 @@
       "classes": "print__hidden u-mb-l"
     }) %}
       <strong>{{ _("Please submit this survey to complete it") }}</strong>
-      <p>{{ _("You can check your answers below") }}</p>
+      <p>{{ _("Check your answers before submitting") }}</p>
     {% endcall %}
   {% elif content.summary.summary_type in ('SectionSummary') %}
     {% set group = content.summary.groups %}
 
     <h1>{{content.summary.title}}</h1>
       {% call onsPanel({
-        "type": "success",
         "classes": "print__hidden u-mb-l"
       }) %}
-        <strong>{{ _("This section is now complete") }}</strong>
-        <p>{{ _("You can check your answers below") }}</p>
+        <p>{{ _("Check your answers before continuing to the next section") }}</p>
       {% endcall %}
   {% elif content.summary.summary_type == 'CalculatedSummary' %}
     <h1 data-qa="calculated-summary-title">{{content.summary.title}}</h1>

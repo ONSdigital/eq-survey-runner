@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census-nisra\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-19 14:27+0100\n"
-"PO-Revision-Date: 2019-09-20 07:58\n"
+"POT-Creation-Date: 2019-10-03 14:12+0100\n"
+"PO-Revision-Date: 2019-10-03 14:30\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Irish\n"
 "MIME-Version: 1.0\n"
@@ -201,7 +201,7 @@ msgstr[4] "%(num)s laethanta"
 msgid "Submit survey"
 msgstr "Cuir an suirbhé isteach"
 
-#: app/views/contexts/hub_context.py:16 templates/summary.html:16
+#: app/views/contexts/hub_context.py:16 templates/summary.html:17
 msgid "Please submit this survey to complete it"
 msgstr "Cuir isteach an suirbhé seo lena chríochnú le do thoil"
 
@@ -340,19 +340,19 @@ msgstr "Achoimre"
 msgid "Check your answers and submit"
 msgstr "Déan seiceáil ar do fhreagraí agus cuir isteach iad"
 
-#: templates/summary.html:17 templates/summary.html:28
-msgid "You can check your answers below"
-msgstr "Is féidir leat do fhreagraí a sheiceáil thíos"
+#: templates/summary.html:18
+msgid "Check your answers before submitting"
+msgstr "Seiceáil do fhreagraí sula gcuireann tú isteach iad"
 
 #: templates/summary.html:27
-msgid "This section is now complete"
-msgstr "Tá an chuid seo críochnaithe anois"
+msgid "Check your answers before continuing to the next section"
+msgstr "Seiceáil do fhreagraí roimh leanstan ar aghaidh chuig an chéad rannóg eile"
 
-#: templates/summary.html:37
+#: templates/summary.html:36
 msgid "Please review your answers and confirm these are correct"
 msgstr "Déan athbhreithniú ar do fhreagraí le do thoil agus dearbhaigh go bhfuil siad seo ceart"
 
-#: templates/summary.html:66
+#: templates/summary.html:65
 msgid "You will have the opportunity to view and print a copy of your answers after submitting this survey"
 msgstr "Beidh deis agat amharc ar do fhreagraí agus cóip díobh a phriontáil i ndiaidh duit an suirbhé seo a chur isteach"
 
@@ -459,28 +459,28 @@ msgstr "Tá do sheisiún caite"
 msgid "To help protect your information we have signed you out"
 msgstr "Le do chuid eolais a chosaint bhí muid do do shíniú amach"
 
-#: templates/errors/session-expired.html:22
+#: templates/errors/session-expired.html:26
 #, python-format
 msgid "We have saved your progress and you will need to <a href=\"%(account_service_link)s\">enter your unique code</a> to access the survey again."
 msgstr "Táimid i ndiaidh do dhul chun cinn a shábháil agus beidh ort <a href=\"%(account_service_link)s\"> do chód uathúil a iontráil </a> chun teacht ar an suirbhé arís."
 
-#: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:14
+#: templates/layouts/_base.html:33
 msgid "We use cookies to improve your experience of census.gov.uk"
 msgstr "Bainimid úsáid as fianáin chun do thaithí ar census.gov.uk a fheabhsú"
 
-#: templates/layouts/_questionnaire.html:24
+#: templates/layouts/_questionnaire.html:12
 msgid "Previous"
 msgstr "Roimhe"
 
-#: templates/layouts/_questionnaire.html:39
+#: templates/layouts/_questionnaire.html:27
 msgid "Save and continue"
 msgstr "Sábháil agus lean ar aghaidh"
 
-#: templates/layouts/_questionnaire.html:50
+#: templates/layouts/_questionnaire.html:38
 msgid "Can't complete this question?"
 msgstr "Nach féidir leat an cheist seo a fhreagairt?"
 
-#: templates/layouts/_questionnaire.html:51
+#: templates/layouts/_questionnaire.html:39
 msgid "Choose another section and return to this later"
 msgstr "Roghnaigh mír eile agus tar ar ais go dtí an ceann seo níos moille"
 
@@ -489,11 +489,11 @@ msgid "Give us feedback and help us improve this service"
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:12
-msgid "Tell us what you think of this website by emailing"
+msgid "Tell us what you think of this service by emailing"
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:13
-msgid "This email is for feedback only and we will not be able to reply. Do not include any personal details."
+msgid "If you need help with your census, get in touch with our contact centre."
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:14
@@ -501,19 +501,19 @@ msgid "Census 2021 feedback: "
 msgstr ""
 
 #: templates/layouts/configs/_feedback.html:15
-msgid "This email is for feedback on the census rehearsal, which will help us to improve Census 2021. We are unable to respond to these emails.\n"
+msgid "This email is for feedback on the census rehearsal, which will help us to improve Census 2021.\n"
 "If you need help with your census, visit https://www.census.gov.uk/contact-us."
 msgstr ""
 
-#: templates/layouts/configs/_footer.html:33
+#: templates/layouts/configs/_footer.html:34
 msgid "Contact us"
 msgstr "Déan teagmháil linn"
 
-#: templates/layouts/configs/_footer.html:38
+#: templates/layouts/configs/_footer.html:39
 msgid "Help"
 msgstr "Cuidiú"
 
-#: templates/layouts/configs/_footer.html:47
+#: templates/layouts/configs/_footer.html:48
 msgid "Cookies"
 msgstr "Fianáin"
 
