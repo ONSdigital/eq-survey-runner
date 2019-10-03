@@ -81,8 +81,8 @@
     {% set list_items = content.list_items %}
     {% include 'partials/summary/list-summary.html' %}
   {% endif %}
-  {%- if question.list_items -%}
-    {% set list_items = question.list_items %}
+  {%- if block.list_items -%}
+    {% set list_items = block.list_items %}
     {% include 'partials/summary/list-non-edit.html' %}
   {% endif %}
   {{ question_definition }}

@@ -118,7 +118,7 @@ class Question(BlockHandler):
                 self._questionnaire_store.list_store,
                 self._language,
             )
-            response['question']['list_items'] = list_summary_context
+            response['list_items'] = list_summary_context
 
         return response
 
