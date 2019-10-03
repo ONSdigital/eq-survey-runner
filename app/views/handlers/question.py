@@ -61,6 +61,9 @@ class Question(BlockHandler):
     def get_context(self):
         context = build_question_context(self.rendered_block, self.form)
         context['return_to_hub_url'] = self.get_return_to_hub_url()
+
+        if 'list_items' in self.rendered_block:
+            context['list_items'] = self.rendered_block['list_items']
         return context
 
     def handle_post(self):

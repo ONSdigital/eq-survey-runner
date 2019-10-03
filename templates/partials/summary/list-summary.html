@@ -1,14 +1,25 @@
 {% from "components/summary/_macro.njk" import onsSummary %}
 
-{{ onsSummary({
-  "withinQuestion": true,
-  "rows": map_list_collector_config(
-    list_items,
-    "person",
-    _("Change"),
-    _("Change details for {item_name}"),
-    _("Remove"),
-    _("Remove {item_name}")
-  ),
-  "classes": "u-mt-s u-mb-m"
-}) }}
+{% if list_items[0].edit_link_text %}
+  {{ onsSummary({
+    "withinQuestion": true,
+    "rows": map_list_collector_config(
+      list_items,
+      "person",
+      _("Change"),
+      _("Change details for {item_name}"),
+      _("Remove"),
+      _("Remove {item_name}")
+    ),
+    "classes": "u-mt-s u-mb-m"
+  }) }}
+{% else %}
+  {{ onsSummary({
+    "withinQuestion": true,
+    "rows": map_list_collector_config(
+      list_items,
+      "person"
+    ),
+    "classes": "u-mt-s u-mb-m"
+  }) }}
+{% endif %}
