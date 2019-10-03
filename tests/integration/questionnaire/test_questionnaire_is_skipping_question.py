@@ -27,7 +27,7 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         self.assertInBody('Were you forced to complete section 2?')
         self.post(action='save_continue')
 
-        self.assertInBody('You can check your answers below')
+        self.assertInBody('Check your answers before submitting')
         self.assertInBody('Were you forced to complete section 1?')
         self.assertInBody('Were you forced to complete section 2?')
         self.assertInBody('Submit answers')
