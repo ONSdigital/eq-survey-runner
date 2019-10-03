@@ -83,7 +83,7 @@
   {% endif %}
   {%- if question.list_items -%}
     {% set list_items = question.list_items %}
-    {% include 'partials/summary/list-summary.html' %}
+    {% include 'partials/summary/list-non-edit.html' %}
   {% endif %}
   {{ question_definition }}
   {{ question_guidance }}
