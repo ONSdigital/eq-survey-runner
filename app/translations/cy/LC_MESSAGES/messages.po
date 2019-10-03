@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-19 14:27+0100\n"
-"PO-Revision-Date: 2019-09-20 07:56\n"
+"POT-Creation-Date: 2019-10-03 14:12+0100\n"
+"PO-Revision-Date: 2019-10-03 14:29\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -204,7 +204,7 @@ msgstr[5] "%(num)s diwrnod"
 msgid "Submit survey"
 msgstr "Cyflwyno'r arolwg"
 
-#: app/views/contexts/hub_context.py:16 templates/summary.html:16
+#: app/views/contexts/hub_context.py:16 templates/summary.html:17
 msgid "Please submit this survey to complete it"
 msgstr "Cyflwynwch yr arolwg hwn i'w gwblhau"
 
@@ -309,7 +309,7 @@ msgstr "Caewch y ffenestr hon i barhau â'ch arolwg presennol"
 msgid "This page has an error"
 msgid_plural "This page has %(num)s errors"
 msgstr[0] "Mae gwall ar y dudalen hon"
-msgstr[1] "Mae %(num)s gwall ar y dudalen hon"
+msgstr[1] "Mae gwall ar y dudalen hon"
 msgstr[2] "Mae %(num)s wall ar y dudalen hon"
 msgstr[3] "Mae %(num)s wall ar y dudalen hon"
 msgstr[4] "Mae %(num)s wall ar y dudalen hon"
@@ -319,7 +319,7 @@ msgstr[5] "Mae %(num)s wall ar y dudalen hon"
 msgid "This <strong>must be corrected</strong> to continue"
 msgid_plural "These <strong>must be corrected</strong> to continue"
 msgstr[0] "Mae'n <strong>rhaid cywiro</strong> hwn cyn parhau"
-msgstr[1] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
+msgstr[1] "Mae'n <strong>rhaid ei gywiro</strong> cyn parhau"
 msgstr[2] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
 msgstr[3] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
 msgstr[4] "Mae'n <strong>rhaid cywiro'r</strong> rhain cyn parhau"
@@ -345,19 +345,19 @@ msgstr "Crynodeb"
 msgid "Check your answers and submit"
 msgstr "Gwiriwch eich atebion a'u cyflwyno"
 
-#: templates/summary.html:17 templates/summary.html:28
-msgid "You can check your answers below"
-msgstr "Gallwch wirio eich atebion isod"
+#: templates/summary.html:18
+msgid "Check your answers before submitting"
+msgstr "Gwiriwch eich atebion cyn eu cyflwyno"
 
 #: templates/summary.html:27
-msgid "This section is now complete"
-msgstr "Mae'r adran hon nawr wedi'i chwblhau"
+msgid "Check your answers before continuing to the next section"
+msgstr "Gwiriwch eich atebion cyn parhau i'r adran nesaf"
 
-#: templates/summary.html:37
+#: templates/summary.html:36
 msgid "Please review your answers and confirm these are correct"
 msgstr "Adolygwch eich atebion a chadarnhewch fod y rhain yn gywir"
 
-#: templates/summary.html:66
+#: templates/summary.html:65
 msgid "You will have the opportunity to view and print a copy of your answers after submitting this survey"
 msgstr "Byddwch yn cael y cyfle i weld ac argraffu copi o'ch atebion ar ôl cyflwyno'r arolwg hwn"
 
@@ -464,28 +464,28 @@ msgstr "Mae eich sesiwn wedi dod i ben"
 msgid "To help protect your information we have signed you out"
 msgstr "Er mwyn helpu i ddiogelu eich gwybodaeth rydym wedi'ch allgofnodi"
 
-#: templates/errors/session-expired.html:22
+#: templates/errors/session-expired.html:26
 #, python-format
 msgid "We have saved your progress and you will need to <a href=\"%(account_service_link)s\">enter your unique code</a> to access the survey again."
 msgstr "Rydym wedi cadw eich cynnydd a bydd angen i chi <a href=\"%(account_service_link)s\">roi eich cod unigryw</a> i gael mynediad at yr arolwg eto."
 
-#: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:14
+#: templates/layouts/_base.html:33
 msgid "We use cookies to improve your experience of census.gov.uk"
 msgstr "Rydym yn defnyddio cwcis i wella eich profiad o cyfrifiad.gov.uk"
 
-#: templates/layouts/_questionnaire.html:24
+#: templates/layouts/_questionnaire.html:12
 msgid "Previous"
 msgstr "Blaenorol"
 
-#: templates/layouts/_questionnaire.html:39
+#: templates/layouts/_questionnaire.html:27
 msgid "Save and continue"
 msgstr "Cadw a pharhau"
 
-#: templates/layouts/_questionnaire.html:50
+#: templates/layouts/_questionnaire.html:38
 msgid "Can't complete this question?"
 msgstr "Methu cwblhau'r cwestiwn hwn?"
 
-#: templates/layouts/_questionnaire.html:51
+#: templates/layouts/_questionnaire.html:39
 msgid "Choose another section and return to this later"
 msgstr "Dewiswch adran arall a dewch yn ôl yn nes ymlaen"
 
@@ -494,31 +494,32 @@ msgid "Give us feedback and help us improve this service"
 msgstr "Rhowch adborth i ni a helpwch ni i wella'r gwasanaeth hwn"
 
 #: templates/layouts/configs/_feedback.html:12
-msgid "Tell us what you think of this website by emailing"
+msgid "Tell us what you think of this service by emailing"
 msgstr "Rhannwch eich barn am y wefan hon â ni drwy e-bostio"
 
 #: templates/layouts/configs/_feedback.html:13
-msgid "This email is for feedback only and we will not be able to reply. Do not include any personal details."
-msgstr ""
+msgid "If you need help with your census, get in touch with our contact centre."
+msgstr "Os oes angen help arnoch chi gyda’ch cyfrifiad, cysylltwch â’n canolfan gyswllt."
 
 #: templates/layouts/configs/_feedback.html:14
 msgid "Census 2021 feedback: "
 msgstr "Adborth Cyfrifiad 2021: "
 
 #: templates/layouts/configs/_feedback.html:15
-msgid "This email is for feedback on the census rehearsal, which will help us to improve Census 2021. We are unable to respond to these emails.\n"
+msgid "This email is for feedback on the census rehearsal, which will help us to improve Census 2021.\n"
 "If you need help with your census, visit https://www.census.gov.uk/contact-us."
-msgstr "Mae'r cyfeiriad e-bost hwn ar gyfer rhoi adborth ar ymarfer y cyfrifiad, a fydd yn ein helpu ni i wella Cyfrifiad 2021. Ni allwn ymateb i'r negeseuon e-bost hyn. Os oes angen help arnoch gyda'ch cyfrifiad, ewch i https://cyfrifiad.gov.uk/cysylltu-a-ni/."
+msgstr "Mae'r cyfeiriad e-bost hwn ar gyfer rhoi adborth ar ymarfer y cyfrifiad, a fydd yn ein helpu ni i wella Cyfrifiad 2021.\n"
+"Os oes angen help arnoch chi gyda'ch cyfrifiad, ewch i https://cyfrifiad.gov.uk/cysylltu-a-ni/."
 
-#: templates/layouts/configs/_footer.html:33
+#: templates/layouts/configs/_footer.html:34
 msgid "Contact us"
 msgstr "Cysylltu â ni"
 
-#: templates/layouts/configs/_footer.html:38
+#: templates/layouts/configs/_footer.html:39
 msgid "Help"
 msgstr "Help"
 
-#: templates/layouts/configs/_footer.html:47
+#: templates/layouts/configs/_footer.html:48
 msgid "Cookies"
 msgstr "Cwcis"
 
