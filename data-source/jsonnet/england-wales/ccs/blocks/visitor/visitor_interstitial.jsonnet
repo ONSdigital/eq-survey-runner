@@ -14,7 +14,7 @@ function(census_date) {
     contents: [
       {
         description: {
-          text: "In this section, I'm going to ask you about your visitor, <strong>{person_name}</strong>.",
+          text: 'In this section, I'm going to ask you about your visitor, <strong>{person_name}</strong>.',
           placeholders: [
             placeholders.personName,
           ],
