@@ -23,7 +23,7 @@ lib64
 # Installer logs
 pip-log.txt
 
-# Unit test / ccs reports
+# Unit test / coverage reports
 .coverage
 .coverage.*
 coverage.xml
@@ -77,7 +77,7 @@ tests/a11y
 newrelic.ini
 .application-version
 
-# Added to prevent committing ccs reports.
+# Added to prevent committing coverage reports.
 htmlcov/
 
 *errorShots*
