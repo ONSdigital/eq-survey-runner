@@ -40,21 +40,21 @@ function(census_date) {
         ],
       },
     ],
-    routing_rules: [
-      {
-        goto: {
-          block: 'visitor-sex',
-          when: [{
-            id: 'visitor-date-of-birth-answer',
-            condition: 'set',
-          }],
-        },
-      },
-      {
-        goto: {
-          block: 'visitor-age-last-birthday',
-        },
-      },
-    ],
   },
+  routing_rules: [
+    {
+      goto: {
+        block: 'visitor-sex',
+        when: [{
+          id: 'visitor-date-of-birth-answer',
+          condition: 'set',
+        }],
+      },
+    },
+    {
+      goto: {
+        block: 'visitor-age-last-birthday',
+      },
+    },
+  ],
 }

@@ -12,7 +12,6 @@ local rules = import 'rules.libsonnet';
       text: 'What was <em>{person_name_possessive}</em> age on their last birthday?',
       placeholders: [placeholders.personNamePossessive],
     },
-    mandatory: false,
     answers: [
       {
         id: 'visitor-age-last-birthday-answer',
@@ -38,12 +37,12 @@ local rules = import 'rules.libsonnet';
         ],
       },
     ],
-    routing_rules: [
-      {
-        goto: {
-          block: 'visitor-sex',
-        },
-      },
-    ],
   },
+  routing_rules: [
+    {
+      goto: {
+        block: 'visitor-sex',
+      },
+    },
+  ],
 }

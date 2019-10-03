@@ -6,7 +6,6 @@ local question(title, census_date) = {
   description: '',
   type: 'General',
   title: title,
-  mandatory: false,
   answers: [
     {
       id: 'age-last-birthday-answer',
