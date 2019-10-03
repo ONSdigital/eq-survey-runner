@@ -27,6 +27,7 @@ local rules = import 'rules.libsonnet';
       },
       {
         id: 'visitor-age-estimate-answer',
+        label: '',
         mandatory: false,
         type: 'Checkbox',
         options: [
