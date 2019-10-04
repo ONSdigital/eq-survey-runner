@@ -55,6 +55,8 @@ services:
       EQ_USED_JTI_CLAIM_TABLE_NAME: dev-used-jti-claim
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-dummy}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-dummy}"
+      EQ_GTM_ID: "${EQ_GTM_ID:-dummy}"
+      EQ_GTM_ENV_ID: "${EQ_GTM_ENV_ID:-dummy}"
     restart: always
     depends_on:
       - db
