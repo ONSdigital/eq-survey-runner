@@ -526,20 +526,17 @@ def map_list_collector_config(
     for list_item in list_items:
         item_name = list_item.get('item_title')
 
-        new_row = {
-            'title': item_name,
-            'rowItems': [{'icon': icon}],
-        }
+        new_row = {'title': item_name, 'rowItems': [{'icon': icon}]}
 
         if edit_link_text:
-            new_row['rowItems'][0]['actions'] = [{
-                'text': edit_link_text,
-                'ariaLabel': edit_link_aria_label.format(
-                    item_name=item_name
-                ),
-                'url': list_item.get('edit_link'),
-                'attributes': {'data-qa': 'change-item-link'},
-            }]
+            new_row['rowItems'][0]['actions'] = [
+                {
+                    'text': edit_link_text,
+                    'ariaLabel': edit_link_aria_label.format(item_name=item_name),
+                    'url': list_item.get('edit_link'),
+                    'attributes': {'data-qa': 'change-item-link'},
+                }
+            ]
 
         if not list_item.get('primary_person') and remove_link_text:
             new_row['rowItems'][0]['actions'].append(
