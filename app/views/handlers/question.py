@@ -63,13 +63,16 @@ class Question(BlockHandler):
         context['return_to_hub_url'] = self.get_return_to_hub_url()
 
         if 'list_summary' in self.rendered_block:
-            context['list_items'] = build_list_items_summary_context(
-                self.rendered_block['list_summary'],
-                self._schema,
-                self._questionnaire_store.answer_store,
-                self._questionnaire_store.list_store,
-                self._language,
-            )
+            context['list'] = {
+                'list_items': build_list_items_summary_context(
+                    self.rendered_block['list_summary'],
+                    self._schema,
+                    self._questionnaire_store.answer_store,
+                    self._questionnaire_store.list_store,
+                    self._language,
+                ),
+                'editable': False
+            }
         return context
 
     def handle_post(self):

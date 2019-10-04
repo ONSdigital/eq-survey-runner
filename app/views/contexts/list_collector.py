@@ -72,9 +72,12 @@ def build_list_collector_context(
 ):
     question_context = build_question_context(list_collector_block, form)
     list_collector_context = {
-        'list_items': build_list_items_summary_context(
-            list_collector_block, schema, answer_store, list_store, language
-        ),
+        'list': {
+            'list_items':  build_list_items_summary_context(
+                list_collector_block, schema, answer_store, list_store, language
+            ),
+            'editable': True
+        },
         'add_link': url_for(
             'questionnaire.block',
             list_name=list_collector_block['for_list'],
