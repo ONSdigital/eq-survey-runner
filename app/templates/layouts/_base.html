@@ -134,25 +134,5 @@
     //]]></script>
     {% endif %}
 
-    <script nonce="{{ csp_nonce() }}" >
-        (function() {
-          var printed = 0;
-          // FF and IE
-          var onbeforePrinting = function() {
-            if (printed == 0) {
-                window.dataLayer.push({ 'event': 'onBeforePrint', 'currentURL': location.pathname });
-                printed = 1;
-            }
-          };
-          // matchMedia Support
-          if (window.matchMedia) {
-              var mediaQueryList = window.matchMedia('print');
-              mediaQueryList.addListener(function(mql) {
-                  if (mql.matches)
-                      onbeforePrinting();
-              });
-          }
-          window.onbeforeprint = onbeforePrinting;
-        }());
-      </script>
+
 </html>
