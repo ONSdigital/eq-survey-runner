@@ -10,6 +10,7 @@ local questionTitle = {
 {
   type: 'Question',
   id: 'anyone-else-usually-living',
+  show_on_section_summary: false,
   question: {
     id: 'anyone-else-usually-living-question',
     title: questionTitle,
