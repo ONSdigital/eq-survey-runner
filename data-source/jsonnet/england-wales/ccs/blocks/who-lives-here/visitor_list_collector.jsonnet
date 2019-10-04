@@ -77,7 +77,7 @@ function(census_date) {
     type: 'General',
     title: questionTitle(census_date),
     guidance: visitorGuidance,
-    description: 'Enter a full stop(.) if the respondent does not know a person\'s "First name" or "Surname"',
+    description: '<em>Enter a full stop(.) if the respondent does not know a person\'s "First name" or "Surname"</em>',
     answers: [
       {
         id: 'visitor-answer',
@@ -104,7 +104,7 @@ function(census_date) {
       type: 'General',
       title: addVisitorQuestionTitle(census_date),
       guidance: visitorGuidance,
-      description: 'Enter a full stop(.) if the respondent does not know a person\'s "First name" or "Surname"',
+      description: '<em>Enter a full stop(.) if the respondent does not know a person\'s "First name" or "Surname"</em>',
       answers: [
         {
           id: 'first-name',
