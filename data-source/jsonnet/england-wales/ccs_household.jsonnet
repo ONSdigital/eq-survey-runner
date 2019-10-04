@@ -13,6 +13,7 @@ local who_lives_here_section_summary = import 'ccs/blocks/who-lives-here/who_liv
 
 // Accommodation
 local accommodation_introduction = import 'ccs/blocks/accommodation/accommodation_introduction.jsonnet';
+local accommodation_summary = import 'household/blocks/accommodation/accommodation_summary.jsonnet';
 local accommodation_type = import 'ccs/blocks/accommodation/accommodation_type.jsonnet';
 local government_services = import 'ccs/blocks/accommodation/government_services.jsonnet';
 local internet = import 'ccs/blocks/accommodation/internet.jsonnet';
@@ -105,6 +106,19 @@ function(region_code, census_date, census_month_year_date) {
             relationships,
             any_visitors(census_date),
             visitor_list_collector(census_date),
+            who_lives_here_section_summary,
+          ],
+        },
+      ],
+    },
+    {
+      id: 'accommodation-section',
+      title: 'Household accommodation',
+      groups: [
+        {
+          id: 'accommodation-group',
+          title: '',
+          blocks: [
             accommodation_introduction,
             accommodation_type,
             type_of_house,
@@ -115,7 +129,7 @@ function(region_code, census_date, census_month_year_date) {
             internet,
             government_services,
             other_living_accommodation,
-            who_lives_here_section_summary,
+            accommodation_summary,
           ],
         },
       ],
