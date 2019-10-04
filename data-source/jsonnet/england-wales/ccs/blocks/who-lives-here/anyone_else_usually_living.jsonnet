@@ -33,7 +33,7 @@ local questionTitle = {
   routing_rules: [
     {
       goto: {
-        block: 'household-usual-address',
+        block: 'another-address-interviewer-note-interstitial',
         when: [
           {
             id: 'anyone-else-usually-living-answer',

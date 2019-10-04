@@ -3,7 +3,7 @@ local any_visitors = import 'ccs/blocks/who-lives-here/any_visitors.jsonnet';
 local anyone_else_list_collector = import 'ccs/blocks/who-lives-here/anyone_else_list_collector.jsonnet';
 local anyone_else_temp_away_list_collector = import 'ccs/blocks/who-lives-here/anyone_else_temp_away_list_collector.jsonnet';
 local anyone_else_usually_living = import 'ccs/blocks/who-lives-here/anyone_else_usually_living.jsonnet';
-local household_usual_address = import 'ccs/blocks/who-lives-here/household_usual_address.jsonnet';
+local another_address_interviewer_note_interstitial = import 'ccs/blocks/who-lives-here/another_address_interviewer_note_interstitial.jsonnet';
 local interviewer_note_interstitial = import 'ccs/blocks/who-lives-here/interviewer_note_interstitial.jsonnet';
 local primary_person_list_collector = import 'ccs/blocks/who-lives-here/primary_person_list_collector.jsonnet';
 local relationships = import 'ccs/blocks/who-lives-here/relationships.jsonnet';
@@ -99,7 +99,7 @@ function(region_code, census_date, census_month_year_date) {
             primary_person_list_collector,
             anyone_else_usually_living,
             interviewer_note_interstitial,
-            household_usual_address,
+            another_address_interviewer_note_interstitial,
             anyone_else_list_collector(census_date),
             anyone_else_temp_away_list_collector,
             relationships,
