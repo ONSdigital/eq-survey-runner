@@ -71,7 +71,7 @@ class Question(BlockHandler):
                     self._questionnaire_store.list_store,
                     self._language,
                 ),
-                'editable': False
+                'editable': False,
             }
         return context
 

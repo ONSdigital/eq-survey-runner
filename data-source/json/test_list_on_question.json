@@ -337,7 +337,7 @@
                                     }
                                 ]
                             },
-                            "list_summary":  {
+                            "list_summary": {
                                 "for_list": "people",
                                 "summary": {
                                     "item_title": {
