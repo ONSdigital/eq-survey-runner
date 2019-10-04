@@ -1,9 +1,9 @@
 // Who lives here
+local another_address_interviewer_note_interstitial = import 'ccs/blocks/who-lives-here/another_address_interviewer_note_interstitial.jsonnet';
 local any_visitors = import 'ccs/blocks/who-lives-here/any_visitors.jsonnet';
 local anyone_else_list_collector = import 'ccs/blocks/who-lives-here/anyone_else_list_collector.jsonnet';
 local anyone_else_temp_away_list_collector = import 'ccs/blocks/who-lives-here/anyone_else_temp_away_list_collector.jsonnet';
 local anyone_else_usually_living = import 'ccs/blocks/who-lives-here/anyone_else_usually_living.jsonnet';
-local another_address_interviewer_note_interstitial = import 'ccs/blocks/who-lives-here/another_address_interviewer_note_interstitial.jsonnet';
 local interviewer_note_interstitial = import 'ccs/blocks/who-lives-here/interviewer_note_interstitial.jsonnet';
 local primary_person_list_collector = import 'ccs/blocks/who-lives-here/primary_person_list_collector.jsonnet';
 local relationships = import 'ccs/blocks/who-lives-here/relationships.jsonnet';
@@ -13,7 +13,6 @@ local who_lives_here_section_summary = import 'ccs/blocks/who-lives-here/who_liv
 
 // Accommodation
 local accommodation_introduction = import 'ccs/blocks/accommodation/accommodation_introduction.jsonnet';
-local accommodation_summary = import 'household/blocks/accommodation/accommodation_summary.jsonnet';
 local accommodation_type = import 'ccs/blocks/accommodation/accommodation_type.jsonnet';
 local government_services = import 'ccs/blocks/accommodation/government_services.jsonnet';
 local internet = import 'ccs/blocks/accommodation/internet.jsonnet';
@@ -23,6 +22,7 @@ local self_contained = import 'ccs/blocks/accommodation/self_contained.jsonnet';
 local type_of_flat = import 'ccs/blocks/accommodation/type_of_flat.jsonnet';
 local type_of_house = import 'ccs/blocks/accommodation/type_of_house.jsonnet';
 local who_rent_from = import 'ccs/blocks/accommodation/who_rent_from.jsonnet';
+local accommodation_summary = import 'household/blocks/accommodation/accommodation_summary.jsonnet';
 
 // Individual
 local age_last_birthday = import 'ccs/blocks/individual/age_last_birthday.jsonnet';
