@@ -62,8 +62,14 @@ class Question(BlockHandler):
         context = build_question_context(self.rendered_block, self.form)
         context['return_to_hub_url'] = self.get_return_to_hub_url()
 
-        if 'list_items' in self.rendered_block:
-            context['list_items'] = self.rendered_block['list_items']
+        if 'list_summary' in self.rendered_block:
+            context['list_items'] = build_list_items_summary_context(
+                self.rendered_block['list_summary'],
+                self._schema,
+                self._questionnaire_store.answer_store,
+                self._questionnaire_store.list_store,
+                self._language,
+            )
         return context
 
     def handle_post(self):
@@ -106,24 +112,11 @@ class Question(BlockHandler):
 
         self.page_title = self._get_page_title(variant_block)
 
-        variant_question = variant_block.pop('question')
         rendered_question = self.placeholder_renderer.render(
-            variant_question, self._current_location.list_item_id
+            variant_block.pop('question'), self._current_location.list_item_id
         )
 
-        response = {**variant_block, **{'question': rendered_question}}
-
-        if 'list_summary' in variant_question:
-            list_summary_context = build_list_items_summary_context(
-                block_schema['question']['list_summary'],
-                self._schema,
-                self._questionnaire_store.answer_store,
-                self._questionnaire_store.list_store,
-                self._language,
-            )
-            response['list_items'] = list_summary_context
-
-        return response
+        return {**variant_block, **{'question': rendered_question}}
 
     def get_return_to_hub_url(self):
         if (

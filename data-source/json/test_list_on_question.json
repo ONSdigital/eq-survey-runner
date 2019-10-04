@@ -319,31 +319,6 @@
                                 "type": "General",
                                 "id": "radio-placeholder-question",
                                 "title": "Are any of these people related to one another?",
-                                "list_summary":  {
-                                    "for_list": "people",
-                                    "summary": {
-                                        "item_title": {
-                                            "text": "{person_name}",
-                                            "placeholders": [
-                                                {
-                                                    "placeholder": "person_name",
-                                                    "transforms": [
-                                                        {
-                                                            "arguments": {
-                                                                "delimiter": " ",
-                                                                "list_to_concatenate": {
-                                                                    "identifier": ["first-name", "last-name"],
-                                                                    "source": "answers"
-                                                                }
-                                                            },
-                                                            "transform": "concatenate_list"
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    }
-                                },
                                 "answers": [
                                     {
                                         "mandatory": false,
@@ -361,6 +336,31 @@
                                         ]
                                     }
                                 ]
+                            },
+                            "list_summary":  {
+                                "for_list": "people",
+                                "summary": {
+                                    "item_title": {
+                                        "text": "{person_name}",
+                                        "placeholders": [
+                                            {
+                                                "placeholder": "person_name",
+                                                "transforms": [
+                                                    {
+                                                        "arguments": {
+                                                            "delimiter": " ",
+                                                            "list_to_concatenate": {
+                                                                "identifier": ["first-name", "last-name"],
+                                                                "source": "answers"
+                                                            }
+                                                        },
+                                                        "transform": "concatenate_list"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
                             }
                         },
                         {
