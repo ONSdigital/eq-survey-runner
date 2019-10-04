@@ -452,3 +452,4 @@ snakeviz combined_profile.prof
 To add a new dependency, use `pipenv install [package-name]`, which not only installs the package but Pipenv will also go to the trouble of updating the Pipfile as well.
 
 NB: both the Pipfile and Pipfile.lock files are required in source control to accurately pin dependencies.
+
