@@ -173,3 +173,21 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
         self.post()
 
         self.assertInUrl('thank-you')
+
+    def test_list_summary_on_question(self):
+        self.launchSurvey('test_list_on_question')
+
+        self.post(action='start_questionnaire')
+
+        self.post({'anyone-else': 'Yes'})
+
+        self.add_person('Marie Claire', 'Doe')
+
+        self.post({'anyone-else': 'No'})
+
+        self.post(action='save_continue')
+
+        self.post({'another-anyone-else': 'No'})
+
+        self.assertInBody('Are any of these people related to one another?')
+        self.assertInBody('Marie Claire Doe')
