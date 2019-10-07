@@ -44,7 +44,7 @@ def build_list_items_summary_context(
             'primary_person': is_primary,
         }
 
-        if 'edit_link' in list_collector_block:
+        if 'edit_block' in list_collector_block:
             list_item_context['edit_link'] = url_for(
                 'questionnaire.block',
                 list_name=list_name,
@@ -53,7 +53,7 @@ def build_list_items_summary_context(
                 return_to=return_to,
             )
 
-        if 'remove_link' in list_collector_block:
+        if 'remove_block' in list_collector_block:
             list_item_context['remove_link'] = url_for(
                 'questionnaire.block',
                 list_name=list_name,
