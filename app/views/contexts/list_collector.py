@@ -6,10 +6,7 @@ from app.views.contexts.question import build_question_context
 
 
 def get_item_title(list_block_summary, list_item_id, is_primary, placeholder_renderer):
-    try:
-        rendered_summary = placeholder_renderer.render(list_block_summary, list_item_id)
-    except KeyError:
-        return []
+    rendered_summary = placeholder_renderer.render(list_block_summary, list_item_id)
 
     if is_primary:
         rendered_summary['item_title'] += lazy_gettext(' (You)')
