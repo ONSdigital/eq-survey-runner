@@ -242,8 +242,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
 
 def _get_span_and_trace(request):
-    trace, span = flask_request.headers.get('X-Cloud-Trace-Context', ' / ').split('/')
-    if span:
+    span, trace = flask_request.headers.get('X-Cloud-Trace-Context', ' / ').split('/')
+    if trace:
         span = span.split(';')[0]
     return trace, span
 
