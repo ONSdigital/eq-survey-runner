@@ -38,13 +38,6 @@ local proxyOver19Title = {
     placeholders.personName,
   ],
 };
-local nonProxyEstimatedOver19Title = 'On 13 October 2019, were you a student in full-time education?';
-local proxyEstimatedOver19Title = {
-  text: 'On 13 October 2019, was <em>{person_name}</em> a student in full-time education?',
-  placeholders: [
-    placeholders.personName,
-  ],
-};
 
 {
   type: 'Question',
@@ -59,11 +52,11 @@ local proxyEstimatedOver19Title = {
       when: [rules.isProxy, rules.over19],
     },
     {
-      question: question(nonProxyEstimatedOver19Title),
+      question: question(nonProxyOver19Title),
       when: [rules.isNotProxy, rules.estimatedAgeOver19],
     },
     {
-      question: question(proxyEstimatedOver19Title),
+      question: question(proxyOver19Title),
       when: [rules.isProxy, rules.estimatedAgeOver19],
     },
     {
