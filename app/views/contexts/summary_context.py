@@ -115,14 +115,17 @@ class SummaryContext:
                 'add_link': add_link,
                 'add_link_text': rendered_summary['add_link_text'],
                 'empty_list_text': rendered_summary['empty_list_text'],
-                'list_items': build_list_items_summary_context(
-                    list_collector_block,
-                    self._schema,
-                    self._answer_store,
-                    self._list_store,
-                    self._language,
-                    return_to=current_location.block_id,
-                ),
+                'list': {
+                    'list_items': build_list_items_summary_context(
+                        list_collector_block,
+                        self._schema,
+                        self._answer_store,
+                        self._list_store,
+                        self._language,
+                        return_to=current_location.block_id,
+                    ),
+                    'editable': True,
+                },
                 'list_name': list_collector_block['for_list'],
             }
             list_summaries.append(list_summary)
