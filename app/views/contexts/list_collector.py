@@ -30,34 +30,36 @@ def build_list_items_summary_context(
 
     for list_item_id in list_item_ids:
         is_primary = list_item_id == primary_person
+        list_item_context = {}
 
-        list_item_context = {
-            'item_title': get_item_title(
-                list_collector_block['summary'],
-                list_item_id,
-                is_primary,
-                placeholder_renderer,
-            ),
-            'primary_person': is_primary,
-        }
+        if 'summary' in list_collector_block:
+            list_item_context = {
+                'item_title': get_item_title(
+                    list_collector_block['summary'],
+                    list_item_id,
+                    is_primary,
+                    placeholder_renderer,
+                ),
+                'primary_person': is_primary,
+            }
 
-        if 'edit_block' in list_collector_block:
-            list_item_context['edit_link'] = url_for(
-                'questionnaire.block',
-                list_name=list_name,
-                block_id=list_collector_block['edit_block']['id'],
-                list_item_id=list_item_id,
-                return_to=return_to,
-            )
+            if 'edit_block' in list_collector_block:
+                list_item_context['edit_link'] = url_for(
+                    'questionnaire.block',
+                    list_name=list_name,
+                    block_id=list_collector_block['edit_block']['id'],
+                    list_item_id=list_item_id,
+                    return_to=return_to,
+                )
 
-        if 'remove_block' in list_collector_block:
-            list_item_context['remove_link'] = url_for(
-                'questionnaire.block',
-                list_name=list_name,
-                block_id=list_collector_block['remove_block']['id'],
-                list_item_id=list_item_id,
-                return_to=return_to,
-            )
+            if 'remove_block' in list_collector_block:
+                list_item_context['remove_link'] = url_for(
+                    'questionnaire.block',
+                    list_name=list_name,
+                    block_id=list_collector_block['remove_block']['id'],
+                    list_item_id=list_item_id,
+                    return_to=return_to,
+                )
 
         list_items.append(list_item_context)
 
