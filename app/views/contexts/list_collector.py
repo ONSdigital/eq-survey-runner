@@ -74,12 +74,7 @@ def build_list_collector_context(
                 list_collector_block, schema, answer_store, list_store, language
             ),
             'editable': True,
-        },
-        'add_link': url_for(
-            'questionnaire.block',
-            list_name=list_collector_block['for_list'],
-            block_id=list_collector_block['id'],
-        ),
+        }
     }
 
     return {**question_context, **list_collector_context}

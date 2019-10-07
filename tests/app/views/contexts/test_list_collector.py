@@ -18,8 +18,7 @@ def test_build_list_collector_context(
         form,
     )
 
-    assert all(keys in context.keys() for keys in ['block', 'form', 'list', 'add_link'])
-    assert context['add_link'] == '/questionnaire/people/list-collector/'
+    assert all(keys in context.keys() for keys in ['block', 'form', 'list'])
 
 
 @pytest.mark.usefixtures('app')
