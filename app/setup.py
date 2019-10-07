@@ -258,7 +258,6 @@ def setup_secure_headers(application):
     Talisman(
         application,
         content_security_policy=csp_policy,
-        content_security_policy_nonce_in=['script-src'],
         session_cookie_secure=application.config['EQ_ENABLE_SECURE_SESSION_COOKIE'],
         force_https=False,  # this is handled at the firewall
         strict_transport_security=True,
