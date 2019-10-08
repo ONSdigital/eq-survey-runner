@@ -4,7 +4,6 @@ from mock import MagicMock
 from app.data_model.answer_store import AnswerStore
 from app.data_model.list_store import ListStore
 from app.forms.questionnaire_form import QuestionnaireForm
-from app.helpers import get_span_and_trace
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
 

@@ -16,7 +16,7 @@ EQ_WERKZEUG_LOG_LEVEL = os.getenv('EQ_WERKZEUG_LOG_LEVEL', 'INFO')
 EQ_DEVELOPER_LOGGING = os.getenv('EQ_DEVELOPER_LOGGING', 'False').upper() == 'TRUE'
 
 
-class _LogLevelFilter():
+class _LogLevelFilter:
     def __init__(self, max_level):
         self.max_level = max_level
 
@@ -34,7 +34,11 @@ def configure_logging():
     error_handler = logging.StreamHandler(sys.stderr)
     error_handler.setLevel(logging.ERROR)
 
-    logging.basicConfig(level=logging.getLevelName(EQ_LOG_LEVEL), format=log_format, handlers=[error_handler, info_handler])
+    logging.basicConfig(
+        level=logging.getLevelName(EQ_LOG_LEVEL),
+        format=log_format,
+        handlers=[error_handler, info_handler],
+    )
 
     # Set werkzeug logging level
     werkzeug_logger = logging.getLogger('werkzeug')

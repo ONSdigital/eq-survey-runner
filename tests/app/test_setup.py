@@ -1,5 +1,3 @@
-import pytest
-
 from app.helpers import get_span_and_trace
 
 
@@ -14,6 +12,7 @@ def test_get_span_and_trace_no_xcloud_header(header):
     span, trace = get_span_and_trace(header)
     assert trace == ' '
     assert span == ' '
+
 
 def test_get_span_and_trace_malformed_xcloud_header(header):
     header.headers['X-Cloud-Trace-Context'] = 'not a real trace context'

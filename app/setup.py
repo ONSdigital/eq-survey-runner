@@ -24,6 +24,7 @@ from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.authentication.user_id_generator import UserIDGenerator
 from app.globals import get_session_store
 from app.keys import KEY_PURPOSE_SUBMISSION
+from app.helpers import get_span_and_trace
 from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
 from app.storage.datastore import DatastoreStorage
@@ -239,7 +240,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         return response
 
     return application
-
 
 
 def setup_secure_headers(application):
