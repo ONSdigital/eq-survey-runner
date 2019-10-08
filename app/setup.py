@@ -136,7 +136,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     # request will use the logger context of the previous request.
     @application.before_request
     def before_request():  # pylint: disable=unused-variable
-        span, trace = _get_span_and_trace(flask_request)
+        span, trace = get_span_and_trace(flask_request)
 
         # While True the session lives for permanent_session_lifetime seconds
         # Needed to be able to set the client-side cookie expiration
@@ -240,12 +240,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     return application
 
-
-def _get_span_and_trace(request):
-    span, trace = flask_request.headers.get('X-Cloud-Trace-Context', ' / ').split('/')
-    if trace:
-        span = span.split(';')[0]
-    return trace, span
 
 
 def setup_secure_headers(application):
