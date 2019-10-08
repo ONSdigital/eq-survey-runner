@@ -249,15 +249,9 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
 
 def setup_secure_headers(application):
-    csp_policy = copy.deepcopy(CSP_POLICY)
-
-    if application.config['EQ_ENABLE_LIVE_RELOAD']:
-        # browsersync is configured to bind on port 5075
-        csp_policy['connect-src'] += ['ws://localhost:35729']
 
     Talisman(
         application,
-        content_security_policy=csp_policy,
         session_cookie_secure=application.config['EQ_ENABLE_SECURE_SESSION_COOKIE'],
         force_https=False,  # this is handled at the firewall
         strict_transport_security=True,
