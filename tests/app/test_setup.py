@@ -33,9 +33,9 @@ def test_get_span_and_trace_no_xcloud_header():
 
 def test_get_span_and_trace_malformed_xcloud_header():  # pylint: disable=no-member
     header = cloud_trace_header()
-    header.headers[
+    header.headers[  # pylint: disable=no-member
         'X-Cloud-Trace-Context'
-    ] = 'not a real trace context'  # pylint: disable=no-member
+    ] = 'not a real trace context'
     span, trace = get_span_and_trace(header.headers)  # pylint: disable=no-member
     assert trace is None
     assert span is None
