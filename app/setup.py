@@ -137,14 +137,14 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     # request will use the logger context of the previous request.
     @application.before_request
     def before_request():  # pylint: disable=unused-variable
-        span, trace = get_span_and_trace(flask_request)
-
-        # While True the session lives for permanent_session_lifetime seconds
-        # Needed to be able to set the client-side cookie expiration
-        cookie_session.permanent = True
+        span, trace = get_span_and_trace(flask_request.headers)
+        if span:
+            logger.new(span=span)
+        if trace:
+            logger.new(trace=trace)
 
         request_id = str(uuid4())
-        logger.new(request_id=request_id, span=span, trace=trace)
+        logger.new(request_id=request_id)
 
         logger.info(
             'request',

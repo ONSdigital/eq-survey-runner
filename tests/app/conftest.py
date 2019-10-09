@@ -16,11 +16,3 @@ def app():
 
     return the_app
 
-
-@fixture
-def header():
-    header_dict = AttrDict()
-    header_dict.update(
-        {'headers': {'X-Cloud-Trace-Context': '0123456789/0123456789012345678901;o=1'}}
-    )
-    return header_dict
