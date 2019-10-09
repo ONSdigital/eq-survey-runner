@@ -14,6 +14,7 @@ def cloud_trace_header():
     )
     return header
 
+
 def test_get_span_and_trace():
     header = cloud_trace_header()
     span, trace = get_span_and_trace(header.headers)
@@ -25,12 +26,13 @@ def test_get_span_and_trace_no_xcloud_header():
     header = cloud_trace_header()
     del header.headers['X-Cloud-Trace-Context']
     span, trace = get_span_and_trace(header.headers)
-    assert trace == None
-    assert span == None
+    assert trace is None
+    assert span is None
+
 
 def test_get_span_and_trace_malformed_xcloud_header():
     header = cloud_trace_header()
     header.headers['X-Cloud-Trace-Context'] = 'not a real trace context'
     span, trace = get_span_and_trace(header.headers)
-    assert trace == None
-    assert span == None
+    assert trace is None
+    assert span is None
