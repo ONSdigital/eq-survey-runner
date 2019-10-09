@@ -175,7 +175,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
         self.assertInUrl('thank-you')
 
     def test_list_summary_on_question(self):
-        self.launchSurvey('test_list_on_question')
+        self.launchSurvey('test_list_summary_on_question')
 
         self.post(action='start_questionnaire')
 
