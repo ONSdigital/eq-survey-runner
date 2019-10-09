@@ -77,8 +77,8 @@
   "title": question_title,
   "description": question_description
 }) %}
-  {%- if content.list_items -%}
-    {% set list_items = content.list_items %}
+  {%- if content.list -%}
+    {% set list = content.list %}
     {% include 'partials/summary/list-summary.html' %}
   {% endif %}
   {{ question_definition }}
