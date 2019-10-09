@@ -106,7 +106,9 @@ class AWSReverseProxied:
         return self.app(environ, start_response)
 
 
-def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-complex
+def create_app(
+    setting_overrides=None
+):  # noqa: C901  pylint: disable=too-complex, too-many-statements
     application = Flask(__name__, template_folder='../templates')
     application.config.from_object(settings)
 
@@ -137,14 +139,12 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     # request will use the logger context of the previous request.
     @application.before_request
     def before_request():  # pylint: disable=unused-variable
-        span, trace = get_span_and_trace(flask_request.headers)
-        if span:
-            logger.new(span=span)
-        if trace:
-            logger.new(trace=trace)
-
         request_id = str(uuid4())
         logger.new(request_id=request_id)
+
+        span, trace = get_span_and_trace(flask_request.headers)
+        if span and trace:
+            logger.bind(span=span, trace=trace)
 
         logger.info(
             'request',
