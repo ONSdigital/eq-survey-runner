@@ -354,7 +354,7 @@ def process_answer(answer, page_spec, long_names, page_name):
 
 
 def process_question(question, page_spec, num_questions, page_name):
-    logger.debug(
+    logger.info(
         '\t\tprocessing question: ',
         title=question.get('title'),
         question_id=question['id'],
@@ -540,7 +540,7 @@ def find_kv(block, key, values):
 def process_block(
     block, dir_out, schema_data, spec_file, relative_require='..', page_filename=None
 ):
-    logger.debug('Processing Block: %s', block['id'])
+    logger.info('Processing Block: %s', block['id'])
 
     if not page_filename:
         page_filename = block['id'] + '.page.js'

@@ -22,19 +22,19 @@ login_manager = LoginManager()
 
 @login_manager.user_loader
 def user_loader(user_id):
-    logger.debug('loading user', user_id=user_id)
+    logger.info('loading user', user_id=user_id)
     return load_user()
 
 
 @login_manager.request_loader
 def request_load_user(request):  # pylint: disable=unused-argument
-    logger.debug('load user')
+    logger.info('load user')
     return load_user()
 
 
 @user_logged_out.connect_via(ANY)
 def when_user_logged_out(sender_app, user):  # pylint: disable=unused-argument
-    logger.debug('log out user')
+    logger.info('log out user')
     session_store = get_session_store()
     if session_store:
         session_store.delete()
@@ -60,7 +60,7 @@ def _extend_session_expiry(session_store):
         ):
             session_store.expiration_time = new_expiration_time
             session_store.save()
-            logger.debug('session expiry extended')
+            logger.info('session expiry extended')
 
 
 def _is_session_valid(session_store):
@@ -86,7 +86,7 @@ def load_user():
     session_store = get_session_store()
 
     if session_store and session_store.user_id and _is_session_valid(session_store):
-        logger.debug('session exists')
+        logger.info('session exists')
 
         user_id = session_store.user_id
         user_ik = cookie_session.get(USER_IK)
@@ -163,7 +163,7 @@ def decrypt_token(encrypted_token):
     if not encrypted_token:
         raise NoTokenException('Please provide a token')
 
-    logger.debug('decrypting token')
+    logger.info('decrypting token')
     decrypted_token = decrypt(
         token=encrypted_token,
         key_store=current_app.eq['key_store'],
@@ -171,5 +171,5 @@ def decrypt_token(encrypted_token):
         leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'],
     )
 
-    logger.debug('token decrypted')
+    logger.info('token decrypted')
     return decrypted_token

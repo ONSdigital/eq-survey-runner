@@ -17,10 +17,12 @@ EQ_DEVELOPER_LOGGING = os.getenv('EQ_DEVELOPER_LOGGING', 'False').upper() == 'TR
 
 
 def configure_logging():
-    log_format = "%(message)s"
-
     info_handler = logging.StreamHandler(sys.stdout)
-    info_handler.setLevel(logging.getLevelName(EQ_LOG_LEVEL))
+    if os.getenv('FLASK_ENV') != 'development':
+        info_handler.setLevel(logging.INFO)
+    else:
+        info_handler.setLevel(logging.DEBUG)
+
     info_handler.addFilter(lambda record: record.levelno <= logging.WARNING)
 
     error_handler = logging.StreamHandler(sys.stderr)
@@ -28,7 +30,7 @@ def configure_logging():
 
     logging.basicConfig(
         level=logging.getLevelName(EQ_LOG_LEVEL),
-        format=log_format,
+        format='%(message)s',
         handlers=[error_handler, info_handler],
     )
 
@@ -41,7 +43,7 @@ def configure_logging():
             return event_dict
         exception = event_dict.get('exception')
         if exception:
-            event_dict['exception'] = exception.replace("\"", "'").split("\n")
+            event_dict['exception'] = exception.replace('\"', "'").split('\n')
         return event_dict
 
     # setup file logging
@@ -73,7 +75,7 @@ def add_service(logger, method_name, event_dict):  # pylint: disable=unused-argu
 
 # Initialise logging before the rest of the application
 configure_logging()
-from app.setup import create_app  # NOQA
+from app.setup import create_app  # pylint: disable=wrong-import-position # NOQA
 
 application = create_app()
 

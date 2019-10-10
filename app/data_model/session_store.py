@@ -78,7 +78,7 @@ class SessionStore:
             self.session_data = None
 
     def _load(self):
-        logger.debug(
+        logger.info(
             'finding eq_session_id in database', eq_session_id=self.eq_session_id
         )
 
@@ -108,13 +108,13 @@ class SessionStore:
                     session_data, object_hook=lambda d: SessionData(**d)
                 )
 
-            logger.debug(
+            logger.info(
                 'found matching eq_session for eq_session_id in database',
                 session_id=self._eq_session.eq_session_id,
                 user_id=self._eq_session.user_id,
             )
         else:
-            logger.debug(
+            logger.info(
                 'eq_session_id not found in database', eq_session_id=self.eq_session_id
             )
 

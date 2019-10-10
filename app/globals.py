@@ -84,7 +84,7 @@ def create_session_store(eq_session_id, user_id, user_ik, session_data):
 
 def get_metadata(user):
     if user.is_anonymous:
-        logger.debug('anonymous user requesting metadata get instance')
+        logger.info('anonymous user requesting metadata get instance')
         return None
 
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
