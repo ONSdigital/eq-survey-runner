@@ -11,27 +11,24 @@ from structlog.processors import TimeStamper
 from structlog.stdlib import LoggerFactory, add_log_level
 from structlog.threadlocal import wrap_dict
 
-EQ_LOG_LEVEL = os.getenv('EQ_LOG_LEVEL', 'INFO')
 EQ_WERKZEUG_LOG_LEVEL = os.getenv('EQ_WERKZEUG_LOG_LEVEL', 'INFO')
 EQ_DEVELOPER_LOGGING = os.getenv('EQ_DEVELOPER_LOGGING', 'False').upper() == 'TRUE'
 
 
 def configure_logging():
-    info_handler = logging.StreamHandler(sys.stdout)
-    if os.getenv('FLASK_ENV') != 'development':
-        info_handler.setLevel(logging.INFO)
-    else:
-        info_handler.setLevel(logging.DEBUG)
+    log_level = logging.INFO
+    if os.getenv('FLASK_ENV') == 'development':
+        log_level = logging.DEBUG
 
+    info_handler = logging.StreamHandler(sys.stdout)
+    info_handler.setLevel(log_level)
     info_handler.addFilter(lambda record: record.levelno <= logging.WARNING)
 
     error_handler = logging.StreamHandler(sys.stderr)
     error_handler.setLevel(logging.ERROR)
 
     logging.basicConfig(
-        level=logging.getLevelName(EQ_LOG_LEVEL),
-        format='%(message)s',
-        handlers=[error_handler, info_handler],
+        level=log_level, format='%(message)s', handlers=[error_handler, info_handler]
     )
 
     # Set werkzeug logging level
