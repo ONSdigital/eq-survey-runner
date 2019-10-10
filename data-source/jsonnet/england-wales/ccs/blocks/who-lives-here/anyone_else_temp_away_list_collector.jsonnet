@@ -185,19 +185,6 @@ local editQuestion(questionTitle) = {
       ],
     },
   },
-  routing_rules: [
-    {
-      goto: {
-        block: 'relationships',
-        when: [rules.moreThanOneInList('household')],
-      },
-    },
-    {
-      goto: {
-        block: 'any-visitors',
-      },
-    },
-  ],
   summary: {
     title: 'Household members',
     item_title: summaryTitlePersonName,

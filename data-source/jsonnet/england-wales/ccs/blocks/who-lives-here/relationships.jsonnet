@@ -1,6 +1,17 @@
 {
   type: 'Question',
   id: 'relationships',
+  skip_conditions: [
+    {
+      when: [
+        {
+          list: 'household',
+          condition: 'less than',
+          value: 2,
+        },
+      ],
+    },
+  ],
   show_on_section_summary: false,
   question: {
     id: 'relationships-question',

@@ -11,11 +11,6 @@ local listIsNotEmpty(listName) = {
   condition: 'greater than',
   value: 0,
 };
-local moreThanOneInList(listName) = {
-  list: listName,
-  condition: 'greater than',
-  value: 1,
-};
 
 local estimatedAgeOver19 = {
   id: 'age-last-birthday-answer',
@@ -66,7 +61,6 @@ local estimatedAgeUnder1 = {
   },
   listIsEmpty: listIsEmpty,
   listIsNotEmpty: listIsNotEmpty,
-  moreThanOneInList: moreThanOneInList,
   estimatedAgeOver19: estimatedAgeOver19,
   estimatedAgeOver16: estimatedAgeOver16,
   estimatedAgeUnder16: estimatedAgeUnder16,
