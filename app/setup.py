@@ -239,6 +239,18 @@ def create_app(  # noqa: C901  pylint: disable=too-complex, too-many-statements
             return response
         return response
 
+    @application.after_request
+    def after_request(response):  # pylint: disable=unused-variable
+        # We're using the stringified version of the Flask session to get a rough
+        # length for the cookie. The real length won't be known yet as Flask
+        # serialises and adds the cookie header after this method is called.
+        logger.info(
+            'response',
+            status_code=response.status_code,
+            session_modified=cookie_session.modified,
+        )
+        return response
+
     return application
 
 
