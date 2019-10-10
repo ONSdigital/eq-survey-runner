@@ -356,20 +356,23 @@ def test_context_for_section_list_summary(people_answer_store):
             'add_link': '/questionnaire/people/add-person/?return_to=people-list-section-summary',
             'add_link_text': 'Add someone to this household',
             'empty_list_text': 'There are no householders',
-            'list_items': [
-                {
-                    'edit_link': '/questionnaire/people/PlwgoG/edit-person/?return_to=people-list-section-summary',
-                    'item_title': 'Toni Morrison',
-                    'primary_person': False,
-                    'remove_link': '/questionnaire/people/PlwgoG/remove-person/?return_to=people-list-section-summary',
-                },
-                {
-                    'edit_link': '/questionnaire/people/UHPLbX/edit-person/?return_to=people-list-section-summary',
-                    'item_title': 'Barry Pheloung',
-                    'primary_person': False,
-                    'remove_link': '/questionnaire/people/UHPLbX/remove-person/?return_to=people-list-section-summary',
-                },
-            ],
+            'list': {
+                'list_items': [
+                    {
+                        'edit_link': '/questionnaire/people/PlwgoG/edit-person/?return_to=people-list-section-summary',
+                        'item_title': 'Toni Morrison',
+                        'primary_person': False,
+                        'remove_link': '/questionnaire/people/PlwgoG/remove-person/?return_to=people-list-section-summary',
+                    },
+                    {
+                        'edit_link': '/questionnaire/people/UHPLbX/edit-person/?return_to=people-list-section-summary',
+                        'item_title': 'Barry Pheloung',
+                        'primary_person': False,
+                        'remove_link': '/questionnaire/people/UHPLbX/remove-person/?return_to=people-list-section-summary',
+                    },
+                ],
+                'editable': True,
+            },
             'title': 'Household members on 13 October 2019',
             'list_name': 'people',
         },
@@ -377,14 +380,17 @@ def test_context_for_section_list_summary(people_answer_store):
             'add_link': '/questionnaire/visitors/add-visitor/?return_to=people-list-section-summary',
             'add_link_text': 'Add another visitor to this household',
             'empty_list_text': 'There are no visitors',
-            'list_items': [
-                {
-                    'edit_link': '/questionnaire/visitors/gTrlio/edit-visitor-person/?return_to=people-list-section-summary',
-                    'item_title': '',
-                    'primary_person': False,
-                    'remove_link': '/questionnaire/visitors/gTrlio/remove-visitor/?return_to=people-list-section-summary',
-                }
-            ],
+            'list': {
+                'list_items': [
+                    {
+                        'edit_link': '/questionnaire/visitors/gTrlio/edit-visitor-person/?return_to=people-list-section-summary',
+                        'item_title': '',
+                        'primary_person': False,
+                        'remove_link': '/questionnaire/visitors/gTrlio/remove-visitor/?return_to=people-list-section-summary',
+                    }
+                ],
+                'editable': True,
+            },
             'title': 'Visitors staying overnight on 13 October 2019',
             'list_name': 'visitors',
         },
@@ -413,7 +419,7 @@ def test_context_for_driving_question_summary_empty_list():
             'add_link': '/questionnaire/anyone-usually-live-at/',
             'add_link_text': 'Add someone to this household',
             'empty_list_text': 'There are no householders',
-            'list_items': [],
+            'list': {'list_items': [], 'editable': True},
             'title': 'Household members',
             'list_name': 'people',
         }
@@ -452,14 +458,17 @@ def test_context_for_driving_question_summary():
             'add_link': '/questionnaire/people/add-person/?return_to=summary',
             'add_link_text': 'Add someone to this household',
             'empty_list_text': 'There are no householders',
-            'list_items': [
-                {
-                    'edit_link': '/questionnaire/people/PlwgoG/edit-person/?return_to=summary',
-                    'item_title': 'Toni Morrison',
-                    'primary_person': False,
-                    'remove_link': '/questionnaire/people/PlwgoG/remove-person/?return_to=summary',
-                }
-            ],
+            'list': {
+                'list_items': [
+                    {
+                        'edit_link': '/questionnaire/people/PlwgoG/edit-person/?return_to=summary',
+                        'item_title': 'Toni Morrison',
+                        'primary_person': False,
+                        'remove_link': '/questionnaire/people/PlwgoG/remove-person/?return_to=summary',
+                    }
+                ],
+                'editable': True,
+            },
             'title': 'Household members',
             'list_name': 'people',
         }

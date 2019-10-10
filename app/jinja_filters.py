@@ -516,36 +516,30 @@ def map_summary_item_config_processor():
 def map_list_collector_config(
     list_items,
     icon,
-    edit_link_text,
-    edit_link_aria_label,
-    remove_link_text,
-    remove_link_aria_label,
+    edit_link_text=None,
+    edit_link_aria_label=None,
+    remove_link_text=None,
+    remove_link_aria_label=None,
 ):
     rows = []
 
     for list_item in list_items:
         item_name = list_item.get('item_title')
-        new_row = {
-            'title': item_name,
-            'rowItems': [
-                {
-                    'icon': icon,
-                    'actions': [
-                        {
-                            'text': edit_link_text,
-                            'ariaLabel': edit_link_aria_label.format(
-                                item_name=item_name
-                            ),
-                            'url': list_item.get('edit_link'),
-                            'attributes': {'data-qa': 'change-item-link'},
-                        }
-                    ],
-                }
-            ],
-        }
 
-        if not list_item.get('primary_person'):
-            new_row['rowItems'][0]['actions'].append(
+        actions = []
+
+        if edit_link_text:
+            actions.append(
+                {
+                    'text': edit_link_text,
+                    'ariaLabel': edit_link_aria_label.format(item_name=item_name),
+                    'url': list_item.get('edit_link'),
+                    'attributes': {'data-qa': 'change-item-link'},
+                }
+            )
+
+        if not list_item.get('primary_person') and remove_link_text:
+            actions.append(
                 {
                     'text': remove_link_text,
                     'ariaLabel': remove_link_aria_label.format(item_name=item_name),
@@ -554,7 +548,9 @@ def map_list_collector_config(
                 }
             )
 
-        rows.append(new_row)
+        rows.append(
+            {'title': item_name, 'rowItems': [{'icon': icon, 'actions': actions}]}
+        )
 
     return rows
 
