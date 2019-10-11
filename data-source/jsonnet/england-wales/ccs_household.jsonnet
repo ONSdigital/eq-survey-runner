@@ -106,6 +106,7 @@ function(region_code, census_date, census_month_year_date) {
             any_visitors(census_date),
             visitor_list_collector(census_date),
             who_lives_here_section_summary,
+            relationships,
           ],
         },
       ],
@@ -118,7 +119,6 @@ function(region_code, census_date, census_month_year_date) {
           id: 'accommodation-group',
           title: '',
           blocks: [
-            relationships,
             accommodation_introduction,
             accommodation_type,
             type_of_house,
