@@ -11,32 +11,30 @@ from structlog.processors import TimeStamper
 from structlog.stdlib import LoggerFactory, add_log_level
 from structlog.threadlocal import wrap_dict
 
-EQ_WERKZEUG_LOG_LEVEL = os.getenv('EQ_WERKZEUG_LOG_LEVEL', 'INFO')
-EQ_DEVELOPER_LOGGING = os.getenv('EQ_DEVELOPER_LOGGING', 'False').upper() == 'TRUE'
-
 
 def configure_logging():
     log_level = logging.INFO
-    if os.getenv('FLASK_ENV') == 'development':
+    debug = os.getenv('FLASK_ENV') == 'development'
+    if debug:
         log_level = logging.DEBUG
 
-    info_handler = logging.StreamHandler(sys.stdout)
-    info_handler.setLevel(log_level)
-    info_handler.addFilter(lambda record: record.levelno <= logging.WARNING)
+    log_handler = logging.StreamHandler(sys.stdout)
+    log_handler.setLevel(log_level)
+    log_handler.addFilter(lambda record: record.levelno <= logging.WARNING)
 
-    error_handler = logging.StreamHandler(sys.stderr)
-    error_handler.setLevel(logging.ERROR)
+    error_log_handler = logging.StreamHandler(sys.stderr)
+    error_log_handler.setLevel(logging.ERROR)
 
     logging.basicConfig(
-        level=log_level, format='%(message)s', handlers=[error_handler, info_handler]
+        level=log_level, format='%(message)s', handlers=[error_log_handler, log_handler]
     )
 
     # Set werkzeug logging level
     werkzeug_logger = logging.getLogger('werkzeug')
-    werkzeug_logger.setLevel(level=logging.getLevelName(EQ_WERKZEUG_LOG_LEVEL))
+    werkzeug_logger.setLevel(level=log_level)
 
     def parse_exception(_, __, event_dict):
-        if EQ_DEVELOPER_LOGGING:
+        if debug:
             return event_dict
         exception = event_dict.get('exception')
         if exception:
@@ -44,7 +42,7 @@ def configure_logging():
         return event_dict
 
     # setup file logging
-    renderer_processor = ConsoleRenderer() if EQ_DEVELOPER_LOGGING else JSONRenderer()
+    renderer_processor = ConsoleRenderer() if debug else JSONRenderer()
     processors = [
         add_log_level,
         TimeStamper(key='created', fmt='iso'),

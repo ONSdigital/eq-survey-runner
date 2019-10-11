@@ -342,7 +342,6 @@ The following env variables can be used
 | Variable Name                             | Default               | Description                                                                                   |
 |-------------------------------------------|-----------------------|-----------------------------------------------------------------------------------------------|
 | EQ_LOG_LEVEL                              | INFO                  | The default logging level (defaults to 'INFO' for local development)                          |
-| EQ_WERKZEUG_LOG_LEVEL                     | INFO                  | The default logging level for werkzeug (defaults to 'INFO' for local development)             |
 | EQ_SESSION_TIMEOUT_SECONDS                | 2700 (45 mins)        | The duration of the flask session                                                             |
 | EQ_PROFILING                              | False                 | Enables or disables profiling (True/False) Default False/Disabled                             |
 | EQ_GOOGLE_TAG_MANAGER_ID                  |                       | The Google Tag Manger ID - Specifies the GTM account                                          |
@@ -354,8 +353,6 @@ The following env variables can be used
 | EQ_ENABLE_HTML_MINIFY                     | True                  | Enable minification of html                                                                   |
 | EQ_ENABLE_SECURE_SESSION_COOKIE           | True                  | Set secure session cookies                                                                    |
 | EQ_MAX_HTTP_POST_CONTENT_LENGTH           | 65536                 | The maximum http post content length that the system wil accept                               |
-| EQ_DEVELOPER_LOGGING                      | False                 | Enable developer style logging described here                                                 |
-                                                                    | http://structlog.readthedocs.io/en/stable/development.html                                    |
 | EQ_MINIMIZE_ASSETS                        | True                  | Should JS and CSS be minimized                                                                |
 | MAX_CONTENT_LENGTH                        | 65536                 | max request payload size in bytes                                                             |
 | EQ_APPLICATION_VERSION_PATH               | .application-version  | the location of a file containing the application version number                              |
