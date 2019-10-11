@@ -229,7 +229,7 @@ class TestLoginWIthPostRequest(IntegrationTestCase):
         # Then
         self.assertStatusForbidden()
 
-    def test_http_head_request_to_login_returns_successfully_and_get_still_works(self):
+    def test_http_head_request_to_login_returns_successfully_and_post_still_works(self):
         # Given
         token = self.token_generator.create_token('test_checkbox')
 
