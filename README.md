@@ -341,7 +341,6 @@ The following env variables can be used
 ```
 | Variable Name                             | Default               | Description                                                                                   |
 |-------------------------------------------|-----------------------|-----------------------------------------------------------------------------------------------|
-| EQ_LOG_LEVEL                              | INFO                  | The default logging level (defaults to 'INFO' for local development)                          |
 | EQ_SESSION_TIMEOUT_SECONDS                | 2700 (45 mins)        | The duration of the flask session                                                             |
 | EQ_PROFILING                              | False                 | Enables or disables profiling (True/False) Default False/Disabled                             |
 | EQ_GOOGLE_TAG_MANAGER_ID                  |                       | The Google Tag Manger ID - Specifies the GTM account                                          |
