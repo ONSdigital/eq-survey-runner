@@ -163,7 +163,7 @@ def decrypt_token(encrypted_token):
     if not encrypted_token:
         raise NoTokenException('Please provide a token')
 
-    logger.info('decrypting token')
+    logger.debug('decrypting token')
     decrypted_token = decrypt(
         token=encrypted_token,
         key_store=current_app.eq['key_store'],
