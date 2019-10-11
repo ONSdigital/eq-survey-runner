@@ -531,7 +531,7 @@ def find_kv(block, key, values):
 def process_block(
     block, dir_out, schema_data, spec_file, relative_require='..', page_filename=None
 ):
-    logger.info('Processing Block: %s', block['id'])
+    logger.debug('Processing Block: %s', block['id'])
 
     if not page_filename:
         page_filename = block['id'] + '.page.js'

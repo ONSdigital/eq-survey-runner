@@ -152,7 +152,6 @@ def create_app(  # noqa: C901  pylint: disable=too-complex, too-many-statements
             url_path=flask_request.full_path,
             session_cookie_present='session' in flask_request.cookies,
             csrf_token_present='csrf_token' in cookie_session,
-            cookies=flask_request.cookies,
             user_agent=flask_request.user_agent.string,
         )
 
