@@ -184,8 +184,6 @@ def create_app(  # noqa: C901  pylint: disable=too-complex, too-many-statements
 
     add_blueprints(application)
 
-    configure_flask_logging(application)
-
     login_manager.init_app(application)
 
     add_safe_health_check(application)
@@ -354,16 +352,6 @@ def setup_submitter(application):
     else:
         raise Exception('Unknown EQ_SUBMISSION_BACKEND')
 
-
-def configure_flask_logging(application):
-    # set the logger for this application and stop using flasks broken solution
-    application._logger = logging.getLogger(  # pylint: disable=protected-access
-        __name__
-    )
-    # workaround flask crazy logging mechanism (https://github.com/pallets/flask/issues/641)
-    application.logger_name = 'nowhere'
-    # the line below is required to trigger disabling the logger
-    application.logger  # pylint: disable=pointless-statement
 
 
 def start_dev_mode(application):
