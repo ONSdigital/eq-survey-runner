@@ -3,7 +3,7 @@
   id: 'proxy',
   question: {
     id: 'proxy-question',
-    title: "Are they answering the questions for themselves or on someone else's behalf?",
+    title: "<em>Interviewer Note: Are they answering the questions for themselves or on someone else's behalf?</em>",
     type: 'General',
     answers: [
       {

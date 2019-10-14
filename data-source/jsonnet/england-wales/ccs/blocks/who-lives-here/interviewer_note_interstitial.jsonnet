@@ -2,7 +2,7 @@
   type: 'Interstitial',
   id: 'interviewer-note-interstitial',
   content: {
-    title: 'Interviewer Note',
+    title: '<em>Interviewer Note</em>',
     contents: [
       {
         description: 'Only interview a person who was usually living at the property on census night.',

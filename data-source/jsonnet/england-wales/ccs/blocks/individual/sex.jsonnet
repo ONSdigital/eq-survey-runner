@@ -54,11 +54,11 @@ local proxyTitle = {
     },
     {
       question: question(nonProxyTitle),
-      when: [rules.isNotProxy, rules.estimatedAgeOver16],
+      when: [rules.isNotProxy, rules.estimatedAge],
     },
     {
       question: question(proxyTitle),
-      when: [rules.isProxy, rules.estimatedAgeOver16],
+      when: [rules.isProxy, rules.estimatedAge],
     },
   ],
 }

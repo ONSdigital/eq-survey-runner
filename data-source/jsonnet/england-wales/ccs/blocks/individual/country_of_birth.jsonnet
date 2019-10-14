@@ -58,7 +58,7 @@ local proxyTitle = {
       goto: {
         block: 'marriage-type',
         when: [
-          rules.estimatedAgeOver15,
+          rules.estimatedAge,
         ],
       },
     },

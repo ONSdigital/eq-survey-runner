@@ -53,11 +53,11 @@ local proxyOver19Title = {
     },
     {
       question: question(nonProxyOver19Title),
-      when: [rules.isNotProxy, rules.estimatedAgeOver19],
+      when: [rules.isNotProxy, rules.estimatedAge],
     },
     {
       question: question(proxyOver19Title),
-      when: [rules.isProxy, rules.estimatedAgeOver19],
+      when: [rules.isProxy, rules.estimatedAge],
     },
     {
       question: question(nonProxyUnder19Title),

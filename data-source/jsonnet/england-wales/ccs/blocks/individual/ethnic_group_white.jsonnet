@@ -92,20 +92,8 @@ function(region_code) {
     },
     {
       goto: {
-        block: 'another-uk-address',
-        when: [rules.estimatedAgeUnder1],
-      },
-    },
-    {
-      goto: {
         block: 'past-usual-household-address',
         when: [rules.under4],
-      },
-    },
-    {
-      goto: {
-        block: 'past-usual-household-address',
-        when: [rules.estimatedAgeUnder4],
       },
     },
     {

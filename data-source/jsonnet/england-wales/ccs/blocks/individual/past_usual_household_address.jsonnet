@@ -73,19 +73,6 @@ local proxyDescription = 'If they had no usual address one year ago, state the a
     },
     {
       goto: {
-        block: 'another-uk-address',
-        when: [
-          {
-            id: 'past-usual-address-household-answer',
-            condition: 'not equals',
-            value: 'Other',
-          },
-          rules.estimatedAgeUnder16,
-        ],
-      },
-    },
-    {
-      goto: {
         block: 'employment-status',
         when: [
           {
@@ -106,7 +93,7 @@ local proxyDescription = 'If they had no usual address one year ago, state the a
             condition: 'not equals',
             value: 'Other',
           },
-          rules.estimatedAgeOver16,
+          rules.estimatedAge,
         ],
       },
     },
