@@ -13,7 +13,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
     type: 'General',
     answers: [{
       id: 'own-or-rent-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Owns outright',
@@ -24,13 +24,14 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
           value: 'Owns with a mortgage or loan',
         },
         {
-          label: 'Part owns and part rents',
-          value: 'Part owns and part rents',
+          label: 'Part-owns and part-rents',
+          value: 'Part-owns and part-rents',
           description: 'Including shared ownership',
         },
         {
-          label: 'Rents with or without housing benefit',
-          value: 'Rents with or without housing benefit',
+          label: 'Rents',
+          value: 'Rents',
+          description: 'With or without housing benefit',
         },
         {
           label: 'Lives here rent free',

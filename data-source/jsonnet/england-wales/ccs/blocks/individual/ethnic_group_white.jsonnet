@@ -20,19 +20,6 @@ local question(title, region_code) = (
     type: 'General',
     answers: [
       {
-        guidance: {
-          show_guidance: 'Why your answer is important',
-          hide_guidance: 'Why your answer is important',
-          contents: [
-            {
-              description: 'Your answer will help to support equality and fairness in your community. Councils and government use information on ethnic group to make sure they',
-              list: [
-                'provide services and share funding fairly',
-                'understand and represent everyone’s interests',
-              ],
-            },
-          ],
-        },
         id: 'white-ethnic-group-answer',
         mandatory: false,
         options: [

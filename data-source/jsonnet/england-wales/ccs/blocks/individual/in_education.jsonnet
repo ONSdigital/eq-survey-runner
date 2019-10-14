@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'in-education-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Yes',

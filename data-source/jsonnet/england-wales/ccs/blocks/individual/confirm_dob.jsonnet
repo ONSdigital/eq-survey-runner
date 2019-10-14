@@ -49,12 +49,12 @@ local nonProxyTitle = {
   ],
 };
 local nonProxyYesLabel = {
-  text: 'Yes, I am {age_in_years} years old',
+  text: 'Yes',
   placeholders: [
     dateOfBirthPlaceholder,
   ],
 };
-local nonProxyNoLabel = 'No, I need to change my date of birth';
+local nonProxyNoLabel = 'No';
 
 local proxyTitle = {
   text: '{person_name} is {age_in_years} years old. Is this correct?',
@@ -64,13 +64,13 @@ local proxyTitle = {
   ],
 };
 local proxyYesLabel = {
-  text: 'Yes, {person_name} is {age_in_years} years old',
+  text: 'Yes',
   placeholders: [
     placeholders.personName,
     dateOfBirthPlaceholder,
   ],
 };
-local proxyNoLabel = 'No, I need to change their date of birth';
+local proxyNoLabel = 'No';
 
 {
   type: 'ConfirmationQuestion',
