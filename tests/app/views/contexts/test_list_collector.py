@@ -18,27 +18,7 @@ def test_build_list_collector_context(
         form,
     )
 
-    assert all(
-        keys in context.keys() for keys in ['block', 'form', 'list_items', 'add_link']
-    )
-    assert context['add_link'] == '/questionnaire/people/list-collector/'
-
-
-@pytest.mark.usefixtures('app')
-def test_build_list_collector_context_no_summary(
-    list_collector_block, schema, people_answer_store, people_list_store, form
-):
-    del list_collector_block['summary']
-    context = list_collector.build_list_collector_context(
-        list_collector_block,
-        schema,
-        people_answer_store,
-        people_list_store,
-        DEFAULT_LANGUAGE_CODE,
-        form,
-    )
-
-    assert context['list_items'] == []
+    assert all(keys in context.keys() for keys in ['block', 'form', 'list'])
 
 
 @pytest.mark.usefixtures('app')
