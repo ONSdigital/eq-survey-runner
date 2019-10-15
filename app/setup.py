@@ -1,6 +1,5 @@
 import copy
 import json
-import logging
 from uuid import uuid4
 
 import boto3
@@ -351,7 +350,6 @@ def setup_submitter(application):
 
     else:
         raise Exception('Unknown EQ_SUBMISSION_BACKEND')
-
 
 
 def start_dev_mode(application):
