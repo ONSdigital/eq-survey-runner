@@ -10,7 +10,7 @@ local question(title) = {
       title: 'What do we mean by “another address”?',
       contents: [
         {
-          description: "We mean a different address to the one at the start of this survey. This might be another parent or guardian’s address, a term-time address, a partner‘s address or a holiday home.",
+          description: "We mean a different address to the one at the start of this survey. This might be another parent or guardian’s address, a term-time address, a partner’s address or a holiday home.",
         },
       ],
     },

@@ -31,8 +31,8 @@ local question(title) = {
           value: 'Another parent or guardian’s address',
         },
         {
-          label: "Partner‘s address",
-          value: "Partner‘s address",
+          label: "Partner’s address",
+          value: "Partner’s address",
         },
         {
           label: 'Holiday home',
