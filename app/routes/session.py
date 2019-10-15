@@ -35,7 +35,7 @@ def login_head():
     return '', 204
 
 
-@session_blueprint.route('/session', methods=['GET'])
+@session_blueprint.route('/session', methods=['GET', 'POST'])
 def login():
     """
     Initial url processing - expects a token parameter and then will authenticate this token. Once authenticated
