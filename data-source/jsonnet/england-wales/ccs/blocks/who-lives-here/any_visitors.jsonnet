@@ -23,6 +23,13 @@
         {
           label: '1 or more',
           value: '1 or more',
+          action: {
+             type: 'RedirectToListAddQuestion',
+             params: {
+               block_id: 'add-visitor',
+               list_name: 'visitor',
+             },
+          },
         },
         {
           label: 'None',
