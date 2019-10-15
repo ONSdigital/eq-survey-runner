@@ -12,6 +12,12 @@ local listIsNotEmpty(listName) = {
   value: 0,
 };
 
+local estimatedAgeOver19 = {
+  id: 'age-last-birthday-answer',
+  condition: 'greater than or equal to',
+  value: 19,
+};
+
 local estimatedAgeOver16 = {
   id: 'age-last-birthday-answer',
   condition: 'greater than or equal to',
@@ -55,6 +61,7 @@ local estimatedAgeUnder1 = {
   },
   listIsEmpty: listIsEmpty,
   listIsNotEmpty: listIsNotEmpty,
+  estimatedAgeOver19: estimatedAgeOver19,
   estimatedAgeOver16: estimatedAgeOver16,
   estimatedAgeUnder16: estimatedAgeUnder16,
   estimatedAgeOver15: estimatedAgeOver15,

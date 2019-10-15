@@ -1,9 +1,9 @@
 // Who lives here
+local another_address_interviewer_note_interstitial = import 'ccs/blocks/who-lives-here/another_address_interviewer_note_interstitial.jsonnet';
 local any_visitors = import 'ccs/blocks/who-lives-here/any_visitors.jsonnet';
 local anyone_else_list_collector = import 'ccs/blocks/who-lives-here/anyone_else_list_collector.jsonnet';
 local anyone_else_temp_away_list_collector = import 'ccs/blocks/who-lives-here/anyone_else_temp_away_list_collector.jsonnet';
 local anyone_else_usually_living = import 'ccs/blocks/who-lives-here/anyone_else_usually_living.jsonnet';
-local household_usual_address = import 'ccs/blocks/who-lives-here/household_usual_address.jsonnet';
 local interviewer_note_interstitial = import 'ccs/blocks/who-lives-here/interviewer_note_interstitial.jsonnet';
 local primary_person_list_collector = import 'ccs/blocks/who-lives-here/primary_person_list_collector.jsonnet';
 local relationships = import 'ccs/blocks/who-lives-here/relationships.jsonnet';
@@ -22,6 +22,7 @@ local self_contained = import 'ccs/blocks/accommodation/self_contained.jsonnet';
 local type_of_flat = import 'ccs/blocks/accommodation/type_of_flat.jsonnet';
 local type_of_house = import 'ccs/blocks/accommodation/type_of_house.jsonnet';
 local who_rent_from = import 'ccs/blocks/accommodation/who_rent_from.jsonnet';
+local accommodation_summary = import 'household/blocks/accommodation/accommodation_summary.jsonnet';
 
 // Individual
 local age_last_birthday = import 'ccs/blocks/individual/age_last_birthday.jsonnet';
@@ -99,12 +100,25 @@ function(region_code, census_date, census_month_year_date) {
             primary_person_list_collector,
             anyone_else_usually_living,
             interviewer_note_interstitial,
-            household_usual_address,
+            another_address_interviewer_note_interstitial,
             anyone_else_list_collector(census_date),
             anyone_else_temp_away_list_collector,
-            relationships,
             any_visitors(census_date),
             visitor_list_collector(census_date),
+            who_lives_here_section_summary,
+            relationships,
+          ],
+        },
+      ],
+    },
+    {
+      id: 'accommodation-section',
+      title: 'Household accommodation',
+      groups: [
+        {
+          id: 'accommodation-group',
+          title: '',
+          blocks: [
             accommodation_introduction,
             accommodation_type,
             type_of_house,
@@ -115,7 +129,7 @@ function(region_code, census_date, census_month_year_date) {
             internet,
             government_services,
             other_living_accommodation,
-            who_lives_here_section_summary,
+            accommodation_summary,
           ],
         },
       ],

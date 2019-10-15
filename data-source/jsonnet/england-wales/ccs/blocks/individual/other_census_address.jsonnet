@@ -4,7 +4,7 @@ local rules = import 'rules.libsonnet';
 local question(title) = {
   id: 'other-census-address-question',
   title: title,
-  description: 'Tell respondent to turn to <strong>Showcard 12</strong>',
+  description: '<em>Tell respondent to turn to <strong>Showcard 12</strong></em>',
   type: 'General',
   answers: [
     {
