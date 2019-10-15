@@ -15,11 +15,11 @@ local questionTitle = {
     title: questionTitle,
     type: 'General',
     guidance: {
-        contents: [
-            {
-            description: 'For example, separate bedsits, annexes, sheds etc.',
-            },
-        ],
+      contents: [
+        {
+          description: 'For example, separate bedsits, annexes, sheds etc.',
+        },
+      ],
     },
     description: '<em>If "Yes" ensure this accommodation is recorded on the Fieldwork Management Tool and interview household separately</em>',
     answers: [{

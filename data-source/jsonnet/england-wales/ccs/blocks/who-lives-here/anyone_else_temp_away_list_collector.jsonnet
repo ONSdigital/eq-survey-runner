@@ -82,7 +82,7 @@ local editQuestion(questionTitle) = {
     guidance: {
       contents: [
         {
-            description: 'Include',
+          description: 'Include',
         },
         {
           list: [

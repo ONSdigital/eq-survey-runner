@@ -16,28 +16,28 @@
       ],
     },
     answers: [
-     {
-      id: 'any-visitors-answer',
-      mandatory: false,
-      options: [
-        {
-          label: '1 or more',
-          value: '1 or more',
-          action: {
-             type: 'RedirectToListAddQuestion',
-             params: {
-               block_id: 'add-visitor',
-               list_name: 'visitor',
-             },
+      {
+        id: 'any-visitors-answer',
+        mandatory: false,
+        options: [
+          {
+            label: '1 or more',
+            value: '1 or more',
+            action: {
+              type: 'RedirectToListAddQuestion',
+              params: {
+                block_id: 'add-visitor',
+                list_name: 'visitor',
+              },
+            },
           },
-        },
-        {
-          label: 'None',
-          value: 'None',
-        },
-      ],
-      type: 'Radio',
-    },
+          {
+            label: 'None',
+            value: 'None',
+          },
+        ],
+        type: 'Radio',
+      },
     ],
   },
   routing_rules: [
