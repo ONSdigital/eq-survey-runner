@@ -9,9 +9,9 @@ export default function initPrintlistener() {
     }
   }
   if (window.matchMedia) {
-    let mediaQueryList = window.matchMedia('print')
-    mediaQueryList.addListener(function(mql) {
-      if (!mql.matches) {
+    let mql = window.matchMedia('print')
+    mql.addEventListener("change", (e) => {
+      if (!e.matches) {
         onafterPrinting()
       }
     })
