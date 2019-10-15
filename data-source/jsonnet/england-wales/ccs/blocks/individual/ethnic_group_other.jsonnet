@@ -33,7 +33,7 @@ local question(title) = {
 
 local nonProxyTitle = 'Which one best describes your other ethnic group or background?';
 local proxyTitle = {
-  text: 'Which one best describes <em>{person_name_possessive}</em> other ethnic group or background?',
+  text: 'Which one best describes {person_name_possessive} other ethnic group or background?',
   placeholders: [
     placeholders.personNamePossessive,
   ],

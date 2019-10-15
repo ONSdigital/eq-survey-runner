@@ -3,7 +3,7 @@ local rules = import 'rules.libsonnet';
 
 local nonProxyTitle = 'Which one best describes your White ethnic group or background?';
 local proxyTitle = {
-  text: 'Which one best describes <em>{person_name_possessive}</em> White ethnic group or background?',
+  text: 'Which one best describes {person_name_possessive} White ethnic group or background?',
   placeholders: [
     placeholders.personNamePossessive,
   ],

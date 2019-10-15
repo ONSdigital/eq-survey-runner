@@ -7,7 +7,7 @@ local rules = import 'rules.libsonnet';
   question: {
     id: 'accommodation-type-question',
     title: {
-      text: 'What type of accommodation is <em>{address}</em>?',
+      text: 'What type of accommodation is {address}?',
       placeholders: [placeholders.address],
     },
     description: '<em>Tell respondent to turn to <strong>Showcard 3</strong></em>',

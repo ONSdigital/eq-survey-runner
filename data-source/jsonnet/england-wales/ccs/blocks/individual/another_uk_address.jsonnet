@@ -3,7 +3,7 @@ local rules = import 'rules.libsonnet';
 
 local nonProxyTitle = 'Is there another UK address where you may have been included on a census questionnaire because you were a usual resident, or staying overnight there on Sunday 13 October 2019?';
 local proxyTitle = {
-  text: 'Is there another address {person_name} where you may have been included on a census questionnaire because you were a usual resident, or staying overnight there on Sunday 13 October 2019?',
+  text: 'Is there another UK address where {person_name} may have been included on a census questionnaire because they were a usual resident, or staying overnight there on Sunday 13 October 2019?',
   placeholders: [
     placeholders.personName,
   ],

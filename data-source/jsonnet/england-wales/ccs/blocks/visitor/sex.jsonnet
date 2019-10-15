@@ -8,7 +8,7 @@ local rules = import 'rules.libsonnet';
   question: {
     id: 'visitor-sex-question',
     title: {
-      text: 'What is <em>{person_name_possessive}</em> sex?',
+      text: 'What is {person_name_possessive} sex?',
       placeholders: [
         placeholders.personNamePossessive,
       ],

@@ -16,7 +16,7 @@ local question(title, options) = {
 
 local nonProxyTitle = 'During term time, where did you usually live?';
 local proxyTitle = {
-  text: 'During term time, where did <em>{person_name}</em> usually live?',
+  text: 'During term time, where did {person_name} usually live?',
   placeholders: [
     placeholders.personName,
   ],

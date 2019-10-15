@@ -26,14 +26,14 @@ local question(title) = {
 
 local nonProxyUnder19Title = 'On 13 October 2019, were you a schoolchild or student in full-time education?';
 local proxyUnder19Title = {
-  text: 'On 13 October 2019, was <em>{person_name}</em> a schoolchild or student in full-time education?',
+  text: 'On 13 October 2019, was {person_name} a schoolchild or student in full-time education?',
   placeholders: [
     placeholders.personName,
   ],
 };
 local nonProxyOver19Title = 'On 13 October 2019, were you a student in full-time education?';
 local proxyOver19Title = {
-  text: 'On 13 October 2019, was <em>{person_name}</em> a student in full-time education?',
+  text: 'On 13 October 2019, was {person_name} a student in full-time education?',
   placeholders: [
     placeholders.personName,
   ],

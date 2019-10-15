@@ -35,7 +35,7 @@ local question(title) = {
 
 local nonProxyTitle = 'One year ago, on 13 October 2018, what was your usual address?';
 local proxyTitle = {
-  text: 'One year ago, on 13 October 2018, what was <em>{person_name_possessive}</em> usual address?',
+  text: 'One year ago, on 13 October 2018, what was {person_name_possessive} usual address?',
   placeholders: [
     placeholders.personNamePossessive,
   ],
