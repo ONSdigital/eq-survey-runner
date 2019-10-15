@@ -133,6 +133,31 @@
                                         }
                                     ]
                                 }
+                            },
+                            "summary": {
+                                "add_link_text": "Add someone to this household",
+                                "empty_list_text": "There are no householders",
+                                "title": "Household members",
+                                "item_title": {
+                                    "text": "{person_name}",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "person_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "delimiter": " ",
+                                                        "list_to_concatenate": {
+                                                            "identifier": ["first-name", "last-name"],
+                                                            "source": "answers"
+                                                        }
+                                                    },
+                                                    "transform": "concatenate_list"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
                             }
                         },
                         {
