@@ -9,7 +9,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
       text: 'Does your household own or rent <em>{address}</em>?',
       placeholders: [placeholders.address],
     },
-    description: 'Tell respondent to turn to <strong>Showcard 4</strong>',
+    description: '<em>Tell respondent to turn to <strong>Showcard 4</strong></em>',
     type: 'General',
     answers: [{
       id: 'own-or-rent-answer',
