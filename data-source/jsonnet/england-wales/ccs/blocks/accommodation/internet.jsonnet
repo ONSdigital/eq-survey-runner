@@ -9,7 +9,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
       text: 'How do you and the people in your household connect to the internet at {address}?',
       placeholders: [placeholders.address],
     },
-    description: 'Tell respondent to turn to <strong>Showcard 6</strong>',
+    description: '<em>Tell respondent to turn to <strong>Showcard 6</strong></em>',
     type: 'MutuallyExclusive',
     mandatory: false,
     answers: [
