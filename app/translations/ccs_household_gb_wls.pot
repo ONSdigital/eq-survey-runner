@@ -1,0 +1,2123 @@
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-10-15 13:23+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Census England Coverage Survey Schema"
+msgstr ""
+
+msgid ""
+"All the questions are about the people in your household on Sunday 13 "
+"October 2019."
+msgstr ""
+
+msgid ""
+"A <em>household</em> is one person living alone or a group of people (not"
+" necessarily related) who share cooking facilities and share a\n"
+"        living room <em>OR</em> sitting room <em>OR</em> dining area."
+msgstr ""
+
+msgid "Here are some cards to help with answering the questions."
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 1</strong></em>"
+msgstr ""
+
+msgid ""
+"Only interview a person who was usually living at the property on census "
+"night."
+msgstr ""
+
+msgid ""
+"If none of those household members are available, you must save and sign "
+"out of the survey and return to the address to interview one of them at a"
+" later date."
+msgstr ""
+
+msgid ""
+"If none of the household members were usually living at the property on "
+"census night, you must save and sign out of the survey and complete a "
+"paper questionnaire."
+msgstr ""
+
+msgid ""
+"<em>Enter a full stop(.) if the respondent does not know a person’s "
+"\"First name\" or \"Last name\"</em>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 2</strong>"
+msgstr ""
+
+msgid ""
+"Remember to only include those people who share cooking facilities and "
+"sharing a living room or sitting room or dining area"
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 2</strong></em>"
+msgstr ""
+
+msgid "Include"
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 13</strong></em>"
+msgstr ""
+
+msgid ""
+"A visitor is a person staying overnight in your household who usually "
+"lives at another address."
+msgstr ""
+
+msgid "Remember to include partners and step-children as related"
+msgstr ""
+
+msgid ""
+"In this section, I’m going to ask you about the household and "
+"accommodation you were living in on Sunday 13 October 2019."
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 3</strong></em>"
+msgstr ""
+
+msgid "Including end-terrace"
+msgstr ""
+
+msgid "Including bedsits"
+msgstr ""
+
+msgid "For example, in an office building, hotel, or over a shop"
+msgstr ""
+
+msgid ""
+"<em>If \"No\" confirm one or more rooms are shared with another "
+"household</em>"
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 4</strong></em>"
+msgstr ""
+
+msgid "Including shared ownership"
+msgstr ""
+
+msgid "With or without housing benefit"
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 5</strong></em>"
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 6</strong></em>"
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 7</strong></em>"
+msgstr ""
+
+msgid "For example, taxing a car, registering to vote, applying for school places"
+msgstr ""
+
+msgid "For example, passports, visas"
+msgstr ""
+
+msgid ""
+"This refers to any interaction you might have with public authorities "
+"online, such as DVLA, HMRC, local council or health related services."
+msgstr ""
+
+msgid ""
+"<em>If \"Yes\" ensure this accommodation is recorded on the Fieldwork "
+"Management Tool and interview household separately</em>"
+msgstr ""
+
+msgid "For example, separate bedsits, annexes, sheds etc."
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 8</strong></em>"
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 9</strong></em>"
+msgstr ""
+
+msgid "Select to enter answer"
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 10</strong></em>"
+msgstr ""
+
+msgid "Include casual or temporary work, even if only for one hour"
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 11</strong></em>"
+msgstr ""
+
+msgid "Whether receiving a pension or not"
+msgstr ""
+
+msgid "<em>Tell respondent to turn to <strong>Showcard 12</strong></em>"
+msgstr ""
+
+msgid "Moved since 13 October 2019"
+msgstr ""
+
+msgid "Voluntary"
+msgstr ""
+
+msgid "Add someone to this household"
+msgstr ""
+
+msgid "Add another visitor to this household"
+msgstr ""
+
+msgid "Add a visitor"
+msgstr ""
+
+msgid "There are no householders"
+msgstr ""
+
+msgid "There are no visitors"
+msgstr ""
+
+msgid "2019 Census Coverage Survey Test"
+msgstr ""
+
+msgid "People who live here"
+msgstr ""
+
+msgid "Who lives here"
+msgstr ""
+
+msgid "Household definition"
+msgstr ""
+
+msgid "What is your full name?"
+msgstr ""
+
+msgid "<em>Interviewer Note</em>"
+msgstr ""
+
+msgid "All of the data entered about this person will be deleted"
+msgstr ""
+
+msgid "Household members"
+msgstr ""
+
+msgid ""
+"Apart from the people already included, is there anyone else who was "
+"temporarily away or staying that you need to add?"
+msgstr ""
+
+msgid ""
+"How many visitors were staying in your household overnight on Sunday 13 "
+"October 2019?"
+msgstr ""
+
+msgid "Are any of these people related to each other?"
+msgstr ""
+
+msgid "Household accommodation"
+msgstr ""
+
+msgid "Household and accommodation"
+msgstr ""
+
+msgid "Which of the following is your house or bungalow?"
+msgstr ""
+
+msgid "Where is your flat, maisonette or apartment?"
+msgstr ""
+
+msgid "Who is your landlord?"
+msgstr ""
+
+msgid ""
+"In the last year, how have you or your household used online government "
+"services?"
+msgstr ""
+
+msgid "Individual Section"
+msgstr ""
+
+msgid "Personal Details"
+msgstr ""
+
+msgid ""
+"<em>Interviewer Note: Are they answering the questions for themselves or "
+"on someone else’s behalf?</em>"
+msgstr ""
+
+msgid "What is your date of birth?"
+msgstr ""
+
+msgid "What was your age on your last birthday?"
+msgstr ""
+
+msgid "Can I confirm your sex?"
+msgstr ""
+
+msgid "Were you born in the UK?"
+msgstr ""
+
+msgid "What is your ethnic group?"
+msgstr ""
+
+msgid "Which one best describes your White ethnic group or background?"
+msgstr ""
+
+msgid ""
+"Which one best describes your Mixed or Multiple ethnic group or "
+"background?"
+msgstr ""
+
+msgid ""
+"Which one best describes your Asian or Asian British ethnic group or "
+"background?"
+msgstr ""
+
+msgid ""
+"Which one best describes your Black, Black British, Caribbean or African "
+"ethnic group or background?"
+msgstr ""
+
+msgid "Which one best describes your other ethnic group or background?"
+msgstr ""
+
+msgid "On 13 October 2019, were you a student in full-time education?"
+msgstr ""
+
+msgid ""
+"On 13 October 2019, were you a schoolchild or student in full-time "
+"education?"
+msgstr ""
+
+msgid "During term time, where did you usually live?"
+msgstr ""
+
+msgid "One year ago, on 13 October 2018, what was your usual address?"
+msgstr ""
+
+msgid ""
+"Including the time already you have already spent here, how long do you "
+"intend to stay in the United Kingdom?"
+msgstr ""
+
+msgid ""
+"During the week of 7 to 13 October 2019, were you doing any of the "
+"following?"
+msgstr ""
+
+msgid ""
+"Which of the following describes what you were doing during the week of 7"
+" to 13 October 2019?"
+msgstr ""
+
+msgid ""
+"Is there another UK address where you may have been included on a census "
+"questionnaire because you were a usual resident, or staying overnight "
+"there on Sunday 13 October 2019?"
+msgstr ""
+
+msgid ""
+"What is the other address where you may have been included on a Census "
+"questionnaire?"
+msgstr ""
+
+msgid "Visitors"
+msgstr ""
+
+msgid "Summary"
+msgstr ""
+
+msgid ""
+"People from outside the UK who were staying in the UK for <strong>3 "
+"months or more</strong>"
+msgstr ""
+
+msgid "Members of the armed forces"
+msgstr ""
+
+msgid "Prisoners with a sentence of <strong>less than 12 months</strong>"
+msgstr ""
+
+msgid ""
+"People expecting to stay in an establishment such as a hospital, care "
+"home or hostel for <strong>less than 6 months</strong>"
+msgstr ""
+
+msgid ""
+"People who were temporarily outside the UK for <strong>less than 12 "
+"months</strong>"
+msgstr ""
+
+msgid "People staying temporarily who did not have another UK address"
+msgstr ""
+
+msgid "Were you usually living at {address} on Sunday 13 October 2019?"
+msgstr ""
+
+msgid ""
+"Was anyone in your current household usually living at {address} on "
+"Sunday 13 October 2019?"
+msgstr ""
+
+msgid "Who do you need to add to {address}?"
+msgstr ""
+
+msgid "Change details for {person_name} (You)"
+msgstr ""
+
+msgid "Change details for {person_name}"
+msgstr ""
+
+msgid "Did anyone usually live at {address} on Sunday 13 October 2019?"
+msgstr ""
+
+msgid "Did anyone else usually live at {address} on Sunday 13 October 2019?"
+msgstr ""
+
+msgid "Are you sure you want to remove {person_name}?"
+msgstr ""
+
+msgid "{person_name}"
+msgstr ""
+
+msgid ""
+"What is the name of the visitor staying overnight on {census_date} at "
+"{address}?"
+msgstr ""
+
+msgid ""
+"Were there any other visitors staying overnight on {census_date} at "
+"{address}?"
+msgstr ""
+
+msgid "Visitors staying overnight on {census_date}"
+msgstr ""
+
+msgid "What type of accommodation is {address}?"
+msgstr ""
+
+msgid ""
+"Are all the rooms at {address}, including the kitchen, bathroom and "
+"toilet, behind a door that only this household can use?"
+msgstr ""
+
+msgid "Does your household own or rent {address}?"
+msgstr ""
+
+msgid ""
+"How do you and the people in your household connect to the internet at "
+"{address}?"
+msgstr ""
+
+msgid "Is there any other living accommodation at {address}?"
+msgstr ""
+
+msgid ""
+"In this section, I’m going to ask you questions about "
+"<strong>{person_name}</strong>."
+msgstr ""
+
+msgid "What is {person_name_possessive} date of birth?"
+msgstr ""
+
+msgid "What was {person_name_possessive} age on their last birthday?"
+msgstr ""
+
+msgid "You are {age_in_years} years old. Is this correct?"
+msgstr ""
+
+msgid "{person_name} is {age_in_years} years old. Is this correct?"
+msgstr ""
+
+msgid "What is {person_name_possessive} sex?"
+msgstr ""
+
+msgid "Was {person_name} born in the UK?"
+msgstr ""
+
+msgid ""
+"On {census_date}, what was your legal marital or registered civil "
+"partnership status?"
+msgstr ""
+
+msgid ""
+"On {census_date}, what was {person_name_possessive} legal marital or "
+"registered civil partnership status?"
+msgstr ""
+
+msgid "What is {person_name_possessive} ethnic group?"
+msgstr ""
+
+msgid ""
+"Which one best describes {person_name_possessive} White ethnic group or "
+"background?"
+msgstr ""
+
+msgid ""
+"Which one best describes {person_name_possessive} Mixed or Multiple "
+"ethnic group or background?"
+msgstr ""
+
+msgid ""
+"Which one best describes {person_name_possessive} Asian or Asian British "
+"ethnic group or background?"
+msgstr ""
+
+msgid ""
+"Which one best describes {person_name_possessive} Black, Black British, "
+"Caribbean or African ethnic group or background?"
+msgstr ""
+
+msgid ""
+"Which one best describes {person_name_possessive} other ethnic group or "
+"background?"
+msgstr ""
+
+msgid "On 13 October 2019, was {person_name} a student in full-time education?"
+msgstr ""
+
+msgid ""
+"On 13 October 2019, was {person_name} a schoolchild or student in full-"
+"time education?"
+msgstr ""
+
+msgid "During term time, where did {person_name} usually live?"
+msgstr ""
+
+msgid ""
+"One year ago, on 13 October 2018, what was {person_name_possessive} usual"
+" address?"
+msgstr ""
+
+msgid ""
+"Including the time they have already spent here, how long does "
+"{person_name} intend to stay in the United Kingdom?"
+msgstr ""
+
+msgid ""
+"During the week of 7 to 13 October 2019, was {person_name} doing any of "
+"the following?"
+msgstr ""
+
+msgid ""
+"Which of the following describes what {person_name} was doing during the "
+"week of 7 to 13 October 2019?"
+msgstr ""
+
+msgid ""
+"Is there another UK address where {person_name} may have been included on"
+" a census questionnaire because they were a usual resident, or staying "
+"overnight there on Sunday 13 October 2019?"
+msgstr ""
+
+msgid ""
+"What is the other address where {person_name} may have been included on a"
+" Census questionnaire?"
+msgstr ""
+
+msgid ""
+"In this section, I’m going to ask you about your visitor, "
+"<strong>{person_name}</strong>."
+msgstr ""
+
+msgid "Did {person_name} usually live in the United Kingdom?"
+msgstr ""
+
+msgid "What is {person_name_possessive} usual UK address?"
+msgstr ""
+
+msgid "{person_name} (Visitor)"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: What is your full name?"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: What is your full name?"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: What is your full name?"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: you-live-here-answer
+msgctxt ""
+"Answer for: Were you usually living at {address} on Sunday 13 October "
+"2019?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: you-live-here-answer
+msgctxt ""
+"Answer for: Were you usually living at {address} on Sunday 13 October "
+"2019?"
+msgid "No"
+msgstr ""
+
+#. answer-id: anyone-else-usually-living-answer
+msgctxt ""
+"Answer for: Was anyone in your current household usually living at "
+"{address} on Sunday 13 October 2019?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: anyone-else-usually-living-answer
+msgctxt ""
+"Answer for: Was anyone in your current household usually living at "
+"{address} on Sunday 13 October 2019?"
+msgid "No"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: Who do you need to add to {address}?"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name} (You)"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "First name"
+msgstr ""
+
+#. answer-id: middle-names
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Middle names"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt "Answer for: Change details for {person_name}"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: anyone-else-answer
+msgctxt ""
+"Answer for: Did anyone usually live at {address} on Sunday 13 October "
+"2019?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: anyone-else-answer
+msgctxt ""
+"Answer for: Did anyone usually live at {address} on Sunday 13 October "
+"2019?"
+msgid "No"
+msgstr ""
+
+#. answer-id: anyone-else-answer
+msgctxt ""
+"Answer for: Did anyone else usually live at {address} on Sunday 13 "
+"October 2019?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: anyone-else-answer
+msgctxt ""
+"Answer for: Did anyone else usually live at {address} on Sunday 13 "
+"October 2019?"
+msgid "No"
+msgstr ""
+
+#. answer-id: remove-confirmation
+#. answer-id: anyone-else-temp-away-remove-confirmation
+msgctxt "Answer for: Are you sure you want to remove {person_name}?"
+msgid "Yes, I want to remove this person"
+msgstr ""
+
+#. answer-id: remove-confirmation
+#. answer-id: anyone-else-temp-away-remove-confirmation
+msgctxt "Answer for: Are you sure you want to remove {person_name}?"
+msgid "No, I do not want to remove this person"
+msgstr ""
+
+#. answer-id: anyone-else-temp-away-answer
+msgctxt ""
+"Answer for: Apart from the people already included, is there anyone else "
+"who was temporarily away or staying that you need to add?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: anyone-else-temp-away-answer
+msgctxt ""
+"Answer for: Apart from the people already included, is there anyone else "
+"who was temporarily away or staying that you need to add?"
+msgid "No"
+msgstr ""
+
+#. answer-id: any-visitors-answer
+msgctxt ""
+"Answer for: How many visitors were staying in your household overnight on"
+" Sunday 13 October 2019?"
+msgid "1 or more"
+msgstr ""
+
+#. answer-id: any-visitors-answer
+msgctxt ""
+"Answer for: How many visitors were staying in your household overnight on"
+" Sunday 13 October 2019?"
+msgid "None"
+msgstr ""
+
+#. answer-id: first-name
+msgctxt ""
+"Answer for: What is the name of the visitor staying overnight on "
+"{census_date} at {address}?"
+msgid "First name"
+msgstr ""
+
+#. answer-id: last-name
+msgctxt ""
+"Answer for: What is the name of the visitor staying overnight on "
+"{census_date} at {address}?"
+msgid "Last name"
+msgstr ""
+
+#. answer-id: visitor-answer
+msgctxt ""
+"Answer for: Were there any other visitors staying overnight on "
+"{census_date} at {address}?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: visitor-answer
+msgctxt ""
+"Answer for: Were there any other visitors staying overnight on "
+"{census_date} at {address}?"
+msgid "No"
+msgstr ""
+
+#. answer-id: visitor-remove-confirmation
+msgctxt "Answer for: Are you sure you want to remove {person_name}?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: visitor-remove-confirmation
+msgctxt "Answer for: Are you sure you want to remove {person_name}?"
+msgid "No"
+msgstr ""
+
+#. answer-id: relationships-answer
+msgctxt "Answer for: Are any of these people related to each other?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: relationships-answer
+msgctxt "Answer for: Are any of these people related to each other?"
+msgid "No, all household members are unrelated"
+msgstr ""
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is {address}?"
+msgid "Whole house or bungalow"
+msgstr ""
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is {address}?"
+msgid "Flat, maisonette or apartment"
+msgstr ""
+
+#. answer-id: accommodation-type-answer
+msgctxt "Answer for: What type of accommodation is {address}?"
+msgid "Caravan or other mobile or temporary structure"
+msgstr ""
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Detached"
+msgstr ""
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Semi-detached"
+msgstr ""
+
+#. answer-id: type-of-house-answer
+msgctxt "Answer for: Which of the following is your house or bungalow?"
+msgid "Terraced"
+msgstr ""
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "In a purpose-built block of flats or tenement"
+msgstr ""
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "Part of a converted or shared house"
+msgstr ""
+
+#. answer-id: type-of-flat-answer
+msgctxt "Answer for: Where is your flat, maisonette or apartment?"
+msgid "In a commercial building"
+msgstr ""
+
+#. answer-id: self-contained-answer
+msgctxt ""
+"Answer for: Are all the rooms at {address}, including the kitchen, "
+"bathroom and toilet, behind a door that only this household can use?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: self-contained-answer
+msgctxt ""
+"Answer for: Are all the rooms at {address}, including the kitchen, "
+"bathroom and toilet, behind a door that only this household can use?"
+msgid "No"
+msgstr ""
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent {address}?"
+msgid "Owns outright"
+msgstr ""
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent {address}?"
+msgid "Owns with a mortgage or loan"
+msgstr ""
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent {address}?"
+msgid "Part-owns and part-rents"
+msgstr ""
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent {address}?"
+msgid "Rents"
+msgstr ""
+
+#. answer-id: own-or-rent-answer
+msgctxt "Answer for: Does your household own or rent {address}?"
+msgid "Lives here rent free"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid ""
+"Housing association, housing co-operative, charitable trust, registered "
+"social landlord"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Council or local authority"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Private landlord or letting agency"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Employer of a household member"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Relative or friend of a household member"
+msgstr ""
+
+#. answer-id: who-rent-from-answer
+msgctxt "Answer for: Who is your landlord?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: internet-answer
+msgctxt ""
+"Answer for: How do you and the people in your household connect to the "
+"internet at {address}?"
+msgid "Broadband or WiFi"
+msgstr ""
+
+#. answer-id: internet-answer
+msgctxt ""
+"Answer for: How do you and the people in your household connect to the "
+"internet at {address}?"
+msgid "A mobile phone network such as 3G or 4G"
+msgstr ""
+
+#. answer-id: internet-answer
+msgctxt ""
+"Answer for: How do you and the people in your household connect to the "
+"internet at {address}?"
+msgid "Public WiFi hotspot"
+msgstr ""
+
+#. answer-id: internet-answer-exclusive
+msgctxt ""
+"Answer for: How do you and the people in your household connect to the "
+"internet at {address}?"
+msgid "Unable to access the internet at home"
+msgstr ""
+
+#. answer-id: government-services-answer
+msgctxt ""
+"Answer for: In the last year, how have you or your household used online "
+"government services?"
+msgid "Completing forms online"
+msgstr ""
+
+#. answer-id: government-services-answer
+msgctxt ""
+"Answer for: In the last year, how have you or your household used online "
+"government services?"
+msgid "Applying for official documents"
+msgstr ""
+
+#. answer-id: government-services-answer
+msgctxt ""
+"Answer for: In the last year, how have you or your household used online "
+"government services?"
+msgid "Used paper-based services"
+msgstr ""
+
+#. answer-id: government-services-answer-exclusive
+msgctxt ""
+"Answer for: In the last year, how have you or your household used online "
+"government services?"
+msgid "Did not use government services"
+msgstr ""
+
+#. answer-id: other-living-accommodation-answer
+msgctxt "Answer for: Is there any other living accommodation at {address}?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: other-living-accommodation-answer
+msgctxt "Answer for: Is there any other living accommodation at {address}?"
+msgid "No"
+msgstr ""
+
+#. answer-id: proxy-answer
+msgctxt ""
+"Answer for: <em>Interviewer Note: Are they answering the questions for "
+"themselves or on someone else's behalf?</em>"
+msgid "Yes, they are answering for themselves"
+msgstr ""
+
+#. answer-id: proxy-answer
+msgctxt ""
+"Answer for: <em>Interviewer Note: Are they answering the questions for "
+"themselves or on someone else's behalf?</em>"
+msgid "No, they are answering on someone else’s behalf"
+msgstr ""
+
+#. answer-id: date-of-birth-exclusive-answer
+msgctxt "Answer for: What is your date of birth?"
+msgid "Date of birth is not known"
+msgstr ""
+
+#. answer-id: date-of-birth-exclusive-answer
+#. answer-id: visitor-date-of-birth-exclusive-answer
+msgctxt "Answer for: What is {person_name_possessive} date of birth?"
+msgid "Date of birth is not known"
+msgstr ""
+
+#. answer-id: age-last-birthday-answer
+msgctxt "Answer for: What was your age on your last birthday?"
+msgid "Age"
+msgstr ""
+
+#. answer-id: age-estimate-answer
+msgctxt "Answer for: What was your age on your last birthday?"
+msgid "Estimate"
+msgstr ""
+
+#. answer-id: age-last-birthday-answer
+#. answer-id: visitor-age-last-birthday-answer
+msgctxt "Answer for: What was {person_name_possessive} age on their last birthday?"
+msgid "Age"
+msgstr ""
+
+#. answer-id: age-estimate-answer
+#. answer-id: visitor-age-estimate-answer
+msgctxt "Answer for: What was {person_name_possessive} age on their last birthday?"
+msgid "Estimate"
+msgstr ""
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
+msgid "No"
+msgstr ""
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: {person_name} is {age_in_years} years old. Is this correct?"
+msgid "No"
+msgstr ""
+
+#. answer-id: sex-answer
+msgctxt "Answer for: Can I confirm your sex?"
+msgid "Female"
+msgstr ""
+
+#. answer-id: sex-answer
+msgctxt "Answer for: Can I confirm your sex?"
+msgid "Male"
+msgstr ""
+
+#. answer-id: sex-answer
+#. answer-id: visitor-sex-answer
+msgctxt "Answer for: What is {person_name_possessive} sex?"
+msgid "Female"
+msgstr ""
+
+#. answer-id: sex-answer
+#. answer-id: visitor-sex-answer
+msgctxt "Answer for: What is {person_name_possessive} sex?"
+msgid "Male"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: Were you born in the UK?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: Were you born in the UK?"
+msgid "No, born outside the UK"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: Was {person_name} born in the UK?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: country-of-birth-answer
+msgctxt "Answer for: Was {person_name} born in the UK?"
+msgid "No, born outside the UK"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was your legal marital or registered "
+"civil partnership status?"
+msgid "Never married and never registered a civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was your legal marital or registered "
+"civil partnership status?"
+msgid "Married"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was your legal marital or registered "
+"civil partnership status?"
+msgid "In a registered civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was your legal marital or registered "
+"civil partnership status?"
+msgid "Separated, but still legally married"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was your legal marital or registered "
+"civil partnership status?"
+msgid "Separated, but still legally in a civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was your legal marital or registered "
+"civil partnership status?"
+msgid "Divorced"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was your legal marital or registered "
+"civil partnership status?"
+msgid "Formerly in a civil partnership which is now legally dissolved"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was your legal marital or registered "
+"civil partnership status?"
+msgid "Widowed"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was your legal marital or registered "
+"civil partnership status?"
+msgid "Surviving partner from a registered civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was {person_name_possessive} legal "
+"marital or registered civil partnership status?"
+msgid "Never married and never registered a civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was {person_name_possessive} legal "
+"marital or registered civil partnership status?"
+msgid "Married"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was {person_name_possessive} legal "
+"marital or registered civil partnership status?"
+msgid "In a registered civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was {person_name_possessive} legal "
+"marital or registered civil partnership status?"
+msgid "Separated, but still legally married"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was {person_name_possessive} legal "
+"marital or registered civil partnership status?"
+msgid "Separated, but still legally in a civil partnership"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was {person_name_possessive} legal "
+"marital or registered civil partnership status?"
+msgid "Divorced"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was {person_name_possessive} legal "
+"marital or registered civil partnership status?"
+msgid "Formerly in a civil partnership which is now legally dissolved"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was {person_name_possessive} legal "
+"marital or registered civil partnership status?"
+msgid "Widowed"
+msgstr ""
+
+#. answer-id: marriage-type-answer
+msgctxt ""
+"Answer for: On {census_date}, what was {person_name_possessive} legal "
+"marital or registered civil partnership status?"
+msgid "Surviving partner from a registered civil partnership"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "White"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Mixed or Multiple ethnic groups"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Asian or Asian British"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Black, Black British, Caribbean or African"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is your ethnic group?"
+msgid "Other ethnic group"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is {person_name_possessive} ethnic group?"
+msgid "White"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is {person_name_possessive} ethnic group?"
+msgid "Mixed or Multiple ethnic groups"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is {person_name_possessive} ethnic group?"
+msgid "Asian or Asian British"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is {person_name_possessive} ethnic group?"
+msgid "Black, Black British, Caribbean or African"
+msgstr ""
+
+#. answer-id: ethnic-group-answer
+msgctxt "Answer for: What is {person_name_possessive} ethnic group?"
+msgid "Other ethnic group"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your White ethnic group or "
+"background?"
+msgid "Welsh, English, Scottish, Northern Irish or British"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your White ethnic group or "
+"background?"
+msgid "Irish"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your White ethnic group or "
+"background?"
+msgid "Gypsy or Irish Traveller"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your White ethnic group or "
+"background?"
+msgid "Roma"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your White ethnic group or "
+"background?"
+msgid "Any other White background"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes your White ethnic group or "
+"background?"
+msgid "Enter White background"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} White "
+"ethnic group or background?"
+msgid "Welsh, English, Scottish, Northern Irish or British"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} White "
+"ethnic group or background?"
+msgid "Irish"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} White "
+"ethnic group or background?"
+msgid "Gypsy or Irish Traveller"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} White "
+"ethnic group or background?"
+msgid "Roma"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} White "
+"ethnic group or background?"
+msgid "Any other White background"
+msgstr ""
+
+#. answer-id: white-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} White "
+"ethnic group or background?"
+msgid "Enter White background"
+msgstr ""
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Mixed or Multiple ethnic group "
+"or background?"
+msgid "White and Black Caribbean"
+msgstr ""
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Mixed or Multiple ethnic group "
+"or background?"
+msgid "White and Black African"
+msgstr ""
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Mixed or Multiple ethnic group "
+"or background?"
+msgid "White and Asian"
+msgstr ""
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Mixed or Multiple ethnic group "
+"or background?"
+msgid "Any other Mixed or Multiple background"
+msgstr ""
+
+#. answer-id: mixed-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes your Mixed or Multiple ethnic group "
+"or background?"
+msgid "Enter Mixed or Multiple background"
+msgstr ""
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Mixed or "
+"Multiple ethnic group or background?"
+msgid "White and Black Caribbean"
+msgstr ""
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Mixed or "
+"Multiple ethnic group or background?"
+msgid "White and Black African"
+msgstr ""
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Mixed or "
+"Multiple ethnic group or background?"
+msgid "White and Asian"
+msgstr ""
+
+#. answer-id: mixed-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Mixed or "
+"Multiple ethnic group or background?"
+msgid "Any other Mixed or Multiple background"
+msgstr ""
+
+#. answer-id: mixed-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Mixed or "
+"Multiple ethnic group or background?"
+msgid "Enter Mixed or Multiple background"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Asian or Asian British ethnic "
+"group or background?"
+msgid "Indian"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Asian or Asian British ethnic "
+"group or background?"
+msgid "Pakistani"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Asian or Asian British ethnic "
+"group or background?"
+msgid "Bangladeshi"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Asian or Asian British ethnic "
+"group or background?"
+msgid "Chinese"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Asian or Asian British ethnic "
+"group or background?"
+msgid "Any other Asian background"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes your Asian or Asian British ethnic "
+"group or background?"
+msgid "Enter Asian background"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Asian or "
+"Asian British ethnic group or background?"
+msgid "Indian"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Asian or "
+"Asian British ethnic group or background?"
+msgid "Pakistani"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Asian or "
+"Asian British ethnic group or background?"
+msgid "Bangladeshi"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Asian or "
+"Asian British ethnic group or background?"
+msgid "Chinese"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Asian or "
+"Asian British ethnic group or background?"
+msgid "Any other Asian background"
+msgstr ""
+
+#. answer-id: asian-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Asian or "
+"Asian British ethnic group or background?"
+msgid "Enter Asian background"
+msgstr ""
+
+#. answer-id: black-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Black, Black British, Caribbean"
+" or African ethnic group or background?"
+msgid "Caribbean"
+msgstr ""
+
+#. answer-id: black-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Black, Black British, Caribbean"
+" or African ethnic group or background?"
+msgid "African"
+msgstr ""
+
+#. answer-id: african-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes your Black, Black British, Caribbean"
+" or African ethnic group or background?"
+msgid "Enter African background"
+msgstr ""
+
+#. answer-id: black-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your Black, Black British, Caribbean"
+" or African ethnic group or background?"
+msgid "Any other Black, Black British or Caribbean background"
+msgstr ""
+
+#. answer-id: black-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes your Black, Black British, Caribbean"
+" or African ethnic group or background?"
+msgid "Enter Black, Black British or Caribbean background"
+msgstr ""
+
+#. answer-id: black-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Black, "
+"Black British, Caribbean or African ethnic group or background?"
+msgid "Caribbean"
+msgstr ""
+
+#. answer-id: black-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Black, "
+"Black British, Caribbean or African ethnic group or background?"
+msgid "African"
+msgstr ""
+
+#. answer-id: african-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Black, "
+"Black British, Caribbean or African ethnic group or background?"
+msgid "Enter African background"
+msgstr ""
+
+#. answer-id: black-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Black, "
+"Black British, Caribbean or African ethnic group or background?"
+msgid "Any other Black, Black British or Caribbean background"
+msgstr ""
+
+#. answer-id: black-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} Black, "
+"Black British, Caribbean or African ethnic group or background?"
+msgid "Enter Black, Black British or Caribbean background"
+msgstr ""
+
+#. answer-id: other-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your other ethnic group or "
+"background?"
+msgid "Arab"
+msgstr ""
+
+#. answer-id: other-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes your other ethnic group or "
+"background?"
+msgid "Any other ethnic group"
+msgstr ""
+
+#. answer-id: other-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes your other ethnic group or "
+"background?"
+msgid "Enter other ethnic group"
+msgstr ""
+
+#. answer-id: other-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} other "
+"ethnic group or background?"
+msgid "Arab"
+msgstr ""
+
+#. answer-id: other-ethnic-group-answer
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} other "
+"ethnic group or background?"
+msgid "Any other ethnic group"
+msgstr ""
+
+#. answer-id: other-ethnic-group-answer-other
+msgctxt ""
+"Answer for: Which one best describes {person_name_possessive} other "
+"ethnic group or background?"
+msgid "Enter other ethnic group"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: On 13 October 2019, were you a student in full-time education?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt "Answer for: On 13 October 2019, were you a student in full-time education?"
+msgid "No"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt ""
+"Answer for: On 13 October 2019, was {person_name} a student in full-time "
+"education?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt ""
+"Answer for: On 13 October 2019, was {person_name} a student in full-time "
+"education?"
+msgid "No"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt ""
+"Answer for: On 13 October 2019, were you a schoolchild or student in "
+"full-time education?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt ""
+"Answer for: On 13 October 2019, were you a schoolchild or student in "
+"full-time education?"
+msgid "No"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt ""
+"Answer for: On 13 October 2019, was {person_name} a schoolchild or "
+"student in full-time education?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: in-education-answer
+msgctxt ""
+"Answer for: On 13 October 2019, was {person_name} a schoolchild or "
+"student in full-time education?"
+msgid "No"
+msgstr ""
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where did you usually live?"
+msgid "At another address"
+msgstr ""
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where did {person_name} usually live?"
+msgid "At another address"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, on 13 October 2018, what was your usual address?"
+msgid "Another address in the UK"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, on 13 October 2018, what was your usual address?"
+msgid "An address outside the UK"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt ""
+"Answer for: One year ago, on 13 October 2018, what was "
+"{person_name_possessive} usual address?"
+msgid "Another address in the UK"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt ""
+"Answer for: One year ago, on 13 October 2018, what was "
+"{person_name_possessive} usual address?"
+msgid "An address outside the UK"
+msgstr ""
+
+#. answer-id: length-of-stay-answer
+msgctxt ""
+"Answer for: Including the time already you have already spent here, how "
+"long do you intend to stay in the United Kingdom?"
+msgid "Less than 12 months"
+msgstr ""
+
+#. answer-id: length-of-stay-answer
+msgctxt ""
+"Answer for: Including the time already you have already spent here, how "
+"long do you intend to stay in the United Kingdom?"
+msgid "12 months or more"
+msgstr ""
+
+#. answer-id: length-of-stay-answer
+msgctxt ""
+"Answer for: Including the time they have already spent here, how long "
+"does {person_name} intend to stay in the United Kingdom?"
+msgid "Less than 12 months"
+msgstr ""
+
+#. answer-id: length-of-stay-answer
+msgctxt ""
+"Answer for: Including the time they have already spent here, how long "
+"does {person_name} intend to stay in the United Kingdom?"
+msgid "12 months or more"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, were you doing any "
+"of the following?"
+msgid "Working as an employee"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, were you doing any "
+"of the following?"
+msgid "Self-employed or freelance"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, were you doing any "
+"of the following?"
+msgid "Temporarily away from work ill, on holiday or temporarily laid off"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, were you doing any "
+"of the following?"
+msgid "On maternity or paternity leave"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, were you doing any "
+"of the following?"
+msgid "Doing any other kind of paid work"
+msgstr ""
+
+#. answer-id: employment-status-answer-exclusive
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, were you doing any "
+"of the following?"
+msgid "None of these apply"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, was {person_name} "
+"doing any of the following?"
+msgid "Working as an employee"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, was {person_name} "
+"doing any of the following?"
+msgid "Self-employed or freelance"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, was {person_name} "
+"doing any of the following?"
+msgid "Temporarily away from work ill, on holiday or temporarily laid off"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, was {person_name} "
+"doing any of the following?"
+msgid "On maternity or paternity leave"
+msgstr ""
+
+#. answer-id: employment-status-answer
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, was {person_name} "
+"doing any of the following?"
+msgid "Doing any other kind of paid work"
+msgstr ""
+
+#. answer-id: employment-status-answer-exclusive
+msgctxt ""
+"Answer for: During the week of 7 to 13 October 2019, was {person_name} "
+"doing any of the following?"
+msgid "None of these apply"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt ""
+"Answer for: Which of the following describes what you were doing during "
+"the week of 7 to 13 October 2019?"
+msgid "Retired"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt ""
+"Answer for: Which of the following describes what you were doing during "
+"the week of 7 to 13 October 2019?"
+msgid "Studying"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt ""
+"Answer for: Which of the following describes what you were doing during "
+"the week of 7 to 13 October 2019?"
+msgid "Looking after home or family"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt ""
+"Answer for: Which of the following describes what you were doing during "
+"the week of 7 to 13 October 2019?"
+msgid "Long-term sick or disabled"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt ""
+"Answer for: Which of the following describes what you were doing during "
+"the week of 7 to 13 October 2019?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt ""
+"Answer for: Which of the following describes what {person_name} was doing"
+" during the week of 7 to 13 October 2019?"
+msgid "Retired"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt ""
+"Answer for: Which of the following describes what {person_name} was doing"
+" during the week of 7 to 13 October 2019?"
+msgid "Studying"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt ""
+"Answer for: Which of the following describes what {person_name} was doing"
+" during the week of 7 to 13 October 2019?"
+msgid "Looking after home or family"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt ""
+"Answer for: Which of the following describes what {person_name} was doing"
+" during the week of 7 to 13 October 2019?"
+msgid "Long-term sick or disabled"
+msgstr ""
+
+#. answer-id: employment-type-answer
+msgctxt ""
+"Answer for: Which of the following describes what {person_name} was doing"
+" during the week of 7 to 13 October 2019?"
+msgid "Other"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where you may have been included "
+"on a census questionnaire because you were a usual resident, or staying "
+"overnight there on Sunday 13 October 2019?"
+msgid "Previous home"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where you may have been included "
+"on a census questionnaire because you were a usual resident, or staying "
+"overnight there on Sunday 13 October 2019?"
+msgid "Armed forces base address"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where you may have been included "
+"on a census questionnaire because you were a usual resident, or staying "
+"overnight there on Sunday 13 October 2019?"
+msgid "Another address when working away from home"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where you may have been included "
+"on a census questionnaire because you were a usual resident, or staying "
+"overnight there on Sunday 13 October 2019?"
+msgid "Student’s home address"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where you may have been included "
+"on a census questionnaire because you were a usual resident, or staying "
+"overnight there on Sunday 13 October 2019?"
+msgid "Student’s term-time address"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where you may have been included "
+"on a census questionnaire because you were a usual resident, or staying "
+"overnight there on Sunday 13 October 2019?"
+msgid "Another parent or guardian’s address"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where you may have been included "
+"on a census questionnaire because you were a usual resident, or staying "
+"overnight there on Sunday 13 October 2019?"
+msgid "Partner’s address"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where you may have been included "
+"on a census questionnaire because you were a usual resident, or staying "
+"overnight there on Sunday 13 October 2019?"
+msgid "Holiday in the UK"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where you may have been included "
+"on a census questionnaire because you were a usual resident, or staying "
+"overnight there on Sunday 13 October 2019?"
+msgid "Other UK address"
+msgstr ""
+
+#. answer-id: another-uk-address-answer-exclusive
+msgctxt ""
+"Answer for: Is there another UK address where you may have been included "
+"on a census questionnaire because you were a usual resident, or staying "
+"overnight there on Sunday 13 October 2019?"
+msgid "There is no other UK address"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where {person_name} may have been"
+" included on a census questionnaire because they were a usual resident, "
+"or staying overnight there on Sunday 13 October 2019?"
+msgid "Previous home"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where {person_name} may have been"
+" included on a census questionnaire because they were a usual resident, "
+"or staying overnight there on Sunday 13 October 2019?"
+msgid "Armed forces base address"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where {person_name} may have been"
+" included on a census questionnaire because they were a usual resident, "
+"or staying overnight there on Sunday 13 October 2019?"
+msgid "Another address when working away from home"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where {person_name} may have been"
+" included on a census questionnaire because they were a usual resident, "
+"or staying overnight there on Sunday 13 October 2019?"
+msgid "Student’s home address"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where {person_name} may have been"
+" included on a census questionnaire because they were a usual resident, "
+"or staying overnight there on Sunday 13 October 2019?"
+msgid "Student’s term-time address"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where {person_name} may have been"
+" included on a census questionnaire because they were a usual resident, "
+"or staying overnight there on Sunday 13 October 2019?"
+msgid "Another parent or guardian’s address"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where {person_name} may have been"
+" included on a census questionnaire because they were a usual resident, "
+"or staying overnight there on Sunday 13 October 2019?"
+msgid "Partner’s address"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where {person_name} may have been"
+" included on a census questionnaire because they were a usual resident, "
+"or staying overnight there on Sunday 13 October 2019?"
+msgid "Holiday in the UK"
+msgstr ""
+
+#. answer-id: another-uk-address-question
+msgctxt ""
+"Answer for: Is there another UK address where {person_name} may have been"
+" included on a census questionnaire because they were a usual resident, "
+"or staying overnight there on Sunday 13 October 2019?"
+msgid "Other UK address"
+msgstr ""
+
+#. answer-id: another-uk-address-answer-exclusive
+msgctxt ""
+"Answer for: Is there another UK address where {person_name} may have been"
+" included on a census questionnaire because they were a usual resident, "
+"or staying overnight there on Sunday 13 October 2019?"
+msgid "There is no other UK address"
+msgstr ""
+
+#. answer-id: other-census-address-answer-building
+msgctxt ""
+"Answer for: What is the other address where you may have been included on"
+" a Census questionnaire?"
+msgid "Address line 1"
+msgstr ""
+
+#. answer-id: other-census-address-answer-street
+msgctxt ""
+"Answer for: What is the other address where you may have been included on"
+" a Census questionnaire?"
+msgid "Address line 2"
+msgstr ""
+
+#. answer-id: other-census-address-answer-city
+msgctxt ""
+"Answer for: What is the other address where you may have been included on"
+" a Census questionnaire?"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: other-census-address-answer-county
+msgctxt ""
+"Answer for: What is the other address where you may have been included on"
+" a Census questionnaire?"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: other-census-address-answer-postcode
+msgctxt ""
+"Answer for: What is the other address where you may have been included on"
+" a Census questionnaire?"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: other-census-address-answer-building
+msgctxt ""
+"Answer for: What is the other address where {person_name} may have been "
+"included on a Census questionnaire?"
+msgid "Address line 1"
+msgstr ""
+
+#. answer-id: other-census-address-answer-street
+msgctxt ""
+"Answer for: What is the other address where {person_name} may have been "
+"included on a Census questionnaire?"
+msgid "Address line 2"
+msgstr ""
+
+#. answer-id: other-census-address-answer-city
+msgctxt ""
+"Answer for: What is the other address where {person_name} may have been "
+"included on a Census questionnaire?"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: other-census-address-answer-county
+msgctxt ""
+"Answer for: What is the other address where {person_name} may have been "
+"included on a Census questionnaire?"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: other-census-address-answer-postcode
+msgctxt ""
+"Answer for: What is the other address where {person_name} may have been "
+"included on a Census questionnaire?"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: usual-address-household-answer
+msgctxt "Answer for: Did {person_name} usually live in the United Kingdom?"
+msgid "An address in the UK"
+msgstr ""
+
+#. answer-id: usual-address-household-answer
+msgctxt "Answer for: Did {person_name} usually live in the United Kingdom?"
+msgid "An address outside the UK"
+msgstr ""
+
+#. answer-id: usual-address-household-answer-other
+msgctxt "Answer for: Did {person_name} usually live in the United Kingdom?"
+msgid "Enter the current name of the country"
+msgstr ""
+
+#. answer-id: usual-address-details-answer-building
+msgctxt "Answer for: What is {person_name_possessive} usual UK address?"
+msgid "Address line 1"
+msgstr ""
+
+#. answer-id: usual-address-details-answer-street
+msgctxt "Answer for: What is {person_name_possessive} usual UK address?"
+msgid "Address line 2"
+msgstr ""
+
+#. answer-id: usual-address-details-answer-city
+msgctxt "Answer for: What is {person_name_possessive} usual UK address?"
+msgid "Town or city"
+msgstr ""
+
+#. answer-id: usual-address-details-answer-county
+msgctxt "Answer for: What is {person_name_possessive} usual UK address?"
+msgid "County (optional)"
+msgstr ""
+
+#. answer-id: usual-address-details-answer-postcode
+msgctxt "Answer for: What is {person_name_possessive} usual UK address?"
+msgid "Postcode"
+msgstr ""
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: {person_name} is {age_in_years} years old. Is this correct?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where did you usually live?"
+msgid "{address}"
+msgstr ""
+
+#. answer-id: term-time-location-answer
+msgctxt "Answer for: During term time, where did {person_name} usually live?"
+msgid "{address}"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt "Answer for: One year ago, on 13 October 2018, what was your usual address?"
+msgid "{address}"
+msgstr ""
+
+#. answer-id: past-usual-address-household-answer
+msgctxt ""
+"Answer for: One year ago, on 13 October 2018, what was "
+"{person_name_possessive} usual address?"
+msgid "{address}"
+msgstr ""
+
