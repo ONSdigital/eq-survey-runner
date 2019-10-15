@@ -85,7 +85,7 @@ class TestErrors(IntegrationTestCase):
             ):
                 # Another exception occurs during exception handling
                 with patch(
-                    'app.routes.errors.log_exception',
+                    'app.routes.errors.log_error',
                     side_effect=Exception('You broked it again'),
                 ):
                     self.post({'answer': '5000000'})
