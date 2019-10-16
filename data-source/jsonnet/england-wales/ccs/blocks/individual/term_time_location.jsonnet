@@ -8,15 +8,15 @@ local question(title, options) = {
   answers: [
     {
       id: 'term-time-location-answer',
-      mandatory: true,
+      mandatory: false,
       type: 'Radio',
     } + options,
   ],
 };
 
-local nonProxyTitle = 'During term time, where do you usually live?';
+local nonProxyTitle = 'During term time, where did you usually live?';
 local proxyTitle = {
-  text: 'During term time, where does <em>{person_name}</em> usually live?',
+  text: 'During term time, where did {person_name} usually live?',
   placeholders: [
     placeholders.personName,
   ],
@@ -34,8 +34,8 @@ local noOtherAddressOptions = {
       value: 'household-address',
     },
     {
-      label: 'Another address',
-      value: 'Another address',
+      label: 'At another address',
+      value: 'At another address',
     },
   ],
 };

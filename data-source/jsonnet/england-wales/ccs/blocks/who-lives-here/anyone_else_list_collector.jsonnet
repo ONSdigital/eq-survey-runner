@@ -9,7 +9,7 @@ local questionTitle = {
 };
 
 local questionVariantTitle = {
-  text: 'Did anyone else live at {address} on Sunday 13 October 2019?',
+  text: 'Did anyone else usually live at {address} on Sunday 13 October 2019?',
   placeholders: [
     placeholders.address,
   ],
@@ -97,7 +97,7 @@ function(census_date) {
         guidance: {
           contents: [
             {
-              description: 'Remember to include only those people who share cooking facilities and share a living room or dining area',
+              description: 'Remember to only include those people who share cooking facilities and sharing a living room or sitting room or dining area',
             },
           ],
         },
@@ -130,7 +130,7 @@ function(census_date) {
         guidance: {
           contents: [
             {
-              description: 'Remember to include only those people who share cooking facilities and share a living room or dining area',
+              description: 'Remember to only include those people who share cooking facilities and sharing a living room or sitting room or dining area',
             },
           ],
         },
@@ -163,7 +163,7 @@ function(census_date) {
       id: 'add-question',
       type: 'General',
       title: addPersonQuestionTitle,
-      description: '<em>Enter a full stop (.) if the respondent does not know a person\'s "First name" or "Surname"</em>',
+      description: '<em>Enter a full stop (.) if the respondent does not know a person’s “First name” or “Last name”</em>',
       answers: [
         {
           id: 'first-name',

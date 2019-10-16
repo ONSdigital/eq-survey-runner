@@ -27,7 +27,7 @@ local question(title) = {
 local nonProxyTitle = 'Including the time already you have already spent here, how long do you intend to stay in the United Kingdom?';
 
 local proxyTitle = {
-  text: 'Including the time they have already spent here, how long does <em>{person_name}</em> intend to stay in the United Kingdom?',
+  text: 'Including the time they have already spent here, how long does {person_name} intend to stay in the United Kingdom?',
   placeholders: [
     placeholders.personName,
   ],
@@ -59,7 +59,7 @@ local proxyTitle = {
       goto: {
         block: 'employment-status',
         when: [
-          rules.estimatedAgeOver16,
+          rules.estimatedAge,
         ],
       },
     },

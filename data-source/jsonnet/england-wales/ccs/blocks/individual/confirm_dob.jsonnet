@@ -1,7 +1,7 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import 'rules.libsonnet';
 
-local question(title, yesLabel, noLabel) = {
+local question(title) = {
   id: 'confirm-date-of-birth',
   title: title,
   type: 'General',
@@ -11,11 +11,11 @@ local question(title, yesLabel, noLabel) = {
       mandatory: true,
       options: [
         {
-          label: yesLabel,
+          label: 'Yes',
           value: 'Yes',
         },
         {
-          label: noLabel,
+          label: 'No',
           value: 'No',
         },
       ],
@@ -48,13 +48,6 @@ local nonProxyTitle = {
     dateOfBirthPlaceholder,
   ],
 };
-local nonProxyYesLabel = {
-  text: 'Yes, I am {age_in_years} years old',
-  placeholders: [
-    dateOfBirthPlaceholder,
-  ],
-};
-local nonProxyNoLabel = 'No, I need to change my date of birth';
 
 local proxyTitle = {
   text: '{person_name} is {age_in_years} years old. Is this correct?',
@@ -63,25 +56,17 @@ local proxyTitle = {
     dateOfBirthPlaceholder,
   ],
 };
-local proxyYesLabel = {
-  text: 'Yes, {person_name} is {age_in_years} years old',
-  placeholders: [
-    placeholders.personName,
-    dateOfBirthPlaceholder,
-  ],
-};
-local proxyNoLabel = 'No, I need to change their date of birth';
 
 {
   type: 'ConfirmationQuestion',
   id: 'confirm-dob',
   question_variants: [
     {
-      question: question(nonProxyTitle, nonProxyYesLabel, nonProxyNoLabel),
+      question: question(nonProxyTitle),
       when: [rules.isNotProxy],
     },
     {
-      question: question(proxyTitle, proxyYesLabel, proxyNoLabel),
+      question: question(proxyTitle),
       when: [rules.isProxy],
     },
   ],

@@ -58,7 +58,7 @@ local question(title) = {
 
 local nonProxyTitle = 'During the week of 7 to 13 October 2019, were you doing any of the following?';
 local proxyTitle = {
-  text: 'During the week of 7 to 13 October 2019, was <em>{person_name}</em> doing any of the following?',
+  text: 'During the week of 7 to 13 October 2019, was {person_name} doing any of the following?',
   placeholders: [
     placeholders.personName,
   ],

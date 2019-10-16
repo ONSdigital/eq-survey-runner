@@ -7,19 +7,6 @@ local question(title) = {
   type: 'General',
   answers: [
     {
-      guidance: {
-        show_guidance: 'Why your answer is important',
-        hide_guidance: 'Why your answer is important',
-        contents: [
-          {
-            description: 'Your answer will help to support equality and fairness in your community. Councils and government use information on ethnic group to make sure they',
-            list: [
-              'provide services and share funding fairly',
-              'understand and represent everyone’s interests',
-            ],
-          },
-        ],
-      },
       id: 'black-ethnic-group-answer',
       mandatory: false,
       options: [
@@ -57,7 +44,7 @@ local question(title) = {
 
 local nonProxyTitle = 'Which one best describes your Black, Black British, Caribbean or African ethnic group or background?';
 local proxyTitle = {
-  text: 'Which one best describes <em>{person_name_possessive}</em> Black, Black British, Caribbean or African ethnic group or background?',
+  text: 'Which one best describes {person_name_possessive} Black, Black British, Caribbean or African ethnic group or background?',
   placeholders: [
     placeholders.personNamePossessive,
   ],
@@ -85,20 +72,8 @@ local proxyTitle = {
     },
     {
       goto: {
-        block: 'another-uk-address',
-        when: [rules.estimatedAgeUnder1],
-      },
-    },
-    {
-      goto: {
         block: 'past-usual-household-address',
         when: [rules.under4],
-      },
-    },
-    {
-      goto: {
-        block: 'past-usual-household-address',
-        when: [rules.estimatedAgeUnder4],
       },
     },
     {

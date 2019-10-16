@@ -7,7 +7,7 @@
     guidance: {
       contents: [
         {
-          description: 'This refers to any interaction you might have with public authorities online, such as DVLA, HMRC, local council or health related services  ',
+          description: 'This refers to any interaction you might have with public authorities online, such as DVLA, HMRC, local council or health related services.',
         },
       ],
     },
