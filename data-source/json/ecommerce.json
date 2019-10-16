@@ -17,10 +17,6 @@
             "type": "string"
         },
         {
-            "name": "trad_as_or_runame",
-            "type": "string"
-        },
-        {
             "name": "trad_as",
             "type": "string"
         },
@@ -211,14 +207,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Does {trad_as_or_runame} use computers?"
+                                    "text": "Does {company_name} use computers?"
                                 },
                                 "type": "General"
                             },
@@ -296,14 +302,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "What percentage of people in {trad_as_or_runame} use computers for their work?"
+                                    "text": "What percentage of people in {company_name} use computers for their work?"
                                 },
                                 "type": "General"
                             },
@@ -385,14 +401,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Does {trad_as_or_runame} have internet access?"
+                                    "text": "Does {company_name} have internet access?"
                                 },
                                 "type": "General"
                             },
@@ -470,14 +496,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "What percentage of people in {trad_as_or_runame} use computers with internet access for work?"
+                                    "text": "What percentage of people in {company_name} use computers with internet access for work?"
                                 },
                                 "type": "General"
                             },
@@ -544,14 +580,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Does {trad_as_or_runame} use a fixed broadband connection to the internet for business purposes?"
+                                    "text": "Does {company_name} use a fixed broadband connection to the internet for business purposes?"
                                 },
                                 "type": "General"
                             },
@@ -624,14 +670,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "What is the maximum contracted download speed of the fastest fixed internet connection used by {trad_as_or_runame}?"
+                                    "text": "What is the maximum contracted download speed of the fastest fixed internet connection used by {company_name}?"
                                 },
                                 "type": "General"
                             },
@@ -698,14 +754,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Does {trad_as_or_runame} have a website, either its own or third party?"
+                                    "text": "Does {company_name} have a website, either its own or third party?"
                                 },
                                 "type": "General"
                             },
@@ -883,14 +949,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Which of the following <em>chat services</em> does {trad_as_or_runame} use for customer contacts?"
+                                    "text": "Which of the following <em>chat services</em> does {company_name} use for customer contacts?"
                                 },
                                 "type": "MutuallyExclusive"
                             },
@@ -986,14 +1062,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, did {trad_as_or_runame} receive any orders from customers for goods or services via a website or &apos;app&apos;?"
+                                    "text": "During {period_str}, did {company_name} receive any orders from customers for goods or services via a website or &apos;app&apos;?"
                                 },
                                 "type": "General"
                             },
@@ -1059,14 +1145,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, what <em>percentage</em> of {trad_as_or_runame}&apos;s <em>total turnover</em> resulted from orders received via a website or &apos;app&apos;?"
+                                    "text": "During {period_str}, what <em>percentage</em> of {company_name}&apos;s <em>total turnover</em> resulted from orders received via a website or &apos;app&apos;?"
                                 },
                                 "type": "General"
                             },
@@ -1272,14 +1368,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, did {trad_as_or_runame} receive any orders for goods and services via your business&apos; own website or &apos;app&apos;, or e-commerce market places?"
+                                    "text": "During {period_str}, did {company_name} receive any orders for goods and services via your business&apos; own website or &apos;app&apos;, or e-commerce market places?"
                                 },
                                 "type": "General"
                             },
@@ -1432,14 +1538,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, from which <em>geographical areas</em> did {trad_as_or_runame} receive orders for goods or services, placed via a <em>website or &apos;app&apos;</em>?"
+                                    "text": "During {period_str}, from which <em>geographical areas</em> did {company_name} receive orders for goods or services, placed via a <em>website or &apos;app&apos;</em>?"
                                 },
                                 "type": "General"
                             },
@@ -1601,14 +1717,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, what was the <em>percentage breakdown</em> of {trad_as_or_runame}&apos;s total turnover from orders received via a <em>website or &apos;app&apos;</em>, by geographical area?"
+                                    "text": "During {period_str}, what was the <em>percentage breakdown</em> of {company_name}&apos;s total turnover from orders received via a <em>website or &apos;app&apos;</em>, by geographical area?"
                                 },
                                 "type": "Calculated"
                             },
@@ -1678,14 +1804,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, did {trad_as_or_runame} receive any orders from customers for goods or services <em>via EDI-type messages</em>?"
+                                    "text": "During {period_str}, did {company_name} receive any orders from customers for goods or services <em>via EDI-type messages</em>?"
                                 },
                                 "type": "General"
                             },
@@ -1761,14 +1897,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, what <em>percentage</em> of {trad_as_or_runame}&apos;s total turnover resulted from orders received via <em>EDI type messages</em>?"
+                                    "text": "During {period_str}, what <em>percentage</em> of {company_name}&apos;s total turnover resulted from orders received via <em>EDI type messages</em>?"
                                 },
                                 "type": "General"
                             },
@@ -1840,14 +1986,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, from which <em>geographical areas</em> did {trad_as_or_runame} receive any orders for goods or services, placed <em>via EDI type messages</em>?"
+                                    "text": "During {period_str}, from which <em>geographical areas</em> did {company_name} receive any orders for goods or services, placed <em>via EDI type messages</em>?"
                                 },
                                 "type": "General"
                             },
@@ -2009,14 +2165,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, what was the <em>percentage breakdown</em> of {trad_as_or_runame}&apos;s total turnover from orders received via <em>EDI type messages</em>, by geographical area?"
+                                    "text": "During {period_str}, what was the <em>percentage breakdown</em> of {company_name}&apos;s total turnover from orders received via <em>EDI type messages</em>, by geographical area?"
                                 },
                                 "type": "Calculated"
                             },
@@ -2106,14 +2272,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, which of the following invoices did {trad_as_or_runame} issue or send?"
+                                    "text": "During {period_str}, which of the following invoices did {company_name} issue or send?"
                                 },
                                 "type": "General"
                             },
@@ -2265,14 +2441,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Does {trad_as_or_runame} buy any cloud computing services used over the internet?"
+                                    "text": "Does {company_name} buy any cloud computing services used over the internet?"
                                 },
                                 "type": "General"
                             },
@@ -2357,14 +2543,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Which of the  following cloud computing services does {trad_as_or_runame} buy?"
+                                    "text": "Which of the  following cloud computing services does {company_name} buy?"
                                 },
                                 "type": "General"
                             },
@@ -2538,14 +2734,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, from which of the following <em>sources</em> did {trad_as_or_runame} analyse big data?"
+                                    "text": "During {period_str}, from which of the following <em>sources</em> did {company_name} analyse big data?"
                                 },
                                 "type": "General"
                             },
@@ -2691,14 +2897,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, which of the following <em>methods</em> did {trad_as_or_runame} use to analyse big data ?"
+                                    "text": "During {period_str}, which of the following <em>methods</em> did {company_name} use to analyse big data ?"
                                 },
                                 "type": "General"
                             },
@@ -2789,14 +3005,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, did <em>another business</em> perform big data analysis for {trad_as_or_runame}?"
+                                    "text": "During {period_str}, did <em>another business</em> perform big data analysis for {company_name}?"
                                 },
                                 "type": "General"
                             },
@@ -2865,14 +3091,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, did {trad_as_or_runame} <em>sell, or sell access to,</em> any of its own big data?"
+                                    "text": "During {period_str}, did {company_name} <em>sell, or sell access to,</em> any of its own big data?"
                                 },
                                 "type": "General"
                             },
@@ -2920,14 +3156,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, did {trad_as_or_runame} <em>purchase, or purchase access to,</em> any big data?"
+                                    "text": "During {period_str}, did {company_name} <em>purchase, or purchase access to,</em> any big data?"
                                 },
                                 "type": "General"
                             },
@@ -3023,14 +3269,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Does {trad_as_or_runame} employ ICT or IT specialists?"
+                                    "text": "Does {company_name} employ ICT or IT specialists?"
                                 },
                                 "type": "General"
                             },
@@ -3083,14 +3339,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, did {trad_as_or_runame} provide any type of <em>training</em> to develop ICT or IT related skill of its employees?"
+                                    "text": "During {period_str}, did {company_name} provide any type of <em>training</em> to develop ICT or IT related skill of its employees?"
                                 },
                                 "type": "MutuallyExclusive"
                             },
@@ -3129,14 +3395,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During{period_str}, did {trad_as_or_runame} <em>recruit or try to recruit</em> ICT or IT specialists?"
+                                    "text": "During{period_str}, did {company_name} <em>recruit or try to recruit</em> ICT or IT specialists?"
                                 },
                                 "type": "General"
                             },
@@ -3196,14 +3472,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, did {trad_as_or_runame} have <em>vacancies</em> for ICT or IT specialists that were difficult to fill?"
+                                    "text": "During {period_str}, did {company_name} have <em>vacancies</em> for ICT or IT specialists that were difficult to fill?"
                                 },
                                 "type": "General"
                             },
@@ -3243,14 +3529,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, who mainly performed the ICT or IT functions for {trad_as_or_runame}?"
+                                    "text": "During {period_str}, who mainly performed the ICT or IT functions for {company_name}?"
                                 },
                                 "type": "General"
                             },
@@ -3340,14 +3636,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Does {trad_as_or_runame} use 3D printers for business?"
+                                    "text": "Does {company_name} use 3D printers for business?"
                                 },
                                 "type": "General"
                             },
@@ -3419,14 +3725,24 @@
                                             }
                                         },
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "During {period_str}, did {trad_as_or_runame} use its own 3D printers or 3D printers provided by other businesses?"
+                                    "text": "During {period_str}, did {company_name} use its own 3D printers or 3D printers provided by other businesses?"
                                 },
                                 "type": "General"
                             },
@@ -3622,14 +3938,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Does {trad_as_or_runame} use <em>industrial</em> robots?"
+                                    "text": "Does {company_name} use <em>industrial</em> robots?"
                                 },
                                 "type": "General"
                             },
@@ -3687,14 +4013,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Does {trad_as_or_runame} use <em>service</em> robots?"
+                                    "text": "Does {company_name} use <em>service</em> robots?"
                                 },
                                 "type": "General"
                             },
@@ -3788,14 +4124,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Does {trad_as_or_runame} use <em>service</em> robots for any of the following activities?"
+                                    "text": "Does {company_name} use <em>service</em> robots for any of the following activities?"
                                 },
                                 "type": "General"
                             },
@@ -3896,14 +4242,24 @@
                                 "title": {
                                     "placeholders": [
                                         {
-                                            "placeholder": "trad_as_or_runame",
-                                            "value": {
-                                                "identifier": "trad_as_or_runame",
-                                                "source": "metadata"
-                                            }
+                                            "placeholder": "company_name",
+                                            "transforms": [
+                                                {
+                                                    "arguments": {
+                                                        "items": {
+                                                            "identifier": [
+                                                                "trad_as",
+                                                                "ru_name"
+                                                            ],
+                                                            "source": "metadata"
+                                                        }
+                                                    },
+                                                    "transform": "first_non_empty_item"
+                                                }
+                                            ]
                                         }
                                     ],
-                                    "text": "Please comment if there were any significant changes to {trad_as_or_runame} use of Information and Communication Technology since the previous period, 2018."
+                                    "text": "Please comment if there were any significant changes to {company_name} use of Information and Communication Technology since the previous period, 2018."
                                 },
                                 "type": "General"
                             },
