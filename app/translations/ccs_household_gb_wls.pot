@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-16 11:24+0100\n"
+"POT-Creation-Date: 2019-10-16 14:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,7 @@ msgstr ""
 
 msgid ""
 "<em>Enter a full stop (.) if the respondent does not know a person’s "
-"\"First name\" or \"Last name\"</em>"
+"”First name” or ”Last name”</em>"
 msgstr ""
 
 msgid "Tell respondent to turn to <strong>Showcard 2</strong>"
@@ -79,6 +79,11 @@ msgstr ""
 msgid ""
 "A visitor is a person staying overnight in your household who usually "
 "lives at another address."
+msgstr ""
+
+msgid ""
+"<em>Enter a full stop (.) if the respondent does not know a person’s "
+"“First name” or ”Last name”</em>"
 msgstr ""
 
 msgid "Remember to include partners and step-children as related"
@@ -136,7 +141,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"<em>If \"Yes\" ensure this accommodation is recorded on the Fieldwork "
+"<em>If ”Yes” ensure this accommodation is recorded on the Fieldwork "
 "Management Tool and interview household separately</em>"
 msgstr ""
 
@@ -423,9 +428,7 @@ msgstr ""
 msgid "Is there any other living accommodation at {address}?"
 msgstr ""
 
-msgid ""
-"In this section, I’m going to ask you questions about "
-"<strong>{person_name}</strong>."
+msgid "In this section, I’m going to ask you questions about {person_name}."
 msgstr ""
 
 msgid "What is {person_name_possessive} date of birth?"
@@ -526,9 +529,7 @@ msgid ""
 " Census questionnaire?"
 msgstr ""
 
-msgid ""
-"In this section, I’m going to ask you about your visitor, "
-"<strong>{person_name}</strong>."
+msgid "In this section, I’m going to ask you about your visitor, {person_name}."
 msgstr ""
 
 msgid "Did {person_name} usually live in the United Kingdom?"
@@ -975,7 +976,17 @@ msgstr ""
 
 #. answer-id: confirm-date-of-birth-answer
 msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
+msgid "Yes"
+msgstr ""
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
 msgid "No"
+msgstr ""
+
+#. answer-id: confirm-date-of-birth-answer
+msgctxt "Answer for: {person_name} is {age_in_years} years old. Is this correct?"
+msgid "Yes"
 msgstr ""
 
 #. answer-id: confirm-date-of-birth-answer
@@ -2087,16 +2098,6 @@ msgstr ""
 #. answer-id: usual-address-details-answer-postcode
 msgctxt "Answer for: What is {person_name_possessive} usual UK address?"
 msgid "Postcode"
-msgstr ""
-
-#. answer-id: confirm-date-of-birth-answer
-msgctxt "Answer for: You are {age_in_years} years old. Is this correct?"
-msgid "Yes"
-msgstr ""
-
-#. answer-id: confirm-date-of-birth-answer
-msgctxt "Answer for: {person_name} is {age_in_years} years old. Is this correct?"
-msgid "Yes"
 msgstr ""
 
 #. answer-id: term-time-location-answer

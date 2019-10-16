@@ -21,7 +21,7 @@ local questionTitle = {
         },
       ],
     },
-    description: '<em>If "Yes" ensure this accommodation is recorded on the Fieldwork Management Tool and interview household separately</em>',
+    description: '<em>If ”Yes” ensure this accommodation is recorded on the Fieldwork Management Tool and interview household separately</em>',
     answers: [{
       id: 'other-living-accommodation-answer',
       mandatory: false,
