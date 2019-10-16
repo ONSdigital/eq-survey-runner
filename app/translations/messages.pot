@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-03 10:46+0100\n"
+"POT-Creation-Date: 2019-10-16 11:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -245,7 +245,7 @@ msgstr ""
 msgid "Start {section_name} section"
 msgstr ""
 
-#: app/views/contexts/list_collector.py:33
+#: app/views/contexts/list_collector.py:12
 msgid " (You)"
 msgstr ""
 
@@ -621,7 +621,7 @@ msgid "No answer provided"
 msgstr ""
 
 #: templates/partials/summary/collapsible-summary.html:27
-#: templates/partials/summary/list-summary.html:8
+#: templates/partials/summary/list-summary.html:9
 #: templates/partials/summary/summary.html:9
 msgid "Change"
 msgstr ""
@@ -631,15 +631,15 @@ msgstr ""
 msgid "Change your answer for:"
 msgstr ""
 
-#: templates/partials/summary/list-summary.html:9
+#: templates/partials/summary/list-summary.html:10
 msgid "Change details for {item_name}"
 msgstr ""
 
-#: templates/partials/summary/list-summary.html:10
+#: templates/partials/summary/list-summary.html:11
 msgid "Remove"
 msgstr ""
 
-#: templates/partials/summary/list-summary.html:11
+#: templates/partials/summary/list-summary.html:12
 msgid "Remove {item_name}"
 msgstr ""
 
