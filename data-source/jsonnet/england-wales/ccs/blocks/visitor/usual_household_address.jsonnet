@@ -29,6 +29,7 @@ local rules = import 'rules.libsonnet';
             description: 'Select to enter answer',
             detail_answer: {
               id: 'usual-address-household-answer-other',
+              autocomplete: 'country-name',
               type: 'TextField',
               mandatory: false,
               label: 'Enter the current name of the country',

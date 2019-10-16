@@ -9,6 +9,7 @@ local question(title) = {
       id: 'first-name',
       label: 'First name',
       mandatory: true,
+      autocomplete: 'given-name',
       type: 'TextField',
       validation: {
         messages: {
@@ -20,12 +21,14 @@ local question(title) = {
       id: 'middle-names',
       label: 'Middle names',
       mandatory: false,
+      autocomplete: 'additional-name',
       type: 'TextField',
     },
     {
       id: 'last-name',
       label: 'Last name',
       mandatory: true,
+      autocomplete: 'family-name',
       type: 'TextField',
       validation: {
         messages: {

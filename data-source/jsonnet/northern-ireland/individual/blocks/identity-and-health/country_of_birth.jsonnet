@@ -44,6 +44,7 @@ local question(title) = {
           value: 'Other',
           detail_answer: {
             id: 'country-of-birth-answer-other',
+            autocomplete: 'country-name',
             type: 'TextField',
             mandatory: false,
             label: 'Please specify current name of country',

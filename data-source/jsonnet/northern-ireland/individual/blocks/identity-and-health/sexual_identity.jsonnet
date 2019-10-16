@@ -30,6 +30,7 @@ local question(title) = {
           value: 'Other sexual orientation',
           detail_answer: {
             id: 'sexual-identity-answer-other',
+            autocomplete: 'sex',
             type: 'TextField',
             mandatory: false,
             label: 'Please specify sexual orientation',

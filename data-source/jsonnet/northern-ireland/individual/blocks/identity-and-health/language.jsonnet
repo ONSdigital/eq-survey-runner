@@ -40,6 +40,7 @@ local question(title, definitionDescription) = {
           description: 'Including British Sign Language or Irish Sign Language',
           detail_answer: {
             id: 'language-answer-other',
+            autocomplete: 'language',
             type: 'TextField',
             mandatory: false,
             label: 'Please specify main language',

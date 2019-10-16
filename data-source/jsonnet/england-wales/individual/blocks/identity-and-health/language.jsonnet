@@ -49,6 +49,7 @@ local question(title, definitionDescription, region_code) = (
             description: 'Select to enter answer',
             detail_answer: {
               id: 'language-answer-other',
+              autocomplete: 'language',
               type: 'TextField',
               mandatory: false,
               label: 'Enter main language',
