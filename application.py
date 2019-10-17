@@ -2,6 +2,7 @@
 
 import logging
 import os
+import sys
 
 from structlog import configure
 from structlog.dev import ConsoleRenderer
@@ -10,40 +11,38 @@ from structlog.processors import TimeStamper
 from structlog.stdlib import LoggerFactory, add_log_level
 from structlog.threadlocal import wrap_dict
 
-EQ_LOG_LEVEL = os.getenv('EQ_LOG_LEVEL', 'INFO')
-EQ_WERKZEUG_LOG_LEVEL = os.getenv('EQ_WERKZEUG_LOG_LEVEL', 'INFO')
-EQ_DEVELOPER_LOGGING = os.getenv('EQ_DEVELOPER_LOGGING', 'False').upper() == 'TRUE'
-
 
 def configure_logging():
-    # set up some sane logging, as opposed to what flask does by default
-    log_format = "%(message)s"
-    levels = {
-        'CRITICAL': logging.CRITICAL,
-        'ERROR': logging.ERROR,
-        'WARNING': logging.WARNING,
-        'INFO': logging.INFO,
-        'DEBUG': logging.DEBUG,
-    }
-    handler = logging.StreamHandler()
+    log_level = logging.INFO
+    debug = os.getenv('FLASK_ENV') == 'development'
+    if debug:
+        log_level = logging.DEBUG
+
+    log_handler = logging.StreamHandler(sys.stdout)
+    log_handler.setLevel(log_level)
+    log_handler.addFilter(lambda record: record.levelno <= logging.WARNING)
+
+    error_log_handler = logging.StreamHandler(sys.stderr)
+    error_log_handler.setLevel(logging.ERROR)
+
     logging.basicConfig(
-        level=levels[EQ_LOG_LEVEL], format=log_format, handlers=[handler]
+        level=log_level, format='%(message)s', handlers=[error_log_handler, log_handler]
     )
 
     # Set werkzeug logging level
     werkzeug_logger = logging.getLogger('werkzeug')
-    werkzeug_logger.setLevel(level=levels[EQ_WERKZEUG_LOG_LEVEL])
+    werkzeug_logger.setLevel(level=log_level)
 
     def parse_exception(_, __, event_dict):
-        if EQ_DEVELOPER_LOGGING:
+        if debug:
             return event_dict
         exception = event_dict.get('exception')
         if exception:
-            event_dict['exception'] = exception.replace("\"", "'").split("\n")
+            event_dict['exception'] = exception.replace('\"', "'").split('\n')
         return event_dict
 
     # setup file logging
-    renderer_processor = ConsoleRenderer() if EQ_DEVELOPER_LOGGING else JSONRenderer()
+    renderer_processor = ConsoleRenderer() if debug else JSONRenderer()
     processors = [
         add_log_level,
         TimeStamper(key='created', fmt='iso'),
@@ -52,6 +51,7 @@ def configure_logging():
         parse_exception,
         renderer_processor,
     ]
+
     configure(
         context_class=wrap_dict(dict),
         logger_factory=LoggerFactory(),
@@ -70,7 +70,7 @@ def add_service(logger, method_name, event_dict):  # pylint: disable=unused-argu
 
 # Initialise logging before the rest of the application
 configure_logging()
-from app.setup import create_app  # NOQA
+from app.setup import create_app  # pylint: disable=wrong-import-position # NOQA
 
 application = create_app()
 
