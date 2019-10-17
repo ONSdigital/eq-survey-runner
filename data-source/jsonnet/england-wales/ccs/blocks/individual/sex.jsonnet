@@ -26,7 +26,7 @@ local question(title) = {
 
 local nonProxyTitle = 'Can I confirm your sex?';
 local proxyTitle = {
-  text: 'What is <em>{person_name_possessive}</em> sex?',
+  text: 'What is {person_name_possessive} sex?',
   placeholders: [
     placeholders.personNamePossessive,
   ],
@@ -54,11 +54,11 @@ local proxyTitle = {
     },
     {
       question: question(nonProxyTitle),
-      when: [rules.isNotProxy, rules.estimatedAgeOver16],
+      when: [rules.isNotProxy, rules.estimatedAge],
     },
     {
       question: question(proxyTitle),
-      when: [rules.isProxy, rules.estimatedAgeOver16],
+      when: [rules.isProxy, rules.estimatedAge],
     },
   ],
 }

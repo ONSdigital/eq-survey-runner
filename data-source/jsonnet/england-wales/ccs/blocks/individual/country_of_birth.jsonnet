@@ -26,7 +26,7 @@ local question(title) = {
 
 local nonProxyTitle = 'Were you born in the UK?';
 local proxyTitle = {
-  text: 'Was <em>{person_name}</em> born in the UK?',
+  text: 'Was {person_name} born in the UK?',
   placeholders: [
     placeholders.personName,
   ],
@@ -58,7 +58,7 @@ local proxyTitle = {
       goto: {
         block: 'marriage-type',
         when: [
-          rules.estimatedAgeOver15,
+          rules.estimatedAge,
         ],
       },
     },

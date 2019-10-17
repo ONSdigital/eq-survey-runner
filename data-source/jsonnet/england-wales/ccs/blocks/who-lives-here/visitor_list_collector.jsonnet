@@ -23,20 +23,6 @@ local summaryTitlePersonName = {
   ],
 };
 
-local visitorGuidance = {
-  contents: [
-    {
-      title: 'Include',
-    },
-    {
-      list: [
-        'People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere',
-        'People here on holiday',
-      ],
-    },
-  ],
-};
-
 local addVisitorQuestionTitle(census_date) = {
   text: 'What is the name of the visitor staying overnight on {census_date} at {address}?',
   placeholders: [
@@ -76,8 +62,6 @@ function(census_date) {
     id: 'visitor-confirmation-question',
     type: 'General',
     title: questionTitle(census_date),
-    guidance: visitorGuidance,
-    description: '<em>Enter a full stop (.) if the respondent does not know a person\'s "First name" or "Surname"</em>',
     answers: [
       {
         id: 'visitor-answer',
@@ -103,8 +87,7 @@ function(census_date) {
       id: 'visitor-add-question',
       type: 'General',
       title: addVisitorQuestionTitle(census_date),
-      guidance: visitorGuidance,
-      description: '<em>Enter a full stop (.) if the respondent does not know a person\'s "First name" or "Surname"</em>',
+      description: '<em>Enter a full stop (.) if the respondent does not know a person’s “First name” or “Last name”</em>',
       answers: [
         {
           id: 'first-name',

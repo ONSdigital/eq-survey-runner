@@ -9,7 +9,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
       text: 'Are all the rooms at {address}, including the kitchen, bathroom and toilet, behind a door that only this household can use?',
       placeholders: [placeholders.address],
     },
-    description: '<em>If "No" confirm one or more rooms are shared with another household</em>',
+    description: '<em>If “No” confirm one or more rooms are shared with another household</em>',
     type: 'General',
     answers: [{
       id: 'self-contained-answer',
