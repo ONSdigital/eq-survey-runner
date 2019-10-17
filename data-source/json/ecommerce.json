@@ -837,7 +837,7 @@
                                         "type": "Checkbox"
                                     }
                                 ],
-                                "description": "<p>If your business&apos; website <em>does not</em> have any of the following features, please leave this page blank and click &apos;save and continue&apos;.</p>",
+                                "description": "<p>If your business&apos; website <strong>does not</strong> have any of the following features, please leave this page blank and click &apos;save and continue&apos;.</p>",
                                 "id": "question1369",
                                 "title": "Which of the following <em>features</em> does the business&apos; website have?",
                                 "type": "General"
@@ -2260,7 +2260,7 @@
                                         "type": "Checkbox"
                                     }
                                 ],
-                                "description": "<p>If your business <em>did not</em> issue any of these types of invoice, please leave this page blank and click &apos;save and continue&apos;. </p>",
+                                "description": "<p>If your business <strong>did not</strong> issue any of these types of invoice, please leave this page blank and click &apos;save and continue&apos;. </p>",
                                 "id": "question8dc8fcf9-4570-46a5-ba6b-4363c90961d8",
                                 "title": {
                                     "placeholders": [
@@ -2538,7 +2538,7 @@
                                         "title": "What is a cloud computing service?"
                                     }
                                 ],
-                                "description": "<p>If your business <em>does not</em> buy any  of the following cloud computing services, please leave this page blank and click &apos;save and continue&apos;.  </p>",
+                                "description": "<p>If your business <stong>does not</strong> buy any  of the following cloud computing services, please leave this page blank and click &apos;save and continue&apos;.  </p>",
                                 "id": "questiond00d48df-fc09-4d2a-9f5f-9c6340116df0",
                                 "title": {
                                     "placeholders": [
@@ -2722,7 +2722,7 @@
                                         "title": "What is Big Data?"
                                     }
                                 ],
-                                "description": "<p>If your business <em>did not</em> analyse big data from any of the following sources, please leave this page blank and click &apos;save and continue&apos;.   </p>",
+                                "description": "<p>If your business <strong>did not</strong> analyse big data from any of the following sources, please leave this page blank and click &apos;save and continue&apos;.   </p>",
                                 "id": "question2ec244ef-227a-41ae-bee0-d6b7b38a4e33",
                                 "title": {
                                     "placeholders": [
@@ -2885,7 +2885,7 @@
                                         "title": "What is Big Data?"
                                     }
                                 ],
-                                "description": "<p>If your business <em>did not</em> use any of the following methods to analyse big data, please leave this page blank and click &apos;save and continue&apos;.   </p>",
+                                "description": "<p>If your business <strong>did not</strong> use any of the following methods to analyse big data, please leave this page blank and click &apos;save and continue&apos;.   </p>",
                                 "id": "question8702a64a-6729-41a3-a9f9-92779e03da0e",
                                 "title": {
                                     "placeholders": [
@@ -3780,7 +3780,7 @@
                                         "type": "Checkbox"
                                     }
                                 ],
-                                "description": "<p>If your business <em>did not</em> use 3D printers for any of the following activities, please leave this page blank and click &apos;save and continue&apos;.    </p>",
+                                "description": "<p>If your business <strong>did not</strong> use 3D printers for any of the following activities, please leave this page blank and click &apos;save and continue&apos;.    </p>",
                                 "id": "question0e56a4a7-12c8-41bc-8e6d-b74914ff984d",
                                 "title": {
                                     "placeholders": [
@@ -4112,7 +4112,7 @@
                                         "title": "What is a service robot?"
                                     }
                                 ],
-                                "description": "<p>If your business <em>did not</em> use service robots for any of the following activities, please leave this page blank and click &apos;save and continue&apos;.     </p>",
+                                "description": "<p>If your business <strong>did not</strong> use service robots for any of the following activities, please leave this page blank and click &apos;save and continue&apos;.     </p>",
                                 "guidance": {
                                     "contents": [
                                         {
