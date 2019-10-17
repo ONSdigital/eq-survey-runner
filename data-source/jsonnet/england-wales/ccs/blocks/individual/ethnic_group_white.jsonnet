@@ -3,7 +3,7 @@ local rules = import 'rules.libsonnet';
 
 local nonProxyTitle = 'Which one best describes your White ethnic group or background?';
 local proxyTitle = {
-  text: 'Which one best describes <em>{person_name_possessive}</em> White ethnic group or background?',
+  text: 'Which one best describes {person_name_possessive} White ethnic group or background?',
   placeholders: [
     placeholders.personNamePossessive,
   ],
@@ -20,19 +20,6 @@ local question(title, region_code) = (
     type: 'General',
     answers: [
       {
-        guidance: {
-          show_guidance: 'Why your answer is important',
-          hide_guidance: 'Why your answer is important',
-          contents: [
-            {
-              description: 'Your answer will help to support equality and fairness in your community. Councils and government use information on ethnic group to make sure they',
-              list: [
-                'provide services and share funding fairly',
-                'understand and represent everyone’s interests',
-              ],
-            },
-          ],
-        },
         id: 'white-ethnic-group-answer',
         mandatory: false,
         options: [
@@ -92,20 +79,8 @@ function(region_code) {
     },
     {
       goto: {
-        block: 'another-uk-address',
-        when: [rules.estimatedAgeUnder1],
-      },
-    },
-    {
-      goto: {
         block: 'past-usual-household-address',
         when: [rules.under4],
-      },
-    },
-    {
-      goto: {
-        block: 'past-usual-household-address',
-        when: [rules.estimatedAgeUnder4],
       },
     },
     {

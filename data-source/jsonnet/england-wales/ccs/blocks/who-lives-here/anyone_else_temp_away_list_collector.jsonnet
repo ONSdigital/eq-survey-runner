@@ -78,16 +78,19 @@ local editQuestion(questionTitle) = {
   question: {
     id: 'anyone-else-temp-away-confirmation-question',
     type: 'General',
-    title: 'Apart from the people already included, is there anyone who was temporarily away or staying that you need to add?',
+    title: 'Apart from the people already included, is there anyone else who was temporarily away or staying that you need to add?',
     guidance: {
       contents: [
+        {
+          description: 'Include',
+        },
         {
           list: [
             'People from outside the UK who were staying in the UK for <strong>3 months or more</strong>',
             'Members of the armed forces',
             'Prisoners with a sentence of <strong>less than 12 months</strong>',
             'People expecting to stay in an establishment such as a hospital, care home or hostel for <strong>less than 6 months</strong>',
-            'People who are temporarily outside the UK for <strong>less than 12 months</strong>',
+            'People who were temporarily outside the UK for <strong>less than 12 months</strong>',
             'People staying temporarily who did not have another UK address',
           ],
         },
@@ -118,6 +121,7 @@ local editQuestion(questionTitle) = {
       id: 'anyone-else-temp-away-add-question',
       type: 'General',
       title: addPersonQuestionTitle,
+      description: '<em>Enter a full stop (.) if the respondent does not know a person’s “First name” or “Last name”</em>',
       answers: [
         {
           id: 'first-name',

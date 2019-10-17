@@ -14,7 +14,14 @@ local questionTitle = {
     id: 'other-living-accommodation-question',
     title: questionTitle,
     type: 'General',
-    description: 'For example, separate bedsits, annexes, sheds etc. <br><br><em>If "Yes" ensure this accommodation is recorded on the Fieldwork Management Tool and interview household separately</em>',
+    guidance: {
+      contents: [
+        {
+          description: 'For example, separate bedsits, annexes, sheds etc.',
+        },
+      ],
+    },
+    description: '<em>If “Yes” ensure this accommodation is recorded on the Fieldwork Management Tool and interview household separately</em>',
     answers: [{
       id: 'other-living-accommodation-answer',
       mandatory: false,

@@ -10,7 +10,7 @@ local question(title, census_date) = {
     {
       id: 'age-last-birthday-answer',
       label: 'Age',
-      mandatory: true,
+      mandatory: false,
       type: 'Number',
       min_value: {
         value: 0,
@@ -37,7 +37,7 @@ local question(title, census_date) = {
 local nonProxyTitle = 'What was your age on your last birthday?';
 
 local proxyTitle = {
-  text: 'What was <em>{person_name_possessive}</em> on their last birthday?',
+  text: 'What was {person_name_possessive} age on their last birthday?',
   placeholders: [
     placeholders.personNamePossessive,
   ],

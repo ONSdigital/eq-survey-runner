@@ -3,7 +3,7 @@ local rules = import 'rules.libsonnet';
 
 local nonProxyTitle = 'What is your ethnic group?';
 local proxyTitle = {
-  text: 'What is <em>{person_name_possessive}</em> ethnic group?',
+  text: 'What is {person_name_possessive} ethnic group?',
   placeholders: [
     placeholders.personNamePossessive,
   ],
@@ -135,18 +135,6 @@ local question(title) = (
     },
     {
       goto: {
-        block: 'another-uk-address',
-        when: [
-          {
-            id: 'ethnic-group-answer',
-            condition: 'not set',
-          },
-          rules.estimatedAgeUnder1,
-        ],
-      },
-    },
-    {
-      goto: {
         block: 'past-usual-household-address',
         when: [
           {
@@ -154,18 +142,6 @@ local question(title) = (
             condition: 'not set',
           },
           rules.under4,
-        ],
-      },
-    },
-    {
-      goto: {
-        block: 'past-usual-household-address',
-        when: [
-          {
-            id: 'ethnic-group-answer',
-            condition: 'not set',
-          },
-          rules.estimatedAgeUnder4,
         ],
       },
     },

@@ -54,13 +54,13 @@ local question(title) = {
 };
 
 local nonProxyTitle(census_date) = {
-  text: 'On {census_date}, what is your legal marital or registered civil partnership status?',
+  text: 'On {census_date}, what was your legal marital or registered civil partnership status?',
   placeholders: [
     placeholders.censusDate(census_date),
   ],
 };
 local proxyTitle(census_date) = {
-  text: 'On {census_date}, what is <em>{person_name_possessive}</em> legal marital or registered civil partnership status?',
+  text: 'On {census_date}, what was {person_name_possessive} legal marital or registered civil partnership status?',
   placeholders: [
     placeholders.censusDate(census_date),
     placeholders.personNamePossessive,

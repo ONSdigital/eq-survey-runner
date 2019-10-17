@@ -9,7 +9,7 @@ function(census_date) {
     description: '',
     type: 'MutuallyExclusive',
     title: {
-      text: 'What is <em>{person_name_possessive}</em> date of birth?',
+      text: 'What is {person_name_possessive} date of birth?',
       placeholders: [placeholders.personNamePossessive],
     },
     mandatory: false,

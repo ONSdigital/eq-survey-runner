@@ -6,14 +6,14 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
   question: {
     id: 'own-or-rent-question',
     title: {
-      text: 'Does your household own or rent <em>{address}</em>?',
+      text: 'Does your household own or rent {address}?',
       placeholders: [placeholders.address],
     },
     description: '<em>Tell respondent to turn to <strong>Showcard 4</strong></em>',
     type: 'General',
     answers: [{
       id: 'own-or-rent-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Owns outright',
@@ -24,17 +24,18 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
           value: 'Owns with a mortgage or loan',
         },
         {
-          label: 'Part owns and part rents',
-          value: 'Part owns and part rents',
+          label: 'Part-owns and part-rents',
+          value: 'Part-owns and part-rents',
           description: 'Including shared ownership',
         },
         {
-          label: 'Rents with or without housing benefit',
-          value: 'Rents with or without housing benefit',
+          label: 'Rents',
+          value: 'Rents',
+          description: 'With or without housing benefit',
         },
         {
-          label: 'Lives here rent free',
-          value: 'Lives here rent free',
+          label: 'Lives here rent-free',
+          value: 'Lives here rent-free',
         },
       ],
       type: 'Radio',
@@ -67,7 +68,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
         when: [{
           id: 'own-or-rent-answer',
           condition: 'equals',
-          value: 'Lives here rent free',
+          value: 'Lives here rent-free',
         }],
       },
     },

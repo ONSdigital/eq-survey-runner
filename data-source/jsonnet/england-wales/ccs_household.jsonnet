@@ -103,7 +103,7 @@ function(region_code, census_date, census_month_year_date) {
             another_address_interviewer_note_interstitial,
             anyone_else_list_collector(census_date),
             anyone_else_temp_away_list_collector,
-            any_visitors(census_date),
+            any_visitors,
             visitor_list_collector(census_date),
             who_lives_here_section_summary,
             relationships,
