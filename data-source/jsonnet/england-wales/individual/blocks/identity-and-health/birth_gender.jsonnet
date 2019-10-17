@@ -28,6 +28,7 @@ local question(title) = {
           description: 'An option to enter gender will follow',
           detail_answer: {
             id: 'birth-gender-answer-other',
+            autocomplete: 'sex',
             type: 'TextField',
             mandatory: false,
             label: 'Enter gender',

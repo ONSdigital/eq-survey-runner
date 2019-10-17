@@ -51,7 +51,6 @@ local question(title, detailAnswerLabel) = {
           value: 'Other',
           detail_answer: {
             id: 'national-identity-answer-other',
-            autocomplete: 'country-name',
             type: 'TextField',
             mandatory: false,
             label: detailAnswerLabel,

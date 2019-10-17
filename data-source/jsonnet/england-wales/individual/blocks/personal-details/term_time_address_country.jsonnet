@@ -20,6 +20,7 @@
             description: 'Select to enter country',
             detail_answer: {
               id: 'term-time-address-country-answer-other',
+              autocomplete: 'country-name',
               type: 'TextField',
               mandatory: false,
               label: 'Enter the current name of the country',

@@ -37,6 +37,7 @@ local englandOptions = {
       description: 'Select to enter answer',
       detail_answer: {
         id: 'country-of-birth-answer-other',
+        autocomplete: 'country-name',
         type: 'TextField',
         mandatory: false,
         label: 'Enter the current name of the country',
@@ -73,6 +74,7 @@ local walesOptions = {
       description: 'Select to enter answer',
       detail_answer: {
         id: 'country-of-birth-answer-other',
+        autocomplete: 'country-name',
         type: 'TextField',
         mandatory: false,
         label: 'Enter the current name of the country',

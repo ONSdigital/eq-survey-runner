@@ -10,18 +10,21 @@ local question(title) = {
       id: 'employer-address-depot-answer-building',
       label: 'Address line 1',
       mandatory: false,
+      autocomplete: 'address-line1',
       type: 'TextField',
     },
     {
       id: 'employer-address-depot-answer-street',
       label: 'Address line 2',
       mandatory: false,
+      autocomplete: 'address-line2',
       type: 'TextField',
     },
     {
       id: 'employer-address-depot-answer-city',
       label: 'Town or city',
       mandatory: false,
+      autocomplete: 'address-line3',
       type: 'TextField',
     },
     {
@@ -34,6 +37,7 @@ local question(title) = {
       id: 'employer-adress-depot-answer-postcode',
       label: 'Postcode',
       mandatory: false,
+      autocomplete: 'postal-code',
       type: 'TextField',
       guidance: {
         show_guidance: 'Why your answer is important',

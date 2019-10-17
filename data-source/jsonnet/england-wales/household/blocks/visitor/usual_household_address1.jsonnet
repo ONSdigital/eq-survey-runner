@@ -34,6 +34,7 @@ local question(title, description) = {
           description: 'Select to enter answer',
           detail_answer: {
             id: 'usual-address-household-answer-other',
+            autocomplete: 'country-name',
             type: 'TextField',
             mandatory: false,
             label: 'Enter the current name of the country',
@@ -76,6 +77,7 @@ local proxyDescription = 'If they had no usual address one year ago, state the a
             description: 'Select to enter answer',
             detail_answer: {
               id: 'usual-address-household-answer-other',
+              autocomplete: 'country-name',
               type: 'TextField',
               mandatory: false,
               label: 'Enter the current name of the country',

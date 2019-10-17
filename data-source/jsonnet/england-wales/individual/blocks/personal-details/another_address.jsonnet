@@ -35,6 +35,7 @@ local question(title) = {
           description: 'Select to enter answer',
           detail_answer: {
             id: 'another-address-answer-other-country',
+            autocomplete: 'country-name',
             type: 'TextField',
             mandatory: true,
             label: 'Enter the current name of the country',

@@ -33,6 +33,7 @@ local question(title, description) = {
           value: 'Other',
           detail_answer: {
             id: 'past-usual-address-household-answer-other',
+            autocomplete: 'country-name',
             type: 'TextField',
             mandatory: false,
             label: 'Please enter the country',

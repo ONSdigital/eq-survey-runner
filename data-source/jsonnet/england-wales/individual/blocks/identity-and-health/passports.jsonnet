@@ -37,6 +37,7 @@ local question(title, label, definitionContent) = {
           description: 'Select to enter answer',
           detail_answer: {
             id: 'passport-answer-other',
+            autocomplete: 'country-name',
             type: 'TextField',
             mandatory: false,
             label: label,

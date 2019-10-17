@@ -26,6 +26,7 @@ local question(title) = {
       id: 'other-census-address-answer-city',
       label: 'Town or city',
       mandatory: false,
+      autocomplete: 'address-line3',
       type: 'TextField',
     },
     {

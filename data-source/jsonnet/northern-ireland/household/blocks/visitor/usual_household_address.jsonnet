@@ -28,6 +28,7 @@ local rules = import 'rules.libsonnet';
             value: 'An address outside the UK',
             detail_answer: {
               id: 'usual-address-household-answer-other',
+              autocomplete: 'country-name',
               type: 'TextField',
               mandatory: false,
               label: 'Please enter the country',
