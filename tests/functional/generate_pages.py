@@ -257,11 +257,9 @@ def generate_pascal_case_from_id(id_str):
     return name
 
 
-def camel_case(s):
-    if s:
-        return s[0].lower() + s[1:]
-    else:
-        return
+def camel_case(_string):
+    if _string:
+        return _string[0].lower() + _string[1:]
 
 
 def get_all_questions(block):
@@ -354,16 +352,10 @@ def process_answer(answer, page_spec, long_names, page_name):
 
 
 def process_question(question, page_spec, num_questions, page_name):
-    logger.debug(
-        '\t\tprocessing question: ',
-        title=question.get('title'),
-        question_id=question['id'],
-    )
-
     long_names = long_names_required(question, num_questions)
 
     if 'definitions' in question:
-        for index, definition in enumerate(question['definitions'], 2):
+        for index, _ in enumerate(question['definitions'], 2):
             definition_context = {'definitionIndex': index}
             page_spec.write(
                 QUESTION_DEFINITION_TITLE_GETTER.substitute(definition_context)
@@ -464,11 +456,10 @@ def process_summary(schema_data, page_spec):
 def long_names_required(question, num_questions):
     if num_questions > 1:
         return True
-    else:
-        num_answers = len(question.get('answers', []))
 
-        if num_answers > 1:
-            return True
+    num_answers = len(question.get('answers', []))
+    if num_answers > 1:
+        return True
 
     return False
 

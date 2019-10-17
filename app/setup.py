@@ -1,6 +1,5 @@
 import copy
 import json
-import logging
 from uuid import uuid4
 
 import boto3
@@ -24,6 +23,7 @@ from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.authentication.user_id_generator import UserIDGenerator
 from app.globals import get_session_store
 from app.keys import KEY_PURPOSE_SUBMISSION
+from app.helpers import get_span_and_trace
 from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
 from app.storage.datastore import DatastoreStorage
@@ -105,7 +105,9 @@ class AWSReverseProxied:
         return self.app(environ, start_response)
 
 
-def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-complex
+def create_app(  # noqa: C901  pylint: disable=too-complex, too-many-statements
+    setting_overrides=None
+):
     application = Flask(__name__, template_folder='../templates')
     application.config.from_object(settings)
 
@@ -139,13 +141,16 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         request_id = str(uuid4())
         logger.new(request_id=request_id)
 
+        span, trace = get_span_and_trace(flask_request.headers)
+        if span and trace:
+            logger.bind(span=span, trace=trace)
+
         logger.info(
             'request',
             method=flask_request.method,
             url_path=flask_request.full_path,
             session_cookie_present='session' in flask_request.cookies,
             csrf_token_present='csrf_token' in cookie_session,
-            cookies=flask_request.cookies,
             user_agent=flask_request.user_agent.string,
         )
 
@@ -177,8 +182,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     application.url_map.strict_slashes = False
 
     add_blueprints(application)
-
-    configure_flask_logging(application)
 
     login_manager.init_app(application)
 
@@ -240,7 +243,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         logger.info(
             'response',
             status_code=response.status_code,
-            session_cookie_content_length=len(str(cookie_session)),
             session_modified=cookie_session.modified,
         )
         return response
@@ -348,17 +350,6 @@ def setup_submitter(application):
 
     else:
         raise Exception('Unknown EQ_SUBMISSION_BACKEND')
-
-
-def configure_flask_logging(application):
-    # set the logger for this application and stop using flasks broken solution
-    application._logger = logging.getLogger(  # pylint: disable=protected-access
-        __name__
-    )
-    # workaround flask crazy logging mechanism (https://github.com/pallets/flask/issues/641)
-    application.logger_name = 'nowhere'
-    # the line below is required to trigger disabling the logger
-    application.logger  # pylint: disable=pointless-statement
 
 
 def start_dev_mode(application):
