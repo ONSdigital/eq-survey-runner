@@ -48,7 +48,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
         when: [{
           id: 'own-or-rent-answer',
           condition: 'equals',
-          value: 'Rents with or without housing benefit',
+          value: 'Rents',
         }],
       },
     },
@@ -58,7 +58,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
         when: [{
           id: 'own-or-rent-answer',
           condition: 'equals',
-          value: 'Part owns and part rents',
+          value: 'Part-owns and part-rents',
         }],
       },
     },
