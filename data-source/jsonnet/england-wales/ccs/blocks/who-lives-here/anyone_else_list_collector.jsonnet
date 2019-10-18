@@ -101,7 +101,7 @@ function(census_date) {
             },
           ],
         },
-        description: 'Tell respondent to turn to <strong>Showcard 2</strong>',
+        instruction: 'Tell respondent to turn to <strong>Showcard 2</strong>',
         answers: [
           {
             id: 'anyone-else-answer',
@@ -134,7 +134,7 @@ function(census_date) {
             },
           ],
         },
-        description: '<em>Tell respondent to turn to <strong>Showcard 2</strong></em>',
+        instruction: 'Tell respondent to turn to <strong>Showcard 2</strong>',
         answers: [
           {
             id: 'anyone-else-answer',
@@ -163,7 +163,7 @@ function(census_date) {
       id: 'add-question',
       type: 'General',
       title: addPersonQuestionTitle,
-      description: '<em>Enter a full stop (.) if the respondent does not know a person’s “First name” or “Last name”</em>',
+      instruction: 'Enter a full stop (.) if the respondent does not know a person’s “First name” or “Last name”',
       answers: [
         {
           id: 'first-name',

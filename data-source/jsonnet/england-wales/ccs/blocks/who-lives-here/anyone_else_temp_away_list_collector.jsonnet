@@ -121,7 +121,7 @@ local editQuestion(questionTitle) = {
       id: 'anyone-else-temp-away-add-question',
       type: 'General',
       title: addPersonQuestionTitle,
-      description: '<em>Enter a full stop (.) if the respondent does not know a person’s “First name” or “Last name”</em>',
+      instruction: 'Enter a full stop (.) if the respondent does not know a person’s “First name” or “Last name”',
       answers: [
         {
           id: 'first-name',

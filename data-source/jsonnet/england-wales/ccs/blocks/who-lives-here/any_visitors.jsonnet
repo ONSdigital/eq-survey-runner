@@ -12,7 +12,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
       text: 'How many visitors were staying in your household at {address} on 13 October 2019?',
       placeholders: [placeholders.address],
     },
-    description: '<em>Tell respondent to turn to <strong>Showcard 13</strong></em>',
+    instruction: 'Tell respondent to turn to <strong>Showcard 13</strong>',
     guidance: {
       contents: [
         {

@@ -11,7 +11,7 @@
         },
       ],
     },
-    description: '<em>Tell respondent to turn to <strong>Showcard 7</strong></em>',
+    instruction: 'Tell respondent to turn to <strong>Showcard 7</strong>',
     type: 'MutuallyExclusive',
     mandatory: false,
     answers: [

@@ -5,6 +5,7 @@
 
 {% set question_title = question.title %}
 {% set question_description = format_paragraphs(question.description) if question.description else None %}
+{% set question_instruction = format_paragraphs(question.instruction) if question.instruction else None %}
 {% set question_guidance = "" %}
 {% set question_definition = "" %}
 {% set should_wrap_with_fieldset = should_wrap_with_fieldset(question) %}
@@ -75,7 +76,8 @@
 {% call onsQuestion({
   "id": question.id,
   "title": question_title,
-  "description": question_description
+  "description": question_description,
+  "instruction": question_instruction
 }) %}
   {%- if content.list -%}
     {% set list = content.list %}

@@ -4,7 +4,7 @@ local rules = import 'rules.libsonnet';
 local question(title) = {
   id: 'employment-status-question',
   title: title,
-  description: '<em>Tell respondent to turn to <strong>Showcard 10</strong></em>',
+  instruction: 'Tell respondent to turn to <strong>Showcard 10</strong>',
   type: 'MutuallyExclusive',
   mandatory: false,
   guidance: {

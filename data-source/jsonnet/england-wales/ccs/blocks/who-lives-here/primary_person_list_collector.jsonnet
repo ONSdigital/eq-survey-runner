@@ -48,7 +48,7 @@ local questionTitle = {
     id: 'primary-confirmation-question',
     type: 'General',
     title: questionTitle,
-    description: '<em>Tell respondent to turn to <strong>Showcard 1</strong></em>',
+    instruction: 'Tell respondent to turn to <strong>Showcard 1</strong>',
     answers: [
       {
         id: 'you-live-here-answer',

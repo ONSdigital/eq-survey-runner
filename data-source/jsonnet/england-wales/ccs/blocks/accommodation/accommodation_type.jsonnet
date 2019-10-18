@@ -10,7 +10,7 @@ local rules = import 'rules.libsonnet';
       text: 'What type of accommodation is {address}?',
       placeholders: [placeholders.address],
     },
-    description: '<em>Tell respondent to turn to <strong>Showcard 3</strong></em>',
+    instruction: 'Tell respondent to turn to <strong>Showcard 3</strong>',
     type: 'General',
     answers: [
       {
