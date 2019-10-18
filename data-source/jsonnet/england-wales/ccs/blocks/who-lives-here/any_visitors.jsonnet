@@ -1,3 +1,5 @@
+local placeholders = import '../../../lib/placeholders.libsonnet';
+
 {
   type: 'ListCollectorDrivingQuestion',
   for_list: 'visitor',
@@ -6,7 +8,10 @@
   question: {
     type: 'General',
     id: 'any-visitors-question',
-    title: 'How many visitors were staying in your household overnight on Sunday 13 October 2019?',
+    title: {
+      text: 'How many visitors were staying in your household at {address} on 13 October 2019?',
+      placeholders: [placeholders.address],
+    },
     description: '<em>Tell respondent to turn to <strong>Showcard 13</strong></em>',
     guidance: {
       contents: [

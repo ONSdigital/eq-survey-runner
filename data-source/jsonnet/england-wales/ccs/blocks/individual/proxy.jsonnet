@@ -9,7 +9,7 @@
       {
         id: 'proxy-answer',
         mandatory: false,
-        default: 'Yes',
+        default: 'No',
         options: [
           {
             label: 'Yes, they are answering for themselves',

@@ -97,7 +97,7 @@ function(census_date) {
         guidance: {
           contents: [
             {
-              description: 'Remember to only include those people who share cooking facilities and sharing a living room or sitting room or dining area',
+              description: 'Remember to only include those people who share cooking facilities and share a living room or sitting room or dining area',
             },
           ],
         },
@@ -130,7 +130,7 @@ function(census_date) {
         guidance: {
           contents: [
             {
-              description: 'Remember to only include those people who share cooking facilities and sharing a living room or sitting room or dining area',
+              description: 'Remember to only include those people who share cooking facilities and share a living room or sitting room or dining area',
             },
           ],
         },

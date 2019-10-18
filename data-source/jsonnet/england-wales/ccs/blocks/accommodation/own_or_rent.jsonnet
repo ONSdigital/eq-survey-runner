@@ -26,7 +26,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
         {
           label: 'Part-owns and part-rents',
           value: 'Part-owns and part-rents',
-          description: 'Including shared ownership',
+          description: 'Shared ownership',
         },
         {
           label: 'Rents',
