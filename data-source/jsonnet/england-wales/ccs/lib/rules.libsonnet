@@ -13,9 +13,8 @@ local listIsNotEmpty(listName) = {
 };
 
 local estimatedAge = {
-  id: 'age-last-birthday-answer',
-  condition: 'greater than or equal to',
-  value: 0,
+  id: 'date-of-birth-answer',
+  condition: 'not set',
 };
 
 {
