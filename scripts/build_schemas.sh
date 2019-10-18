@@ -31,26 +31,15 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
 
         echo "Built ${DESTINATION_FILE}"
     done
-    for census_type in "household"; do
-
-        DESTINATION_FILE="data/en/ccs_${census_type}_${FORMATTED_REGION_CODE}.json"
-
-        if [[ "$region_code" = "GB-NIR" ]]; then
-            SOURCE_FILE="data-source/jsonnet/northern-ireland/ccs_${census_type}.jsonnet"
-            ADDITIONAL_LIBRARY_PATH="data-source/jsonnet/northern-ireland/${census_type}/lib/"
-
-            echo "NI CCS survey not currently available"
-
-        else
-            SOURCE_FILE="data-source/jsonnet/england-wales/ccs_household.jsonnet"
-            ADDITIONAL_LIBRARY_PATH="data-source/jsonnet/england-wales/ccs/lib/"
-
-            jsonnet --tla-str region_code="${region_code}" --tla-str census_date="${CENSUS_DATE}" --tla-str census_month_year_date="${CENSUS_MONTH_YEAR_DATE}" --jpath "${ADDITIONAL_LIBRARY_PATH}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
-            echo "Built ${DESTINATION_FILE}"
-        fi
-
-    done
 done
+
+DESTINATION_FILE="data/en/ccs_household_gb_eng.json"
+
+SOURCE_FILE="data-source/jsonnet/england-wales/ccs_household.jsonnet"
+ADDITIONAL_LIBRARY_PATH="data-source/jsonnet/england-wales/ccs/lib/"
+
+jsonnet --tla-str region_code="GB-ENG" --tla-str census_date="${CENSUS_DATE}" --tla-str census_month_year_date="${CENSUS_MONTH_YEAR_DATE}" --jpath "${ADDITIONAL_LIBRARY_PATH}" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
+echo "Built ${DESTINATION_FILE}"
 
 # Move newly built schemas to 'en' dir
 cp data-source/json/*.json data/en
