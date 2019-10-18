@@ -18,7 +18,7 @@
     answers: [
       {
         id: 'any-visitors-answer',
-        mandatory: false,
+        mandatory: true,
         options: [
           {
             label: '1 or more',
