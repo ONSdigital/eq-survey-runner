@@ -6,7 +6,7 @@ local question(title) = {
   title: title,
   description: '<em>Tell respondent to turn to <strong>Showcard 10</strong></em>',
   type: 'MutuallyExclusive',
-  mandatory: true,
+  mandatory: false,
   guidance: {
     contents: [
       {
@@ -84,6 +84,15 @@ local proxyTitle = {
         when: [{
           id: 'employment-status-answer-exclusive',
           condition: 'set',
+        }],
+      },
+    },
+    {
+      goto: {
+        block: 'employment-type',
+        when: [{
+          id: 'employment-status-answer',
+          condition: 'not set',
         }],
       },
     },
