@@ -10,7 +10,7 @@ export default function initPrintlistener() {
   }
   if (window.matchMedia) {
     let mql = window.matchMedia('print')
-    mql.addEventListener("change", (e) => {
+    mql.addEventListener('change', (e) => {
       if (!e.matches) {
         onafterPrinting()
       }
