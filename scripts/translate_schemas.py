@@ -14,7 +14,6 @@ logger.addHandler(logging.StreamHandler(sys.stdout))
 TRANSLATION_MAP = {
     'cy': [
         'test_language',
-        'ccs_household_gb_wls',
         'census_individual_gb_wls',
         'census_household_gb_wls',
     ],
