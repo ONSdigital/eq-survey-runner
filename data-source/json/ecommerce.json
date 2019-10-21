@@ -257,7 +257,7 @@
                                 "answers": [
                                     {
                                         "decimal_places": 1,
-                                        "description": "Please provide percentages to 1 decimal place where possible",
+                                        "description": "",
                                         "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
                                         "label": "Percentage who use computers",
                                         "mandatory": true,
@@ -272,6 +272,7 @@
                                         "type": "Percentage"
                                     }
                                 ],
+                                "description": "<p>Please provide percentages to 1 decimal place where possible</p>",
                                 "guidance": {
                                     "contents": [
                                         {
@@ -323,25 +324,6 @@
                                 },
                                 "type": "General"
                             },
-                            "routing_rules": [
-                                {
-                                    "goto": {
-                                        "group": "group369",
-                                        "when": [
-                                            {
-                                                "condition": "equals",
-                                                "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
-                                                "value": 0
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "goto": {
-                                        "group": "group360"
-                                    }
-                                }
-                            ],
                             "type": "Question"
                         }
                     ],
@@ -451,7 +433,7 @@
                                 "answers": [
                                     {
                                         "decimal_places": 1,
-                                        "description": "Please provide percentages to 1 decimal place where possible",
+                                        "description": "",
                                         "id": "answerfddb2dbd-1054-414c-ad70-bb397db1b5c8",
                                         "label": "Percentage of people with internet access",
                                         "mandatory": true,
@@ -466,6 +448,7 @@
                                         "type": "Percentage"
                                     }
                                 ],
+                                "description": "<p>Please provide percentages to 1 decimal place where possible</p>",
                                 "guidance": {
                                     "contents": [
                                         {
@@ -475,7 +458,8 @@
                                             "list": [
                                                 "employees, directors, and proprietors",
                                                 "all agency staff on your payroll",
-                                                "personal computers, portable computers such as laptops,  netbooks, notebooks, tablets,",
+                                                "personal computers",
+                                                "portable computers such as laptops,  netbooks, notebooks, tablets",
                                                 "other portable devices such as smartphones and Personal Digital Assistants (PDAs)"
                                             ]
                                         },
@@ -517,25 +501,6 @@
                                 },
                                 "type": "General"
                             },
-                            "routing_rules": [
-                                {
-                                    "goto": {
-                                        "group": "group359",
-                                        "when": [
-                                            {
-                                                "condition": "equals",
-                                                "id": "answerfddb2dbd-1054-414c-ad70-bb397db1b5c8",
-                                                "value": 0
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "goto": {
-                                        "block": "block1364"
-                                    }
-                                }
-                            ],
                             "type": "Question"
                         },
                         {
@@ -544,20 +509,12 @@
                                 "answers": [
                                     {
                                         "description": "",
-                                        "guidance": {
-                                            "contents": [
-                                                {
-                                                    "description": "DSL (ADSL, SDSL, VDSL), fibre optic technology (FTTP) and cable technology ."
-                                                }
-                                            ],
-                                            "hide_guidance": "Examples of fixed broadband connection",
-                                            "show_guidance": "Examples of fixed broadband connection"
-                                        },
                                         "id": "answer1830",
                                         "label": "",
                                         "mandatory": true,
                                         "options": [
                                             {
+                                                "description": "For example ADSL, SDSL, VDSL, fibre optic technology (FTTP) and cable technology",
                                                 "label": "Yes, we use a fixed broadband connection",
                                                 "value": "Yes, we use a fixed broadband connection"
                                             },
@@ -572,7 +529,13 @@
                                 "guidance": {
                                     "contents": [
                                         {
-                                            "description": "Include public Wi-Fi  in cities"
+                                            "description": "Include:"
+                                        },
+                                        {
+                                            "list": [
+                                                "connections to the internet using telephone lines, for example Digital Subscriber Lines (DSL)",
+                                                "public Wi-Fi  in cities"
+                                            ]
                                         }
                                     ]
                                 },
@@ -837,7 +800,6 @@
                                         "type": "Checkbox"
                                     }
                                 ],
-                                "description": "<p>If your business&apos; website <strong>does not</strong> have any of the following features, please leave this page blank and click &apos;save and continue&apos;.</p>",
                                 "id": "question1369",
                                 "title": "Which of the following <em>features</em> does the business&apos; website have?",
                                 "type": "General"
@@ -919,19 +881,6 @@
                                             }
                                         ],
                                         "type": "Checkbox"
-                                    },
-                                    {
-                                        "description": "",
-                                        "id": "answer7a543f2b-9e6b-49ce-8e98-2d03fa177dbf-exclusive",
-                                        "label": "",
-                                        "mandatory": false,
-                                        "options": [
-                                            {
-                                                "label": "None of these options",
-                                                "value": "None of these options"
-                                            }
-                                        ],
-                                        "type": "Checkbox"
                                     }
                                 ],
                                 "definitions": [
@@ -945,7 +894,6 @@
                                     }
                                 ],
                                 "id": "questione2fcb85a-8c97-44a8-af38-f497e2f70de6",
-                                "mandatory": true,
                                 "title": {
                                     "placeholders": [
                                         {
@@ -966,25 +914,65 @@
                                             ]
                                         }
                                     ],
-                                    "text": "Which of the following <em>chat services</em> does {company_name} use for customer contacts?"
+                                    "text": "Does {company_name} offer any of the following <em>chat services</em> for customer contact?"
                                 },
-                                "type": "MutuallyExclusive"
+                                "type": "General"
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "group": "group368",
+                                        "when": [
+                                            {
+                                                "condition": "contains all",
+                                                "id": "answer7a543f2b-9e6b-49ce-8e98-2d03fa177dbf",
+                                                "values": [
+                                                    "A chat service where a person replies to customers",
+                                                    "A virtual agent or chatbot replying to customers"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block588909de-34b4-4ae2-8de9-f9fee4a4236f"
+                                    }
+                                }
+                            ],
+                            "type": "Question"
+                        },
+                        {
+                            "id": "block588909de-34b4-4ae2-8de9-f9fee4a4236f",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "description": "",
+                                        "id": "answer4262d2de-6f09-442a-82cf-48e8e21d6929",
+                                        "label": "",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "They're not used",
+                                                "value": "They're not used"
+                                            },
+                                            {
+                                                "label": "I don't know what they are",
+                                                "value": "I don't know what they are"
+                                            }
+                                        ],
+                                        "type": "Radio"
+                                    }
+                                ],
+                                "description": "<p>Place items not chosen in this area</p>",
+                                "id": "question588909de-34b4-4ae2-8de9-f9fee4a4236f",
+                                "title": "Why were the following chat services not selected?",
+                                "type": "General"
                             },
                             "type": "Question"
                         }
                     ],
                     "id": "group360",
-                    "skip_conditions": [
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
-                                    "value": 0
-                                }
-                            ]
-                        }
-                    ],
                     "title": "Access and Use of the Internet"
                 }
             ],
@@ -1112,7 +1100,7 @@
                                 "answers": [
                                     {
                                         "decimal_places": 1,
-                                        "description": "Please provide percentages to 1 decimal place where possible",
+                                        "description": "",
                                         "id": "answer9cc30dc1-89fd-4a8d-8495-8d816f9f3ce1",
                                         "label": "Percentage turnover from orders via website or 'app'",
                                         "mandatory": true,
@@ -1127,6 +1115,7 @@
                                         "type": "Percentage"
                                     }
                                 ],
+                                "description": "<p>Please provide percentages to 1 decimal place where possible</p>",
                                 "guidance": {
                                     "contents": [
                                         {
@@ -1166,25 +1155,6 @@
                                 },
                                 "type": "General"
                             },
-                            "routing_rules": [
-                                {
-                                    "goto": {
-                                        "block": "block1404",
-                                        "when": [
-                                            {
-                                                "condition": "equals",
-                                                "id": "answer9cc30dc1-89fd-4a8d-8495-8d816f9f3ce1",
-                                                "value": 0
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "goto": {
-                                        "block": "blockf8f5d379-d098-4dec-b0de-902f9711bfc0"
-                                    }
-                                }
-                            ],
                             "type": "Question"
                         },
                         {
@@ -1285,19 +1255,6 @@
                                         "type": "Percentage"
                                     }
                                 ],
-                                "calculations": [
-                                    {
-                                        "answers_to_calculate": [
-                                            "answer05718a5c-7a65-4775-b28f-e2787cfa6ac1",
-                                            "answer2565ef7d-9fda-4485-b05c-1e4678fa97cd"
-                                        ],
-                                        "calculation_type": "sum",
-                                        "conditions": [
-                                            "equals"
-                                        ],
-                                        "value": 100
-                                    }
-                                ],
                                 "description": "<p><strong>Answers should add up to 100%</strong></p><p>Please provide percentages to 1 decimal place where possible.</p>",
                                 "id": "question1399",
                                 "title": {
@@ -1317,9 +1274,9 @@
                                             }
                                         }
                                     ],
-                                    "text": "During {period_str}, of the {answer9cc30dc1_89fd_4a8d_8495_8d816f9f3ce1}% of orders received via a website or &apos;app&apos;, what percentage was received from private customers?"
+                                    "text": "During {period_str}, of the {answer9cc30dc1_89fd_4a8d_8495_8d816f9f3ce1}% of total turnover from orders received via a website or &apos;app&apos;, what percentage was from private customers or other businesses and public authorities?"
                                 },
-                                "type": "Calculated"
+                                "type": "General"
                             },
                             "type": "Question"
                         },
@@ -1450,19 +1407,6 @@
                                         "type": "Percentage"
                                     }
                                 ],
-                                "calculations": [
-                                    {
-                                        "answers_to_calculate": [
-                                            "answer7f9aa610-1122-48c3-9ba1-521891b0a11f",
-                                            "answer981e53d9-69df-40b9-9349-5a44cf6ad419"
-                                        ],
-                                        "calculation_type": "sum",
-                                        "conditions": [
-                                            "equals"
-                                        ],
-                                        "value": 100
-                                    }
-                                ],
                                 "definitions": [
                                     {
                                         "contents": [
@@ -1487,7 +1431,7 @@
                                     ],
                                     "text": "During {period_str}, what percentage of orders for goods and services were received via your business&apos; own website or &apos;app&apos;, and via an e-commerce market place?"
                                 },
-                                "type": "Calculated"
+                                "type": "General"
                             },
                             "type": "Question"
                         },
@@ -1691,20 +1635,6 @@
                                         "type": "Percentage"
                                     }
                                 ],
-                                "calculations": [
-                                    {
-                                        "answers_to_calculate": [
-                                            "answerb5dbdafd-0c0d-4512-8372-06a864672d29",
-                                            "answerce1c8c54-b803-4d8d-bbc2-3f79ba2b5004",
-                                            "answer8794a304-c6fe-40a8-9309-04c8c66736ed"
-                                        ],
-                                        "calculation_type": "sum",
-                                        "conditions": [
-                                            "equals"
-                                        ],
-                                        "value": 100
-                                    }
-                                ],
                                 "description": "<p> <strong>Answers should add up to 100%</strong></p><p>Please provide percentages to 1 decimal place where possible.</p>",
                                 "id": "question057ce2f0-a337-4f2c-97e9-6bb40e781959",
                                 "title": {
@@ -1736,7 +1666,7 @@
                                     ],
                                     "text": "During {period_str}, what was the <em>percentage breakdown</em> of {company_name}&apos;s total turnover from orders received via a <em>website or &apos;app&apos;</em>, by geographical area?"
                                 },
-                                "type": "Calculated"
+                                "type": "General"
                             },
                             "type": "Question"
                         },
@@ -1766,7 +1696,7 @@
                                     {
                                         "contents": [
                                             {
-                                                "description": "EDI messages allow the exchange of business documents between trading partners in a standard or structured machine readable form. EDI is used to electronically transfer documents such as purchase orders, invoice or shipping bills. Businesses should  be able to process this data without having to manually record it (i.e. processing should be automated)."
+                                                "description": "EDI messages allow the exchange of business documents between trading partners in a standard or structured machine-readable form. EDI is used to electronically transfer documents such as purchase orders, invoice or shipping bills. Businesses should  be able to process this data without having to manually record it (i.e. processing should be automated)."
                                             }
                                         ],
                                         "title": "What are Electronic Data Interchange (EDI) type messages?"
@@ -1854,7 +1784,7 @@
                                 "answers": [
                                     {
                                         "decimal_places": 1,
-                                        "description": "Please provide percentage to 1 decimal place where possible",
+                                        "description": "",
                                         "id": "answer95e76ade-2713-4ba4-927a-756101448a7f",
                                         "label": "Percentage of turnover received from EDI type messages",
                                         "mandatory": true,
@@ -1873,12 +1803,13 @@
                                     {
                                         "contents": [
                                             {
-                                                "description": "These are electronic transmission methods which allowed their automated processing, for example internet or non-internet EDI, XML, EDIFACT etc."
+                                                "description": "EDI messages allow the exchange of business documents between trading partners in a standard or structured machine-readable form. EDI is used to electronically transfer documents such as purchase orders, invoice or shipping bills. Businesses should  be able to process this data without having to manually record it (i.e. processing should be automated)."
                                             }
                                         ],
-                                        "title": "What are EDI type messages?"
+                                        "title": "What are Electronic Data Interchange (EDI) type messages?"
                                     }
                                 ],
+                                "description": "<p>Please provide percentage to 1 decimal place where possible</p>",
                                 "guidance": {
                                     "contents": [
                                         {
@@ -1918,25 +1849,6 @@
                                 },
                                 "type": "General"
                             },
-                            "routing_rules": [
-                                {
-                                    "goto": {
-                                        "group": "group93b8c5ed-1fd3-43ce-a096-c22f5de5e880",
-                                        "when": [
-                                            {
-                                                "condition": "equals",
-                                                "id": "answer95e76ade-2713-4ba4-927a-756101448a7f",
-                                                "value": 0
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "goto": {
-                                        "block": "block1407"
-                                    }
-                                }
-                            ],
                             "type": "Question"
                         },
                         {
@@ -2139,20 +2051,6 @@
                                         "type": "Percentage"
                                     }
                                 ],
-                                "calculations": [
-                                    {
-                                        "answers_to_calculate": [
-                                            "answer9d2bc425-2ed2-4743-8ee6-1f7215af29a1",
-                                            "answera4eccc5c-69c2-4da5-9452-59503cb21f6f",
-                                            "answerbfedc667-482f-4115-89fe-92601b0aae19"
-                                        ],
-                                        "calculation_type": "sum",
-                                        "conditions": [
-                                            "equals"
-                                        ],
-                                        "value": 100
-                                    }
-                                ],
                                 "description": "<p><strong>Answers should add up to 100%</strong></p><p>Please provide percentages to 1 decimal place where possible.</p>",
                                 "id": "question245a0458-8a39-4dcc-9c72-ff7d0438bb4b",
                                 "title": {
@@ -2184,32 +2082,12 @@
                                     ],
                                     "text": "During {period_str}, what was the <em>percentage breakdown</em> of {company_name}&apos;s total turnover from orders received via <em>EDI type messages</em>, by geographical area?"
                                 },
-                                "type": "Calculated"
+                                "type": "General"
                             },
                             "type": "Question"
                         }
                     ],
                     "id": "group368",
-                    "skip_conditions": [
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
-                                    "value": 0
-                                }
-                            ]
-                        },
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerfddb2dbd-1054-414c-ad70-bb397db1b5c8",
-                                    "value": 0
-                                }
-                            ]
-                        }
-                    ],
                     "title": "E-Commerce"
                 }
             ],
@@ -2249,8 +2127,8 @@
                                             },
                                             {
                                                 "description": "For example, emails, PDF, images in TIF, JPEG or other formats",
-                                                "label": "Other invoices in an electronic format",
-                                                "value": "Other invoices in an electronic format"
+                                                "label": "Invoices in an electronic format not suitable for automated processing",
+                                                "value": "Invoices in an electronic format not suitable for automated processing"
                                             },
                                             {
                                                 "label": "Paper invoices",
@@ -2260,7 +2138,6 @@
                                         "type": "Checkbox"
                                     }
                                 ],
-                                "description": "<p>If your business <strong>did not</strong> issue any of these types of invoice, please leave this page blank and click &apos;save and continue&apos;. </p>",
                                 "id": "question8dc8fcf9-4570-46a5-ba6b-4363c90961d8",
                                 "title": {
                                     "placeholders": [
@@ -2303,7 +2180,7 @@
                                                 "id": "answer6ebb0244-7453-4b88-be23-dd4e91844c8f",
                                                 "values": [
                                                     "E-invoices in a format suitable for automated processing",
-                                                    "Other invoices in an electronic format",
+                                                    "Invoices in an electronic format not suitable for automated processing",
                                                     "Paper invoices"
                                                 ]
                                             }
@@ -2349,26 +2226,6 @@
                         }
                     ],
                     "id": "group93b8c5ed-1fd3-43ce-a096-c22f5de5e880",
-                    "skip_conditions": [
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
-                                    "value": 0
-                                }
-                            ]
-                        },
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerfddb2dbd-1054-414c-ad70-bb397db1b5c8",
-                                    "value": 0
-                                }
-                            ]
-                        }
-                    ],
                     "title": "Invoicing"
                 }
             ],
@@ -2397,20 +2254,6 @@
                                 "answers": [
                                     {
                                         "description": "",
-                                        "guidance": {
-                                            "contents": [
-                                                {
-                                                    "list": [
-                                                        "services are delivered from servers of service providers",
-                                                        "services can be used as an on-demand self-service, at least after set up (without human interaction with a service provider)",
-                                                        "services can be scaled up or down, for example for a change in number of users or storage capacity",
-                                                        "services are paid by use or per capacity used, or they are prepaid"
-                                                    ]
-                                                }
-                                            ],
-                                            "hide_guidance": "Characteristics of cloud computing services",
-                                            "show_guidance": "Characteristics of cloud computing services"
-                                        },
                                         "id": "answer1ecfb94e-384e-4aeb-84aa-95da13970a02",
                                         "label": "",
                                         "mandatory": true,
@@ -2432,6 +2275,21 @@
                                         "contents": [
                                             {
                                                 "description": "Cloud computing means services used over the internet, including connections via Virtual Private Networks - (VPN) to access software, computing power, storage capacity etc."
+                                            },
+                                            {
+                                                "description": "<strong>Characteristics of cloud computing services:</strong>"
+                                            },
+                                            {
+                                                "description": "services are delivered from servers of service providers"
+                                            },
+                                            {
+                                                "description": "services can be used as an on-demand self-service, at least after set up (without human interaction with a service provider)"
+                                            },
+                                            {
+                                                "description": "services can be scaled up or down, for example for a change in number of users or storage capacity"
+                                            },
+                                            {
+                                                "description": "services are paid by use or per capacity used, or they are prepaid"
                                             }
                                         ],
                                         "title": "What is a cloud computing service?"
@@ -2538,7 +2396,6 @@
                                         "title": "What is a cloud computing service?"
                                     }
                                 ],
-                                "description": "<p>If your business <stong>does not</strong> buy any  of the following cloud computing services, please leave this page blank and click &apos;save and continue&apos;.  </p>",
                                 "id": "questiond00d48df-fc09-4d2a-9f5f-9c6340116df0",
                                 "title": {
                                     "placeholders": [
@@ -2624,26 +2481,6 @@
                         }
                     ],
                     "id": "group066e41a6-13d1-46a2-89cf-ec34bb140244",
-                    "skip_conditions": [
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
-                                    "value": 0
-                                }
-                            ]
-                        },
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerfddb2dbd-1054-414c-ad70-bb397db1b5c8",
-                                    "value": 0
-                                }
-                            ]
-                        }
-                    ],
                     "title": "Use of Cloud computing services"
                 }
             ],
@@ -2672,19 +2509,6 @@
                                 "answers": [
                                     {
                                         "description": "",
-                                        "guidance": {
-                                            "contents": [
-                                                {
-                                                    "list": [
-                                                        "vast amounts of data generated over time.",
-                                                        "variety in terms of different formats of complex data, either structured or unstructured (for example text, video, images, voice, docs, sensor data, activity logs, click streams, coordinates).",
-                                                        "velocity in terms of the high speed at which data are generated, become available and change over time."
-                                                    ]
-                                                }
-                                            ],
-                                            "hide_guidance": "Characteristics of Big Data",
-                                            "show_guidance": "Characteristics of Big Data"
-                                        },
                                         "id": "answer3d989583-70ec-4b6c-a86e-93f0c0c148af",
                                         "label": "",
                                         "mandatory": false,
@@ -2717,12 +2541,23 @@
                                         "contents": [
                                             {
                                                 "description": "Big Data is the study of data sets that are generated from electronic activities and from machine-to-machine communications, for example, from social media or production processes. Big Data analysis refers to the use of techniques, technologies and software tools for analysing big data from your own business or other data sources."
+                                            },
+                                            {
+                                                "description": "<strong>Characteristics of Big Data:</strong>"
+                                            },
+                                            {
+                                                "description": "vast amounts of data generated over time."
+                                            },
+                                            {
+                                                "description": "variety in terms of different formats of complex data, either structured or unstructured (for example text, video, images, voice, docs, sensor data, activity logs, click streams, coordinates)."
+                                            },
+                                            {
+                                                "description": "velocity in terms of the high speed at which data are generated, become available and change over time."
                                             }
                                         ],
                                         "title": "What is Big Data?"
                                     }
                                 ],
-                                "description": "<p>If your business <strong>did not</strong> analyse big data from any of the following sources, please leave this page blank and click &apos;save and continue&apos;.   </p>",
                                 "id": "question2ec244ef-227a-41ae-bee0-d6b7b38a4e33",
                                 "title": {
                                     "placeholders": [
@@ -2751,7 +2586,7 @@
                                             ]
                                         }
                                     ],
-                                    "text": "During {period_str}, from which of the following <em>sources</em> did {company_name} analyse big data?"
+                                    "text": "During {period_str}, did {company_name} use any of the following sources to analyse big data?"
                                 },
                                 "type": "General"
                             },
@@ -2840,19 +2675,6 @@
                                 "answers": [
                                     {
                                         "description": "",
-                                        "guidance": {
-                                            "contents": [
-                                                {
-                                                    "list": [
-                                                        "vast amounts of data generated over time.",
-                                                        "variety in terms of different formats of complex data, either structured or unstructured (for example text, video, images, voice, docs, sensor data, activity logs, click streams, coordinates).",
-                                                        "velocity in terms of the high speed at which data are generated, become available and change over time."
-                                                    ]
-                                                }
-                                            ],
-                                            "hide_guidance": "Characteristics of Big Data",
-                                            "show_guidance": "Characteristics of Big Data"
-                                        },
                                         "id": "answerc128458c-463c-4386-a968-3ed883c83b04",
                                         "label": "",
                                         "mandatory": false,
@@ -2880,12 +2702,23 @@
                                         "contents": [
                                             {
                                                 "description": "Big Data is the study of data sets that are generated from electronic activities and from machine-to-machine communications, for example, from social media or production processes. Big Data analysis refers to the use of techniques, technologies and software tools for analysing big data from your own business or other data sources."
+                                            },
+                                            {
+                                                "description": "<strong>Characteristics of Big Data:</strong>"
+                                            },
+                                            {
+                                                "description": "vast amounts of data generated over time."
+                                            },
+                                            {
+                                                "description": "variety in terms of different formats of complex data, either structured or unstructured (for example text, video, images, voice, docs, sensor data, activity logs, click streams, coordinates)."
+                                            },
+                                            {
+                                                "description": "velocity in terms of the high speed at which data are generated, become available and change over time."
                                             }
                                         ],
                                         "title": "What is Big Data?"
                                     }
                                 ],
-                                "description": "<p>If your business <strong>did not</strong> use any of the following methods to analyse big data, please leave this page blank and click &apos;save and continue&apos;.   </p>",
                                 "id": "question8702a64a-6729-41a3-a9f9-92779e03da0e",
                                 "title": {
                                     "placeholders": [
@@ -2914,7 +2747,7 @@
                                             ]
                                         }
                                     ],
-                                    "text": "During {period_str}, which of the following <em>methods</em> did {company_name} use to analyse big data ?"
+                                    "text": "During {period_str}, did {company_name} use any of the following <em>methods</em> to analyse big data?"
                                 },
                                 "type": "General"
                             },
@@ -3032,6 +2865,23 @@
                                         "block": "block51380ae3-92c2-44c5-86ad-2542716b8591",
                                         "when": [
                                             {
+                                                "condition": "contains any",
+                                                "id": "answer3d989583-70ec-4b6c-a86e-93f0c0c148af",
+                                                "values": [
+                                                    "The business' own data from smart devices or sensors",
+                                                    "Geolocation data from the use of portable devices",
+                                                    "Data generated from social media",
+                                                    "Other big data sources not specified above"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block51380ae3-92c2-44c5-86ad-2542716b8591",
+                                        "when": [
+                                            {
                                                 "condition": "equals any",
                                                 "id": "answera26934bd-a7a6-4f5c-b6e6-8248ca22eb41",
                                                 "values": [
@@ -3055,20 +2905,12 @@
                                 "answers": [
                                     {
                                         "description": "",
-                                        "guidance": {
-                                            "contents": [
-                                                {
-                                                    "description": "Big data from your business&apos; smart devices or sensors, or big data about your business&apos; customers"
-                                                }
-                                            ],
-                                            "hide_guidance": "Examples of big data",
-                                            "show_guidance": "Examples of big data"
-                                        },
                                         "id": "answerd2c69d34-0678-4af6-b6cc-c2114f52fd0c",
                                         "label": "",
                                         "mandatory": true,
                                         "options": [
                                             {
+                                                "description": "For example, Big Data from your business' smart devices or Big Data about your business' customers",
                                                 "label": "Yes, we sold access to our big data",
                                                 "value": "Yes, we sold access to our big data"
                                             },
@@ -3120,20 +2962,12 @@
                                 "answers": [
                                     {
                                         "description": "",
-                                        "guidance": {
-                                            "contents": [
-                                                {
-                                                    "description": "Big data from other business&apos;  smart devices or sensors, or big data about other business&apos; customers"
-                                                }
-                                            ],
-                                            "hide_guidance": "Examples of big data",
-                                            "show_guidance": "Examples of big data"
-                                        },
                                         "id": "answer26462d44-ea92-466d-ab65-37659c1ec8fe",
                                         "label": "",
                                         "mandatory": true,
                                         "options": [
                                             {
+                                                "description": "For example, Big Data from your business' smart devices or Big Data about your business' customers",
                                                 "label": "Yes, we purchased access to big data",
                                                 "value": "Yes, we purchased access to big data"
                                             },
@@ -3181,26 +3015,6 @@
                         }
                     ],
                     "id": "group55dd8d63-b3c4-4365-ba8b-4c1c772eab63",
-                    "skip_conditions": [
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
-                                    "value": 0
-                                }
-                            ]
-                        },
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerfddb2dbd-1054-414c-ad70-bb397db1b5c8",
-                                    "value": 0
-                                }
-                            ]
-                        }
-                    ],
                     "title": "Big Data Analysis"
                 }
             ],
@@ -3412,7 +3226,7 @@
                                             ]
                                         }
                                     ],
-                                    "text": "During{period_str}, did {company_name} <em>recruit or try to recruit</em> ICT or IT specialists?"
+                                    "text": "During {period_str}, did {company_name} <em>recruit or try to recruit</em> ICT or IT specialists?"
                                 },
                                 "type": "General"
                             },
@@ -3554,17 +3368,6 @@
                         }
                     ],
                     "id": "group359",
-                    "skip_conditions": [
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
-                                    "value": 0
-                                }
-                            ]
-                        }
-                    ],
                     "title": "ICT Specialists and Skills"
                 }
             ],
@@ -3780,7 +3583,6 @@
                                         "type": "Checkbox"
                                     }
                                 ],
-                                "description": "<p>If your business <strong>did not</strong> use 3D printers for any of the following activities, please leave this page blank and click &apos;save and continue&apos;.    </p>",
                                 "id": "question0e56a4a7-12c8-41bc-8e6d-b74914ff984d",
                                 "title": {
                                     "placeholders": [
@@ -3853,17 +3655,6 @@
                         }
                     ],
                     "id": "group34e4f65e-92d6-4503-8121-4ce8707207f2",
-                    "skip_conditions": [
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
-                                    "value": 0
-                                }
-                            ]
-                        }
-                    ],
                     "title": "Use of 3D printing"
                 }
             ],
@@ -3892,20 +3683,12 @@
                                 "answers": [
                                     {
                                         "description": "",
-                                        "guidance": {
-                                            "contents": [
-                                                {
-                                                    "description": "Robotic welding, robotic laser cutting or robotic spray painting"
-                                                }
-                                            ],
-                                            "hide_guidance": "Examples of industrial robots",
-                                            "show_guidance": "Examples of industrial robots"
-                                        },
                                         "id": "answer295e1539-e287-442a-b44b-b257f69c0320",
                                         "label": "",
                                         "mandatory": true,
                                         "options": [
                                             {
+                                                "description": "For example robotic welding, laser cutting and spray painting",
                                                 "label": "Yes, we use industrial robots",
                                                 "value": "Yes, we use industrial robots"
                                             },
@@ -3930,7 +3713,7 @@
                                 "guidance": {
                                     "contents": [
                                         {
-                                            "description": "Exclude service robots (robots with a degree of autonomy)"
+                                            "description": "Exclude service robots (with a degree of autonomy)"
                                         }
                                     ]
                                 },
@@ -3967,20 +3750,12 @@
                                 "answers": [
                                     {
                                         "description": "",
-                                        "guidance": {
-                                            "contents": [
-                                                {
-                                                    "description": "Robots for surveillance, robots for cleaning or robots for transportation"
-                                                }
-                                            ],
-                                            "hide_guidance": "Examples of service robots",
-                                            "show_guidance": "Examples of service robots"
-                                        },
                                         "id": "answer1ea69f67-1d89-4029-80dc-e25e3d552a7f",
                                         "label": "",
                                         "mandatory": true,
                                         "options": [
                                             {
+                                                "description": "For example robots for surveillance, robots for cleaning, or robots for transportation.",
                                                 "label": "Yes, we use service robots",
                                                 "value": "Yes, we use service robots"
                                             },
@@ -4005,7 +3780,7 @@
                                 "guidance": {
                                     "contents": [
                                         {
-                                            "description": "Exclude industrial robots"
+                                            "description": "Exclude industrial robots (used for automation applications)"
                                         }
                                     ]
                                 },
@@ -4112,11 +3887,10 @@
                                         "title": "What is a service robot?"
                                     }
                                 ],
-                                "description": "<p>If your business <strong>did not</strong> use service robots for any of the following activities, please leave this page blank and click &apos;save and continue&apos;.     </p>",
                                 "guidance": {
                                     "contents": [
                                         {
-                                            "description": "Exclude industrial robots"
+                                            "description": "Exclude industrial robots  (used for automation applications)"
                                         }
                                     ]
                                 },
@@ -4205,17 +3979,6 @@
                         }
                     ],
                     "id": "group7546bbf8-e862-4ffe-b112-d045862df301",
-                    "skip_conditions": [
-                        {
-                            "when": [
-                                {
-                                    "condition": "equals",
-                                    "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
-                                    "value": 0
-                                }
-                            ]
-                        }
-                    ],
                     "title": "Use of Robotics"
                 }
             ],
