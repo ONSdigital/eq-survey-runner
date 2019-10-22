@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-21 16:51+0100\n"
+"POT-Creation-Date: 2019-10-22 11:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -546,11 +546,6 @@ msgstr ""
 #: templates/partials/answer-guidance.html:13
 #: templates/partials/question-definition.html:14
 msgid "Hide this"
-msgstr ""
-
-#: templates/partials/answer-guidance.html:14
-#: templates/partials/question-definition.html:15
-msgid "content"
 msgstr ""
 
 #: templates/partials/question.html:38
