@@ -58,7 +58,6 @@ class TestCreateApp(unittest.TestCase):
     def test_enforces_secure_session(self):
         application = create_app(self._setting_overrides)
         self.assertTrue(application.secret_key)
-        self.assertTrue(application.permanent_session_lifetime)
         self.assertTrue(application.session_interface)
 
         # This is derived from EQ_ENABLE_SECURE_SESSION_COOKIE which is false
