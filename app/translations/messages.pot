@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-16 15:58+0100\n"
+"POT-Creation-Date: 2019-10-22 11:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -547,23 +547,28 @@ msgstr ""
 msgid "Hide this"
 msgstr ""
 
-#: templates/partials/question.html:38
-msgid "Selecting this will clear your answer"
+#: templates/partials/answer-guidance.html:14
+#: templates/partials/question-definition.html:15
+msgid "context"
 msgstr ""
 
 #: templates/partials/question.html:39
+msgid "Selecting this will clear your answer"
+msgstr ""
+
+#: templates/partials/question.html:40
 msgid "cleared"
 msgstr ""
 
-#: templates/partials/question.html:42
+#: templates/partials/question.html:43
 msgid "Selecting this will deselect any selected options"
 msgstr ""
 
-#: templates/partials/question.html:43 templates/partials/question.html:51
+#: templates/partials/question.html:44 templates/partials/question.html:52
 msgid "deselected"
 msgstr ""
 
-#: templates/partials/question.html:47
+#: templates/partials/question.html:48
 msgid "Or"
 msgstr ""
 

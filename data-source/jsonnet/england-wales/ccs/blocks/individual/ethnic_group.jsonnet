@@ -13,7 +13,7 @@ local question(title) = (
   {
     id: 'ethnic-group-question',
     title: title,
-    description: '<em>Tell respondent to turn to <strong>Showcard 9</strong></em>',
+    instruction: 'Tell respondent to turn to <strong>Showcard 9</strong>',
     type: 'General',
     answers: [
       {

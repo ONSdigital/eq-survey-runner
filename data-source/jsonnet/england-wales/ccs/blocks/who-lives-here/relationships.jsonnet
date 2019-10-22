@@ -20,7 +20,7 @@
     guidance: {
       contents: [
         {
-          description: 'Remember to include partners and step-children as related',
+          description: 'Remember to include partners and step-children as related.',
         },
       ],
     },

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-16 15:58+0100\n"
+"POT-Creation-Date: 2019-10-22 11:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,9 +34,6 @@ msgstr ""
 msgid "Here are some cards to help with answering the questions."
 msgstr ""
 
-msgid "<em>Tell respondent to turn to <strong>Showcard 1</strong></em>"
-msgstr ""
-
 msgid ""
 "Only interview a person who was usually living at the property on census "
 "night."
@@ -55,25 +52,11 @@ msgid ""
 msgstr ""
 
 msgid ""
-"<em>Enter a full stop (.) if the respondent does not know a person’s "
-"“First name” or “Last name”</em>"
-msgstr ""
-
-msgid "Tell respondent to turn to <strong>Showcard 2</strong>"
-msgstr ""
-
-msgid ""
 "Remember to only include those people who share cooking facilities and "
-"sharing a living room or sitting room or dining area"
-msgstr ""
-
-msgid "<em>Tell respondent to turn to <strong>Showcard 2</strong></em>"
+"share a living room or sitting room or dining area"
 msgstr ""
 
 msgid "Include"
-msgstr ""
-
-msgid "<em>Tell respondent to turn to <strong>Showcard 13</strong></em>"
 msgstr ""
 
 msgid ""
@@ -81,15 +64,12 @@ msgid ""
 "lives at another address."
 msgstr ""
 
-msgid "Remember to include partners and step-children as related"
+msgid "Remember to include partners and step-children as related."
 msgstr ""
 
 msgid ""
 "In this section, I’m going to ask you about the household and "
 "accommodation you were living in on Sunday 13 October 2019."
-msgstr ""
-
-msgid "<em>Tell respondent to turn to <strong>Showcard 3</strong></em>"
 msgstr ""
 
 msgid "Including end-terrace"
@@ -101,27 +81,10 @@ msgstr ""
 msgid "For example, in an office building, hotel, or over a shop"
 msgstr ""
 
-msgid ""
-"<em>If “No” confirm one or more rooms are shared with another "
-"household</em>"
-msgstr ""
-
-msgid "<em>Tell respondent to turn to <strong>Showcard 4</strong></em>"
-msgstr ""
-
-msgid "Including shared ownership"
+msgid "Shared ownership"
 msgstr ""
 
 msgid "With or without housing benefit"
-msgstr ""
-
-msgid "<em>Tell respondent to turn to <strong>Showcard 5</strong></em>"
-msgstr ""
-
-msgid "<em>Tell respondent to turn to <strong>Showcard 6</strong></em>"
-msgstr ""
-
-msgid "<em>Tell respondent to turn to <strong>Showcard 7</strong></em>"
 msgstr ""
 
 msgid "For example, taxing a car, registering to vote, applying for school places"
@@ -135,36 +98,16 @@ msgid ""
 "online, such as DVLA, HMRC, local council or health related services."
 msgstr ""
 
-msgid ""
-"<em>If “Yes” ensure this accommodation is recorded on the Fieldwork "
-"Management Tool and interview household separately</em>"
-msgstr ""
-
 msgid "For example, separate bedsits, annexes, sheds etc."
-msgstr ""
-
-msgid "<em>Tell respondent to turn to <strong>Showcard 8</strong></em>"
-msgstr ""
-
-msgid "<em>Tell respondent to turn to <strong>Showcard 9</strong></em>"
 msgstr ""
 
 msgid "Select to enter answer"
 msgstr ""
 
-msgid "<em>Tell respondent to turn to <strong>Showcard 10</strong></em>"
-msgstr ""
-
 msgid "Include casual or temporary work, even if only for one hour"
 msgstr ""
 
-msgid "<em>Tell respondent to turn to <strong>Showcard 11</strong></em>"
-msgstr ""
-
 msgid "Whether receiving a pension or not"
-msgstr ""
-
-msgid "<em>Tell respondent to turn to <strong>Showcard 12</strong></em>"
 msgstr ""
 
 msgid "Moved since 13 October 2019"
@@ -186,6 +129,58 @@ msgid "There are no householders"
 msgstr ""
 
 msgid "There are no visitors"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 1</strong>"
+msgstr ""
+
+msgid ""
+"Enter a full stop (.) if the respondent does not know a person’s “First "
+"name” or “Last name”"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 2</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 13</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 3</strong>"
+msgstr ""
+
+msgid "If “No” confirm one or more rooms are shared with another household"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 4</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 5</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 6</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 7</strong>"
+msgstr ""
+
+msgid ""
+"If “Yes” ensure this accommodation is recorded on the Fieldwork "
+"Management Tool and interview household separately"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 8</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 9</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 10</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 11</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 12</strong>"
 msgstr ""
 
 msgid "2019 Census Coverage Survey Test"
@@ -215,11 +210,6 @@ msgstr ""
 msgid ""
 "Apart from the people already included, is there anyone else who was "
 "temporarily away or staying that you need to add?"
-msgstr ""
-
-msgid ""
-"How many visitors were staying in your household overnight on Sunday 13 "
-"October 2019?"
 msgstr ""
 
 msgid "Are any of these people related to each other?"
@@ -252,8 +242,8 @@ msgid "Personal Details"
 msgstr ""
 
 msgid ""
-"<em>Interviewer Note: Are they answering the questions for themselves or "
-"on someone else’s behalf?</em>"
+"<em>Interviewer Note:</em> Are they answering the questions for "
+"themselves or on someone else’s behalf?"
 msgstr ""
 
 msgid "What is your date of birth?"
@@ -307,8 +297,8 @@ msgid "One year ago, on 13 October 2018, what was your usual address?"
 msgstr ""
 
 msgid ""
-"Including the time already you have already spent here, how long do you "
-"intend to stay in the United Kingdom?"
+"Including the time you have already spent here, how long do you intend to"
+" stay in the United Kingdom?"
 msgstr ""
 
 msgid ""
@@ -389,6 +379,11 @@ msgid "Are you sure you want to remove {person_name}?"
 msgstr ""
 
 msgid "{person_name}"
+msgstr ""
+
+msgid ""
+"How many visitors were staying in your household at {address} on 13 "
+"October 2019?"
 msgstr ""
 
 msgid ""
@@ -680,15 +675,15 @@ msgstr ""
 
 #. answer-id: any-visitors-answer
 msgctxt ""
-"Answer for: How many visitors were staying in your household overnight on"
-" Sunday 13 October 2019?"
+"Answer for: How many visitors were staying in your household at {address}"
+" on 13 October 2019?"
 msgid "1 or more"
 msgstr ""
 
 #. answer-id: any-visitors-answer
 msgctxt ""
-"Answer for: How many visitors were staying in your household overnight on"
-" Sunday 13 October 2019?"
+"Answer for: How many visitors were staying in your household at {address}"
+" on 13 October 2019?"
 msgid "None"
 msgstr ""
 
@@ -924,15 +919,15 @@ msgstr ""
 
 #. answer-id: proxy-answer
 msgctxt ""
-"Answer for: <em>Interviewer Note: Are they answering the questions for "
-"themselves or on someone else’s behalf?</em>"
+"Answer for: <em>Interviewer Note:</em> Are they answering the questions "
+"for themselves or on someone else’s behalf?"
 msgid "Yes, they are answering for themselves"
 msgstr ""
 
 #. answer-id: proxy-answer
 msgctxt ""
-"Answer for: <em>Interviewer Note: Are they answering the questions for "
-"themselves or on someone else’s behalf?</em>"
+"Answer for: <em>Interviewer Note:</em> Are they answering the questions "
+"for themselves or on someone else’s behalf?"
 msgid "No, they are answering on someone else’s behalf"
 msgstr ""
 
@@ -1211,7 +1206,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes your White ethnic group or "
 "background?"
-msgid "Welsh, English, Scottish, Northern Irish or British"
+msgid "English, Welsh, Scottish, Northern Irish or British"
 msgstr ""
 
 #. answer-id: white-ethnic-group-answer
@@ -1253,7 +1248,7 @@ msgstr ""
 msgctxt ""
 "Answer for: Which one best describes {person_name_possessive} White "
 "ethnic group or background?"
-msgid "Welsh, English, Scottish, Northern Irish or British"
+msgid "English, Welsh, Scottish, Northern Irish or British"
 msgstr ""
 
 #. answer-id: white-ethnic-group-answer
@@ -1645,15 +1640,15 @@ msgstr ""
 
 #. answer-id: length-of-stay-answer
 msgctxt ""
-"Answer for: Including the time already you have already spent here, how "
-"long do you intend to stay in the United Kingdom?"
+"Answer for: Including the time you have already spent here, how long do "
+"you intend to stay in the United Kingdom?"
 msgid "Less than 12 months"
 msgstr ""
 
 #. answer-id: length-of-stay-answer
 msgctxt ""
-"Answer for: Including the time already you have already spent here, how "
-"long do you intend to stay in the United Kingdom?"
+"Answer for: Including the time you have already spent here, how long do "
+"you intend to stay in the United Kingdom?"
 msgid "12 months or more"
 msgstr ""
 

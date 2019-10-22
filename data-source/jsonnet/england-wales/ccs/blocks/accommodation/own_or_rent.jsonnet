@@ -9,7 +9,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
       text: 'Does your household own or rent {address}?',
       placeholders: [placeholders.address],
     },
-    description: '<em>Tell respondent to turn to <strong>Showcard 4</strong></em>',
+    instruction: 'Tell respondent to turn to <strong>Showcard 4</strong>',
     type: 'General',
     answers: [{
       id: 'own-or-rent-answer',
@@ -26,7 +26,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
         {
           label: 'Part-owns and part-rents',
           value: 'Part-owns and part-rents',
-          description: 'Including shared ownership',
+          description: 'Shared ownership',
         },
         {
           label: 'Rents',
@@ -48,7 +48,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
         when: [{
           id: 'own-or-rent-answer',
           condition: 'equals',
-          value: 'Rents with or without housing benefit',
+          value: 'Rents',
         }],
       },
     },
@@ -58,7 +58,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
         when: [{
           id: 'own-or-rent-answer',
           condition: 'equals',
-          value: 'Part owns and part rents',
+          value: 'Part-owns and part-rents',
         }],
       },
     },

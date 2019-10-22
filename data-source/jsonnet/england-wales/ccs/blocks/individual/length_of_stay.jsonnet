@@ -24,7 +24,7 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle = 'Including the time already you have already spent here, how long do you intend to stay in the United Kingdom?';
+local nonProxyTitle = 'Including the time you have already spent here, how long do you intend to stay in the United Kingdom?';
 
 local proxyTitle = {
   text: 'Including the time they have already spent here, how long does {person_name} intend to stay in the United Kingdom?',

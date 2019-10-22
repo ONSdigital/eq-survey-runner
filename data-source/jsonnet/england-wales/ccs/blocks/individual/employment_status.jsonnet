@@ -4,9 +4,9 @@ local rules = import 'rules.libsonnet';
 local question(title) = {
   id: 'employment-status-question',
   title: title,
-  description: '<em>Tell respondent to turn to <strong>Showcard 10</strong></em>',
+  instruction: 'Tell respondent to turn to <strong>Showcard 10</strong>',
   type: 'MutuallyExclusive',
-  mandatory: true,
+  mandatory: false,
   guidance: {
     contents: [
       {
@@ -84,6 +84,15 @@ local proxyTitle = {
         when: [{
           id: 'employment-status-answer-exclusive',
           condition: 'set',
+        }],
+      },
+    },
+    {
+      goto: {
+        block: 'employment-type',
+        when: [{
+          id: 'employment-status-answer',
+          condition: 'not set',
         }],
       },
     },
