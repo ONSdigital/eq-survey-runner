@@ -97,11 +97,11 @@ function(census_date) {
         guidance: {
           contents: [
             {
-              description: 'Remember to only include those people who share cooking facilities and sharing a living room or sitting room or dining area',
+              description: 'Remember to only include those people who share cooking facilities and share a living room or sitting room or dining area',
             },
           ],
         },
-        description: 'Tell respondent to turn to <strong>Showcard 2</strong>',
+        instruction: 'Tell respondent to turn to <strong>Showcard 2</strong>',
         answers: [
           {
             id: 'anyone-else-answer',
@@ -130,11 +130,11 @@ function(census_date) {
         guidance: {
           contents: [
             {
-              description: 'Remember to only include those people who share cooking facilities and sharing a living room or sitting room or dining area',
+              description: 'Remember to only include those people who share cooking facilities and share a living room or sitting room or dining area',
             },
           ],
         },
-        description: '<em>Tell respondent to turn to <strong>Showcard 2</strong></em>',
+        instruction: 'Tell respondent to turn to <strong>Showcard 2</strong>',
         answers: [
           {
             id: 'anyone-else-answer',
@@ -163,7 +163,7 @@ function(census_date) {
       id: 'add-question',
       type: 'General',
       title: addPersonQuestionTitle,
-      description: '<em>Enter a full stop (.) if the respondent does not know a person’s “First name” or “Last name”</em>',
+      instruction: 'Enter a full stop (.) if the respondent does not know a person’s “First name” or “Last name”',
       answers: [
         {
           id: 'first-name',
