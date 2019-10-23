@@ -12,7 +12,12 @@ logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler(sys.stdout))
 
 TRANSLATION_MAP = {
-    'cy': ['test_language', 'ccs_household_gb_eng', 'census_individual_gb_wls', 'census_household_gb_wls'],
+    'cy': [
+        'test_language',
+        'ccs_household_gb_eng',
+        'census_individual_gb_wls',
+        'census_household_gb_wls',
+    ],
     'eo': ['census_individual_gb_nir', 'census_household_gb_nir'],
     'ga': ['census_individual_gb_nir', 'census_household_gb_nir'],
 }
