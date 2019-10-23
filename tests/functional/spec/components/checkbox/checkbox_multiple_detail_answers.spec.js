@@ -94,7 +94,7 @@ describe('Checkbox with multiple "detail_answer" options', function() {
     $(SummaryPage.previous()).click();
   // Then
     $(MandatoryCheckboxPage.cheese()).click();
-    $(MandatoryCheckboxPage.cheeseDetail()).getValue();
+    expect($(MandatoryCheckboxPage.cheeseDetail()).getValue()).to.equal('');
 
   });
 

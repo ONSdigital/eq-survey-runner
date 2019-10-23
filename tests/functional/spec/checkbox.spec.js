@@ -92,7 +92,7 @@ describe('Checkbox with "other" option', function() {
       $(NonMandatoryCheckboxPage.previous()).click();
     // Then
       $(MandatoryCheckboxPage.other()).click();
-      $(MandatoryCheckboxPage.otherDetail()).getValue();
+      expect($(MandatoryCheckboxPage.otherDetail()).getValue()).to.equal('');
   });
 
   it('Given a mandatory checkbox answer, when the user selects only one option, then the answer should not be displayed as a list on the summary screen', function() {
@@ -103,7 +103,7 @@ describe('Checkbox with "other" option', function() {
     // Then
 
     const listLength = $$(SummaryPage.mandatoryCheckboxAnswer() + ' li').length;
-    
+
     // Then
     expect(listLength).to.equal(0);
   });
@@ -116,7 +116,7 @@ describe('Checkbox with "other" option', function() {
     $(NonMandatoryCheckboxPage.submit()).click();
 
     const listLength = $$(SummaryPage.mandatoryCheckboxAnswer() + ' li').length;
-    
+
     // Then
     expect(listLength).to.equal(2);
   });

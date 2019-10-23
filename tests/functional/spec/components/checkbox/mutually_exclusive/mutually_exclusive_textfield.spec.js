@@ -19,14 +19,14 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
 
         // Given
         $(TextFieldPage.textfield()).setValue('Blue');
-        $(TextFieldPage.textfield()).getValue();
+        expect($(TextFieldPage.textfield()).getValue()).to.contain('Blue');
 
         // When
         $(TextFieldPage.textfieldExclusiveIPreferNotToSay()).click();
 
         // Then
         expect($(TextFieldPage.textfieldExclusiveIPreferNotToSay()).isSelected()).to.be.true;
-        $(TextFieldPage.textfield()).getValue();
+        expect($(TextFieldPage.textfield()).getValue()).to.contain('');
 
         $(TextFieldPage.submit()).click();
 
@@ -47,7 +47,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
         $(TextFieldPage.textfield()).setValue('Blue');
 
         // Then
-        $(TextFieldPage.textfield()).getValue();
+        expect($(TextFieldPage.textfield()).getValue()).to.contain('Blue');
         expect($(TextFieldPage.textfieldExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(TextFieldPage.submit()).click();
@@ -68,7 +68,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
         $(TextFieldPage.textfield()).setValue('Blue');
 
         // Then
-        $(TextFieldPage.textfield()).getValue();
+        expect($(TextFieldPage.textfield()).getValue()).to.contain('Blue');
         expect($(TextFieldPage.textfieldExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(TextFieldPage.submit()).click();
@@ -83,7 +83,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
         // Given
-        $(TextFieldPage.textfield()).getValue();
+        expect($(TextFieldPage.textfield()).getValue()).to.contain('');
 
         // When
         $(TextFieldPage.textfieldExclusiveIPreferNotToSay()).click();
@@ -102,7 +102,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
         // Given
-        $(TextFieldPage.textfield()).getValue();
+        expect($(TextFieldPage.textfield()).getValue()).to.contain('');
         expect($(TextFieldPage.textfieldExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When

@@ -20,18 +20,18 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
         $(DatePage.dateday()).setValue('17');
         $(DatePage.datemonth()).setValue('3');
         $(DatePage.dateyear()).setValue('2018');
-        $(DatePage.dateday()).getValue();
-        $(DatePage.datemonth()).getValue();
-        $(DatePage.dateyear()).getValue();
+        expect($(DatePage.dateday()).getValue()).to.contain('17');
+        expect($(DatePage.datemonth()).getValue()).to.contain('3');
+        expect($(DatePage.dateyear()).getValue()).to.contain('2018');
 
         // When
         $(DatePage.dateExclusiveIPreferNotToSay()).click();
 
         // Then
         expect($(DatePage.dateExclusiveIPreferNotToSay()).isSelected()).to.be.true;
-        $(DatePage.dateday()).getValue();
-        $(DatePage.datemonth()).getValue();
-        $(DatePage.dateyear()).getValue();
+        expect($(DatePage.dateday()).getValue()).to.contain('');
+        expect($(DatePage.datemonth()).getValue()).to.contain('');
+        expect($(DatePage.dateyear()).getValue()).to.contain('');
 
         $(DatePage.submit()).click();
 
@@ -54,9 +54,9 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
         $(DatePage.dateyear()).setValue('2018');
 
         // Then
-        $(DatePage.dateday()).getValue();
-        $(DatePage.datemonth()).getValue();
-        $(DatePage.dateyear()).getValue();
+        expect($(DatePage.dateday()).getValue()).to.contain('17');
+        expect($(DatePage.datemonth()).getValue()).to.contain('3');
+        expect($(DatePage.dateyear()).getValue()).to.contain('2018');
 
         expect($(DatePage.dateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
@@ -80,9 +80,9 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
         $(DatePage.dateyear()).setValue('2018');
 
         // Then
-        $(DatePage.dateday()).getValue();
-        $(DatePage.datemonth()).getValue();
-        $(DatePage.dateyear()).getValue();
+        expect($(DatePage.dateday()).getValue()).to.contain('17');
+        expect($(DatePage.datemonth()).getValue()).to.contain('3');
+        expect($(DatePage.dateyear()).getValue()).to.contain('2018');
         expect($(DatePage.dateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(DatePage.submit()).click();
@@ -97,9 +97,9 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
         // Given
-        $(DatePage.dateyear()).getValue();
-        $(DatePage.datemonth()).getValue();
-        $(DatePage.dateyear()).getValue();
+        expect($(DatePage.dateday()).getValue()).to.contain('');
+        expect($(DatePage.datemonth()).getValue()).to.contain('');
+        expect($(DatePage.dateyear()).getValue()).to.contain('');
 
         // When
         $(DatePage.dateExclusiveIPreferNotToSay()).click();
@@ -118,9 +118,9 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
         // Given
-        $(DatePage.dateyear()).getValue();
-        $(DatePage.datemonth()).getValue();
-        $(DatePage.dateyear()).getValue();
+        expect($(DatePage.dateday()).getValue()).to.contain('');
+        expect($(DatePage.datemonth()).getValue()).to.contain('');
+        expect($(DatePage.dateyear()).getValue()).to.contain('');
         expect($(DatePage.dateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
@@ -128,8 +128,6 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
 
         // Then
         expect($(SummaryPage.dateAnswer()).getText()).to.contain('No answer provided');
-
     });
   });
-
 });

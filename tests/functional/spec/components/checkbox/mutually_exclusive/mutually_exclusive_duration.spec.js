@@ -21,16 +21,16 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
         $(DurationPage.durationYears()).setValue('1');
         $(DurationPage.durationMonths()).setValue('7');
 
-        $(DurationPage.durationYears()).getValue();
-        $(DurationPage.durationMonths()).getValue();
+        expect($(DurationPage.durationYears()).getValue()).to.contain('1');
+        expect($(DurationPage.durationMonths()).getValue()).to.contain('7');
 
         // When
         $(DurationPage.durationExclusiveIPreferNotToSay()).click();
 
         // Then
         expect($(DurationPage.durationExclusiveIPreferNotToSay()).isSelected()).to.be.true;
-        $(DurationPage.durationYears()).getValue();
-        $(DurationPage.durationMonths()).getValue();
+        expect($(DurationPage.durationYears()).getValue()).to.contain('');
+        expect($(DurationPage.durationMonths()).getValue()).to.contain('');
 
         $(DurationPage.submit()).click();
 
@@ -52,8 +52,8 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
         $(DurationPage.durationMonths()).setValue('7');
 
         // Then
-        $(DurationPage.durationYears()).getValue();
-        $(DurationPage.durationMonths()).getValue();
+        expect($(DurationPage.durationYears()).getValue()).to.contain('1');
+        expect($(DurationPage.durationMonths()).getValue()).to.contain('7');
         expect($(DurationPage.durationExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(DurationPage.submit()).click();
@@ -75,8 +75,8 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
         $(DurationPage.durationMonths()).setValue('7');
 
         // Then
-        $(DurationPage.durationYears()).getValue();
-        $(DurationPage.durationMonths()).getValue();
+        expect($(DurationPage.durationYears()).getValue()).to.contain('1');
+        expect($(DurationPage.durationMonths()).getValue()).to.contain('7');
         expect($(DurationPage.durationExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(DurationPage.submit()).click();
@@ -91,8 +91,8 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
         // Given
-        $(DurationPage.durationYears()).getValue();
-        $(DurationPage.durationMonths()).getValue();
+        expect($(DurationPage.durationYears()).getValue()).to.contain('');
+        expect($(DurationPage.durationMonths()).getValue()).to.contain('');
 
         // When
         $(DurationPage.durationExclusiveIPreferNotToSay()).click();
@@ -111,8 +111,8 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
         // Given
-        $(DurationPage.durationYears()).getValue();
-        $(DurationPage.durationMonths()).getValue();
+        expect($(DurationPage.durationYears()).getValue()).to.contain('');
+        expect($(DurationPage.durationMonths()).getValue()).to.contain('');
         expect($(DurationPage.durationExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When

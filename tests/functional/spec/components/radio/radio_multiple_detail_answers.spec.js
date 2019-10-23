@@ -77,6 +77,6 @@ describe('Radio with multiple "detail_answer" options', function() {
     $(SummaryPage.previous()).click();
   // Then
     $(MandatoryRadioPage.favouriteNotListed()).click();
-    $(MandatoryRadioPage.favouriteNotListedDetail()).getValue();
+    expect($(MandatoryRadioPage.favouriteNotListedDetail()).getValue()).to.equal('');
   });
 });

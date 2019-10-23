@@ -19,14 +19,14 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
 
         // Given
         $(UnitPage.unit()).setValue('10');
-        $(UnitPage.unit()).getValue();
+        expect($(UnitPage.unit()).getValue()).to.contain('10');
 
         // When
         $(UnitPage.unitExclusiveIPreferNotToSay()).click();
 
         // Then
         expect($(UnitPage.unitExclusiveIPreferNotToSay()).isSelected()).to.be.true;
-        $(UnitPage.unit()).getValue();
+        expect($(UnitPage.unit()).getValue()).to.contain('');
 
         $(UnitPage.submit()).click();
 
@@ -47,7 +47,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
         $(UnitPage.unit()).setValue('10');
 
         // Then
-        $(UnitPage.unit()).getValue();
+        expect($(UnitPage.unit()).getValue()).to.contain('10');
         expect($(UnitPage.unitExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(UnitPage.submit()).click();
@@ -68,7 +68,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
         $(UnitPage.unit()).setValue('10');
 
         // Then
-        $(UnitPage.unit()).getValue();
+        expect($(UnitPage.unit()).getValue()).to.contain('10');
         expect($(UnitPage.unitExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(UnitPage.submit()).click();
@@ -83,7 +83,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
         // Given
-        $(UnitPage.unit()).getValue();
+        expect($(UnitPage.unit()).getValue()).to.contain('');
 
         // When
         $(UnitPage.unitExclusiveIPreferNotToSay()).click();
@@ -102,7 +102,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
         // Given
-        $(UnitPage.unit()).getValue();
+        expect($(UnitPage.unit()).getValue()).to.contain('');
         expect($(UnitPage.unitExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When

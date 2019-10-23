@@ -4,8 +4,8 @@ const RadioNumericDetailPage = require('../../../generated_pages/radio_numeric_d
 const SummaryPage = require('../../../generated_pages/radio_numeric_detail_answers/summary.page');
 
 describe('Radio with a numeric "detail_answer" option', function() {
-  beforeEach(async function() {
-    await helpers.openQuestionnaire('test_radio_numeric_detail_answers.json');
+  beforeEach(function() {
+    helpers.openQuestionnaire('test_radio_numeric_detail_answers.json');
     $(RadioNumericDetailPage.other()).click();
   });
 
@@ -63,7 +63,7 @@ describe('Radio with a numeric "detail_answer" option', function() {
       // Then
         expect($(RadioNumericDetailPage.error()).isDisplayed()).to.be.true;
         expect($(RadioNumericDetailPage.errorNumber(1)).getText()).to.contain('Please enter an integer');
-        $(RadioNumericDetailPage.otherDetail()).getValue();
+        expect($(RadioNumericDetailPage.otherDetail()).getValue()).to.contain('biscuits');
   });
 
   it('Given a numeric detail answer, When the user enters "0" and submits, Then "0" should be displayed on the summary screen', function() {

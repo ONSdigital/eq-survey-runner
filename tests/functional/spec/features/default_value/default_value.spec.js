@@ -31,7 +31,7 @@ describe('Feature: Default Value', function() {
         expect(browser.getUrl()).to.contain(QuestionPageTwo.pageName);
         $(QuestionPageTwo.previous()).click();
         expect(browser.getUrl()).to.contain(QuestionPageOne.pageName);
-        $(QuestionPageOne.one()).getValue();
+        expect($(QuestionPageOne.one()).getValue()).to.equal('');
   });
 
   it('Given I have not answered a question containing a default value, When a skip condition checks for the default value, Then I should skip the next question', function() {

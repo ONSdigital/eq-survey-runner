@@ -9,7 +9,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
   beforeEach(function() {
     helpers.openQuestionnaire('test_mutually_exclusive.json')
     .then(openBrowser => browser = openBrowser)
-    .then(function(){        
+    .then(function(){
         browser.url('/questionnaire/mutually-exclusive-currency');
     });
   });
@@ -19,14 +19,14 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
 
         // Given
         $(CurrencyPage.currency()).setValue('123');
-        $(CurrencyPage.currency()).getValue();
+        expect($(CurrencyPage.currency()).getValue()).to.contain('123');
 
         // When
         $(CurrencyPage.currencyExclusiveIPreferNotToSay()).click();
 
         // Then
         expect($(CurrencyPage.currencyExclusiveIPreferNotToSay()).isSelected()).to.be.true;
-        $(CurrencyPage.currency()).getValue();
+        expect($(CurrencyPage.currency()).getValue()).to.contain('');
 
         $(CurrencyPage.submit()).click();
 
@@ -66,7 +66,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
         $(CurrencyPage.currency()).setValue('123');
 
         // Then
-        $(CurrencyPage.currency()).getValue();
+        expect($(CurrencyPage.currency()).getValue()).to.contain('123');
         expect($(CurrencyPage.currencyExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(CurrencyPage.submit()).click();
@@ -81,7 +81,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
         // Given
-        $(CurrencyPage.currency()).getValue();
+        expect($(CurrencyPage.currency()).getValue()).to.contain('');
 
         // When
         $(CurrencyPage.currencyExclusiveIPreferNotToSay()).click();
@@ -100,7 +100,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
         // Given
-        $(CurrencyPage.currency()).getValue();
+        expect($(CurrencyPage.currency()).getValue()).to.contain('');
         expect($(CurrencyPage.currencyExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When

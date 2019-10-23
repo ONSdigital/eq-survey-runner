@@ -19,14 +19,14 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
 
         // Given
         $(PercentagePage.percentage()).setValue('99');
-        $(PercentagePage.percentage()).getValue();
+        expect($(PercentagePage.percentage()).getValue()).to.contain('99');
 
         // When
         $(PercentagePage.percentageExclusiveIPreferNotToSay()).click();
 
         // Then
         expect($(PercentagePage.percentageExclusiveIPreferNotToSay()).isSelected()).to.be.true;
-        $(PercentagePage.percentage()).getValue();
+        expect($(PercentagePage.percentage()).getValue()).to.contain('');
 
         $(PercentagePage.submit()).click();
 
@@ -47,7 +47,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
         $(PercentagePage.percentage()).setValue('99');
 
         // Then
-        $(PercentagePage.percentage()).getValue();
+        expect($(PercentagePage.percentage()).getValue()).to.contain('99');
         expect($(PercentagePage.percentageExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(PercentagePage.submit()).click();
@@ -68,7 +68,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
         $(PercentagePage.percentage()).setValue('99');
 
         // Then
-        $(PercentagePage.percentage()).getValue();
+        expect($(PercentagePage.percentage()).getValue()).to.contain('99');
         expect($(PercentagePage.percentageExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(PercentagePage.submit()).click();
@@ -83,7 +83,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
         // Given
-        $(PercentagePage.percentage()).getValue();
+        expect($(PercentagePage.percentage()).getValue()).to.contain('');
 
         // When
         $(PercentagePage.percentageExclusiveIPreferNotToSay()).click();
@@ -102,7 +102,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
         // Given
-        $(PercentagePage.percentage()).getValue();
+        expect($(PercentagePage.percentage()).getValue()).to.contain('');
         expect($(PercentagePage.percentageExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When

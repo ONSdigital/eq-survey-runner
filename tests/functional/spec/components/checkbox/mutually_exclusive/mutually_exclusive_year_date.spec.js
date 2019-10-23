@@ -19,14 +19,14 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
 
         // Given
         $(YearDatePage.yearDateYear()).setValue('2018');
-        $(YearDatePage.yearDateYear()).getValue();
+        expect($(YearDatePage.yearDateYear()).getValue()).to.contain('2018');
 
         // When
         $(YearDatePage.yearDateExclusiveIPreferNotToSay()).click();
 
         // Then
         expect($(YearDatePage.yearDateExclusiveIPreferNotToSay()).isSelected()).to.be.true;
-        $(YearDatePage.yearDateYear()).getValue();
+        expect($(YearDatePage.yearDateYear()).getValue()).to.contain('');
 
         $(YearDatePage.submit()).click();
 
@@ -47,7 +47,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
         $(YearDatePage.yearDateYear()).setValue('2018');
 
         // Then
-        $(YearDatePage.yearDateYear()).getValue();
+        expect($(YearDatePage.yearDateYear()).getValue()).to.contain('2018');
         expect($(YearDatePage.yearDateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(YearDatePage.submit()).click();
@@ -68,7 +68,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
         $(YearDatePage.yearDateYear()).setValue('2018');
 
         // Then
-        $(YearDatePage.yearDateYear()).getValue();
+        expect($(YearDatePage.yearDateYear()).getValue()).to.contain('2018');
         expect($(YearDatePage.yearDateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(YearDatePage.submit()).click();
@@ -83,7 +83,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
         // Given
-        $(YearDatePage.yearDateYear()).getValue();
+        expect($(YearDatePage.yearDateYear()).getValue()).to.contain('');
 
         // When
         $(YearDatePage.yearDateExclusiveIPreferNotToSay()).click();
@@ -102,7 +102,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
         // Given
-        $(YearDatePage.yearDateYear()).getValue();
+        expect($(YearDatePage.yearDateYear()).getValue()).to.contain('');
         expect($(YearDatePage.yearDateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When

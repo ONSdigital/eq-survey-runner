@@ -66,7 +66,7 @@ describe('Checkbox with a numeric "detail_answer" option', function() {
       expect($(CheckboxNumericDetailPage.error()).isDisplayed()).to.be.true;
       expect($(CheckboxNumericDetailPage.errorNumber(1)).getText()).to.contain('Please enter an integer');
       browser.pause(1000);
-      $(CheckboxNumericDetailPage.otherDetail()).getValue();
+      expect($(CheckboxNumericDetailPage.otherDetail()).getValue()).to.equal('biscuits');
   });
 
   it('Given a numeric detail answer, When the user enters "0" and submits, Then "0" should be displayed on the summary screen', function() {

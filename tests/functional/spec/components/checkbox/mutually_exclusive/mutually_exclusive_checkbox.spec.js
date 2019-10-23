@@ -19,7 +19,7 @@ describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override',
       expect($(MandatoryCheckboxPage.checkboxBritish()).isSelected()).to.be.true;
       expect($(MandatoryCheckboxPage.checkboxIrish()).isSelected()).to.be.true;
       expect($(MandatoryCheckboxPage.checkboxOther()).isSelected()).to.be.true;
-      $(MandatoryCheckboxPage.checkboxOtherDetail()).getValue();
+      expect($(MandatoryCheckboxPage.checkboxOtherDetail()).getValue()).to.contain('The other option');
 
       // When
       $(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).click();
@@ -29,7 +29,7 @@ describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override',
       expect($(MandatoryCheckboxPage.checkboxBritish()).isSelected()).to.be.false;
       expect($(MandatoryCheckboxPage.checkboxIrish()).isSelected()).to.be.false;
       expect($(MandatoryCheckboxPage.checkboxOther()).isSelected()).to.be.false;
-      $(MandatoryCheckboxPage.checkboxOtherDetail()).getValue();
+      expect($(MandatoryCheckboxPage.checkboxOtherDetail()).getValue()).to.contain('');
 
       $(MandatoryCheckboxPage.submit()).click();
 

@@ -20,22 +20,21 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
         // Given
         $(MonthYearDatePage.monthYearDateMonth()).setValue('3');
         $(MonthYearDatePage.monthYearDateYear()).setValue('2018');
-        $(MonthYearDatePage.monthYearDateMonth()).getValue();
-        $(MonthYearDatePage.monthYearDateYear()).getValue();
+        expect($(MonthYearDatePage.monthYearDateMonth()).getValue()).to.contain('3');
+        expect($(MonthYearDatePage.monthYearDateYear()).getValue()).to.contain('2018');
 
         // When
         $(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).click();
 
         // Then
         expect($(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).isSelected()).to.be.true;
-        $(MonthYearDatePage.monthYearDateMonth()).getValue();
-        $(MonthYearDatePage.monthYearDateYear()).getValue();
+        expect($(MonthYearDatePage.monthYearDateMonth()).getValue()).to.contain('');
+        expect($(MonthYearDatePage.monthYearDateYear()).getValue()).to.contain('');
 
         $(MonthYearDatePage.submit()).click();
 
         expect($(SummaryPage.monthYearDateExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
         expect($(SummaryPage.monthYearDateExclusiveAnswer()).getText()).to.not.have.string('March 2018');
-
     });
   });
 
@@ -51,8 +50,8 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
         $(MonthYearDatePage.monthYearDateYear()).setValue('2018');
 
         // Then
-        $(MonthYearDatePage.monthYearDateMonth()).getValue();
-        $(MonthYearDatePage.monthYearDateYear()).getValue();
+        expect($(MonthYearDatePage.monthYearDateMonth()).getValue()).to.contain('3');
+        expect($(MonthYearDatePage.monthYearDateYear()).getValue()).to.contain('2018');
 
         expect($(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
@@ -75,8 +74,8 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
         $(MonthYearDatePage.monthYearDateYear()).setValue('2018');
 
         // Then
-        $(MonthYearDatePage.monthYearDateMonth()).getValue();
-        $(MonthYearDatePage.monthYearDateYear()).getValue();
+        expect($(MonthYearDatePage.monthYearDateMonth()).getValue()).to.contain('3');
+        expect($(MonthYearDatePage.monthYearDateYear()).getValue()).to.contain('2018');
         expect($(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(MonthYearDatePage.submit()).click();
@@ -91,8 +90,8 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
         // Given
-        $(MonthYearDatePage.monthYearDateMonth()).getValue();
-        $(MonthYearDatePage.monthYearDateYear()).getValue();
+        expect($(MonthYearDatePage.monthYearDateMonth()).getValue()).to.contain('');
+        expect($(MonthYearDatePage.monthYearDateYear()).getValue()).to.contain('');
 
         // When
         $(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).click();
@@ -111,8 +110,8 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
         // Given
-        $(MonthYearDatePage.monthYearDateMonth()).getValue();
-        $(MonthYearDatePage.monthYearDateYear()).getValue();
+        expect($(MonthYearDatePage.monthYearDateMonth()).getValue()).to.contain('');
+        expect($(MonthYearDatePage.monthYearDateYear()).getValue()).to.contain('');
         expect($(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When

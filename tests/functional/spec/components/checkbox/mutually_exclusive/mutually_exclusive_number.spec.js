@@ -19,20 +19,19 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
 
         // Given
         $(NumberPage.number()).setValue('123');
-        $(NumberPage.number()).getValue();
+        expect($(NumberPage.number()).getValue()).to.contain('123');
 
         // When
         $(NumberPage.numberExclusiveIPreferNotToSay()).click();
 
         // Then
         expect($(NumberPage.numberExclusiveIPreferNotToSay()).isSelected()).to.be.true;
-        $(NumberPage.number()).getValue();
+        expect($(NumberPage.number()).getValue()).to.contain('');
 
         $(NumberPage.submit()).click();
 
         expect($(SummaryPage.numberExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
         expect($(SummaryPage.numberExclusiveAnswer()).getText()).to.not.have.string('123');
-
     });
   });
 
@@ -47,14 +46,13 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
         $(NumberPage.number()).setValue('123');
 
         // Then
-        $(NumberPage.number()).getValue();
+        expect($(NumberPage.number()).getValue()).to.contain('123');
         expect($(NumberPage.numberExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(NumberPage.submit()).click();
 
         expect($(SummaryPage.numberAnswer()).getText()).to.have.string('123');
         expect($(SummaryPage.numberAnswer()).getText()).to.not.have.string('I prefer not to say');
-
     });
   });
 
@@ -68,7 +66,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
         $(NumberPage.number()).setValue('123');
 
         // Then
-        $(NumberPage.number()).getValue();
+        expect($(NumberPage.number()).getValue()).to.contain('123');
         expect($(NumberPage.numberExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(NumberPage.submit()).click();
@@ -83,7 +81,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
         // Given
-        $(NumberPage.number()).getValue();
+        expect($(NumberPage.number()).getValue()).to.contain('');
 
         // When
         $(NumberPage.numberExclusiveIPreferNotToSay()).click();
@@ -102,7 +100,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
         // Given
-        $(NumberPage.number()).getValue();
+        expect($(NumberPage.number()).getValue()).to.contain('');
         expect($(NumberPage.numberExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When

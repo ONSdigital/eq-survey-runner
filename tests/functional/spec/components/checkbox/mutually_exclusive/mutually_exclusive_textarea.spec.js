@@ -24,7 +24,7 @@ describe('Component: Mutually Exclusive TextArea With Single Checkbox Override',
         $(TextFieldPage.textarea()).setValue('Blue');
 
         // Then
-        $(TextFieldPage.textarea()).getValue();
+        expect($(TextFieldPage.textarea()).getValue()).to.contain('Blue');
         expect($(TextFieldPage.textareaExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         $(TextFieldPage.submit()).click();
@@ -39,7 +39,7 @@ describe('Component: Mutually Exclusive TextArea With Single Checkbox Override',
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
         // Given
-        $(TextFieldPage.textarea()).getValue();
+        expect($(TextFieldPage.textarea()).getValue()).to.contain('');
 
         // When
         $(TextFieldPage.textareaExclusiveIPreferNotToSay()).click();
@@ -58,7 +58,7 @@ describe('Component: Mutually Exclusive TextArea With Single Checkbox Override',
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
         // Given
-        $(TextFieldPage.textarea()).getValue();
+        expect($(TextFieldPage.textarea()).getValue()).to.contain('');
         expect($(TextFieldPage.textareaExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
