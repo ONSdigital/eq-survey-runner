@@ -4,10 +4,8 @@ const RadioNumericDetailPage = require('../../../generated_pages/radio_numeric_d
 const SummaryPage = require('../../../generated_pages/radio_numeric_detail_answers/summary.page');
 
 describe('Radio with a numeric "detail_answer" option', function() {
-  let browser;
-
-  beforeEach(function() {
-    browser = helpers.openQuestionnaire('test_radio_numeric_detail_answers.json').then(openBrowser => browser = openBrowser);
+  beforeEach(async function() {
+    await helpers.openQuestionnaire('test_radio_numeric_detail_answers.json');
     $(RadioNumericDetailPage.other()).click();
   });
 

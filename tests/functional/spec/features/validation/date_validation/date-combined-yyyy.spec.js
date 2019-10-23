@@ -4,10 +4,8 @@ const SummaryPage = require('../../../../generated_pages/date_validation_yyyy_co
 
 
 describe('Feature: Combined question level and single validation for MM-YYYY dates', function() {
-  let browser;
-
   before(function() {
-    browser = helpers.openQuestionnaire('test_date_validation_yyyy_combined.json').then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_date_validation_yyyy_combined.json');
   });
 
   describe('Period Validation', function () {

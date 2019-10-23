@@ -9,7 +9,8 @@
         "expect" : false,
         "should" : true,
         "sinon"  : false,
-        "browser": true
+        "browser": true,
+        "$$": true
     },
     "rules"   : {
         "semi": ["error", "always"]

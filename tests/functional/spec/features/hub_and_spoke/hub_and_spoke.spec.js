@@ -15,7 +15,6 @@ describe('Feature: Hub and Spoke', function () {
   const hub_and_spoke_schema = 'test_hub_and_spoke.json';
 
   it('When a user first views the Hub, The Hub should be in a continue state', function () {
-    let browser;
     helpers.openQuestionnaire(hub_and_spoke_schema).then(openBrowser => browser = openBrowser);
     expect($(HubPage.submit()).getText()).to.contain('Continue');
     expect($(HubPage.displayedName()).getText()).to.contain('Choose another section to complete');
@@ -32,7 +31,7 @@ describe('Feature: Hub and Spoke', function () {
 
       $(HubPage.saveSignOut()).click();
 
-      expectedUrl = browser.getUrl();
+      let expectedUrl = browser.getUrl();
 
       expect(expectedUrl).to.contain('/signed-out');
     });

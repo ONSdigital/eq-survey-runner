@@ -184,13 +184,13 @@ describe('Relationships', function() {
           $(RelationshipsPage.submit()).click();
           expect($(RelationshipsPage.legallyRegisteredCivilPartner()).isSelected()).to.be.true;
           $(RelationshipsPage.submit()).click();
-          expect($(RelationshipsPage.playback()).getText()).to.contain('Tom Bowden is Marcus Twin’s …')
+          expect($(RelationshipsPage.playback()).getText()).to.contain('Tom Bowden is Marcus Twin’s …');
 
           $(RelationshipsPage.sonOrDaughter()).click();
           $(RelationshipsPage.submit()).click();
           expect($(RelationshipsPage.husbandOrWife()).isSelected()).to.be.true;
           $(RelationshipsPage.submit()).click();
-          expect($(RelationshipsPage.playback()).getText()).to.contain('Tom Bowden is Samuel Clemens’ …')
+          expect($(RelationshipsPage.playback()).getText()).to.contain('Tom Bowden is Samuel Clemens’ …');
 
           $(RelationshipsPage.sonOrDaughter()).click();
           $(RelationshipsPage.submit()).click();

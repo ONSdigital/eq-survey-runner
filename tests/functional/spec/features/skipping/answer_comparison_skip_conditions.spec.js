@@ -4,10 +4,8 @@ const Comparison1Page = require('../../../generated_pages/skip_condition_answer_
 const Comparison2Page = require('../../../generated_pages/skip_condition_answer_comparison/comparison-2.page.js');
 
 describe('Test skip condition answer comparisons', function() {
-  let browser;
-
   beforeEach(function() {
-    browser = helpers.openQuestionnaire('test_skip_condition_answer_comparison.json');
+    helpers.openQuestionnaire('test_skip_condition_answer_comparison.json');
   });
 
   it('Given we start the skip condition survey, when we enter the same answers, then the interstitial should show that the answers are the same', function() {

@@ -10,10 +10,8 @@ const proxyBlock = require('../generated_pages/variants_question/proxy-block.pag
 const secondNumberBlock = require('../generated_pages/variants_question/second-number-block.page.js');
 
 describe('QuestionVariants', function() {
-  let browser;
-
   beforeEach(function() {
-    browser = helpers.openQuestionnaire('test_variants_question.json');
+    helpers.openQuestionnaire('test_variants_question.json');
   });
 
   it('Given I am completing the survey, then the correct questions are shown based on my previous answers', function () {

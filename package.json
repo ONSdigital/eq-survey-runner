@@ -13,7 +13,7 @@
   "scripts": {
     "start": "make dev-compose-up && concurrently \"make run\" \"livereload . -e 'html,njk'\"",
     "lint": "yarn lint:tests && yarn lint:data-source",
-    "lint:tests": "rm -rf ./tests/functional/generated_pages && eslint tests/functional --fix",
+    "lint:tests": "eslint tests/functional/spec --fix",
     "lint:data-source": "eslint data-source/json/*.json --fix",
     "test_functional": "./node_modules/.bin/wdio tests/functional/wdio.conf.js",
     "generate_pages": "rm -rf ./tests/functional/generated_pages && pipenv run python -m tests.functional.generate_pages data/en/ ./tests/functional/generated_pages -r '../../base_pages'",

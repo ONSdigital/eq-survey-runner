@@ -8,7 +8,7 @@ describe('Routing Checkbox Contains Condition.', function () {
   let browser;
 
   beforeEach(function () {
-    browser = helpers.openQuestionnaire('test_routing_checkbox_contains.json').then(openBrowser => browser = openBrowser);;
+    browser = helpers.openQuestionnaire('test_routing_checkbox_contains.json').then(openBrowser => browser = openBrowser);
   });
 
   it('Given a list of checkbox options, when I have don\'t select "Liechtenstein" and select the option "India" or the option "Azerbaijan" or both then I should be routed to the "contains any" condition page', function () {

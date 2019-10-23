@@ -1,7 +1,6 @@
 const helpers = require('../../../helpers');
 
 describe('Component: Dropdown', function() {
-  let browser;
   //Mandatory
   describe('Given I start a Mandatory Dropdown survey', function() {
 
@@ -10,7 +9,7 @@ describe('Component: Dropdown', function() {
     const schema = 'test_dropdown_mandatory.json';
 
     it('When I have selected a dropdown option, Then the selected option should be displayed in the summary', function() {
-      browser = helpers.openQuestionnaire(schema);
+      helpers.openQuestionnaire(schema);
       $(DropdownMandatoryPage.answer()).selectByAttribute('value', "Rugby is better!");
       $(DropdownMandatoryPage.submit()).click();
       expect($(DropdownSummaryPage.dropdownMandatoryAnswer()).getText()).to.contain("Rugby is better!");
@@ -23,7 +22,7 @@ describe('Component: Dropdown', function() {
     });
 
     it('When I have selected a dropdown option and I try to select a default (disabled) dropdown option, Then the already selected option should be displayed in summary', function() {
-      browser = helpers.openQuestionnaire(schema);
+      helpers.openQuestionnaire(schema);
       $(DropdownMandatoryPage.answer()).selectByAttribute('value', "Liverpool");
       $(DropdownMandatoryPage.answer()).selectByAttribute('value', "");
       $(DropdownMandatoryPage.submit()).click();
@@ -37,7 +36,7 @@ describe('Component: Dropdown', function() {
     });
 
     it('When I\'m on the summary page and I click Edit then Continue, Then the answer on the summary page should be unchanged', function() {
-      browser = helpers.openQuestionnaire(schema);
+      helpers.openQuestionnaire(schema);
       $(DropdownMandatoryPage.answer()).selectByAttribute('value', "Rugby is better!");
       $(DropdownMandatoryPage.submit()).click();
       expect($(DropdownSummaryPage.dropdownMandatoryAnswer()).getText()).to.contain("Rugby is better!");
@@ -47,7 +46,7 @@ describe('Component: Dropdown', function() {
     });
 
     it('When I\'m on the summary page and I click Edit and change the answer, Then the newly selected answer should be displayed in the summary', function() {
-      browser = helpers.openQuestionnaire(schema);
+      helpers.openQuestionnaire(schema);
       $(DropdownMandatoryPage.answer()).selectByAttribute('value', "Rugby is better!");
       $(DropdownMandatoryPage.submit()).click();
       expect($(DropdownSummaryPage.dropdownMandatoryAnswer()).getText()).to.contain("Rugby is better!");
@@ -66,7 +65,7 @@ describe('Component: Dropdown', function() {
     const DropdownMandatoryPage = require('../../../generated_pages/dropdown_mandatory_with_overridden_error/dropdown-mandatory-with-overridden-error.page');
 
     before(function() {
-      browser = helpers.openQuestionnaire('test_dropdown_mandatory_with_overridden_error.json');
+      helpers.openQuestionnaire('test_dropdown_mandatory_with_overridden_error.json');
     });
 
     it('When I have not selected a dropdown option and click Continue, Then the overridden error message should be displayed', function() {
@@ -83,20 +82,20 @@ describe('Component: Dropdown', function() {
     const schema = 'test_dropdown_optional.json';
 
     it('When I have not selected a dropdown option, Then the summary should display "No answer provided"', function() {
-      browser = helpers.openQuestionnaire(schema);
+      helpers.openQuestionnaire(schema);
       $(DropdownOptionalPage.submit()).click();
       expect($(DropdownSummaryPage.dropdownOptionalAnswer()).getText()).to.contain("No answer provided");
     });
 
     it('When I have selected a dropdown option, Then the selected option should be displayed in the summary', function() {
-      browser = helpers.openQuestionnaire(schema);
+      helpers.openQuestionnaire(schema);
       $(DropdownOptionalPage.answer()).selectByAttribute('value', "Rugby is better!");
       $(DropdownOptionalPage.submit()).click();
       expect($(DropdownSummaryPage.dropdownOptionalAnswer()).getText()).to.contain("Rugby is better!");
     });
 
     it('When I have selected a dropdown option and I reselect the default option (Select an answer), Then the summary should display "No answer provided"', function() {
-      browser = helpers.openQuestionnaire(schema);
+      helpers.openQuestionnaire(schema);
       $(DropdownOptionalPage.answer()).selectByAttribute('value', "Chelsea");
       $(DropdownOptionalPage.submit()).click();
       expect($(DropdownSummaryPage.dropdownOptionalAnswer()).getText()).to.contain("Chelsea");

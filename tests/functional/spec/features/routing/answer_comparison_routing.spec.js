@@ -5,10 +5,8 @@ const RouteComparison2Page = require('../../../generated_pages/routing_answer_co
 
 
 describe('Test routing skip', function() {
-  let browser;
-
   beforeEach(function() {
-    browser = helpers.openQuestionnaire('test_routing_answer_comparison.json');
+    helpers.openQuestionnaire('test_routing_answer_comparison.json');
   });
 
   it('Given we start the routing test survey, When we enter a low number then a high number, Then, we should be routed to the fourth page', function() {
