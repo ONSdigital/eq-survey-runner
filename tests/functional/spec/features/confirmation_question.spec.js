@@ -5,37 +5,33 @@ const ConfirmZeroEmployeesBlockPage = require('../../generated_pages/confirmatio
 const SummaryPage = require('../../generated_pages/confirmation_question/summary.page.js');
 
 describe('Feature: Confirmation Question', function() {
+  let browser;
 
   describe('Given I have a completed the confirmation question', function() {
 
-    before('Get to summary', function () {
-      return helpers.openQuestionnaire('test_confirmation_question.json').then(() => {
-        return browser
-          .setValue(NumberOfEmployeesTotalBlockPage.numberOfEmployeesTotal(), 0)
-          .click(NumberOfEmployeesTotalBlockPage.submit())
-          .click(ConfirmZeroEmployeesBlockPage.yes())
-          .click(ConfirmZeroEmployeesBlockPage.submit())
-          .getUrl().should.eventually.contain(SummaryPage.pageName);
-      });
+    before('Get to summary', async function () {
+      browser = await helpers.openQuestionnaire('test_confirmation_question.json');
     });
 
     it('When I view the summary, Then the confirmation question should not be displayed', function () {
-      return browser
-        .getText(SummaryPage.numberOfEmployeesTotal()).should.eventually.contain('0')
-        .elements(SummaryPage.confirmZeroEmployeesAnswer()).then(result => result.value).should.eventually.be.empty;
+      $(NumberOfEmployeesTotalBlockPage.numberOfEmployeesTotal()).setValue(0);
+      $(NumberOfEmployeesTotalBlockPage.submit()).click();
+      $(ConfirmZeroEmployeesBlockPage.yes()).click();
+      $(ConfirmZeroEmployeesBlockPage.submit()).click();
+      expect(browser.getUrl()).to.contain(SummaryPage.pageName);
+      expect($(SummaryPage.numberOfEmployeesTotal()).getText()).to.contain('0');
+      expect($$(SummaryPage.confirmZeroEmployeesAnswer())).to.be.empty;
     });
   });
 
   describe('Given a confirmation Question', function() {
 
     it('When I answer \'No\' to the confirmation question, Then I should be routed back to the source question', function () {
-      return helpers.openQuestionnaire('test_confirmation_question.json').then(() => {
-        return browser
-          .click(NumberOfEmployeesTotalBlockPage.submit())
-          .click(ConfirmZeroEmployeesBlockPage.no())
-          .click(ConfirmZeroEmployeesBlockPage.submit())
-          .getUrl().should.eventually.contain(NumberOfEmployeesTotalBlockPage.pageName);
-      });
+      browser = helpers.openQuestionnaire('test_confirmation_question.json').then(openBrowser => browser = openBrowser);
+      $(NumberOfEmployeesTotalBlockPage.submit()).click();
+      $(ConfirmZeroEmployeesBlockPage.no()).click();
+      $(ConfirmZeroEmployeesBlockPage.submit()).click();
+      expect(browser.getUrl()).to.contain(NumberOfEmployeesTotalBlockPage.pageName);
     });
 
   });

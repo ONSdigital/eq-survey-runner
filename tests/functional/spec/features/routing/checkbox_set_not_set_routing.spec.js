@@ -9,45 +9,44 @@ const CheeseInterstitialSetPage =     require('../../../generated_pages/routing_
 const SummaryPage =                   require('../../../generated_pages/routing_checkbox_set_not_set/summary.page.js');
 
 describe('Test routing using not set and set conditions on checkboxes', function() {
+  let browser;
 
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_routing_checkbox_set_not_set.json');
+    browser = helpers.openQuestionnaire('test_routing_checkbox_set_not_set.json').then(openBrowser => browser = openBrowser);
   });
 
   it('Given a user sets a topping and a cheese, they should see an interstitial for each saying that they were set', function() {
-      return browser
-        .click(ToppingCheckboxPage.cheese())
-        .click(ToppingCheckboxPage.submit())
+        $(ToppingCheckboxPage.cheese()).click();
+        $(ToppingCheckboxPage.submit()).click();
 
-        .getUrl().should.eventually.contain(ToppingInterstitialSetPage.pageName)
+        expect(browser.getUrl()).to.contain(ToppingInterstitialSetPage.pageName);
 
-        .click(ToppingInterstitialSetPage.submit())
+        $(ToppingInterstitialSetPage.submit()).click();
 
-        .click(OptionalMutuallyExclusivePage.noCheese())
-        .click(OptionalMutuallyExclusivePage.submit())
+        $(OptionalMutuallyExclusivePage.noCheese()).click();
+        $(OptionalMutuallyExclusivePage.submit()).click();
 
-        .getUrl().should.eventually.contain(CheeseInterstitialSetPage.pageName)
+        expect(browser.getUrl()).to.contain(CheeseInterstitialSetPage.pageName);
 
-        .click(CheeseInterstitialSetPage.submit())
+        $(CheeseInterstitialSetPage.submit()).click();
 
-        .getUrl().should.eventually.contain(SummaryPage.pageName);
+        expect(browser.getUrl()).to.contain(SummaryPage.pageName);
   });
 
   it('Given a user does not set a topping and does not set a cheese, they should see an interstitial for each saying that they were not set', function() {
-      return browser
-        .click(ToppingCheckboxPage.submit())
+        $(ToppingCheckboxPage.submit()).click();
 
-        .getUrl().should.eventually.contain(ToppingInterstitialNotSetPage.pageName)
+        expect(browser.getUrl()).to.contain(ToppingInterstitialNotSetPage.pageName);
 
-        .click(ToppingInterstitialNotSetPage.submit())
+        $(ToppingInterstitialNotSetPage.submit()).click();
 
-        .click(OptionalMutuallyExclusivePage.submit())
+        $(OptionalMutuallyExclusivePage.submit()).click();
 
-        .getUrl().should.eventually.contain(CheeseInterstitialNotSetPage.pageName)
+        expect(browser.getUrl()).to.contain(CheeseInterstitialNotSetPage.pageName);
 
-        .click(CheeseInterstitialNotSetPage.submit())
+        $(CheeseInterstitialNotSetPage.submit()).click();
 
-        .getUrl().should.eventually.contain(SummaryPage.pageName);
+        expect(browser.getUrl()).to.contain(SummaryPage.pageName);
   });
 });
 

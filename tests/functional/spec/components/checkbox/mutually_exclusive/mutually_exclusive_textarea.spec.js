@@ -4,31 +4,33 @@ const TextFieldPage = require('../../../../generated_pages/mutually_exclusive/mu
 const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-textarea-section-summary.page');
 
 describe('Component: Mutually Exclusive TextArea With Single Checkbox Override', function() {
+  let browser;
 
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.url('/questionnaire/mutually-exclusive-textarea');
-        });
+    browser = helpers.openQuestionnaire('test_mutually_exclusive.json')
+    .then(openBrowser => browser = openBrowser)
+    .then(function() {
+      browser.url('/questionnaire/mutually-exclusive-textarea');
+    });
   });
 
   describe('Given the user has not clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive textarea answer, Then only the non-exclusive textarea answer should be answered.', function() {
 
-      return browser
         // Given
-        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should.eventually.be.false
+        expect($(TextFieldPage.textareaExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
-        .setValue(TextFieldPage.textarea(), 'Blue')
+        $(TextFieldPage.textarea()).setValue('Blue');
 
         // Then
-        .getValue(TextFieldPage.textarea()).should.eventually.contain('Blue')
-        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should.eventually.be.false
+        $(TextFieldPage.textarea()).getValue();
+        expect($(TextFieldPage.textareaExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        .click(TextFieldPage.submit())
+        $(TextFieldPage.submit()).click();
 
-        .getText(SummaryPage.textareaAnswer()).should.eventually.have.string('Blue')
-        .getText(SummaryPage.textareaAnswer()).should.not.eventually.have.string('I prefer not to say');
+        expect($(SummaryPage.textareaAnswer()).getText()).to.have.string('Blue');
+        expect($(SummaryPage.textareaAnswer()).getText()).to.not.have.string('I prefer not to say');
 
     });
   });
@@ -36,19 +38,18 @@ describe('Component: Mutually Exclusive TextArea With Single Checkbox Override',
   describe('Given the user has not answered the non-exclusive textarea answer', function() {
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
-      return browser
         // Given
-        .getValue(TextFieldPage.textarea()).should.eventually.contain('')
+        $(TextFieldPage.textarea()).getValue();
 
         // When
-        .click(TextFieldPage.textareaExclusiveIPreferNotToSay())
-        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should.eventually.be.true
+        $(TextFieldPage.textareaExclusiveIPreferNotToSay()).click();
+        expect($(TextFieldPage.textareaExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
         // Then
-        .click(TextFieldPage.submit())
+        $(TextFieldPage.submit()).click();
 
-        .getText(SummaryPage.textareaExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.textareaExclusiveAnswer()).should.not.eventually.have.string('Blue');
+        expect($(SummaryPage.textareaExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+        expect($(SummaryPage.textareaExclusiveAnswer()).getText()).to.not.have.string('Blue');
 
     });
   });
@@ -56,16 +57,15 @@ describe('Component: Mutually Exclusive TextArea With Single Checkbox Override',
   describe('Given the user has not answered the question and the question is optional', function() {
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
-      return browser
         // Given
-        .getValue(TextFieldPage.textarea()).should.eventually.contain('')
-        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should.eventually.be.false
+        $(TextFieldPage.textarea()).getValue();
+        expect($(TextFieldPage.textareaExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
-        .click(TextFieldPage.submit())
+        $(TextFieldPage.submit()).click();
 
         // Then
-        .getText(SummaryPage.textareaAnswer()).should.eventually.contain('No answer provided');
+        expect($(SummaryPage.textareaAnswer()).getText()).to.contain('No answer provided');
 
     });
   });

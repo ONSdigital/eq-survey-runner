@@ -21,225 +21,207 @@ const VisitorListCollectorAddPage = require('../generated_pages/list_collector_s
 const PeopleListSectionSummaryPage = require('../generated_pages/list_collector_section_summary/people-list-section-summary.page.js');
 const ConfirmationPage = require('../generated_pages/list_collector/confirmation.page.js');
 
-function checkPeopleInList(peopleExpected) {
-  let chain = browser.waitForVisible(ListCollectorPage.listLabel(1)).should.eventually.be.true;
 
-  for (let i=1; i<=peopleExpected.length; i++) {
-    chain = chain.then(() => {
-      return browser.getText(ListCollectorPage.listLabel(i)).should.eventually.equal(peopleExpected[i-1]);
-    });
-  }
 
-  return chain;
-}
+
 
 describe('List Collector', function() {
+  let browser;
+
+  function checkPeopleInList(peopleExpected) {
+    $(ListCollectorPage.listLabel(1)).waitForDisplayed();
+
+    for (let i=1; i<=peopleExpected.length; i++) {
+        expect($(ListCollectorPage.listLabel(i)).getText()).to.equal(peopleExpected[i-1]);
+    }
+  }
 
   describe('Given a normal journey through the list collector without variants', function() {
     before('Load the survey', function() {
-      return helpers.openQuestionnaire('test_list_collector.json');
+      browser = helpers.openQuestionnaire('test_list_collector.json').then(openBrowser => browser = openBrowser);
     });
 
     it('The user is able to add members of the household', function() {
-      return browser
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Marcus')
-        .setValue(ListCollectorAddPage.lastName(), 'Twin')
-        .click(ListCollectorAddPage.submit())
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Samuel')
-        .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-        .click(ListCollectorAddPage.submit())
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Olivia')
-        .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-        .click(ListCollectorAddPage.submit())
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Suzy')
-        .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-        .click(ListCollectorAddPage.submit());
+      $(ListCollectorPage.yes()).click();
+      $(ListCollectorPage.submit()).click();
+      $(ListCollectorAddPage.firstName()).setValue('Marcus');
+      $(ListCollectorAddPage.lastName()).setValue('Twin');
+      $(ListCollectorAddPage.submit()).click();
+      $(ListCollectorPage.yes()).click();
+      $(ListCollectorPage.submit()).click();
+      $(ListCollectorAddPage.firstName()).setValue('Samuel');
+      $(ListCollectorAddPage.lastName()).setValue('Clemens');
+      $(ListCollectorAddPage.submit()).click();
+      $(ListCollectorPage.yes()).click();
+      $(ListCollectorPage.submit()).click();
+      $(ListCollectorAddPage.firstName()).setValue('Olivia');
+      $(ListCollectorAddPage.lastName()).setValue('Clemens');
+      $(ListCollectorAddPage.submit()).click();
+      $(ListCollectorPage.yes()).click();
+      $(ListCollectorPage.submit()).click();
+      $(ListCollectorAddPage.firstName()).setValue('Suzy');
+      $(ListCollectorAddPage.lastName()).setValue('Clemens');
+      $(ListCollectorAddPage.submit()).click();
     });
 
     it('The collector shows all of the household members in the summary', function() {
       const peopleExpected = ['Marcus Twin', 'Samuel Clemens', 'Olivia Clemens', 'Suzy Clemens'];
-      return checkPeopleInList(peopleExpected);
+      checkPeopleInList(peopleExpected);
     });
 
     it('The questionnaire allows the name of a person to be changed', function() {
-      return browser
-        .click(ListCollectorPage.listEditLink(1))
-        .setValue(ListCollectorEditPage.firstName(), 'Mark')
-        .setValue(ListCollectorEditPage.lastName(), 'Twain')
-        .click(ListCollectorEditPage.submit())
-        .getText(ListCollectorPage.listLabel(1)).should.eventually.equal('Mark Twain');
+      $(ListCollectorPage.listEditLink(1)).click();
+      $(ListCollectorEditPage.firstName()).setValue('Mark');
+      $(ListCollectorEditPage.lastName()).setValue('Twain');
+      $(ListCollectorEditPage.submit()).click();
+      expect($(ListCollectorPage.listLabel(1)).getText()).to.equal('Mark Twain');
     });
 
     it('The questionnaire allows me to remove the first person (Mark Twain) from the summary', function() {
-      return browser
-        .click(ListCollectorPage.listRemoveLink(1))
-        .click(ListCollectorRemovePage.yes())
-        .click(ListCollectorRemovePage.submit());
+      $(ListCollectorPage.listRemoveLink(1)).click();
+      $(ListCollectorRemovePage.yes()).click();
+      $(ListCollectorRemovePage.submit()).click();
     });
 
     it('The collector summary does not show Mark Twain anymore.', function() {
-      return browser
-        .getText(ListCollectorPage.listLabel(1)).should.not.eventually.have.string('Mark Twain')
-        .getText(ListCollectorPage.listLabel(3)).should.eventually.equal('Suzy Clemens');
+      expect($(ListCollectorPage.listLabel(1)).getText()).to.not.have.string('Mark Twain');
+      expect($(ListCollectorPage.listLabel(3)).getText()).to.equal('Suzy Clemens');
     });
 
     it('The questionnaire allows more people to be added', function() {
-      return browser
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .getText(ListCollectorAddPage.questionText()).should.eventually.contain('What is the name of the person')
-        .setValue(ListCollectorAddPage.firstName(), 'Clara')
-        .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-        .click(ListCollectorAddPage.submit())
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Jean')
-        .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-        .click(ListCollectorAddPage.submit());
+      $(ListCollectorPage.yes()).click();
+      $(ListCollectorPage.submit()).click();
+      expect($(ListCollectorAddPage.questionText()).getText()).to.contain('What is the name of the person');
+      $(ListCollectorAddPage.firstName()).setValue('Clara');
+      $(ListCollectorAddPage.lastName()).setValue('Clemens');
+      $(ListCollectorAddPage.submit()).click();
+      $(ListCollectorPage.yes()).click();
+      $(ListCollectorPage.submit()).click();
+      $(ListCollectorAddPage.firstName()).setValue('Jean');
+      $(ListCollectorAddPage.lastName()).setValue('Clemens');
+      $(ListCollectorAddPage.submit()).click();
     });
 
     it('The collector shows everyone on the summary', function() {
       const peopleExpected = ['Samuel Clemens', 'Olivia Clemens', 'Suzy Clemens', 'Clara Clemens', 'Jean Clemens'];
-      return checkPeopleInList(peopleExpected);
+
+      checkPeopleInList(peopleExpected);
     });
 
     it('When No is answered on the list collector the user sees an interstitial', function() {
-      return browser
-        .click(ListCollectorPage.no())
-        .click(ListCollectorPage.submit())
-        .getUrl().should.eventually.contain(NextInterstitialPage.pageName)
-        .click(NextInterstitialPage.submit());
+      $(ListCollectorPage.no()).click();
+      $(ListCollectorPage.submit()).click();
+      expect(browser.getUrl()).to.contain(NextInterstitialPage.pageName);
+      $(NextInterstitialPage.submit()).click();
     });
 
     it('After the interstitial, the user should be on the second list collector page', function() {
-      return browser
-        .getUrl().should.eventually.contain(AnotherListCollectorPage.pageName);
+        expect(browser.getUrl()).to.contain(AnotherListCollectorPage.pageName);
     });
 
     it('The collector still shows the same list of people on the summary', function() {
       const peopleExpected = ['Samuel Clemens', 'Olivia Clemens', 'Suzy Clemens', 'Clara Clemens', 'Jean Clemens'];
-      return checkPeopleInList(peopleExpected);
+      checkPeopleInList(peopleExpected);
     });
 
     it('The collector allows the user to add another person to the same list', function() {
-      return browser
-        .click(AnotherListCollectorPage.yes())
-        .click(AnotherListCollectorPage.submit())
-        .setValue(AnotherListCollectorAddPage.firstName(), 'Someone')
-        .setValue(AnotherListCollectorAddPage.lastName(), 'Else')
-        .click(AnotherListCollectorAddPage.submit())
-        .getText(AnotherListCollectorPage.listLabel(6)).should.eventually.equal('Someone Else');
+      $(AnotherListCollectorPage.yes()).click();
+      $(AnotherListCollectorPage.submit()).click();
+      $(AnotherListCollectorAddPage.firstName()).setValue('Someone');
+      $(AnotherListCollectorAddPage.lastName()).setValue('Else');
+      $(AnotherListCollectorAddPage.submit()).click();
+      expect($(AnotherListCollectorPage.listLabel(6)).getText()).to.equal('Someone Else');
     });
 
     it('The collector allows the user to remove a person again', function() {
-      return browser
-        .click(AnotherListCollectorPage.listRemoveLink(6))
-        .click(AnotherListCollectorRemovePage.yes())
-        .click(AnotherListCollectorRemovePage.submit());
+      $(AnotherListCollectorPage.listRemoveLink(6)).click();
+      $(AnotherListCollectorRemovePage.yes()).click();
+      $(AnotherListCollectorRemovePage.submit()).click();
     });
 
     it('The user is redirected to the summary when the user visits a non-existant list item id', function() {
-      return browser
-        .url('/questionnaire/people/somerandomid/another-edit-person')
-        .getUrl().should.eventually.contain(AnotherListCollectorPage.pageName);
+        browser.url('/questionnaire/people/somerandomid/another-edit-person');
+        expect(browser.getUrl()).to.contain(AnotherListCollectorPage.pageName);
     });
 
     it('The user is returned to the list collector when the previous link is clicked.', function() {
-      return browser
-        .click(AnotherListCollectorPage.listRemoveLink(1))
-        .click(AnotherListCollectorRemovePage.previous())
-        .getUrl().should.eventually.contain(AnotherListCollectorPage.pageName)
-        .click(AnotherListCollectorPage.listEditLink(1))
-        .click(AnotherListCollectorEditPage.previous())
-        .getUrl().should.eventually.contain(AnotherListCollectorPage.pageName)
-        .click(AnotherListCollectorPage.yes())
-        .click(AnotherListCollectorPage.submit())
-        .click(AnotherListCollectorEditPage.previous())
-        .getUrl().should.eventually.contain(AnotherListCollectorPage.pageName);
+      $(AnotherListCollectorPage.listRemoveLink(1)).click();
+      $(AnotherListCollectorRemovePage.previous()).click();
+      expect(browser.getUrl()).to.contain(AnotherListCollectorPage.pageName);
+      $(AnotherListCollectorPage.listEditLink(1)).click();
+      $(AnotherListCollectorEditPage.previous()).click();
+      expect(browser.getUrl()).to.contain(AnotherListCollectorPage.pageName);
+      $(AnotherListCollectorPage.yes()).click();
+      $(AnotherListCollectorPage.submit()).click();
+      $(AnotherListCollectorEditPage.previous()).click();
+      expect(browser.getUrl()).to.contain(AnotherListCollectorPage.pageName);
     });
 
     it('The questionnaire shows the confirmation page when no more people to add', function() {
-      return browser
-        .click(AnotherListCollectorPage.no())
-        .click(AnotherListCollectorPage.submit())
-        .getUrl().should.eventually.contain(SummaryPage.pageName);
+      $(AnotherListCollectorPage.no()).click();
+      $(AnotherListCollectorPage.submit()).click();
+      expect(browser.getUrl()).to.contain(SummaryPage.pageName);
     });
 
     it('The questionnaire allows submission', function() {
-      return browser
-        .click(SummaryPage.submit())
-        .click(ConfirmationPage.submit())
-        .getUrl().should.eventually.contain('thank-you');
+      $(SummaryPage.submit()).click();
+      $(ConfirmationPage.submit()).click();
+      expect(browser.getUrl()).to.contain('thank-you');
     });
-
   });
 
   describe('Given I start a list collector survey and complete to Section Summary', function() {
 
     beforeEach(function() {
-      return helpers.openQuestionnaire('test_list_collector_section_summary.json').then(() => {
-        return browser
-            .click(PrimaryPersonListCollectorPage.yes())
-            .click(PrimaryPersonListCollectorPage.submit())
-            .setValue(PrimaryPersonListCollectorAddPage.firstName(), 'Marcus')
-            .setValue(PrimaryPersonListCollectorAddPage.lastName(), 'Twin')
-            .click(PrimaryPersonListCollectorAddPage.submit())
-            .click(SectionSummaryListCollectorPage.yes())
-            .click(SectionSummaryListCollectorPage.submit())
-            .setValue(SectionSummaryListCollectorAddPage.firstName(), 'Samuel')
-            .setValue(SectionSummaryListCollectorAddPage.lastName(), 'Clemens')
-            .click(SectionSummaryListCollectorAddPage.submit())
-            .click(SectionSummaryListCollectorPage.no())
-            .click(SectionSummaryListCollectorPage.submit())
-            .click(VisitorListCollectorPage.yes())
-            .click(VisitorListCollectorPage.submit())
-            .setValue(VisitorListCollectorAddPage.firstNameVisitor(), 'Olivia')
-            .setValue(VisitorListCollectorAddPage.lastNameVisitor(), 'Clemens')
-            .click(VisitorListCollectorAddPage.submit())
-            .click(VisitorListCollectorPage.no())
-            .click(VisitorListCollectorPage.submit());
-        });
+      browser = helpers.openQuestionnaire('test_list_collector_section_summary.json');
+      $(PrimaryPersonListCollectorPage.yes()).click();
+      $(PrimaryPersonListCollectorPage.submit()).click();
+      $(PrimaryPersonListCollectorAddPage.firstName()).setValue('Marcus');
+      $(PrimaryPersonListCollectorAddPage.lastName()).setValue('Twin');
+      $(PrimaryPersonListCollectorAddPage.submit()).click();
+      $(SectionSummaryListCollectorPage.yes()).click();
+      $(SectionSummaryListCollectorPage.submit()).click();
+      $(SectionSummaryListCollectorAddPage.firstName()).setValue('Samuel');
+      $(SectionSummaryListCollectorAddPage.lastName()).setValue('Clemens');
+      $(SectionSummaryListCollectorAddPage.submit()).click();
+      $(SectionSummaryListCollectorPage.no()).click();
+      $(SectionSummaryListCollectorPage.submit()).click();
+      $(VisitorListCollectorPage.yes()).click();
+      $(VisitorListCollectorPage.submit()).click();
+      $(VisitorListCollectorAddPage.firstNameVisitor()).setValue('Olivia');
+      $(VisitorListCollectorAddPage.lastNameVisitor()).setValue('Clemens');
+      $(VisitorListCollectorAddPage.submit()).click();
+      $(VisitorListCollectorPage.no()).click();
+      $(VisitorListCollectorPage.submit()).click();
     });
 
     it('The section summary should display contents of the list collector', function() {
-      return browser
-        .getText(PeopleListSectionSummaryPage.peopleListLabel(1)).should.eventually.contain('Marcus Twin (You)')
-        .getText(PeopleListSectionSummaryPage.peopleListLabel(2)).should.eventually.contain('Samuel Clemens')
-        .getText(PeopleListSectionSummaryPage.visitorsListLabel(1)).should.eventually.contain('Olivia Clemens');
+      expect($(PeopleListSectionSummaryPage.peopleListLabel(1)).getText()).to.contain('Marcus Twin (You)');
+      expect($(PeopleListSectionSummaryPage.peopleListLabel(2)).getText()).to.contain('Samuel Clemens');
+      expect($(PeopleListSectionSummaryPage.visitorsListLabel(1)).getText()).to.contain('Olivia Clemens');
     });
 
     it('When the user adds an item to the list, They should return to the section summary and it should display the updated list', function() {
-      return browser
-        .click(PeopleListSectionSummaryPage.visitorsListAddLink(1))
-        .setValue(VisitorListCollectorAddPage.firstNameVisitor(), 'Joe')
-        .setValue(VisitorListCollectorAddPage.lastNameVisitor(), 'Bloggs')
-        .click(VisitorListCollectorAddPage.submit())
-        .getText(PeopleListSectionSummaryPage.visitorsListLabel(2)).should.eventually.contain('Joe Bloggs');
+      $(PeopleListSectionSummaryPage.visitorsListAddLink(1)).click();
+      $(VisitorListCollectorAddPage.firstNameVisitor()).setValue('Joe');
+      $(VisitorListCollectorAddPage.lastNameVisitor()).setValue('Bloggs');
+      $(VisitorListCollectorAddPage.submit()).click();
+      expect($(PeopleListSectionSummaryPage.visitorsListLabel(2)).getText()).to.contain('Joe Bloggs');
     });
 
     it('When the user removes an item from the list, They should return to the section summary and it should display the updated list', function() {
-      return browser
-        .click(PeopleListSectionSummaryPage.peopleListRemoveLink(2))
-        .click(SectionSummaryListCollectorRemovePage.yes())
-        .click(SectionSummaryListCollectorRemovePage.submit())
-        .isExisting(PeopleListSectionSummaryPage.visitorsListLabel(2)).should.eventually.equal(false);
+      $(PeopleListSectionSummaryPage.peopleListRemoveLink(2)).click();
+      $(SectionSummaryListCollectorRemovePage.yes()).click();
+      $(SectionSummaryListCollectorRemovePage.submit()).click();
+      expect($(PeopleListSectionSummaryPage.visitorsListLabel(2)).isExisting()).to.equal(false);
     });
 
     it('When the user updates the list, They should return to the section summary and it should display the updated list', function() {
-      return browser
-        .click(PeopleListSectionSummaryPage.peopleListEditLink(1))
-        .setValue(SectionSummaryListCollectorEditPage.firstName(), 'Mark')
-        .setValue(SectionSummaryListCollectorEditPage.lastName(), 'Twain')
-        .click(SectionSummaryListCollectorEditPage.submit())
-        .getText(PeopleListSectionSummaryPage.peopleListLabel(1)).should.eventually.contain('Mark Twain (You)');
+      $(PeopleListSectionSummaryPage.peopleListEditLink(1)).click();
+      $(SectionSummaryListCollectorEditPage.firstName()).setValue('Mark');
+      $(SectionSummaryListCollectorEditPage.lastName()).setValue('Twain');
+      $(SectionSummaryListCollectorEditPage.submit()).click();
+      expect($(PeopleListSectionSummaryPage.peopleListLabel(1)).getText()).to.contain('Mark Twain (You)');
     });
   });
 });

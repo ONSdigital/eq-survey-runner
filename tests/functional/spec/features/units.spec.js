@@ -7,38 +7,35 @@ const SetVolumeUnitsBlockPage = require('../../generated_pages/unit_patterns/set
 const SummaryPage = require('../../generated_pages/unit_patterns/summary.page.js');
 
 describe('Units', function() {
+  let browser;
 
   it('Given we do not set a language code and run the questionnaire, when we enter values for durations, they should be displayed on the summary with their units.', function() {
-    //return helpers.openQuestionnaire('test_unit_patterns.json').then(() => {
-    return helpers.openQuestionnaire('test_unit_patterns.json', { language: 'en' }).then(() => {
-        return browser
-          .click(SetLengthUnitsBlockPage.submit())
-          .getText(SetDurationUnitsBlockPage.durationHourUnit()).should.eventually.equal('hours')
-          .getText(SetDurationUnitsBlockPage.durationYearUnit()).should.eventually.equal('years')
-          .setValue(SetDurationUnitsBlockPage.durationHour(), 123)
-          .setValue(SetDurationUnitsBlockPage.durationYear(), 321)
-          .click(SetDurationUnitsBlockPage.submit())
-          .click(SetAreaUnitsBlockPage.submit())
-          .click(SetVolumeUnitsBlockPage.submit())
-          .getText(SummaryPage.durationHour()).should.eventually.equal('123 hours')
-          .getText(SummaryPage.durationYear()).should.eventually.equal('321 years');
-        });
+      //return helpers.openQuestionnaire('test_unit_patterns.json').then(() => {
+      helpers.openQuestionnaire('test_unit_patterns.json', { language: 'en' }).then(openBrowser => browser = openBrowser);
+      $(SetLengthUnitsBlockPage.submit()).click();
+      expect($(SetDurationUnitsBlockPage.durationHourUnit()).getText()).to.equal('hours');
+      expect($(SetDurationUnitsBlockPage.durationYearUnit()).getText()).to.equal('years');
+      $(SetDurationUnitsBlockPage.durationHour()).setValue(123);
+      $(SetDurationUnitsBlockPage.durationYear()).setValue(321);
+      $(SetDurationUnitsBlockPage.submit()).click();
+      $(SetAreaUnitsBlockPage.submit()).click();
+      $(SetVolumeUnitsBlockPage.submit()).click();
+      expect($(SummaryPage.durationHour()).getText()).to.equal('123 hours');
+      expect($(SummaryPage.durationYear()).getText()).to.equal('321 years');
     });
 
   it('Given we set a language code for welsh and run the questionnaire, when we enter values for durations, they should be displayed on the summary with their units.', function() {
-    return helpers.openQuestionnaire('test_unit_patterns.json', { language: 'cy' }).then(() => {
-        return browser
-          .click(SetLengthUnitsBlockPage.submit())
-          .getText(SetDurationUnitsBlockPage.durationHourUnit()).should.eventually.equal('awr')
-          .getText(SetDurationUnitsBlockPage.durationYearUnit()).should.eventually.equal('flynedd')
-          .setValue(SetDurationUnitsBlockPage.durationHour(), 123)
-          .setValue(SetDurationUnitsBlockPage.durationYear(), 321)
-          .click(SetDurationUnitsBlockPage.submit())
-          .click(SetAreaUnitsBlockPage.submit())
-          .click(SetVolumeUnitsBlockPage.submit())
-          .getText(SummaryPage.durationHour()).should.eventually.equal('123 awr')
-          .getText(SummaryPage.durationYear()).should.eventually.equal('321 mlynedd');
-        });
-    });
+    helpers.openQuestionnaire('test_unit_patterns.json', { language: 'cy' }).then(openBrowser => browser = openBrowser);
+    $(SetLengthUnitsBlockPage.submit()).click();
+    expect($(SetDurationUnitsBlockPage.durationHourUnit()).getText()).to.equal('awr');
+    expect($(SetDurationUnitsBlockPage.durationYearUnit()).getText()).to.equal('flynedd');
+    $(SetDurationUnitsBlockPage.durationHour()).setValue(123);
+    $(SetDurationUnitsBlockPage.durationYear()).setValue(321);
+    $(SetDurationUnitsBlockPage.submit()).click();
+    $(SetAreaUnitsBlockPage.submit()).click();
+    $(SetVolumeUnitsBlockPage.submit()).click();
+    expect($(SummaryPage.durationHour()).getText()).to.equal('123 awr');
+    expect($(SummaryPage.durationYear()).getText()).to.equal('321 mlynedd');
+  });
 });
 

@@ -11,131 +11,120 @@ const AnyoneUsuallyLiveAtPage = require('../generated_pages/list_collector_prima
 
 
 describe('Primary Person List Collector Survey', function() {
+  let browser;
 
   describe('Given the user starts on the \'do you live here\' question', function() {
     before('Load the survey', function () {
-      return helpers.openQuestionnaire('test_list_collector_primary_person.json');
+      browser = helpers.openQuestionnaire('test_list_collector_primary_person.json').then(openBrowser => browser = openBrowser);
     });
 
     it.skip('When the user says they do not live there, and changes their answer to yes, then the user can\'t navigate to the list collector', function () {
-      return browser
-        .click(PrimaryPersonListCollectorPage.noLabel())
-        .click(PrimaryPersonListCollectorPage.submit())
-        .click(PrimaryPersonListCollectorAddPage.previous())
-        .click(PrimaryPersonListCollectorPage.yesLabel())
-        .click(PrimaryPersonListCollectorPage.submit())
-        .url('questionnaire/list-collector')
-        .getText(PrimaryPersonListCollectorPage.questionText()).should.eventually.contain('Do you live here');
+        $(PrimaryPersonListCollectorPage.noLabel()).click();
+        $(PrimaryPersonListCollectorPage.submit()).click();
+        $(PrimaryPersonListCollectorAddPage.previous()).click();
+        $(PrimaryPersonListCollectorPage.yesLabel()).click();
+        $(PrimaryPersonListCollectorPage.submit()).click();
+        browser.url('questionnaire/list-collector');
+        expect($(PrimaryPersonListCollectorPage.questionText()).getText()).to.contain('Do you live here');
     });
   });
 
   describe('Given the user starts on the \'do you live here\' question', function() {
     before('Load the survey', function () {
-      return helpers.openQuestionnaire('test_list_collector_primary_person.json');
+      browser = helpers.openQuestionnaire('test_list_collector_primary_person.json').then(openBrowser => browser = openBrowser);
     });
 
     it('When the user says that they do live there, then they are shown as the primary person', function () {
-      return browser
-        .click(PrimaryPersonListCollectorPage.yesLabel())
-        .click(PrimaryPersonListCollectorPage.submit())
-        .setValue(PrimaryPersonListCollectorAddPage.firstName(), 'Mark')
-        .setValue(PrimaryPersonListCollectorAddPage.lastName(), 'Twin')
-        .click(PrimaryPersonListCollectorAddPage.submit())
-        .getText(ListCollectorPage.listLabel(1)).should.eventually.equal('Mark Twin (You)');
+        $(PrimaryPersonListCollectorPage.yesLabel()).click();
+        $(PrimaryPersonListCollectorPage.submit()).click();
+        $(PrimaryPersonListCollectorAddPage.firstName()).setValue('Mark');
+        $(PrimaryPersonListCollectorAddPage.lastName()).setValue('Twin');
+        $(PrimaryPersonListCollectorAddPage.submit()).click();
+        expect($(ListCollectorPage.listLabel(1)).getText()).to.equal('Mark Twin (You)');
     });
 
     it('When the user adds another person, they are shown in the summary', function () {
-      return browser
-        .click(ListCollectorPage.yesLabel())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Samuel')
-        .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-        .click(ListCollectorAddPage.submit())
-        .getText(ListCollectorPage.listLabel(2)).should.eventually.equal('Samuel Clemens');
+        $(ListCollectorPage.yesLabel()).click();
+        $(ListCollectorPage.submit()).click();
+        $(ListCollectorAddPage.firstName()).setValue('Samuel');
+        $(ListCollectorAddPage.lastName()).setValue('Clemens');
+        $(ListCollectorAddPage.submit()).click();
+        expect($(ListCollectorPage.listLabel(2)).getText()).to.equal('Samuel Clemens');
     });
 
     it('When the user goes back and answers No, the primary person is not shown', function () {
-      return browser
-        .click(ListCollectorPage.previous())
-        .click(PrimaryPersonListCollectorPage.no())
-        .click(PrimaryPersonListCollectorPage.submit())
-        .click(AnyoneUsuallyLiveAtPage.no())
-        .click(AnyoneUsuallyLiveAtPage.submit())
-        .getText(ListCollectorPage.listLabel(1)).should.eventually.equal('Samuel Clemens');
+        $(ListCollectorPage.previous()).click();
+        $(PrimaryPersonListCollectorPage.no()).click();
+        $(PrimaryPersonListCollectorPage.submit()).click();
+        $(AnyoneUsuallyLiveAtPage.no()).click();
+        $(AnyoneUsuallyLiveAtPage.submit()).click();
+        expect($(ListCollectorPage.listLabel(1)).getText()).to.equal('Samuel Clemens');
     });
 
     it('When the user adds the primary person again, then the primary person is first in the list', function () {
-      return browser
-        .click(ListCollectorPage.previous())
-        .click(AnyoneUsuallyLiveAtPage.previous())
-        .click(PrimaryPersonListCollectorPage.yes())
-        .click(PrimaryPersonListCollectorPage.submit())
-        .setValue(PrimaryPersonListCollectorAddPage.firstName(), 'Mark')
-        .setValue(PrimaryPersonListCollectorAddPage.lastName(), 'Twin')
-        .click(PrimaryPersonListCollectorAddPage.submit())
-        .getText(ListCollectorPage.listLabel(1)).should.eventually.equal('Mark Twin (You)');
+        $(ListCollectorPage.previous()).click();
+        $(AnyoneUsuallyLiveAtPage.previous()).click();
+        $(PrimaryPersonListCollectorPage.yes()).click();
+        $(PrimaryPersonListCollectorPage.submit()).click();
+        $(PrimaryPersonListCollectorAddPage.firstName()).setValue('Mark');
+        $(PrimaryPersonListCollectorAddPage.lastName()).setValue('Twin');
+        $(PrimaryPersonListCollectorAddPage.submit()).click();
+        expect($(ListCollectorPage.listLabel(1)).getText()).to.equal('Mark Twin (You)');
     });
 
     it('When the user views the summary, then it does not show the remove link for the primary person', function () {
-      return browser
-        .isExisting(ListCollectorPage.listRemoveLink(1)).should.eventually.be.false
-        .isExisting(ListCollectorPage.listRemoveLink(2)).should.eventually.be.true;
+        expect($(ListCollectorPage.listRemoveLink(1)).isExisting()).to.be.false;
+        expect($(ListCollectorPage.listRemoveLink(2)).isExisting()).to.be.true;
     });
 
 
     it('When the user changes the primary person\'s name on the summary, then the name should be updated', function () {
-      return browser
-        .click(ListCollectorPage.listEditLink(1))
-        .setValue(ListCollectorEditPage.firstName(), 'Mark')
-        .setValue(ListCollectorEditPage.lastName(), 'Twain')
-        .click(ListCollectorEditPage.submit())
-        .getText(ListCollectorPage.listLabel(1)).should.eventually.equal('Mark Twain (You)')
-        .getText(ListCollectorPage.listLabel(2)).should.eventually.equal('Samuel Clemens');
+        $(ListCollectorPage.listEditLink(1)).click();
+        $(ListCollectorEditPage.firstName()).setValue('Mark');
+        $(ListCollectorEditPage.lastName()).setValue('Twain');
+        $(ListCollectorEditPage.submit()).click();
+        expect($(ListCollectorPage.listLabel(1)).getText()).to.equal('Mark Twain (You)');
+        expect($(ListCollectorPage.listLabel(2)).getText()).to.equal('Samuel Clemens');
     });
 
     it('When the user views the summary, then it does not show the does anyone usually live here question', function () {
-        return browser
-          .click(ListCollectorPage.no())
-          .click(ListCollectorPage.submit())
-          .getText('body').should.not.eventually.equal('usually live here');
+          $(ListCollectorPage.no()).click();
+          $(ListCollectorPage.submit()).click();
+          expect($('body').getText()).to.not.equal('usually live here');
     });
 
     it('When the user attempts to submit, then they are shown the confirmation page', function () {
-      return browser
-        .click(SectionSummaryPage.submit())
-        .getText('body').should.eventually.contain('Thank you for your answers, do you wish to submit');
+        $(SectionSummaryPage.submit()).click();
+        expect($('body').getText()).to.contain('Thank you for your answers, do you wish to submit');
     });
 
     it('When the user submits, then they are allowed to submit the survey', function () {
-      return browser
-        .click(ConfirmationPage.submit())
-        .getText(ThankYouPage.questionText()).should.eventually.contain('Thank you for submitting your census');
+        $(ConfirmationPage.submit()).click();
+        expect($(ThankYouPage.questionText()).getText()).to.contain('Thank you for submitting your census');
     });
   });
 
   describe('Given the user starts on the \'do you live here\' question', function() {
     before('Load the survey', function() {
-      return helpers.openQuestionnaire('test_list_collector_primary_person.json');
+      browser = helpers.openQuestionnaire('test_list_collector_primary_person.json');
     });
 
     it('When the user says they do not live there, then an empty list is displayed', function() {
-      return browser
-        .click(PrimaryPersonListCollectorPage.no())
-        .click(PrimaryPersonListCollectorPage.submit())
-        .isExisting(ListCollectorPage.listLabel(1)).should.eventually.be.false;
+        $(PrimaryPersonListCollectorPage.no()).click();
+        $(PrimaryPersonListCollectorPage.submit()).click();
+        expect($(ListCollectorPage.listLabel(1)).isExisting()).to.be.false;
     });
 
     it('When the user clicks on the add person button multiple times, then only one person is added', function() {
-      return browser
-        .click(ListCollectorPage.previous())
-        .click(PrimaryPersonListCollectorPage.yes())
-        .click(PrimaryPersonListCollectorPage.submit())
-        .setValue(PrimaryPersonListCollectorAddPage.firstName(), 'Mark')
-        .setValue(PrimaryPersonListCollectorAddPage.lastName(), 'Twain')
-        .click(PrimaryPersonListCollectorPage.submit())
-        .click(PrimaryPersonListCollectorPage.submit())
-        .getText(ListCollectorPage.listLabel(1)).should.eventually.equal('Mark Twain (You)')
-        .isExisting(ListCollectorPage.listLabel(2)).should.eventually.be.false;
+        $(ListCollectorPage.previous()).click();
+        $(PrimaryPersonListCollectorPage.yes()).click();
+        $(PrimaryPersonListCollectorPage.submit()).click();
+        $(PrimaryPersonListCollectorAddPage.firstName()).setValue('Mark');
+        $(PrimaryPersonListCollectorAddPage.lastName()).setValue('Twain');
+        $(PrimaryPersonListCollectorPage.submit()).click();
+        $(PrimaryPersonListCollectorPage.submit()).click();
+        expect($(ListCollectorPage.listLabel(1)).getText()).to.equal('Mark Twain (You)');
+        expect($(ListCollectorPage.listLabel(2)).isExisting()).to.be.false;
     });
   });
 

@@ -5,18 +5,17 @@ const ConfirmZeroEmployeesBlockPage = require('../../../generated_pages/confirma
 const SummaryPage = require('../../../generated_pages/confirmation_question/summary.page.js');
 
 describe('Feature: Routing incompletes block if routing backwards', function() {
+  let browser;
 
   describe('Given I have a confirmation Question', function() {
 
     before('Get to summary', function () {
-      return helpers.openQuestionnaire('test_confirmation_question.json').then(() => {
-        return browser
-          .setValue(NumberOfEmployeesTotalBlockPage.numberOfEmployeesTotal(), 0)
-          .click(NumberOfEmployeesTotalBlockPage.submit())
-          .click(ConfirmZeroEmployeesBlockPage.yes())
-          .click(ConfirmZeroEmployeesBlockPage.submit())
-          .getUrl().should.eventually.contain(SummaryPage.pageName);
-      });
+      browser = helpers.openQuestionnaire('test_confirmation_question.json');
+          $(NumberOfEmployeesTotalBlockPage.numberOfEmployeesTotal()).setValue(0);
+          $(NumberOfEmployeesTotalBlockPage.submit()).click();
+          $(ConfirmZeroEmployeesBlockPage.yes()).click();
+          $(ConfirmZeroEmployeesBlockPage.submit()).click();
+          expect(browser.getUrl()).to.contain(SummaryPage.pageName);
     });
 
   });

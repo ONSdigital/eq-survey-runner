@@ -8,37 +8,35 @@ const ConfirmDateOfBirthPage = require('../../generated_pages/confirmation_quest
 const SectionSummaryPage = require('../../generated_pages/confirmation_question_within_repeating_section/section-summary.page');
 
 describe('Feature: Confirmation Question Within A Repeating Section', function () {
+  let browser;
 
   describe('Given I am in a repeating section', function () {
 
     beforeEach('Add a person', function () {
-      return helpers.openQuestionnaire('test_confirmation_question_within_repeating_section.json').then(() => {
-        return browser
-          .click(DoesAnyoneLiveHerePage.yes())
-          .click(DoesAnyoneLiveHerePage.submit())
-          .setValue(AddPersonPage.firstName(), 'John')
-          .setValue(AddPersonPage.lastName(), 'Doe')
-          .click(AddPersonPage.submit())
-          .click(DoesAnyoneLiveHerePage.no())
-          .click(DoesAnyoneLiveHerePage.submit())
-          .getUrl().should.eventually.contain(DateOfBirthPage.url().split('/').slice(-1)[0]);
-      });
+      browser = helpers.openQuestionnaire('test_confirmation_question_within_repeating_section.json').then(openBrowser => browser = openBrowser);
+      $(DoesAnyoneLiveHerePage.yes()).click();
+      $(DoesAnyoneLiveHerePage.submit()).click();
+      $(AddPersonPage.firstName()).setValue('John');
+      $(AddPersonPage.lastName()).setValue('Doe');
+      $(AddPersonPage.submit()).click();
+      $(DoesAnyoneLiveHerePage.no()).click();
+      $(DoesAnyoneLiveHerePage.submit()).click();
+      expect(browser.getUrl()).to.contain(DateOfBirthPage.url().split('/').slice(-1)[0]);
     });
 
     describe('Given a confirmation question', function () {
 
       it('When I answer \'No\' to the confirmation question, Then I should be routed back to the source question', function () {
-        return browser
           // Answer question preceding confirmation question
-          .setValue(DateOfBirthPage.day(), '01')
-          .setValue(DateOfBirthPage.month(), '01')
-          .setValue(DateOfBirthPage.year(), '2007')
-          .click(DateOfBirthPage.submit())
+          $(DateOfBirthPage.day()).setValue('01');
+          $(DateOfBirthPage.month()).setValue('01');
+          $(DateOfBirthPage.year()).setValue('2007');
+          $(DateOfBirthPage.submit()).click();
 
           // Answer 'No' to confirmation question
-          .click(ConfirmDateOfBirthPage.no())
-          .click(ConfirmDateOfBirthPage.submit())
-          .getUrl().should.eventually.contain(DateOfBirthPage.pageName);
+          $(ConfirmDateOfBirthPage.no()).click();
+          $(ConfirmDateOfBirthPage.submit()).click();
+          expect(browser.getUrl()).to.contain(DateOfBirthPage.pageName);
       });
 
     });
@@ -46,17 +44,16 @@ describe('Feature: Confirmation Question Within A Repeating Section', function (
     describe('Given I have answered a confirmation question', function () {
 
       it('When I view the summary, Then the confirmation question should not be displayed', function () {
-        return browser
-          .setValue(DateOfBirthPage.day(), '01')
-          .setValue(DateOfBirthPage.month(), '01')
-          .setValue(DateOfBirthPage.year(), '2007')
-          .click(DateOfBirthPage.submit())
+          $(DateOfBirthPage.day()).setValue('01');
+          $(DateOfBirthPage.month()).setValue('01');
+          $(DateOfBirthPage.year()).setValue('2007');
+          $(DateOfBirthPage.submit()).click();
 
-          .click(ConfirmDateOfBirthPage.yes())
-          .click(ConfirmDateOfBirthPage.submit())
+          $(ConfirmDateOfBirthPage.yes()).click();
+          $(ConfirmDateOfBirthPage.submit()).click();
 
-          .getUrl().should.eventually.contain(SectionSummaryPage.pageName)
-          .isExisting(SectionSummaryPage.confirmDateOfBirth()).should.eventually.be.false;
+          expect(browser.getUrl()).to.contain(SectionSummaryPage.pageName);
+          expect($(SectionSummaryPage.confirmDateOfBirth()).isExisting()).to.be.false;
       });
 
     });
@@ -64,14 +61,13 @@ describe('Feature: Confirmation Question Within A Repeating Section', function (
     describe('Given a confirmation question with a skip condition', function () {
 
       it('When I submit an a date of birth where the age is at least \'16\', Then I should be skipped past the confirmation question and directed to the carer question', function () {
-        return browser
-          .setValue(DateOfBirthPage.day(), '01')
-          .setValue(DateOfBirthPage.month(), '01')
-          .setValue(DateOfBirthPage.year(), '2000')
-          .click(DateOfBirthPage.submit())
+          $(DateOfBirthPage.day()).setValue('01');
+          $(DateOfBirthPage.month()).setValue('01');
+          $(DateOfBirthPage.year()).setValue('2000');
+          $(DateOfBirthPage.submit()).click();
 
-          .getUrl().should.eventually.contain(CarerPage.pageName)
-          .getText(CarerPage.questionText()).should.eventually.contain('Does John Doe look');
+          expect(browser.getUrl()).to.contain(CarerPage.pageName);
+          expect($(CarerPage.questionText()).getText()).to.contain('Does John Doe look');
       });
 
     });

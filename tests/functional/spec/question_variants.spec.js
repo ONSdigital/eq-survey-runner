@@ -10,56 +10,56 @@ const proxyBlock = require('../generated_pages/variants_question/proxy-block.pag
 const secondNumberBlock = require('../generated_pages/variants_question/second-number-block.page.js');
 
 describe('QuestionVariants', function() {
+  let browser;
 
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_variants_question.json');
+    browser = helpers.openQuestionnaire('test_variants_question.json');
   });
 
   it('Given I am completing the survey, then the correct questions are shown based on my previous answers', function () {
-    return browser
-      .setValue(nameBlock.firstName(), 'Guido')
-      .setValue(nameBlock.lastName(), 'van Rossum')
-      .click(nameBlock.submit())
+      $(nameBlock.firstName()).setValue('Guido');
+      $(nameBlock.lastName()).setValue('van Rossum');
+      $(nameBlock.submit()).click();
 
-      .getText(proxyBlock.questionText()).should.eventually.contain('Are you Guido van Rossum?')
+      expect($(proxyBlock.questionText()).getText()).to.contain('Are you Guido van Rossum?');
 
-      .click(proxyBlock.proxy())
-      .click(proxyBlock.submit())
+      $(proxyBlock.proxy()).click();
+      $(proxyBlock.submit()).click();
 
-      .getText(ageBlock.questionText()).should.eventually.contain('What age is Guido van Rossum')
+      expect($(ageBlock.questionText()).getText()).to.contain('What age is Guido van Rossum');
 
-      .setValue(ageBlock.age(), 63)
-      .click(ageBlock.submit())
+      $(ageBlock.age()).setValue(63);
+      $(ageBlock.submit()).click();
 
-      .getText(ageConfirmationBlock.questionText()).should.eventually.contain('Guido van Rossum is over 16?')
+      expect($(ageConfirmationBlock.questionText()).getText()).to.contain('Guido van Rossum is over 16?');
 
-      .click(ageConfirmationBlock.ageConfirmYes())
-      .click(ageConfirmationBlock.submit())
+      $(ageConfirmationBlock.ageConfirmYes()).click();
+      $(ageConfirmationBlock.submit()).click();
 
-      .getText(basicVariantsSummary.ageQuestion()).should.eventually.contain('What age is Guido van Rossum')
-      .getText(basicVariantsSummary.ageAnswer()).should.eventually.contain('63')
+      expect($(basicVariantsSummary.ageQuestion()).getText()).to.contain('What age is Guido van Rossum');
+      expect($(basicVariantsSummary.ageAnswer()).getText()).to.contain('63');
 
-      .click(basicVariantsSummary.submit())
+      $(basicVariantsSummary.submit()).click();
 
-      .click(currencyBlock.gbp())
-      .click(currencyBlock.submit())
+      $(currencyBlock.gbp()).click();
+      $(currencyBlock.submit()).click();
 
-      .getText(firstNumberBlock.firstNumberLabel()).should.eventually.contain('First answer in GBP')
+      expect($(firstNumberBlock.firstNumberLabel()).getText()).to.contain('First answer in GBP');
 
-      .setValue(firstNumberBlock.firstNumber(), 123)
-      .click(firstNumberBlock.submit())
+      $(firstNumberBlock.firstNumber()).setValue(123);
+      $(firstNumberBlock.submit()).click();
 
-      .setValue(secondNumberBlock.secondNumber(), 321)
-      .click(secondNumberBlock.submit())
+      $(secondNumberBlock.secondNumber()).setValue(321);
+      $(secondNumberBlock.submit()).click();
 
-      .getText(currencySectionSummary.currencyAnswer()).should.eventually.contain('Sterling')
-      .getText(currencySectionSummary.firstNumberAnswer()).should.eventually.contain('£')
+      expect($(currencySectionSummary.currencyAnswer()).getText()).to.contain('Sterling');
+      expect($(currencySectionSummary.firstNumberAnswer()).getText()).to.contain('£');
 
-      .click(currencySectionSummary.currencyAnswerEdit())
-      .click(currencyBlock.usd())
-      .click(currencyBlock.submit())
+      $(currencySectionSummary.currencyAnswerEdit()).click();
+      $(currencyBlock.usd()).click();
+      $(currencyBlock.submit()).click();
 
-      .getText(currencySectionSummary.firstNumberAnswer()).should.eventually.contain('$');
+      expect($(currencySectionSummary.firstNumberAnswer()).getText()).to.contain('$');
 
     });
 });

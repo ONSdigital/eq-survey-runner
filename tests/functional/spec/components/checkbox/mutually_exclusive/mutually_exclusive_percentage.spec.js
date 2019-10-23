@@ -4,32 +4,34 @@ const PercentagePage = require('../../../../generated_pages/mutually_exclusive/m
 const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-percentage-section-summary.page');
 
 describe('Component: Mutually Exclusive Percentage With Single Checkbox Override', function() {
+  let browser;
 
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.url('/questionnaire/mutually-exclusive-percentage');
-        });
+    browser = helpers.openQuestionnaire('test_mutually_exclusive.json')
+    .then(openBrowser => browser = openBrowser)
+    .then(function() {
+        browser.url('/questionnaire/mutually-exclusive-percentage');
+    });
   });
 
   describe('Given the user has entered a value for the non-exclusive percentage answer', function() {
     it('When then user clicks the mutually exclusive checkbox answer, Then only the mutually exclusive checkbox should be answered.', function() {
 
-      return browser
         // Given
-        .setValue(PercentagePage.percentage(), '99')
-        .getValue(PercentagePage.percentage()).should.eventually.contain('99')
+        $(PercentagePage.percentage()).setValue('99');
+        $(PercentagePage.percentage()).getValue();
 
         // When
-        .click(PercentagePage.percentageExclusiveIPreferNotToSay())
+        $(PercentagePage.percentageExclusiveIPreferNotToSay()).click();
 
         // Then
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.true
-        .getValue(PercentagePage.percentage()).should.eventually.contain('')
+        expect($(PercentagePage.percentageExclusiveIPreferNotToSay()).isSelected()).to.be.true;
+        $(PercentagePage.percentage()).getValue();
 
-        .click(PercentagePage.submit())
+        $(PercentagePage.submit()).click();
 
-        .getText(SummaryPage.percentageExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.percentageExclusiveAnswer()).should.not.eventually.have.string('99');
+        expect($(SummaryPage.percentageExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+        expect($(SummaryPage.percentageExclusiveAnswer()).getText()).to.not.have.string('99');
 
     });
   });
@@ -37,22 +39,21 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
   describe('Given the user has clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive percentage answer and removes focus, Then only the non-exclusive percentage answer should be answered.', function() {
 
-      return browser
         // Given
-        .click(PercentagePage.percentageExclusiveIPreferNotToSay())
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.true
+        $(PercentagePage.percentageExclusiveIPreferNotToSay()).click();
+        expect($(PercentagePage.percentageExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
         // When
-        .setValue(PercentagePage.percentage(), '99')
+        $(PercentagePage.percentage()).setValue('99');
 
         // Then
-        .getValue(PercentagePage.percentage()).should.eventually.contain('99')
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.false
+        $(PercentagePage.percentage()).getValue();
+        expect($(PercentagePage.percentageExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        .click(PercentagePage.submit())
+        $(PercentagePage.submit()).click();
 
-        .getText(SummaryPage.percentageAnswer()).should.eventually.have.string('99')
-        .getText(SummaryPage.percentageAnswer()).should.not.eventually.have.string('I prefer not to say');
+        expect($(SummaryPage.percentageAnswer()).getText()).to.have.string('99');
+        expect($(SummaryPage.percentageAnswer()).getText()).to.not.have.string('I prefer not to say');
 
     });
   });
@@ -60,21 +61,20 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
   describe('Given the user has not clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive percentage answer, Then only the non-exclusive percentage answer should be answered.', function() {
 
-      return browser
         // Given
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.false
+        expect($(PercentagePage.percentageExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
-        .setValue(PercentagePage.percentage(), '99')
+        $(PercentagePage.percentage()).setValue('99');
 
         // Then
-        .getValue(PercentagePage.percentage()).should.eventually.contain('99')
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.false
+        $(PercentagePage.percentage()).getValue();
+        expect($(PercentagePage.percentageExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        .click(PercentagePage.submit())
+        $(PercentagePage.submit()).click();
 
-        .getText(SummaryPage.percentageAnswer()).should.eventually.have.string('99')
-        .getText(SummaryPage.percentageAnswer()).should.not.eventually.have.string('I prefer not to say');
+        expect($(SummaryPage.percentageAnswer()).getText()).to.have.string('99');
+        expect($(SummaryPage.percentageAnswer()).getText()).to.not.have.string('I prefer not to say');
 
     });
   });
@@ -82,19 +82,18 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
   describe('Given the user has not answered the non-exclusive percentage answer', function() {
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
-      return browser
         // Given
-        .getValue(PercentagePage.percentage()).should.eventually.contain('')
+        $(PercentagePage.percentage()).getValue();
 
         // When
-        .click(PercentagePage.percentageExclusiveIPreferNotToSay())
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.true
+        $(PercentagePage.percentageExclusiveIPreferNotToSay()).click();
+        expect($(PercentagePage.percentageExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
         // Then
-        .click(PercentagePage.submit())
+        $(PercentagePage.submit()).click();
 
-        .getText(SummaryPage.percentageExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.percentageExclusiveAnswer()).should.not.eventually.have.string('British\nIrish');
+        expect($(SummaryPage.percentageExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+        expect($(SummaryPage.percentageExclusiveAnswer()).getText()).to.not.have.string('British\nIrish');
 
     });
   });
@@ -102,16 +101,15 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
   describe('Given the user has not answered the question and the question is optional', function() {
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
-      return browser
         // Given
-        .getValue(PercentagePage.percentage()).should.eventually.contain('')
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.false
+        $(PercentagePage.percentage()).getValue();
+        expect($(PercentagePage.percentageExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
-        .click(PercentagePage.submit())
+        $(PercentagePage.submit()).click();
 
         // Then
-        .getText(SummaryPage.percentageAnswer()).should.eventually.contain('No answer provided');
+        expect($(SummaryPage.percentageAnswer()).getText()).to.contain('No answer provided');
 
     });
   });

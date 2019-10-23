@@ -15,7 +15,7 @@
     "lint": "yarn lint:tests && yarn lint:data-source",
     "lint:tests": "rm -rf ./tests/functional/generated_pages && eslint tests/functional --fix",
     "lint:data-source": "eslint data-source/json/*.json --fix",
-    "test_functional": "chimp tests/functional/chimp.js",
+    "test_functional": "./node_modules/.bin/wdio tests/functional/wdio.conf.js",
     "generate_pages": "rm -rf ./tests/functional/generated_pages && pipenv run python -m tests.functional.generate_pages data/en/ ./tests/functional/generated_pages -r '../../base_pages'",
     "format": "yarn format:data-source && yarn format:python",
     "format:data-source": "prettier data-source/json/*.json --write",
@@ -35,9 +35,15 @@
     ]
   },
   "devDependencies": {
+    "@wdio/cli": "^5.15.2",
+    "@wdio/local-runner": "^5.15.2",
+    "@wdio/mocha-framework": "^5.15.1",
+    "@wdio/spec-reporter": "^5.15.2",
+    "@wdio/sync": "^5.15.1",
     "babel-eslint": "^10.0.1",
     "babel-register": "^6.26.0",
-    "chimp": "0.50.0",
+    "chai": "^4.2.0",
+    "chromedriver": "^77.0.0",
     "concurrently": "^4.1.1",
     "eslint": "^4.3.0",
     "eslint-cli": "^1.1.1",
@@ -55,6 +61,8 @@
     "lodash": "^4.17.11",
     "node-jose": "^0.9.5",
     "prettier": "^1.18.2",
-    "uuid": "^3.1.0"
-  }
+    "uuid": "^3.1.0",
+    "wdio-chromedriver-service": "^5.0.2"
+  },
+  "dependencies": {}
 }

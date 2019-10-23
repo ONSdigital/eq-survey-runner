@@ -7,68 +7,65 @@ const MoreThanTwoInterstitialPage = require('../generated_pages/skip_condition_l
 const helpers = require('../helpers');
 
 describe('Feature: Routing on lists', function () {
+  let browser;
   describe('Given I start skip condition list survey', function () {
 
     beforeEach(function () {
-      return helpers.openQuestionnaire('test_skip_condition_list.json');
+      browser = helpers.openQuestionnaire('test_skip_condition_list.json').then(openBrowser => browser = openBrowser);
     });
 
     it('When I don\'t add a person to the list, Then the less than two people skippable page should be shown', function() {
-      return browser
-        .click(ListCollectorPage.no())
-        .click(ListCollectorPage.submit())
-        .getUrl().should.eventually.contain(LessThanTwoInterstitialPage.pageName);
+        $(ListCollectorPage.no()).click();
+        $(ListCollectorPage.submit()).click();
+        expect(browser.getUrl()).to.contain(LessThanTwoInterstitialPage.pageName);
     });
 
     it('When I add one person to the list, Then the less than two people skippable page should be shown', function() {
-      return browser
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Marcus')
-        .setValue(ListCollectorAddPage.lastName(), 'Twin')
-        .click(ListCollectorAddPage.submit())
-        .click(ListCollectorPage.no())
-        .click(ListCollectorPage.submit())
-        .getUrl().should.eventually.contain(LessThanTwoInterstitialPage.pageName);
+        $(ListCollectorPage.yes()).click();
+        $(ListCollectorPage.submit()).click();
+        $(ListCollectorAddPage.firstName()).setValue('Marcus');
+        $(ListCollectorAddPage.lastName()).setValue('Twin');
+        $(ListCollectorAddPage.submit()).click();
+        $(ListCollectorPage.no()).click();
+        $(ListCollectorPage.submit()).click();
+        expect(browser.getUrl()).to.contain(LessThanTwoInterstitialPage.pageName);
     });
 
     it('When I add two people to the list, Then the two people skippable page should be shown', function() {
-      return browser
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Marcus')
-        .setValue(ListCollectorAddPage.lastName(), 'Twin')
-        .click(ListCollectorAddPage.submit())
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Samuel')
-        .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-        .click(ListCollectorAddPage.submit())
-        .click(ListCollectorPage.no())
-        .click(ListCollectorPage.submit())
-        .getUrl().should.eventually.contain(TwoInterstitialPage.pageName);
+        $(ListCollectorPage.yes()).click();
+        $(ListCollectorPage.submit()).click();
+        $(ListCollectorAddPage.firstName()).setValue('Marcus');
+        $(ListCollectorAddPage.lastName()).setValue('Twin');
+        $(ListCollectorAddPage.submit()).click();
+        $(ListCollectorPage.yes()).click();
+        $(ListCollectorPage.submit()).click();
+        $(ListCollectorAddPage.firstName()).setValue('Samuel');
+        $(ListCollectorAddPage.lastName()).setValue('Clemens');
+        $(ListCollectorAddPage.submit()).click();
+        $(ListCollectorPage.no()).click();
+        $(ListCollectorPage.submit()).click();
+        expect(browser.getUrl()).to.contain(TwoInterstitialPage.pageName);
     });
 
     it('When I add three people to the list, Then the more than two people skippable page should be shown', function() {
-      return browser
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Marcus')
-        .setValue(ListCollectorAddPage.lastName(), 'Twin')
-        .click(ListCollectorAddPage.submit())
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Samuel')
-        .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-        .click(ListCollectorAddPage.submit())
-        .click(ListCollectorPage.yes())
-        .click(ListCollectorPage.submit())
-        .setValue(ListCollectorAddPage.firstName(), 'Olivia')
-        .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-        .click(ListCollectorAddPage.submit())
-        .click(ListCollectorPage.no())
-        .click(ListCollectorPage.submit())
-        .getUrl().should.eventually.contain(MoreThanTwoInterstitialPage.pageName);
+        $(ListCollectorPage.yes()).click();
+        $(ListCollectorPage.submit()).click();
+        $(ListCollectorAddPage.firstName()).setValue('Marcus');
+        $(ListCollectorAddPage.lastName()).setValue('Twin');
+        $(ListCollectorAddPage.submit()).click();
+        $(ListCollectorPage.yes()).click();
+        $(ListCollectorPage.submit()).click();
+        $(ListCollectorAddPage.firstName()).setValue('Samuel');
+        $(ListCollectorAddPage.lastName()).setValue('Clemens');
+        $(ListCollectorAddPage.submit()).click();
+        $(ListCollectorPage.yes()).click();
+        $(ListCollectorPage.submit()).click();
+        $(ListCollectorAddPage.firstName()).setValue('Olivia');
+        $(ListCollectorAddPage.lastName()).setValue('Clemens');
+        $(ListCollectorAddPage.submit()).click();
+        $(ListCollectorPage.no()).click();
+        $(ListCollectorPage.submit()).click();
+        expect(browser.getUrl()).to.contain(MoreThanTwoInterstitialPage.pageName);
     });
 
   });

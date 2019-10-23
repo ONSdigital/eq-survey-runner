@@ -2,22 +2,21 @@ const helpers = require('../helpers');
 const ageQuestionBlock = require('../generated_pages/variants_content/age-question-block.page.js');
 
 describe('QuestionVariants', function() {
+  let browser;
 
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_variants_content.json');
+    browser = helpers.openQuestionnaire('test_variants_content.json').then(openBrowser => browser = openBrowser);
   });
 
   it('Given I am completing the survey, then the correct content is shown based on my previous answers when i am under 16', function () {
-    return browser
-      .setValue(ageQuestionBlock.age(), 12)
-      .click(ageQuestionBlock.submit())
-      .getText('main.page__main h1').should.eventually.contain('You are 16 or younger');
+      $(ageQuestionBlock.age()).setValue(12);
+      $(ageQuestionBlock.submit()).click();
+      expect($('main.page__main h1').getText()).to.contain('You are 16 or younger');
   });
 
   it('Given I am completing the survey, then the correct content is shown based on my previous answers when i am under 16', function () {
-    return browser
-      .setValue(ageQuestionBlock.age(), 22)
-      .click(ageQuestionBlock.submit())
-      .getText('main.page__main h1').should.eventually.contain('You are 16 or older');
+      $(ageQuestionBlock.age()).setValue(22);
+      $(ageQuestionBlock.submit()).click();
+      expect($('main.page__main h1').getText()).to.contain('You are 16 or older');
   });
 });

@@ -6,120 +6,107 @@ const ListCollectorEditPage = require('../generated_pages/list_collector_variant
 const ListCollectorRemovePage = require('../generated_pages/list_collector_variants/list-collector-remove.page.js');
 const ConfirmationPage = require('../generated_pages/list_collector_variants/confirmation.page.js');
 
-function checkPeopleInList(peopleExpected) {
-  let chain = browser.waitForVisible(ListCollectorPage.listLabel(1)).should.eventually.be.true;
-
-  for (let i=1; i<=peopleExpected.length; i++) {
-    chain = chain.then(() => {
-      return browser.getText(ListCollectorPage.listLabel(i)).should.eventually.equal(peopleExpected[i-1]);
-    });
-  }
-
-  return chain;
-}
-
 describe('List Collector With Variants', function() {
+  let browser;
+
+  function checkPeopleInList(peopleExpected) {
+    $(ListCollectorPage.listLabel(1)).waitForDisplayed();
+
+    for (let i=1; i<=peopleExpected.length; i++) {
+        expect($(ListCollectorPage.listLabel(i)).getText()).to.equal(peopleExpected[i-1]);
+    }
+  }
 
   describe('Given that a person lives in house', function() {
     before('Load the survey', function() {
-      return helpers.openQuestionnaire('test_list_collector_variants.json');
+      browser = helpers.openQuestionnaire('test_list_collector_variants.json').then(openBrowser => browser = openBrowser);
     });
 
     it('The user is asked questions about whether they live there', function() {
-      return browser
-        .click(YouLiveHerePage.yes())
-        .click(YouLiveHerePage.submit())
-        .getText(ListCollectorPage.questionText()).should.eventually.equal('Does anyone else live at 1 Pleasant Lane?');
+        $(YouLiveHerePage.yes()).click();
+        $(YouLiveHerePage.submit()).click();
+        expect($(ListCollectorPage.questionText()).getText()).to.equal('Does anyone else live at 1 Pleasant Lane?');
     });
 
     it('The user is able to add members of the household', function() {
-      return browser
-        .click(ListCollectorPage.anyoneElseYes())
-        .click(ListCollectorPage.submit())
-        .getText(ListCollectorAddPage.questionText()).should.eventually.equal('What is the name of the person?')
-        .setValue(ListCollectorAddPage.firstName(), 'Samuel')
-        .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-        .click(ListCollectorAddPage.submit());
+        $(ListCollectorPage.anyoneElseYes()).click();
+        $(ListCollectorPage.submit()).click();
+        expect($(ListCollectorAddPage.questionText()).getText()).to.equal('What is the name of the person?');
+        $(ListCollectorAddPage.firstName()).setValue('Samuel');
+        $(ListCollectorAddPage.lastName()).setValue('Clemens');
+        $(ListCollectorAddPage.submit()).click();
     });
 
     it('The user can see all household members in the summary', function() {
       const peopleExpected = ['Samuel Clemens'];
-      return checkPeopleInList(peopleExpected);
+      checkPeopleInList(peopleExpected);
     });
 
     it('The questionnaire has the correct question text on the change and remove pages', function() {
-      return browser
-        .click(ListCollectorPage.listEditLink(1))
-        .getText(ListCollectorEditPage.questionText()).should.eventually.equal('What is the name of the person?')
-        .click(ListCollectorEditPage.previous())
-        .click(ListCollectorPage.listRemoveLink(1))
-        .getText(ListCollectorRemovePage.questionText()).should.eventually.equal('Are you sure you want to remove this person?')
-        .click(ListCollectorRemovePage.previous());
+        $(ListCollectorPage.listEditLink(1)).click();
+        expect($(ListCollectorEditPage.questionText()).getText()).to.equal('What is the name of the person?');
+        $(ListCollectorEditPage.previous()).click();
+        $(ListCollectorPage.listRemoveLink(1)).click();
+        expect($(ListCollectorRemovePage.questionText()).getText()).to.equal('Are you sure you want to remove this person?');
+        $(ListCollectorRemovePage.previous()).click();
     });
 
     it('The questionnaire shows the confirmation page when no more people to add', function() {
-      return browser
-        .click(ListCollectorPage.anyoneElseNo())
-        .click(ListCollectorPage.submit())
-        .getUrl().should.eventually.contain(ConfirmationPage.pageName);
+        $(ListCollectorPage.anyoneElseNo()).click();
+        $(ListCollectorPage.submit()).click();
+        expect(browser.getUrl()).to.contain(ConfirmationPage.pageName);
     });
 
     it('The questionnaire allows submission', function() {
-      return browser
-        .click(ConfirmationPage.submit())
-        .getUrl().should.eventually.contain('thank-you');
+        $(ConfirmationPage.submit()).click();
+        expect(browser.getUrl()).to.contain('thank-you');
     });
 
   });
 
   describe('Given a person does not live in house', function() {
     before('Load the survey', function () {
-      return helpers.openQuestionnaire('test_list_collector_variants.json');
+      browser = helpers.openQuestionnaire('test_list_collector_variants.json').then(openBrowser => browser = openBrowser);
     });
 
     it('The user is asked questions about whether they live there', function() {
-      return browser
-        .click(YouLiveHerePage.no())
-        .click(YouLiveHerePage.submit())
-        .getText(ListCollectorPage.questionText()).should.eventually.equal('Does anyone live at 1 Pleasant Lane?');
+        $(YouLiveHerePage.no()).click();
+        $(YouLiveHerePage.submit()).click();
+        expect($(ListCollectorPage.questionText()).getText()).to.equal('Does anyone live at 1 Pleasant Lane?');
     });
 
     it('The user is able to add members of the household', function() {
-      return browser
-        .click(ListCollectorPage.anyoneElseYes())
-        .click(ListCollectorPage.submit())
-        .getText(ListCollectorAddPage.questionText()).should.eventually.equal('What is the name of the person who isn\'t you?')
-        .setValue(ListCollectorAddPage.firstName(), 'Samuel')
-        .setValue(ListCollectorAddPage.lastName(), 'Clemens')
-        .click(ListCollectorAddPage.submit());
+        $(ListCollectorPage.anyoneElseYes()).click();
+        $(ListCollectorPage.submit()).click();
+        expect($(ListCollectorAddPage.questionText()).getText()).to.equal('What is the name of the person who isn\'t you?');
+        $(ListCollectorAddPage.firstName()).setValue('Samuel');
+        $(ListCollectorAddPage.lastName()).setValue('Clemens');
+        $(ListCollectorAddPage.submit()).click();
     });
 
     it('The user can see all household members in the summary', function() {
       const peopleExpected = ['Samuel Clemens'];
-      return checkPeopleInList(peopleExpected);
+      checkPeopleInList(peopleExpected);
     });
 
     it('The questionnaire has the correct question text on the change and remove pages', function() {
-      return browser
-        .click(ListCollectorPage.listEditLink(1))
-        .getText(ListCollectorEditPage.questionText()).should.eventually.equal('What is the name of the person who isn\'t you?')
-        .click(ListCollectorEditPage.previous())
-        .click(ListCollectorPage.listRemoveLink(1))
-        .getText(ListCollectorRemovePage.questionText()).should.eventually.equal('Are you sure you want to remove this person who isn\'t you?')
-        .click(ListCollectorRemovePage.previous());
+        $(ListCollectorPage.listEditLink(1)).click();
+        expect($(ListCollectorEditPage.questionText()).getText()).to.equal('What is the name of the person who isn\'t you?');
+        $(ListCollectorEditPage.previous()).click();
+        $(ListCollectorPage.listRemoveLink(1)).click();
+        expect($(ListCollectorRemovePage.questionText()).getText()).to.equal('Are you sure you want to remove this person who isn\'t you?');
+        $(ListCollectorRemovePage.previous()).click();
     });
 
     it('The questionnaire shows the confirmation page when no more people to add', function() {
-      return browser
-        .click(ListCollectorPage.anyoneElseNo())
-        .click(ListCollectorPage.submit())
-        .getUrl().should.eventually.contain(ConfirmationPage.pageName);
+        $(ListCollectorPage.anyoneElseNo()).click();
+        $(ListCollectorPage.submit()).click();
+        expect(browser.getUrl()).to.contain(ConfirmationPage.pageName);
     });
 
     it('The questionnaire allows submission', function() {
-      return browser
-        .click(ConfirmationPage.submit())
-        .getUrl().should.eventually.contain('thank-you');
+        $(ConfirmationPage.submit()).click();
+        expect(browser.getUrl()).to.contain('thank-you');
     });
 
   });

@@ -4,32 +4,34 @@ const YearDatePage = require('../../../../generated_pages/mutually_exclusive/mut
 const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-year-section-summary.page');
 
 describe('Component: Mutually Exclusive Year Date With Single Checkbox Override', function() {
+  let browser;
 
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.url('/questionnaire/mutually-exclusive-year-date');
-        });
+    browser = helpers.openQuestionnaire('test_mutually_exclusive.json')
+    .then(openBrowser => browser = openBrowser)
+    .then(function() {
+        browser.url('/questionnaire/mutually-exclusive-year-date');
+    });
   });
 
   describe('Given the user has entered a value for the non-exclusive year date answer', function() {
     it('When then user clicks the mutually exclusive checkbox answer, Then only the mutually exclusive checkbox should be answered.', function() {
 
-      return browser
         // Given
-        .setValue(YearDatePage.yearDateYear(), '2018')
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('2018')
+        $(YearDatePage.yearDateYear()).setValue('2018');
+        $(YearDatePage.yearDateYear()).getValue();
 
         // When
-        .click(YearDatePage.yearDateExclusiveIPreferNotToSay())
+        $(YearDatePage.yearDateExclusiveIPreferNotToSay()).click();
 
         // Then
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.true
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('')
+        expect($(YearDatePage.yearDateExclusiveIPreferNotToSay()).isSelected()).to.be.true;
+        $(YearDatePage.yearDateYear()).getValue();
 
-        .click(YearDatePage.submit())
+        $(YearDatePage.submit()).click();
 
-        .getText(SummaryPage.yearDateExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.yearDateExclusiveAnswer()).should.not.eventually.have.string('2018');
+        expect($(SummaryPage.yearDateExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+        expect($(SummaryPage.yearDateExclusiveAnswer()).getText()).to.not.have.string('2018');
 
     });
   });
@@ -37,22 +39,21 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
   describe('Given the user has clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive year date answer and removes focus, Then only the non-exclusive year date answer should be answered.', function() {
 
-      return browser
         // Given
-        .click(YearDatePage.yearDateExclusiveIPreferNotToSay())
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.true
+        $(YearDatePage.yearDateExclusiveIPreferNotToSay()).click();
+        expect($(YearDatePage.yearDateExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
         // When
-        .setValue(YearDatePage.yearDateYear(), '2018')
+        $(YearDatePage.yearDateYear()).setValue('2018');
 
         // Then
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('2018')
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.false
+        $(YearDatePage.yearDateYear()).getValue();
+        expect($(YearDatePage.yearDateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        .click(YearDatePage.submit())
+        $(YearDatePage.submit()).click();
 
-        .getText(SummaryPage.yearDateAnswer()).should.eventually.have.string('2018')
-        .getText(SummaryPage.yearDateAnswer()).should.not.eventually.have.string('I prefer not to say');
+        expect($(SummaryPage.yearDateAnswer()).getText()).to.have.string('2018');
+        expect($(SummaryPage.yearDateAnswer()).getText()).to.not.have.string('I prefer not to say');
 
     });
   });
@@ -60,21 +61,20 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
   describe('Given the user has not clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive year date answer, Then only the non-exclusive year date answer should be answered.', function() {
 
-      return browser
         // Given
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.false
+        expect($(YearDatePage.yearDateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
-        .setValue(YearDatePage.yearDateYear(), '2018')
+        $(YearDatePage.yearDateYear()).setValue('2018');
 
         // Then
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('2018')
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.false
+        $(YearDatePage.yearDateYear()).getValue();
+        expect($(YearDatePage.yearDateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        .click(YearDatePage.submit())
+        $(YearDatePage.submit()).click();
 
-        .getText(SummaryPage.yearDateAnswer()).should.eventually.have.string('2018')
-        .getText(SummaryPage.yearDateAnswer()).should.not.eventually.have.string('I prefer not to say');
+        expect($(SummaryPage.yearDateAnswer()).getText()).to.have.string('2018');
+        expect($(SummaryPage.yearDateAnswer()).getText()).to.not.have.string('I prefer not to say');
 
     });
   });
@@ -82,19 +82,18 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
   describe('Given the user has not answered the non-exclusive year date answer', function() {
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
-      return browser
         // Given
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('')
+        $(YearDatePage.yearDateYear()).getValue();
 
         // When
-        .click(YearDatePage.yearDateExclusiveIPreferNotToSay())
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.true
+        $(YearDatePage.yearDateExclusiveIPreferNotToSay()).click();
+        expect($(YearDatePage.yearDateExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
         // Then
-        .click(YearDatePage.submit())
+        $(YearDatePage.submit()).click();
 
-        .getText(SummaryPage.yearDateExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.yearDateExclusiveAnswer()).should.not.eventually.have.string('2018');
+        expect($(SummaryPage.yearDateExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+        expect($(SummaryPage.yearDateExclusiveAnswer()).getText()).to.not.have.string('2018');
 
     });
   });
@@ -102,16 +101,15 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
   describe('Given the user has not answered the question and the question is optional', function() {
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
-      return browser
         // Given
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('')
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.false
+        $(YearDatePage.yearDateYear()).getValue();
+        expect($(YearDatePage.yearDateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
-        .click(YearDatePage.submit())
+        $(YearDatePage.submit()).click();
 
         // Then
-        .getText(SummaryPage.yearDateAnswer()).should.eventually.contain('No answer provided');
+        expect($(SummaryPage.yearDateAnswer()).getText()).to.contain('No answer provided');
 
     });
   });

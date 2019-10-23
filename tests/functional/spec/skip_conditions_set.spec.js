@@ -4,20 +4,20 @@ const DrinkPage = require('../generated_pages/skip_condition_set/drink-block.pag
 const SummaryPage = require('../generated_pages/skip_condition_set/summary.page');
 
 describe('Skip Conditions - Set', function() {
+  let browser;
+
+  beforeEach('Load the survey', function () {
+    browser = helpers.openQuestionnaire('test_skip_condition_set.json').then(openBrowser => browser = openBrowser);
+  });
+
   it('Given I complete the first page, Then I should see the summary page', function() {
-    return helpers.openQuestionnaire('test_skip_condition_set.json').then(() => {
-      return browser
-        .click(FoodPage.bacon())
-        .click(FoodPage.submit())
-        .getUrl().should.eventually.contain(SummaryPage.pageName);
-    });
+    $(FoodPage.bacon()).click();
+    $(FoodPage.submit()).click();
+    expect(browser.getUrl()).to.contain(SummaryPage.pageName);
   });
 
   it('Given I do not complete the first page, Then I should see the drink page', function() {
-    return helpers.openQuestionnaire('test_skip_condition_set.json').then(() => {
-      return browser
-        .click(FoodPage.submit())
-        .getUrl().should.eventually.contain(DrinkPage.pageName);
-    });
+    $(FoodPage.submit()).click();
+    expect(browser.getUrl()).to.contain(DrinkPage.pageName);
   });
 });

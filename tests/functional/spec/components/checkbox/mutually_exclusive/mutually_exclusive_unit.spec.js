@@ -4,32 +4,34 @@ const UnitPage = require('../../../../generated_pages/mutually_exclusive/mutuall
 const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-unit-section-summary.page');
 
 describe('Component: Mutually Exclusive Unit With Single Checkbox Override', function() {
+  let browser;
 
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.url('/questionnaire/mutually-exclusive-unit');
-        });
+    browser = helpers.openQuestionnaire('test_mutually_exclusive.json')
+    .then(openBrowser => browser = openBrowser)
+    .then(function() {
+        browser.url('/questionnaire/mutually-exclusive-unit');
+    });
   });
 
   describe('Given the user has entered a value for the non-exclusive unit answer', function() {
     it('When then user clicks the mutually exclusive checkbox answer, Then only the mutually exclusive checkbox should be answered.', function() {
 
-      return browser
         // Given
-        .setValue(UnitPage.unit(), '10')
-        .getValue(UnitPage.unit()).should.eventually.contain('10')
+        $(UnitPage.unit()).setValue('10');
+        $(UnitPage.unit()).getValue();
 
         // When
-        .click(UnitPage.unitExclusiveIPreferNotToSay())
+        $(UnitPage.unitExclusiveIPreferNotToSay()).click();
 
         // Then
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.true
-        .getValue(UnitPage.unit()).should.eventually.contain('')
+        expect($(UnitPage.unitExclusiveIPreferNotToSay()).isSelected()).to.be.true;
+        $(UnitPage.unit()).getValue();
 
-        .click(UnitPage.submit())
+        $(UnitPage.submit()).click();
 
-        .getText(SummaryPage.unitExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.unitExclusiveAnswer()).should.not.eventually.have.string('10');
+        expect($(SummaryPage.unitExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+        expect($(SummaryPage.unitExclusiveAnswer()).getText()).to.not.have.string('10');
 
     });
   });
@@ -37,22 +39,21 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
   describe('Given the user has clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive unit answer and removes focus, Then only the non-exclusive unit answer should be answered.', function() {
 
-      return browser
         // Given
-        .click(UnitPage.unitExclusiveIPreferNotToSay())
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.true
+        $(UnitPage.unitExclusiveIPreferNotToSay()).click();
+        expect($(UnitPage.unitExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
         // When
-        .setValue(UnitPage.unit(), '10')
+        $(UnitPage.unit()).setValue('10');
 
         // Then
-        .getValue(UnitPage.unit()).should.eventually.contain('10')
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.false
+        $(UnitPage.unit()).getValue();
+        expect($(UnitPage.unitExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        .click(UnitPage.submit())
+        $(UnitPage.submit()).click();
 
-        .getText(SummaryPage.unitAnswer()).should.eventually.have.string('10')
-        .getText(SummaryPage.unitAnswer()).should.not.eventually.have.string('I prefer not to say');
+        expect($(SummaryPage.unitAnswer()).getText()).to.have.string('10');
+        expect($(SummaryPage.unitAnswer()).getText()).to.not.have.string('I prefer not to say');
 
     });
   });
@@ -60,21 +61,20 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
   describe('Given the user has not clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive unit answer, Then only the non-exclusive unit answer should be answered.', function() {
 
-      return browser
         // Given
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.false
+        expect($(UnitPage.unitExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
-        .setValue(UnitPage.unit(), '10')
+        $(UnitPage.unit()).setValue('10');
 
         // Then
-        .getValue(UnitPage.unit()).should.eventually.contain('10')
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.false
+        $(UnitPage.unit()).getValue();
+        expect($(UnitPage.unitExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        .click(UnitPage.submit())
+        $(UnitPage.submit()).click();
 
-        .getText(SummaryPage.unitAnswer()).should.eventually.have.string('10')
-        .getText(SummaryPage.unitAnswer()).should.not.eventually.have.string('I prefer not to say');
+        expect($(SummaryPage.unitAnswer()).getText()).to.have.string('10');
+        expect($(SummaryPage.unitAnswer()).getText()).to.not.have.string('I prefer not to say');
 
     });
   });
@@ -82,19 +82,18 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
   describe('Given the user has not answered the non-exclusive unit answer', function() {
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
-      return browser
         // Given
-        .getValue(UnitPage.unit()).should.eventually.contain('')
+        $(UnitPage.unit()).getValue();
 
         // When
-        .click(UnitPage.unitExclusiveIPreferNotToSay())
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.true
+        $(UnitPage.unitExclusiveIPreferNotToSay()).click();
+        expect($(UnitPage.unitExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
         // Then
-        .click(UnitPage.submit())
+        $(UnitPage.submit()).click();
 
-        .getText(SummaryPage.unitExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.unitExclusiveAnswer()).should.not.eventually.have.string('10');
+        expect($(SummaryPage.unitExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+        expect($(SummaryPage.unitExclusiveAnswer()).getText()).to.not.have.string('10');
 
     });
   });
@@ -102,16 +101,15 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
   describe('Given the user has not answered the question and the question is optional', function() {
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
-      return browser
         // Given
-        .getValue(UnitPage.unit()).should.eventually.contain('')
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.false
+        $(UnitPage.unit()).getValue();
+        expect($(UnitPage.unitExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
-        .click(UnitPage.submit())
+        $(UnitPage.submit()).click();
 
         // Then
-        .getText(SummaryPage.unitAnswer()).should.eventually.contain('No answer provided');
+        expect($(SummaryPage.unitAnswer()).getText()).to.contain('No answer provided');
 
     });
   });

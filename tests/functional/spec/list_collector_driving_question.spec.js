@@ -6,77 +6,69 @@ const AnyoneElseLiveAtListCollectorAddPage = require('../generated_pages/list_co
 const AnyoneElseLiveAtListCollectorRemovePage = require('../generated_pages/list_collector_driving_question/anyone-else-live-at-remove.page.js');
 const SummaryPage = require('../generated_pages/list_collector_driving_question/summary.page.js');
 
-function checkPeopleInList(peopleExpected) {
-  let chain = browser.waitForVisible(SummaryPage.peopleListLabel(1)).should.eventually.be.true;
 
-  for (let i=1; i<=peopleExpected.length; i++) {
-    chain = chain.then(() => {
-      return browser.getText(SummaryPage.peopleListLabel(i)).should.eventually.equal(peopleExpected[i-1]);
-    });
+  function checkPeopleInList(peopleExpected) {
+    $(SummaryPage.peopleListLabel(1)).waitForDisplayed();
+
+    for (let i=1; i<=peopleExpected.length; i++) {
+      expect($(SummaryPage.peopleListLabel(i)).getText()).to.equal(peopleExpected[i-1]);
+    }
   }
 
-  return chain;
-}
 
 describe('List Collector Driving Question', function() {
+  let browser;
 
   beforeEach('Load the survey', function() {
-    return helpers.openQuestionnaire('test_list_collector_driving_question.json')
-      .then(() => {
-        return browser
-          .click(HubPage.submit());
-      });
+    browser = helpers.openQuestionnaire('test_list_collector_driving_question.json').then(openBrowser => browser = openBrowser);
+    $(HubPage.submit()).click();
   });
 
   describe('Given a happy journey through the list collector', function() {
     it('The collector shows all of the household members in the summary', function() {
-      return browser
-        .click(AnyoneUsuallyLiveAtPage.yes())
-        .click(AnyoneUsuallyLiveAtPage.submit())
-        .setValue(AnyoneElseLiveAtListCollectorAddPage.firstName(), 'Marcus')
-        .setValue(AnyoneElseLiveAtListCollectorAddPage.lastName(), 'Twin')
-        .click(AnyoneElseLiveAtListCollectorAddPage.submit())
-        .click(AnyoneElseLiveAtListCollectorPage.yes())
-        .click(AnyoneElseLiveAtListCollectorPage.submit())
-        .setValue(AnyoneElseLiveAtListCollectorAddPage.firstName(), 'Suzy')
-        .setValue(AnyoneElseLiveAtListCollectorAddPage.lastName(), 'Clemens')
-        .click(AnyoneElseLiveAtListCollectorAddPage.submit())
-        .click(AnyoneElseLiveAtListCollectorPage.no())
-        .click(AnyoneElseLiveAtListCollectorPage.submit())
-        .then(() => {
-          const peopleExpected = ['Marcus Twin', 'Suzy Clemens'];
+        $(AnyoneUsuallyLiveAtPage.yes()).click();
+        $(AnyoneUsuallyLiveAtPage.submit()).click();
+        $(AnyoneElseLiveAtListCollectorAddPage.firstName()).setValue('Marcus');
+        $(AnyoneElseLiveAtListCollectorAddPage.lastName()).setValue('Twin');
+        $(AnyoneElseLiveAtListCollectorAddPage.submit()).click();
+        $(AnyoneElseLiveAtListCollectorPage.yes()).click();
+        $(AnyoneElseLiveAtListCollectorPage.submit()).click();
+        $(AnyoneElseLiveAtListCollectorAddPage.firstName()).setValue('Suzy');
+        $(AnyoneElseLiveAtListCollectorAddPage.lastName()).setValue('Clemens');
+        $(AnyoneElseLiveAtListCollectorAddPage.submit()).click();
+        $(AnyoneElseLiveAtListCollectorPage.no()).click();
+        $(AnyoneElseLiveAtListCollectorPage.submit()).click();
+        
+        const peopleExpected = ['Marcus Twin', 'Suzy Clemens'];
 
-          return checkPeopleInList(peopleExpected);
-        });
+        checkPeopleInList(peopleExpected);
     });
    });
 
   describe('Given the user answers no to the driving question', function() {
     it('The summary add link returns to the driving question', function() {
-      return browser
-        .click(AnyoneUsuallyLiveAtPage.no())
-        .click(AnyoneUsuallyLiveAtPage.submit())
-        .click(SummaryPage.peopleListAddLink())
-        .getUrl().should.eventually.contain(AnyoneUsuallyLiveAtPage.url());
+        $(AnyoneUsuallyLiveAtPage.no()).click();
+        $(AnyoneUsuallyLiveAtPage.submit()).click();
+        $(SummaryPage.peopleListAddLink()).click();
+        expect(browser.getUrl()).to.contain(AnyoneUsuallyLiveAtPage.url());
     });
   });
 
 
   describe('Given the user answers yes to the driving question, adds someone and later removes them', function() {
     it('The summary add link should return to the original list collector', function() {
-      return browser
-        .click(AnyoneUsuallyLiveAtPage.yes())
-        .click(AnyoneUsuallyLiveAtPage.submit())
-        .setValue(AnyoneElseLiveAtListCollectorAddPage.firstName(), 'Marcus')
-        .setValue(AnyoneElseLiveAtListCollectorAddPage.lastName(), 'Twin')
-        .click(AnyoneElseLiveAtListCollectorAddPage.submit())
-        .click(AnyoneElseLiveAtListCollectorPage.no())
-        .click(AnyoneElseLiveAtListCollectorPage.submit())
-        .click(SummaryPage.peopleListRemoveLink(1))
-        .click(AnyoneElseLiveAtListCollectorRemovePage.yes())
-        .click(AnyoneElseLiveAtListCollectorRemovePage.submit())
-        .click(SummaryPage.peopleListAddLink())
-        .getUrl().should.eventually.contain(AnyoneElseLiveAtListCollectorAddPage.pageName);
+        $(AnyoneUsuallyLiveAtPage.yes()).click();
+        $(AnyoneUsuallyLiveAtPage.submit()).click();
+        $(AnyoneElseLiveAtListCollectorAddPage.firstName()).setValue('Marcus');
+        $(AnyoneElseLiveAtListCollectorAddPage.lastName()).setValue('Twin');
+        $(AnyoneElseLiveAtListCollectorAddPage.submit()).click();
+        $(AnyoneElseLiveAtListCollectorPage.no()).click();
+        $(AnyoneElseLiveAtListCollectorPage.submit()).click();
+        $(SummaryPage.peopleListRemoveLink(1)).click();
+        $(AnyoneElseLiveAtListCollectorRemovePage.yes()).click();
+        $(AnyoneElseLiveAtListCollectorRemovePage.submit()).click();
+        $(SummaryPage.peopleListAddLink()).click();
+        expect(browser.getUrl()).to.contain(AnyoneElseLiveAtListCollectorAddPage.pageName);
     });
   });
 });
