@@ -33,7 +33,7 @@ describe('Checkbox with multiple "detail_answer" options', function() {
 
   it('Given a selected checkbox answer with an error for a mandatory detail answer, When I enter valid value and submit the page, Then the error is cleared and I navigate to next page.', function() {
     // Given
-    browser = helpers.openQuestionnaire(checkbox_schema).then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire(checkbox_schema).then(openBrowser => browser = openBrowser);
     $(MandatoryCheckboxPage.yourChoice()).click();
     $(MandatoryCheckboxPage.submit()).click();
     expect($(MandatoryCheckboxPage.error()).isDisplayed()).to.be.true;

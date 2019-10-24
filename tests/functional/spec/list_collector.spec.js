@@ -38,7 +38,7 @@ describe('List Collector', function() {
 
   describe('Given a normal journey through the list collector without variants', function() {
     before('Load the survey', function() {
-      browser = helpers.openQuestionnaire('test_list_collector.json').then(openBrowser => browser = openBrowser);
+      helpers.openQuestionnaire('test_list_collector.json').then(openBrowser => browser = openBrowser);
     });
 
     it('The user is able to add members of the household', function() {

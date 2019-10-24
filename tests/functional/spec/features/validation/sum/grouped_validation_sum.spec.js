@@ -7,7 +7,7 @@ describe('Feature: Sum of grouped answers validation against total (Multi Rule E
   let browser;
 
   beforeEach(function() {
-      browser = helpers.openQuestionnaire('test_sum_multi_validation_against_total.json').then(openBrowser => browser = openBrowser);
+      helpers.openQuestionnaire('test_sum_multi_validation_against_total.json').then(openBrowser => browser = openBrowser);
   });
 
   describe('Given I start a grouped answer with multi rule validation survey and enter 10 into the total', function() {

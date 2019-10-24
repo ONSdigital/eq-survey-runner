@@ -10,12 +10,12 @@ describe('Feature: Routing incompletes block if routing backwards', function() {
   describe('Given I have a confirmation Question', function() {
 
     before('Get to summary', function () {
-      browser = helpers.openQuestionnaire('test_confirmation_question.json');
-          $(NumberOfEmployeesTotalBlockPage.numberOfEmployeesTotal()).setValue(0);
-          $(NumberOfEmployeesTotalBlockPage.submit()).click();
-          $(ConfirmZeroEmployeesBlockPage.yes()).click();
-          $(ConfirmZeroEmployeesBlockPage.submit()).click();
-          expect(browser.getUrl()).to.contain(SummaryPage.pageName);
+      helpers.openQuestionnaire('test_confirmation_question.json').then(openBrowser => browser = openBrowser);
+      $(NumberOfEmployeesTotalBlockPage.numberOfEmployeesTotal()).setValue(0);
+      $(NumberOfEmployeesTotalBlockPage.submit()).click();
+      $(ConfirmZeroEmployeesBlockPage.yes()).click();
+      $(ConfirmZeroEmployeesBlockPage.submit()).click();
+      expect(browser.getUrl()).to.contain(SummaryPage.pageName);
     });
 
   });

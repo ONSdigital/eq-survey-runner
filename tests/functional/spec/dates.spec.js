@@ -10,7 +10,7 @@ describe('Date checks', function() {
   let browser;
 
   beforeEach('Load the survey', function () {
-    browser = helpers.openQuestionnaire('test_dates.json').then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_dates.json').then(openBrowser => browser = openBrowser);
   });
 
   it('Given the test_dates survey is selected when dates are entered then the summary screen shows the dates entered formatted', function() {

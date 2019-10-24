@@ -9,8 +9,7 @@ describe('Language Code', function() {
   let browser;
 
   it('Given a launch language of Welsh, I should see Welsh text', function() {
-
-    browser = helpers.openQuestionnaire('test_language.json', { language: 'cy' }).then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_language.json', { language: 'cy' }).then(openBrowser => browser = openBrowser);
 
     expect($(NamePage.questionText()).getText()).to.contain('Rhowch enw');
 
@@ -33,8 +32,7 @@ describe('Language Code', function() {
   });
 
   it('Given a launch language of English, I should see English text', function() {
-
-    browser = helpers.openQuestionnaire('test_language.json', { language: 'en' }).then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_language.json', { language: 'en' }).then(openBrowser => browser = openBrowser);
 
     expect($(NamePage.questionText()).getText()).to.contain('Please enter a name');
     $(NamePage.firstName()).setValue('Catherine');
@@ -56,8 +54,7 @@ describe('Language Code', function() {
   });
 
   it('Given a launch language of English, When I select Cymraeg, Then the language should be switched to Welsh', function() {
-
-    browser = helpers.openQuestionnaire('test_language.json', { language: 'en' }).then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_language.json', { language: 'en' }).then(openBrowser => browser = openBrowser);
 
     expect($(NamePage.questionText()).getText()).to.contain('Please enter a name');
     $(NamePage.switchLanguage('cy')).click();
@@ -86,7 +83,7 @@ describe('Language Code', function() {
   });
 
   it('Given a launch language of Welsh, When I select English, Then the language should be switched to English', function() {
-    browser = helpers.openQuestionnaire('test_language.json', { language: 'cy' }).then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_language.json', { language: 'cy' }).then(openBrowser => browser = openBrowser);
 
     expect($(NamePage.questionText()).getText()).to.contain('Rhowch enw');
     $(NamePage.switchLanguage('en')).click();

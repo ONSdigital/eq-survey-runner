@@ -15,7 +15,7 @@ describe('SaveSignOut', function() {
   const responseId = utilities.getRandomString(16);
 
   it('Given I am completing a survey, when I select save and complete later, then I am redirected to sign out page and my session is cleared', function() {
-    browser = helpers.openQuestionnaire('test_numbers.json', { userId: 'test_user', responseId: responseId } ).then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_numbers.json', { userId: 'test_user', responseId: responseId } ).then(openBrowser => browser = openBrowser);
     $(SetMinMax.setMinimum()).setValue('10');
     $(SetMinMax.setMaximum()).setValue('1020');
     $(SetMinMax.submit()).click();
@@ -29,7 +29,7 @@ describe('SaveSignOut', function() {
   });
 
   it('Given I have started a questionnaire, when I return to the questionnaire, then I am returned to the page I was on and can then complete the survey', function() {
-    browser = helpers.openQuestionnaire('test_numbers.json', { userId: 'test_user', responseId: responseId } ).then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_numbers.json', { userId: 'test_user', responseId: responseId } ).then(openBrowser => browser = openBrowser);
 
     $(TestMinMax.testRange()).setValue('10');
     $(TestMinMax.testMin()).setValue('123');
@@ -42,7 +42,7 @@ describe('SaveSignOut', function() {
   });
 
   it('Given a logout url is set, when I navigate the questionnaire, then I see the correct sign out buttons', function() {
-    browser = helpers.openQuestionnaire('test_introduction.json', { includeLogoutUrl: true }).then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_introduction.json', { includeLogoutUrl: true }).then(openBrowser => browser = openBrowser);
 
     expect($(IntroductionPage.signOut()).getText()).to.contain('Sign out');
     $(IntroductionPage.getStarted()).click();
@@ -57,7 +57,7 @@ describe('SaveSignOut', function() {
   });
 
   it('Given a logout url is not set, when I navigate the questionnaire, then I see the correct sign out buttons', function() {
-    browser = helpers.openQuestionnaire('test_introduction.json', { includeLogoutUrl: false }).then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_introduction.json', { includeLogoutUrl: false }).then(openBrowser => browser = openBrowser);
 
     expect($(IntroductionPage.signOut()).isExisting()).to.be.false;
     $(IntroductionPage.getStarted()).click();

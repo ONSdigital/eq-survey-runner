@@ -27,7 +27,7 @@ describe('Feature: Confirmation Question', function() {
   describe('Given a confirmation Question', function() {
 
     it('When I answer \'No\' to the confirmation question, Then I should be routed back to the source question', function () {
-      browser = helpers.openQuestionnaire('test_confirmation_question.json').then(openBrowser => browser = openBrowser);
+      helpers.openQuestionnaire('test_confirmation_question.json').then(openBrowser => browser = openBrowser);
       $(NumberOfEmployeesTotalBlockPage.submit()).click();
       $(ConfirmZeroEmployeesBlockPage.no()).click();
       $(ConfirmZeroEmployeesBlockPage.submit()).click();

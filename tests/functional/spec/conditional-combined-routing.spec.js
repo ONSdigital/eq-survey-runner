@@ -9,45 +9,40 @@ describe('Conditional combined routing.', function() {
   let browser;
 
   beforeEach(function() {
-    browser = helpers.openQuestionnaire('test_conditional_combined_routing.json').then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_conditional_combined_routing.json').then(openBrowser => browser = openBrowser);
   });
 
   it('Given a list of radio options, when I choose the option "Yes" or the option "Sometimes" then I should be routed to the relevant page', function() {
-    //Given
-      // When
-      $(ConditionalCombinedRoutingPage.yes()).click();
-      $(ConditionalCombinedRoutingPage.submit()).click();
-      // Then
-      expect(browser.getUrl()).to.contain(ResponseAny.pageName);
+    // When
+    $(ConditionalCombinedRoutingPage.yes()).click();
+    $(ConditionalCombinedRoutingPage.submit()).click();
+    // Then
+    expect(browser.getUrl()).to.contain(ResponseAny.pageName);
 
-      // Or
-      $(ResponseAny.previous()).click();
+    // Or
+    $(ResponseAny.previous()).click();
 
-      // When
-      $(ConditionalCombinedRoutingPage.sometimes()).click();
-      $(ConditionalCombinedRoutingPage.submit()).click();
+    // When
+    $(ConditionalCombinedRoutingPage.sometimes()).click();
+    $(ConditionalCombinedRoutingPage.submit()).click();
 
-      // Then
-      expect(browser.getUrl()).to.contain(ResponseAny.pageName);
-
+    // Then
+    expect(browser.getUrl()).to.contain(ResponseAny.pageName);
   });
 
   it('Given a list of radio options, when I choose the option "No, I prefer tea" then I should be routed to the relevant page', function() {
-    //Given
-      //When
-      $(ConditionalCombinedRoutingPage.noIPreferTea()).click();
-      $(ConditionalCombinedRoutingPage.submit()).click();
-      // Then
-      expect(browser.getUrl()).to.contain(ResponseNotAny.pageName);
+    //When
+    $(ConditionalCombinedRoutingPage.noIPreferTea()).click();
+    $(ConditionalCombinedRoutingPage.submit()).click();
+    // Then
+    expect(browser.getUrl()).to.contain(ResponseNotAny.pageName);
   });
 
   it('Given a list of radio options, when I choose the option "No, I don\'t drink any hot drinks" then I should be routed to the summary page', function() {
-    //Given
-      //When
-      $(ConditionalCombinedRoutingPage.noIDonTDrinkAnyHotDrinks()).click();
-      $(ConditionalCombinedRoutingPage.submit()).click();
-      // Then
-      expect(browser.getUrl()).to.contain(ResponseSummaryPage.pageName);
+    //When
+    $(ConditionalCombinedRoutingPage.noIDonTDrinkAnyHotDrinks()).click();
+    $(ConditionalCombinedRoutingPage.submit()).click();
+    // Then
+    expect(browser.getUrl()).to.contain(ResponseSummaryPage.pageName);
   });
-
 });

@@ -7,7 +7,7 @@ describe('Skip Conditions - Set', function() {
   let browser;
 
   beforeEach('Load the survey', function () {
-    browser = helpers.openQuestionnaire('test_skip_condition_set.json').then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_skip_condition_set.json').then(openBrowser => browser = openBrowser);
   });
 
   it('Given I complete the first page, Then I should see the summary page', function() {

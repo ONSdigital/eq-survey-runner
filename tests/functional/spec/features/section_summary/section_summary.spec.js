@@ -13,7 +13,7 @@ describe('Section Summary', function() {
   describe('Given I start a Test Section Summary survey and complete to Section Summary', function() {
 
     beforeEach(function() {
-      browser = helpers.openQuestionnaire('test_section_summary.json').then(openBrowser => browser = openBrowser);
+      helpers.openQuestionnaire('test_section_summary.json').then(openBrowser => browser = openBrowser);
       $(InsuranceTypePage.both()).click();
       $(InsuranceTypePage.submit()).click();
       $(InsuranceAddressPage.submit()).click();
@@ -45,7 +45,7 @@ describe('Section Summary', function() {
   describe('Given I start a Test Section Summary survey and complete to Final Summary', function() {
 
     beforeEach(function() {
-      browser = helpers.openQuestionnaire('test_section_summary.json').then(openBrowser => browser = openBrowser);
+      helpers.openQuestionnaire('test_section_summary.json').then(openBrowser => browser = openBrowser);
       $(InsuranceTypePage.both()).click();
       $(InsuranceTypePage.submit()).click();
       $(InsuranceAddressPage.submit()).click();

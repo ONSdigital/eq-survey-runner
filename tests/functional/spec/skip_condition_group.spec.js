@@ -6,9 +6,9 @@ describe('Skip Condition Group', function() {
   let browser;
 
   it('Given I am not skipping, When I complete all questions, Then I should see the summary page', function() {
-    browser = helpers.openQuestionnaire('test_skip_condition_group.json').then(openBrowser => browser = openBrowser);
-        $(WantToSkipPage.yes()).click();
-        $(WantToSkipPage.submit()).click();
-        expect(browser.getUrl()).to.contain(LastGroupPage.pageName);
+    helpers.openQuestionnaire('test_skip_condition_group.json').then(openBrowser => browser = openBrowser);
+    $(WantToSkipPage.yes()).click();
+    $(WantToSkipPage.submit()).click();
+    expect(browser.getUrl()).to.contain(LastGroupPage.pageName);
   });
 });

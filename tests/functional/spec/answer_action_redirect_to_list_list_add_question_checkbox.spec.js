@@ -20,7 +20,7 @@ describe('Answer Action: Redirect To List Add Question (Checkbox)', function () 
   describe('Given the user is on a question with a "RedirectToListAddQuestion" action enabled', function () {
 
     before('Launch survey', function () {
-      browser = helpers.openQuestionnaire('test_answer_action_redirect_to_list_add_question_checkbox.json').then(openBrowser => browser = openBrowser);
+      helpers.openQuestionnaire('test_answer_action_redirect_to_list_add_question_checkbox.json').then(openBrowser => browser = openBrowser);
     });
 
     it('When the user selects "No", Then, they should be taken to straight the list collector.', function () {

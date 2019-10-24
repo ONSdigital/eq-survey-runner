@@ -7,7 +7,7 @@ describe('Durations', function() {
   let browser;
 
   beforeEach('Load the survey', function () {
-    browser = helpers.openQuestionnaire('test_durations.json').then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_durations.json').then(openBrowser => browser = openBrowser);
   });
 
   it('Given the test_durations survey is selected when durations are entered then the summary screen shows the durations entered formatted', function() {

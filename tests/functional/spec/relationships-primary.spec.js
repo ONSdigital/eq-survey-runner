@@ -11,7 +11,7 @@ describe('Relationships - Primary Person', function() {
 
   describe('Given I am completing the test_relationships_primary survey', function() {
     beforeEach(function() {
-      browser = helpers.openQuestionnaire(schema).then(openBrowser => browser = openBrowser);
+      helpers.openQuestionnaire(schema).then(openBrowser => browser = openBrowser);
     });
 
     it('When I add household members, Then I will be asked my relationships as a primary person', function() {

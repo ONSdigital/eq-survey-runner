@@ -8,40 +8,38 @@ describe('Routing Checkbox Contains Condition.', function () {
   let browser;
 
   beforeEach(function () {
-    browser = helpers.openQuestionnaire('test_routing_checkbox_contains.json').then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_routing_checkbox_contains.json').then(openBrowser => browser = openBrowser);
   });
 
   it('Given a list of checkbox options, when I have don\'t select "Liechtenstein" and select the option "India" or the option "Azerbaijan" or both then I should be routed to the "contains any" condition page', function () {
-    //Given
-      // When
-      expect($(RoutingCheckboxContains.liechtenstein()).isSelected()).to.be.false;
+    // When
+    expect($(RoutingCheckboxContains.liechtenstein()).isSelected()).to.be.false;
 
-      $(RoutingCheckboxContains.india()).click();
-      $(RoutingCheckboxContains.submit()).click();
-      // Then
-      expect(browser.getUrl()).to.contain(ContainsAnyPage.pageName);
+    $(RoutingCheckboxContains.india()).click();
+    $(RoutingCheckboxContains.submit()).click();
+    // Then
+    expect(browser.getUrl()).to.contain(ContainsAnyPage.pageName);
 
-      // Or
-      $(ContainsAnyPage.previous()).click();
+    // Or
+    $(ContainsAnyPage.previous()).click();
 
-      // When
-      $(RoutingCheckboxContains.india()).click();
-      $(RoutingCheckboxContains.azerbaijan()).click();
-      $(RoutingCheckboxContains.submit()).click();
+    // When
+    $(RoutingCheckboxContains.india()).click();
+    $(RoutingCheckboxContains.azerbaijan()).click();
+    $(RoutingCheckboxContains.submit()).click();
 
-      // Then
-      expect(browser.getUrl()).to.contain(ContainsAnyPage.pageName);
+    // Then
+    expect(browser.getUrl()).to.contain(ContainsAnyPage.pageName);
 
-      // Or
-      $(ContainsAnyPage.previous()).click();
+    // Or
+    $(ContainsAnyPage.previous()).click();
 
-      // When
-      $(RoutingCheckboxContains.india()).click();
-      $(RoutingCheckboxContains.submit()).click();
+    // When
+    $(RoutingCheckboxContains.india()).click();
+    $(RoutingCheckboxContains.submit()).click();
 
-      // Then
-      expect(browser.getUrl()).to.contain(ContainsAnyPage.pageName);
-
+    // Then
+    expect(browser.getUrl()).to.contain(ContainsAnyPage.pageName);
   });
 
   it('Given a list of checkbox options, when I select the option "Malta" or the option "Liechtenstein" or both then I should be routed to the summary condition page', function () {

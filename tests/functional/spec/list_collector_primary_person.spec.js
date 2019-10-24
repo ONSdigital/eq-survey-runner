@@ -15,7 +15,7 @@ describe('Primary Person List Collector Survey', function() {
 
   describe('Given the user starts on the \'do you live here\' question', function() {
     before('Load the survey', function () {
-      browser = helpers.openQuestionnaire('test_list_collector_primary_person.json').then(openBrowser => browser = openBrowser);
+      helpers.openQuestionnaire('test_list_collector_primary_person.json').then(openBrowser => browser = openBrowser);
     });
 
     it.skip('When the user says they do not live there, and changes their answer to yes, then the user can\'t navigate to the list collector', function () {
@@ -31,7 +31,7 @@ describe('Primary Person List Collector Survey', function() {
 
   describe('Given the user starts on the \'do you live here\' question', function() {
     before('Load the survey', function () {
-      browser = helpers.openQuestionnaire('test_list_collector_primary_person.json').then(openBrowser => browser = openBrowser);
+      helpers.openQuestionnaire('test_list_collector_primary_person.json').then(openBrowser => browser = openBrowser);
     });
 
     it('When the user says that they do live there, then they are shown as the primary person', function () {

@@ -7,7 +7,7 @@ describe('Checkbox with a numeric "detail_answer" option', function() {
   let browser;
 
   beforeEach(function() {
-    browser = helpers.openQuestionnaire('test_checkbox_numeric_detail_answers.json').then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_checkbox_numeric_detail_answers.json').then(openBrowser => browser = openBrowser);
     $(CheckboxNumericDetailPage.other()).click();
   });
 

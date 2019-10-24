@@ -7,52 +7,52 @@ describe('Feature: Validation for single date periods', function() {
   let browser;
 
   beforeEach(function() {
-     browser = helpers.openQuestionnaire('test_date_validation_single.json').then(openBrowser => browser = openBrowser);
+     helpers.openQuestionnaire('test_date_validation_single.json').then(openBrowser => browser = openBrowser);
      completeFirstDatePage();
   });
 
   describe('Given I enter a date before the minimum offset meta date', function() {
     it('When I continue, Then I should see a period validation error', function() {
-       $(DatePeriodPage.dateRangeFromday()).setValue(13);
-       $(DatePeriodPage.dateRangeFrommonth()).setValue(2);
-       $(DatePeriodPage.dateRangeFromyear()).setValue(2016);
-       $(DatePeriodPage.submit()).click();
+      $(DatePeriodPage.dateRangeFromday()).setValue(13);
+      $(DatePeriodPage.dateRangeFrommonth()).setValue(2);
+      $(DatePeriodPage.dateRangeFromyear()).setValue(2016);
+      $(DatePeriodPage.submit()).click();
 
-       $(DatePeriodPage.dateRangeToday()).setValue(3);
-       $(DatePeriodPage.dateRangeTomonth()).setValue(3);
-       $(DatePeriodPage.dateRangeToyear()).setValue(2018);
-       $(DatePeriodPage.submit()).click();
-       expect($(DatePeriodPage.errorNumber(1)).getText()).to.contain('Enter a date after 12 December 2016.');
+      $(DatePeriodPage.dateRangeToday()).setValue(3);
+      $(DatePeriodPage.dateRangeTomonth()).setValue(3);
+      $(DatePeriodPage.dateRangeToyear()).setValue(2018);
+      $(DatePeriodPage.submit()).click();
+      expect($(DatePeriodPage.errorNumber(1)).getText()).to.contain('Enter a date after 12 December 2016.');
      });
   });
 
   describe('Given I enter a date after the maximum offset value date', function() {
     it('When I continue, Then I should see a period validation error', function() {
-       $(DatePeriodPage.dateRangeFromday()).setValue(13);
-       $(DatePeriodPage.dateRangeFrommonth()).setValue(7);
-       $(DatePeriodPage.dateRangeFromyear()).setValue(2017);
-       $(DatePeriodPage.submit()).click();
+      $(DatePeriodPage.dateRangeFromday()).setValue(13);
+      $(DatePeriodPage.dateRangeFrommonth()).setValue(7);
+      $(DatePeriodPage.dateRangeFromyear()).setValue(2017);
+      $(DatePeriodPage.submit()).click();
 
-       $(DatePeriodPage.dateRangeToday()).setValue(3);
-       $(DatePeriodPage.dateRangeTomonth()).setValue(3);
-       $(DatePeriodPage.dateRangeToyear()).setValue(2018);
-       $(DatePeriodPage.submit()).click();
-       expect($(DatePeriodPage.errorNumber(1)).getText()).to.contain('Enter a date before 2 July 2017.');
+      $(DatePeriodPage.dateRangeToday()).setValue(3);
+      $(DatePeriodPage.dateRangeTomonth()).setValue(3);
+      $(DatePeriodPage.dateRangeToyear()).setValue(2018);
+      $(DatePeriodPage.submit()).click();
+      expect($(DatePeriodPage.errorNumber(1)).getText()).to.contain('Enter a date before 2 July 2017.');
      });
   });
 
   describe('Given I enter a date before the minimum offset answer id date', function() {
     it('When I continue, Then I should see a period validation error', function() {
-       $(DatePeriodPage.dateRangeFromday()).setValue(13);
-       $(DatePeriodPage.dateRangeFrommonth()).setValue(11);
-       $(DatePeriodPage.dateRangeFromyear()).setValue(2016);
-       $(DatePeriodPage.submit()).click();
+      $(DatePeriodPage.dateRangeFromday()).setValue(13);
+      $(DatePeriodPage.dateRangeFrommonth()).setValue(11);
+      $(DatePeriodPage.dateRangeFromyear()).setValue(2016);
+      $(DatePeriodPage.submit()).click();
 
-       $(DatePeriodPage.dateRangeToday()).setValue(13);
-       $(DatePeriodPage.dateRangeTomonth()).setValue(1);
-       $(DatePeriodPage.dateRangeToyear()).setValue(2018);
-       $(DatePeriodPage.submit()).click();
-       expect($(DatePeriodPage.errorNumber(2)).getText()).to.contain('Enter a date after 10 February 2018.');
+      $(DatePeriodPage.dateRangeToday()).setValue(13);
+      $(DatePeriodPage.dateRangeTomonth()).setValue(1);
+      $(DatePeriodPage.dateRangeToyear()).setValue(2018);
+      $(DatePeriodPage.submit()).click();
+      expect($(DatePeriodPage.errorNumber(2)).getText()).to.contain('Enter a date after 10 February 2018.');
      });
   });
 

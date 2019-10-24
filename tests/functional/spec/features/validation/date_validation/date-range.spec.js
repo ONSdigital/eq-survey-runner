@@ -8,7 +8,7 @@ describe('Feature: Question level validation for date ranges', function() {
 
 
   beforeEach(function() {
-        browser = helpers.openQuestionnaire('test_date_validation_range.json').then(openBrowser => browser = openBrowser);
+    helpers.openQuestionnaire('test_date_validation_range.json').then(openBrowser => browser = openBrowser);
   });
 
   describe('Period Validation', function () {
