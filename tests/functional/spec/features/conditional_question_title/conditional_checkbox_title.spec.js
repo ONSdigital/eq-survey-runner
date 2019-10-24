@@ -9,7 +9,7 @@ describe('Feature: Conditional checkbox and radio question titles', function() {
   let browser;
 
   beforeEach(function() {
-      browser = helpers.openQuestionnaire('test_titles_radio_and_checkbox.json')
+      helpers.openQuestionnaire('test_titles_radio_and_checkbox.json')
         .then(openBrowser => browser = openBrowser);
   });
 

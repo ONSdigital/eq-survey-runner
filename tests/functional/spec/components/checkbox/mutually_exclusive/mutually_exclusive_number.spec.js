@@ -7,7 +7,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
   let browser;
 
   beforeEach(function() {
-    browser = helpers.openQuestionnaire('test_mutually_exclusive.json')
+    helpers.openQuestionnaire('test_mutually_exclusive.json')
     .then(openBrowser => browser = openBrowser)
     .then(function() {
         browser.url('/questionnaire/mutually-exclusive-number');
