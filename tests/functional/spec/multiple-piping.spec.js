@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const AddressPage = require('../generated_pages/multiple_piping/what-is-your-address.page');
 const TextfieldPage = require('../generated_pages/multiple_piping/textfield.page');
 const MultiplePipingPage = require('../generated_pages/multiple_piping/piping-question.page');
@@ -8,7 +7,7 @@ describe('Piping', function() {
 
   describe('Multiple piping into question and answer', function() {
     beforeEach('load the survey', function() {
-      helpers.openQuestionnaire(piping_schema);
+      browser.openQuestionnaire(piping_schema);
     });
 
     it('Given I enter multiple fields in one question, When I navigate to the multiple piping answer, Then I should see all values piped into an answer', function() {

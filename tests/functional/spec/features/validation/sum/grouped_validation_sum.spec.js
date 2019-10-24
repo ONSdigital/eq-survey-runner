@@ -1,13 +1,10 @@
-const helpers = require('../../../../helpers');
 const TotalAnswerPage = require('../../../../generated_pages/sum_multi_validation_against_total/total-block.page');
 const BreakdownAnswerPage = require('../../../../generated_pages/sum_multi_validation_against_total/breakdown-block.page');
 const SummaryPage = require('../../../../generated_pages/sum_multi_validation_against_total/summary.page');
 
 describe('Feature: Sum of grouped answers validation against total (Multi Rule Equals)', function () {
-  let browser;
-
   beforeEach(function() {
-      helpers.openQuestionnaire('test_sum_multi_validation_against_total.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_sum_multi_validation_against_total.json');
   });
 
   describe('Given I start a grouped answer with multi rule validation survey and enter 10 into the total', function() {

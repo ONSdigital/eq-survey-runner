@@ -1,14 +1,10 @@
-const helpers = require('../helpers');
-
 const MandatoryCheckboxPage = require('../generated_pages/checkbox/mandatory-checkbox.page');
 const NonMandatoryCheckboxPage = require('../generated_pages/checkbox/non-mandatory-checkbox.page');
 const SummaryPage = require('../generated_pages/checkbox/summary.page');
 
 describe('Checkbox with "other" option', function() {
-  let browser;
-
   beforeEach('Load the survey', function() {
-    helpers.openQuestionnaire('test_checkbox.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_checkbox.json');
   });
 
   it('Given a label has not been provided in the schema for a checkbox answer, When the checkbox answer is displayed, Then the label should be not visible', function() {

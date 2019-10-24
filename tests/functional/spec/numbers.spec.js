@@ -1,15 +1,12 @@
-const helpers = require('../helpers');
 const SetMinMax = require('../generated_pages/numbers/set-min-max-block.page.js');
 const TestMinMax = require('../generated_pages/numbers/test-min-max-block.page.js');
 const SummaryPage = require('../generated_pages/numbers/summary.page');
 
 describe('NumericRange', function() {
-  let browser;
-
   const number_schema = 'test_numbers.json';
 
   beforeEach(function() {
-    helpers.openQuestionnaire(number_schema).then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire(number_schema);
   });
 
   it ('Answer labels should have descriptions displayed', function() {

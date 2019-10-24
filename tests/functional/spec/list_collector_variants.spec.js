@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const YouLiveHerePage = require('../generated_pages/list_collector_variants/you-live-here-block.page.js');
 const ListCollectorPage = require('../generated_pages/list_collector_variants/list-collector.page.js');
 const ListCollectorAddPage = require('../generated_pages/list_collector_variants/list-collector-add.page.js');
@@ -7,19 +6,17 @@ const ListCollectorRemovePage = require('../generated_pages/list_collector_varia
 const ConfirmationPage = require('../generated_pages/list_collector_variants/confirmation.page.js');
 
 describe('List Collector With Variants', function() {
-  let browser;
-
   function checkPeopleInList(peopleExpected) {
     $(ListCollectorPage.listLabel(1)).waitForDisplayed();
 
     for (let i=1; i<=peopleExpected.length; i++) {
-        expect($(ListCollectorPage.listLabel(i)).getText()).to.equal(peopleExpected[i-1]);
+      expect($(ListCollectorPage.listLabel(i)).getText()).to.equal(peopleExpected[i-1]);
     }
   }
 
   describe('Given that a person lives in house', function() {
     before('Load the survey', function() {
-      helpers.openQuestionnaire('test_list_collector_variants.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_list_collector_variants.json');
     });
 
     it('The user is asked questions about whether they live there', function() {
@@ -66,7 +63,7 @@ describe('List Collector With Variants', function() {
 
   describe('Given a person does not live in house', function() {
     before('Load the survey', function () {
-      helpers.openQuestionnaire('test_list_collector_variants.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_list_collector_variants.json');
     });
 
     it('The user is asked questions about whether they live there', function() {

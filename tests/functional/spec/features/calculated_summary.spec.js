@@ -1,5 +1,3 @@
-const helpers = require('../../helpers');
-
 const FirstNumberBlockPage = require('../../generated_pages/calculated_summary/first-number-block.page.js');
 const SecondNumberBlockPage = require('../../generated_pages/calculated_summary/second-number-block.page.js');
 const ThirdNumberBlockPage = require('../../generated_pages/calculated_summary/third-number-block.page.js');
@@ -18,46 +16,43 @@ const SummaryPage = require('../../base_pages/summary.page.js');
 const ThankYouPage = require('../../base_pages/thank-you.page.js');
 
 describe('Feature: Calculated Summary', function() {
-  let browser;
 
   describe('Given I have a Calculated Summary', function() {
-
     before('Get to Calculated Summary', function () {
-      helpers.openQuestionnaire('test_calculated_summary.json')
-      .then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_calculated_summary.json');
 
-    $(FirstNumberBlockPage.firstNumber()).setValue(1.23);
-    $(FirstNumberBlockPage.submit()).click();
+      $(FirstNumberBlockPage.firstNumber()).setValue(1.23);
+      $(FirstNumberBlockPage.submit()).click();
 
-    $(SecondNumberBlockPage.secondNumber()).setValue(4.56);
-    $(SecondNumberBlockPage.secondNumberUnitTotal()).setValue(789);
-    $(SecondNumberBlockPage.secondNumberAlsoInTotal()).setValue(0.12);
-    $(SecondNumberBlockPage.submit()).click();
+      $(SecondNumberBlockPage.secondNumber()).setValue(4.56);
+      $(SecondNumberBlockPage.secondNumberUnitTotal()).setValue(789);
+      $(SecondNumberBlockPage.secondNumberAlsoInTotal()).setValue(0.12);
+      $(SecondNumberBlockPage.submit()).click();
 
-    $(ThirdNumberBlockPage.thirdNumber()).setValue(3.45);
-    $(ThirdNumberBlockPage.submit()).click();
-    $(ThirdAndAHalfNumberBlockPage.thirdAndAHalfNumberUnitTotal()).setValue(678);
-    $(ThirdAndAHalfNumberBlockPage.submit()).click();
+      $(ThirdNumberBlockPage.thirdNumber()).setValue(3.45);
+      $(ThirdNumberBlockPage.submit()).click();
+      $(ThirdAndAHalfNumberBlockPage.thirdAndAHalfNumberUnitTotal()).setValue(678);
+      $(ThirdAndAHalfNumberBlockPage.submit()).click();
 
-    $(SkipFourthBlockPage.no()).click();
-    $(SkipFourthBlockPage.submit()).click();
+      $(SkipFourthBlockPage.no()).click();
+      $(SkipFourthBlockPage.submit()).click();
 
-    $(FourthNumberBlockPage.fourthNumber()).setValue(9.01);
-    $(FourthNumberBlockPage.submit()).click();
-    $(FourthAndAHalfNumberBlockPage.fourthAndAHalfNumberAlsoInTotal()).setValue(2.34);
-    $(FourthAndAHalfNumberBlockPage.submit()).click();
+      $(FourthNumberBlockPage.fourthNumber()).setValue(9.01);
+      $(FourthNumberBlockPage.submit()).click();
+      $(FourthAndAHalfNumberBlockPage.fourthAndAHalfNumberAlsoInTotal()).setValue(2.34);
+      $(FourthAndAHalfNumberBlockPage.submit()).click();
 
-    $(FifthNumberBlockPage.fifthPercent()).setValue(56);
-    $(FifthNumberBlockPage.fifthNumber()).setValue(78.91);
-    $(FifthNumberBlockPage.submit()).click();
+      $(FifthNumberBlockPage.fifthPercent()).setValue(56);
+      $(FifthNumberBlockPage.fifthNumber()).setValue(78.91);
+      $(FifthNumberBlockPage.submit()).click();
 
-    $(SixthNumberBlockPage.sixthPercent()).setValue(23);
-    $(SixthNumberBlockPage.sixthNumber()).setValue(45.67);
-    $(SixthNumberBlockPage.submit()).click();
+      $(SixthNumberBlockPage.sixthPercent()).setValue(23);
+      $(SixthNumberBlockPage.sixthNumber()).setValue(45.67);
+      $(SixthNumberBlockPage.submit()).click();
 
-    let browserUrl = browser.getUrl();
+      let browserUrl = browser.getUrl();
 
-    expect(browserUrl).to.contain(CurrencyTotalPlaybackPageWithFourth.pageName);
+      expect(browserUrl).to.contain(CurrencyTotalPlaybackPageWithFourth.pageName);
   });
 
   it('Given I complete every question, When i get to the currency summary, Then I should see the correct total', function() {

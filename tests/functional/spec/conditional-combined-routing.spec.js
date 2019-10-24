@@ -1,15 +1,11 @@
-const helpers = require('../helpers');
-
 const ConditionalCombinedRoutingPage = require('../generated_pages/conditional_combined_routing/conditional-routing-block.page');
 const ResponseAny = require('../generated_pages/conditional_combined_routing/response-any.page');
 const ResponseNotAny = require('../generated_pages/conditional_combined_routing/response-not-any.page');
 const ResponseSummaryPage = require('../generated_pages/conditional_combined_routing/summary.page');
 
 describe('Conditional combined routing.', function() {
-  let browser;
-
   beforeEach(function() {
-    helpers.openQuestionnaire('test_conditional_combined_routing.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_conditional_combined_routing.json')
   });
 
   it('Given a list of radio options, when I choose the option "Yes" or the option "Sometimes" then I should be routed to the relevant page', function() {

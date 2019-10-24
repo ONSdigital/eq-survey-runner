@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const AnotherListCollectorPage = require('../generated_pages/list_collector/another-list-collector-block.page.js');
 const AnotherListCollectorAddPage = require('../generated_pages/list_collector/another-list-collector-block-add.page.js');
 const AnotherListCollectorEditPage = require('../generated_pages/list_collector/another-list-collector-block-edit.page.js');
@@ -22,12 +21,7 @@ const PeopleListSectionSummaryPage = require('../generated_pages/list_collector_
 const ConfirmationPage = require('../generated_pages/list_collector/confirmation.page.js');
 
 
-
-
-
 describe('List Collector', function() {
-  let browser;
-
   function checkPeopleInList(peopleExpected) {
     $(ListCollectorPage.listLabel(1)).waitForDisplayed();
 
@@ -38,7 +32,7 @@ describe('List Collector', function() {
 
   describe('Given a normal journey through the list collector without variants', function() {
     before('Load the survey', function() {
-      helpers.openQuestionnaire('test_list_collector.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_list_collector.json');
     });
 
     it('The user is able to add members of the household', function() {
@@ -116,7 +110,7 @@ describe('List Collector', function() {
     });
 
     it('After the interstitial, the user should be on the second list collector page', function() {
-        expect(browser.getUrl()).to.contain(AnotherListCollectorPage.pageName);
+      expect(browser.getUrl()).to.contain(AnotherListCollectorPage.pageName);
     });
 
     it('The collector still shows the same list of people on the summary', function() {
@@ -140,8 +134,8 @@ describe('List Collector', function() {
     });
 
     it('The user is redirected to the summary when the user visits a non-existant list item id', function() {
-        browser.url('/questionnaire/people/somerandomid/another-edit-person');
-        expect(browser.getUrl()).to.contain(AnotherListCollectorPage.pageName);
+      browser.url('/questionnaire/people/somerandomid/another-edit-person');
+      expect(browser.getUrl()).to.contain(AnotherListCollectorPage.pageName);
     });
 
     it('The user is returned to the list collector when the previous link is clicked.', function() {
@@ -173,7 +167,7 @@ describe('List Collector', function() {
   describe('Given I start a list collector survey and complete to Section Summary', function() {
 
     beforeEach(function() {
-      helpers.openQuestionnaire('test_list_collector_section_summary.json');
+      browser.openQuestionnaire('test_list_collector_section_summary.json');
       $(PrimaryPersonListCollectorPage.yes()).click();
       $(PrimaryPersonListCollectorPage.submit()).click();
       $(PrimaryPersonListCollectorAddPage.firstName()).setValue('Marcus');

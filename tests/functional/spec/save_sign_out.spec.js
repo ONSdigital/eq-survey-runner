@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const utilities = require('../utilities');
 const SetMinMax = require('../generated_pages/numbers/set-min-max-block.page.js');
 const TestMinMax = require('../generated_pages/numbers/test-min-max-block.page.js');
@@ -10,12 +9,10 @@ const IntroConfirmationPage = require('../generated_pages/introduction/confirmat
 const IntroThankYouPagePage = require('../base_pages/thank-you.page');
 
 describe('SaveSignOut', function() {
-  let browser;
-
   const responseId = utilities.getRandomString(16);
 
   it('Given I am completing a survey, when I select save and complete later, then I am redirected to sign out page and my session is cleared', function() {
-    helpers.openQuestionnaire('test_numbers.json', { userId: 'test_user', responseId: responseId } ).then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_numbers.json', { userId: 'test_user', responseId: responseId } );
     $(SetMinMax.setMinimum()).setValue('10');
     $(SetMinMax.setMaximum()).setValue('1020');
     $(SetMinMax.submit()).click();
@@ -29,7 +26,7 @@ describe('SaveSignOut', function() {
   });
 
   it('Given I have started a questionnaire, when I return to the questionnaire, then I am returned to the page I was on and can then complete the survey', function() {
-    helpers.openQuestionnaire('test_numbers.json', { userId: 'test_user', responseId: responseId } ).then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_numbers.json', { userId: 'test_user', responseId: responseId } );
 
     $(TestMinMax.testRange()).setValue('10');
     $(TestMinMax.testMin()).setValue('123');
@@ -42,7 +39,7 @@ describe('SaveSignOut', function() {
   });
 
   it('Given a logout url is set, when I navigate the questionnaire, then I see the correct sign out buttons', function() {
-    helpers.openQuestionnaire('test_introduction.json', { includeLogoutUrl: true }).then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_introduction.json', { includeLogoutUrl: true });
 
     expect($(IntroductionPage.signOut()).getText()).to.contain('Sign out');
     $(IntroductionPage.getStarted()).click();
@@ -57,7 +54,7 @@ describe('SaveSignOut', function() {
   });
 
   it('Given a logout url is not set, when I navigate the questionnaire, then I see the correct sign out buttons', function() {
-    helpers.openQuestionnaire('test_introduction.json', { includeLogoutUrl: false }).then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_introduction.json', { includeLogoutUrl: false });
 
     expect($(IntroductionPage.signOut()).isExisting()).to.be.false;
     $(IntroductionPage.getStarted()).click();

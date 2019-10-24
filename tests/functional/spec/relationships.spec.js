@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const ListCollectorPage = require('../generated_pages/relationships/list-collector.page.js');
 const ListCollectorAddPage = require('../generated_pages/relationships/list-collector-add.page.js');
 const ListCollectorRemovePage = require('../generated_pages/relationships/list-collector-remove.page.js');
@@ -6,12 +5,11 @@ const RelationshipsPage = require('../generated_pages/relationships/relationship
 const ConfirmationPage = require('../generated_pages/relationships/confirmation.page.js');
 
 describe('Relationships', function() {
-  let browser;
   const schema = 'test_relationships.json';
 
   describe('Given I am completing the test_relationships survey,', function() {
     beforeEach('load the survey', function() {
-      helpers.openQuestionnaire(schema).then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire(schema);
     });
 
 

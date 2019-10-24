@@ -1,5 +1,3 @@
-const helpers = require('../../../helpers');
-
 const QuestionPageOne = require('../../../generated_pages/default/number-question-one.page.js');
 const QuestionPageTwo = require('../../../generated_pages/default/number-question-two.page.js');
 const Summary = require('../../../generated_pages/default/summary.page.js');
@@ -8,10 +6,8 @@ const QuestionPageThreeSkip = require('../../../generated_pages/default_with_ski
 
 
 describe('Feature: Default Value', function() {
-  let browser;
-
   it('Given I start default schema, When I do not answer a question, Then "no answer provided" is displayed on the Summary page', function() {
-    helpers.openQuestionnaire('test_default.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_default.json');
     $(QuestionPageOne.submit()).click();
     expect(browser.getUrl()).to.contain(QuestionPageTwo.pageName);
     $(QuestionPageTwo.two()).setValue(123);
@@ -21,7 +17,7 @@ describe('Feature: Default Value', function() {
   });
 
   it('Given I have not answered a question containing a default value, When I return to the question, Then no value should be displayed', function() {
-    helpers.openQuestionnaire('test_default.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_default.json');
     $(QuestionPageOne.submit()).click();
     expect(browser.getUrl()).to.contain(QuestionPageTwo.pageName);
     $(QuestionPageTwo.two()).setValue(123);
@@ -35,7 +31,7 @@ describe('Feature: Default Value', function() {
   });
 
   it('Given I have not answered a question containing a default value, When a skip condition checks for the default value, Then I should skip the next question', function() {
-    helpers.openQuestionnaire('test_default_with_skip.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_default_with_skip.json');
     $(QuestionPageOneSkip.submit()).click();
     expect(browser.getUrl()).to.contain(QuestionPageThreeSkip.pageName);
     expect($(QuestionPageThreeSkip.questionText()).getText()).to.contain('Question Three');

@@ -1,11 +1,8 @@
-const helpers = require('../helpers');
-
 const TestErrorsPage = require('../generated_pages/error_messages/test-errors.page.js');
 
 describe('Error Messages', function() {
-
   beforeEach(function(){
-    helpers.openQuestionnaire('test_error_messages.json');
+    browser.openQuestionnaire('test_error_messages.json');
   });
 
   it('Given a survey has an error when errors are displayed then page error messages are correct', function() {

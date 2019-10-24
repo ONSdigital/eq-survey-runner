@@ -1,12 +1,10 @@
-const helpers = require('../helpers');
-
 const IntroductionPage = require('../generated_pages/introduction/introduction.page');
 
 describe('Introduction page', function() {
   const introduction_schema = 'test_introduction.json';
 
   it('Given I start a survey, When I view the introduction page then I should be able to see introduction information', function() {
-    helpers.openQuestionnaire(introduction_schema);
+    browser.openQuestionnaire(introduction_schema);
     expect($(IntroductionPage.useOfData()).getText()).to.contain('How we use your data');
     expect($(IntroductionPage.useOfInformation()).getText()).to.contain('What you need to do next');
     expect($(IntroductionPage.legalResponse()).getText()).to.contain('Your response is legally required');

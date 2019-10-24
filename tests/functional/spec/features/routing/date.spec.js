@@ -1,18 +1,14 @@
-const helpers = require('../../../helpers');
-
 const IncorrectAnswerPage = require('../../../generated_pages/routing_date_equals/incorrect-answer.page.js');
 const CorrectAnswerPage =   require('../../../generated_pages/routing_date_equals/correct-answer.page.js');
 
 describe('Feature: Routing on a Date', function () {
   describe('Equals', function () {
-    let browser;
-
     describe('Given I start date routing equals survey', function () {
       const ComparisonDateQuestionPage = require('../../../generated_pages/routing_date_equals/comparison-date-block.page');
       const DateQuestionPage = require('../../../generated_pages/routing_date_equals/date-question.page');
 
       beforeEach(function() {
-        helpers.openQuestionnaire('test_routing_date_equals.json').then(openBrowser => browser = openBrowser);
+        browser.openQuestionnaire('test_routing_date_equals.json');
 
         $(ComparisonDateQuestionPage.day()).setValue(31);
         $(ComparisonDateQuestionPage.month()).setValue(3);
@@ -87,13 +83,11 @@ describe('Feature: Routing on a Date', function () {
   });
 
   describe('Not Equals', function () {
-    let browser;
-
     describe('Given I start date routing not equals survey', function () {
       const DateQuestionPage = require('../../../generated_pages/routing_date_not_equals/date-question.page');
 
       beforeEach(function() {
-        helpers.openQuestionnaire('test_routing_date_not_equals.json').then(openBrowser => browser = openBrowser);
+        browser.openQuestionnaire('test_routing_date_not_equals.json');
       });
 
       it('When I enter a different date to 28/02/2018, Then I should be routed to the correct page', function () {
@@ -122,13 +116,10 @@ describe('Feature: Routing on a Date', function () {
 
   describe('Greater Than', function () {
     describe('Given I start date routing greater than survey', function () {
-      let browser;
-
       const DateQuestionPage = require('../../../generated_pages/routing_date_greater_than/date-question.page');
 
       beforeEach(function() {
-        helpers.openQuestionnaire('test_routing_date_greater_than.json')
-          .then(openBrowser => browser = openBrowser);
+        browser.openQuestionnaire('test_routing_date_greater_than.json');
       });
 
       it('When I enter a date greater than March 2017, Then I should be routed to the correct page', function () {
@@ -155,7 +146,6 @@ describe('Feature: Routing on a Date', function () {
 
   describe('Less Than', function () {
     describe('Given I start date routing less than survey', function () {
-      let browser;
       const DateQuestionPage = require('../../../generated_pages/routing_date_less_than/date-question.page');
 
       // TODAY
@@ -170,7 +160,7 @@ describe('Feature: Routing on a Date', function () {
       let yyyy_yesterday = yesterday.getFullYear();
 
       beforeEach(function() {
-        helpers.openQuestionnaire('test_routing_date_less_than.json').then(openBrowser => browser = openBrowser);
+        browser.openQuestionnaire('test_routing_date_less_than.json')
       });
 
       it('When I enter a date less than today, Then I should be routed to the correct page', function () {

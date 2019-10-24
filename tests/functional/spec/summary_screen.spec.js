@@ -1,15 +1,11 @@
-const helpers = require('../helpers');
-
 const RadioPage = require('../generated_pages/summary/radio.page.js');
 const TestNumberPage = require('../generated_pages/summary/test-number-block.page.js');
 const DessertBlockPage = require('../generated_pages/summary/dessert-block.page.js');
 const SummaryPage = require('../generated_pages/summary/summary.page.js');
 
 describe('Summary Screen', function() {
-  let browser;
-
   beforeEach('Load the survey', function () {
-    helpers.openQuestionnaire('test_summary.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_summary.json');
   });
 
   it('Given a survey has been completed when a summary page is displayed then it should contain all answers', function() {

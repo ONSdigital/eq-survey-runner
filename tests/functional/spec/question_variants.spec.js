@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const ageBlock = require('../generated_pages/variants_question/age-block.page.js');
 const ageConfirmationBlock = require('../generated_pages/variants_question/age-confirmation-block.page.js');
 const basicVariantsSummary = require('../generated_pages/variants_question/basic-variants-summary.page.js');
@@ -11,53 +10,53 @@ const secondNumberBlock = require('../generated_pages/variants_question/second-n
 
 describe('QuestionVariants', function() {
   beforeEach(function() {
-    helpers.openQuestionnaire('test_variants_question.json');
+    browser.openQuestionnaire('test_variants_question.json');
   });
 
   it('Given I am completing the survey, then the correct questions are shown based on my previous answers', function () {
-      $(nameBlock.firstName()).setValue('Guido');
-      $(nameBlock.lastName()).setValue('van Rossum');
-      $(nameBlock.submit()).click();
+    $(nameBlock.firstName()).setValue('Guido');
+    $(nameBlock.lastName()).setValue('van Rossum');
+    $(nameBlock.submit()).click();
 
-      expect($(proxyBlock.questionText()).getText()).to.contain('Are you Guido van Rossum?');
+    expect($(proxyBlock.questionText()).getText()).to.contain('Are you Guido van Rossum?');
 
-      $(proxyBlock.proxy()).click();
-      $(proxyBlock.submit()).click();
+    $(proxyBlock.proxy()).click();
+    $(proxyBlock.submit()).click();
 
-      expect($(ageBlock.questionText()).getText()).to.contain('What age is Guido van Rossum');
+    expect($(ageBlock.questionText()).getText()).to.contain('What age is Guido van Rossum');
 
-      $(ageBlock.age()).setValue(63);
-      $(ageBlock.submit()).click();
+    $(ageBlock.age()).setValue(63);
+    $(ageBlock.submit()).click();
 
-      expect($(ageConfirmationBlock.questionText()).getText()).to.contain('Guido van Rossum is over 16?');
+    expect($(ageConfirmationBlock.questionText()).getText()).to.contain('Guido van Rossum is over 16?');
 
-      $(ageConfirmationBlock.ageConfirmYes()).click();
-      $(ageConfirmationBlock.submit()).click();
+    $(ageConfirmationBlock.ageConfirmYes()).click();
+    $(ageConfirmationBlock.submit()).click();
 
-      expect($(basicVariantsSummary.ageQuestion()).getText()).to.contain('What age is Guido van Rossum');
-      expect($(basicVariantsSummary.ageAnswer()).getText()).to.contain('63');
+    expect($(basicVariantsSummary.ageQuestion()).getText()).to.contain('What age is Guido van Rossum');
+    expect($(basicVariantsSummary.ageAnswer()).getText()).to.contain('63');
 
-      $(basicVariantsSummary.submit()).click();
+    $(basicVariantsSummary.submit()).click();
 
-      $(currencyBlock.gbp()).click();
-      $(currencyBlock.submit()).click();
+    $(currencyBlock.gbp()).click();
+    $(currencyBlock.submit()).click();
 
-      expect($(firstNumberBlock.firstNumberLabel()).getText()).to.contain('First answer in GBP');
+    expect($(firstNumberBlock.firstNumberLabel()).getText()).to.contain('First answer in GBP');
 
-      $(firstNumberBlock.firstNumber()).setValue(123);
-      $(firstNumberBlock.submit()).click();
+    $(firstNumberBlock.firstNumber()).setValue(123);
+    $(firstNumberBlock.submit()).click();
 
-      $(secondNumberBlock.secondNumber()).setValue(321);
-      $(secondNumberBlock.submit()).click();
+    $(secondNumberBlock.secondNumber()).setValue(321);
+    $(secondNumberBlock.submit()).click();
 
-      expect($(currencySectionSummary.currencyAnswer()).getText()).to.contain('Sterling');
-      expect($(currencySectionSummary.firstNumberAnswer()).getText()).to.contain('£');
+    expect($(currencySectionSummary.currencyAnswer()).getText()).to.contain('Sterling');
+    expect($(currencySectionSummary.firstNumberAnswer()).getText()).to.contain('£');
 
-      $(currencySectionSummary.currencyAnswerEdit()).click();
-      $(currencyBlock.usd()).click();
-      $(currencyBlock.submit()).click();
+    $(currencySectionSummary.currencyAnswerEdit()).click();
+    $(currencyBlock.usd()).click();
+    $(currencyBlock.submit()).click();
 
-      expect($(currencySectionSummary.firstNumberAnswer()).getText()).to.contain('$');
+    expect($(currencySectionSummary.firstNumberAnswer()).getText()).to.contain('$');
 
     });
 });

@@ -1,14 +1,10 @@
-const helpers = require('../../../../helpers');
 const DateRangePage = require('../../../../generated_pages/date_validation_range/date-range-block.page');
 const SummaryPage = require('../../../../generated_pages/date_validation_range/summary.page');
 
 
 describe('Feature: Question level validation for date ranges', function() {
-  let browser;
-
-
   beforeEach(function() {
-    helpers.openQuestionnaire('test_date_validation_range.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_date_validation_range.json');
   });
 
   describe('Period Validation', function () {

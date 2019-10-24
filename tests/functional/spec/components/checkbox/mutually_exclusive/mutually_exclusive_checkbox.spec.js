@@ -1,11 +1,9 @@
-const helpers = require('../../../../helpers');
-
 const MandatoryCheckboxPage = require('../../../../generated_pages/mutually_exclusive/mutually-exclusive-checkbox.page');
 const SummaryPage = require('../../../../generated_pages/mutually_exclusive/mandatory-section-summary.page');
 
 describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override', function() {
   beforeEach(function() {
-    helpers.openQuestionnaire('test_mutually_exclusive.json');
+    browser.openQuestionnaire('test_mutually_exclusive.json');
   });
 
   describe('Given the user has clicked multiple non-exclusive options', function() {

@@ -1,11 +1,10 @@
-const helpers = require('../../../../helpers');
 const DateRangePage = require('../../../../generated_pages/date_validation_yyyy_combined/date-range-block.page');
 const SummaryPage = require('../../../../generated_pages/date_validation_yyyy_combined/summary.page');
 
 
 describe('Feature: Combined question level and single validation for MM-YYYY dates', function() {
   before(function() {
-    helpers.openQuestionnaire('test_date_validation_yyyy_combined.json');
+    browser.openQuestionnaire('test_date_validation_yyyy_combined.json');
   });
 
   describe('Period Validation', function () {

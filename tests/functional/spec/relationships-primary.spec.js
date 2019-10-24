@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const PrimaryPersonListCollectorPage = require('../generated_pages/relationships_primary/primary-person-list-collector.page.js');
 const PrimaryPersonListCollectorAddPage = require('../generated_pages/relationships_primary/primary-person-list-collector-add.page.js');
 const ListCollectorPage = require('../generated_pages/relationships_primary/list-collector.page.js');
@@ -6,12 +5,11 @@ const ListCollectorAddPage = require('../generated_pages/relationships_primary/l
 const RelationshipsPage = require('../generated_pages/relationships_primary/relationships.page.js');
 
 describe('Relationships - Primary Person', function() {
-  let browser;
   const schema = 'test_relationships_primary.json';
 
   describe('Given I am completing the test_relationships_primary survey', function() {
     beforeEach(function() {
-      helpers.openQuestionnaire(schema).then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire(schema);
     });
 
     it('When I add household members, Then I will be asked my relationships as a primary person', function() {

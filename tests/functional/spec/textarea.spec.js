@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const TextareaBlock = require('../generated_pages/textarea/textarea-block.page.js');
 const TextareaSummary = require('../generated_pages/textarea/textarea-summary.page.js');
 
@@ -7,7 +6,7 @@ describe('Textarea', function() {
   const textarea_limit = `${TextareaBlock.answer()} + [data-charcount-singular]`;
 
   beforeEach(function(){
-    helpers.openQuestionnaire(textarea_schema);
+    browser.openQuestionnaire(textarea_schema);
   });
   it('Given a textarea option, a user should be able to click the label of the textarea to focus', function() {
     $(TextareaBlock.answerLabel()).click();

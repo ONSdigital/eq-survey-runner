@@ -1,13 +1,10 @@
-const helpers = require('../../../helpers');
-
 describe('Component: Radio', function() {
-  let browser;
   describe('Given I start a Mandatory Radio survey', function() {
     const RadioMandatoryPage = require('../../../generated_pages/radio_mandatory/radio-mandatory.page');
     const RadioSummaryPage = require('../../../generated_pages/radio_mandatory/summary.page');
 
     before(function() {
-      helpers.openQuestionnaire('test_radio_mandatory.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_radio_mandatory.json');
     });
 
     it('When I have selected a radio option, Then the selected option should be displayed in the summary', function() {
@@ -23,7 +20,7 @@ describe('Component: Radio', function() {
     const RadioSummaryPage = require('../../../generated_pages/radio_mandatory_with_optional_other/summary.page');
 
     before(function() {
-      helpers.openQuestionnaire('test_radio_mandatory_with_mandatory_other.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_radio_mandatory_with_mandatory_other.json');
     });
 
     it('When I have selected a other text field, Then the selected option should be displayed in the summary', function() {
@@ -39,7 +36,7 @@ describe('Component: Radio', function() {
     const RadioMandatoryPage = require('../../../generated_pages/radio_mandatory_with_mandatory_other_overridden_error/radio-mandatory.page');
 
     before(function() {
-      helpers.openQuestionnaire('test_radio_mandatory_with_mandatory_other_overridden_error.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_radio_mandatory_with_mandatory_other_overridden_error.json');
     });
 
     it('When I submit without any data in the other text field it should Then throw an overridden error', function() {
@@ -55,7 +52,7 @@ describe('Component: Radio', function() {
     const RadioSummaryPage = require('../../../generated_pages/radio_mandatory_with_optional_other/summary.page');
 
     before(function() {
-      helpers.openQuestionnaire('test_radio_mandatory_with_optional_other.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_radio_mandatory_with_optional_other.json');
     });
 
     it('When I submit without any data in the other text field is selected, Then the selected option should be displayed in the summary', function() {
@@ -70,7 +67,7 @@ describe('Component: Radio', function() {
     const RadioMandatoryPage = require('../../../generated_pages/radio_mandatory_with_overridden_error/radio-mandatory.page');
 
     before(function() {
-      helpers.openQuestionnaire('test_radio_mandatory_with_overridden_error.json');
+      browser.openQuestionnaire('test_radio_mandatory_with_overridden_error.json');
     });
 
     it('When I have submitted the page without any option, Then an overridden error is displayed', function() {
@@ -84,7 +81,7 @@ describe('Component: Radio', function() {
     const RadioSummaryPage = require('../../../generated_pages/radio_optional/summary.page');
 
     before(function() {
-      helpers.openQuestionnaire('test_radio_optional.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_radio_optional.json');
     });
 
     it('When I have selected no option, Then the selected option should be displayed in the summary', function() {
@@ -98,7 +95,7 @@ describe('Component: Radio', function() {
     const RadioNonMandatoryPage = require('../../../generated_pages/radio_optional_with_mandatory_other_overridden_error/radio-non-mandatory.page');
 
     before(function() {
-      helpers.openQuestionnaire('test_radio_optional_with_mandatory_other_overridden_error.json');
+      browser.openQuestionnaire('test_radio_optional_with_mandatory_other_overridden_error.json');
     });
 
     it('When I have submitted an other option with an empty text field, Then an overridden error is displayed', function() {
@@ -114,7 +111,7 @@ describe('Component: Radio', function() {
     const RadioSummaryPage = require('../../../generated_pages/radio_optional_with_mandatory_other/summary.page');
 
     before(function() {
-      helpers.openQuestionnaire('test_radio_optional_with_mandatory_other.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_radio_optional_with_mandatory_other.json');
     });
 
     it('When I submit data in the other text field it should be persisted and Then displayed on the summary', function() {

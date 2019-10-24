@@ -1,5 +1,3 @@
-const helpers = require('../../helpers');
-
 const SetLengthUnitsBlockPage = require('../../generated_pages/unit_patterns/set-length-units-block.page.js');
 const SetDurationUnitsBlockPage = require('../../generated_pages/unit_patterns/set-duration-units-block.page.js');
 const SetAreaUnitsBlockPage = require('../../generated_pages/unit_patterns/set-area-units-block.page.js');
@@ -8,7 +6,7 @@ const SummaryPage = require('../../generated_pages/unit_patterns/summary.page.js
 
 describe('Units', function() {
   it('Given we do not set a language code and run the questionnaire, when we enter values for durations, they should be displayed on the summary with their units.', function() {
-      helpers.openQuestionnaire('test_unit_patterns.json', { language: 'en' });
+      browser.openQuestionnaire('test_unit_patterns.json', { language: 'en' });
       $(SetLengthUnitsBlockPage.submit()).click();
       expect($(SetDurationUnitsBlockPage.durationHourUnit()).getText()).to.equal('hours');
       expect($(SetDurationUnitsBlockPage.durationYearUnit()).getText()).to.equal('years');
@@ -22,7 +20,7 @@ describe('Units', function() {
     });
 
   it('Given we set a language code for welsh and run the questionnaire, when we enter values for durations, they should be displayed on the summary with their units.', function() {
-    helpers.openQuestionnaire('test_unit_patterns.json', { language: 'cy' });
+    browser.openQuestionnaire('test_unit_patterns.json', { language: 'cy' });
     $(SetLengthUnitsBlockPage.submit()).click();
     expect($(SetDurationUnitsBlockPage.durationHourUnit()).getText()).to.equal('awr');
     expect($(SetDurationUnitsBlockPage.durationYearUnit()).getText()).to.equal('flynedd');

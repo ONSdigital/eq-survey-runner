@@ -1,4 +1,3 @@
-const helpers = require('../../../helpers');
 const InsuranceAddressPage = require('../../../generated_pages/section_summary/insurance-address.page.js');
 const InsuranceTypePage = require('../../../generated_pages/section_summary/insurance-type.page.js');
 const AddressDurationPage = require('../../../generated_pages/section_summary/address-duration.page.js');
@@ -8,12 +7,10 @@ const HouseholdDetailsSummaryPage = require('../../../generated_pages/section_su
 const FinalSummaryPage = require('../../../generated_pages/section_summary/summary.page.js');
 
 describe('Section Summary', function() {
-  let browser;
-
   describe('Given I start a Test Section Summary survey and complete to Section Summary', function() {
 
     beforeEach(function() {
-      helpers.openQuestionnaire('test_section_summary.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_section_summary.json');
       $(InsuranceTypePage.both()).click();
       $(InsuranceTypePage.submit()).click();
       $(InsuranceAddressPage.submit()).click();
@@ -43,9 +40,8 @@ describe('Section Summary', function() {
   });
 
   describe('Given I start a Test Section Summary survey and complete to Final Summary', function() {
-
     beforeEach(function() {
-      helpers.openQuestionnaire('test_section_summary.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_section_summary.json');
       $(InsuranceTypePage.both()).click();
       $(InsuranceTypePage.submit()).click();
       $(InsuranceAddressPage.submit()).click();
@@ -56,39 +52,38 @@ describe('Section Summary', function() {
     });
 
     it('When I select edit from Final Summary and don\'t change an answer, Then I should be taken to the Section Summary', function() {
-        $(FinalSummaryPage.summaryShowAllButton()).click();
-        $(FinalSummaryPage.insuranceAddressAnswerEdit()).click();
-        $(InsuranceAddressPage.submit()).click();
-        expect(browser.getUrl()).to.contain(PropertyDetailsSummaryPage.pageName);
+      $(FinalSummaryPage.summaryShowAllButton()).click();
+      $(FinalSummaryPage.insuranceAddressAnswerEdit()).click();
+      $(InsuranceAddressPage.submit()).click();
+      expect(browser.getUrl()).to.contain(PropertyDetailsSummaryPage.pageName);
     });
 
     it('When I select edit from Final Summary and change an answer that doesn\'t affect completeness, Then I should be taken to the Section Summary', function() {
-        $(FinalSummaryPage.summaryShowAllButton()).click();
-        $(FinalSummaryPage.insuranceAddressAnswerEdit()).click();
-        $(InsuranceAddressPage.answer()).setValue('Test Address');
-        $(InsuranceAddressPage.submit()).click();
-        expect(browser.getUrl()).to.contain(PropertyDetailsSummaryPage.pageName);
+      $(FinalSummaryPage.summaryShowAllButton()).click();
+      $(FinalSummaryPage.insuranceAddressAnswerEdit()).click();
+      $(InsuranceAddressPage.answer()).setValue('Test Address');
+      $(InsuranceAddressPage.submit()).click();
+      expect(browser.getUrl()).to.contain(PropertyDetailsSummaryPage.pageName);
     });
 
     it('When I select edit from Final Summary and change an answer that affects completeness, Then I should be stepped through the section', function() {
-        $(FinalSummaryPage.summaryShowAllButton()).click();
-        $(FinalSummaryPage.insuranceTypeAnswerEdit()).click();
-        $(InsuranceTypePage.contents()).click();
-        $(InsuranceTypePage.submit()).click();
-        expect(browser.getUrl()).to.contain(InsuranceAddressPage.pageName);
-        $(InsuranceAddressPage.submit()).click();
-        expect(browser.getUrl()).to.contain(AddressDurationPage.pageName);
+      $(FinalSummaryPage.summaryShowAllButton()).click();
+      $(FinalSummaryPage.insuranceTypeAnswerEdit()).click();
+      $(InsuranceTypePage.contents()).click();
+      $(InsuranceTypePage.submit()).click();
+      expect(browser.getUrl()).to.contain(InsuranceAddressPage.pageName);
+      $(InsuranceAddressPage.submit()).click();
+      expect(browser.getUrl()).to.contain(AddressDurationPage.pageName);
     });
 
     it('When I change an answer, Then the final summary should display the updated value', function() {
-        $(FinalSummaryPage.summaryShowAllButton()).click();
-        expect($(FinalSummaryPage.insuranceAddressAnswer()).getText()).to.contain('No answer provided');
-        $(FinalSummaryPage.insuranceAddressAnswerEdit()).click();
-        expect(browser.getUrl()).to.contain(InsuranceAddressPage.pageName);
-        $(InsuranceAddressPage.answer()).setValue('Test Address');
-        $(InsuranceAddressPage.submit()).click();
-        expect($(FinalSummaryPage.insuranceAddressAnswer()).getText()).to.contain('Test Address');
+      $(FinalSummaryPage.summaryShowAllButton()).click();
+      expect($(FinalSummaryPage.insuranceAddressAnswer()).getText()).to.contain('No answer provided');
+      $(FinalSummaryPage.insuranceAddressAnswerEdit()).click();
+      expect(browser.getUrl()).to.contain(InsuranceAddressPage.pageName);
+      $(InsuranceAddressPage.answer()).setValue('Test Address');
+      $(InsuranceAddressPage.submit()).click();
+      expect($(FinalSummaryPage.insuranceAddressAnswer()).getText()).to.contain('Test Address');
     });
   });
-
 });

@@ -1,5 +1,3 @@
-const helpers = require('../../../helpers');
-
 describe('Component: Dropdown', function() {
   //Mandatory
   describe('Given I start a Mandatory Dropdown survey', function() {
@@ -9,7 +7,7 @@ describe('Component: Dropdown', function() {
     const schema = 'test_dropdown_mandatory.json';
 
     beforeEach(function(){
-      helpers.openQuestionnaire(schema);
+      browser.openQuestionnaire(schema);
     });
 
     it('When I have selected a dropdown option, Then the selected option should be displayed in the summary', function() {
@@ -63,7 +61,7 @@ describe('Component: Dropdown', function() {
     const DropdownMandatoryPage = require('../../../generated_pages/dropdown_mandatory_with_overridden_error/dropdown-mandatory-with-overridden-error.page');
 
     before(function() {
-      helpers.openQuestionnaire('test_dropdown_mandatory_with_overridden_error.json');
+      browser.openQuestionnaire('test_dropdown_mandatory_with_overridden_error.json');
     });
 
     it('When I have not selected a dropdown option and click Continue, Then the overridden error message should be displayed', function() {
@@ -80,7 +78,7 @@ describe('Component: Dropdown', function() {
     const schema = 'test_dropdown_optional.json';
 
     beforeEach(function(){
-      helpers.openQuestionnaire(schema);
+      browser.openQuestionnaire(schema);
     });
 
     it('When I have not selected a dropdown option, Then the summary should display "No answer provided"', function() {

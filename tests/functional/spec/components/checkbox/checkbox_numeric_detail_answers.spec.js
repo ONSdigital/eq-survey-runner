@@ -1,13 +1,9 @@
-const helpers = require('../../../helpers');
-
 const CheckboxNumericDetailPage = require('../../../generated_pages/checkbox_numeric_detail_answers/checkbox-numeric-detail.page');
 const SummaryPage = require('../../../generated_pages/checkbox_numeric_detail_answers/summary.page');
 
 describe('Checkbox with a numeric "detail_answer" option', function() {
-  let browser;
-
   beforeEach(function() {
-    helpers.openQuestionnaire('test_checkbox_numeric_detail_answers.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_checkbox_numeric_detail_answers.json');
     $(CheckboxNumericDetailPage.other()).click();
   });
 

@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const DateRangePage = require('../generated_pages/dates/date-range-block.page');
 const DateMonthYearPage = require('../generated_pages/dates/date-month-year-block.page');
 const DateSinglePage = require('../generated_pages/dates/date-single-block.page');
@@ -7,10 +6,9 @@ const DateYearDatePage = require('../generated_pages/dates/date-year-date-block.
 const SummaryPage = require('../generated_pages/dates/summary.page');
 
 describe('Date checks', function() {
-  let browser;
 
   beforeEach('Load the survey', function () {
-    helpers.openQuestionnaire('test_dates.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_dates.json');
   });
 
   it('Given the test_dates survey is selected when dates are entered then the summary screen shows the dates entered formatted', function() {

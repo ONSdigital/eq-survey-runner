@@ -1,17 +1,10 @@
-const helpers = require('../../../../helpers');
-
 const DatePage = require('../../../../generated_pages/mutually_exclusive/mutually-exclusive-date.page');
 const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-date-section-summary.page');
 
 describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox Override', function() {
-  let browser;
-
   beforeEach(function() {
-    helpers.openQuestionnaire('test_mutually_exclusive.json')
-    .then(openBrowser => browser = openBrowser)
-    .then(function() {
-        browser.url('/questionnaire/mutually-exclusive-date');
-    });
+    browser.openQuestionnaire('test_mutually_exclusive.json');
+    browser.url('/questionnaire/mutually-exclusive-date');
   });
 
   describe('Given the user has entered a value for the non-exclusive month year date answer', function() {

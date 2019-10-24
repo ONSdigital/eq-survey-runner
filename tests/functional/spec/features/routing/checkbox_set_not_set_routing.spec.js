@@ -1,5 +1,3 @@
-const helpers = require('../../../helpers');
-
 const ToppingCheckboxPage =           require('../../../generated_pages/routing_checkbox_set_not_set/topping-checkbox.page.js');
 const ToppingInterstitialNotSetPage = require('../../../generated_pages/routing_checkbox_set_not_set/topping-interstitial-not-set.page.js');
 const ToppingInterstitialSetPage =    require('../../../generated_pages/routing_checkbox_set_not_set/topping-interstitial-set.page.js');
@@ -9,10 +7,8 @@ const CheeseInterstitialSetPage =     require('../../../generated_pages/routing_
 const SummaryPage =                   require('../../../generated_pages/routing_checkbox_set_not_set/summary.page.js');
 
 describe('Test routing using not set and set conditions on checkboxes', function() {
-  let browser;
-
   beforeEach(function() {
-    helpers.openQuestionnaire('test_routing_checkbox_set_not_set.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_routing_checkbox_set_not_set.json');
   });
 
   it('Given a user sets a topping and a cheese, they should see an interstitial for each saying that they were set', function() {

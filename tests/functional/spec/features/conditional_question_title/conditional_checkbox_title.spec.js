@@ -1,4 +1,3 @@
-const helpers = require('../../../helpers');
 const CheckBoxPage = require('../../../generated_pages/titles_radio_and_checkbox/checkbox-block.page');
 const NameEntryPage = require('../../../generated_pages/titles_radio_and_checkbox/preamble-block.page');
 const RadioButtonsPage = require('../../../generated_pages/titles_radio_and_checkbox/radio-block.page');
@@ -6,11 +5,8 @@ const SummaryPage = require('../../../generated_pages/titles_radio_and_checkbox/
 
 
 describe('Feature: Conditional checkbox and radio question titles', function() {
-  let browser;
-
   beforeEach(function() {
-      helpers.openQuestionnaire('test_titles_radio_and_checkbox.json')
-        .then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_titles_radio_and_checkbox.json');
   });
 
   describe('Given I start the test_titles_radio_and_checkbox survey', function() {

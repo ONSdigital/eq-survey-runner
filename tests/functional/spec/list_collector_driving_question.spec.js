@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const HubPage = require('../base_pages/hub.page.js');
 const AnyoneUsuallyLiveAtPage = require('../generated_pages/list_collector_driving_question/anyone-usually-live-at.page.js');
 const AnyoneElseLiveAtListCollectorPage = require('../generated_pages/list_collector_driving_question/anyone-else-live-at.page.js');
@@ -17,10 +16,8 @@ const SummaryPage = require('../generated_pages/list_collector_driving_question/
 
 
 describe('List Collector Driving Question', function() {
-  let browser;
-
   beforeEach('Load the survey', function() {
-    helpers.openQuestionnaire('test_list_collector_driving_question.json').then(openBrowser => browser = openBrowser);
+    browser.openQuestionnaire('test_list_collector_driving_question.json');
     $(HubPage.submit()).click();
   });
 

@@ -1,12 +1,9 @@
-const helpers = require('../../../helpers');
-
 const RouteComparison1Page = require('../../../generated_pages/routing_answer_comparison/route-comparison-1.page.js');
 const RouteComparison2Page = require('../../../generated_pages/routing_answer_comparison/route-comparison-2.page.js');
 
-
 describe('Test routing skip', function() {
   beforeEach(function() {
-    helpers.openQuestionnaire('test_routing_answer_comparison.json');
+    browser.openQuestionnaire('test_routing_answer_comparison.json');
   });
 
   it('Given we start the routing test survey, When we enter a low number then a high number, Then, we should be routed to the fourth page', function() {

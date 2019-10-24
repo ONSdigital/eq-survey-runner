@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const ListCollectorPage = require('../generated_pages/list_collector_primary_person/list-collector.page.js');
 const ListCollectorAddPage = require('../generated_pages/list_collector_primary_person/list-collector-add.page.js');
 const ListCollectorEditPage = require('../generated_pages/list_collector_primary_person/list-collector-edit.page.js');
@@ -11,11 +10,9 @@ const AnyoneUsuallyLiveAtPage = require('../generated_pages/list_collector_prima
 
 
 describe('Primary Person List Collector Survey', function() {
-  let browser;
-
   describe('Given the user starts on the \'do you live here\' question', function() {
     before('Load the survey', function () {
-      helpers.openQuestionnaire('test_list_collector_primary_person.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_list_collector_primary_person.json');
     });
 
     it.skip('When the user says they do not live there, and changes their answer to yes, then the user can\'t navigate to the list collector', function () {
@@ -31,7 +28,7 @@ describe('Primary Person List Collector Survey', function() {
 
   describe('Given the user starts on the \'do you live here\' question', function() {
     before('Load the survey', function () {
-      helpers.openQuestionnaire('test_list_collector_primary_person.json').then(openBrowser => browser = openBrowser);
+      browser.openQuestionnaire('test_list_collector_primary_person.json');
     });
 
     it('When the user says that they do live there, then they are shown as the primary person', function () {
@@ -106,7 +103,7 @@ describe('Primary Person List Collector Survey', function() {
 
   describe('Given the user starts on the \'do you live here\' question', function() {
     before('Load the survey', function() {
-      helpers.openQuestionnaire('test_list_collector_primary_person.json');
+      browser.openQuestionnaire('test_list_collector_primary_person.json');
     });
 
     it('When the user says they do not live there, then an empty list is displayed', function() {
