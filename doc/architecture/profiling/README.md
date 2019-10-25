@@ -90,15 +90,15 @@ pip install gprof2dot
 ```
 ##### Visualise a profile:
 ```bash
-pipenv run gprof2dot -f pstats profiling/[filename].prof | dot -Tpng -o output.png
+gprof2dot -f pstats profiling/[filename].prof | dot -Tpng -o output.png
 ```
 For example:
 ```bash
-pipenv run gprof2dot -f pstats profiling/GET.questionnaire.31ms.1571053121.prof | dot -Tpng -o profile.png
+gprof2dot -f pstats profiling/GET.questionnaire.31ms.1571053121.prof | dot -Tpng -o profile.png
 ```
 To visualise the combined profile run:
 ```bash
-pipenv run gprof2dot -f pstats combined_profile.prof | dot -Tpng -o combined_profile.png
+gprof2dot -f pstats combined_profile.prof | dot -Tpng -o combined_profile.png
 ```
 
 ---
