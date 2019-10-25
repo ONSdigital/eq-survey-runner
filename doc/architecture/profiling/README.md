@@ -10,10 +10,43 @@ To load the file into the interactive browser where it can be sorted and queried
 ```bash
 python -m pstats [filename].prof
 ```
+Useful commands:
+```bash
+# Strip the long file paths to make the reports easier on the eyes:
+strip
+
+# Sort on internal time:
+sort time
+
+# Sort on total time:
+sort tottime
+
+# Show the top 10 functions:
+stats 10
+
+# Show all the documented commands:
+help
+
+# Get more help on a command, e.g. the stats command:
+help stats
+: '
+Print statistics from the current stat object.
+Arguments may be:
+* An integer maximum number of entries to print.
+* A decimal fractional number between 0 and 1, controlling
+  what fraction of selected entries to print.
+* A regular expression; only entries with function names
+  that match it are printed.
+'
+```
+
+---
+
+##### Combining profiles
 
 The profiles can also be combined to give an overview of the profile between all requests.
 
-Combine all the profiles in the 'profiling' directory using:
+Combine all the profiles in the `profiling` directory using:
 ```bash
 pipenv run python scripts/merge_profiles.py
 ```
