@@ -1,11 +1,38 @@
 {% extends 'layouts/_base.html' %}
+{% from "components/panel/_macro.njk" import onsPanel %}
 
 {% set page_title = _("We\'ve received your answers") + " - " + page_header.title %}
 
 {% block main %}
+  {% if schema_theme == "default" %}
+      <h1 data-qa="submission-successful-title">{{ _("Submission successful") }}</h1>
+      {% call onsPanel({
+            "spacious": true,
+            "type": "success",
+            "classes": "u-mb-s"
+          }) %}
+        <p>
+          {% if metadata.trad_as %}
+              {{ _("Your answers were submitted for <span>%(ru_name)s</span> (%(trading_as_name)s) on %(submitted_date_time)s",
+              ru_name = metadata.ru_name,
+              trading_as_name = metadata.trad_as,
+              submitted_date_time=metadata.submitted_time|format_datetime) }}
+          {% else %}
+              {{ _("Your answers were submitted for <span>%(ru_name)s</span> on %(submitted_date_time)s",
+              ru_name = metadata.ru_name,
+              submitted_date_time=metadata.submitted_time|format_datetime) }}
+          {% endif %}
+        </p>
+        <p>{{ _("Transaction ID") }}: <b>{{metadata.tx_id}}</b></p>
+      {% endcall %}
 
-  <h1 data-qa="submission-successful-title"><span class="icon--check-green"></span>{{ _("Thank you for submitting your census") }}</h1>
+      <p class="u-mb-s">{{ _("Your answers will be processed in the next few weeks") }}.
+      {{ _("We may contact you to query your answers via phone or secure message") }}.</p>
 
-  <p class="u-mb-s">{{ _("We have received your answers and you do not need to do anything else.") }}</p>
+      <p class="u-mb-s">{{ _("For more information on how we use this data") }}.<br><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
+  {% else %}
+      <h1 data-qa="submission-successful-title"><span class="icon--check-green"></span>{{ _("Thank you for submitting your census") }}</h1>
 
+      <p class="u-mb-s">{{ _("We have received your answers and you do not need to do anything else.") }}</p>
+  {% endif %}
 {% endblock %}
