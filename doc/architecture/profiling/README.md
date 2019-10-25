@@ -1,7 +1,7 @@
 # Profiling
 
 ## cProfile
-cProfile is a deterministic profiler in which trace functions are executed at various points of interest (e.g. function call, function return, exceptions) and precise timings of these events are recorded.
+cProfile is a deterministic profiler in which trace functions are executed at various points of interest (e.g. function call, function return, exceptions), and precise timings of these events are recorded.
 
 To profile the application using cProfile, run `make profile`. 
 Profiling information will be collected per-request in the `profiling` directory where it can be examined using the pstats interactive browser.
@@ -24,13 +24,13 @@ To visualise this profile, `snakeviz` or `gprof2dot` can be used.
 
 
 ### Visualisation
-There are many handy profilers but they lack a nice visualization interface. We use `snakeviz` and `gprof2dot` for this.
+There are many handy profilers, but they lack a nice visualisation interface. We use `snakeviz` and `gprof2dot` for this.
 
 ---
 
 #### SnakeViz
 [SnakeViz](https://jiffyclub.github.io/snakeviz/#snakeviz) is a browser-based graphical visualisation tool to display profiles using Icicle and Sunburst plots. 
-It also includes IPython line and cell magics that can help to directly profile single line or code blocks and then visualise them. 
+It also includes IPython line and cell magics that can help profile a single line or code blocks directly and then visualise them. 
 
 Install using:
 ```bash
@@ -71,10 +71,10 @@ pipenv run gprof2dot -f pstats combined_profile.prof | dot -Tpng -o combined_pro
 ---
 
 ## Py-Spy
-[Py-Spy](https://github.com/benfred/py-spy) is a sampling profiler where instead of tracking every event (e.g. function call), the application is periodically interrupted and stack snapshots are collected. 
+[Py-Spy](https://github.com/benfred/py-spy) is a sampling profiler where instead of tracking every event (e.g. function call), the application is periodically interrupted, and stack snapshots are collected. 
 The function call stack is then analysed to deduce the execution time of different parts of the application. 
 
-Deterministic profilers modify application execution in some way: profiling code is typically run inside the target Python process which often slows down application execution. 
+Deterministic profilers modify application execution in some way: profiling code is typically run inside the target Python process, which often slows down application execution. 
 To avoid this performance impact, Py-Spy doesn’t run in the same process as the profiled Python program. Because of this, Py-Spy can be used in a production environment with little overhead.
 
 Py
