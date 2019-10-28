@@ -430,7 +430,7 @@ python token_generator.py
 
 ## Profiling
 
-Refer to our [profiling document](doc/architecture/profiling/README.md).
+Refer to our [profiling document](doc/profiling.md).
 
 
 ## Updating / Installing dependencies

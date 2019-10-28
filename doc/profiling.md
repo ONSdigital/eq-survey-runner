@@ -29,20 +29,9 @@ help
 
 # Get more help on a command, e.g. the stats command:
 help stats
-: '
-Print statistics from the current stat object.
-Arguments may be:
-* An integer maximum number of entries to print.
-* A decimal fractional number between 0 and 1, controlling
-  what fraction of selected entries to print.
-* A regular expression; only entries with function names
-  that match it are printed.
-'
 ```
 
----
-
-##### Combining profiles
+### Combining profiles
 
 The profiles can also be combined to give an overview of the profile between all requests.
 
@@ -59,8 +48,6 @@ To visualise this profile, `snakeviz` or `gprof2dot` can be used.
 ### Visualisation
 There are many handy profilers, but they lack a nice visualisation interface. We use `snakeviz` and `gprof2dot` for this.
 
----
-
 #### SnakeViz
 [SnakeViz](https://jiffyclub.github.io/snakeviz/#snakeviz) is a browser-based graphical visualisation tool to display profiles using Icicle and Sunburst plots. 
 It also includes IPython line and cell magics that can help profile a single line or code blocks directly and then visualise them. 
@@ -69,7 +56,7 @@ Install using:
 ```bash
 pip install snakeviz
 ```
-##### Visualise a profile:
+Visualise a profile:
 ```bash
 snakeviz profiling/[filename].prof
 ```
@@ -77,8 +64,6 @@ For example:
 ```bash
 snakeviz profiling/GET.questionnaire.31ms.1571053121.prof
 ```
-
----
 
 #### gprof2dot
 Converts profiler data into call graphs. It allows to filter functions based on metrics threshold and colour them nicely with hotspots.
@@ -88,7 +73,7 @@ First install `graphviz` and `gprof2dot`:
 brew install graphviz
 pip install gprof2dot
 ```
-##### Visualise a profile:
+Visualise a profile:
 ```bash
 gprof2dot -f pstats profiling/[filename].prof | dot -Tpng -o output.png
 ```
