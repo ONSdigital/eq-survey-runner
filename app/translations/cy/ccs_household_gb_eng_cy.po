@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 11:16+0100\n"
-"PO-Revision-Date: 2019-10-23 11:20\n"
+"PO-Revision-Date: 2019-10-28 11:24\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgid "If none of the household members were usually living at the property on c
 msgstr "Os nad oedd dim un o aelodau'r cartref fel arfer yn byw yn y cartref ar noson y cyfrifiad, mae'n rhaid i chi gadw'r arolwg, allgofnodi a chwblhau holiadur papur."
 
 msgid "Remember to only include those people who share cooking facilities and share a living room or sitting room or dining area"
-msgstr ""
+msgstr "Cofiwch y dylech ond gynnwys y bobl hynny sy’n rhannu cyfleusterau coginio ac yn rhannu ystafell fyw neu lolfa neu le bwyta"
 
 msgid "Include"
 msgstr "Cofiwch"
@@ -49,7 +49,7 @@ msgid "A visitor is a person staying overnight in your household who usually liv
 msgstr "Mae ymwelydd yn golygu person sy’n aros dros nos sydd fel arfer yn byw mewn cyfeiriad arall."
 
 msgid "Remember to include partners and step-children as related."
-msgstr ""
+msgstr "Cofiwch gynnwys partneriaid a llysblant fel pobl sy'n perthyn."
 
 msgid "In this section, I’m going to ask you about the household and accommodation you were living in on Sunday 13 October 2019."
 msgstr "Yn yr adran hon, byddaf yn gofyn i chi am y cartref roeddech chi’n byw ynddo ddydd Sul 13 Hydref 2019."
@@ -64,7 +64,7 @@ msgid "For example, in an office building, hotel, or over a shop"
 msgstr "Er enghraifft, mewn adeilad o swyddfeydd, gwesty, neu uwchben siop"
 
 msgid "Shared ownership"
-msgstr ""
+msgstr "Cynllun rhanberchenogaeth"
 
 msgid "With or without housing benefit"
 msgstr "Gyda chymorth budd-dal tai neu hebddo"
@@ -112,52 +112,52 @@ msgid "There are no visitors"
 msgstr "Nid oes ymwelwyr yma"
 
 msgid "Tell respondent to turn to <strong>Showcard 1</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 1</strong>"
 
 msgid "Enter a full stop (.) if the respondent does not know a person’s “First name” or “Last name”"
-msgstr ""
+msgstr "Rhowch atalnod llawn (.) os nad yw’r ymatebwr yn gwybod \"Enw cyntaf\" neu \"Cyfenw\" person"
 
 msgid "Tell respondent to turn to <strong>Showcard 2</strong>"
 msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 2</strong>"
 
 msgid "Tell respondent to turn to <strong>Showcard 13</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebydd i droi at <strong>Gerdyn Dangos 13</strong>"
 
 msgid "Tell respondent to turn to <strong>Showcard 3</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 3</strong>"
 
 msgid "If “No” confirm one or more rooms are shared with another household"
-msgstr ""
+msgstr "Os \"Nac oedd\", oedd un neu fwy o'r ystafelloedd yn cael eu rhannu â chartref arall?"
 
 msgid "Tell respondent to turn to <strong>Showcard 4</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 4</strong>"
 
 msgid "Tell respondent to turn to <strong>Showcard 5</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 5</strong>"
 
 msgid "Tell respondent to turn to <strong>Showcard 6</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 6</strong>"
 
 msgid "Tell respondent to turn to <strong>Showcard 7</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 7</strong>"
 
 msgid "If “Yes” ensure this accommodation is recorded on the Fieldwork Management Tool and interview household separately"
-msgstr ""
+msgstr "Os \"Oes\" sicrhewch fod y man hwn yn cael ei gofnodi ar yr Adnodd Rheoli Gwaith Maes a chynhaliwch gyfweliad â’r cartref ar wahân"
 
 msgid "Tell respondent to turn to <strong>Showcard 8</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 8</strong>"
 
 msgid "Tell respondent to turn to <strong>Showcard 9</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 9</strong>"
 
 msgid "Tell respondent to turn to <strong>Showcard 10</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 10</strong>"
 
 msgid "Tell respondent to turn to <strong>Showcard 11</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 11</strong>"
 
 msgid "Tell respondent to turn to <strong>Showcard 12</strong>"
-msgstr ""
+msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 12</strong>"
 
 msgid "2019 Census Coverage Survey Test"
 msgstr ""
@@ -214,7 +214,7 @@ msgid "Personal Details"
 msgstr "Manylion Personol"
 
 msgid "<em>Interviewer Note:</em> Are they answering the questions for themselves or on someone else’s behalf?"
-msgstr ""
+msgstr "<em>Nodyn i’r cyfwelydd:</em> Ydy’r unigolyn yn ateb y cwestiynau drosto’i hun neu ar ran rhywun arall?"
 
 msgid "What is your date of birth?"
 msgstr "Beth yw eich dyddiad geni?"
@@ -259,7 +259,7 @@ msgid "One year ago, on 13 October 2018, what was your usual address?"
 msgstr "Flwyddyn yn ôl, ar 13 Hydref 2018, beth oedd eich cyfeiriad arferol?"
 
 msgid "Including the time you have already spent here, how long do you intend to stay in the United Kingdom?"
-msgstr ""
+msgstr "Gan gynnwys yr amser rydych chi wedi'i dreulio yma'n barod, am faint ydych chi'n bwriadu aros yn y Deyrnas Unedig?"
 
 msgid "During the week of 7 to 13 October 2019, were you doing any of the following?"
 msgstr "Yn ystod yr wythnos rhwng 7 a 13 Hydref 2019, oeddech chi’n gwneud unrhyw un o’r canlynol?"
@@ -313,7 +313,7 @@ msgid "Change details for {person_name}"
 msgstr "Newid manylion ar gyfer {person_name}"
 
 msgid "Did anyone usually live at {address} on Sunday 13 October 2019?"
-msgstr ""
+msgstr "Oedd unrhyw un arall yn byw yn {address} ddydd Sul 13 Hydref 2019?"
 
 msgid "Did anyone else usually live at {address} on Sunday 13 October 2019?"
 msgstr "Oedd unrhyw un arall fel arfer yn byw yn {address} ddydd Sul 13 Hydref 2019?"
@@ -325,7 +325,7 @@ msgid "{person_name}"
 msgstr "{person_name}"
 
 msgid "How many visitors were staying in your household at {address} on 13 October 2019?"
-msgstr ""
+msgstr "Faint o ymwelwyr oedd yn aros yn eich cartref yn {address} ar 13 Hydref 2019?"
 
 msgid "What is the name of the visitor staying overnight on {census_date} at {address}?"
 msgstr "Beth yw enw’r ymwelydd a oedd yn aros dros nos yn {address} ar {census_date}?"
@@ -427,7 +427,7 @@ msgid "In this section, I’m going to ask you about your visitor, {person_name}
 msgstr "Yn yr adran hon, byddaf yn gofyn i chi am eich ymwelydd, {person_name}."
 
 msgid "Did {person_name} usually live in the United Kingdom?"
-msgstr ""
+msgstr "Oedd {person_name} fel arfer yn byw yn y Deyrnas Unedig?"
 
 msgid "What is {person_name_possessive} usual UK address?"
 msgstr "Beth yw cyfeiriad arferol {person_name_possessive} yn y Deyrnas Unedig?"
@@ -443,7 +443,7 @@ msgstr "Enw cyntaf"
 #. answer-id: middle-names
 msgctxt "Answer for: What is your full name?"
 msgid "Middle names"
-msgstr "Middle names"
+msgstr "Enwau canol"
 
 #. answer-id: last-name
 msgctxt "Answer for: What is your full name?"
@@ -560,12 +560,12 @@ msgstr "Nac oes"
 #. answer-id: any-visitors-answer
 msgctxt "Answer for: How many visitors were staying in your household at {address} on 13 October 2019?"
 msgid "1 or more"
-msgstr ""
+msgstr "1 neu fwy"
 
 #. answer-id: any-visitors-answer
 msgctxt "Answer for: How many visitors were staying in your household at {address} on 13 October 2019?"
 msgid "None"
-msgstr ""
+msgstr "Dim"
 
 #. answer-id: first-name
 msgctxt "Answer for: What is the name of the visitor staying overnight on {census_date} at {address}?"
@@ -770,12 +770,12 @@ msgstr "Nac oes"
 #. answer-id: proxy-answer
 msgctxt "Answer for: <em>Interviewer Note:</em> Are they answering the questions for themselves or on someone else’s behalf?"
 msgid "Yes, they are answering for themselves"
-msgstr ""
+msgstr "Ydy, mae’n ateb drosto’i hun"
 
 #. answer-id: proxy-answer
 msgctxt "Answer for: <em>Interviewer Note:</em> Are they answering the questions for themselves or on someone else’s behalf?"
 msgid "No, they are answering on someone else’s behalf"
-msgstr ""
+msgstr "Nac ydy, mae’n ateb ar ran rhywun arall"
 
 #. answer-id: date-of-birth-exclusive-answer
 msgctxt "Answer for: What is your date of birth?"
@@ -1335,12 +1335,12 @@ msgstr "Cyfeiriad y tu allan i’r Deyrnas Unedig"
 #. answer-id: length-of-stay-answer
 msgctxt "Answer for: Including the time you have already spent here, how long do you intend to stay in the United Kingdom?"
 msgid "Less than 12 months"
-msgstr ""
+msgstr "Llai na 12 mis"
 
 #. answer-id: length-of-stay-answer
 msgctxt "Answer for: Including the time you have already spent here, how long do you intend to stay in the United Kingdom?"
 msgid "12 months or more"
-msgstr ""
+msgstr "12 mis neu fwy"
 
 #. answer-id: length-of-stay-answer
 msgctxt "Answer for: Including the time they have already spent here, how long does {person_name} intend to stay in the United Kingdom?"
@@ -1616,17 +1616,17 @@ msgstr "Cod post"
 #. answer-id: usual-address-household-answer
 msgctxt "Answer for: Did {person_name} usually live in the United Kingdom?"
 msgid "An address in the UK"
-msgstr ""
+msgstr "Cyfeiriad yn y Deyrnas Unedig"
 
 #. answer-id: usual-address-household-answer
 msgctxt "Answer for: Did {person_name} usually live in the United Kingdom?"
 msgid "An address outside the UK"
-msgstr ""
+msgstr "Cyfeiriad y tu allan i’r Deyrnas Unedig"
 
 #. answer-id: usual-address-household-answer-other
 msgctxt "Answer for: Did {person_name} usually live in the United Kingdom?"
 msgid "Enter the current name of the country"
-msgstr ""
+msgstr "Nodwch enw presennol y wlad"
 
 #. answer-id: usual-address-details-answer-building
 msgctxt "Answer for: What is {person_name_possessive} usual UK address?"
