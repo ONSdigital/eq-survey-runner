@@ -39,7 +39,6 @@ Combine all the profiles in the `profiling` directory using:
 ```bash
 pipenv run python scripts/merge_profiles.py
 ```
-Ensure you delete all the files in this directory before starting your profiling session.
 This will create a file called `combined_profile.prof`
 
 To visualise this profile, `snakeviz` or `gprof2dot` can be used.
@@ -101,7 +100,12 @@ First, install `Py-Spy`:
 pip install py-spy
 ```
 
-Run survey runner using `make run` and get the process id.
+Run survey runner using `make run` and get the process id of the child process. There will be 2 flask processes running, the child process will the have the higher process id.
+
+Get process id using:
+```bash
+ps aux | grep flask
+```
 
 Run `Py-Spy` using:
 ```bash
