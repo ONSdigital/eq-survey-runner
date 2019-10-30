@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-19 14:27+0100\n"
-"PO-Revision-Date: 2019-09-20 07:56\n"
+"POT-Creation-Date: 2019-10-16 11:24+0100\n"
+"PO-Revision-Date: 2019-10-28 11:09\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -257,7 +257,7 @@ msgstr "Dechrau'r adran"
 msgid "Start {section_name} section"
 msgstr "Dechrau adran {section_name}"
 
-#: app/views/contexts/list_collector.py:33
+#: app/views/contexts/list_collector.py:12
 msgid " (You)"
 msgstr " (Chi)"
 
@@ -469,23 +469,23 @@ msgstr "Er mwyn helpu i ddiogelu eich gwybodaeth rydym wedi'ch allgofnodi"
 msgid "We have saved your progress and you will need to <a href=\"%(account_service_link)s\">enter your unique code</a> to access the survey again."
 msgstr "Rydym wedi cadw eich cynnydd a bydd angen i chi <a href=\"%(account_service_link)s\">roi eich cod unigryw</a> i gael mynediad at yr arolwg eto."
 
-#: templates/layouts/_base.html:32 templates/layouts/_questionnaire.html:14
+#: templates/layouts/_base.html:33
 msgid "We use cookies to improve your experience of census.gov.uk"
 msgstr "Rydym yn defnyddio cwcis i wella eich profiad o cyfrifiad.gov.uk"
 
-#: templates/layouts/_questionnaire.html:24
+#: templates/layouts/_questionnaire.html:12
 msgid "Previous"
 msgstr "Blaenorol"
 
-#: templates/layouts/_questionnaire.html:39
+#: templates/layouts/_questionnaire.html:27
 msgid "Save and continue"
 msgstr "Cadw a pharhau"
 
-#: templates/layouts/_questionnaire.html:50
+#: templates/layouts/_questionnaire.html:38
 msgid "Can't complete this question?"
 msgstr "Methu cwblhau'r cwestiwn hwn?"
 
-#: templates/layouts/_questionnaire.html:51
+#: templates/layouts/_questionnaire.html:39
 msgid "Choose another section and return to this later"
 msgstr "Dewiswch adran arall a dewch yn ôl yn nes ymlaen"
 
@@ -494,31 +494,32 @@ msgid "Give us feedback and help us improve this service"
 msgstr "Rhowch adborth i ni a helpwch ni i wella'r gwasanaeth hwn"
 
 #: templates/layouts/configs/_feedback.html:12
-msgid "Tell us what you think of this website by emailing"
+msgid "Tell us what you think of this service by emailing"
 msgstr "Rhannwch eich barn am y wefan hon â ni drwy e-bostio"
 
 #: templates/layouts/configs/_feedback.html:13
-msgid "This email is for feedback only and we will not be able to reply. Do not include any personal details."
-msgstr ""
+msgid "If you need help with your census, get in touch with our contact centre."
+msgstr "Os oes angen help arnoch chi gyda’ch cyfrifiad, cysylltwch â’n canolfan gyswllt."
 
 #: templates/layouts/configs/_feedback.html:14
 msgid "Census 2021 feedback: "
 msgstr "Adborth Cyfrifiad 2021: "
 
 #: templates/layouts/configs/_feedback.html:15
-msgid "This email is for feedback on the census rehearsal, which will help us to improve Census 2021. We are unable to respond to these emails.\n"
+msgid "This email is for feedback on the census rehearsal, which will help us to improve Census 2021.\n"
 "If you need help with your census, visit https://www.census.gov.uk/contact-us."
-msgstr "Mae'r cyfeiriad e-bost hwn ar gyfer rhoi adborth ar ymarfer y cyfrifiad, a fydd yn ein helpu ni i wella Cyfrifiad 2021. Ni allwn ymateb i'r negeseuon e-bost hyn. Os oes angen help arnoch gyda'ch cyfrifiad, ewch i https://cyfrifiad.gov.uk/cysylltu-a-ni/."
+msgstr "Mae’r cyfeiriad e-bost hwn ar gyfer rhoi adborth ar ymarfer y cyfrifiad, a fydd yn ein helpu ni i wella Cyfrifiad 2021.\n"
+"Os oes angen help arnoch chi gyda’ch cyfrifiad, ewch i https://cyfrifiad.gov.uk/cysylltu-a-ni/."
 
-#: templates/layouts/configs/_footer.html:33
+#: templates/layouts/configs/_footer.html:34
 msgid "Contact us"
 msgstr "Cysylltu â ni"
 
-#: templates/layouts/configs/_footer.html:38
+#: templates/layouts/configs/_footer.html:39
 msgid "Help"
 msgstr "Help"
 
-#: templates/layouts/configs/_footer.html:47
+#: templates/layouts/configs/_footer.html:48
 msgid "Cookies"
 msgstr "Cwcis"
 
@@ -621,7 +622,7 @@ msgid "No answer provided"
 msgstr "Ni roddwyd ateb"
 
 #: templates/partials/summary/collapsible-summary.html:27
-#: templates/partials/summary/list-summary.html:8
+#: templates/partials/summary/list-summary.html:9
 #: templates/partials/summary/summary.html:9
 msgid "Change"
 msgstr "Newid"
@@ -631,15 +632,15 @@ msgstr "Newid"
 msgid "Change your answer for:"
 msgstr "Newidiwch eich ateb ar gyfer:"
 
-#: templates/partials/summary/list-summary.html:9
+#: templates/partials/summary/list-summary.html:10
 msgid "Change details for {item_name}"
 msgstr "Newid manylion ar gyfer {item_name}"
 
-#: templates/partials/summary/list-summary.html:10
+#: templates/partials/summary/list-summary.html:11
 msgid "Remove"
 msgstr "Dileu"
 
-#: templates/partials/summary/list-summary.html:11
+#: templates/partials/summary/list-summary.html:12
 msgid "Remove {item_name}"
 msgstr "Tynnu {item_name}"
 
