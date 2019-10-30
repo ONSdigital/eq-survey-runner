@@ -44,7 +44,7 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         self.post(action=None)
         # Then
         self.assertEqualPageTitle(
-            "We\'ve received your answers - Final confirmation to submit"
+            'We’ve received your answers - Final confirmation to submit'
         )
 
     def test_session_expired_page_title(self):
