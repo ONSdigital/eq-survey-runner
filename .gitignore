@@ -29,7 +29,7 @@ pip-log.txt
 coverage.xml
 .tox
 coverage/
-profiling/
+/profiling/
 combined_profile.prof
 
 .cache
