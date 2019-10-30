@@ -430,22 +430,8 @@ python token_generator.py
 
 ## Profiling
 
-To profile the application run `make profile`. Profiling information will be collected per-request in the `profiling` directory where it can be examined using the Pstats Interactive Browser.
+Refer to our [profiling document](doc/profiling.md).
 
-`$ python -m pstats <filename>`
-
-will load the file into the interactive browser where it can be sorted and queried as required.
-
-To visualise the profile, `snakeviz` can be used. This provides a nice interface with an icicle graph:
-
-```
-# First combine all the profiles in the 'profiling' directory.
-# Ensure you delete all the files in this directory before starting your profiling session
-# This will create a file called `combined_profile.prof`
-pipenv run python scripts/merge_profiles.py
-
-snakeviz combined_profile.prof
-```
 
 ## Updating / Installing dependencies
 
