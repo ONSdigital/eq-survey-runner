@@ -60,4 +60,3 @@ after_success:
 branches:
     only:
         - v3
-        - census-rehearsal

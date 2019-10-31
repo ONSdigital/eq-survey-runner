@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-11-04 08:29+0000\n"
+"POT-Creation-Date: 2019-11-04 08:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -541,6 +541,11 @@ msgstr ""
 
 #: templates/layouts/configs/_save-sign-out-button.html:32
 msgid "Save and complete later"
+msgstr ""
+
+#: templates/partials/answer-guidance.html:13
+#: templates/partials/question-definition.html:14
+msgid "Hide this"
 msgstr ""
 
 #: templates/partials/question.html:39

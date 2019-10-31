@@ -2,13 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-<<<<<<< HEAD
 "POT-Creation-Date: 2019-10-16 11:24+0100\n"
 "PO-Revision-Date: 2019-10-28 11:09\n"
-=======
-"POT-Creation-Date: 2019-10-03 14:12+0100\n"
-"PO-Revision-Date: 2019-10-03 14:49\n"
->>>>>>> 59d08c28... Change summary panel (#2421)
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -513,13 +508,8 @@ msgstr "Adborth Cyfrifiad 2021: "
 #: templates/layouts/configs/_feedback.html:15
 msgid "This email is for feedback on the census rehearsal, which will help us to improve Census 2021.\n"
 "If you need help with your census, visit https://www.census.gov.uk/contact-us."
-<<<<<<< HEAD
 msgstr "Mae’r cyfeiriad e-bost hwn ar gyfer rhoi adborth ar ymarfer y cyfrifiad, a fydd yn ein helpu ni i wella Cyfrifiad 2021.\n"
 "Os oes angen help arnoch chi gyda’ch cyfrifiad, ewch i https://cyfrifiad.gov.uk/cysylltu-a-ni/."
-=======
-msgstr "Mae'r cyfeiriad e-bost hwn ar gyfer rhoi adborth ar ymarfer y cyfrifiad, a fydd yn ein helpu ni i wella Cyfrifiad 2021.\n"
-"Os oes angen help arnoch chi gyda'ch cyfrifiad, ewch i https://cyfrifiad.gov.uk/cysylltu-a-ni/."
->>>>>>> 59d08c28... Change summary panel (#2421)
 
 #: templates/layouts/configs/_footer.html:34
 msgid "Contact us"
