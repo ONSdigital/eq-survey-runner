@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-30 12:18+0000\n"
+"POT-Creation-Date: 2019-10-31 10:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -370,7 +370,7 @@ msgid "Transaction ID: <b>{transaction_id}</b>"
 msgstr ""
 
 #: templates/thank-you.html:29
-msgid "Your answers will be processed in the next few weeks"
+msgid "Your answers will be processed in the next few weeks."
 msgstr ""
 
 #: templates/thank-you.html:30
