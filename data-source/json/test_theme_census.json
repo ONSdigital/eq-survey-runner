@@ -29,7 +29,7 @@
                                 "answers": [
                                     {
                                         "id": "name",
-                                        "label": "What is your name?",
+                                        "label": "Name",
                                         "mandatory": false,
                                         "q_code": "0",
                                         "type": "TextField"
@@ -37,7 +37,7 @@
                                 ],
                                 "description": "",
                                 "id": "name-question",
-                                "title": "",
+                                "title": "What is your name?",
                                 "type": "General"
                             },
                             "routing_rules": []
