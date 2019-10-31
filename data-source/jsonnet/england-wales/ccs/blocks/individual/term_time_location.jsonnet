@@ -61,7 +61,7 @@ local noOtherAddressOptions = {
           {
             id: 'term-time-location-answer',
             condition: 'equals',
-            value: 'Another address',
+            value: 'At another address',
           },
         ],
       },
