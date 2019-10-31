@@ -61,7 +61,7 @@ function(region_code, census_date, census_month_year_date) {
   mime_type: 'application/json/ons/eq',
   schema_version: '0.0.1',
   data_version: '0.0.3',
-  survey_id: 'census',
+  survey_id: 'CCS',
   title: '2019 Census Coverage Survey Test',
   description: 'Census England Coverage Survey Schema',
   theme: 'census',
