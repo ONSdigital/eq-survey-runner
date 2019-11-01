@@ -81,9 +81,9 @@ class TestPlaceholderRenderer(AppContextTestCase):
             ],
         }
 
-        self.pointers = [
-            p for p in find_pointers_containing(self.question_json, 'placeholders')
-        ]
+        self.pointers = list(
+            find_pointers_containing(self.question_json, 'placeholders')
+        )
 
     def test_correct_pointers(self):
         assert self.pointers[0] == '/answers/0/options/0/label'

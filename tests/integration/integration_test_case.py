@@ -52,7 +52,9 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self._redis = patch('app.setup.redis.Redis', fakeredis.FakeStrictRedis)
         self._redis.start()
 
-        from application import configure_logging
+        from application import (  # pylint: disable=import-outside-toplevel
+            configure_logging,
+        )
 
         configure_logging()
 
