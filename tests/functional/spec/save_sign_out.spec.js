@@ -1,4 +1,4 @@
-const utilities = require('../utilities');
+const jwt_helper = require('../jwt_helper');
 const SetMinMax = require('../generated_pages/numbers/set-min-max-block.page.js');
 const TestMinMax = require('../generated_pages/numbers/test-min-max-block.page.js');
 const SummaryPage = require('../generated_pages/numbers/summary.page');
@@ -9,7 +9,7 @@ const IntroConfirmationPage = require('../generated_pages/introduction/confirmat
 const IntroThankYouPagePage = require('../base_pages/thank-you.page');
 
 describe('SaveSignOut', function() {
-  const responseId = utilities.getRandomString(16);
+  const responseId = jwt_helper.getRandomString(16);
 
   it('Given I am completing a survey, when I select save and complete later, then I am redirected to sign out page and my session is cleared', function() {
     browser.openQuestionnaire('test_numbers.json', { userId: 'test_user', responseId: responseId } );
