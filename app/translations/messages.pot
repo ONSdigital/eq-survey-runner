@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-31 10:57+0000\n"
+"POT-Creation-Date: 2019-11-04 08:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -257,7 +257,7 @@ msgstr ""
 msgid "Yes, I confirm these are correct"
 msgstr ""
 
-#: templates/confirmation.html:41
+#: templates/confirmation.html:42
 msgid "Submitting"
 msgstr ""
 
@@ -327,19 +327,19 @@ msgstr ""
 msgid "Check your answers and submit"
 msgstr ""
 
-#: templates/summary.html:17 templates/summary.html:28
-msgid "You can check your answers below"
+#: templates/summary.html:17
+msgid "Check your answers before submitting"
 msgstr ""
 
-#: templates/summary.html:27
-msgid "This section is now complete"
+#: templates/summary.html:26
+msgid "Check your answers before continuing to the next section"
 msgstr ""
 
-#: templates/summary.html:37
+#: templates/summary.html:35
 msgid "Please review your answers and confirm these are correct"
 msgstr ""
 
-#: templates/summary.html:66
+#: templates/summary.html:64
 msgid ""
 "You will have the opportunity to view and print a copy of your answers "
 "after submitting this survey"
@@ -490,6 +490,7 @@ msgstr ""
 msgid "To help protect your information we have signed you out"
 msgstr ""
 
+#: templates/errors/session-expired.html:20
 #: templates/errors/session-expired.html:22
 #, python-format
 msgid ""
@@ -577,11 +578,6 @@ msgstr ""
 #: templates/partials/answer-guidance.html:13
 #: templates/partials/question-definition.html:14
 msgid "Hide this"
-msgstr ""
-
-#: templates/partials/answer-guidance.html:14
-#: templates/partials/question-definition.html:15
-msgid "context"
 msgstr ""
 
 #: templates/partials/question.html:39
