@@ -161,15 +161,32 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(get_formatted_currency(''), '')
 
 
-def test_map_list_collector_config_for_primary_person():
-    """ Ensure the list isn't reordered. Primary will always be first in the list.
-    """
+def test_map_list_collector_config_no_actions():
+    list_items = [{'item_title': 'Mark Bloggs'}, {'item_title': 'Joe Bloggs'}]
+
+    output = map_list_collector_config(list_items, 'icon')
+
+    expected = [
+        {'rowItems': [{'actions': [], 'icon': 'icon'}], 'title': 'Mark Bloggs'},
+        {'rowItems': [{'actions': [], 'icon': 'icon'}], 'title': 'Joe Bloggs'},
+    ]
+
+    assert output == expected
+
+
+def test_map_list_collector_config():
     list_items = [
-        {'remove_link': 'primary', 'edit_link': 'primary', 'primary_person': True},
         {
-            'remove_link': 'nonprimary',
-            'edit_link': 'nonprimary',
+            'remove_link': '/primary/remove',
+            'edit_link': '/primary/change',
+            'primary_person': True,
+            'item_title': 'Mark Bloggs (You)',
+        },
+        {
+            'remove_link': '/nonprimary/remove',
+            'edit_link': '/nonprimary/change',
             'primary_person': False,
+            'item_title': 'Joe Bloggs',
         },
     ]
 
@@ -182,5 +199,45 @@ def test_map_list_collector_config_for_primary_person():
         'remove_link_aria_label',
     )
 
-    assert output[0]['rowItems'][0]['actions'][0]['url'] == 'primary'
-    assert output[1]['rowItems'][0]['actions'][0]['url'] == 'nonprimary'
+    expected = [
+        {
+            'rowItems': [
+                {
+                    'actions': [
+                        {
+                            'ariaLabel': 'edit_link_aria_label',
+                            'attributes': {'data-qa': 'change-item-link'},
+                            'text': 'edit_link_text',
+                            'url': '/primary/change',
+                        }
+                    ],
+                    'icon': 'icon',
+                }
+            ],
+            'title': 'Mark Bloggs (You)',
+        },
+        {
+            'rowItems': [
+                {
+                    'actions': [
+                        {
+                            'ariaLabel': 'edit_link_aria_label',
+                            'attributes': {'data-qa': 'change-item-link'},
+                            'text': 'edit_link_text',
+                            'url': '/nonprimary/change',
+                        },
+                        {
+                            'ariaLabel': 'remove_link_aria_label',
+                            'attributes': {'data-qa': 'remove-item-link'},
+                            'text': 'remove_link_text',
+                            'url': '/nonprimary/remove',
+                        },
+                    ],
+                    'icon': 'icon',
+                }
+            ],
+            'title': 'Joe Bloggs',
+        },
+    ]
+
+    assert output == expected
