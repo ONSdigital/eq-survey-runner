@@ -171,12 +171,12 @@ exports.config = {
      */
     before: function (capabilities, specs) {
         const chai = require('chai');
-        const jwt_helper = require('./jwt_helper');
+        const JwtHelper = require('./jwt_helper');
 
         global.expect = chai.expect;
 
-        browser.addCommand('openQuestionnaire', async function (schema, { userId = jwt_helper.getRandomString(10), collectionId = jwt_helper.getRandomString(10), responseId = jwt_helper.getRandomString(16), periodId = '201605', periodStr = 'May 2016', region = 'GB-ENG', language = 'en', sexualIdentity = false, includeLogoutUrl = false } = {}){
-          token = await jwt_helper.generateToken(schema, {userId, collectionId, responseId: responseId, periodId: periodId, periodStr: periodStr, regionCode: region, languageCode: language, sexualIdentity: sexualIdentity, includeLogoutUrl: includeLogoutUrl})
+        browser.addCommand('openQuestionnaire', async function (schema, { userId = JwtHelper.getRandomString(10), collectionId = JwtHelper.getRandomString(10), responseId = JwtHelper.getRandomString(16), periodId = '201605', periodStr = 'May 2016', region = 'GB-ENG', language = 'en', sexualIdentity = false, includeLogoutUrl = false } = {}){
+          token = await JwtHelper.generateToken(schema, {userId, collectionId, responseId: responseId, periodId: periodId, periodStr: periodStr, regionCode: region, languageCode: language, sexualIdentity: sexualIdentity, includeLogoutUrl: includeLogoutUrl})
           this.url('/session?token=' + token);
         });
     },
