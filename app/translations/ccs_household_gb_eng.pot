@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-11-04 08:32+0000\n"
+"POT-Creation-Date: 2019-11-04 12:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,6 +129,58 @@ msgid "There are no householders"
 msgstr ""
 
 msgid "There are no visitors"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 1</strong>"
+msgstr ""
+
+msgid ""
+"Enter a full stop (.) if the respondent does not know a person’s “First "
+"name” or “Last name”"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 2</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 13</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 3</strong>"
+msgstr ""
+
+msgid "If “No” confirm one or more rooms are shared with another household"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 4</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 5</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 6</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 7</strong>"
+msgstr ""
+
+msgid ""
+"If “Yes” ensure this accommodation is recorded on the Fieldwork "
+"Management Tool and interview household separately"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 8</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 9</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 10</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 11</strong>"
+msgstr ""
+
+msgid "Tell respondent to turn to <strong>Showcard 12</strong>"
 msgstr ""
 
 msgid "2019 Census Coverage Survey Test"
