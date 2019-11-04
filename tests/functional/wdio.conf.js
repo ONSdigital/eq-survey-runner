@@ -175,7 +175,6 @@ exports.config = {
         const generateToken = require('./jwt_helper');
 
         global.expect = chai.expect;
-        chai.Should();
 
         browser.addCommand('openQuestionnaire', async function (schema, { userId = utilities.getRandomString(10), collectionId = utilities.getRandomString(10), responseId = utilities.getRandomString(16), periodId = '201605', periodStr = 'May 2016', region = 'GB-ENG', language = 'en', sexualIdentity = false, includeLogoutUrl = false } = {}){
           token = await generateToken(schema, {userId, collectionId, responseId: responseId, periodId: periodId, periodStr: periodStr, regionCode: region, languageCode: language, sexualIdentity: sexualIdentity, includeLogoutUrl: includeLogoutUrl})
