@@ -5,6 +5,7 @@ from app.helpers.template_helper import safe_content
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.schema_utils import transform_variants
+from app.views.contexts.list_collector import build_list_items_summary_context
 from app.views.contexts.question import build_question_context
 from app.views.handlers.block import BlockHandler
 
@@ -60,6 +61,18 @@ class Question(BlockHandler):
     def get_context(self):
         context = build_question_context(self.rendered_block, self.form)
         context['return_to_hub_url'] = self.get_return_to_hub_url()
+
+        if 'list_summary' in self.rendered_block:
+            context['list'] = {
+                'list_items': build_list_items_summary_context(
+                    self.rendered_block['list_summary'],
+                    self._schema,
+                    self._questionnaire_store.answer_store,
+                    self._questionnaire_store.list_store,
+                    self._language,
+                ),
+                'editable': False,
+            }
         return context
 
     def handle_post(self):
@@ -91,7 +104,7 @@ class Question(BlockHandler):
     def _render_block(self, block_id):
         block_schema = self._schema.get_block(block_id)
 
-        transformed_block = transform_variants(
+        variant_block = transform_variants(
             block_schema,
             self._schema,
             self._questionnaire_store.metadata,
@@ -100,13 +113,13 @@ class Question(BlockHandler):
             self._current_location,
         )
 
-        self.page_title = self._get_page_title(transformed_block)
+        self.page_title = self._get_page_title(variant_block)
 
         rendered_question = self.placeholder_renderer.render(
-            transformed_block.pop('question'), self._current_location.list_item_id
+            variant_block.pop('question'), self._current_location.list_item_id
         )
 
-        return {**transformed_block, **{'question': rendered_question}}
+        return {**variant_block, **{'question': rendered_question}}
 
     def get_return_to_hub_url(self):
         if (

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-03 14:12+0100\n"
-"PO-Revision-Date: 2019-10-03 14:49\n"
+"POT-Creation-Date: 2019-10-16 11:24+0100\n"
+"PO-Revision-Date: 2019-10-28 11:09\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -257,7 +257,7 @@ msgstr "Dechrau'r adran"
 msgid "Start {section_name} section"
 msgstr "Dechrau adran {section_name}"
 
-#: app/views/contexts/list_collector.py:33
+#: app/views/contexts/list_collector.py:12
 msgid " (You)"
 msgstr " (Chi)"
 
@@ -508,8 +508,8 @@ msgstr "Adborth Cyfrifiad 2021: "
 #: templates/layouts/configs/_feedback.html:15
 msgid "This email is for feedback on the census rehearsal, which will help us to improve Census 2021.\n"
 "If you need help with your census, visit https://www.census.gov.uk/contact-us."
-msgstr "Mae'r cyfeiriad e-bost hwn ar gyfer rhoi adborth ar ymarfer y cyfrifiad, a fydd yn ein helpu ni i wella Cyfrifiad 2021.\n"
-"Os oes angen help arnoch chi gyda'ch cyfrifiad, ewch i https://cyfrifiad.gov.uk/cysylltu-a-ni/."
+msgstr "Mae’r cyfeiriad e-bost hwn ar gyfer rhoi adborth ar ymarfer y cyfrifiad, a fydd yn ein helpu ni i wella Cyfrifiad 2021.\n"
+"Os oes angen help arnoch chi gyda’ch cyfrifiad, ewch i https://cyfrifiad.gov.uk/cysylltu-a-ni/."
 
 #: templates/layouts/configs/_footer.html:34
 msgid "Contact us"
@@ -622,7 +622,7 @@ msgid "No answer provided"
 msgstr "Ni roddwyd ateb"
 
 #: templates/partials/summary/collapsible-summary.html:27
-#: templates/partials/summary/list-summary.html:8
+#: templates/partials/summary/list-summary.html:9
 #: templates/partials/summary/summary.html:9
 msgid "Change"
 msgstr "Newid"
@@ -632,15 +632,15 @@ msgstr "Newid"
 msgid "Change your answer for:"
 msgstr "Newidiwch eich ateb ar gyfer:"
 
-#: templates/partials/summary/list-summary.html:9
+#: templates/partials/summary/list-summary.html:10
 msgid "Change details for {item_name}"
 msgstr "Newid manylion ar gyfer {item_name}"
 
-#: templates/partials/summary/list-summary.html:10
+#: templates/partials/summary/list-summary.html:11
 msgid "Remove"
 msgstr "Dileu"
 
-#: templates/partials/summary/list-summary.html:11
+#: templates/partials/summary/list-summary.html:12
 msgid "Remove {item_name}"
 msgstr "Tynnu {item_name}"
 
