@@ -5,7 +5,7 @@ const ResponseSummaryPage = require('../generated_pages/conditional_combined_rou
 
 describe('Conditional combined routing.', function() {
   beforeEach(function() {
-    browser.openQuestionnaire('test_conditional_combined_routing.json')
+    browser.openQuestionnaire('test_conditional_combined_routing.json');
   });
 
   it('Given a list of radio options, when I choose the option "Yes" or the option "Sometimes" then I should be routed to the relevant page', function() {

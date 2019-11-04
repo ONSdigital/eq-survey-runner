@@ -160,7 +160,7 @@ describe('Feature: Routing on a Date', function () {
       let yyyy_yesterday = yesterday.getFullYear();
 
       beforeEach(function() {
-        browser.openQuestionnaire('test_routing_date_less_than.json')
+        browser.openQuestionnaire('test_routing_date_less_than.json');
       });
 
       it('When I enter a date less than today, Then I should be routed to the correct page', function () {
