@@ -92,8 +92,8 @@ local question(title) = {
       goto: {
         block: 'individual-section-summary',
         when: [{
-          id: 'another-uk-address-answer-exclusive',
-          condition: 'set',
+          id: 'another-uk-address-question',
+          condition: 'not set',
         }],
       },
     },
