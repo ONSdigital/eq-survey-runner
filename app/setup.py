@@ -17,7 +17,6 @@ from google.cloud import datastore
 from htmlmin.main import minify
 from sdc.crypto.key_store import KeyStore, validate_required_keys
 from structlog import get_logger
-
 from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
@@ -353,18 +352,6 @@ def setup_submitter(application):
         raise Exception('Unknown EQ_SUBMISSION_BACKEND')
 
 
-def configure_flask_logging(application):
-    # set the logger for this application and stop using flasks broken solution
-    application._logger = logging.getLogger(  # pylint: disable=protected-access
-        __name__
-    )
-    # workaround flask crazy logging mechanism (https://github.com/pallets/flask/issues/641)
-    application.logger_name = 'nowhere'
-    # the line below is required to trigger disabling the logger
-    application.logger  # pylint: disable=pointless-statement
-
-
-# pylint: disable=import-outside-toplevel
 def start_dev_mode(application):
     if application.config['EQ_ENABLE_FLASK_DEBUG_TOOLBAR']:
         application.config['DEBUG_TB_PROFILER_ENABLED'] = True
@@ -375,7 +362,6 @@ def start_dev_mode(application):
         DebugToolbarExtension(application)
 
 
-# pylint: disable=import-outside-toplevel
 def add_blueprints(application):
     csrf = CSRFProtect(application)
 
