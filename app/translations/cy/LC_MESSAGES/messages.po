@@ -204,7 +204,7 @@ msgstr[5] "%(num)s diwrnod"
 msgid "Submit survey"
 msgstr "Cyflwyno'r arolwg"
 
-#: app/views/contexts/hub_context.py:16 templates/summary.html:16
+#: app/views/contexts/hub_context.py:16 templates/summary.html:17
 msgid "Please submit this survey to complete it"
 msgstr "Cyflwynwch yr arolwg hwn i'w gwblhau"
 
@@ -345,19 +345,19 @@ msgstr "Crynodeb"
 msgid "Check your answers and submit"
 msgstr "Gwiriwch eich atebion a'u cyflwyno"
 
-#: templates/summary.html:17 templates/summary.html:28
-msgid "You can check your answers below"
-msgstr "Gallwch wirio eich atebion isod"
+#: templates/summary.html:18
+msgid "Check your answers before submitting"
+msgstr "Gwiriwch eich atebion cyn eu cyflwyno"
 
 #: templates/summary.html:27
-msgid "This section is now complete"
-msgstr "Mae'r adran hon nawr wedi'i chwblhau"
+msgid "Check your answers before continuing to the next section"
+msgstr "Gwiriwch eich atebion cyn parhau i'r adran nesaf"
 
-#: templates/summary.html:37
+#: templates/summary.html:36
 msgid "Please review your answers and confirm these are correct"
 msgstr "Adolygwch eich atebion a chadarnhewch fod y rhain yn gywir"
 
-#: templates/summary.html:66
+#: templates/summary.html:65
 msgid "You will have the opportunity to view and print a copy of your answers after submitting this survey"
 msgstr "Byddwch yn cael y cyfle i weld ac argraffu copi o'ch atebion ar ôl cyflwyno'r arolwg hwn"
 
@@ -464,7 +464,7 @@ msgstr "Mae eich sesiwn wedi dod i ben"
 msgid "To help protect your information we have signed you out"
 msgstr "Er mwyn helpu i ddiogelu eich gwybodaeth rydym wedi'ch allgofnodi"
 
-#: templates/errors/session-expired.html:22
+#: templates/errors/session-expired.html:26
 #, python-format
 msgid "We have saved your progress and you will need to <a href=\"%(account_service_link)s\">enter your unique code</a> to access the survey again."
 msgstr "Rydym wedi cadw eich cynnydd a bydd angen i chi <a href=\"%(account_service_link)s\">roi eich cod unigryw</a> i gael mynediad at yr arolwg eto."

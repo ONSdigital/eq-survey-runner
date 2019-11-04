@@ -1,14 +1,12 @@
 import copy
 import json
-import logging
-from datetime import timedelta
 from uuid import uuid4
 
 import boto3
 import redis
 import yaml
 from botocore.config import Config
-from flask import Flask, session as cookie_session
+from flask import Flask, request as flask_request, session as cookie_session
 from flask_babel import Babel
 from flask_caching import Cache
 from flask_compress import Compress
@@ -26,6 +24,7 @@ from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.authentication.user_id_generator import UserIDGenerator
 from app.globals import get_session_store
 from app.keys import KEY_PURPOSE_SUBMISSION
+from app.helpers import get_span_and_trace
 from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
 from app.storage.datastore import DatastoreStorage
@@ -107,7 +106,9 @@ class AWSReverseProxied:
         return self.app(environ, start_response)
 
 
-def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-complex
+def create_app(  # noqa: C901  pylint: disable=too-complex, too-many-statements
+    setting_overrides=None
+):
     application = Flask(__name__, template_folder='../templates')
     application.config.from_object(settings)
 
@@ -138,13 +139,21 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     # request will use the logger context of the previous request.
     @application.before_request
     def before_request():  # pylint: disable=unused-variable
-
-        # While True the session lives for permanent_session_lifetime seconds
-        # Needed to be able to set the client-side cookie expiration
-        cookie_session.permanent = True
-
         request_id = str(uuid4())
         logger.new(request_id=request_id)
+
+        span, trace = get_span_and_trace(flask_request.headers)
+        if span and trace:
+            logger.bind(span=span, trace=trace)
+
+        logger.info(
+            'request',
+            method=flask_request.method,
+            url_path=flask_request.full_path,
+            session_cookie_present='session' in flask_request.cookies,
+            csrf_token_present='csrf_token' in cookie_session,
+            user_agent=flask_request.user_agent.string,
+        )
 
     if application.config['EQ_NEW_RELIC_ENABLED']:
         setup_newrelic()
@@ -174,8 +183,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     application.url_map.strict_slashes = False
 
     add_blueprints(application)
-
-    configure_flask_logging(application)
 
     login_manager.init_app(application)
 
@@ -227,6 +234,18 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
             )
 
             return response
+        return response
+
+    @application.after_request
+    def after_request(response):  # pylint: disable=unused-variable
+        # We're using the stringified version of the Flask session to get a rough
+        # length for the cookie. The real length won't be known yet as Flask
+        # serialises and adds the cookie header after this method is called.
+        logger.info(
+            'response',
+            status_code=response.status_code,
+            session_modified=cookie_session.modified,
+        )
         return response
 
     return application
@@ -409,11 +428,9 @@ def add_blueprints(application):
 
 
 def setup_secure_cookies(application):
-    session_timeout = application.config['EQ_SESSION_TIMEOUT_SECONDS']
     application.secret_key = application.eq['secret_store'].get_secret_by_name(
         'EQ_SECRET_KEY'
     )
-    application.permanent_session_lifetime = timedelta(seconds=session_timeout)
     application.session_interface = SHA256SecureCookieSessionInterface()
 
 

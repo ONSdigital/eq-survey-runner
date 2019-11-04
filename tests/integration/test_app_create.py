@@ -21,7 +21,7 @@ class TestCreateApp(unittest.TestCase):  # pylint: disable=too-many-public-metho
     def override_settings(self):
         """ Required because although the settings are overriden on the application
         by passing _setting_overrides in, there are many funtions which use the
-        imported settings object - this does not get the overrides merged in. this
+        imported settings object - this does not get the overrides merged in. This
         helper does that.
 
         Note - this is not very nice, however it's better than polluting the global
@@ -80,6 +80,23 @@ class TestCreateApp(unittest.TestCase):  # pylint: disable=too-many-public-metho
             self.assertEqual(1, logger.new.call_count)
             _, kwargs = logger.new.call_args
             self.assertTrue(UUID(kwargs['request_id'], version=4))
+
+    def test_adds_logging_of_span_and_trace(self):
+        with patch('app.setup.logger') as logger:
+            self._setting_overrides.update(
+                {'EQ_DEV_MODE': True, 'EQ_APPLICATION_VERSION': False}
+            )
+            application = create_app(self._setting_overrides)
+
+            x_cloud_headers = {
+                'X-Cloud-Trace-Context': '0123456789/0123456789012345678901;o=1'
+            }
+            application.test_client().get('/', headers=x_cloud_headers)
+
+            self.assertEqual(1, logger.bind.call_count)
+            _, kwargs = logger.bind.call_args
+            self.assertTrue(kwargs['span'] == '0123456789012345678901')
+            self.assertTrue(kwargs['trace'] == '0123456789')
 
     def test_enforces_secure_headers(self):
         self._setting_overrides['EQ_ENABLE_LIVE_RELOAD'] = False

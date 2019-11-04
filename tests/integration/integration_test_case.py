@@ -1,21 +1,18 @@
+import json
 import os
 import re
 import unittest
-import json
 import zlib
+
 import fakeredis
-
 from bs4 import BeautifulSoup
-from mock import patch
-
 from itsdangerous import base64_decode
-
+from mock import patch
 from sdc.crypto.key_store import KeyStore
 
 from app.keys import KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
 from app.setup import create_app
 from tests.app.app_context_test_case import MockDatastore
-
 from tests.integration.create_token import TokenGenerator
 
 EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID = '709eb42cfee5570058ce0711f730bfbb7d4c8ade'
