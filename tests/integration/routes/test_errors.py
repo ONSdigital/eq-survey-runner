@@ -40,13 +40,8 @@ class TestErrors(IntegrationTestCase):
 
     def test_errors_500(self):
         # Given
-        payload_without_account_service_url = self.example_payload.copy()
-        del payload_without_account_service_url['account_service_url']
-        with patch(
-            'tests.integration.create_token.PAYLOAD',
-            payload_without_account_service_url,
-        ):
-            self.launchSurvey('test_percentage')
+        self.launchSurvey('test_percentage')
+
         # When / Then
         # Patch out a class in post to raise an exception so that the application error handler
         # gets called
@@ -85,7 +80,7 @@ class TestErrors(IntegrationTestCase):
             ):
                 # Another exception occurs during exception handling
                 with patch(
-                    'app.routes.errors.log_exception',
+                    'app.routes.errors.log_error',
                     side_effect=Exception('You broked it again'),
                 ):
                     self.post({'answer': '5000000'})

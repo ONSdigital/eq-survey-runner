@@ -5,15 +5,6 @@ from app.data_model.answer_store import AnswerStore
 from app.data_model.list_store import ListStore
 from app.forms.questionnaire_form import QuestionnaireForm
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
-from app.setup import create_app
-
-
-@pytest.fixture
-def app():
-    setting_overrides = {'LOGIN_DISABLED': True}
-    the_app = create_app(setting_overrides=setting_overrides)
-
-    return the_app
 
 
 @pytest.fixture
