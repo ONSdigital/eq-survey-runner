@@ -97,7 +97,7 @@ describe('Primary Person List Collector Survey', function() {
 
     it('When the user submits, then they are allowed to submit the survey', function () {
       $(ConfirmationPage.submit()).click();
-      expect($(ThankYouPage.questionText()).getText()).to.contain('Thank you for submitting your census');
+      expect($(ThankYouPage.questionText()).getText()).to.contain('Submission successful');
     });
   });
 
