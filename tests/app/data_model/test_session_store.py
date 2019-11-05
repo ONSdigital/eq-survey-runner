@@ -15,7 +15,6 @@ from app.storage import data_access, storage_encryption
 class SessionStoreTest(AppContextTestCase):
     def setUp(self):
         super().setUp()
-        self._app.permanent_session_lifetime = timedelta(seconds=1)
         self.session_store = SessionStore('user_ik', 'pepper')
         self.expires_at = datetime.utcnow() + timedelta(seconds=1)
         self.session_data = SessionData(
