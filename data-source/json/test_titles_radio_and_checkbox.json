@@ -40,8 +40,8 @@
                                         {
                                             "description": "The answer you write will have an effect on question titles in next question",
                                             "list": [
-                                                "If you type 'Peter', the question will be aimed for Peter",
-                                                "If you type 'Mary', the question will be aimed for Mary",
+                                                "If you type ‘Peter’, the question will be aimed for Peter",
+                                                "If you type ‘Mary’, the question will be aimed for Mary",
                                                 "If you type anything else the question will be the default question"
                                             ]
                                         }
@@ -215,7 +215,7 @@
                                                         "value": "maybe"
                                                     },
                                                     {
-                                                        "label": "I don't know",
+                                                        "label": "I don’t know",
                                                         "value": "know"
                                                     },
                                                     {
@@ -258,7 +258,7 @@
                                                         "value": "maybe"
                                                     },
                                                     {
-                                                        "label": "I don't know",
+                                                        "label": "I don’t know",
                                                         "value": "know"
                                                     },
                                                     {
@@ -312,7 +312,7 @@
                                                         "value": "maybe"
                                                     },
                                                     {
-                                                        "label": "I don't know",
+                                                        "label": "I don’t know",
                                                         "value": "know"
                                                     },
                                                     {

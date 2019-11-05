@@ -50,7 +50,7 @@ local questionTitle = {
     title: questionTitle,
     definitions: [
       {
-        title: 'What does "usually live" mean?',
+        title: 'What does “usually live” mean?',
         contents: [
           {
             description: 'It means the address at which you generally spend most time. For most people, this will be their permanent or family home.',

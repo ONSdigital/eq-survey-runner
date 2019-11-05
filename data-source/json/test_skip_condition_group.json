@@ -88,7 +88,7 @@
                                 "answers": [
                                     {
                                         "id": "should-skip-answer",
-                                        "label": "Why didn't you skip the group?",
+                                        "label": "Why didn’t you skip the group?",
                                         "mandatory": true,
                                         "type": "TextArea"
                                     }
@@ -99,7 +99,7 @@
                 },
                 {
                     "id": "last-group",
-                    "title": "This group is required as a skipped group can't be the last group",
+                    "title": "This group is required as a skipped group can’t be the last group",
                     "blocks": [
                         {
                             "type": "Question",
@@ -108,12 +108,12 @@
                             "question": {
                                 "description": "",
                                 "id": "last-group-question",
-                                "title": "This group is required as a skipped group can't be the last group",
+                                "title": "This group is required as a skipped group can’t be the last group",
                                 "type": "General",
                                 "answers": [
                                     {
                                         "id": "last-group-answer",
-                                        "label": "This group is required as a skipped group can't be the last group",
+                                        "label": "This group is required as a skipped group can’t be the last group",
                                         "mandatory": true,
                                         "type": "TextField"
                                     }

@@ -50,12 +50,12 @@
                                                 "value": "No, I prefer tea"
                                             },
                                             {
-                                                "label": "I don't like coffee",
-                                                "value": "I don't like coffee"
+                                                "label": "I don’t like coffee",
+                                                "value": "I don’t like coffee"
                                             },
                                             {
-                                                "label": "No, I don't drink any hot drinks",
-                                                "value": "No, I don't drink any hot drinks"
+                                                "label": "No, I don’t drink any hot drinks",
+                                                "value": "No, I don’t drink any hot drinks"
                                             }
                                         ],
                                         "q_code": "1",
@@ -86,7 +86,7 @@
                                             {
                                                 "id": "conditional-routing-answer",
                                                 "condition": "not equals any",
-                                                "values": ["Yes", "Sometimes", "I don't like coffee", "No, I don't drink any hot drinks"]
+                                                "values": ["Yes", "Sometimes", "I don’t like coffee", "No, I don’t drink any hot drinks"]
                                             }
                                         ]
                                     }
