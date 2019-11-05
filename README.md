@@ -194,9 +194,7 @@ Available commands:
 
 ### Development with functional tests
 
-The functional tests use Chimp (now [Chimpy](https://github.com/TheBrainFamily/chimpy)).
-
-Underneath Chimp, the tests are written using [WebdriverIO](https://webdriver.io/docs), [Chai](https://www.chaijs.com/), and [Mocha](https://mochajs.org/)
+The tests are written using [WebdriverIO](https://webdriver.io/docs), [Chai](https://www.chaijs.com/), and [Mocha](https://mochajs.org/)
 
 ### Functional test options
 
@@ -224,13 +222,13 @@ If you have already built the generated pages, then the functional tests can be 
 
 `yarn test_functional`
 
-This can be limited to tests under a directory with:
+This can be limited to a single spec using:
 
-`yarn test_functional --path tests/functional/spec/components/`
+`./node_modules/.bin/wdio tests/functional/wdio.conf.js --spec tests/functional/spec/save_sign_out.spec.js`
 
-To run a single test, add `@watch` into the name of any `describe` or `it` function and run:
+To run a single test, add `.only` into the name of any `describe` or `it` function and run:
 
-`yarn test_functional --watch`
+`yarn test_functional`
 
 An example of adding `@watch` looks like this:
 `describe('@watch Skip Conditions', function() {...}` or
