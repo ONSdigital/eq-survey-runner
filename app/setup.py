@@ -301,7 +301,7 @@ def setup_datastore(application):
         if application.config['EQ_DATASTORE_EMULATOR_CREDENTIALS']
         else None
     )
-    client = datastore.Client(_use_grpc=False, credentials=creds)
+    client = datastore.Client(_use_grpc=True, credentials=creds)
     application.eq['storage'] = DatastoreStorage(client)
 
 
