@@ -5,7 +5,7 @@
 {% block main %}
   <h1>{{ _("Your survey answers have been saved. You are now signed out") }}.</h1>
 
-  {% if account_service_url %}
+  {% if account_service_url and (schema_theme == "default" or schema_theme == "northernireland") %}
     <a href="{{account_service_url}}">{{ _("Return to your account") }}</a>
   {% endif %}
 {% endblock %}

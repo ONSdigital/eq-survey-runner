@@ -16,9 +16,11 @@
     "classes": "u-mb-s"
   }) %}
     <p>{{ _("To help protect your information we have signed you out") }}.</p>
-    {% if account_service_url %}
+    {% if account_service_url and (schema_theme == "default" or schema_theme == "northernireland") %}
+      <a href="{{account_service_url}}">{{ _("Return to your account") }}</a>
+    {% elif account_service_url and (schema_theme == "census" or schema_theme == "census-nisra") %}
       <p>{{ _('We have saved your progress and you will need to <a href="%(account_service_link)s">enter your unique code</a> to access the survey again.', account_service_link=account_service_url) }}</p>
-    {% else %}
+    {% elif schema_theme == "census" or schema_theme == "census-nisra" %}
       <p>{{ _('We have saved your progress and you will need to <a href="%(account_service_link)s">enter your unique code</a> to access the survey again.', account_service_link='https://census.gov.uk/start/') }}</p>
     {% endif %}
     {% if using_edge %}
