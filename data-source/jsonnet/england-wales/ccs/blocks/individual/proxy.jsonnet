@@ -16,7 +16,7 @@
             value: 'Yes',
           },
           {
-            label: "No, they are answering on someone else's behalf",
+            label: "No, they are answering on someone else’s behalf",
             value: 'No',
           },
         ],
