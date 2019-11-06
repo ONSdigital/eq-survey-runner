@@ -35,20 +35,20 @@ local question(title) = {
           value: 'Another address when working away from home',
         },
         {
-          label: "Student’s home address",
-          value: "Student’s home address",
+          label: 'Student’s home address',
+          value: 'Student’s home address',
         },
         {
-          label: "Student’s term-time address",
-          value: "Student’s term-time address",
+          label: 'Student’s term-time address',
+          value: 'Student’s term-time address',
         },
         {
-          label: "Another parent or guardian’s address",
-          value: "Another parent or guardian’s address",
+          label: 'Another parent or guardian’s address',
+          value: 'Another parent or guardian’s address',
         },
         {
-          label: "Partner’s address",
-          value: "Partner’s address",
+          label: 'Partner’s address',
+          value: 'Partner’s address',
         },
         {
           label: 'Holiday in the UK',
