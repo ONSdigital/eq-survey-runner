@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-11-04 08:32+0000\n"
+"POT-Creation-Date: 2019-11-06 08:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -337,12 +337,6 @@ msgstr ""
 
 #: templates/summary.html:35
 msgid "Please review your answers and confirm these are correct"
-msgstr ""
-
-#: templates/summary.html:64
-msgid ""
-"You will have the opportunity to view and print a copy of your answers "
-"after submitting this survey"
 msgstr ""
 
 #: templates/thank-you.html:4
