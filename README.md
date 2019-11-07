@@ -235,12 +235,6 @@ To run the tests against a remote deployment you will need to specify the enviro
 
 `EQ_FUNCTIONAL_TEST_ENV=https://staging-new-surveys.dev.eq.ons.digital/ yarn test_functional`
 
-To run the census functional tests within the cypress UI:
-
-```
-./node_modules/cypress/bin/cypress open
-```
-
 ---
 
 ## Deployment with [Helm](https://helm.sh/)
