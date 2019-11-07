@@ -55,12 +55,13 @@ SPEC_PAGE_IMPORT = Template(
 SPEC_EXAMPLE_TEST = Template(
     r"""
 describe('Example Test', function() {
+  beforeEach('Load the survey', function() {
+    browser.openQuestionnaire('${schema}');
+  });
 
   it('Given..., When..., Then...', function() {
-    return helpers.openQuestionnaire('${schema}').then(() => {
-        return browser
-        });
-    });
+  
+  });
 });
 
 """
