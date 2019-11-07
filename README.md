@@ -226,13 +226,10 @@ This can be limited to a single spec using:
 
 `./node_modules/.bin/wdio tests/functional/wdio.conf.js --spec tests/functional/spec/save_sign_out.spec.js`
 
-To run a single test, add `.only` into the name of any `describe` or `it` function and run:
+To run a single test, add `.only` into the name of any `describe` or `it` function:
 
-`yarn test_functional`
-
-An example of adding `@watch` looks like this:
-`describe('@watch Skip Conditions', function() {...}` or
-`it('@watch Given this is a test', function() {...}`
+`describe.only('Skip Conditions', function() {...}` or
+`it.only('Given this is a test', function() {...}`
 
 To run the tests against a remote deployment you will need to specify the environment variable of EQ_FUNCTIONAL_TEST_ENV eg:
 
