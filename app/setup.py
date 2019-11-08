@@ -357,11 +357,14 @@ def start_dev_mode(application):
         application.config['DEBUG_TB_PROFILER_ENABLED'] = True
         application.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
         application.debug = True
-        from flask_debugtoolbar import DebugToolbarExtension
+        from flask_debugtoolbar import (  # pylint: disable=import-outside-toplevel
+            DebugToolbarExtension,
+        )
 
         DebugToolbarExtension(application)
 
 
+# pylint: disable=import-outside-toplevel
 def add_blueprints(application):
     csrf = CSRFProtect(application)
 
