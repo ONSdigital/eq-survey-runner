@@ -21,7 +21,7 @@ class TestDynamo(AppContextTestCase):
         for config in TABLE_CONFIG.values():
             table_name = current_app.config[config['table_name_key']]
             if table_name:
-                client.create_table(
+                client.create_table(  # pylint: disable=no-member
                     TableName=table_name,
                     AttributeDefinitions=[
                         {'AttributeName': config['key_field'], 'AttributeType': 'S'}
