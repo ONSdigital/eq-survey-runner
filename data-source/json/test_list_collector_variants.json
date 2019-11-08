@@ -138,7 +138,7 @@
                                         "question": {
                                             "id": "add-question",
                                             "type": "General",
-                                            "title": "What is the name of the person who isn't you?",
+                                            "title": "What is the name of the person who isn’t you?",
                                             "answers": [
                                                 {
                                                     "id": "first-name",
@@ -228,7 +228,7 @@
                                         "question": {
                                             "id": "edit-question",
                                             "type": "General",
-                                            "title": "What is the name of the person who isn't you?",
+                                            "title": "What is the name of the person who isn’t you?",
                                             "answers": [
                                                 {
                                                     "id": "first-name",
@@ -293,7 +293,7 @@
                                         "question": {
                                             "id": "remove-question",
                                             "type": "General",
-                                            "title": "Are you sure you want to remove this person who isn't you?",
+                                            "title": "Are you sure you want to remove this person who isn’t you?",
                                             "answers": [
                                                 {
                                                     "id": "remove-confirmation",

@@ -69,7 +69,7 @@
                                 "question": {
                                     "id": "add-question",
                                     "type": "General",
-                                    "title": "What is the name of the person who isn't you?",
+                                    "title": "What is the name of the person who isn’t you?",
                                     "answers": [
                                         {
                                             "id": "first-name",

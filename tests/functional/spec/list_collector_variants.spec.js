@@ -75,7 +75,7 @@ describe('List Collector With Variants', function() {
     it('The user is able to add members of the household', function() {
       $(ListCollectorPage.anyoneElseYes()).click();
       $(ListCollectorPage.submit()).click();
-      expect($(ListCollectorAddPage.questionText()).getText()).to.equal('What is the name of the person who isn\'t you?');
+      expect($(ListCollectorAddPage.questionText()).getText()).to.equal('What is the name of the person who isn’t you?');
       $(ListCollectorAddPage.firstName()).setValue('Samuel');
       $(ListCollectorAddPage.lastName()).setValue('Clemens');
       $(ListCollectorAddPage.submit()).click();
@@ -88,10 +88,10 @@ describe('List Collector With Variants', function() {
 
     it('The questionnaire has the correct question text on the change and remove pages', function() {
       $(ListCollectorPage.listEditLink(1)).click();
-      expect($(ListCollectorEditPage.questionText()).getText()).to.equal('What is the name of the person who isn\'t you?');
+      expect($(ListCollectorEditPage.questionText()).getText()).to.equal('What is the name of the person who isn’t you?');
       $(ListCollectorEditPage.previous()).click();
       $(ListCollectorPage.listRemoveLink(1)).click();
-      expect($(ListCollectorRemovePage.questionText()).getText()).to.equal('Are you sure you want to remove this person who isn\'t you?');
+      expect($(ListCollectorRemovePage.questionText()).getText()).to.equal('Are you sure you want to remove this person who isn’t you?');
       $(ListCollectorRemovePage.previous()).click();
     });
 
@@ -105,6 +105,5 @@ describe('List Collector With Variants', function() {
       $(ConfirmationPage.submit()).click();
       expect(browser.getUrl()).to.contain('thank-you');
     });
-
   });
 });
