@@ -1,4 +1,3 @@
-const helpers = require('../helpers');
 const DateRangePage = require('../generated_pages/dates/date-range-block.page');
 const DateMonthYearPage = require('../generated_pages/dates/date-month-year-block.page');
 const DateSinglePage = require('../generated_pages/dates/date-single-block.page');
@@ -8,249 +7,196 @@ const SummaryPage = require('../generated_pages/dates/summary.page');
 
 describe('Date checks', function() {
 
+  beforeEach('Load the survey', function () {
+    browser.openQuestionnaire('test_dates.json');
+  });
+
   it('Given the test_dates survey is selected when dates are entered then the summary screen shows the dates entered formatted', function() {
+    // When dates are entered
+    $(DateRangePage.dateRangeFromday()).setValue(1);
+    $(DateRangePage.dateRangeFrommonth()).setValue(1);
+    $(DateRangePage.dateRangeFromyear()).setValue(1901);
 
-            // Given the test_dates survey is selected
-    return helpers.openQuestionnaire('test_dates.json').then(() => {
+    $(DateRangePage.dateRangeToday()).setValue(3);
+    $(DateRangePage.dateRangeTomonth()).setValue(5);
+    $(DateRangePage.dateRangeToyear()).setValue(2017);
 
-      return browser
+    $(DateRangePage.submit()).click();
 
-        // When dates are entered
-        .setValue(DateRangePage.dateRangeFromday(), 1)
-        .setValue(DateRangePage.dateRangeFrommonth(), 1)
-        .setValue(DateRangePage.dateRangeFromyear(), 1901)
+    $(DateMonthYearPage.Month()).setValue(4);
+    $(DateMonthYearPage.Year()).setValue(2018);
 
-        .setValue(DateRangePage.dateRangeToday(), 3)
-        .setValue(DateRangePage.dateRangeTomonth(), 5)
-        .setValue(DateRangePage.dateRangeToyear(), 2017)
+    $(DateMonthYearPage.submit()).click();
 
-        .click(DateRangePage.submit())
+    $(DateSinglePage.day()).setValue(4);
+    $(DateSinglePage.month()).setValue(1);
+    $(DateSinglePage.year()).setValue(1999);
 
-        .setValue(DateMonthYearPage.Month(), 4)
-        .setValue(DateMonthYearPage.Year(), 2018)
+    $(DateSinglePage.submit()).click();
 
-        .click(DateMonthYearPage.submit())
+    $(DateNonMandatoryPage.submit()).click();
 
-        .setValue(DateSinglePage.day(), 4)
-        .setValue(DateSinglePage.month(), 1)
-        .setValue(DateSinglePage.year(), 1999)
+    $(DateYearDatePage.Year()).setValue(2005);
 
-        .click(DateSinglePage.submit())
+    $(DateYearDatePage.submit()).click();
 
-        .click(DateNonMandatoryPage.submit())
+    expect(browser.getUrl()).to.contain(SummaryPage.pageName);
 
-        .setValue(DateYearDatePage.Year(), 2005)
-
-        .click(DateYearDatePage.submit())
-
-        .getUrl().should.eventually.contain(SummaryPage.pageName)
-
-        // Then the summary screen shows the dates entered formatted
-        .getText(SummaryPage.dateRangeFromAnswer()).should.eventually.contain('1 January 1901 to 3 May 2017')
-        .getText(SummaryPage.monthYearAnswer()).should.eventually.contain('April 2018')
-        .getText(SummaryPage.singleDateAnswer()).should.eventually.contain('4 January 1999')
-        .getText(SummaryPage.nonMandatoryDateAnswer()).should.eventually.contain('No answer provided')
-        .getText(SummaryPage.yearDateAnswer()).should.eventually.contain('2005');
-    });
+    // Then the summary screen shows the dates entered formatted
+    expect($(SummaryPage.dateRangeFromAnswer()).getText()).to.contain('1 January 1901 to 3 May 2017');
+    expect($(SummaryPage.monthYearAnswer()).getText()).to.contain('April 2018');
+    expect($(SummaryPage.singleDateAnswer()).getText()).to.contain('4 January 1999');
+    expect($(SummaryPage.nonMandatoryDateAnswer()).getText()).to.contain('No answer provided');
+    expect($(SummaryPage.yearDateAnswer()).getText()).to.contain('2005');
   });
 
 
   it('Given the test_dates survey is selected when the from date is greater than the to date then an error message is shown', function() {
+    // When the from date is greater than the to date
+    $(DateRangePage.dateRangeFromday()).setValue(1);
+    $(DateRangePage.dateRangeFrommonth()).setValue(1);
+    $(DateRangePage.dateRangeFromyear()).setValue(2016);
 
-    // Given the test_dates survey is selected
-    return helpers.openQuestionnaire('test_dates.json').then(() => {
+    $(DateRangePage.dateRangeToday()).setValue(1);
+    $(DateRangePage.dateRangeTomonth()).setValue(1);
+    $(DateRangePage.dateRangeToyear()).setValue(2015);
 
-        return browser
+    $(DateRangePage.submit()).click();
 
-          // When the from date is greater than the to date
-          .setValue(DateRangePage.dateRangeFromday(), 1)
-          .setValue(DateRangePage.dateRangeFrommonth(), 1)
-          .setValue(DateRangePage.dateRangeFromyear(), 2016)
+    // Then an error message is shown
+    expect($(DateRangePage.errorNumber(1)).getText()).to.contain('Enter a \'period to\' date later than the \'period from\' date.');
 
-          .setValue(DateRangePage.dateRangeToday(), 1)
-          .setValue(DateRangePage.dateRangeTomonth(), 1)
-          .setValue(DateRangePage.dateRangeToyear(), 2015)
-
-          .click(DateRangePage.submit())
-
-          // Then an error message is shown
-          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a \'period to\' date later than the \'period from\' date.')
-
-          // Then clicking error should focus on first input field
-          .click(DateRangePage.errorNumber(1))
-          .hasFocus(DateRangePage.dateRangeFromday());
-    });
+    // Then clicking error should focus on first input field
+    $(DateRangePage.errorNumber(1)).click();
+    expect($(DateRangePage.dateRangeFromday()).isFocused()).to.be.true;
   });
 
 
   it('Given the test_dates survey is selected when the from date and the to date are the same then an error message is shown', function() {
+    // When the from date is greater than the to date
+    $(DateRangePage.dateRangeFromday()).setValue(1);
+    $(DateRangePage.dateRangeFrommonth()).setValue(1);
+    $(DateRangePage.dateRangeFromyear()).setValue(2016);
 
-    // Given the test_dates survey is selected
-    return helpers.openQuestionnaire('test_dates.json').then(() => {
+    $(DateRangePage.dateRangeToday()).setValue(1);
+    $(DateRangePage.dateRangeTomonth()).setValue(1);
+    $(DateRangePage.dateRangeToyear()).setValue(2016);
 
-        return browser
+    $(DateRangePage.submit()).click();
 
-          // When the from date is greater than the to date
-          .setValue(DateRangePage.dateRangeFromday(), 1)
-          .setValue(DateRangePage.dateRangeFrommonth(), 1)
-          .setValue(DateRangePage.dateRangeFromyear(), 2016)
-
-          .setValue(DateRangePage.dateRangeToday(), 1)
-          .setValue(DateRangePage.dateRangeTomonth(), 1)
-          .setValue(DateRangePage.dateRangeToyear(), 2016)
-
-          .click(DateRangePage.submit())
-
-          // Then an error message is shown
-          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a \'period to\' date later than the \'period from\' date.');
-    });
+    // Then an error message is shown
+    expect($(DateRangePage.errorNumber(1)).getText()).to.contain('Enter a \'period to\' date later than the \'period from\' date.');
   });
 
 
   it('Given the test_dates survey is selected when an invalid date is entered in a date range then an error message is shown', function() {
+    // When the from date is greater than the to date
+    $(DateRangePage.dateRangeFromday()).setValue(1);
+    $(DateRangePage.dateRangeFrommonth()).setValue(1);
+    $(DateRangePage.dateRangeFromyear()).setValue(2016);
 
-    // Given the test_dates survey is selected
-    return helpers.openQuestionnaire('test_dates.json').then(() => {
+    $(DateRangePage.dateRangeToday()).setValue(1);
+    $(DateRangePage.dateRangeTomonth()).setValue(1);
+    $(DateRangePage.dateRangeToyear()).setValue('');
 
-        return browser
+    $(DateRangePage.submit()).click();
 
-          // When the from date is greater than the to date
-          .setValue(DateRangePage.dateRangeFromday(), 1)
-          .setValue(DateRangePage.dateRangeFrommonth(), 1)
-          .setValue(DateRangePage.dateRangeFromyear(), 2016)
-
-          .setValue(DateRangePage.dateRangeToday(), 1)
-          .setValue(DateRangePage.dateRangeTomonth(), 1)
-          .setValue(DateRangePage.dateRangeToyear(), '')
-
-          .click(DateRangePage.submit())
-
-          // Then an error message is shown
-          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a valid date.');
-    });
+    // Then an error message is shown
+    expect($(DateRangePage.errorNumber(1)).getText()).to.contain('Enter a valid date.');
   });
 
 
   it('Given the test_dates survey is selected when the year (month year type) is left empty then an error message is shown', function() {
+    $(DateRangePage.dateRangeFromday()).setValue(1);
+    $(DateRangePage.dateRangeFrommonth()).setValue(1);
+    $(DateRangePage.dateRangeFromyear()).setValue(2016);
+    $(DateRangePage.dateRangeToday()).setValue(1);
+    $(DateRangePage.dateRangeTomonth()).setValue(1);
+    $(DateRangePage.dateRangeToyear()).setValue(2017);
+    $(DateRangePage.submit()).click();
 
-    // Given the test_dates survey is selected
-    return helpers.openQuestionnaire('test_dates.json').then(() => {
+    // When the year (month year type) is left empty
+    $(DateMonthYearPage.Month()).setValue(4);
+    $(DateMonthYearPage.Year()).setValue('');
 
-        return browser
+    $(DateMonthYearPage.submit()).click();
 
-          .setValue(DateRangePage.dateRangeFromday(), 1)
-          .setValue(DateRangePage.dateRangeFrommonth(), 1)
-          .setValue(DateRangePage.dateRangeFromyear(), 2016)
-          .setValue(DateRangePage.dateRangeToday(), 1)
-          .setValue(DateRangePage.dateRangeTomonth(), 1)
-          .setValue(DateRangePage.dateRangeToyear(), 2017)
-          .click(DateRangePage.submit())
-
-          // When the year (month year type) is left empty
-          .setValue(DateMonthYearPage.Month(), 4)
-          .setValue(DateMonthYearPage.Year(), '')
-
-          .click(DateMonthYearPage.submit())
-
-          // Then an error message is shown
-          .getText(DateMonthYearPage.errorNumber(1)).should.eventually.contain('Enter a valid date.');
-    });
+    // Then an error message is shown
+    expect($(DateMonthYearPage.errorNumber(1)).getText()).to.contain('Enter a valid date.');
   });
 
 
   it('Given the test_dates survey is selected, ' +
-                  'When an error message is shown and it is corrected, ' +
-                  'Then the next question is displayed', function() {
+  'When an error message is shown and it is corrected, ' +
+  'Then the next question is displayed', function() {
+    $(DateRangePage.dateRangeFromday()).setValue(1);
+    $(DateRangePage.dateRangeFrommonth()).setValue(1);
+    $(DateRangePage.dateRangeFromyear()).setValue(2016);
+    $(DateRangePage.dateRangeToday()).setValue(1);
+    $(DateRangePage.dateRangeTomonth()).setValue(1);
+    $(DateRangePage.dateRangeToyear()).setValue(2017);
+    $(DateRangePage.submit()).click();
 
-    // Given the test_dates survey is selected
-    return helpers.openQuestionnaire('test_dates.json').then(() => {
+    // When an error message is shown
+    $(DateMonthYearPage.Month()).setValue(4);
+    $(DateMonthYearPage.Year()).setValue('');
+    $(DateMonthYearPage.submit()).click();
 
-      return browser
+    expect($(DateMonthYearPage.error()).getText()).to.contain('Enter a valid date.');
 
-        .setValue(DateRangePage.dateRangeFromday(), 1)
-        .setValue(DateRangePage.dateRangeFrommonth(), 1)
-        .setValue(DateRangePage.dateRangeFromyear(), 2016)
-        .setValue(DateRangePage.dateRangeToday(), 1)
-        .setValue(DateRangePage.dateRangeTomonth(), 1)
-        .setValue(DateRangePage.dateRangeToyear(), 2017)
-        .click(DateRangePage.submit())
+    // Then when it is corrected, it goes to the next question
+    $(DateMonthYearPage.Year()).setValue(2018);
+    $(DateMonthYearPage.submit()).click();
 
-        // When an error message is shown
-        .setValue(DateMonthYearPage.Month(), 4)
-        .setValue(DateMonthYearPage.Year(), '')
-        .click(DateMonthYearPage.submit())
-
-        .getText(DateMonthYearPage.error()).should.eventually.contain('Enter a valid date.')
-
-        // Then when it is corrected, it goes to the next question
-        .setValue(DateMonthYearPage.Year(), 2018)
-        .click(DateMonthYearPage.submit())
-
-        .getUrl().should.eventually.contain(DateSinglePage.url());
-    });
+    expect(browser.getUrl()).to.contain(DateSinglePage.url());
   });
 
 
   it('Given the test_dates survey is selected when an error message is shown then when it is corrected, it goes to the summary page and the information is correct', function() {
+    $(DateRangePage.dateRangeFromday()).setValue(1);
+    $(DateRangePage.dateRangeFrommonth()).setValue(1);
+    $(DateRangePage.dateRangeFromyear()).setValue(2016);
+    $(DateRangePage.dateRangeToday()).setValue(1);
+    $(DateRangePage.dateRangeTomonth()).setValue(1);
+    $(DateRangePage.dateRangeToyear()).setValue(2017);
+    $(DateRangePage.submit()).click();
 
-    // Given the test_dates survey is selected
-    return helpers.openQuestionnaire('test_dates.json').then(() => {
+    $(DateMonthYearPage.Month()).setValue(1);
+    $(DateMonthYearPage.Year()).setValue(2016);
+    $(DateMonthYearPage.submit()).click();
 
-      return browser
+    $(DateSinglePage.day()).setValue(1);
+    $(DateSinglePage.month()).setValue(1);
+    $(DateSinglePage.year()).setValue(2016);
+    $(DateMonthYearPage.submit()).click();
 
-        .setValue(DateRangePage.dateRangeFromday(), 1)
-        .setValue(DateRangePage.dateRangeFrommonth(), 1)
-        .setValue(DateRangePage.dateRangeFromyear(), 2016)
-        .setValue(DateRangePage.dateRangeToday(), 1)
-        .setValue(DateRangePage.dateRangeTomonth(), 1)
-        .setValue(DateRangePage.dateRangeToyear(), 2017)
-        .click(DateRangePage.submit())
+    // When non-mandatory is partially completed
+    $(DateNonMandatoryPage.day()).setValue(4);
+    $(DateNonMandatoryPage.month()).setValue(1);
+    $(DateNonMandatoryPage.submit()).click();
 
-        .setValue(DateMonthYearPage.Month(), 1)
-        .setValue(DateMonthYearPage.Year(), 2016)
-        .click(DateMonthYearPage.submit())
-
-        .setValue(DateSinglePage.day(), 1)
-        .setValue(DateSinglePage.month(), 1)
-        .setValue(DateSinglePage.year(), 2016)
-        .click(DateMonthYearPage.submit())
-
-        // When non-mandatory is partially completed
-        .setValue(DateNonMandatoryPage.day(), 4)
-        .setValue(DateNonMandatoryPage.month(), 1)
-        .click(DateNonMandatoryPage.submit())
-
-        // Then an error message is shown
-        .getText(DateNonMandatoryPage.errorNumber(1)).should.eventually.contain('Enter a valid date');
-    });
+    // Then an error message is shown
+    expect($(DateNonMandatoryPage.errorNumber(1)).getText()).to.contain('Enter a valid date');
   });
 
 
   it('Given the test_dates survey is selected, when a user clicks the day label then the day subfield should gain the focus', function() {
+    $(DateRangePage.dateRangeFromday()).setValue(1);
+    $(DateRangePage.dateRangeFrommonth()).setValue(1);
+    $(DateRangePage.dateRangeFromyear()).setValue(2016);
+    $(DateRangePage.dateRangeToday()).setValue(1);
+    $(DateRangePage.dateRangeTomonth()).setValue(1);
+    $(DateRangePage.dateRangeToyear()).setValue(2017);
+    $(DateRangePage.submit()).click();
 
-    // Given the test_dates survey is selected
-    return helpers.openQuestionnaire('test_dates.json').then(() => {
+    $(DateMonthYearPage.Month()).setValue(1);
+    $(DateMonthYearPage.Year()).setValue(2016);
+    $(DateMonthYearPage.submit()).click();
 
-      return browser
+    // When a user clicks the day label
+    $(DateSinglePage.dayLabel()).click();
 
-        .setValue(DateRangePage.dateRangeFromday(), 1)
-        .setValue(DateRangePage.dateRangeFrommonth(), 1)
-        .setValue(DateRangePage.dateRangeFromyear(), 2016)
-        .setValue(DateRangePage.dateRangeToday(), 1)
-        .setValue(DateRangePage.dateRangeTomonth(), 1)
-        .setValue(DateRangePage.dateRangeToyear(), 2017)
-        .click(DateRangePage.submit())
-
-        .setValue(DateMonthYearPage.Month(), 1)
-        .setValue(DateMonthYearPage.Year(), 2016)
-        .click(DateMonthYearPage.submit())
-
-        // When a user clicks the day label
-        .click(DateSinglePage.dayLabel())
-
-        // Then the day subfield should gain the focus
-        .hasFocus(DateSinglePage.day());
-    });
+    // Then the day subfield should gain the focus
+    expect($(DateSinglePage.day()).isFocused()).to.be.true;
   });
-
 });

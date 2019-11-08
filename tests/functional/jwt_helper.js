@@ -1,4 +1,3 @@
-const utilities = require('./utilities');
 const KJUR = require('jsrsasign');
 const uuid = require('uuid/v1');
 const JSONWebKey = require('json-web-key');
@@ -48,7 +47,16 @@ const encryptionKeyString = '-----BEGIN PUBLIC KEY-----\n' +
 
 const schemaRegEx = /^([a-z0-9]+)_(\w+)\.json/;
 
-module.exports = function generateToken(schema, { userId, collectionId, responseId = utilities.getRandomString(16), questionnaireId = utilities.getRandomString(16), periodId = '201605', periodStr = 'May 2016', regionCode = 'GB-ENG', languageCode = 'en', sexualIdentity = false, includeLogoutUrl = true, country = '', locality = '', townName = '', postcode = '', displayAddress = '' }) {
+function getRandomString(length) {
+   let result = '';
+   let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+   for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+   }
+   return result;
+}
+
+function generateToken(schema, { userId, collectionId, responseId, questionnaireId = getRandomString(16), periodId = '201605', periodStr = 'May 2016', regionCode = 'GB-ENG', languageCode = 'en', sexualIdentity = false, includeLogoutUrl = true, country = '', locality = '', townName = '', postcode = '', displayAddress = '' }) {
   let schemaParts = schemaRegEx.exec(schema);
 
   // Header
@@ -133,3 +141,8 @@ module.exports = function generateToken(schema, { userId, collectionId, response
       return token;
     });
 };
+
+module.exports = {
+  getRandomString,
+  generateToken
+}

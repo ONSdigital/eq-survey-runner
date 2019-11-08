@@ -1,85 +1,75 @@
-const helpers = require('../../../helpers');
-
 const CheckboxNumericDetailPage = require('../../../generated_pages/checkbox_numeric_detail_answers/checkbox-numeric-detail.page');
 const SummaryPage = require('../../../generated_pages/checkbox_numeric_detail_answers/summary.page');
 
 describe('Checkbox with a numeric "detail_answer" option', function() {
-
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_checkbox_numeric_detail_answers.json').then(() => {
-      return browser.click(CheckboxNumericDetailPage.other());
-    });
+    browser.openQuestionnaire('test_checkbox_numeric_detail_answers.json');
+    $(CheckboxNumericDetailPage.other()).click();
   });
 
   it('Given a numeric detail answer options are available, When the user clicks an option, Then the detail answer input should be visible.', function() {
-      return browser.isVisible(CheckboxNumericDetailPage.otherDetail()).should.eventually.be.true;
+    expect($(CheckboxNumericDetailPage.otherDetail()).isDisplayed()).to.be.true;
   });
 
   it('Given a numeric detail answer, When the user does not provide any text, Then just the option value should be displayed on the summary screen', function() {
-    return browser
     // When
-      .isVisible(CheckboxNumericDetailPage.otherDetail()).should.eventually.be.true
-      .click(CheckboxNumericDetailPage.submit())
+      expect($(CheckboxNumericDetailPage.otherDetail()).isDisplayed()).to.be.true;
+      $(CheckboxNumericDetailPage.submit()).click();
     // Then
-      .getText(SummaryPage.checkboxNumericDetailAnswer()).should.eventually.contain('Other');
+      expect($(SummaryPage.checkboxNumericDetailAnswer()).getText()).to.contain('Other');
   });
 
   it('Given a numeric detail answer, When the user provides text, Then that text should be displayed on the summary screen', function() {
-    return browser
     // When
-      .setValue(CheckboxNumericDetailPage.otherDetail(), '15')
-      .click(CheckboxNumericDetailPage.submit())
+      $(CheckboxNumericDetailPage.otherDetail()).setValue('15');
+      $(CheckboxNumericDetailPage.submit()).click();
     // Then
-      .getText(SummaryPage.checkboxNumericDetailAnswer()).should.eventually.contain('15');
+      expect($(SummaryPage.checkboxNumericDetailAnswer()).getText()).to.contain('15');
   });
 
   it('Given a numeric detail answer, When the user provides text, An error should be displayed', function() {
-    return browser
     // When
-      .setValue(CheckboxNumericDetailPage.otherDetail(), 'fhdjkshfjkds')
-      .click(CheckboxNumericDetailPage.submit())
+      $(CheckboxNumericDetailPage.otherDetail()).setValue('fhdjkshfjkds');
+      $(CheckboxNumericDetailPage.submit()).click();
     // Then
-      .isVisible(CheckboxNumericDetailPage.error()).should.eventually.be.true
-      .getText(CheckboxNumericDetailPage.errorNumber(1)).should.eventually.contain('Please enter an integer');
+      expect($(CheckboxNumericDetailPage.error()).isDisplayed()).to.be.true;
+      expect($(CheckboxNumericDetailPage.errorNumber(1)).getText()).to.contain('Please enter an integer');
   });
 
   it('Given a numeric detail answer, When the user provides a number larger than 20, An error should be displayed', function() {
-    return browser
     // When
-      .setValue(CheckboxNumericDetailPage.otherDetail(), '250')
-      .click(CheckboxNumericDetailPage.submit())
+      $(CheckboxNumericDetailPage.otherDetail()).setValue('250');
+      $(CheckboxNumericDetailPage.submit()).click();
     // Then
-      .isVisible(CheckboxNumericDetailPage.error()).should.eventually.be.true
-      .getText(CheckboxNumericDetailPage.errorNumber(1)).should.eventually.contain('Number is too large');
+      expect($(CheckboxNumericDetailPage.error()).isDisplayed()).to.be.true;
+      expect($(CheckboxNumericDetailPage.errorNumber(1)).getText()).to.contain('Number is too large');
   });
 
   it('Given a numeric detail answer, When the user provides a number less than 0, An error should be displayed', function() {
-    return browser
     // When
-      .setValue(CheckboxNumericDetailPage.otherDetail(), '-1')
-      .click(CheckboxNumericDetailPage.submit())
+      $(CheckboxNumericDetailPage.otherDetail()).setValue('-1');
+      $(CheckboxNumericDetailPage.submit()).click();
     // Then
-      .isVisible(CheckboxNumericDetailPage.error()).should.eventually.be.true
-      .getText(CheckboxNumericDetailPage.errorNumber(1)).should.eventually.contain('Number cannot be less than zero');
+      expect($(CheckboxNumericDetailPage.error()).isDisplayed()).to.be.true;
+      expect($(CheckboxNumericDetailPage.errorNumber(1)).getText()).to.contain('Number cannot be less than zero');
   });
 
   it('Given a numeric detail answer, When the user provides text, An error should be displayed and the text in the textbox should be kept', function() {
-    return browser
     // When
-      .setValue(CheckboxNumericDetailPage.otherDetail(), 'biscuits')
-      .click(CheckboxNumericDetailPage.submit())
+      $(CheckboxNumericDetailPage.otherDetail()).setValue('biscuits');
+      $(CheckboxNumericDetailPage.submit()).click();
     // Then
-      .isVisible(CheckboxNumericDetailPage.error()).should.eventually.be.true
-      .getText(CheckboxNumericDetailPage.errorNumber(1)).should.eventually.contain('Please enter an integer').pause(1000)
-      .getValue(CheckboxNumericDetailPage.otherDetail()).should.eventually.contain('biscuits');
+      expect($(CheckboxNumericDetailPage.error()).isDisplayed()).to.be.true;
+      expect($(CheckboxNumericDetailPage.errorNumber(1)).getText()).to.contain('Please enter an integer');
+      browser.pause(1000);
+      expect($(CheckboxNumericDetailPage.otherDetail()).getValue()).to.equal('biscuits');
   });
 
   it('Given a numeric detail answer, When the user enters "0" and submits, Then "0" should be displayed on the summary screen', function() {
-    return browser
     // When
-      .setValue(CheckboxNumericDetailPage.otherDetail(), '0')
-      .click(CheckboxNumericDetailPage.submit())
+      $(CheckboxNumericDetailPage.otherDetail()).setValue('0');
+      $(CheckboxNumericDetailPage.submit()).click();
     // Then
-      .getText(SummaryPage.checkboxNumericDetailAnswer()).should.eventually.contain('0');
+      expect($(SummaryPage.checkboxNumericDetailAnswer()).getText()).to.contain('0');
   });
 });

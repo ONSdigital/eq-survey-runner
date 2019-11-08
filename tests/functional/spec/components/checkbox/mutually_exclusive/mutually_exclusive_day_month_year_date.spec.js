@@ -1,40 +1,35 @@
-const helpers = require('../../../../helpers');
-
 const DatePage = require('../../../../generated_pages/mutually_exclusive/mutually-exclusive-date.page');
 const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-date-section-summary.page');
 
 describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox Override', function() {
-
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.url('/questionnaire/mutually-exclusive-date');
-        });
+    browser.openQuestionnaire('test_mutually_exclusive.json');
+    browser.url('/questionnaire/mutually-exclusive-date');
   });
 
   describe('Given the user has entered a value for the non-exclusive month year date answer', function() {
     it('When then user clicks the mutually exclusive checkbox answer, Then only the mutually exclusive checkbox should be answered.', function() {
-      return browser
         // Given
-        .setValue(DatePage.dateday(), '17')
-        .setValue(DatePage.datemonth(), '3')
-        .setValue(DatePage.dateyear(), '2018')
-        .getValue(DatePage.dateday()).should.eventually.contain('17')
-        .getValue(DatePage.datemonth()).should.eventually.contain('3')
-        .getValue(DatePage.dateyear()).should.eventually.contain('2018')
+        $(DatePage.dateday()).setValue('17');
+        $(DatePage.datemonth()).setValue('3');
+        $(DatePage.dateyear()).setValue('2018');
+        expect($(DatePage.dateday()).getValue()).to.contain('17');
+        expect($(DatePage.datemonth()).getValue()).to.contain('3');
+        expect($(DatePage.dateyear()).getValue()).to.contain('2018');
 
         // When
-        .click(DatePage.dateExclusiveIPreferNotToSay())
+        $(DatePage.dateExclusiveIPreferNotToSay()).click();
 
         // Then
-        .isSelected(DatePage.dateExclusiveIPreferNotToSay()).should.eventually.be.true
-        .getValue(DatePage.dateday()).should.eventually.contain('')
-        .getValue(DatePage.datemonth()).should.eventually.contain('')
-        .getValue(DatePage.dateyear()).should.eventually.contain('')
+        expect($(DatePage.dateExclusiveIPreferNotToSay()).isSelected()).to.be.true;
+        expect($(DatePage.dateday()).getValue()).to.contain('');
+        expect($(DatePage.datemonth()).getValue()).to.contain('');
+        expect($(DatePage.dateyear()).getValue()).to.contain('');
 
-        .click(DatePage.submit())
+        $(DatePage.submit()).click();
 
-        .getText(SummaryPage.dateExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.dateExclusiveAnswer()).should.not.eventually.have.string('17 March 2018');
+        expect($(SummaryPage.dateExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+        expect($(SummaryPage.dateExclusiveAnswer()).getText()).to.not.have.string('17 March 2018');
 
     });
   });
@@ -42,27 +37,26 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
   describe('Given the user has clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive month year date answer and removes focus, Then only the non-exclusive month year date answer should be answered.', function() {
 
-      return browser
         // Given
-        .click(DatePage.dateExclusiveIPreferNotToSay())
-        .isSelected(DatePage.dateExclusiveIPreferNotToSay()).should.eventually.be.true
+        $(DatePage.dateExclusiveIPreferNotToSay()).click();
+        expect($(DatePage.dateExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
         // When
-        .setValue(DatePage.dateday(), '17')
-        .setValue(DatePage.datemonth(), '3')
-        .setValue(DatePage.dateyear(), '2018')
+        $(DatePage.dateday()).setValue('17');
+        $(DatePage.datemonth()).setValue('3');
+        $(DatePage.dateyear()).setValue('2018');
 
         // Then
-        .getValue(DatePage.dateday()).should.eventually.contain('17')
-        .getValue(DatePage.datemonth()).should.eventually.contain('3')
-        .getValue(DatePage.dateyear()).should.eventually.contain('2018')
+        expect($(DatePage.dateday()).getValue()).to.contain('17');
+        expect($(DatePage.datemonth()).getValue()).to.contain('3');
+        expect($(DatePage.dateyear()).getValue()).to.contain('2018');
 
-        .isSelected(DatePage.dateExclusiveIPreferNotToSay()).should.eventually.be.false
+        expect($(DatePage.dateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        .click(DatePage.submit())
+        $(DatePage.submit()).click();
 
-        .getText(SummaryPage.dateAnswer()).should.eventually.have.string('17 March 2018')
-        .getText(SummaryPage.dateAnswer()).should.not.eventually.have.string('I prefer not to say');
+        expect($(SummaryPage.dateAnswer()).getText()).to.have.string('17 March 2018');
+        expect($(SummaryPage.dateAnswer()).getText()).to.not.have.string('I prefer not to say');
 
     });
   });
@@ -70,25 +64,24 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
   describe('Given the user has not clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive month year date answer, Then only the non-exclusive month year date answer should be answered.', function() {
 
-      return browser
         // Given
-        .isSelected(DatePage.dateExclusiveIPreferNotToSay()).should.eventually.be.false
+        expect($(DatePage.dateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
-        .setValue(DatePage.dateday(), '17')
-        .setValue(DatePage.datemonth(), '3')
-        .setValue(DatePage.dateyear(), '2018')
+        $(DatePage.dateday()).setValue('17');
+        $(DatePage.datemonth()).setValue('3');
+        $(DatePage.dateyear()).setValue('2018');
 
         // Then
-        .getValue(DatePage.dateday()).should.eventually.contain('17')
-        .getValue(DatePage.datemonth()).should.eventually.contain('3')
-        .getValue(DatePage.dateyear()).should.eventually.contain('2018')
-        .isSelected(DatePage.dateExclusiveIPreferNotToSay()).should.eventually.be.false
+        expect($(DatePage.dateday()).getValue()).to.contain('17');
+        expect($(DatePage.datemonth()).getValue()).to.contain('3');
+        expect($(DatePage.dateyear()).getValue()).to.contain('2018');
+        expect($(DatePage.dateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        .click(DatePage.submit())
+        $(DatePage.submit()).click();
 
-        .getText(SummaryPage.dateAnswer()).should.eventually.have.string('17 March 2018')
-        .getText(SummaryPage.dateAnswer()).should.not.eventually.have.string('I prefer not to say');
+        expect($(SummaryPage.dateAnswer()).getText()).to.have.string('17 March 2018');
+        expect($(SummaryPage.dateAnswer()).getText()).to.not.have.string('I prefer not to say');
 
     });
   });
@@ -96,21 +89,20 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
   describe('Given the user has not answered the non-exclusive month year date answer', function() {
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
-      return browser
         // Given
-        .getValue(DatePage.dateyear()).should.eventually.contain('')
-        .getValue(DatePage.datemonth()).should.eventually.contain('')
-        .getValue(DatePage.dateyear()).should.eventually.contain('')
+        expect($(DatePage.dateday()).getValue()).to.contain('');
+        expect($(DatePage.datemonth()).getValue()).to.contain('');
+        expect($(DatePage.dateyear()).getValue()).to.contain('');
 
         // When
-        .click(DatePage.dateExclusiveIPreferNotToSay())
-        .isSelected(DatePage.dateExclusiveIPreferNotToSay()).should.eventually.be.true
+        $(DatePage.dateExclusiveIPreferNotToSay()).click();
+        expect($(DatePage.dateExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
         // Then
-        .click(DatePage.submit())
+        $(DatePage.submit()).click();
 
-        .getText(SummaryPage.dateExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.dateExclusiveAnswer()).should.not.eventually.have.string('17 March 2018');
+        expect($(SummaryPage.dateExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+        expect($(SummaryPage.dateExclusiveAnswer()).getText()).to.not.have.string('17 March 2018');
 
     });
   });
@@ -118,20 +110,17 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
   describe('Given the user has not answered the question and the question is optional', function() {
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
-      return browser
         // Given
-        .getValue(DatePage.dateyear()).should.eventually.contain('')
-        .getValue(DatePage.datemonth()).should.eventually.contain('')
-        .getValue(DatePage.dateyear()).should.eventually.contain('')
-        .isSelected(DatePage.dateExclusiveIPreferNotToSay()).should.eventually.be.false
+        expect($(DatePage.dateday()).getValue()).to.contain('');
+        expect($(DatePage.datemonth()).getValue()).to.contain('');
+        expect($(DatePage.dateyear()).getValue()).to.contain('');
+        expect($(DatePage.dateExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
         // When
-        .click(DatePage.submit())
+        $(DatePage.submit()).click();
 
         // Then
-        .getText(SummaryPage.dateAnswer()).should.eventually.contain('No answer provided');
-
+        expect($(SummaryPage.dateAnswer()).getText()).to.contain('No answer provided');
     });
   });
-
 });

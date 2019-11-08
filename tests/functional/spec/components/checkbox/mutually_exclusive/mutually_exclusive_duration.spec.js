@@ -1,129 +1,109 @@
-const helpers = require('../../../../helpers');
-
 const DurationPage = require('../../../../generated_pages/mutually_exclusive/mutually-exclusive-duration.page');
 const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-duration-section-summary.page');
 
 describe('Component: Mutually Exclusive Duration With Single Checkbox Override', function() {
-
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.url('/questionnaire/mutually-exclusive-duration');
-        });
+    browser.openQuestionnaire('test_mutually_exclusive.json');
+    browser.url('/questionnaire/mutually-exclusive-duration');
   });
 
   describe('Given the user has entered a value for the non-exclusive duration answer', function() {
     it('When then user clicks the mutually exclusive checkbox answer, Then only the mutually exclusive checkbox should be answered.', function() {
+      // Given
+      $(DurationPage.durationYears()).setValue('1');
+      $(DurationPage.durationMonths()).setValue('7');
 
-      return browser
-        // Given
-        .setValue(DurationPage.durationYears(), '1')
-        .setValue(DurationPage.durationMonths(), '7')
+      expect($(DurationPage.durationYears()).getValue()).to.contain('1');
+      expect($(DurationPage.durationMonths()).getValue()).to.contain('7');
 
-        .getValue(DurationPage.durationYears()).should.eventually.contain('1')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('7')
+      // When
+      $(DurationPage.durationExclusiveIPreferNotToSay()).click();
 
-        // When
-        .click(DurationPage.durationExclusiveIPreferNotToSay())
+      // Then
+      expect($(DurationPage.durationExclusiveIPreferNotToSay()).isSelected()).to.be.true;
+      expect($(DurationPage.durationYears()).getValue()).to.contain('');
+      expect($(DurationPage.durationMonths()).getValue()).to.contain('');
 
-        // Then
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.true
-        .getValue(DurationPage.durationYears()).should.eventually.contain('')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('')
+      $(DurationPage.submit()).click();
 
-        .click(DurationPage.submit())
-
-        .getText(SummaryPage.durationExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.durationExclusiveAnswer()).should.not.eventually.have.string('1 year 7 months');
-
+      expect($(SummaryPage.durationExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+      expect($(SummaryPage.durationExclusiveAnswer()).getText()).to.not.have.string('1 year 7 months');
     });
   });
 
   describe('Given the user has clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive duration answer and removes focus, Then only the non-exclusive duration answer should be answered.', function() {
+      // Given
+      $(DurationPage.durationExclusiveIPreferNotToSay()).click();
+      expect($(DurationPage.durationExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
-      return browser
-        // Given
-        .click(DurationPage.durationExclusiveIPreferNotToSay())
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.true
+      // When
+      $(DurationPage.durationYears()).setValue('1');
+      $(DurationPage.durationMonths()).setValue('7');
 
-        // When
-        .setValue(DurationPage.durationYears(), '1')
-        .setValue(DurationPage.durationMonths(), '7')
+      // Then
+      expect($(DurationPage.durationYears()).getValue()).to.contain('1');
+      expect($(DurationPage.durationMonths()).getValue()).to.contain('7');
+      expect($(DurationPage.durationExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        // Then
-        .getValue(DurationPage.durationYears()).should.eventually.contain('1')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('7')
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.false
+      $(DurationPage.submit()).click();
 
-        .click(DurationPage.submit())
-
-        .getText(SummaryPage.durationAnswer()).should.eventually.have.string('1 year 7 months')
-        .getText(SummaryPage.durationAnswer()).should.not.eventually.have.string('I prefer not to say');
-
+      expect($(SummaryPage.durationAnswer()).getText()).to.have.string('1 year 7 months');
+      expect($(SummaryPage.durationAnswer()).getText()).to.not.have.string('I prefer not to say');
     });
   });
 
   describe('Given the user has not clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive duration answer, Then only the non-exclusive duration answer should be answered.', function() {
+      // Given
+      expect($(DurationPage.durationExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-      return browser
-        // Given
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.false
+      // When
+      $(DurationPage.durationYears()).setValue('1');
+      $(DurationPage.durationMonths()).setValue('7');
 
-        // When
-        .setValue(DurationPage.durationYears(), '1')
-        .setValue(DurationPage.durationMonths(), '7')
+      // Then
+      expect($(DurationPage.durationYears()).getValue()).to.contain('1');
+      expect($(DurationPage.durationMonths()).getValue()).to.contain('7');
+      expect($(DurationPage.durationExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        // Then
-        .getValue(DurationPage.durationYears()).should.eventually.contain('1')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('7')
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.false
+      $(DurationPage.submit()).click();
 
-        .click(DurationPage.submit())
-
-        .getText(SummaryPage.durationAnswer()).should.eventually.have.string('1 year 7 months')
-        .getText(SummaryPage.durationAnswer()).should.not.eventually.have.string('I prefer not to say');
-
+      expect($(SummaryPage.durationAnswer()).getText()).to.have.string('1 year 7 months');
+      expect($(SummaryPage.durationAnswer()).getText()).to.not.have.string('I prefer not to say');
     });
   });
 
   describe('Given the user has not answered the non-exclusive duration answer', function() {
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
+      // Given
+      expect($(DurationPage.durationYears()).getValue()).to.contain('');
+      expect($(DurationPage.durationMonths()).getValue()).to.contain('');
 
-      return browser
-        // Given
-        .getValue(DurationPage.durationYears()).should.eventually.contain('')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('')
+      // When
+      $(DurationPage.durationExclusiveIPreferNotToSay()).click();
+      expect($(DurationPage.durationExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
-        // When
-        .click(DurationPage.durationExclusiveIPreferNotToSay())
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.true
+      // Then
+      $(DurationPage.submit()).click();
 
-        // Then
-        .click(DurationPage.submit())
-
-        .getText(SummaryPage.durationExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.durationExclusiveAnswer()).should.not.eventually.have.string('1 year 7 months');
-
+      expect($(SummaryPage.durationExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+      expect($(SummaryPage.durationExclusiveAnswer()).getText()).to.not.have.string('1 year 7 months');
     });
   });
 
   describe('Given the user has not answered the question and the question is optional', function() {
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
+      // Given
+      expect($(DurationPage.durationYears()).getValue()).to.contain('');
+      expect($(DurationPage.durationMonths()).getValue()).to.contain('');
+      expect($(DurationPage.durationExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-      return browser
-        // Given
-        .getValue(DurationPage.durationYears()).should.eventually.contain('')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('')
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.false
+      // When
+      $(DurationPage.submit()).click();
 
-        // When
-        .click(DurationPage.submit())
-
-        // Then
-        .getText(SummaryPage.durationAnswer()).should.eventually.contain('No answer provided');
-
+      // Then
+      expect($(SummaryPage.durationAnswer()).getText()).to.contain('No answer provided');
     });
   });
-
 });
