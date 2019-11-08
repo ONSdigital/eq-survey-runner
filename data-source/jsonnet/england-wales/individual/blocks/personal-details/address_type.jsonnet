@@ -32,7 +32,7 @@ local question(title) = {
         },
         {
           label: 'Partner’s address',
-          value: 'Partner’s address',
+          value: "Partner's address",
         },
         {
           label: 'Holiday home',
