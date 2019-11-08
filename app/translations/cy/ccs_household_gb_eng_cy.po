@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 11:16+0100\n"
-"PO-Revision-Date: 2019-10-28 11:24\n"
+"PO-Revision-Date: 2019-11-08 09:02\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgid "Here are some cards to help with answering the questions."
 msgstr "Dyma gardiau i'ch helpu chi i ateb y cwestiynau."
 
 msgid "Only interview a person who was usually living at the property on census night."
-msgstr "Dylech ond gyfweld â pherson sydd fel arfer yn byw yn yr eiddo ar noson y cyfrifiad."
+msgstr "Dylech ond gyfweld â pherson oedd fel arfer yn byw yn yr eiddo ar noson y cyfrifiad."
 
 msgid "If none of those household members are available, you must save and sign out of the survey and return to the address to interview one of them at a later date."
 msgstr "Os nad oes unrhyw un o aelodau’r cartref ar gael, dylech gadw ac allgofnodi o’r arolwg a dychwelyd i’r cyfeiriad i gyfweld ag un ohonyn nhw ar ddiwrnod arall."
@@ -40,13 +40,13 @@ msgid "If none of the household members were usually living at the property on c
 msgstr "Os nad oedd dim un o aelodau'r cartref fel arfer yn byw yn y cartref ar noson y cyfrifiad, mae'n rhaid i chi gadw'r arolwg, allgofnodi a chwblhau holiadur papur."
 
 msgid "Remember to only include those people who share cooking facilities and share a living room or sitting room or dining area"
-msgstr "Cofiwch y dylech ond gynnwys y bobl hynny sy’n rhannu cyfleusterau coginio ac yn rhannu ystafell fyw neu lolfa neu le bwyta"
+msgstr "Cofiwch mai dim ond y bobl hynny sy’n rhannu cyfleusterau coginio ac sy’n rhannu ystafell fyw neu lolfa neu le bwyta y dylech eu cynnwys"
 
 msgid "Include"
-msgstr "Cofiwch"
+msgstr "Cofiwch gynnwys"
 
 msgid "A visitor is a person staying overnight in your household who usually lives at another address."
-msgstr "Mae ymwelydd yn golygu person sy’n aros dros nos sydd fel arfer yn byw mewn cyfeiriad arall."
+msgstr "Mae ymwelydd yn golygu person sy’n aros dros nos yn eich cartref sydd fel arfer yn byw mewn cyfeiriad arall."
 
 msgid "Remember to include partners and step-children as related."
 msgstr "Cofiwch gynnwys partneriaid a llysblant fel pobl sy'n perthyn."
@@ -115,19 +115,19 @@ msgid "Tell respondent to turn to <strong>Showcard 1</strong>"
 msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 1</strong>"
 
 msgid "Enter a full stop (.) if the respondent does not know a person’s “First name” or “Last name”"
-msgstr "Rhowch atalnod llawn (.) os nad yw’r ymatebwr yn gwybod \"Enw cyntaf\" neu \"Cyfenw\" person"
+msgstr "Rhowch atalnod llawn (.) os nad yw’r ymatebwr yn gwybod beth yw \"Enw cyntaf\" neu \"Cyfenw\" person"
 
 msgid "Tell respondent to turn to <strong>Showcard 2</strong>"
 msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 2</strong>"
 
 msgid "Tell respondent to turn to <strong>Showcard 13</strong>"
-msgstr "Dywedwch wrth yr ymatebydd i droi at <strong>Gerdyn Dangos 13</strong>"
+msgstr "Dywedwch wrth yr ymatebydd am droi at <strong>Gerdyn Dangos 13</strong>"
 
 msgid "Tell respondent to turn to <strong>Showcard 3</strong>"
 msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 3</strong>"
 
 msgid "If “No” confirm one or more rooms are shared with another household"
-msgstr "Os \"Nac oedd\", oedd un neu fwy o'r ystafelloedd yn cael eu rhannu â chartref arall?"
+msgstr "Os \"Nac ydy\", oes un neu fwy o’r ystafelloedd yn cael eu rhannu â chartref arall?"
 
 msgid "Tell respondent to turn to <strong>Showcard 4</strong>"
 msgstr "Dywedwch wrth yr ymatebwr am droi at <strong>Gerdyn Dangos 4</strong>"
@@ -184,7 +184,7 @@ msgid "Household members"
 msgstr "Aelodau o’r cartref"
 
 msgid "Apart from the people already included, is there anyone else who was temporarily away or staying that you need to add?"
-msgstr "Ar wahân i’r bobl sydd wedi’u cynnwys eisoes, oes unrhyw un arall a oedd i ffwrdd o’r cartref dros dro neu’n aros dros dro y mae angen i chi ei ychwanegu?"
+msgstr "Ar wahân i’r bobl sydd wedi’u cynnwys eisoes, oes unrhyw un arall oedd i ffwrdd o’r cartref dros dro neu’n aros dros dro y mae angen i chi ei ychwanegu?"
 
 msgid "Are any of these people related to each other?"
 msgstr "Oes unrhyw rai o'r bobl hyn yn perthyn i'w gilydd?"
@@ -205,7 +205,7 @@ msgid "Who is your landlord?"
 msgstr "Pwy yw eich landlord?"
 
 msgid "In the last year, how have you or your household used online government services?"
-msgstr "Yn y flwyddyn ddiwethaf, sut ydych chi neueich cartref wedi defnyddio gwasanaethau'r llywodraeth ar lein?"
+msgstr "Yn y flwyddyn ddiwethaf, sut ydych chi neu eich cartref wedi defnyddio gwasanaethau'r llywodraeth ar lein?"
 
 msgid "Individual Section"
 msgstr "Adran Unigol"
@@ -220,7 +220,7 @@ msgid "What is your date of birth?"
 msgstr "Beth yw eich dyddiad geni?"
 
 msgid "What was your age on your last birthday?"
-msgstr "Faint oed oeddech chi ar eich pen-blwydd diwethaf?"
+msgstr "Faint oedd eich oed ar eich pen-blwydd diwethaf?"
 
 msgid "Can I confirm your sex?"
 msgstr "Ga’ i gadarnhau eich rhyw?"
@@ -289,13 +289,13 @@ msgid "Prisoners with a sentence of <strong>less than 12 months</strong>"
 msgstr "Carcharorion â dedfryd o <strong>lai na 12 mis</strong>"
 
 msgid "People expecting to stay in an establishment such as a hospital, care home or hostel for <strong>less than 6 months</strong>"
-msgstr "Pobl a oedd yn disgwyl aros mewn sefydliad fel ysbyty, cartref gofal neu hostel am <strong>lai na 6 mis</strong>"
+msgstr "Pobl oedd yn disgwyl aros mewn sefydliad fel ysbyty, cartref gofal neu hostel am <strong>lai na 6 mis</strong>"
 
 msgid "People who were temporarily outside the UK for <strong>less than 12 months</strong>"
-msgstr "Pobl a oedd y tu allan i’r Deyrnas Unedig dros dro am <strong>lai na 12 mis</strong>"
+msgstr "Pobl oedd y tu allan i’r Deyrnas Unedig dros dro am <strong>lai na 12 mis</strong>"
 
 msgid "People staying temporarily who did not have another UK address"
-msgstr "Pobl a oedd yn aros dros dro ond oedd heb gyfeiriad arall yn y Deyrnas Unedig"
+msgstr "Pobl oedd yn aros dros dro ond oedd heb gyfeiriad arall yn y Deyrnas Unedig"
 
 msgid "Were you usually living at {address} on Sunday 13 October 2019?"
 msgstr "Oeddech chi’n byw yn {address} fel arfer ddydd Sul 13 Hydref 2019?"
@@ -328,7 +328,7 @@ msgid "How many visitors were staying in your household at {address} on 13 Octob
 msgstr "Faint o ymwelwyr oedd yn aros yn eich cartref yn {address} ar 13 Hydref 2019?"
 
 msgid "What is the name of the visitor staying overnight on {census_date} at {address}?"
-msgstr "Beth yw enw’r ymwelydd a oedd yn aros dros nos yn {address} ar {census_date}?"
+msgstr "Beth yw enw’r ymwelydd oedd yn aros dros nos yn {address} ar {census_date}?"
 
 msgid "Were there any other visitors staying overnight on {census_date} at {address}?"
 msgstr "Oedd unrhyw ymwelwyr eraill yn aros dros nos ar {census_date} yn {address}?"
@@ -448,7 +448,7 @@ msgstr "Enwau canol"
 #. answer-id: last-name
 msgctxt "Answer for: What is your full name?"
 msgid "Last name"
-msgstr "Last name"
+msgstr "Cyfenw"
 
 #. answer-id: you-live-here-answer
 msgctxt "Answer for: Were you usually living at {address} on Sunday 13 October 2019?"
@@ -1360,13 +1360,12 @@ msgstr "Gwaith cyflogedig"
 #. answer-id: employment-status-answer
 msgctxt "Answer for: During the week of 7 to 13 October 2019, were you doing any of the following?"
 msgid "Self-employed or freelance"
-msgstr "Gwaith hunangyflogedig"
+msgstr "Gwaith hunangyflogedig neu ar eich liwt eich hun"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: During the week of 7 to 13 October 2019, were you doing any of the following?"
 msgid "Temporarily away from work ill, on holiday or temporarily laid off"
-msgstr "I ffwrdd o’ch gwaith dros dro yn sâl, ar wyliau, neu wedi’ch cadw dros dro o’ch\n"
-"gwaith am na all eich cyflogwr gynnig gwaith ar hyn o bryd"
+msgstr "I ffwrdd o’ch gwaith dros dro yn sâl, ar wyliau, neu wedi’ch cadw dros dro o’ch gwaith am na all eich cyflogwr gynnig gwaith ar hyn o bryd"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: During the week of 7 to 13 October 2019, were you doing any of the following?"
@@ -1396,7 +1395,7 @@ msgstr "Gwaith hunangyflogedig neu ar ei liwt ei hun"
 #. answer-id: employment-status-answer
 msgctxt "Answer for: During the week of 7 to 13 October 2019, was {person_name} doing any of the following?"
 msgid "Temporarily away from work ill, on holiday or temporarily laid off"
-msgstr "I ffwrdd o’i waith dros dro yn sâl, ar wyliau, neu wedi’i gadw dros dro o’i waith am na all ei gyflogwr gynnig gwaith ar hyn o bryd"
+msgstr "I ffwrdd o’ch gwaith dros dro yn sâl, ar wyliau, neu wedi’ch cadw o’ch gwaith dros dro am na all eich cyflogwr gynnig gwaith ar hyn o bryd"
 
 #. answer-id: employment-status-answer
 msgctxt "Answer for: During the week of 7 to 13 October 2019, was {person_name} doing any of the following?"
