@@ -40,7 +40,7 @@
                                     }
                                 ],
                                 "id": "question",
-                                "title": "Don't enter an answer. A default value will be used",
+                                "title": "Don’t enter an answer. A default value will be used",
                                 "type": "General"
                             }
                         },

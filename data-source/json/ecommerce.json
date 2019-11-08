@@ -830,8 +830,8 @@
                                                 "value": "Personalised content for regular or repeat visitors"
                                             },
                                             {
-                                                "label": "Links or references to this business' social media profiles",
-                                                "value": "Links or references to this business' social media profiles"
+                                                "label": "Links or references to this business’ social media profiles",
+                                                "value": "Links or references to this business’ social media profiles"
                                             }
                                         ],
                                         "type": "Checkbox"
@@ -856,7 +856,7 @@
                                                     "Order tracking",
                                                     "The possibility for visitors to customise or design the goods or services online",
                                                     "Personalised content for regular or repeat visitors",
-                                                    "Links or references to this business' social media profiles"
+                                                    "Links or references to this business’ social media profiles"
                                                 ]
                                             }
                                         ]
@@ -881,12 +881,12 @@
                                         "mandatory": true,
                                         "options": [
                                             {
-                                                "label": "They're not used",
-                                                "value": "They're not used"
+                                                "label": "They’re not used",
+                                                "value": "They’re not used"
                                             },
                                             {
-                                                "label": "I don't know what they are",
-                                                "value": "I don't know what they are"
+                                                "label": "I don’t know what they are",
+                                                "value": "I don’t know what they are"
                                             }
                                         ],
                                         "type": "Radio"
@@ -1018,12 +1018,12 @@
                                         "mandatory": true,
                                         "options": [
                                             {
-                                                "label": "Yes, we received orders via a website or 'app'",
-                                                "value": "Yes, we received orders via a website or 'app'"
+                                                "label": "Yes, we received orders via a website or ‘app’",
+                                                "value": "Yes, we received orders via a website or ‘app’"
                                             },
                                             {
-                                                "label": "No, we did not receive orders via a website or 'app'",
-                                                "value": "No, we did not receive orders via a website or 'app'"
+                                                "label": "No, we did not receive orders via a website or ‘app’",
+                                                "value": "No, we did not receive orders via a website or ‘app’"
                                             }
                                         ],
                                         "type": "Radio"
@@ -1092,7 +1092,7 @@
                                                 "condition": "equals any",
                                                 "id": "answer1868",
                                                 "values": [
-                                                    "Yes, we received orders via a website or 'app'"
+                                                    "Yes, we received orders via a website or ‘app’"
                                                 ]
                                             }
                                         ]
@@ -1114,7 +1114,7 @@
                                         "decimal_places": 1,
                                         "description": "Please provide percentages to 1 decimal place where possible",
                                         "id": "answer9cc30dc1-89fd-4a8d-8495-8d816f9f3ce1",
-                                        "label": "Percentage turnover from orders via website or 'app'",
+                                        "label": "Percentage turnover from orders via website or ‘app’",
                                         "mandatory": true,
                                         "max_value": {
                                             "exclusive": false,
@@ -1335,13 +1335,13 @@
                                         "options": [
                                             {
                                                 "description": "Include parent or affiliate businesses, and extranets",
-                                                "label": "Via this business' own website or 'app'",
-                                                "value": "Via this business' own website or 'app'"
+                                                "label": "Via this business’ own website or ‘app’",
+                                                "value": "Via this business’ own website or ‘app’"
                                             },
                                             {
                                                 "description": "For example, Booking, eBay, Amazon, Amazon Business, Alibaba, Rakuten, Etsy",
-                                                "label": "Via an e-commerce market place website or 'app'",
-                                                "value": "Via an e-commerce market place website or 'app'"
+                                                "label": "Via an e-commerce market place website or ‘app’",
+                                                "value": "Via an e-commerce market place website or ‘app’"
                                             }
                                         ],
                                         "type": "Checkbox"
@@ -1398,8 +1398,8 @@
                                                 "condition": "contains all",
                                                 "id": "answer1872",
                                                 "values": [
-                                                    "Via this business' own website or 'app'",
-                                                    "Via an e-commerce market place website or 'app'"
+                                                    "Via this business’ own website or ‘app’",
+                                                    "Via an e-commerce market place website or ‘app’"
                                                 ]
                                             }
                                         ]
@@ -1421,7 +1421,7 @@
                                         "decimal_places": 1,
                                         "description": "",
                                         "id": "answer7f9aa610-1122-48c3-9ba1-521891b0a11f",
-                                        "label": "Percentage of orders from your business' own website or 'app'",
+                                        "label": "Percentage of orders from your business’ own website or ‘app’",
                                         "mandatory": true,
                                         "max_value": {
                                             "exclusive": false,
@@ -1437,7 +1437,7 @@
                                         "decimal_places": 1,
                                         "description": "For example, Booking, eBay, Amazon, Amazon Business, Alibaba, Rakuten, Etsy",
                                         "id": "answer981e53d9-69df-40b9-9349-5a44cf6ad419",
-                                        "label": "Percentage of orders from an e-commerce market place website or 'app'",
+                                        "label": "Percentage of orders from an e-commerce market place website or ‘app’",
                                         "mandatory": true,
                                         "max_value": {
                                             "exclusive": false,
@@ -2329,12 +2329,12 @@
                                         "mandatory": true,
                                         "options": [
                                             {
-                                                "label": "They're not used",
-                                                "value": "They're not used"
+                                                "label": "They’re not used",
+                                                "value": "They’re not used"
                                             },
                                             {
-                                                "label": "I don't know what they are",
-                                                "value": "I don't know what they are"
+                                                "label": "I don’t know what they are",
+                                                "value": "I don’t know what they are"
                                             }
                                         ],
                                         "type": "Radio"
@@ -2420,8 +2420,8 @@
                                                 "value": "Yes, we buy cloud computing services"
                                             },
                                             {
-                                                "label": "No, we don't buy cloud computing services",
-                                                "value": "No, we don't buy cloud computing services"
+                                                "label": "No, we don’t buy cloud computing services",
+                                                "value": "No, we don’t buy cloud computing services"
                                             }
                                         ],
                                         "type": "Radio"
@@ -2505,8 +2505,8 @@
                                                 "value": "Office software as a cloud computing service"
                                             },
                                             {
-                                                "label": "Hosting the business' database(s) as a cloud computing service",
-                                                "value": "Hosting the business' database(s) as a cloud computing service"
+                                                "label": "Hosting the business’ database(s) as a cloud computing service",
+                                                "value": "Hosting the business’ database(s) as a cloud computing service"
                                             },
                                             {
                                                 "label": "Storage of files as a cloud computing service",
@@ -2521,8 +2521,8 @@
                                                 "value": "Customer Relations Management (CRM) software,  as a cloud computing service"
                                             },
                                             {
-                                                "label": "Computing capacity to run the business' own software, as a cloud computing service",
-                                                "value": "Computing capacity to run the business' own software, as a cloud computing service"
+                                                "label": "Computing capacity to run the business’ own software, as a cloud computing service",
+                                                "value": "Computing capacity to run the business’ own software, as a cloud computing service"
                                             }
                                         ],
                                         "type": "Checkbox"
@@ -2575,11 +2575,11 @@
                                                 "values": [
                                                     "Email as a cloud computing service",
                                                     "Office software as a cloud computing service",
-                                                    "Hosting the business' database(s) as a cloud computing service",
+                                                    "Hosting the business’ database(s) as a cloud computing service",
                                                     "Storage of files as a cloud computing service",
                                                     "Finance or accounting software applications as a cloud computing service",
                                                     "Customer Relations Management (CRM) software,  as a cloud computing service",
-                                                    "Computing capacity to run the business' own software, as a cloud computing service"
+                                                    "Computing capacity to run the business’ own software, as a cloud computing service"
                                                 ]
                                             }
                                         ]
@@ -2604,12 +2604,12 @@
                                         "mandatory": true,
                                         "options": [
                                             {
-                                                "label": "They're not used",
-                                                "value": "They're not used"
+                                                "label": "They’re not used",
+                                                "value": "They’re not used"
                                             },
                                             {
-                                                "label": "I don't know what they are",
-                                                "value": "I don't know what they are"
+                                                "label": "I don’t know what they are",
+                                                "value": "I don’t know what they are"
                                             }
                                         ],
                                         "type": "Radio"
@@ -2691,8 +2691,8 @@
                                         "options": [
                                             {
                                                 "description": "For example, machine to machine communications, digital sensors, RFID tags",
-                                                "label": "The business' own data from smart devices or sensors",
-                                                "value": "The business' own data from smart devices or sensors"
+                                                "label": "The business’ own data from smart devices or sensors",
+                                                "value": "The business’ own data from smart devices or sensors"
                                             },
                                             {
                                                 "description": "For example, portable devices using mobile telephone networks, wireless connections or GPS",
@@ -2764,7 +2764,7 @@
                                                 "condition": "contains all",
                                                 "id": "answer3d989583-70ec-4b6c-a86e-93f0c0c148af",
                                                 "values": [
-                                                    "The business' own data from smart devices or sensors",
+                                                    "The business’ own data from smart devices or sensors",
                                                     "Geolocation data from the use of portable devices",
                                                     "Data generated from social media",
                                                     "Other big data sources not specified above"
@@ -2792,12 +2792,12 @@
                                         "mandatory": true,
                                         "options": [
                                             {
-                                                "label": "They're not used",
-                                                "value": "They're not used"
+                                                "label": "They’re not used",
+                                                "value": "They’re not used"
                                             },
                                             {
-                                                "label": "I don't know what they are",
-                                                "value": "I don't know what they are"
+                                                "label": "I don’t know what they are",
+                                                "value": "I don’t know what they are"
                                             }
                                         ],
                                         "type": "Radio"
@@ -2817,7 +2817,7 @@
                                                 "condition": "contains any",
                                                 "id": "answer3d989583-70ec-4b6c-a86e-93f0c0c148af",
                                                 "values": [
-                                                    "The business' own data from smart devices or sensors",
+                                                    "The business’ own data from smart devices or sensors",
                                                     "Geolocation data from the use of portable devices",
                                                     "Data generated from social media",
                                                     "Other big data sources not specified above"
@@ -2858,7 +2858,7 @@
                                         "mandatory": false,
                                         "options": [
                                             {
-                                                "description": "For example deep learning, which involves 'training' a computer model to better perform an automated task",
+                                                "description": "For example deep learning, which involves ‘training’ a computer model to better perform an automated task",
                                                 "label": "Machine learning",
                                                 "value": "Machine learning"
                                             },
@@ -2954,12 +2954,12 @@
                                         "mandatory": true,
                                         "options": [
                                             {
-                                                "label": "They're not used",
-                                                "value": "They're not used"
+                                                "label": "They’re not used",
+                                                "value": "They’re not used"
                                             },
                                             {
-                                                "label": "I don't know what they are",
-                                                "value": "I don't know what they are"
+                                                "label": "I don’t know what they are",
+                                                "value": "I don’t know what they are"
                                             }
                                         ],
                                         "type": "Radio"
@@ -3773,8 +3773,8 @@
                                             },
                                             {
                                                 "description": "For example moulds, tools, parts of goods, semi-finished goods",
-                                                "label": "Goods to be used in your business' production process, excluding prototypes or models",
-                                                "value": "Goods to be used in your business' production process, excluding prototypes or models"
+                                                "label": "Goods to be used in your business’ production process, excluding prototypes or models",
+                                                "value": "Goods to be used in your business’ production process, excluding prototypes or models"
                                             }
                                         ],
                                         "type": "Checkbox"
@@ -3808,7 +3808,7 @@
                                                     "Prototypes or models for sale",
                                                     "Prototypes or models for use by your business",
                                                     "Goods for sale, excluding prototypes or models",
-                                                    "Goods to be used in your business' production process, excluding prototypes or models"
+                                                    "Goods to be used in your business’ production process, excluding prototypes or models"
                                                 ]
                                             }
                                         ]
@@ -3833,12 +3833,12 @@
                                         "mandatory": true,
                                         "options": [
                                             {
-                                                "label": "They're not used",
-                                                "value": "They're not used"
+                                                "label": "They’re not used",
+                                                "value": "They’re not used"
                                             },
                                             {
-                                                "label": "I don't know what they are",
-                                                "value": "I don't know what they are"
+                                                "label": "I don’t know what they are",
+                                                "value": "I don’t know what they are"
                                             }
                                         ],
                                         "type": "Radio"
@@ -4185,12 +4185,12 @@
                                         "mandatory": true,
                                         "options": [
                                             {
-                                                "label": "They're not used",
-                                                "value": "They're not used"
+                                                "label": "They’re not used",
+                                                "value": "They’re not used"
                                             },
                                             {
-                                                "label": "I don't know what they are",
-                                                "value": "I don't know what they are"
+                                                "label": "I don’t know what they are",
+                                                "value": "I don’t know what they are"
                                             }
                                         ],
                                         "type": "Radio"

@@ -130,7 +130,7 @@
                             "question": {
                                 "type": "General",
                                 "id": "skip-fourth-block-question",
-                                "title": "Skip Fourth Block so it doesn't appear in Total?",
+                                "title": "Skip Fourth Block so it doesn’t appear in Total?",
                                 "answers": [
                                     {
                                         "type": "Radio",

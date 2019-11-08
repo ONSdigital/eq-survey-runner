@@ -39,7 +39,7 @@
                                     }
                                 ],
                                 "id": "question",
-                                "title": "Enter the number that isn't 123",
+                                "title": "Enter the number that isn’t 123",
                                 "type": "General"
                             },
                             "routing_rules": [

@@ -88,7 +88,7 @@ describe('List Collector With Variants', function() {
       return browser
         .click(ListCollectorPage.anyoneElseYes())
         .click(ListCollectorPage.submit())
-        .getText(ListCollectorAddPage.questionText()).should.eventually.equal('What is the name of the person who isn\'t you?')
+        .getText(ListCollectorAddPage.questionText()).should.eventually.equal('What is the name of the person who isn’t you?')
         .setValue(ListCollectorAddPage.firstName(), 'Samuel')
         .setValue(ListCollectorAddPage.lastName(), 'Clemens')
         .click(ListCollectorAddPage.submit());
@@ -102,10 +102,10 @@ describe('List Collector With Variants', function() {
     it('The questionnaire has the correct question text on the change and remove pages', function() {
       return browser
         .click(ListCollectorPage.listEditLink(1))
-        .getText(ListCollectorEditPage.questionText()).should.eventually.equal('What is the name of the person who isn\'t you?')
+        .getText(ListCollectorEditPage.questionText()).should.eventually.equal('What is the name of the person who isn’t you?')
         .click(ListCollectorEditPage.previous())
         .click(ListCollectorPage.listRemoveLink(1))
-        .getText(ListCollectorRemovePage.questionText()).should.eventually.equal('Are you sure you want to remove this person who isn\'t you?')
+        .getText(ListCollectorRemovePage.questionText()).should.eventually.equal('Are you sure you want to remove this person who isn’t you?')
         .click(ListCollectorRemovePage.previous());
     });
 

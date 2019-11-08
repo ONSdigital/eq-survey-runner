@@ -173,7 +173,7 @@
                                 "title": "Another list",
                                 "contents": [
                                     {
-                                        "description": "You have added some people to the 'people' list. Next we'll test another list collector adding to the same list. This should still have the same list of people."
+                                        "description": "You have added some people to the ‘people’ list. Next we’ll test another list collector adding to the same list. This should still have the same list of people."
                                     }
                                 ]
                             },
@@ -194,7 +194,7 @@
                             "question": {
                                 "id": "another-confirmation-question",
                                 "type": "General",
-                                "title": "This list collector will add to the same 'people' list. Add someone else?",
+                                "title": "This list collector will add to the same ‘people’ list. Add someone else?",
                                 "answers": [
                                     {
                                         "id": "another-anyone-else",
