@@ -11,7 +11,7 @@ class TestQuestionnaireInterstitial(IntegrationTestCase):
         self.post({'favourite-breakfast': 'Cereal'})
         self.assertInBody('Continue')
 
-    def test_interstitial_page_can_continue_and_submit(self):
+    def test_interstitial_can_continue_and_submit(self):
         self.launchSurvey('test_interstitial_page')
         self.post(action='start_questionnaire')
         self.post({'favourite-breakfast': 'Cereal'})
@@ -20,4 +20,4 @@ class TestQuestionnaireInterstitial(IntegrationTestCase):
         self.post({'favourite-lunch': 'Pizza'})
         self.assertInUrl('confirmation')
         self.post(action=None)
-        self.assertInBody('Thank you for submitting your census')
+        self.assertInBody('Submission successful')

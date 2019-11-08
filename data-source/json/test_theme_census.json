@@ -1,0 +1,59 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "A questionnaire to check schema census theme.",
+    "theme": "census",
+    "description": "A questionnaire to check schema census theme.",
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "name-block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "name",
+                                        "label": "Name",
+                                        "mandatory": false,
+                                        "q_code": "0",
+                                        "type": "TextField"
+                                    }
+                                ],
+                                "description": "",
+                                "id": "name-question",
+                                "title": "What is your name?",
+                                "type": "General"
+                            },
+                            "routing_rules": []
+                        },
+                        {
+                            "type": "Confirmation",
+                            "id": "confirmation",
+                            "content": {
+                                "title": "Thank you for your answer, do you wish to submit?"
+                            }
+                        }
+                    ],
+                    "id": "your-details",
+                    "title": "Your details"
+                }
+            ]
+        }
+    ]
+}

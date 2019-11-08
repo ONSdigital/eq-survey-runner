@@ -345,15 +345,47 @@ msgid ""
 "after submitting this survey"
 msgstr ""
 
-#: templates/thank-you.html:3
-msgid "We've received your answers"
+#: templates/thank-you.html:4
+msgid "We’ve received your answers"
 msgstr ""
 
-#: templates/thank-you.html:7
+#: templates/thank-you.html:8
+msgid "Submission successful"
+msgstr ""
+
+#: templates/thank-you.html:16
+msgid ""
+"Your answers were submitted for <span>{ru_name}</span> "
+"({trading_as_name}) on {submitted_date_time}"
+msgstr ""
+
+#: templates/thank-you.html:21
+msgid ""
+"Your answers were submitted for <span>{ru_name}</span> on "
+"{submitted_date_time}"
+msgstr ""
+
+#: templates/thank-you.html:26
+msgid "Transaction ID: <b>{transaction_id}</b>"
+msgstr ""
+
+#: templates/thank-you.html:29
+msgid "Your answers will be processed in the next few weeks."
+msgstr ""
+
+#: templates/thank-you.html:30
+msgid "We may contact you to query your answers via phone or secure message."
+msgstr ""
+
+#: templates/thank-you.html:32
+msgid "For more information on how we use this data."
+msgstr ""
+
+#: templates/thank-you.html:34
 msgid "Thank you for submitting your census"
 msgstr ""
 
-#: templates/thank-you.html:9
+#: templates/thank-you.html:36
 msgid "We have received your answers and you do not need to do anything else."
 msgstr ""
 
