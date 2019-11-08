@@ -53,7 +53,7 @@
                                                 "detail_answer": {
                                                     "mandatory": false,
                                                     "id": "cheese-type-answer",
-                                                    "label": "Type specific cheese if cheddar isn't wanted",
+                                                    "label": "Type specific cheese if cheddar isn’t wanted",
                                                     "type": "TextField"
                                                 }
                                             },

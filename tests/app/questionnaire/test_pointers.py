@@ -8,7 +8,7 @@ class TestPointers(unittest.TestCase):
     def test_find_pointers_containing_root():
         schema = {'test': ''}
 
-        pointers = [p for p in find_pointers_containing(schema, 'test')]
+        pointers = list(find_pointers_containing(schema, 'test'))
 
         assert pointers == ['']
 

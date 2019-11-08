@@ -60,7 +60,7 @@
                                     "contents": [
                                         {
                                             "description": {
-                                                "text": "Period 'from' date should be greater than 19 days before {date}",
+                                                "text": "Period ‘from’ date should be greater than 19 days before {date}",
                                                 "placeholders": [
                                                     {
                                                         "placeholder": "date",
@@ -81,11 +81,11 @@
                                             }
                                         },
                                         {
-                                            "description": "Period 'from' should also be no greater than 20 days after 11 June 2017"
+                                            "description": "Period ‘from’ should also be no greater than 20 days after 11 June 2017"
                                         },
                                         {
                                             "description": {
-                                                "text": "Period 'to' date should be greater than 1 month 10 days after {date}",
+                                                "text": "Period ‘to’ date should be greater than 1 month 10 days after {date}",
                                                 "placeholders": [
                                                     {
                                                         "placeholder": "date",

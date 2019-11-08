@@ -85,7 +85,7 @@ class QuestionnaireStoreUpdater:
         list_items = self._list_store.get(list_name).items
 
         for collector in relationship_collectors:
-            expected_pairs = {pair for pair in combinations(list_items, 2)}
+
             relationship_answer_id = self._schema.get_relationship_answer_id_for_block(
                 collector['id']
             )
@@ -99,6 +99,7 @@ class QuestionnaireStoreUpdater:
                     for answer in relationship_answers
                 }
 
+                expected_pairs = set(combinations(list_items, 2))
                 if expected_pairs == pairs:
                     section_id = self._schema.get_section_for_block_id(collector['id'])[
                         'id'

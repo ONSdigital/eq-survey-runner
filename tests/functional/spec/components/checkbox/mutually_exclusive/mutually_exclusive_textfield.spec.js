@@ -1,119 +1,99 @@
-const helpers = require('../../../../helpers');
-
 const TextFieldPage = require('../../../../generated_pages/mutually_exclusive/mutually-exclusive-textfield.page');
 const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-textfield-section-summary.page');
 
 describe('Component: Mutually Exclusive Textfield With Single Checkbox Override', function() {
-
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.url('/questionnaire/mutually-exclusive-textfield');
-        });
+    browser.openQuestionnaire('test_mutually_exclusive.json');
+    browser.url('/questionnaire/mutually-exclusive-textfield');
   });
 
   describe('Given the user has entered a value for the non-exclusive textfield answer', function() {
     it('When then user clicks the mutually exclusive checkbox answer, Then only the mutually exclusive checkbox should be answered.', function() {
+      // Given
+      $(TextFieldPage.textfield()).setValue('Blue');
+      expect($(TextFieldPage.textfield()).getValue()).to.contain('Blue');
 
-      return browser
-        // Given
-        .setValue(TextFieldPage.textfield(), 'Blue')
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('Blue')
+      // When
+      $(TextFieldPage.textfieldExclusiveIPreferNotToSay()).click();
 
-        // When
-        .click(TextFieldPage.textfieldExclusiveIPreferNotToSay())
+      // Then
+      expect($(TextFieldPage.textfieldExclusiveIPreferNotToSay()).isSelected()).to.be.true;
+      expect($(TextFieldPage.textfield()).getValue()).to.contain('');
 
-        // Then
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.true
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('')
+      $(TextFieldPage.submit()).click();
 
-        .click(TextFieldPage.submit())
-
-        .getText(SummaryPage.textfieldExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.textfieldExclusiveAnswer()).should.not.eventually.have.string('Blue');
-
+      expect($(SummaryPage.textfieldExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+      expect($(SummaryPage.textfieldExclusiveAnswer()).getText()).to.not.have.string('Blue');
     });
   });
 
   describe('Given the user has clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive textfield answer and removes focus, Then only the non-exclusive textfield answer should be answered.', function() {
+      // Given
+      $(TextFieldPage.textfieldExclusiveIPreferNotToSay()).click();
+      expect($(TextFieldPage.textfieldExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
-      return browser
-        // Given
-        .click(TextFieldPage.textfieldExclusiveIPreferNotToSay())
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.true
+      // When
+      $(TextFieldPage.textfield()).setValue('Blue');
 
-        // When
-        .setValue(TextFieldPage.textfield(), 'Blue')
+      // Then
+      expect($(TextFieldPage.textfield()).getValue()).to.contain('Blue');
+      expect($(TextFieldPage.textfieldExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        // Then
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('Blue')
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.false
+      $(TextFieldPage.submit()).click();
 
-        .click(TextFieldPage.submit())
-
-        .getText(SummaryPage.textfieldAnswer()).should.eventually.have.string('Blue')
-        .getText(SummaryPage.textfieldAnswer()).should.not.eventually.have.string('I prefer not to say');
-
+      expect($(SummaryPage.textfieldAnswer()).getText()).to.have.string('Blue');
+      expect($(SummaryPage.textfieldAnswer()).getText()).to.not.have.string('I prefer not to say');
     });
   });
 
   describe('Given the user has not clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive textfield answer, Then only the non-exclusive textfield answer should be answered.', function() {
+      // Given
+      expect($(TextFieldPage.textfieldExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-      return browser
-        // Given
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.false
+      // When
+      $(TextFieldPage.textfield()).setValue('Blue');
 
-        // When
-        .setValue(TextFieldPage.textfield(), 'Blue')
+      // Then
+      expect($(TextFieldPage.textfield()).getValue()).to.contain('Blue');
+      expect($(TextFieldPage.textfieldExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        // Then
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('Blue')
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.false
+      $(TextFieldPage.submit()).click();
 
-        .click(TextFieldPage.submit())
-
-        .getText(SummaryPage.textfieldAnswer()).should.eventually.have.string('Blue')
-        .getText(SummaryPage.textfieldAnswer()).should.not.eventually.have.string('I prefer not to say');
-
+      expect($(SummaryPage.textfieldAnswer()).getText()).to.have.string('Blue');
+      expect($(SummaryPage.textfieldAnswer()).getText()).to.not.have.string('I prefer not to say');
     });
   });
 
   describe('Given the user has not answered the non-exclusive textfield answer', function() {
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
+      // Given
+      expect($(TextFieldPage.textfield()).getValue()).to.contain('');
 
-      return browser
-        // Given
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('')
+      // When
+      $(TextFieldPage.textfieldExclusiveIPreferNotToSay()).click();
+      expect($(TextFieldPage.textfieldExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
-        // When
-        .click(TextFieldPage.textfieldExclusiveIPreferNotToSay())
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.true
+      // Then
+      $(TextFieldPage.submit()).click();
 
-        // Then
-        .click(TextFieldPage.submit())
-
-        .getText(SummaryPage.textfieldExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.textfieldExclusiveAnswer()).should.not.eventually.have.string('Blue');
-
+      expect($(SummaryPage.textfieldExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+      expect($(SummaryPage.textfieldExclusiveAnswer()).getText()).to.not.have.string('Blue');
     });
   });
 
   describe('Given the user has not answered the question and the question is optional', function() {
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
+      // Given
+      expect($(TextFieldPage.textfield()).getValue()).to.contain('');
+      expect($(TextFieldPage.textfieldExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-      return browser
-        // Given
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('')
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.false
+      // When
+      $(TextFieldPage.submit()).click();
 
-        // When
-        .click(TextFieldPage.submit())
-
-        // Then
-        .getText(SummaryPage.textfieldAnswer()).should.eventually.contain('No answer provided');
-
+      // Then
+      expect($(SummaryPage.textfieldAnswer()).getText()).to.contain('No answer provided');
     });
   });
-
 });

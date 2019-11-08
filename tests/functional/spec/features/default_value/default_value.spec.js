@@ -1,5 +1,3 @@
-const helpers = require('../../../helpers');
-
 const QuestionPageOne = require('../../../generated_pages/default/number-question-one.page.js');
 const QuestionPageTwo = require('../../../generated_pages/default/number-question-two.page.js');
 const Summary = require('../../../generated_pages/default/summary.page.js');
@@ -8,41 +6,34 @@ const QuestionPageThreeSkip = require('../../../generated_pages/default_with_ski
 
 
 describe('Feature: Default Value', function() {
-
   it('Given I start default schema, When I do not answer a question, Then "no answer provided" is displayed on the Summary page', function() {
-    return helpers.openQuestionnaire('test_default.json').then(() => {
-      return browser
-        .click(QuestionPageOne.submit())
-          .getUrl().should.eventually.contain(QuestionPageTwo.pageName)
-          .setValue(QuestionPageTwo.two(), 123)
-          .click(QuestionPageTwo.submit())
-          .getUrl().should.eventually.contain(Summary.pageName)
-          .getText(Summary.answerOne()).should.eventually.contain('No answer provided');
-    });
+    browser.openQuestionnaire('test_default.json');
+    $(QuestionPageOne.submit()).click();
+    expect(browser.getUrl()).to.contain(QuestionPageTwo.pageName);
+    $(QuestionPageTwo.two()).setValue(123);
+    $(QuestionPageTwo.submit()).click();
+    expect(browser.getUrl()).to.contain(Summary.pageName);
+    expect($(Summary.answerOne()).getText()).to.contain('No answer provided');
   });
 
   it('Given I have not answered a question containing a default value, When I return to the question, Then no value should be displayed', function() {
-  return helpers.openQuestionnaire('test_default.json').then(() => {
-    return browser
-      .click(QuestionPageOne.submit())
-        .getUrl().should.eventually.contain(QuestionPageTwo.pageName)
-        .setValue(QuestionPageTwo.two(), 123)
-        .click(QuestionPageTwo.submit())
-        .getUrl().should.eventually.contain(Summary.pageName)
-        .click(Summary.previous())
-        .getUrl().should.eventually.contain(QuestionPageTwo.pageName)
-        .click(QuestionPageTwo.previous())
-        .getUrl().should.eventually.contain(QuestionPageOne.pageName)
-        .getValue(QuestionPageOne.one()).should.eventually.equal('');
-    });
+    browser.openQuestionnaire('test_default.json');
+    $(QuestionPageOne.submit()).click();
+    expect(browser.getUrl()).to.contain(QuestionPageTwo.pageName);
+    $(QuestionPageTwo.two()).setValue(123);
+    $(QuestionPageTwo.submit()).click();
+    expect(browser.getUrl()).to.contain(Summary.pageName);
+    $(Summary.previous()).click();
+    expect(browser.getUrl()).to.contain(QuestionPageTwo.pageName);
+    $(QuestionPageTwo.previous()).click();
+    expect(browser.getUrl()).to.contain(QuestionPageOne.pageName);
+    expect($(QuestionPageOne.one()).getValue()).to.equal('');
   });
 
   it('Given I have not answered a question containing a default value, When a skip condition checks for the default value, Then I should skip the next question', function() {
-  return helpers.openQuestionnaire('test_default_with_skip.json').then(() => {
-    return browser
-      .click(QuestionPageOneSkip.submit())
-       .getUrl().should.eventually.contain(QuestionPageThreeSkip.pageName)
-       .getText(QuestionPageThreeSkip.questionText()).should.eventually.contain('Question Three');
-    });
-   });
+    browser.openQuestionnaire('test_default_with_skip.json');
+    $(QuestionPageOneSkip.submit()).click();
+    expect(browser.getUrl()).to.contain(QuestionPageThreeSkip.pageName);
+    expect($(QuestionPageThreeSkip.questionText()).getText()).to.contain('Question Three');
+  });
 });

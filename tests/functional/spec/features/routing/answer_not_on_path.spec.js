@@ -1,5 +1,3 @@
-const helpers = require('../../../helpers');
-
 const InitialChoicePage =           require('../../../generated_pages/routing_not_affected_by_answers_not_on_path/initial-choice.page.js');
 const InvalidPathPage =             require('../../../generated_pages/routing_not_affected_by_answers_not_on_path/invalid-path.page.js');
 const InvalidPathInterstitialPage = require('../../../generated_pages/routing_not_affected_by_answers_not_on_path/invalid-path-interstitial.page.js');
@@ -7,36 +5,34 @@ const ValidPathPage =               require('../../../generated_pages/routing_no
 const ValidFinalInterstitialPage =  require('../../../generated_pages/routing_not_affected_by_answers_not_on_path/valid-final-interstitial.page.js');
 
 describe('Answers not on path are not considered when routing', function() {
-
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_routing_not_affected_by_answers_not_on_path.json');
+    browser.openQuestionnaire('test_routing_not_affected_by_answers_not_on_path.json');
   });
 
   it('Given the user enters an answer on the first path, when they return to the second path, they should be routed to the valid path interstitial', function() {
-    return browser
-      .click(InitialChoicePage.first())
-      .click(InitialChoicePage.submit())
+    $(InitialChoicePage.first()).click();
+    $(InitialChoicePage.submit()).click();
 
-      .getUrl().should.eventually.contain(InvalidPathPage.pageName)
-      .setValue(InvalidPathPage.answer(), 123)
-      .click(InvalidPathPage.submit())
+    expect(browser.getUrl()).to.contain(InvalidPathPage.pageName);
+    $(InvalidPathPage.answer()).setValue(123);
+    $(InvalidPathPage.submit()).click();
 
-      // We now have an answer in the store on the 'invalid' path
+    // We now have an answer in the store on the 'invalid' path
 
-      .getUrl().should.eventually.contain(InvalidPathInterstitialPage.pageName)
-      .click(InvalidPathInterstitialPage.previous())
-      .click(InvalidPathPage.previous())
+    expect(browser.getUrl()).to.contain(InvalidPathInterstitialPage.pageName);
+    $(InvalidPathInterstitialPage.previous()).click();
+    $(InvalidPathPage.previous()).click();
 
-      // Take the second route
+    // Take the second route
 
-      .click(InitialChoicePage.second())
-      .click(InitialChoicePage.submit())
+    $(InitialChoicePage.second()).click();
+    $(InitialChoicePage.submit()).click();
 
-      .setValue(ValidPathPage.answer(), 321)
-      .click(ValidPathPage.submit())
+    $(ValidPathPage.answer()).setValue(321);
+    $(ValidPathPage.submit()).click();
 
-      // We should be routed to the valid interstitial page since the invalid path answer should not be considered whilst routing.
-      .getUrl().should.eventually.contain(ValidFinalInterstitialPage.pageName);
+    // We should be routed to the valid interstitial page since the invalid path answer should not be considered whilst routing.
+    expect(browser.getUrl()).to.contain(ValidFinalInterstitialPage.pageName);
   });
 });
 

@@ -25,7 +25,9 @@ class TestRoleRequired(TestCase):
         # The import of app.authentication.roles.role_required must be
         # performed after get_metadata and current_user have been patched
         # otherwise the original functions are cached and not patched correctly
-        from app.authentication.roles import role_required
+        from app.authentication.roles import (  # pylint: disable=import-outside-toplevel
+            role_required,
+        )
 
         self.role_required = role_required
 

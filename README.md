@@ -185,7 +185,6 @@ Available commands:
 | Command                | Task                                                                                                    |
 | ---------------------- | ------------------------------------------------------------------------------------------------------- |
 | `yarn test_functional` | Runs the functional tests through ChimpJS (requires app running on localhost:5000 and generated pages). |
-| `yarn test_cypress`    | Runs the Cypress functional tests (requires app running on localhost:5000 and generated pages).         |
 | `yarn generate_pages`  | Generates the functional test pages.                                                                    |
 | `yarn lint`            | Lints the JS, reporting errors/warnings.                                                                |
 | `yarn format`          | Format the json schemas.                                                                                |
@@ -194,9 +193,7 @@ Available commands:
 
 ### Development with functional tests
 
-The functional tests use Chimp (now [Chimpy](https://github.com/TheBrainFamily/chimpy)).
-
-Underneath Chimp, the tests are written using [WebdriverIO](https://webdriver.io/docs), [Chai](https://www.chaijs.com/), and [Mocha](https://mochajs.org/)
+The tests are written using [WebdriverIO](https://webdriver.io/docs), [Chai](https://www.chaijs.com/), and [Mocha](https://mochajs.org/)
 
 ### Functional test options
 
@@ -224,27 +221,18 @@ If you have already built the generated pages, then the functional tests can be 
 
 `yarn test_functional`
 
-This can be limited to tests under a directory with:
+This can be limited to a single spec using:
 
-`yarn test_functional --path tests/functional/spec/components/`
+`./node_modules/.bin/wdio tests/functional/wdio.conf.js --spec tests/functional/spec/save_sign_out.spec.js`
 
-To run a single test, add `@watch` into the name of any `describe` or `it` function and run:
+To run a single test, add `.only` into the name of any `describe` or `it` function:
 
-`yarn test_functional --watch`
-
-An example of adding `@watch` looks like this:
-`describe('@watch Skip Conditions', function() {...}` or
-`it('@watch Given this is a test', function() {...}`
+`describe.only('Skip Conditions', function() {...}` or
+`it.only('Given this is a test', function() {...}`
 
 To run the tests against a remote deployment you will need to specify the environment variable of EQ_FUNCTIONAL_TEST_ENV eg:
 
 `EQ_FUNCTIONAL_TEST_ENV=https://staging-new-surveys.dev.eq.ons.digital/ yarn test_functional`
-
-To run the census functional tests within the cypress UI:
-
-```
-./node_modules/cypress/bin/cypress open
-```
 
 ---
 

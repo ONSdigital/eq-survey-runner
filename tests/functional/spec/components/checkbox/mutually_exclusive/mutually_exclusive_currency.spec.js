@@ -1,119 +1,99 @@
-const helpers = require('../../../../helpers');
-
 const CurrencyPage = require('../../../../generated_pages/mutually_exclusive/mutually-exclusive-currency.page');
 const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-currency-section-summary.page');
 
 describe('Component: Mutually Exclusive Currency With Single Checkbox Override', function() {
-
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.url('/questionnaire/mutually-exclusive-currency');
-        });
+    browser.openQuestionnaire('test_mutually_exclusive.json');
+    browser.url('/questionnaire/mutually-exclusive-currency');
   });
 
   describe('Given the user has entered a value for the non-exclusive currency answer', function() {
     it('When then user clicks the mutually exclusive checkbox answer, Then only the mutually exclusive checkbox should be answered.', function() {
+      // Given
+      $(CurrencyPage.currency()).setValue('123');
+      expect($(CurrencyPage.currency()).getValue()).to.contain('123');
 
-      return browser
-        // Given
-        .setValue(CurrencyPage.currency(), '123')
-        .getValue(CurrencyPage.currency()).should.eventually.contain('123')
+      // When
+      $(CurrencyPage.currencyExclusiveIPreferNotToSay()).click();
 
-        // When
-        .click(CurrencyPage.currencyExclusiveIPreferNotToSay())
+      // Then
+      expect($(CurrencyPage.currencyExclusiveIPreferNotToSay()).isSelected()).to.be.true;
+      expect($(CurrencyPage.currency()).getValue()).to.contain('');
 
-        // Then
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.true
-        .getValue(CurrencyPage.currency()).should.eventually.contain('')
+      $(CurrencyPage.submit()).click();
 
-        .click(CurrencyPage.submit())
-
-        .getText(SummaryPage.currencyExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.currencyExclusiveAnswer()).should.not.eventually.have.string('123');
-
+      expect($(SummaryPage.currencyExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+      expect($(SummaryPage.currencyExclusiveAnswer()).getText()).to.not.have.string('123');
     });
   });
 
   describe('Given the user has clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive currency answer and removes focus, Then only the non-exclusive currency answer should be answered.', function() {
+      // Given
+      $(CurrencyPage.currencyExclusiveIPreferNotToSay()).click();
+      expect($(CurrencyPage.currencyExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
-      return browser
-        // Given
-        .click(CurrencyPage.currencyExclusiveIPreferNotToSay())
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.true
+      // When
+      $(CurrencyPage.currency()).setValue('123');
 
-        // When
-        .setValue(CurrencyPage.currency(), '123')
+      // Then
+      $(CurrencyPage.currency()).getValue();
+      expect($(CurrencyPage.currencyExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        // Then
-        .getValue(CurrencyPage.currency()).should.eventually.contain('123')
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.false
+      $(CurrencyPage.submit()).click();
 
-        .click(CurrencyPage.submit())
-
-        .getText(SummaryPage.currencyAnswer()).should.eventually.have.string('123')
-        .getText(SummaryPage.currencyAnswer()).should.not.eventually.have.string('I prefer not to say');
-
+      expect($(SummaryPage.currencyAnswer()).getText()).to.have.string('123');
+      expect($(SummaryPage.currencyAnswer()).getText()).to.not.have.string('I prefer not to say');
     });
   });
 
   describe('Given the user has not clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive currency answer, Then only the non-exclusive currency answer should be answered.', function() {
+      // Given
+      expect($(CurrencyPage.currencyExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-      return browser
-        // Given
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.false
+      // When
+      $(CurrencyPage.currency()).setValue('123');
 
-        // When
-        .setValue(CurrencyPage.currency(), '123')
+      // Then
+      expect($(CurrencyPage.currency()).getValue()).to.contain('123');
+      expect($(CurrencyPage.currencyExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        // Then
-        .getValue(CurrencyPage.currency()).should.eventually.contain('123')
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.false
+      $(CurrencyPage.submit()).click();
 
-        .click(CurrencyPage.submit())
-
-        .getText(SummaryPage.currencyAnswer()).should.eventually.have.string('123')
-        .getText(SummaryPage.currencyAnswer()).should.not.eventually.have.string('I prefer not to say');
-
+      expect($(SummaryPage.currencyAnswer()).getText()).to.have.string('123');
+      expect($(SummaryPage.currencyAnswer()).getText()).to.not.have.string('I prefer not to say');
     });
   });
 
   describe('Given the user has not answered the non-exclusive currency answer', function() {
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
+      // Given
+      expect($(CurrencyPage.currency()).getValue()).to.contain('');
 
-      return browser
-        // Given
-        .getValue(CurrencyPage.currency()).should.eventually.contain('')
+      // When
+      $(CurrencyPage.currencyExclusiveIPreferNotToSay()).click();
+      expect($(CurrencyPage.currencyExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
-        // When
-        .click(CurrencyPage.currencyExclusiveIPreferNotToSay())
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.true
+      // Then
+      $(CurrencyPage.submit()).click();
 
-        // Then
-        .click(CurrencyPage.submit())
-
-        .getText(SummaryPage.currencyExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.currencyExclusiveAnswer()).should.not.eventually.have.string('123');
-
+      expect($(SummaryPage.currencyExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+      expect($(SummaryPage.currencyExclusiveAnswer()).getText()).to.not.have.string('123');
     });
   });
 
   describe('Given the user has not answered the question and the question is optional', function() {
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
+      // Given
+      expect($(CurrencyPage.currency()).getValue()).to.contain('');
+      expect($(CurrencyPage.currencyExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-      return browser
-        // Given
-        .getValue(CurrencyPage.currency()).should.eventually.contain('')
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.false
+      // When
+      $(CurrencyPage.submit()).click();
 
-        // When
-        .click(CurrencyPage.submit())
-
-        // Then
-        .getText(SummaryPage.currencyAnswer()).should.eventually.contain('No answer provided');
-
+      // Then
+      expect($(SummaryPage.currencyAnswer()).getText()).to.contain('No answer provided');
     });
   });
-
 });

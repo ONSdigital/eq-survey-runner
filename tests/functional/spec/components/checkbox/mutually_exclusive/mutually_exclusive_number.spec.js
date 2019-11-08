@@ -1,119 +1,99 @@
-const helpers = require('../../../../helpers');
-
 const NumberPage = require('../../../../generated_pages/mutually_exclusive/mutually-exclusive-number.page');
 const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-number-section-summary.page');
 
 describe('Component: Mutually Exclusive Number With Single Checkbox Override', function() {
-
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.url('/questionnaire/mutually-exclusive-number');
-        });
+    browser.openQuestionnaire('test_mutually_exclusive.json');
+    browser.url('/questionnaire/mutually-exclusive-number');
   });
 
   describe('Given the user has entered a value for the non-exclusive number answer', function() {
     it('When then user clicks the mutually exclusive checkbox answer, Then only the mutually exclusive checkbox should be answered.', function() {
+      // Given
+      $(NumberPage.number()).setValue('123');
+      expect($(NumberPage.number()).getValue()).to.contain('123');
 
-      return browser
-        // Given
-        .setValue(NumberPage.number(), '123')
-        .getValue(NumberPage.number()).should.eventually.contain('123')
+      // When
+      $(NumberPage.numberExclusiveIPreferNotToSay()).click();
 
-        // When
-        .click(NumberPage.numberExclusiveIPreferNotToSay())
+      // Then
+      expect($(NumberPage.numberExclusiveIPreferNotToSay()).isSelected()).to.be.true;
+      expect($(NumberPage.number()).getValue()).to.contain('');
 
-        // Then
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.true
-        .getValue(NumberPage.number()).should.eventually.contain('')
+      $(NumberPage.submit()).click();
 
-        .click(NumberPage.submit())
-
-        .getText(SummaryPage.numberExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.numberExclusiveAnswer()).should.not.eventually.have.string('123');
-
+      expect($(SummaryPage.numberExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+      expect($(SummaryPage.numberExclusiveAnswer()).getText()).to.not.have.string('123');
     });
   });
 
   describe('Given the user has clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive number answer and removes focus, Then only the non-exclusive number answer should be answered.', function() {
+      // Given
+      $(NumberPage.numberExclusiveIPreferNotToSay()).click();
+      expect($(NumberPage.numberExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
-      return browser
-        // Given
-        .click(NumberPage.numberExclusiveIPreferNotToSay())
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.true
+      // When
+      $(NumberPage.number()).setValue('123');
 
-        // When
-        .setValue(NumberPage.number(), '123')
+      // Then
+      expect($(NumberPage.number()).getValue()).to.contain('123');
+      expect($(NumberPage.numberExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        // Then
-        .getValue(NumberPage.number()).should.eventually.contain('123')
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.false
+      $(NumberPage.submit()).click();
 
-        .click(NumberPage.submit())
-
-        .getText(SummaryPage.numberAnswer()).should.eventually.have.string('123')
-        .getText(SummaryPage.numberAnswer()).should.not.eventually.have.string('I prefer not to say');
-
+      expect($(SummaryPage.numberAnswer()).getText()).to.have.string('123');
+      expect($(SummaryPage.numberAnswer()).getText()).to.not.have.string('I prefer not to say');
     });
   });
 
   describe('Given the user has not clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive number answer, Then only the non-exclusive number answer should be answered.', function() {
+      // Given
+      expect($(NumberPage.numberExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-      return browser
-        // Given
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.false
+      // When
+      $(NumberPage.number()).setValue('123');
 
-        // When
-        .setValue(NumberPage.number(), '123')
+      // Then
+      expect($(NumberPage.number()).getValue()).to.contain('123');
+      expect($(NumberPage.numberExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-        // Then
-        .getValue(NumberPage.number()).should.eventually.contain('123')
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.false
+      $(NumberPage.submit()).click();
 
-        .click(NumberPage.submit())
-
-        .getText(SummaryPage.numberAnswer()).should.eventually.have.string('123')
-        .getText(SummaryPage.numberAnswer()).should.not.eventually.have.string('I prefer not to say');
-
+      expect($(SummaryPage.numberAnswer()).getText()).to.have.string('123');
+      expect($(SummaryPage.numberAnswer()).getText()).to.not.have.string('I prefer not to say');
     });
   });
 
   describe('Given the user has not answered the non-exclusive number answer', function() {
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
+      // Given
+      expect($(NumberPage.number()).getValue()).to.contain('');
 
-      return browser
-        // Given
-        .getValue(NumberPage.number()).should.eventually.contain('')
+      // When
+      $(NumberPage.numberExclusiveIPreferNotToSay()).click();
+      expect($(NumberPage.numberExclusiveIPreferNotToSay()).isSelected()).to.be.true;
 
-        // When
-        .click(NumberPage.numberExclusiveIPreferNotToSay())
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.true
+      // Then
+      $(NumberPage.submit()).click();
 
-        // Then
-        .click(NumberPage.submit())
-
-        .getText(SummaryPage.numberExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.numberExclusiveAnswer()).should.not.eventually.have.string('123');
-
+      expect($(SummaryPage.numberExclusiveAnswer()).getText()).to.have.string('I prefer not to say');
+      expect($(SummaryPage.numberExclusiveAnswer()).getText()).to.not.have.string('123');
     });
   });
 
   describe('Given the user has not answered the question and the question is optional', function() {
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
+      // Given
+      expect($(NumberPage.number()).getValue()).to.contain('');
+      expect($(NumberPage.numberExclusiveIPreferNotToSay()).isSelected()).to.be.false;
 
-      return browser
-        // Given
-        .getValue(NumberPage.number()).should.eventually.contain('')
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.false
+      // When
+      $(NumberPage.submit()).click();
 
-        // When
-        .click(NumberPage.submit())
-
-        // Then
-        .getText(SummaryPage.numberAnswer()).should.eventually.contain('No answer provided');
-
+      // Then
+      expect($(SummaryPage.numberAnswer()).getText()).to.contain('No answer provided');
     });
   });
-
 });
