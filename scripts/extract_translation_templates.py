@@ -66,7 +66,8 @@ def build_static_template(output_filepath):
             '-o',
             output_filepath,
             '.',
-        ]
+        ],
+        check=False,
     )
 
 
