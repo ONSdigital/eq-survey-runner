@@ -1,4 +1,3 @@
-const ConfirmAnswersBlockPage = require('../../generated_pages/placeholder_playback_list/confirm-answers-block.page');
 const MandatoryCheckboxPage = require('../../generated_pages/placeholder_playback_list/mandatory-checkbox.page');
 
 describe('Feature: Playback Confirmation', function() {
