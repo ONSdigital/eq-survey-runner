@@ -366,7 +366,7 @@ msgstr "Bydd angen i chi wybod"
 msgid "What is your name?"
 msgstr "Beth yw eich enw?"
 
-msgid "What does \"usually live\" mean?"
+msgid "What does “usually live” mean?"
 msgstr "Beth mae “byw fel arfer” yn ei olygu?"
 
 msgid "All of the data entered about this person will be deleted"

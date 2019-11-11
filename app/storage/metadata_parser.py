@@ -75,8 +75,8 @@ class RunnerMetadataSchema(Schema, StripWhitespaceMixin):
     tx_id = VALIDATORS['uuid']()
     questionnaire_id = VALIDATORS['string'](validate=validate.Length(min=1))
     response_id = VALIDATORS['string'](validate=validate.Length(min=1))
-    account_service_url = VALIDATORS['url']()
 
+    account_service_url = VALIDATORS['url'](required=False)
     case_id = VALIDATORS['uuid'](required=False)
     account_service_log_out_url = VALIDATORS['url'](required=False)
     roles = fields.List(fields.String(), required=False)
