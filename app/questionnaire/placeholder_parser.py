@@ -40,9 +40,11 @@ class PlaceholderParser:
 
     def _lookup_answer(
         self, answer_id: str, list_item_id: str = None
-    ) -> Union[Markup, None]:
+    ) -> Union[Markup, Sequence[Markup], None]:
         answer = self._answer_store.get_answer(answer_id, list_item_id)
         if answer:
+            if isinstance(answer.value, list):
+                return [escape(value) for value in answer.value]
             return escape(answer.value)
         return None
 

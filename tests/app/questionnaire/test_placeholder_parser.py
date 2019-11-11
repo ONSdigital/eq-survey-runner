@@ -119,6 +119,36 @@ def test_multiple_answer_transform_placeholder():
     assert placeholders['persons_name'] == 'Joe Bloggs'
 
 
+def test_format_list_answer_transform_placeholder():
+    placeholder_list = [
+        {
+            'placeholder': 'toppings',
+            'transforms': [
+                {
+                    'transform': 'format_list',
+                    'arguments': {
+                        'list_to_format': {
+                            'source': 'answers',
+                            'identifier': 'checkbox-answer',
+                        }
+                    },
+                }
+            ],
+        }
+    ]
+
+    parser = PlaceholderParser(
+        language='en',
+        answer_store=AnswerStore(
+            [{'answer_id': 'checkbox-answer', 'value': ['Ham', 'Cheese']}]
+        ),
+    )
+
+    placeholders = parser(placeholder_list)
+
+    assert placeholders['toppings'] == '<ul><li>Ham</li><li>Cheese</li></ul>'
+
+
 def test_multiple_metadata_transform_placeholder():
     placeholder_list = [
         {

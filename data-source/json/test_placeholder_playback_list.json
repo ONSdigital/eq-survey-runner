@@ -1,0 +1,170 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "0",
+    "title": "Other input fields",
+    "theme": "default",
+    "description": "A questionnaire to demo checkbox field Other input.",
+    "metadata": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "mandatory-checkbox",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "mandatory-checkbox-answer",
+                                        "label": "",
+                                        "mandatory": true,
+                                        "options": [
+                                            {
+                                                "label": "None",
+                                                "value": "None",
+                                                "q_code": "0"
+                                            },
+                                            {
+                                                "label": "Cheese",
+                                                "value": "Cheese",
+                                                "q_code": "1"
+                                            },
+                                            {
+                                                "label": "Ham",
+                                                "value": "Ham",
+                                                "q_code": "2"
+                                            },
+                                            {
+                                                "label": "Pineapple",
+                                                "value": "Pineapple",
+                                                "q_code": "3"
+                                            },
+                                            {
+                                                "label": "Tuna",
+                                                "value": "Tuna",
+                                                "q_code": "4"
+                                            },
+                                            {
+                                                "label": "Pepperoni",
+                                                "value": "Pepperoni",
+                                                "q_code": "5"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "q_code": "6",
+                                                "description": "Choose any other topping",
+                                                "value": "Other",
+                                                "detail_answer": {
+                                                    "mandatory": true,
+                                                    "id": "other-answer-mandatory",
+                                                    "label": "Please specify other",
+                                                    "type": "TextField"
+                                                }
+                                            }
+                                        ],
+                                        "type": "Checkbox",
+                                        "validation": {
+                                            "messages": {}
+                                        }
+                                    }
+                                ],
+                                "description": "",
+                                "id": "mandatory-checkbox-question",
+                                "title": "Which pizza toppings would you like?",
+                                "type": "General"
+                            },
+                            "routing_rules": []
+                        },
+                        {
+                            "type": "ConfirmationQuestion",
+                            "id": "confirm-answers-block",
+                            "question": {
+                                "type": "General",
+                                "answers": [
+                                    {
+                                        "type": "Radio",
+                                        "id": "confirm-answers",
+                                        "options": [
+                                            {
+                                                "label": "Yes this is correct",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No I need to change this",
+                                                "value": "No"
+                                            }
+                                        ],
+                                        "mandatory": true
+                                    }
+                                ],
+                                "id": "confirm-answers-question",
+                                "title": "You selected the following toppings. Is this correct?",
+                                "description": {
+                                    "text": "{toppings}",
+                                    "placeholders": [
+                                        {
+                                            "placeholder": "toppings",
+                                            "transforms": [
+                                                {
+                                                    "transform": "format_list",
+                                                    "arguments": {
+                                                        "list_to_format": {
+                                                            "source": "answers",
+                                                            "identifier": "mandatory-checkbox-answer"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "when": [
+                                            {
+                                                "value": "No",
+                                                "id": "confirm-answers",
+                                                "condition": "equals"
+                                            }
+                                        ],
+                                        "block": "mandatory-checkbox"
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "summary"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
+                        }
+                    ],
+                    "id": "checkboxes",
+                    "title": ""
+                }
+            ]
+        }
+    ]
+}
