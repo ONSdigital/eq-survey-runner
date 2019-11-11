@@ -18,8 +18,6 @@
     <p>{{ _("To help protect your information we have signed you out") }}.</p>
     {% if account_service_url %}
       <p>{{ _('We have saved your progress and you will need to <a href="%(account_service_link)s">enter your unique code</a> to access the survey again.', account_service_link=account_service_url) }}</p>
-    {% else %}
-      <p>{{ _('We have saved your progress and you will need to <a href="%(account_service_link)s">enter your unique code</a> to access the survey again.', account_service_link='https://census.gov.uk/start/') }}</p>
     {% endif %}
     {% if using_edge %}
       <p>If you have been timed out unexpectedly on more than one occasion, please try using a different browser. If you’re still having problems completing the census, <a href="https://census.gov.uk/contact-us/">contact us</a>.</p>
