@@ -252,7 +252,7 @@ describe('Feature: Repeating Sections with Hub and Spoke', function () {
         .setValue(DateOfBirthPage.year(), '1990')
         .click(DateOfBirthPage.submit())
 
-        .getText(ConfirmDateOfBirthPage.questionText()).should.eventually.equal('Samuel Clemens is 28 years old. Is this correct?')
+        .getText(ConfirmDateOfBirthPage.questionText()).should.eventually.contain('Samuel Clemens is')
 
         .click(ConfirmDateOfBirthPage.confirmDateOfBirthYes())
         .click(ConfirmDateOfBirthPage.submit())
