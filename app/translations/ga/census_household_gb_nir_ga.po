@@ -293,7 +293,7 @@ msgstr "Caithfear eolas bheith agat ar"
 msgid "What is your name?"
 msgstr "Cad é an t-ainm atá ort?"
 
-msgid "What does \"usually live\" mean?"
+msgid "What does “usually live” mean?"
 msgstr "Cad é a chiallaíonn 'a chónaíonn de ghnáth'?"
 
 msgid "All of the data entered about this person will be deleted"

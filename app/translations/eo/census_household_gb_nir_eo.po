@@ -293,7 +293,7 @@ msgstr "Ye be tae ken"
 msgid "What is your name?"
 msgstr "Whut dae the' cry ye?"
 
-msgid "What does \"usually live\" mean?"
+msgid "What does “usually live” mean?"
 msgstr "Whut daes \"bides fur ordnar\" mint?"
 
 msgid "All of the data entered about this person will be deleted"

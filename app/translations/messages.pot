@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-11-06 14:13+0000\n"
+"POT-Creation-Date: 2019-11-11 12:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -491,7 +491,6 @@ msgid "To help protect your information we have signed you out"
 msgstr ""
 
 #: templates/errors/session-expired.html:20
-#: templates/errors/session-expired.html:22
 #, python-format
 msgid ""
 "We have saved your progress and you will need to <a "

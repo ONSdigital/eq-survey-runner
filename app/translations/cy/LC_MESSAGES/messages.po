@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eq-census\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-16 11:24+0100\n"
-"PO-Revision-Date: 2019-10-28 11:09\n"
+"POT-Creation-Date: 2019-11-08 09:50+0000\n"
+"PO-Revision-Date: 2019-11-08 11:35\n"
 "Last-Translator: ONS_Census\n"
 "Language-Team: Welsh\n"
 "MIME-Version: 1.0\n"
@@ -269,7 +269,7 @@ msgstr "Cyflwyno atebion"
 msgid "Yes, I confirm these are correct"
 msgstr "Ydw, rwy'n cadarnhau bod y rhain yn gywir"
 
-#: templates/confirmation.html:41
+#: templates/confirmation.html:42
 msgid "Submitting"
 msgstr "Yn cyflwyno"
 
@@ -345,19 +345,19 @@ msgstr "Crynodeb"
 msgid "Check your answers and submit"
 msgstr "Gwiriwch eich atebion a'u cyflwyno"
 
-#: templates/summary.html:18
+#: templates/summary.html:17
 msgid "Check your answers before submitting"
 msgstr "Gwiriwch eich atebion cyn eu cyflwyno"
 
-#: templates/summary.html:27
+#: templates/summary.html:26
 msgid "Check your answers before continuing to the next section"
 msgstr "Gwiriwch eich atebion cyn parhau i'r adran nesaf"
 
-#: templates/summary.html:36
+#: templates/summary.html:35
 msgid "Please review your answers and confirm these are correct"
 msgstr "Adolygwch eich atebion a chadarnhewch fod y rhain yn gywir"
 
-#: templates/summary.html:65
+#: templates/summary.html:64
 msgid "You will have the opportunity to view and print a copy of your answers after submitting this survey"
 msgstr "Byddwch yn cael y cyfle i weld ac argraffu copi o'ch atebion ar ôl cyflwyno'r arolwg hwn"
 
@@ -464,7 +464,7 @@ msgstr "Mae eich sesiwn wedi dod i ben"
 msgid "To help protect your information we have signed you out"
 msgstr "Er mwyn helpu i ddiogelu eich gwybodaeth rydym wedi'ch allgofnodi"
 
-#: templates/errors/session-expired.html:26
+#: templates/errors/session-expired.html:20
 #, python-format
 msgid "We have saved your progress and you will need to <a href=\"%(account_service_link)s\">enter your unique code</a> to access the survey again."
 msgstr "Rydym wedi cadw eich cynnydd a bydd angen i chi <a href=\"%(account_service_link)s\">roi eich cod unigryw</a> i gael mynediad at yr arolwg eto."
@@ -548,23 +548,23 @@ msgstr "Cadw a chwblhau yn nes ymlaen"
 msgid "Hide this"
 msgstr "Cuddio hwn"
 
-#: templates/partials/question.html:38
+#: templates/partials/question.html:39
 msgid "Selecting this will clear your answer"
 msgstr "Bydd dewis hwn yn clirio eich ateb"
 
-#: templates/partials/question.html:39
+#: templates/partials/question.html:40
 msgid "cleared"
 msgstr "wedi'i glirio"
 
-#: templates/partials/question.html:42
+#: templates/partials/question.html:43
 msgid "Selecting this will deselect any selected options"
 msgstr "Bydd dewis hwn yn dad-ddewis unrhyw opsiynau sydd wedi'u dewis"
 
-#: templates/partials/question.html:43 templates/partials/question.html:51
+#: templates/partials/question.html:44 templates/partials/question.html:52
 msgid "deselected"
 msgstr "dad-ddewiswyd"
 
-#: templates/partials/question.html:47
+#: templates/partials/question.html:48
 msgid "Or"
 msgstr "Neu"
 
