@@ -1,5 +1,3 @@
-const helpers = require('../../../helpers');
-
 const PrimaryPersonPage = require('../../../generated_pages/repeating_section_summaries/primary-person-list-collector.page');
 const PrimaryPersonAddPage = require('../../../generated_pages/repeating_section_summaries/primary-person-list-collector-add.page');
 
@@ -16,77 +14,61 @@ const HubPage = require('../../../base_pages/hub.page.js');
 
 describe('Feature: Repeating Section Summaries', function () {
 
-  const repeating_section_summaries_schema = 'test_repeating_section_summaries.json';
-
   describe('Given the user has added some members to the household and is on the Hub', function () {
-
     before('Open survey and add household members', function () {
-      return helpers.openQuestionnaire(repeating_section_summaries_schema)
-        .then(() => {
-          return browser
-            // Ensure we are on the Hub
-            .getUrl().should.eventually.contain(HubPage.url())
-            // Start first section to add household members
-            .click(HubPage.summaryRowLink(1))
+      browser.openQuestionnaire('test_repeating_section_summaries.json');
+      // Ensure we are on the Hub
+      expect(browser.getUrl()).to.contain(HubPage.url());
+      // Start first section to add household members
+      $(HubPage.summaryRowLink(1)).click();
 
-            // Add a primary person
-            .click(PrimaryPersonPage.yes())
-            .click(PrimaryPersonPage.submit())
-            .setValue(PrimaryPersonAddPage.firstName(), 'Mark')
-            .setValue(PrimaryPersonAddPage.lastName(), 'Twain')
-            .click(PrimaryPersonPage.submit())
+      // Add a primary person
+      $(PrimaryPersonPage.yes()).click();
+      $(PrimaryPersonPage.submit()).click();
+      $(PrimaryPersonAddPage.firstName()).setValue('Mark');
+      $(PrimaryPersonAddPage.lastName()).setValue('Twain');
+      $(PrimaryPersonPage.submit()).click();
 
-            // Add other household members
+      // Add other household members
 
-            .click(FirstListCollectorPage.yes())
-            .click(FirstListCollectorPage.submit())
-            .setValue(FirstListCollectorAddPage.firstName(), 'Jean')
-            .setValue(FirstListCollectorAddPage.lastName(), 'Clemens')
-            .click(FirstListCollectorAddPage.submit())
+      $(FirstListCollectorPage.yes()).click();
+      $(FirstListCollectorPage.submit()).click();
+      $(FirstListCollectorAddPage.firstName()).setValue('Jean');
+      $(FirstListCollectorAddPage.lastName()).setValue('Clemens');
+      $(FirstListCollectorAddPage.submit()).click();
 
-            .click(FirstListCollectorPage.no())
-            .click(FirstListCollectorPage.submit());
-        });
+      $(FirstListCollectorPage.no()).click();
+      $(FirstListCollectorPage.submit()).click();
     });
 
-
     describe('When the user finishes a repeating section', function() {
-
       before('Enter information for a repeating section', function() {
-        return browser
-          .click(HubPage.summaryRowLink(2))
-          .click(ProxyPage.yes())
-          .click(ProxyPage.submit())
+        $(HubPage.summaryRowLink(2)).click();
+        $(ProxyPage.yes()).click();
+        $(ProxyPage.submit()).click();
 
-          .setValue(DateOfBirthPage.day(), '30')
-          .setValue(DateOfBirthPage.month(), '11')
-          .setValue(DateOfBirthPage.year(), '1835')
-          .click(DateOfBirthPage.submit());
+        $(DateOfBirthPage.day()).setValue('30');
+        $(DateOfBirthPage.month()).setValue('11');
+        $(DateOfBirthPage.year()).setValue('1835');
+        $(DateOfBirthPage.submit()).click();
       });
 
       beforeEach('Navigate to the Section Summary', function () {
-        return browser
-          .url(HubPage.url())
-          .click(HubPage.summaryRowLink(2));
+        browser.url(HubPage.url());
+        $(HubPage.summaryRowLink(2)).click();
       });
 
       it('shows their name in the section summary title', function() {
-        return browser
-          .getText(PersonalSummaryPage.questionText()).should.eventually.contain('Mark Twain');
+        expect($(PersonalSummaryPage.questionText()).getText()).to.contain('Mark Twain');
       });
 
       it('renders their name as part of the question title on the section summary', function() {
-        return browser
-          .getText(PersonalSummaryPage.dateOfBirthQuestion()).should.eventually.contain('Mark Twain’s');
+        expect($(PersonalSummaryPage.dateOfBirthQuestion()).getText()).to.contain('Mark Twain’s');
       });
 
       it('renders the correct date of birth answer', function() {
-        return browser
-          .getText(PersonalSummaryPage.dateOfBirthAnswer()).should.eventually.contain('30 November 1835');
+        expect($(PersonalSummaryPage.dateOfBirthAnswer()).getText()).to.contain('30 November 1835');
       });
-
     });
-
   });
-
 });
