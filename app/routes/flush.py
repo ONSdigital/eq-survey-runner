@@ -1,3 +1,4 @@
+import simplejson as json
 from flask import Blueprint, Response, request, session, current_app
 from sdc.crypto.encrypter import encrypt
 from sdc.crypto.decrypter import decrypt
@@ -58,8 +59,8 @@ def _submit_data(user):
         )
         full_routing_path = path_finder.full_routing_path()
 
-        message = convert_answers(
-            schema, questionnaire_store, full_routing_path, flushed=True
+        message = json.dumps(
+            convert_answers(schema, questionnaire_store, full_routing_path, flushed=True), for_json=True
         )
         encrypted_message = encrypt(
             message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION
