@@ -105,7 +105,6 @@ class TestFlushData(IntegrationTestCase):
 
         self.assertTrue('"flushed": true' in args[0])
 
-
     @staticmethod
     def get_payload():
         return {

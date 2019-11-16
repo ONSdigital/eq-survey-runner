@@ -60,7 +60,10 @@ def _submit_data(user):
         full_routing_path = path_finder.full_routing_path()
 
         message = json.dumps(
-            convert_answers(schema, questionnaire_store, full_routing_path, flushed=True), for_json=True
+            convert_answers(
+                schema, questionnaire_store, full_routing_path, flushed=True
+            ),
+            for_json=True,
         )
         encrypted_message = encrypt(
             message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION
