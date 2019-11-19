@@ -103,7 +103,7 @@ class TestFlushData(IntegrationTestCase):
         self.encrypt_instance.assert_called_once()  # pylint: disable=no-member
         args = self.encrypt_instance.call_args[0]  # pylint: disable=no-member
 
-        self.assertTrue(args[0]['flushed'])
+        self.assertTrue('"flushed": true' in args[0])
 
     @staticmethod
     def get_payload():
@@ -111,9 +111,6 @@ class TestFlushData(IntegrationTestCase):
             'jti': str(uuid.uuid4()),
             'iat': time.time(),
             'exp': time.time() + 1000,
-            'schema_name': 'test_textfield',
-            'collection_exercise_sid': '789',
-            'ru_ref': '123456789012A',
             'response_id': '1234567890123456',
             'roles': ['flusher'],
         }
