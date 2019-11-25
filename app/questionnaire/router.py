@@ -136,12 +136,12 @@ class Router:
         self, routing_path, section_id, list_item_id=None
     ):
         section_key = (section_id, list_item_id)
-
+        completed_locations = self._progress_store.get_completed_locations(
+            section_id=section_id, list_item_id=list_item_id
+        )
         if section_key in self._progress_store:
             for location in routing_path:
-                if location not in self._progress_store.get_completed_locations(
-                    section_id=section_id, list_item_id=list_item_id
-                ):
+                if location not in completed_locations:
                     return location
 
         return routing_path[0]
@@ -150,12 +150,12 @@ class Router:
         self, routing_path, section_id, list_item_id=None
     ):
         section_key = (section_id, list_item_id)
-
+        completed_locations = self._progress_store.get_completed_locations(
+            section_id=section_id, list_item_id=list_item_id
+        )
         if section_key in self._progress_store:
             for location in routing_path[::-1]:
-                if location in self._progress_store.get_completed_locations(
-                    section_id=section_id, list_item_id=list_item_id
-                ):
+                if location in completed_locations:
                     return location
 
     def is_survey_complete(self):

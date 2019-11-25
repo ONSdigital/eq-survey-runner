@@ -1,4 +1,4 @@
-from typing import List, Tuple, Mapping, MutableMapping, Optional
+from typing import List, Set, Tuple, Mapping, MutableMapping, Optional
 
 from app.data_model.progress import Progress
 from app.questionnaire.location import Location
@@ -71,14 +71,14 @@ class ProgressStore:
     def is_section_complete(
         self, section_id: str, list_item_id: Optional[str] = None
     ) -> bool:
-        return (section_id, list_item_id) in self._completed_section_keys()
+        return (section_id, list_item_id) in self.completed_section_keys()
 
-    def _completed_section_keys(self) -> List[Tuple[str, Optional[str]]]:
-        return [
+    def completed_section_keys(self) -> Set[Tuple[str, Optional[str]]]:
+        return {
             section_key
             for section_key, section_progress in self._progress.items()
             if section_progress.status == CompletionStatus.COMPLETED
-        ]
+        }
 
     def update_section_status(
         self, section_status: str, section_id: str, list_item_id: Optional[str] = None

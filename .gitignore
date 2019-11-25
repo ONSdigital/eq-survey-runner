@@ -104,3 +104,5 @@ templates/layout
 
 # Ignore compiled translation files
 *.mo
+
+.vim/

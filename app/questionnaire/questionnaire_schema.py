@@ -1,6 +1,6 @@
 from collections import OrderedDict, defaultdict
 
-from typing import List, Union
+from typing import List, Set, Union
 
 from flask_babel import force_locale
 
@@ -22,6 +22,7 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         self.json = questionnaire_json
         self.language_code = language_code
         self._parse_schema()
+        self._list_name_to_section_map = {}
 
     def is_hub_enabled(self):
         return self.json.get('hub', {}).get('enabled')
@@ -37,6 +38,38 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     def get_section(self, section_id: str):
         return self._sections_by_id.get(section_id)
+
+    def get_sections_associated_to_list_name(self, list_name: str) -> Set:
+        try:
+            return self._list_name_to_section_map[list_name]
+        except KeyError:
+            sections = self._sections_associated_to_list_name(list_name)
+            self._list_name_to_section_map[list_name] = sections
+            return sections
+
+    def _sections_associated_to_list_name(self, list_name: str) -> Set:
+        sections = set()
+        for block in self.get_blocks():
+            for when_rule in self._lookup_nested_when_rules(block):
+                for rule in when_rule:
+                    if rule.get('list') == list_name:
+                        sections.add(self.get_section_id_for_block_id(block['id']))
+        return sections
+
+    def _lookup_nested_when_rules(self, block):
+        try:
+            for k, v in block.items():
+                if k == 'when':
+                    yield v
+                if isinstance(v, dict):
+                    for result in self._lookup_nested_when_rules(v):
+                        yield result
+                elif isinstance(v, list):
+                    for d in v:
+                        for result in self._lookup_nested_when_rules(d):
+                            yield result
+        except AttributeError:
+            pass
 
     @staticmethod
     def get_blocks_for_section(section):

@@ -131,10 +131,13 @@ class BlockHandler:
             list_item_id=self._current_location.list_item_id,
         )
 
-    def _update_section_completeness(self, location: Optional[Location] = None):
+    def _update_section_completeness(
+        self, location: Optional[Location] = None, routing_path: Optional = None
+    ):
+        routing_path = routing_path if routing_path else self._routing_path
         section_status = (
             CompletionStatus.COMPLETED
-            if self.path_finder.is_path_complete(self._routing_path)
+            if self.path_finder.is_path_complete(routing_path)
             else CompletionStatus.IN_PROGRESS
         )
 

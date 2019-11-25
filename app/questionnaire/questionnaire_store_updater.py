@@ -1,6 +1,6 @@
 from itertools import combinations
 
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Set, Tuple, Union
 
 from app.data_model.answer_store import Answer
 from app.data_model.relationship_store import Relationship, RelationshipStore
@@ -199,6 +199,13 @@ class QuestionnaireStoreUpdater:
         self._progress_store.update_section_status(
             section_status, section_id, list_item_id
         )
+
+    def sections_to_evaluate(self, filter_by: Set[str] = None) -> Union[List, None]:
+        completed_sections = self._progress_store.completed_section_keys()
+        try:
+            return list(completed_sections & filter_by)
+        except TypeError:
+            return list(completed_sections)
 
     def _update_questionnaire_store_with_form_data(self, form_data):
         answer_ids_for_question = self._schema.get_answer_ids_for_question(

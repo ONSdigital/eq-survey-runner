@@ -197,11 +197,18 @@ def get_section(schema, questionnaire_store, section_id, list_item_id=None):
             ).url()
         )
 
-    return redirect(
-        router.get_last_complete_location_for_section(
-            routing_path=routing_path, section_id=section_id, list_item_id=list_item_id
-        ).url()
-    )
+    redirect_url = router.get_last_complete_location_for_section(
+        routing_path=routing_path, section_id=section_id, list_item_id=list_item_id
+    ).url()
+
+    if 'section-summary' in redirect_url:
+        return redirect(
+            router.get_first_incomplete_location_for_section(
+                routing_path, section_id=section_id, list_item_id=list_item_id
+            ).url()
+        )
+
+    return redirect(redirect_url)
 
 
 @questionnaire_blueprint.route('<block_id>/', methods=['GET', 'POST'])

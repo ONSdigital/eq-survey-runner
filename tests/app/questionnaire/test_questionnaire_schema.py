@@ -519,6 +519,116 @@ def test_get_all_questions_for_block_question():
     assert all_questions[0]['answers'][0]['id'] == 'answer1'
 
 
+def test_get_all_when_rules_by_list_name():
+    survey_json = {
+        'sections': [
+            {
+                'id': 'section1',
+                'groups': [
+                    {
+                        'id': 'group1',
+                        'blocks': [
+                            {
+                                'id': 'list-collector',
+                                'type': 'ListCollector',
+                                'for_list': 'list',
+                                'question': {},
+                                'add_block': {
+                                    'id': 'add-block',
+                                    'type': 'ListAddQuestion',
+                                    'question': {},
+                                },
+                                'edit_block': {
+                                    'id': 'edit-block',
+                                    'type': 'ListEditQuestion',
+                                    'question': {},
+                                },
+                                'remove_block': {
+                                    'id': 'remove-block',
+                                    'type': 'ListRemoveQuestion',
+                                    'question': {},
+                                },
+                            }
+                        ],
+                    }
+                ],
+            },
+            {
+                'id': 'section2',
+                'groups': [
+                    {
+                        'id': 'group2',
+                        'blocks': [
+                            {
+                                'type': 'Question',
+                                'id': 'block2',
+                                'question': {
+                                    'answers': [
+                                        {
+                                            'id': 'answer1',
+                                            'mandatory': True,
+                                            'type': 'General',
+                                        }
+                                    ],
+                                    'id': 'question1',
+                                    'title': {'text': 'Does anyone else live here?'},
+                                    'type': 'General',
+                                },
+                                'when': [
+                                    {
+                                        'condition': 'greater than',
+                                        'list': 'list',
+                                        'value': 0,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ],
+            },
+            {
+                'id': 'section3',
+                'groups': [
+                    {
+                        'id': 'group3',
+                        'blocks': [
+                            {
+                                'type': 'Question',
+                                'id': 'block3',
+                                'question': {
+                                    'answers': [
+                                        {
+                                            'id': 'answer1',
+                                            'mandatory': True,
+                                            'type': 'General',
+                                        }
+                                    ],
+                                    'id': 'question1',
+                                    'title': {'text': 'Does anyone else live here?'},
+                                    'type': 'General',
+                                },
+                                'when': [
+                                    {
+                                        'condition': 'greater than',
+                                        'list': 'not-the-list',
+                                        'value': 0,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ],
+            },
+        ]
+    }
+
+    schema = QuestionnaireSchema(survey_json)
+    when_blocks = schema.get_sections_associated_to_list_name('list')
+
+    assert len(when_blocks) == 1
+    assert 'section2' in when_blocks
+
+
 def test_get_all_questions_for_block_question_variants():
     block = {
         'id': 'block1',

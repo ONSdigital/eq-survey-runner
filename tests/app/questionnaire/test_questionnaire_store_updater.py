@@ -302,3 +302,41 @@ class TestQuestionnaireStoreUpdater(unittest.TestCase):
                     'test-relationship-collector'
                 )
             )
+
+    def test_sections_to_evaluate_no_filter(self):
+        list_store = fake_list_store()
+        questionnaire_store = MagicMock(
+            spec=QuestionnaireStore,
+            completed_blocks=[],
+            answer_store=self.answer_store,
+            list_store=list_store,
+            progress_store=self.progress_store,
+        )
+        questionnaire_store_updater = QuestionnaireStoreUpdater(
+            self.location, self.schema, questionnaire_store, self.current_question
+        )
+
+        self.progress_store.completed_section_keys = MagicMock()
+        self.progress_store.completed_section_keys.return_value = set(['a', 'b'])
+
+        section_keys = questionnaire_store_updater.sections_to_evaluate()
+        self.assertEqual(sorted(section_keys), ['a', 'b'])
+
+    def test_sections_to_evaluate_with_filter(self):
+        list_store = fake_list_store()
+        questionnaire_store = MagicMock(
+            spec=QuestionnaireStore,
+            completed_blocks=[],
+            answer_store=self.answer_store,
+            list_store=list_store,
+            progress_store=self.progress_store,
+        )
+        questionnaire_store_updater = QuestionnaireStoreUpdater(
+            self.location, self.schema, questionnaire_store, self.current_question
+        )
+
+        self.progress_store.completed_section_keys = MagicMock()
+        self.progress_store.completed_section_keys.return_value = set(['a', 'b'])
+
+        section_keys = questionnaire_store_updater.sections_to_evaluate(set(['a']))
+        self.assertEqual(section_keys, ['a'])
