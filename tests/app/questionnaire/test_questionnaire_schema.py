@@ -590,7 +590,6 @@ def test_get_relationship_collectors(relationship_collector_schema):
 def test_get_relationship_collectors_by_list_name(relationship_collector_schema):
     schema = QuestionnaireSchema(relationship_collector_schema)
     answer = schema.get_relationship_collectors_by_list_name('people')
-
     assert len(answer) == 1
     assert answer[0]['id'] == 'relationships'
 

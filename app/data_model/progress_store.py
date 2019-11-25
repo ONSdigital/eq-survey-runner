@@ -1,4 +1,4 @@
-from typing import List, Tuple, Mapping, MutableMapping, Optional
+from typing import List, Tuple, Set, Mapping, MutableMapping, Optional
 
 from app.data_model.progress import Progress
 from app.questionnaire.location import Location
@@ -31,7 +31,7 @@ class ProgressStore:
         return section_key in self._progress
 
     @staticmethod
-    def _build_map(section_progress_list: List[Mapping]) -> MutableMapping:
+    def _build_map(section_progress: List[Mapping]) -> MutableMapping:
         """
         Builds the progress_store's data structure from a list of progress dictionaries
 
@@ -57,11 +57,10 @@ class ProgressStore:
         """
 
         return {
-            (
-                section_progress['section_id'],
-                section_progress.get('list_item_id'),
-            ): Progress.from_dict(section_progress)
-            for section_progress in section_progress_list
+            (progress['section_id'], progress.get('list_item_id')): Progress.from_dict(
+                progress
+            )
+            for progress in section_progress
         }
 
     @property
@@ -73,12 +72,12 @@ class ProgressStore:
     ) -> bool:
         return (section_id, list_item_id) in self._completed_section_keys()
 
-    def _completed_section_keys(self) -> List[Tuple[str, Optional[str]]]:
-        return [
+    def _completed_section_keys(self) -> Set[Tuple[str, Optional[str]]]:
+        return {
             section_key
             for section_key, section_progress in self._progress.items()
             if section_progress.status == CompletionStatus.COMPLETED
-        ]
+        }
 
     def update_section_status(
         self, section_status: str, section_id: str, list_item_id: Optional[str] = None
@@ -93,19 +92,21 @@ class ProgressStore:
         self, section_id: str, list_item_id: Optional[str] = None
     ) -> str:
         section_key = (section_id, list_item_id)
-        if section_key in self._progress:
-            return self._progress[section_key].status
-
-        return CompletionStatus.NOT_STARTED
+        return (
+            self._progress[section_key].status
+            if section_key in self._progress
+            else CompletionStatus.NOT_STARTED
+        )
 
     def get_completed_locations(
         self, section_id: str, list_item_id: Optional[str] = None
     ) -> List[Location]:
         section_key = (section_id, list_item_id)
-        if section_key in self._progress:
-            return self._progress[section_key].locations
-
-        return []
+        return (
+            self._progress[section_key].locations
+            if section_key in self._progress
+            else []
+        )
 
     def add_completed_location(self, location: Location) -> None:
 

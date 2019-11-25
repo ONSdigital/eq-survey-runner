@@ -114,11 +114,7 @@ class ListStore:
                 return candidate
 
     def _list_item_ids(self):
-        ids = []
-        for named_list in self._lists.values():
-            ids.extend(named_list.items)
-
-        return ids
+        return {item for value in self._lists.values() for item in value.items}
 
     @property
     def is_dirty(self):

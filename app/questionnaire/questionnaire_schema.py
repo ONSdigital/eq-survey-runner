@@ -1,4 +1,4 @@
-from collections import OrderedDict, defaultdict
+from collections import defaultdict
 
 from typing import List, Union
 
@@ -362,24 +362,34 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def _get_answers_by_id(self):
         answers_by_id = defaultdict(list)
 
-        for question_set in self._questions_by_id.values():
-            for question in question_set:
-                for answer in question['answers']:
-                    answer['parent_id'] = question['id']
-                    answers_by_id[answer['id']].append(answer)
-                    for option in answer.get('options', []):
-                        if 'detail_answer' in option:
-                            option['detail_answer']['parent_id'] = question['id']
-                            answers_by_id[option['detail_answer']['id']].append(
-                                option['detail_answer']
-                            )
+        questions = [
+            question
+            for question_set in self._questions_by_id.values()
+            for question in question_set
+        ]
+
+        [
+            answers_by_id[answer['id']].append(dict(parent_id=question['id'], **answer))
+            for question in questions
+            for answer in question['answers']
+        ]
+
+        options = []
+        for answers in answers_by_id.values():
+            options += [
+                option
+                for answer in answers
+                for option in answer.get('options', [])
+                if 'detail_answer' in option
+            ]
+
+        for option in options:
+            answers_by_id[option['detail_answer']['id']].append(option['detail_answer'])
 
         return answers_by_id
 
     def _get_sections_by_id(self):
-        return OrderedDict(
-            (section['id'], section) for section in self.json.get('sections', [])
-        )
+        return {section['id']: section for section in self.json.get('sections', [])}
 
     def _get_error_messages(self):
         # Force translation of global error messages (stored as LazyString's) into the language of the schema.
@@ -402,7 +412,7 @@ def get_nested_schema_objects(parent_object, list_key):
     :param parent_object: dict containing a list
     :param list_key: key of the nested list to extract
     """
-    nested_objects = OrderedDict()
+    nested_objects = {}
 
     for parent_id, child_object in parent_object.items():
         for child_list_object in child_object.get(list_key, []):
