@@ -2936,7 +2936,7 @@
         },
         {
             "name": "trad_as",
-            "validator": "string"
+            "validator": "optional_string"
         },
         {
             "name": "ref_p_start_date",
