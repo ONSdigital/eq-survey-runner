@@ -151,7 +151,7 @@
                         "min_value": {
                             "answer_id": "set-minimum"
                         }
-                    },{
+                    }, {
                         "id": "test-decimal-1",
                         "description": "",
                         "label": "Decimal test to 1 decimal places between {{answers['set-minimum']|format_number}} to {{answers['set-maximum']|format_number}}",
@@ -164,7 +164,7 @@
                         "min_value": {
                             "answer_id": "set-minimum"
                         }
-                    },{
+                    }, {
                         "id": "test-decimal-2",
                         "description": "",
                         "label": "Decimal test to 2 decimal places between {{answers['set-minimum']|format_number}} to {{answers['set-maximum']|format_number}}",
