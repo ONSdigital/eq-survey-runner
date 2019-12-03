@@ -154,15 +154,15 @@
                     }, {
                         "id": "test-decimal-1",
                         "description": "",
-                        "label": "Decimal test to 1 decimal places between {{answers['set-minimum']|format_number}} to {{answers['set-maximum']|format_number}}",
+                        "label": "Decimal test to 1 decimal places between 0 to 100",
                         "mandatory": false,
                         "type": "Number",
                         "decimal_places": 1,
                         "max_value": {
-                            "answer_id": "set-maximum"
+                            "value": 100
                         },
                         "min_value": {
-                            "answer_id": "set-minimum"
+                            "value": 0
                         }
                     }, {
                         "id": "test-decimal-2",
