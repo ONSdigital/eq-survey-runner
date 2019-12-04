@@ -151,6 +151,32 @@
                         "min_value": {
                             "answer_id": "set-minimum"
                         }
+                    }, {
+                        "id": "test-decimal-1",
+                        "description": "",
+                        "label": "Decimal test to 1 decimal places between 0 to 100",
+                        "mandatory": false,
+                        "type": "Number",
+                        "decimal_places": 1,
+                        "max_value": {
+                            "value": 100
+                        },
+                        "min_value": {
+                            "value": 0
+                        }
+                    }, {
+                        "id": "test-decimal-2",
+                        "description": "",
+                        "label": "Decimal test to 2 decimal places between {{answers['set-minimum']|format_number}} to {{answers['set-maximum']|format_number}}",
+                        "mandatory": false,
+                        "type": "Number",
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "set-maximum"
+                        },
+                        "min_value": {
+                            "answer_id": "set-minimum"
+                        }
                     }],
                     "description": "You entered a minimum value of <em>{{ min_value(answers['set-minimum'], answers['set-maximum']) }}</em> and a maximum value of <em>{{ max_value(answers['set-minimum'], answers['set-maximum']) }}</em>",
                     "id": "test-min-max-range-question",

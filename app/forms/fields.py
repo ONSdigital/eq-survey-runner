@@ -229,6 +229,7 @@ def get_number_field(answer, label, guidance, error_messages, answer_store, disa
             label=label,
             validators=validate_with,
             description=guidance,
+            places=answer.get('decimal_places', 0),
         )
     return CustomIntegerField(
         label=label,

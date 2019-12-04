@@ -61,8 +61,12 @@ describe('NumericRange', function() {
       .click(SetMinMax.submit())
       .setValue(TestMinMax.testRange(), '12.344')
       .setValue(TestMinMax.testDecimal(), '11.234')
+      .setValue(TestMinMax.testDecimal1(), '11.234')
+      .setValue(TestMinMax.testDecimal2(), '11.234')
       .click(TestMinMax.submit())
       .getText(TestMinMax.errorNumber(1)).should.eventually.contain("Enter a number rounded to 2 decimal places.")
-      .getText(TestMinMax.errorNumber(2)).should.eventually.contain("Enter a number rounded to 2 decimal places.");
+      .getText(TestMinMax.errorNumber(2)).should.eventually.contain("Enter a number rounded to 2 decimal places.")
+      .getText(TestMinMax.errorNumber(3)).should.eventually.contain("Enter a number rounded to 1 decimal places.")
+      .getText(TestMinMax.errorNumber(4)).should.eventually.contain("Enter a number rounded to 2 decimal places.");
   });
 });
