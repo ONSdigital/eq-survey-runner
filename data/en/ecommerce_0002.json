@@ -1,0 +1,2958 @@
+{
+    "eq_id": "ecommerce",
+    "form_type": "0002",
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "187",
+    "title": "E-Commerce 2019",
+    "sections": [{
+            "id": "section358",
+            "title": "Use of computers",
+            "groups": [{
+                "id": "group358",
+                "title": "Use of computers",
+                "blocks": [{
+                        "type": "Introduction",
+                        "id": "introduction-block",
+                        "primary_content": [{
+                            "type": "Basic",
+                            "id": "primary",
+                            "content": [{
+                                "list": [
+                                    "Data should relate to all sites in the UK (including foreign owned businesses) unless otherwise stated. The UK consists of England, Wales, Scotland, and Northern Ireland and excludes the Channel Islands and the Isle of Man.",
+                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
+                                    "We will treat your data securely and confidentially."
+                                ]
+                            }]
+                        }],
+                        "preview_content": {
+                            "id": "preview",
+                            "title": "Information you need",
+                            "content": [{
+                                "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/detailedguidancetohelpcompletetheecommercesurvey'>View the questions before you start the survey (external link)</a>"
+                            }],
+                            "questions": [{
+                                    "question": "Use of computers",
+                                    "content": [{
+                                        "description": "You will need to provide the percentage of people who use computers for their work."
+                                    }]
+                                },
+                                {
+                                    "question": "Access and use of the internet",
+                                    "content": [{
+                                        "description": "You will need to provide information on the percentage of people in the business who use computers, the type of broadband connection and download speed, use of portable devices, websites, and social media."
+                                    }]
+                                },
+                                {
+                                    "question": "E-commerce",
+                                    "content": [{
+                                        "description": "You will need to provide information on the percentage of turnover that comes from online orders and where these orders originated."
+                                    }]
+                                },
+                                {
+                                    "question": "Invoicing",
+                                    "content": [{
+                                        "description": "You will need to provide information on any e-invoices and non-electronic invoices, including paper invoices."
+                                    }]
+                                },
+                                {
+                                    "question": "Use of cloud computing services",
+                                    "content": [{
+                                        "description": "You will need to provide information on any cloud computing services that your business uses over the internet."
+                                    }]
+                                },
+                                {
+                                    "question": "Big Data",
+                                    "content": [{
+                                        "description": "You will need to provide information on the analysis, sale and purchase of big data by your business."
+                                    }]
+                                },
+                                {
+                                    "question": "ICT specialists and skills",
+                                    "content": [{
+                                        "description": "You will need to provide information on your business&apos;s employment and training of ICT specialists."
+                                    }]
+                                },
+                                {
+                                    "question": "Use of 3D printing",
+                                    "content": [{
+                                        "description": "You will need to provide information on the use of specialist printers for the use of three-dimensional printing of physical objects."
+                                    }]
+                                },
+                                {
+                                    "question": "Use of robotics",
+                                    "content": [{
+                                        "description": "You will need to provide information on the use of industrial and service robots."
+                                    }]
+                                }
+                            ]
+                        },
+                        "secondary_content": [{
+                            "id": "secondary-content",
+                            "title": "How we use your data",
+                            "content": [{
+                                "list": [
+                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                                    "The information you provide is used to measure how businesses are adopting new technology and engaging in e-commerce, as part of the digital economy."
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block4c31bc96-e1af-4c39-807a-b0d66830a002",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question4c31bc96-e1af-4c39-807a-b0d66830a002",
+                            "title": "Does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use computers?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong> Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "personal computers",
+                                            "portable computers such as laptops, netbooks, notebooks, tablets",
+                                            "other portable devices such as smartphones and Personal Digital Assistants (PDAs)"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "terminals and computers solely used for Electronic Point of Sale (EPOS)",
+                                            "computer-controlled machinery"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerb88e4433-d708-4045-bbbe-ec0e0a578be8",
+                                "q_code": "010",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we use computers",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we do not use computers",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group369",
+                                    "when": [{
+                                        "id": "answerb88e4433-d708-4045-bbbe-ec0e0a578be8",
+                                        "condition": "contains any",
+                                        "values": ["No"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1356"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block1356",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1356",
+                            "title": "What percentage of people in {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use computers for their work?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["employees, directors, and proprietors", "all agency staff on your payroll"]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": ["agency staff not on your payroll"]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
+                                "q_code": "023",
+                                "mandatory": true,
+                                "type": "Percentage",
+                                "label": "Percentage who use computers",
+                                "description": "Provide percentages to one decimal place where possible",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
+                                },
+                                "max_value": {
+                                    "value": 100,
+                                    "exclusive": false
+                                },
+                                "decimal_places": 1
+                            }]
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section360",
+            "title": "Access and use of the internet",
+            "groups": [{
+                "id": "group360",
+                "title": "Access and use of the internet",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group360-introduction",
+                        "title": "Access and use of the internet",
+                        "description": "<p>In this section, you will need to provide information on the percentage of people in the business who use computers, the type of broadband connection and download speed, use of portable devices, websites, and social media. </p>"
+                    },
+                    {
+                        "id": "block1362",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1362",
+                            "title": "Does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} have internet access?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Include fixed line and mobile connection"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1828",
+                                "q_code": "038",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we have internet access",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we do not have internet access",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group359",
+                                    "when": [{
+                                        "id": "answer1828",
+                                        "condition": "contains any",
+                                        "values": ["No"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1363"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block1363",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1363",
+                            "title": "What percentage of people in {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use computers with internet access for work?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["employees, directors, and proprietors", "all agency staff on your payroll"]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": ["agency staff not on your payroll"]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerfddb2dbd-1054-414c-ad70-bb397db1b5c8",
+                                "q_code": "022",
+                                "mandatory": true,
+                                "type": "Percentage",
+                                "label": "Percentage of people with internet access",
+                                "description": "Provide percentages to one decimal place where possible",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
+                                },
+                                "max_value": {
+                                    "answer_id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
+                                    "exclusive": false
+                                },
+                                "decimal_places": 1
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1364",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1364",
+                            "title": "Does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use a fixed broadband connection to the internet for business purposes?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "connections to the internet using telephone lines, for example Digital Subscriber Lines (DSL)",
+                                            "public Wi-Fi in cities"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "Examples of fixed broadband connections to the internet",
+                                "content": [{
+                                    "list": [
+                                        "Digital Subscriber Line such as ADSL, SDSL, VDSL",
+                                        "Fibre optic technology (FTTP)",
+                                        "Cable technology"
+                                    ]
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1830",
+                                "q_code": "356",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we use a fixed broadband connection",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we do not use a fixed broadband connection",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block3db36ed7-108c-4e3a-8ac2-c2f14d12e4fb",
+                                    "when": [{
+                                        "id": "answer1830",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1368"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block3db36ed7-108c-4e3a-8ac2-c2f14d12e4fb",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3db36ed7-108c-4e3a-8ac2-c2f14d12e4fb",
+                            "title": "What is the maximum contracted download speed of the fastest fixed internet connection used by {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answereebe8c9f-1cea-4471-8c21-27cc188570dc",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "q_code": "r1",
+                                "label": "Maximum contracted download speed",
+                                "description": "",
+                                "options": [{
+                                        "label": "Less than 2 Mbps",
+                                        "value": "Less than 2 Mbps"
+                                    },
+                                    {
+                                        "label": "2Mbps or more, but less than 10 Mbps",
+                                        "value": "2Mbps or more, but less than 10 Mbps"
+                                    },
+                                    {
+                                        "label": "10Mbps or more, but less than 30Mbps",
+                                        "value": "10Mbps or more, but less than 30Mbps"
+                                    },
+                                    {
+                                        "label": "30Mbps or more, but less than 100Mbps",
+                                        "value": "30Mbps or more, but less than 100Mbps"
+                                    },
+                                    {
+                                        "label": "100 Mbps or more, but less than 500 Mbps",
+                                        "value": "100 Mbps or more, but less than 500 Mbps"
+                                    },
+                                    {
+                                        "label": "500 Mbps or more, but less than 1000 Mbps (1Gbps)",
+                                        "value": "500 Mbps or more, but less than 1000 Mbps (1Gbps)"
+                                    },
+                                    {
+                                        "label": "1000 Mbps (1Gbps) or more",
+                                        "value": "1000 Mbps (1Gbps) or more"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block596adefd-1528-4b32-8959-5ba8fa654531",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question596adefd-1528-4b32-8959-5ba8fa654531",
+                            "title": "Is the speed of the fixed line connection to the internet usually sufficient for the actual needs of the business?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer77b8153d-1650-4b0e-86c4-52aa2043b84c",
+                                "q_code": "452",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, the internet speed is sufficient for our needs",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, the internet speed is not sufficient for our needs",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1368",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1368",
+                            "title": "Does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} have a website, either its own or third party?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude any online directory listings"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1835",
+                                "q_code": "080",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we have a website",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we do not have a website",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block1369",
+                                    "when": [{
+                                        "id": "answer1835",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blocke2fcb85a-8c97-44a8-af38-f497e2f70de6"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block1369",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1369",
+                            "title": "Which of the following <em>features</em> does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s website have?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1836",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Online ordering or reservation/booking",
+                                        "value": "Online ordering or reservation/booking",
+                                        "description": "For example, using a shopping cart",
+                                        "q_code": "203"
+                                    },
+                                    {
+                                        "label": "Description of goods or services, such as price lists",
+                                        "value": "Description of goods or services, such as price lists",
+                                        "q_code": "147"
+                                    },
+                                    {
+                                        "label": "Order tracking",
+                                        "value": "Order tracking",
+                                        "q_code": "332"
+                                    },
+                                    {
+                                        "label": "The possibility for visitors to customise or design goods or services online",
+                                        "value": "The possibility for visitors to customise or design goods or services online",
+                                        "q_code": "202"
+                                    },
+                                    {
+                                        "label": "Personalised content for regular or repeat visitors",
+                                        "value": "Personalised content for regular or repeat visitors",
+                                        "q_code": "205"
+                                    },
+                                    {
+                                        "label": "Links or references to this business&#39;s social media profiles",
+                                        "value": "Links or references to this business&#39;s social media profiles",
+                                        "q_code": "414"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blocke2fcb85a-8c97-44a8-af38-f497e2f70de6",
+                                    "when": [{
+                                        "id": "answer1836",
+                                        "condition": "contains all",
+                                        "values": [
+                                            "Online ordering or reservation/booking",
+                                            "Description of goods or services, such as price lists",
+                                            "Order tracking",
+                                            "The possibility for visitors to customise or design goods or services online",
+                                            "Personalised content for regular or repeat visitors",
+                                            "Links or references to this business&#39;s social media profiles"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block07f25c95-f484-41f1-ae25-1ede723b5b8a"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block07f25c95-f484-41f1-ae25-1ede723b5b8a",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question07f25c95-f484-41f1-ae25-1ede723b5b8a",
+                            "title": "Why were the following website features not selected?",
+                            "description": "{{ format_unordered_list_missing_items(['Online ordering or reservation/booking','Description of goods or services, such as price lists','Order tracking','The possibility for visitors to customise or design goods or services online','Personalised content for regular or repeat visitors','Links or references to this business&#39;s social media profiles'],answers['answer1836']) }}",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerfa71cd0f-16b0-4ef3-ad75-e7410178f3c4",
+                                "q_code": "d1",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "They are not used",
+                                        "value": "They are not used"
+                                    },
+                                    {
+                                        "label": "I don't know what they are",
+                                        "value": "I don't know what they are"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blocke2fcb85a-8c97-44a8-af38-f497e2f70de6",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questione2fcb85a-8c97-44a8-af38-f497e2f70de6",
+                            "title": "Does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} offer any of the following <em>chat services</em> for customer contact?",
+                            "definitions": [{
+                                "title": "What is a chat service?",
+                                "content": [{
+                                    "description": "A chat service is a website or &#x2018;app&#x2019; service that allows the customer to communicate in real time with a customer service agent, by using an instant messaging (IM) application built into the company&apos;s website or app."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer7a543f2b-9e6b-49ce-8e98-2d03fa177dbf",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "A chat service where a person replies to customers",
+                                        "value": "A chat service where a person replies to customers",
+                                        "q_code": "530"
+                                    },
+                                    {
+                                        "label": "A virtual agent or chatbot replying to customers",
+                                        "value": "A virtual agent or chatbot replying to customers",
+                                        "q_code": "531"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group368",
+                                    "when": [{
+                                        "id": "answer7a543f2b-9e6b-49ce-8e98-2d03fa177dbf",
+                                        "condition": "contains all",
+                                        "values": [
+                                            "A chat service where a person replies to customers",
+                                            "A virtual agent or chatbot replying to customers"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block588909de-34b4-4ae2-8de9-f9fee4a4236f"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block588909de-34b4-4ae2-8de9-f9fee4a4236f",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question588909de-34b4-4ae2-8de9-f9fee4a4236f",
+                            "title": "Why were the following chat services not selected?",
+                            "description": "{{ format_unordered_list_missing_items(['A chat service where a person replies to customers', 'A virtual agent or chatbot replying to customers'], answers['answer7a543f2b-9e6b-49ce-8e98-2d03fa177dbf']) }}",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer4262d2de-6f09-442a-82cf-48e8e21d6929",
+                                "q_code": "d2",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "They are not used",
+                                        "value": "They are not used"
+                                    },
+                                    {
+                                        "label": "I don't know what they are",
+                                        "value": "I don't know what they are"
+                                    }
+                                ]
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answerb88e4433-d708-4045-bbbe-ec0e0a578be8",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answerc5d3639c-dc1d-4ccc-a386-2df94b367dc3",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section368",
+            "title": "E-commerce",
+            "groups": [{
+                "id": "group368",
+                "title": "E-commerce",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group368-introduction",
+                        "title": "E-commerce",
+                        "description": "<p>In this section, you will need to provide information on the percentage of turnover that comes from online orders and where these orders originated. </p><p>E-commerce is the sale or purchase of goods or services conducted over computer networks by methods specifically designed for the purpose of receiving or placing of orders. The payment and the delivery of the goods or services do not have to be conducted online. </p>"
+                    },
+                    {
+                        "id": "block1397",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1397",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders from customers for goods or services via a website or &apos;app&apos;?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "orders received for utilities, goods, materials or services via an online store, web forms on a website or extranet or &apos;app&apos;",
+                                            "reservations made online that resulted in receiving an order"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "orders made by manually typed email, Electronic Data Interchange (EDI) messages, fax, automated telephone entry, phone (person to person)",
+                                            "enquiries or reservations that did not result in receiving an order"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1868",
+                                "q_code": "234",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we received orders via a website or 'app'",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we did not receive orders via a website or 'app'",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block1398",
+                                    "when": [{
+                                        "id": "answer1868",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1404"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block1398",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1398",
+                            "title": "During {{ metadata['period_str'] }}, what <em>percentage</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s <em>total turnover</em> was from orders received via a website or &apos;app&apos;?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Include orders received for utilities, goods, materials or services"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer9cc30dc1-89fd-4a8d-8495-8d816f9f3ce1",
+                                "q_code": "253",
+                                "mandatory": true,
+                                "type": "Percentage",
+                                "label": "Percentage of total turnover from orders received via website or 'app'",
+                                "description": "Provide percentages to one decimal place where possible",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
+                                },
+                                "max_value": {
+                                    "value": 100,
+                                    "exclusive": false
+                                },
+                                "decimal_places": 1
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockf8f5d379-d098-4dec-b0de-902f9711bfc0",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionf8f5d379-d098-4dec-b0de-902f9711bfc0",
+                            "title": "From which type of customer did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive orders for goods or services?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerbc604f93-a1b1-443d-99ee-0f40adb8bdff",
+                                "mandatory": true,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Private customers (Business to Customer [B2C])",
+                                        "value": "Private customers (Business to Customer [B2C])",
+                                        "q_code": "505"
+                                    },
+                                    {
+                                        "label": "Other businesses (Business to Business [B2B]) and sales to public authorities (Business to Government [B2G])",
+                                        "value": "Other businesses (Business to Business [B2B]) and sales to public authorities (Business to Government [B2G])",
+                                        "q_code": "506"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block1399",
+                                    "when": [{
+                                        "id": "answerbc604f93-a1b1-443d-99ee-0f40adb8bdff",
+                                        "condition": "contains all",
+                                        "values": [
+                                            "Private customers (Business to Customer [B2C])",
+                                            "Other businesses (Business to Business [B2B]) and sales to public authorities (Business to Government [B2G])"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1400"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block1399",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1399",
+                            "title": "Of the {{ answers['answer9cc30dc1-89fd-4a8d-8495-8d816f9f3ce1'] }}% of turnover from website or &apos;app&apos; sales, what percentage was from private customers or other businesses and public authorities?",
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answer05718a5c-7a65-4775-b28f-e2787cfa6ac1",
+                                    "q_code": "507",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Sales to private customers (B2C)",
+                                    "description": "Provide percentages to one decimal place where possible. Answers should add up to 100%.",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 1
+                                },
+                                {
+                                    "id": "answer2565ef7d-9fda-4485-b05c-1e4678fa97cd",
+                                    "q_code": "508",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Sales to other businesses (B2B) and public authorities (B2G)",
+                                    "description": "",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 1
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answer05718a5c-7a65-4775-b28f-e2787cfa6ac1",
+                                    "answer2565ef7d-9fda-4485-b05c-1e4678fa97cd"
+                                ],
+                                "conditions": ["equals"],
+                                "value": 100
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1400",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1400",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders for goods or services via your business&apos;s own website or &apos;app&apos;, or e-commerce market places?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Your business&apos;s own website or &apos;app&apos; should include:</strong>"
+                                    },
+                                    {
+                                        "list": ["parent or affiliate businesses", "extranets"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What is an e-commerce market place?",
+                                "content": [{
+                                        "description": "An e-commerce market place is a website or &apos;app&apos; used by several businesses to trade products."
+                                    },
+                                    {
+                                        "description": "Examples of e-commerce market places:"
+                                    },
+                                    {
+                                        "list": ["Booking.com", "eBay", "Amazon", "Amazon Business", "Alibaba", "Rakuten", "Etsy"]
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1872",
+                                "mandatory": true,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Via this business&#39;s own website or 'app'",
+                                        "value": "Via this business&#39;s own website or 'app'",
+                                        "q_code": "458"
+                                    },
+                                    {
+                                        "label": "Via an e-commerce market place",
+                                        "value": "Via an e-commerce market place",
+                                        "q_code": "459"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block1401",
+                                    "when": [{
+                                        "id": "answer1872",
+                                        "condition": "contains all",
+                                        "values": ["Via this business&#39;s own website or 'app'", "Via an e-commerce market place"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1402"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block1401",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1401",
+                            "title": "Of the {{ answers['answer9cc30dc1-89fd-4a8d-8495-8d816f9f3ce1'] }}% of total turnover, what percentage was received via your business&apos;s own website or &apos;app&apos;, and via an e-commerce market place?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Your business&apos;s own website or &apos;app&apos; should include:</strong>"
+                                    },
+                                    {
+                                        "list": ["parent or affiliate businesses", "extranets"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "Examples of e-commerce market places",
+                                "content": [{
+                                        "description": "Examples of e-commerce market places:"
+                                    },
+                                    {
+                                        "list": ["Booking.com", "eBay", "Amazon", "Amazon Business", "Alibaba", "Rakuten", "Etsy"]
+                                    }
+                                ]
+                            }],
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answer7f9aa610-1122-48c3-9ba1-521891b0a11f",
+                                    "q_code": "460",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Percentage of orders from your business&#39;s own website or 'app'",
+                                    "description": "Provide percentages to one decimal place where possible. Answers should add up to 100%.",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 1
+                                },
+                                {
+                                    "id": "answer981e53d9-69df-40b9-9349-5a44cf6ad419",
+                                    "q_code": "461",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Percentage of orders from an e-commerce market place",
+                                    "description": "",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 1
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answer7f9aa610-1122-48c3-9ba1-521891b0a11f",
+                                    "answer981e53d9-69df-40b9-9349-5a44cf6ad419"
+                                ],
+                                "conditions": ["equals"],
+                                "value": 100
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1402",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1402",
+                            "title": "During {{ metadata['period_str'] }}, from which <em>areas</em> did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive orders for goods or services, placed via a <em>website or &apos;app&apos;</em>?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>The UK includes:</strong>"
+                                    },
+                                    {
+                                        "list": ["England", "Wales", "Scotland", "Northern Ireland"]
+                                    },
+                                    {
+                                        "description": "<strong>The UK excludes:</strong>"
+                                    },
+                                    {
+                                        "list": ["Channel Islands", "Isle of Man"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "Examples of other EU countries",
+                                "content": [{
+                                    "description": "Austria, Belgium, Bulgaria, Croatia, Cyprus, Czechia (Czech Republic), Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1876",
+                                "mandatory": true,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "UK",
+                                        "value": "UK",
+                                        "q_code": "310"
+                                    },
+                                    {
+                                        "label": "Other EU countries",
+                                        "value": "Other EU countries",
+                                        "q_code": "311"
+                                    },
+                                    {
+                                        "label": "Rest of the world",
+                                        "value": "Rest of the world",
+                                        "q_code": "312"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block057ce2f0-a337-4f2c-97e9-6bb40e781959",
+                                    "when": [{
+                                        "id": "answer1876",
+                                        "condition": "contains all",
+                                        "values": ["UK", "Other EU countries"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block057ce2f0-a337-4f2c-97e9-6bb40e781959",
+                                    "when": [{
+                                        "id": "answer1876",
+                                        "condition": "contains all",
+                                        "values": ["UK", "Rest of the world"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block057ce2f0-a337-4f2c-97e9-6bb40e781959",
+                                    "when": [{
+                                        "id": "answer1876",
+                                        "condition": "contains all",
+                                        "values": ["Other EU countries", "Rest of the world"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block057ce2f0-a337-4f2c-97e9-6bb40e781959",
+                                    "when": [{
+                                        "id": "answer1876",
+                                        "condition": "contains all",
+                                        "values": ["UK", "Other EU countries", "Rest of the world"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1404"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block057ce2f0-a337-4f2c-97e9-6bb40e781959",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question057ce2f0-a337-4f2c-97e9-6bb40e781959",
+                            "title": "During {{ metadata['period_str'] }}, what was the <em>percentage breakdown</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s turnover from orders received via a <em>website or &apos;app&apos;</em>, by area?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>The UK includes:</strong>"
+                                    },
+                                    {
+                                        "list": ["England", "Wales", "Scotland", "Northern Ireland"]
+                                    },
+                                    {
+                                        "description": "<strong>The UK excludes:</strong>"
+                                    },
+                                    {
+                                        "list": ["Channel Islands", "Isle of Man"]
+                                    }
+                                ]
+                            },
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answerb5dbdafd-0c0d-4512-8372-06a864672d29",
+                                    "q_code": "509",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "UK",
+                                    "description": "Provide percentages to one decimal place where possible. Answers should add up to 100%.",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 1
+                                },
+                                {
+                                    "id": "answerce1c8c54-b803-4d8d-bbc2-3f79ba2b5004",
+                                    "q_code": "510",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Other EU countries",
+                                    "description": "",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 1
+                                },
+                                {
+                                    "id": "answer8794a304-c6fe-40a8-9309-04c8c66736ed",
+                                    "q_code": "511",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Rest of the world",
+                                    "description": "",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 1
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answerb5dbdafd-0c0d-4512-8372-06a864672d29",
+                                    "answerce1c8c54-b803-4d8d-bbc2-3f79ba2b5004",
+                                    "answer8794a304-c6fe-40a8-9309-04c8c66736ed"
+                                ],
+                                "conditions": ["equals"],
+                                "value": 100
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1404",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1404",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders from customers for goods or services via <em>EDI-type messages</em>?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "orders received for utilities, goods, materials or services using internet and non-internet EDI-type messages and automated telephone entry"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "manually typed email, orders received over a website or &apos;app&apos; and other ICTs such as phone (person to person) and conventional fax",
+                                            "enquiries that did not result in receiving an order"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What are Electronic Data Interchange (EDI) messages?",
+                                "content": [{
+                                    "description": "EDI-type messages allow the exchange of business documents between trading partners in a standard or structured machine-readable format. EDI is used to electronically transfer documents such as purchase orders, invoice or shipping bills. Businesses should be able to process this data without having to manually record it (i.e. processing should be automated)."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1878",
+                                "q_code": "257",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we received orders via EDI-type messages",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we did not receive orders via EDI-type messages",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block1406",
+                                    "when": [{
+                                        "id": "answer1878",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group93b8c5ed-1fd3-43ce-a096-c22f5de5e880"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block1406",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1406",
+                            "title": "During {{ metadata['period_str'] }}, what <em>percentage</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s total turnover was from orders received via <em>EDI-type messages</em>?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Include orders received for utilities, goods, materials, or services"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer95e76ade-2713-4ba4-927a-756101448a7f",
+                                "q_code": "258",
+                                "mandatory": true,
+                                "type": "Percentage",
+                                "label": "Percentage of total turnover from orders received via EDI-type messages",
+                                "description": "Provide percentages to one decimal place where possible",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
+                                },
+                                "max_value": {
+                                    "value": 100,
+                                    "exclusive": false
+                                },
+                                "decimal_places": 1
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1407",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1407",
+                            "title": "During {{ metadata['period_str'] }}, from which <em>areas</em> did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders for goods or services, placed via <em>EDI-type messages</em>?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>The UK includes:</strong>"
+                                    },
+                                    {
+                                        "list": ["England", "Wales", "Scotland", "Northern Ireland"]
+                                    },
+                                    {
+                                        "description": "<strong>The UK excludes:</strong>"
+                                    },
+                                    {
+                                        "list": ["Channel Islands", "Isle of Man"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "Examples of other EU countries",
+                                "content": [{
+                                    "description": "Austria, Belgium, Bulgaria, Croatia, Cyprus, Czechia (Czech Republic), Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1881",
+                                "mandatory": true,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "UK",
+                                        "value": "UK",
+                                        "q_code": "313"
+                                    },
+                                    {
+                                        "label": "Other EU countries",
+                                        "value": "Other EU countries",
+                                        "q_code": "314"
+                                    },
+                                    {
+                                        "label": "Rest of the world",
+                                        "value": "Rest of the world",
+                                        "q_code": "315"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block245a0458-8a39-4dcc-9c72-ff7d0438bb4b",
+                                    "when": [{
+                                        "id": "answer1881",
+                                        "condition": "contains all",
+                                        "values": ["UK", "Other EU countries"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block245a0458-8a39-4dcc-9c72-ff7d0438bb4b",
+                                    "when": [{
+                                        "id": "answer1881",
+                                        "condition": "contains all",
+                                        "values": ["UK", "Rest of the world"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block245a0458-8a39-4dcc-9c72-ff7d0438bb4b",
+                                    "when": [{
+                                        "id": "answer1881",
+                                        "condition": "contains all",
+                                        "values": ["Other EU countries", "Rest of the world"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block245a0458-8a39-4dcc-9c72-ff7d0438bb4b",
+                                    "when": [{
+                                        "id": "answer1881",
+                                        "condition": "contains all",
+                                        "values": ["UK", "Other EU countries", "Rest of the world"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group93b8c5ed-1fd3-43ce-a096-c22f5de5e880"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block245a0458-8a39-4dcc-9c72-ff7d0438bb4b",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question245a0458-8a39-4dcc-9c72-ff7d0438bb4b",
+                            "title": "During {{ metadata['period_str'] }}, what was the <em>percentage breakdown</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s turnover from orders received via <em>EDI-type messages</em>, by area?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>The UK includes:</strong>"
+                                    },
+                                    {
+                                        "list": ["England", "Wales", "Scotland", "Northern Ireland"]
+                                    },
+                                    {
+                                        "description": "<strong>The UK excludes:</strong>"
+                                    },
+                                    {
+                                        "list": ["Channel Islands", "Isle of Man"]
+                                    }
+                                ]
+                            },
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answer9d2bc425-2ed2-4743-8ee6-1f7215af29a1",
+                                    "q_code": "512",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "UK",
+                                    "description": "Provide percentages to one decimal place where possible. Answers should add up to 100%.",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 1
+                                },
+                                {
+                                    "id": "answera4eccc5c-69c2-4da5-9452-59503cb21f6f",
+                                    "q_code": "531",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Other EU countries",
+                                    "description": "",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 1
+                                },
+                                {
+                                    "id": "answerbfedc667-482f-4115-89fe-92601b0aae19",
+                                    "q_code": "514",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Rest of the world",
+                                    "description": "",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 1
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answer9d2bc425-2ed2-4743-8ee6-1f7215af29a1",
+                                    "answera4eccc5c-69c2-4da5-9452-59503cb21f6f",
+                                    "answerbfedc667-482f-4115-89fe-92601b0aae19"
+                                ],
+                                "conditions": ["equals"],
+                                "value": 100
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answerb88e4433-d708-4045-bbbe-ec0e0a578be8",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1828",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section93b8c5ed-1fd3-43ce-a096-c22f5de5e880",
+            "title": "Invoicing",
+            "groups": [{
+                "id": "group93b8c5ed-1fd3-43ce-a096-c22f5de5e880",
+                "title": "Invoicing",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group93b8c5ed-1fd3-43ce-a096-c22f5de5e880-introduction",
+                        "title": "Invoicing",
+                        "description": "<p>In this section, you will need to provide information on any e-invoices and non-electronic invoices, including paper invoices.</p>"
+                    },
+                    {
+                        "id": "block8dc8fcf9-4570-46a5-ba6b-4363c90961d8",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question8dc8fcf9-4570-46a5-ba6b-4363c90961d8",
+                            "title": "During {{ metadata['period_str'] }}, which of the following invoices did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} issue or send?",
+                            "definitions": [{
+                                "title": "Examples of electronic invoice formats",
+                                "content": [{
+                                        "description": "<strong>Electronic invoices suitable for automated processing:</strong>"
+                                    },
+                                    {
+                                        "list": ["EDI", "UBL", "XML"]
+                                    },
+                                    {
+                                        "description": "<strong>Electronic invoices <em>unsuitable</em> for automatic processing:</strong>"
+                                    },
+                                    {
+                                        "list": ["Emails", "PDF", "Images in TIF, JPEG or other formats"]
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer6ebb0244-7453-4b88-be23-dd4e91844c8f",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "E-invoices in a format suitable for automated processing",
+                                        "value": "E-invoices in a format suitable for automated processing",
+                                        "q_code": "478"
+                                    },
+                                    {
+                                        "label": "Invoices in an electronic format not suitable for automated processing",
+                                        "value": "Invoices in an electronic format not suitable for automated processing",
+                                        "q_code": "479"
+                                    },
+                                    {
+                                        "label": "Paper invoices",
+                                        "value": "Paper invoices",
+                                        "q_code": "480"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group066e41a6-13d1-46a2-89cf-ec34bb140244",
+                                    "when": [{
+                                        "id": "answer6ebb0244-7453-4b88-be23-dd4e91844c8f",
+                                        "condition": "contains all",
+                                        "values": [
+                                            "E-invoices in a format suitable for automated processing",
+                                            "Invoices in an electronic format not suitable for automated processing",
+                                            "Paper invoices"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block5508fbfc-3411-4495-b5aa-34739586019e"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block5508fbfc-3411-4495-b5aa-34739586019e",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question5508fbfc-3411-4495-b5aa-34739586019e",
+                            "title": "Why were the following types of invoice not selected?",
+                            "description": "{{ format_unordered_list_missing_items(['E-invoices in a format suitable for automated processing','Invoices in an electronic format not suitable for automated processing','Paper invoices'],answers['answer6ebb0244-7453-4b88-be23-dd4e91844c8f']) }}",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer97d9eb4c-14ff-491d-9b9e-430f1b819e20",
+                                "q_code": "d3",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "They are not used",
+                                        "value": "They are not used"
+                                    },
+                                    {
+                                        "label": "I don't know what they are",
+                                        "value": "I don't know what they are"
+                                    }
+                                ]
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answerb88e4433-d708-4045-bbbe-ec0e0a578be8",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1828",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section066e41a6-13d1-46a2-89cf-ec34bb140244",
+            "title": "Use of cloud computing services",
+            "groups": [{
+                "id": "group066e41a6-13d1-46a2-89cf-ec34bb140244",
+                "title": "Use of cloud computing services",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group066e41a6-13d1-46a2-89cf-ec34bb140244-introduction",
+                        "title": "Use of cloud computing services",
+                        "description": "<p>In this section, you will need to provide information on any cloud computing services that your business uses over the internet.</p>"
+                    },
+                    {
+                        "id": "blockd40af4bf-7037-4a1d-b1c6-67fc6208e87c",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiond40af4bf-7037-4a1d-b1c6-67fc6208e87c",
+                            "title": "Does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} buy any cloud computing services used over the internet?",
+                            "definitions": [{
+                                "title": "What are cloud computing services?",
+                                "content": [{
+                                        "description": "Cloud computing means services used over the internet, including connections via Virtual Private Networks (VPN) to access software, computing power, storage capacity etc."
+                                    },
+                                    {
+                                        "description": "<strong>Cloud computing services:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "are delivered from servers of service providers",
+                                            "can be used as an on-demand self-service, at least after set up (without human interaction with a service provider)",
+                                            "can be scaled up or down, for example for a change in number of users or storage capacity",
+                                            "are paid by use or per capacity used, or they are prepaid"
+                                        ]
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1ecfb94e-384e-4aeb-84aa-95da13970a02",
+                                "q_code": "358",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we buy cloud computing services",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we don't buy cloud computing services",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockd00d48df-fc09-4d2a-9f5f-9c6340116df0",
+                                    "when": [{
+                                        "id": "answer1ecfb94e-384e-4aeb-84aa-95da13970a02",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group55dd8d63-b3c4-4365-ba8b-4c1c772eab63"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockd00d48df-fc09-4d2a-9f5f-9c6340116df0",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiond00d48df-fc09-4d2a-9f5f-9c6340116df0",
+                            "title": "Which of the following cloud computing services does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} buy?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerbb96c1c3-8977-47de-bfc8-03cddf099763",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Email",
+                                        "value": "Email",
+                                        "q_code": "359"
+                                    },
+                                    {
+                                        "label": "Office software",
+                                        "value": "Office software",
+                                        "description": "For example, Microsoft Office 365, Amazon Web Services",
+                                        "q_code": "360"
+                                    },
+                                    {
+                                        "label": "Hosting the business&#39; databases",
+                                        "value": "Hosting the business&#39; databases",
+                                        "q_code": "361"
+                                    },
+                                    {
+                                        "label": "Storage of files",
+                                        "value": "Storage of files",
+                                        "q_code": "362"
+                                    },
+                                    {
+                                        "label": "Finance or accounting software applications",
+                                        "value": "Finance or accounting software applications",
+                                        "q_code": "363"
+                                    },
+                                    {
+                                        "label": "Customer Relations Management (CRM) software",
+                                        "value": "Customer Relations Management (CRM) software",
+                                        "q_code": "364"
+                                    },
+                                    {
+                                        "label": "Computing capacity to run the business&#39;s own software",
+                                        "value": "Computing capacity to run the business&#39;s own software",
+                                        "q_code": "365"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group55dd8d63-b3c4-4365-ba8b-4c1c772eab63",
+                                    "when": [{
+                                        "id": "answerbb96c1c3-8977-47de-bfc8-03cddf099763",
+                                        "condition": "contains all",
+                                        "values": [
+                                            "Email",
+                                            "Office software",
+                                            "Hosting the business&#39; databases",
+                                            "Storage of files",
+                                            "Finance or accounting software applications",
+                                            "Customer Relations Management (CRM) software",
+                                            "Computing capacity to run the business&#39;s own software"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block325e36f4-66c0-42a4-b15d-471e7fb46bde"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block325e36f4-66c0-42a4-b15d-471e7fb46bde",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question325e36f4-66c0-42a4-b15d-471e7fb46bde",
+                            "title": "Why were the following cloud computing services not selected?",
+                            "description": "{{ format_unordered_list_missing_items(['Email', 'Office software', 'Hosting the business&#39; databases', 'Storage of files', 'Finance or accounting software applications', 'Customer Relations Management (CRM) software', 'Computing capacity to run the business&#39;s own software'], answers['answerbb96c1c3-8977-47de-bfc8-03cddf099763']) }}",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer8ed0e9db-79ca-4a1b-a1a2-33e1e8d5b908",
+                                "q_code": "d4",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "They are not used",
+                                        "value": "They are not used"
+                                    },
+                                    {
+                                        "label": "I don't know what they are",
+                                        "value": "I don't know what they are"
+                                    }
+                                ]
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answerb88e4433-d708-4045-bbbe-ec0e0a578be8",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1828",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section55dd8d63-b3c4-4365-ba8b-4c1c772eab63",
+            "title": "Big data",
+            "groups": [{
+                "id": "group55dd8d63-b3c4-4365-ba8b-4c1c772eab63",
+                "title": "Big data",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group55dd8d63-b3c4-4365-ba8b-4c1c772eab63-introduction",
+                        "title": "Big data",
+                        "description": "<p>In this section, you will need to provide information on the analysis, sale and purchase of big data by your business. </p>"
+                    },
+                    {
+                        "id": "block2ec244ef-227a-41ae-bee0-d6b7b38a4e33",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question2ec244ef-227a-41ae-bee0-d6b7b38a4e33",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use any of the following sources to analyse big data?",
+                            "definitions": [{
+                                "title": "What is big data?",
+                                "content": [{
+                                        "description": "&quot;Big Data&quot; is the study of large data sets that are generated from electronic activities and from machine-to-machine communications, for example, from social media or production processes. Big data analysis refers to the use of techniques, technologies and software tools for analysing large data sets from your own business or other data sources."
+                                    },
+                                    {
+                                        "description": "<strong>Characteristics of big data:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "vast amounts of data generated over time.",
+                                            "variety in terms of different formats of complex data, either structured or unstructured (for example text, video, images, voice, docs, sensor data, activity logs, click streams, coordinates).",
+                                            "velocity in terms of the high speed at which data are generated, become available and change over time."
+                                        ]
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer3d989583-70ec-4b6c-a86e-93f0c0c148af",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "The business&#39;s own data from smart devices or sensors",
+                                        "value": "The business&#39;s own data from smart devices or sensors",
+                                        "description": "For example, machine to machine communications, digital sensors, RFID tags",
+                                        "q_code": "431"
+                                    },
+                                    {
+                                        "label": "Geolocation data from the use of portable devices",
+                                        "value": "Geolocation data from the use of portable devices",
+                                        "description": "For example, portable devices using mobile telephone networks, wireless connections or GPS",
+                                        "q_code": "432"
+                                    },
+                                    {
+                                        "label": "Data generated from social media",
+                                        "value": "Data generated from social media",
+                                        "description": "For example, social networks, blogs, multimedia content sharing websites",
+                                        "q_code": "433"
+                                    },
+                                    {
+                                        "label": "Other big data sources not specified above",
+                                        "value": "Other big data sources not specified above",
+                                        "q_code": "434"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block8702a64a-6729-41a3-a9f9-92779e03da0e",
+                                    "when": [{
+                                        "id": "answer3d989583-70ec-4b6c-a86e-93f0c0c148af",
+                                        "condition": "contains all",
+                                        "values": [
+                                            "The business&#39;s own data from smart devices or sensors",
+                                            "Geolocation data from the use of portable devices",
+                                            "Data generated from social media",
+                                            "Other big data sources not specified above"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockd98b00a5-e7fa-422b-9b62-7606691e7de0"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockd98b00a5-e7fa-422b-9b62-7606691e7de0",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiond98b00a5-e7fa-422b-9b62-7606691e7de0",
+                            "title": "Why were the following big data sources not selected?",
+                            "description": "{{ format_unordered_list_missing_items(['The business&#39;s own data from smart devices or sensors', 'Geolocation data from the use of portable devices', 'Data generated from social media', 'Other big data sources not specified above'], answers['answer3d989583-70ec-4b6c-a86e-93f0c0c148af']) }}",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer700cc8be-ea98-4a1a-9cd5-97f7af1665fb",
+                                "q_code": "d5",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "They are not used",
+                                        "value": "They are not used"
+                                    },
+                                    {
+                                        "label": "I don't know what they are",
+                                        "value": "I don't know what they are"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block8702a64a-6729-41a3-a9f9-92779e03da0e",
+                                    "when": [{
+                                        "id": "answer3d989583-70ec-4b6c-a86e-93f0c0c148af",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "The business&#39;s own data from smart devices or sensors",
+                                            "Geolocation data from the use of portable devices",
+                                            "Data generated from social media",
+                                            "Other big data sources not specified above"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockf2b7bfd9-3405-4a41-8c8a-6d921f08a866"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block8702a64a-6729-41a3-a9f9-92779e03da0e",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question8702a64a-6729-41a3-a9f9-92779e03da0e",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use any of the following <em>methods</em> to analyse big data?",
+                            "definitions": [{
+                                "title": "What is big data?",
+                                "content": [{
+                                        "description": "&quot;Big Data&quot; is the study of large data sets that are generated from electronic activities and from machine-to-machine communications, for example, from social media or production processes. Big data analysis refers to the use of techniques, technologies and software tools for analysing large data sets from your own business or other data sources."
+                                    },
+                                    {
+                                        "description": "<strong>Characteristics of big data:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "vast amounts of data generated over time.",
+                                            "variety in terms of different formats of complex data, either structured or unstructured (for example text, video, images, voice, docs, sensor data, activity logs, click streams, coordinates).",
+                                            "velocity in terms of the high speed at which data are generated, become available and change over time."
+                                        ]
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerc128458c-463c-4386-a968-3ed883c83b04",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Machine learning",
+                                        "value": "Machine learning",
+                                        "description": "For example deep learning, which involves 'training' a computer model to better perform an automated task",
+                                        "q_code": "515"
+                                    },
+                                    {
+                                        "label": "Natural language processing, natural language generation or speech recognition",
+                                        "value": "Natural language processing, natural language generation or speech recognition",
+                                        "description": "This is the ability of a computer program to understand human language as it is spoken and convert it to a machine-readable format",
+                                        "q_code": "516"
+                                    },
+                                    {
+                                        "label": "Other methods of big data analysis",
+                                        "value": "Other methods of big data analysis",
+                                        "q_code": "517"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockf2b7bfd9-3405-4a41-8c8a-6d921f08a866",
+                                    "when": [{
+                                        "id": "answerc128458c-463c-4386-a968-3ed883c83b04",
+                                        "condition": "contains all",
+                                        "values": [
+                                            "Machine learning",
+                                            "Natural language processing, natural language generation or speech recognition",
+                                            "Other methods of big data analysis"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block9a7508e3-29a5-4e33-ad43-857b4dc5dc9a"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block9a7508e3-29a5-4e33-ad43-857b4dc5dc9a",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question9a7508e3-29a5-4e33-ad43-857b4dc5dc9a",
+                            "title": "Why were the following methods of big data analysis not selected?",
+                            "description": "{{ format_unordered_list_missing_items(['Machine learning', 'Natural language processing, natural language generation or speech recognition', 'Other methods of big data analysis'], answers['answerc128458c-463c-4386-a968-3ed883c83b04']) }}",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer3eb814ae-7062-4a74-b038-aa55ab4907b8",
+                                "q_code": "d6",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "They are not used",
+                                        "value": "They are not used"
+                                    },
+                                    {
+                                        "label": "I don't know what they are",
+                                        "value": "I don't know what they are"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockf2b7bfd9-3405-4a41-8c8a-6d921f08a866",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionf2b7bfd9-3405-4a41-8c8a-6d921f08a866",
+                            "title": "During {{ metadata['period_str'] }}, did <em>another business</em> perform big data analysis for {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answera26934bd-a7a6-4f5c-b6e6-8248ca22eb41",
+                                "q_code": "518",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, another business performed big data analysis for us",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, other businesses did not analyse our big data for us",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block51380ae3-92c2-44c5-86ad-2542716b8591",
+                                    "when": [{
+                                        "id": "answer3d989583-70ec-4b6c-a86e-93f0c0c148af",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "The business&#39;s own data from smart devices or sensors",
+                                            "Geolocation data from the use of portable devices",
+                                            "Data generated from social media",
+                                            "Other big data sources not specified above"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block51380ae3-92c2-44c5-86ad-2542716b8591",
+                                    "when": [{
+                                        "id": "answera26934bd-a7a6-4f5c-b6e6-8248ca22eb41",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group359"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block51380ae3-92c2-44c5-86ad-2542716b8591",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question51380ae3-92c2-44c5-86ad-2542716b8591",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} <em>sell, or sell access to,</em> any of its own big data?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["big data from your business&apos;s smart devices", "big data about your business&apos;s customers"]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerd2c69d34-0678-4af6-b6cc-c2114f52fd0c",
+                                "q_code": "519",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we sold our big data or access to our big data",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we did not sell our big data or access to our big data",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blocke4a067ea-4e7e-4710-8e62-2c30c01b3773",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questione4a067ea-4e7e-4710-8e62-2c30c01b3773",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} <em>purchase, or purchase access to,</em> any big data?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["big data from your business&apos;s smart devices", "big data about your business&apos;s customers"]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer26462d44-ea92-466d-ab65-37659c1ec8fe",
+                                "q_code": "520",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we purchased big data or access to big data",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we did not purchase big data or access to any big data",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answerb88e4433-d708-4045-bbbe-ec0e0a578be8",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1828",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section359",
+            "title": "ICT specialists and skills",
+            "groups": [{
+                "id": "group359",
+                "title": "ICT specialists and skills",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group359-introduction",
+                        "title": "ICT specialists and skills",
+                        "description": "<p>In this section, you will need to provide information on your business&apos;s employment and training of ICT specialists. </p>"
+                    },
+                    {
+                        "id": "block1358",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1358",
+                            "title": "Does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} employ ICT or IT specialists?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["all agency staff on your payroll"]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": ["agency staff not on your payroll"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What is an ICT or IT specialist?",
+                                "content": [{
+                                    "description": "ICT or IT is the employees&#x2019; main function. ICT or IT specialist skills involve developing, operating, or maintaining ICT or IT systems or applications."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1823",
+                                "q_code": "154",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we employ ICT or IT specialists",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we do not employ ICT or IT specialists",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1359",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1359",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} provide any type of <em>training</em> to develop ICT or IT related skills of its employees?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer1824",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "",
+                                    "description": "Select all that apply",
+                                    "options": [{
+                                            "label": "Training for ICT or IT specialists",
+                                            "value": "Training for ICT or IT specialists",
+                                            "q_code": "165"
+                                        },
+                                        {
+                                            "label": "Training for other employees",
+                                            "value": "Training for other employees",
+                                            "q_code": "316"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer1824-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "",
+                                    "description": "Select all that apply",
+                                    "options": [{
+                                        "label": "No training provided",
+                                        "value": "No training provided",
+                                        "q_code": "d165316"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "block1360",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1360",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} <em>recruit or try to recruit</em> ICT or IT specialists?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1826",
+                                "q_code": "155",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we recruited or tried to recruit ICT or IT specialists",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we did not recruit or try to recruit ICT or IT specialists",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block1361",
+                                    "when": [{
+                                        "id": "answer1826",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1d85ab8e-e47e-47b1-832d-7a6f7f45a686"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block1361",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1361",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} have <em>vacancies</em> for ICT or IT specialists that were difficult to fill?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1827",
+                                "q_code": "156",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we had vacancies that were difficult to fill",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we did not have vacancies that were difficult to fill",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1d85ab8e-e47e-47b1-832d-7a6f7f45a686",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1d85ab8e-e47e-47b1-832d-7a6f7f45a686",
+                            "title": "During {{ metadata['period_str'] }}, who mainly performed the ICT or IT functions for {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Your own employees should include those employed in parent or affiliate businesses"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answeraa90365a-e6f2-4b91-8d3d-9d5256a09b65",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Mainly performed by the business&#39;s own employees",
+                                        "value": "Mainly performed by the business&#39;s own employees",
+                                        "q_code": "495"
+                                    },
+                                    {
+                                        "label": "Mainly performed by the external suppliers",
+                                        "value": "Mainly performed by the external suppliers",
+                                        "q_code": "496"
+                                    }
+                                ]
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answerb88e4433-d708-4045-bbbe-ec0e0a578be8",
+                        "condition": "not equals",
+                        "value": "Yes"
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "section34e4f65e-92d6-4503-8121-4ce8707207f2",
+            "title": "Use of 3D printing",
+            "groups": [{
+                "id": "group34e4f65e-92d6-4503-8121-4ce8707207f2",
+                "title": "Use of 3D printing",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group34e4f65e-92d6-4503-8121-4ce8707207f2-introduction",
+                        "title": "Use of 3D printing",
+                        "description": "<p>In this section, you will need to provide information on the use of specialist printers for the use of three-dimensional printing of physical objects.</p>"
+                    },
+                    {
+                        "id": "block2819df8b-e4ac-4ad1-a4e0-749032d64b34",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question2819df8b-e4ac-4ad1-a4e0-749032d64b34",
+                            "title": "Does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use 3D printers for business purposes?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong> Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["printing services provided by parent or affiliate businesses", "use of rented or leased 3D printers"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What is 3D printing?",
+                                "content": [{
+                                    "description": "Use of 3D printing (additive layer manufacturing), refers to the use of specialist printers either by the business itself or the use of 3D printing services provided by other businesses for the creation of three-dimensional physical objects using digital technology."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerba8af347-cbf7-4591-a5ea-01e9ab3613f3",
+                                "q_code": "532",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we use 3D printers",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we do not use 3D printers",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block4aa87035-a536-4e71-8ff8-859be0733cfa",
+                                    "when": [{
+                                        "id": "answerba8af347-cbf7-4591-a5ea-01e9ab3613f3",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group7546bbf8-e862-4ffe-b112-d045862df301"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block4aa87035-a536-4e71-8ff8-859be0733cfa",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question4aa87035-a536-4e71-8ff8-859be0733cfa",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use its own 3D printers or 3D printers provided by other businesses?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Your own 3D printers should include:</strong>"
+                                    },
+                                    {
+                                        "list": ["the use of rented or leased 3D printers"]
+                                    },
+                                    {
+                                        "description": "<strong>Printing services provided by other businesses should include:</strong>"
+                                    },
+                                    {
+                                        "list": ["services provided by parent or affiliate businesses"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What is 3D printing?",
+                                "content": [{
+                                    "description": "Use of 3D printing (additive layer manufacturing), refers to the use of specialist printers either by the business itself or the use of 3D printing services provided by other businesses for the creation of three-dimensional physical objects using digital technology."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer533b2e8a-5e96-45ae-bf52-2623c38ce735",
+                                "mandatory": true,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "We used our own 3D printers",
+                                        "value": "We used our own 3D printers",
+                                        "q_code": "472"
+                                    },
+                                    {
+                                        "label": "We used printing services provided by other businesses",
+                                        "value": "We used printing services provided by other businesses",
+                                        "q_code": "473"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block0e56a4a7-12c8-41bc-8e6d-b74914ff984d",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question0e56a4a7-12c8-41bc-8e6d-b74914ff984d",
+                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use 3D printing for any of the following activities?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer6a43d038-04b4-4aa4-91e7-a36848983369",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Prototypes or models for sale",
+                                        "value": "Prototypes or models for sale",
+                                        "q_code": "474"
+                                    },
+                                    {
+                                        "label": "Prototypes or models for use by the business",
+                                        "value": "Prototypes or models for use by the business",
+                                        "q_code": "475"
+                                    },
+                                    {
+                                        "label": "Goods for sale, excluding prototypes or models",
+                                        "value": "Goods for sale, excluding prototypes or models",
+                                        "description": "For example moulds, tools, parts of goods, semi-finished goods",
+                                        "q_code": "476"
+                                    },
+                                    {
+                                        "label": "Goods to be used in the business&#39;s production process, excluding prototypes or models",
+                                        "value": "Goods to be used in the business&#39;s production process, excluding prototypes or models",
+                                        "description": "For example moulds, tools, parts of goods, semi-finished goods",
+                                        "q_code": "477"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group7546bbf8-e862-4ffe-b112-d045862df301",
+                                    "when": [{
+                                        "id": "answer6a43d038-04b4-4aa4-91e7-a36848983369",
+                                        "condition": "contains all",
+                                        "values": [
+                                            "Prototypes or models for sale",
+                                            "Prototypes or models for use by the business",
+                                            "Goods for sale, excluding prototypes or models",
+                                            "Goods to be used in the business&#39;s production process, excluding prototypes or models"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block7a4901e0-48bb-4554-93ac-5faeb159b9e4"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block7a4901e0-48bb-4554-93ac-5faeb159b9e4",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question7a4901e0-48bb-4554-93ac-5faeb159b9e4",
+                            "title": "Why were the following 3D printing activities not selected?",
+                            "description": "{{ format_unordered_list_missing_items(['Prototypes or models for sale', 'Prototypes or models for use by the business', 'Goods for sale, excluding prototypes or models', 'Goods to be used in the business&#39;s production process, excluding prototypes or models'],answers['answer6a43d038-04b4-4aa4-91e7-a36848983369']) }}",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer771b634d-0903-42f4-a194-93bfdb37bc2f",
+                                "q_code": "d7",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "They are not used",
+                                        "value": "They are not used"
+                                    },
+                                    {
+                                        "label": "I don't know what they are",
+                                        "value": "I don't know what they are"
+                                    }
+                                ]
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answerb88e4433-d708-4045-bbbe-ec0e0a578be8",
+                        "condition": "not equals",
+                        "value": "Yes"
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "section7546bbf8-e862-4ffe-b112-d045862df301",
+            "title": "Use of robotics",
+            "groups": [{
+                "id": "group7546bbf8-e862-4ffe-b112-d045862df301",
+                "title": "Use of robotics",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group7546bbf8-e862-4ffe-b112-d045862df301-introduction",
+                        "title": "Use of robotics",
+                        "description": "<p>In this section, you will need to provide information on the use of industrial and service robots.</p>"
+                    },
+                    {
+                        "id": "block432ecc72-da76-413c-8801-21b558822f96",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question432ecc72-da76-413c-8801-21b558822f96",
+                            "title": "Does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use <em>industrial</em> robots?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude service robots (with a degree of autonomy)"
+                                }]
+                            },
+                            "definitions": [{
+                                "title": "What are industrial robots?",
+                                "content": [{
+                                        "description": "An industrial robot is an automatically controlled, reprogrammable, multipurpose manipulator programmable in three or more axes, which may be either fixed in place or mobile for use. Most existing industrial robots are based on the robot arm with a solid base and a series of links and joints with an end effector that carries out the task."
+                                    },
+                                    {
+                                        "description": "<strong>Examples of industrial robots:</strong>"
+                                    },
+                                    {
+                                        "list": ["robots for welding", "robots for laser cutting", "robots for spray painting"]
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer295e1539-e287-442a-b44b-b257f69c0320",
+                                "q_code": "521",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we use industrial robots",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we do not use industrial robots",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block739fc4e2-6dd2-47b9-8c49-c8481e9ded97",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question739fc4e2-6dd2-47b9-8c49-c8481e9ded97",
+                            "title": "Does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use <em>service</em> robots?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Exclude: </strong>"
+                                    },
+                                    {
+                                        "list": ["industrial robots", "robots used for industrial automation applications"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What is a service robot?",
+                                "content": [{
+                                        "description": "A service robot is a machine that has a degree of autonomy that enables it to operate in complex and dynamic environments, and may require interaction with persons, objects or other devices. They are designed to fit their tasks, working in the air (e.g. as a drone), under water, or on land, using wheels or legs to achieve mobility with arms and end effectors to physically interact; they are often used in inspection and maintenance tasks."
+                                    },
+                                    {
+                                        "description": "<strong>Examples of service robots:</strong>"
+                                    },
+                                    {
+                                        "list": ["robots for surveillance", "robots for cleaning", "robots for transportation"]
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1ea69f67-1d89-4029-80dc-e25e3d552a7f",
+                                "q_code": "522",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes, we use service robots",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, we do not use service robots",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block3091b9c3-c2ee-4542-8e42-0d048a83b542",
+                                    "when": [{
+                                        "id": "answer1ea69f67-1d89-4029-80dc-e25e3d552a7f",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group369"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block3091b9c3-c2ee-4542-8e42-0d048a83b542",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3091b9c3-c2ee-4542-8e42-0d048a83b542",
+                            "title": "Does {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use <em>service</em> robots for any of the following activities?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Exclude: </strong>"
+                                    },
+                                    {
+                                        "list": ["industrial robots", "robots used for industrial automation applications"]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1dab9170-c357-43f9-970e-ad592316a3e5",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Surveillance, security or inspection tasks",
+                                        "value": "Surveillance, security or inspection tasks",
+                                        "description": "For example, the use of autonomous airborne drones",
+                                        "q_code": "523"
+                                    },
+                                    {
+                                        "label": "Transportation of people or goods",
+                                        "value": "Transportation of people or goods",
+                                        "description": "For example, the use of automated guided vehicles",
+                                        "q_code": "524"
+                                    },
+                                    {
+                                        "label": "Cleaning or waste disposal tasks",
+                                        "value": "Cleaning or waste disposal tasks",
+                                        "q_code": "525"
+                                    },
+                                    {
+                                        "label": "Warehouse management systems",
+                                        "value": "Warehouse management systems",
+                                        "description": "For example, loading and moving pallets or handling goods",
+                                        "q_code": "526"
+                                    },
+                                    {
+                                        "label": "Assembly works performed by service robots",
+                                        "value": "Assembly works performed by service robots",
+                                        "q_code": "527"
+                                    },
+                                    {
+                                        "label": "Robotic store clerk tasks",
+                                        "value": "Robotic store clerk tasks",
+                                        "q_code": "528"
+                                    },
+                                    {
+                                        "label": "Construction works or damage repair tasks",
+                                        "value": "Construction works or damage repair tasks",
+                                        "q_code": "529"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group369",
+                                    "when": [{
+                                        "id": "answer1dab9170-c357-43f9-970e-ad592316a3e5",
+                                        "condition": "contains all",
+                                        "values": [
+                                            "Surveillance, security or inspection tasks",
+                                            "Transportation of people or goods",
+                                            "Cleaning or waste disposal tasks",
+                                            "Warehouse management systems",
+                                            "Assembly works performed by service robots",
+                                            "Robotic store clerk tasks",
+                                            "Construction works or damage repair tasks"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockce8b72fc-d08d-4a59-b57f-751b1381fd2a"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockce8b72fc-d08d-4a59-b57f-751b1381fd2a",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionce8b72fc-d08d-4a59-b57f-751b1381fd2a",
+                            "title": "Why were the following service robot activities not selected?",
+                            "description": "{{ format_unordered_list_missing_items(['Surveillance, security or inspection tasks', 'Transportation of people or goods', 'Cleaning or waste disposal tasks', 'Warehouse management systems', 'Assembly works performed by service robots', 'Robotic store clerk tasks', 'Construction works or damage repair tasks'], answers['answer1dab9170-c357-43f9-970e-ad592316a3e5']) }}",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerc6d49420-ed68-47fb-b6e6-272a5fde2717",
+                                "q_code": "d8",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "They are not used",
+                                        "value": "They are not used"
+                                    },
+                                    {
+                                        "label": "I don't know what they are",
+                                        "value": "I don't know what they are"
+                                    }
+                                ]
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answerb88e4433-d708-4045-bbbe-ec0e0a578be8",
+                        "condition": "not equals",
+                        "value": "Yes"
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "section369",
+            "title": "Comments",
+            "groups": [{
+                    "id": "group369",
+                    "title": "Comments",
+                    "blocks": [{
+                        "id": "block1409",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1409",
+                            "title": "Please comment if there were any significant changes to {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s use of Information and Communication Technology since the previous period, 2018.",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1883",
+                                "q_code": "500",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": ""
+                            }]
+                        }]
+                    }]
+                },
+                {
+                    "id": "summary-group",
+                    "title": "Summary",
+                    "blocks": [{
+                        "type": "Summary",
+                        "id": "summary-block"
+                    }]
+                }
+            ]
+        }
+    ],
+    "theme": "northernireland",
+    "legal_basis": "The Statistics of Trade and Employment (Northern Ireland) Order 1988",
+    "navigation": {
+        "visible": true
+    },
+    "metadata": [{
+            "name": "user_id",
+            "validator": "string"
+        },
+        {
+            "name": "period_id",
+            "validator": "string"
+        },
+        {
+            "name": "ru_name",
+            "validator": "string"
+        },
+        {
+            "name": "trad_as",
+            "validator": "optional_string"
+        },
+        {
+            "name": "ref_p_start_date",
+            "validator": "date"
+        },
+        {
+            "name": "ref_p_end_date",
+            "validator": "date"
+        },
+        {
+            "name": "period_str",
+            "validator": "string"
+        }
+    ],
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    }
+}
