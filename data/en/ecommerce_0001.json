@@ -1,10 +1,10 @@
 {
-    "eq_id": "0445ad83-2849-4541-b583-12dc08b4c042",
+    "eq_id": "ecommerce",
     "form_type": "0001",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
-    "survey_id": "ecommerce2019",
+    "survey_id": "187",
     "title": "E-Commerce 2019",
     "sections": [{
             "id": "section358",
