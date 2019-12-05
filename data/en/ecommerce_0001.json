@@ -701,7 +701,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1397",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders from customers for goods or services via a website or &apos;app&apos;?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders from customers for goods or services via a website or &apos;app&apos;?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -764,7 +764,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1398",
-                            "title": "During {{ metadata['period_str'] }}, what <em>percentage</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s <em>total turnover</em> was from orders received via a website or &apos;app&apos;?",
+                            "title": "During 2019, what <em>percentage</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s <em>total turnover</em> was from orders received via a website or &apos;app&apos;?",
                             "guidance": {
                                 "content": [{
                                     "description": "Include orders received for utilities, goods, materials or services"
@@ -894,7 +894,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1400",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders for goods or services via your business&apos;s own website or &apos;app&apos;, or e-commerce market places?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders for goods or services via your business&apos;s own website or &apos;app&apos;, or e-commerce market places?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Your business&apos;s own website or &apos;app&apos; should include:</strong>"
@@ -1031,7 +1031,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1402",
-                            "title": "During {{ metadata['period_str'] }}, from which <em>areas</em> did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive orders for goods or services, placed via a <em>website or &apos;app&apos;</em>?",
+                            "title": "During 2019, from which <em>areas</em> did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive orders for goods or services, placed via a <em>website or &apos;app&apos;</em>?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>The UK includes:</strong>"
@@ -1130,7 +1130,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question057ce2f0-a337-4f2c-97e9-6bb40e781959",
-                            "title": "During {{ metadata['period_str'] }}, what was the <em>percentage breakdown</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s turnover from orders received via a <em>website or &apos;app&apos;</em>, by area?",
+                            "title": "During 2019, what was the <em>percentage breakdown</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s turnover from orders received via a <em>website or &apos;app&apos;</em>, by area?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>The UK includes:</strong>"
@@ -1216,7 +1216,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1404",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders from customers for goods or services via <em>EDI-type messages</em>?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders from customers for goods or services via <em>EDI-type messages</em>?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -1284,7 +1284,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1406",
-                            "title": "During {{ metadata['period_str'] }}, what <em>percentage</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s total turnover was from orders received via <em>EDI-type messages</em>?",
+                            "title": "During 2019, what <em>percentage</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s total turnover was from orders received via <em>EDI-type messages</em>?",
                             "guidance": {
                                 "content": [{
                                     "description": "Include orders received for utilities, goods, materials, or services"
@@ -1315,7 +1315,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1407",
-                            "title": "During {{ metadata['period_str'] }}, from which <em>areas</em> did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders for goods or services, placed via <em>EDI-type messages</em>?",
+                            "title": "During 2019, from which <em>areas</em> did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} receive any orders for goods or services, placed via <em>EDI-type messages</em>?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>The UK includes:</strong>"
@@ -1414,7 +1414,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question245a0458-8a39-4dcc-9c72-ff7d0438bb4b",
-                            "title": "During {{ metadata['period_str'] }}, what was the <em>percentage breakdown</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s turnover from orders received via <em>EDI-type messages</em>, by area?",
+                            "title": "During 2019, what was the <em>percentage breakdown</em> of {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}&apos;s turnover from orders received via <em>EDI-type messages</em>, by area?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>The UK includes:</strong>"
@@ -1530,7 +1530,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question8dc8fcf9-4570-46a5-ba6b-4363c90961d8",
-                            "title": "During {{ metadata['period_str'] }}, which of the following invoices did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} issue or send?",
+                            "title": "During 2019, which of the following invoices did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} issue or send?",
                             "definitions": [{
                                 "title": "Examples of electronic invoice formats",
                                 "content": [{
@@ -1849,7 +1849,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2ec244ef-227a-41ae-bee0-d6b7b38a4e33",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use any of the following sources to analyse big data?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use any of the following sources to analyse big data?",
                             "definitions": [{
                                 "title": "What is big data?",
                                 "content": [{
@@ -1975,7 +1975,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question8702a64a-6729-41a3-a9f9-92779e03da0e",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use any of the following <em>methods</em> to analyse big data?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use any of the following <em>methods</em> to analyse big data?",
                             "definitions": [{
                                 "title": "What is big data?",
                                 "content": [{
@@ -2073,7 +2073,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionf2b7bfd9-3405-4a41-8c8a-6d921f08a866",
-                            "title": "During {{ metadata['period_str'] }}, did <em>another business</em> perform big data analysis for {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}?",
+                            "title": "During 2019, did <em>another business</em> perform big data analysis for {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}?",
                             "type": "General",
                             "answers": [{
                                 "id": "answera26934bd-a7a6-4f5c-b6e6-8248ca22eb41",
@@ -2130,7 +2130,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question51380ae3-92c2-44c5-86ad-2542716b8591",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} <em>sell, or sell access to,</em> any of its own big data?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} <em>sell, or sell access to,</em> any of its own big data?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2165,7 +2165,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questione4a067ea-4e7e-4710-8e62-2c30c01b3773",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} <em>purchase, or purchase access to,</em> any big data?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} <em>purchase, or purchase access to,</em> any big data?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2277,7 +2277,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1359",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} provide any type of <em>training</em> to develop ICT or IT related skills of its employees?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} provide any type of <em>training</em> to develop ICT or IT related skills of its employees?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -2318,7 +2318,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1360",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} <em>recruit or try to recruit</em> ICT or IT specialists?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} <em>recruit or try to recruit</em> ICT or IT specialists?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer1826",
@@ -2360,7 +2360,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1361",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} have <em>vacancies</em> for ICT or IT specialists that were difficult to fill?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} have <em>vacancies</em> for ICT or IT specialists that were difficult to fill?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer1827",
@@ -2386,7 +2386,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1d85ab8e-e47e-47b1-832d-7a6f7f45a686",
-                            "title": "During {{ metadata['period_str'] }}, who mainly performed the ICT or IT functions for {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}?",
+                            "title": "During 2019, who mainly performed the ICT or IT functions for {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }}?",
                             "guidance": {
                                 "content": [{
                                     "description": "Your own employees should include those employed in parent or affiliate businesses"
@@ -2497,7 +2497,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4aa87035-a536-4e71-8ff8-859be0733cfa",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use its own 3D printers or 3D printers provided by other businesses?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use its own 3D printers or 3D printers provided by other businesses?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Your own 3D printers should include:</strong>"
@@ -2545,7 +2545,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0e56a4a7-12c8-41bc-8e6d-b74914ff984d",
-                            "title": "During {{ metadata['period_str'] }}, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use 3D printing for any of the following activities?",
+                            "title": "During 2019, did {{ first_non_empty_item((metadata['trad_as']), (metadata['ru_name'])) }} use 3D printing for any of the following activities?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer6a43d038-04b4-4aa4-91e7-a36848983369",
@@ -2945,10 +2945,6 @@
         {
             "name": "ref_p_end_date",
             "validator": "date"
-        },
-        {
-            "name": "period_str",
-            "validator": "string"
         }
     ],
     "view_submitted_response": {
