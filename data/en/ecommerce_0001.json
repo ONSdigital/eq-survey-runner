@@ -773,7 +773,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer9cc30dc1-89fd-4a8d-8495-8d816f9f3ce1",
-                                "q_code": "253",
+                                "q_code": "235",
                                 "mandatory": true,
                                 "type": "Percentage",
                                 "label": "Percentage of total turnover from orders received via website or 'app'",
@@ -1450,7 +1450,7 @@
                                 },
                                 {
                                     "id": "answera4eccc5c-69c2-4da5-9452-59503cb21f6f",
-                                    "q_code": "531",
+                                    "q_code": "513",
                                     "mandatory": true,
                                     "type": "Percentage",
                                     "label": "Other EU countries",
@@ -2399,15 +2399,14 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "r2",
                                 "options": [{
                                         "label": "Mainly performed by the business&#39;s own employees",
-                                        "value": "Mainly performed by the business&#39;s own employees",
-                                        "q_code": "495"
+                                        "value": "Mainly performed by the business&#39;s own employees"
                                     },
                                     {
                                         "label": "Mainly performed by the external suppliers",
-                                        "value": "Mainly performed by the external suppliers",
-                                        "q_code": "496"
+                                        "value": "Mainly performed by the external suppliers"
                                     }
                                 ]
                             }]
