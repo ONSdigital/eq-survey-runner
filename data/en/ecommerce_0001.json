@@ -386,12 +386,12 @@
                                 "label": "Maximum contracted download speed",
                                 "description": "",
                                 "options": [{
-                                        "label": "Less than 2 Mbps",
-                                        "value": "Less than 2 Mbps"
+                                        "label": "Less than 2Mbps",
+                                        "value": "Less than 2Mbps"
                                     },
                                     {
-                                        "label": "2Mbps or more, but less than 10 Mbps",
-                                        "value": "2Mbps or more, but less than 10 Mbps"
+                                        "label": "2Mbps or more, but less than 10Mbps",
+                                        "value": "2Mbps or more, but less than 10Mbps"
                                     },
                                     {
                                         "label": "10Mbps or more, but less than 30Mbps",
@@ -402,16 +402,16 @@
                                         "value": "30Mbps or more, but less than 100Mbps"
                                     },
                                     {
-                                        "label": "100 Mbps or more, but less than 500 Mbps",
-                                        "value": "100 Mbps or more, but less than 500 Mbps"
+                                        "label": "100Mbps or more, but less than 500Mbps",
+                                        "value": "100Mbps or more, but less than 500Mbps"
                                     },
                                     {
-                                        "label": "500 Mbps or more, but less than 1000 Mbps (1Gbps)",
-                                        "value": "500 Mbps or more, but less than 1000 Mbps (1Gbps)"
+                                        "label": "500Mbps or more, but less than 1000Mbps (1Gbps)",
+                                        "value": "500Mbps or more, but less than 1000Mbps (1Gbps)"
                                     },
                                     {
-                                        "label": "1000 Mbps (1Gbps) or more",
-                                        "value": "1000 Mbps (1Gbps) or more"
+                                        "label": "1000Mbps (1Gbps) or more",
+                                        "value": "1000Mbps (1Gbps) or more"
                                     }
                                 ]
                             }]
