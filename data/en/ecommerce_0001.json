@@ -2402,7 +2402,7 @@
                                 "q_code": "r2",
                                 "options": [{
                                         "label": "Mainly performed by the business&#39;s own employees",
-                                        "value": "Mainly performed by the business&#39;s own employees"
+                                        "value": "Mainly performed by the business's own employees"
                                     },
                                     {
                                         "label": "Mainly performed by the external suppliers",
