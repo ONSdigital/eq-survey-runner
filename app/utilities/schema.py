@@ -57,16 +57,12 @@ def _load_schema_file(schema_file, language_code):
 
 @cache.memoize()
 def load_schema_from_url(survey_url, language_code):
-    language_code = language_code or DEFAULT_LANGUAGE_CODE
-    logger.info('loading schema from URL', survey_url=survey_url, language_code=language_code)
 
-    constructed_survey_url = '{}?language={}'.format(survey_url, language_code)
-
-    req = requests.get(constructed_survey_url)
+    req = requests.get(survey_url)
     schema_response = req.content.decode()
 
     if req.status_code == 404:
-        logger.error('no schema exists', survey_url=constructed_survey_url)
+        logger.error('no schema exists', survey_url=survey_url)
         raise NotFound
 
     return QuestionnaireSchema(json.loads(schema_response), language_code)
