@@ -1,215 +1,186 @@
 {
-    "eq_id": "vacancies",
-    "form_type": "0006",
-    "mime_type": "application/json/ons/eq",
-    "schema_version": "0.0.1",
-    "data_version": "0.0.2",
-    "survey_id": "182",
-    "title": "Quarterly Vacancy Survey",
-    "sections": [
-        {
-            "id": "section61c76a3e-8aef-45a4-9bfc-9b186269b5fc",
-            "groups": [
-                {
-                    "id": "group61c76a3e-8aef-45a4-9bfc-9b186269b5fc",
-                    "title": "",
-                    "blocks": [
-                        {
-                            "type": "Introduction",
-                            "id": "introduction-block",
-                            "primary_content": [
-                                {
-                                    "type": "Basic",
-                                    "id": "primary",
-                                    "content": [
-                                        {
-                                            "list": [
-                                                "Data should relate to vacancies in England, Scotland and Wales.",
-                                                "You can provide informed estimates if actual figures aren&#x2019;t available.",
-                                                "We will treat your data securely and confidentially."
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ],
-                            "preview_content": {
-                                "id": "preview",
-                                "title": "Information you need",
-                                "content": [
-                                    {
-                                        "description": "You should provide information on the number of job vacancies for which you were actively seeking recruits from outside of {{ metadata['ru_name'] }}"
-                                    }
-                                ],
-                                "questions": [
-                                    {
-                                        "question": "Number of job vacancies",
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include vacancies that:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "are to be filled by casual staff including those employed for temporary cover, for example maternity leave or sickness",
-                                                    "will be filled by staff from an employment agency",
-                                                    "are for temporary positions",
-                                                    "have a long recruitment process, for example graduate recruitment"
-                                                ]
-                                            },
-                                            {
-                                                "description": "<strong>Exclude vacancies that:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "are only open to internal applicants",
-                                                    "are for unpaid or voluntary positions",
-                                                    "will be filled by staff employed by an external company which is not an employment agency, for example, subcontractors, consultants or self-employed",
-                                                    "the job offer has already been accepted",
-                                                    "are for positions outside England, Scotland and Wales."
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            "secondary_content": [
-                                {
-                                    "id": "secondary-content",
-                                    "title": "How we use your data",
-                                    "content": [
-                                        {
-                                            "list": [
-                                                "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                                                "The information you provide contributes to the monthly Vacancies and Jobs Statistical Bulletin, which is used by the Treasury and the Bank of England as a valuable indicator of labour demand."
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "blockbffba060-5825-44a1-9d67-1a851c90db0a",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "questionbffba060-5825-44a1-9d67-1a851c90db0a",
-                                    "title": "On {{ metadata['ref_p_start_date'] | format_date }}, what was the number of job vacancies for which you were actively seeking recruits from outside of {{ metadata['ru_name'] }}?",
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include vacancies that:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "are to be filled by casual staff such as those employed for temporary cover, for example maternity leave or sickness",
-                                                    "will be filled by staff from an employment agency",
-                                                    "are for temporary positions",
-                                                    "have a long recruitment process, for example graduate recruitment"
-                                                ]
-                                            },
-                                            {
-                                                "description": "<strong>Exclude vacancies that:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "are only open to internal applicants",
-                                                    "are for unpaid or voluntary positions",
-                                                    "will be filled by staff employed by an external company that is not an employment agency, for example, subcontractors, consultants or the self-employed",
-                                                    "have already had a job offer accepted",
-                                                    "are for positions outside England, Scotland and Wales"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "answerb0ca3f20-34fc-48ff-982e-2bb047afe7df",
-                                            "mandatory": true,
-                                            "type": "Number",
-                                            "label": "Number of vacancies",
-                                            "description": "If an exact figure is not available, provide an informed estimate. If you did not have any vacancies, enter 0.",
-                                            "decimal_places": 0,
-                                            "q_code": "10"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "blockecdd43d4-93da-4115-8390-cc19127f937d",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "questionecdd43d4-93da-4115-8390-cc19127f937d",
-                                    "title": "Please explain any changes in your figures from the previous return, if applicable.",
-                                    "description": "<p>If you provide comments we are less likely to contact you with data queries.</p>",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "answer1314e8c7-761c-4502-ac8a-2d179d61da93",
-                                            "mandatory": false,
-                                            "type": "TextArea",
-                                            "label": "Comments",
-                                            "description": "",
-                                            "max_length": 2000,
-                                            "q_code": "146"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": "summary-group",
-                    "title": "Summary",
-                    "blocks": [
-                        {
-                            "type": "Summary",
-                            "id": "summary-block"
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "theme": "default",
-    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
-    "navigation": {
-        "visible": false
-    },
-    "metadata": [
-        {
-            "name": "user_id",
-            "validator": "string"
-        },
-        {
-            "name": "period_id",
-            "validator": "string"
-        },
-        {
-            "name": "ru_name",
-            "validator": "string"
-        },
-        {
-            "name": "trad_as",
-            "validator": "string"
-        },
-        {
-            "name": "ref_p_start_date",
-            "validator": "date"
-        },
-        {
-            "name": "ref_p_end_date",
-            "validator": "date"
-        },
-        {
-            "name": "employmentDate",
-            "validator": "date"
-        }
-    ],
-    "view_submitted_response": {
-        "enabled": true,
-        "duration": 900
-    }
+	"eq_id": "vacancies",
+	"form_type": "0006",
+	"mime_type": "application/json/ons/eq",
+	"schema_version": "0.0.1",
+	"data_version": "0.0.2",
+	"survey_id": "182",
+	"title": "Quarterly Vacancy Survey",
+	"sections": [{
+		"id": "section61c76a3e-8aef-45a4-9bfc-9b186269b5fc",
+		"groups": [{
+				"id": "group61c76a3e-8aef-45a4-9bfc-9b186269b5fc",
+				"title": "",
+				"blocks": [{
+						"type": "Introduction",
+						"id": "introduction-block",
+						"primary_content": [{
+							"type": "Basic",
+							"id": "primary",
+							"content": [{
+								"list": [
+									"Data should relate to vacancies in England, Scotland and Wales.",
+									"You can provide informed estimates if actual figures aren&#x2019;t available.",
+									"We will treat your data securely and confidentially."
+								]
+							}]
+						}],
+						"preview_content": {
+							"id": "preview",
+							"title": "Information you need",
+							"content": [{
+								"description": "You should provide information on the number of job vacancies for which you were actively seeking recruits from outside of {{ metadata['ru_name'] }}"
+							}],
+							"questions": [{
+								"question": "Number of job vacancies",
+								"content": [{
+										"description": "<strong>Include vacancies that:</strong>"
+									},
+									{
+										"list": [
+											"are to be filled by casual staff including those employed for temporary cover, for example maternity leave or sickness",
+											"will be filled by staff from an employment agency",
+											"are for temporary positions",
+											"have a long recruitment process, for example graduate recruitment"
+										]
+									},
+									{
+										"description": "<strong>Exclude vacancies that:</strong>"
+									},
+									{
+										"list": [
+											"are only open to internal applicants",
+											"are for unpaid or voluntary positions",
+											"will be filled by staff employed by an external company which is not an employment agency, for example, subcontractors, consultants or self-employed",
+											"the job offer has already been accepted",
+											"are for positions outside England, Scotland and Wales."
+										]
+									}
+								]
+							}]
+						},
+						"secondary_content": [{
+							"id": "secondary-content",
+							"title": "How we use your data",
+							"content": [{
+								"list": [
+									"You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+									"The information you provide contributes to the monthly Vacancies and Jobs Statistical Bulletin, which is used by the Treasury and the Bank of England as a valuable indicator of labour demand."
+								]
+							}]
+						}]
+					},
+					{
+						"id": "blockbffba060-5825-44a1-9d67-1a851c90db0a",
+						"type": "Question",
+						"questions": [{
+							"id": "questionbffba060-5825-44a1-9d67-1a851c90db0a",
+							"title": "On {{ metadata['ref_p_start_date'] | format_date }}, what was the number of job vacancies for which you were actively seeking recruits from outside of {{ metadata['ru_name'] }}?",
+							"guidance": {
+								"content": [{
+										"description": "<strong>Include vacancies that:</strong>"
+									},
+									{
+										"list": [
+											"are to be filled by casual staff such as those employed for temporary cover, for example maternity leave or sickness",
+											"will be filled by staff from an employment agency",
+											"are for temporary positions",
+											"have a long recruitment process, for example graduate recruitment"
+										]
+									},
+									{
+										"description": "<strong>Exclude vacancies that:</strong>"
+									},
+									{
+										"list": [
+											"are only open to internal applicants",
+											"are for unpaid or voluntary positions",
+											"will be filled by staff employed by an external company that is not an employment agency, for example, subcontractors, consultants or the self-employed",
+											"have already had a job offer accepted",
+											"are for positions outside England, Scotland and Wales"
+										]
+									}
+								]
+							},
+							"type": "General",
+							"answers": [{
+								"id": "answerb0ca3f20-34fc-48ff-982e-2bb047afe7df",
+								"mandatory": true,
+								"type": "Number",
+								"label": "Number of vacancies",
+								"description": "If an exact figure is not available, provide an informed estimate. If you did not have any vacancies, enter 0.",
+								"decimal_places": 0,
+								"q_code": "10"
+							}]
+						}]
+					},
+					{
+						"id": "blockecdd43d4-93da-4115-8390-cc19127f937d",
+						"type": "Question",
+						"questions": [{
+							"id": "questionecdd43d4-93da-4115-8390-cc19127f937d",
+							"title": "Please explain any changes in your figures from the previous return, if applicable.",
+							"description": "<p>If you provide comments we are less likely to contact you with data queries.</p>",
+							"type": "General",
+							"answers": [{
+								"id": "answer1314e8c7-761c-4502-ac8a-2d179d61da93",
+								"mandatory": false,
+								"type": "TextArea",
+								"label": "Comments",
+								"description": "",
+								"max_length": 2000,
+								"q_code": "146"
+							}]
+						}]
+					}
+				]
+			},
+			{
+				"id": "summary-group",
+				"title": "Summary",
+				"blocks": [{
+					"type": "Summary",
+					"id": "summary-block"
+				}]
+			}
+		]
+	}],
+	"theme": "default",
+	"legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
+	"navigation": {
+		"visible": false
+	},
+	"metadata": [{
+			"name": "user_id",
+			"validator": "string"
+		},
+		{
+			"name": "period_id",
+			"validator": "string"
+		},
+		{
+			"name": "ru_name",
+			"validator": "string"
+		},
+		{
+			"name": "trad_as",
+			"validator": "string"
+		},
+		{
+			"name": "ref_p_start_date",
+			"validator": "date"
+		},
+		{
+			"name": "ref_p_end_date",
+			"validator": "date"
+		},
+		{
+			"name": "employmentDate",
+			"validator": "date"
+		}
+	],
+	"view_submitted_response": {
+		"enabled": true,
+		"duration": 900
+	}
 }
