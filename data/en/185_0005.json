@@ -129,7 +129,7 @@
                                             "label": "Number of vacancies",
                                             "description": "If an exact figure is not available, provide an informed estimate. If you did not have any vacancies, enter 0.",
                                             "decimal_places": 0,
-                                            "q_code": 10
+                                            "q_code": "10"
                                         }
                                     ]
                                 }
@@ -152,7 +152,7 @@
                                             "label": "Comments",
                                             "description": "",
                                             "max_length": 2000,
-                                            "q_code": 10
+                                            "q_code": "146"
                                         }
                                     ]
                                 }

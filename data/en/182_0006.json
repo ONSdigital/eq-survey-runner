@@ -152,7 +152,7 @@
                                             "label": "Comments",
                                             "description": "",
                                             "max_length": 2000,
-                                            "q_code": 10
+                                            "q_code": "146"
                                         }
                                     ]
                                 }
