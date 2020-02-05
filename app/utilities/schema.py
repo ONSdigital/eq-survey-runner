@@ -57,8 +57,7 @@ def _load_schema_file(schema_file, language_code):
 
 @cache.memoize()
 def load_schema_from_url(survey_url, language_code):
-
-    language_code = language_code or DEFAULT_LANGUAGE_CODE	
+    language_code = language_code or DEFAULT_LANGUAGE_CODE
     logger.info('loading schema from URL', survey_url=survey_url, language_code=language_code)	
 
     if '?' in survey_url:
