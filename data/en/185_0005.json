@@ -175,7 +175,7 @@
             "validator": "date"
         },
         {
-            "name": "employmentDate",
+            "name": "employment_date",
             "validator": "date"
         }
     ],
