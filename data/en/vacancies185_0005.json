@@ -1,11 +1,11 @@
 {
-    "eq_id": "vacancies",
-    "form_type": "0006",
+    "eq_id": "vacancies185",
+    "form_type": "0005",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
-    "data_version": "0.0.2",
-    "survey_id": "184",
-    "title": "Quarterly Vacancy Survey",
+    "data_version": "0.0.1",
+    "survey_id": "185",
+    "title": "Monthly Vacancy Survey",
     "sections": [{
         "id": "section61c76a3e-8aef-45a4-9bfc-9b186269b5fc",
         "groups": [{
