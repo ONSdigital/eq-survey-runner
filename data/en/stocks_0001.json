@@ -23,7 +23,8 @@
                                     "id": "primary",
                                     "content": [
                                         {
-                                            "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Important notice for December period</h2><p>We understand that many UK businesses have ‘holiday shutdowns’ in December. If this applies to your business, please share your weekly wage figures from a more representative week.</p></div></div><br/><p>The next section covers Weekly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director’s fees</li><li>employer’s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business’s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                                            "description": 
+                                                "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Important notice – Changes to guidance Please now include the value of stocks owned and held abroad in your figures, alongside all stocks owned and held in the UK. Read the includes and excludes that accompany each question for further guidance.</p></div></div><br/",
                                             "list": [
                                                 "This survey covers UK businesses. The business is the individual company, partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
                                                 "All stock owned by your business, whether in the UK or abroad.",
@@ -257,7 +258,7 @@
                                             },
                                             {
                                                 "list": [
-                                                    "All stock owned by your business, whether in the UK or abroad.",
+                                                    "All stock owned by your business, whether in the UK or abroad",
                                                     "Raw materials and components purchased for incorporation into products for sale",
                                                     "Consumable stores",
                                                     "Semi-processed goods",
@@ -314,7 +315,7 @@
                                             },
                                             {
                                                 "list": [
-                                                    "All stock owned by your business, whether in the UK or abroad.",
+                                                    "All stock owned by your business, whether in the UK or abroad",
                                                     "Products that you own in intermediate stages of completion (even if not held by you)",
                                                     "Long term business contract balances in line with UK Generally Accepted Accountancy Practice (GAAP) or International GAAP",
                                                     "Duty for dutiable goods held out of bond",
@@ -384,7 +385,7 @@
                                             },
                                             {
                                                 "list": [
-                                                    "All stock owned by your business, whether in the UK or abroad.",
+                                                    "All stock owned by your business, whether in the UK or abroad",
                                                     "Buildings for sale",
                                                     "Vehicles, plant, machinery, etc. let out on hire only if they were not charged to capital account when acquired or made",
                                                     "Duty for dutiable goods held out of bond",
