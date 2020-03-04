@@ -18,9 +18,10 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Important notice – Changes to guidance </h2><p>Please now include the value of stocks owned and held abroad in your figures, alongside all stocks owned and held in the UK. Read the includes and excludes that accompany each question for further guidance.</p></div></div><br/>",
                                 "list": [
                                     "This survey covers UK businesses. The business is the individual company, partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
-                                    "All stocks owned and either held by you or currently in transit within the United Kingdom.",
+                                    "All stock owned by your business, whether in the UK or abroad.",
                                     "We will treat your data securely and confidentially."
                                 ]
                             }]
@@ -38,6 +39,7 @@
                                         },
                                         {
                                             "list": [
+                                                "All stock owned by your business, whether in the UK or abroad",
                                                 "Raw materials and components purchased for incorporation into products for sale",
                                                 "Consumable stores",
                                                 "Semi-processed goods",
@@ -61,6 +63,7 @@
                                         },
                                         {
                                             "list": [
+                                                "All stock owned by your business, whether in the UK or abroad",
                                                 "Products that you own in intermediate stages of completion (even if not held by you)",
                                                 "Long term business contract balances in line with UK Generally Accepted Accountancy Practice (GAAP) or International GAAP",
                                                 "Vehicles, plant or machinery, etc. bought for resale",
@@ -88,6 +91,7 @@
                                         },
                                         {
                                             "list": [
+                                                "All stock owned by your business, whether in the UK or abroad",
                                                 "Show houses completed but not yet sold",
                                                 "Buildings for sale",
                                                 "Houses taken in part exchange",
@@ -211,6 +215,7 @@
                                     },
                                     {
                                         "list": [
+                                            "All stock owned by your business, whether in the UK or abroad",
                                             "Raw materials and components purchased for incorporation into products for sale",
                                             "Consumable stores",
                                             "Semi-processed goods",
@@ -263,6 +268,7 @@
                                     },
                                     {
                                         "list": [
+                                            "All stock owned by your business, whether in the UK or abroad",
                                             "Products that you own in intermediate stages of completion (even if not held by you)",
                                             "Long term business contract balances in line with UK Generally Accepted Accountancy Practice (GAAP) or International GAAP",
                                             "Vehicles, plant or machinery, etc. bought for resale",
@@ -321,6 +327,7 @@
                                     },
                                     {
                                         "list": [
+                                            "All stock owned by your business, whether in the UK or abroad",
                                             "Show houses completed but not yet sold",
                                             "Buildings for sale",
                                             "Houses taken in part exchange",

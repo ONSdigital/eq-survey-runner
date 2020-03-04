@@ -18,7 +18,9 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Important notice – Changes to guidance </h2><p>Please now include the value of stocks owned and held abroad in your figures, alongside all stocks owned and held in the UK. Read the includes and excludes that accompany each question for further guidance.</p></div></div><br/>",
                                 "list": [
+                                    "All stock owned by your business, whether in the UK or abroad.",
                                     "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
                                     "You can provide informed estimates if actual figures aren&#x2019;t available.",
                                     "We will treat your data securely and confidentially."
@@ -38,7 +40,7 @@
                                         },
                                         {
                                             "list": [
-                                                "All stocks owned; whether held by you or in transit in the UK",
+                                                "All stock owned by your business, whether in the UK or abroad",
                                                 "Duty for dutiable goods held out of bond",
                                                 "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -58,7 +60,7 @@
                                         },
                                         {
                                             "list": [
-                                                "All stocks owned; whether held by you or in transit in the UK",
+                                                "All stock owned by your business, whether in the UK or abroad",
                                                 "Duty for dutiable goods held out of bond",
                                                 "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -78,7 +80,7 @@
                                         },
                                         {
                                             "list": [
-                                                "All stocks owned; whether held by you or in transit in the UK",
+                                                "All stock owned by your business, whether in the UK or abroad",
                                                 "Duty for dutiable goods held out of bond",
                                                 "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -102,7 +104,7 @@
                                                 "Consumable stores",
                                                 "Semi-processed goods",
                                                 "Office supplies (including stationery) and packaging materials",
-                                                "All stocks owned; whether held by you or in transit in the UK",
+                                                "All stock owned by your business, whether in the UK or abroad",
                                                 "Duty for dutiable goods held out of bond",
                                                 "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -124,7 +126,7 @@
                                             "list": [
                                                 "Products that you own in intermediate stages of completion (even if not held by you)",
                                                 "Long term business contract balances in line with UK Generally Accepted Accountancy Practice (GAAP) or International GAAP",
-                                                "All stocks owned; whether held by you or in transit in the UK",
+                                                "All stock owned by your business, whether in the UK or abroad",
                                                 "Duty for dutiable goods held out of bond",
                                                 "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -149,7 +151,7 @@
                                         },
                                         {
                                             "list": [
-                                                "All stocks owned; whether held by you or in transit in the UK",
+                                                "All stock owned by your business, whether in the UK or abroad",
                                                 "Duty for dutiable goods held out of bond",
                                                 "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -269,7 +271,7 @@
                                     },
                                     {
                                         "list": [
-                                            "All stocks owned and either held by you or currently in transit within the United Kingdom",
+                                            "All stock owned by your business, whether in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
@@ -318,7 +320,7 @@
                                     },
                                     {
                                         "list": [
-                                            "All stocks owned and either held by you or currently in transit within the United Kingdom",
+                                            "All stock owned by your business, whether in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
@@ -367,7 +369,7 @@
                                     },
                                     {
                                         "list": [
-                                            "All stocks owned and either held by you or currently in transit within the United Kingdom",
+                                            "All stock owned by your business, whether in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
@@ -420,7 +422,7 @@
                                             "Consumable stores",
                                             "Semi-processed goods",
                                             "Office supplies (including stationery) and packaging materials",
-                                            "All stocks owned and either held by you or currently in transit within the United Kingdom",
+                                            "All stock owned by your business, whether in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
@@ -471,7 +473,7 @@
                                         "list": [
                                             "Products that you own in intermediate stages of completion (even if not held by you)",
                                             "Long term business contract balances in line with UK Generally Accepted Accountancy Practice (GAAP) or International GAAP",
-                                            "All stocks owned and either held by you or currently in transit within the United Kingdom",
+                                            "All stock owned by your business, whether in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
