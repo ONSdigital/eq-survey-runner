@@ -18,9 +18,10 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Important notice – Changes to guidance </h2><p>Please now include the value of stocks owned and held abroad in your figures, alongside all stocks owned and held in the UK. Read the includes and excludes that accompany each question for further guidance.</p></div></div><br/>",
                                 "list": [
                                     "This survey covers UK businesses. The business is the individual company, partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
-                                    "All stocks owned and either held by you or currently in transit within the United Kingdom.",
+                                    "Include all stock owned by your business, whether in the UK or abroad.",
                                     "We will treat your data securely and confidentially."
                                 ]
                             }]
@@ -38,6 +39,7 @@
                                     },
                                     {
                                         "list": [
+                                            "All stock owned by your business, whether in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
@@ -156,6 +158,7 @@
                                     },
                                     {
                                         "list": [
+                                            "All stock owned by your business, whether in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
