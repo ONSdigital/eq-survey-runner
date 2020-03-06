@@ -142,7 +142,8 @@
                                         },
                                         {
                                             "list": ["All stock owned by your business, whether in the UK or abroad",
-                                                     "Stores", "Generation, transmission, and distribution stocks"]
+                                                "Stores", "Generation, transmission, and distribution stocks"
+                                            ]
                                         },
                                         {
                                             "title": "Exclude"
@@ -478,7 +479,8 @@
                                     },
                                     {
                                         "list": ["All stock owned by your business, whether in the UK or abroad",
-                                                 "Stores", "Generation, transmission, and distribution stocks"]
+                                            "Stores", "Generation, transmission, and distribution stocks"
+                                        ]
                                     },
                                     {
                                         "title": "Exclude"
