@@ -187,7 +187,30 @@
                     "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed on {{metadata['ref_p_start_date']|format_date}}, how many male and female employees worked the following hours?",
                     "type": "Calculated"
                 }]
-            }, {
+            },
+            {
+                "id": "block11020211-b6d8-4118-b73d-745709a1fa8d",
+                "type": "Question",
+                "questions": [
+                    {
+                        "id": "question11020211-b6d8-4118-b73d-745709a1fa8d",
+                        "title": "Please explain any changes in your figures from the previous return, if applicable.",
+                        "description": "<p>If you provide comments we are less likely to contact you with data queries.</p>",
+                        "type": "General",
+                        "answers": [
+                            {
+                                "id": "answer2fc8dbaa-21be-419e-8b72-c7b8bbe68b38",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "max_length": 2000
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
                 "type": "Summary",
                 "id": "summary"
             }],
