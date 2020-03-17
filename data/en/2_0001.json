@@ -25,196 +25,193 @@
         "id": "default-section",
         "groups": [{
             "blocks": [{
-                "type": "Introduction",
-                "id": "introduction",
-                "primary_content": [{
-                    "id": "get-started",
-                    "content": [{
-                        "list": ["On average it takes 10 minutes to complete this survey once you\u2019ve collected the information.", "Data should relate to all sites in England, Scotland and Wales.", "You can provide informed estimates if actual figures aren\u2019t available.", "We will treat your data securely and confidentially."]
-                    }]
-                }],
-                "secondary_content": [{
-                    "id": "preview",
-                    "title": "Information you need",
-                    "content": [{
-                        "list": ["Total number of employees", "Male employees working more than 30 hours per week", "Male employees working 30 hours or less per week", "Female employees working more than 30 hours per week", "Female employees working 30 hours or less per week"]
-                    }, {
-                        "title": "Include:",
-                        "list": ["all workers paid directly from this business\u2019s payroll(s)", "those temporarily absent but still being paid, for example on maternity leave"]
-                    }, {
-                        "title": "Exclude:",
-                        "list": ["agency workers paid directly from the agency payroll", "voluntary workers", "former employees only receiving a pension", "self-employed workers", "working owners who are not paid via PAYE"]
-                    }]
-                }, {
-                    "title": "How we use your data",
-                    "content": [{
-                        "list": ["You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.", "The information you provide contributes to the Labour Market Statistics."]
-                    }]
-                }]
-            }, {
-                "id": "number-of-employees-total-block",
-                "questions": [{
-                    "answers": [{
-                        "id": "number-of-employees-total",
-                        "label": "Total number of employees",
-                        "mandatory": false,
-                        "q_code": "50",
-                        "type": "Number",
-                        "default": 0
-                    }],
-                    "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
-                    "guidance": {
+                    "type": "Introduction",
+                    "id": "introduction",
+                    "primary_content": [{
+                        "id": "get-started",
                         "content": [{
-                            "title": "Include",
+                            "list": ["On average it takes 10 minutes to complete this survey once you\u2019ve collected the information.", "Data should relate to all sites in England, Scotland and Wales.", "You can provide informed estimates if actual figures aren\u2019t available.", "We will treat your data securely and confidentially."]
+                        }]
+                    }],
+                    "secondary_content": [{
+                        "id": "preview",
+                        "title": "Information you need",
+                        "content": [{
+                            "list": ["Total number of employees", "Male employees working more than 30 hours per week", "Male employees working 30 hours or less per week", "Female employees working more than 30 hours per week", "Female employees working 30 hours or less per week"]
+                        }, {
+                            "title": "Include:",
                             "list": ["all workers paid directly from this business\u2019s payroll(s)", "those temporarily absent but still being paid, for example on maternity leave"]
                         }, {
                             "title": "Exclude:",
                             "list": ["agency workers paid directly from the agency payroll", "voluntary workers", "former employees only receiving a pension", "self-employed workers", "working owners who are not paid via PAYE"]
                         }]
-                    },
-                    "id": "number-of-employees-total-question",
-                    "title": "On {{metadata['ref_p_start_date']|format_date}}, what was the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
-                    "type": "General"
-                }],
-                "title": "Quarterly Business Survey",
-                "type": "Question"
-            }, {
-                "type": "ConfirmationQuestion",
-                "title": "Employees",
-                "id": "confirm-zero-employees-block",
-                "skip_conditions": [{
-                    "when": [{
-                        "id": "number-of-employees-total",
-                        "condition": "greater than",
-                        "value": 0
+                    }, {
+                        "title": "How we use your data",
+                        "content": [{
+                            "list": ["You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.", "The information you provide contributes to the Labour Market Statistics."]
+                        }]
                     }]
-                }],
-                "questions": [{
-                    "type": "General",
-                    "answers": [{
-                        "type": "Radio",
-                        "id": "confirm-zero-employees-answer",
-                        "q_code": "d50",
-                        "options": [{
-                            "label": "Yes this is correct",
-                            "value": "Yes"
-                        }, {
-                            "label": "No I need to change this",
-                            "value": "No"
+                }, {
+                    "id": "number-of-employees-total-block",
+                    "questions": [{
+                        "answers": [{
+                            "id": "number-of-employees-total",
+                            "label": "Total number of employees",
+                            "mandatory": false,
+                            "q_code": "50",
+                            "type": "Number",
+                            "default": 0
                         }],
-                        "mandatory": true
+                        "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": ["all workers paid directly from this business\u2019s payroll(s)", "those temporarily absent but still being paid, for example on maternity leave"]
+                            }, {
+                                "title": "Exclude:",
+                                "list": ["agency workers paid directly from the agency payroll", "voluntary workers", "former employees only receiving a pension", "self-employed workers", "working owners who are not paid via PAYE"]
+                            }]
+                        },
+                        "id": "number-of-employees-total-question",
+                        "title": "On {{metadata['ref_p_start_date']|format_date}}, what was the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
+                        "type": "General"
                     }],
-                    "id": "confirm-zero-employees-question",
-                    "title": "On {{metadata['ref_p_start_date']|format_date}}, the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was <em>0</em>, is this correct?"
-                }],
-                "routing_rules": [{
-                    "goto": {
+                    "title": "Quarterly Business Survey",
+                    "type": "Question"
+                }, {
+                    "type": "ConfirmationQuestion",
+                    "title": "Employees",
+                    "id": "confirm-zero-employees-block",
+                    "skip_conditions": [{
                         "when": [{
-                            "value": "No",
-                            "id": "confirm-zero-employees-answer",
-                            "condition": "equals"
-                        }],
-                        "block": "number-of-employees-total-block"
-                    }
-                }, {
-                    "goto": {
-                        "block": "summary"
-                    }
-                }]
-            }, {
-                "id": "number-of-employees-split-block",
-                "title": "Quarterly Business Survey",
-                "type": "Question",
-                "questions": [{
-                    "calculations": [{
-                        "calculation_type": "sum",
-                        "value": 0,
-                        "answers_to_calculate": ["number-of-employees-male-more-30-hours", "number-of-employees-male-less-30-hours", "number-of-employees-female-more-30-hours", "number-of-employees-female-less-30-hours"],
-                        "conditions": ["equals"]
-                    }, {
-                        "calculation_type": "sum",
-                        "answer_id": "number-of-employees-total",
-                        "answers_to_calculate": ["number-of-employees-male-more-30-hours", "number-of-employees-male-less-30-hours", "number-of-employees-female-more-30-hours", "number-of-employees-female-less-30-hours"],
-                        "conditions": ["equals"]
-                    }],
-                    "answers": [{
-                        "id": "number-of-employees-male-more-30-hours",
-                        "label": "Number of male employees working more than 30 hours per week",
-                        "mandatory": false,
-                        "q_code": "51",
-                        "type": "Number",
-                        "max_value": {
-                            "answer_id": "number-of-employees-total"
-                        }
-                    }, {
-                        "id": "number-of-employees-male-less-30-hours",
-                        "label": "Number of male employees working 30 hours or less per week",
-                        "mandatory": false,
-                        "q_code": "52",
-                        "type": "Number",
-                        "max_value": {
-                            "answer_id": "number-of-employees-total"
-                        }
-                    }, {
-                        "id": "number-of-employees-female-more-30-hours",
-                        "label": "Number of female employees working more than 30 hours per week",
-                        "mandatory": false,
-                        "q_code": "53",
-                        "type": "Number",
-                        "max_value": {
-                            "answer_id": "number-of-employees-total"
-                        }
-                    }, {
-                        "id": "number-of-employees-female-less-30-hours",
-                        "label": "Number of female employees working 30 hours or less per week",
-                        "mandatory": false,
-                        "q_code": "54",
-                        "type": "Number",
-                        "max_value": {
-                            "answer_id": "number-of-employees-total"
-                        }
-                    }],
-                    "guidance": {
-                        "content": [{
-                            "title": "Include",
-                            "list": ["all workers paid directly from this business\u2019s payroll(s)", "those temporarily absent but still being paid, for example on maternity leave"]
-                        }, {
-                            "title": "Exclude:",
-                            "list": ["agency workers paid directly from the agency payroll", "voluntary workers", "former employees only receiving a pension", "self-employed workers", "working owners who are not paid via PAYE"]
+                            "id": "number-of-employees-total",
+                            "condition": "greater than",
+                            "value": 0
                         }]
-                    },
-                    "id": "number-of-employees-split-question",
-                    "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed on {{metadata['ref_p_start_date']|format_date}}, how many male and female employees worked the following hours?",
-                    "type": "Calculated"
-                }]
-            },
-            {
-                "id": "block11020211-b6d8-4118-b73d-745709a1fa8d",
-                "type": "Question",
-                "questions": [
-                    {
+                    }],
+                    "questions": [{
+                        "type": "General",
+                        "answers": [{
+                            "type": "Radio",
+                            "id": "confirm-zero-employees-answer",
+                            "q_code": "d50",
+                            "options": [{
+                                "label": "Yes this is correct",
+                                "value": "Yes"
+                            }, {
+                                "label": "No I need to change this",
+                                "value": "No"
+                            }],
+                            "mandatory": true
+                        }],
+                        "id": "confirm-zero-employees-question",
+                        "title": "On {{metadata['ref_p_start_date']|format_date}}, the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was <em>0</em>, is this correct?"
+                    }],
+                    "routing_rules": [{
+                        "goto": {
+                            "when": [{
+                                "value": "No",
+                                "id": "confirm-zero-employees-answer",
+                                "condition": "equals"
+                            }],
+                            "block": "number-of-employees-total-block"
+                        }
+                    }, {
+                        "goto": {
+                            "block": "summary"
+                        }
+                    }]
+                }, {
+                    "id": "number-of-employees-split-block",
+                    "title": "Quarterly Business Survey",
+                    "type": "Question",
+                    "questions": [{
+                        "calculations": [{
+                            "calculation_type": "sum",
+                            "value": 0,
+                            "answers_to_calculate": ["number-of-employees-male-more-30-hours", "number-of-employees-male-less-30-hours", "number-of-employees-female-more-30-hours", "number-of-employees-female-less-30-hours"],
+                            "conditions": ["equals"]
+                        }, {
+                            "calculation_type": "sum",
+                            "answer_id": "number-of-employees-total",
+                            "answers_to_calculate": ["number-of-employees-male-more-30-hours", "number-of-employees-male-less-30-hours", "number-of-employees-female-more-30-hours", "number-of-employees-female-less-30-hours"],
+                            "conditions": ["equals"]
+                        }],
+                        "answers": [{
+                            "id": "number-of-employees-male-more-30-hours",
+                            "label": "Number of male employees working more than 30 hours per week",
+                            "mandatory": false,
+                            "q_code": "51",
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "number-of-employees-total"
+                            }
+                        }, {
+                            "id": "number-of-employees-male-less-30-hours",
+                            "label": "Number of male employees working 30 hours or less per week",
+                            "mandatory": false,
+                            "q_code": "52",
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "number-of-employees-total"
+                            }
+                        }, {
+                            "id": "number-of-employees-female-more-30-hours",
+                            "label": "Number of female employees working more than 30 hours per week",
+                            "mandatory": false,
+                            "q_code": "53",
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "number-of-employees-total"
+                            }
+                        }, {
+                            "id": "number-of-employees-female-less-30-hours",
+                            "label": "Number of female employees working 30 hours or less per week",
+                            "mandatory": false,
+                            "q_code": "54",
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "number-of-employees-total"
+                            }
+                        }],
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": ["all workers paid directly from this business\u2019s payroll(s)", "those temporarily absent but still being paid, for example on maternity leave"]
+                            }, {
+                                "title": "Exclude:",
+                                "list": ["agency workers paid directly from the agency payroll", "voluntary workers", "former employees only receiving a pension", "self-employed workers", "working owners who are not paid via PAYE"]
+                            }]
+                        },
+                        "id": "number-of-employees-split-question",
+                        "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed on {{metadata['ref_p_start_date']|format_date}}, how many male and female employees worked the following hours?",
+                        "type": "Calculated"
+                    }]
+                },
+                {
+                    "id": "block11020211-b6d8-4118-b73d-745709a1fa8d",
+                    "type": "Question",
+                    "questions": [{
                         "id": "question11020211-b6d8-4118-b73d-745709a1fa8d",
                         "title": "Please explain any changes in your figures from the previous return, if applicable.",
                         "description": "<p>If you provide comments we are less likely to contact you with data queries.</p>",
                         "type": "General",
-                        "answers": [
-                            {
-                                "id": "answer2fc8dbaa-21be-419e-8b72-c7b8bbe68b38",
-                                "mandatory": false,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "description": "",
-                                "max_length": 2000,
-                                "q_code": "146"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "type": "Summary",
-                "id": "summary"
-            }],
+                        "answers": [{
+                            "id": "answer2fc8dbaa-21be-419e-8b72-c7b8bbe68b38",
+                            "mandatory": false,
+                            "type": "TextArea",
+                            "label": "Comments",
+                            "description": "",
+                            "max_length": 2000,
+                            "q_code": "146"
+                        }]
+                    }]
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
             "id": "qbs",
             "title": "Quarterly Business Survey"
         }]
