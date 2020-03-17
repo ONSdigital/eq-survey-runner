@@ -28,6 +28,8 @@ class TestQbsSubmissionData(IntegrationTestCase):
                              'number-of-employees-female-more-30-hours': '3',
                              'number-of-employees-female-less-30-hours': '4'})
 
+        self.post(post_data={'please-explain-any-changes': 'Example explanation'})
+
         # There are no validation errors (we're on the summary screen)
         self.assertInUrl('summary')
         self.assertInBody('>Quarterly Business Survey</')
@@ -57,7 +59,8 @@ class TestQbsSubmissionData(IntegrationTestCase):
                     '51': '1',
                     '52': '2',
                     '53': '3',
-                    '54': '4'
+                    '54': '4',
+                    '146': 'Example explanation'
                 },
                 'type': 'uk.gov.ons.edc.eq:surveyresponse',
                 'version': '0.0.1',
