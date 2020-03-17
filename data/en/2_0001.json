@@ -189,15 +189,15 @@
                     }]
                 },
                 {
-                    "id": "block11020211-b6d8-4118-b73d-745709a1fa8d",
+                    "id": "comments-block",
                     "type": "Question",
                     "questions": [{
-                        "id": "question11020211-b6d8-4118-b73d-745709a1fa8d",
+                        "id": "comment-question",
                         "title": "Please explain any changes in your figures from the previous return, if applicable.",
                         "description": "<p>If you provide comments we are less likely to contact you with data queries.</p>",
                         "type": "General",
                         "answers": [{
-                            "id": "answer2fc8dbaa-21be-419e-8b72-c7b8bbe68b38",
+                            "id": "please-explain-any-changes",
                             "mandatory": false,
                             "type": "TextArea",
                             "label": "Comments",
