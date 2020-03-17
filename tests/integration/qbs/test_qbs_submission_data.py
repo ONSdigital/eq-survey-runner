@@ -26,8 +26,9 @@ class TestQbsSubmissionData(IntegrationTestCase):
         self.post(post_data={'number-of-employees-male-more-30-hours': '1',
                              'number-of-employees-male-less-30-hours': '2',
                              'number-of-employees-female-more-30-hours': '3',
-                             'number-of-employees-female-less-30-hours': '4',
-                             'please-explain-any-changes': 'Example explanation'})
+                             'number-of-employees-female-less-30-hours': '4'})
+
+        self.post(post_data={'please-explain-any-changes': 'Example explanation'})
 
         # There are no validation errors (we're on the summary screen)
         self.assertInUrl('summary')
