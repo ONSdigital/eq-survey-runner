@@ -118,7 +118,7 @@
                         }
                     }, {
                         "goto": {
-                            "block": "summary"
+                            "block": "comments"
                         }
                     }]
                 }, {
@@ -189,7 +189,7 @@
                     }]
                 },
                 {
-                    "id": "comments-block",
+                    "id": "comments",
                     "type": "Question",
                     "questions": [{
                         "id": "comment-question",
