@@ -118,7 +118,7 @@
                         }
                     }, {
                         "goto": {
-                            "block": "summary"
+                            "block": "comments-block"
                         }
                     }]
                 }, {
