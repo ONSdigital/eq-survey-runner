@@ -7,6 +7,7 @@ Install Docker for your system: https://www.docker.com/
 To get eq-survey-runner running the following command will build and run the containers
 ```
 docker-compose up -d
+
 ```
 
 To launch a survey, navigate to `http://localhost:8000/`
