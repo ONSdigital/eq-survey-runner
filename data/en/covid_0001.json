@@ -1,10 +1,10 @@
 {
-    "eq_id": "bd8d539d-50ed-4855-8006-f8d4050d69a1",
+    "eq_id": "covid_0001",
     "form_type": "bd8d539d-50ed-4855-8006-f8d4050d69a1",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
-    "survey_id": "businessimpactofcoronaviruscovid19survey",
+    "survey_id": "283",
     "title": "Business Impact of Coronavirus (COVID-19) survey",
     "sections": [{
             "id": "section07aa7033-76e4-41b4-81e4-a957831a5a42",
