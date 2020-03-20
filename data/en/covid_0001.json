@@ -3,7 +3,7 @@
     "form_type": "bd8d539d-50ed-4855-8006-f8d4050d69a1",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
-    "data_version": "0.0.2",
+    "data_version": "0.0.1",
     "survey_id": "283",
     "title": "Business Impact of Coronavirus (COVID-19) survey",
     "sections": [{
