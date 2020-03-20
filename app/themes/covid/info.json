@@ -1,0 +1,9 @@
+{
+    "application": "surveyrunner",
+    "identifier": "covid",
+    "name": "Covid 2020",
+    "author": "martyncolmer",
+    "description": "Theme for the 2020 Covid",
+    "license": "MIT/X11",
+    "version": "1.0.0"
+}
