@@ -33,10 +33,7 @@
 
                 </h2>
 
-                <p class="u-fs-r" data-qa="details-changed-title">{{ _("If the company details or structure have changed contact us on <a href='tel:03003035948'>0300 303 5948</a> or email <a href='mailto:surveycomments@ons.gov.uk?subject=Covid' aria-describedby='details-changed-title'>surveycomments@ons.gov.uk</a>",
-                        telephone_number = helpers.telephone_number(),
-                        email_address = helpers.email_address(aria_describedby='details-changed-title', subject="Change of details reference " + metadata.ru_ref)
-                    ) }}
+                <p class="u-fs-r" data-qa="details-changed-title">{{ _("If the company details or structure have changed contact us on <a href='tel:03003035948'>0300 303 5948</a> or email <a href='mailto:surveycomments@ons.gov.uk?subject=Covid' aria-describedby='details-changed-title'>surveycomments@ons.gov.uk</a>") }}
                 </p>
 
             </div>
@@ -78,7 +75,8 @@
                     {% include 'partials/introduction/basic.html' %}
                 {% endfor %}
             {% endif %}
-
+            <p class="u-fs-m" data-qa="details-changed-title">{{ _("For survey information during the coronavirus (COVID-19) outbreak go to <a href='http://www.ons.gov.uk'> www.ons.gov.uk</a> or follow us on Twitter @ONSfocus") }}
+            </p>
             </div>
         </div>
     {% endblock intro_content %}
