@@ -1396,7 +1396,7 @@
             ]
         }
     ],
-    "theme": "default",
+    "theme": "covid",
     "navigation": {
         "visible": false
     },
