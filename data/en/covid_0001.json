@@ -8,9 +8,10 @@
     "title": "Business Impact of Coronavirus (COVID-19) survey",
     "sections": [{
             "id": "section07aa7033-76e4-41b4-81e4-a957831a5a42",
+            "title": "Financial performance of your business",
             "groups": [{
                 "id": "group07aa7033-76e4-41b4-81e4-a957831a5a42",
-                "title": "",
+                "title": "Financial performance of your business",
                 "blocks": [{
                         "type": "Introduction",
                         "id": "introduction-block",
@@ -87,7 +88,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer8e9c789d-1aa8-4251-88dd-bd6893ec7039",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -109,7 +110,9 @@
                                     "when": [{
                                         "id": "answer8e9c789d-1aa8-4251-88dd-bd6893ec7039",
                                         "condition": "contains any",
-                                        "values": ["No"]
+                                        "values": [
+                                            "No"
+                                        ]
                                     }]
                                 }
                             },
@@ -135,7 +138,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answere899d289-bd50-46c7-ab4f-e627fa8229d8",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -157,7 +160,9 @@
                                     "when": [{
                                         "id": "answere899d289-bd50-46c7-ab4f-e627fa8229d8",
                                         "condition": "contains any",
-                                        "values": ["Yes, it was within the normal range"]
+                                        "values": [
+                                            "Yes, it was within the normal range"
+                                        ]
                                     }]
                                 }
                             },
@@ -189,7 +194,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer365deba7-00ab-4018-b621-ddb9b5eb60b2",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -215,7 +220,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer876c4aa5-79a7-4190-819b-8322ad57172b",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Checkbox",
                                 "label": "Select all that apply",
                                 "description": "",
@@ -232,7 +237,7 @@
                                             "label": "Please describe",
                                             "type": "TextField",
                                             "id": "answer2a7892cf-c1a5-49b3-91c7-579a637a97fd",
-                                            "mandatory": false
+                                            "mandatory": true
                                         }
                                     }
                                 ]
@@ -266,7 +271,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answerd5b52b23-ea6f-4ef3-89c2-4b2a38ce25f1",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -282,6 +287,10 @@
                                     {
                                         "label": "Expect turnover to stay the same",
                                         "value": "Expect turnover to stay the same"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
                                     }
                                 ]
                             }]
@@ -292,7 +301,9 @@
                                     "when": [{
                                         "id": "answer8e9c789d-1aa8-4251-88dd-bd6893ec7039",
                                         "condition": "contains any",
-                                        "values": ["No"]
+                                        "values": [
+                                            "No"
+                                        ]
                                     }]
                                 }
                             },
@@ -312,7 +323,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answeracd383d5-3919-4ae7-bd6d-d8022528978e",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -338,7 +349,9 @@
                                     "when": [{
                                         "id": "answeracd383d5-3919-4ae7-bd6d-d8022528978e",
                                         "condition": "contains any",
-                                        "values": ["No"]
+                                        "values": [
+                                            "No"
+                                        ]
                                     }]
                                 }
                             },
@@ -348,7 +361,9 @@
                                     "when": [{
                                         "id": "answeracd383d5-3919-4ae7-bd6d-d8022528978e",
                                         "condition": "contains any",
-                                        "values": ["Not applicable"]
+                                        "values": [
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -386,7 +401,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer1941ed6e-ccbb-48e4-a1dc-b06c137479ce",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -402,6 +417,14 @@
                                     {
                                         "label": "It will stay the same",
                                         "value": "It will stay the same"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
@@ -412,7 +435,9 @@
                                     "when": [{
                                         "id": "answer8e9c789d-1aa8-4251-88dd-bd6893ec7039",
                                         "condition": "contains any",
-                                        "values": ["No"]
+                                        "values": [
+                                            "No"
+                                        ]
                                     }]
                                 }
                             },
@@ -432,7 +457,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer36f90274-fd9c-453e-ba2f-7c083ada2f73",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -458,7 +483,9 @@
                                     "when": [{
                                         "id": "answer36f90274-fd9c-453e-ba2f-7c083ada2f73",
                                         "condition": "contains any",
-                                        "values": ["No"]
+                                        "values": [
+                                            "No"
+                                        ]
                                     }]
                                 }
                             },
@@ -468,7 +495,9 @@
                                     "when": [{
                                         "id": "answer36f90274-fd9c-453e-ba2f-7c083ada2f73",
                                         "condition": "contains any",
-                                        "values": ["Not applicable"]
+                                        "values": [
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -506,7 +535,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer9b2c8dda-cd96-41ff-8275-7acc9b6c689e",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -522,6 +551,14 @@
                                     {
                                         "label": "It will stay the same",
                                         "value": "It will stay the same"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
@@ -532,7 +569,9 @@
                                     "when": [{
                                         "id": "answer8e9c789d-1aa8-4251-88dd-bd6893ec7039",
                                         "condition": "contains any",
-                                        "values": ["No"]
+                                        "values": [
+                                            "No"
+                                        ]
                                     }]
                                 }
                             },
@@ -552,7 +591,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer478a7145-b712-43a1-9e1d-df39c23abddd",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -624,7 +663,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer27b42a40-5f79-4d32-b361-a94a454c638b",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -658,7 +697,10 @@
                                     "when": [{
                                         "id": "answer27b42a40-5f79-4d32-b361-a94a454c638b",
                                         "condition": "contains any",
-                                        "values": ["Prices generally stayed the same", "Not applicable"]
+                                        "values": [
+                                            "Prices generally stayed the same",
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -696,7 +738,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answera61f9399-c1cd-4bda-a913-073ae1a54fd0",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -712,6 +754,14 @@
                                     {
                                         "label": "Expect prices not to change",
                                         "value": "Expect prices not to change"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
@@ -722,7 +772,9 @@
                                     "when": [{
                                         "id": "answer8e9c789d-1aa8-4251-88dd-bd6893ec7039",
                                         "condition": "contains any",
-                                        "values": ["No"]
+                                        "values": [
+                                            "No"
+                                        ]
                                     }]
                                 }
                             },
@@ -742,7 +794,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -776,7 +828,11 @@
                                     "when": [{
                                         "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
                                         "condition": "contains any",
-                                        "values": ["No, we did not have to change our prices", "Not sure", "Not applicable"]
+                                        "values": [
+                                            "No, we did not have to change our prices",
+                                            "Not sure",
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -814,7 +870,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer8b015ec5-0d31-4f04-b333-b2835f5af8e2",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -852,7 +908,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer8154419b-8f9c-4f69-b9ff-4888b4a27607",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -886,7 +942,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer1eb203aa-4bab-40a6-9e1f-23df474c70d9",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -912,9 +968,10 @@
         },
         {
             "id": "section1760a554-060f-4e6a-bf64-970f98d84ac7",
+            "title": "Operational performance of your business",
             "groups": [{
                 "id": "group1760a554-060f-4e6a-bf64-970f98d84ac7",
-                "title": "",
+                "title": "Operational performance of your business",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group1760a554-060f-4e6a-bf64-970f98d84ac7-introduction",
@@ -930,7 +987,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer742bc51a-7bbc-4e34-b785-896ec900e398",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -954,7 +1011,7 @@
                             "id": "question8847456b-89a9-4402-b83e-767855ff51f3",
                             "title": "What measures has {{ metadata['ru_name'] }} taken to cope with the impact of coronavirus (COVID-19) on your workforce?",
                             "type": "MutuallyExclusive",
-                            "mandatory": false,
+                            "mandatory": true,
                             "answers": [{
                                     "id": "answerf9bed876-492b-45a4-a7c7-fee8d580bced",
                                     "mandatory": false,
@@ -1115,7 +1172,9 @@
                                     "answerb0d371c4-bd06-4f4b-9b95-84d67d477ce9",
                                     "answerf8db3172-e903-4586-8ee7-25136fc5e340"
                                 ],
-                                "conditions": ["equals"],
+                                "conditions": [
+                                    "equals"
+                                ],
                                 "value": 100
                             }]
                         }]
@@ -1129,7 +1188,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer1aed00ac-0f6b-4623-a153-6e5405bacada",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -1145,6 +1204,14 @@
                                     {
                                         "label": "Expect workforce size to stay the same",
                                         "value": "Expect workforce size to stay the same"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
@@ -1155,9 +1222,10 @@
         },
         {
             "id": "section87fce9eb-d7e7-4893-8188-0ac12c665edf",
+            "title": "Other financial or operational changes",
             "groups": [{
                 "id": "group87fce9eb-d7e7-4893-8188-0ac12c665edf",
-                "title": "",
+                "title": "Other financial or operational changes",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group87fce9eb-d7e7-4893-8188-0ac12c665edf-introduction",
@@ -1183,7 +1251,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer14325322-7186-4b76-9606-c7afd7f8e1c0",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -1205,7 +1273,9 @@
                                     "when": [{
                                         "id": "answer14325322-7186-4b76-9606-c7afd7f8e1c0",
                                         "condition": "contains any",
-                                        "values": ["No"]
+                                        "values": [
+                                            "No"
+                                        ]
                                     }]
                                 }
                             },
@@ -1235,7 +1305,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer987d09e5-8391-42c4-b5a4-7117b81ae1bb",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
@@ -1263,7 +1333,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer618464a8-4a5a-4bf8-820a-1e36a41254c9",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -1285,7 +1355,9 @@
                                     "when": [{
                                         "id": "answer618464a8-4a5a-4bf8-820a-1e36a41254c9",
                                         "condition": "contains any",
-                                        "values": ["No, I do not expect any other financial and/or operational activities to be affected"]
+                                        "values": [
+                                            "No, I do not expect any other financial and/or operational activities to be affected"
+                                        ]
                                     }]
                                 }
                             },
@@ -1329,7 +1401,9 @@
                                     "when": [{
                                         "id": "answer618464a8-4a5a-4bf8-820a-1e36a41254c9",
                                         "condition": "contains any",
-                                        "values": ["Yes, I expect other financial and/or operational activities to be affected"]
+                                        "values": [
+                                            "Yes, I expect other financial and/or operational activities to be affected"
+                                        ]
                                     }]
                                 }
                             },
@@ -1349,7 +1423,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answerf4364e1c-c061-406f-9cb1-e457f87bd760",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "TextArea",
                                 "label": "Please give details",
                                 "description": "",
@@ -1363,9 +1437,10 @@
         },
         {
             "id": "section19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+            "title": "Comments",
             "groups": [{
                     "id": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
-                    "title": "",
+                    "title": "Comments",
                     "blocks": [{
                         "id": "block840d9b9e-842b-4307-9006-9d93de8466ce",
                         "type": "Question",
@@ -1398,7 +1473,7 @@
     ],
     "theme": "covid",
     "navigation": {
-        "visible": false
+        "visible": true
     },
     "metadata": [{
             "name": "user_id",
