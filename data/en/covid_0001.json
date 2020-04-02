@@ -1,6 +1,6 @@
 {
     "eq_id": "covid_0001",
-    "form_type": "bd8d539d-50ed-4855-8006-f8d4050d69a1",
+    "form_type": "0001",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
@@ -25,7 +25,7 @@
                                     ]
                                 },
                                 {
-                                    "description": "<strong>Thank you for completing this short survey at this challenging time.</strong>"
+                                    "description": "<strong>Thank you for completing this survey at this challenging time.</strong>"
                                 }
                             ]
                         }],
@@ -46,6 +46,7 @@
                                         },
                                         {
                                             "list": [
+                                                "your business&apos;s trading status",
                                                 "your business&apos;s turnover",
                                                 "your business&apos;s imports and exports",
                                                 "the availability and prices of materials, goods and services",
@@ -71,14 +72,166 @@
                         "type": "Interstitial",
                         "id": "group07aa7033-76e4-41b4-81e4-a957831a5a42-introduction",
                         "title": "Financial performance of your business",
-                        "description": "<p>This section asks for information on any changes during the last two weeks, and expectations for the next two weeks, to:</p><ul><li>your business&apos;s turnover</li><li>your business&apos;s imports and exports</li><li>the availability and prices of materials, goods and services</li><li>your business&apos;s financial resources</li></ul>"
+                        "description": "<p>This section asks for information on any changes during the last two weeks, and expectations for the next two weeks, to:</p><ul><li>your business&apos;s trading status</li><li>your business&apos;s turnover</li><li>your business&apos;s imports and exports</li><li>the availability and prices of materials, goods and services</li><li>your business&apos;s financial resources</li></ul>"
+                    },
+                    {
+                        "id": "blockbe7effcb-8832-4733-90b4-b699fcffa38a",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionbe7effcb-8832-4733-90b4-b699fcffa38a",
+                            "title": "What is the current trading status of {{ metadata['ru_name'] }}?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "32",
+                                "options": [{
+                                        "label": "Continuing to trade",
+                                        "value": "Continuing to trade"
+                                    },
+                                    {
+                                        "label": "Has temporarily closed or paused trading",
+                                        "value": "Has temporarily closed or paused trading"
+                                    },
+                                    {
+                                        "label": "Has permanently ceased trading",
+                                        "value": "Has permanently ceased trading"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockc017328b-f076-4eb7-9ef8-39315fbe3430",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Has temporarily closed or paused trading"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Has permanently ceased trading"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block53427413-02bd-45ec-bf13-066ec13177d2"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockc017328b-f076-4eb7-9ef8-39315fbe3430",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionc017328b-f076-4eb7-9ef8-39315fbe3430",
+                            "title": "At the time of temporary closure or pause in trade, roughly what percentage of {{ metadata['ru_name'] }}&apos;s workforce were furloughed or made redundant?",
+                            "description": "<p>Your answers should add  up to 100%. If your workforce did not fall into one of the categories, enter &apos;0&apos;.</p>",
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answer91b97993-fa8e-46f1-85b8-681d58f4c451",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Put on furlough leave",
+                                    "description": "Under the terms of the UK Government's Coronavirus Job Retention Scheme",
+                                    "q_code": "331",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answerc8dd4037-1151-4779-b680-413c42b4b257",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Made redundant",
+                                    "description": "",
+                                    "q_code": "332",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answer3300fbb6-b79a-4360-a885-e8061af0d05a",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Other",
+                                    "description": "",
+                                    "q_code": "333",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answer91b97993-fa8e-46f1-85b8-681d58f4c451",
+                                    "answerc8dd4037-1151-4779-b680-413c42b4b257",
+                                    "answer3300fbb6-b79a-4360-a885-e8061af0d05a"
+                                ],
+                                "conditions": [
+                                    "equals"
+                                ],
+                                "value": 100
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block7f5c1f5d-0854-4738-b801-20d9848475c2",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Has temporarily closed or paused trading"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "block53427413-02bd-45ec-bf13-066ec13177d2",
                         "type": "Question",
                         "questions": [{
                             "id": "question53427413-02bd-45ec-bf13-066ec13177d2",
-                            "title": "Was the financial performance of {{ metadata['ru_name'] }} outside of normal expectations in the <em>last two weeks</em>?",
+                            "title": "Was the financial performance of {{ metadata['ru_name'] }} within normal expectations in the <em>last two weeks</em>?",
                             "definitions": [{
                                 "title": "What we mean by \"normal expectations\"",
                                 "content": [{
@@ -94,12 +247,12 @@
                                 "description": "",
                                 "q_code": "1",
                                 "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
+                                        "label": "Yes, it was within normal expectations",
+                                        "value": "Yes, it was within normal expectations"
                                     },
                                     {
-                                        "label": "No",
-                                        "value": "No"
+                                        "label": "No, it was outside of normal expectations",
+                                        "value": "No, it was outside of normal expectations"
                                     }
                                 ]
                             }]
@@ -111,7 +264,7 @@
                                         "id": "answer8e9c789d-1aa8-4251-88dd-bd6893ec7039",
                                         "condition": "contains any",
                                         "values": [
-                                            "No"
+                                            "Yes, it was within normal expectations"
                                         ]
                                     }]
                                 }
@@ -128,7 +281,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questioneaf6a632-d178-48c1-9993-f1e097ac0268",
-                            "title": "Was {{ metadata['ru_name'] }}&apos;s turnover <em>within its normal range</em> in the last two weeks?",
+                            "title": "Was {{ metadata['ru_name'] }}&apos;s <em>turnover</em> within its normal range in the <em>last two weeks</em>?",
                             "definitions": [{
                                 "title": "What we mean by \"normal range\"",
                                 "content": [{
@@ -144,12 +297,12 @@
                                 "description": "",
                                 "q_code": "2",
                                 "options": [{
-                                        "label": "Yes, it was within the normal range",
-                                        "value": "Yes, it was within the normal range"
+                                        "label": "Yes, turnover was within the normal range",
+                                        "value": "Yes, turnover was within the normal range"
                                     },
                                     {
-                                        "label": "No, it was outside the normal range",
-                                        "value": "No, it was outside the normal range"
+                                        "label": "No, turnover was outside the normal range",
+                                        "value": "No, turnover was outside the normal range"
                                     }
                                 ]
                             }]
@@ -161,7 +314,7 @@
                                         "id": "answere899d289-bd50-46c7-ab4f-e627fa8229d8",
                                         "condition": "contains any",
                                         "values": [
-                                            "Yes, it was within the normal range"
+                                            "Yes, turnover was within the normal range"
                                         ]
                                     }]
                                 }
@@ -193,19 +346,31 @@
                             },
                             "type": "General",
                             "answers": [{
-                                "id": "answer365deba7-00ab-4018-b621-ddb9b5eb60b2",
+                                "id": "answer36ff4ffc-b324-4da3-a354-5e569867dcbc",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
                                 "q_code": "3",
                                 "options": [{
-                                        "label": "Turnover was higher than normal",
-                                        "value": "Turnover was higher than normal"
+                                        "label": "Turnover was substantially higher than normal",
+                                        "value": "Turnover was substantially higher than normal"
                                     },
                                     {
-                                        "label": "Turnover was lower than normal",
-                                        "value": "Turnover was lower than normal"
+                                        "label": "Turnover was a little higher than normal",
+                                        "value": "Turnover was a little higher than normal"
+                                    },
+                                    {
+                                        "label": "Turnover was a little lower than normal",
+                                        "value": "Turnover was a little lower than normal"
+                                    },
+                                    {
+                                        "label": "Turnover was substantially lower than normal",
+                                        "value": "Turnover was substantially lower than normal"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
                                     }
                                 ]
                             }]
@@ -249,7 +414,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0bf14da5-6919-4507-8542-5d71be2e6ac1",
-                            "title": "Please explain in more detail why {{ metadata['ru_name'] }}&apos;s turnover was affected",
+                            "title": "Please explain in more detail why this affected {{ metadata['ru_name'] }}&apos;s turnover",
                             "type": "General",
                             "answers": [{
                                 "id": "answerb27dfc7c-ac12-4c9f-ba1c-29b51878d877",
@@ -267,7 +432,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionf7429291-fcb5-4bc0-bcac-965b23326462",
-                            "title": "What are your expectations about {{ metadata['ru_name'] }}&apos;s turnover in the <em>next two weeks</em>?",
+                            "title": "What are your expectations about {{ metadata['ru_name'] }}&apos;s <em>turnover</em> in the <em>next two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerd5b52b23-ea6f-4ef3-89c2-4b2a38ce25f1",
@@ -277,16 +442,24 @@
                                 "description": "",
                                 "q_code": "6",
                                 "options": [{
-                                        "label": "Expect turnover to increase",
-                                        "value": "Expect turnover to increase"
+                                        "label": "Expect it to substantially increase",
+                                        "value": "Expect it to substantially increase"
                                     },
                                     {
-                                        "label": "Expect turnover to decrease",
-                                        "value": "Expect turnover to decrease"
+                                        "label": "Expect it to increase a little",
+                                        "value": "Expect it to increase a little"
                                     },
                                     {
-                                        "label": "Expect turnover to stay the same",
-                                        "value": "Expect turnover to stay the same"
+                                        "label": "Expect it to stay the same",
+                                        "value": "Expect it to stay the same"
+                                    },
+                                    {
+                                        "label": "Expect it to decrease a little",
+                                        "value": "Expect it to decrease a little"
+                                    },
+                                    {
+                                        "label": "Expect it to substantially decrease",
+                                        "value": "Expect it to substantially decrease"
                                     },
                                     {
                                         "label": "Not sure",
@@ -302,7 +475,7 @@
                                         "id": "answer8e9c789d-1aa8-4251-88dd-bd6893ec7039",
                                         "condition": "contains any",
                                         "values": [
-                                            "No"
+                                            "Yes, it was within normal expectations"
                                         ]
                                     }]
                                 }
@@ -319,7 +492,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question08aeb0f6-74fc-4e0d-9fd5-f7574a9058fd",
-                            "title": "Has {{ metadata['ru_name'] }}&apos;s exporting of goods or services been affected by the coronavirus (COVID-19) outbreak in the last two weeks?",
+                            "title": "Has {{ metadata['ru_name'] }}&apos;s <em>exporting </em>of goods or services been affected by the coronavirus (COVID-19) outbreak in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answeracd383d5-3919-4ae7-bd6d-d8022528978e",
@@ -329,12 +502,16 @@
                                 "description": "",
                                 "q_code": "7",
                                 "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
+                                        "label": "Yes, exporting was affected",
+                                        "value": "Yes, exporting was affected"
                                     },
                                     {
-                                        "label": "No",
-                                        "value": "No"
+                                        "label": "No, exporting was not affected",
+                                        "value": "No, exporting was not affected"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
                                     },
                                     {
                                         "label": "Not applicable",
@@ -350,7 +527,7 @@
                                         "id": "answeracd383d5-3919-4ae7-bd6d-d8022528978e",
                                         "condition": "contains any",
                                         "values": [
-                                            "No"
+                                            "No, exporting was not affected"
                                         ]
                                     }]
                                 }
@@ -362,6 +539,7 @@
                                         "id": "answeracd383d5-3919-4ae7-bd6d-d8022528978e",
                                         "condition": "contains any",
                                         "values": [
+                                            "Not sure",
                                             "Not applicable"
                                         ]
                                     }]
@@ -397,7 +575,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question33a858a0-b55c-494f-9798-84b75fccc1f0",
-                            "title": "What are your expectations about {{ metadata['ru_name'] }}&apos;s exporting of goods or services in the <em>next two weeks</em>?",
+                            "title": "What are your expectations about {{ metadata['ru_name'] }}&apos;s <em>exporting</em> of goods or services in the <em>next two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer1941ed6e-ccbb-48e4-a1dc-b06c137479ce",
@@ -407,16 +585,24 @@
                                 "description": "",
                                 "q_code": "9",
                                 "options": [{
-                                        "label": "It will get harder",
-                                        "value": "It will get harder"
+                                        "label": "It will get much harder",
+                                        "value": "It will get much harder"
                                     },
                                     {
-                                        "label": "It will get easier",
-                                        "value": "It will get easier"
+                                        "label": "It will get a little harder",
+                                        "value": "It will get a little harder"
                                     },
                                     {
                                         "label": "It will stay the same",
                                         "value": "It will stay the same"
+                                    },
+                                    {
+                                        "label": "It will get a little easier",
+                                        "value": "It will get a little easier"
+                                    },
+                                    {
+                                        "label": "It will get much easier",
+                                        "value": "It will get much easier"
                                     },
                                     {
                                         "label": "Not sure",
@@ -436,7 +622,7 @@
                                         "id": "answer8e9c789d-1aa8-4251-88dd-bd6893ec7039",
                                         "condition": "contains any",
                                         "values": [
-                                            "No"
+                                            "Yes, it was within normal expectations"
                                         ]
                                     }]
                                 }
@@ -453,7 +639,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionb49c9fa1-a560-46a0-aa6e-3a68f9f60972",
-                            "title": "Was {{ metadata['ru_name'] }}&apos;s <em>importing </em>of materials, goods or services affected by the coronavirus (COVID-19) outbreak in the last two weeks?",
+                            "title": "Was {{ metadata['ru_name'] }}&apos;s <em>importing </em>of materials, goods or services affected by the coronavirus (COVID-19) outbreak in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer36f90274-fd9c-453e-ba2f-7c083ada2f73",
@@ -463,12 +649,16 @@
                                 "description": "",
                                 "q_code": "10",
                                 "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
+                                        "label": "Yes, importing was affected",
+                                        "value": "Yes, importing was affected"
                                     },
                                     {
-                                        "label": "No",
-                                        "value": "No"
+                                        "label": "No, importing was not affected",
+                                        "value": "No, importing was not affected"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
                                     },
                                     {
                                         "label": "Not applicable",
@@ -484,7 +674,7 @@
                                         "id": "answer36f90274-fd9c-453e-ba2f-7c083ada2f73",
                                         "condition": "contains any",
                                         "values": [
-                                            "No"
+                                            "No, importing was not affected"
                                         ]
                                     }]
                                 }
@@ -496,6 +686,7 @@
                                         "id": "answer36f90274-fd9c-453e-ba2f-7c083ada2f73",
                                         "condition": "contains any",
                                         "values": [
+                                            "Not sure",
                                             "Not applicable"
                                         ]
                                     }]
@@ -513,7 +704,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4648511e-cf19-468d-9eed-14c4a92cb720",
-                            "title": "Please explain in more detail how {{ metadata['ru_name'] }}&apos;s <em>importing</em> has been affected",
+                            "title": "Please explain in more detail how {{ metadata['ru_name'] }}&apos;s importing has been affected",
                             "type": "General",
                             "answers": [{
                                 "id": "answer98ea4789-060e-460b-8d33-e688ceb4e947",
@@ -531,26 +722,34 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questione8dec512-dc7e-4bd9-9beb-b3ec953cae8d",
-                            "title": "What are your expectations about {{ metadata['ru_name'] }}&apos;s importing of materials, goods or services in the <em>next two weeks</em>?",
+                            "title": "What are your expectations about {{ metadata['ru_name'] }}&apos;s <em>importing</em> of materials, goods or services in the <em>next two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer9b2c8dda-cd96-41ff-8275-7acc9b6c689e",
                                 "mandatory": true,
                                 "type": "Radio",
-                                "label": "",
+                                "label": "Select the most appropriate answer",
                                 "description": "",
                                 "q_code": "12",
                                 "options": [{
-                                        "label": "It will get harder",
-                                        "value": "It will get harder"
+                                        "label": "It will get much harder",
+                                        "value": "It will get much harder"
                                     },
                                     {
-                                        "label": "It will get easier",
-                                        "value": "It will get easier"
+                                        "label": "It will get a little harder",
+                                        "value": "It will get a little harder"
                                     },
                                     {
                                         "label": "It will stay the same",
                                         "value": "It will stay the same"
+                                    },
+                                    {
+                                        "label": "It will get a little easier",
+                                        "value": "It will get a little easier"
+                                    },
+                                    {
+                                        "label": "It will get much easier",
+                                        "value": "It will get much easier"
                                     },
                                     {
                                         "label": "Not sure",
@@ -570,7 +769,7 @@
                                         "id": "answer8e9c789d-1aa8-4251-88dd-bd6893ec7039",
                                         "condition": "contains any",
                                         "values": [
-                                            "No"
+                                            "Yes, it was within normal expectations"
                                         ]
                                     }]
                                 }
@@ -587,7 +786,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0e1472db-36f2-4d40-b99e-510e70442636",
-                            "title": "Was {{ metadata['ru_name'] }} able to get the materials, goods or services it needed <em>from within the UK</em> in the last two weeks?",
+                            "title": "Was {{ metadata['ru_name'] }} able to get the materials, goods or services it needed <em>from within the UK</em> in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer478a7145-b712-43a1-9e1d-df39c23abddd",
@@ -617,21 +816,19 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "blockce542f26-a704-4dc6-a0ef-292c2739e4e6",
+                                    "block": "blockfc873320-2213-4d19-982e-21b826833e1c",
                                     "when": [{
                                         "id": "answer478a7145-b712-43a1-9e1d-df39c23abddd",
                                         "condition": "contains any",
                                         "values": [
-                                            "Yes, we have been able to  get what we needed",
-                                            "Yes, but we have had to change suppliers or find alternative solutions",
-                                            "Not applicable"
+                                            "No, we have not been able to get the materials, goods or services we needed"
                                         ]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "blockfc873320-2213-4d19-982e-21b826833e1c"
+                                    "block": "blockaa552770-f5f6-4692-9190-fe78ab4c1ecd"
                                 }
                             }
                         ]
@@ -655,11 +852,181 @@
                         }]
                     },
                     {
+                        "id": "blockaa552770-f5f6-4692-9190-fe78ab4c1ecd",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionaa552770-f5f6-4692-9190-fe78ab4c1ecd",
+                            "title": "Where does {{ metadata['ru_name'] }} carry out <em>most</em> of its business activity?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer8ef4954d-0ad5-4c70-bb76-28bdfe83a200",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "340",
+                                "options": [{
+                                        "label": "UK",
+                                        "value": "UK"
+                                    },
+                                    {
+                                        "label": "Outside the UK",
+                                        "value": "Outside the UK"
+                                    },
+                                    {
+                                        "label": "Difficult to say",
+                                        "value": "Difficult to say"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block2680f6c8-0453-4916-a378-ecb9de6d4be0",
+                                    "when": [{
+                                        "id": "answer8ef4954d-0ad5-4c70-bb76-28bdfe83a200",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "UK"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockce542f26-a704-4dc6-a0ef-292c2739e4e6"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block2680f6c8-0453-4916-a378-ecb9de6d4be0",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question2680f6c8-0453-4916-a378-ecb9de6d4be0",
+                            "title": "<em>Where in the UK</em> does {{ metadata['ru_name'] }} carry out its business activity?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer8de4a0c3-ea10-4189-9ad1-f895baeda20f",
+                                "mandatory": true,
+                                "type": "Checkbox",
+                                "label": "Select all that apply",
+                                "description": "",
+                                "options": [{
+                                        "label": "England",
+                                        "value": "England",
+                                        "q_code": "341"
+                                    },
+                                    {
+                                        "label": "Scotland",
+                                        "value": "Scotland",
+                                        "q_code": "342"
+                                    },
+                                    {
+                                        "label": "Wales",
+                                        "value": "Wales",
+                                        "q_code": "343"
+                                    },
+                                    {
+                                        "label": "Northern Ireland",
+                                        "value": "Northern Ireland",
+                                        "q_code": "344"
+                                    },
+                                    {
+                                        "label": "Difficult to say",
+                                        "value": "Difficult to say",
+                                        "q_code": "345"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockd2f54d24-128b-4d9e-b90d-6fc20858e8c9",
+                                    "when": [{
+                                        "id": "answer8de4a0c3-ea10-4189-9ad1-f895baeda20f",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "England"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockce542f26-a704-4dc6-a0ef-292c2739e4e6"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockd2f54d24-128b-4d9e-b90d-6fc20858e8c9",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiond2f54d24-128b-4d9e-b90d-6fc20858e8c9",
+                            "title": "<em>Where in England</em> does {{ metadata['ru_name'] }} carry out its business activity?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer468b1857-f3f1-4cde-a89a-cfaa17e26a7d",
+                                "mandatory": true,
+                                "type": "Checkbox",
+                                "label": "Select all that apply",
+                                "description": "",
+                                "options": [{
+                                        "label": "North West",
+                                        "value": "North West",
+                                        "q_code": "351"
+                                    },
+                                    {
+                                        "label": "Yorkshire and The Humber",
+                                        "value": "Yorkshire and The Humber",
+                                        "q_code": "352"
+                                    },
+                                    {
+                                        "label": "East Midlands",
+                                        "value": "East Midlands",
+                                        "q_code": "353"
+                                    },
+                                    {
+                                        "label": "West Midlands",
+                                        "value": "West Midlands",
+                                        "q_code": "354"
+                                    },
+                                    {
+                                        "label": "East of England",
+                                        "value": "East of England",
+                                        "q_code": "355"
+                                    },
+                                    {
+                                        "label": "Greater London",
+                                        "value": "Greater London",
+                                        "q_code": "356"
+                                    },
+                                    {
+                                        "label": "South East",
+                                        "value": "South East",
+                                        "q_code": "357"
+                                    },
+                                    {
+                                        "label": "South West",
+                                        "value": "South West",
+                                        "q_code": "358"
+                                    },
+                                    {
+                                        "label": "Difficult to say",
+                                        "value": "Difficult to say",
+                                        "q_code": "359"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
                         "id": "blockce542f26-a704-4dc6-a0ef-292c2739e4e6",
                         "type": "Question",
                         "questions": [{
                             "id": "questionce542f26-a704-4dc6-a0ef-292c2739e4e6",
-                            "title": "How did the <em>prices</em> of materials, goods or services needed by {{ metadata['ru_name'] }} change in the last two weeks, compared with normal price fluctuations?",
+                            "title": "How did the <em>prices</em> of materials, goods or services <em>bought</em> by {{ metadata['ru_name'] }} change in the <em>last two weeks</em>, compared with normal price fluctuations?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer27b42a40-5f79-4d32-b361-a94a454c638b",
@@ -669,20 +1036,24 @@
                                 "description": "",
                                 "q_code": "15",
                                 "options": [{
-                                        "label": "Prices generally increased",
-                                        "value": "Prices generally increased"
+                                        "label": "Prices increased more than normal",
+                                        "value": "Prices increased more than normal"
                                     },
                                     {
-                                        "label": "Prices generally decreased",
-                                        "value": "Prices generally decreased"
+                                        "label": "Prices decreased more than normal",
+                                        "value": "Prices decreased more than normal"
                                     },
                                     {
                                         "label": "Some prices increased, some prices decreased",
                                         "value": "Some prices increased, some prices decreased"
                                     },
                                     {
-                                        "label": "Prices generally stayed the same",
-                                        "value": "Prices generally stayed the same"
+                                        "label": "Prices did not change any more than normal",
+                                        "value": "Prices did not change any more than normal"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
                                     },
                                     {
                                         "label": "Not applicable",
@@ -698,7 +1069,19 @@
                                         "id": "answer27b42a40-5f79-4d32-b361-a94a454c638b",
                                         "condition": "contains any",
                                         "values": [
-                                            "Prices generally stayed the same",
+                                            "Prices did not change any more than normal",
+                                            "Not sure"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block83701edb-7ee7-46b9-84f1-a9bc879f6b32",
+                                    "when": [{
+                                        "id": "answer27b42a40-5f79-4d32-b361-a94a454c638b",
+                                        "condition": "contains any",
+                                        "values": [
                                             "Not applicable"
                                         ]
                                     }]
@@ -773,7 +1156,7 @@
                                         "id": "answer8e9c789d-1aa8-4251-88dd-bd6893ec7039",
                                         "condition": "contains any",
                                         "values": [
-                                            "No"
+                                            "Yes, it was within normal expectations"
                                         ]
                                     }]
                                 }
@@ -790,7 +1173,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question83701edb-7ee7-46b9-84f1-a9bc879f6b32",
-                            "title": "Did {{ metadata['ru_name'] }} have to change the prices of your goods or services that were <em>sold</em> in the last two weeks?",
+                            "title": "How did the prices of goods or services <em>sold</em> by {{ metadata['ru_name'] }} change in the <em>last two weeks</em>, compared with normal fluctuations?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
@@ -800,16 +1183,20 @@
                                 "description": "",
                                 "q_code": "18",
                                 "options": [{
-                                        "label": "Yes, we generally had to increase our prices",
-                                        "value": "Yes, we generally had to increase our prices"
+                                        "label": "Prices increased more than normal",
+                                        "value": "Prices increased more than normal"
                                     },
                                     {
-                                        "label": "Yes, we generally had to decrease our prices",
-                                        "value": "Yes, we generally had to decrease our prices"
+                                        "label": "Prices decreased more than normal",
+                                        "value": "Prices decreased more than normal"
                                     },
                                     {
-                                        "label": "No, we did not have to change our prices",
-                                        "value": "No, we did not have to change our prices"
+                                        "label": "Some prices increased, some prices decreased",
+                                        "value": "Some prices increased, some prices decreased"
+                                    },
+                                    {
+                                        "label": "Prices did not change any more than normal",
+                                        "value": "Prices did not change any more than normal"
                                     },
                                     {
                                         "label": "Not sure",
@@ -829,8 +1216,19 @@
                                         "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
                                         "condition": "contains any",
                                         "values": [
-                                            "No, we did not have to change our prices",
-                                            "Not sure",
+                                            "Prices did not change any more than normal",
+                                            "Not sure"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block9256a6e4-f1ee-48c3-b7ef-982020a29255",
+                                    "when": [{
+                                        "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
+                                        "condition": "contains any",
+                                        "values": [
                                             "Not applicable"
                                         ]
                                     }]
@@ -934,6 +1332,92 @@
                         }]
                     },
                     {
+                        "id": "block7f5c1f5d-0854-4738-b801-20d9848475c2",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question7f5c1f5d-0854-4738-b801-20d9848475c2",
+                            "title": "Which of the following initiatives is {{ metadata['ru_name'] }} interested in using, if any?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answerc05c537f-7ef0-426d-bef8-a631236e3baa",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Coronavirus Job Retention Scheme",
+                                            "value": "Coronavirus Job Retention Scheme",
+                                            "q_code": "361",
+                                            "description": "UK Government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
+                                        },
+                                        {
+                                            "label": "Business rates holiday",
+                                            "value": "Business rates holiday",
+                                            "q_code": "362"
+                                        },
+                                        {
+                                            "label": "Deferring VAT payments",
+                                            "value": "Deferring VAT payments",
+                                            "q_code": "363"
+                                        },
+                                        {
+                                            "label": "The HMRC Time To Pay scheme",
+                                            "value": "The HMRC Time To Pay scheme",
+                                            "q_code": "364"
+                                        },
+                                        {
+                                            "label": "Small business grant or loan schemes",
+                                            "value": "Small business grant or loan schemes",
+                                            "q_code": "365",
+                                            "description": "For example, rural rate relief or property rate relief"
+                                        },
+                                        {
+                                            "label": "Accredited finance agreements",
+                                            "value": "Accredited finance agreements",
+                                            "q_code": "366",
+                                            "description": "For example, COVID Corporate Financing Facility (CCFF) or Coronavirus Business Interruption Loan Scheme (CBILS)"
+                                        },
+                                        {
+                                            "label": "Not sure",
+                                            "value": "Not sure",
+                                            "q_code": "367"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answerc05c537f-7ef0-426d-bef8-a631236e3baa-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "None of the above",
+                                        "value": "None of the above",
+                                        "q_code": "368"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Has temporarily closed or paused trading"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block84850293-8fe0-476a-aaca-757d7873713a"
+                                }
+                            }
+                        ]
+                    },
+                    {
                         "id": "block84850293-8fe0-476a-aaca-757d7873713a",
                         "type": "Question",
                         "questions": [{
@@ -976,7 +1460,7 @@
                         "type": "Interstitial",
                         "id": "group1760a554-060f-4e6a-bf64-970f98d84ac7-introduction",
                         "title": "Operational performance of your business",
-                        "description": "<p>This section asks you for information on any changes to the size and capacity of your workforce during the last two weeks, and expectations over the next two weeks. </p>"
+                        "description": "<p>This section asks you for information on any:</p><ul><li>changes to the size and capacity of your workforce during the last two weeks</li><li>expectations over the next two weeks</li><li>intentions to use coronavirus (COVID-19) initiatives to manage business performance</li></ul>"
                     },
                     {
                         "id": "block9eb7bb06-de72-4db5-ade2-0fa8f14bab54",
@@ -999,6 +1483,10 @@
                                     {
                                         "label": "No, the workforce could not meet the business's demands",
                                         "value": "No, the workforce could not meet the business's demands"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
                                     }
                                 ]
                             }]
@@ -1009,7 +1497,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question8847456b-89a9-4402-b83e-767855ff51f3",
-                            "title": "What measures has {{ metadata['ru_name'] }} taken to cope with the impact of coronavirus (COVID-19) on your workforce?",
+                            "title": "Which of the following measures has {{ metadata['ru_name'] }} taken to cope with the impact of coronavirus (COVID-19) on its workforce?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -1027,16 +1515,6 @@
                                             "label": "Decreased working hours",
                                             "value": "Decreased working hours",
                                             "q_code": "242"
-                                        },
-                                        {
-                                            "label": "Staff are encouraged to work from home",
-                                            "value": "Staff are encouraged to work from home",
-                                            "q_code": "243"
-                                        },
-                                        {
-                                            "label": "Staff have to work from home",
-                                            "value": "Staff have to work from home",
-                                            "q_code": "244"
                                         },
                                         {
                                             "label": "Laying off staff in the short term",
@@ -1080,8 +1558,8 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionfa9c366c-c329-46c6-8b3e-16a82e3c5251",
-                            "title": "In the last two weeks, roughly what proportion of your workforce was doing each of the following?",
-                            "description": "<p>Your answers should add up to 100%</p>",
+                            "title": "In the last two weeks, <em>roughly what proportion</em> of {{ metadata['ru_name'] }}&apos;s workforce was working in the following ways?",
+                            "description": "<p>Your answers should add up to 100%. If your workforce did not fall into one of the categories, enter &apos;0&apos;.</p>",
                             "type": "Calculated",
                             "answers": [{
                                     "id": "answerf519e5fb-e84e-434b-ad2a-4ab59eaca658",
@@ -1090,6 +1568,10 @@
                                     "label": "Working at their normal place of work",
                                     "description": "Include those who are normally remote workers",
                                     "q_code": "251",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
                                     "max_value": {
                                         "value": 100,
                                         "exclusive": false
@@ -1103,6 +1585,10 @@
                                     "label": "Working remotely instead of at their normal place of work",
                                     "description": "Exclude those who are normally remote workers",
                                     "q_code": "252",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
                                     "max_value": {
                                         "value": 100,
                                         "exclusive": false
@@ -1110,51 +1596,16 @@
                                     "decimal_places": 0
                                 },
                                 {
-                                    "id": "answer93b372c4-587a-4baf-bc8c-8fdd45a164f4",
-                                    "mandatory": true,
-                                    "type": "Percentage",
-                                    "label": "Off sick with pay",
-                                    "description": "",
-                                    "q_code": "253",
-                                    "max_value": {
-                                        "value": 100,
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
-                                },
-                                {
-                                    "id": "answerc2466e2d-b53f-457a-91d7-8aaa9110d198",
-                                    "mandatory": true,
-                                    "type": "Percentage",
-                                    "label": "Off sick without pay",
-                                    "description": "",
-                                    "q_code": "254",
-                                    "max_value": {
-                                        "value": 100,
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
-                                },
-                                {
-                                    "id": "answerb0d371c4-bd06-4f4b-9b95-84d67d477ce9",
-                                    "mandatory": true,
-                                    "type": "Percentage",
-                                    "label": "Other unpaid leave",
-                                    "description": "",
-                                    "q_code": "255",
-                                    "max_value": {
-                                        "value": 100,
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
-                                },
-                                {
-                                    "id": "answerf8db3172-e903-4586-8ee7-25136fc5e340",
+                                    "id": "answer45ec7982-1221-45f0-a14a-2859026ed245",
                                     "mandatory": true,
                                     "type": "Percentage",
                                     "label": "Other",
                                     "description": "",
                                     "q_code": "256",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
                                     "max_value": {
                                         "value": 100,
                                         "exclusive": false
@@ -1167,10 +1618,117 @@
                                 "answers_to_calculate": [
                                     "answerf519e5fb-e84e-434b-ad2a-4ab59eaca658",
                                     "answer58e9ecfb-62db-46a9-9d4f-6d370906e51f",
-                                    "answer93b372c4-587a-4baf-bc8c-8fdd45a164f4",
-                                    "answerc2466e2d-b53f-457a-91d7-8aaa9110d198",
-                                    "answerb0d371c4-bd06-4f4b-9b95-84d67d477ce9",
-                                    "answerf8db3172-e903-4586-8ee7-25136fc5e340"
+                                    "answer45ec7982-1221-45f0-a14a-2859026ed245"
+                                ],
+                                "conditions": [
+                                    "equals"
+                                ],
+                                "value": 100
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockc6777d62-a71c-4649-9f14-f23249271215",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionc6777d62-a71c-4649-9f14-f23249271215",
+                            "title": "In the last two weeks, <em>roughly what proportion</em> of {{ metadata['ru_name'] }}&apos;s workforce was furloughed, off sick due to coronavirus or made redundant?",
+                            "description": "<p>Your answers should add up to 100%. If your workforce did not fall into one of the categories, enter &apos;0&apos;.</p>",
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answercee36eb0-124c-4c41-8712-aa06ff5719ef",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "On furlough leave",
+                                    "description": "Under the terms of the UK Government's Coronavirus Job Retention Scheme",
+                                    "q_code": "371",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answer38fd04c6-a8b2-4f47-b51f-f4c824224096",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Off sick or in self-isolation due to coronavirus (COVID-19) with statutory or company pay",
+                                    "description": "",
+                                    "q_code": "372",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answer96b4d0ea-9b80-403b-88e6-86bca36c68bb",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Made redundant",
+                                    "description": "",
+                                    "q_code": "373",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answer9082ee4e-d072-429f-9cc2-35998ef2cbd3",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Working as normal",
+                                    "description": "",
+                                    "q_code": "374",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answer854e2c03-d02b-4c4f-95c0-32b07856fe8a",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "Other",
+                                    "description": "",
+                                    "q_code": "375",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answercee36eb0-124c-4c41-8712-aa06ff5719ef",
+                                    "answer38fd04c6-a8b2-4f47-b51f-f4c824224096",
+                                    "answer96b4d0ea-9b80-403b-88e6-86bca36c68bb",
+                                    "answer9082ee4e-d072-429f-9cc2-35998ef2cbd3",
+                                    "answer854e2c03-d02b-4c4f-95c0-32b07856fe8a"
                                 ],
                                 "conditions": [
                                     "equals"
@@ -1208,13 +1766,28 @@
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": [
+                                "Has permanently ceased trading"
+                            ]
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": [
+                                "Has temporarily closed or paused trading"
+                            ]
                         }]
                     }
                 ]
@@ -1237,7 +1810,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question34493fa3-6f1c-4ce7-a96f-d0e28a3155b1",
-                            "title": "Were there any other changes to financial or operational activities for {{ metadata['ru_name'] }} that were unexpected in the last two weeks?",
+                            "title": "Were there <em>any other unexpected changes</em> to financial or operational activities for {{ metadata['ru_name'] }} in the <em>last two weeks</em>?",
                             "definitions": [{
                                 "title": "Examples of financial and operational activities",
                                 "content": [{
@@ -1257,12 +1830,12 @@
                                 "description": "",
                                 "q_code": "27",
                                 "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
+                                        "label": "Yes, there were other unexpected changes",
+                                        "value": "Yes, there were other unexpected changes"
                                     },
                                     {
-                                        "label": "No",
-                                        "value": "No"
+                                        "label": "No, there were no other unexpected changes",
+                                        "value": "No, there were no other unexpected changes"
                                     }
                                 ]
                             }]
@@ -1274,7 +1847,7 @@
                                         "id": "answer14325322-7186-4b76-9606-c7afd7f8e1c0",
                                         "condition": "contains any",
                                         "values": [
-                                            "No"
+                                            "No, there were no other unexpected changes"
                                         ]
                                     }]
                                 }
@@ -1319,7 +1892,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1f84642d-9790-4154-ab29-3f8eb2ed0a73",
-                            "title": "Are you expecting any other financial and/or operational activities at {{ metadata['ru_name'] }} to be affected by the coronavirus (COVID-19) outbreak over the <em>next two weeks</em>?",
+                            "title": "Are you expecting <em>any other financial and/or operational activities</em> at {{ metadata['ru_name'] }} to be affected by the coronavirus (COVID-19) outbreak over the <em>next two weeks</em>?",
                             "definitions": [{
                                 "title": "Examples of financial and operational activities",
                                 "content": [{
@@ -1373,7 +1946,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiona466d34d-19c1-4f04-a1ff-1de73f1c3a77",
-                            "title": "Please give more details about what other financial and/or operational activities at {{ metadata['ru_name'] }} you think will be affected in the <em>next two weeks</em>",
+                            "title": "Please give more details about which other financial and/or operational activities at {{ metadata['ru_name'] }} you think will be affected in the <em>next two weeks</em>",
                             "definitions": [{
                                 "title": "Examples of financial and operational activities",
                                 "content": [{
@@ -1419,7 +1992,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question182d789c-7500-4a07-b271-d639e2840085",
-                            "title": "Why do you think {{ metadata['ru_name'] }} will not have any issues due to coronavirus (COVID-19) over the next two weeks?",
+                            "title": "Why do you think {{ metadata['ru_name'] }} <em>will not have any issues</em> due to coronavirus (COVID-19) over the next two weeks?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerf4364e1c-c061-406f-9cb1-e457f87bd760",
@@ -1430,6 +2003,25 @@
                                 "q_code": "31",
                                 "max_length": 2000
                             }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": [
+                                "Has permanently ceased trading"
+                            ]
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": [
+                                "Has temporarily closed or paused trading"
+                            ]
                         }]
                     }
                 ]
@@ -1446,7 +2038,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question840d9b9e-842b-4307-9006-9d93de8466ce",
-                            "title": "Let us know anything else that you think may help us understand the impact of coronavirus (COVID-19) on {{ metadata['ru_name'] }}",
+                            "title": "Let us know anything else that you think may help us understand {{ metadata['ru_name'] }}&apos;s current situation",
                             "type": "General",
                             "answers": [{
                                 "id": "answerf2cd92db-8721-45eb-be99-848705657b88",
@@ -1471,7 +2063,7 @@
             ]
         }
     ],
-    "theme": "covid",
+    "theme": "coivd",
     "navigation": {
         "visible": true
     },
