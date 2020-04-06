@@ -33,12 +33,16 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                "list": [
-                                    "Information should relate to the UK.",
-                                    "You do not need to provide actual data.",
-                                    "We will treat your information securely and confidentially."
-                                ]
-                            }],
+                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/thequestionsonthebusinessimpactofcoronaviruscovid19survey'>View the questions before you start the survey (external link)</a>"
+                                },
+                                {
+                                    "list": [
+                                        "Information should relate to the UK.",
+                                        "You do not need to provide actual data.",
+                                        "We will treat your information securely and confidentially."
+                                    ]
+                                }
+                            ],
                             "questions": [{
                                     "question": "Section one: Financial performance of your business",
                                     "content": [{
