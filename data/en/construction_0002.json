@@ -1,6 +1,6 @@
 {
-    "eq_id": "construction_0001",
-    "form_type": "0001",
+    "eq_id": "construction_0002",
+    "form_type": "0002",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
@@ -30,7 +30,7 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                "description": "You will be asked to provide information on the value of work undertaken by your business. Value of work refers to estimates of chargeable work carried out during the month; meaning work started, in progress, or completed."
+                                "description": "You will be asked to provide information on the value of work undertaken by your business and the number of employees. Value of work refers to estimates of chargeable work carried out during the month; meaning work started, in progress, or completed."
                             }],
                             "questions": [{
                                     "question": "Housing Work",
@@ -125,6 +125,35 @@
                                                 "fixtures, equipment and tools your business made for sale",
                                                 "materials your business sold",
                                                 "value of land"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Employment",
+                                    "content": [{
+                                            "description": "This section asks for information on the number of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}&apos;s employees, and hours worked split by gender."
+                                        },
+                                        {
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "all workers paid directly from this business&#x2019;s payroll(s)",
+                                                "those temporarily absent but still being paid, for example on maternity leave"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "subcontractors",
+                                                "agency workers paid directly from the agency payroll",
+                                                "voluntary workers",
+                                                "former employees only receiving a pension",
+                                                "self-employed workers",
+                                                "working owners who are not paid via PAYE"
                                             ]
                                         }
                                     ]
@@ -1088,7 +1117,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "groupe9d26530-ad8f-4527-b09c-afacfa0c820a"
+                                    "group": "group683013fe-88a1-47c3-975c-fbf36c3ec625"
                                 }
                             }
                         ]
@@ -1548,6 +1577,211 @@
             }]
         },
         {
+            "id": "section683013fe-88a1-47c3-975c-fbf36c3ec625",
+            "title": "Employment",
+            "groups": [{
+                "id": "group683013fe-88a1-47c3-975c-fbf36c3ec625",
+                "title": "Employment",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group683013fe-88a1-47c3-975c-fbf36c3ec625-introduction",
+                        "title": "Employment",
+                        "description": "<p>This section asks for information on the number of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}&apos;s employees, and hours worked split by gender.</p><p><strong>Include:</strong></p><ul><li>all workers paid directly from this business&#x2019;s payroll(s)</li><li>those temporarily absent but still being paid, for example on maternity leave</li></ul><p><strong>Exclude:</strong></p><ul><li>subcontractors</li><li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving a pension</li><li>self-employed workers</li><li>working owners who are not paid via PAYE</li></ul>"
+                    },
+                    {
+                        "id": "blockd58b53a0-cca3-4b7c-b187-5666ecb10c4c",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiond58b53a0-cca3-4b7c-b187-5666ecb10c4c",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, what was the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
+                            "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "all workers paid directly from this business&#x2019;s payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "agency workers paid directly from the agency payroll",
+                                            "voluntary workers",
+                                            "former employees only receiving a pension",
+                                            "self-employed workers",
+                                            "working owners who are not paid via PAYE"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answere986bc9b-0ba2-4249-a4e1-d9a1437f5a40",
+                                "mandatory": true,
+                                "type": "Number",
+                                "label": "Total number of employees",
+                                "description": "",
+                                "q_code": "50",
+                                "decimal_places": 0
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockconfirmation-page-for-d58b53a0-cca3-4b7c-b187-5666ecb10c4c",
+                        "type": "ConfirmationQuestion",
+                        "questions": [{
+                            "id": "questionconfirmation-page-for-d58b53a0-cca3-4b7c-b187-5666ecb10c4c",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was {{ answers['answere986bc9b-0ba2-4249-a4e1-d9a1437f5a40'] | format_number }}, is this correct?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerconfirmation-answer-for-d58b53a0-cca3-4b7c-b187-5666ecb10c4c",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Yes, this is correct",
+                                        "value": "Yes, this is correct"
+                                    },
+                                    {
+                                        "label": "No, I need to change this",
+                                        "value": "No, I need to change this"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockd58b53a0-cca3-4b7c-b187-5666ecb10c4c",
+                                    "when": [{
+                                        "id": "answerconfirmation-answer-for-d58b53a0-cca3-4b7c-b187-5666ecb10c4c",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "No, I need to change this"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockb3a43788-afd8-4311-869b-0d05b0be681a"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockb3a43788-afd8-4311-869b-0d05b0be681a",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionb3a43788-afd8-4311-869b-0d05b0be681a",
+                            "title": "Of the {{ answers['answere986bc9b-0ba2-4249-a4e1-d9a1437f5a40'] | format_number }} total employees employed on {{ metadata['employment_date'] | format_date }}, how many male and female employees worked the following hours?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "all workers paid directly from this business&#x2019;s payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "agency workers paid directly from the agency payroll",
+                                            "voluntary workers",
+                                            "former employees only receiving a pension",
+                                            "self-employed workers",
+                                            "working owners who are not paid via PAYE"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answer439b5e4b-6ae0-4579-92c3-19cbf052a553",
+                                    "mandatory": true,
+                                    "type": "Number",
+                                    "label": "Number of male employees working more than 30 hours per week",
+                                    "description": "",
+                                    "q_code": "51",
+                                    "max_value": {
+                                        "answer_id": "answere986bc9b-0ba2-4249-a4e1-d9a1437f5a40",
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answer74822f53-03b9-4219-a4bf-03b763e280da",
+                                    "mandatory": true,
+                                    "type": "Number",
+                                    "label": "Number of male employees working 30 hours or less per week",
+                                    "description": "",
+                                    "q_code": "52",
+                                    "max_value": {
+                                        "answer_id": "answere986bc9b-0ba2-4249-a4e1-d9a1437f5a40",
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answerb0b29803-9d66-4b49-b00e-d3d06a6c7df5",
+                                    "mandatory": true,
+                                    "type": "Number",
+                                    "label": "Number of female employees working more than 30 hours per week",
+                                    "description": "",
+                                    "q_code": "53",
+                                    "max_value": {
+                                        "answer_id": "answere986bc9b-0ba2-4249-a4e1-d9a1437f5a40",
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answerfd0bbdeb-ec8f-4e6e-8e80-4746055407a1",
+                                    "mandatory": false,
+                                    "type": "Number",
+                                    "label": "Number of female employees working 30 hours or less per week",
+                                    "description": "",
+                                    "q_code": "54",
+                                    "max_value": {
+                                        "answer_id": "answere986bc9b-0ba2-4249-a4e1-d9a1437f5a40",
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 0
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answer439b5e4b-6ae0-4579-92c3-19cbf052a553",
+                                    "answer74822f53-03b9-4219-a4bf-03b763e280da",
+                                    "answerb0b29803-9d66-4b49-b00e-d3d06a6c7df5",
+                                    "answerfd0bbdeb-ec8f-4e6e-8e80-4746055407a1"
+                                ],
+                                "conditions": [
+                                    "equals"
+                                ],
+                                "answer_id": "answere986bc9b-0ba2-4249-a4e1-d9a1437f5a40"
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                        "condition": "equals",
+                        "value": 0
+                    }]
+                }]
+            }]
+        },
+        {
             "id": "sectione9d26530-ad8f-4527-b09c-afacfa0c820a",
             "title": "Comments",
             "groups": [{
@@ -1635,6 +1869,10 @@
         },
         {
             "name": "ref_p_end_date",
+            "validator": "date"
+        },
+        {
+            "name": "employment_date",
             "validator": "date"
         }
     ],
