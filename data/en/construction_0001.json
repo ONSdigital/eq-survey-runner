@@ -265,10 +265,10 @@
         },
         {
             "id": "section7e41e171-26eb-42c0-99ef-b34fa447c363",
-            "title": "Value of Work",
+            "title": "Value of work",
             "groups": [{
                 "id": "group7e41e171-26eb-42c0-99ef-b34fa447c363",
-                "title": "Value of Work",
+                "title": "Value of work",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group7e41e171-26eb-42c0-99ef-b34fa447c363-introduction",
@@ -489,17 +489,14 @@
                                 "type": "Checkbox",
                                 "label": "",
                                 "description": "",
-                                "q_code": "a",
                                 "options": [{
                                         "label": "Public sector projects",
                                         "value": "Public sector projects",
-                                        "q_code": "b",
                                         "description": "In the UK, the public sector consists of five sub-sectors: central government, local government, public non-financial corporations, Bank of England, public financial corporations (public sector banks)"
                                     },
                                     {
                                         "label": "Private sector projects",
                                         "value": "Private sector projects",
-                                        "q_code": "c",
                                         "description": "The private sector refers to the part of the economy that is for profit and is owned by private organisations, for example housing associations, or individuals"
                                     }
                                 ]
@@ -1118,23 +1115,19 @@
                                 "type": "Checkbox",
                                 "label": "",
                                 "description": "",
-                                "q_code": "f",
                                 "options": [{
                                         "label": "Public sector projects",
                                         "value": "Public sector projects",
-                                        "q_code": "g",
                                         "description": "The public sector consists central government, local government, public non-financial corporations, Bank of England and public financial corporations."
                                     },
                                     {
                                         "label": "Private commercial sector projects",
                                         "value": "Private commercial sector projects",
-                                        "q_code": "h",
                                         "description": "Part of the economy that  includes all businesses except those involved in manufacturing, transport and agriculture"
                                     },
                                     {
                                         "label": "Private industrial sector projects",
                                         "value": "Private industrial sector projects",
-                                        "q_code": "i",
                                         "description": "Part of the economy that includes businesses involved in manufacturing, transport and agriculture"
                                     }
                                 ]
