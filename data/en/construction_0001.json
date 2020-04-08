@@ -489,6 +489,7 @@
                                 "type": "Checkbox",
                                 "label": "",
                                 "description": "",
+                                "q_code": "d1",
                                 "options": [{
                                         "label": "Public sector projects",
                                         "value": "Public sector projects",
@@ -1115,6 +1116,7 @@
                                 "type": "Checkbox",
                                 "label": "",
                                 "description": "",
+                                "q_code": "d2",
                                 "options": [{
                                         "label": "Public sector projects",
                                         "value": "Public sector projects",
