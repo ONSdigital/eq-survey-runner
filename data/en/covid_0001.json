@@ -20,8 +20,8 @@
                             "id": "primary",
                             "content": [{
                                     "list": [
-                                        "Your response will help us provide real-time information during the coronavirus (COVID-19) outbreak.",
-                                        "Information will be used by government to make crucial decisions for the population and the UK economy."
+                                        "Your response helps us to provide real-time information during the coronavirus (COVID-19) outbreak.",
+                                        "This is so the government has the information it needs to manage the UK&#x2019;s response to the coronavirus (COVID-19) pandemic."
                                     ]
                                 },
                                 {
@@ -63,6 +63,12 @@
                                     "question": "Section two: Operational performance of your business",
                                     "content": [{
                                         "description": "This section asks for information any changes to the size and capacity of your workforce during the last two weeks and expectations for the next two weeks."
+                                    }]
+                                },
+                                {
+                                    "question": "Section three: Other financial or operational changes",
+                                    "content": [{
+                                        "description": "This section asks for information on any other changes to financial and/or operational activities in the last two weeks <em>not already covered</em>, and expectations over the next two weeks."
                                     }]
                                 }
                             ]
@@ -121,7 +127,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "block": "blockface7848-76ad-42ce-a7f6-618344f1d700",
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
@@ -210,15 +216,311 @@
                                 ],
                                 "value": 100
                             }]
+                        }]
+                    },
+                    {
+                        "id": "blockface7848-76ad-42ce-a7f6-618344f1d700",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionface7848-76ad-42ce-a7f6-618344f1d700",
+                            "title": "When {{ metadata['ru_name'] }} was still trading, where was <em>most</em> of its business activity carried out?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer177513fe-5a68-46c0-9f65-2d8276e8c2a2",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "43",
+                                "options": [{
+                                        "label": "UK",
+                                        "value": "UK"
+                                    },
+                                    {
+                                        "label": "Outside the UK",
+                                        "value": "Outside the UK"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block7f5c1f5d-0854-4738-b801-20d9848475c2",
+                                    "block": "block89edf385-8f44-4167-bc8d-5cc492de49f8",
+                                    "when": [{
+                                            "id": "answer177513fe-5a68-46c0-9f65-2d8276e8c2a2",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "UK"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Has temporarily closed or paused trading",
+                                                "Has permanently ceased trading"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block9256a6e4-f1ee-48c3-b7ef-982020a29255",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Has temporarily closed or paused trading"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answer177513fe-5a68-46c0-9f65-2d8276e8c2a2",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Outside the UK",
+                                                "Not sure"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Has permanently ceased trading"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answer177513fe-5a68-46c0-9f65-2d8276e8c2a2",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Outside the UK",
+                                                "Not sure"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block53427413-02bd-45ec-bf13-066ec13177d2"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block89edf385-8f44-4167-bc8d-5cc492de49f8",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question89edf385-8f44-4167-bc8d-5cc492de49f8",
+                            "title": "<em>Where in the UK</em> did {{ metadata['ru_name'] }} carry out its business activity?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
+                                "mandatory": true,
+                                "type": "Checkbox",
+                                "label": "Select all that apply",
+                                "description": "",
+                                "options": [{
+                                        "label": "England",
+                                        "value": "England",
+                                        "q_code": "431"
+                                    },
+                                    {
+                                        "label": "Scotland",
+                                        "value": "Scotland",
+                                        "q_code": "432"
+                                    },
+                                    {
+                                        "label": "Wales",
+                                        "value": "Wales",
+                                        "q_code": "433"
+                                    },
+                                    {
+                                        "label": "Northern Ireland",
+                                        "value": "Northern Ireland",
+                                        "q_code": "434"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "435"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block44f01721-6837-4d8c-83e3-dc3e8cfa1bc1",
+                                    "when": [{
+                                            "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "England"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Has temporarily closed or paused trading",
+                                                "Has permanently ceased trading"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block9256a6e4-f1ee-48c3-b7ef-982020a29255",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Has temporarily closed or paused trading"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Scotland",
+                                                "Wales",
+                                                "Northern Ireland",
+                                                "Not sure"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Has permanently ceased trading"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Scotland",
+                                                "Wales",
+                                                "Northern Ireland",
+                                                "Not sure"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block44f01721-6837-4d8c-83e3-dc3e8cfa1bc1",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question44f01721-6837-4d8c-83e3-dc3e8cfa1bc1",
+                            "title": "<em>Where in England</em> did {{ metadata['ru_name'] }} carry out its business activity?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer43e47e2e-ebd6-47d3-8176-b795f8b4beed",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "North West",
+                                            "value": "North West",
+                                            "q_code": "441"
+                                        },
+                                        {
+                                            "label": "Yorkshire and The Humber",
+                                            "value": "Yorkshire and The Humber",
+                                            "q_code": "442"
+                                        },
+                                        {
+                                            "label": "East Midlands",
+                                            "value": "East Midlands",
+                                            "q_code": "443"
+                                        },
+                                        {
+                                            "label": "West Midlands",
+                                            "value": "West Midlands",
+                                            "q_code": "444"
+                                        },
+                                        {
+                                            "label": "East of England",
+                                            "value": "East of England",
+                                            "q_code": "445"
+                                        },
+                                        {
+                                            "label": "Greater London",
+                                            "value": "Greater London",
+                                            "q_code": "446"
+                                        },
+                                        {
+                                            "label": "South East",
+                                            "value": "South East",
+                                            "q_code": "447"
+                                        },
+                                        {
+                                            "label": "South West",
+                                            "value": "South West",
+                                            "q_code": "448"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer43e47e2e-ebd6-47d3-8176-b795f8b4beed-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "449"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block9256a6e4-f1ee-48c3-b7ef-982020a29255",
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
                                         "values": [
                                             "Has temporarily closed or paused trading"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Has permanently ceased trading"
                                         ]
                                     }]
                                 }
@@ -305,8 +607,12 @@
                                         "value": "Yes, turnover was within the normal range"
                                     },
                                     {
-                                        "label": "No, turnover was outside the normal range",
-                                        "value": "No, turnover was outside the normal range"
+                                        "label": "No, turnover was outside its normal range",
+                                        "value": "No, turnover was outside its normal range"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
                                     }
                                 ]
                             }]
@@ -325,17 +631,18 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block48812f98-f5f8-4c94-bd8b-9340dc23773c"
+                                    "block": "block57fa2313-c299-44e9-9a63-3c55e08d67e1"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "block48812f98-f5f8-4c94-bd8b-9340dc23773c",
+                        "id": "block57fa2313-c299-44e9-9a63-3c55e08d67e1",
                         "type": "Question",
                         "questions": [{
-                            "id": "question48812f98-f5f8-4c94-bd8b-9340dc23773c",
-                            "title": "In what way was {{ metadata['ru_name'] }}&apos;s turnover outside its normal range in the last two weeks?",
+                            "id": "question57fa2313-c299-44e9-9a63-3c55e08d67e1",
+                            "title": "In what way was {{ metadata['ru_name'] }}&apos;s turnover different in the last two weeks?",
+                            "description": "<p>You can provide a rough estimate.</p>",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Exclude:</strong>"
@@ -350,27 +657,35 @@
                             },
                             "type": "General",
                             "answers": [{
-                                "id": "answer36ff4ffc-b324-4da3-a354-5e569867dcbc",
+                                "id": "answer04dbe8d0-6318-457a-9408-19fe6e3a177a",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
                                 "q_code": "3",
                                 "options": [{
-                                        "label": "Turnover was substantially higher than normal",
-                                        "value": "Turnover was substantially higher than normal"
+                                        "label": "Increased by more than 50%",
+                                        "value": "Increased by more than 50%"
                                     },
                                     {
-                                        "label": "Turnover was a little higher than normal",
-                                        "value": "Turnover was a little higher than normal"
+                                        "label": "Increased between 20% and 50%",
+                                        "value": "Increased between 20% and 50%"
                                     },
                                     {
-                                        "label": "Turnover was a little lower than normal",
-                                        "value": "Turnover was a little lower than normal"
+                                        "label": "Increased by up to 20%",
+                                        "value": "Increased by up to 20%"
                                     },
                                     {
-                                        "label": "Turnover was substantially lower than normal",
-                                        "value": "Turnover was substantially lower than normal"
+                                        "label": "Decreased by up to 20%",
+                                        "value": "Decreased by up to 20%"
+                                    },
+                                    {
+                                        "label": "Decreased between 20% and 50%",
+                                        "value": "Decreased between 20% and 50%"
+                                    },
+                                    {
+                                        "label": "Decreased by more than 50%",
+                                        "value": "Decreased by more than 50%"
                                     },
                                     {
                                         "label": "Not sure",
@@ -804,12 +1119,12 @@
                                         "value": "Yes, we have been able to  get what we needed"
                                     },
                                     {
-                                        "label": "Yes, but we have had to change suppliers or find alternative solutions",
-                                        "value": "Yes, but we have had to change suppliers or find alternative solutions"
+                                        "label": "Yes, but we had to change suppliers or find alternative solutions",
+                                        "value": "Yes, but we had to change suppliers or find alternative solutions"
                                     },
                                     {
-                                        "label": "No, we have not been able to get the materials, goods or services we needed",
-                                        "value": "No, we have not been able to get the materials, goods or services we needed"
+                                        "label": "No, we have not been able to get the materials, goods or services needed",
+                                        "value": "No, we have not been able to get the materials, goods or services needed"
                                     },
                                     {
                                         "label": "Not applicable",
@@ -825,7 +1140,8 @@
                                         "id": "answer478a7145-b712-43a1-9e1d-df39c23abddd",
                                         "condition": "contains any",
                                         "values": [
-                                            "No, we have not been able to get the materials, goods or services we needed"
+                                            "No, we have not been able to get the materials, goods or services needed",
+                                            "Not applicable"
                                         ]
                                     }]
                                 }
@@ -878,8 +1194,8 @@
                                         "value": "Outside the UK"
                                     },
                                     {
-                                        "label": "Difficult to say",
-                                        "value": "Difficult to say"
+                                        "label": "Not sure",
+                                        "value": "Not sure"
                                     }
                                 ]
                             }]
@@ -909,40 +1225,48 @@
                         "questions": [{
                             "id": "question2680f6c8-0453-4916-a378-ecb9de6d4be0",
                             "title": "<em>Where in the UK</em> does {{ metadata['ru_name'] }} carry out its business activity?",
-                            "type": "General",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
                             "answers": [{
-                                "id": "answer8de4a0c3-ea10-4189-9ad1-f895baeda20f",
-                                "mandatory": true,
-                                "type": "Checkbox",
-                                "label": "Select all that apply",
-                                "description": "",
-                                "options": [{
-                                        "label": "England",
-                                        "value": "England",
-                                        "q_code": "341"
-                                    },
-                                    {
-                                        "label": "Scotland",
-                                        "value": "Scotland",
-                                        "q_code": "342"
-                                    },
-                                    {
-                                        "label": "Wales",
-                                        "value": "Wales",
-                                        "q_code": "343"
-                                    },
-                                    {
-                                        "label": "Northern Ireland",
-                                        "value": "Northern Ireland",
-                                        "q_code": "344"
-                                    },
-                                    {
-                                        "label": "Difficult to say",
-                                        "value": "Difficult to say",
+                                    "id": "answer8de4a0c3-ea10-4189-9ad1-f895baeda20f",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "England",
+                                            "value": "England",
+                                            "q_code": "341"
+                                        },
+                                        {
+                                            "label": "Scotland",
+                                            "value": "Scotland",
+                                            "q_code": "342"
+                                        },
+                                        {
+                                            "label": "Wales",
+                                            "value": "Wales",
+                                            "q_code": "343"
+                                        },
+                                        {
+                                            "label": "Northern Ireland",
+                                            "value": "Northern Ireland",
+                                            "q_code": "344"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer8de4a0c3-ea10-4189-9ad1-f895baeda20f-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
                                         "q_code": "345"
-                                    }
-                                ]
-                            }]
+                                    }]
+                                }
+                            ]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -969,60 +1293,68 @@
                         "questions": [{
                             "id": "questiond2f54d24-128b-4d9e-b90d-6fc20858e8c9",
                             "title": "<em>Where in England</em> does {{ metadata['ru_name'] }} carry out its business activity?",
-                            "type": "General",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
                             "answers": [{
-                                "id": "answer468b1857-f3f1-4cde-a89a-cfaa17e26a7d",
-                                "mandatory": true,
-                                "type": "Checkbox",
-                                "label": "Select all that apply",
-                                "description": "",
-                                "options": [{
-                                        "label": "North West",
-                                        "value": "North West",
-                                        "q_code": "351"
-                                    },
-                                    {
-                                        "label": "Yorkshire and The Humber",
-                                        "value": "Yorkshire and The Humber",
-                                        "q_code": "352"
-                                    },
-                                    {
-                                        "label": "East Midlands",
-                                        "value": "East Midlands",
-                                        "q_code": "353"
-                                    },
-                                    {
-                                        "label": "West Midlands",
-                                        "value": "West Midlands",
-                                        "q_code": "354"
-                                    },
-                                    {
-                                        "label": "East of England",
-                                        "value": "East of England",
-                                        "q_code": "355"
-                                    },
-                                    {
-                                        "label": "Greater London",
-                                        "value": "Greater London",
-                                        "q_code": "356"
-                                    },
-                                    {
-                                        "label": "South East",
-                                        "value": "South East",
-                                        "q_code": "357"
-                                    },
-                                    {
-                                        "label": "South West",
-                                        "value": "South West",
-                                        "q_code": "358"
-                                    },
-                                    {
-                                        "label": "Difficult to say",
-                                        "value": "Difficult to say",
+                                    "id": "answer468b1857-f3f1-4cde-a89a-cfaa17e26a7d",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "North West",
+                                            "value": "North West",
+                                            "q_code": "351"
+                                        },
+                                        {
+                                            "label": "Yorkshire and The Humber",
+                                            "value": "Yorkshire and The Humber",
+                                            "q_code": "352"
+                                        },
+                                        {
+                                            "label": "East Midlands",
+                                            "value": "East Midlands",
+                                            "q_code": "353"
+                                        },
+                                        {
+                                            "label": "West Midlands",
+                                            "value": "West Midlands",
+                                            "q_code": "354"
+                                        },
+                                        {
+                                            "label": "East of England",
+                                            "value": "East of England",
+                                            "q_code": "355"
+                                        },
+                                        {
+                                            "label": "Greater London",
+                                            "value": "Greater London",
+                                            "q_code": "356"
+                                        },
+                                        {
+                                            "label": "South East",
+                                            "value": "South East",
+                                            "q_code": "357"
+                                        },
+                                        {
+                                            "label": "South West",
+                                            "value": "South West",
+                                            "q_code": "358"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer468b1857-f3f1-4cde-a89a-cfaa17e26a7d-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
                                         "q_code": "359"
-                                    }
-                                ]
-                            }]
+                                    }]
+                                }
+                            ]
                         }]
                     },
                     {
@@ -1306,7 +1638,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9256a6e4-f1ee-48c3-b7ef-982020a29255",
-                            "title": "Has {{ metadata['ru_name'] }}&#x2019;s ability to access financial resources changed in the last two weeks?",
+                            "title": "Has {{ metadata['ru_name'] }}&#x2019;s ability to access financial resources changed in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer8154419b-8f9c-4f69-b9ff-4888b4a27607",
@@ -1336,11 +1668,206 @@
                         }]
                     },
                     {
+                        "id": "block2ea33f36-282b-40d4-a881-0d946f8d4408",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question2ea33f36-282b-40d4-a881-0d946f8d4408",
+                            "title": "Has {{ metadata['ru_name'] }} applied for any of the following initiatives?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Coronavirus Job Retention Scheme",
+                                            "value": "Coronavirus Job Retention Scheme",
+                                            "q_code": "451",
+                                            "description": "UK Government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
+                                        },
+                                        {
+                                            "label": "Business rates holiday",
+                                            "value": "Business rates holiday",
+                                            "q_code": "452"
+                                        },
+                                        {
+                                            "label": "Deferring VAT payments",
+                                            "value": "Deferring VAT payments",
+                                            "q_code": "453"
+                                        },
+                                        {
+                                            "label": "HMRC Time To Pay scheme",
+                                            "value": "HMRC Time To Pay scheme",
+                                            "q_code": "454"
+                                        },
+                                        {
+                                            "label": "Government-funded small business grant or loan schemes",
+                                            "value": "Government-funded small business grant or loan schemes",
+                                            "q_code": "455",
+                                            "description": "For example, rural rate relief or property rate relief"
+                                        },
+                                        {
+                                            "label": "Accredited finance agreements",
+                                            "value": "Accredited finance agreements",
+                                            "q_code": "456",
+                                            "description": "For example, COVID Corporate Financing Facility (CCFF) or Coronavirus Business Interruption Loan Scheme (CBILS)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "We have not applied for any of these initiatives",
+                                        "value": "We have not applied for any of these initiatives",
+                                        "q_code": "457"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockb305b9d6-b021-4d5e-a92e-291381c49492",
+                                    "when": [{
+                                        "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Business rates holiday",
+                                            "Deferring VAT payments",
+                                            "HMRC Time To Pay scheme",
+                                            "Government-funded small business grant or loan schemes",
+                                            "Accredited finance agreements"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block7f5c1f5d-0854-4738-b801-20d9848475c2"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockb305b9d6-b021-4d5e-a92e-291381c49492",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionb305b9d6-b021-4d5e-a92e-291381c49492",
+                            "title": "Of the initiatives applied for, which has {{ metadata['ru_name'] }} <em>received</em>?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer30aa84e6-07cf-4887-885f-abff7788aefb",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Coronavirus Job Retention Scheme",
+                                            "value": "Coronavirus Job Retention Scheme",
+                                            "q_code": "461",
+                                            "description": "UK Government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
+                                        },
+                                        {
+                                            "label": "Business rates holiday",
+                                            "value": "Business rates holiday",
+                                            "q_code": "462"
+                                        },
+                                        {
+                                            "label": "Deferring VAT payments",
+                                            "value": "Deferring VAT payments",
+                                            "q_code": "463"
+                                        },
+                                        {
+                                            "label": "HMRC Time To Pay scheme",
+                                            "value": "HMRC Time To Pay scheme",
+                                            "q_code": "464"
+                                        },
+                                        {
+                                            "label": "Government-funded small business grant or loan schemes",
+                                            "value": "Government-funded small business grant or loan schemes",
+                                            "q_code": "465",
+                                            "description": "For example, rural rate relief or property rate relief"
+                                        },
+                                        {
+                                            "label": "Accredited finance agreements",
+                                            "value": "Accredited finance agreements",
+                                            "q_code": "466",
+                                            "description": "For example, COVID Corporate Financing Facility (CCFF) or Coronavirus Business Interruption Loan Scheme (CBILS)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer30aa84e6-07cf-4887-885f-abff7788aefb-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "We haven't received any that we applied for",
+                                        "value": "We haven't received any that we applied for",
+                                        "q_code": "467"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "blockf3731f81-73c0-4214-a771-3e321785afd7",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionf3731f81-73c0-4214-a771-3e321785afd7",
+                            "title": "Please describe your experience of applying for these initiatives",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer96848783-ecc7-4bcb-b8c5-bb807a118585",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "47",
+                                "max_length": 2000
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block4fc906bb-a55c-497a-8bd0-5427d69dc055",
+                                    "when": [{
+                                        "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
+                                        "condition": "contains all",
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Business rates holiday",
+                                            "Deferring VAT payments",
+                                            "HMRC Time To Pay scheme",
+                                            "Government-funded small business grant or loan schemes",
+                                            "Accredited finance agreements"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block7f5c1f5d-0854-4738-b801-20d9848475c2"
+                                }
+                            }
+                        ]
+                    },
+                    {
                         "id": "block7f5c1f5d-0854-4738-b801-20d9848475c2",
                         "type": "Question",
                         "questions": [{
                             "id": "question7f5c1f5d-0854-4738-b801-20d9848475c2",
-                            "title": "Which of the following initiatives is {{ metadata['ru_name'] }} interested in using, if any?",
+                            "title": "Is {{ metadata['ru_name'] }} <em>intending</em> to apply for any of the following initiatives?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude any initiatives that your business has already applied for"
+                                }]
+                            },
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -1352,40 +1879,35 @@
                                     "options": [{
                                             "label": "Coronavirus Job Retention Scheme",
                                             "value": "Coronavirus Job Retention Scheme",
-                                            "q_code": "361",
+                                            "q_code": "481",
                                             "description": "UK Government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
                                         },
                                         {
                                             "label": "Business rates holiday",
                                             "value": "Business rates holiday",
-                                            "q_code": "362"
+                                            "q_code": "482"
                                         },
                                         {
                                             "label": "Deferring VAT payments",
                                             "value": "Deferring VAT payments",
-                                            "q_code": "363"
+                                            "q_code": "483"
                                         },
                                         {
-                                            "label": "The HMRC Time To Pay scheme",
-                                            "value": "The HMRC Time To Pay scheme",
-                                            "q_code": "364"
+                                            "label": "HMRC Time To Pay scheme",
+                                            "value": "HMRC Time To Pay scheme",
+                                            "q_code": "484"
                                         },
                                         {
-                                            "label": "Small business grant or loan schemes",
-                                            "value": "Small business grant or loan schemes",
-                                            "q_code": "365",
+                                            "label": "Government-funded small business grant or loan schemes",
+                                            "value": "Government-funded small business grant or loan schemes",
+                                            "q_code": "485",
                                             "description": "For example, rural rate relief or property rate relief"
                                         },
                                         {
                                             "label": "Accredited finance agreements",
                                             "value": "Accredited finance agreements",
-                                            "q_code": "366",
+                                            "q_code": "486",
                                             "description": "For example, COVID Corporate Financing Facility (CCFF) or Coronavirus Business Interruption Loan Scheme (CBILS)"
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "367"
                                         }
                                     ]
                                 },
@@ -1397,10 +1919,28 @@
                                     "options": [{
                                         "label": "None of the above",
                                         "value": "None of the above",
-                                        "q_code": "368"
+                                        "q_code": "487"
                                     }]
                                 }
                             ]
+                        }]
+                    },
+                    {
+                        "id": "block4fc906bb-a55c-497a-8bd0-5427d69dc055",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question4fc906bb-a55c-497a-8bd0-5427d69dc055",
+                            "title": "Please describe any other support from government that you think could help your business",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answere5a0ad55-8183-4fb2-8b35-29442de9c916",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "49",
+                                "max_length": 2000
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -1426,7 +1966,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question84850293-8fe0-476a-aaca-757d7873713a",
-                            "title": "How confident are you that {{ metadata['ru_name'] }} has the financial resources to continue operating throughout the coronavirus (COVID-19) outbreak?",
+                            "title": "How confident are you that {{ metadata['ru_name'] }} has the financial resources to <em>continue to operate</em> throughout the coronavirus (COVID-19) outbreak?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer1eb203aa-4bab-40a6-9e1f-23df474c70d9",
@@ -1444,8 +1984,8 @@
                                         "value": "Not confident"
                                     },
                                     {
-                                        "label": "Don't know yet",
-                                        "value": "Don't know yet"
+                                        "label": "Not sure",
+                                        "value": "Not sure"
                                     }
                                 ]
                             }]
@@ -1636,7 +2176,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc6777d62-a71c-4649-9f14-f23249271215",
-                            "title": "In the last two weeks, <em>roughly what proportion</em> of {{ metadata['ru_name'] }}&apos;s workforce was furloughed, off sick due to coronavirus or made redundant?",
+                            "title": "In the last two weeks, <em>roughly what proportion</em> of {{ metadata['ru_name'] }}&apos;s workforce was furloughed, off sick due to coronavirus or has been made redundant?",
                             "description": "<p>Your answers should add up to 100%. If your workforce did not fall into one of the categories, enter &apos;0&apos;.</p>",
                             "type": "Calculated",
                             "answers": [{
@@ -1778,6 +2318,44 @@
                 ],
                 "skip_conditions": [{
                         "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Has permanently ceased trading"
+                                ]
+                            },
+                            {
+                                "id": "answer177513fe-5a68-46c0-9f65-2d8276e8c2a2",
+                                "condition": "contains any",
+                                "values": [
+                                    "Outside the UK",
+                                    "Not sure"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Has permanently ceased trading"
+                                ]
+                            },
+                            {
+                                "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
+                                "condition": "contains any",
+                                "values": [
+                                    "Scotland",
+                                    "Wales",
+                                    "Northern Ireland",
+                                    "Not sure"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
                             "values": [
@@ -1807,7 +2385,7 @@
                         "type": "Interstitial",
                         "id": "group87fce9eb-d7e7-4893-8188-0ac12c665edf-introduction",
                         "title": "Other financial or operational changes",
-                        "description": "<p>This section asks for information on any other changes to financial and/or operational activities <em>not already covered</em> in the last two weeks, and expectations over the next two weeks. </p>"
+                        "description": "<p>This section asks for information on any other changes to financial and/or operational activities in the last two weeks <em>not already covered</em>, and expectations over the next two weeks. </p>"
                     },
                     {
                         "id": "block34493fa3-6f1c-4ce7-a96f-d0e28a3155b1",
@@ -1896,7 +2474,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1f84642d-9790-4154-ab29-3f8eb2ed0a73",
-                            "title": "Are you expecting <em>any other financial and/or operational activities</em> at {{ metadata['ru_name'] }} to be affected by the coronavirus (COVID-19) outbreak over the <em>next two weeks</em>?",
+                            "title": "Are you expecting <em>any other</em> financial and/or operational activities at {{ metadata['ru_name'] }} to be affected by the coronavirus (COVID-19) outbreak over the <em>next two weeks</em>?",
                             "definitions": [{
                                 "title": "Examples of financial and operational activities",
                                 "content": [{
@@ -1916,12 +2494,12 @@
                                 "description": "",
                                 "q_code": "29",
                                 "options": [{
-                                        "label": "Yes, I expect other financial and/or operational activities to be affected",
-                                        "value": "Yes, I expect other financial and/or operational activities to be affected"
+                                        "label": "Yes, we expect other financial and/or operational activities to be affected",
+                                        "value": "Yes, we expect other financial and/or operational activities to be affected"
                                     },
                                     {
-                                        "label": "No, I do not expect any other financial and/or operational activities to be affected",
-                                        "value": "No, I do not expect any other financial and/or operational activities to be affected"
+                                        "label": "No, we do not expect any other financial and/or operational activities to be affected",
+                                        "value": "No, we do not expect any other financial and/or operational activities to be affected"
                                     }
                                 ]
                             }]
@@ -1933,7 +2511,7 @@
                                         "id": "answer618464a8-4a5a-4bf8-820a-1e36a41254c9",
                                         "condition": "contains any",
                                         "values": [
-                                            "No, I do not expect any other financial and/or operational activities to be affected"
+                                            "No, we do not expect any other financial and/or operational activities to be affected"
                                         ]
                                     }]
                                 }
@@ -1950,7 +2528,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiona466d34d-19c1-4f04-a1ff-1de73f1c3a77",
-                            "title": "Please give more details about which other financial and/or operational activities at {{ metadata['ru_name'] }} you think will be affected in the <em>next two weeks</em>",
+                            "title": "Please give more details about which <em>other</em> financial and/or operational activities at {{ metadata['ru_name'] }} you think will be affected in the <em>next two weeks</em>",
                             "definitions": [{
                                 "title": "Examples of financial and operational activities",
                                 "content": [{
@@ -1979,7 +2557,7 @@
                                         "id": "answer618464a8-4a5a-4bf8-820a-1e36a41254c9",
                                         "condition": "contains any",
                                         "values": [
-                                            "Yes, I expect other financial and/or operational activities to be affected"
+                                            "Yes, we expect other financial and/or operational activities to be affected"
                                         ]
                                     }]
                                 }
@@ -1996,11 +2574,11 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question182d789c-7500-4a07-b271-d639e2840085",
-                            "title": "Why do you think {{ metadata['ru_name'] }} <em>will not have any issues</em> due to coronavirus (COVID-19) over the next two weeks?",
+                            "title": "If applicable, why do you think {{ metadata['ru_name'] }} <em>will not</em> have any <em>other</em> issues due to coronavirus (COVID-19) over the next two weeks?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerf4364e1c-c061-406f-9cb1-e457f87bd760",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Please give details",
                                 "description": "",
@@ -2011,6 +2589,44 @@
                     }
                 ],
                 "skip_conditions": [{
+                        "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Has permanently ceased trading"
+                                ]
+                            },
+                            {
+                                "id": "answer177513fe-5a68-46c0-9f65-2d8276e8c2a2",
+                                "condition": "contains any",
+                                "values": [
+                                    "Outside the UK",
+                                    "Not sure"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Has permanently ceased trading"
+                                ]
+                            },
+                            {
+                                "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
+                                "condition": "contains any",
+                                "values": [
+                                    "Scotland",
+                                    "Wales",
+                                    "Northern Ireland",
+                                    "Not sure"
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
