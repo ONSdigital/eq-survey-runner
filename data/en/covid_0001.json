@@ -323,40 +323,48 @@
                         "questions": [{
                             "id": "question89edf385-8f44-4167-bc8d-5cc492de49f8",
                             "title": "<em>Where in the UK</em> did {{ metadata['ru_name'] }} carry out its business activity?",
-                            "type": "General",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
                             "answers": [{
-                                "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
-                                "mandatory": true,
-                                "type": "Checkbox",
-                                "label": "Select all that apply",
-                                "description": "",
-                                "options": [{
-                                        "label": "England",
-                                        "value": "England",
-                                        "q_code": "431"
-                                    },
-                                    {
-                                        "label": "Scotland",
-                                        "value": "Scotland",
-                                        "q_code": "432"
-                                    },
-                                    {
-                                        "label": "Wales",
-                                        "value": "Wales",
-                                        "q_code": "433"
-                                    },
-                                    {
-                                        "label": "Northern Ireland",
-                                        "value": "Northern Ireland",
-                                        "q_code": "434"
-                                    },
-                                    {
+                                    "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "England",
+                                            "value": "England",
+                                            "q_code": "431"
+                                        },
+                                        {
+                                            "label": "Scotland",
+                                            "value": "Scotland",
+                                            "q_code": "432"
+                                        },
+                                        {
+                                            "label": "Wales",
+                                            "value": "Wales",
+                                            "q_code": "433"
+                                        },
+                                        {
+                                            "label": "Northern Ireland",
+                                            "value": "Northern Ireland",
+                                            "q_code": "434"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
                                         "label": "Not sure",
                                         "value": "Not sure",
                                         "q_code": "435"
-                                    }
-                                ]
-                            }]
+                                    }]
+                                }
+                            ]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -383,46 +391,12 @@
                                 "goto": {
                                     "block": "block9256a6e4-f1ee-48c3-b7ef-982020a29255",
                                     "when": [{
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Has temporarily closed or paused trading"
-                                            ]
-                                        },
-                                        {
-                                            "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Scotland",
-                                                "Wales",
-                                                "Northern Ireland",
-                                                "Not sure"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
-                                    "when": [{
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Has permanently ceased trading"
-                                            ]
-                                        },
-                                        {
-                                            "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Scotland",
-                                                "Wales",
-                                                "Northern Ireland",
-                                                "Not sure"
-                                            ]
-                                        }
-                                    ]
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Has temporarily closed or paused trading"
+                                        ]
+                                    }]
                                 }
                             },
                             {
@@ -2336,26 +2310,6 @@
                     },
                     {
                         "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Has permanently ceased trading"
-                                ]
-                            },
-                            {
-                                "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
-                                "condition": "contains any",
-                                "values": [
-                                    "Scotland",
-                                    "Wales",
-                                    "Northern Ireland",
-                                    "Not sure"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
                             "values": [
@@ -2601,26 +2555,6 @@
                                 "condition": "contains any",
                                 "values": [
                                     "Outside the UK",
-                                    "Not sure"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Has permanently ceased trading"
-                                ]
-                            },
-                            {
-                                "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
-                                "condition": "contains any",
-                                "values": [
-                                    "Scotland",
-                                    "Wales",
-                                    "Northern Ireland",
                                     "Not sure"
                                 ]
                             }
