@@ -81,12 +81,33 @@
                             ]
                         },
                         {
+                            "id": "blocka01f772b-dbe0-4a36-b883-0bfb6229ae2a",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "questiona01f772b-dbe0-4a36-b883-0bfb6229ae2a",
+                                    "title": "percentage q",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answerbc921624-8ba1-4ae9-809c-3707fb872c35",
+                                            "mandatory": false,
+                                            "type": "Percentage",
+                                            "label": "how much %\\?",
+                                            "description": "",
+                                            "decimal_places": 0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
                             "id": "blockd4cecf75-c87f-437c-aa4c-6ccd981f42f5",
                             "type": "Question",
                             "questions": [
                                 {
                                     "id": "questiond4cecf75-c87f-437c-aa4c-6ccd981f42f5",
-                                    "title": "Piping question - {{ format_unit(answers['answer3ab9b867-0cba-4ce9-b62f-b87fe7034200'], 'undefined') }}",
+                                    "title": "Piping question - {{ format_unit('Metres',answers['answer3ab9b867-0cba-4ce9-b62f-b87fe7034200']) }}",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -94,6 +115,27 @@
                                             "mandatory": false,
                                             "type": "Number",
                                             "label": "piping stuff",
+                                            "description": "",
+                                            "decimal_places": 0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block209fbf51-7bd0-4801-b097-3fd07bcacc7b",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question209fbf51-7bd0-4801-b097-3fd07bcacc7b",
+                                    "title": "piping Q 2 {{ answers['answerbc921624-8ba1-4ae9-809c-3707fb872c35'] }}",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer5394f64e-9833-4b8a-8c6e-0b0503bef2bf",
+                                            "mandatory": false,
+                                            "type": "Number",
+                                            "label": "gfbfgbfgb",
                                             "description": "",
                                             "decimal_places": 0
                                         }
@@ -123,24 +165,6 @@
                                     ]
                                 }
                             ]
-                        },
-                        {
-                            "id": "blockae25af84-fdf6-4de7-ad6a-f5c8815432d8",
-                            "type": "CalculatedSummary",
-                            "titles": [
-                                {
-                                    "value": "Calc summary page for units m"
-                                }
-                            ],
-                            "calculation": {
-                                "calculation_type": "sum",
-                                "answers_to_calculate": ["answer3ab9b867-0cba-4ce9-b62f-b87fe7034200", "answerf33eda11-f54e-408e-9dbb-0d9cdad339b9"],
-                                "titles": [
-                                    {
-                                        "value": "Total Value"
-                                    }
-                                ]
-                            }
                         }
                     ]
                 },
