@@ -384,6 +384,15 @@
                             },
                             {
                                 "goto": {
+                                    "group": "groupe9d26530-ad8f-4527-b09c-afacfa0c820a",
+                                    "when": [{
+                                        "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
                                     "group": "group95c68629-8efd-4913-b465-41b686719d32"
                                 }
                             }
@@ -776,12 +785,19 @@
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
-                        "condition": "equals",
-                        "value": 0
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "equals",
+                            "value": 0
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
             }]
         },
         {
@@ -1004,12 +1020,19 @@
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
-                        "condition": "equals",
-                        "value": 0
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "equals",
+                            "value": 0
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
             }]
         },
         {
@@ -1534,12 +1557,19 @@
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
-                        "condition": "equals",
-                        "value": 0
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "equals",
+                            "value": 0
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
             }]
         },
         {
