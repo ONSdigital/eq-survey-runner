@@ -1,6 +1,6 @@
 {
-    "eq_id": "covid_0001",
-    "form_type": "0001",
+    "eq_id": "covid_0002",
+    "form_type": "0002",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
@@ -19,6 +19,9 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
+                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/thequestionsonthebusinessimpactofcoronaviruscovid19survey'>View the questions before you start the survey (external link)</a>"
+                                },
+                                {
                                     "list": [
                                         "Your response helps us to provide real-time information during the coronavirus (COVID-19) outbreak.",
                                         "This is so the government has the information it needs to manage the UK&#x2019;s response to the coronavirus (COVID-19) pandemic."
@@ -33,16 +36,12 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/thequestionsonthebusinessimpactofcoronaviruscovid19survey'>View the questions before you start the survey (external link)</a>"
-                                },
-                                {
-                                    "list": [
-                                        "Information should relate to the UK.",
-                                        "You do not need to provide actual data.",
-                                        "We will treat your information securely and confidentially."
-                                    ]
-                                }
-                            ],
+                                "list": [
+                                    "Information should relate to the UK.",
+                                    "You do not need to provide actual data.",
+                                    "We will treat your information securely and confidentially."
+                                ]
+                            }],
                             "questions": [{
                                     "question": "Section one: Financial performance of your business",
                                     "content": [{
@@ -62,7 +61,7 @@
                                 {
                                     "question": "Section two: Operational performance of your business",
                                     "content": [{
-                                        "description": "This section asks for information any changes to the size and capacity of your workforce during the last two weeks and expectations for the next two weeks."
+                                        "description": "This section asks for information on any changes to the size and capacity of your workforce during the last two weeks and expectations for the next two weeks."
                                     }]
                                 },
                                 {
@@ -89,7 +88,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbe7effcb-8832-4733-90b4-b699fcffa38a",
-                            "title": "What is the current trading status of {{ metadata['ru_name'] }}?",
+                            "title": "Is {{ metadata['ru_name'] }} currently trading?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -99,46 +98,114 @@
                                 "description": "",
                                 "q_code": "32",
                                 "options": [{
-                                        "label": "Continuing to trade",
-                                        "value": "Continuing to trade"
+                                        "label": "Yes, the business is currently trading",
+                                        "value": "Yes, the business is currently trading"
                                     },
                                     {
-                                        "label": "Has temporarily closed or paused trading",
-                                        "value": "Has temporarily closed or paused trading"
+                                        "label": "No, the business has temporarily closed or paused trading",
+                                        "value": "No, the business has temporarily closed or paused trading"
                                     },
                                     {
-                                        "label": "Has permanently ceased trading",
-                                        "value": "Has permanently ceased trading"
+                                        "label": "No, the business has permanently ceased trading",
+                                        "value": "No, the business has permanently ceased trading"
                                     }
                                 ]
                             }]
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "blockc017328b-f076-4eb7-9ef8-39315fbe3430",
+                                    "block": "block39b725ed-bf0c-4cc4-a06c-4ec48b37fd9b",
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Has temporarily closed or paused trading"]
+                                        "values": ["Yes, the business is currently trading"]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "blockface7848-76ad-42ce-a7f6-618344f1d700",
+                                    "block": "block024e358d-14fc-44bb-9679-b9bb23e6f0ea",
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Has permanently ceased trading"]
+                                        "values": ["No, the business has temporarily closed or paused trading"]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "block53427413-02bd-45ec-bf13-066ec13177d2"
+                                    "block": "blockface7848-76ad-42ce-a7f6-618344f1d700"
                                 }
                             }
                         ]
+                    },
+                    {
+                        "id": "block39b725ed-bf0c-4cc4-a06c-4ec48b37fd9b",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question39b725ed-bf0c-4cc4-a06c-4ec48b37fd9b",
+                            "title": "Did {{ metadata['ru_name'] }} <em>restart trading in the last two weeks</em> after a temporary closure or pause in trading?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1f25c728-0013-4d70-8dd0-86d6ef1f9f10",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "50",
+                                "options": [{
+                                        "label": "Yes, the business started trading again  in the last two weeks",
+                                        "value": "Yes, the business started trading again  in the last two weeks"
+                                    },
+                                    {
+                                        "label": "No, the business had not temporarily closed or paused trading in the last two weeks",
+                                        "value": "No, the business had not temporarily closed or paused trading in the last two weeks"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block53427413-02bd-45ec-bf13-066ec13177d2",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": ["Yes, the business is currently trading"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockface7848-76ad-42ce-a7f6-618344f1d700"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block024e358d-14fc-44bb-9679-b9bb23e6f0ea",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question024e358d-14fc-44bb-9679-b9bb23e6f0ea",
+                            "title": "Did {{ metadata['ru_name'] }}&apos;s temporary closure or pause in trading <em>start in the last two weeks?</em>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer01df8f98-b192-4221-858a-a1557dd396d2",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "51",
+                                "options": [{
+                                        "label": "Yes, the closure or pause started in the last two weeks",
+                                        "value": "Yes, the closure or pause started in the last two weeks"
+                                    },
+                                    {
+                                        "label": "No, the closure or pause started more than two weeks ago",
+                                        "value": "No, the closure or pause started more than two weeks ago"
+                                    }
+                                ]
+                            }]
+                        }]
                     },
                     {
                         "id": "blockc017328b-f076-4eb7-9ef8-39315fbe3430",
@@ -252,7 +319,10 @@
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
-                                            "values": ["Has temporarily closed or paused trading", "Has permanently ceased trading"]
+                                            "values": [
+                                                "No, the business has temporarily closed or paused trading",
+                                                "No, the business has permanently ceased trading"
+                                            ]
                                         }
                                     ]
                                 }
@@ -263,7 +333,7 @@
                                     "when": [{
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
-                                            "values": ["Has temporarily closed or paused trading"]
+                                            "values": ["No, the business has temporarily closed or paused trading"]
                                         },
                                         {
                                             "id": "answer177513fe-5a68-46c0-9f65-2d8276e8c2a2",
@@ -275,23 +345,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
-                                    "when": [{
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": ["Has permanently ceased trading"]
-                                        },
-                                        {
-                                            "id": "answer177513fe-5a68-46c0-9f65-2d8276e8c2a2",
-                                            "condition": "contains any",
-                                            "values": ["Outside the UK", "Not sure"]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block53427413-02bd-45ec-bf13-066ec13177d2"
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
                                 }
                             }
                         ]
@@ -356,7 +410,10 @@
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
-                                            "values": ["Has temporarily closed or paused trading", "Has permanently ceased trading"]
+                                            "values": [
+                                                "No, the business has temporarily closed or paused trading",
+                                                "No, the business has permanently ceased trading"
+                                            ]
                                         }
                                     ]
                                 }
@@ -367,7 +424,7 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Has temporarily closed or paused trading"]
+                                        "values": ["No, the business has temporarily closed or paused trading"]
                                     }]
                                 }
                             },
@@ -453,17 +510,7 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Has temporarily closed or paused trading"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
-                                    "when": [{
-                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                        "condition": "contains any",
-                                        "values": ["Has permanently ceased trading"]
+                                        "values": ["No, the business has temporarily closed or paused trading"]
                                     }]
                                 }
                             },
@@ -737,88 +784,682 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block08aeb0f6-74fc-4e0d-9fd5-f7574a9058fd"
+                                    "block": "blockea00e928-7c0b-4af5-954d-85eedab6f10c"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "block08aeb0f6-74fc-4e0d-9fd5-f7574a9058fd",
+                        "id": "blockea00e928-7c0b-4af5-954d-85eedab6f10c",
                         "type": "Question",
                         "questions": [{
-                            "id": "question08aeb0f6-74fc-4e0d-9fd5-f7574a9058fd",
-                            "title": "Has {{ metadata['ru_name'] }}&apos;s <em>exporting </em>of goods or services been affected by the coronavirus (COVID-19) outbreak in the <em>last two weeks</em>?",
+                            "id": "questionea00e928-7c0b-4af5-954d-85eedab6f10c",
+                            "title": "Has {{ metadata['ru_name'] }} <em>exported</em> goods or services in the last 12 months?",
                             "type": "General",
                             "answers": [{
-                                "id": "answeracd383d5-3919-4ae7-bd6d-d8022528978e",
+                                "id": "answer4eb10880-69dd-45f9-ad7a-4f296f2d394c",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "7",
+                                "q_code": "52",
                                 "options": [{
-                                        "label": "Yes, exporting was affected",
-                                        "value": "Yes, exporting was affected"
+                                        "label": "Yes",
+                                        "value": "Yes"
                                     },
                                     {
-                                        "label": "No, exporting was not affected",
-                                        "value": "No, exporting was not affected"
+                                        "label": "No",
+                                        "value": "No"
                                     },
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block33a858a0-b55c-494f-9798-84b75fccc1f0",
+                                    "block": "blocka15c018b-d178-4335-a532-ca3b03523212",
                                     "when": [{
-                                        "id": "answeracd383d5-3919-4ae7-bd6d-d8022528978e",
+                                        "id": "answer4eb10880-69dd-45f9-ad7a-4f296f2d394c",
                                         "condition": "contains any",
-                                        "values": ["No, exporting was not affected"]
+                                        "values": ["No", "Not sure"]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "blockb49c9fa1-a560-46a0-aa6e-3a68f9f60972",
-                                    "when": [{
-                                        "id": "answeracd383d5-3919-4ae7-bd6d-d8022528978e",
-                                        "condition": "contains any",
-                                        "values": ["Not sure", "Not applicable"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block4728c544-95e8-4d1f-a5c7-d2fc3a95f180"
+                                    "block": "block0af301b1-70ce-4fc7-a698-7374fb9436e4"
                                 }
                             }
                         ]
+                    },
+                    {
+                        "id": "blocka15c018b-d178-4335-a532-ca3b03523212",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiona15c018b-d178-4335-a532-ca3b03523212",
+                            "title": "Does {{ metadata['ru_name'] }} expect to start exporting goods or services in the <em>next two weeks</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer8f0cba3b-2e47-45f5-a978-25857e3a984a",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "53",
+                                "options": [{
+                                        "label": "Yes, the business expects to start exporting",
+                                        "value": "Yes, the business expects to start exporting"
+                                    },
+                                    {
+                                        "label": "No, the business does not expect to start exporting",
+                                        "value": "No, the business does not expect to start exporting"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block2088dcdb-c0d8-4243-99e6-6652c7a141d7",
+                                    "when": [{
+                                        "id": "answer4eb10880-69dd-45f9-ad7a-4f296f2d394c",
+                                        "condition": "contains any",
+                                        "values": ["No", "Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block0af301b1-70ce-4fc7-a698-7374fb9436e4"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block0af301b1-70ce-4fc7-a698-7374fb9436e4",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question0af301b1-70ce-4fc7-a698-7374fb9436e4",
+                            "title": "Has {{ metadata['ru_name'] }} exported goods or services <em>during</em> the coronavirus (COVID-19) outbreak?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer5cd5a93e-d818-4d4e-a32f-9eeedad30a6a",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "54",
+                                "options": [{
+                                        "label": "Yes, the business has exported during the outbreak",
+                                        "value": "Yes, the business has exported during the outbreak"
+                                    },
+                                    {
+                                        "label": "No, the business has not exported during the outbreak",
+                                        "value": "No, the business has not exported during the outbreak"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block21181954-9054-40cc-9717-844080af0767",
+                                    "when": [{
+                                        "id": "answer5cd5a93e-d818-4d4e-a32f-9eeedad30a6a",
+                                        "condition": "contains any",
+                                        "values": ["No, the business has not exported during the outbreak"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block730e686b-f62a-444a-a62d-805ced57ace8"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block730e686b-f62a-444a-a62d-805ced57ace8",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question730e686b-f62a-444a-a62d-805ced57ace8",
+                            "title": "How has {{ metadata['ru_name'] }}&apos;s exporting of goods or services been affected by the coronavirus (COVID-19) outbreak in the <em>last two weeks</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "7",
+                                "options": [{
+                                        "label": "The business has stopped exporting in the last two weeks",
+                                        "value": "The business has stopped exporting in the last two weeks"
+                                    },
+                                    {
+                                        "label": "Exporting has not been affected",
+                                        "value": "Exporting has not been affected"
+                                    },
+                                    {
+                                        "label": "The business is exporting, but less than normal",
+                                        "value": "The business is exporting, but less than normal"
+                                    },
+                                    {
+                                        "label": "The business is exporting more than normal",
+                                        "value": "The business is exporting more than normal"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block21181954-9054-40cc-9717-844080af0767",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question21181954-9054-40cc-9717-844080af0767",
+                            "title": "Where does {{ metadata['ru_name'] }} normally export to?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": false,
+                            "answers": [{
+                                    "id": "answer59b6a6f8-82d8-4059-b5b7-e28701436a10",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "EU",
+                                            "value": "EU",
+                                            "q_code": "551"
+                                        },
+                                        {
+                                            "label": "Outside EU",
+                                            "value": "Outside EU",
+                                            "q_code": "552"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer59b6a6f8-82d8-4059-b5b7-e28701436a10-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "553"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block0d528bb9-36ab-4aa4-8b79-0e85e48ba54d",
+                                    "when": [{
+                                        "id": "answer59b6a6f8-82d8-4059-b5b7-e28701436a10",
+                                        "condition": "contains all",
+                                        "values": ["EU"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockfba47472-2b58-4b49-87f1-ed7673820146",
+                                    "when": [{
+                                        "id": "answer59b6a6f8-82d8-4059-b5b7-e28701436a10",
+                                        "condition": "contains all",
+                                        "values": ["Outside EU"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block453c73ee-7f86-47dd-9e14-29352fdf2e65"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block0d528bb9-36ab-4aa4-8b79-0e85e48ba54d",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question0d528bb9-36ab-4aa4-8b79-0e85e48ba54d",
+                            "title": "Which countries <em>in the EU</em> does {{ metadata['ru_name'] }} normally export to?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer9ebce654-b7f1-434e-9d74-13974a379802",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Germany",
+                                            "value": "Germany",
+                                            "q_code": "561"
+                                        },
+                                        {
+                                            "label": "Netherlands",
+                                            "value": "Netherlands",
+                                            "q_code": "562"
+                                        },
+                                        {
+                                            "label": "France",
+                                            "value": "France",
+                                            "q_code": "563"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "564",
+                                            "detail_answer": {
+                                                "label": "Please list any other countries",
+                                                "type": "TextField",
+                                                "id": "answer8c6971d0-f09f-48b4-8cc3-298877fd7e9f",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer9ebce654-b7f1-434e-9d74-13974a379802-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "565"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockfba47472-2b58-4b49-87f1-ed7673820146",
+                                    "when": [{
+                                        "id": "answer59b6a6f8-82d8-4059-b5b7-e28701436a10",
+                                        "condition": "contains all",
+                                        "values": ["Outside EU"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block453c73ee-7f86-47dd-9e14-29352fdf2e65"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockfba47472-2b58-4b49-87f1-ed7673820146",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionfba47472-2b58-4b49-87f1-ed7673820146",
+                            "title": "Which countries <em>outside of the EU</em> does {{ metadata['ru_name'] }} normally export to?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer5d0d9daf-59b8-45e1-9442-1cc57a09a7fd",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "China",
+                                            "value": "China",
+                                            "q_code": "571"
+                                        },
+                                        {
+                                            "label": "Hong Kong",
+                                            "value": "Hong Kong",
+                                            "q_code": "572"
+                                        },
+                                        {
+                                            "label": "USA",
+                                            "value": "USA",
+                                            "q_code": "573"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "574",
+                                            "detail_answer": {
+                                                "label": "Please list any other countries",
+                                                "type": "TextField",
+                                                "id": "answere24ea1de-3b34-4ada-8f29-2624540dcde7",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer5d0d9daf-59b8-45e1-9442-1cc57a09a7fd-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "575"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "block453c73ee-7f86-47dd-9e14-29352fdf2e65",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question453c73ee-7f86-47dd-9e14-29352fdf2e65",
+                            "title": "Does {{ metadata['ru_name'] }} normally export directly or through a distributor?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer8189f9bc-d637-4a85-93d7-2ba4a3ece17f",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "58",
+                                "options": [{
+                                        "label": "Exports directly",
+                                        "value": "Exports directly"
+                                    },
+                                    {
+                                        "label": "Exports through a distributor",
+                                        "value": "Exports through a distributor"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockc3278c59-38cd-4505-aaf1-409efed279f1",
+                                    "when": [{
+                                        "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
+                                        "condition": "contains any",
+                                        "values": ["The business has stopped exporting in the last two weeks"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockc3278c59-38cd-4505-aaf1-409efed279f1",
+                                    "when": [{
+                                        "id": "answer5cd5a93e-d818-4d4e-a32f-9eeedad30a6a",
+                                        "condition": "contains any",
+                                        "values": ["No, the business has not exported during the outbreak"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block4728c544-95e8-4d1f-a5c7-d2fc3a95f180",
+                                    "when": [{
+                                        "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
+                                        "condition": "contains any",
+                                        "values": ["Exporting has not been affected", "Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1910308c-96d6-4142-8e78-73dc8b00d525"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockc3278c59-38cd-4505-aaf1-409efed279f1",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionc3278c59-38cd-4505-aaf1-409efed279f1",
+                            "title": "Does {{ metadata['ru_name'] }} expect to start exporting goods or services again in the <em>next two weeks</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answere81cd494-529e-4291-993a-60c9590b4b69",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "59",
+                                "options": [{
+                                        "label": "Yes, the business expects to start exporting",
+                                        "value": "Yes, the business expects to start exporting"
+                                    },
+                                    {
+                                        "label": "No, the business does not expect to start exporting",
+                                        "value": "No, the business does not expect to start exporting"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block1910308c-96d6-4142-8e78-73dc8b00d525",
+                                    "when": [{
+                                        "id": "answer5cd5a93e-d818-4d4e-a32f-9eeedad30a6a",
+                                        "condition": "contains any",
+                                        "values": ["Yes, the business has exported during the outbreak"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block2088dcdb-c0d8-4243-99e6-6652c7a141d7"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block1910308c-96d6-4142-8e78-73dc8b00d525",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1910308c-96d6-4142-8e78-73dc8b00d525",
+                            "title": "Has {{ metadata['ru_name'] }} experienced any of the following <em>challenges</em> with exporting over the <em>last two weeks</em>?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer51f50c24-27ce-42a1-b942-39a47c892a7d",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Coronavirus-related transport restrictions",
+                                            "value": "Coronavirus-related transport restrictions",
+                                            "q_code": "601"
+                                        },
+                                        {
+                                            "label": "Increases in transportation costs",
+                                            "value": "Increases in transportation costs",
+                                            "q_code": "602",
+                                            "description": "For example, freight rates"
+                                        },
+                                        {
+                                            "label": "Closure of infrastructure used to export goods or services",
+                                            "value": "Closure of infrastructure used to export goods or services",
+                                            "q_code": "603",
+                                            "description": "For example, ports or shipping-container storage facilities"
+                                        },
+                                        {
+                                            "label": "Destination countries changing their border restrictions",
+                                            "value": "Destination countries changing their border restrictions",
+                                            "q_code": "604"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "605",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answer5441ac7b-6eca-4dbe-90e5-20395fb30b34",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer51f50c24-27ce-42a1-b942-39a47c892a7d-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Did not experience any challenges with exporting",
+                                        "value": "Did not experience any challenges with exporting",
+                                        "q_code": "606"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block4728c544-95e8-4d1f-a5c7-d2fc3a95f180",
+                                    "when": [{
+                                        "id": "answer51f50c24-27ce-42a1-b942-39a47c892a7d",
+                                        "condition": "contains all",
+                                        "values": ["Did not experience any challenges with exporting"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockf72d5c01-7729-4ae7-a567-8876bf82c0b5"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockf72d5c01-7729-4ae7-a567-8876bf82c0b5",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionf72d5c01-7729-4ae7-a567-8876bf82c0b5",
+                            "title": "Which of the following support options would  {{ metadata['ru_name'] }} benefit from to help with exporting challenges?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": false,
+                            "answers": [{
+                                    "id": "answer0a2aea64-0242-4cd9-babb-f2cee8c2f637",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Financial support",
+                                            "value": "Financial support",
+                                            "q_code": "611"
+                                        },
+                                        {
+                                            "label": "Support on understanding markets and demand issues",
+                                            "value": "Support on understanding markets and demand issues",
+                                            "q_code": "612"
+                                        },
+                                        {
+                                            "label": "Support on finding new markets",
+                                            "value": "Support on finding new markets",
+                                            "q_code": "613"
+                                        },
+                                        {
+                                            "label": "Support on finding new overseas contacts or customers",
+                                            "value": "Support on finding new overseas contacts or customers",
+                                            "q_code": "614"
+                                        },
+                                        {
+                                            "label": "Support with transport and distribution",
+                                            "value": "Support with transport and distribution",
+                                            "q_code": "615"
+                                        },
+                                        {
+                                            "label": "Support with legal issues",
+                                            "value": "Support with legal issues",
+                                            "q_code": "616"
+                                        },
+                                        {
+                                            "label": "Support with customs and tariffs",
+                                            "value": "Support with customs and tariffs",
+                                            "q_code": "617"
+                                        },
+                                        {
+                                            "label": "Support with export licences",
+                                            "value": "Support with export licences",
+                                            "q_code": "618"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "619",
+                                            "detail_answer": {
+                                                "label": "Please specify",
+                                                "type": "TextField",
+                                                "id": "answer8bd6b34e-13b1-44b9-b479-a06cc1e9feae",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer0a2aea64-0242-4cd9-babb-f2cee8c2f637-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "None of the above",
+                                        "value": "None of the above",
+                                        "q_code": "610"
+                                    }]
+                                }
+                            ]
+                        }]
                     },
                     {
                         "id": "block4728c544-95e8-4d1f-a5c7-d2fc3a95f180",
                         "type": "Question",
                         "questions": [{
                             "id": "question4728c544-95e8-4d1f-a5c7-d2fc3a95f180",
-                            "title": "Please explain in more detail how {{ metadata['ru_name'] }}&apos;s exporting has been affected",
+                            "title": "Let us know anything else that you think may help us understand {{ metadata['ru_name'] }}&#x2019;s exporting in the <em>last two weeks</em>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer3c6cef19-ffc2-4283-9cc9-bd356713b0f2",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
                                 "q_code": "8",
                                 "max_length": 2000
                             }]
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block2088dcdb-c0d8-4243-99e6-6652c7a141d7",
+                                    "when": [{
+                                        "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
+                                        "condition": "contains any",
+                                        "values": ["The business has stopped exporting in the last two weeks"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block33a858a0-b55c-494f-9798-84b75fccc1f0"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "block33a858a0-b55c-494f-9798-84b75fccc1f0",
@@ -877,95 +1518,680 @@
                             },
                             {
                                 "goto": {
-                                    "block": "blockb49c9fa1-a560-46a0-aa6e-3a68f9f60972"
+                                    "block": "block2088dcdb-c0d8-4243-99e6-6652c7a141d7"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "blockb49c9fa1-a560-46a0-aa6e-3a68f9f60972",
+                        "id": "block2088dcdb-c0d8-4243-99e6-6652c7a141d7",
                         "type": "Question",
                         "questions": [{
-                            "id": "questionb49c9fa1-a560-46a0-aa6e-3a68f9f60972",
-                            "title": "Was {{ metadata['ru_name'] }}&apos;s <em>importing </em>of materials, goods or services affected by the coronavirus (COVID-19) outbreak in the <em>last two weeks</em>?",
+                            "id": "question2088dcdb-c0d8-4243-99e6-6652c7a141d7",
+                            "title": "Has {{ metadata['ru_name'] }} <em>imported</em> goods or services in the last 12 months?",
                             "type": "General",
                             "answers": [{
-                                "id": "answer36f90274-fd9c-453e-ba2f-7c083ada2f73",
+                                "id": "answerc0e118a3-e720-4d1e-bbce-0da8a5f84210",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "10",
+                                "q_code": "62",
                                 "options": [{
-                                        "label": "Yes, importing was affected",
-                                        "value": "Yes, importing was affected"
+                                        "label": "Yes",
+                                        "value": "Yes"
                                     },
                                     {
-                                        "label": "No, importing was not affected",
-                                        "value": "No, importing was not affected"
+                                        "label": "No",
+                                        "value": "No"
                                     },
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "blocke8dec512-dc7e-4bd9-9beb-b3ec953cae8d",
+                                    "block": "block1a69a883-1349-4972-8aef-6bc2b29039c7",
                                     "when": [{
-                                        "id": "answer36f90274-fd9c-453e-ba2f-7c083ada2f73",
+                                        "id": "answerc0e118a3-e720-4d1e-bbce-0da8a5f84210",
                                         "condition": "contains any",
-                                        "values": ["No, importing was not affected"]
+                                        "values": ["No", "Not sure"]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "block0e1472db-36f2-4d40-b99e-510e70442636",
-                                    "when": [{
-                                        "id": "answer36f90274-fd9c-453e-ba2f-7c083ada2f73",
-                                        "condition": "contains any",
-                                        "values": ["Not sure", "Not applicable"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block4648511e-cf19-468d-9eed-14c4a92cb720"
+                                    "block": "block4b9c0508-34e9-4b60-bde1-d803c99bed59"
                                 }
                             }
                         ]
+                    },
+                    {
+                        "id": "block1a69a883-1349-4972-8aef-6bc2b29039c7",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1a69a883-1349-4972-8aef-6bc2b29039c7",
+                            "title": "Does {{ metadata['ru_name'] }} expect to start importing goods or services in the <em>next two weeks</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer27581c54-795b-4638-b8a4-e150c0b75192",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "63",
+                                "options": [{
+                                        "label": "Yes, the business expects to start importing",
+                                        "value": "Yes, the business expects to start importing"
+                                    },
+                                    {
+                                        "label": "No, the business does not expect to start importing",
+                                        "value": "No, the business does not expect to start importing"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block0e1472db-36f2-4d40-b99e-510e70442636",
+                                    "when": [{
+                                        "id": "answerc0e118a3-e720-4d1e-bbce-0da8a5f84210",
+                                        "condition": "contains any",
+                                        "values": ["No", "Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block4b9c0508-34e9-4b60-bde1-d803c99bed59"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block4b9c0508-34e9-4b60-bde1-d803c99bed59",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question4b9c0508-34e9-4b60-bde1-d803c99bed59",
+                            "title": "Has {{ metadata['ru_name'] }} imported goods or services <em>during</em> the coronavirus (COVID-19) outbreak?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answera7265706-a8e2-4db9-b7e9-00a4f62378d3",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "64",
+                                "options": [{
+                                        "label": "Yes, the business imported during the outbreak",
+                                        "value": "Yes, the business imported during the outbreak"
+                                    },
+                                    {
+                                        "label": "No, the business has not imported during the outbreak",
+                                        "value": "No, the business has not imported during the outbreak"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block135426ef-5051-44be-a44e-c65ab627013b",
+                                    "when": [{
+                                        "id": "answera7265706-a8e2-4db9-b7e9-00a4f62378d3",
+                                        "condition": "contains any",
+                                        "values": ["No, the business has not imported during the outbreak"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block41cb8d16-ed70-4442-a3e1-fac1efdea741"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block41cb8d16-ed70-4442-a3e1-fac1efdea741",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question41cb8d16-ed70-4442-a3e1-fac1efdea741",
+                            "title": "How has {{ metadata['ru_name'] }}&apos;s importing of goods or services been affected by the coronavirus (COVID-19) outbreak in the <em>last two weeks</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "10",
+                                "options": [{
+                                        "label": "The business has stopped importing in the last two weeks",
+                                        "value": "The business has stopped importing in the last two weeks"
+                                    },
+                                    {
+                                        "label": "Importing has not been affected",
+                                        "value": "Importing has not been affected"
+                                    },
+                                    {
+                                        "label": "The business is importing, but less than normal",
+                                        "value": "The business is importing, but less than normal"
+                                    },
+                                    {
+                                        "label": "The business is importing more than normal",
+                                        "value": "The business is importing more than normal"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block135426ef-5051-44be-a44e-c65ab627013b",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question135426ef-5051-44be-a44e-c65ab627013b",
+                            "title": "Where does {{ metadata['ru_name'] }} normally import from?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": false,
+                            "answers": [{
+                                    "id": "answer20bbdd2f-176b-411b-8ec4-d933d954cc22",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "EU",
+                                            "value": "EU",
+                                            "q_code": "651"
+                                        },
+                                        {
+                                            "label": "Outside EU",
+                                            "value": "Outside EU",
+                                            "q_code": "652"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer20bbdd2f-176b-411b-8ec4-d933d954cc22-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "653"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockf2752aed-9a52-45ef-b2fb-ffff32c517ba",
+                                    "when": [{
+                                        "id": "answer20bbdd2f-176b-411b-8ec4-d933d954cc22",
+                                        "condition": "contains all",
+                                        "values": ["EU"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block85ce4a70-0cb3-4fb9-81c1-180b8d0200b4",
+                                    "when": [{
+                                        "id": "answer20bbdd2f-176b-411b-8ec4-d933d954cc22",
+                                        "condition": "contains all",
+                                        "values": ["Outside EU"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockcc8a11e2-8c85-45f4-9f46-ab330439a989"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockf2752aed-9a52-45ef-b2fb-ffff32c517ba",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionf2752aed-9a52-45ef-b2fb-ffff32c517ba",
+                            "title": "Which countries <em>in the EU</em> does {{ metadata['ru_name'] }} normally import from?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer5c16f5b7-3dca-4858-bb55-7034a90ce8bf",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Germany",
+                                            "value": "Germany",
+                                            "q_code": "661"
+                                        },
+                                        {
+                                            "label": "Netherlands",
+                                            "value": "Netherlands",
+                                            "q_code": "662"
+                                        },
+                                        {
+                                            "label": "France",
+                                            "value": "France",
+                                            "q_code": "663"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "664",
+                                            "detail_answer": {
+                                                "label": "Please list any other countries",
+                                                "type": "TextField",
+                                                "id": "answer77535289-247f-4b7a-a498-a838ab43acb3",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer5c16f5b7-3dca-4858-bb55-7034a90ce8bf-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "665"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block85ce4a70-0cb3-4fb9-81c1-180b8d0200b4",
+                                    "when": [{
+                                        "id": "answer20bbdd2f-176b-411b-8ec4-d933d954cc22",
+                                        "condition": "contains all",
+                                        "values": ["Outside EU"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockcc8a11e2-8c85-45f4-9f46-ab330439a989"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block85ce4a70-0cb3-4fb9-81c1-180b8d0200b4",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question85ce4a70-0cb3-4fb9-81c1-180b8d0200b4",
+                            "title": "Which countries <em>outside the EU</em> does {{ metadata['ru_name'] }} normally import from?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answerafdd5104-e771-4d46-8b57-f2a48ab3fbf4",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "China",
+                                            "value": "China",
+                                            "q_code": "671"
+                                        },
+                                        {
+                                            "label": "Hong Kong",
+                                            "value": "Hong Kong",
+                                            "q_code": "672"
+                                        },
+                                        {
+                                            "label": "USA",
+                                            "value": "USA",
+                                            "q_code": "673"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "674",
+                                            "detail_answer": {
+                                                "label": "Please list any other countries",
+                                                "type": "TextField",
+                                                "id": "answer7da7f694-3b86-49b2-b6f9-4fc4f938d763",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answerafdd5104-e771-4d46-8b57-f2a48ab3fbf4-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "675"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "blockcc8a11e2-8c85-45f4-9f46-ab330439a989",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questioncc8a11e2-8c85-45f4-9f46-ab330439a989",
+                            "title": "Does {{ metadata['ru_name'] }} normally import directly or through a distributor?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer81be1409-f723-4e7c-bf90-74a76262d86e",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "68",
+                                "options": [{
+                                        "label": "Imports directly",
+                                        "value": "Imports directly"
+                                    },
+                                    {
+                                        "label": "Imports through a distributor",
+                                        "value": "Imports through a distributor"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block375e469d-d13e-4c06-ac5c-dbd1ef981496",
+                                    "when": [{
+                                        "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
+                                        "condition": "contains any",
+                                        "values": ["The business has stopped importing in the last two weeks"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block375e469d-d13e-4c06-ac5c-dbd1ef981496",
+                                    "when": [{
+                                        "id": "answera7265706-a8e2-4db9-b7e9-00a4f62378d3",
+                                        "condition": "contains any",
+                                        "values": ["No, the business has not imported during the outbreak"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block4648511e-cf19-468d-9eed-14c4a92cb720",
+                                    "when": [{
+                                        "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
+                                        "condition": "contains any",
+                                        "values": ["Importing has not been affected", "Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockdde88c1e-fbaf-4ae2-8065-018e24dfe574"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block375e469d-d13e-4c06-ac5c-dbd1ef981496",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question375e469d-d13e-4c06-ac5c-dbd1ef981496",
+                            "title": "Does {{ metadata['ru_name'] }} expect to start importing goods or services again in the <em>next two weeks</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer16107e4b-9ac5-4206-aade-f0887512737e",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "69",
+                                "options": [{
+                                        "label": "Yes, the business expects to start importing",
+                                        "value": "Yes, the business expects to start importing"
+                                    },
+                                    {
+                                        "label": "No, the business does not expect to start importing",
+                                        "value": "No, the business does not expect to start importing"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockdde88c1e-fbaf-4ae2-8065-018e24dfe574",
+                                    "when": [{
+                                        "id": "answera7265706-a8e2-4db9-b7e9-00a4f62378d3",
+                                        "condition": "contains any",
+                                        "values": ["Yes, the business imported during the outbreak"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block0e1472db-36f2-4d40-b99e-510e70442636"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockdde88c1e-fbaf-4ae2-8065-018e24dfe574",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiondde88c1e-fbaf-4ae2-8065-018e24dfe574",
+                            "title": "Has {{ metadata['ru_name'] }} experienced any of the following <em>challenges</em> with importing over the <em>last two weeks</em>?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answerd5370f2a-7179-4715-8e88-0789e9dfde6e",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Coronavirus-related transport restrictions",
+                                            "value": "Coronavirus-related transport restrictions",
+                                            "q_code": "701"
+                                        },
+                                        {
+                                            "label": "Increases in transportation costs",
+                                            "value": "Increases in transportation costs",
+                                            "q_code": "702",
+                                            "description": "For example, freight rates"
+                                        },
+                                        {
+                                            "label": "Closure of infrastructure used to import goods or services",
+                                            "value": "Closure of infrastructure used to import goods or services",
+                                            "q_code": "703",
+                                            "description": "For example, ports or shipping-container storage facilities"
+                                        },
+                                        {
+                                            "label": "Source countries changing their border restrictions",
+                                            "value": "Source countries changing their border restrictions",
+                                            "q_code": "704"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "705",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answer8ae511c2-e7d8-41aa-98cf-8db91212c03e",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answerd5370f2a-7179-4715-8e88-0789e9dfde6e-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Did not experience any challenges with importing",
+                                        "value": "Did not experience any challenges with importing",
+                                        "q_code": "706"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block4648511e-cf19-468d-9eed-14c4a92cb720",
+                                    "when": [{
+                                        "id": "answerd5370f2a-7179-4715-8e88-0789e9dfde6e",
+                                        "condition": "contains all",
+                                        "values": ["Did not experience any challenges with importing"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block5a8227bc-698a-45c0-83eb-defd3666ac43"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block5a8227bc-698a-45c0-83eb-defd3666ac43",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question5a8227bc-698a-45c0-83eb-defd3666ac43",
+                            "title": "Which of the following support options would  {{ metadata['ru_name'] }} benefit from to help with importing challenges?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": false,
+                            "answers": [{
+                                    "id": "answer0b38e10d-69c0-40a4-944d-4e30b1944620",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Support on understanding markets and demand issues",
+                                            "value": "Support on understanding markets and demand issues",
+                                            "q_code": "711"
+                                        },
+                                        {
+                                            "label": "Support on finding new alternative supply chains",
+                                            "value": "Support on finding new alternative supply chains",
+                                            "q_code": "712"
+                                        },
+                                        {
+                                            "label": "Support on finding new overseas contacts or customers",
+                                            "value": "Support on finding new overseas contacts or customers",
+                                            "q_code": "713"
+                                        },
+                                        {
+                                            "label": "Support with transport and distribution",
+                                            "value": "Support with transport and distribution",
+                                            "q_code": "714"
+                                        },
+                                        {
+                                            "label": "Support with legal issues",
+                                            "value": "Support with legal issues",
+                                            "q_code": "715"
+                                        },
+                                        {
+                                            "label": "Support with customs and tariffs",
+                                            "value": "Support with customs and tariffs",
+                                            "q_code": "716"
+                                        },
+                                        {
+                                            "label": "Support with import licences",
+                                            "value": "Support with import licences",
+                                            "q_code": "717"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "718",
+                                            "detail_answer": {
+                                                "label": "Please specify",
+                                                "type": "TextField",
+                                                "id": "answerd792d7e7-3a16-4fc1-bfa7-9c2c14b742b3",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer0b38e10d-69c0-40a4-944d-4e30b1944620-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "None of the above",
+                                        "value": "None of the above",
+                                        "q_code": "719"
+                                    }]
+                                }
+                            ]
+                        }]
                     },
                     {
                         "id": "block4648511e-cf19-468d-9eed-14c4a92cb720",
                         "type": "Question",
                         "questions": [{
                             "id": "question4648511e-cf19-468d-9eed-14c4a92cb720",
-                            "title": "Please explain in more detail how {{ metadata['ru_name'] }}&apos;s importing has been affected",
+                            "title": "Let us know anything else that you think may help us understand {{ metadata['ru_name'] }}&#x2019;s importing in the last two weeks",
                             "type": "General",
                             "answers": [{
                                 "id": "answer98ea4789-060e-460b-8d33-e688ceb4e947",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
                                 "q_code": "11",
                                 "max_length": 2000
                             }]
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block0e1472db-36f2-4d40-b99e-510e70442636",
+                                    "when": [{
+                                        "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
+                                        "condition": "contains any",
+                                        "values": ["The business has stopped exporting in the last two weeks"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blocke8dec512-dc7e-4bd9-9beb-b3ec953cae8d"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "blocke8dec512-dc7e-4bd9-9beb-b3ec953cae8d",
                         "type": "Question",
                         "questions": [{
                             "id": "questione8dec512-dc7e-4bd9-9beb-b3ec953cae8d",
-                            "title": "What are your expectations about {{ metadata['ru_name'] }}&apos;s <em>importing</em> of materials, goods or services in the <em>next two weeks</em>?",
+                            "title": "What are your expectations about {{ metadata['ru_name'] }}&apos;s importing of materials, goods or services in the <em>next two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer9b2c8dda-cd96-41ff-8275-7acc9b6c689e",
@@ -1037,16 +2263,16 @@
                                 "description": "",
                                 "q_code": "13",
                                 "options": [{
-                                        "label": "Yes, we have been able to  get what we needed",
-                                        "value": "Yes, we have been able to  get what we needed"
+                                        "label": "Yes, the business has been able to  get what we needed",
+                                        "value": "Yes, the business has been able to  get what we needed"
                                     },
                                     {
-                                        "label": "Yes, but we had to change suppliers or find alternative solutions",
-                                        "value": "Yes, but we had to change suppliers or find alternative solutions"
+                                        "label": "Yes, but the business had to change suppliers or find alternative solutions",
+                                        "value": "Yes, but the business had to change suppliers or find alternative solutions"
                                     },
                                     {
-                                        "label": "No, we have not been able to get the materials, goods or services needed",
-                                        "value": "No, we have not been able to get the materials, goods or services needed"
+                                        "label": "No, the business has not been able to get the materials, goods or services needed",
+                                        "value": "No, the business has not been able to get the materials, goods or services needed"
                                     },
                                     {
                                         "label": "Not applicable",
@@ -1061,7 +2287,10 @@
                                     "when": [{
                                         "id": "answer478a7145-b712-43a1-9e1d-df39c23abddd",
                                         "condition": "contains any",
-                                        "values": ["No, we have not been able to get the materials, goods or services needed", "Not applicable"]
+                                        "values": [
+                                            "No, the business has not been able to get the materials, goods or services needed",
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -1588,7 +2817,7 @@
                                             "label": "Coronavirus Job Retention Scheme",
                                             "value": "Coronavirus Job Retention Scheme",
                                             "q_code": "451",
-                                            "description": "UK Government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
+                                            "description": "UK government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
                                         },
                                         {
                                             "label": "Business rates holiday",
@@ -1606,16 +2835,22 @@
                                             "q_code": "454"
                                         },
                                         {
-                                            "label": "Government-funded small business grant or loan schemes",
-                                            "value": "Government-funded small business grant or loan schemes",
-                                            "q_code": "455",
-                                            "description": "For example, rural rate relief or property rate relief"
-                                        },
-                                        {
                                             "label": "Accredited finance agreements",
                                             "value": "Accredited finance agreements",
                                             "q_code": "456",
-                                            "description": "For example, COVID Corporate Financing Facility (CCFF) or Coronavirus Business Interruption Loan Scheme (CBILS)"
+                                            "description": "For example, COVID Corporate Financing Facility (CCFF) or Coronavirus Business Interruption Loan Scheme (CBILS or CLBILS)"
+                                        },
+                                        {
+                                            "label": "England-only government-funded small business grants or loan schemes",
+                                            "value": "England-only government-funded small business grants or loan schemes",
+                                            "q_code": "458",
+                                            "description": "For example, the Small Business Grants Fund (SBGF) and Retail, Hospitality and Leisure Grant Fund (RHLGF)"
+                                        },
+                                        {
+                                            "label": "Devolved government-funded small business grants or loan schemes in Wales, Scotland and Northern Ireland",
+                                            "value": "Devolved government-funded small business grants or loan schemes in Wales, Scotland and Northern Ireland",
+                                            "q_code": "459",
+                                            "description": "These are schemes offered by the devolved governments for businesses operating in these countries"
                                         }
                                     ]
                                 },
@@ -1625,8 +2860,8 @@
                                     "type": "Checkbox",
                                     "description": "",
                                     "options": [{
-                                        "label": "We have not applied for any of these initiatives",
-                                        "value": "We have not applied for any of these initiatives",
+                                        "label": "The business has not applied for any of these initiatives",
+                                        "value": "The business has not applied for any of these initiatives",
                                         "q_code": "457"
                                     }]
                                 }
@@ -1643,8 +2878,9 @@
                                             "Business rates holiday",
                                             "Deferring VAT payments",
                                             "HMRC Time To Pay scheme",
-                                            "Government-funded small business grant or loan schemes",
-                                            "Accredited finance agreements"
+                                            "Accredited finance agreements",
+                                            "England-only government-funded small business grants or loan schemes",
+                                            "Devolved government-funded small business grants or loan schemes in Wales, Scotland and Northern Ireland"
                                         ]
                                     }]
                                 }
@@ -1674,7 +2910,7 @@
                                             "label": "Coronavirus Job Retention Scheme",
                                             "value": "Coronavirus Job Retention Scheme",
                                             "q_code": "461",
-                                            "description": "UK Government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
+                                            "description": "UK government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
                                         },
                                         {
                                             "label": "Business rates holiday",
@@ -1692,16 +2928,22 @@
                                             "q_code": "464"
                                         },
                                         {
-                                            "label": "Government-funded small business grant or loan schemes",
-                                            "value": "Government-funded small business grant or loan schemes",
-                                            "q_code": "465",
-                                            "description": "For example, rural rate relief or property rate relief"
-                                        },
-                                        {
                                             "label": "Accredited finance agreements",
                                             "value": "Accredited finance agreements",
                                             "q_code": "466",
-                                            "description": "For example, COVID Corporate Financing Facility (CCFF) or Coronavirus Business Interruption Loan Scheme (CBILS)"
+                                            "description": "For example, COVID Corporate Financing Facility (CCFF) or Coronavirus Business Interruption Loan Scheme (CBILS or CLBILS)"
+                                        },
+                                        {
+                                            "label": "England-only government-funded small business grants or loan schemes",
+                                            "value": "England-only government-funded small business grants or loan schemes",
+                                            "q_code": "468",
+                                            "description": "For example, the Small Business Grants Fund (SBGF) and Retail, Hospitality and Leisure Grant Fund (RHLGF)"
+                                        },
+                                        {
+                                            "label": "Devolved government-funded small business grants or loan schemes in Wales, Scotland and Northern Ireland",
+                                            "value": "Devolved government-funded small business grants or loan schemes in Wales, Scotland and Northern Ireland",
+                                            "q_code": "469",
+                                            "description": "These are schemes offered by the devolved governments for businesses operating in these countries"
                                         }
                                     ]
                                 },
@@ -1711,8 +2953,8 @@
                                     "type": "Checkbox",
                                     "description": "",
                                     "options": [{
-                                        "label": "We haven't received any that we applied for",
-                                        "value": "We haven't received any that we applied for",
+                                        "label": "The business has not received any that were applied for",
+                                        "value": "The business has not received any that were applied for",
                                         "q_code": "467"
                                     }]
                                 }
@@ -1725,15 +2967,88 @@
                         "questions": [{
                             "id": "questionf3731f81-73c0-4214-a771-3e321785afd7",
                             "title": "Please describe your experience of applying for these initiatives",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>For example:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "whether there were any barriers to you applying, such as eligibility",
+                                            "how easy or difficult it was to apply",
+                                            "how you heard about these initiatives",
+                                            "whether there was enough guidance about the application process",
+                                            "if you received funding, how long it took"
+                                        ]
+                                    }
+                                ]
+                            },
                             "type": "General",
                             "answers": [{
                                 "id": "answer96848783-ecc7-4bcb-b8c5-bb807a118585",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
                                 "q_code": "47",
                                 "max_length": 2000
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block35d5f073-97cd-460f-aa2e-1dd068c6f6ff",
+                                    "when": [{
+                                        "id": "answer30aa84e6-07cf-4887-885f-abff7788aefb",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Business rates holiday",
+                                            "Deferring VAT payments",
+                                            "HMRC Time To Pay scheme",
+                                            "Accredited finance agreements",
+                                            "England-only government-funded small business grants or loan schemes",
+                                            "Devolved government-funded small business grants or loan schemes in Wales, Scotland and Northern Ireland"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block7f5c1f5d-0854-4738-b801-20d9848475c2"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block35d5f073-97cd-460f-aa2e-1dd068c6f6ff",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question35d5f073-97cd-460f-aa2e-1dd068c6f6ff",
+                            "title": "Did the funding received from these initiatives help {{ metadata['ru_name'] }} continue trading?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer147a73c6-2ec3-404a-8d63-d58dd8aae8eb",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "72",
+                                "options": [{
+                                        "label": "Yes, it helped us to continue trading as normal",
+                                        "value": "Yes, it helped us to continue trading as normal"
+                                    },
+                                    {
+                                        "label": "Yes, it has helped us to continue trading, but at a lower capacity than normal",
+                                        "value": "Yes, it has helped us to continue trading, but at a lower capacity than normal"
+                                    },
+                                    {
+                                        "label": "No, it was not sufficient to enable us to continue trading",
+                                        "value": "No, it was not sufficient to enable us to continue trading"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
                             }]
                         }],
                         "routing_rules": [{
@@ -1747,8 +3062,9 @@
                                             "Business rates holiday",
                                             "Deferring VAT payments",
                                             "HMRC Time To Pay scheme",
-                                            "Government-funded small business grant or loan schemes",
-                                            "Accredited finance agreements"
+                                            "Accredited finance agreements",
+                                            "England-only government-funded small business grants or loan schemes",
+                                            "Devolved government-funded small business grants or loan schemes in Wales, Scotland and Northern Ireland"
                                         ]
                                     }]
                                 }
@@ -1783,7 +3099,7 @@
                                             "label": "Coronavirus Job Retention Scheme",
                                             "value": "Coronavirus Job Retention Scheme",
                                             "q_code": "481",
-                                            "description": "UK Government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
+                                            "description": "UK government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
                                         },
                                         {
                                             "label": "Business rates holiday",
@@ -1801,16 +3117,22 @@
                                             "q_code": "484"
                                         },
                                         {
-                                            "label": "Government-funded small business grant or loan schemes",
-                                            "value": "Government-funded small business grant or loan schemes",
-                                            "q_code": "485",
-                                            "description": "For example, rural rate relief or property rate relief"
-                                        },
-                                        {
                                             "label": "Accredited finance agreements",
                                             "value": "Accredited finance agreements",
                                             "q_code": "486",
-                                            "description": "For example, COVID Corporate Financing Facility (CCFF) or Coronavirus Business Interruption Loan Scheme (CBILS)"
+                                            "description": "For example, COVID Corporate Financing Facility (CCFF) or Coronavirus Business Interruption Loan Scheme (CBILS or CLBILS)"
+                                        },
+                                        {
+                                            "label": "England-only government-funded small business grant or loan schemes",
+                                            "value": "England-only government-funded small business grant or loan schemes",
+                                            "q_code": "488",
+                                            "description": "For example, the Small Business Grants Fund (SBGF) and Retail, Hospitality and Leisure Grant Fund (RHLGF)"
+                                        },
+                                        {
+                                            "label": "Devolved government-funded small business grants or loan schemes  in Wales, Scotland and Northern Ireland",
+                                            "value": "Devolved government-funded small business grants or loan schemes  in Wales, Scotland and Northern Ireland",
+                                            "q_code": "489",
+                                            "description": "These are schemes offered by the devolved governments for businesses operating in these countries"
                                         }
                                     ]
                                 },
@@ -1820,8 +3142,8 @@
                                     "type": "Checkbox",
                                     "description": "",
                                     "options": [{
-                                        "label": "None of the above",
-                                        "value": "None of the above",
+                                        "label": "The business does not intend to apply for any of the above",
+                                        "value": "The business does not intend to apply for any of the above",
                                         "q_code": "487"
                                     }]
                                 }
@@ -1833,7 +3155,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4fc906bb-a55c-497a-8bd0-5427d69dc055",
-                            "title": "Please describe any other support from government that you think could help your business",
+                            "title": "Please describe any other support from government that you think could help {{ metadata['ru_name'] }}",
                             "type": "General",
                             "answers": [{
                                 "id": "answere5a0ad55-8183-4fb2-8b35-29442de9c916",
@@ -1844,45 +3166,41 @@
                                 "q_code": "49",
                                 "max_length": 2000
                             }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
-                                    "when": [{
-                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                        "condition": "contains any",
-                                        "values": ["Has temporarily closed or paused trading"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block84850293-8fe0-476a-aaca-757d7873713a"
-                                }
-                            }
-                        ]
+                        }]
                     },
                     {
-                        "id": "block84850293-8fe0-476a-aaca-757d7873713a",
+                        "id": "blocka2d0a9ef-9bfc-4ead-867f-bad93d6a3bca",
                         "type": "Question",
                         "questions": [{
-                            "id": "question84850293-8fe0-476a-aaca-757d7873713a",
-                            "title": "How confident are you that {{ metadata['ru_name'] }} has the financial resources to <em>continue to operate</em> throughout the coronavirus (COVID-19) outbreak?",
+                            "id": "questiona2d0a9ef-9bfc-4ead-867f-bad93d6a3bca",
+                            "title": "How long do you think {{ metadata['ru_name'] }}&apos;s cash reserves will last?",
                             "type": "General",
                             "answers": [{
-                                "id": "answer1eb203aa-4bab-40a6-9e1f-23df474c70d9",
+                                "id": "answer32a38f2a-e599-4ff7-9df9-b0419be84b96",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "22",
+                                "q_code": "73",
                                 "options": [{
-                                        "label": "Confident",
-                                        "value": "Confident"
+                                        "label": "No cash reserves",
+                                        "value": "No cash reserves"
                                     },
                                     {
-                                        "label": "Not confident",
-                                        "value": "Not confident"
+                                        "label": "Less than 1 month",
+                                        "value": "Less than 1 month"
+                                    },
+                                    {
+                                        "label": "1 to 3 months",
+                                        "value": "1 to 3 months"
+                                    },
+                                    {
+                                        "label": "4 to 6 months",
+                                        "value": "4 to 6 months"
+                                    },
+                                    {
+                                        "label": "More than 6 months",
+                                        "value": "More than 6 months"
                                     },
                                     {
                                         "label": "Not sure",
@@ -1890,7 +3208,26 @@
                                     }
                                 ]
                             }]
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "No, the business has temporarily closed or paused trading",
+                                            "No, the business has permanently ceased trading"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group1760a554-060f-4e6a-bf64-970f98d84ac7"
+                                }
+                            }
+                        ]
                     }
                 ]
             }]
@@ -2083,7 +3420,7 @@
                                     "mandatory": true,
                                     "type": "Percentage",
                                     "label": "On furlough leave",
-                                    "description": "Under the terms of the UK Government's Coronavirus Job Retention Scheme",
+                                    "description": "Under the terms of the UK government's coronavirus Job Retention Scheme",
                                     "q_code": "371",
                                     "min_value": {
                                         "value": 0,
@@ -2214,33 +3551,12 @@
                     }
                 ],
                 "skip_conditions": [{
-                        "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": ["Has permanently ceased trading"]
-                            },
-                            {
-                                "id": "answer177513fe-5a68-46c0-9f65-2d8276e8c2a2",
-                                "condition": "contains any",
-                                "values": ["Outside the UK", "Not sure"]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
-                            "values": ["Has permanently ceased trading"]
-                        }]
-                    },
-                    {
-                        "when": [{
-                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
-                            "values": ["Has temporarily closed or paused trading"]
-                        }]
-                    }
-                ]
+                    "when": [{
+                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                        "condition": "contains any",
+                        "values": ["No, the business has temporarily closed or paused trading", "No, the business has permanently ceased trading"]
+                    }]
+                }]
             }]
         },
         {
@@ -2360,23 +3676,23 @@
                                 "description": "",
                                 "q_code": "29",
                                 "options": [{
-                                        "label": "Yes, we expect other financial and/or operational activities to be affected",
-                                        "value": "Yes, we expect other financial and/or operational activities to be affected"
+                                        "label": "Yes, the business expects other financial and/or operational activities to be affected",
+                                        "value": "Yes, the business expects other financial and/or operational activities to be affected"
                                     },
                                     {
-                                        "label": "No, we do not expect any other financial and/or operational activities to be affected",
-                                        "value": "No, we do not expect any other financial and/or operational activities to be affected"
+                                        "label": "No, the business does not expect any other financial and/or operational activities to be affected",
+                                        "value": "No, the business does not expect any other financial and/or operational activities to be affected"
                                     }
                                 ]
                             }]
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block182d789c-7500-4a07-b271-d639e2840085",
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
                                     "when": [{
                                         "id": "answer618464a8-4a5a-4bf8-820a-1e36a41254c9",
                                         "condition": "contains any",
-                                        "values": ["No, we do not expect any other financial and/or operational activities to be affected"]
+                                        "values": ["No, the business does not expect any other financial and/or operational activities to be affected"]
                                     }]
                                 }
                             },
@@ -2420,64 +3736,25 @@
                                     "when": [{
                                         "id": "answer618464a8-4a5a-4bf8-820a-1e36a41254c9",
                                         "condition": "contains any",
-                                        "values": ["Yes, we expect other financial and/or operational activities to be affected"]
+                                        "values": ["Yes, the business expects other financial and/or operational activities to be affected"]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "block182d789c-7500-4a07-b271-d639e2840085"
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
                                 }
                             }
                         ]
-                    },
-                    {
-                        "id": "block182d789c-7500-4a07-b271-d639e2840085",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question182d789c-7500-4a07-b271-d639e2840085",
-                            "title": "If applicable, why do you think {{ metadata['ru_name'] }} <em>will not</em> have any <em>other</em> issues due to coronavirus (COVID-19) over the next two weeks?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerf4364e1c-c061-406f-9cb1-e457f87bd760",
-                                "mandatory": false,
-                                "type": "TextArea",
-                                "label": "Please give details",
-                                "description": "",
-                                "q_code": "31",
-                                "max_length": 2000
-                            }]
-                        }]
                     }
                 ],
                 "skip_conditions": [{
-                        "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": ["Has permanently ceased trading"]
-                            },
-                            {
-                                "id": "answer177513fe-5a68-46c0-9f65-2d8276e8c2a2",
-                                "condition": "contains any",
-                                "values": ["Outside the UK", "Not sure"]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
-                            "values": ["Has permanently ceased trading"]
-                        }]
-                    },
-                    {
-                        "when": [{
-                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
-                            "values": ["Has temporarily closed or paused trading"]
-                        }]
-                    }
-                ]
+                    "when": [{
+                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                        "condition": "contains any",
+                        "values": ["No, the business has temporarily closed or paused trading", "No, the business has permanently ceased trading"]
+                    }]
+                }]
             }]
         },
         {
