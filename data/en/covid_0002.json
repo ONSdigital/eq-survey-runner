@@ -611,7 +611,7 @@
                                     "when": [{
                                         "id": "answere899d289-bd50-46c7-ab4f-e627fa8229d8",
                                         "condition": "contains any",
-                                        "values": ["Yes, turnover was within the normal range"]
+                                        "values": ["Yes, turnover was within the normal range", "Not sure"]
                                     }]
                                 }
                             },
