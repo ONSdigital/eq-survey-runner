@@ -1150,7 +1150,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiond54d2485-7d02-4e67-90be-30c13dc1c230",
-                            "title": "How have {{ metadata['ru_name'] }}&apos;s <em>online sales</em> of goods or services changed in the <em>last two weeks</em>?",
+                            "title": "How has {{ metadata['ru_name'] }}&apos;s <em>online sales</em> of goods or services changed in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer65cee25e-1d83-4d68-8a73-6e60780d9522",
@@ -5328,26 +5328,11 @@
                     }]
                 },
                 {
-                    "id": "confirmation-group",
-                    "title": "confirmation",
+                    "id": "summary-group",
+                    "title": "Summary",
                     "blocks": [{
-                        "title": "You are now ready to submit this survey",
-                        "type": "Confirmation",
-                        "id": "confirmation",
-                        "description": "",
-                        "questions": [{
-                            "id": "ready-to-submit-completed-question",
-                            "title": "Submission",
-                            "type": "Content",
-                            "guidance": {
-                                "content": [{
-                                    "list": [
-                                        "You will not be able to access or change your answers on submitting the questionnaire",
-                                        "If you wish to review your answers please select the relevant completed sections"
-                                    ]
-                                }]
-                            }
-                        }]
+                        "type": "Summary",
+                        "id": "summary-block"
                     }]
                 }
             ]
