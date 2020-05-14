@@ -1313,7 +1313,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer8f0cba3b-2e47-45f5-a978-25857e3a984a",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -1362,7 +1362,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer5cd5a93e-d818-4d4e-a32f-9eeedad30a6a",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -1442,7 +1442,7 @@
                             "id": "question21181954-9054-40cc-9717-844080af0767",
                             "title": "Where does {{ metadata['ru_name'] }} normally export to?",
                             "type": "MutuallyExclusive",
-                            "mandatory": false,
+                            "mandatory": true,
                             "answers": [{
                                     "id": "answer59b6a6f8-82d8-4059-b5b7-e28701436a10",
                                     "mandatory": false,
@@ -1860,7 +1860,7 @@
                             "id": "questionf72d5c01-7729-4ae7-a567-8876bf82c0b5",
                             "title": "Which of the following support options would  {{ metadata['ru_name'] }} benefit from to help with exporting challenges?",
                             "type": "MutuallyExclusive",
-                            "mandatory": false,
+                            "mandatory": true,
                             "answers": [{
                                     "id": "answer0a2aea64-0242-4cd9-babb-f2cee8c2f637",
                                     "mandatory": false,
@@ -2092,7 +2092,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer27581c54-795b-4638-b8a4-e150c0b75192",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -2141,7 +2141,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answera7265706-a8e2-4db9-b7e9-00a4f62378d3",
-                                "mandatory": false,
+                                "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
@@ -2221,7 +2221,7 @@
                             "id": "question135426ef-5051-44be-a44e-c65ab627013b",
                             "title": "Where does {{ metadata['ru_name'] }} normally import from?",
                             "type": "MutuallyExclusive",
-                            "mandatory": false,
+                            "mandatory": true,
                             "answers": [{
                                     "id": "answer20bbdd2f-176b-411b-8ec4-d933d954cc22",
                                     "mandatory": false,
@@ -2639,7 +2639,7 @@
                             "id": "question5a8227bc-698a-45c0-83eb-defd3666ac43",
                             "title": "Which of the following support options would  {{ metadata['ru_name'] }} benefit from to help with importing challenges?",
                             "type": "MutuallyExclusive",
-                            "mandatory": false,
+                            "mandatory": true,
                             "answers": [{
                                     "id": "answer0b38e10d-69c0-40a4-944d-4e30b1944620",
                                     "mandatory": false,
