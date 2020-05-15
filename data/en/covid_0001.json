@@ -4977,7 +4977,7 @@
                             "id": "questionc6777d62-a71c-4649-9f14-f23249271215",
                             "title": "In the last two weeks, <em>roughly what proportion</em> of {{ metadata['ru_name'] }}&apos;s workforce were in the following situations?",
                             "description": "<p>Your answers should add up to 100%. If your workforce did not fall into one of the categories, enter &apos;0&apos;.</p>",
-                            "type": "General",
+                            "type": "Calculated",
                             "answers": [{
                                     "id": "answer9082ee4e-d072-429f-9cc2-35998ef2cbd3",
                                     "mandatory": true,
@@ -5063,7 +5063,21 @@
                                     },
                                     "decimal_places": 0
                                 }
-                            ]
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answer9082ee4e-d072-429f-9cc2-35998ef2cbd3",
+                                    "answercee36eb0-124c-4c41-8712-aa06ff5719ef",
+                                    "answer38fd04c6-a8b2-4f47-b51f-f4c824224096",
+                                    "answer96b4d0ea-9b80-403b-88e6-86bca36c68bb",
+                                    "answer854e2c03-d02b-4c4f-95c0-32b07856fe8a"
+                                ],
+                                "conditions": [
+                                    "equals"
+                                ],
+                                "value": 100
+                            }]
                         }]
                     },
                     {
