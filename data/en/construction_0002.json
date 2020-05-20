@@ -1177,7 +1177,7 @@
                                     {
                                         "label": "Private commercial sector projects",
                                         "value": "Private commercial sector projects",
-                                        "description": "Part of the economy that includes all businesses and agriculture, except those businesses involved in manufacturing and  transport"
+                                        "description": "Part of the economy that includes all businesses and agriculture, except those businesses involved in manufacturing and transport"
                                     },
                                     {
                                         "label": "Private industrial sector projects",
@@ -1371,7 +1371,7 @@
                             "definitions": [{
                                 "title": "What we mean by the \"private commercial sector\"",
                                 "content": [{
-                                        "description": "This sector refers to part of the economy that  includes all businesses, except those involved in manufacturing and transport."
+                                        "description": "This sector refers to part of the economy that includes all businesses, except those involved in manufacturing and transport."
                                     },
                                     {
                                         "description": "<strong>Examples of private commercial sector structures:</strong>"
