@@ -1071,7 +1071,7 @@
                                 "content": [{
                                     "list": [
                                         "Industrial structures, such as factories and warehouses",
-                                        "Commercial structures, such as offices, parks, health facilities and educational institutions",
+                                        "Commercial structures, such as agricultural structures, offices, parks, health facilities and educational institutions",
                                         "Public structures, such educational institutions, offices, health facilities, sport facilities or entertainment facilities"
                                     ]
                                 }]
@@ -1148,12 +1148,12 @@
                                     {
                                         "label": "Private commercial sector projects",
                                         "value": "Private commercial sector projects",
-                                        "description": "Part of the economy that  includes all businesses except those involved in manufacturing, transport and agriculture"
+                                        "description": "Part of the economy that includes all businesses and agriculture, except those businesses involved in manufacturing and  transport"
                                     },
                                     {
                                         "label": "Private industrial sector projects",
                                         "value": "Private industrial sector projects",
-                                        "description": "Part of the economy that includes businesses involved in manufacturing, transport and agriculture"
+                                        "description": "Part of the economy that includes businesses involved in manufacturing and transport"
                                     }
                                 ]
                             }]
@@ -1342,13 +1342,14 @@
                             "definitions": [{
                                 "title": "What we mean by the \"private commercial sector\"",
                                 "content": [{
-                                        "description": "This sector refers to part of the economy that  includes all businesses except those involved in manufacturing, transport and agriculture."
+                                        "description": "This sector refers to part of the economy that  includes all businesses, except those involved in manufacturing and transport."
                                     },
                                     {
                                         "description": "<strong>Examples of private commercial sector structures:</strong>"
                                     },
                                     {
                                         "list": [
+                                            "Any construction work for the agriculture industry",
                                             "Offices",
                                             "Factories",
                                             "Health facilities",
@@ -1417,7 +1418,7 @@
                             "definitions": [{
                                 "title": "What we mean by the \"private industrial sector\"",
                                 "content": [{
-                                        "description": "This sector refers to part of the economy that includes businesses involved in manufacturing, transport and agriculture."
+                                        "description": "This sector refers to part of the economy that includes businesses involved in manufacturing and transport, excluding agriculture."
                                     },
                                     {
                                         "description": "<strong>Examples of private industrial sector structures:</strong>"
@@ -1426,7 +1427,7 @@
                                         "list": [
                                             "Factories",
                                             "Warehouses",
-                                            "Any construction work in the coal, oil, agriculture and steel industry"
+                                            "Any construction work in the coal, oil and steel industry"
                                         ]
                                     }
                                 ]
@@ -1490,6 +1491,7 @@
                                     },
                                     {
                                         "list": [
+                                            "Any construction work for the agriculture industry",
                                             "Offices",
                                             "Factories",
                                             "Health facilities",
@@ -1506,7 +1508,7 @@
                                         "list": [
                                             "Factories",
                                             "Warehouses",
-                                            "Any construction work in the coal, oil, agriculture and steel industry"
+                                            "Any construction work in the coal, oil and steel industry"
                                         ]
                                     }
                                 ]
