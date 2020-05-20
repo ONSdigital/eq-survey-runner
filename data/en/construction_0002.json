@@ -294,10 +294,10 @@
         },
         {
             "id": "section7e41e171-26eb-42c0-99ef-b34fa447c363",
-            "title": "Value of Work",
+            "title": "Value of work",
             "groups": [{
                 "id": "group7e41e171-26eb-42c0-99ef-b34fa447c363",
-                "title": "Value of Work",
+                "title": "Value of work",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group7e41e171-26eb-42c0-99ef-b34fa447c363-introduction",
@@ -413,6 +413,15 @@
                             },
                             {
                                 "goto": {
+                                    "group": "groupe9d26530-ad8f-4527-b09c-afacfa0c820a",
+                                    "when": [{
+                                        "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
                                     "group": "group95c68629-8efd-4913-b465-41b686719d32"
                                 }
                             }
@@ -518,17 +527,15 @@
                                 "type": "Checkbox",
                                 "label": "",
                                 "description": "",
-                                "q_code": "a",
+                                "q_code": "d1",
                                 "options": [{
                                         "label": "Public sector projects",
                                         "value": "Public sector projects",
-                                        "q_code": "b",
                                         "description": "In the UK, the public sector consists of five sub-sectors: central government, local government, public non-financial corporations, Bank of England, public financial corporations (public sector banks)"
                                     },
                                     {
                                         "label": "Private sector projects",
                                         "value": "Private sector projects",
-                                        "q_code": "c",
                                         "description": "The private sector refers to the part of the economy that is for profit and is owned by private organisations, for example housing associations, or individuals"
                                     }
                                 ]
@@ -807,12 +814,19 @@
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
-                        "condition": "equals",
-                        "value": 0
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "equals",
+                            "value": 0
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
             }]
         },
         {
@@ -1035,12 +1049,19 @@
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
-                        "condition": "equals",
-                        "value": 0
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "equals",
+                            "value": 0
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
             }]
         },
         {
@@ -1079,7 +1100,7 @@
                                 "content": [{
                                     "list": [
                                         "Industrial structures, such as factories and warehouses",
-                                        "Commercial structures, such as offices, parks, health facilities and educational institutions",
+                                        "Commercial structures, such as agricultural structures, offices, parks, health facilities and educational institutions",
                                         "Public structures, such educational institutions, offices, health facilities, sport facilities or entertainment facilities"
                                     ]
                                 }]
@@ -1147,24 +1168,21 @@
                                 "type": "Checkbox",
                                 "label": "",
                                 "description": "",
-                                "q_code": "f",
+                                "q_code": "d2",
                                 "options": [{
                                         "label": "Public sector projects",
                                         "value": "Public sector projects",
-                                        "q_code": "g",
                                         "description": "The public sector consists central government, local government, public non-financial corporations, Bank of England and public financial corporations."
                                     },
                                     {
                                         "label": "Private commercial sector projects",
                                         "value": "Private commercial sector projects",
-                                        "q_code": "h",
-                                        "description": "Part of the economy that  includes all businesses except those involved in manufacturing, transport and agriculture"
+                                        "description": "Part of the economy that includes all businesses and agriculture, except those businesses involved in manufacturing and  transport"
                                     },
                                     {
                                         "label": "Private industrial sector projects",
                                         "value": "Private industrial sector projects",
-                                        "q_code": "i",
-                                        "description": "Part of the economy that includes businesses involved in manufacturing, transport and agriculture"
+                                        "description": "Part of the economy that includes businesses involved in manufacturing and transport"
                                     }
                                 ]
                             }]
@@ -1353,13 +1371,14 @@
                             "definitions": [{
                                 "title": "What we mean by the \"private commercial sector\"",
                                 "content": [{
-                                        "description": "This sector refers to part of the economy that  includes all businesses except those involved in manufacturing, transport and agriculture."
+                                        "description": "This sector refers to part of the economy that  includes all businesses, except those involved in manufacturing and transport."
                                     },
                                     {
                                         "description": "<strong>Examples of private commercial sector structures:</strong>"
                                     },
                                     {
                                         "list": [
+                                            "Any construction work for the agriculture industry",
                                             "Offices",
                                             "Factories",
                                             "Health facilities",
@@ -1428,7 +1447,7 @@
                             "definitions": [{
                                 "title": "What we mean by the \"private industrial sector\"",
                                 "content": [{
-                                        "description": "This sector refers to part of the economy that includes businesses involved in manufacturing, transport and agriculture."
+                                        "description": "This sector refers to part of the economy that includes businesses involved in manufacturing and transport, excluding agriculture."
                                     },
                                     {
                                         "description": "<strong>Examples of private industrial sector structures:</strong>"
@@ -1437,7 +1456,7 @@
                                         "list": [
                                             "Factories",
                                             "Warehouses",
-                                            "Any construction work in the coal, oil, agriculture and steel industry"
+                                            "Any construction work in the coal, oil and steel industry"
                                         ]
                                     }
                                 ]
@@ -1501,6 +1520,7 @@
                                     },
                                     {
                                         "list": [
+                                            "Any construction work for the agriculture industry",
                                             "Offices",
                                             "Factories",
                                             "Health facilities",
@@ -1517,7 +1537,7 @@
                                         "list": [
                                             "Factories",
                                             "Warehouses",
-                                            "Any construction work in the coal, oil, agriculture and steel industry"
+                                            "Any construction work in the coal, oil and steel industry"
                                         ]
                                     }
                                 ]
@@ -1568,12 +1588,19 @@
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
-                        "condition": "equals",
-                        "value": 0
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "equals",
+                            "value": 0
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
             }]
         },
         {
@@ -1651,6 +1678,13 @@
                                         "value": "No, I need to change this"
                                     }
                                 ]
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answere986bc9b-0ba2-4249-a4e1-d9a1437f5a40",
+                                "condition": "not equals",
+                                "value": 0
                             }]
                         }],
                         "routing_rules": [{
@@ -1769,16 +1803,30 @@
                                 ],
                                 "answer_id": "answere986bc9b-0ba2-4249-a4e1-d9a1437f5a40"
                             }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answere986bc9b-0ba2-4249-a4e1-d9a1437f5a40",
+                                "condition": "equals",
+                                "value": 0
+                            }]
                         }]
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
-                        "condition": "equals",
-                        "value": 0
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "equals",
+                            "value": 0
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
             }]
         },
         {
