@@ -1739,7 +1739,7 @@
                             "type": "Calculated",
                             "answers": [{
                                     "id": "answer439b5e4b-6ae0-4579-92c3-19cbf052a553",
-                                    "mandatory": true,
+                                    "mandatory": false,
                                     "type": "Number",
                                     "label": "Number of male employees working more than 30 hours per week",
                                     "description": "",
@@ -1752,7 +1752,7 @@
                                 },
                                 {
                                     "id": "answer74822f53-03b9-4219-a4bf-03b763e280da",
-                                    "mandatory": true,
+                                    "mandatory": false,
                                     "type": "Number",
                                     "label": "Number of male employees working 30 hours or less per week",
                                     "description": "",
@@ -1765,7 +1765,7 @@
                                 },
                                 {
                                     "id": "answerb0b29803-9d66-4b49-b00e-d3d06a6c7df5",
-                                    "mandatory": true,
+                                    "mandatory": false,
                                     "type": "Number",
                                     "label": "Number of female employees working more than 30 hours per week",
                                     "description": "",
@@ -1791,6 +1791,19 @@
                                 }
                             ],
                             "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answer439b5e4b-6ae0-4579-92c3-19cbf052a553",
+                                    "answer74822f53-03b9-4219-a4bf-03b763e280da",
+                                    "answerb0b29803-9d66-4b49-b00e-d3d06a6c7df5",
+                                    "answerfd0bbdeb-ec8f-4e6e-8e80-4746055407a1"
+                                ],
+                                "conditions": [
+                                    "equals"
+                                ],
+                                "value": "0"
+                            },
+                            {
                                 "calculation_type": "sum",
                                 "answers_to_calculate": [
                                     "answer439b5e4b-6ae0-4579-92c3-19cbf052a553",
