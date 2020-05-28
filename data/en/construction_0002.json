@@ -1801,7 +1801,7 @@
                                     "conditions": [
                                         "equals"
                                     ],
-                                    "value": "0"
+                                    "value": 0
                                 },
                                 {
                                     "calculation_type": "sum",
