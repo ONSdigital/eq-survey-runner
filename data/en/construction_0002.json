@@ -403,7 +403,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupe9d26530-ad8f-4527-b09c-afacfa0c820a",
+                                    "group": "group683013fe-88a1-47c3-975c-fbf36c3ec625",
                                     "when": [{
                                         "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
                                         "condition": "equals",
@@ -413,7 +413,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "groupe9d26530-ad8f-4527-b09c-afacfa0c820a",
+                                    "group": "group683013fe-88a1-47c3-975c-fbf36c3ec625",
                                     "when": [{
                                         "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
                                         "condition": "not set"
@@ -1824,20 +1824,6 @@
                                 "condition": "equals",
                                 "value": 0
                             }]
-                        }]
-                    }
-                ],
-                "skip_conditions": [{
-                        "when": [{
-                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
-                            "condition": "equals",
-                            "value": 0
-                        }]
-                    },
-                    {
-                        "when": [{
-                            "id": "answer24502b57-1962-4d88-b3a1-40facd7f0661",
-                            "condition": "not set"
                         }]
                     }
                 ]
