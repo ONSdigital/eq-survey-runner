@@ -1,5 +1,5 @@
 {
-    "eq_id": "covid_0002",
+    "eq_id": "ovid_0002",
     "form_type": "0002",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -44,25 +44,37 @@
                             "questions": [{
                                     "question": "Trading status of your business",
                                     "content": [{
-                                        "description": "This section asks for general information on {{ metadata['ru_name'] }}&apos;s trading status and business activity in the last two weeks."
+                                        "description": "This section asks for general information on the business&apos;s trading status and business activity in the last two weeks."
                                     }]
                                 },
                                 {
                                     "question": "Turnover and online sales",
                                     "content": [{
-                                        "description": "This section asks for information on any changes to {{ metadata['ru_name'] }}&apos;s turnover in the last two weeks and any changes to its online sales and activity."
+                                        "description": "This section asks for information on any changes to the business&apos;s turnover in the last two weeks and any changes to its online sales and activity."
                                     }]
                                 },
                                 {
                                     "question": "Exporting, importing and UK trade",
                                     "content": [{
-                                        "description": "This section asks for information about {{ metadata['ru_name'] }}&apos;s importing and exporting activities, and access to goods and services within the UK (if relevant)."
+                                        "description": "This section asks for information about the business&apos;s importing and exporting activities, and access to goods and services within the UK (if relevant)."
+                                    }]
+                                },
+                                {
+                                    "question": "UK supply chain",
+                                    "content": [{
+                                        "description": "This section asks for information about the availability of materials, goods and services within the UK and  the business&apos;s use of UK logistics services."
                                     }]
                                 },
                                 {
                                     "question": "Prices of materials, goods and services",
                                     "content": [{
-                                        "description": "This section asks for information on any changes to the prices of goods and services bought or sold by {{ metadata['ru_name'] }} in the last two weeks."
+                                        "description": "This section asks for information on any changes to the prices of goods and services bought or sold by the business in the last two weeks."
+                                    }]
+                                },
+                                {
+                                    "question": "Capital expenditure and stock",
+                                    "content": [{
+                                        "description": "This section asks for information about how the coronavirus (COVID-19) pandemic may have affected the business&apos;s capital expenditure and stock."
                                     }]
                                 },
                                 {
@@ -72,8 +84,8 @@
                                         },
                                         {
                                             "list": [
-                                                "any applications that {{ metadata['ru_name'] }} made for government financial initiatives or schemes",
-                                                "any applications {{ metadata['ru_name'] }} intends to make for government initiatives or schemes",
+                                                "any applications that the business made for government financial initiatives or schemes",
+                                                "any applications the business intends to make for government initiatives or schemes",
                                                 "any applications for non-government financial support"
                                             ]
                                         }
@@ -108,7 +120,7 @@
                         "type": "Interstitial",
                         "id": "group07aa7033-76e4-41b4-81e4-a957831a5a42-introduction",
                         "title": "Trading status of your business",
-                        "description": "<p>This section asks for general information on {{ metadata['ru_name'] }}&apos;s trading status and business activity in the last two weeks.</p>"
+                        "description": "<p>This section asks for general information on the business&apos;s trading status and business activity in the last two weeks.</p>"
                     },
                     {
                         "id": "blockbe7effcb-8832-4733-90b4-b699fcffa38a",
@@ -157,6 +169,15 @@
                                             "Currently trading and has been for more than the last two weeks",
                                             "Started trading within the last two weeks after a pause in trading"
                                         ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "not set"
                                     }]
                                 }
                             },
@@ -412,14 +433,14 @@
                         "type": "Interstitial",
                         "id": "group281e76fe-1287-43af-bfe9-e1a53be6476e-introduction",
                         "title": "Turnover and online sales",
-                        "description": "<p>This section asks for information about how the coronavirus (COVID-19) pandemic may have affected {{ metadata['ru_name'] }}&apos;s turnover in the last two weeks, and about online sales and activity.</p>"
+                        "description": "<p>This section asks for information about how the coronavirus (COVID-19) pandemic may have affected the business&apos;s turnover in the last two weeks, and about online sales and activity.</p>"
                     },
                     {
                         "id": "block9361fa44-7f22-47da-bdd0-16e104300487",
                         "type": "Question",
                         "questions": [{
                             "id": "question9361fa44-7f22-47da-bdd0-16e104300487",
-                            "title": "<em>In the last two weeks</em>, how has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s turnover, compared to what is normally expected for this time of year?",
+                            "title": "<em>In the last two weeks</em>, how has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s turnover, compared with normal expectations for this time of year?",
                             "description": "<p>You can provide a rough estimate.</p>",
                             "guidance": {
                                 "content": [{
@@ -664,12 +685,12 @@
                                         "value": "Online sales have increased"
                                     },
                                     {
-                                        "label": "Online sales have continued, but decreased",
-                                        "value": "Online sales have continued, but decreased"
-                                    },
-                                    {
                                         "label": "Online sales have stayed the same",
                                         "value": "Online sales have stayed the same"
+                                    },
+                                    {
+                                        "label": "Online sales have continued, but decreased",
+                                        "value": "Online sales have continued, but decreased"
                                     },
                                     {
                                         "label": "The business stopped selling goods or services online",
@@ -751,6 +772,12 @@
                 "skip_conditions": [{
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
                             "values": ["Permanently ceased trading"]
                         }]
@@ -783,15 +810,15 @@
         },
         {
             "id": "section139b1d35-6271-4893-8eef-e1a36f2eb3c9",
-            "title": "Exporting, importing and UK trade",
+            "title": "Exporting and importing",
             "groups": [{
                 "id": "group139b1d35-6271-4893-8eef-e1a36f2eb3c9",
-                "title": "Exporting, importing and UK trade",
+                "title": "Exporting and importing",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group139b1d35-6271-4893-8eef-e1a36f2eb3c9-introduction",
-                        "title": "Exporting, importing and UK trade",
-                        "description": "<p>This section asks for information about {{ metadata['ru_name'] }}&apos;s importing and exporting activities, and access to goods and services within the UK (if relevant).</p>"
+                        "title": "Exporting and importing",
+                        "description": "<p>This section asks for information about the business&apos;s importing and exporting activities.</p>"
                     },
                     {
                         "id": "blockea00e928-7c0b-4af5-954d-85eedab6f10c",
@@ -952,8 +979,8 @@
                                 "description": "",
                                 "q_code": "7",
                                 "options": [{
-                                        "label": "The business has stopped exporting in the last two weeks",
-                                        "value": "The business has stopped exporting in the last two weeks"
+                                        "label": "The business is exporting more than normal",
+                                        "value": "The business is exporting more than normal"
                                     },
                                     {
                                         "label": "Exporting has not been affected",
@@ -964,8 +991,8 @@
                                         "value": "The business is exporting, but less than normal"
                                     },
                                     {
-                                        "label": "The business is exporting more than normal",
-                                        "value": "The business is exporting more than normal"
+                                        "label": "The business has stopped exporting in the last two weeks",
+                                        "value": "The business has stopped exporting in the last two weeks"
                                     },
                                     {
                                         "label": "Not sure",
@@ -1492,10 +1519,6 @@
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
@@ -1604,12 +1627,12 @@
                                 "description": "",
                                 "q_code": "63",
                                 "options": [{
-                                        "label": "Yes, the business expects to start importing",
-                                        "value": "Yes, the business expects to start importing"
+                                        "label": "Yes, expect to start importing",
+                                        "value": "Yes, expect to start importing"
                                     },
                                     {
-                                        "label": "No, the business does not expect to start importing",
-                                        "value": "No, the business does not expect to start importing"
+                                        "label": "No, do not expect to start importing",
+                                        "value": "No, do not expect to start importing"
                                     },
                                     {
                                         "label": "Not sure",
@@ -1620,7 +1643,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block0e1472db-36f2-4d40-b99e-510e70442636",
+                                    "group": "group5c8d0ebe-e6e2-4ff6-a2bd-99ccf4edbde6",
                                     "when": [{
                                         "id": "answerc0e118a3-e720-4d1e-bbce-0da8a5f84210",
                                         "condition": "contains any",
@@ -1630,7 +1653,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block0e1472db-36f2-4d40-b99e-510e70442636",
+                                    "group": "group5c8d0ebe-e6e2-4ff6-a2bd-99ccf4edbde6",
                                     "when": [{
                                         "id": "answera7265706-a8e2-4db9-b7e9-00a4f62378d3",
                                         "condition": "contains any",
@@ -1660,8 +1683,8 @@
                                 "description": "",
                                 "q_code": "10",
                                 "options": [{
-                                        "label": "The business has stopped importing in the last two weeks",
-                                        "value": "The business has stopped importing in the last two weeks"
+                                        "label": "The business is importing more than normal",
+                                        "value": "The business is importing more than normal"
                                     },
                                     {
                                         "label": "Importing has not been affected",
@@ -1672,8 +1695,8 @@
                                         "value": "The business is importing, but less than normal"
                                     },
                                     {
-                                        "label": "The business is importing more than normal",
-                                        "value": "The business is importing more than normal"
+                                        "label": "The business has stopped importing in the last two weeks",
+                                        "value": "The business has stopped importing in the last two weeks"
                                     },
                                     {
                                         "label": "Not sure",
@@ -1964,7 +1987,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block0e1472db-36f2-4d40-b99e-510e70442636",
+                                    "group": "group5c8d0ebe-e6e2-4ff6-a2bd-99ccf4edbde6",
                                     "when": [{
                                         "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
                                         "condition": "contains any",
@@ -2195,14 +2218,62 @@
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
                         }]
+                    }
+                ],
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": ["Permanently ceased trading"]
+                        }]
+                    },
+                    {
+                        "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": ["Permanently ceased trading"]
+                            },
+                            {
+                                "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
+                                "condition": "contains all",
+                                "values": ["Northern Ireland", "Scotland", "Wales"]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": [
+                                "Paused trading but intends to restart in the next two weeks",
+                                "Paused trading and does not intend to restart in the next two weeks"
+                            ]
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section5c8d0ebe-e6e2-4ff6-a2bd-99ccf4edbde6",
+            "title": "UK supply chain",
+            "groups": [{
+                "id": "group5c8d0ebe-e6e2-4ff6-a2bd-99ccf4edbde6",
+                "title": "UK supply chain",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group5c8d0ebe-e6e2-4ff6-a2bd-99ccf4edbde6-introduction",
+                        "title": "UK supply chain",
+                        "description": "<p>This section asks for information about the availability of materials, goods and services within the UK and the business&apos;s use of UK logistics services </p>"
                     },
                     {
                         "id": "block0e1472db-36f2-4d40-b99e-510e70442636",
@@ -2249,7 +2320,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "blockaa552770-f5f6-4692-9190-fe78ab4c1ecd"
+                                    "block": "blockfcda221c-0068-464f-960c-cb70f5f32c93"
                                 }
                             }
                         ]
@@ -2269,6 +2340,146 @@
                                 "description": "",
                                 "q_code": "14",
                                 "max_length": 2000
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockfcda221c-0068-464f-960c-cb70f5f32c93",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionfcda221c-0068-464f-960c-cb70f5f32c93",
+                            "title": "In the <em>last two weeks</em>, did {{ metadata['ru_name'] }} use logistics services to distribute goods or services produced, <em>within the UK</em>?",
+                            "description": "<p>This is about the distribution of goods or services within the UK or to UK ports for export. </p>",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude warehousing services"
+                                }]
+                            },
+                            "definitions": [{
+                                "title": "Examples of logistics services",
+                                "content": [{
+                                    "list": ["delivery and courier services", "haulage services"]
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer236c7438-1060-424e-95f3-c2705f9d4090",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "105",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, because we could not obtain the UK logistics services we needed",
+                                        "value": "No, because we could not obtain the UK logistics services we needed"
+                                    },
+                                    {
+                                        "label": "No, because we did not need UK logistics services",
+                                        "value": "No, because we did not need UK logistics services"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blocka3f432c3-7cfe-4798-bfa2-5f2d676b5a09",
+                                    "when": [{
+                                        "id": "answer236c7438-1060-424e-95f3-c2705f9d4090",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockaa552770-f5f6-4692-9190-fe78ab4c1ecd"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blocka3f432c3-7cfe-4798-bfa2-5f2d676b5a09",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiona3f432c3-7cfe-4798-bfa2-5f2d676b5a09",
+                            "title": "Did the logistics services used in the <em>last two weeks</em> meet {{ metadata['ru_name'] }}&apos;s UK distribution demands?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude warehousing services"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer8b4552ba-cfbc-4caa-9b84-8638408716da",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "106",
+                                "options": [{
+                                        "label": "All distribution demands were met",
+                                        "value": "All distribution demands were met"
+                                    },
+                                    {
+                                        "label": "Some distribution demands were met",
+                                        "value": "Some distribution demands were met"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block5b6019e2-fb71-49f2-a596-7ae4b9025011",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question5b6019e2-fb71-49f2-a596-7ae4b9025011",
+                            "title": "To what extent do you expect that {{ metadata['ru_name'] }}&apos;s UK distribution demands will be met by logistics services in the <em>next two weeks</em>?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude warehousing services"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer0171923a-906e-44d5-95ee-7f071baee584",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "107",
+                                "options": [{
+                                        "label": "All  UK distribution demands will be met",
+                                        "value": "All  UK distribution demands will be met"
+                                    },
+                                    {
+                                        "label": "Some UK distribution demands will be met",
+                                        "value": "Some UK distribution demands will be met"
+                                    },
+                                    {
+                                        "label": "None of the UK distribution demands will be met",
+                                        "value": "None of the UK distribution demands will be met"
+                                    },
+                                    {
+                                        "label": "The business will not need any UK distribution",
+                                        "value": "The business will not need any UK distribution"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
                             }]
                         }]
                     },
@@ -2463,6 +2674,12 @@
                 "skip_conditions": [{
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
                             "values": ["Permanently ceased trading"]
                         }]
@@ -2503,7 +2720,7 @@
                         "type": "Interstitial",
                         "id": "groupff9741ed-a1da-4edf-bc6b-6bb62ddc94ec-introduction",
                         "title": "Prices of materials, goods and services",
-                        "description": "<p>This section asks for information on any changes to the prices of goods and services <em>bought or sold</em> by {{ metadata['ru_name'] }} in the last two weeks.</p>"
+                        "description": "<p>This section asks for information on any changes to the prices of goods and services <em>bought or sold</em> by the business in the last two weeks.</p>"
                     },
                     {
                         "id": "blockce542f26-a704-4dc6-a0ef-292c2739e4e6",
@@ -2524,16 +2741,16 @@
                                         "value": "Prices increased more than normal"
                                     },
                                     {
+                                        "label": "Prices did not change any more than normal",
+                                        "value": "Prices did not change any more than normal"
+                                    },
+                                    {
                                         "label": "Prices decreased more than normal",
                                         "value": "Prices decreased more than normal"
                                     },
                                     {
                                         "label": "Some prices increased, some prices decreased",
                                         "value": "Some prices increased, some prices decreased"
-                                    },
-                                    {
-                                        "label": "Prices did not change any more than normal",
-                                        "value": "Prices did not change any more than normal"
                                     },
                                     {
                                         "label": "Not sure",
@@ -2610,20 +2827,16 @@
                                         "value": "Expect prices to generally increase"
                                     },
                                     {
-                                        "label": "Expect prices to generally decrease",
-                                        "value": "Expect prices to generally decrease"
-                                    },
-                                    {
                                         "label": "Expect prices not to change",
                                         "value": "Expect prices not to change"
                                     },
                                     {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
+                                        "label": "Expect prices to generally decrease",
+                                        "value": "Expect prices to generally decrease"
                                     },
                                     {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
+                                        "label": "Not sure",
+                                        "value": "Not sure"
                                     }
                                 ]
                             }]
@@ -2648,16 +2861,16 @@
                                         "value": "Prices increased more than normal"
                                     },
                                     {
+                                        "label": "Prices did not change any more than normal",
+                                        "value": "Prices did not change any more than normal"
+                                    },
+                                    {
                                         "label": "Prices decreased more than normal",
                                         "value": "Prices decreased more than normal"
                                     },
                                     {
                                         "label": "Some prices increased, some prices decreased",
                                         "value": "Some prices increased, some prices decreased"
-                                    },
-                                    {
-                                        "label": "Prices did not change any more than normal",
-                                        "value": "Prices did not change any more than normal"
                                     },
                                     {
                                         "label": "Not sure",
@@ -2682,7 +2895,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
+                                    "group": "group91ec421d-5346-4b67-8d16-a8268f1c4c07",
                                     "when": [{
                                         "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
                                         "condition": "contains any",
@@ -2734,12 +2947,102 @@
                                         "value": "Prices will generally increase"
                                     },
                                     {
+                                        "label": "Prices will stay the same",
+                                        "value": "Prices will stay the same"
+                                    },
+                                    {
                                         "label": "Prices will generally decrease",
                                         "value": "Prices will generally decrease"
                                     },
                                     {
-                                        "label": "Prices will stay the same",
-                                        "value": "Prices will stay the same"
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": ["Permanently ceased trading"]
+                        }]
+                    },
+                    {
+                        "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": ["Permanently ceased trading"]
+                            },
+                            {
+                                "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
+                                "condition": "contains all",
+                                "values": ["Northern Ireland", "Scotland", "Wales"]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": [
+                                "Paused trading but intends to restart in the next two weeks",
+                                "Paused trading and does not intend to restart in the next two weeks"
+                            ]
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section91ec421d-5346-4b67-8d16-a8268f1c4c07",
+            "title": "Capital expenditure and stock",
+            "groups": [{
+                "id": "group91ec421d-5346-4b67-8d16-a8268f1c4c07",
+                "title": "Capital expenditure and stock",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group91ec421d-5346-4b67-8d16-a8268f1c4c07-introduction",
+                        "title": "Capital expenditure and stock",
+                        "description": "<p>This section asks for information about how the coronavirus (COVID-19) pandemic may have affected the business&apos;s capital expenditure and stock.  </p>"
+                    },
+                    {
+                        "id": "blockde080262-b45a-405e-ae10-e2e3ca916402",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionde080262-b45a-405e-ae10-e2e3ca916402",
+                            "title": "How has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s <em>capital expenditure</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer6cf1cad7-3588-4a20-9b9e-434f5872f460",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "108",
+                                "options": [{
+                                        "label": "Capital expenditure is higher than normal",
+                                        "value": "Capital expenditure is higher than normal"
+                                    },
+                                    {
+                                        "label": "Capital expenditure has not been affected",
+                                        "value": "Capital expenditure has not been affected"
+                                    },
+                                    {
+                                        "label": "Capital expenditure is lower than normal",
+                                        "value": "Capital expenditure is lower than normal"
+                                    },
+                                    {
+                                        "label": "Capital expenditure has stopped",
+                                        "value": "Capital expenditure has stopped"
                                     },
                                     {
                                         "label": "Not sure",
@@ -2751,10 +3054,127 @@
                                     }
                                 ]
                             }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block8b2a4914-5d89-446b-b5cc-02a7525714e9",
+                                    "when": [{
+                                        "id": "answer6cf1cad7-3588-4a20-9b9e-434f5872f460",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Capital expenditure is higher than normal",
+                                            "Capital expenditure is lower than normal",
+                                            "Capital expenditure has stopped"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block9a64bb02-fc94-4a2a-bda1-9e96f64bcd01"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block8b2a4914-5d89-446b-b5cc-02a7525714e9",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question8b2a4914-5d89-446b-b5cc-02a7525714e9",
+                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic has affected {{ metadata['ru_name'] }}&#x2019;s capital expenditure",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1b425c88-0d95-44e0-8500-d3fc9810b15e",
+                                "mandatory": true,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "109",
+                                "max_length": 2000
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block9a64bb02-fc94-4a2a-bda1-9e96f64bcd01",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question9a64bb02-fc94-4a2a-bda1-9e96f64bcd01",
+                            "title": "How has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&#x2019;s <em>stock levels </em>in the last two weeks?",
+                            "description": "<p>Your business may use the term  &quot;inventories&quot; instead of &quot;stock&quot;.</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerc964594d-9b5b-4131-9c79-4baff0be08d1",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "110",
+                                "options": [{
+                                        "label": "Stock levels are higher than normal",
+                                        "value": "Stock levels are higher than normal"
+                                    },
+                                    {
+                                        "label": "Stock levels have not changed",
+                                        "value": "Stock levels have not changed"
+                                    },
+                                    {
+                                        "label": "Stock levels are lower than normal",
+                                        "value": "Stock levels are lower than normal"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block8b3a9f71-4818-40db-a9f6-1d7ca69fe9e8",
+                                    "when": [{
+                                        "id": "answerc964594d-9b5b-4131-9c79-4baff0be08d1",
+                                        "condition": "contains any",
+                                        "values": ["Stock levels are higher than normal", "Stock levels are lower than normal"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block8b3a9f71-4818-40db-a9f6-1d7ca69fe9e8",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question8b3a9f71-4818-40db-a9f6-1d7ca69fe9e8",
+                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic has affected {{ metadata['ru_name'] }}&#x2019;s stock levels in the last two weeks",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answere8a99b49-c76b-4598-925a-047596365fd1",
+                                "mandatory": true,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "111",
+                                "max_length": 2000
+                            }]
                         }]
                     }
                 ],
                 "skip_conditions": [{
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
@@ -2797,7 +3217,7 @@
                         "type": "Interstitial",
                         "id": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba-introduction",
                         "title": "Access to financial support",
-                        "description": "<p>This section asks for information on:</p><ul><li>any applications that {{ metadata['ru_name'] }} made for government financial initiatives or schemes</li><li>any applications {{ metadata['ru_name'] }} intends to make for government initiatives or schemes</li><li>any applications for non-government financial support</li></ul>"
+                        "description": "<p>This section asks for information on:</p><ul><li>any applications that the business made for government financial initiatives or schemes</li><li>any applications the business intends to make for government initiatives or schemes</li><li>any applications for non-government financial support</li></ul>"
                     },
                     {
                         "id": "block2ea33f36-282b-40d4-a881-0d946f8d4408",
@@ -4081,6 +4501,12 @@
                 "skip_conditions": [{
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
                             "values": ["Permanently ceased trading"]
                         }]
@@ -4119,7 +4545,7 @@
                         "questions": [{
                             "id": "questiond08aa828-b92f-4336-b701-eb5496452642",
                             "title": "In the <em>last two weeks</em>, approximately what percentage of {{ metadata['ru_name'] }}&apos;s workforce were:",
-                            "description": "<p>Your answers should add up to 100%. If your workforce did not fall into one of the categories, enter &apos;0&apos;.</p>",
+                            "description": "<p>Your answers should add up to 100%. If your workforce did not fall into one of the categories, enter &apos;0&apos;. </p>",
                             "type": "Calculated",
                             "answers": [{
                                     "id": "answerbf18c96a-f2b1-417a-b9d3-568808775282",
@@ -4432,7 +4858,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4f6d1ad5-2f37-4135-92fc-339b1943fc0e",
-                            "title": "Of those workers on <em>furlough leave</em>, approximately what percentage have their pay topped up?",
+                            "title": "Of those on <em>furlough leave</em>, approximately what <em>percentage of workers</em> have had their pay topped up?",
                             "description": "<p>Your answer should be out of 100%. </p>",
                             "definitions": [{
                                 "title": "How you might answer this question",
@@ -4466,6 +4892,16 @@
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
                                         "values": ["Paused trading but intends to restart in the next two weeks"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blocke94a866c-fda4-469d-ba7d-e858307138cb",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": ["Paused trading and does not intend to restart in the next two weeks"]
                                     }]
                                 }
                             },
@@ -4605,6 +5041,22 @@
                             }]
                         }],
                         "routing_rules": [{
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                            "id": "answer6fc41202-89c7-48f2-b65a-7801cd5086e4",
+                                            "condition": "equals",
+                                            "value": 0
+                                        },
+                                        {
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": ["Paused trading and does not intend to restart in the next two weeks"]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
                                 "goto": {
                                     "block": "block29eac987-68af-41fc-adaf-53c45511d4da",
                                     "when": [{
@@ -4749,6 +5201,12 @@
                     }
                 ],
                 "skip_conditions": [{
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
