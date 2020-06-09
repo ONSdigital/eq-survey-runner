@@ -280,7 +280,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question69ae90ee-65a6-49ef-8ca9-1c55c9eb6688",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was the <em>total value of all construction work</em> carried out by {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
+                            "title": "During the period {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6to'], metadata['ref_p_end_date']) }}, what was the <em>total value of all construction work</em> carried out by {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                             "description": "<p>If you are a fitter or installer, you are included within the construction industry so should report your figures.</p>",
                             "guidance": {
                                 "content": [{
@@ -418,7 +418,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbaffab41-96f6-4f04-901d-5ff18c15bb90",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} carry out any work on <em>housing</em>?",
+                            "title": "During the period {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6to'], metadata['ref_p_end_date']) }}, did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} carry out any work on <em>housing</em>?",
                             "description": "<p>If you are a fitter or installer, you are included within the construction industry sector so should report your figures.</p>",
                             "guidance": {
                                 "content": [{
@@ -817,7 +817,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question01c41114-3ca3-432f-b7e6-95f8c702f308",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} carry out any work on <em>infrastructure</em>?",
+                            "title": "During the period {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6to'], metadata['ref_p_end_date']) }}, did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} carry out any work on <em>infrastructure</em>?",
                             "description": "<p>If you are a fitter or installer, you are included within the construction industry sector so should report your figures.</p>",
                             "guidance": {
                                 "content": [{
@@ -1052,7 +1052,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question92bf4040-ae9c-4245-889c-c11ec6d52ce4",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} carry out any <em>other construction work</em>?",
+                            "title": "During the period {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6to'], metadata['ref_p_end_date']) }}, did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} carry out any <em>other construction work</em>?",
                             "description": "<p>If you are a fitter or installer, you are included within the construction industry sector so should report your figures.</p>",
                             "guidance": {
                                 "content": [{
