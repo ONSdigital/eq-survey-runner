@@ -36,7 +36,6 @@
                                 "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/thequestionsonthebusinessimpactofcoronaviruscovid19survey'>View the questions before you start the survey (external link)</a>",
                                 "list": [
                                     "Information should relate to the UK.",
-                                    "You do not need to provide actual data.",
                                     "We will treat your information securely and confidentially.",
                                     "This survey is refreshed every two weeks. To avoid losing data, please submit by the return date and before the next fortnightly survey is published."
                                 ]
@@ -223,7 +222,9 @@
                                     "when": [{
                                         "id": "answer177513fe-5a68-46c0-9f65-2d8276e8c2a2",
                                         "condition": "contains any",
-                                        "values": ["UK"]
+                                        "values": [
+                                            "UK"
+                                        ]
                                     }]
                                 }
                             },
@@ -233,7 +234,9 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Permanently ceased trading"]
+                                        "values": [
+                                            "Permanently ceased trading"
+                                        ]
                                     }]
                                 }
                             },
@@ -299,7 +302,9 @@
                                     "when": [{
                                         "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
                                         "condition": "contains any",
-                                        "values": ["England"]
+                                        "values": [
+                                            "England"
+                                        ]
                                     }]
                                 }
                             },
@@ -309,12 +314,18 @@
                                     "when": [{
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
-                                            "values": ["Permanently ceased trading"]
+                                            "values": [
+                                                "Permanently ceased trading"
+                                            ]
                                         },
                                         {
                                             "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
                                             "condition": "contains all",
-                                            "values": ["Northern Ireland", "Scotland", "Wales"]
+                                            "values": [
+                                                "Northern Ireland",
+                                                "Scotland",
+                                                "Wales"
+                                            ]
                                         }
                                     ]
                                 }
@@ -503,7 +514,10 @@
                                     "when": [{
                                         "id": "answer0581e398-f9ab-4597-a1a6-c67d8f96289f",
                                         "condition": "contains any",
-                                        "values": ["Turnover has not been affected", "Not sure"]
+                                        "values": [
+                                            "Turnover has not been affected",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -609,7 +623,9 @@
                                     "when": [{
                                         "id": "answer65cee25e-1d83-4d68-8a73-6e60780d9522",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -655,7 +671,9 @@
                                     "when": [{
                                         "id": "answer66776e6d-9e34-42ab-b6cf-fb8ea954c3ec",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -779,19 +797,27 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                 "condition": "contains any",
-                                "values": ["Permanently ceased trading"]
+                                "values": [
+                                    "Permanently ceased trading"
+                                ]
                             },
                             {
                                 "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
                                 "condition": "contains all",
-                                "values": ["Northern Ireland", "Scotland", "Wales"]
+                                "values": [
+                                    "Northern Ireland",
+                                    "Scotland",
+                                    "Wales"
+                                ]
                             }
                         ]
                     },
@@ -855,7 +881,10 @@
                                     "when": [{
                                         "id": "answer4eb10880-69dd-45f9-ad7a-4f296f2d394c",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -897,7 +926,9 @@
                                     "when": [{
                                         "id": "answer5cd5a93e-d818-4d4e-a32f-9eeedad30a6a",
                                         "condition": "contains any",
-                                        "values": ["No, the business has not exported during the pandemic"]
+                                        "values": [
+                                            "No, the business has not exported during the pandemic"
+                                        ]
                                     }]
                                 }
                             },
@@ -943,7 +974,10 @@
                                     "when": [{
                                         "id": "answer4eb10880-69dd-45f9-ad7a-4f296f2d394c",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -953,7 +987,9 @@
                                     "when": [{
                                         "id": "answer5cd5a93e-d818-4d4e-a32f-9eeedad30a6a",
                                         "condition": "contains any",
-                                        "values": ["No, the business has not exported during the pandemic"]
+                                        "values": [
+                                            "No, the business has not exported during the pandemic"
+                                        ]
                                     }]
                                 }
                             },
@@ -1047,7 +1083,9 @@
                                     "when": [{
                                         "id": "answer59b6a6f8-82d8-4059-b5b7-e28701436a10",
                                         "condition": "contains any",
-                                        "values": ["EU"]
+                                        "values": [
+                                            "EU"
+                                        ]
                                     }]
                                 }
                             },
@@ -1057,7 +1095,9 @@
                                     "when": [{
                                         "id": "answer59b6a6f8-82d8-4059-b5b7-e28701436a10",
                                         "condition": "contains all",
-                                        "values": ["Outside EU"]
+                                        "values": [
+                                            "Outside EU"
+                                        ]
                                     }]
                                 }
                             },
@@ -1129,7 +1169,9 @@
                                     "when": [{
                                         "id": "answer59b6a6f8-82d8-4059-b5b7-e28701436a10",
                                         "condition": "contains any",
-                                        "values": ["Outside EU"]
+                                        "values": [
+                                            "Outside EU"
+                                        ]
                                     }]
                                 }
                             },
@@ -1231,7 +1273,9 @@
                                     "when": [{
                                         "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
                                         "condition": "contains any",
-                                        "values": ["The business has stopped exporting in the last two weeks"]
+                                        "values": [
+                                            "The business has stopped exporting in the last two weeks"
+                                        ]
                                     }]
                                 }
                             },
@@ -1241,7 +1285,10 @@
                                     "when": [{
                                         "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
                                         "condition": "contains any",
-                                        "values": ["Exporting has not been affected", "Not sure"]
+                                        "values": [
+                                            "Exporting has not been affected",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -1287,7 +1334,9 @@
                                     "when": [{
                                         "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
                                         "condition": "contains any",
-                                        "values": ["The business has stopped exporting in the last two weeks"]
+                                        "values": [
+                                            "The business has stopped exporting in the last two weeks"
+                                        ]
                                     }]
                                 }
                             },
@@ -1559,7 +1608,10 @@
                                     "when": [{
                                         "id": "answerc0e118a3-e720-4d1e-bbce-0da8a5f84210",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -1601,7 +1653,9 @@
                                     "when": [{
                                         "id": "answera7265706-a8e2-4db9-b7e9-00a4f62378d3",
                                         "condition": "contains any",
-                                        "values": ["No, the business has not imported during the pandemic"]
+                                        "values": [
+                                            "No, the business has not imported during the pandemic"
+                                        ]
                                     }]
                                 }
                             },
@@ -1647,7 +1701,10 @@
                                     "when": [{
                                         "id": "answerc0e118a3-e720-4d1e-bbce-0da8a5f84210",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -1657,7 +1714,9 @@
                                     "when": [{
                                         "id": "answera7265706-a8e2-4db9-b7e9-00a4f62378d3",
                                         "condition": "contains any",
-                                        "values": ["No, the business has not imported during the pandemic"]
+                                        "values": [
+                                            "No, the business has not imported during the pandemic"
+                                        ]
                                     }]
                                 }
                             },
@@ -1751,7 +1810,9 @@
                                     "when": [{
                                         "id": "answer20bbdd2f-176b-411b-8ec4-d933d954cc22",
                                         "condition": "contains any",
-                                        "values": ["EU"]
+                                        "values": [
+                                            "EU"
+                                        ]
                                     }]
                                 }
                             },
@@ -1761,7 +1822,9 @@
                                     "when": [{
                                         "id": "answer20bbdd2f-176b-411b-8ec4-d933d954cc22",
                                         "condition": "contains all",
-                                        "values": ["Outside EU"]
+                                        "values": [
+                                            "Outside EU"
+                                        ]
                                     }]
                                 }
                             },
@@ -1833,7 +1896,9 @@
                                     "when": [{
                                         "id": "answer20bbdd2f-176b-411b-8ec4-d933d954cc22",
                                         "condition": "contains any",
-                                        "values": ["Outside EU"]
+                                        "values": [
+                                            "Outside EU"
+                                        ]
                                     }]
                                 }
                             },
@@ -1935,7 +2000,9 @@
                                     "when": [{
                                         "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
                                         "condition": "contains any",
-                                        "values": ["The business has stopped importing in the last two weeks"]
+                                        "values": [
+                                            "The business has stopped importing in the last two weeks"
+                                        ]
                                     }]
                                 }
                             },
@@ -1945,7 +2012,10 @@
                                     "when": [{
                                         "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
                                         "condition": "contains any",
-                                        "values": ["Importing has not been affected", "Not sure"]
+                                        "values": [
+                                            "Importing has not been affected",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -1991,7 +2061,9 @@
                                     "when": [{
                                         "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
                                         "condition": "contains any",
-                                        "values": ["The business has stopped importing in the last two weeks"]
+                                        "values": [
+                                            "The business has stopped importing in the last two weeks"
+                                        ]
                                     }]
                                 }
                             },
@@ -2234,19 +2306,27 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                 "condition": "contains any",
-                                "values": ["Permanently ceased trading"]
+                                "values": [
+                                    "Permanently ceased trading"
+                                ]
                             },
                             {
                                 "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
                                 "condition": "contains all",
-                                "values": ["Northern Ireland", "Scotland", "Wales"]
+                                "values": [
+                                    "Northern Ireland",
+                                    "Scotland",
+                                    "Wales"
+                                ]
                             }
                         ]
                     },
@@ -2314,7 +2394,9 @@
                                     "when": [{
                                         "id": "answer478a7145-b712-43a1-9e1d-df39c23abddd",
                                         "condition": "contains any",
-                                        "values": ["No, the business has not been able to get the materials, goods or services needed"]
+                                        "values": [
+                                            "No, the business has not been able to get the materials, goods or services needed"
+                                        ]
                                     }]
                                 }
                             },
@@ -2358,7 +2440,10 @@
                             "definitions": [{
                                 "title": "Examples of logistics services",
                                 "content": [{
-                                    "list": ["delivery and courier services", "haulage services"]
+                                    "list": [
+                                        "delivery and courier services",
+                                        "haulage services"
+                                    ]
                                 }]
                             }],
                             "type": "General",
@@ -2394,7 +2479,9 @@
                                     "when": [{
                                         "id": "answer236c7438-1060-424e-95f3-c2705f9d4090",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -2518,7 +2605,9 @@
                                     "when": [{
                                         "id": "answer8ef4954d-0ad5-4c70-bb76-28bdfe83a200",
                                         "condition": "contains any",
-                                        "values": ["UK"]
+                                        "values": [
+                                            "UK"
+                                        ]
                                     }]
                                 }
                             },
@@ -2584,7 +2673,9 @@
                                     "when": [{
                                         "id": "answer8de4a0c3-ea10-4189-9ad1-f895baeda20f",
                                         "condition": "contains any",
-                                        "values": ["England"]
+                                        "values": [
+                                            "England"
+                                        ]
                                     }]
                                 }
                             },
@@ -2681,19 +2772,27 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                 "condition": "contains any",
-                                "values": ["Permanently ceased trading"]
+                                "values": [
+                                    "Permanently ceased trading"
+                                ]
                             },
                             {
                                 "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
                                 "condition": "contains all",
-                                "values": ["Northern Ireland", "Scotland", "Wales"]
+                                "values": [
+                                    "Northern Ireland",
+                                    "Scotland",
+                                    "Wales"
+                                ]
                             }
                         ]
                     },
@@ -2769,7 +2868,9 @@
                                     "when": [{
                                         "id": "answer27b42a40-5f79-4d32-b361-a94a454c638b",
                                         "condition": "contains any",
-                                        "values": ["Not applicable"]
+                                        "values": [
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -2779,7 +2880,10 @@
                                     "when": [{
                                         "id": "answer27b42a40-5f79-4d32-b361-a94a454c638b",
                                         "condition": "contains any",
-                                        "values": ["Prices did not change any more than normal", "Not sure"]
+                                        "values": [
+                                            "Prices did not change any more than normal",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -2889,7 +2993,10 @@
                                     "when": [{
                                         "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
                                         "condition": "contains any",
-                                        "values": ["Prices did not change any more than normal", "Not sure"]
+                                        "values": [
+                                            "Prices did not change any more than normal",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -2899,7 +3006,9 @@
                                     "when": [{
                                         "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
                                         "condition": "contains any",
-                                        "values": ["Not applicable"]
+                                        "values": [
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -2973,19 +3082,27 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                 "condition": "contains any",
-                                "values": ["Permanently ceased trading"]
+                                "values": [
+                                    "Permanently ceased trading"
+                                ]
                             },
                             {
                                 "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
                                 "condition": "contains all",
-                                "values": ["Northern Ireland", "Scotland", "Wales"]
+                                "values": [
+                                    "Northern Ireland",
+                                    "Scotland",
+                                    "Wales"
+                                ]
                             }
                         ]
                     },
@@ -3138,7 +3255,10 @@
                                     "when": [{
                                         "id": "answerc964594d-9b5b-4131-9c79-4baff0be08d1",
                                         "condition": "contains any",
-                                        "values": ["Stock levels are higher than normal", "Stock levels are lower than normal"]
+                                        "values": [
+                                            "Stock levels are higher than normal",
+                                            "Stock levels are lower than normal"
+                                        ]
                                     }]
                                 }
                             },
@@ -3178,19 +3298,27 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                 "condition": "contains any",
-                                "values": ["Permanently ceased trading"]
+                                "values": [
+                                    "Permanently ceased trading"
+                                ]
                             },
                             {
                                 "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
                                 "condition": "contains all",
-                                "values": ["Northern Ireland", "Scotland", "Wales"]
+                                "values": [
+                                    "Northern Ireland",
+                                    "Scotland",
+                                    "Wales"
+                                ]
                             }
                         ]
                     },
@@ -3272,7 +3400,9 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3282,7 +3412,9 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Business grants funded by the UK and devolved governments"]
+                                        "values": [
+                                            "Business grants funded by the UK and devolved governments"
+                                        ]
                                     }]
                                 }
                             },
@@ -3292,7 +3424,9 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains all",
-                                        "values": ["Coronavirus Job Retention Scheme"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme"
+                                        ]
                                     }]
                                 }
                             },
@@ -3338,7 +3472,9 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Business grants funded by the UK and devolved governments"]
+                                        "values": [
+                                            "Business grants funded by the UK and devolved governments"
+                                        ]
                                     }]
                                 }
                             },
@@ -3348,7 +3484,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3402,7 +3541,9 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": ["Welsh Government"]
+                                        "values": [
+                                            "Welsh Government"
+                                        ]
                                     }]
                                 }
                             },
@@ -3412,7 +3553,9 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": ["Scottish Government"]
+                                        "values": [
+                                            "Scottish Government"
+                                        ]
                                     }]
                                 }
                             },
@@ -3422,7 +3565,9 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": ["UK Government (England only)"]
+                                        "values": [
+                                            "UK Government (England only)"
+                                        ]
                                     }]
                                 }
                             },
@@ -3432,7 +3577,9 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": ["Northern Ireland Executive"]
+                                        "values": [
+                                            "Northern Ireland Executive"
+                                        ]
                                     }]
                                 }
                             },
@@ -3442,7 +3589,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3504,7 +3654,11 @@
                                     "when": [{
                                         "id": "answer9d2c5b50-4e17-4b31-9c3f-3188080a16b2",
                                         "condition": "contains any",
-                                        "values": ["COVID-19 grant for small businesses", "Economic Resilience Fund", "Sector-specific grants"]
+                                        "values": [
+                                            "COVID-19 grant for small businesses",
+                                            "Economic Resilience Fund",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -3514,7 +3668,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3576,7 +3733,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3638,7 +3798,11 @@
                                     "when": [{
                                         "id": "answer9e33a258-d2be-40b8-ad4e-ae55f3d066f1",
                                         "condition": "contains any",
-                                        "values": ["Small Business Support grant", "Pivotal Enterprise Resilience Fund", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Support grant",
+                                            "Pivotal Enterprise Resilience Fund",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -3648,7 +3812,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3710,7 +3877,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3767,7 +3937,10 @@
                                     "when": [{
                                         "id": "answer7a62b279-e8af-498b-bee4-6b861ec5d9f4",
                                         "condition": "contains any",
-                                        "values": ["Small Business Grant Fund (SBGF)", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Grant Fund (SBGF)",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -3777,7 +3950,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3834,7 +4010,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3891,7 +4070,10 @@
                                     "when": [{
                                         "id": "answer1359bc07-ae5f-452b-8abd-00cfff28b27d",
                                         "condition": "contains any",
-                                        "values": ["Small Business Grant Scheme", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Grant Scheme",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -3901,7 +4083,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3958,7 +4143,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -4235,7 +4423,11 @@
                                     "when": [{
                                         "id": "answerc812da13-73e9-4f73-a310-c0a78ed38524",
                                         "condition": "contains any",
-                                        "values": ["COVID-19 grant for small businesses", "Economic Resilience Fund", "Sector-specific grants"]
+                                        "values": [
+                                            "COVID-19 grant for small businesses",
+                                            "Economic Resilience Fund",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -4245,7 +4437,11 @@
                                     "when": [{
                                         "id": "answerb579d6b0-bc9e-4d09-bf39-aed0a1f0ef0b",
                                         "condition": "contains any",
-                                        "values": ["Small Business Support grant", "Pivotal Enterprise Resilience Fund", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Support grant",
+                                            "Pivotal Enterprise Resilience Fund",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -4255,7 +4451,10 @@
                                     "when": [{
                                         "id": "answer7df0f422-59af-44a2-9de5-35b06645f367",
                                         "condition": "contains any",
-                                        "values": ["Small Business Grant Fund (SBGF)", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Grant Fund (SBGF)",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -4265,7 +4464,10 @@
                                     "when": [{
                                         "id": "answerb1d499f5-1ad6-469a-9ea2-9b48dea1457c",
                                         "condition": "contains any",
-                                        "values": ["Small Business Grant Scheme", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Grant Scheme",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -4275,7 +4477,10 @@
                                     "when": [{
                                         "id": "answer30aa84e6-07cf-4887-885f-abff7788aefb",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -4285,7 +4490,11 @@
                                     "when": [{
                                         "id": "answerf6103d5e-1a15-43d7-be56-1c4dcc960b3a",
                                         "condition": "contains any",
-                                        "values": ["Business rates holiday", "Deferring VAT payments", "HMRC Time To Pay scheme"]
+                                        "values": [
+                                            "Business rates holiday",
+                                            "Deferring VAT payments",
+                                            "HMRC Time To Pay scheme"
+                                        ]
                                     }]
                                 }
                             },
@@ -4400,7 +4609,9 @@
                                     "when": [{
                                             "id": "answere72a6e53-f48d-4cf9-ad57-a4f99f2511f5",
                                             "condition": "contains any",
-                                            "values": ["Yes"]
+                                            "values": [
+                                                "Yes"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -4508,19 +4719,27 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                 "condition": "contains any",
-                                "values": ["Permanently ceased trading"]
+                                "values": [
+                                    "Permanently ceased trading"
+                                ]
                             },
                             {
                                 "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
                                 "condition": "contains all",
-                                "values": ["Northern Ireland", "Scotland", "Wales"]
+                                "values": [
+                                    "Northern Ireland",
+                                    "Scotland",
+                                    "Wales"
+                                ]
                             }
                         ]
                     }
@@ -4660,7 +4879,9 @@
                                     "answer9c8475b8-a77d-427f-b9ee-595c517c5654",
                                     "answerb657eee9-2593-4558-817a-9e0f2d394728"
                                 ],
-                                "conditions": ["equals"],
+                                "conditions": [
+                                    "equals"
+                                ],
                                 "value": 100
                             }]
                         }],
@@ -4690,7 +4911,9 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Paused trading but intends to restart in the next two weeks"]
+                                        "values": [
+                                            "Paused trading but intends to restart in the next two weeks"
+                                        ]
                                     }]
                                 }
                             },
@@ -4747,7 +4970,9 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Paused trading but intends to restart in the next two weeks"]
+                                        "values": [
+                                            "Paused trading but intends to restart in the next two weeks"
+                                        ]
                                     }]
                                 }
                             },
@@ -4807,7 +5032,9 @@
                                     "when": [{
                                         "id": "answer3b3c0791-e310-4279-9116-92f1040606b4",
                                         "condition": "contains any",
-                                        "values": ["Yes, the business is providing a top-up"]
+                                        "values": [
+                                            "Yes, the business is providing a top-up"
+                                        ]
                                     }]
                                 }
                             },
@@ -4817,7 +5044,10 @@
                                     "when": [{
                                             "id": "answer3b3c0791-e310-4279-9116-92f1040606b4",
                                             "condition": "contains any",
-                                            "values": ["No, the business is not providing a top-up", "Not sure"]
+                                            "values": [
+                                                "No, the business is not providing a top-up",
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -4836,12 +5066,17 @@
                                     "when": [{
                                             "id": "answer3b3c0791-e310-4279-9116-92f1040606b4",
                                             "condition": "contains any",
-                                            "values": ["No, the business is not providing a top-up", "Not sure"]
+                                            "values": [
+                                                "No, the business is not providing a top-up",
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
-                                            "values": ["Paused trading but intends to restart in the next two weeks"]
+                                            "values": [
+                                                "Paused trading but intends to restart in the next two weeks"
+                                            ]
                                         }
                                     ]
                                 }
@@ -4891,7 +5126,9 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Paused trading but intends to restart in the next two weeks"]
+                                        "values": [
+                                            "Paused trading but intends to restart in the next two weeks"
+                                        ]
                                     }]
                                 }
                             },
@@ -4901,7 +5138,9 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Paused trading and does not intend to restart in the next two weeks"]
+                                        "values": [
+                                            "Paused trading and does not intend to restart in the next two weeks"
+                                        ]
                                     }]
                                 }
                             },
@@ -5051,7 +5290,9 @@
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
-                                            "values": ["Paused trading and does not intend to restart in the next two weeks"]
+                                            "values": [
+                                                "Paused trading and does not intend to restart in the next two weeks"
+                                            ]
                                         }
                                     ]
                                 }
@@ -5100,7 +5341,9 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Paused trading and does not intend to restart in the next two weeks"]
+                                        "values": [
+                                            "Paused trading and does not intend to restart in the next two weeks"
+                                        ]
                                     }]
                                 }
                             },
@@ -5210,19 +5453,27 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                 "condition": "contains any",
-                                "values": ["Permanently ceased trading"]
+                                "values": [
+                                    "Permanently ceased trading"
+                                ]
                             },
                             {
                                 "id": "answerb76a2dab-79af-4657-94e8-3aeb4a8c905a",
                                 "condition": "contains all",
-                                "values": ["Northern Ireland", "Scotland", "Wales"]
+                                "values": [
+                                    "Northern Ireland",
+                                    "Scotland",
+                                    "Wales"
+                                ]
                             }
                         ]
                     }
