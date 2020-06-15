@@ -19,14 +19,17 @@
                             "type": "Basic",
                             "id": "use-of-information",
                             "content": [{
-                                "list": [
-                                    "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
-                                    "You can provide informed estimates if actual figures aren’t available.",
-                                    "We will treat your data securely and confidentially."
-                                ]
-                            }, {
-                                "description": "<p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/guidancetohelpcompletethequarterlypublicsectoremploymentsurvey'>Read the detailed guidance for completing this survey</a></p>"
-                            }]
+                                    "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><ul><li><strong>Include</strong> furloughed staff in employee figures.</li> <li><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</li></ul></div></div><br/>",
+                                    "list": [
+                                        "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
+                                        "You can provide informed estimates if actual figures aren’t available.",
+                                        "We will treat your data securely and confidentially."
+                                    ]
+                                },
+                                {
+                                    "description": "<p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/guidancetohelpcompletethequarterlypublicsectoremploymentsurvey'>Read the detailed guidance for completing this survey</a></p>"
+                                }
+                            ]
                         }],
                         "preview_content": {
                             "id": "preview",
@@ -423,9 +426,7 @@
                                         "title": "Include"
                                     },
                                     {
-                                        "list": [
-                                            "Casual employees only if paid in the pay period in which the reference date lies"
-                                        ]
+                                        "list": ["Casual employees only if paid in the pay period in which the reference date lies"]
                                     }
                                 ]
                             },
@@ -549,9 +550,7 @@
                                         "title": "Include"
                                     },
                                     {
-                                        "list": [
-                                            "Casual employees only if paid in the pay period in which the reference date lies"
-                                        ]
+                                        "list": ["Casual employees only if paid in the pay period in which the reference date lies"]
                                     }
                                 ]
                             },
