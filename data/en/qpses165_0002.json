@@ -19,7 +19,7 @@
                             "type": "Basic",
                             "id": "use-of-information",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><ul><li><strong>Include</strong> furloughed staff in employee figures.</li> <li><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</li></ul></div></div><br/>",
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><ul><li><strong>Include</strong> furloughed staff in any employee figures.</li> <li><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</li></ul></div></div><br/>",
                                 "list": [
                                     "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
                                     "You can provide informed estimates if actual figures aren’t available.",
