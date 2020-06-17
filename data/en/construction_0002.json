@@ -19,6 +19,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select “yes, you can provide figures” and enter value of work, even if this is “0”.<br><b>Exclude</b> furlough payments received in figures<br><b>Include</b> furloughed employees in any employment figures<br><b>Explain</b> figures in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>",
                                 "list": [
                                     "Data should relate to all sites in England, Scotland and Wales but excludes Northern Ireland.",
                                     "You can provide informed estimates if actual figures are not available.",
@@ -30,7 +31,7 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                "description": "You will be asked to provide information on the value of work undertaken by your business and the number of employees. Value of work refers to estimates of chargeable work carried out during the month; meaning work started, in progress, or completed."
+                                "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyforconstructionandalliedtrades'>View the survey information and questions before you start the survey</a> (external link)<p></p>You will be asked to provide information on the value of work undertaken by your business and the number of employees. Value of work refers to estimates of chargeable work carried out during the month; meaning work started, in progress, or completed."
                             }],
                             "questions": [{
                                     "question": "Housing Work",
