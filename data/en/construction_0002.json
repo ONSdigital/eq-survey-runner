@@ -31,7 +31,7 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                    "description": "View the survey information and questions before you start the survey (external link)"
+                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyforconstructionandalliedtrades'>View the survey information and questions before you start the survey</a> (external link)"
                                 },
                                 {
                                     "description": "You will be asked to provide information on the value of work undertaken by your business and the number of employees. Value of work refers to estimates of chargeable work carried out during the month; meaning work started, in progress, or completed."
