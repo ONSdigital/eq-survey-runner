@@ -39,6 +39,7 @@
                 "primary_content": [{
                     "id": "get-started",
                     "content": [{
+                        "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>Include</b> furlough payments to employees in gross pay figures.<br><b>Include</b> furloughed employees who received pay in any employee figures.<br><b>Do not duplicate</b> furlough pay by also reporting any money received by the business from the Coronavirus Job Retention Scheme.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>",
                         "list": ["On average it takes ten minutes to complete once you\u2019ve collected the information.", "Data should relate to all sites in England, Scotland and Wales.", "You can provide informed estimates if actual figures aren\u2019t available.", "We will treat your data securely and confidentially."]
                     }]
                 }],
@@ -46,6 +47,9 @@
                     "id": "preview",
                     "title": "Information you need",
                     "content": [{
+                            "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlywagesandsalariessurvey'>View the survey information and questions before you start the survey</a> (external link)"
+                        },
+                        {
                         "title": "Employee pay frequency",
                         "description": "You will need to indicate each of the pay patterns that are used to pay employees. For example weekly,  fortnightly, calendar monthly, four weekly or five weekly."
                     }, {
