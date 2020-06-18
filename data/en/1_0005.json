@@ -47,9 +47,8 @@
                     "id": "preview",
                     "title": "Information you need",
                     "content": [{
-                            "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlywagesandsalariessurvey'>View the survey information and questions before you start the survey</a> (external link)"
-                        },
-                        {
+                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlywagesandsalariessurvey'>View the survey information and questions before you start the survey</a> (external link)"
+                    }, {
                         "title": "Employee pay frequency",
                         "description": "You will need to indicate each of the pay patterns that are used to pay employees. For example weekly,  fortnightly, calendar monthly, four weekly or five weekly."
                     }, {
