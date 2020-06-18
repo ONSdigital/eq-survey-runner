@@ -50,11 +50,12 @@
                             "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlywagesandsalariessurvey'>View the survey information and questions before you start the survey</a> (external link)"
                         },
                         {
-                        "title": "Employee pay frequency",
-                        "description": "You will need to indicate each of the pay patterns that are used to pay employees. For example weekly,  fortnightly, calendar monthly, four weekly or five weekly."
-                    }, {
-                        "description": "<strong>You will need the following information for all of your selected pay patterns:</strong>"
-                    }],
+                            "title": "Employee pay frequency",
+                            "description": "You will need to indicate each of the pay patterns that are used to pay employees. For example weekly,  fortnightly, calendar monthly, four weekly or five weekly."
+                        }, {
+                            "description": "<strong>You will need the following information for all of your selected pay patterns:</strong>"
+                        }
+                    ],
                     "questions": [{
                         "question": "Number of paid employees",
                         "content": [{
