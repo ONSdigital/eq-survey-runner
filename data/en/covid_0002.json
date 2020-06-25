@@ -2710,6 +2710,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "112",
                                 "options": [{
                                         "label": "There has been more innovation",
                                         "value": "There has been more innovation"
@@ -2780,28 +2781,34 @@
                                     "description": "",
                                     "options": [{
                                             "label": "Goods and/or materials",
-                                            "value": "Goods and/or materials"
+                                            "value": "Goods and/or materials",
+                                            "q_code": "1131"
                                         },
                                         {
                                             "label": "Services",
-                                            "value": "Services"
+                                            "value": "Services",
+                                            "q_code": "1132"
                                         },
                                         {
                                             "label": "Methods of manufacturing  goods, materials or services",
-                                            "value": "Methods of manufacturing  goods, materials or services"
+                                            "value": "Methods of manufacturing  goods, materials or services",
+                                            "q_code": "1133"
                                         },
                                         {
                                             "label": "Methods of logistics, delivery or distribution",
-                                            "value": "Methods of logistics, delivery or distribution"
+                                            "value": "Methods of logistics, delivery or distribution",
+                                            "q_code": "1134"
                                         },
                                         {
                                             "label": "Supporting activities for your processes",
                                             "value": "Supporting activities for your processes",
+                                            "q_code": "1135",
                                             "description": "For example, maintenance systems or operations for purchasing, accounting, or computing"
                                         },
                                         {
                                             "label": "Not sure",
-                                            "value": "Not sure"
+                                            "value": "Not sure",
+                                            "q_code": "1136"
                                         }
                                     ]
                                 },
@@ -2812,7 +2819,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "None of the above",
-                                        "value": "None of the above"
+                                        "value": "None of the above",
+                                        "q_code": "1130"
                                     }]
                                 }
                             ]
@@ -2840,23 +2848,28 @@
                                     "description": "",
                                     "options": [{
                                             "label": "Copyright",
-                                            "value": "Copyright"
+                                            "value": "Copyright",
+                                            "q_code": "1141"
                                         },
                                         {
                                             "label": "Patent",
-                                            "value": "Patent"
+                                            "value": "Patent",
+                                            "q_code": "1142"
                                         },
                                         {
                                             "label": "Registered design",
-                                            "value": "Registered design"
+                                            "value": "Registered design",
+                                            "q_code": "1143"
                                         },
                                         {
                                             "label": "Trade mark",
-                                            "value": "Trade mark"
+                                            "value": "Trade mark",
+                                            "q_code": "1144"
                                         },
                                         {
                                             "label": "Other",
                                             "value": "Other",
+                                            "q_code": "1145",
                                             "detail_answer": {
                                                 "label": "Please describe",
                                                 "type": "TextField",
@@ -2866,7 +2879,8 @@
                                         },
                                         {
                                             "label": "Not sure",
-                                            "value": "Not sure"
+                                            "value": "Not sure",
+                                            "q_code": "1146"
                                         }
                                     ]
                                 },
@@ -2877,7 +2891,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "None of the above",
-                                        "value": "None of the above"
+                                        "value": "None of the above",
+                                        "q_code": "1140"
                                     }]
                                 }
                             ]
@@ -4243,6 +4258,7 @@
                                     "type": "Percentage",
                                     "label": "Working remotely or at their normal place of work",
                                     "description": "",
+                                    "q_code": "37412",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4259,6 +4275,7 @@
                                     "type": "Percentage",
                                     "label": "On furlough leave",
                                     "description": "Under the terms of the UK Government's Coronavirus Job Retention Scheme",
+                                    "q_code": "371",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4475,7 +4492,7 @@
                                     "type": "Percentage",
                                     "label": "Working at their normal place of work",
                                     "description": "Include those who are normally remote workers",
-                                    "q_code": "3741",
+                                    "q_code": "1151",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4492,7 +4509,7 @@
                                     "type": "Percentage",
                                     "label": "Working remotely instead of at their normal place of work",
                                     "description": "Exclude those who are normally remote workers",
-                                    "q_code": "3742",
+                                    "q_code": "1152",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4786,6 +4803,7 @@
                                     "type": "Percentage",
                                     "label": "Be made permanently redundant",
                                     "description": "",
+                                    "q_code": "1003",
                                     "decimal_places": 0
                                 }
                             ]
@@ -5054,6 +5072,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "116",
                                 "options": [{
                                         "label": "Operating costs have substantially increased",
                                         "value": "Operating costs have substantially increased"
@@ -5118,6 +5137,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "117",
                                 "options": [{
                                         "label": "Operating costs will substantially increase",
                                         "value": "Operating costs will substantially increase"
