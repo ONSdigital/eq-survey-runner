@@ -43,7 +43,7 @@
                     "id": "use-of-information",
                     "content": [{
                         "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select “yes, you can provide figures” and enter value of work, even if this is “0”.<br><b>Exclude</b> furlough payments received in figures<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
-                               
+
                         "list": ["Data should relate to all sites in England, Scotland and Wales unless otherwise stated.", "You can provide informed estimates if actual figures aren\u2019t available.", "We will treat your data securely and confidentially."]
                     }]
                 }],
