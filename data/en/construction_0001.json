@@ -19,6 +19,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><strong>If you have not traded for all, or some, of the period</strong>: still select 'yes, you can provide figures' and enter value of work, even if this is '0'.</br> <strong>Exclude</strong> furlough payments received in figures.</br> <strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>",
                                 "list": [
                                     "Data should relate to all sites in England, Scotland and Wales but excludes Northern Ireland.",
                                     "You can provide informed estimates if actual figures are not available.",
@@ -30,8 +31,12 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                "description": "You will be asked to provide information on the value of work undertaken by your business. Value of work refers to estimates of chargeable work carried out during the month; meaning work started, in progress, or completed."
-                            }],
+                                    "description": "<a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyforconstructionandalliedtrades'><p>View the survey information and questions before you start the survey (external link)</p></a>"
+                                },
+                                {
+                                    "description": "You will be asked to provide information on the value of work undertaken by your business. Value of work refers to estimates of chargeable work carried out during the month; meaning work started, in progress, or completed."
+                                }
+                            ],
                             "questions": [{
                                     "question": "Housing Work",
                                     "content": [{
@@ -141,21 +146,13 @@
                                             "description": "My figures are <em>lower than usual</em> this month due to:"
                                         },
                                         {
-                                            "list": [
-                                                "adverse weather conditions",
-                                                "economic downturn",
-                                                "my business ceasing trading"
-                                            ]
+                                            "list": ["adverse weather conditions", "economic downturn", "my business ceasing trading"]
                                         },
                                         {
                                             "description": "My figures are <em>higher than usual</em> this month due to:"
                                         },
                                         {
-                                            "list": [
-                                                "a new contract",
-                                                "a large contract",
-                                                "seasonal work"
-                                            ]
+                                            "list": ["a new contract", "a large contract", "seasonal work"]
                                         }
                                     ]
                                 }
@@ -203,9 +200,7 @@
                                     "when": [{
                                         "id": "answerdadafe6c-4875-43bc-87e2-6097ff0d106e",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes, I can report for this period"
-                                        ]
+                                        "values": ["Yes, I can report for this period"]
                                     }]
                                 }
                             },
@@ -320,11 +315,7 @@
                                         "description": "<strong>Examples of housing:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "Flats and maisonettes",
-                                            "New houses",
-                                            "Other types of residential housing"
-                                        ]
+                                        "list": ["Flats and maisonettes", "New houses", "Other types of residential housing"]
                                     },
                                     {
                                         "description": "<strong>Examples of infrastructure:</strong>"
@@ -425,19 +416,13 @@
                                         "description": "<strong>Include new builds and repair and maintenance (R&amp;M) of:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "flats and maisonettes",
-                                            "new houses",
-                                            "other types of residential housing"
-                                        ]
+                                        "list": ["flats and maisonettes", "new houses", "other types of residential housing"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "any work on halls of residence for educational institutions"
-                                        ]
+                                        "list": ["any work on halls of residence for educational institutions"]
                                     }
                                 ]
                             },
@@ -472,9 +457,7 @@
                                     "when": [{
                                         "id": "answera75253f4-438c-4bdf-8613-cbfa2a3a1fb6",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes, we carried out work on housing"
-                                        ]
+                                        "values": ["Yes, we carried out work on housing"]
                                     }]
                                 }
                             },
@@ -524,11 +507,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "new construction work",
-                                            "demolition",
-                                            "site preparation"
-                                        ]
+                                        "list": ["new construction work", "demolition", "site preparation"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -648,11 +627,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "new construction work",
-                                            "demolition",
-                                            "site preparation"
-                                        ]
+                                        "list": ["new construction work", "demolition", "site preparation"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -824,9 +799,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "new infrastructure and repair and maintenance (R&amp;M) of infrastructure"
-                                        ]
+                                        "list": ["new infrastructure and repair and maintenance (R&amp;M) of infrastructure"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -883,9 +856,7 @@
                                     "when": [{
                                         "id": "answer01c0c84f-7282-42a3-b1c3-13b6d10f39bf",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes, we carried out work on infrastructure"
-                                        ]
+                                        "values": ["Yes, we carried out work on infrastructure"]
                                     }]
                                 }
                             },
@@ -918,11 +889,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "VAT",
-                                            "R&amp;M",
-                                            "payments made to subcontractors"
-                                        ]
+                                        "list": ["VAT", "R&amp;M", "payments made to subcontractors"]
                                     }
                                 ]
                             },
@@ -966,21 +933,13 @@
                                         "description": "<strong>Include work aimed at:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "repairing a fault",
-                                            "repairing something that is broken",
-                                            "maintaining an existing standard"
-                                        ]
+                                        "list": ["repairing a fault", "repairing something that is broken", "maintaining an existing standard"]
                                     },
                                     {
                                         "description": "<strong> Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "major alterations, for example improvements and extensions",
-                                            "VAT",
-                                            "payments made to subcontractors"
-                                        ]
+                                        "list": ["major alterations, for example improvements and extensions", "VAT", "payments made to subcontractors"]
                                     }
                                 ]
                             },
@@ -1009,10 +968,7 @@
                         }],
                         "calculation": {
                             "calculation_type": "sum",
-                            "answers_to_calculate": [
-                                "answer692af9c8-8773-4a7b-9a21-1830f3dc3401",
-                                "answer8561360c-adc9-40b9-b6af-2f85c486fef5"
-                            ],
+                            "answers_to_calculate": ["answer692af9c8-8773-4a7b-9a21-1830f3dc3401", "answer8561360c-adc9-40b9-b6af-2f85c486fef5"],
                             "titles": [{
                                 "value": "Total value of all infrastructure work"
                             }]
@@ -1101,9 +1057,7 @@
                                     "when": [{
                                         "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes, we carried out other construction work"
-                                        ]
+                                        "values": ["Yes, we carried out other construction work"]
                                     }]
                                 }
                             },
@@ -1125,10 +1079,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "work on residential buildings, for example housing, flats and maisonettes",
-                                            "work on infrastructure"
-                                        ]
+                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
                                     }
                                 ]
                             },
@@ -1246,10 +1197,7 @@
                                         "description": "<strong>Include work aimed at:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "repairing something which is broken",
-                                            "maintaining an existing standard"
-                                        ]
+                                        "list": ["repairing something which is broken", "maintaining an existing standard"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -1331,11 +1279,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "VAT",
-                                            "R&amp;M",
-                                            "payments made to subcontractors"
-                                        ]
+                                        "list": ["VAT", "R&amp;M", "payments made to subcontractors"]
                                     }
                                 ]
                             },
@@ -1407,11 +1351,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "VAT",
-                                            "R&amp;M",
-                                            "payments made to subcontractors"
-                                        ]
+                                        "list": ["VAT", "R&amp;M", "payments made to subcontractors"]
                                     }
                                 ]
                             },
@@ -1424,11 +1364,7 @@
                                         "description": "<strong>Examples of private industrial sector structures:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "Factories",
-                                            "Warehouses",
-                                            "Any construction work in the coal, oil and steel industry"
-                                        ]
+                                        "list": ["Factories", "Warehouses", "Any construction work in the coal, oil and steel industry"]
                                     }
                                 ]
                             }],
@@ -1467,20 +1403,13 @@
                                         "description": "<strong>Include work aimed at:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "repairing something that is broken",
-                                            "maintaining an existing standard"
-                                        ]
+                                        "list": ["repairing something that is broken", "maintaining an existing standard"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "major alterations, for example improvements and extensions",
-                                            "VAT",
-                                            "payments made to subcontractors"
-                                        ]
+                                        "list": ["major alterations, for example improvements and extensions", "VAT", "payments made to subcontractors"]
                                     }
                                 ]
                             },
@@ -1505,11 +1434,7 @@
                                         "description": "<strong>Private industrial sector structures:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "Factories",
-                                            "Warehouses",
-                                            "Any construction work in the coal, oil and steel industry"
-                                        ]
+                                        "list": ["Factories", "Warehouses", "Any construction work in the coal, oil and steel industry"]
                                     }
                                 ]
                             }],
@@ -1593,21 +1518,13 @@
                                         "description": "My figures are <em>lower than usual</em> this month due to:"
                                     },
                                     {
-                                        "list": [
-                                            "adverse weather conditions",
-                                            "economic downturn",
-                                            "my business ceasing trading"
-                                        ]
+                                        "list": ["adverse weather conditions", "economic downturn", "my business ceasing trading"]
                                     },
                                     {
                                         "description": "My figures are <em>higher than usual</em> this month due to:"
                                     },
                                     {
-                                        "list": [
-                                            "a new contract",
-                                            "a large contract",
-                                            "seasonal work"
-                                        ]
+                                        "list": ["a new contract", "a large contract", "seasonal work"]
                                     }
                                 ]
                             }],
