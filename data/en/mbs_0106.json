@@ -51,7 +51,7 @@
                     "id": "preview",
                     "title": "Information you need",
                     "content": [{
-                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey (external link)</a>"
+                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
                     }],
                     "questions": [{
                         "question": "Total Turnover",
