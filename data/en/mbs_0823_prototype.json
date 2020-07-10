@@ -1,11 +1,11 @@
 {
-    "title": "Monthly Business Survey",
-    "survey_id": "009",
     "mime_type": "application/json/ons/eq",
-    "theme": "northernireland",
     "schema_version": "0.0.1",
+    "survey_id": "009",
+    "theme": "default",
     "data_version": "0.0.1",
-    "legal_basis": "Notice is given under article 5 of the Statistics of Trade and Employment (Northern Ireland) Order 1988.",
+    "title": "Monthly Business Survey",
+    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
     "description": "mbs",
     "view_submitted_response": {
         "enabled": true,
@@ -42,32 +42,29 @@
                     "type": "Basic",
                     "id": "use-of-information",
                     "content": [{
-                        "list": ["Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.", "You can provide informed estimates if actual figures aren\u2019t available.", "We will treat your data securely and confidentially."]
+                        "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select “yes, you can provide figures” and enter turnover, even if this is “0”.<br><b>Exclude</b> furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
+
+                        "list": ["Data should relate to all sites in England, Scotland and Wales unless otherwise stated.", "You can provide informed estimates if actual figures aren\u2019t available.", "We will treat your data securely and confidentially."]
                     }]
                 }],
                 "preview_content": {
                     "id": "preview",
                     "title": "Information you need",
                     "content": [{
+                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
+
+                    }, {
                         "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                     }],
                     "questions": [{
-                        "question": "Turnover",
+                        "question": "Total turnover",
                         "content": [{
                             "description": "Include:",
-                            "list": ["income from sub-contracted activities", "commission", "sales of goods purchased for resale", "transport, insurance and packaging charges", "revenue earned from other parts of the business, not named at the top of this page (please supply at fair value)"]
+                            "list": ["exports", "costs incurred and passed on to customers", "income from sub-contracted activities", "commission", "sales of goods purchased for resale", "revenue earned from other parts of the business, not named at the top of this page (please supply at fair value)"]
                         }, {
                             "description": "Exclude:",
                             "list": ["VAT", "income from the sale of fixed capital assets", "grants and subsidies", "insurance claims", "interest received"]
                         }]
-                    }, {
-                        "question": "Value of exports",
-                        "content": [{
-                            "description": "Include:",
-                            "list": ["all countries outside of England, Scotland, Wales and Northern Ireland"]
-                        }]
-                    }, {
-                        "question": "Value of excise duty"
                     }, {
                         "question": "Changes in turnover",
                         "content": [{
@@ -168,7 +165,7 @@
                     "guidance": {
                         "content": [{
                             "title": "Include:",
-                            "list": ["income from sub-contracted activities", "commission", "sales of goods purchased for resale", "transport, insurance and packaging charges", "revenue earned from other parts of the business, not named at the top of this page (please supply at fair value)"]
+                            "list": ["exports", "costs incurred and passed on to customers", "income from sub-contracted activities", "commission", "sales of goods purchased for resale", "revenue earned from other parts of the business, not named at the top of this page (please supply at fair value)"]
                         }, {
                             "title": "Exclude:",
                             "list": ["VAT", "income from the sale of fixed capital assets", "grants and subsidies", "insurance claims", "interest received"]
@@ -177,7 +174,7 @@
                     "id": "turnover-question",
                     "answers": [{
                         "id": "turnover-answer",
-                        "label": "Turnover excluding VAT",
+                        "label": "Total turnover excluding VAT",
                         "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                         "type": "Currency",
                         "currency": "GBP",
@@ -186,12 +183,12 @@
                         "mandatory": true
                     }],
                     "type": "General",
-                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s <em>turnover</em>, excluding VAT?"
+                    "title": "For the period {{format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s <em>total turnover</em>, excluding VAT?"
                 }],
-                "title": "Turnover"
+                "title": "Total Turnover"
             }, {
                 "type": "ConfirmationQuestion",
-                "title": "Turnover",
+                "title": "Total turnover",
                 "id": "confirm-turnover-block",
                 "questions": [{
                     "type": "General",
@@ -209,7 +206,7 @@
                         "mandatory": true
                     }],
                     "id": "confirm-turnover-question",
-                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the turnover was <em>{{format_currency(answers['turnover-answer'])}}</em>, is this correct?"
+                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the total turnover was <em>{{format_currency(answers['turnover-answer'])}}</em>, is this correct?"
                 }],
                 "routing_rules": [{
                     "goto": {
@@ -222,58 +219,14 @@
                     }
                 }, {
                     "goto": {
-                        "block": "exports-block"
+                        "block": "changes-in-turnover-block"
                     }
                 }]
-            }, {
-                "id": "exports-block",
-                "type": "Question",
-                "questions": [{
-                    "guidance": {
-                        "content": [{
-                            "list": ["All countries outside of England, Scotland, Wales and Northern Ireland"],
-                            "title": "Include:"
-                        }]
-                    },
-                    "id": "exports-question",
-                    "answers": [{
-                        "id": "exports-answer",
-                        "label": "Exports",
-                        "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
-                        "type": "Currency",
-                        "currency": "GBP",
-                        "decimal_places": 2,
-                        "q_code": "49",
-                        "mandatory": true
-                    }],
-                    "type": "General",
-                    "title": "What was the value of <em>exports</em>?"
-                }],
-                "title": "Exports"
-            }, {
-                "id": "excise-duty-block",
-                "type": "Question",
-                "questions": [{
-                    "id": "excise-duty-question",
-                    "answers": [{
-                        "id": "excise-duty-answer",
-                        "label": "Excise duty",
-                        "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
-                        "type": "Currency",
-                        "currency": "GBP",
-                        "decimal_places": 2,
-                        "q_code": "90",
-                        "mandatory": true
-                    }],
-                    "type": "General",
-                    "title": "What was the value of <em>excise duty</em>?"
-                }],
-                "title": "Excise duty"
             }, {
                 "id": "changes-in-turnover-block",
                 "type": "Question",
                 "questions": [{
-                    "title": "Did any significant changes occur to the turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
+                    "title": "Did any significant changes occur to the total turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                     "id": "changes-in-turnover-question",
                     "definitions": [{
                         "title": "What constitutes a significant change?",
@@ -294,17 +247,17 @@
                         "id": "changes-in-turnover-answer",
                         "type": "Radio",
                         "q_code": "146",
-                        "mandatory": false
+                        "mandatory": true
                     }],
                     "guidance": {
                         "content": [{
-                            "title": "Include",
+                            "title": "Include:",
                             "list": ["change in level of business activity", "maintenance/shutdowns", "special/calendar events", "weather", "price effects", "currency effects (increase/decrease in the currency value)"]
                         }]
                     },
                     "type": "General"
                 }],
-                "title": "Changes in turnover",
+                "title": "Changes in total turnover",
                 "routing_rules": [{
                     "goto": {
                         "when": [{
@@ -323,7 +276,7 @@
                 "id": "changes-in-turnover-block-2",
                 "type": "Question",
                 "questions": [{
-                    "title": "Please indicate the reasons for any changes in the turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
+                    "title": "Please indicate the reasons for any changes in the total turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
                     "answers": [{
                         "options": [{
                             "q_code": "146a",
@@ -361,19 +314,19 @@
                     "type": "General",
                     "id": "changes-in-turnover-question-2"
                 }],
-                "title": "Changes in turnover"
+                "title": "Changes in total turnover"
             }, {
                 "type": "Question",
                 "id": "changes-in-turnover-block-3",
-                "title": "Changes in turnover",
+                "title": "Changes in total turnover",
                 "questions": [{
                     "type": "General",
                     "id": "changes-in-turnover-question-3",
-                    "title": "Please describe the changes in turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} in more detail",
+                    "title": "Please describe the changes in total turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} in more detail",
                     "answers": [{
                         "guidance": {
-                            "hide_guidance": "Hide examples of commentary on changes to turnover",
-                            "show_guidance": "Show examples of commentary on changes to turnover",
+                            "hide_guidance": "Hide examples of commentary on changes to total turnover",
+                            "show_guidance": "Show examples of commentary on changes to total turnover",
                             "content": [{
                                 "list": [],
                                 "title": "\u2018Change in level of business activity\u2019",

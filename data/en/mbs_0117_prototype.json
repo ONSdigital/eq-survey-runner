@@ -2,11 +2,12 @@
     "title": "Monthly Business Survey",
     "survey_id": "009",
     "mime_type": "application/json/ons/eq",
-    "theme": "northernireland",
+    "theme": "default",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
-    "legal_basis": "Notice is given under article 5 of the Statistics of Trade and Employment (Northern Ireland) Order 1988.",
+    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
     "description": "mbs",
+    "form_type": "0117",
     "view_submitted_response": {
         "enabled": true,
         "duration": 900
@@ -42,32 +43,35 @@
                     "type": "Basic",
                     "id": "use-of-information",
                     "content": [{
-                        "list": ["Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.", "You can provide informed estimates if actual figures aren\u2019t available.", "We will treat your data securely and confidentially."]
+                        "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select “yes, you can provide figures” and enter turnover, even if this is “0”.<br><b>Exclude</b> furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
+
+                        "list": ["Data should relate to all sites in England, Scotland and Wales unless otherwise stated.", "You can provide informed estimates if actual figures aren\u2019t available.", "We will treat your data securely and confidentially."]
                     }]
                 }],
                 "preview_content": {
                     "id": "preview",
                     "title": "Information you need",
                     "content": [{
+                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a (external link)>"
+
+                    }, {
                         "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                     }],
                     "questions": [{
                         "question": "Turnover",
                         "content": [{
                             "description": "Include:",
-                            "list": ["income from sub-contracted activities", "commission", "sales of goods purchased for resale", "transport, insurance and packaging charges", "revenue earned from other parts of the business, not named at the top of this page (please supply at fair value)"]
+                            "list": ["exports", "payment for work in progress", "costs incurred and passed on to customers", "income from sub-contracted activities", "commission", "sales of goods purchased for resale", "royalty payments", "revenue earned from other parts of the business not named (please supply at fair value)"]
                         }, {
                             "description": "Exclude:",
-                            "list": ["VAT", "income from the sale of fixed capital assets", "grants and subsidies", "insurance claims", "interest received"]
+                            "list": ["VAT", "income from the sale of fixed capital assets", "grants, funding, donations etc", "insurance claims", "interest received"]
                         }]
                     }, {
-                        "question": "Value of exports",
+                        "question": "Value of grants, funding, donations and investment income",
                         "content": [{
-                            "description": "Include:",
-                            "list": ["all countries outside of England, Scotland, Wales and Northern Ireland"]
+                            "description": "Exclude:",
+                            "list": ["VAT"]
                         }]
-                    }, {
-                        "question": "Value of excise duty"
                     }, {
                         "question": "Changes in turnover",
                         "content": [{
@@ -168,10 +172,10 @@
                     "guidance": {
                         "content": [{
                             "title": "Include:",
-                            "list": ["income from sub-contracted activities", "commission", "sales of goods purchased for resale", "transport, insurance and packaging charges", "revenue earned from other parts of the business, not named at the top of this page (please supply at fair value)"]
+                            "list": ["exports", "payment for work in progress", "costs incurred and passed on to customers", "income from sub-contracted activities", "commission", "sales of goods purchased for resale", "royalty payments", "revenue earned from other parts of the business not named (please supply at fair value)"]
                         }, {
                             "title": "Exclude:",
-                            "list": ["VAT", "income from the sale of fixed capital assets", "grants and subsidies", "insurance claims", "interest received"]
+                            "list": ["VAT", "income from the sale of fixed capital assets", "grants, funding, donations etc.", "insurance claims", "interest received"]
                         }]
                     },
                     "id": "turnover-question",
@@ -182,7 +186,7 @@
                         "type": "Currency",
                         "currency": "GBP",
                         "decimal_places": 2,
-                        "q_code": "40",
+                        "q_code": "46",
                         "mandatory": true
                     }],
                     "type": "General",
@@ -222,53 +226,28 @@
                     }
                 }, {
                     "goto": {
-                        "block": "exports-block"
+                        "block": "grants-funding-block"
                     }
                 }]
             }, {
-                "id": "exports-block",
+                "id": "grants-funding-block",
                 "type": "Question",
                 "questions": [{
-                    "guidance": {
-                        "content": [{
-                            "list": ["All countries outside of England, Scotland, Wales and Northern Ireland"],
-                            "title": "Include:"
-                        }]
-                    },
-                    "id": "exports-question",
+                    "id": "grants-funding-question",
                     "answers": [{
-                        "id": "exports-answer",
-                        "label": "Exports",
+                        "id": "grants-funding-answer",
+                        "label": "Grants, funding, donations and investment income, excluding VAT",
                         "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                         "type": "Currency",
                         "currency": "GBP",
                         "decimal_places": 2,
-                        "q_code": "49",
+                        "q_code": "47",
                         "mandatory": true
                     }],
                     "type": "General",
-                    "title": "What was the value of <em>exports</em>?"
+                    "title": "What was the value of <em>grants, funding, donations and investment income</em>, excluding VAT?"
                 }],
-                "title": "Exports"
-            }, {
-                "id": "excise-duty-block",
-                "type": "Question",
-                "questions": [{
-                    "id": "excise-duty-question",
-                    "answers": [{
-                        "id": "excise-duty-answer",
-                        "label": "Excise duty",
-                        "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
-                        "type": "Currency",
-                        "currency": "GBP",
-                        "decimal_places": 2,
-                        "q_code": "90",
-                        "mandatory": true
-                    }],
-                    "type": "General",
-                    "title": "What was the value of <em>excise duty</em>?"
-                }],
-                "title": "Excise duty"
+                "title": "Grants and funding"
             }, {
                 "id": "changes-in-turnover-block",
                 "type": "Question",
@@ -294,7 +273,7 @@
                         "id": "changes-in-turnover-answer",
                         "type": "Radio",
                         "q_code": "146",
-                        "mandatory": false
+                        "mandatory": true
                     }],
                     "guidance": {
                         "content": [{
