@@ -52,7 +52,9 @@
                     "id": "preview",
                     "title": "Information you need",
                     "content": [{
+
                         "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
+
                     }, {
                         "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                     }],
