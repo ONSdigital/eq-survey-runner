@@ -19,7 +19,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><strong>If you have not traded for all, or some, of the period</strong>: still select 'yes, you can provide figures' and enter value of work, even if this is '0'.</br> <strong>Exclude</strong> furlough payments received in figures.</br> <strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>",
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>Include</b> furlough payments to employees in gross pay figures.<br><b>Include</b> furloughed employees who received pay in any employee figures.<br><b>Do not duplicate</b> furlough pay by also reporting any money received by the business from the Coronavirus Job Retention Scheme.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>",
                                 "list": [
                                     "On average it takes ten minutes to complete once you&#x2019;ve collected the information.",
                                     "Data should relate to all sites in England, Scotland and Wales.",
