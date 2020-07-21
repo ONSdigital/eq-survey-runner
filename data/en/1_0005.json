@@ -24,6 +24,7 @@
                     "id": "primary",
                     "content": [
                       {
+                        "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><strong>If you have not traded for all, or some, of the period</strong>: still select 'yes, you can provide figures' and enter value of work, even if this is '0'.</br> <strong>Exclude</strong> furlough payments received in figures.</br> <strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>",
                         "list": [
                           "On average it takes ten minutes to complete once you&#x2019;ve collected the information.",
                           "Data should relate to all sites in England, Scotland and Wales.",
@@ -37,7 +38,9 @@
                 "preview_content": {
                   "id": "preview",
                   "title": "Information you need",
-                  "content": [
+                  "content": [{
+                        "description": "<a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlywagesandsalariessurvey'><p>View the survey information and questions before you start the survey (external link)</p></a>"
+                    },
                     {
                       "description": "<strong>Employee pay frequency</strong>"
                     },
