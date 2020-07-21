@@ -320,18 +320,6 @@
                                 },
                                 "decimal_places": 0
                             }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
-                                "condition": "contains all",
-                                "values": [
-                                    "Fortnightly",
-                                    "Calendar monthly",
-                                    "Four weekly",
-                                    "Five weekly"
-                                ]
-                            }]
                         }]
                     },
                     {
