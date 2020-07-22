@@ -780,7 +780,7 @@
                                     "label": "Percentage increase of new pay rates",
                                     "description": "",
                                     "q_code": "100",
-                                    "decimal_places": 0
+                                    "decimal_places": 2
                                 },
                                 {
                                     "id": "answerc4899350-1ff4-42f9-8e29-558180452dd3",
@@ -1362,7 +1362,7 @@
                                     "label": "Percentage increase of new pay rates",
                                     "description": "",
                                     "q_code": "100f",
-                                    "decimal_places": 0
+                                    "decimal_places": 2
                                 },
                                 {
                                     "id": "answerad334329-6dd2-4fbf-ab69-a07284996c86",
@@ -1929,7 +1929,7 @@
                                     "label": "Percentage increase of new pay rates",
                                     "description": "",
                                     "q_code": "200",
-                                    "decimal_places": 0
+                                    "decimal_places": 2
                                 },
                                 {
                                     "id": "answer33940067-f517-4db9-9fa3-cb749f03b43b",
@@ -2495,7 +2495,7 @@
                                     "label": "Percentage increase of new pay rates",
                                     "description": "",
                                     "q_code": "200w4",
-                                    "decimal_places": 0
+                                    "decimal_places": 2
                                 },
                                 {
                                     "id": "answer2a0c01cd-ae5f-47e5-9914-734d9a610616",
@@ -3062,7 +3062,7 @@
                                     "label": "Percentage increase of new pay rates",
                                     "description": "",
                                     "q_code": "200w5",
-                                    "decimal_places": 0
+                                    "decimal_places": 2
                                 },
                                 {
                                     "id": "answer73e7f01f-4944-4014-ac47-988640c748d1",
