@@ -2106,7 +2106,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc35e2043-b393-47f6-983f-ebee763a2145",
-                            "title": "Of the {{ format_currency(answers['answerab7b97dc-541f-4b59-83f0-ca4867bdfcad'], 'GBP') }}paid to <em>four weekly</em> paid employees in  {{ metadata['period_id'] }}, what other amounts were paid?",
+                            "title": "Of the {{ format_currency(answers['answerab7b97dc-541f-4b59-83f0-ca4867bdfcad'], 'GBP') }} paid to <em>four weekly</em> paid employees in  {{ metadata['period_id'] }}, what other amounts were paid?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2673,7 +2673,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question53c7d7a0-099b-4f42-8efb-b4fc4fd2cdf0",
-                            "title": "Of the {{ format_currency(answers['answer7f095ddc-e4bd-403d-9cc0-50788063e778'], 'GBP') }}paid to <em>five weekly paid employees</em> in  {{ metadata['period_id'] }}, what other amounts were paid?",
+                            "title": "Of the {{ format_currency(answers['answer7f095ddc-e4bd-403d-9cc0-50788063e778'], 'GBP') }} paid to <em>five weekly paid employees</em> in  {{ metadata['period_id'] }}, what other amounts were paid?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
