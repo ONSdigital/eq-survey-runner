@@ -189,6 +189,15 @@
                             },
                             {
                                 "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
                                     "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
                                 }
                             }
@@ -295,7 +304,9 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                             "condition": "contains any",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -314,7 +325,9 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                             "condition": "contains any",
-                                            "values": ["Not applicable"]
+                                            "values": [
+                                                "Not applicable"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -363,7 +376,19 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Permanently ceased trading"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "summary-group"
                                 }
                             }
                         ]
@@ -482,7 +507,9 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Permanently ceased trading"]
+                                        "values": [
+                                            "Permanently ceased trading"
+                                        ]
                                     }]
                                 }
                             },
@@ -576,7 +603,10 @@
                                     "when": [{
                                         "id": "answer0581e398-f9ab-4597-a1a6-c67d8f96289f",
                                         "condition": "contains any",
-                                        "values": ["Turnover has not been affected", "Not sure"]
+                                        "values": [
+                                            "Turnover has not been affected",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -659,7 +689,10 @@
                                         "description": "<strong>Exclude from operating costs:</strong>"
                                     },
                                     {
-                                        "list": ["labour costs", "depreciation"]
+                                        "list": [
+                                            "labour costs",
+                                            "depreciation"
+                                        ]
                                     }
                                 ]
                             },
@@ -748,7 +781,9 @@
                                     "when": [{
                                         "id": "answer1cef2734-e2be-42ce-a724-948845ec6e5a",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -780,9 +815,17 @@
                 ],
                 "skip_conditions": [{
                         "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -798,7 +841,9 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains any",
-                                "values": ["Not applicable"]
+                                "values": [
+                                    "Not applicable"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -815,8 +860,7 @@
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
                             "values": [
-                                "Paused trading but intends to restart in the next two weeks",
-                                "Paused trading and does not intend to restart in the next two weeks"
+                                "Permanently ceased trading"
                             ]
                         }]
                     },
@@ -824,7 +868,10 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Paused trading but intends to restart in the next two weeks",
+                                "Paused trading and does not intend to restart in the next two weeks"
+                            ]
                         }]
                     }
                 ]
@@ -881,7 +928,11 @@
                                     "when": [{
                                             "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
                                             "condition": "contains any",
-                                            "values": ["No", "Not sure", "Not applicable"]
+                                            "values": [
+                                                "No",
+                                                "Not sure",
+                                                "Not applicable"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -900,7 +951,11 @@
                                     "when": [{
                                             "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
                                             "condition": "contains any",
-                                            "values": ["No", "Not sure", "Not applicable"]
+                                            "values": [
+                                                "No",
+                                                "Not sure",
+                                                "Not applicable"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -919,7 +974,9 @@
                                     "when": [{
                                             "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
                                             "condition": "contains any",
-                                            "values": ["Yes"]
+                                            "values": [
+                                                "Yes"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1022,7 +1079,9 @@
                                     "when": [{
                                             "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
                                             "condition": "contains any",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1041,7 +1100,9 @@
                                     "when": [{
                                             "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
                                             "condition": "contains any",
-                                            "values": ["None of the above"]
+                                            "values": [
+                                                "None of the above"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1060,7 +1121,9 @@
                                     "when": [{
                                             "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
                                             "condition": "contains any",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1079,7 +1142,9 @@
                                     "when": [{
                                             "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
                                             "condition": "contains any",
-                                            "values": ["None of the above"]
+                                            "values": [
+                                                "None of the above"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1163,7 +1228,10 @@
                                     "when": [{
                                             "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
                                             "condition": "contains any",
-                                            "values": ["No, approach has not changed", "Not sure"]
+                                            "values": [
+                                                "No, approach has not changed",
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1182,7 +1250,10 @@
                                     "when": [{
                                             "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
                                             "condition": "contains any",
-                                            "values": ["No, approach has not changed", "Not sure"]
+                                            "values": [
+                                                "No, approach has not changed",
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1201,7 +1272,9 @@
                                     "when": [{
                                             "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
                                             "condition": "contains any",
-                                            "values": ["Yes, approach has changed"]
+                                            "values": [
+                                                "Yes, approach has changed"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1284,7 +1357,9 @@
                                     "when": [{
                                         "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
                                         "condition": "contains any",
-                                        "values": ["Guidance"]
+                                        "values": [
+                                            "Guidance"
+                                        ]
                                     }]
                                 }
                             },
@@ -1294,7 +1369,11 @@
                                     "when": [{
                                             "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
                                             "condition": "contains any",
-                                            "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
+                                            "values": [
+                                                "Requests from customers",
+                                                "The circumstances were not covered in our existing policies",
+                                                "Other"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1313,7 +1392,9 @@
                                     "when": [{
                                             "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
                                             "condition": "contains any",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1332,7 +1413,11 @@
                                     "when": [{
                                             "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
                                             "condition": "contains any",
-                                            "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
+                                            "values": [
+                                                "Requests from customers",
+                                                "The circumstances were not covered in our existing policies",
+                                                "Other"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1351,7 +1436,9 @@
                                     "when": [{
                                             "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
                                             "condition": "contains any",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1488,12 +1575,21 @@
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                        "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
+                        }]
+                    }
+                ]
             }]
         },
         {
@@ -1543,7 +1639,10 @@
                                     "when": [{
                                         "id": "answer6e5dfc6d-189b-4d67-b64f-d40f68253cda",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -1589,7 +1688,10 @@
                                     "when": [{
                                         "id": "answer5cd5a93e-d818-4d4e-a32f-9eeedad30a6a",
                                         "condition": "contains any",
-                                        "values": ["No, the business has not exported during the pandemic", "Not sure"]
+                                        "values": [
+                                            "No, the business has not exported during the pandemic",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -1857,7 +1959,10 @@
                                     "when": [{
                                         "id": "answer5ad71b6e-442c-499a-b185-e39282dd09c0",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -1903,7 +2008,10 @@
                                     "when": [{
                                         "id": "answera7265706-a8e2-4db9-b7e9-00a4f62378d3",
                                         "condition": "contains any",
-                                        "values": ["No, the business has not imported during the pandemic", "Not sure"]
+                                        "values": [
+                                            "No, the business has not imported during the pandemic",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -2135,15 +2243,27 @@
                 "skip_conditions": [{
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
                                 "condition": "contains any",
-                                "values": ["No", "Not sure", "Not applicable"]
+                                "values": [
+                                    "No",
+                                    "Not sure",
+                                    "Not applicable"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2159,7 +2279,9 @@
                         "when": [{
                                 "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
                                 "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2175,7 +2297,9 @@
                         "when": [{
                                 "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
                                 "condition": "contains any",
-                                "values": ["None of the above"]
+                                "values": [
+                                    "None of the above"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2191,7 +2315,10 @@
                         "when": [{
                                 "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
                                 "condition": "contains any",
-                                "values": ["No, approach has not changed", "Not sure"]
+                                "values": [
+                                    "No, approach has not changed",
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2207,7 +2334,11 @@
                         "when": [{
                                 "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
                                 "condition": "contains any",
-                                "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
+                                "values": [
+                                    "Requests from customers",
+                                    "The circumstances were not covered in our existing policies",
+                                    "Other"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2223,7 +2354,9 @@
                         "when": [{
                                 "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
                                 "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2299,7 +2432,9 @@
                                     "when": [{
                                         "id": "answer478a7145-b712-43a1-9e1d-df39c23abddd",
                                         "condition": "contains any",
-                                        "values": ["No, the business has not been able to get the materials, goods or services needed"]
+                                        "values": [
+                                            "No, the business has not been able to get the materials, goods or services needed"
+                                        ]
                                     }]
                                 }
                             },
@@ -2343,7 +2478,10 @@
                             "definitions": [{
                                 "title": "Examples of logistics services",
                                 "content": [{
-                                    "list": ["delivery and courier services", "haulage services"]
+                                    "list": [
+                                        "delivery and courier services",
+                                        "haulage services"
+                                    ]
                                 }]
                             }],
                             "type": "General",
@@ -2379,7 +2517,9 @@
                                     "when": [{
                                         "id": "answer283ed838-951f-4484-ab60-e2abdd1cbe90",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -2483,15 +2623,27 @@
                 "skip_conditions": [{
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
                                 "condition": "contains any",
-                                "values": ["No", "Not sure", "Not applicable"]
+                                "values": [
+                                    "No",
+                                    "Not sure",
+                                    "Not applicable"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2507,7 +2659,9 @@
                         "when": [{
                                 "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
                                 "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2523,7 +2677,9 @@
                         "when": [{
                                 "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
                                 "condition": "contains any",
-                                "values": ["None of the above"]
+                                "values": [
+                                    "None of the above"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2539,7 +2695,10 @@
                         "when": [{
                                 "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
                                 "condition": "contains any",
-                                "values": ["No, approach has not changed", "Not sure"]
+                                "values": [
+                                    "No, approach has not changed",
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2555,7 +2714,11 @@
                         "when": [{
                                 "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
                                 "condition": "contains any",
-                                "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
+                                "values": [
+                                    "Requests from customers",
+                                    "The circumstances were not covered in our existing policies",
+                                    "Other"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2571,7 +2734,9 @@
                         "when": [{
                                 "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
                                 "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2655,7 +2820,9 @@
                                     "when": [{
                                         "id": "answer27b42a40-5f79-4d32-b361-a94a454c638b",
                                         "condition": "contains any",
-                                        "values": ["Not applicable"]
+                                        "values": [
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -2665,7 +2832,10 @@
                                     "when": [{
                                         "id": "answer27b42a40-5f79-4d32-b361-a94a454c638b",
                                         "condition": "contains any",
-                                        "values": ["Prices did not change any more than normal", "Not sure"]
+                                        "values": [
+                                            "Prices did not change any more than normal",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -2775,7 +2945,9 @@
                                     "when": [{
                                         "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
                                         "condition": "contains any",
-                                        "values": ["Not applicable"]
+                                        "values": [
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -2845,7 +3017,9 @@
                                     "when": [{
                                         "id": "answer52e5fb19-a557-4657-9c25-246700c3b9b9",
                                         "condition": "contains any",
-                                        "values": ["Prices increased initially and then adjusted back to normal"]
+                                        "values": [
+                                            "Prices increased initially and then adjusted back to normal"
+                                        ]
                                     }]
                                 }
                             },
@@ -2855,7 +3029,10 @@
                                     "when": [{
                                         "id": "answer52e5fb19-a557-4657-9c25-246700c3b9b9",
                                         "condition": "contains any",
-                                        "values": ["Prices have not changed any more than normal", "Not sure"]
+                                        "values": [
+                                            "Prices have not changed any more than normal",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -2865,7 +3042,9 @@
                                     "when": [{
                                         "id": "answer52e5fb19-a557-4657-9c25-246700c3b9b9",
                                         "condition": "contains any",
-                                        "values": ["Not applicable"]
+                                        "values": [
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -2947,7 +3126,9 @@
                                     "when": [{
                                         "id": "answere63c8294-4a82-4d81-b646-57f3eb89f29d",
                                         "condition": "contains all",
-                                        "values": ["Based on guidance"]
+                                        "values": [
+                                            "Based on guidance"
+                                        ]
                                     }]
                                 }
                             },
@@ -3092,15 +3273,27 @@
                 "skip_conditions": [{
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
                                 "condition": "contains any",
-                                "values": ["No", "Not sure", "Not applicable"]
+                                "values": [
+                                    "No",
+                                    "Not sure",
+                                    "Not applicable"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3116,7 +3309,9 @@
                         "when": [{
                                 "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
                                 "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3132,7 +3327,9 @@
                         "when": [{
                                 "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
                                 "condition": "contains any",
-                                "values": ["None of the above"]
+                                "values": [
+                                    "None of the above"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3148,7 +3345,10 @@
                         "when": [{
                                 "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
                                 "condition": "contains any",
-                                "values": ["No, approach has not changed", "Not sure"]
+                                "values": [
+                                    "No, approach has not changed",
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3164,7 +3364,11 @@
                         "when": [{
                                 "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
                                 "condition": "contains any",
-                                "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
+                                "values": [
+                                    "Requests from customers",
+                                    "The circumstances were not covered in our existing policies",
+                                    "Other"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3180,7 +3384,9 @@
                         "when": [{
                                 "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
                                 "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3261,7 +3467,10 @@
                                     "when": [{
                                         "id": "answerc964594d-9b5b-4131-9c79-4baff0be08d1",
                                         "condition": "contains any",
-                                        "values": ["Stock levels are higher than normal", "Stock levels are lower than normal"]
+                                        "values": [
+                                            "Stock levels are higher than normal",
+                                            "Stock levels are lower than normal"
+                                        ]
                                     }]
                                 }
                             },
@@ -3294,15 +3503,27 @@
                 "skip_conditions": [{
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
                                 "condition": "contains any",
-                                "values": ["No", "Not sure", "Not applicable"]
+                                "values": [
+                                    "No",
+                                    "Not sure",
+                                    "Not applicable"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3318,7 +3539,9 @@
                         "when": [{
                                 "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
                                 "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3334,7 +3557,9 @@
                         "when": [{
                                 "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
                                 "condition": "contains any",
-                                "values": ["None of the above"]
+                                "values": [
+                                    "None of the above"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3350,7 +3575,10 @@
                         "when": [{
                                 "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
                                 "condition": "contains any",
-                                "values": ["No, approach has not changed", "Not sure"]
+                                "values": [
+                                    "No, approach has not changed",
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3366,7 +3594,11 @@
                         "when": [{
                                 "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
                                 "condition": "contains any",
-                                "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
+                                "values": [
+                                    "Requests from customers",
+                                    "The circumstances were not covered in our existing policies",
+                                    "Other"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3382,7 +3614,9 @@
                         "when": [{
                                 "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
                                 "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3472,7 +3706,9 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3482,7 +3718,9 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Business grants funded by the UK and devolved governments"]
+                                        "values": [
+                                            "Business grants funded by the UK and devolved governments"
+                                        ]
                                     }]
                                 }
                             },
@@ -3492,7 +3730,9 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains all",
-                                        "values": ["Coronavirus Job Retention Scheme"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme"
+                                        ]
                                     }]
                                 }
                             },
@@ -3538,7 +3778,9 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Business grants funded by the UK and devolved governments"]
+                                        "values": [
+                                            "Business grants funded by the UK and devolved governments"
+                                        ]
                                     }]
                                 }
                             },
@@ -3548,7 +3790,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3602,7 +3847,9 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": ["Welsh Government"]
+                                        "values": [
+                                            "Welsh Government"
+                                        ]
                                     }]
                                 }
                             },
@@ -3612,7 +3859,9 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": ["Scottish Government"]
+                                        "values": [
+                                            "Scottish Government"
+                                        ]
                                     }]
                                 }
                             },
@@ -3622,7 +3871,9 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": ["UK Government (England only)"]
+                                        "values": [
+                                            "UK Government (England only)"
+                                        ]
                                     }]
                                 }
                             },
@@ -3632,7 +3883,9 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": ["Northern Ireland Executive"]
+                                        "values": [
+                                            "Northern Ireland Executive"
+                                        ]
                                     }]
                                 }
                             },
@@ -3642,7 +3895,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3704,7 +3960,11 @@
                                     "when": [{
                                         "id": "answer9d2c5b50-4e17-4b31-9c3f-3188080a16b2",
                                         "condition": "contains any",
-                                        "values": ["COVID-19 grant for small businesses", "Economic Resilience Fund", "Sector-specific grants"]
+                                        "values": [
+                                            "COVID-19 grant for small businesses",
+                                            "Economic Resilience Fund",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -3714,7 +3974,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3776,7 +4039,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3838,7 +4104,11 @@
                                     "when": [{
                                         "id": "answer9e33a258-d2be-40b8-ad4e-ae55f3d066f1",
                                         "condition": "contains any",
-                                        "values": ["Small Business Support grant", "Pivotal Enterprise Resilience Fund", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Support grant",
+                                            "Pivotal Enterprise Resilience Fund",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -3848,7 +4118,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3910,7 +4183,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -3967,7 +4243,10 @@
                                     "when": [{
                                         "id": "answer7a62b279-e8af-498b-bee4-6b861ec5d9f4",
                                         "condition": "contains any",
-                                        "values": ["Small Business Grant Fund (SBGF)", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Grant Fund (SBGF)",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -3977,7 +4256,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -4034,7 +4316,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -4091,7 +4376,10 @@
                                     "when": [{
                                         "id": "answer1359bc07-ae5f-452b-8abd-00cfff28b27d",
                                         "condition": "contains any",
-                                        "values": ["Small Business Grant Scheme", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Grant Scheme",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -4101,7 +4389,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -4158,7 +4449,10 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -4447,7 +4741,11 @@
                                     "when": [{
                                         "id": "answerc812da13-73e9-4f73-a310-c0a78ed38524",
                                         "condition": "contains any",
-                                        "values": ["COVID-19 grant for small businesses", "Economic Resilience Fund", "Sector-specific grants"]
+                                        "values": [
+                                            "COVID-19 grant for small businesses",
+                                            "Economic Resilience Fund",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -4457,7 +4755,11 @@
                                     "when": [{
                                         "id": "answerb579d6b0-bc9e-4d09-bf39-aed0a1f0ef0b",
                                         "condition": "contains any",
-                                        "values": ["Small Business Support grant", "Pivotal Enterprise Resilience Fund", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Support grant",
+                                            "Pivotal Enterprise Resilience Fund",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -4467,7 +4769,10 @@
                                     "when": [{
                                         "id": "answer7df0f422-59af-44a2-9de5-35b06645f367",
                                         "condition": "contains any",
-                                        "values": ["Small Business Grant Fund (SBGF)", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Grant Fund (SBGF)",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -4477,7 +4782,10 @@
                                     "when": [{
                                         "id": "answerb1d499f5-1ad6-469a-9ea2-9b48dea1457c",
                                         "condition": "contains any",
-                                        "values": ["Small Business Grant Scheme", "Sector-specific grants"]
+                                        "values": [
+                                            "Small Business Grant Scheme",
+                                            "Sector-specific grants"
+                                        ]
                                     }]
                                 }
                             },
@@ -4487,7 +4795,10 @@
                                     "when": [{
                                         "id": "answer30aa84e6-07cf-4887-885f-abff7788aefb",
                                         "condition": "contains any",
-                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
+                                        "values": [
+                                            "Coronavirus Job Retention Scheme",
+                                            "Government-backed accredited loans or finance agreements"
+                                        ]
                                     }]
                                 }
                             },
@@ -4497,7 +4808,11 @@
                                     "when": [{
                                         "id": "answerf6103d5e-1a15-43d7-be56-1c4dcc960b3a",
                                         "condition": "contains any",
-                                        "values": ["Business rates holiday", "Deferring VAT payments", "HMRC Time To Pay scheme"]
+                                        "values": [
+                                            "Business rates holiday",
+                                            "Deferring VAT payments",
+                                            "HMRC Time To Pay scheme"
+                                        ]
                                     }]
                                 }
                             },
@@ -4612,7 +4927,9 @@
                                     "when": [{
                                             "id": "answere72a6e53-f48d-4cf9-ad57-a4f99f2511f5",
                                             "condition": "contains any",
-                                            "values": ["Yes"]
+                                            "values": [
+                                                "Yes"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -4711,12 +5028,21 @@
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                        "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
+                        }]
+                    }
+                ]
             }]
         },
         {
@@ -4852,7 +5178,9 @@
                                     "answer5319de32-f061-4988-88a4-95637cca3873",
                                     "answer2218d478-9b02-4806-babb-f6dc3a92cb55"
                                 ],
-                                "conditions": ["equals"],
+                                "conditions": [
+                                    "equals"
+                                ],
                                 "value": 100
                             }]
                         }],
@@ -5005,7 +5333,9 @@
                                     "when": [{
                                         "id": "answer3b3c0791-e310-4279-9116-92f1040606b4",
                                         "condition": "contains any",
-                                        "values": ["Yes, the business is providing a top-up"]
+                                        "values": [
+                                            "Yes, the business is providing a top-up"
+                                        ]
                                     }]
                                 }
                             },
@@ -5015,7 +5345,10 @@
                                     "when": [{
                                             "id": "answer3b3c0791-e310-4279-9116-92f1040606b4",
                                             "condition": "contains any",
-                                            "values": ["No, the business is not providing a top-up", "Not sure"]
+                                            "values": [
+                                                "No, the business is not providing a top-up",
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -5034,7 +5367,10 @@
                                     "when": [{
                                             "id": "answer3b3c0791-e310-4279-9116-92f1040606b4",
                                             "condition": "contains any",
-                                            "values": ["No, the business is not providing a top-up", "Not sure"]
+                                            "values": [
+                                                "No, the business is not providing a top-up",
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -5393,7 +5729,9 @@
                                         {
                                             "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f",
                                             "condition": "contains any",
-                                            "values": ["None of these"]
+                                            "values": [
+                                                "None of these"
+                                            ]
                                         }
                                     ]
                                 }
@@ -5412,7 +5750,9 @@
                                         {
                                             "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f-exclusive",
                                             "condition": "contains any",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         }
                                     ]
                                 }
@@ -5460,7 +5800,9 @@
                                         {
                                             "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f",
                                             "condition": "contains any",
-                                            "values": ["None of these"]
+                                            "values": [
+                                                "None of these"
+                                            ]
                                         }
                                     ]
                                 }
@@ -5479,7 +5821,9 @@
                                         {
                                             "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f-exclusive",
                                             "condition": "contains any",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         }
                                     ]
                                 }
@@ -5637,7 +5981,10 @@
                                     "when": [{
                                         "id": "answer7777af09-6e4a-4646-a1ef-fa3d71127431",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -5647,7 +5994,9 @@
                                     "when": [{
                                         "id": "answer7777af09-6e4a-4646-a1ef-fa3d71127431",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -5731,12 +6080,21 @@
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                        "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
+                        }]
+                    }
+                ]
             }]
         },
         {
