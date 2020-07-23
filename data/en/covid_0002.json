@@ -3497,6 +3497,17 @@
                                 "q_code": "111",
                                 "max_length": 2000
                             }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerc964594d-9b5b-4131-9c79-4baff0be08d1",
+                                "condition": "contains any",
+                                "values": [
+                                    "Stock levels have not changed",
+                                    "Not sure",
+                                    "Not applicable"
+                                ]
+                            }]
                         }]
                     }
                 ],
