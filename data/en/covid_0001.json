@@ -47,19 +47,21 @@
                                     }]
                                 },
                                 {
-                                    "question": "Turnover and online sales",
+                                    "question": "Turnover and operating costs",
                                     "content": [{
-                                        "description": "This section asks for information on any changes to the business&apos;s turnover in the last two weeks and any changes to its online sales and activities."
-                                    }]
+                                            "description": "This section asks for information about:"
+                                        },
+                                        {
+                                            "list": [
+                                                "how the coronavirus (COVID-19) pandemic may have affected the business&apos;s turnover in the last two weeks",
+                                                "operating costs",
+                                                "customer interest and footfall"
+                                            ]
+                                        }
+                                    ]
                                 },
                                 {
-                                    "question": "Postponed or cancelled bookings, services and events",
-                                    "content": [{
-                                        "description": "This section asks for information about how the business is managing postponed or cancelled bookings, services and events sold to customers during the coronavirus (COVID-19) pandemic."
-                                    }]
-                                },
-                                {
-                                    "question": "Exporting, importing and UK trade",
+                                    "question": "Exporting and importing",
                                     "content": [{
                                         "description": "This section asks for information about the business&apos;s importing and exporting activities."
                                     }]
@@ -67,25 +69,19 @@
                                 {
                                     "question": "UK supply chain",
                                     "content": [{
-                                        "description": "This section asks for information about the availability of materials, goods and services within the UK."
+                                        "description": "This section asks for information about the availability of materials, goods and services within the UK and the business&apos;s use of UK logistics services."
                                     }]
                                 },
                                 {
                                     "question": "Prices of materials, goods and services",
                                     "content": [{
-                                        "description": "This section asks for information on any changes to the prices of goods and services bought or sold by the business in the last two weeks."
+                                        "description": "This section asks for information on any changes to the prices and demand of goods and services bought or sold by the business in the last two weeks."
                                     }]
                                 },
                                 {
                                     "question": "Stock and capital expenditure",
                                     "content": [{
                                         "description": "This section asks for information about how the coronavirus (COVID-19) pandemic may have affected the business&apos;s stock and capital expenditure."
-                                    }]
-                                },
-                                {
-                                    "question": "Innovation",
-                                    "content": [{
-                                        "description": "This section asks for information about any new or improved innovations made by the business during the coronavirus (COVID-19) pandemic."
                                     }]
                                 },
                                 {
@@ -97,7 +93,8 @@
                                             "list": [
                                                 "any applications that the business made for government financial initiatives or schemes",
                                                 "any applications the business intends to make for government initiatives or schemes",
-                                                "any applications for non-government financial support"
+                                                "any applications for non-government financial support",
+                                                "the business&apos;s risk of insolvency"
                                             ]
                                         }
                                     ]
@@ -182,6 +179,15 @@
                                             "Paused trading but intends to restart in the next two weeks",
                                             "Paused trading and does not intend to restart in the next two weeks"
                                         ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "not set"
                                     }]
                                 }
                             },
@@ -289,16 +295,11 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupaf9cbebb-ec7e-4a68-b46d-2b7d081d16d7",
+                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                             "condition": "contains any",
                                             "values": ["Not sure"]
-                                        },
-                                        {
-                                            "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
-                                            "condition": "contains any",
-                                            "values": ["Not applicable"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -313,13 +314,8 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group281e76fe-1287-43af-bfe9-e1a53be6476e",
+                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
                                     "when": [{
-                                            "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
-                                            "condition": "contains any",
-                                            "values": ["Not sure"]
-                                        },
-                                        {
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                             "condition": "contains any",
                                             "values": ["Not applicable"]
@@ -328,8 +324,8 @@
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
                                             "values": [
-                                                "Currently trading and has been for more than the last two weeks",
-                                                "Started trading within the last two weeks after a pause in trading"
+                                                "Paused trading but intends to restart in the next two weeks",
+                                                "Paused trading and does not intend to restart in the next two weeks"
                                             ]
                                         }
                                     ]
@@ -371,16 +367,20 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": ["Permanently ceased trading"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "summary-group"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "blockae8d1838-da63-4805-b596-6b55fdb86447",
@@ -479,7 +479,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupaf9cbebb-ec7e-4a68-b46d-2b7d081d16d7",
+                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
@@ -505,34 +505,22 @@
                                     "group": "group281e76fe-1287-43af-bfe9-e1a53be6476e"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     }
                 ]
             }]
         },
         {
             "id": "section281e76fe-1287-43af-bfe9-e1a53be6476e",
-            "title": "Turnover and online sales",
+            "title": "Turnover and operating costs",
             "groups": [{
                 "id": "group281e76fe-1287-43af-bfe9-e1a53be6476e",
-                "title": "Turnover and online sales",
+                "title": "Turnover and operating costs",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group281e76fe-1287-43af-bfe9-e1a53be6476e-introduction",
-                        "title": "Turnover and online sales",
-                        "description": "<p>This section asks for information about how the coronavirus (COVID-19) pandemic may have affected the business&apos;s turnover in the last two weeks, and about online sales and activity.</p>",
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        "title": "Turnover and operating costs",
+                        "description": "<p>This section asks for information about:</p><ul><li>how the coronavirus (COVID-19) pandemic may have affected the business&apos;s turnover in the last two weeks</li><li>operating costs</li><li>customer interest and footfall</li></ul>"
                     },
                     {
                         "id": "block9361fa44-7f22-47da-bdd0-16e104300487",
@@ -611,13 +599,7 @@
                                     "block": "block0bf14da5-6919-4507-8542-5d71be2e6ac1"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block0bf14da5-6919-4507-8542-5d71be2e6ac1",
@@ -634,12 +616,6 @@
                                 "description": "",
                                 "q_code": "5",
                                 "max_length": 2000
-                            }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
                             }]
                         }]
                     },
@@ -683,87 +659,65 @@
                                     }
                                 ]
                             }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     },
                     {
-                        "id": "blockd54d2485-7d02-4e67-90be-30c13dc1c230",
+                        "id": "block279256b3-22c2-4463-9d3d-4be926d2402a",
                         "type": "Question",
                         "questions": [{
-                            "id": "questiond54d2485-7d02-4e67-90be-30c13dc1c230",
-                            "title": "Prior to the coronavirus (COVID-19) pandemic, did {{ metadata['ru_name'] }} <em>sell goods or services online</em>?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer65cee25e-1d83-4d68-8a73-6e60780d9522",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "94",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
+                            "id": "question279256b3-22c2-4463-9d3d-4be926d2402a",
+                            "title": "<em>In the last two weeks</em>, how did {{ metadata['ru_name'] }}&apos;s turnover compare to its operating costs?",
+                            "description": "<p>You can provide a rough estimate. </p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Exclude from operating costs:</strong>"
                                     },
                                     {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
+                                        "list": ["labour costs", "depreciation"]
                                     }
                                 ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "blockf2734939-baaf-4284-a007-befe2e5bf96d",
-                                    "when": [{
-                                        "id": "answer65cee25e-1d83-4d68-8a73-6e60780d9522",
-                                        "condition": "contains any",
-                                        "values": ["Yes"]
-                                    }]
-                                }
                             },
-                            {
-                                "goto": {
-                                    "block": "block61e1cc56-3e05-4222-ad07-5792ddba769d"
-                                }
-                            }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block61e1cc56-3e05-4222-ad07-5792ddba769d",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question61e1cc56-3e05-4222-ad07-5792ddba769d",
-                            "title": "Has {{ metadata['ru_name'] }} <em>started</em> selling goods or services online during the coronavirus (COVID-19) pandemic?",
+                            "definitions": [{
+                                "title": "What we mean by \"operating costs\"",
+                                "content": [{
+                                    "description": "This refers to costs for the business such as rental payments, finance and interest payments, and energy bills."
+                                }]
+                            }],
                             "type": "General",
                             "answers": [{
-                                "id": "answer66776e6d-9e34-42ab-b6cf-fb8ea954c3ec",
+                                "id": "answerc4182400-769d-41b6-9c23-d8b3e5e940d6",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "95",
+                                "q_code": "133",
                                 "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
+                                        "label": "Turnover exceeded operating costs by more than 50%",
+                                        "value": "Turnover exceeded operating costs by more than 50%"
                                     },
                                     {
-                                        "label": "No",
-                                        "value": "No"
+                                        "label": "Turnover exceeded operating costs between 20% and 50%",
+                                        "value": "Turnover exceeded operating costs between 20% and 50%"
+                                    },
+                                    {
+                                        "label": "Turnover exceeded operating costs by up to 20%",
+                                        "value": "Turnover exceeded operating costs by up to 20%"
+                                    },
+                                    {
+                                        "label": "Turnover was equal to operating costs",
+                                        "value": "Turnover was equal to operating costs"
+                                    },
+                                    {
+                                        "label": "Operating costs exceeded turnover by up to 20%",
+                                        "value": "Operating costs exceeded turnover by up to 20%"
+                                    },
+                                    {
+                                        "label": "Operating costs exceeded turnover between 20% and 50%",
+                                        "value": "Operating costs exceeded turnover between 20% and 50%"
+                                    },
+                                    {
+                                        "label": "Operating costs exceeded turnover by more than 50%",
+                                        "value": "Operating costs exceeded turnover by more than 50%"
                                     },
                                     {
                                         "label": "Not sure",
@@ -771,228 +725,129 @@
                                     }
                                 ]
                             }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "blockf2734939-baaf-4284-a007-befe2e5bf96d",
-                                    "when": [{
-                                        "id": "answer66776e6d-9e34-42ab-b6cf-fb8ea954c3ec",
-                                        "condition": "contains any",
-                                        "values": ["Yes"]
-                                    }]
-                                }
+                        }]
+                    },
+                    {
+                        "id": "block90839295-93e8-43ff-b644-6a62e3c9dc3e",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question90839295-93e8-43ff-b644-6a62e3c9dc3e",
+                            "title": "In the last two weeks, how has the coronavirus (COVID-19) pandemic affected <em>customer interest</em> in {{ metadata['ru_name'] }}&apos;s goods or services, compared with normal expectations for this time of year?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "Include, for example:"
+                                    },
+                                    {
+                                        "list": [
+                                            "footfall, which means the number of people entering a shop or shopping area",
+                                            "online or in-store sales",
+                                            "webpage activity",
+                                            "number of enquiries received"
+                                        ]
+                                    }
+                                ]
                             },
-                            {
-                                "goto": {
-                                    "block": "block0c9d4096-3307-453d-8427-e5f0fcdd9a87"
-                                }
-                            }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blockf2734939-baaf-4284-a007-befe2e5bf96d",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionf2734939-baaf-4284-a007-befe2e5bf96d",
-                            "title": "How have {{ metadata['ru_name'] }}&apos;s online sales of goods or services changed in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
-                                "id": "answer8602d2d3-f3cc-417b-9a3d-0141d9f9dc39",
+                                "id": "answerd0f7764c-0b7a-4005-8455-c43095dfcdb7",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "75",
+                                "q_code": "134",
                                 "options": [{
-                                        "label": "Online sales have increased",
-                                        "value": "Online sales have increased"
+                                        "label": "Interest has increased",
+                                        "value": "Interest has increased"
                                     },
                                     {
-                                        "label": "Online sales have stayed the same",
-                                        "value": "Online sales have stayed the same"
+                                        "label": "Interest has stayed the same",
+                                        "value": "Interest has stayed the same"
                                     },
                                     {
-                                        "label": "Online sales have continued, but decreased",
-                                        "value": "Online sales have continued, but decreased"
-                                    },
-                                    {
-                                        "label": "The business stopped selling goods or services online",
-                                        "value": "The business stopped selling goods or services online"
+                                        "label": "Interest has decreased",
+                                        "value": "Interest has decreased"
                                     },
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     },
                     {
-                        "id": "block0c9d4096-3307-453d-8427-e5f0fcdd9a87",
+                        "id": "block60b68a1c-91f8-4e80-859d-7d196f9c0530",
                         "type": "Question",
                         "questions": [{
-                            "id": "question0c9d4096-3307-453d-8427-e5f0fcdd9a87",
-                            "title": "Has {{ metadata['ru_name'] }} used any of the following <em>online services</em> to support business operations during the coronavirus (COVID-19) pandemic?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer8ca3198d-60a0-45da-bc61-b7e29b55a44c",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Increased or new use of online advertising",
-                                            "value": "Increased or new use of online advertising",
-                                            "q_code": "761"
-                                        },
-                                        {
-                                            "label": "Increased or new use of online services to help communication with customers",
-                                            "value": "Increased or new use of online services to help communication with customers",
-                                            "q_code": "762",
-                                            "description": "For example, social media, new websites, email"
-                                        },
-                                        {
-                                            "label": "Increased or new use of video conferencing for internal communications",
-                                            "value": "Increased or new use of video conferencing for internal communications",
-                                            "q_code": "763",
-                                            "description": "For example, Zoom, Skype, Microsoft Teams, Google Hangouts"
-                                        },
-                                        {
-                                            "label": "Increased or new use of social media platforms for internal communications",
-                                            "value": "Increased or new use of social media platforms for internal communications",
-                                            "q_code": "764",
-                                            "description": "For example, WhatsApp, Slack, Trello"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "765",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer0a322cfd-08a6-46fc-aa15-98881479656e",
-                                                "mandatory": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer8ca3198d-60a0-45da-bc61-b7e29b55a44c-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "None of the above",
-                                        "value": "None of the above",
-                                        "q_code": "766"
-                                    }]
-                                }
-                            ]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blockcabf3732-b3b9-4bf4-8e00-80d9cd5baff1",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questioncabf3732-b3b9-4bf4-8e00-80d9cd5baff1",
-                            "title": "Has {{ metadata['ru_name'] }} <em>diversified</em> to produce or provide new goods or services as a result of the coronavirus (COVID-19) pandemic?",
+                            "id": "question60b68a1c-91f8-4e80-859d-7d196f9c0530",
+                            "title": "In the last two weeks, how has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s <em>footfall</em>, compared with normal expectations for this time of year?",
+                            "definitions": [{
+                                "title": "What we mean by \"footfall\"",
+                                "content": [{
+                                    "description": "&quot;Footfall&quot; means the number of people entering a shop or shopping area."
+                                }]
+                            }],
                             "type": "General",
                             "answers": [{
-                                "id": "answer1cef2734-e2be-42ce-a724-948845ec6e5a",
+                                "id": "answerfd7177e6-7453-4557-8a4d-6ee841d850fb",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "115",
+                                "q_code": "135",
                                 "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
+                                        "label": "Footfall has increased",
+                                        "value": "Footfall has increased"
                                     },
                                     {
-                                        "label": "No",
-                                        "value": "No"
+                                        "label": "Footfall has stayed the same",
+                                        "value": "Footfall has stayed the same"
+                                    },
+                                    {
+                                        "label": "Footfall has decreased",
+                                        "value": "Footfall has decreased"
                                     },
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
                                     }
                                 ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "blocka6a29cc6-f809-4ed5-9d76-cc272b66dbab",
-                                    "when": [{
-                                        "id": "answer1cef2734-e2be-42ce-a724-948845ec6e5a",
-                                        "condition": "contains any",
-                                        "values": ["Yes"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "groupaf9cbebb-ec7e-4a68-b46d-2b7d081d16d7"
-                                }
-                            }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blocka6a29cc6-f809-4ed5-9d76-cc272b66dbab",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questiona6a29cc6-f809-4ed5-9d76-cc272b66dbab",
-                            "title": "Please give more details about how {{ metadata['ru_name'] }} has diversified to produce or provide new goods or services",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer02a69fd3-aa57-46a7-9487-cec81843a6e4",
-                                "mandatory": true,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "description": "",
-                                "q_code": "125",
-                                "max_length": 2000
-                            }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
                             }]
                         }]
                     }
                 ],
                 "skip_conditions": [{
                         "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
                                 "values": ["Not sure"]
                             },
                             {
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains any",
                                 "values": ["Not applicable"]
@@ -1011,666 +866,20 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Paused trading but intends to restart in the next two weeks",
-                                "Paused trading and does not intend to restart in the next two weeks"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Paused trading but intends to restart in the next two weeks",
+                                "Paused trading and does not intend to restart in the next two weeks"
+                            ]
                         }]
                     }
                 ]
-            }]
-        },
-        {
-            "id": "sectionaf9cbebb-ec7e-4a68-b46d-2b7d081d16d7",
-            "title": "Postponed or cancelled bookings, services and events",
-            "groups": [{
-                "id": "groupaf9cbebb-ec7e-4a68-b46d-2b7d081d16d7",
-                "title": "Postponed or cancelled bookings, services and events",
-                "blocks": [{
-                        "type": "Interstitial",
-                        "id": "groupaf9cbebb-ec7e-4a68-b46d-2b7d081d16d7-introduction",
-                        "title": "Postponed or cancelled bookings, services and events",
-                        "description": "<p>This section asks for information about how the business is managing postponed or cancelled bookings, services and events sold to customers during the coronavirus (COVID-19) pandemic.</p>",
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block36019578-5d21-43b6-a068-ebafa16c768e",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question36019578-5d21-43b6-a068-ebafa16c768e",
-                            "title": "Has {{ metadata['ru_name'] }} <em>postponed or cancelled</em> any bookings, services or events sold to customers, due to the coronavirus (COVID-19) pandemic?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "127",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group139b1d35-6271-4893-8eef-e1a36f2eb3c9",
-                                    "when": [{
-                                            "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
-                                            "condition": "contains any",
-                                            "values": ["No", "Not sure", "Not applicable"]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Currently trading and has been for more than the last two weeks",
-                                                "Started trading within the last two weeks after a pause in trading"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
-                                    "when": [{
-                                            "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
-                                            "condition": "contains any",
-                                            "values": ["No", "Not sure", "Not applicable"]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Paused trading but intends to restart in the next two weeks",
-                                                "Paused trading and does not intend to restart in the next two weeks"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block935395a7-882a-45bd-860e-47c605ab1281",
-                                    "when": [{
-                                            "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
-                                            "condition": "contains any",
-                                            "values": ["Yes"]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Currently trading and has been for more than the last two weeks",
-                                                "Started trading within the last two weeks after a pause in trading",
-                                                "Paused trading but intends to restart in the next two weeks",
-                                                "Paused trading and does not intend to restart in the next two weeks"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
-                                }
-                            }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block935395a7-882a-45bd-860e-47c605ab1281",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question935395a7-882a-45bd-860e-47c605ab1281",
-                            "title": "How is {{ metadata['ru_name'] }} <em>managing</em> postponed or cancelled bookings, services or events sold to customers?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Offering the option to re-book for future dates",
-                                            "value": "Offering the option to re-book for future dates",
-                                            "q_code": "1181"
-                                        },
-                                        {
-                                            "label": "Rescheduling for a future date",
-                                            "value": "Rescheduling for a future date",
-                                            "q_code": "1182"
-                                        },
-                                        {
-                                            "label": "Allowing customers to stop direct debits",
-                                            "value": "Allowing customers to stop direct debits",
-                                            "q_code": "1183"
-                                        },
-                                        {
-                                            "label": "Offering full refunds",
-                                            "value": "Offering full refunds",
-                                            "q_code": "1184"
-                                        },
-                                        {
-                                            "label": "Offering partial refunds",
-                                            "value": "Offering partial refunds",
-                                            "q_code": "1185"
-                                        },
-                                        {
-                                            "label": "Offering vouchers to be used on our products or services",
-                                            "value": "Offering vouchers to be used on our products or services",
-                                            "q_code": "1186"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "1187",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer59b22829-c22d-4c87-bc73-1028752b5818",
-                                                "mandatory": false
-                                            }
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "1188"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "None of the above",
-                                        "value": "None of the above",
-                                        "q_code": "1180"
-                                    }]
-                                }
-                            ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group139b1d35-6271-4893-8eef-e1a36f2eb3c9",
-                                    "when": [{
-                                            "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
-                                            "condition": "contains any",
-                                            "values": ["Not sure"]
-                                        },
-                                        {
-                                            "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
-                                            "condition": "contains any",
-                                            "values": ["None of the above"]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Currently trading and has been for more than the last two weeks",
-                                                "Started trading within the last two weeks after a pause in trading"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
-                                    "when": [{
-                                            "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
-                                            "condition": "contains any",
-                                            "values": ["Not sure"]
-                                        },
-                                        {
-                                            "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
-                                            "condition": "contains any",
-                                            "values": ["None of the above"]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Paused trading but intends to restart in the next two weeks",
-                                                "Paused trading and does not intend to restart in the next two weeks"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block38ecd8cf-8942-4d0e-a84d-8099393acfea",
-                                    "when": [{
-                                            "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Offering the option to re-book for future dates",
-                                                "Rescheduling for a future date",
-                                                "Allowing customers to stop direct debits",
-                                                "Offering full refunds",
-                                                "Offering partial refunds",
-                                                "Offering vouchers to be used on our products or services",
-                                                "Other"
-                                            ]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Currently trading and has been for more than the last two weeks",
-                                                "Started trading within the last two weeks after a pause in trading",
-                                                "Paused trading but intends to restart in the next two weeks",
-                                                "Paused trading and does not intend to restart in the next two weeks"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
-                                }
-                            }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block38ecd8cf-8942-4d0e-a84d-8099393acfea",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question38ecd8cf-8942-4d0e-a84d-8099393acfea",
-                            "title": "Has {{ metadata['ru_name'] }} <em>changed its approach</em> for managing postponed or cancelled bookings, services or events since the start of the coronavirus (COVID-19) pandemic?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "119",
-                                "options": [{
-                                        "label": "Yes, approach has changed",
-                                        "value": "Yes, approach has changed"
-                                    },
-                                    {
-                                        "label": "No, approach has not changed",
-                                        "value": "No, approach has not changed"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group139b1d35-6271-4893-8eef-e1a36f2eb3c9",
-                                    "when": [{
-                                            "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
-                                            "condition": "contains any",
-                                            "values": ["No, approach has not changed", "Not sure"]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Currently trading and has been for more than the last two weeks",
-                                                "Started trading within the last two weeks after a pause in trading"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
-                                    "when": [{
-                                            "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
-                                            "condition": "contains any",
-                                            "values": ["No, approach has not changed", "Not sure"]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Paused trading but intends to restart in the next two weeks",
-                                                "Paused trading and does not intend to restart in the next two weeks"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block021b3411-c28a-4eab-81b5-cdba712c2f1b",
-                                    "when": [{
-                                            "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
-                                            "condition": "contains any",
-                                            "values": ["Yes, approach has changed"]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Currently trading and has been for more than the last two weeks",
-                                                "Started trading within the last two weeks after a pause in trading",
-                                                "Paused trading but intends to restart in the next two weeks",
-                                                "Paused trading and does not intend to restart in the next two weeks"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
-                                }
-                            }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block021b3411-c28a-4eab-81b5-cdba712c2f1b",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question021b3411-c28a-4eab-81b5-cdba712c2f1b",
-                            "title": "Which of the following affected {{ metadata['ru_name'] }}&apos;s <em>decision to change its approach</em> for managing postponed or cancelled bookings, services or events?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Guidance",
-                                            "value": "Guidance",
-                                            "q_code": "1201"
-                                        },
-                                        {
-                                            "label": "Requests from customers",
-                                            "value": "Requests from customers",
-                                            "q_code": "1202"
-                                        },
-                                        {
-                                            "label": "The circumstances were not covered in our existing policies",
-                                            "value": "The circumstances were not covered in our existing policies",
-                                            "q_code": "1203"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "1204",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answerd0b7d257-7d49-48b4-93e8-be6de9c35e23",
-                                                "mandatory": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "1205"
-                                    }]
-                                }
-                            ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block7e1d161b-e606-4e72-963a-06ef3aa8d22f",
-                                    "when": [{
-                                        "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
-                                        "condition": "contains any",
-                                        "values": ["Guidance"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group139b1d35-6271-4893-8eef-e1a36f2eb3c9",
-                                    "when": [{
-                                            "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
-                                            "condition": "contains any",
-                                            "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
-                                        },
-                                        {
-                                            "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
-                                            "condition": "contains any",
-                                            "values": ["Not sure"]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Currently trading and has been for more than the last two weeks",
-                                                "Started trading within the last two weeks after a pause in trading"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
-                                    "when": [{
-                                            "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
-                                            "condition": "contains any",
-                                            "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
-                                        },
-                                        {
-                                            "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
-                                            "condition": "contains any",
-                                            "values": ["Not sure"]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Paused trading but intends to restart in the next two weeks",
-                                                "Paused trading and does not intend to restart in the next two weeks"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
-                                }
-                            }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block7e1d161b-e606-4e72-963a-06ef3aa8d22f",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question7e1d161b-e606-4e72-963a-06ef3aa8d22f",
-                            "title": "What did {{ metadata['ru_name'] }} use as a <em>guide</em> to change its approach?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answerc3e789a8-f88b-4898-9d37-42e8c35dd8d2",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Government guidance",
-                                            "value": "Government guidance",
-                                            "q_code": "1211"
-                                        },
-                                        {
-                                            "label": "Guidance from the Competition and Markets Authority (CMA)",
-                                            "value": "Guidance from the Competition and Markets Authority (CMA)",
-                                            "q_code": "1212"
-                                        },
-                                        {
-                                            "label": "Guidance from the Civil Aviation Authority (CAA)",
-                                            "value": "Guidance from the Civil Aviation Authority (CAA)",
-                                            "q_code": "1213"
-                                        },
-                                        {
-                                            "label": "Guidance from the Financial Conduct Authority (FCA)",
-                                            "value": "Guidance from the Financial Conduct Authority (FCA)",
-                                            "q_code": "1214"
-                                        },
-                                        {
-                                            "label": "Guidance from Trading Standards",
-                                            "value": "Guidance from Trading Standards",
-                                            "q_code": "1215"
-                                        },
-                                        {
-                                            "label": "Other industry-specific guidance",
-                                            "value": "Other industry-specific guidance",
-                                            "q_code": "1216"
-                                        },
-                                        {
-                                            "label": "Media",
-                                            "value": "Media",
-                                            "q_code": "1217",
-                                            "description": "For example, television, radio or newspaper articles. Exclude social media."
-                                        },
-                                        {
-                                            "label": "Social media",
-                                            "value": "Social media",
-                                            "q_code": "1218",
-                                            "description": "For example, Facebook, Twitter or Instagram."
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "1219",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer9f1ac7f9-0494-48e5-8379-50d7eef7d6a2",
-                                                "mandatory": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answerc3e789a8-f88b-4898-9d37-42e8c35dd8d2-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "1210"
-                                    }]
-                                }
-                            ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
-                                    "when": [{
-                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "Paused trading but intends to restart in the next two weeks",
-                                            "Paused trading and does not intend to restart in the next two weeks"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group139b1d35-6271-4893-8eef-e1a36f2eb3c9",
-                                    "when": [{
-                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "Currently trading and has been for more than the last two weeks",
-                                            "Started trading within the last two weeks after a pause in trading"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
-                                }
-                            }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    }
-                ],
-                "skip_conditions": [{
-                    "when": [{
-                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                        "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
-                    }]
-                }]
             }]
         },
         {
@@ -1683,13 +892,7 @@
                         "type": "Interstitial",
                         "id": "group139b1d35-6271-4893-8eef-e1a36f2eb3c9-introduction",
                         "title": "Exporting and importing",
-                        "description": "<p>This section asks for information about the business&apos;s importing and exporting activities.</p>",
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        "description": "<p>This section asks for information about the business&apos;s importing and exporting activities.</p>"
                     },
                     {
                         "id": "block059d51ee-2b0f-456f-8a29-23b1c97e2dac",
@@ -1735,13 +938,7 @@
                                     "block": "block0af301b1-70ce-4fc7-a698-7374fb9436e4"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block0af301b1-70ce-4fc7-a698-7374fb9436e4",
@@ -1787,13 +984,7 @@
                                     "block": "block730e686b-f62a-444a-a62d-805ced57ace8"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block730e686b-f62a-444a-a62d-805ced57ace8",
@@ -1831,12 +1022,6 @@
                                     }
                                 ]
                             }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     },
                     {
@@ -1854,12 +1039,6 @@
                                 "description": "",
                                 "q_code": "8",
                                 "max_length": 2000
-                            }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
                             }]
                         }]
                     },
@@ -1907,13 +1086,7 @@
                                     "block": "block4b9c0508-34e9-4b60-bde1-d803c99bed59"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block4b9c0508-34e9-4b60-bde1-d803c99bed59",
@@ -1959,13 +1132,7 @@
                                     "block": "block41cb8d16-ed70-4442-a3e1-fac1efdea741"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block41cb8d16-ed70-4442-a3e1-fac1efdea741",
@@ -2003,12 +1170,6 @@
                                     }
                                 ]
                             }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     },
                     {
@@ -2027,83 +1188,18 @@
                                 "q_code": "11",
                                 "max_length": 2000
                             }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     }
                 ],
                 "skip_conditions": [{
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "condition": "not set"
                         }]
                     },
                     {
                         "when": [{
-                                "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
-                                "condition": "contains any",
-                                "values": ["No", "Not sure", "Not applicable"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
-                                "condition": "contains any",
-                                "values": ["Not sure"]
-                            },
-                            {
-                                "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
-                                "condition": "contains any",
-                                "values": ["None of the above"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
-                                "condition": "contains any",
-                                "values": ["No, approach has not changed", "Not sure"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
-                                "condition": "contains any",
-                                "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
-                            },
-                            {
-                                "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
+                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
                                 "values": ["Not sure"]
                             },
@@ -2116,6 +1212,29 @@
                                 ]
                             }
                         ]
+                    },
+                    {
+                        "when": [{
+                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
+                                "condition": "contains any",
+                                "values": ["Not applicable"]
+                            },
+                            {
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": ["Permanently ceased trading"]
+                        }]
                     },
                     {
                         "when": [{
@@ -2140,13 +1259,7 @@
                         "type": "Interstitial",
                         "id": "group5c8d0ebe-e6e2-4ff6-a2bd-99ccf4edbde6-introduction",
                         "title": "UK supply chain",
-                        "description": "<p>This section asks for information about the availability of materials, goods and services within the UK.</p>",
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        "description": "<p>This section asks for information about:</p><ul><li> the availability of materials, goods and services within the UK </li><li>the use of UK logistics services</li></ul>"
                     },
                     {
                         "id": "block0e1472db-36f2-4d40-b99e-510e70442636",
@@ -2163,8 +1276,8 @@
                                 "description": "",
                                 "q_code": "13",
                                 "options": [{
-                                        "label": "Yes, the business has been able to  get what we needed",
-                                        "value": "Yes, the business has been able to  get what we needed"
+                                        "label": "Yes, the business has been able to  get what it needed",
+                                        "value": "Yes, the business has been able to  get what it needed"
                                     },
                                     {
                                         "label": "Yes, but the business had to change suppliers or find alternative solutions",
@@ -2193,16 +1306,10 @@
                             },
                             {
                                 "goto": {
-                                    "group": "groupff9741ed-a1da-4edf-bc6b-6bb62ddc94ec"
+                                    "block": "block28c72fbc-0e7b-4c57-aab2-f376835daaa3"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "blockfc873320-2213-4d19-982e-21b826833e1c",
@@ -2220,11 +1327,149 @@
                                 "q_code": "14",
                                 "max_length": 2000
                             }]
+                        }]
+                    },
+                    {
+                        "id": "block28c72fbc-0e7b-4c57-aab2-f376835daaa3",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question28c72fbc-0e7b-4c57-aab2-f376835daaa3",
+                            "title": "In the <em>last two weeks</em>, did {{ metadata['ru_name'] }} use logistics services to distribute goods or services produced, <em>within the UK</em>?",
+                            "description": "<p>This is about the distribution of goods or services within the UK or to UK ports for export.</p>",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude warehousing services"
+                                }]
+                            },
+                            "definitions": [{
+                                "title": "Examples of logistics services",
+                                "content": [{
+                                    "list": ["delivery and courier services", "haulage services"]
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer283ed838-951f-4484-ab60-e2abdd1cbe90",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "105",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No, because we could not obtain the UK logistics services we needed",
+                                        "value": "No, because we could not obtain the UK logistics services we needed"
+                                    },
+                                    {
+                                        "label": "No, because we did not need UK logistics services",
+                                        "value": "No, because we did not need UK logistics services"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
                         }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "groupff9741ed-a1da-4edf-bc6b-6bb62ddc94ec",
+                                    "when": [{
+                                        "id": "answer283ed838-951f-4484-ab60-e2abdd1cbe90",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "No, because we could not obtain the UK logistics services we needed",
+                                            "No, because we did not need UK logistics services",
+                                            "Not sure"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockbb178280-e6f8-4348-b542-7dcff32cb1ac"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockbb178280-e6f8-4348-b542-7dcff32cb1ac",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionbb178280-e6f8-4348-b542-7dcff32cb1ac",
+                            "title": "Did the logistics services used in the <em>last two weeks</em> meet {{ metadata['ru_name'] }}&apos;s UK distribution demands?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude warehousing services"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerfed8d12c-2268-4f70-ad57-72c7470a98b1",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "106",
+                                "options": [{
+                                        "label": "All distribution demands were met",
+                                        "value": "All distribution demands were met"
+                                    },
+                                    {
+                                        "label": "Some distribution demands were met",
+                                        "value": "Some distribution demands were met"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block24b5f107-e230-477f-9553-800514d96a86",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question24b5f107-e230-477f-9553-800514d96a86",
+                            "title": "To what extent do you expect that {{ metadata['ru_name'] }}&apos;s UK distribution demands will be met by logistics services in the <em>next two weeks</em>?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude warehousing services"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer2240a656-64b0-4f1f-9a37-82559d3ea47a",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "107",
+                                "options": [{
+                                        "label": "All UK distribution demands will be met",
+                                        "value": "All UK distribution demands will be met"
+                                    },
+                                    {
+                                        "label": "Some UK distribution demands will be met",
+                                        "value": "Some UK distribution demands will be met"
+                                    },
+                                    {
+                                        "label": "None of the UK distribution demands will be met",
+                                        "value": "None of the UK distribution demands will be met"
+                                    },
+                                    {
+                                        "label": "The business will not need any UK distribution",
+                                        "value": "The business will not need any UK distribution"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
                             }]
                         }]
                     }
@@ -2232,71 +1477,12 @@
                 "skip_conditions": [{
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "condition": "not set"
                         }]
                     },
                     {
                         "when": [{
-                                "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
-                                "condition": "contains any",
-                                "values": ["No", "Not sure", "Not applicable"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
-                                "condition": "contains any",
-                                "values": ["Not sure"]
-                            },
-                            {
-                                "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
-                                "condition": "contains any",
-                                "values": ["None of the above"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
-                                "condition": "contains any",
-                                "values": ["No, approach has not changed", "Not sure"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
-                                "condition": "contains any",
-                                "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
-                            },
-                            {
-                                "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
+                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
                                 "values": ["Not sure"]
                             },
@@ -2309,6 +1495,29 @@
                                 ]
                             }
                         ]
+                    },
+                    {
+                        "when": [{
+                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
+                                "condition": "contains any",
+                                "values": ["Not applicable"]
+                            },
+                            {
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": ["Permanently ceased trading"]
+                        }]
                     },
                     {
                         "when": [{
@@ -2333,13 +1542,7 @@
                         "type": "Interstitial",
                         "id": "groupff9741ed-a1da-4edf-bc6b-6bb62ddc94ec-introduction",
                         "title": "Prices of materials, goods and services",
-                        "description": "<p>This section asks for information on any changes to the prices of goods and services <em>bought or sold</em> by the business in the last two weeks.</p>",
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        "description": "<p>This section asks for information on any changes to the prices and demand of goods and services <em>bought or sold</em> by the business in the last two weeks.</p>"
                     },
                     {
                         "id": "blockce542f26-a704-4dc6-a0ef-292c2739e4e6",
@@ -2407,13 +1610,7 @@
                                     "block": "block89e663b4-3ff2-4e68-9d51-1ea33411a407"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block89e663b4-3ff2-4e68-9d51-1ea33411a407",
@@ -2430,12 +1627,6 @@
                                 "description": "",
                                 "q_code": "16",
                                 "max_length": 2000
-                            }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
                             }]
                         }]
                     },
@@ -2470,12 +1661,6 @@
                                         "value": "Not sure"
                                     }
                                 ]
-                            }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
                             }]
                         }]
                     },
@@ -2522,16 +1707,6 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block13fc69db-bd9a-4996-9724-66a6a6be13c0",
-                                    "when": [{
-                                        "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
-                                        "condition": "contains any",
-                                        "values": ["Prices did not change any more than normal", "Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
                                     "group": "group91ec421d-5346-4b67-8d16-a8268f1c4c07",
                                     "when": [{
                                         "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
@@ -2542,16 +1717,20 @@
                             },
                             {
                                 "goto": {
+                                    "block": "block13fc69db-bd9a-4996-9724-66a6a6be13c0",
+                                    "when": [{
+                                        "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
+                                        "condition": "contains any",
+                                        "values": ["Prices did not change any more than normal", "Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
                                     "block": "blockf41e30d1-d01e-472f-9201-be7749d83557"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "blockf41e30d1-d01e-472f-9201-be7749d83557",
@@ -2562,18 +1741,12 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answere3b55e00-f101-4ffe-8c5f-6a3272dfd8cc",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
                                 "q_code": "19",
                                 "max_length": 2000
-                            }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
                             }]
                         }]
                     },
@@ -2609,11 +1782,73 @@
                                     }
                                 ]
                             }]
+                        }]
+                    },
+                    {
+                        "id": "block26f99a57-82bd-4cd2-96f1-0de2a2e74812",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question26f99a57-82bd-4cd2-96f1-0de2a2e74812",
+                            "title": "Has {{ metadata['ru_name'] }} had an <em>increase in demand</em> for goods or services sold in the last two weeks?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answera0b70920-ba8a-4fdd-9862-822b401cb422",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "136",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
                         }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group91ec421d-5346-4b67-8d16-a8268f1c4c07",
+                                    "when": [{
+                                        "id": "answera0b70920-ba8a-4fdd-9862-822b401cb422",
+                                        "condition": "contains any",
+                                        "values": ["No", "Not sure", "Not applicable"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block9c7af78f-b6e2-4a66-b3d6-90266de08715"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block9c7af78f-b6e2-4a66-b3d6-90266de08715",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question9c7af78f-b6e2-4a66-b3d6-90266de08715",
+                            "title": "Which goods or services have had an increase in demand?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer59b2543c-4b1f-4dae-bd02-8d22e04c331e",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "137",
+                                "max_length": 2000
                             }]
                         }]
                     }
@@ -2621,71 +1856,12 @@
                 "skip_conditions": [{
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "condition": "not set"
                         }]
                     },
                     {
                         "when": [{
-                                "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
-                                "condition": "contains any",
-                                "values": ["No", "Not sure", "Not applicable"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
-                                "condition": "contains any",
-                                "values": ["Not sure"]
-                            },
-                            {
-                                "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
-                                "condition": "contains any",
-                                "values": ["None of the above"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
-                                "condition": "contains any",
-                                "values": ["No, approach has not changed", "Not sure"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
-                                "condition": "contains any",
-                                "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
-                            },
-                            {
-                                "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
+                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
                                 "values": ["Not sure"]
                             },
@@ -2698,6 +1874,29 @@
                                 ]
                             }
                         ]
+                    },
+                    {
+                        "when": [{
+                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
+                                "condition": "contains any",
+                                "values": ["Not applicable"]
+                            },
+                            {
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": ["Permanently ceased trading"]
+                        }]
                     },
                     {
                         "when": [{
@@ -2722,20 +1921,14 @@
                         "type": "Interstitial",
                         "id": "group91ec421d-5346-4b67-8d16-a8268f1c4c07-introduction",
                         "title": "Stock and capital expenditure",
-                        "description": "<p>This section asks for information about how the coronavirus (COVID-19) pandemic may have affected the business&apos;s stock and capital expenditure.</p>",
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        "description": "<p>This section asks for information about how the coronavirus (COVID-19) pandemic may have affected the business&apos;s stock and capital expenditure.</p>"
                     },
                     {
                         "id": "block9a64bb02-fc94-4a2a-bda1-9e96f64bcd01",
                         "type": "Question",
                         "questions": [{
                             "id": "question9a64bb02-fc94-4a2a-bda1-9e96f64bcd01",
-                            "title": "How has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&#x2019;s <em>stock levels </em>in the last two weeks?",
+                            "title": "How has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&#x2019;s <em>stock levels</em> in the last two weeks?",
                             "description": "<p>Your business may use the term  &quot;inventories&quot; instead of &quot;stock&quot;.</p>",
                             "type": "General",
                             "answers": [{
@@ -2780,23 +1973,17 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block3313b8a4-1fd6-4ab9-a874-909e86a1f86d"
+                                    "block": "block0bad546b-2817-4249-bc22-d5a9107fc8f2"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block8b3a9f71-4818-40db-a9f6-1d7ca69fe9e8",
                         "type": "Question",
                         "questions": [{
                             "id": "question8b3a9f71-4818-40db-a9f6-1d7ca69fe9e8",
-                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic has affected {{ metadata['ru_name'] }}&#x2019;s stock levels in the last two weeks",
+                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic has affected stock levels in the last two weeks",
                             "type": "General",
                             "answers": [{
                                 "id": "answere8a99b49-c76b-4598-925a-047596365fd1",
@@ -2807,23 +1994,177 @@
                                 "q_code": "111",
                                 "max_length": 2000
                             }]
+                        }]
+                    },
+                    {
+                        "id": "block0bad546b-2817-4249-bc22-d5a9107fc8f2",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question0bad546b-2817-4249-bc22-d5a9107fc8f2",
+                            "title": "Is {{ metadata['ru_name'] }} <em>stockpiling</em> any materials or goods?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer6bfe6e82-5d10-40ae-9917-4760a848e485",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "138",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
                         }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block341c0966-6f9b-4c58-b84f-9df4444b00bf",
+                                    "when": [{
+                                        "id": "answer6bfe6e82-5d10-40ae-9917-4760a848e485",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block50c7e7f6-fa90-40a1-9529-54a223ff18fe"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block341c0966-6f9b-4c58-b84f-9df4444b00bf",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question341c0966-6f9b-4c58-b84f-9df4444b00bf",
+                            "title": "Which materials or goods are you stockpiling?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer842021f5-412c-44fb-8262-a79a88281fbf",
+                                "mandatory": true,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "139",
+                                "max_length": 2000
                             }]
                         }]
                     },
                     {
-                        "id": "block3313b8a4-1fd6-4ab9-a874-909e86a1f86d",
+                        "id": "blockdef34c4b-957e-4529-89d3-997801b3b74a",
                         "type": "Question",
                         "questions": [{
-                            "id": "question3313b8a4-1fd6-4ab9-a874-909e86a1f86d",
-                            "title": "How has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s <em>capital expenditure</em>?",
+                            "id": "questiondef34c4b-957e-4529-89d3-997801b3b74a",
+                            "title": "Where are the stockpiled materials or goods being stored?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer614d9c7e-ad40-4777-b601-cd7f2b302397",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Within the UK",
+                                            "value": "Within the UK",
+                                            "q_code": "1401"
+                                        },
+                                        {
+                                            "label": "Outside the UK",
+                                            "value": "Outside the UK",
+                                            "q_code": "1402"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer614d9c7e-ad40-4777-b601-cd7f2b302397-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "1400"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "blockb517828c-4968-4719-abad-e2478c2c95bf",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionb517828c-4968-4719-abad-e2478c2c95bf",
+                            "title": "Which <em>storage solutions</em> are you using for stockpiling these materials or goods?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer36cfef11-dc32-4433-b299-c187e4bf0a37",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Building new storage",
+                                            "value": "Building new storage",
+                                            "q_code": "1411"
+                                        },
+                                        {
+                                            "label": "Renting new storage",
+                                            "value": "Renting new storage",
+                                            "q_code": "1412"
+                                        },
+                                        {
+                                            "label": "Using more of our current storage",
+                                            "value": "Using more of our current storage",
+                                            "q_code": "1413"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "1414",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answer65a2d04c-ef6c-4344-9986-2c2c23ed04d0",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer36cfef11-dc32-4433-b299-c187e4bf0a37-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "1410"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "block50c7e7f6-fa90-40a1-9529-54a223ff18fe",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question50c7e7f6-fa90-40a1-9529-54a223ff18fe",
+                            "title": "How has the coronavirus (COVID-19) pandemic affected [Ru Name]&apos;s <em>capital expenditure</em>?",
                             "type": "General",
                             "answers": [{
-                                "id": "answer81b0d7f7-22b5-4fd6-a9ef-b774dbcc379f",
+                                "id": "answer78b4dee5-4ea4-4ef9-a306-26a95c10a78d",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -2858,91 +2199,53 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "blocke4cf91f5-de29-4545-be73-519ba55ef740",
+                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
                                     "when": [{
-                                        "id": "answer81b0d7f7-22b5-4fd6-a9ef-b774dbcc379f",
+                                        "id": "answer78b4dee5-4ea4-4ef9-a306-26a95c10a78d",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Capital expenditure is higher than normal",
-                                            "Capital expenditure is lower than normal",
-                                            "Capital expenditure has stopped"
-                                        ]
+                                        "values": ["Capital expenditure has not been affected", "Not sure", "Not applicable"]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "group": "groupc4064d34-46d7-43ef-8ff1-52f12500ab4c"
+                                    "block": "block0a278777-61f2-4de1-ba93-49d249351ec7"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
-                        "id": "blocke4cf91f5-de29-4545-be73-519ba55ef740",
+                        "id": "block0a278777-61f2-4de1-ba93-49d249351ec7",
                         "type": "Question",
                         "questions": [{
-                            "id": "questione4cf91f5-de29-4545-be73-519ba55ef740",
-                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic has affected {{ metadata['ru_name'] }}&#x2019;s capital expenditure",
+                            "id": "question0a278777-61f2-4de1-ba93-49d249351ec7",
+                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic has affected {{ metadata['ru_name'] }}&apos;s capital expenditure",
                             "type": "General",
                             "answers": [{
-                                "id": "answer908cc56d-3047-40fc-a595-4d7cf639c584",
-                                "mandatory": true,
+                                "id": "answer75ac933d-8cb7-466f-85d2-15fca313b84c",
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
                                 "q_code": "123",
                                 "max_length": 2000
                             }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     }
                 ],
                 "skip_conditions": [{
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "condition": "not set"
                         }]
                     },
                     {
                         "when": [{
-                                "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
-                                "condition": "contains any",
-                                "values": ["No", "Not sure", "Not applicable"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
+                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
                                 "values": ["Not sure"]
                             },
                             {
-                                "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
-                                "condition": "contains any",
-                                "values": ["None of the above"]
-                            },
-                            {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                 "condition": "contains any",
                                 "values": [
@@ -2954,30 +2257,9 @@
                     },
                     {
                         "when": [{
-                                "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
+                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains any",
-                                "values": ["No, approach has not changed", "Not sure"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
-                                "condition": "contains any",
-                                "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
-                            },
-                            {
-                                "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
-                                "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2993,347 +2275,8 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Paused trading but intends to restart in the next two weeks",
-                                "Paused trading and does not intend to restart in the next two weeks"
-                            ]
-                        }]
-                    }
-                ]
-            }]
-        },
-        {
-            "id": "sectionc4064d34-46d7-43ef-8ff1-52f12500ab4c",
-            "title": "Innovation",
-            "groups": [{
-                "id": "groupc4064d34-46d7-43ef-8ff1-52f12500ab4c",
-                "title": "Innovation",
-                "blocks": [{
-                        "type": "Interstitial",
-                        "id": "groupc4064d34-46d7-43ef-8ff1-52f12500ab4c-introduction",
-                        "title": "Innovation",
-                        "description": "<p>This section asks for information about any new or improved innovations made by your business during the coronavirus (COVID-19) pandemic. </p>",
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block63a58106-3671-41b6-b2d1-a353092c214b",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question63a58106-3671-41b6-b2d1-a353092c214b",
-                            "title": "How has {{ metadata['ru_name'] }}&apos;s <em>level of innovation</em> been affected by the coronavirus (COVID-19) pandemic?",
-                            "definitions": [{
-                                "title": "What we mean by \"level of innovation\"",
-                                "content": [{
-                                        "description": "This refers to the level at which your business creates or significantly improves:"
-                                    },
-                                    {
-                                        "list": [
-                                            "goods, materials or services",
-                                            "processes introduced to produce or supply all goods, materials or services",
-                                            "investments for future innovation and organisational practices"
-                                        ]
-                                    }
-                                ]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answere66540a0-a6eb-4dc2-8bb9-3cc2bf518f97",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "112",
-                                "options": [{
-                                        "label": "There has been more innovation",
-                                        "value": "There has been more innovation"
-                                    },
-                                    {
-                                        "label": "Innovation has not been affected",
-                                        "value": "Innovation has not been affected"
-                                    },
-                                    {
-                                        "label": "There has been less innovation",
-                                        "value": "There has been less innovation"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block8e65201d-26a2-4a25-b00f-06eda6a70ca3",
-                                    "when": [{
-                                        "id": "answere66540a0-a6eb-4dc2-8bb9-3cc2bf518f97",
-                                        "condition": "contains any",
-                                        "values": ["Not applicable"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockf1adc001-41b0-4898-b3b4-38d3abfacbe3"
-                                }
-                            }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blockf1adc001-41b0-4898-b3b4-38d3abfacbe3",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionf1adc001-41b0-4898-b3b4-38d3abfacbe3",
-                            "title": "During the coronavirus (COVID-19) pandemic, which of the following did {{ metadata['ru_name'] }} <em>innovate:</em>",
-                            "definitions": [{
-                                "title": "What we mean by \"innovate\"",
-                                "content": [{
-                                        "description": "This refers to your business creating new or significantly improved:"
-                                    },
-                                    {
-                                        "list": [
-                                            "goods, materials or services",
-                                            "processes introduced to produce or supply all goods, materials or services",
-                                            "investments for future innovation and organisational practices"
-                                        ]
-                                    }
-                                ]
-                            }],
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer733f3739-2a76-4b69-acff-6f7542b77158",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Goods and/or materials",
-                                            "value": "Goods and/or materials",
-                                            "q_code": "1131"
-                                        },
-                                        {
-                                            "label": "Services",
-                                            "value": "Services",
-                                            "q_code": "1132"
-                                        },
-                                        {
-                                            "label": "Methods of manufacturing  goods, materials or services",
-                                            "value": "Methods of manufacturing  goods, materials or services",
-                                            "q_code": "1133"
-                                        },
-                                        {
-                                            "label": "Methods of logistics, delivery or distribution",
-                                            "value": "Methods of logistics, delivery or distribution",
-                                            "q_code": "1134"
-                                        },
-                                        {
-                                            "label": "Supporting activities for your processes",
-                                            "value": "Supporting activities for your processes",
-                                            "q_code": "1135",
-                                            "description": "For example, maintenance systems or operations for purchasing, accounting, or computing"
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "1136"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer733f3739-2a76-4b69-acff-6f7542b77158-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "None of the above",
-                                        "value": "None of the above",
-                                        "q_code": "1130"
-                                    }]
-                                }
-                            ]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block8e65201d-26a2-4a25-b00f-06eda6a70ca3",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question8e65201d-26a2-4a25-b00f-06eda6a70ca3",
-                            "title": "In the <em>next 12 months</em>, does {{ metadata['ru_name'] }} expect to use any of the following forms of intellectual property to protect its <em>innovations</em>?",
-                            "definitions": [{
-                                "title": "What we mean by \"intellectual property\"",
-                                "content": [{
-                                    "description": "This refers to creations of the mind such as inventions, names and images used in commerce, artistic works, designs, and symbols. Intellectual property is protected by law, which enables people and businesses to earn recognition or financial benefit from what they create."
-                                }]
-                            }],
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer4a8f04de-50b1-4d54-8edb-4efc8beddec9",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Copyright",
-                                            "value": "Copyright",
-                                            "q_code": "1141"
-                                        },
-                                        {
-                                            "label": "Patent",
-                                            "value": "Patent",
-                                            "q_code": "1142"
-                                        },
-                                        {
-                                            "label": "Registered design",
-                                            "value": "Registered design",
-                                            "q_code": "1143"
-                                        },
-                                        {
-                                            "label": "Trade mark",
-                                            "value": "Trade mark",
-                                            "q_code": "1144"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "1145",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer488036ea-f833-44cc-877c-19b144ae46f9",
-                                                "mandatory": false
-                                            }
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "1146"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer4a8f04de-50b1-4d54-8edb-4efc8beddec9-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "None of the above",
-                                        "value": "None of the above",
-                                        "q_code": "1140"
-                                    }]
-                                }
-                            ]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
-                    }
-                ],
-                "skip_conditions": [{
-                        "when": [{
-                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
                             "values": ["Permanently ceased trading"]
                         }]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer399d67d7-f59d-4ab5-ad00-d3b522fb7cd6",
-                                "condition": "contains any",
-                                "values": ["No", "Not sure", "Not applicable"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answere528d417-67e6-4356-b660-107bab6c73f1",
-                                "condition": "contains any",
-                                "values": ["Not sure"]
-                            },
-                            {
-                                "id": "answere528d417-67e6-4356-b660-107bab6c73f1-exclusive",
-                                "condition": "contains any",
-                                "values": ["None of the above"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer0ebd8695-e6d4-4fe0-b24f-0a50d9ab27eb",
-                                "condition": "contains any",
-                                "values": ["No, approach has not changed", "Not sure"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe",
-                                "condition": "contains any",
-                                "values": ["Requests from customers", "The circumstances were not covered in our existing policies", "Other"]
-                            },
-                            {
-                                "id": "answer35b1899b-c9b4-489e-9390-113d37cdebfe-exclusive",
-                                "condition": "contains any",
-                                "values": ["Not sure"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
                     },
                     {
                         "when": [{
@@ -3358,13 +2301,7 @@
                         "type": "Interstitial",
                         "id": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba-introduction",
                         "title": "Access to financial support",
-                        "description": "<p>This section asks for information on:</p><ul><li>any applications that the business made for government financial initiatives or schemes</li><li>any applications the business intends to make for government initiatives or schemes</li><li>any applications for non-government financial support</li></ul>",
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        "description": "<p>This section asks for information on:</p><ul><li>any applications that the business made for government financial initiatives or schemes</li><li>any applications the business intends to make for government initiatives or schemes</li><li>any applications for non-government financial support</li><li>the business&apos;s risk of insolvency</li></ul>"
                     },
                     {
                         "id": "block2ea33f36-282b-40d4-a881-0d946f8d4408",
@@ -3448,13 +2385,7 @@
                                     "block": "blockd39bd617-f259-488e-baf2-a51905d69b10"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "blocke46ad473-b3a0-4791-b658-d3ebcd35e785",
@@ -3510,13 +2441,7 @@
                                     "block": "blockd39bd617-f259-488e-baf2-a51905d69b10"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block4f715518-d276-4297-b1f5-04f4debbb713",
@@ -3610,13 +2535,7 @@
                                     "block": "blockd39bd617-f259-488e-baf2-a51905d69b10"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block182ef910-1276-449f-9184-bb7d8234e84f",
@@ -3688,13 +2607,7 @@
                                     "block": "blockf3731f81-73c0-4214-a771-3e321785afd7"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block525537e6-e6b5-401d-850d-2fe2f8da287a",
@@ -3756,13 +2669,7 @@
                                     "block": "blockf3731f81-73c0-4214-a771-3e321785afd7"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "blockcfdf7d4f-47d0-428c-b8e0-5ec28fd525c3",
@@ -3834,13 +2741,7 @@
                                     "block": "blockf3731f81-73c0-4214-a771-3e321785afd7"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "blockd19893fd-7edf-405d-a04a-8986f3b691fe",
@@ -3902,13 +2803,7 @@
                                     "block": "blockf3731f81-73c0-4214-a771-3e321785afd7"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block5f68a3d0-365c-4247-b75e-a2ce7d5fea45",
@@ -3975,13 +2870,7 @@
                                     "block": "blockf3731f81-73c0-4214-a771-3e321785afd7"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block77a8fcf0-6663-4372-8a78-a0eaba692e25",
@@ -4038,13 +2927,7 @@
                                     "block": "blockf3731f81-73c0-4214-a771-3e321785afd7"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block1be2fd23-e68f-4b5f-9553-d7c8c4e43082",
@@ -4111,13 +2994,7 @@
                                     "block": "blockf3731f81-73c0-4214-a771-3e321785afd7"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block08e3e6c9-a572-43c2-ba84-0b984a2ed299",
@@ -4174,13 +3051,7 @@
                                     "block": "blockf3731f81-73c0-4214-a771-3e321785afd7"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "blockb305b9d6-b021-4d5e-a92e-291381c49492",
@@ -4222,12 +3093,6 @@
                                     }]
                                 }
                             ]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     },
                     {
@@ -4261,12 +3126,6 @@
                                 "q_code": "47",
                                 "max_length": 2000
                             }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     },
                     {
@@ -4297,12 +3156,6 @@
                                         "value": "Not sure"
                                     }
                                 ]
-                            }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
                             }]
                         }]
                     },
@@ -4336,6 +3189,18 @@
                                             "value": "Business grants funded by the UK and devolved governments",
                                             "q_code": "4889",
                                             "description": "Include small business grant funds and sector-specific grants in England, Wales, Scotland and Northern Ireland"
+                                        },
+                                        {
+                                            "label": "Job Retention Bonus",
+                                            "value": "Job Retention Bonus",
+                                            "q_code": "4810",
+                                            "description": "A £1000 payment to employers for each employee brought back to work from furlough, if continuously employed up to the end of January 2021"
+                                        },
+                                        {
+                                            "label": "Kickstart Job Scheme for young people",
+                                            "value": "Kickstart Job Scheme for young people",
+                                            "q_code": "4811",
+                                            "description": "Government  subsidy for six-month work placements for people on Universal Credit aged between 16 and 24"
                                         }
                                     ]
                                 },
@@ -4351,12 +3216,6 @@
                                     }]
                                 }
                             ]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     },
                     {
@@ -4402,12 +3261,6 @@
                                     }]
                                 }
                             ]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     },
                     {
@@ -4537,13 +3390,7 @@
                                     "block": "block4fc906bb-a55c-497a-8bd0-5427d69dc055"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block35d5f073-97cd-460f-aa2e-1dd068c6f6ff",
@@ -4578,12 +3425,6 @@
                                     }
                                 ]
                             }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     },
                     {
@@ -4601,12 +3442,6 @@
                                 "description": "",
                                 "q_code": "49",
                                 "max_length": 2000
-                            }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
                             }]
                         }]
                     },
@@ -4679,13 +3514,7 @@
                                     "block": "blocka2d0a9ef-9bfc-4ead-867f-bad93d6a3bca"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block18da18a3-82ce-4b60-a710-fe4f4b1e90f6",
@@ -4719,12 +3548,6 @@
                                         "value": "Not sure"
                                     }
                                 ]
-                            }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
                             }]
                         }]
                     },
@@ -4768,22 +3591,121 @@
                                     }
                                 ]
                             }]
+                        }]
+                    },
+                    {
+                        "id": "blockd619a9d0-d7ca-4d36-98cc-cf7c765c0465",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiond619a9d0-d7ca-4d36-98cc-cf7c765c0465",
+                            "title": "What is {{ metadata['ru_name'] }}&apos;s <em>risk of insolvency</em>?",
+                            "definitions": [{
+                                "title": "What we mean by \"insolvency\"",
+                                "content": [{
+                                    "description": "This is where a business cannot pay its debts when they are due or the business owes more than it owns."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerbc96d31f-3c0a-4967-b511-b8e51e489561",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "142",
+                                "options": [{
+                                        "label": "Severe risk",
+                                        "value": "Severe risk"
+                                    },
+                                    {
+                                        "label": "Moderate risk",
+                                        "value": "Moderate risk"
+                                    },
+                                    {
+                                        "label": "Low risk",
+                                        "value": "Low risk"
+                                    },
+                                    {
+                                        "label": "No risk",
+                                        "value": "No risk"
+                                    },
+                                    {
+                                        "label": "The business is insolvent",
+                                        "value": "The business is insolvent"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
                         }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group1760a554-060f-4e6a-bf64-970f98d84ac7",
+                                    "when": [{
+                                        "id": "answerbc96d31f-3c0a-4967-b511-b8e51e489561",
+                                        "condition": "contains any",
+                                        "values": ["No risk", "Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockedd7eda5-acfd-4b2a-ad5c-ae83a8e6cb37"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockedd7eda5-acfd-4b2a-ad5c-ae83a8e6cb37",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionedd7eda5-acfd-4b2a-ad5c-ae83a8e6cb37",
+                            "title": "How has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s <em>risk of insolvency?</em>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerdd686425-387a-4e76-b276-3508f7a47b22",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "143",
+                                "options": [{
+                                        "label": "Risk has increased",
+                                        "value": "Risk has increased"
+                                    },
+                                    {
+                                        "label": "Risk has stayed the same",
+                                        "value": "Risk has stayed the same"
+                                    },
+                                    {
+                                        "label": "Risk has decreased",
+                                        "value": "Risk has decreased"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
                             }]
                         }]
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                        "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": ["Permanently ceased trading"]
+                        }]
+                    }
+                ]
             }]
         },
         {
@@ -4796,13 +3718,7 @@
                         "type": "Interstitial",
                         "id": "group1760a554-060f-4e6a-bf64-970f98d84ac7-introduction",
                         "title": "Operational performance",
-                        "description": "<p>This section asks for information about your workforce such as the: </p><ul><li>percentage , for example, on furlough leave or working remotely </li><li>percentage returning from furlough or remote working </li><li>percentage of furloughed staff receiving top-ups in addition to the Coronavirus Job Retention Scheme (CJRS) payments</li><li>number of vacancies</li></ul><p>It also asks about safety measures in the workplace.</p>",
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        "description": "<p>This section asks for information about your workforce such as the: </p><ul><li>percentage , for example, on furlough leave or working remotely </li><li>percentage returning from furlough or remote working </li><li>percentage of furloughed staff receiving top-ups in addition to the Coronavirus Job Retention Scheme (CJRS) payments</li><li>number of vacancies</li></ul><p>It also asks about safety measures in the workplace.</p>"
                     },
                     {
                         "id": "block90beb26c-59f1-4f7f-9dee-e9a822e871be",
@@ -4980,13 +3896,7 @@
                                     "block": "blocke94a866c-fda4-469d-ba7d-e858307138cb"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "blockb12b5e7d-c421-4252-a174-42a2a0210c6b",
@@ -5046,13 +3956,7 @@
                                     "block": "blocke94a866c-fda4-469d-ba7d-e858307138cb"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "blockb646b254-98b4-4d42-ab91-c13b5fec21b0",
@@ -5137,13 +4041,7 @@
                                     "block": "blocke94a866c-fda4-469d-ba7d-e858307138cb"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block4f6d1ad5-2f37-4135-92fc-339b1943fc0e",
@@ -5195,13 +4093,7 @@
                                     "block": "block66bef12d-2546-4df7-9e64-15e48bdf99c4"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block66bef12d-2546-4df7-9e64-15e48bdf99c4",
@@ -5245,12 +4137,6 @@
                                     "decimal_places": 0
                                 }
                             ]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     },
                     {
@@ -5304,12 +4190,6 @@
                                     "decimal_places": 0
                                 }
                             ]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     },
                     {
@@ -5348,13 +4228,7 @@
                                     "block": "block653770e8-e13b-440e-8146-30b8e2c5fdf9"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block653770e8-e13b-440e-8146-30b8e2c5fdf9",
@@ -5375,12 +4249,6 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 0
-                            }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
                             }]
                         }]
                     },
@@ -5515,6 +4383,20 @@
                                             "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f",
                                             "condition": "contains any",
                                             "values": ["None of these"]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Currently trading and has been for more than the last two weeks",
+                                                "Started trading within the last two weeks after a pause in trading"
+                                            ]
                                         },
                                         {
                                             "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f-exclusive",
@@ -5568,6 +4450,20 @@
                                             "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f",
                                             "condition": "contains any",
                                             "values": ["None of these"]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Paused trading but intends to restart in the next two weeks",
+                                                "Paused trading and does not intend to restart in the next two weeks"
+                                            ]
                                         },
                                         {
                                             "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f-exclusive",
@@ -5582,13 +4478,7 @@
                                     "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "blockb8481e29-f74a-4b32-8b95-2720c2842e0c",
@@ -5653,13 +4543,7 @@
                                     "block": "block7ff4579e-ede4-4d33-804e-54df3c02d837"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "block7ff4579e-ede4-4d33-804e-54df3c02d837",
@@ -5705,22 +4589,23 @@
                                     }
                                 ]
                             }]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "not set"
-                            }]
                         }]
                     }
                 ],
                 "skip_conditions": [{
-                    "when": [{
-                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                        "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
-                    }]
-                }]
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "not set"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": ["Permanently ceased trading"]
+                        }]
+                    }
+                ]
             }]
         },
         {
