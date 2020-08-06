@@ -445,7 +445,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question67b07c1a-a4d1-406c-8b06-2217075805a9",
-                                "title": "Of the {{ format_currency(answers['answerc50e5990-5933-456a-bdc9-4cc0a02ca02d'], 'GBP') }} paid to <em>weekly</em> paid employees in the last week of {{ metadata['period_id'] }}, what other amounts were paid?",
+                                "title": "Of the {{ format_currency(answers['answerc50e5990-5933-456a-bdc9-4cc0a02ca02d'], 'GBP') }} paid to <em>weekly</em> paid employees in the last week of {{ metadata['period_str'] }}, what other amounts were paid?",
                                 "guidance": {
                                     "content": [{
                                             "description": "<strong>Include:</strong>"
@@ -1089,7 +1089,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "questionc655db7a-80d4-403c-8f02-9e12304467bd",
-                                "title": "Of the {{ format_currency(answers['answere2ace0d3-6f49-4c7e-93f4-802d53395f1f'], 'GBP') }} paid to <em>fortnightly</em> paid employees in the last week of {{ metadata['period_id'] }}, what other amounts were paid?",
+                                "title": "Of the {{ format_currency(answers['answere2ace0d3-6f49-4c7e-93f4-802d53395f1f'], 'GBP') }} paid to <em>fortnightly</em> paid employees in the last week of {{ metadata['period_str'] }}, what other amounts were paid?",
                                 "guidance": {
                                     "content": [{
                                             "description": "<strong>Include:</strong>"
@@ -1583,7 +1583,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "questionbb7d7348-bfbd-4f60-a720-220fa4e6de82",
-                                "title": "What was the <em>number</em> of <em>calendar monthly</em> paid employees paid in {{ metadata['period_id'] }}?",
+                                "title": "What was the <em>number</em> of <em>calendar monthly</em> paid employees paid in {{ metadata['period_str'] }}?",
                                 "guidance": {
                                     "content": [{
                                             "description": "<strong>Include:</strong>"
@@ -1626,7 +1626,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question37657691-0f39-459a-b509-50611659acef",
-                                "title": "What was the <em>total gross calendar monthly pay</em> paid to employees in {{ metadata['period_id'] }}?",
+                                "title": "What was the <em>total gross calendar monthly pay</em> paid to employees in {{ metadata['period_str'] }}?",
                                 "guidance": {
                                     "content": [{
                                             "description": "<strong>Include:</strong>"
@@ -1676,7 +1676,7 @@
                             "type": "ConfirmationQuestion",
                             "questions": [{
                                 "id": "questionconfirmation-page-for-37657691-0f39-459a-b509-50611659acef",
-                                "title": "The <em>total gross calendar monthly pay</em> paid to employees in {{ metadata['period_id'] }} was <em>&#xA3;0</em>, is this correct?",
+                                "title": "The <em>total gross calendar monthly pay</em> paid to employees in {{ metadata['period_str'] }} was <em>&#xA3;0</em>, is this correct?",
                                 "type": "General",
                                 "answers": [{
                                     "id": "answerconfirmation-answer-for-37657691-0f39-459a-b509-50611659acef",
@@ -1732,7 +1732,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question1fb595fa-05f7-4cc7-95b4-c4671e6abddf",
-                                "title": "Of the {{ format_currency(answers['answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7'], 'GBP') }} paid to <em>calendar monthly</em> paid employees in  {{ metadata['period_id'] }}, what other amounts were paid?",
+                                "title": "Of the {{ format_currency(answers['answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7'], 'GBP') }} paid to <em>calendar monthly</em> paid employees in  {{ metadata['period_str'] }}, what other amounts were paid?",
                                 "guidance": {
                                     "content": [{
                                             "description": "<strong>Include:</strong>"
@@ -2212,7 +2212,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question239f5378-d772-46ea-ae35-0b12d3c887ce",
-                                "title": "What was the <em>number</em> of <em>four weekly</em> paid employees paid in {{ metadata['period_id'] }}?",
+                                "title": "What was the <em>number</em> of <em>four weekly</em> paid employees paid in {{ metadata['period_str'] }}?",
                                 "guidance": {
                                     "content": [{
                                             "description": "<strong>Include:</strong>"
@@ -2255,7 +2255,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question205ec5ba-6004-4c87-b7a1-116964667f24",
-                                "title": "What was the <em>total gross four weekly pay</em> paid to employees in {{ metadata['period_id'] }}?",
+                                "title": "What was the <em>total gross four weekly pay</em> paid to employees in {{ metadata['period_str'] }}?",
                                 "guidance": {
                                     "content": [{
                                             "description": "<strong>Include:</strong>"
@@ -2304,7 +2304,7 @@
                             "type": "ConfirmationQuestion",
                             "questions": [{
                                 "id": "questionconfirmation-page-for-205ec5ba-6004-4c87-b7a1-116964667f24",
-                                "title": "The <em>total gross four weekly pay</em> paid to employees in {{ metadata['period_id'] }} was <em>&#xA3;0</em>, is this correct?",
+                                "title": "The <em>total gross four weekly pay</em> paid to employees in {{ metadata['period_str'] }} was <em>&#xA3;0</em>, is this correct?",
                                 "type": "General",
                                 "answers": [{
                                     "id": "answerconfirmation-answer-for-205ec5ba-6004-4c87-b7a1-116964667f24",
@@ -2360,7 +2360,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "questionc35e2043-b393-47f6-983f-ebee763a2145",
-                                "title": "Of the {{ format_currency(answers['answerab7b97dc-541f-4b59-83f0-ca4867bdfcad'], 'GBP') }} paid to <em>four weekly</em> paid employees in  {{ metadata['period_id'] }}, what other amounts were paid?",
+                                "title": "Of the {{ format_currency(answers['answerab7b97dc-541f-4b59-83f0-ca4867bdfcad'], 'GBP') }} paid to <em>four weekly</em> paid employees in  {{ metadata['period_str'] }}, what other amounts were paid?",
                                 "guidance": {
                                     "content": [{
                                             "description": "<strong>Include:</strong>"
@@ -2840,7 +2840,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionf87befb8-fc95-4ad7-b041-310100116dd4",
-                            "title": "What was the <em>number</em> of <em>five weekly</em> paid employees paid in {{ metadata['period_id'] }}?",
+                            "title": "What was the <em>number</em> of <em>five weekly</em> paid employees paid in {{ metadata['period_str'] }}?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2883,7 +2883,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4c1c59b1-2a3a-43f7-859b-c95f67312fa4",
-                            "title": "What was the <em>total gross five weekly pay</em> paid to employees in {{ metadata['period_id'] }}?",
+                            "title": "What was the <em>total gross five weekly pay</em> paid to employees in {{ metadata['period_str'] }}?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2933,7 +2933,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-4c1c59b1-2a3a-43f7-859b-c95f67312fa4",
-                            "title": "The <em>total gross five weekly pay</em> paid to employees in {{ metadata['period_id'] }} was <em>&#xA3;0</em>, is this correct?",
+                            "title": "The <em>total gross five weekly pay</em> paid to employees in {{ metadata['period_str'] }} was <em>&#xA3;0</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-4c1c59b1-2a3a-43f7-859b-c95f67312fa4",
@@ -2989,7 +2989,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question53c7d7a0-099b-4f42-8efb-b4fc4fd2cdf0",
-                            "title": "Of the {{ format_currency(answers['answer7f095ddc-e4bd-403d-9cc0-50788063e778'], 'GBP') }} paid to <em>five weekly paid employees</em> in  {{ metadata['period_id'] }}, what other amounts were paid?",
+                            "title": "Of the {{ format_currency(answers['answer7f095ddc-e4bd-403d-9cc0-50788063e778'], 'GBP') }} paid to <em>five weekly paid employees</em> in  {{ metadata['period_str'] }}, what other amounts were paid?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -3489,7 +3489,7 @@
             "validator": "string"
         },
         {
-            "name": "period_id",
+            "name": "period_str",
             "validator": "string"
         },
         {
