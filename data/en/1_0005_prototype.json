@@ -1556,1218 +1556,1258 @@
             "id": "section9832eee5-f77a-4d30-87e7-80220310090c",
             "title": "Calendar monthly pay",
             "groups": [{
-                "id": "group9832eee5-f77a-4d30-87e7-80220310090c",
-                "title": "Calendar monthly pay",
-                "skip_conditions": [{
-                        "when": [{
-                            "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
-                            "condition": "not contains",
-                            "value": "Calendar monthly"
-                        }]
-                    },
-                    {
-                        "when": [{
-                            "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
-                            "condition": "not set"
-                        }]
-                    }
-                ],
-                "blocks": [{
-                        "type": "Interstitial",
-                        "id": "group9832eee5-f77a-4d30-87e7-80220310090c-introduction",
-                        "title": "Calendar monthly pay",
-                        "description": "<p>This section covers employees who are paid calendar monthly.</p><p>You will be asked for the:</p><ul><li>number of calendar monthly paid employees</li><li>holiday pay, pay awards and bonuses paid to calendar monthly paid employees</li><li>number of furloughed employees</li><li>number of furloughed employees who received a top-up to their pay in addition to the Coronavirus Job Retention Scheme (CJRS) 80% contributions</li><li>significant changes to the pay or number of calendar monthly paid employees</li></ul>"
-                    },
-                    {
-                        "id": "blockbb7d7348-bfbd-4f60-a720-220fa4e6de82",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionbb7d7348-bfbd-4f60-a720-220fa4e6de82",
-                            "title": "What was the <em>number</em> of <em>calendar monthly</em> paid employees paid in {{ metadata['period_id'] }}?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received pay in the relevant period"
-                                        ]
-                                    },
-                                    {
-                                        "description": "<strong>Exclude:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "trainees on government schemes",
-                                            "employees working abroad unless paid directly from this business&#x2019;s GB payroll",
-                                            "employees in Northern Ireland"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer50a8167d-581f-4548-8759-cfbf2e0af696",
-                                "mandatory": true,
-                                "type": "Number",
-                                "label": "Total number of calendar monthly paid employees",
-                                "description": "",
-                                "q_code": "140m",
-                                "min_value": {
-                                    "value": 1,
-                                    "exclusive": false
-                                },
-                                "decimal_places": 0
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block37657691-0f39-459a-b509-50611659acef",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question37657691-0f39-459a-b509-50611659acef",
-                            "title": "What was the <em>total gross calendar monthly pay</em> paid to employees in {{ metadata['period_id'] }}?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "bonuses or commissions",
-                                            "overtime and shift allowance payments",
-                                            "advanced holiday pay",
-                                            "pay award arrears",
-                                            "voluntary employee contributions to, and annual profit from, profit related pay schemes"
-                                        ]
-                                    },
-                                    {
-                                        "description": "<strong>Exclude:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "any redundancy pay and pay in lieu of notice payments (taxable and non-taxable)",
-                                            "trainees on government schemes",
-                                            "directors&apos; fees",
-                                            "employer&#x2019;s NI and contribution to pension schemes",
-                                            "employees working abroad unless paid directly from this business&#x2019;s GB payroll",
-                                            "signing on fees (sporting professionals)",
-                                            "accrued holiday pay",
-                                            "employees in Northern Ireland",
-                                            "expenses payments for attending meetings or training courses"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7",
-                                "mandatory": true,
-                                "type": "Currency",
-                                "label": "Total gross calendar monthly pay",
-                                "description": "",
-                                "q_code": "151",
-                                "decimal_places": 2,
-                                "currency": "GBP"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blockconfirmation-page-for-37657691-0f39-459a-b509-50611659acef",
-                        "type": "ConfirmationQuestion",
-                        "questions": [{
-                            "id": "questionconfirmation-page-for-37657691-0f39-459a-b509-50611659acef",
-                            "title": "The <em>total gross calendar monthly pay</em> paid to employees in {{ metadata['period_id'] }} was <em>&#xA3;0</em>, is this correct?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerconfirmation-answer-for-37657691-0f39-459a-b509-50611659acef",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "options": [{
-                                        "label": "Yes this is correct",
-                                        "value": "Yes this is correct"
-                                    },
-                                    {
-                                        "label": "No I need to change this",
-                                        "value": "No I need to change this"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "skip_conditions": [{
+                    "id": "group9832eee5-f77a-4d30-87e7-80220310090c",
+                    "title": "Calendar monthly pay",
+                    "skip_conditions": [{
                             "when": [{
-                                "id": "answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7",
-                                "condition": "not equals",
-                                "value": 0
+                                "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                                "condition": "not contains",
+                                "value": "Calendar monthly"
                             }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block37657691-0f39-459a-b509-50611659acef",
-                                    "when": [{
-                                        "id": "answerconfirmation-answer-for-37657691-0f39-459a-b509-50611659acef",
-                                        "condition": "contains any",
-                                        "values": ["No I need to change this"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block2465507e-05fc-4839-b615-b4ac76b5f0bd",
-                                    "when": [{
-                                        "id": "answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7",
-                                        "condition": "equals",
-                                        "value": 0
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block1fb595fa-05f7-4cc7-95b4-c4671e6abddf"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block1fb595fa-05f7-4cc7-95b4-c4671e6abddf",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question1fb595fa-05f7-4cc7-95b4-c4671e6abddf",
-                            "title": "Of the {{ format_currency(answers['answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7'], 'GBP') }} paid to <em>calendar monthly</em> paid employees in  {{ metadata['period_id'] }}, what other amounts were paid?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "performance pay (for example productivity bonuses)",
-                                            "long service awards",
-                                            "appearance money (sporting professionals)"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answere32b77cb-10b7-4368-8c7c-aeee21e8fca2",
-                                    "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Arrears of pay owing to pay awards",
-                                    "description": "",
-                                    "q_code": "171",
-                                    "max_value": {
-                                        "answer_id": "answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
+                        },
+                        {
+                            "when": [{
+                                "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                                "condition": "not set"
+                            }]
+                        }
+                    ],
+                    "blocks": [{
+                            "type": "Interstitial",
+                            "id": "group9832eee5-f77a-4d30-87e7-80220310090c-introduction",
+                            "title": "Calendar monthly pay",
+                            "description": "<p>This section covers employees who are paid calendar monthly.</p><p>You will be asked for the:</p><ul><li>number of calendar monthly paid employees</li><li>holiday pay, pay awards and bonuses paid to calendar monthly paid employees</li><li>number of furloughed employees</li><li>number of furloughed employees who received a top-up to their pay in addition to the Coronavirus Job Retention Scheme (CJRS) 80% contributions</li><li>significant changes to the pay or number of calendar monthly paid employees</li></ul>"
+                        },
+                        {
+                            "id": "blockbb7d7348-bfbd-4f60-a720-220fa4e6de82",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "questionbb7d7348-bfbd-4f60-a720-220fa4e6de82",
+                                "title": "What was the <em>number</em> of <em>calendar monthly</em> paid employees paid in {{ metadata['period_id'] }}?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received pay in the relevant period"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "trainees on government schemes",
+                                                "employees working abroad unless paid directly from this business&#x2019;s GB payroll",
+                                                "employees in Northern Ireland"
+                                            ]
+                                        }
+                                    ]
                                 },
-                                {
-                                    "id": "answer984778ad-9a9f-49cc-80f8-45aa785c6690",
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answer50a8167d-581f-4548-8759-cfbf2e0af696",
                                     "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Bonuses, commissions or annual profit from profit related pay schemes",
-                                    "description": "",
-                                    "q_code": "181",
-                                    "max_value": {
-                                        "answer_id": "answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "block2465507e-05fc-4839-b615-b4ac76b5f0bd",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question2465507e-05fc-4839-b615-b4ac76b5f0bd",
-                            "title": "Were any of {{ metadata['ru_name'] }}&apos;s calendar monthly paid employees <em>furloughed</em> for any of the pay period?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "employees furloughed for either all, or some, of their normal working hours",
-                                            "employees the business is claiming for via the Coronavirus Job Retention Scheme (CJRS)"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerdf0098e1-ae50-4fdd-a435-b7e850d24d51",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "400m",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block5f882a69-50f1-4a71-ac4b-f594a5be29fe",
-                                    "when": [{
-                                        "id": "answerdf0098e1-ae50-4fdd-a435-b7e850d24d51",
-                                        "condition": "contains any",
-                                        "values": ["No", "Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockdd9b1838-0c6c-4219-abb6-55b3eba61ef4"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "blockdd9b1838-0c6c-4219-abb6-55b3eba61ef4",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questiondd9b1838-0c6c-4219-abb6-55b3eba61ef4",
-                            "title": "Approximately <em>how many</em> of the calendar monthly paid employees were furloughed for any of the pay period?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "employees furloughed for either all, or some, of their normal working hours",
-                                            "employees the business is claiming for via the Coronavirus Job Retention Scheme (CJRS)"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answer1c41c701-8b26-4841-9f2f-d10c444efd6f",
-                                    "mandatory": false,
                                     "type": "Number",
-                                    "label": "Number of furloughed employees",
+                                    "label": "Total number of calendar monthly paid employees",
                                     "description": "",
-                                    "q_code": "401m1",
+                                    "q_code": "140m",
                                     "min_value": {
                                         "value": 1,
                                         "exclusive": false
                                     },
-                                    "max_value": {
-                                        "answer_id": "answer50a8167d-581f-4548-8759-cfbf2e0af696",
-                                        "exclusive": false
-                                    },
                                     "decimal_places": 0
+                                }]
+                            }]
+                        },
+                        {
+                            "id": "block37657691-0f39-459a-b509-50611659acef",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question37657691-0f39-459a-b509-50611659acef",
+                                "title": "What was the <em>total gross calendar monthly pay</em> paid to employees in {{ metadata['period_id'] }}?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "bonuses or commissions",
+                                                "overtime and shift allowance payments",
+                                                "advanced holiday pay",
+                                                "pay award arrears",
+                                                "voluntary employee contributions to, and annual profit from, profit related pay schemes"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "any redundancy pay and pay in lieu of notice payments (taxable and non-taxable)",
+                                                "trainees on government schemes",
+                                                "directors&apos; fees",
+                                                "employer&#x2019;s NI and contribution to pension schemes",
+                                                "employees working abroad unless paid directly from this business&#x2019;s GB payroll",
+                                                "signing on fees (sporting professionals)",
+                                                "accrued holiday pay",
+                                                "employees in Northern Ireland",
+                                                "expenses payments for attending meetings or training courses"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total gross calendar monthly pay",
+                                    "description": "",
+                                    "q_code": "151",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                }]
+                            }]
+                        },
+                        {
+                            "id": "blockconfirmation-page-for-37657691-0f39-459a-b509-50611659acef",
+                            "type": "ConfirmationQuestion",
+                            "questions": [{
+                                "id": "questionconfirmation-page-for-37657691-0f39-459a-b509-50611659acef",
+                                "title": "The <em>total gross calendar monthly pay</em> paid to employees in {{ metadata['period_id'] }} was <em>&#xA3;0</em>, is this correct?",
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answerconfirmation-answer-for-37657691-0f39-459a-b509-50611659acef",
+                                    "mandatory": true,
+                                    "type": "Radio",
+                                    "options": [{
+                                            "label": "Yes this is correct",
+                                            "value": "Yes this is correct"
+                                        },
+                                        {
+                                            "label": "No I need to change this",
+                                            "value": "No I need to change this"
+                                        }
+                                    ]
+                                }]
+                            }],
+                            "skip_conditions": [{
+                                "when": [{
+                                    "id": "answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7",
+                                    "condition": "not equals",
+                                    "value": 0
+                                }]
+                            }],
+                            "routing_rules": [{
+                                    "goto": {
+                                        "block": "block37657691-0f39-459a-b509-50611659acef",
+                                        "when": [{
+                                            "id": "answerconfirmation-answer-for-37657691-0f39-459a-b509-50611659acef",
+                                            "condition": "contains any",
+                                            "values": ["No I need to change this"]
+                                        }]
+                                    }
                                 },
                                 {
-                                    "id": "answer2e1c263c-a9c2-42fe-93f9-d64210ac2305",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Or select \"Not sure\"if the number is not known",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "401m2"
-                                    }]
+                                    "goto": {
+                                        "block": "block2465507e-05fc-4839-b615-b4ac76b5f0bd",
+                                        "when": [{
+                                            "id": "answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7",
+                                            "condition": "equals",
+                                            "value": 0
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block1fb595fa-05f7-4cc7-95b4-c4671e6abddf"
+                                    }
                                 }
                             ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block5f882a69-50f1-4a71-ac4b-f594a5be29fe",
-                                    "when": [{
+                        },
+                        {
+                            "id": "block1fb595fa-05f7-4cc7-95b4-c4671e6abddf",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question1fb595fa-05f7-4cc7-95b4-c4671e6abddf",
+                                "title": "Of the {{ format_currency(answers['answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7'], 'GBP') }} paid to <em>calendar monthly</em> paid employees in  {{ metadata['period_id'] }}, what other amounts were paid?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "performance pay (for example productivity bonuses)",
+                                                "long service awards",
+                                                "appearance money (sporting professionals)"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [{
+                                        "id": "answere32b77cb-10b7-4368-8c7c-aeee21e8fca2",
+                                        "mandatory": true,
+                                        "type": "Currency",
+                                        "label": "Arrears of pay owing to pay awards",
+                                        "description": "",
+                                        "q_code": "171",
+                                        "max_value": {
+                                            "answer_id": "answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7",
+                                            "exclusive": false
+                                        },
+                                        "decimal_places": 2,
+                                        "currency": "GBP"
+                                    },
+                                    {
+                                        "id": "answer984778ad-9a9f-49cc-80f8-45aa785c6690",
+                                        "mandatory": true,
+                                        "type": "Currency",
+                                        "label": "Bonuses, commissions or annual profit from profit related pay schemes",
+                                        "description": "",
+                                        "q_code": "181",
+                                        "max_value": {
+                                            "answer_id": "answerd77a1a42-5fb5-4097-9e10-dee45c9b2ef7",
+                                            "exclusive": false
+                                        },
+                                        "decimal_places": 2,
+                                        "currency": "GBP"
+                                    }
+                                ]
+                            }]
+                        },
+                        {
+                            "id": "block2465507e-05fc-4839-b615-b4ac76b5f0bd",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question2465507e-05fc-4839-b615-b4ac76b5f0bd",
+                                "title": "Were any of {{ metadata['ru_name'] }}&apos;s calendar monthly paid employees <em>furloughed</em> for any of the pay period?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "employees furloughed for either all, or some, of their normal working hours",
+                                                "employees the business is claiming for via the Coronavirus Job Retention Scheme (CJRS)"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answerdf0098e1-ae50-4fdd-a435-b7e850d24d51",
+                                    "mandatory": true,
+                                    "type": "Radio",
+                                    "label": "",
+                                    "description": "",
+                                    "q_code": "400m",
+                                    "options": [{
+                                            "label": "Yes",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "label": "No",
+                                            "value": "No"
+                                        },
+                                        {
+                                            "label": "Not sure",
+                                            "value": "Not sure"
+                                        }
+                                    ]
+                                }]
+                            }],
+                            "routing_rules": [{
+                                    "goto": {
+                                        "block": "block5f882a69-50f1-4a71-ac4b-f594a5be29fe",
+                                        "when": [{
+                                            "id": "answerdf0098e1-ae50-4fdd-a435-b7e850d24d51",
+                                            "condition": "contains any",
+                                            "values": ["No", "Not sure"]
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "blockdd9b1838-0c6c-4219-abb6-55b3eba61ef4"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "blockdd9b1838-0c6c-4219-abb6-55b3eba61ef4",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "questiondd9b1838-0c6c-4219-abb6-55b3eba61ef4",
+                                "title": "Approximately <em>how many</em> of the calendar monthly paid employees were furloughed for any of the pay period?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "employees furloughed for either all, or some, of their normal working hours",
+                                                "employees the business is claiming for via the Coronavirus Job Retention Scheme (CJRS)"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [{
+                                        "id": "answer1c41c701-8b26-4841-9f2f-d10c444efd6f",
+                                        "mandatory": false,
+                                        "type": "Number",
+                                        "label": "Number of furloughed employees",
+                                        "description": "",
+                                        "q_code": "401m1",
+                                        "min_value": {
+                                            "value": 1,
+                                            "exclusive": false
+                                        },
+                                        "max_value": {
+                                            "answer_id": "answer50a8167d-581f-4548-8759-cfbf2e0af696",
+                                            "exclusive": false
+                                        },
+                                        "decimal_places": 0
+                                    },
+                                    {
                                         "id": "answer2e1c263c-a9c2-42fe-93f9-d64210ac2305",
-                                        "condition": "contains all",
-                                        "values": ["Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block67994b22-de77-43ed-8627-ef10fb44a775"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block67994b22-de77-43ed-8627-ef10fb44a775",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question67994b22-de77-43ed-8627-ef10fb44a775",
-                            "title": "How many of {{ metadata['ru_name'] }}&#x2019;s calendar monthly paid furloughed employees received <em>more than the 80%</em> Coronavirus Job Retention Scheme (CJRS) contribution, for the pay period?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "employees who worked some hours for which they were paid at the normal rate",
-                                            "employees who received a top-up to their pay in addition to the Coronavirus Job Retention Scheme (CJRS) 80% contribution"
-                                        ]
-                                    },
-                                    {
-                                        "description": "<strong>Exclude:</strong>"
-                                    },
-                                    {
-                                        "list": ["employer&#x2019;s NI and contribution to pension schemes"]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answerc722867d-3ed4-40d5-80e2-c7665764df6d",
-                                    "mandatory": false,
-                                    "type": "Number",
-                                    "label": "Number of employees paid more than the 80% CJRS contribution",
-                                    "description": "",
-                                    "q_code": "402m1",
-                                    "max_value": {
-                                        "answer_id": "answer1c41c701-8b26-4841-9f2f-d10c444efd6f",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
-                                },
-                                {
-                                    "id": "answer8a49a78e-4621-41f8-b114-84873a0838be",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Or select \"Not sure\"if the number is not known",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "402m2"
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "block5f882a69-50f1-4a71-ac4b-f594a5be29fe",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question5f882a69-50f1-4a71-ac4b-f594a5be29fe",
-                            "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>calendar monthly</em> paid employees?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "redundancies",
-                                            "changes in the number of temporary staff",
-                                            "more or less overtime",
-                                            "new pay rates",
-                                            "industrial action"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "definitions": [{
-                                "title": "What constitutes a significant change?",
-                                "content": [{
-                                        "description": "What constitutes a &quot;significant change&quot; is dependent on your own interpretation of whether there has been a significant change in the business&#x2019;s figures compared with the previous month."
-                                    },
-                                    {
-                                        "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                                        "mandatory": false,
+                                        "type": "Checkbox",
+                                        "label": "Or select \"Not sure\"if the number is not known",
+                                        "description": "",
+                                        "options": [{
+                                            "label": "Not sure",
+                                            "value": "Not sure",
+                                            "q_code": "401m2"
+                                        }]
                                     }
                                 ]
                             }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerd6064ed2-4172-462a-9b7f-af57f1bc7b9a",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "190m",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
+                            "routing_rules": [{
+                                    "goto": {
+                                        "block": "block5f882a69-50f1-4a71-ac4b-f594a5be29fe",
+                                        "when": [{
+                                            "id": "answer2e1c263c-a9c2-42fe-93f9-d64210ac2305",
+                                            "condition": "contains all",
+                                            "values": ["Not sure"]
+                                        }]
                                     }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "monthly-pay-summary-group",
-                                    "when": [{
-                                        "id": "answerd6064ed2-4172-462a-9b7f-af57f1bc7b9a",
-                                        "condition": "contains any",
-                                        "values": ["No"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blocke00d504c-fd63-4082-a4d6-410bc3691338"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "blocke00d504c-fd63-4082-a4d6-410bc3691338",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questione00d504c-fd63-4082-a4d6-410bc3691338",
-                            "title": "What were the reasons for the changes to the <em>total pay or number</em> of <em>calendar monthly</em> paid employees?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer930cde2f-3ef6-4579-be3e-915a9dc607c9",
-                                "mandatory": true,
-                                "type": "Checkbox",
-                                "label": "Select all that apply",
-                                "description": "",
-                                "options": [{
-                                        "label": "Redundancies",
-                                        "value": "Redundancies",
-                                        "q_code": "191m"
-                                    },
-                                    {
-                                        "label": "More temporary staff",
-                                        "value": "More temporary staff",
-                                        "q_code": "192m1"
-                                    },
-                                    {
-                                        "label": "Fewer temporary staff",
-                                        "value": "Fewer temporary staff",
-                                        "q_code": "192m2"
-                                    },
-                                    {
-                                        "label": "More overtime",
-                                        "value": "More overtime",
-                                        "q_code": "194m1"
-                                    },
-                                    {
-                                        "label": "Less overtime",
-                                        "value": "Less overtime",
-                                        "q_code": "194m2"
-                                    },
-                                    {
-                                        "label": "Pay increase",
-                                        "value": "Pay increase",
-                                        "q_code": "195m"
-                                    },
-                                    {
-                                        "label": "Industrial action",
-                                        "value": "Industrial action",
-                                        "q_code": "196m"
-                                    },
-                                    {
-                                        "label": "Other",
-                                        "value": "Other",
-                                        "q_code": "197m"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block601111a3-05ca-4dcc-ab3f-4d4d483e39a2",
-                                    "when": [{
-                                        "id": "answer930cde2f-3ef6-4579-be3e-915a9dc607c9",
-                                        "condition": "contains all",
-                                        "values": ["Pay increase"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockd9b1acdc-6d2f-41bb-b913-f6ab3402389b"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block601111a3-05ca-4dcc-ab3f-4d4d483e39a2",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question601111a3-05ca-4dcc-ab3f-4d4d483e39a2",
-                            "title": "If your business has new pay rates, what is the percentage increase?",
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answer931d7403-3fc8-4dd3-9ceb-507f12fa2561",
-                                    "mandatory": false,
-                                    "type": "Percentage",
-                                    "label": "Percentage increase of new pay rates",
-                                    "description": "",
-                                    "q_code": "200",
-                                    "decimal_places": 2
                                 },
                                 {
-                                    "id": "answer33940067-f517-4db9-9fa3-cb749f03b43b",
-                                    "mandatory": false,
-                                    "type": "Date",
-                                    "label": "If your figures are backdated, which date did they begin?",
-                                    "description": "",
-                                    "q_code": "210"
-                                },
-                                {
-                                    "id": "answer9026c765-8a66-4128-926c-1f752539058c",
-                                    "mandatory": false,
-                                    "type": "Number",
-                                    "label": "What was the number of calendar monthly paid employees who received this new pay rate?",
-                                    "description": "",
-                                    "q_code": "220",
-                                    "max_value": {
-                                        "answer_id": "answer50a8167d-581f-4548-8759-cfbf2e0af696",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
+                                    "goto": {
+                                        "block": "block67994b22-de77-43ed-8627-ef10fb44a775"
+                                    }
                                 }
                             ]
-                        }]
-                    },
-                    {
-                        "id": "blockd9b1acdc-6d2f-41bb-b913-f6ab3402389b",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questiond9b1acdc-6d2f-41bb-b913-f6ab3402389b",
-                            "title": "What were the changes to the <em>total pay or number</em> of <em>calendar monthly</em> paid employees?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer30a279d5-8562-4f11-942f-a9cd8199ad9a",
-                                "mandatory": true,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "description": "",
-                                "q_code": "300m",
-                                "max_length": 2000
+                        },
+                        {
+                            "id": "block67994b22-de77-43ed-8627-ef10fb44a775",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question67994b22-de77-43ed-8627-ef10fb44a775",
+                                "title": "How many of {{ metadata['ru_name'] }}&#x2019;s calendar monthly paid furloughed employees received <em>more than the 80%</em> Coronavirus Job Retention Scheme (CJRS) contribution, for the pay period?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "employees who worked some hours for which they were paid at the normal rate",
+                                                "employees who received a top-up to their pay in addition to the Coronavirus Job Retention Scheme (CJRS) 80% contribution"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": ["employer&#x2019;s NI and contribution to pension schemes"]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [{
+                                        "id": "answerc722867d-3ed4-40d5-80e2-c7665764df6d",
+                                        "mandatory": false,
+                                        "type": "Number",
+                                        "label": "Number of employees paid more than the 80% CJRS contribution",
+                                        "description": "",
+                                        "q_code": "402m1",
+                                        "max_value": {
+                                            "answer_id": "answer1c41c701-8b26-4841-9f2f-d10c444efd6f",
+                                            "exclusive": false
+                                        },
+                                        "decimal_places": 0
+                                    },
+                                    {
+                                        "id": "answer8a49a78e-4621-41f8-b114-84873a0838be",
+                                        "mandatory": false,
+                                        "type": "Checkbox",
+                                        "label": "Or select \"Not sure\"if the number is not known",
+                                        "description": "",
+                                        "options": [{
+                                            "label": "Not sure",
+                                            "value": "Not sure",
+                                            "q_code": "402m2"
+                                        }]
+                                    }
+                                ]
                             }]
-                        }]
-                    }
-                ]
-            }, {
-                "id": "monthly-pay-summary-group",
-                "title": "Calendar Monthly Pay Summary",
-                "skip_conditions": [{
-                        "when": [{
-                            "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
-                            "condition": "not contains",
-                            "value": "Calendar monthly"
-                        }]
-                    },
-                    {
-                        "when": [{
-                            "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
-                            "condition": "not set"
-                        }]
-                    }
-                ],
-                "blocks": [{
-                    "id": "monthly-pay-summary",
-                    "type": "SectionSummary",
-                    "collapsible": true
-                }]
-            }]
+                        },
+                        {
+                            "id": "block5f882a69-50f1-4a71-ac4b-f594a5be29fe",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question5f882a69-50f1-4a71-ac4b-f594a5be29fe",
+                                "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>calendar monthly</em> paid employees?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "redundancies",
+                                                "changes in the number of temporary staff",
+                                                "more or less overtime",
+                                                "new pay rates",
+                                                "industrial action"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "definitions": [{
+                                    "title": "What constitutes a significant change?",
+                                    "content": [{
+                                            "description": "What constitutes a &quot;significant change&quot; is dependent on your own interpretation of whether there has been a significant change in the business&#x2019;s figures compared with the previous month."
+                                        },
+                                        {
+                                            "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                                        }
+                                    ]
+                                }],
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answerd6064ed2-4172-462a-9b7f-af57f1bc7b9a",
+                                    "mandatory": true,
+                                    "type": "Radio",
+                                    "label": "",
+                                    "description": "",
+                                    "q_code": "190m",
+                                    "options": [{
+                                            "label": "Yes",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "label": "No",
+                                            "value": "No"
+                                        }
+                                    ]
+                                }]
+                            }],
+                            "routing_rules": [{
+                                    "goto": {
+                                        "group": "monthly-pay-summary-group",
+                                        "when": [{
+                                            "id": "answerd6064ed2-4172-462a-9b7f-af57f1bc7b9a",
+                                            "condition": "contains any",
+                                            "values": ["No"]
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "blocke00d504c-fd63-4082-a4d6-410bc3691338"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "blocke00d504c-fd63-4082-a4d6-410bc3691338",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "questione00d504c-fd63-4082-a4d6-410bc3691338",
+                                "title": "What were the reasons for the changes to the <em>total pay or number</em> of <em>calendar monthly</em> paid employees?",
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answer930cde2f-3ef6-4579-be3e-915a9dc607c9",
+                                    "mandatory": true,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Redundancies",
+                                            "value": "Redundancies",
+                                            "q_code": "191m"
+                                        },
+                                        {
+                                            "label": "More temporary staff",
+                                            "value": "More temporary staff",
+                                            "q_code": "192m1"
+                                        },
+                                        {
+                                            "label": "Fewer temporary staff",
+                                            "value": "Fewer temporary staff",
+                                            "q_code": "192m2"
+                                        },
+                                        {
+                                            "label": "More overtime",
+                                            "value": "More overtime",
+                                            "q_code": "194m1"
+                                        },
+                                        {
+                                            "label": "Less overtime",
+                                            "value": "Less overtime",
+                                            "q_code": "194m2"
+                                        },
+                                        {
+                                            "label": "Pay increase",
+                                            "value": "Pay increase",
+                                            "q_code": "195m"
+                                        },
+                                        {
+                                            "label": "Industrial action",
+                                            "value": "Industrial action",
+                                            "q_code": "196m"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "197m"
+                                        }
+                                    ]
+                                }]
+                            }],
+                            "routing_rules": [{
+                                    "goto": {
+                                        "block": "block601111a3-05ca-4dcc-ab3f-4d4d483e39a2",
+                                        "when": [{
+                                            "id": "answer930cde2f-3ef6-4579-be3e-915a9dc607c9",
+                                            "condition": "contains all",
+                                            "values": ["Pay increase"]
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "blockd9b1acdc-6d2f-41bb-b913-f6ab3402389b"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block601111a3-05ca-4dcc-ab3f-4d4d483e39a2",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question601111a3-05ca-4dcc-ab3f-4d4d483e39a2",
+                                "title": "If your business has new pay rates, what is the percentage increase?",
+                                "type": "General",
+                                "answers": [{
+                                        "id": "answer931d7403-3fc8-4dd3-9ceb-507f12fa2561",
+                                        "mandatory": false,
+                                        "type": "Percentage",
+                                        "label": "Percentage increase of new pay rates",
+                                        "description": "",
+                                        "q_code": "200",
+                                        "decimal_places": 2
+                                    },
+                                    {
+                                        "id": "answer33940067-f517-4db9-9fa3-cb749f03b43b",
+                                        "mandatory": false,
+                                        "type": "Date",
+                                        "label": "If your figures are backdated, which date did they begin?",
+                                        "description": "",
+                                        "q_code": "210"
+                                    },
+                                    {
+                                        "id": "answer9026c765-8a66-4128-926c-1f752539058c",
+                                        "mandatory": false,
+                                        "type": "Number",
+                                        "label": "What was the number of calendar monthly paid employees who received this new pay rate?",
+                                        "description": "",
+                                        "q_code": "220",
+                                        "max_value": {
+                                            "answer_id": "answer50a8167d-581f-4548-8759-cfbf2e0af696",
+                                            "exclusive": false
+                                        },
+                                        "decimal_places": 0
+                                    }
+                                ]
+                            }]
+                        },
+                        {
+                            "id": "blockd9b1acdc-6d2f-41bb-b913-f6ab3402389b",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "questiond9b1acdc-6d2f-41bb-b913-f6ab3402389b",
+                                "title": "What were the changes to the <em>total pay or number</em> of <em>calendar monthly</em> paid employees?",
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answer30a279d5-8562-4f11-942f-a9cd8199ad9a",
+                                    "mandatory": true,
+                                    "type": "TextArea",
+                                    "label": "Comments",
+                                    "description": "",
+                                    "q_code": "300m",
+                                    "max_length": 2000
+                                }]
+                            }]
+                        }
+                    ]
+                },
+                {
+                    "id": "monthly-pay-summary-group",
+                    "title": "Calendar Monthly Pay Summary",
+                    "skip_conditions": [{
+                            "when": [{
+                                "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                                "condition": "not contains",
+                                "value": "Calendar monthly"
+                            }]
+                        },
+                        {
+                            "when": [{
+                                "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                                "condition": "not set"
+                            }]
+                        }
+                    ],
+                    "blocks": [{
+                        "id": "monthly-pay-summary",
+                        "type": "SectionSummary",
+                        "collapsible": true
+                    }]
+                }
+            ]
         },
         {
             "id": "section9442599d-4b92-4c58-81f2-693ae40b7100",
             "title": "Four weekly pay",
             "groups": [{
-                "id": "group9442599d-4b92-4c58-81f2-693ae40b7100",
-                "title": "Four weekly pay",
-                "blocks": [{
-                        "type": "Interstitial",
-                        "id": "group9442599d-4b92-4c58-81f2-693ae40b7100-introduction",
-                        "title": "Four weekly pay",
-                        "description": "<p>This section covers employees who are paid four weekly.</p><p>You will be asked for the:</p><ul><li>number of four weekly paid employees</li><li>holiday pay, pay awards and bonuses paid to four weekly paid employees</li><li>number of furloughed employees</li><li>number of furloughed employees who received a top-up to their pay in addition to the Coronavirus Job Retention Scheme (CJRS) 80% contributions</li><li>significant changes to the pay or number of four weekly paid employees</li></ul>"
-                    },
-                    {
-                        "id": "block239f5378-d772-46ea-ae35-0b12d3c887ce",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question239f5378-d772-46ea-ae35-0b12d3c887ce",
-                            "title": "What was the <em>number</em> of <em>four weekly</em> paid employees paid in {{ metadata['period_id'] }}?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received pay in the relevant period"
-                                        ]
-                                    },
-                                    {
-                                        "description": "<strong>Exclude:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "trainees on government schemes",
-                                            "employees working abroad unless paid directly from this business&#x2019;s GB payroll",
-                                            "employees in Northern Ireland"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer82db87fd-dc48-4385-8eee-e49d1fc37c65",
-                                "mandatory": true,
-                                "type": "Number",
-                                "label": "Total number of four weekly paid employees",
-                                "description": "",
-                                "q_code": "140w4",
-                                "min_value": {
-                                    "value": 1,
-                                    "exclusive": false
-                                },
-                                "decimal_places": 0
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block205ec5ba-6004-4c87-b7a1-116964667f24",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question205ec5ba-6004-4c87-b7a1-116964667f24",
-                            "title": "What was the <em>total gross four weekly pay</em> paid to employees in {{ metadata['period_id'] }}?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "bonuses or commissions",
-                                            "overtime and shift allowance payments",
-                                            "pay award arrears",
-                                            "voluntary employee contributions to, and annual profit from, profit related pay schemes"
-                                        ]
-                                    },
-                                    {
-                                        "description": "<strong>Exclude:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "any redundancy pay and pay in lieu of notice payments (taxable and non-taxable)",
-                                            "trainees on government schemes",
-                                            "directors&apos; fees",
-                                            "employer&#x2019;s NI and contribution to pension schemes",
-                                            "employees working abroad unless paid directly from this business&#x2019;s GB payroll",
-                                            "signing on fees (sporting professionals)",
-                                            "accrued holiday pay",
-                                            "employees in Northern Ireland",
-                                            "expenses payments for attending meetings or training courses"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerab7b97dc-541f-4b59-83f0-ca4867bdfcad",
-                                "mandatory": true,
-                                "type": "Currency",
-                                "label": "Total gross four weekly pay",
-                                "description": "",
-                                "q_code": "152",
-                                "decimal_places": 2,
-                                "currency": "GBP"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blockconfirmation-page-for-205ec5ba-6004-4c87-b7a1-116964667f24",
-                        "type": "ConfirmationQuestion",
-                        "questions": [{
-                            "id": "questionconfirmation-page-for-205ec5ba-6004-4c87-b7a1-116964667f24",
-                            "title": "The <em>total gross four weekly pay</em> paid to employees in {{ metadata['period_id'] }} was <em>&#xA3;0</em>, is this correct?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerconfirmation-answer-for-205ec5ba-6004-4c87-b7a1-116964667f24",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "options": [{
-                                        "label": "Yes this is correct",
-                                        "value": "Yes this is correct"
-                                    },
-                                    {
-                                        "label": "No I need to change this",
-                                        "value": "No I need to change this"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "skip_conditions": [{
+                    "id": "group9442599d-4b92-4c58-81f2-693ae40b7100",
+                    "title": "Four weekly pay",
+                    "skip_conditions": [{
                             "when": [{
-                                "id": "answerab7b97dc-541f-4b59-83f0-ca4867bdfcad",
-                                "condition": "not equals",
-                                "value": 0
+                                "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                                "condition": "not contains",
+                                "value": "Four weekly"
                             }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block205ec5ba-6004-4c87-b7a1-116964667f24",
-                                    "when": [{
-                                        "id": "answerconfirmation-answer-for-205ec5ba-6004-4c87-b7a1-116964667f24",
-                                        "condition": "contains any",
-                                        "values": ["No I need to change this"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block1de5df72-f486-403c-92a4-98a38b79078d",
-                                    "when": [{
-                                        "id": "answerab7b97dc-541f-4b59-83f0-ca4867bdfcad",
-                                        "condition": "equals",
-                                        "value": 0
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockc35e2043-b393-47f6-983f-ebee763a2145"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "blockc35e2043-b393-47f6-983f-ebee763a2145",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionc35e2043-b393-47f6-983f-ebee763a2145",
-                            "title": "Of the {{ format_currency(answers['answerab7b97dc-541f-4b59-83f0-ca4867bdfcad'], 'GBP') }} paid to <em>four weekly</em> paid employees in  {{ metadata['period_id'] }}, what other amounts were paid?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "performance pay (for example productivity bonuses)",
-                                            "long service awards",
-                                            "appearance money (sporting professionals)"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answer7eea963c-2fe1-4f97-a1f6-4a40c0376167",
-                                    "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Arrears of pay owing to pay awards",
-                                    "description": "",
-                                    "q_code": "172",
-                                    "max_value": {
-                                        "answer_id": "answerab7b97dc-541f-4b59-83f0-ca4867bdfcad",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
+                        },
+                        {
+                            "when": [{
+                                "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                                "condition": "not set"
+                            }]
+                        }
+                    ],
+                    "blocks": [{
+                            "type": "Interstitial",
+                            "id": "group9442599d-4b92-4c58-81f2-693ae40b7100-introduction",
+                            "title": "Four weekly pay",
+                            "description": "<p>This section covers employees who are paid four weekly.</p><p>You will be asked for the:</p><ul><li>number of four weekly paid employees</li><li>holiday pay, pay awards and bonuses paid to four weekly paid employees</li><li>number of furloughed employees</li><li>number of furloughed employees who received a top-up to their pay in addition to the Coronavirus Job Retention Scheme (CJRS) 80% contributions</li><li>significant changes to the pay or number of four weekly paid employees</li></ul>"
+                        },
+                        {
+                            "id": "block239f5378-d772-46ea-ae35-0b12d3c887ce",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question239f5378-d772-46ea-ae35-0b12d3c887ce",
+                                "title": "What was the <em>number</em> of <em>four weekly</em> paid employees paid in {{ metadata['period_id'] }}?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received pay in the relevant period"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "trainees on government schemes",
+                                                "employees working abroad unless paid directly from this business&#x2019;s GB payroll",
+                                                "employees in Northern Ireland"
+                                            ]
+                                        }
+                                    ]
                                 },
-                                {
-                                    "id": "answer2e4a2094-e6f1-417b-ba3a-aee9a9689018",
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answer82db87fd-dc48-4385-8eee-e49d1fc37c65",
                                     "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Bonuses, commissions or annual profit from profit related pay schemes",
-                                    "description": "",
-                                    "q_code": "182",
-                                    "max_value": {
-                                        "answer_id": "answerab7b97dc-541f-4b59-83f0-ca4867bdfcad",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "block1de5df72-f486-403c-92a4-98a38b79078d",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question1de5df72-f486-403c-92a4-98a38b79078d",
-                            "title": "Were any of {{ metadata['ru_name'] }}&apos;s four weekly paid employees <em>furloughed</em> for any of the pay period?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "employees furloughed for either all, or some, of their normal working hours",
-                                            "employees the business is claiming for via the Coronavirus Job Retention Scheme (CJRS)"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerd2c4eb4d-277a-4fc8-9d73-487fb49e1841",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "400w4",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block149d70f4-db46-47fe-bb53-706e4bed2c9f",
-                                    "when": [{
-                                        "id": "answerd2c4eb4d-277a-4fc8-9d73-487fb49e1841",
-                                        "condition": "contains any",
-                                        "values": ["No", "Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block76c34ef3-430b-4dba-bbe8-58aa5875ff32"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block76c34ef3-430b-4dba-bbe8-58aa5875ff32",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question76c34ef3-430b-4dba-bbe8-58aa5875ff32",
-                            "title": "Approximately <em>how many</em> of the four weekly paid employees were furloughed for any of the pay period?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "employees furloughed for either all, or some, of their normal working hours",
-                                            "employees the business is claiming for via the Coronavirus Job Retention Scheme (CJRS)"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answer1757a5f3-3550-47d1-bcf3-473b0306ca94",
-                                    "mandatory": false,
                                     "type": "Number",
-                                    "label": "Number of furloughed employees",
+                                    "label": "Total number of four weekly paid employees",
                                     "description": "",
-                                    "q_code": "401w41",
+                                    "q_code": "140w4",
                                     "min_value": {
                                         "value": 1,
                                         "exclusive": false
                                     },
-                                    "max_value": {
-                                        "answer_id": "answer82db87fd-dc48-4385-8eee-e49d1fc37c65",
-                                        "exclusive": false
-                                    },
                                     "decimal_places": 0
+                                }]
+                            }]
+                        },
+                        {
+                            "id": "block205ec5ba-6004-4c87-b7a1-116964667f24",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question205ec5ba-6004-4c87-b7a1-116964667f24",
+                                "title": "What was the <em>total gross four weekly pay</em> paid to employees in {{ metadata['period_id'] }}?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "bonuses or commissions",
+                                                "overtime and shift allowance payments",
+                                                "pay award arrears",
+                                                "voluntary employee contributions to, and annual profit from, profit related pay schemes"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "any redundancy pay and pay in lieu of notice payments (taxable and non-taxable)",
+                                                "trainees on government schemes",
+                                                "directors&apos; fees",
+                                                "employer&#x2019;s NI and contribution to pension schemes",
+                                                "employees working abroad unless paid directly from this business&#x2019;s GB payroll",
+                                                "signing on fees (sporting professionals)",
+                                                "accrued holiday pay",
+                                                "employees in Northern Ireland",
+                                                "expenses payments for attending meetings or training courses"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answerab7b97dc-541f-4b59-83f0-ca4867bdfcad",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total gross four weekly pay",
+                                    "description": "",
+                                    "q_code": "152",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                }]
+                            }]
+                        },
+                        {
+                            "id": "blockconfirmation-page-for-205ec5ba-6004-4c87-b7a1-116964667f24",
+                            "type": "ConfirmationQuestion",
+                            "questions": [{
+                                "id": "questionconfirmation-page-for-205ec5ba-6004-4c87-b7a1-116964667f24",
+                                "title": "The <em>total gross four weekly pay</em> paid to employees in {{ metadata['period_id'] }} was <em>&#xA3;0</em>, is this correct?",
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answerconfirmation-answer-for-205ec5ba-6004-4c87-b7a1-116964667f24",
+                                    "mandatory": true,
+                                    "type": "Radio",
+                                    "options": [{
+                                            "label": "Yes this is correct",
+                                            "value": "Yes this is correct"
+                                        },
+                                        {
+                                            "label": "No I need to change this",
+                                            "value": "No I need to change this"
+                                        }
+                                    ]
+                                }]
+                            }],
+                            "skip_conditions": [{
+                                "when": [{
+                                    "id": "answerab7b97dc-541f-4b59-83f0-ca4867bdfcad",
+                                    "condition": "not equals",
+                                    "value": 0
+                                }]
+                            }],
+                            "routing_rules": [{
+                                    "goto": {
+                                        "block": "block205ec5ba-6004-4c87-b7a1-116964667f24",
+                                        "when": [{
+                                            "id": "answerconfirmation-answer-for-205ec5ba-6004-4c87-b7a1-116964667f24",
+                                            "condition": "contains any",
+                                            "values": ["No I need to change this"]
+                                        }]
+                                    }
                                 },
                                 {
-                                    "id": "answer67847e0d-ef47-4a73-b5c2-826aa1db7d1f",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Or select \"Not sure\"if the number is not known",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "401w42"
-                                    }]
+                                    "goto": {
+                                        "block": "block1de5df72-f486-403c-92a4-98a38b79078d",
+                                        "when": [{
+                                            "id": "answerab7b97dc-541f-4b59-83f0-ca4867bdfcad",
+                                            "condition": "equals",
+                                            "value": 0
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "blockc35e2043-b393-47f6-983f-ebee763a2145"
+                                    }
                                 }
                             ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block149d70f4-db46-47fe-bb53-706e4bed2c9f",
-                                    "when": [{
+                        },
+                        {
+                            "id": "blockc35e2043-b393-47f6-983f-ebee763a2145",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "questionc35e2043-b393-47f6-983f-ebee763a2145",
+                                "title": "Of the {{ format_currency(answers['answerab7b97dc-541f-4b59-83f0-ca4867bdfcad'], 'GBP') }} paid to <em>four weekly</em> paid employees in  {{ metadata['period_id'] }}, what other amounts were paid?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "performance pay (for example productivity bonuses)",
+                                                "long service awards",
+                                                "appearance money (sporting professionals)"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [{
+                                        "id": "answer7eea963c-2fe1-4f97-a1f6-4a40c0376167",
+                                        "mandatory": true,
+                                        "type": "Currency",
+                                        "label": "Arrears of pay owing to pay awards",
+                                        "description": "",
+                                        "q_code": "172",
+                                        "max_value": {
+                                            "answer_id": "answerab7b97dc-541f-4b59-83f0-ca4867bdfcad",
+                                            "exclusive": false
+                                        },
+                                        "decimal_places": 2,
+                                        "currency": "GBP"
+                                    },
+                                    {
+                                        "id": "answer2e4a2094-e6f1-417b-ba3a-aee9a9689018",
+                                        "mandatory": true,
+                                        "type": "Currency",
+                                        "label": "Bonuses, commissions or annual profit from profit related pay schemes",
+                                        "description": "",
+                                        "q_code": "182",
+                                        "max_value": {
+                                            "answer_id": "answerab7b97dc-541f-4b59-83f0-ca4867bdfcad",
+                                            "exclusive": false
+                                        },
+                                        "decimal_places": 2,
+                                        "currency": "GBP"
+                                    }
+                                ]
+                            }]
+                        },
+                        {
+                            "id": "block1de5df72-f486-403c-92a4-98a38b79078d",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question1de5df72-f486-403c-92a4-98a38b79078d",
+                                "title": "Were any of {{ metadata['ru_name'] }}&apos;s four weekly paid employees <em>furloughed</em> for any of the pay period?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "employees furloughed for either all, or some, of their normal working hours",
+                                                "employees the business is claiming for via the Coronavirus Job Retention Scheme (CJRS)"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answerd2c4eb4d-277a-4fc8-9d73-487fb49e1841",
+                                    "mandatory": true,
+                                    "type": "Radio",
+                                    "label": "",
+                                    "description": "",
+                                    "q_code": "400w4",
+                                    "options": [{
+                                            "label": "Yes",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "label": "No",
+                                            "value": "No"
+                                        },
+                                        {
+                                            "label": "Not sure",
+                                            "value": "Not sure"
+                                        }
+                                    ]
+                                }]
+                            }],
+                            "routing_rules": [{
+                                    "goto": {
+                                        "block": "block149d70f4-db46-47fe-bb53-706e4bed2c9f",
+                                        "when": [{
+                                            "id": "answerd2c4eb4d-277a-4fc8-9d73-487fb49e1841",
+                                            "condition": "contains any",
+                                            "values": ["No", "Not sure"]
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block76c34ef3-430b-4dba-bbe8-58aa5875ff32"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block76c34ef3-430b-4dba-bbe8-58aa5875ff32",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question76c34ef3-430b-4dba-bbe8-58aa5875ff32",
+                                "title": "Approximately <em>how many</em> of the four weekly paid employees were furloughed for any of the pay period?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "employees furloughed for either all, or some, of their normal working hours",
+                                                "employees the business is claiming for via the Coronavirus Job Retention Scheme (CJRS)"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [{
+                                        "id": "answer1757a5f3-3550-47d1-bcf3-473b0306ca94",
+                                        "mandatory": false,
+                                        "type": "Number",
+                                        "label": "Number of furloughed employees",
+                                        "description": "",
+                                        "q_code": "401w41",
+                                        "min_value": {
+                                            "value": 1,
+                                            "exclusive": false
+                                        },
+                                        "max_value": {
+                                            "answer_id": "answer82db87fd-dc48-4385-8eee-e49d1fc37c65",
+                                            "exclusive": false
+                                        },
+                                        "decimal_places": 0
+                                    },
+                                    {
                                         "id": "answer67847e0d-ef47-4a73-b5c2-826aa1db7d1f",
-                                        "condition": "contains all",
-                                        "values": ["Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block638c18b5-7a4b-488c-8016-faa95986501b"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block638c18b5-7a4b-488c-8016-faa95986501b",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question638c18b5-7a4b-488c-8016-faa95986501b",
-                            "title": "How many of {{ metadata['ru_name'] }}&#x2019;s four weekly paid furloughed employees received <em>more than the 80%</em> Coronavirus Job Retention Scheme (CJRS) contribution, for the pay period?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "employees who worked some hours for which they were paid at the normal rate",
-                                            "employees who received a top-up to their pay in addition to the Coronavirus Job Retention Scheme (CJRS) 80% contribution"
-                                        ]
-                                    },
-                                    {
-                                        "description": "<strong>Exclude:</strong>"
-                                    },
-                                    {
-                                        "list": ["employer&#x2019;s NI and contribution to pension schemes"]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answerfc61f06f-0507-4ed3-b34f-b92718876eb1",
-                                    "mandatory": false,
-                                    "type": "Number",
-                                    "label": "Number of employees paid more than the 80% CJRS contribution",
-                                    "description": "",
-                                    "q_code": "402w41",
-                                    "max_value": {
-                                        "answer_id": "answer1757a5f3-3550-47d1-bcf3-473b0306ca94",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
-                                },
-                                {
-                                    "id": "answera263cc88-8838-42be-a1c9-ce697390dcdc",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Or select \"Not sure\"if the number is not known",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "402w42"
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "block149d70f4-db46-47fe-bb53-706e4bed2c9f",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question149d70f4-db46-47fe-bb53-706e4bed2c9f",
-                            "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>four weekly</em> paid employees?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "redundancies",
-                                            "changes in the number of temporary staff",
-                                            "more or less overtime",
-                                            "new pay rates",
-                                            "industrial action"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "definitions": [{
-                                "title": "What constitutes a significant change?",
-                                "content": [{
-                                        "description": "What constitutes a &quot;significant change&quot; is dependent on your own interpretation of whether there has been a significant change in the business&#x2019;s figures compared with the previous month."
-                                    },
-                                    {
-                                        "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                                        "mandatory": false,
+                                        "type": "Checkbox",
+                                        "label": "Or select \"Not sure\"if the number is not known",
+                                        "description": "",
+                                        "options": [{
+                                            "label": "Not sure",
+                                            "value": "Not sure",
+                                            "q_code": "401w42"
+                                        }]
                                     }
                                 ]
                             }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answere178398b-c91c-4b6f-baa2-caf1d154ad96",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "190w4",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
+                            "routing_rules": [{
+                                    "goto": {
+                                        "block": "block149d70f4-db46-47fe-bb53-706e4bed2c9f",
+                                        "when": [{
+                                            "id": "answer67847e0d-ef47-4a73-b5c2-826aa1db7d1f",
+                                            "condition": "contains all",
+                                            "values": ["Not sure"]
+                                        }]
                                     }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group9747ed13-704c-46f6-8d17-3655314314ca",
-                                    "when": [{
-                                        "id": "answere178398b-c91c-4b6f-baa2-caf1d154ad96",
-                                        "condition": "contains any",
-                                        "values": ["No"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block0122b4d1-eff3-40f6-870f-751657f02059"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block0122b4d1-eff3-40f6-870f-751657f02059",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question0122b4d1-eff3-40f6-870f-751657f02059",
-                            "title": "What were the reasons for the changes to the <em>total pay or number</em> of <em>four weekly</em> paid employees?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer0b89e980-809d-42c7-b82e-bfc05adbdbd5",
-                                "mandatory": true,
-                                "type": "Checkbox",
-                                "label": "Select all that apply",
-                                "description": "",
-                                "options": [{
-                                        "label": "Redundancies",
-                                        "value": "Redundancies",
-                                        "q_code": "191w4"
-                                    },
-                                    {
-                                        "label": "More temporary staff",
-                                        "value": "More temporary staff",
-                                        "q_code": "192w41"
-                                    },
-                                    {
-                                        "label": "Fewer temporary staff",
-                                        "value": "Fewer temporary staff",
-                                        "q_code": "192w42"
-                                    },
-                                    {
-                                        "label": "More overtime",
-                                        "value": "More overtime",
-                                        "q_code": "194w41"
-                                    },
-                                    {
-                                        "label": "Less overtime",
-                                        "value": "Less overtime",
-                                        "q_code": "194w42"
-                                    },
-                                    {
-                                        "label": "Pay increase",
-                                        "value": "Pay increase",
-                                        "q_code": "195w4"
-                                    },
-                                    {
-                                        "label": "Industrial action",
-                                        "value": "Industrial action",
-                                        "q_code": "196w4"
-                                    },
-                                    {
-                                        "label": "Other",
-                                        "value": "Other",
-                                        "q_code": "197w4"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "blockc553342f-bbb1-4ae2-8b09-afe46ac2ae97",
-                                    "when": [{
-                                        "id": "answer0b89e980-809d-42c7-b82e-bfc05adbdbd5",
-                                        "condition": "contains all",
-                                        "values": ["Pay increase"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockf7c4fb33-79b0-4613-a30e-6abe10351ae6"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "blockc553342f-bbb1-4ae2-8b09-afe46ac2ae97",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionc553342f-bbb1-4ae2-8b09-afe46ac2ae97",
-                            "title": "If your business has new pay rates, what is the percentage increase?",
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answera95a7f65-8303-4ffb-8201-092bd9ceffca",
-                                    "mandatory": false,
-                                    "type": "Percentage",
-                                    "label": "Percentage increase of new pay rates",
-                                    "description": "",
-                                    "q_code": "200w4",
-                                    "decimal_places": 2
                                 },
                                 {
-                                    "id": "answer2a0c01cd-ae5f-47e5-9914-734d9a610616",
-                                    "mandatory": false,
-                                    "type": "Date",
-                                    "label": "If your figures are backdated, which date did they begin?",
-                                    "description": "",
-                                    "q_code": "210w4"
-                                },
-                                {
-                                    "id": "answer607c19b8-1c87-4d85-aa79-efdadebf8a42",
-                                    "mandatory": false,
-                                    "type": "Number",
-                                    "label": "What was the number of four weekly paid employees who received this new pay rate?",
-                                    "description": "",
-                                    "q_code": "220w4",
-                                    "max_value": {
-                                        "answer_id": "answer82db87fd-dc48-4385-8eee-e49d1fc37c65",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
+                                    "goto": {
+                                        "block": "block638c18b5-7a4b-488c-8016-faa95986501b"
+                                    }
                                 }
                             ]
-                        }]
-                    },
-                    {
-                        "id": "blockf7c4fb33-79b0-4613-a30e-6abe10351ae6",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionf7c4fb33-79b0-4613-a30e-6abe10351ae6",
-                            "title": "What were the changes to the <em>total pay or number</em> of <em>four weekly</em> paid employees?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer0bec4dde-9124-4eb5-9fa0-7c022d73ae1e",
-                                "mandatory": true,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "description": "",
-                                "q_code": "300w4",
-                                "max_length": 2000
+                        },
+                        {
+                            "id": "block638c18b5-7a4b-488c-8016-faa95986501b",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question638c18b5-7a4b-488c-8016-faa95986501b",
+                                "title": "How many of {{ metadata['ru_name'] }}&#x2019;s four weekly paid furloughed employees received <em>more than the 80%</em> Coronavirus Job Retention Scheme (CJRS) contribution, for the pay period?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "employees who worked some hours for which they were paid at the normal rate",
+                                                "employees who received a top-up to their pay in addition to the Coronavirus Job Retention Scheme (CJRS) 80% contribution"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": ["employer&#x2019;s NI and contribution to pension schemes"]
+                                        }
+                                    ]
+                                },
+                                "type": "General",
+                                "answers": [{
+                                        "id": "answerfc61f06f-0507-4ed3-b34f-b92718876eb1",
+                                        "mandatory": false,
+                                        "type": "Number",
+                                        "label": "Number of employees paid more than the 80% CJRS contribution",
+                                        "description": "",
+                                        "q_code": "402w41",
+                                        "max_value": {
+                                            "answer_id": "answer1757a5f3-3550-47d1-bcf3-473b0306ca94",
+                                            "exclusive": false
+                                        },
+                                        "decimal_places": 0
+                                    },
+                                    {
+                                        "id": "answera263cc88-8838-42be-a1c9-ce697390dcdc",
+                                        "mandatory": false,
+                                        "type": "Checkbox",
+                                        "label": "Or select \"Not sure\"if the number is not known",
+                                        "description": "",
+                                        "options": [{
+                                            "label": "Not sure",
+                                            "value": "Not sure",
+                                            "q_code": "402w42"
+                                        }]
+                                    }
+                                ]
                             }]
-                        }]
-                    }
-                ]
-            }]
+                        },
+                        {
+                            "id": "block149d70f4-db46-47fe-bb53-706e4bed2c9f",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question149d70f4-db46-47fe-bb53-706e4bed2c9f",
+                                "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>four weekly</em> paid employees?",
+                                "guidance": {
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "redundancies",
+                                                "changes in the number of temporary staff",
+                                                "more or less overtime",
+                                                "new pay rates",
+                                                "industrial action"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "definitions": [{
+                                    "title": "What constitutes a significant change?",
+                                    "content": [{
+                                            "description": "What constitutes a &quot;significant change&quot; is dependent on your own interpretation of whether there has been a significant change in the business&#x2019;s figures compared with the previous month."
+                                        },
+                                        {
+                                            "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                                        }
+                                    ]
+                                }],
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answere178398b-c91c-4b6f-baa2-caf1d154ad96",
+                                    "mandatory": true,
+                                    "type": "Radio",
+                                    "label": "",
+                                    "description": "",
+                                    "q_code": "190w4",
+                                    "options": [{
+                                            "label": "Yes",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "label": "No",
+                                            "value": "No"
+                                        }
+                                    ]
+                                }]
+                            }],
+                            "routing_rules": [{
+                                    "goto": {
+                                        "group": "four-weekly-pay-summary-group",
+                                        "when": [{
+                                            "id": "answere178398b-c91c-4b6f-baa2-caf1d154ad96",
+                                            "condition": "contains any",
+                                            "values": ["No"]
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block0122b4d1-eff3-40f6-870f-751657f02059"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block0122b4d1-eff3-40f6-870f-751657f02059",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "question0122b4d1-eff3-40f6-870f-751657f02059",
+                                "title": "What were the reasons for the changes to the <em>total pay or number</em> of <em>four weekly</em> paid employees?",
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answer0b89e980-809d-42c7-b82e-bfc05adbdbd5",
+                                    "mandatory": true,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Redundancies",
+                                            "value": "Redundancies",
+                                            "q_code": "191w4"
+                                        },
+                                        {
+                                            "label": "More temporary staff",
+                                            "value": "More temporary staff",
+                                            "q_code": "192w41"
+                                        },
+                                        {
+                                            "label": "Fewer temporary staff",
+                                            "value": "Fewer temporary staff",
+                                            "q_code": "192w42"
+                                        },
+                                        {
+                                            "label": "More overtime",
+                                            "value": "More overtime",
+                                            "q_code": "194w41"
+                                        },
+                                        {
+                                            "label": "Less overtime",
+                                            "value": "Less overtime",
+                                            "q_code": "194w42"
+                                        },
+                                        {
+                                            "label": "Pay increase",
+                                            "value": "Pay increase",
+                                            "q_code": "195w4"
+                                        },
+                                        {
+                                            "label": "Industrial action",
+                                            "value": "Industrial action",
+                                            "q_code": "196w4"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "197w4"
+                                        }
+                                    ]
+                                }]
+                            }],
+                            "routing_rules": [{
+                                    "goto": {
+                                        "block": "blockc553342f-bbb1-4ae2-8b09-afe46ac2ae97",
+                                        "when": [{
+                                            "id": "answer0b89e980-809d-42c7-b82e-bfc05adbdbd5",
+                                            "condition": "contains all",
+                                            "values": ["Pay increase"]
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "blockf7c4fb33-79b0-4613-a30e-6abe10351ae6"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "blockc553342f-bbb1-4ae2-8b09-afe46ac2ae97",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "questionc553342f-bbb1-4ae2-8b09-afe46ac2ae97",
+                                "title": "If your business has new pay rates, what is the percentage increase?",
+                                "type": "General",
+                                "answers": [{
+                                        "id": "answera95a7f65-8303-4ffb-8201-092bd9ceffca",
+                                        "mandatory": false,
+                                        "type": "Percentage",
+                                        "label": "Percentage increase of new pay rates",
+                                        "description": "",
+                                        "q_code": "200w4",
+                                        "decimal_places": 2
+                                    },
+                                    {
+                                        "id": "answer2a0c01cd-ae5f-47e5-9914-734d9a610616",
+                                        "mandatory": false,
+                                        "type": "Date",
+                                        "label": "If your figures are backdated, which date did they begin?",
+                                        "description": "",
+                                        "q_code": "210w4"
+                                    },
+                                    {
+                                        "id": "answer607c19b8-1c87-4d85-aa79-efdadebf8a42",
+                                        "mandatory": false,
+                                        "type": "Number",
+                                        "label": "What was the number of four weekly paid employees who received this new pay rate?",
+                                        "description": "",
+                                        "q_code": "220w4",
+                                        "max_value": {
+                                            "answer_id": "answer82db87fd-dc48-4385-8eee-e49d1fc37c65",
+                                            "exclusive": false
+                                        },
+                                        "decimal_places": 0
+                                    }
+                                ]
+                            }]
+                        },
+                        {
+                            "id": "blockf7c4fb33-79b0-4613-a30e-6abe10351ae6",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "questionf7c4fb33-79b0-4613-a30e-6abe10351ae6",
+                                "title": "What were the changes to the <em>total pay or number</em> of <em>four weekly</em> paid employees?",
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answer0bec4dde-9124-4eb5-9fa0-7c022d73ae1e",
+                                    "mandatory": true,
+                                    "type": "TextArea",
+                                    "label": "Comments",
+                                    "description": "",
+                                    "q_code": "300w4",
+                                    "max_length": 2000
+                                }]
+                            }]
+                        }
+                    ]
+                },
+                {
+                    "id": "four-weekly-pay-summary-group",
+                    "title": "Calendar Monthly Pay Summary",
+                    "skip_conditions": [{
+                            "when": [{
+                                "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                                "condition": "not contains",
+                                "value": "Four weekly"
+                            }]
+                        },
+                        {
+                            "when": [{
+                                "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                                "condition": "not set"
+                            }]
+                        }
+                    ],
+                    "blocks": [{
+                        "id": "four-weekly-pay-summary",
+                        "type": "SectionSummary",
+                        "collapsible": true
+                    }]
+                }
+            ]
         },
         {
             "id": "section9747ed13-704c-46f6-8d17-3655314314ca",
