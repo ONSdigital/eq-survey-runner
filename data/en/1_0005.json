@@ -3509,7 +3509,7 @@
             "validator": "date"
         },
         {
-            "name": "period_str",
+            "name": "period_id",
             "validator": "string"
         }
     ],
