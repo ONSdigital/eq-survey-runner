@@ -721,7 +721,7 @@
                             }],
                             "routing_rules": [{
                                     "goto": {
-                                        "group": "groupb903c023-4354-46af-87bc-708000c86384",
+                                        "group": "weekly-pay-summary-group",
                                         "when": [{
                                             "id": "answer3b68f565-f13a-4155-b639-124cd0ec82ca",
                                             "condition": "contains any",
