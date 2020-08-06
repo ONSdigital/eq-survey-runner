@@ -2786,7 +2786,7 @@
                 },
                 {
                     "id": "four-weekly-pay-summary-group",
-                    "title": "Calendar Monthly Pay Summary",
+                    "title": "Four Weekly Pay Summary",
                     "skip_conditions": [{
                             "when": [{
                                 "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
@@ -2815,6 +2815,20 @@
             "groups": [{
                 "id": "group9747ed13-704c-46f6-8d17-3655314314ca",
                 "title": "Five weekly pay",
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                            "condition": "not contains",
+                            "value": "Five weekly"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                            "condition": "not set"
+                        }]
+                    }
+                ],
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group9747ed13-704c-46f6-8d17-3655314314ca-introduction",
@@ -3251,7 +3265,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupe30dd07c-2f93-4605-bd45-eb821be27e9e",
+                                    "group": "five-weekly-pay-summary-group",
                                     "when": [{
                                         "id": "answerb567e1f5-c395-4db3-98b6-03dad97e420c",
                                         "condition": "contains any",
@@ -3398,6 +3412,28 @@
                         }]
                     }
                 ]
+            }, {
+                "id": "five-weekly-pay-summary-group",
+                "title": "Five Weekly Pay Summary",
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                            "condition": "not contains",
+                            "value": "Five weekly"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                            "condition": "not set"
+                        }]
+                    }
+                ],
+                "blocks": [{
+                    "id": "four-weekly-pay-summary",
+                    "type": "SectionSummary",
+                    "collapsible": true
+                }]
             }]
         },
         {
