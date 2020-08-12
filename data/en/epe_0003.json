@@ -1,0 +1,1168 @@
+{
+    "eq_id": "epe_0003",
+    "form_type": "0003",
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "147",
+    "title": "Environmental Protection Expenditure",
+    "sections": [{
+            "id": "section3ec3685a-5b99-4014-8763-976b7c91f563",
+            "title": "Reporting Period",
+            "groups": [{
+                "id": "group3ec3685a-5b99-4014-8763-976b7c91f563",
+                "title": "Reporting Period",
+                "blocks": [{
+                        "type": "Introduction",
+                        "id": "introduction-block",
+                        "primary_content": [{
+                            "type": "Basic",
+                            "id": "primary",
+                            "content": [{
+                                "list": [
+                                    "Data should relate to all sites in England, Scotland, Wales and Northern Ireland but excludes the Channel Islands and the Isle of Man.",
+                                    "Exclude overseas branches, subsidiaries and agencies.",
+                                    "You can provide informed estimates if actual figures are not available.",
+                                    "We will treat your data securely and confidentially."
+                                ]
+                            }]
+                        }],
+                        "preview_content": {
+                            "id": "preview",
+                            "title": "Information you need",
+                            "content": [{
+                                "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/surveyofenvironmentalprotectionexpenditure'>View the questions before you start the survey (external link)</a>",
+                                "list": [
+                                    "Information should relate to the UK.",
+                                    "We will treat your information securely and confidentially.",
+                                    "This survey is refreshed every two weeks. To avoid losing data, please submit by the return date and before the next fortnightly survey is published."
+                                ]
+                            }],
+                            "questions": [{
+                                "question": "Environmental protection expenditure",
+                                "content": [{
+                                        "description": "This is defined as spending incurred by businesses where the <strong>primary aim is to reduce environmental pollution</strong> caused during normal operations, for example expenditure to:"
+                                    },
+                                    {
+                                        "list": [
+                                            "reduce or prevent emissions to air or water",
+                                            "dispose of waste materials",
+                                            "protect land, soil and groundwater",
+                                            "prevent noise and vibration",
+                                            "protect the natural environment"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "operating or running costs to external organisations and the business&apos;s own &apos;in-house&apos; environment management and control activities",
+                                            "the purchase price of capital goods, to be recorded for the year in which they were capitalised"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "depreciation or write-offs and payments of general environmental taxes",
+                                            "VAT",
+                                            "expenditure relating to health and safety"
+                                        ]
+                                    }
+                                ]
+                            }]
+                        },
+                        "secondary_content": [{
+                            "id": "secondary-content",
+                            "title": "How we use your data",
+                            "content": [{
+                                "list": [
+                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                                    "This survey collects information relating to activities and spending of industries on measures to reduce various types of environmental impacts. The information you provide contributes to the UK environmental protection measures."
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Interstitial",
+                        "id": "group3ec3685a-5b99-4014-8763-976b7c91f563-introduction",
+                        "title": "Environmental protection expenditure",
+                        "description": "<p>This is defined as spending incurred by businesses where the <strong>primary aim is to reduce environmental pollution</strong> caused during normal operations, for example, expenditure to:</p><ul><li>reduce or prevent emissions to air or water</li><li>dispose of waste materials</li><li>protect land, soil and groundwater</li><li>prevent noise and vibration</li><li>protect the natural environment</li></ul><p><strong>Include:</strong></p><ul><li>operating or running costs to external organisations and the business&apos;s own &quot;in-house&quot; environment management and control activities</li><li>the purchase price of capital goods, to be recorded for the year in which they were capitalised</li></ul><p><strong>Exclude:</strong></p><ul><li>depreciation or write-offs and payments of general environmental taxes</li><li>VAT</li><li>expenditure relating to health and safety</li></ul>"
+                    },
+                    {
+                        "id": "block23b85201-b524-435c-86be-ba211bd87b90",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question23b85201-b524-435c-86be-ba211bd87b90",
+                            "title": "Are you able to report for the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
+                            "description": "<p>Select &quot;no&quot; if you can only provide figures for part of this period or if you need to provide figures for a different 12 month period.</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer8812533d-52fc-4fd1-a32b-0f508245985f",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "10",
+                                "options": [{
+                                        "label": "Yes, I can report for these dates",
+                                        "value": "Yes, I can report for these dates"
+                                    },
+                                    {
+                                        "label": "No, I need to report for a different period",
+                                        "value": "No, I need to report for a different period"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group5b375c46-6375-4b6c-8af5-c592dc1a09df",
+                                    "when": [{
+                                        "id": "answer8812533d-52fc-4fd1-a32b-0f508245985f",
+                                        "condition": "contains any",
+                                        "values": ["Yes, I can report for these dates"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block0d65dfe6-1a3d-439d-9e2e-fa00ee2d178b"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block0d65dfe6-1a3d-439d-9e2e-fa00ee2d178b",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question0d65dfe6-1a3d-439d-9e2e-fa00ee2d178b",
+                            "title": "What dates are you reporting for?",
+                            "description": "<p>If you can report for a full 12 months, provide dates that end between<em> 6 April 2019</em> and <em>5 April 2020</em>.</p><p>If you traded for only part of the year, please provide the dates for the period in which you were trading.</p>",
+                            "type": "DateRange",
+                            "answers": [{
+                                    "id": "answereb6d71bb-f694-47b9-8552-50087b7aaf74from",
+                                    "type": "Date",
+                                    "mandatory": true,
+                                    "label": "From",
+                                    "q_code": "20"
+                                },
+                                {
+                                    "id": "answereb6d71bb-f694-47b9-8552-50087b7aaf74to",
+                                    "type": "Date",
+                                    "mandatory": true,
+                                    "label": "To",
+                                    "q_code": "21",
+                                    "maximum": {
+                                        "value": "2020-04-05",
+                                        "offset_by": {
+                                            "days": 0
+                                        }
+                                    }
+                                }
+                            ],
+                            "period_limits": {
+                                "maximum": {
+                                    "months": 12
+                                }
+                            }
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section5b375c46-6375-4b6c-8af5-c592dc1a09df",
+            "title": "External operating expenditure",
+            "groups": [{
+                "id": "group5b375c46-6375-4b6c-8af5-c592dc1a09df",
+                "title": "External operating expenditure",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group5b375c46-6375-4b6c-8af5-c592dc1a09df-introduction",
+                        "title": "External operating expenditure",
+                        "description": "<p>This section asks for information about payments to external organisations for environmental protection services.</p><p>External operating expenditure are payments made to external organisations for the treatment and/or disposal or investigation of solid waste, waste water, air and other (for example, soil, groundwater, noise or vibrations, nature protection). This does not include any capital expenditure.</p>"
+                    },
+                    {
+                        "id": "block6daba657-6e10-4cb4-bc21-b84239b08ff5",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question6daba657-6e10-4cb4-bc21-b84239b08ff5",
+                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['ru_name'] }} <em>pay an external organisation</em> for a service that helped to protect the environment?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["removal of solid wastes, waste water and contaminated soil"]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": ["environmental permits, for example, sewage discharge permits"]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer98e0fb74-4dc7-4cf5-9050-b81f094e143a",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "37",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group6c5c45d6-7adb-4807-b46b-9f207af73b2f",
+                                    "when": [{
+                                        "id": "answer98e0fb74-4dc7-4cf5-9050-b81f094e143a",
+                                        "condition": "contains any",
+                                        "values": ["No"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blocke23adaf4-56c5-4b21-99e0-57998a0c68e2"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blocke23adaf4-56c5-4b21-99e0-57998a0c68e2",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questione23adaf4-56c5-4b21-99e0-57998a0c68e2",
+                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how much did {{ metadata['ru_name'] }} pay to external organisations for environmental protection services?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["removal of solid wastes, waste water and contaminated soil"]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": ["VAT", "environmental permits, for example, sewage discharge permits"]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerd49825a9-3298-438e-9561-78e98472866a",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Value of external operating costs",
+                                "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                "q_code": "32",
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block58e5a705-cbfb-4119-9a2c-0f62472f9d8c",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question58e5a705-cbfb-4119-9a2c-0f62472f9d8c",
+                            "title": "Of the {{ format_currency(answers['answerd49825a9-3298-438e-9561-78e98472866a'], 'GBP') }}, how much related to the following?",
+                            "description": "<p>Enter the full value (e.g. 56,234.33) or a value to the nearest &#xA3;thousand (e.g. 56,000). Do not enter &#x2018;56&#x2019; for &#xA3;56,000.</p><p>If you had no expenditure enter &quot;0&quot;. Do not leave blank.</p>",
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answerc984e2b9-e992-46ca-b19b-9460a84f16ea",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of waste water",
+                                    "description": "",
+                                    "q_code": "33",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer015b046e-8e98-4ecf-8bdb-ead7898c606d",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of air",
+                                    "description": "",
+                                    "q_code": "34",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer85f2ad75-fa4b-457f-a045-84fb88590138",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of solid waste",
+                                    "description": "",
+                                    "q_code": "35",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer2ccabc94-1339-41c4-924f-ad7723d2fd73",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of other",
+                                    "description": "For example, soil or groundwater, noise or vibrations, nature protection",
+                                    "q_code": "36",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answerc984e2b9-e992-46ca-b19b-9460a84f16ea",
+                                    "answer015b046e-8e98-4ecf-8bdb-ead7898c606d",
+                                    "answer85f2ad75-fa4b-457f-a045-84fb88590138",
+                                    "answer2ccabc94-1339-41c4-924f-ad7723d2fd73"
+                                ],
+                                "conditions": ["equals"],
+                                "answer_id": "answerd49825a9-3298-438e-9561-78e98472866a"
+                            }]
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section6c5c45d6-7adb-4807-b46b-9f207af73b2f",
+            "title": "In-house operating expenditure",
+            "groups": [{
+                "id": "group6c5c45d6-7adb-4807-b46b-9f207af73b2f",
+                "title": "In-house operating expenditure",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group6c5c45d6-7adb-4807-b46b-9f207af73b2f-introduction",
+                        "title": "In-house operating expenditure",
+                        "description": "<p>This section asks for information about in-house expenditure associated with the operation of pollution control or abatement equipment.</p><p>&quot;In-house&quot; refers to operating costs of the business&apos;s own environment management and control activities.</p><p>&quot;Abatement equipment&quot; refers to equipment that is used for the reduction in degree or intensity of pollution.</p>"
+                    },
+                    {
+                        "id": "blockb7834fea-041a-41fc-8dc5-d35e7571434e",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionb7834fea-041a-41fc-8dc5-d35e7571434e",
+                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['ru_name'] }} have any in-house operating costs for environmental protection activities?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude operating costs paid to external organisations; this should be reported in the previous section, &quot;External Operating Expenditure&quot;."
+                                }]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by \"in-house operating costs\"",
+                                "content": [{
+                                        "description": "This refers to the operating or running costs of the business&apos;s own environmental management and control activities."
+                                    },
+                                    {
+                                        "description": "<strong>For example:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "any labour costs for time spent carrying out work to protect the environment",
+                                            "leasing payment for equipment",
+                                            "chemicals"
+                                        ]
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answera85656cb-5253-4731-b0d2-dc61aedee8cf",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "30",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group216d2b92-e5e6-48ba-9977-11e9f62adf93",
+                                    "when": [{
+                                        "id": "answera85656cb-5253-4731-b0d2-dc61aedee8cf",
+                                        "condition": "contains any",
+                                        "values": ["No"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block8e34183b-6a62-4925-8959-e7a3f0500574"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block8e34183b-6a62-4925-8959-e7a3f0500574",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question8e34183b-6a62-4925-8959-e7a3f0500574",
+                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}&apos;s <em>in-house</em> operating costs for all environmental protection facilities and environmental management?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude operating costs paid to external organisations; this should be reported in the previous section, &quot;External Operating Expenditure&quot;."
+                                }]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by \"in-house operating costs\"",
+                                "content": [{
+                                        "description": "This refers to the operating or running costs of the business&apos;s own environmental management and control activities."
+                                    },
+                                    {
+                                        "description": "<strong>For example:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "any labour costs for time spent carrying out work to protect the environment",
+                                            "leasing payment for equipment",
+                                            "chemicals"
+                                        ]
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer2f53e51a-6549-4f63-a8c9-a2309b657a24",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Value of in-house operating costs",
+                                "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                "q_code": "31",
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block219a8709-03e7-4889-8fe9-d8123b96c9b8",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question219a8709-03e7-4889-8fe9-d8123b96c9b8",
+                            "title": "Of the {{ format_currency(answers['answer2f53e51a-6549-4f63-a8c9-a2309b657a24'], 'GBP') }}, how much related to the following?",
+                            "description": "<p>Enter the full value (e.g. 56,234.33) or a value to the nearest &#xA3;thousand (e.g. 56,000). Do not enter &#x2018;56&#x2019; for &#xA3;56,000.</p><p>If you had no expenditure enter &quot;0&quot;. Do not leave blank.</p>",
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answere37151ad-f3e2-4a88-b037-828de4c9b750",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of waste water",
+                                    "description": "",
+                                    "q_code": "41",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer56a36ae7-f122-4e96-b213-1f4927fa467e",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of air",
+                                    "description": "",
+                                    "q_code": "43",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answerb8a09674-cbe2-407d-8e12-b33d015146ab",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of solid waste",
+                                    "description": "",
+                                    "q_code": "45",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer69c06bd2-2d14-469c-b749-84922d0ce217",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of other",
+                                    "description": "For example, soil or groundwater, noise or vibrations, nature protection",
+                                    "q_code": "47",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answere37151ad-f3e2-4a88-b037-828de4c9b750",
+                                    "answer56a36ae7-f122-4e96-b213-1f4927fa467e",
+                                    "answerb8a09674-cbe2-407d-8e12-b33d015146ab",
+                                    "answer69c06bd2-2d14-469c-b749-84922d0ce217"
+                                ],
+                                "conditions": ["equals"],
+                                "answer_id": "answer2f53e51a-6549-4f63-a8c9-a2309b657a24"
+                            }]
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section216d2b92-e5e6-48ba-9977-11e9f62adf93",
+            "title": "Capital expenditure for environmental protection",
+            "groups": [{
+                "id": "group216d2b92-e5e6-48ba-9977-11e9f62adf93",
+                "title": "Capital expenditure for environmental protection",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group216d2b92-e5e6-48ba-9977-11e9f62adf93-introduction",
+                        "title": "Capital expenditure for environmental protection",
+                        "description": "<p>This section asks for information about fixed assets purchased for  environmental protection purposes, including end-of-pipe equipment,  integrated equipment and additional costs of environmentally friendly processes.</p><p>Capital expenditure refers to the purchase of fixed assets, which are items used repeatedly to facilitate production or provide services, for more than one year.</p>"
+                    },
+                    {
+                        "id": "block17db2b4e-dde2-4349-b458-eaa18abb43cf",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question17db2b4e-dde2-4349-b458-eaa18abb43cf",
+                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['ru_name'] }} have any capital expenditure on <em>end-of-pipe equipment</em> that reduced or cleaned pollution generated by your business activity?",
+                            "definitions": [{
+                                "title": "What we mean by \"end-of-pipe equipment\"",
+                                "content": [{
+                                        "description": "This refers to equipment used to collect and remove pollutants, such as air emissions, effluents, and solid waste, after their creation."
+                                    },
+                                    {
+                                        "description": "It also refers to equipment which treats and disposes of pollutants generated by the operating activity of the business."
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerefa6115b-e605-41b5-a1e1-de349d5f64f1",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "50",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block39db5c80-bbcb-4aa9-8875-56e8a4e03bd7",
+                                    "when": [{
+                                        "id": "answerefa6115b-e605-41b5-a1e1-de349d5f64f1",
+                                        "condition": "contains any",
+                                        "values": ["No"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block909a3de7-1945-4f8a-9b9e-6672548cf3c4"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block909a3de7-1945-4f8a-9b9e-6672548cf3c4",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question909a3de7-1945-4f8a-9b9e-6672548cf3c4",
+                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}&apos;s capital expenditure on <em>end-of-pipe pollution control equipment</em>?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "installation costs",
+                                            "equipment which treats and disposes of pollutants generated by the operating activity of the business"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": ["VAT"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by \"end-of-pipe equipment\"",
+                                "content": [{
+                                        "description": "This refers to equipment used to collect and remove pollutants, such as air emissions, effluents, and solid waste, after their creation."
+                                    },
+                                    {
+                                        "description": "It also refers to equipment which treats and disposes of pollutants generated by the operating activity of the business."
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer953897e9-b7c3-4782-b103-a6978f949709",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Total end-of-pipe capital expenditure",
+                                "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                "q_code": "51",
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block2f951338-14b0-47b0-8d3b-4d9ef17f5c12",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question2f951338-14b0-47b0-8d3b-4d9ef17f5c12",
+                            "title": "Of the {{ format_currency(answers['answer953897e9-b7c3-4782-b103-a6978f949709'], 'GBP') }}, how much related to the following?",
+                            "description": "<p>Enter the full value (e.g. 56,234.33) or a value to the nearest &#xA3;thousand (e.g. 56,000). Do not enter &#x2018;56&#x2019; for &#xA3;56,000.</p><p>If you had no expenditure enter &quot;0&quot;. Do not leave blank.</p>",
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answer3663d4ff-f6c7-4508-9342-0c88b3a13fcd",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of waste water",
+                                    "description": "",
+                                    "q_code": "61",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer782964b6-c607-42ff-8a42-25896cb5977a",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of air",
+                                    "description": "",
+                                    "q_code": "63",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer610eaa26-ac1e-4112-83e6-eeb480a673f8",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of solid waste",
+                                    "description": "",
+                                    "q_code": "65",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer54e680e5-020d-4f34-99e0-1e68fa9786a5",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of other",
+                                    "description": "For example, soil or groundwater, noise or vibrations, nature protection",
+                                    "q_code": "67",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answer3663d4ff-f6c7-4508-9342-0c88b3a13fcd",
+                                    "answer782964b6-c607-42ff-8a42-25896cb5977a",
+                                    "answer610eaa26-ac1e-4112-83e6-eeb480a673f8",
+                                    "answer54e680e5-020d-4f34-99e0-1e68fa9786a5"
+                                ],
+                                "conditions": ["equals"],
+                                "answer_id": "answer953897e9-b7c3-4782-b103-a6978f949709"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block39db5c80-bbcb-4aa9-8875-56e8a4e03bd7",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question39db5c80-bbcb-4aa9-8875-56e8a4e03bd7",
+                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['ru_name'] }} have any capital expenditure on <em>integrated equipment</em> which made environmental protection part of the process?",
+                            "description": "<p>Most new integrated processes are more efficient and contribute to reducing pollution and the use of raw materials in some way.</p>",
+                            "definitions": [{
+                                "title": "What we mean by \"integrated equipment\"",
+                                "content": [{
+                                        "description": "This relates to new or modified production facilities, which have been designed so that environmental protection is an integral part of the process."
+                                    },
+                                    {
+                                        "description": "An example of this is the purchase of machinery or equipment that is built into the business&#x2019;s processes and designed to minimise production waste."
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerc38a0e3e-60a0-4d0c-93b8-5b3889d5291d",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "70",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "groupe61df721-9cdc-4a72-9f03-567a4627d04f",
+                                    "when": [{
+                                        "id": "answerc38a0e3e-60a0-4d0c-93b8-5b3889d5291d",
+                                        "condition": "contains any",
+                                        "values": ["No"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockfbd3ddd7-af8f-4a55-84a8-cbc9ee9c9dac"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockfbd3ddd7-af8f-4a55-84a8-cbc9ee9c9dac",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionfbd3ddd7-af8f-4a55-84a8-cbc9ee9c9dac",
+                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}&apos;s capital expenditure on integrated equipment?",
+                            "description": "<p>Most new integrated processes are more efficient and contribute to reducing pollution and the use of raw materials in some way.</p>",
+                            "definitions": [{
+                                "title": "What we mean by \"integrated equipment\"",
+                                "content": [{
+                                        "description": "This relates to new or modified production facilities, which have been designed so that environmental protection is an integral part of the process."
+                                    },
+                                    {
+                                        "description": "An example of this is the purchase of machinery or equipment that is built into the business&#x2019;s processes and designed to minimise production waste."
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer9ca1eef7-03bd-48b8-af8d-48641f1740df",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Capital expenditure on integrated equipment",
+                                "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                "q_code": "71",
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block0f92412b-218b-4616-ac89-baa26e544bae",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question0f92412b-218b-4616-ac89-baa26e544bae",
+                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['ru_name'] }} purchase any integrated equipment <em>specifically for its environmental benefits</em>, even though there may have been a cheaper, less environmentally friendly, alternative available?",
+                            "definitions": [{
+                                "title": "What we mean by \"specifically for its environmental benefits\"",
+                                "content": [{
+                                        "description": "The value recorded in the previous section may have included expenditure on integrated equipment that, while reducing environmental pollution, was not purchased for its environmental benefits. The aim of this section is to capture the expenditure that specifically relates to the additional cost of environmentally friendly processes."
+                                    },
+                                    {
+                                        "description": "If the selection is a standard technology and there is no cheaper less environmentally friendly alternative available, no environmental protection expenditure should be reported."
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer2200cc50-e6d5-4e72-a0e8-4b9f052964b4",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "80",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "groupe61df721-9cdc-4a72-9f03-567a4627d04f",
+                                    "when": [{
+                                        "id": "answer2200cc50-e6d5-4e72-a0e8-4b9f052964b4",
+                                        "condition": "contains any",
+                                        "values": ["No"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block616e435a-edff-4a56-8bb0-40c143a6a55d"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block616e435a-edff-4a56-8bb0-40c143a6a55d",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question616e435a-edff-4a56-8bb0-40c143a6a55d",
+                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was the additional cost for the environmentally friendly integrated equipment compared with the cheaper alternative?",
+                            "definitions": [{
+                                "title": "How you might answer this question",
+                                "content": [{
+                                        "description": "The value of the additional cost will be the difference between what was paid for the integrated equipment, purchased specifically for its environmental benefits, and the cheaper alternative."
+                                    },
+                                    {
+                                        "description": "It can also include the adaptation of an existing installation or process. The environmental expenditure is then the total purchase cost of the adaptation."
+                                    },
+                                    {
+                                        "description": "If the selection is a standard technology and there is no cheaper less environmentally friendly alternative available, no environmental protection expenditure should be reported."
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerfc011ada-ba84-4e8b-84bc-2e4586ecd5a8",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Cost difference",
+                                "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                "q_code": "81",
+                                "max_value": {
+                                    "answer_id": "answer9ca1eef7-03bd-48b8-af8d-48641f1740df",
+                                    "exclusive": false
+                                },
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockdbca5780-9f08-4709-8c17-fb708d736757",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiondbca5780-9f08-4709-8c17-fb708d736757",
+                            "title": "Of the {{ format_currency(answers['answerfc011ada-ba84-4e8b-84bc-2e4586ecd5a8'], 'GBP') }}, how much related to the following?",
+                            "description": "<p>Enter the full value (e.g. 56,234.33) or a value to the nearest &#xA3;thousand (e.g. 56,000). Do not enter &#x2018;56&#x2019; for &#xA3;56,000.</p><p>If you had no expenditure enter &quot;0&quot;. Do not leave blank.</p>",
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answer7b389274-eb72-4097-8249-15d230f73283",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of waste water",
+                                    "description": "",
+                                    "q_code": "91",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer76a1c58e-3584-4557-b021-30c7d46057c8",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of air",
+                                    "description": "",
+                                    "q_code": "93",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer74bf6bfe-0d84-4b73-ae8f-e5d17335eded",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of solid waste",
+                                    "description": "",
+                                    "q_code": "95",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer47b9e2b6-9945-4d7c-bbd2-3ca24278da7e",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of other",
+                                    "description": "For example, soil or groundwater, noise or vibrations, nature protection",
+                                    "q_code": "97",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answer7b389274-eb72-4097-8249-15d230f73283",
+                                    "answer76a1c58e-3584-4557-b021-30c7d46057c8",
+                                    "answer74bf6bfe-0d84-4b73-ae8f-e5d17335eded",
+                                    "answer47b9e2b6-9945-4d7c-bbd2-3ca24278da7e"
+                                ],
+                                "conditions": ["equals"],
+                                "answer_id": "answerfc011ada-ba84-4e8b-84bc-2e4586ecd5a8"
+                            }]
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "sectione61df721-9cdc-4a72-9f03-567a4627d04f",
+            "title": "Disposals of environmental protection assets",
+            "groups": [{
+                "id": "groupe61df721-9cdc-4a72-9f03-567a4627d04f",
+                "title": "Disposals of environmental protection assets",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "groupe61df721-9cdc-4a72-9f03-567a4627d04f-introduction",
+                        "title": "Disposals of environmental protection assets",
+                        "description": "<p>This section asks for information about proceeds from the disposal of environmental protection capital assets within the reporting period.</p>"
+                    },
+                    {
+                        "id": "blockd39b8670-9a98-4fb2-8ade-c085df87d261",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiond39b8670-9a98-4fb2-8ade-c085df87d261",
+                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['ru_name'] }} receive any proceeds from the disposal of capital assets that were originally purchased for environmental protection purposes?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer00ca4b53-860e-4474-a165-a855fdd46509",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "105",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group4c883ffd-16c1-49fa-a529-6ecb9a676cfb",
+                                    "when": [{
+                                        "id": "answer00ca4b53-860e-4474-a165-a855fdd46509",
+                                        "condition": "contains any",
+                                        "values": ["No"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block721a0aba-cf6d-4d99-8a6f-a5bed10820bc"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block721a0aba-cf6d-4d99-8a6f-a5bed10820bc",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question721a0aba-cf6d-4d99-8a6f-a5bed10820bc",
+                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what were the total proceeds from disposals of capital assets that were purchased for environmental protection purposes?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer20445f31-127f-4982-8295-d417e92bed72",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Value of proceeds of capital assets for environmental protection",
+                                "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                "q_code": "100",
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1cc0ac21-6f73-49e3-bb53-c9cdb1dcbd61",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1cc0ac21-6f73-49e3-bb53-c9cdb1dcbd61",
+                            "title": "Of the {{ format_currency(answers['answer20445f31-127f-4982-8295-d417e92bed72'], 'GBP') }}, how much related to the following?",
+                            "description": "<p>Enter the full value (e.g. 56,234.33) or a value to the nearest &#xA3;thousand (e.g. 56,000). Do not enter &#x2018;56&#x2019; for &#xA3;56,000.</p><p>If you had no expenditure enter &quot;0&quot;. Do not leave blank.</p>",
+                            "type": "Calculated",
+                            "answers": [{
+                                    "id": "answerf469769a-f6a4-402e-8f18-6389bb937aa8",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of waste water",
+                                    "description": "",
+                                    "q_code": "101",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answercdf7ea65-befe-4bdd-81e2-f7f52255e808",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of air",
+                                    "description": "",
+                                    "q_code": "102",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer1864ec3c-22bc-4607-9248-93d7756058cb",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of solid waste",
+                                    "description": "",
+                                    "q_code": "103",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer9b485384-e2e1-46ce-be65-f8d7ccb132f4",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Cost of other",
+                                    "description": "For example, soil or groundwater, noise or vibrations, nature protection",
+                                    "q_code": "104",
+                                    "decimal_places": 2,
+                                    "currency": "GBP"
+                                }
+                            ],
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answerf469769a-f6a4-402e-8f18-6389bb937aa8",
+                                    "answercdf7ea65-befe-4bdd-81e2-f7f52255e808",
+                                    "answer1864ec3c-22bc-4607-9248-93d7756058cb",
+                                    "answer9b485384-e2e1-46ce-be65-f8d7ccb132f4"
+                                ],
+                                "conditions": ["equals"],
+                                "answer_id": "answer20445f31-127f-4982-8295-d417e92bed72"
+                            }]
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section4c883ffd-16c1-49fa-a529-6ecb9a676cfb",
+            "title": "General Comments",
+            "groups": [{
+                    "id": "group4c883ffd-16c1-49fa-a529-6ecb9a676cfb",
+                    "title": "General Comments",
+                    "blocks": [{
+                            "type": "Interstitial",
+                            "id": "group4c883ffd-16c1-49fa-a529-6ecb9a676cfb-introduction",
+                            "title": "General Comments",
+                            "description": "<p>The next section covers general comments about this survey.</p>"
+                        },
+                        {
+                            "id": "blocka6896d45-8861-40af-8582-ce2ef18b93cf",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "questiona6896d45-8861-40af-8582-ce2ef18b93cf",
+                                "title": "Please provide any further details that will help us understand your figures and to tell an industry story",
+                                "definitions": [{
+                                    "title": "Examples of commentary",
+                                    "content": [{
+                                        "list": ["explanation of unusual expenditure", "differences in data year on year"]
+                                    }]
+                                }],
+                                "type": "General",
+                                "answers": [{
+                                    "id": "answer8f8f3d5e-2ec5-4920-b050-740e1f281e56",
+                                    "mandatory": false,
+                                    "type": "TextArea",
+                                    "label": "Comments",
+                                    "description": "",
+                                    "q_code": "110",
+                                    "max_length": 2000
+                                }]
+                            }]
+                        }
+                    ]
+                },
+                {
+                    "id": "summary-group",
+                    "title": "Summary",
+                    "blocks": [{
+                        "type": "Summary",
+                        "id": "summary-block"
+                    }]
+                }
+            ]
+        }
+    ],
+    "theme": "epe",
+    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
+    "navigation": {
+        "visible": true
+    },
+    "metadata": [{
+            "name": "user_id",
+            "validator": "string"
+        },
+        {
+            "name": "period_id",
+            "validator": "string"
+        },
+        {
+            "name": "ru_name",
+            "validator": "string"
+        },
+        {
+            "name": "trad_as",
+            "validator": "optional_string"
+        },
+        {
+            "name": "ref_p_start_date",
+            "validator": "date"
+        },
+        {
+            "name": "ref_p_end_date",
+            "validator": "date"
+        }
+    ],
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    }
+}

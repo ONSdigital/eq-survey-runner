@@ -1,0 +1,9 @@
+{
+    "application": "surveyrunner",
+    "identifier": "epe",
+    "name": "Environmental Protection Expenditure 2020",
+    "author": "martyncolmer",
+    "description": "Theme for the 2020 epe",
+    "license": "MIT/X11",
+    "version": "1.0.0"
+}

@@ -1,0 +1,50 @@
+{% extends theme('layouts/_onecol.html') %} {% import 'macros/helpers.html' as helpers %} {% block header %} {% set header_as_h1 = true %} {% include
+'partials/header.html' %} {% endblock %} {% block subheader %} {{super()}} {% endblock subheader %} {% set form = content.form %} {% block page_title
+%}{{survey_title}}{% endblock %} {% block main %} {% block business_details %}
+
+<div class="grid">
+  <div class="grid__col col-7@m">
+    <h2 class="u-fs-l">
+      {% if metadata.trad_as %} {{ _("You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)", ru_name = metadata.ru_name, trading_as_name =
+      metadata.trad_as) }} {% else %} {{ _("You are completing this for <span>%(ru_name)s</span>", ru_name = metadata.ru_name) }} {% endif %}
+    </h2>
+
+    <p class="u-fs-r" data-qa="details-changed-title">
+      {{ _("If the company details or structure have changed contact us on <a href="tel:01633651890">01633 651 890</a> or email
+      <a href="mailto:Environment.Accounts.Survey@ons.gov.uk" aria-describedby="details-changed-title">Environment.Accounts.Survey@ons.gov.uk</a>") }}
+    </p>
+  </div>
+</div>
+{% endblock business_details %} {% block intro_content %}
+<div class="grid">
+  <div class="grid__col col-7@m">
+    {% if content.block.primary_content %} {% for intro in content.block.primary_content %} {% include 'partials/introduction/basic.html' %} {% endfor %} {%
+    endif %} {%- if legal_basis -%}
+    <h3 class="u-fs-m" data-qa="legal-response">{{ _("Your response is legally required") }}</h3>
+    <p class="u-fs-r u-mb-m" data-qa="legal-basis">{{ legal_basis }}</p>
+    {%- endif -%} {% if survey_guidance_url %}
+    <h3 class="u-fs-m" data-qa="survey-guidance-url">{{ _("Guidance to help complete this survey") }}</h3>
+    <p class="u-mb-m">
+      {{_("There is %(opening_tag)s further guidance available%(closing_tag)s with information of what is required for this survey, and help to complete
+      it",opening_tag="<a rel="noopener noreferrer" target="_blank" href="+survey_guidance_url+">",closing_tag="</a>")}}
+    </p>
+    {% endif %} {% block start_survey %} {% include 'partials/introduction/start-survey.html' %} {% endblock start_survey %} {% if content.block.preview_content
+    %} {% set intro = content.block.preview_content %} {% include 'partials/introduction/preview.html' %} {% endif %} {% if content.block.secondary_content %}
+    {% for intro in content.block.secondary_content %} {% include 'partials/introduction/basic.html' %} {% endfor %} {% endif %}
+    <p class="u-fs-m" data-qa="details-changed-title">
+      {{ _("For survey information during the coronavirus (COVID-19) outbreak go to <a href="http://www.ons.gov.uk" target="_blank"> www.ons.gov.uk</a> or
+      follow us on Twitter <a href="https://twitter.com/onsfocus?lang=en" target="_blank">@ONSfocus</a>") }}
+    </p>
+  </div>
+</div>
+{% endblock intro_content %} {% endblock %} {% block footer %}
+<div class="pre-footer">
+  <div class="container">
+    <div class="grid">
+      <div class="grid__col col-7@m">
+        {% include theme('partials/feedback/expandable_inline.html') %}
+      </div>
+    </div>
+  </div>
+</div>
+{{super()}} {% endblock %}
