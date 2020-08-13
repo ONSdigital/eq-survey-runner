@@ -10,8 +10,8 @@
     </h2>
 
     <p class="u-fs-r" data-qa="details-changed-title">
-      {{ _("If the company details or structure have changed contact us on <a href="tel:01633651890">01633 651 890</a> or email
-      <a href="mailto:Environment.Accounts.Survey@ons.gov.uk" aria-describedby="details-changed-title">Environment.Accounts.Survey@ons.gov.uk</a>") }}
+      {{ _("If the company details or structure have changed contact us on <a href='tel:01633651890'>01633 651 890</a> or email
+      <a href='mailto:Environment.Accounts.Survey@ons.gov.uk' aria-describedby='details-changed-title'>Environment.Accounts.Survey@ons.gov.uk</a>") }}
     </p>
   </div>
 </div>
@@ -26,14 +26,14 @@
     <h3 class="u-fs-m" data-qa="survey-guidance-url">{{ _("Guidance to help complete this survey") }}</h3>
     <p class="u-mb-m">
       {{_("There is %(opening_tag)s further guidance available%(closing_tag)s with information of what is required for this survey, and help to complete
-      it",opening_tag="<a rel="noopener noreferrer" target="_blank" href="+survey_guidance_url+">",closing_tag="</a>")}}
+      it",opening_tag="<a rel='noopener noreferrer' target='_blank' href="+survey_guidance_url+">",closing_tag="</a>")}}
     </p>
     {% endif %} {% block start_survey %} {% include 'partials/introduction/start-survey.html' %} {% endblock start_survey %} {% if content.block.preview_content
     %} {% set intro = content.block.preview_content %} {% include 'partials/introduction/preview.html' %} {% endif %} {% if content.block.secondary_content %}
     {% for intro in content.block.secondary_content %} {% include 'partials/introduction/basic.html' %} {% endfor %} {% endif %}
     <p class="u-fs-m" data-qa="details-changed-title">
-      {{ _("For survey information during the coronavirus (COVID-19) outbreak go to <a href="http://www.ons.gov.uk" target="_blank"> www.ons.gov.uk</a> or
-      follow us on Twitter <a href="https://twitter.com/onsfocus?lang=en" target="_blank">@ONSfocus</a>") }}
+      {{ _("For survey information during the coronavirus (COVID-19) outbreak go to <a href='http://www.ons.gov.uk' target='_blank'> www.ons.gov.uk</a> or
+      follow us on Twitter <a href='https://twitter.com/onsfocus?lang=en' target='_blank'>@ONSfocus</a>") }}
     </p>
   </div>
 </div>
