@@ -34,8 +34,7 @@
                                 "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/surveyofenvironmentalprotectionexpenditure'>View the questions before you start the survey (external link)</a>",
                                 "list": [
                                     "Information should relate to the UK.",
-                                    "We will treat your information securely and confidentially.",
-                                    "This survey is refreshed every two weeks. To avoid losing data, please submit by the return date and before the next fortnightly survey is published."
+                                    "We will treat your information securely and confidentially."
                                 ]
                             }],
                             "questions": [{
