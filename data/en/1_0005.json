@@ -617,9 +617,25 @@
                                     "goto": {
                                         "block": "block5bf0ea98-d6d2-46cb-9362-50c17fbf55df",
                                         "when": [{
+                                                "id": "answerec3e1d38-545c-4aff-903a-5d59376a87a6",
+                                                "condition": "not set"
+                                            },
+                                            {
+                                                "id": "answer45e50c5c-1ee8-48b1-ad86-4a8965335c8f",
+                                                "condition": "not set"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block5bf0ea98-d6d2-46cb-9362-50c17fbf55df",
+                                        "when": [{
                                             "id": "answerec3e1d38-545c-4aff-903a-5d59376a87a6",
                                             "condition": "contains all",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         }]
                                     }
                                 },
@@ -1261,9 +1277,25 @@
                                     "goto": {
                                         "block": "block91744997-daf2-4a5a-9260-21900d7af0c0",
                                         "when": [{
+                                                "id": "answer4213faa9-a609-487a-935f-05258877dfdf",
+                                                "condition": "not set"
+                                            },
+                                            {
+                                                "id": "answerd1f03729-d0f8-4c07-b7c4-4968c200a3fe",
+                                                "condition": "not set"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block91744997-daf2-4a5a-9260-21900d7af0c0",
+                                        "when": [{
                                             "id": "answer4213faa9-a609-487a-935f-05258877dfdf",
                                             "condition": "contains all",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         }]
                                     }
                                 },
@@ -1890,9 +1922,25 @@
                                     "goto": {
                                         "block": "block5f882a69-50f1-4a71-ac4b-f594a5be29fe",
                                         "when": [{
+                                                "id": "answer2e1c263c-a9c2-42fe-93f9-d64210ac2305",
+                                                "condition": "not set"
+                                            },
+                                            {
+                                                "id": "answer1c41c701-8b26-4841-9f2f-d10c444efd6f",
+                                                "condition": "not set"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block5f882a69-50f1-4a71-ac4b-f594a5be29fe",
+                                        "when": [{
                                             "id": "answer2e1c263c-a9c2-42fe-93f9-d64210ac2305",
                                             "condition": "contains all",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         }]
                                     }
                                 },
@@ -2518,9 +2566,25 @@
                                     "goto": {
                                         "block": "block149d70f4-db46-47fe-bb53-706e4bed2c9f",
                                         "when": [{
+                                                "id": "answer67847e0d-ef47-4a73-b5c2-826aa1db7d1f",
+                                                "condition": "not set"
+                                            },
+                                            {
+                                                "id": "answer1757a5f3-3550-47d1-bcf3-473b0306ca94",
+                                                "condition": "not set"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block149d70f4-db46-47fe-bb53-706e4bed2c9f",
+                                        "when": [{
                                             "id": "answer67847e0d-ef47-4a73-b5c2-826aa1db7d1f",
                                             "condition": "contains all",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         }]
                                     }
                                 },
@@ -3147,9 +3211,25 @@
                                 "goto": {
                                     "block": "block67abd7a8-49e0-4c7a-95fc-6f57d8f16540",
                                     "when": [{
+                                            "id": "answerf00cd554-908c-48d1-94aa-f950e5fb3a19",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "answercb1cb339-d2b3-4bd7-9aa6-00875a0d1d6e",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block67abd7a8-49e0-4c7a-95fc-6f57d8f16540",
+                                    "when": [{
                                         "id": "answercb1cb339-d2b3-4bd7-9aa6-00875a0d1d6e",
                                         "condition": "contains all",
-                                        "values": ["Not sure"]
+                                        "values": [
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
