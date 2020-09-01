@@ -55,7 +55,8 @@
                                             "list": [
                                                 "how the coronavirus (COVID-19) pandemic may have affected the business&apos;s turnover in the last two weeks",
                                                 "operating costs",
-                                                "customer interest and footfall"
+                                                "customer interest and footfall",
+                                                "challenges with online trading"
                                             ]
                                         }
                                     ]
@@ -63,13 +64,13 @@
                                 {
                                     "question": "Exporting and importing",
                                     "content": [{
-                                        "description": "This section asks for information about the business&apos;s importing and exporting activities."
+                                        "description": "This section asks for information about the business&apos;s exporting and importing activities."
                                     }]
                                 },
                                 {
                                     "question": "UK supply chain",
                                     "content": [{
-                                        "description": "This section asks for information about the availability of materials, goods and services within the UK and the business&apos;s use of UK logistics services."
+                                        "description": "This section asks for information about the availability of materials, goods and services within the UK and the business&apos;s use of UK logistics services. It also asks for information about the choice of suppliers for your own and others&apos; materials, goods and services."
                                     }]
                                 },
                                 {
@@ -94,7 +95,7 @@
                                                 "any applications that the business made for government financial initiatives or schemes",
                                                 "any applications the business intends to make for government initiatives or schemes",
                                                 "any applications for non-government financial support",
-                                                "the business&apos;s risk of insolvency"
+                                                "cash reserves and insolvency risk"
                                             ]
                                         }
                                     ]
@@ -113,7 +114,7 @@
                                             ]
                                         },
                                         {
-                                            "description": "It also asks about safety measures in the workplace."
+                                            "description": "It also asks about safety measures in the workplace and expansion plans."
                                         }
                                     ]
                                 }
@@ -520,7 +521,7 @@
                         "type": "Interstitial",
                         "id": "group281e76fe-1287-43af-bfe9-e1a53be6476e-introduction",
                         "title": "Turnover and operating costs",
-                        "description": "<p>This section asks for information about:</p><ul><li>how the coronavirus (COVID-19) pandemic may have affected the business&apos;s turnover in the last two weeks</li><li>operating costs</li><li>customer interest and footfall</li></ul>"
+                        "description": "<p>This section asks for information about:</p><ul><li>how the coronavirus (COVID-19) pandemic may have affected the business&apos;s turnover in the last two weeks</li><li>operating costs</li><li>customer interest and footfall</li><li>challenges with online trading</li></ul>"
                     },
                     {
                         "id": "block9361fa44-7f22-47da-bdd0-16e104300487",
@@ -610,7 +611,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answerb27dfc7c-ac12-4c9f-ba1c-29b51878d877",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
@@ -822,6 +823,78 @@
                                 ]
                             }]
                         }]
+                    },
+                    {
+                        "id": "block9d15c73f-7f92-435f-b4ad-ec8f1d1c3e71",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question9d15c73f-7f92-435f-b4ad-ec8f1d1c3e71",
+                            "title": "Has {{ metadata['ru_name'] }} experienced any of the following <em>challenges</em> with selling goods or services online since the start of the coronavirus (COVID-19) pandemic?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answerdd53ede5-0d60-4eaf-bc9d-c77bbadf2753",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Challenges sharing data across different online platforms or marketplaces",
+                                            "value": "Challenges sharing data across different online platforms or marketplaces",
+                                            "q_code": "1441"
+                                        },
+                                        {
+                                            "label": "Challenges with the system for ranking and reviewing goods or services by online platforms or marketplaces",
+                                            "value": "Challenges with the system for ranking and reviewing goods or services by online platforms or marketplaces",
+                                            "q_code": "1442"
+                                        },
+                                        {
+                                            "label": "High prices charged by online platforms, marketplaces or sellers",
+                                            "value": "High prices charged by online platforms, marketplaces or sellers",
+                                            "q_code": "1443"
+                                        },
+                                        {
+                                            "label": "High prices for online advertising",
+                                            "value": "High prices for online advertising",
+                                            "q_code": "1444",
+                                            "description": "For example banners, text, video or search engines"
+                                        },
+                                        {
+                                            "label": "Lack of IT capacity, skills or technology within the business",
+                                            "value": "Lack of IT capacity, skills or technology within the business",
+                                            "q_code": "1445"
+                                        },
+                                        {
+                                            "label": "Restrictions on using more than one platform or marketplace",
+                                            "value": "Restrictions on using more than one platform or marketplace",
+                                            "q_code": "1446"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "1447",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answer44ddb0a8-7a28-4d70-a066-596eaa6ab322",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answerdd53ede5-0d60-4eaf-bc9d-c77bbadf2753-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Did not experience any challenges selling goods or services online",
+                                        "value": "Did not experience any challenges selling goods or services online",
+                                        "q_code": "1440"
+                                    }]
+                                }
+                            ]
+                        }]
                     }
                 ],
                 "skip_conditions": [{
@@ -892,7 +965,7 @@
                         "type": "Interstitial",
                         "id": "group139b1d35-6271-4893-8eef-e1a36f2eb3c9-introduction",
                         "title": "Exporting and importing",
-                        "description": "<p>This section asks for information about the business&apos;s importing and exporting activities.</p>"
+                        "description": "<p>This section asks for information about the business&apos;s exporting and importing activities.</p>"
                     },
                     {
                         "id": "block059d51ee-2b0f-456f-8a29-23b1c97e2dac",
@@ -930,52 +1003,6 @@
                                         "id": "answer6e5dfc6d-189b-4d67-b64f-d40f68253cda",
                                         "condition": "contains any",
                                         "values": ["No", "Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block0af301b1-70ce-4fc7-a698-7374fb9436e4"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block0af301b1-70ce-4fc7-a698-7374fb9436e4",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question0af301b1-70ce-4fc7-a698-7374fb9436e4",
-                            "title": "Has {{ metadata['ru_name'] }} exported goods or services <em>during</em> the coronavirus (COVID-19) pandemic?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer5cd5a93e-d818-4d4e-a32f-9eeedad30a6a",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "54",
-                                "options": [{
-                                        "label": "Yes, the business has exported during the pandemic",
-                                        "value": "Yes, the business has exported during the pandemic"
-                                    },
-                                    {
-                                        "label": "No, the business has not exported during the pandemic",
-                                        "value": "No, the business has not exported during the pandemic"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "blockf25bdbfe-14fb-4699-bf0d-29140cb007f8",
-                                    "when": [{
-                                        "id": "answer5cd5a93e-d818-4d4e-a32f-9eeedad30a6a",
-                                        "condition": "contains any",
-                                        "values": ["No, the business has not exported during the pandemic", "Not sure"]
                                     }]
                                 }
                             },
@@ -1078,52 +1105,6 @@
                                         "id": "answer5ad71b6e-442c-499a-b185-e39282dd09c0",
                                         "condition": "contains any",
                                         "values": ["No", "Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block4b9c0508-34e9-4b60-bde1-d803c99bed59"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block4b9c0508-34e9-4b60-bde1-d803c99bed59",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4b9c0508-34e9-4b60-bde1-d803c99bed59",
-                            "title": "Has {{ metadata['ru_name'] }} imported goods or services <em>during</em> the coronavirus (COVID-19) pandemic?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answera7265706-a8e2-4db9-b7e9-00a4f62378d3",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "64",
-                                "options": [{
-                                        "label": "Yes, the business imported during the pandemic",
-                                        "value": "Yes, the business imported during the pandemic"
-                                    },
-                                    {
-                                        "label": "No, the business has not imported during the pandemic",
-                                        "value": "No, the business has not imported during the pandemic"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group5c8d0ebe-e6e2-4ff6-a2bd-99ccf4edbde6",
-                                    "when": [{
-                                        "id": "answera7265706-a8e2-4db9-b7e9-00a4f62378d3",
-                                        "condition": "contains any",
-                                        "values": ["No, the business has not imported during the pandemic", "Not sure"]
                                     }]
                                 }
                             },
@@ -1259,7 +1240,7 @@
                         "type": "Interstitial",
                         "id": "group5c8d0ebe-e6e2-4ff6-a2bd-99ccf4edbde6-introduction",
                         "title": "UK supply chain",
-                        "description": "<p>This section asks for information about:</p><ul><li> the availability of materials, goods and services within the UK </li><li>the use of UK logistics services</li></ul>"
+                        "description": "<p>This section asks for information about:</p><ul><li> the availability of materials, goods and services within the UK </li><li>the use of UK logistics services</li><li>the choice of suppliers for your own and others&apos; materials, goods and services</li></ul>"
                     },
                     {
                         "id": "block0e1472db-36f2-4d40-b99e-510e70442636",
@@ -1320,7 +1301,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer8d48af55-9228-488b-8a15-087c484266c2",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
@@ -1376,7 +1357,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupff9741ed-a1da-4edf-bc6b-6bb62ddc94ec",
+                                    "block": "blocke74f6b62-aec9-4dc3-b3e8-3c6692706761",
                                     "when": [{
                                         "id": "answer283ed838-951f-4484-ab60-e2abdd1cbe90",
                                         "condition": "contains any",
@@ -1464,6 +1445,74 @@
                                     {
                                         "label": "The business will not need any UK distribution",
                                         "value": "The business will not need any UK distribution"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blocke74f6b62-aec9-4dc3-b3e8-3c6692706761",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questione74f6b62-aec9-4dc3-b3e8-3c6692706761",
+                            "title": "Has the <em>overall of choice of suppliers</em> for sourcing {{ metadata['ru_name'] }}&apos;s materials, goods or services changed since the start of the coronavirus (COVID-19) pandemic?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerf43bddd9-08c8-4e44-a894-275630a3e4d2",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "145",
+                                "options": [{
+                                        "label": "Choice of suppliers has increased",
+                                        "value": "Choice of suppliers has increased"
+                                    },
+                                    {
+                                        "label": "Choice of suppliers has not changed",
+                                        "value": "Choice of suppliers has not changed"
+                                    },
+                                    {
+                                        "label": "Choice of suppliers has decreased",
+                                        "value": "Choice of suppliers has decreased"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1f40b8f5-f152-4bbd-9a8e-4cbfdb5202eb",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1f40b8f5-f152-4bbd-9a8e-4cbfdb5202eb",
+                            "title": "Has the number of <em>businesses selling similar goods or services</em> as {{ metadata['ru_name'] }} changed since the start of the coronavirus (COVID-19) pandemic?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer938565f1-0c94-4e75-a333-e57eb1faf09a",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "147",
+                                "options": [{
+                                        "label": "Number has increased",
+                                        "value": "Number has increased"
+                                    },
+                                    {
+                                        "label": "Number has not changed",
+                                        "value": "Number has not changed"
+                                    },
+                                    {
+                                        "label": "Number has decreased",
+                                        "value": "Number has decreased"
                                     },
                                     {
                                         "label": "Not sure",
@@ -1621,7 +1670,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answera7bb01fe-3061-421f-bfee-74e02002c9ed",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
@@ -1987,7 +2036,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answere8a99b49-c76b-4598-925a-047596365fd1",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
@@ -2051,7 +2100,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer842021f5-412c-44fb-8262-a79a88281fbf",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
@@ -2161,7 +2210,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question50c7e7f6-fa90-40a1-9529-54a223ff18fe",
-                            "title": "How has the coronavirus (COVID-19) pandemic affected [Ru Name]&apos;s <em>capital expenditure</em>?",
+                            "title": "How has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s <em>capital expenditure</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer78b4dee5-4ea4-4ef9-a306-26a95c10a78d",
@@ -2301,7 +2350,7 @@
                         "type": "Interstitial",
                         "id": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba-introduction",
                         "title": "Access to financial support",
-                        "description": "<p>This section asks for information on:</p><ul><li>any applications that the business made for government financial initiatives or schemes</li><li>any applications the business intends to make for government initiatives or schemes</li><li>any applications for non-government financial support</li><li>the business&apos;s risk of insolvency</li></ul>"
+                        "description": "<p>This section asks for information on:</p><ul><li>any applications that the business made for government financial initiatives or schemes</li><li>any applications the business intends to make for government initiatives or schemes</li><li>any applications for non-government financial support</li><li>cash flow and insolvency risk</li></ul>"
                     },
                     {
                         "id": "block2ea33f36-282b-40d4-a881-0d946f8d4408",
@@ -3119,7 +3168,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer96848783-ecc7-4bcb-b8c5-bb807a118585",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
@@ -3236,6 +3285,11 @@
                                             "label": "Business rates holiday",
                                             "value": "Business rates holiday",
                                             "q_code": "891"
+                                        },
+                                        {
+                                            "label": "Eat Out to Help Out Scheme",
+                                            "value": "Eat Out to Help Out Scheme",
+                                            "q_code": "895"
                                         },
                                         {
                                             "label": "Deferring VAT payments",
@@ -3594,10 +3648,10 @@
                         }]
                     },
                     {
-                        "id": "blockd619a9d0-d7ca-4d36-98cc-cf7c765c0465",
+                        "id": "block72dea1cb-84b1-4b28-9dbc-5ce5a25411ee",
                         "type": "Question",
                         "questions": [{
-                            "id": "questiond619a9d0-d7ca-4d36-98cc-cf7c765c0465",
+                            "id": "question72dea1cb-84b1-4b28-9dbc-5ce5a25411ee",
                             "title": "What is {{ metadata['ru_name'] }}&apos;s <em>risk of insolvency</em>?",
                             "definitions": [{
                                 "title": "What we mean by \"insolvency\"",
@@ -3607,7 +3661,7 @@
                             }],
                             "type": "General",
                             "answers": [{
-                                "id": "answerbc96d31f-3c0a-4967-b511-b8e51e489561",
+                                "id": "answerd359ff9d-fc3c-4f6a-b85d-dfdf5f1eac7e",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -3644,28 +3698,28 @@
                                 "goto": {
                                     "group": "group1760a554-060f-4e6a-bf64-970f98d84ac7",
                                     "when": [{
-                                        "id": "answerbc96d31f-3c0a-4967-b511-b8e51e489561",
+                                        "id": "answerd359ff9d-fc3c-4f6a-b85d-dfdf5f1eac7e",
                                         "condition": "contains any",
-                                        "values": ["No risk", "Not sure"]
+                                        "values": ["Not sure"]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "blockedd7eda5-acfd-4b2a-ad5c-ae83a8e6cb37"
+                                    "block": "block1963d9f7-d4bd-45bd-b503-908179f0cced"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "blockedd7eda5-acfd-4b2a-ad5c-ae83a8e6cb37",
+                        "id": "block1963d9f7-d4bd-45bd-b503-908179f0cced",
                         "type": "Question",
                         "questions": [{
-                            "id": "questionedd7eda5-acfd-4b2a-ad5c-ae83a8e6cb37",
-                            "title": "How has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s <em>risk of insolvency?</em>",
+                            "id": "question1963d9f7-d4bd-45bd-b503-908179f0cced",
+                            "title": "How has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s <em>risk of insolvency?  </em>",
                             "type": "General",
                             "answers": [{
-                                "id": "answerdd686425-387a-4e76-b276-3508f7a47b22",
+                                "id": "answer1623c92a-0f31-41a4-b3ca-cef195e34252",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -3718,7 +3772,7 @@
                         "type": "Interstitial",
                         "id": "group1760a554-060f-4e6a-bf64-970f98d84ac7-introduction",
                         "title": "Operational performance",
-                        "description": "<p>This section asks for information about your workforce such as the: </p><ul><li>percentage , for example, on furlough leave or working remotely </li><li>percentage returning from furlough or remote working </li><li>percentage of furloughed staff receiving top-ups in addition to the Coronavirus Job Retention Scheme (CJRS) payments</li><li>number of vacancies</li></ul><p>It also asks about safety measures in the workplace.</p>"
+                        "description": "<p>This section asks for information about your workforce such as the: </p><ul><li>percentage, for example, on furlough leave or working remotely </li><li>percentage returning from furlough or remote working </li><li>percentage of furloughed staff receiving top-ups in addition to the Coronavirus Job Retention Scheme (CJRS) payments</li><li>number of vacancies</li></ul><p>It also asks about safety measures in the workplace and expansion plans.</p>"
                     },
                     {
                         "id": "block90beb26c-59f1-4f7f-9dee-e9a822e871be",
@@ -3732,7 +3786,7 @@
                                     "id": "answer92e4004a-ceef-424e-b5fa-d93520bc4780",
                                     "mandatory": true,
                                     "type": "Percentage",
-                                    "label": "On furlough leave",
+                                    "label": "On partial or full furlough leave",
                                     "description": "Under the terms of the UK Government's Coronavirus Job Retention Scheme",
                                     "q_code": "371",
                                     "min_value": {
@@ -3907,7 +3961,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer4c92cb9c-0ac7-43ef-a57f-e44350703379",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
@@ -3964,7 +4018,21 @@
                         "questions": [{
                             "id": "questionb646b254-98b4-4d42-ab91-c13b5fec21b0",
                             "title": "Is {{ metadata['ru_name'] }} providing top-ups to any <em>furloughed workers&apos;</em> pay, on top of the Coronavirus Job Retention Scheme (CJRS) payments?",
-                            "description": "<p>The Coronavirus Job Retention Scheme (CJRS) covers 80% of pay (up to &#xA3;2,500 a month) for furloughed staff</p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["workers on partial and full furlough leave"]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": ["employer&#x2019;s NI and contribution to pension schemes"]
+                                    }
+                                ]
+                            },
                             "type": "General",
                             "answers": [{
                                 "id": "answer3b3c0791-e310-4279-9116-92f1040606b4",
@@ -4050,6 +4118,18 @@
                             "id": "question4f6d1ad5-2f37-4135-92fc-339b1943fc0e",
                             "title": "Of those on <em>furlough leave</em>, approximately what <em>percentage of workers</em> have had their pay topped up?",
                             "description": "<p>Your answer should be out of 100%. </p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "employees furloughed for either all, or some, of their normal working hours",
+                                            "employees the business is claiming for via the Coronavirus Job Retention Scheme (CJRS)"
+                                        ]
+                                    }
+                                ]
+                            },
                             "definitions": [{
                                 "title": "How you might answer this question",
                                 "content": [{
@@ -4106,7 +4186,7 @@
                                     "id": "answer647b4d64-5529-44ae-8412-903ff0250f71",
                                     "mandatory": true,
                                     "type": "Percentage",
-                                    "label": "Returned from furlough leave",
+                                    "label": "Returned from furlough leave, either fully or partially",
                                     "description": "",
                                     "q_code": "991",
                                     "min_value": {
@@ -4150,7 +4230,7 @@
                                     "id": "answerf99be2e6-938d-4adf-99b5-942b78122fda",
                                     "mandatory": true,
                                     "type": "Percentage",
-                                    "label": "Return to work from furlough",
+                                    "label": "Return to work, either full or part-time, from furlough",
                                     "description": "Include those returning from furlough to remote working",
                                     "q_code": "1001",
                                     "min_value": {
@@ -4370,7 +4450,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "block": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
                                     "when": [{
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
@@ -4389,7 +4469,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "block": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
                                     "when": [{
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
@@ -4437,7 +4517,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "block": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
                                     "when": [{
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
@@ -4456,7 +4536,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "block": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
                                     "when": [{
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
@@ -4527,7 +4607,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "block": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
@@ -4586,6 +4666,91 @@
                                     {
                                         "label": "Not applicable",
                                         "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
+                            "title": "Was {{ metadata['ru_name'] }} planning to <em>expand</em> its business before the coronavirus (COVID-19) pandemic?",
+                            "description": "<p>For example, expansion into new sectors, or an increase in workforce, sites, production or services.</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerc499f057-1ce0-4380-adc5-7d234c1dc14f",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "154",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "when": [{
+                                        "id": "answerc499f057-1ce0-4380-adc5-7d234c1dc14f",
+                                        "condition": "contains any",
+                                        "values": ["Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockf802e6e1-1241-4f66-bfd2-17c249fb00a2"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockf802e6e1-1241-4f66-bfd2-17c249fb00a2",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionf802e6e1-1241-4f66-bfd2-17c249fb00a2",
+                            "title": "Has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s plans for expanding the business?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answere3de079a-fc34-453b-a5e6-e4e515e6a2b7",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "155",
+                                "options": [{
+                                        "label": "Plans are more ambitious",
+                                        "value": "Plans are more ambitious"
+                                    },
+                                    {
+                                        "label": "No change in plans",
+                                        "value": "No change in plans"
+                                    },
+                                    {
+                                        "label": "Plans are less ambitious",
+                                        "value": "Plans are less ambitious"
+                                    },
+                                    {
+                                        "label": "Plans have been postponed or cancelled",
+                                        "value": "Plans have been postponed or cancelled"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
                                     }
                                 ]
                             }]
