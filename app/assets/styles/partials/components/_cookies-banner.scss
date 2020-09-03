@@ -1,0 +1,16 @@
+.cookies-banner {
+    display: block;
+    padding: 1rem 0;
+    background: #E5E5E5;
+    &__title {
+      color: black;
+    }
+    &__desc {
+      margin-bottom: 1rem;
+      color: black;
+      word-break: break-word;
+    }
+    &__btn {
+        line-height: normal;
+    }
+}

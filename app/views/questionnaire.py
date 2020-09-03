@@ -609,6 +609,7 @@ def _render_template(context, current_location, template, front_end_navigation, 
         page_title=page_title,
         metadata=kwargs.pop('metadata_context'),  # `metadata_context` is used as `metadata` in the jinja templates
         language_code=session_data.language_code,
+        cookies=request.cookies.get('ons_cookie_message_displayed'),
         **kwargs
     )
 
