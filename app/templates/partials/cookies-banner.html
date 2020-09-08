@@ -1,38 +1,33 @@
-<!-- <form action="/cookies/accept-all" method="GET" id="global-cookies-message"> -->
-  <div class="cookies-banner" role="region" aria-label="cookie banner 2">
-    <div class="container cookies-banner__primary">
-      <div class="grid">
-        <div class="grid__col col-8@m">
-          <h2 class="cookies-banner__title u-mb-xs">Tell us whether you accept cookies</h2>
-          <p class="cookies-banner__desc">We use <a href="#">cookies to collect information</a> about how you use census.gov.uk. We use this information to make the website work as well as possible and improve our services.</p>
-          <input id="csrf_token2" name="csrf_token" type="hidden" value="{{ csrf_token() }}"/>
-          <button type="submit" class="btn btn--small js-accept-cookies u-mb-xs@xs@s cookies-banner__btn">
-            <span class="btn__inner">
-              Accept all cookies
-            </span>
-          </button>
-          <a href="/cookies-settings" role="button" class="btn btn--small u-ml-no@xs@s cookies-banner__btn btn--link">
-            <span class="btn__inner">
-              Set cookie preferences
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="container cookies-banner__confirmation u-d-no">
-      <div class="grid grid--flex grid--between grid--gutterless grid--no-wrap@s grid--vertical-center">
-        <div class="grid__col grid__col--flex col-auto u-flex-shrink@s">
-          <p class="cookies-banner__desc u-mb-no@s u-mr-s@s">You’ve accepted all cookies. You can <a href="#">change your cookie preferences</a> at any time.</p>
-        </div>
-        <div class="grid__col">
-          <button type="button" class="btn btn--secondary btn--small js-hide-button">
-            <span class="btn__inner">
-              Hide
-            </span>
-            <span class="btn__context u-vh">this message</span>
-          </button>
-        </div>
+<div class="cookies-banner" role="region" aria-label="cookie banner">
+  <div class="container cookies-banner__primary">
+    <div class="grid">
+      <div class="grid__col col-8@m">
+        <h2 class="cookies-banner__title u-mb-xs">Tell us whether you accept cookies</h2>
+        <p class="cookies-banner__desc">
+            <b>Change the census.gov.uk bit</b>
+          We use <a href="/cookies-settings">cookies to collect information</a> about how you use census.gov.uk. We use this information to make the website work as well as
+          possible and improve our services.
+        </p>
+        <button type="submit" class="btn btn--small js-accept-cookies u-mb-xs@xs@s cookies-banner__btn">
+          <span class="btn__inner"> Accept all cookies </span>
+        </button>
+        <a href="/cookies-settings" role="button" class="btn btn--small u-ml-no@xs@s cookies-banner__btn btn--link">
+          <span class="btn__inner"> Set cookie preferences </span>
+        </a>
       </div>
     </div>
   </div>
-<!-- </form> -->
+  <div class="container cookies-banner__confirmation u-d-no">
+    <div class="grid grid--flex grid--between grid--gutterless grid--no-wrap@s grid--vertical-center">
+      <div class="grid__col grid__col--flex col-auto u-flex-shrink@s">
+        <p class="cookies-banner__desc u-mb-no@s u-mr-s@s">You’ve accepted all cookies. You can <a href="/cookies-settings">change your cookie preferences</a> at any time.</p>
+      </div>
+      <div class="grid__col">
+        <button type="button" class="btn btn--secondary btn--small js-hide-button">
+          <span class="btn__inner"> Hide </span>
+          <span class="btn__context u-vh">this message</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

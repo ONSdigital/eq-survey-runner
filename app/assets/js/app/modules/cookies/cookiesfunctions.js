@@ -1,8 +1,6 @@
 export const DEFAULT_COOKIE_CONSENT = {
   essential: true,
-  settings: false,
-  usage: false,
-  campaigns: false
+  usage: false
 }
 
 export const COOKIE_CATEGORIES = {
@@ -13,9 +11,6 @@ export const COOKIE_CATEGORIES = {
   _ga: 'usage',
   _gid: 'usage',
   _gat: 'usage',
-  _use_hitbox: 'campaigns',
-  VISITOR_INFO1_LIVE: 'campaigns',
-  _fbp: 'campaigns',
   COOKIE_SUPPORT: 'essential',
   GUEST_LANGUAGE_ID: 'essential',
   JSESSIONID: 'essential',
@@ -49,9 +44,7 @@ export function setDefaultConsentCookie() {
 export function approveAllCookieTypes() {
   let approvedConsent = {
     essential: true,
-    settings: true,
-    usage: true,
-    campaigns: true
+    usage: true
   }
 
   setCookie('ons_cookie_policy', JSON.stringify(approvedConsent), { days: 365 })

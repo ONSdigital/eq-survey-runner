@@ -321,15 +321,10 @@ def add_blueprints(application):
     application.register_blueprint(schema_blueprint)
     schema_blueprint.config = application.config.copy()
 
-    from app.views.cookies import cookies_blueprint
-    application.register_blueprint(cookies_blueprint)
-    cookies_blueprint.config = application.config.copy()
-
 
 def setup_secure_cookies(application):
     application.secret_key = application.eq['secret_store'].get_secret_by_name('EQ_SECRET_KEY')
     application.session_interface = SHA256SecureCookieSessionInterface()
-
 
 def setup_babel(application):
     application.babel = Babel(application)

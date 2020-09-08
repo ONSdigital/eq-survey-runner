@@ -12,16 +12,11 @@ export default class CookiesBanner {
   }
 
   setupCookiesEvents() {
-    console.log("am I setting up the cookie events?")
     this.button.addEventListener('click', this.setCookiesConsent.bind(this))
     this.hideButton.addEventListener('click', this.hideConfirmBanner.bind(this))
-    this.hello()
     this.showCookiesMessage()
   }
 
-  hello() {
-    alert('hello world')
-  }
   showCookiesMessage() {
     const displayCookiesBanner = this.component && cookie('ons_cookie_message_displayed') !== 'true'
     let policy = cookie('ons_cookie_policy')
