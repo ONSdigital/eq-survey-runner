@@ -145,8 +145,7 @@ export function setCookie(name, value, options) {
     if (document.location.protocol === 'https:') {
       cookieString = cookieString + '; Secure'
     }
-    // eslint-disable-next-line no-console
-    console.log('set cookie:', cookieString)
+
     document.cookie = cookieString
   }
 }

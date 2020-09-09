@@ -1,7 +1,7 @@
 .cookies-banner {
     display: block;
     padding: 1rem 0;
-    background: #E5E5E5;
+    background-color: #f0f0f0;
     &__title {
       color: black;
     }
@@ -10,7 +10,19 @@
       color: black;
       word-break: break-word;
     }
+    
     &__btn {
         line-height: normal;
+    }
+    &__hide {
+      background-color: #d0d0d0;
+      border-bottom: 3px solid black;
+      .btn__inner {
+        color: black;
+        font-weight: 400;
+      }
+    }
+    .justify-space {
+      justify-content: space-between;
     }
 }
