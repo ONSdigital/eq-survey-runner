@@ -379,3 +379,4 @@ def get_minimized_asset(filename):
         elif 'js' in filename:
             filename = filename.replace('.js', '.min.js')
     return filename
+

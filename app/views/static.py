@@ -38,6 +38,7 @@ def legal():
                                             analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'])
     return cookie_template
 
+
 @contact_blueprint.route('/cookies-settings', methods=['GET'])
 def settings():
     ons_cookie_policy = request.cookies.get('ons_cookie_message_displayed')
@@ -45,6 +46,3 @@ def settings():
                                             cookies=ons_cookie_policy,
                                             template_name='static/cookies-settings.html')
     return cookie_template
-
-                                            # analytics_gtm_id=current_app.config['EQ_GTM_ID'],
-                                            # analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'])
