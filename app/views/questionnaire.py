@@ -594,7 +594,7 @@ def _build_template(current_location, context, template, schema, answer_store, m
 @with_metadata_context
 @with_analytics
 @with_legal_basis
-def _render_template(context, current_location, template, front_end_navigation, previous_url, add_person_url, schema, metadata, answer_store, cookies, 
+def _render_template(context, current_location, template, front_end_navigation, previous_url, add_person_url, schema, metadata, answer_store, cookies,
                      **kwargs):
     page_title = get_page_title_for_location(schema, current_location, metadata, answer_store)
 
