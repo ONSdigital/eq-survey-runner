@@ -326,6 +326,7 @@ def setup_secure_cookies(application):
     application.secret_key = application.eq['secret_store'].get_secret_by_name('EQ_SECRET_KEY')
     application.session_interface = SHA256SecureCookieSessionInterface()
 
+
 def setup_babel(application):
     application.babel = Babel(application)
     application.jinja_env.add_extension('jinja2.ext.i18n')
@@ -379,4 +380,3 @@ def get_minimized_asset(filename):
         elif 'js' in filename:
             filename = filename.replace('.js', '.min.js')
     return filename
-
