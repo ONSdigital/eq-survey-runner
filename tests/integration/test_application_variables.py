@@ -29,3 +29,5 @@ class TestApplicationVariables(IntegrationTestCase):
         self.launchSurvey('0', 'star_wars')
         self.assertStatusOK()
         self.assertTrue('__bs_script__' in self.getResponseData())
+
+
