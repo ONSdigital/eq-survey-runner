@@ -8,17 +8,17 @@ def argument_tester(*args, **kwargs):
 class TestDecorators(IntegrationTestCase):
 
     @patch('app.helpers.template_helper.request')
-    def test_no_analytics(self, mock):
+    def test_analytics(self, mock):
         mock.cookies.get = Mock(return_value='{"usage":true}')
 
         with self._application.app_context():
             cookie = with_analytics(argument_tester)()
-            self.assertNotAnalyticsLength(cookie)
+            self.assertAnalyticsLength(cookie)
 
     @patch('app.helpers.template_helper.request')
-    def test_analytics(self, mock):
+    def test_no_analytics(self, mock):
         mock.cookies.get = Mock(return_value='{"usage":false}')
 
         with self._application.app_context():
             cookie = with_analytics(argument_tester)()
-            self.assertAnalyticsLength(cookie)
+            self.assertNotAnalyticsLength(cookie)
