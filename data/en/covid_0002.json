@@ -47,7 +47,7 @@
                                     }]
                                 },
                                 {
-                                    "question": "Turnover and operating costs",
+                                    "question": "Turnover, operating costs and profits",
                                     "content": [{
                                             "description": "This section asks for information about:"
                                         },
@@ -96,13 +96,13 @@
                                 {
                                     "question": "Operational performance",
                                     "content": [{
-                                            "description": "This section asks for information about the business&apos;s workforce such as the:"
+                                            "description": "This section asks for information about your workforce such as the:"
                                         },
                                         {
                                             "list": [
-                                                "percentage on, for example, furlough leave or working from home",
-                                                "percentage returning from furlough or homeworking, or would be made permanently redundant",
-                                                "percentage of furloughed staff receiving top-ups in addition to the Coronavirus Job Retention Scheme (CJRS) payment",
+                                                "percentage, for example, on furlough leave or working from home",
+                                                "percentage returning from furlough or  homeworking",
+                                                "percentage of furloughed staff receiving top-ups in addition to the Coronavirus Job Retention Scheme (CJRS) payments",
                                                 "impact of homeworking, and staff&apos;s productivity"
                                             ]
                                         },
@@ -4240,8 +4240,8 @@
                                     "type": "Checkbox",
                                     "description": "",
                                     "options": [{
-                                        "label": "None of our sites are currently paused or ceased trading",
-                                        "value": "None of our sites are currently paused or ceased trading",
+                                        "label": "None of our business sites will permanently close in the next three months",
+                                        "value": "None of our business sites will permanently close in the next three months",
                                         "q_code": "1640"
                                     }]
                                 }
@@ -5067,6 +5067,10 @@
         },
         {
             "name": "ref_p_end_date",
+            "validator": "date"
+        },
+        {
+            "name": "employment_date",
             "validator": "date"
         }
     ],
