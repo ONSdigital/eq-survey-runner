@@ -1,240 +1,244 @@
 {
-    "title": "Monthly Business Survey",
-    "survey_id": "009",
+    "eq_id": "mbs",
+    "form_type": "0204",
     "mime_type": "application/json/ons/eq",
-    "theme": "northernireland",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
-    "legal_basis": "Notice is given under article 5 of the Statistics of Trade and Employment (Northern Ireland) Order 1988.",
-    "description": "mbs",
+    "survey_id": "009",
+    "title": "Monthly Business Survey",
+    "sections": [{
+            "id": "section1764f3b3-6a65-4df2-b892-3b1569fec6c3",
+            "groups": [{
+                "id": "group1764f3b3-6a65-4df2-b892-3b1569fec6c3",
+                "title": "",
+                "blocks": [{
+                        "type": "Introduction",
+                        "id": "introduction-block",
+                        "primary_content": [{
+                            "type": "Basic",
+                            "id": "primary",
+                            "content": [{
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
+                                "list": [
+                                    "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
+                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
+                                    "We will treat your data securely and confidentially."
+                                ]
+                            }]
+                        }],
+                        "preview_content": {
+                            "id": "preview",
+                            "title": "Information you need",
+                            "content": [{
+                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
+                                },
+                                {
+                                    "description": "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP)</a> (external link)"
+                                },
+                                {
+                                    "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                                }
+                            ],
+                            "questions": []
+                        },
+                        "secondary_content": [{
+                            "id": "secondary-content",
+                            "title": "How we use your data",
+                            "content": [{
+                                "list": [
+                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                                    "The information you provide contributes to Gross Domestic Product (GDP)."
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block047c9b56-075b-498c-97e9-4580d766acf7",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question047c9b56-075b-498c-97e9-4580d766acf7",
+                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer25b21ff6-5663-4b8b-8f9e-4740ac7b4447",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group33690ad8-4e8d-43b1-8393-0b399a7b5fe4",
+                                    "when": [{
+                                        "id": "answer25b21ff6-5663-4b8b-8f9e-4740ac7b4447",
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockb1dcd088-a2de-4e54-a7de-3a0fff6a9584"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockb1dcd088-a2de-4e54-a7de-3a0fff6a9584",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionb1dcd088-a2de-4e54-a7de-3a0fff6a9584",
+                            "title": "What are the dates of the period that you will be reporting for?",
+                            "type": "DateRange",
+                            "answers": [{
+                                    "id": "answer5dda86a5-2940-4763-be18-c64d426ade3bfrom",
+                                    "type": "Date",
+                                    "mandatory": true,
+                                    "label": "From",
+                                    "q_code": "11",
+                                    "minimum": {
+                                        "meta": "ref_p_start_date",
+                                        "offset_by": {
+                                            "days": 0
+                                        }
+                                    }
+                                },
+                                {
+                                    "id": "answer5dda86a5-2940-4763-be18-c64d426ade3bto",
+                                    "type": "Date",
+                                    "mandatory": true,
+                                    "label": "To",
+                                    "q_code": "12",
+                                    "maximum": {
+                                        "meta": "ref_p_end_date",
+                                        "offset_by": {
+                                            "days": 0
+                                        }
+                                    }
+                                }
+                            ],
+                            "period_limits": {
+                                "minimum": {
+                                    "days": 10
+                                },
+                                "maximum": {
+                                    "days": 50
+                                }
+                            }
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section33690ad8-4e8d-43b1-8393-0b399a7b5fe4",
+            "groups": [{
+                "id": "group33690ad8-4e8d-43b1-8393-0b399a7b5fe4",
+                "title": "",
+                "blocks": [{
+                    "id": "blockbb508839-f8a3-4320-9f21-9eedc0978f89",
+                    "type": "Question",
+                    "questions": [{
+                        "id": "questionbb508839-f8a3-4320-9f21-9eedc0978f89",
+                        "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was the total volume of {{ metadata['ru_name'] }}&apos;s <em>potable water that was supplied to customers</em>, in megalitres?",
+                        "type": "General",
+                        "answers": [{
+                            "id": "answercb2a09a9-106e-465d-a46d-8d1112091061",
+                            "mandatory": true,
+                            "type": "Unit",
+                            "label": "Total volume of potable water that was supplied to customers, in megalitres",
+                            "description": "",
+                            "q_code": "110",
+                            "unit": "volume-megaliter",
+                            "unit_length": "short",
+                            "decimal_places": 2
+                        }]
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "section5eb0a37c-64c2-40df-8390-7027f81e948e",
+            "groups": [{
+                    "id": "group5eb0a37c-64c2-40df-8390-7027f81e948e",
+                    "title": "",
+                    "blocks": [{
+                        "id": "blockd21af49f-657e-436a-a608-71a3f46c077c",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiond21af49f-657e-436a-a608-71a3f46c077c",
+                            "title": "Please explain any changes in your potable water volume figures from the previous return, if applicable.",
+                            "description": "<p>If you provide comments we are less likely to contact you with data queries.</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer900d3b86-65c4-4c62-a500-07846a47478d",
+                                "mandatory": true,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "146",
+                                "max_length": 2000
+                            }]
+                        }]
+                    }]
+                },
+                {
+                    "id": "summary-group",
+                    "title": "Summary",
+                    "blocks": [{
+                        "type": "Summary",
+                        "id": "summary-block"
+                    }]
+                }
+            ]
+        }
+    ],
+    "theme": "northernireland",
+    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
+    "navigation": {
+        "visible": false
+    },
+    "metadata": [{
+            "name": "user_id",
+            "validator": "string"
+        },
+        {
+            "name": "period_id",
+            "validator": "string"
+        },
+        {
+            "name": "ru_name",
+            "validator": "string"
+        },
+        {
+            "name": "trad_as",
+            "validator": "optional_string"
+        },
+        {
+            "name": "ref_p_start_date",
+            "validator": "date"
+        },
+        {
+            "name": "ref_p_end_date",
+            "validator": "date"
+        },
+        {
+            "name": "employment_date",
+            "validator": "date"
+        }
+    ],
     "view_submitted_response": {
         "enabled": true,
         "duration": 900
-    },
-    "metadata": [{
-        "name": "user_id",
-        "validator": "string"
-    }, {
-        "name": "period_id",
-        "validator": "string"
-    }, {
-        "name": "ru_name",
-        "validator": "string"
-    }, {
-        "name": "ref_p_start_date",
-        "validator": "date"
-    }, {
-        "name": "ref_p_end_date",
-        "validator": "date"
-    }, {
-        "name": "trad_as",
-        "validator": "optional_string"
-    }],
-    "sections": [{
-        "id": "section",
-        "groups": [{
-            "id": "msi",
-            "title": "",
-            "blocks": [{
-                "type": "Introduction",
-                "id": "introduction",
-                "primary_content": [{
-                    "type": "Basic",
-                    "id": "use-of-information",
-                    "content": [{
-                        "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select “yes, you can provide figures” and enter turnover, even if this is “0”.<br><b>Exclude</b> furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
-
-                        "list": ["Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.", "You can provide informed estimates if actual figures aren\u2019t available.", "We will treat your data securely and confidentially."]
-                    }]
-                }],
-                "preview_content": {
-                    "id": "preview",
-                    "title": "Information you need",
-                    "content": [{
-                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
-
-                    }, {
-                        "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate.",
-                        "list": ["Total volume of potable water that was supplied to customers", "Significant changes"]
-                    }]
-                },
-                "secondary_content": [{
-                    "id": "how-we-use-your-data",
-                    "title": "How we use your data",
-                    "content": [{
-                        "list": ["You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.", "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP).</a>"]
-                    }]
-                }]
-            }, {
-                "id": "reporting-period-block",
-                "type": "Question",
-                "questions": [{
-                    "answers": [{
-                        "options": [{
-                            "value": "Yes",
-                            "label": "Yes"
-                        }, {
-                            "value": "No",
-                            "label": "No"
-                        }],
-                        "id": "reporting-period-answer",
-                        "type": "Radio",
-                        "q_code": "d12",
-                        "mandatory": true
-                    }],
-                    "type": "General",
-                    "id": "reporting-period-question",
-                    "title": "Are you able to report for the period from {{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}}?"
-                }],
-                "routing_rules": [{
-                    "goto": {
-                        "when": [{
-                            "id": "reporting-period-answer",
-                            "value": "Yes",
-                            "condition": "equals"
-                        }],
-                        "block": "water-volume-block"
-                    }
-                }, {
-                    "goto": {
-                        "block": "reporting-period-block-2"
-                    }
-                }],
-                "title": "Reporting period"
-            }, {
-                "type": "Question",
-                "id": "reporting-period-block-2",
-                "title": "Reporting period",
-                "questions": [{
-                    "type": "DateRange",
-                    "id": "reporting-period-question-2",
-                    "title": "What are the dates of the period that you will be reporting for?",
-                    "period_limits": {
-                        "minimum": {
-                            "days": 10
-                        },
-                        "maximum": {
-                            "days": 50
-                        }
-                    },
-                    "answers": [{
-                        "type": "Date",
-                        "id": "period-from",
-                        "label": "From",
-                        "mandatory": true,
-                        "q_code": "11",
-                        "minimum": {
-                            "meta": "ref_p_start_date",
-                            "offset_by": {
-                                "days": -19
-                            }
-                        }
-                    }, {
-                        "type": "Date",
-                        "id": "period-to",
-                        "label": "To",
-                        "mandatory": true,
-                        "q_code": "12",
-                        "maximum": {
-                            "meta": "ref_p_end_date",
-                            "offset_by": {
-                                "days": 20
-                            }
-                        }
-                    }]
-                }]
-            }, {
-                "type": "Question",
-                "id": "water-volume-block",
-                "title": "Total volume of potable water that was supplied to customers",
-                "questions": [{
-                    "id": "water-volume-question",
-                    "type": "General",
-                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the total volume of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s <em>potable water that was supplied to customers</em>, in megalitres?",
-                    "answers": [{
-                        "id": "water-volume",
-                        "mandatory": true,
-                        "q_code": "110",
-                        "type": "Unit",
-                        "unit_length": "short",
-                        "label": "Total volume of potable water that was supplied to customers, in megalitres",
-                        "unit": "volume-megaliter"
-                    }]
-                }]
-            }, {
-                "id": "significant-change",
-                "title": "Significant changes",
-                "type": "Question",
-                "questions": [{
-                    "type": "General",
-                    "id": "significant-change-question",
-                    "title": "Did any significant changes occur to the figures provided for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
-                    "definitions": [{
-                        "title": "What constitutes a significant change?",
-                        "content": [{
-                            "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s figures from the previous reporting period and the same reporting period last year."
-                        }, {
-                            "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
-                        }]
-                    }],
-                    "answers": [{
-                        "id": "significant-change-established-answer",
-                        "label": "",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Yes",
-                            "value": "Yes"
-                        }, {
-                            "label": "No",
-                            "value": "No"
-                        }],
-                        "q_code": "146",
-                        "type": "Radio"
-                    }]
-                }],
-                "routing_rules": [{
-                    "goto": {
-                        "block": "change-comment-block",
-                        "when": [{
-                            "id": "significant-change-established-answer",
-                            "condition": "equals",
-                            "value": "Yes"
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "group": "summary-group"
-                    }
-                }]
-            }, {
-                "type": "Question",
-                "id": "change-comment-block",
-                "questions": [{
-                    "answers": [{
-                        "id": "change-comment",
-                        "label": "Comments",
-                        "mandatory": true,
-                        "q_code": "146h",
-                        "type": "TextArea"
-                    }],
-                    "description": "We rely on your commentary to \u2018tell the story\u2019 behind changes in figures. By commenting here it will reduce the need for us to call you.",
-                    "id": "change-comment-question",
-                    "title": "Please describe the changes for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} in more detail",
-                    "type": "General"
-                }],
-                "title": "Significant changes"
-            }]
-        }]
-    }, {
-        "id": "summary-section",
-        "title": "Summary",
-        "groups": [{
-            "id": "summary-group",
-            "title": "Summary",
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }]
-        }]
-    }]
+    }
 }
