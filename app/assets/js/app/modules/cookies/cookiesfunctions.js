@@ -82,8 +82,6 @@ export function setConsentCookie(options) {
           if (cookie(cookies)) {
             const cookieString = cookies + '=; expires=' + new Date() + '; domain=' + domain + '; path=/'
             document.cookie = cookieString
-            // eslint-disable-next-line no-console
-            console.log('remove cookie:', cookieString)
           }
         }
       }
@@ -102,8 +100,6 @@ export function checkConsentCookieCategory(cookieName, cookieCategory) {
   try {
     return currentConsentCookie[cookieCategory]
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e)
     return false
   }
 }

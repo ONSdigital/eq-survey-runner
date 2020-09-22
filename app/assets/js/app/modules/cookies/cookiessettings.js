@@ -16,12 +16,7 @@ export default class CookiesSettings {
     const currentConsentCookie = cookie('ons_cookie_policy')
     let currentConsentCookieJSON = JSON.parse(currentConsentCookie.replace(/'/g, '"'))
 
-    try {
-      unset(currentConsentCookieJSON, 'essential')
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e)
-    }
+    unset(currentConsentCookieJSON, 'essential')
 
     for (let cookieType in currentConsentCookieJSON) {
       let radioButton
