@@ -1,5 +1,5 @@
 {
-    "eq_id": "e9bffd55-25fe-4f14-9cad-da56b49e3ea7",
+    "eq_id": "MES_0001",
     "form_type": "0001",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -20,7 +20,7 @@
                             "id": "primary",
                             "content": [{
                                 "list": [
-                                    "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>View questions and see examples of how to complete the Expectations section, before you start the survey (external link).</a>"
+                                    "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>View questions and see examples of how to complete the Expectations section, before you start the survey (external link).</a>",
                                     "The purpose of this survey is to collect information on management practices and future expectations of businesses in Great Britain.",
                                     "The information you provide will help to better understand whether management practices and uncertainty are related to productivity, and this could inform government policy.",
                                     "This is a voluntary survey.",
@@ -148,9 +148,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "all other employees that are non-managers"
-                                        ]
+                                        "list": ["all other employees that are non-managers"]
                                     }
                                 ]
                             },
@@ -201,11 +199,7 @@
                                         "description": "For Scotland managers with a:"
                                     },
                                     {
-                                        "list": [
-                                            "degree or above",
-                                            "graduate certificate or diploma",
-                                            "professional apprenticeship or SQV level 4"
-                                        ]
+                                        "list": ["degree or above", "graduate certificate or diploma", "professional apprenticeship or SQV level 4"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -214,17 +208,13 @@
                                         "description": "For England and Wales managers with a:"
                                     },
                                     {
-                                        "list": [
-                                            "level 5 qualifications or below, for example HNC or HND"
-                                        ]
+                                        "list": ["level 5 qualifications or below, for example HNC or HND"]
                                     },
                                     {
                                         "description": "For Scotland managers with a:"
                                     },
                                     {
-                                        "list": [
-                                            "level 3 qualifications or below, for example HNC or HND"
-                                        ]
+                                        "list": ["level 3 qualifications or below, for example HNC or HND"]
                                     }
                                 ]
                             },
@@ -295,11 +285,7 @@
                                         "description": "For Scotland managers with a:"
                                     },
                                     {
-                                        "list": [
-                                            "degree or above",
-                                            "graduate certificate or diploma",
-                                            "professional apprenticeship or SQV level 4"
-                                        ]
+                                        "list": ["degree or above", "graduate certificate or diploma", "professional apprenticeship or SQV level 4"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -308,17 +294,13 @@
                                         "description": "For England and Wales managers with a:"
                                     },
                                     {
-                                        "list": [
-                                            "level 5 qualifications or below, for example HNC or HND"
-                                        ]
+                                        "list": ["level 5 qualifications or below, for example HNC or HND"]
                                     },
                                     {
                                         "description": "For Scotland managers with a:"
                                     },
                                     {
-                                        "list": [
-                                            "level 3 qualifications or below, for example HNC or HND"
-                                        ]
+                                        "list": ["level 3 qualifications or below, for example HNC or HND"]
                                     }
                                 ]
                             },
@@ -405,9 +387,7 @@
                                     "when": [{
                                         "id": "answer3fc91986-fdf4-4b47-8b06-626565697135",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Not a family-owned business\t\t"
-                                        ]
+                                        "values": ["Not a family-owned business\t\t"]
                                     }]
                                 }
                             },
@@ -427,10 +407,7 @@
                             "definitions": [{
                                 "title": "Examples of family connections",
                                 "content": [{
-                                    "list": [
-                                        "Connection through family ties or marriage",
-                                        "Connection through civil partnership"
-                                    ]
+                                    "list": ["Connection through family ties or marriage", "Connection through civil partnership"]
                                 }]
                             }],
                             "type": "General",
@@ -582,14 +559,7 @@
                                         "description": "<strong>Examples of &quot;KPIs&quot;:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "Sales",
-                                            "Cost",
-                                            "Quality",
-                                            "Customer satisfaction",
-                                            "Timely service delivery",
-                                            "Waste"
-                                        ]
+                                        "list": ["Sales", "Cost", "Quality", "Customer satisfaction", "Timely service delivery", "Waste"]
                                     }
                                 ]
                             }],
@@ -652,17 +622,13 @@
                                         "description": "<strong> Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "supervisors, if they are responsible for managing staff and assessing their performance"
-                                        ]
+                                        "list": ["supervisors, if they are responsible for managing staff and assessing their performance"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "all other employees that are non-managers"
-                                        ]
+                                        "list": ["all other employees that are non-managers"]
                                     }
                                 ]
                             },
@@ -723,17 +689,13 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "all employees that are non-managers"
-                                        ]
+                                        "list": ["all employees that are non-managers"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "managers or supervisors"
-                                        ]
+                                        "list": ["managers or supervisors"]
                                     }
                                 ]
                             },
@@ -799,14 +761,7 @@
                                         "description": "<strong>Examples of &quot;KPIs&quot;:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "Sales",
-                                            "Cost",
-                                            "Quality",
-                                            "Customer satisfaction",
-                                            "Timely service delivery",
-                                            "Waste"
-                                        ]
+                                        "list": ["Sales", "Cost", "Quality", "Customer satisfaction", "Timely service delivery", "Waste"]
                                     }
                                 ]
                             }],
@@ -870,17 +825,13 @@
                                         "description": "<strong> Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "supervisors, if they are responsible for managing staff and assessing their performance"
-                                        ]
+                                        "list": ["supervisors, if they are responsible for managing staff and assessing their performance"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "all other employees that are non-managers"
-                                        ]
+                                        "list": ["all other employees that are non-managers"]
                                     }
                                 ]
                             },
@@ -942,17 +893,13 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "all employees that are non-managers"
-                                        ]
+                                        "list": ["all employees that are non-managers"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "managers or supervisors"
-                                        ]
+                                        "list": ["managers or supervisors"]
                                     }
                                 ]
                             },
@@ -1131,17 +1078,13 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "supervisors, if they are responsible for managing staff and assessing their performance"
-                                        ]
+                                        "list": ["supervisors, if they are responsible for managing staff and assessing their performance"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "all other employees that are non-managers"
-                                        ]
+                                        "list": ["all other employees that are non-managers"]
                                     }
                                 ]
                             },
@@ -1190,17 +1133,13 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "all employees that are non-managers"
-                                        ]
+                                        "list": ["all employees that are non-managers"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "managers or supervisors"
-                                        ]
+                                        "list": ["managers or supervisors"]
                                     }
                                 ]
                             },
@@ -1411,17 +1350,13 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "all employees that are non-managers"
-                                        ]
+                                        "list": ["all employees that are non-managers"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "managers or supervisors"
-                                        ]
+                                        "list": ["managers or supervisors"]
                                     }
                                 ]
                             },
@@ -1667,17 +1602,13 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "supervisors, if they are responsible for managing staff and assessing their performance"
-                                        ]
+                                        "list": ["supervisors, if they are responsible for managing staff and assessing their performance"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "all other employees that are non-managers"
-                                        ]
+                                        "list": ["all other employees that are non-managers"]
                                     }
                                 ]
                             },
@@ -1771,17 +1702,13 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "all employees that are non-managers"
-                                        ]
+                                        "list": ["all employees that are non-managers"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "managers or supervisors"
-                                        ]
+                                        "list": ["managers or supervisors"]
                                     }
                                 ]
                             },
@@ -1875,10 +1802,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "formal training",
-                                            "informal &quot;on the job&quot; training"
-                                        ]
+                                        "list": ["formal training", "informal &quot;on the job&quot; training"]
                                     }
                                 ]
                             },
@@ -1931,10 +1855,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "formal training",
-                                            "informal &quot;on the job&quot; training"
-                                        ]
+                                        "list": ["formal training", "informal &quot;on the job&quot; training"]
                                     }
                                 ]
                             },
@@ -1987,10 +1908,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "formal training",
-                                            "informal &quot;on the job&quot; training"
-                                        ]
+                                        "list": ["formal training", "informal &quot;on the job&quot; training"]
                                     }
                                 ]
                             },
@@ -2044,10 +1962,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "formal training",
-                                            "informal &quot;on the job&quot; training"
-                                        ]
+                                        "list": ["formal training", "informal &quot;on the job&quot; training"]
                                     }
                                 ]
                             },
@@ -2098,13 +2013,7 @@
                             "definitions": [{
                                 "title": "Examples of actions to address under-performance",
                                 "content": [{
-                                    "list": [
-                                        "Reassignment",
-                                        "Demotion",
-                                        "Dismissal",
-                                        "Probation",
-                                        "Training"
-                                    ]
+                                    "list": ["Reassignment", "Demotion", "Dismissal", "Probation", "Training"]
                                 }]
                             }],
                             "type": "General",
@@ -2145,13 +2054,7 @@
                             "definitions": [{
                                 "title": "Examples of actions to address under-performance",
                                 "content": [{
-                                    "list": [
-                                        "Reassignment",
-                                        "Demotion",
-                                        "Dismissal",
-                                        "Probation",
-                                        "Training"
-                                    ]
+                                    "list": ["Reassignment", "Demotion", "Dismissal", "Probation", "Training"]
                                 }]
                             }],
                             "type": "General",
@@ -2191,13 +2094,7 @@
                             "definitions": [{
                                 "title": "Examples of actions to address under-performance",
                                 "content": [{
-                                    "list": [
-                                        "Reassignment",
-                                        "Demotion",
-                                        "Dismissal",
-                                        "Probation",
-                                        "Training"
-                                    ]
+                                    "list": ["Reassignment", "Demotion", "Dismissal", "Probation", "Training"]
                                 }]
                             }],
                             "type": "General",
@@ -2238,13 +2135,7 @@
                             "definitions": [{
                                 "title": "Examples of actions to address under-performance",
                                 "content": [{
-                                    "list": [
-                                        "Reassignment",
-                                        "Demotion",
-                                        "Dismissal",
-                                        "Probation",
-                                        "Training"
-                                    ]
+                                    "list": ["Reassignment", "Demotion", "Dismissal", "Probation", "Training"]
                                 }]
                             }],
                             "type": "General",
@@ -2432,15 +2323,7 @@
                                         "description": "<strong>For example:  </strong>"
                                     },
                                     {
-                                        "list": [
-                                            "Offices",
-                                            "Factories",
-                                            "Warehouses",
-                                            "Workshops",
-                                            "Depots",
-                                            "Construction sites",
-                                            "Mines"
-                                        ]
+                                        "list": ["Offices", "Factories", "Warehouses", "Workshops", "Depots", "Construction sites", "Mines"]
                                     }
                                 ]
                             }],
@@ -2469,9 +2352,7 @@
                                     "when": [{
                                         "id": "answer52592c6b-1f57-4714-8f38-279a2d30b1ff",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No"
-                                        ]
+                                        "values": ["No"]
                                     }]
                                 }
                             },
@@ -2577,13 +2458,7 @@
                                         "description": "<strong>For example:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "Buildings",
-                                            "Machinery",
-                                            "Equipment",
-                                            "Vehicles",
-                                            "Software."
-                                        ]
+                                        "list": ["Buildings", "Machinery", "Equipment", "Vehicles", "Software."]
                                     }
                                 ]
                             }],
@@ -2746,10 +2621,7 @@
                             "definitions": [{
                                 "title": "Examples of online sales",
                                 "content": [{
-                                    "list": [
-                                        "orders made through a website",
-                                        "orders made via an app"
-                                    ]
+                                    "list": ["orders made through a website", "orders made via an app"]
                                 }]
                             }],
                             "type": "General",
@@ -2864,9 +2736,7 @@
                                     "when": [{
                                         "id": "answer0d444803-d6ca-456d-8963-eb011f5c1f45",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Turnover in 2020 is higher than expected"
-                                        ]
+                                        "values": ["Turnover in 2020 is higher than expected"]
                                     }]
                                 }
                             },
@@ -2876,9 +2746,7 @@
                                     "when": [{
                                         "id": "answer0d444803-d6ca-456d-8963-eb011f5c1f45",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Turnover in 2020 is lower than expected"
-                                        ]
+                                        "values": ["Turnover in 2020 is lower than expected"]
                                     }]
                                 }
                             },
@@ -2936,9 +2804,7 @@
                             "when": [{
                                 "id": "answer0d444803-d6ca-456d-8963-eb011f5c1f45",
                                 "condition": "contains any",
-                                "values": [
-                                    "Turnover in 2020 is lower than expected"
-                                ]
+                                "values": ["Turnover in 2020 is lower than expected"]
                             }]
                         }]
                     },
@@ -2989,9 +2855,7 @@
                             "when": [{
                                 "id": "answer0d444803-d6ca-456d-8963-eb011f5c1f45",
                                 "condition": "contains all",
-                                "values": [
-                                    "Turnover in 2020 is higher than expected"
-                                ]
+                                "values": ["Turnover in 2020 is higher than expected"]
                             }]
                         }]
                     },
@@ -3198,9 +3062,7 @@
                                     "answer9a1ead72-bb11-4916-94f1-a5dd3559e1f0",
                                     "answerccd34520-4c7e-44f6-b664-af89574639b0"
                                 ],
-                                "conditions": [
-                                    "equals"
-                                ],
+                                "conditions": ["equals"],
                                 "value": 100
                             }]
                         }]
@@ -3234,9 +3096,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "deductible VAT"
-                                        ]
+                                        "list": ["deductible VAT"]
                                     }
                                 ]
                             },
@@ -3616,9 +3476,7 @@
                                     "when": [{
                                         "id": "answerd102c006-b0a5-4ef7-b72f-1a3fb870b745",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Capital expenditure in 2020 is higher than expected"
-                                        ]
+                                        "values": ["Capital expenditure in 2020 is higher than expected"]
                                     }]
                                 }
                             },
@@ -3628,9 +3486,7 @@
                                     "when": [{
                                         "id": "answerd102c006-b0a5-4ef7-b72f-1a3fb870b745",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Capital expenditure in 2020 is lower than expected"
-                                        ]
+                                        "values": ["Capital expenditure in 2020 is lower than expected"]
                                     }]
                                 }
                             },
@@ -3690,9 +3546,7 @@
                             "when": [{
                                 "id": "answerd102c006-b0a5-4ef7-b72f-1a3fb870b745",
                                 "condition": "contains any",
-                                "values": [
-                                    "Capital expenditure in 2020 is lower than expected"
-                                ]
+                                "values": ["Capital expenditure in 2020 is lower than expected"]
                             }]
                         }]
                     },
@@ -3745,9 +3599,7 @@
                             "when": [{
                                 "id": "answerd102c006-b0a5-4ef7-b72f-1a3fb870b745",
                                 "condition": "contains all",
-                                "values": [
-                                    "Capital expenditure in 2020 is higher than expected"
-                                ]
+                                "values": ["Capital expenditure in 2020 is higher than expected"]
                             }]
                         }]
                     },
@@ -3943,9 +3795,7 @@
                                     "answer345ddb3d-6a14-4364-b0ad-16a268da5670",
                                     "answer34163099-946b-494f-9cd6-182e6c3fca93"
                                 ],
-                                "conditions": [
-                                    "equals"
-                                ],
+                                "conditions": ["equals"],
                                 "value": 100
                             }]
                         }]
@@ -4095,9 +3945,7 @@
                                     "answera5c8ea8d-7dee-4617-bc71-00b56f688d33",
                                     "answer449eae0e-5ab1-4505-b33f-df7505ae66ba"
                                 ],
-                                "conditions": [
-                                    "equals"
-                                ],
+                                "conditions": ["equals"],
                                 "value": 100
                             }]
                         }]
