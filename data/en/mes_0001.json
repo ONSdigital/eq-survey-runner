@@ -20,7 +20,6 @@
                             "id": "primary",
                             "content": [{
                                 "list": [
-                                    "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>View questions and see examples of how to complete the Expectations section, before you start the survey (external link).</a>",
                                     "The purpose of this survey is to collect information on management practices and future expectations of businesses in Great Britain.",
                                     "The information you provide will help to better understand whether management practices and uncertainty are related to productivity, and this could inform government policy.",
                                     "This is a voluntary survey.",
@@ -32,8 +31,12 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                "description": "The information required in this survey covers a range of topics, and you might need to consult with colleagues for some sections."
-                            }],
+                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>View questions and see examples of how to complete the Expectations section, before you start the survey (external link).</a>"
+                                },
+                                {
+                                    "description": "The information required in this survey covers a range of topics, and you might need to consult with colleagues for some sections."
+                                }
+                            ],
                             "questions": [{
                                     "question": "Management practices and business characteristics",
                                     "content": [{
