@@ -73,7 +73,9 @@
                                             "description": "Include:"
                                         },
                                         {
-                                            "list": ["all countries outside of England, Scotland, Wales and Northern Ireland"]
+                                            "list": [
+                                                "all countries outside of England, Scotland, Wales and Northern Ireland"
+                                            ]
                                         }
                                     ]
                                 },
@@ -184,7 +186,9 @@
                                     "when": [{
                                         "id": "answer02681d35-bdca-4319-8b70-b1883f60a1d5",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -211,7 +215,7 @@
                                     "minimum": {
                                         "meta": "ref_p_start_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": -19
                                         }
                                     }
                                 },
@@ -224,7 +228,7 @@
                                     "maximum": {
                                         "meta": "ref_p_end_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": 20
                                         }
                                     }
                                 }
@@ -321,7 +325,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-2023f5ec-92bf-4136-a90c-7341aa7e1551",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -351,7 +357,9 @@
                                         "description": "<strong>Include: </strong>"
                                     },
                                     {
-                                        "list": ["All countries outside of England, Scotland, Wales and Northern Ireland"]
+                                        "list": [
+                                            "All countries outside of England, Scotland, Wales and Northern Ireland"
+                                        ]
                                     }
                                 ]
                             },
@@ -546,7 +554,9 @@
                                     "answer481923c9-cc80-43ea-b70f-8f7a063518df",
                                     "answerf9d0bc27-0b21-434c-98cd-fdbcef37ba63"
                                 ],
-                                "conditions": ["equals"],
+                                "conditions": [
+                                    "equals"
+                                ],
                                 "answer_id": "answer349eef3b-7379-4ca9-984a-c56bdf8346d0"
                             }]
                         }]

@@ -4,7 +4,7 @@
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
-    "survey_id": "monthlybusinesssurvey",
+    "survey_id": "009",
     "title": "Monthly Business Survey",
     "sections": [{
             "id": "sectionc68ba7a4-a404-4985-bac2-2f12d542a757",
@@ -175,7 +175,9 @@
                                     "when": [{
                                         "id": "answer53f09ccc-117f-45c1-9074-c8f3bee8a345",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -202,7 +204,7 @@
                                     "minimum": {
                                         "meta": "ref_p_start_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": -19
                                         }
                                     }
                                 },
@@ -215,7 +217,7 @@
                                     "maximum": {
                                         "meta": "ref_p_end_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": 20
                                         }
                                     }
                                 }
@@ -313,7 +315,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-729ed4db-fc92-4ed2-b2a2-2e07e8c6c9aa",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -483,7 +487,9 @@
                                     "answerb8b57e12-ede7-49b7-9873-879192e135ba",
                                     "answerbe002c91-4830-4798-b549-6cfc8270c53d"
                                 ],
-                                "conditions": ["equals"],
+                                "conditions": [
+                                    "equals"
+                                ],
                                 "answer_id": "answerf1edd3ae-0c6b-4c23-88bb-f3d0ea5c562c"
                             }]
                         }]

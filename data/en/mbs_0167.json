@@ -76,7 +76,9 @@
                                             "description": "Exclude:"
                                         },
                                         {
-                                            "list": ["VAT"]
+                                            "list": [
+                                                "VAT"
+                                            ]
                                         }
                                     ]
                                 },
@@ -187,7 +189,9 @@
                                     "when": [{
                                         "id": "answer3dfe1f50-1ef8-4495-88ad-11a7ba43493c",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -327,7 +331,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-e2529e09-2140-4a10-85ed-fc3e421397dc",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -523,7 +529,9 @@
                                     "answerbc0f251d-b8f2-4a0e-9d30-952d1edd115e",
                                     "answer2a46c70d-f1a0-4ef7-b652-ddca13758640"
                                 ],
-                                "conditions": ["equals"],
+                                "conditions": [
+                                    "equals"
+                                ],
                                 "answer_id": "answer1530a741-2540-4c9b-9021-34f95288e671"
                             }]
                         }]

@@ -74,7 +74,9 @@
                                             "description": "<strong>Include:</strong>"
                                         },
                                         {
-                                            "list": ["all countries outside of England, Scotland, Wales and Northern Ireland"]
+                                            "list": [
+                                                "all countries outside of England, Scotland, Wales and Northern Ireland"
+                                            ]
                                         }
                                     ]
                                 }
@@ -121,7 +123,9 @@
                                     "when": [{
                                         "id": "answer33b48a9c-6ff4-4034-96d7-265d2a900836",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -148,7 +152,7 @@
                                     "minimum": {
                                         "meta": "ref_p_start_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": -19
                                         }
                                     }
                                 },
@@ -161,7 +165,7 @@
                                     "maximum": {
                                         "meta": "ref_p_end_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": 20
                                         }
                                     }
                                 }
@@ -259,7 +263,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-62ef3454-2f90-4563-9a3f-df6d16cb0bcd",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -289,7 +295,9 @@
                                     "description": "Include:"
                                 },
                                 {
-                                    "list": ["All countries outside of England, Scotland, Wales and Northern Ireland"]
+                                    "list": [
+                                        "All countries outside of England, Scotland, Wales and Northern Ireland"
+                                    ]
                                 }
                             ]
                         },
@@ -353,7 +361,7 @@
         }
     ],
     "theme": "northernireland",
-    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
+    "legal_basis": "Notice is given under article 5 of the Statistics of Trade and Employment (Northern Ireland) Order 1988.",
     "navigation": {
         "visible": false
     },

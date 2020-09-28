@@ -35,6 +35,7 @@
                                 {
                                     "description": "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP)</a> (external link)"
                                 },
+
                                 {
                                     "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                                 }
@@ -45,7 +46,9 @@
                                             "description": "Exclude:"
                                         },
                                         {
-                                            "list": ["VAT"]
+                                            "list": [
+                                                "VAT"
+                                            ]
                                         }
                                     ]
                                 },
@@ -55,7 +58,12 @@
                                             "description": "Exclude:"
                                         },
                                         {
-                                            "list": ["VAT", "commission and fees", "income from the sale of fixed capital assets", "grants"]
+                                            "list": [
+                                                "VAT",
+                                                "commission and fees",
+                                                "income from the sale of fixed capital assets",
+                                                "grants"
+                                            ]
                                         }
                                     ]
                                 },
@@ -163,7 +171,9 @@
                                     "when": [{
                                         "id": "answer569ff634-c7ca-42b3-ad18-2263da93f1e9",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -190,7 +200,7 @@
                                     "minimum": {
                                         "meta": "ref_p_start_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": -19
                                         }
                                     }
                                 },
@@ -203,7 +213,7 @@
                                     "maximum": {
                                         "meta": "ref_p_end_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": 20
                                         }
                                     }
                                 }
@@ -274,7 +284,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-5b65b60b-d5d2-4fbf-913c-20dadc50245f",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -297,7 +309,12 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["VAT", "commission and fees", "income from sales of fixed capital assests", "grants"]
+                                        "list": [
+                                            "VAT",
+                                            "commission and fees",
+                                            "income from sales of fixed capital assests",
+                                            "grants"
+                                        ]
                                     }
                                 ]
                             },
@@ -473,7 +490,9 @@
                                     "answer537bc926-3c0e-4342-a2be-047a6ef1ed36",
                                     "answer4968ad2a-b337-4ea4-9d7a-35ed58ea4546"
                                 ],
-                                "conditions": ["equals"],
+                                "conditions": [
+                                    "equals"
+                                ],
                                 "answer_id": "answerbaf50cc3-1467-4510-b797-882cae750fed"
                             }]
                         }]

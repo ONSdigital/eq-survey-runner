@@ -175,7 +175,9 @@
                                     "when": [{
                                         "id": "answerc83ba899-33d3-497d-93f5-8531ec9e0bb0",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -202,7 +204,7 @@
                                     "minimum": {
                                         "meta": "ref_p_start_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": -19
                                         }
                                     }
                                 },
@@ -215,7 +217,7 @@
                                     "maximum": {
                                         "meta": "ref_p_end_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": 20
                                         }
                                     }
                                 }
@@ -313,7 +315,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-05ae92b7-cbc5-4113-bbc7-2eff5858c4db",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -483,7 +487,9 @@
                                     "answer49c1c25e-7e7b-46f6-975f-a3d3dcdae519",
                                     "answer0443dc73-0546-4c61-a996-1a253d930ae6"
                                 ],
-                                "conditions": ["equals"],
+                                "conditions": [
+                                    "equals"
+                                ],
                                 "answer_id": "answer163e4fab-c453-432e-9917-fb581f6ebc31"
                             }]
                         }]

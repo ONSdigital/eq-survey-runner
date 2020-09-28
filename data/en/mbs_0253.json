@@ -146,7 +146,9 @@
                                     "when": [{
                                         "id": "answer4d55ff07-14ea-405a-8220-cc5bb3f3d87d",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -173,7 +175,7 @@
                                     "minimum": {
                                         "meta": "ref_p_start_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": -19
                                         }
                                     }
                                 },
@@ -186,7 +188,7 @@
                                     "maximum": {
                                         "meta": "ref_p_end_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": 20
                                         }
                                     }
                                 }
@@ -387,7 +389,9 @@
                                     "answerb7ee1257-e740-4e85-bbda-fad42ae70c27",
                                     "answer7c697777-7ec9-485c-9825-3ce60f7ed7cb"
                                 ],
-                                "conditions": ["equals"],
+                                "conditions": [
+                                    "equals"
+                                ],
                                 "answer_id": "answer60e59706-8fa4-4fee-bc19-622a1b71f2b5"
                             }]
                         }]
