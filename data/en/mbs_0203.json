@@ -39,7 +39,9 @@
                                     "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                                 }
                             ],
-                            "questions": []
+                            "questions": [
+
+                            ]
                         },
                         "secondary_content": [{
                             "id": "secondary-content",
@@ -82,7 +84,9 @@
                                     "when": [{
                                         "id": "answer9773394c-7148-40c7-824c-82315f8f6d2d",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -109,7 +113,7 @@
                                     "minimum": {
                                         "meta": "ref_p_start_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": -19
                                         }
                                     }
                                 },
@@ -122,7 +126,7 @@
                                     "maximum": {
                                         "meta": "ref_p_end_date",
                                         "offset_by": {
-                                            "days": 0
+                                            "days": 20
                                         }
                                     }
                                 }
@@ -231,7 +235,7 @@
         {
             "name": "ref_p_end_date",
             "validator": "date"
-        }
+        },
     ],
     "view_submitted_response": {
         "enabled": true,
