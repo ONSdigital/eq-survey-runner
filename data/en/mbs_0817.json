@@ -326,10 +326,6 @@
         {
             "name": "ref_p_end_date",
             "validator": "date"
-        },
-        {
-            "name": "employment_date",
-            "validator": "date"
         }
     ],
     "view_submitted_response": {
