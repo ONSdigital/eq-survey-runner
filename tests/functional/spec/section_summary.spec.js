@@ -73,7 +73,6 @@ describe('Section Summary', function() {
     it('When I click change an answer, Then I should go to that answer', function() {
       return browser
         .click(FinalSummaryPage.summaryShowAllButton())
-        .waitForExist(FinalSummaryPage.insuranceTypeAnswer())
         .getText(FinalSummaryPage.insuranceTypeAnswer()).should.eventually.contain('Contents')
         .click(FinalSummaryPage.insuranceTypeAnswerEdit())
         .getUrl().should.eventually.contain(InsuranceTypePage.pageName)
