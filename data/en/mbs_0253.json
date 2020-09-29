@@ -18,7 +18,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Exclude</b>: furlough payments received in figures.<br><b>Include</b>: furloughed employees in any employment figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
                                 "list": [
                                     "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
                                     "You can provide informed estimates if actual figures aren&#x2019;t available.",
@@ -146,9 +146,7 @@
                                     "when": [{
                                         "id": "answer4d55ff07-14ea-405a-8220-cc5bb3f3d87d",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes"
-                                        ]
+                                        "values": ["Yes"]
                                     }]
                                 }
                             },
@@ -389,9 +387,7 @@
                                     "answerb7ee1257-e740-4e85-bbda-fad42ae70c27",
                                     "answer7c697777-7ec9-485c-9825-3ce60f7ed7cb"
                                 ],
-                                "conditions": [
-                                    "equals"
-                                ],
+                                "conditions": ["equals"],
                                 "answer_id": "answer60e59706-8fa4-4fee-bc19-622a1b71f2b5"
                             }]
                         }]
