@@ -211,7 +211,7 @@
                                     "id": "answer5b169b72-cdd2-47ee-9d68-53ab102b3524to",
                                     "type": "Date",
                                     "mandatory": true,
-                                    "label": "To:",
+                                    "label": "To",
                                     "q_code": "12",
                                     "maximum": {
                                         "meta": "ref_p_end_date",
