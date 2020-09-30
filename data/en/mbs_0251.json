@@ -1,631 +1,635 @@
 {
-    "eq_id": "mbs",
-    "form_type": "0251",
+    "title": "Monthly Business Survey",
+    "survey_id": "009",
     "mime_type": "application/json/ons/eq",
+    "theme": "default",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
-    "survey_id": "009",
-    "title": "Monthly Business Survey",
-    "sections": [{
-            "id": "section63009342-5a4e-4e3a-8fe8-0e3fc291136b",
-            "groups": [{
-                "id": "group63009342-5a4e-4e3a-8fe8-0e3fc291136b",
-                "title": "",
-                "blocks": [{
-                        "type": "Introduction",
-                        "id": "introduction-block",
-                        "primary_content": [{
-                            "type": "Basic",
-                            "id": "primary",
-                            "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Exclude</b>: furlough payments received in figures.<br><b>Include</b>: furloughed employees in any employment figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
-                                "list": [
-                                    "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
-                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
-                                    "We will treat your data securely and confidentially."
-                                ]
-                            }]
-                        }],
-                        "preview_content": {
-                            "id": "preview",
-                            "title": "Information you need",
-                            "content": [{
-                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
-                                },
-                                {
-                                    "description": "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP)</a> (external link)"
-                                },
-                                {
-                                    "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
-                                }
-                            ],
-                            "questions": [{
-                                    "question": "Total turnover",
-                                    "content": [{
-                                            "description": "Include:"
-                                        },
-                                        {
-                                            "list": [
-                                                "exports",
-                                                "income from sub-contracted activities",
-                                                "commission",
-                                                "sales of goods purchased for resale",
-                                                "transport, insurance and packaging charges",
-                                                "revenue earned from other parts of the business not named at the top of this page (please supply at fair value)"
-                                            ]
-                                        },
-                                        {
-                                            "description": "Exclude:"
-                                        },
-                                        {
-                                            "list": [
-                                                "VAT",
-                                                "income from the sale of fixed capital assets",
-                                                "grants and subsidies",
-                                                "insurance claims",
-                                                "interest received"
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "question": "Value of exports",
-                                    "content": [{
-                                            "description": "Include:"
-                                        },
-                                        {
-                                            "list": [
-                                                "all countries outside of England, Scotland, Wales and Northern Ireland"
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "question": "Number of employees",
-                                    "content": [{
-                                            "description": "An employee is anyone aged 16 years or over that your organisation directly pays from it&apos;s payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme."
-                                        },
-                                        {
-                                            "description": "Include:"
-                                        },
-                                        {
-                                            "list": [
-                                                "all workers paid directly from this business&apos;s payroll(s)",
-                                                "those temporarily absent but still being paid, for example on maternity leave"
-                                            ]
-                                        },
-                                        {
-                                            "description": "Exclude:"
-                                        },
-                                        {
-                                            "list": [
-                                                "agency workers paid directly from the agency payroll",
-                                                "voluntary workers",
-                                                "former employees only receiving  a pension",
-                                                "self-employed workers",
-                                                "working owners who are not paid via PAYE"
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "question": "Employees and working hours",
-                                    "content": [{
-                                            "description": "The number of:"
-                                        },
-                                        {
-                                            "list": [
-                                                "male employees working more than 30 hours per week",
-                                                "male employees working 30 hours or less per week",
-                                                "female employees working more than 30 hours per week",
-                                                "female employees working 30 hours or less per week"
-                                            ]
-                                        },
-                                        {
-                                            "description": "Include:"
-                                        },
-                                        {
-                                            "list": [
-                                                "all workers paid directly from this business&apos;s payroll(s)",
-                                                "those temporarily absent but still being paid, for example on materinty leave"
-                                            ]
-                                        },
-                                        {
-                                            "description": "Exclude:"
-                                        },
-                                        {
-                                            "list": [
-                                                "agency workers paid directly from the agency payroll",
-                                                "voluntary workers",
-                                                "former employees only receiving a pension",
-                                                "self-employed workers",
-                                                "working owners who are not paid via PAYE"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        "secondary_content": [{
-                            "id": "secondary-content",
-                            "title": "How we use your data",
-                            "content": [{
-                                "list": [
-                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                                    "The information you provide contributes to Gross Domestic Product (GDP)."
-                                ]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block7eac868b-88ba-4131-8019-61dabb346ce2",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question7eac868b-88ba-4131-8019-61dabb346ce2",
-                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerc69f3cfc-54f5-4d93-ae34-84072da99bac",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group37759cea-de0d-4a68-a722-9aea5c432664",
-                                    "when": [{
-                                        "id": "answerc69f3cfc-54f5-4d93-ae34-84072da99bac",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "Yes"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block81a6ddf7-2ca7-408b-bf8f-7c4a5cee4190"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block81a6ddf7-2ca7-408b-bf8f-7c4a5cee4190",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question81a6ddf7-2ca7-408b-bf8f-7c4a5cee4190",
-                            "title": "What are the dates of the period that you will be reporting for?",
-                            "type": "DateRange",
-                            "answers": [{
-                                    "id": "answer23b1c399-82de-4efb-94b0-a9217df16575from",
-                                    "type": "Date",
-                                    "mandatory": true,
-                                    "label": "From",
-                                    "q_code": "11",
-                                    "minimum": {
-                                        "meta": "ref_p_start_date",
-                                        "offset_by": {
-                                            "days": -19
-                                        }
-                                    }
-                                },
-                                {
-                                    "id": "answer23b1c399-82de-4efb-94b0-a9217df16575to",
-                                    "type": "Date",
-                                    "mandatory": true,
-                                    "label": "To",
-                                    "q_code": "12",
-                                    "maximum": {
-                                        "meta": "ref_p_end_date",
-                                        "offset_by": {
-                                            "days": 20
-                                        }
-                                    }
-                                }
-                            ],
-                            "period_limits": {
-                                "minimum": {
-                                    "days": 10
-                                },
-                                "maximum": {
-                                    "days": 50
-                                }
-                            }
-                        }]
-                    }
-                ]
-            }]
-        },
-        {
-            "id": "section37759cea-de0d-4a68-a722-9aea5c432664",
-            "groups": [{
-                "id": "group37759cea-de0d-4a68-a722-9aea5c432664",
-                "title": "",
-                "blocks": [{
-                        "id": "block24d32f46-5abb-4278-96ca-567a720cd693",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question24d32f46-5abb-4278-96ca-567a720cd693",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}&apos;s <em>total turnover</em>, excluding VAT?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "exports",
-                                            "income from sub-contracted activities",
-                                            "commission",
-                                            "sales of goods purchased for resale",
-                                            "transport, insurance and packagnig charges",
-                                            "revenue earned from other parts of the business not named at the top of this page (please supply at fair value)"
-                                        ]
-                                    },
-                                    {
-                                        "description": "<strong>Exclude:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "VAT",
-                                            "income from the sale of fixed capital assets",
-                                            "grants and subsidies",
-                                            "insurance claims",
-                                            "interest received"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer79264f7d-d4a5-4df0-84b0-22f83c3bbb64",
-                                "mandatory": true,
-                                "type": "Currency",
-                                "label": "Total turnover excluding VAT",
-                                "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter '56' for £56,000.",
-                                "q_code": "40",
-                                "decimal_places": 2,
-                                "currency": "GBP"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blockconfirmation-page-for-24d32f46-5abb-4278-96ca-567a720cd693",
-                        "type": "ConfirmationQuestion",
-                        "questions": [{
-                            "id": "questionconfirmation-page-for-24d32f46-5abb-4278-96ca-567a720cd693",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, the total turnover was <em>{{ format_currency(answers['answer79264f7d-d4a5-4df0-84b0-22f83c3bbb64'], 'GBP') }}</em>, is this correct?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerconfirmation-answer-for-24d32f46-5abb-4278-96ca-567a720cd693",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "options": [{
-                                        "label": "Yes this is correct",
-                                        "value": "Yes this is correct"
-                                    },
-                                    {
-                                        "label": "No I need to change this",
-                                        "value": "No I need to change this"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block24d32f46-5abb-4278-96ca-567a720cd693",
-                                    "when": [{
-                                        "id": "answerconfirmation-answer-for-24d32f46-5abb-4278-96ca-567a720cd693",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group91e9c749-73bc-4a78-9ef3-0db8491de26c"
-                                }
-                            }
-                        ]
-                    }
-                ]
-            }]
-        },
-        {
-            "id": "section91e9c749-73bc-4a78-9ef3-0db8491de26c",
-            "groups": [{
-                "id": "group91e9c749-73bc-4a78-9ef3-0db8491de26c",
-                "title": "",
-                "blocks": [{
-                    "id": "blockb3947f9e-429f-48bd-98e4-a97b06459293",
-                    "type": "Question",
-                    "questions": [{
-                        "id": "questionb3947f9e-429f-48bd-98e4-a97b06459293",
-                        "title": "Of the {{ format_currency(answers['answer79264f7d-d4a5-4df0-84b0-22f83c3bbb64'], 'GBP') }} total turnover, what was the value of <em>exports</em>?",
-                        "guidance": {
-                            "content": [{
-                                    "description": "<strong>Include:</strong>"
-                                },
-                                {
-                                    "list": [
-                                        "All countries outside England, Scotland, Wales and Northern Ireland"
-                                    ]
-                                }
-                            ]
-                        },
-                        "type": "General",
-                        "answers": [{
-                            "id": "answerd9276580-7468-4a2b-8d72-3c6bf3c711d0",
-                            "mandatory": true,
-                            "type": "Currency",
-                            "label": "Exports",
-                            "description": "Enter the full value (e.g. 56,234.33) of a value to the nearest £thousand (e.g. 56,000). Do not enter '56' for £56,000.",
-                            "q_code": "49",
-                            "min_value": {
-                                "value": 0,
-                                "exclusive": false
-                            },
-                            "max_value": {
-                                "answer_id": "answer79264f7d-d4a5-4df0-84b0-22f83c3bbb64",
-                                "exclusive": false
-                            },
-                            "decimal_places": 2,
-                            "currency": "GBP"
-                        }]
-                    }]
-                }]
-            }]
-        },
-        {
-            "id": "section08c51f21-396f-4084-b079-6da57f62a764",
-            "groups": [{
-                "id": "group08c51f21-396f-4084-b079-6da57f62a764",
-                "title": "",
-                "blocks": [{
-                        "id": "block46918f5e-3fad-4aa2-a898-ce2c9ff1ac27",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question46918f5e-3fad-4aa2-a898-ce2c9ff1ac27",
-                            "title": "On {{ metadata['employment_date'] | format_date }}, what was the number of employees for {{ metadata['ru_name'] }}?",
-                            "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "all workers paid directly from this business&apos;s payroll(s)",
-                                            "those temporarily absent but still being paid, for example on maternity leave"
-                                        ]
-                                    },
-                                    {
-                                        "description": "<strong>Exclude:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "working owners who are not paid via PAYE",
-                                            "agency workers paid directly from the agency payroll",
-                                            "voluntary workers",
-                                            "former employees only receiving a pension",
-                                            "self-employed workers"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer975d841b-3dc2-48b8-b4e1-57081c1b4efb",
-                                "mandatory": true,
-                                "type": "Number",
-                                "label": "Total number of employees",
-                                "description": "",
-                                "q_code": "50",
-                                "decimal_places": 0
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block6bc2de8a-5bc5-478e-bfe7-8c7f73a06126",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question6bc2de8a-5bc5-478e-bfe7-8c7f73a06126",
-                            "title": "Of the <em>{{ answers['answer975d841b-3dc2-48b8-b4e1-57081c1b4efb'] | format_number }}</em> total employees employed on {{ metadata['employment_date'] | format_date }}, how many male and female employees worked the following hours?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "all workers paid directly from this business&apos;s payroll(s)",
-                                            "those temporarily absent but still being paid, for example on maternity leave"
-                                        ]
-                                    },
-                                    {
-                                        "description": "<strong>Exclude:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "working owners who are not paid via PAYE",
-                                            "agency workers paid directly from the agency payroll",
-                                            "voluntary workers",
-                                            "former employees only receiving a pension",
-                                            "self-employed workers"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "Calculated",
-                            "answers": [{
-                                    "id": "answer5b02cb9c-e463-4b14-8aa0-64eab0364513",
-                                    "mandatory": true,
-                                    "type": "Number",
-                                    "label": "Number of male employees working more than 30 hours per week",
-                                    "description": "",
-                                    "q_code": "51",
-                                    "min_value": {
-                                        "value": 0,
-                                        "exclusive": false
-                                    },
-                                    "max_value": {
-                                        "answer_id": "answer975d841b-3dc2-48b8-b4e1-57081c1b4efb",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
-                                },
-                                {
-                                    "id": "answer1e9c5758-e918-4f9d-865d-132a925f5f3b",
-                                    "mandatory": true,
-                                    "type": "Number",
-                                    "label": "Number of male employees working 30 hours or less per week",
-                                    "description": "",
-                                    "q_code": "52",
-                                    "min_value": {
-                                        "value": 0,
-                                        "exclusive": false
-                                    },
-                                    "max_value": {
-                                        "answer_id": "answer975d841b-3dc2-48b8-b4e1-57081c1b4efb",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
-                                },
-                                {
-                                    "id": "answerd4ed1b9e-9cc8-4685-a7c6-b8502ed4101a",
-                                    "mandatory": true,
-                                    "type": "Number",
-                                    "label": "Number of female employees working more than 30 hours per week",
-                                    "description": "",
-                                    "q_code": "53",
-                                    "min_value": {
-                                        "value": 0,
-                                        "exclusive": false
-                                    },
-                                    "max_value": {
-                                        "answer_id": "answer975d841b-3dc2-48b8-b4e1-57081c1b4efb",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
-                                },
-                                {
-                                    "id": "answer0bd3ce48-5d9b-4298-94f0-651b474da82d",
-                                    "mandatory": true,
-                                    "type": "Number",
-                                    "label": "Number of female employees working 30 hours or less per week",
-                                    "description": "",
-                                    "q_code": "54",
-                                    "min_value": {
-                                        "value": 0,
-                                        "exclusive": false
-                                    },
-                                    "max_value": {
-                                        "answer_id": "answer975d841b-3dc2-48b8-b4e1-57081c1b4efb",
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
-                                }
-                            ],
-                            "calculations": [{
-                                "calculation_type": "sum",
-                                "answers_to_calculate": [
-                                    "answer5b02cb9c-e463-4b14-8aa0-64eab0364513",
-                                    "answer1e9c5758-e918-4f9d-865d-132a925f5f3b",
-                                    "answerd4ed1b9e-9cc8-4685-a7c6-b8502ed4101a",
-                                    "answer0bd3ce48-5d9b-4298-94f0-651b474da82d"
-                                ],
-                                "conditions": [
-                                    "equals"
-                                ],
-                                "answer_id": "answer975d841b-3dc2-48b8-b4e1-57081c1b4efb"
-                            }]
-                        }]
-                    }
-                ]
-            }]
-        },
-        {
-            "id": "section116ddac5-0f15-4237-8bf1-42f58b430f3b",
-            "groups": [{
-                    "id": "group116ddac5-0f15-4237-8bf1-42f58b430f3b",
-                    "title": "",
-                    "blocks": [{
-                        "id": "blockf7b6f09b-afac-46ef-a8c8-f4e2be8c68e5",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionf7b6f09b-afac-46ef-a8c8-f4e2be8c68e5",
-                            "title": "Please explain any changes in your turnover, exports or employment figures from the previous return, if applicable.",
-                            "description": "<p>If you provide comments we are less likely to contact you with data queries.</p>",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer1a919743-978c-41cc-b1a4-e94dc6eeaaf7",
-                                "mandatory": true,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "description": "",
-                                "q_code": "146",
-                                "max_length": 2000
-                            }]
-                        }]
-                    }]
-                },
-                {
-                    "id": "summary-group",
-                    "title": "Summary",
-                    "blocks": [{
-                        "type": "Summary",
-                        "id": "summary-block"
-                    }]
-                }
-            ]
-        }
-    ],
-    "theme": "default",
     "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
-    "navigation": {
-        "visible": false
-    },
-    "metadata": [{
-            "name": "user_id",
-            "validator": "string"
-        },
-        {
-            "name": "period_id",
-            "validator": "string"
-        },
-        {
-            "name": "ru_name",
-            "validator": "string"
-        },
-        {
-            "name": "trad_as",
-            "validator": "optional_string"
-        },
-        {
-            "name": "ref_p_start_date",
-            "validator": "date"
-        },
-        {
-            "name": "ref_p_end_date",
-            "validator": "date"
-        },
-        {
-            "name": "employment_date",
-            "validator": "date"
-        }
-    ],
+    "description": "mbs",
+    "form_type": "0251",
     "view_submitted_response": {
         "enabled": true,
         "duration": 900
-    }
+    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }, {
+        "name": "ref_p_start_date",
+        "validator": "date"
+    }, {
+        "name": "ref_p_end_date",
+        "validator": "date"
+    }, {
+        "name": "employment_date",
+        "validator": "date"
+    }, {
+        "name": "trad_as",
+        "validator": "optional_string"
+    }],
+    "sections": [{
+        "id": "section",
+        "groups": [{
+            "id": "group",
+            "title": "",
+            "blocks": [{
+                "type": "Introduction",
+                "id": "introduction",
+                "primary_content": [{
+                    "type": "Basic",
+                    "id": "use-of-information",
+                    "content": [{
+                        "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select “yes, you can provide figures” and enter turnover, even if this is “0”<br><b>Exclude</b> furlough payments in any turnover figures<br><b>Include</b> furloughed employees in any employment figures<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>",
+                        "list": ["Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.", "You can provide informed estimates if actual figures aren\u2019t available.", "We will treat your data securely and confidentially."]
+                    }]
+                }],
+                "preview_content": {
+                    "id": "preview",
+                    "title": "Information you need",
+                    "content": [{
+                            "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
+                        },
+                        {
+                            "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                        }
+                    ],
+                    "questions": [{
+                        "question": "Total turnover",
+                        "content": [{
+                            "description": "Include:",
+                            "list": ["exports", "income from sub-contracted activities", "commission", "sales of goods purchased for resale", "transport, insurance and packaging charges", "revenue earned from other parts of the business not named at the top of this page (please supply at fair value)"]
+                        }, {
+                            "description": "Exclude:",
+                            "list": ["VAT", "income from the sale of fixed capital assets", "grants and subsidies", "insurance claims", "interest received"]
+                        }]
+                    }, {
+                        "question": "Value of exports",
+                        "content": [{
+                            "description": "Include:",
+                            "list": ["all countries outside of England, Scotland, Wales and Northern Ireland"]
+                        }]
+                    }, {
+                        "question": "Number of employees",
+                        "content": [{
+                            "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme."
+                        }, {
+                            "description": "Include:",
+                            "list": ["all workers paid directly from this business's payroll(s)", "those temporarily absent but still being paid, for example on maternity leave"]
+                        }, {
+                            "description": "Exclude:",
+                            "list": ["agency workers paid directly from the agency payroll", "voluntary workers", "former employees only receiving a pension", "self-employed workers", "working owners who are not paid via PAYE"]
+                        }]
+                    }, {
+                        "question": "Employees and working hours",
+                        "content": [{
+                            "description": "The number of:",
+                            "list": ["male employees working more than 30 hours per week", "male employees working 30 hours or less per week", "female employees working more than 30 hours per week", "female employees working 30 hours or less per week"]
+                        }, {
+                            "description": "Include:",
+                            "list": ["all workers paid directly from this business's payroll(s)", "those temporarily absent but still being paid, for example on maternity leave"]
+                        }, {
+                            "description": "Exclude:",
+                            "list": ["agency workers paid directly from the agency payroll", "voluntary workers", "former employees only receiving a pension", "self-employed workers", "working owners who are not paid via PAYE"]
+                        }]
+                    }, {
+                        "question": "Changes in total turnover",
+                        "content": [{
+                            "description": "Include:",
+                            "list": ["change in level of business activity", "maintenance/shutdowns", "special/calendar events", "weather", "price effects", "currency effects (increase/decrease in the currency value)"]
+                        }]
+                    }]
+                },
+                "secondary_content": [{
+                    "id": "how-we-use-your-data",
+                    "title": "How we use your data",
+                    "content": [{
+                        "list": ["You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.", "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP).</a>"]
+                    }]
+                }]
+            }, {
+                "id": "reporting-period-block",
+                "type": "Question",
+                "questions": [{
+                    "answers": [{
+                        "options": [{
+                            "value": "Yes",
+                            "label": "Yes"
+                        }, {
+                            "value": "No",
+                            "label": "No"
+                        }],
+                        "id": "reporting-period-answer",
+                        "type": "Radio",
+                        "q_code": "d12",
+                        "mandatory": true
+                    }],
+                    "type": "General",
+                    "id": "reporting-period-question",
+                    "title": "Are you able to report for the period from {{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}}?"
+                }],
+                "routing_rules": [{
+                    "goto": {
+                        "when": [{
+                            "id": "reporting-period-answer",
+                            "value": "Yes",
+                            "condition": "equals"
+                        }],
+                        "block": "turnover-block"
+                    }
+                }, {
+                    "goto": {
+                        "block": "reporting-period-block-2"
+                    }
+                }],
+                "title": "Reporting period"
+            }, {
+                "type": "Question",
+                "id": "reporting-period-block-2",
+                "title": "Reporting period",
+                "questions": [{
+                    "type": "DateRange",
+                    "id": "reporting-period-question-2",
+                    "title": "What are the dates of the period that you will be reporting for?",
+                    "period_limits": {
+                        "minimum": {
+                            "days": 10
+                        },
+                        "maximum": {
+                            "days": 50
+                        }
+                    },
+                    "answers": [{
+                        "type": "Date",
+                        "id": "period-from",
+                        "label": "From",
+                        "mandatory": true,
+                        "q_code": "11",
+                        "minimum": {
+                            "meta": "ref_p_start_date",
+                            "offset_by": {
+                                "days": -19
+                            }
+                        }
+                    }, {
+                        "type": "Date",
+                        "id": "period-to",
+                        "label": "To",
+                        "mandatory": true,
+                        "q_code": "12",
+                        "maximum": {
+                            "meta": "ref_p_end_date",
+                            "offset_by": {
+                                "days": 20
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "id": "turnover-block",
+                "type": "Question",
+                "title": "Total turnover",
+                "questions": [{
+                    "guidance": {
+                        "content": [{
+                            "title": "Include:",
+                            "list": ["exports", "income from sub-contracted activities", "commission", "sales of goods purchased for resale", "transport, insurance and packaging charges", "revenue earned from other parts of the business not named at the top of this page (please supply at fair value)"]
+                        }, {
+                            "title": "Exclude:",
+                            "list": ["VAT", "income from the sale of fixed capital assets", "grants and subsidies", "insurance claims", "interest received"]
+                        }]
+                    },
+                    "id": "turnover-question",
+                    "answers": [{
+                        "id": "turnover-answer",
+                        "label": "Total turnover excluding VAT",
+                        "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                        "type": "Currency",
+                        "currency": "GBP",
+                        "decimal_places": 2,
+                        "q_code": "40",
+                        "mandatory": false,
+                        "default": 0
+                    }],
+                    "type": "General",
+                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s <em>total turnover</em>, excluding VAT?"
+                }],
+                "routing_rules": [{
+                    "goto": {
+                        "when": [{
+                            "id": "turnover-answer",
+                            "condition": "greater than",
+                            "value": 0
+                        }],
+                        "block": "confirm-turnover-block"
+                    }
+                }, {
+                    "goto": {
+                        "block": "confirm-zero-turnover-block"
+                    }
+                }]
+            }, {
+                "type": "ConfirmationQuestion",
+                "title": "Total turnover",
+                "id": "confirm-turnover-block",
+                "questions": [{
+                    "type": "General",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "confirm-turnover-answer",
+                        "q_code": "d40",
+                        "options": [{
+                            "label": "Yes this is correct",
+                            "value": "Yes"
+                        }, {
+                            "label": "No I need to change this",
+                            "value": "No"
+                        }],
+                        "mandatory": true
+                    }],
+                    "id": "confirm-turnover-question",
+                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the total turnover was <em>{{format_currency(answers['turnover-answer'])}}</em>, is this correct?"
+                }],
+                "routing_rules": [{
+                    "goto": {
+                        "when": [{
+                            "value": "No",
+                            "id": "confirm-turnover-answer",
+                            "condition": "equals"
+                        }],
+                        "block": "turnover-block"
+                    }
+                }, {
+                    "goto": {
+                        "when": [{
+                            "id": "turnover-answer",
+                            "condition": "greater than",
+                            "value": 0
+                        }],
+                        "block": "exports-block"
+                    }
+                }, {
+                    "goto": {
+                        "block": "changes-in-turnover-block"
+                    }
+                }]
+            }, {
+                "type": "ConfirmationQuestion",
+                "title": "Total turnover",
+                "id": "confirm-zero-turnover-block",
+                "questions": [{
+                    "type": "General",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "confirm-zero-turnover-answer",
+                        "q_code": "d49",
+                        "options": [{
+                            "label": "Yes this is correct",
+                            "value": "Yes"
+                        }, {
+                            "label": "No I need to change this",
+                            "value": "No"
+                        }],
+                        "mandatory": true
+                    }],
+                    "id": "confirm-zero-turnover-question",
+                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the total turnover was <em>{{format_currency(answers['turnover-answer'])}}</em>, is this correct?"
+                }],
+                "routing_rules": [{
+                    "goto": {
+                        "when": [{
+                            "value": "No",
+                            "id": "confirm-zero-turnover-answer",
+                            "condition": "equals"
+                        }],
+                        "block": "turnover-block"
+                    }
+                }, {
+                    "goto": {
+                        "block": "number-of-employees-total-block"
+                    }
+                }]
+            }, {
+                "id": "exports-block",
+                "type": "Question",
+                "questions": [{
+                    "id": "exports-question",
+                    "guidance": {
+                        "content": [{
+                            "title": "Include:",
+                            "list": ["All countries outside of England, Scotland, Wales and Northern Ireland"]
+                        }]
+                    },
+                    "answers": [{
+                        "id": "exports-answer",
+                        "label": "Exports",
+                        "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                        "type": "Currency",
+                        "currency": "GBP",
+                        "decimal_places": 2,
+                        "q_code": "49",
+                        "mandatory": true,
+                        "max_value": {
+                            "answer_id": "turnover-answer"
+                        }
+                    }],
+                    "type": "General",
+                    "title": "Of the <em>{{format_currency(answers['turnover-answer'])}}</em> total turnover, what was the value of <em>exports?</em>"
+                }],
+                "title": "Exports"
+            }, {
+                "id": "number-of-employees-total-block",
+                "questions": [{
+                    "answers": [{
+                        "id": "number-of-employees-total",
+                        "label": "Total number of employees",
+                        "mandatory": false,
+                        "q_code": "50",
+                        "type": "Number",
+                        "default": 0
+                    }],
+                    "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
+                    "guidance": {
+                        "content": [{
+                            "title": "Include",
+                            "list": ["all workers paid directly from this business\u2019s payroll(s)", "those temporarily absent but still being paid, for example on maternity leave"]
+                        }, {
+                            "title": "Exclude:",
+                            "list": ["working owners who are not paid via PAYE", "agency workers paid directly from the agency payroll", "voluntary workers", "former employees only receiving a pension", "self-employed workers"]
+                        }]
+                    },
+                    "id": "number-of-employees-total-question",
+                    "title": "On {{metadata['employment_date']|format_date}}, what was the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
+                    "type": "General"
+                }],
+                "title": "Employees",
+                "type": "Question"
+            }, {
+                "type": "ConfirmationQuestion",
+                "title": "Employees",
+                "id": "confirm-zero-employees-block",
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "number-of-employees-total",
+                        "condition": "greater than",
+                        "value": 0
+                    }]
+                }],
+                "questions": [{
+                    "type": "General",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "confirm-zero-employees-answer",
+                        "q_code": "d50",
+                        "options": [{
+                            "label": "Yes this is correct",
+                            "value": "Yes"
+                        }, {
+                            "label": "No I need to change this",
+                            "value": "No"
+                        }],
+                        "mandatory": true
+                    }],
+                    "id": "confirm-zero-employees-question",
+                    "title": "On {{metadata['employment_date']|format_date}}, the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was <em>0</em>, is this correct?"
+                }],
+                "routing_rules": [{
+                    "goto": {
+                        "when": [{
+                            "value": "No",
+                            "id": "confirm-zero-employees-answer",
+                            "condition": "equals"
+                        }],
+                        "block": "number-of-employees-total-block"
+                    }
+                }, {
+                    "goto": {
+                        "block": "changes-in-turnover-block"
+                    }
+                }]
+            }, {
+                "id": "number-of-employees-split-block",
+                "title": "Employees",
+                "type": "Question",
+                "questions": [{
+                    "calculations": [{
+                        "calculation_type": "sum",
+                        "value": 0,
+                        "answers_to_calculate": ["number-of-employees-male-more-30-hours", "number-of-employees-male-less-30-hours", "number-of-employees-female-more-30-hours", "number-of-employees-female-less-30-hours"],
+                        "conditions": ["equals"]
+                    }, {
+                        "calculation_type": "sum",
+                        "answer_id": "number-of-employees-total",
+                        "answers_to_calculate": ["number-of-employees-male-more-30-hours", "number-of-employees-male-less-30-hours", "number-of-employees-female-more-30-hours", "number-of-employees-female-less-30-hours"],
+                        "conditions": ["equals"]
+                    }],
+                    "answers": [{
+                        "id": "number-of-employees-male-more-30-hours",
+                        "label": "Number of male employees working more than 30 hours per week",
+                        "mandatory": false,
+                        "q_code": "51",
+                        "type": "Number",
+                        "max_value": {
+                            "answer_id": "number-of-employees-total"
+                        }
+                    }, {
+                        "id": "number-of-employees-male-less-30-hours",
+                        "label": "Number of male employees working 30 hours or less per week",
+                        "mandatory": false,
+                        "q_code": "52",
+                        "type": "Number",
+                        "max_value": {
+                            "answer_id": "number-of-employees-total"
+                        }
+                    }, {
+                        "id": "number-of-employees-female-more-30-hours",
+                        "label": "Number of female employees working more than 30 hours per week",
+                        "mandatory": false,
+                        "q_code": "53",
+                        "type": "Number",
+                        "max_value": {
+                            "answer_id": "number-of-employees-total"
+                        }
+                    }, {
+                        "id": "number-of-employees-female-less-30-hours",
+                        "label": "Number of female employees working 30 hours or less per week",
+                        "mandatory": false,
+                        "q_code": "54",
+                        "type": "Number",
+                        "max_value": {
+                            "answer_id": "number-of-employees-total"
+                        }
+                    }],
+                    "guidance": {
+                        "content": [{
+                            "title": "Include",
+                            "list": ["all workers paid directly from this business\u2019s payroll(s)", "those temporarily absent but still being paid, for example on maternity leave"]
+                        }, {
+                            "title": "Exclude:",
+                            "list": ["working owners who are not paid via PAYE", "agency workers paid directly from the agency payroll", "voluntary workers", "former employees only receiving a pension", "self-employed workers"]
+                        }]
+                    },
+                    "id": "number-of-employees-split-question",
+                    "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed on {{metadata['employment_date']|format_date}}, how many male and female employees worked the following hours?",
+                    "type": "Calculated"
+                }]
+            }, {
+                "id": "changes-in-turnover-block",
+                "type": "Question",
+                "questions": [{
+                    "title": "Did any significant changes occur to the total turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
+                    "id": "changes-in-turnover-question",
+                    "definitions": [{
+                        "title": "What constitutes a significant change?",
+                        "content": [{
+                            "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s figures from the previous reporting period and the same reporting period last year."
+                        }, {
+                            "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
+                        }]
+                    }],
+                    "answers": [{
+                        "options": [{
+                            "value": "Yes",
+                            "label": "Yes"
+                        }, {
+                            "value": "No",
+                            "label": "No"
+                        }],
+                        "id": "changes-in-turnover-answer",
+                        "type": "Radio",
+                        "q_code": "146",
+                        "mandatory": true
+                    }],
+                    "guidance": {
+                        "content": [{
+                            "title": "Include",
+                            "list": ["change in level of business activity", "maintenance/shutdowns", "special/calendar events", "weather", "price effects", "currency effects (increase/decrease in the currency value)"]
+                        }]
+                    },
+                    "type": "General"
+                }],
+                "title": "Changes in total turnover",
+                "routing_rules": [{
+                    "goto": {
+                        "when": [{
+                            "id": "changes-in-turnover-answer",
+                            "value": "Yes",
+                            "condition": "equals"
+                        }],
+                        "block": "changes-in-turnover-block-2"
+                    }
+                }, {
+                    "goto": {
+                        "group": "summary-group"
+                    }
+                }]
+            }, {
+                "id": "changes-in-turnover-block-2",
+                "type": "Question",
+                "questions": [{
+                    "title": "Please indicate the reasons for any changes in the total turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
+                    "answers": [{
+                        "options": [{
+                            "q_code": "146a",
+                            "value": "Change in level of business activity",
+                            "label": "Change in level of business activity"
+                        }, {
+                            "q_code": "146b",
+                            "value": "Maintenance/shutdowns",
+                            "label": "Maintenance/shutdowns"
+                        }, {
+                            "q_code": "146c",
+                            "value": "Special/calendar events",
+                            "label": "Special/calendar events"
+                        }, {
+                            "q_code": "146d",
+                            "value": "Weather",
+                            "label": "Weather"
+                        }, {
+                            "q_code": "146e",
+                            "value": "Price effects",
+                            "label": "Price effects"
+                        }, {
+                            "q_code": "146f",
+                            "value": "Currency effects (increase/decrease in the currency value)",
+                            "label": "Currency effects (increase/decrease in the currency value)"
+                        }, {
+                            "q_code": "146g",
+                            "value": "Other",
+                            "label": "Other"
+                        }],
+                        "id": "changes-in-turnover-answer-2",
+                        "type": "Checkbox",
+                        "mandatory": true
+                    }],
+                    "type": "General",
+                    "id": "changes-in-turnover-question-2"
+                }],
+                "title": "Changes in total turnover"
+            }, {
+                "type": "Question",
+                "id": "changes-in-turnover-block-3",
+                "title": "Changes in total turnover",
+                "questions": [{
+                    "type": "General",
+                    "id": "changes-in-turnover-question-3",
+                    "title": "Please describe the changes in total turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} in more detail",
+                    "answers": [{
+                        "guidance": {
+                            "hide_guidance": "Hide examples of commentary on changes to total turnover",
+                            "show_guidance": "Show examples of commentary on changes to total turnover",
+                            "content": [{
+                                "list": [],
+                                "title": "\u2018Change in level of business activity\u2019",
+                                "description": "\"We gained a new two year overseas contract, which increased our exports this month.\""
+                            }, {
+                                "list": [],
+                                "title": "\u2018Maintenance/shutdowns\u2019",
+                                "description": "\"Our activity is significantly lower this month as we had a two week planned maintenance shutdown.\""
+                            }, {
+                                "list": [],
+                                "title": "\u2018Special/calendar events\u2019",
+                                "description": "\"We manufacture school uniforms so the increase this month is a typical seasonal peak for our business.\""
+                            }, {
+                                "list": [],
+                                "title": "\u2018Weather\u2019",
+                                "description": "\"Bad weather caused a flood at one of our sites, this reduced the amount of work we could undertake and affected sales.\""
+                            }, {
+                                "list": [],
+                                "title": "\u2018Price effects\u2019",
+                                "description": "\"We have increased the prices of our products/services. We do this every January, hence our sales figures appear higher.\""
+                            }, {
+                                "list": [],
+                                "title": "\u2018Currency effects (increase/decrease in the currency value)\u2019",
+                                "description": "\"The depreciation of sterling has resulted in more overseas sales.\""
+                            }]
+                        },
+                        "type": "TextArea",
+                        "mandatory": true,
+                        "label": "Comments",
+                        "id": "changes-in-turnover-answer-3",
+                        "q_code": "146h"
+                    }],
+                    "description": "<p>We rely on your commentary to \u2018tell the story\u2019 behind changes in figures.  By commenting here it will reduce the need for us to call you.</p>"
+                }]
+            }]
+        }]
+    }, {
+        "id": "summary-section",
+        "title": "Summary",
+        "groups": [{
+            "id": "summary-group",
+            "title": "Summary",
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }]
+        }]
+    }]
 }
