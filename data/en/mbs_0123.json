@@ -1,336 +1,399 @@
 {
-    "eq_id": "mbs",
-    "form_type": "0123",
+    "title": "Monthly Business Survey",
+    "survey_id": "009",
     "mime_type": "application/json/ons/eq",
+    "theme": "default",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
-    "survey_id": "009",
-    "title": "Monthly Business Survey",
-    "sections": [{
-            "id": "section8095aef5-1d03-4659-9ef5-5c561114a9f1",
-            "groups": [{
-                "id": "group8095aef5-1d03-4659-9ef5-5c561114a9f1",
-                "title": "",
-                "blocks": [{
-                        "type": "Introduction",
-                        "id": "introduction-block",
-                        "primary_content": [{
-                            "type": "Basic",
-                            "id": "primary",
-                            "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
-                                "list": [
-                                    "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
-                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
-                                    "We will treat your data securely and confidentially."
-                                ]
-                            }]
-                        }],
-                        "preview_content": {
-                            "id": "preview",
-                            "title": "Information you need",
-                            "content": [{
-                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
-                                },
-                                {
-                                    "description": "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP)</a> (external link)"
-                                },
-                                {
-                                    "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
-                                }
-                            ],
-                            "questions": [{
-                                    "question": "Commission and fees",
-                                    "content": [{
-                                            "description": "<strong>Exclude:</strong>"
-                                        },
-                                        {
-                                            "list": ["VAT"]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "question": "Sales on own account and turnover from other activities",
-                                    "content": [{
-                                            "description": "Exclude:"
-                                        },
-                                        {
-                                            "list": ["VAT", "commission and fees", "income from sale of fixed capital assets", "grants"]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        "secondary_content": [{
-                            "id": "secondary-content",
-                            "title": "How we use your data",
-                            "content": [{
-                                "list": [
-                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                                    "The information you provide contributes to Gross Domestic Product (GDP)."
-                                ]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block44887073-01a5-4de0-8d4b-221dbdb06b6f",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question44887073-01a5-4de0-8d4b-221dbdb06b6f",
-                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer1b071b2f-8c41-44cd-a517-98dcedaa759a",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group17a63c86-35b5-4b20-895c-8d5815b91d3e",
-                                    "when": [{
-                                        "id": "answer1b071b2f-8c41-44cd-a517-98dcedaa759a",
-                                        "condition": "contains any",
-                                        "values": ["Yes"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block3398b62e-67c9-47ff-aa3b-17f9accbe13f"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block3398b62e-67c9-47ff-aa3b-17f9accbe13f",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question3398b62e-67c9-47ff-aa3b-17f9accbe13f",
-                            "title": "What are the dates of the period that you will be reporting for?",
-                            "type": "DateRange",
-                            "answers": [{
-                                    "id": "answer4af83791-be6b-4990-b8ba-ccfef8531677from",
-                                    "type": "Date",
-                                    "mandatory": true,
-                                    "label": "From",
-                                    "q_code": "11",
-                                    "minimum": {
-                                        "meta": "ref_p_start_date",
-                                        "offset_by": {
-                                            "days": -19
-                                        }
-                                    }
-                                },
-                                {
-                                    "id": "answer4af83791-be6b-4990-b8ba-ccfef8531677to",
-                                    "type": "Date",
-                                    "mandatory": true,
-                                    "label": "To",
-                                    "q_code": "12",
-                                    "maximum": {
-                                        "meta": "ref_p_end_date",
-                                        "offset_by": {
-                                            "days": 20
-                                        }
-                                    }
-                                }
-                            ],
-                            "period_limits": {
-                                "minimum": {
-                                    "days": 10
-                                },
-                                "maximum": {
-                                    "days": 50
-                                }
-                            }
-                        }]
-                    }
-                ]
-            }]
-        },
-        {
-            "id": "section17a63c86-35b5-4b20-895c-8d5815b91d3e",
-            "groups": [{
-                "id": "group17a63c86-35b5-4b20-895c-8d5815b91d3e",
-                "title": "",
-                "blocks": [{
-                        "id": "block77c5a87c-adbe-4e9e-986f-b0e233897dd0",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question77c5a87c-adbe-4e9e-986f-b0e233897dd0",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was the value of {{ metadata['ru_name'] }}&apos;s <em>commission and fees</em>, excluding VAT?",
-                            "description": "<p>For example, as a travel agent, where you do not hold title to goods/services</p>",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerc26e1415-9f8e-42dd-ab69-3a53f490685d",
-                                "mandatory": true,
-                                "type": "Currency",
-                                "label": "Total commission and fees excluding VAT",
-                                "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter '56' for £56,000.",
-                                "q_code": "42",
-                                "decimal_places": 2,
-                                "currency": "GBP"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blockconfirmation-page-for-77c5a87c-adbe-4e9e-986f-b0e233897dd0",
-                        "type": "ConfirmationQuestion",
-                        "questions": [{
-                            "id": "questionconfirmation-page-for-77c5a87c-adbe-4e9e-986f-b0e233897dd0",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }}to {{ metadata['ref_p_end_date'] | format_date }}, the total commission and fees was <em>{{ format_currency(answers['answerc26e1415-9f8e-42dd-ab69-3a53f490685d'], 'GBP') }}</em>, is this correct?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerconfirmation-answer-for-77c5a87c-adbe-4e9e-986f-b0e233897dd0",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "options": [{
-                                        "label": "Yes this is correct",
-                                        "value": "Yes this is correct"
-                                    },
-                                    {
-                                        "label": "No I need to change this",
-                                        "value": "No I need to change this"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block77c5a87c-adbe-4e9e-986f-b0e233897dd0",
-                                    "when": [{
-                                        "id": "answerconfirmation-answer-for-77c5a87c-adbe-4e9e-986f-b0e233897dd0",
-                                        "condition": "contains any",
-                                        "values": ["No I need to change this"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "groupfbec7d5a-e07c-46cd-bfe8-3b0aa066a39b"
-                                }
-                            }
-                        ]
-                    }
-                ]
-            }]
-        },
-        {
-            "id": "sectionfbec7d5a-e07c-46cd-bfe8-3b0aa066a39b",
-            "groups": [{
-                "id": "groupfbec7d5a-e07c-46cd-bfe8-3b0aa066a39b",
-                "title": "",
-                "blocks": [{
-                    "id": "blockdec2c911-4677-4a6c-bbf7-b07f560e20e7",
-                    "type": "Question",
-                    "questions": [{
-                        "id": "questiondec2c911-4677-4a6c-bbf7-b07f560e20e7",
-                        "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to{{ metadata['ref_p_end_date'] | format_date }}, what was the value of {{ metadata['ru_name'] }}&apos;s <em>sales on own account and turnover from other activities</em>, excluding VAT?",
-                        "description": "<p>For example, as a tour operator </p>",
-                        "guidance": {
-                            "content": [{
-                                    "description": "<strong>Exclude:</strong>"
-                                },
-                                {
-                                    "list": ["VAT", "commission and fees", "income from sales of fixed capital assets", "grants"]
-                                }
-                            ]
-                        },
-                        "type": "General",
-                        "answers": [{
-                            "id": "answerb8198801-5406-4d17-b11d-d96260967965",
-                            "mandatory": true,
-                            "type": "Currency",
-                            "label": "Total sales on own account and turnover from other activities excluding VAT",
-                            "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter '56' for £56,000.",
-                            "q_code": "43",
-                            "decimal_places": 2,
-                            "currency": "GBP"
-                        }]
-                    }]
-                }]
-            }]
-        },
-        {
-            "id": "section9ccff0c7-7881-4d66-aec7-cfbd900b7231",
-            "groups": [{
-                    "id": "group9ccff0c7-7881-4d66-aec7-cfbd900b7231",
-                    "title": "",
-                    "blocks": [{
-                        "id": "blocke845ba38-fb05-4293-86ec-48d122754ee3",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questione845ba38-fb05-4293-86ec-48d122754ee3",
-                            "title": "Please explain any changes in your commission and fees or sales on own account figures from the previous return, if applicable.",
-                            "description": "<p>If you provide comments we are less likely to contact you with data queries.</p>",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerab9c2261-03ba-4426-8475-becaf7118f0f",
-                                "mandatory": true,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "description": "",
-                                "q_code": "146",
-                                "max_length": 2000
-                            }]
-                        }]
-                    }]
-                },
-                {
-                    "id": "summary-group",
-                    "title": "Summary",
-                    "blocks": [{
-                        "type": "Summary",
-                        "id": "summary-block"
-                    }]
-                }
-            ]
-        }
-    ],
-    "theme": "default",
     "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
-    "navigation": {
-        "visible": false
-    },
-    "metadata": [{
-            "name": "user_id",
-            "validator": "string"
-        },
-        {
-            "name": "period_id",
-            "validator": "string"
-        },
-        {
-            "name": "ru_name",
-            "validator": "string"
-        },
-        {
-            "name": "trad_as",
-            "validator": "optional_string"
-        },
-        {
-            "name": "ref_p_start_date",
-            "validator": "date"
-        },
-        {
-            "name": "ref_p_end_date",
-            "validator": "date"
-        }
-    ],
+    "description": "mbs 0123",
+    "eq_id": "mbs",
+    "form_type": "0123",
     "view_submitted_response": {
         "enabled": true,
         "duration": 900
-    }
+    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }, {
+        "name": "ref_p_start_date",
+        "validator": "date"
+    }, {
+        "name": "ref_p_end_date",
+        "validator": "date"
+    }, {
+        "name": "trad_as",
+        "validator": "optional_string"
+    }],
+    "sections": [{
+        "id": "section",
+        "groups": [{
+            "id": "group",
+            "title": "",
+            "blocks": [{
+                "type": "Introduction",
+                "id": "introduction",
+                "primary_content": [{
+                    "type": "Basic",
+                    "id": "use-of-information",
+                    "content": [{
+                        "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select “yes, you can provide figures” and enter turnover, even if this is “0”.<br><b>Exclude</b> furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
+
+                        "list": ["Data should relate to all sites in England, Scotland and Wales unless otherwise stated.", "You can provide informed estimates if actual figures aren\u2019t available.", "We will treat your data securely and confidentially."]
+                    }]
+                }],
+                "preview_content": {
+                    "id": "preview",
+                    "title": "Information you need",
+                    "content": [{
+                            "title": ""
+                        },
+                        {
+
+                            "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
+
+                        }, {
+                            "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                        }
+                    ],
+                    "questions": [{
+                        "question": "Commission and fees",
+                        "content": [{
+                            "description": "Exclude VAT"
+                        }]
+                    }, {
+                        "question": "Sales on own account and turnover from other activities",
+                        "content": [{
+                            "description": "Exclude:",
+                            "list": ["VAT", "commission and fees", "income from sale of fixed capital assets", "grants"]
+                        }]
+                    }, {
+                        "question": "Significant changes",
+                        "content": [{
+                            "description": "Include:",
+                            "list": ["change in level of business activity", "maintenance/shutdowns", "special/calendar events", "weather", "price effects", "currency effects (increase/decrease in the currency value)"]
+                        }]
+                    }]
+                },
+                "secondary_content": [{
+                    "id": "how-we-use-your-data",
+                    "title": "How we use your data",
+                    "content": [{
+                        "list": ["You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.", "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP).</a>"]
+                    }]
+                }]
+            }, {
+                "id": "reporting-period-block",
+                "type": "Question",
+                "questions": [{
+                    "answers": [{
+                        "options": [{
+                            "value": "Yes",
+                            "label": "Yes"
+                        }, {
+                            "value": "No",
+                            "label": "No"
+                        }],
+                        "id": "reporting-period-answer",
+                        "type": "Radio",
+                        "q_code": "d12",
+                        "mandatory": true
+                    }],
+                    "type": "General",
+                    "id": "reporting-period-question",
+                    "title": "Are you able to report for the period from {{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}}?"
+                }],
+                "routing_rules": [{
+                    "goto": {
+                        "when": [{
+                            "id": "reporting-period-answer",
+                            "value": "Yes",
+                            "condition": "equals"
+                        }],
+                        "block": "commission-and-fees-block"
+                    }
+                }, {
+                    "goto": {
+                        "block": "reporting-period-block-2"
+                    }
+                }],
+                "title": "Reporting period"
+            }, {
+                "type": "Question",
+                "id": "reporting-period-block-2",
+                "title": "Reporting period",
+                "questions": [{
+                    "type": "DateRange",
+                    "id": "reporting-period-question-2",
+                    "title": "What are the dates of the period that you will be reporting for?",
+                    "period_limits": {
+                        "minimum": {
+                            "days": 10
+                        },
+                        "maximum": {
+                            "days": 50
+                        }
+                    },
+                    "answers": [{
+                        "type": "Date",
+                        "id": "period-from",
+                        "label": "From",
+                        "mandatory": true,
+                        "q_code": "11",
+                        "minimum": {
+                            "meta": "ref_p_start_date",
+                            "offset_by": {
+                                "days": -19
+                            }
+                        }
+                    }, {
+                        "type": "Date",
+                        "id": "period-to",
+                        "label": "To",
+                        "mandatory": true,
+                        "q_code": "12",
+                        "maximum": {
+                            "meta": "ref_p_end_date",
+                            "offset_by": {
+                                "days": 20
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "id": "commission-and-fees-block",
+                "type": "Question",
+                "title": "Commission and fees",
+                "questions": [{
+                    "description": "For example, as a travel agent, where you do not hold title to goods/services",
+                    "id": "commission-and-fees-question",
+                    "type": "General",
+                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s <em>commission and fees</em>, excluding VAT?",
+                    "answers": [{
+                        "id": "commission-and-fees-answer",
+                        "label": "Total commission and fees excluding VAT",
+                        "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                        "type": "Currency",
+                        "currency": "GBP",
+                        "decimal_places": 2,
+                        "q_code": "42",
+                        "mandatory": true
+                    }]
+                }]
+            }, {
+                "type": "ConfirmationQuestion",
+                "title": "Commission and fees",
+                "id": "confirm-commission-and-fees-block",
+                "questions": [{
+                    "type": "General",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "confirm-commission-and-fees-answer",
+                        "q_code": "d40",
+                        "options": [{
+                            "label": "Yes this is correct",
+                            "value": "Yes"
+                        }, {
+                            "label": "No I need to change this",
+                            "value": "No"
+                        }],
+                        "mandatory": true
+                    }],
+                    "id": "confirm-commission-and-fees-question",
+                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the total commission and fees was <em>{{format_currency(answers['commission-and-fees-answer'])}}</em>, is this correct?"
+                }],
+                "routing_rules": [{
+                    "goto": {
+                        "when": [{
+                            "value": "No",
+                            "id": "confirm-commission-and-fees-answer",
+                            "condition": "equals"
+                        }],
+                        "block": "commission-and-fees-block"
+                    }
+                }, {
+                    "goto": {
+                        "block": "sales-on-own-account-block"
+                    }
+                }]
+            }, {
+                "id": "sales-on-own-account-block",
+                "type": "Question",
+                "title": "Sales on own account and turnover from other activities",
+                "questions": [{
+                    "guidance": {
+                        "content": [{
+                            "title": "Exclude",
+                            "list": ["VAT", "commission and fees", "income from sales of fixed capital assets", "grants"]
+                        }]
+                    },
+                    "id": "sales-on-own-account-question",
+                    "type": "General",
+                    "description": "For example, as a tour operator",
+                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s <em>sales on own account and turnover from other activities</em>, excluding VAT?",
+                    "answers": [{
+                        "id": "sales-on-own-account-answer",
+                        "label": "Total Sales on own account and turnover from other activities  excluding VAT",
+                        "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                        "type": "Currency",
+                        "currency": "GBP",
+                        "decimal_places": 2,
+                        "q_code": "43",
+                        "mandatory": true
+                    }]
+                }]
+            }, {
+                "id": "changes-block",
+                "type": "Question",
+                "questions": [{
+                    "title": "Did any significant changes occur to the figures provided for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
+                    "id": "changes-question",
+                    "definitions": [{
+                        "title": "What constitutes a significant change?",
+                        "content": [{
+                            "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s figures from the previous reporting period and the same reporting period last year."
+                        }, {
+                            "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
+                        }]
+                    }],
+                    "answers": [{
+                        "options": [{
+                            "value": "Yes",
+                            "label": "Yes"
+                        }, {
+                            "value": "No",
+                            "label": "No"
+                        }],
+                        "id": "changes-answer",
+                        "type": "Radio",
+                        "q_code": "146",
+                        "mandatory": true
+                    }],
+                    "guidance": {
+                        "content": [{
+                            "title": "Include",
+                            "list": ["change in level of business activity", "maintenance/shutdowns", "special/calendar events", "weather", "price effects", "currency effects (increase/decrease in the currency value)"]
+                        }]
+                    },
+                    "type": "General"
+                }],
+                "title": "Significant changes",
+                "routing_rules": [{
+                    "goto": {
+                        "when": [{
+                            "id": "changes-answer",
+                            "value": "Yes",
+                            "condition": "equals"
+                        }],
+                        "block": "changes-block-2"
+                    }
+                }, {
+                    "goto": {
+                        "group": "summary-group"
+                    }
+                }]
+            }, {
+                "id": "changes-block-2",
+                "type": "Question",
+                "questions": [{
+                    "title": "Please indicate the reasons for any changes in the turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
+                    "type": "General",
+                    "id": "changes-question-2",
+                    "answers": [{
+                        "options": [{
+                            "q_code": "146a",
+                            "value": "Change in level of business activity",
+                            "label": "Change in level of business activity"
+                        }, {
+                            "q_code": "146b",
+                            "value": "Maintenance/shutdowns",
+                            "label": "Maintenance/shutdowns"
+                        }, {
+                            "q_code": "146c",
+                            "value": "Special/calendar events",
+                            "label": "Special/calendar events"
+                        }, {
+                            "q_code": "146d",
+                            "value": "Weather",
+                            "label": "Weather"
+                        }, {
+                            "q_code": "146e",
+                            "value": "Price effects",
+                            "label": "Price effects"
+                        }, {
+                            "q_code": "146f",
+                            "value": "Currency effects (increase/decrease in the currency value)",
+                            "label": "Currency effects (increase/decrease in the currency value)"
+                        }, {
+                            "q_code": "146g",
+                            "value": "Other",
+                            "label": "Other"
+                        }],
+                        "id": "changes-answer-2",
+                        "type": "Checkbox",
+                        "mandatory": true
+                    }]
+                }],
+                "title": "Significant changes"
+            }, {
+                "type": "Question",
+                "id": "changes-block-3",
+                "title": "Changes",
+                "questions": [{
+                    "type": "General",
+                    "id": "changes-question-3",
+                    "title": "Please describe the changes in turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} in more detail",
+                    "answers": [{
+                        "guidance": {
+                            "hide_guidance": "Hide examples of commentary on changes to turnover",
+                            "show_guidance": "Show examples of commentary on changes to turnover",
+                            "content": [{
+                                "title": "\u2018Change in level of business activity\u2019",
+                                "description": "\"We gained a new two year overseas contract, which increased our exports this month.\""
+                            }, {
+                                "title": "\u2018Maintenance/shutdowns\u2019",
+                                "description": "\"Our activity is significantly lower this month as we had a two week planned maintenance shutdown.\""
+                            }, {
+                                "title": "\u2018Special/calendar events\u2019",
+                                "description": "\"We manufacture school uniforms so the increase this month is a typical seasonal peak for our business.\""
+                            }, {
+                                "title": "\u2018Weather\u2019",
+                                "description": "\"Bad weather caused a flood at one of our sites, this reduced the amount of work we could undertake and affected sales.\""
+                            }, {
+                                "title": "\u2018Price effects\u2019",
+                                "description": "\"We have increased the prices of our products/services. We do this every January, hence our sales figures appear higher.\""
+                            }, {
+                                "title": "\u2018Currency effects (increase/decrease in the currency value)\u2019",
+                                "description": "\"The depreciation of sterling has resulted in more overseas sales.\""
+                            }]
+                        },
+                        "type": "TextArea",
+                        "mandatory": true,
+                        "label": "Comments",
+                        "id": "changes-answer-3",
+                        "q_code": "146h"
+                    }],
+                    "description": "<p>We rely on your commentary to \u2018tell the story\u2019 behind changes in figures.  By commenting here it will reduce the need for us to call you.</p>"
+                }]
+            }]
+        }]
+    }, {
+        "id": "summary-section",
+        "title": "Summary",
+        "groups": [{
+            "id": "summary-group",
+            "title": "Summary",
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }]
+        }]
+    }]
 }
