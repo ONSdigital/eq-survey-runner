@@ -18,8 +18,3 @@ class TestApplicationVariablesNegative(IntegrationTestCase):
         self.launchSurvey('0', 'star_wars')
         self.assertStatusOK()
         self.assertFalse('__bs_script__' in self.getResponseData())
-
-    def test_google_analytics_code_is_present(self):
-        self.launchSurvey('0', 'star_wars')
-        self.assertStatusOK()
-        self.assertNotInHead('GoogleTagManagerObject')

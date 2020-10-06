@@ -578,15 +578,13 @@ def _build_template(current_location, context, template, schema, answer_store, m
     front_end_navigation = _get_front_end_navigation(answer_store, current_location, metadata, schema, routing_path)
     previous_location = path_finder.get_previous_location(current_location)
     previous_url = previous_location.url(metadata) if previous_location is not None else None
-    ons_cookie_policy = request.cookies.get('ons_cookie_message_displayed')
 
     add_person_url = None
     if routing_path:
         add_person_location = routing_path[routing_path.index(current_location) - 1]
         add_person_url = add_person_location.url(metadata) if add_person_location else None
 
-    return _render_template(context, current_location, template, front_end_navigation, previous_url, add_person_url, schema, metadata, answer_store,
-                            ons_cookie_policy)
+    return _render_template(context, current_location, template, front_end_navigation, previous_url, add_person_url, schema, metadata, answer_store)
 
 
 @with_session_timeout
@@ -594,7 +592,7 @@ def _build_template(current_location, context, template, schema, answer_store, m
 @with_metadata_context
 @with_analytics
 @with_legal_basis
-def _render_template(context, current_location, template, front_end_navigation, previous_url, add_person_url, schema, metadata, answer_store, cookies,
+def _render_template(context, current_location, template, front_end_navigation, previous_url, add_person_url, schema, metadata, answer_store,
                      **kwargs):
     page_title = get_page_title_for_location(schema, current_location, metadata, answer_store)
 
@@ -611,7 +609,6 @@ def _render_template(context, current_location, template, front_end_navigation, 
         page_title=page_title,
         metadata=kwargs.pop('metadata_context'),  # `metadata_context` is used as `metadata` in the jinja templates
         language_code=session_data.language_code,
-        cookies=cookies,
         **kwargs
     )
 
