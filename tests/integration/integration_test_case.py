@@ -296,18 +296,6 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         else:
             self.fail('last_url is invalid')
 
-    def assertAnalyticsLength(self, arguments):
-        if len(arguments[1]) == 2:
-            self.assertEqual(2, len(arguments[1]))
-        else:
-            self.fail('Analytics not present')
-
-    def assertNotAnalyticsLength(self, arguments):
-        if not any(arguments[0]):
-            self.assertEqual(0, len(arguments[0]))
-        else:
-            self.fail('Analytics present')
-
 
 def decode_flask_cookie(cookie):
     """Decode a Flask cookie."""
