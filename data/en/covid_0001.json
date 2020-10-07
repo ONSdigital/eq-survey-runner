@@ -35,9 +35,9 @@
                             "content": [{
                                 "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/thequestionsonthebusinessimpactofcoronaviruscovid19survey'>View the questions before you start the survey (external link)</a>",
                                 "list": [
-                                    "Information should relate to the UK",
-                                    "We will treat your information securely and confidentially",
-                                    "This survey is refreshed every two weeks. To avoid losing data, please submit by the return date and before the next fortnightly survey is published"
+                                    "Information should relate to the UK.",
+                                    "We will treat your information securely and confidentially.",
+                                    "This survey is refreshed every two weeks. To avoid losing data, please submit by the return date and before the next fortnightly survey is published."
                                 ]
                             }],
                             "questions": [{
@@ -47,7 +47,7 @@
                                     }]
                                 },
                                 {
-                                    "question": "Turnover, operating costs and profits",
+                                    "question": "Turnover and operating costs",
                                     "content": [{
                                             "description": "This section asks for information about:"
                                         },
@@ -55,7 +55,8 @@
                                             "list": [
                                                 "how the coronavirus (COVID-19) pandemic may have affected the business&apos;s turnover in the last two weeks",
                                                 "operating costs",
-                                                "profits"
+                                                "customer interest and footfall",
+                                                "challenges with online trading"
                                             ]
                                         }
                                     ]
@@ -69,7 +70,7 @@
                                 {
                                     "question": "UK supply chain",
                                     "content": [{
-                                        "description": "This section asks for information about the availability of materials, goods and services within the UK and the business&apos;s use of UK logistics services."
+                                        "description": "This section asks for information about the availability of materials, goods and services within the UK and the business&apos;s use of UK logistics services. It also asks for information about the choice of suppliers for your own and others&apos; materials, goods and services."
                                     }]
                                 },
                                 {
@@ -102,27 +103,18 @@
                                 {
                                     "question": "Operational performance",
                                     "content": [{
-                                            "description": "This section asks for information about your workforce such as the:"
+                                            "description": "This section asks for information about the business&apos;s workforce such as the:"
                                         },
                                         {
                                             "list": [
-                                                "percentage on furlough leave or working from home",
-                                                "percentage returning from furlough or homeworking",
-                                                "percentage of furloughed staff receiving top-ups in addition to the Coronavirus Job Retention Scheme (CJRS) payments"
+                                                "percentage on, for example, furlough leave or working remotely",
+                                                "percentage returning from furlough or remote working, or would be made permanently redundant",
+                                                "percentage of furloughed staff receiving top-ups in addition to the Coronavirus Job Retention Scheme (CJRS) payment",
+                                                "number of vacancies"
                                             ]
                                         },
                                         {
-                                            "description": "It also asks about future site closures."
-                                        }
-                                    ]
-                                },
-                                {
-                                    "question": "Workforce characteristics",
-                                    "content": [{
-                                            "description": "This section asks for information about the characteristics of your workforce."
-                                        },
-                                        {
-                                            "description": "We are asking these questions to help understand how workforce characteristics may have changed across different sectors"
+                                            "description": "It also asks about safety measures in the workplace and expansion plans."
                                         }
                                     ]
                                 }
@@ -308,9 +300,7 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                             "condition": "contains any",
-                                            "values": [
-                                                "Not sure"
-                                            ]
+                                            "values": ["Not sure"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -329,9 +319,7 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                             "condition": "contains any",
-                                            "values": [
-                                                "Not applicable"
-                                            ]
+                                            "values": ["Not applicable"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -384,9 +372,7 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Permanently ceased trading"
-                                        ]
+                                        "values": ["Permanently ceased trading"]
                                     }]
                                 }
                             },
@@ -402,7 +388,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionae8d1838-da63-4805-b596-6b55fdb86447",
-                            "title": "Where in the UK are your <em>sites currently paused or ceased trading</em>?",
+                            "title": "Where in the UK are {{ metadata['ru_name'] }}&apos;s <em>sites currently paused or ceased trading</em>?",
                             "description": "<p>Select all the regions where the majority of the business&apos;s sites are paused or ceased trading.</p>",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
@@ -511,9 +497,7 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Permanently ceased trading"
-                                        ]
+                                        "values": ["Permanently ceased trading"]
                                     }]
                                 }
                             },
@@ -529,15 +513,15 @@
         },
         {
             "id": "section281e76fe-1287-43af-bfe9-e1a53be6476e",
-            "title": "Turnover, operating costs and profits",
+            "title": "Turnover and operating costs",
             "groups": [{
                 "id": "group281e76fe-1287-43af-bfe9-e1a53be6476e",
-                "title": "Turnover, operating costs and profits",
+                "title": "Turnover and operating costs",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group281e76fe-1287-43af-bfe9-e1a53be6476e-introduction",
-                        "title": "Turnover, operating costs and profits",
-                        "description": "<p>This section asks for information about:</p><ul><li>how the coronavirus (COVID-19) pandemic may have affected the business&apos;s turnover in the last two weeks</li><li>operating costs</li><li>profits</li></ul>"
+                        "title": "Turnover and operating costs",
+                        "description": "<p>This section asks for information about:</p><ul><li>how the coronavirus (COVID-19) pandemic may have affected the business&apos;s turnover in the last two weeks</li><li>operating costs</li><li>customer interest and footfall</li><li>challenges with online trading</li></ul>"
                     },
                     {
                         "id": "block9361fa44-7f22-47da-bdd0-16e104300487",
@@ -607,10 +591,7 @@
                                     "when": [{
                                         "id": "answer0581e398-f9ab-4597-a1a6-c67d8f96289f",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Turnover has not been affected",
-                                            "Not sure"
-                                        ]
+                                        "values": ["Turnover has not been affected", "Not sure"]
                                     }]
                                 }
                             },
@@ -626,7 +607,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0bf14da5-6919-4507-8542-5d71be2e6ac1",
-                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic affected turnover in the last two weeks",
+                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s turnover in the last two weeks",
                             "type": "General",
                             "answers": [{
                                 "id": "answerb27dfc7c-ac12-4c9f-ba1c-29b51878d877",
@@ -644,7 +625,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question07ea7679-53f4-40e7-be6c-01e0615e3672",
-                            "title": "What are your expectations about turnover in the <em>next two weeks</em>?",
+                            "title": "What are your expectations about {{ metadata['ru_name'] }}&apos;s turnover in the <em>next two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer887d6dad-b184-4301-9670-89440001359b",
@@ -686,17 +667,14 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question279256b3-22c2-4463-9d3d-4be926d2402a",
-                            "title": "<em>In the last two weeks</em>, how did turnover compare to its operating costs?",
+                            "title": "<em>In the last two weeks</em>, how did {{ metadata['ru_name'] }}&apos;s turnover compare to its operating costs?",
                             "description": "<p>You can provide a rough estimate. </p>",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Exclude from operating costs:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "labour costs",
-                                            "depreciation"
-                                        ]
+                                        "list": ["labour costs", "depreciation"]
                                     }
                                 ]
                             },
@@ -751,53 +729,171 @@
                         }]
                     },
                     {
-                        "id": "blockb470309f-f885-4c0b-85bf-ec2abb6e65f6",
+                        "id": "block90839295-93e8-43ff-b644-6a62e3c9dc3e",
                         "type": "Question",
                         "questions": [{
-                            "id": "questionb470309f-f885-4c0b-85bf-ec2abb6e65f6",
-                            "title": "In the last two weeks, how has the coronavirus (COVID-19) pandemic affected your business&apos;s <em>profits</em>, compared with normal expectations for this time of year?",
+                            "id": "question90839295-93e8-43ff-b644-6a62e3c9dc3e",
+                            "title": "In the last two weeks, how has the coronavirus (COVID-19) pandemic affected <em>customer interest</em> in {{ metadata['ru_name'] }}&apos;s goods or services, compared with normal expectations for this time of year?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "Include, for example:"
+                                    },
+                                    {
+                                        "list": [
+                                            "footfall, which means the number of people entering a shop or shopping area",
+                                            "online or in-store sales",
+                                            "webpage activity",
+                                            "number of enquiries received"
+                                        ]
+                                    }
+                                ]
+                            },
                             "type": "General",
                             "answers": [{
-                                "id": "answere7ce3e90-85c5-49df-98c5-206cd4d45bd6",
+                                "id": "answerd0f7764c-0b7a-4005-8455-c43095dfcdb7",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "156",
+                                "q_code": "134",
                                 "options": [{
-                                        "label": "Profits have increased by more than 50%",
-                                        "value": "Profits have increased by more than 50%"
+                                        "label": "Interest has increased",
+                                        "value": "Interest has increased"
                                     },
                                     {
-                                        "label": "Profits have increased by between 20% and 50%",
-                                        "value": "Profits have increased by between 20% and 50%"
+                                        "label": "Interest has stayed the same",
+                                        "value": "Interest has stayed the same"
                                     },
                                     {
-                                        "label": "Profits have increased by up to 20%",
-                                        "value": "Profits have increased by up to 20%"
-                                    },
-                                    {
-                                        "label": "Profits have stayed the same",
-                                        "value": "Profits have stayed the same"
-                                    },
-                                    {
-                                        "label": "Profits have decreased by up to 20%",
-                                        "value": "Profits have decreased by up to 20%"
-                                    },
-                                    {
-                                        "label": "Profits have decreased by between 20% and 50%",
-                                        "value": "Profits have decreased by between 20% and 50%"
-                                    },
-                                    {
-                                        "label": "Profits have decreased by more than 50%",
-                                        "value": "Profits have decreased by more than 50%"
+                                        "label": "Interest has decreased",
+                                        "value": "Interest has decreased"
                                     },
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
+                        }]
+                    },
+                    {
+                        "id": "block60b68a1c-91f8-4e80-859d-7d196f9c0530",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question60b68a1c-91f8-4e80-859d-7d196f9c0530",
+                            "title": "In the last two weeks, how has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s <em>footfall</em>, compared with normal expectations for this time of year?",
+                            "definitions": [{
+                                "title": "What we mean by \"footfall\"",
+                                "content": [{
+                                    "description": "&quot;Footfall&quot; means the number of people entering a shop or shopping area."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerfd7177e6-7453-4557-8a4d-6ee841d850fb",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "135",
+                                "options": [{
+                                        "label": "Footfall has increased",
+                                        "value": "Footfall has increased"
+                                    },
+                                    {
+                                        "label": "Footfall has stayed the same",
+                                        "value": "Footfall has stayed the same"
+                                    },
+                                    {
+                                        "label": "Footfall has decreased",
+                                        "value": "Footfall has decreased"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block9d15c73f-7f92-435f-b4ad-ec8f1d1c3e71",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question9d15c73f-7f92-435f-b4ad-ec8f1d1c3e71",
+                            "title": "Has {{ metadata['ru_name'] }} experienced any of the following <em>challenges</em> with selling goods or services online since the start of the coronavirus (COVID-19) pandemic?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answerdd53ede5-0d60-4eaf-bc9d-c77bbadf2753",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Challenges sharing data across different online platforms or marketplaces",
+                                            "value": "Challenges sharing data across different online platforms or marketplaces",
+                                            "q_code": "1441"
+                                        },
+                                        {
+                                            "label": "Challenges with the system for ranking and reviewing goods or services by online platforms or marketplaces",
+                                            "value": "Challenges with the system for ranking and reviewing goods or services by online platforms or marketplaces",
+                                            "q_code": "1442"
+                                        },
+                                        {
+                                            "label": "High prices charged by online platforms, marketplaces or sellers",
+                                            "value": "High prices charged by online platforms, marketplaces or sellers",
+                                            "q_code": "1443"
+                                        },
+                                        {
+                                            "label": "High prices for online advertising",
+                                            "value": "High prices for online advertising",
+                                            "q_code": "1444",
+                                            "description": "For example banners, text, video or search engines"
+                                        },
+                                        {
+                                            "label": "Lack of IT capacity, skills or technology within the business",
+                                            "value": "Lack of IT capacity, skills or technology within the business",
+                                            "q_code": "1445"
+                                        },
+                                        {
+                                            "label": "Restrictions on using more than one platform or marketplace",
+                                            "value": "Restrictions on using more than one platform or marketplace",
+                                            "q_code": "1446"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "1447",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answer44ddb0a8-7a28-4d70-a066-596eaa6ab322",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answerdd53ede5-0d60-4eaf-bc9d-c77bbadf2753-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Did not experience any challenges selling goods or services online",
+                                        "value": "Did not experience any challenges selling goods or services online",
+                                        "q_code": "1440"
+                                    }]
+                                }
+                            ]
                         }]
                     }
                 ],
@@ -811,9 +907,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -829,9 +923,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains any",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -847,9 +939,7 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
@@ -912,10 +1002,7 @@
                                     "when": [{
                                         "id": "answer6e5dfc6d-189b-4d67-b64f-d40f68253cda",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure"
-                                        ]
+                                        "values": ["No", "Not sure"]
                                     }]
                                 }
                             },
@@ -931,7 +1018,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question730e686b-f62a-444a-a62d-805ced57ace8",
-                            "title": "How has exporting of goods or services been affected by the coronavirus (COVID-19) pandemic in the <em>last two weeks</em>?",
+                            "title": "How has {{ metadata['ru_name'] }}&apos;s exporting of goods or services been affected by the coronavirus (COVID-19) pandemic in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
@@ -969,7 +1056,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4728c544-95e8-4d1f-a5c7-d2fc3a95f180",
-                            "title": "Let us know anything else that will help us understand your business&#x2019;s exporting in the <em>last two weeks</em>",
+                            "title": "Let us know anything else that will help us understand {{ metadata['ru_name'] }}&#x2019;s exporting in the <em>last two weeks</em>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer3c6cef19-ffc2-4283-9cc9-bd356713b0f2",
@@ -987,7 +1074,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionf25bdbfe-14fb-4699-bf0d-29140cb007f8",
-                            "title": "Has your business <em>imported</em> goods or services in the last 12 months?",
+                            "title": "Has {{ metadata['ru_name'] }} <em>imported</em> goods or services in the last 12 months?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer5ad71b6e-442c-499a-b185-e39282dd09c0",
@@ -1017,10 +1104,7 @@
                                     "when": [{
                                         "id": "answer5ad71b6e-442c-499a-b185-e39282dd09c0",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure"
-                                        ]
+                                        "values": ["No", "Not sure"]
                                     }]
                                 }
                             },
@@ -1036,7 +1120,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question41cb8d16-ed70-4442-a3e1-fac1efdea741",
-                            "title": "How has your business&apos;s importing of goods or services been affected by the coronavirus (COVID-19) pandemic in the <em>last two weeks</em>?",
+                            "title": "How has {{ metadata['ru_name'] }}&apos;s importing of goods or services been affected by the coronavirus (COVID-19) pandemic in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
@@ -1074,7 +1158,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4648511e-cf19-468d-9eed-14c4a92cb720",
-                            "title": "Let us know anything else that will help us understand your business&#x2019;s importing in the <em>last two weeks</em>",
+                            "title": "Let us know anything else that will help us understand {{ metadata['ru_name'] }}&#x2019;s importing in the <em>last two weeks</em>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer98ea4789-060e-460b-8d33-e688ceb4e947",
@@ -1098,9 +1182,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1116,9 +1198,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains any",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1134,9 +1214,7 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
@@ -1162,7 +1240,7 @@
                         "type": "Interstitial",
                         "id": "group5c8d0ebe-e6e2-4ff6-a2bd-99ccf4edbde6-introduction",
                         "title": "UK supply chain",
-                        "description": "<p>This section asks for information about:</p><ul><li> the availability of materials, goods and services within the UK </li><li>the use of UK logistics services</li></ul>"
+                        "description": "<p>This section asks for information about:</p><ul><li> the availability of materials, goods and services within the UK </li><li>the use of UK logistics services</li><li>the choice of suppliers for your own and others&apos; materials, goods and services</li></ul>"
                     },
                     {
                         "id": "block0e1472db-36f2-4d40-b99e-510e70442636",
@@ -1203,9 +1281,7 @@
                                     "when": [{
                                         "id": "answer478a7145-b712-43a1-9e1d-df39c23abddd",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No, the business has not been able to get the materials, goods or services needed"
-                                        ]
+                                        "values": ["No, the business has not been able to get the materials, goods or services needed"]
                                     }]
                                 }
                             },
@@ -1221,7 +1297,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionfc873320-2213-4d19-982e-21b826833e1c",
-                            "title": "Please explain why your business was not able to get the materials, goods or services needed",
+                            "title": "Please explain why {{ metadata['ru_name'] }} was not able to get the materials, goods or services needed",
                             "type": "General",
                             "answers": [{
                                 "id": "answer8d48af55-9228-488b-8a15-087c484266c2",
@@ -1239,7 +1315,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question28c72fbc-0e7b-4c57-aab2-f376835daaa3",
-                            "title": "In the <em>last two weeks</em>, did your business use logistics services to distribute goods or services produced, <em>within the UK</em>?",
+                            "title": "In the <em>last two weeks</em>, did {{ metadata['ru_name'] }} use logistics services to distribute goods or services produced, <em>within the UK</em>?",
                             "description": "<p>This is about the distribution of goods or services within the UK or to UK ports for export.</p>",
                             "guidance": {
                                 "content": [{
@@ -1249,10 +1325,7 @@
                             "definitions": [{
                                 "title": "Examples of logistics services",
                                 "content": [{
-                                    "list": [
-                                        "delivery and courier services",
-                                        "haulage services"
-                                    ]
+                                    "list": ["delivery and courier services", "haulage services"]
                                 }]
                             }],
                             "type": "General",
@@ -1284,7 +1357,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block24b5f107-e230-477f-9553-800514d96a86",
+                                    "block": "blocke74f6b62-aec9-4dc3-b3e8-3c6692706761",
                                     "when": [{
                                         "id": "answer283ed838-951f-4484-ab60-e2abdd1cbe90",
                                         "condition": "contains any",
@@ -1308,7 +1381,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbb178280-e6f8-4348-b542-7dcff32cb1ac",
-                            "title": "Did the logistics services used in the <em>last two weeks</em> meet your business&apos;s UK distribution demands?",
+                            "title": "Did the logistics services used in the <em>last two weeks</em> meet {{ metadata['ru_name'] }}&apos;s UK distribution demands?",
                             "guidance": {
                                 "content": [{
                                     "description": "Exclude warehousing services"
@@ -1343,7 +1416,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question24b5f107-e230-477f-9553-800514d96a86",
-                            "title": "To what extent do you expect that your business&apos;s UK distribution demands will be met by logistics services in the <em>next two weeks</em>?",
+                            "title": "To what extent do you expect that {{ metadata['ru_name'] }}&apos;s UK distribution demands will be met by logistics services in the <em>next two weeks</em>?",
                             "guidance": {
                                 "content": [{
                                     "description": "Exclude warehousing services"
@@ -1380,6 +1453,74 @@
                                 ]
                             }]
                         }]
+                    },
+                    {
+                        "id": "blocke74f6b62-aec9-4dc3-b3e8-3c6692706761",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questione74f6b62-aec9-4dc3-b3e8-3c6692706761",
+                            "title": "Has the <em>overall of choice of suppliers</em> for sourcing {{ metadata['ru_name'] }}&apos;s materials, goods or services changed since the start of the coronavirus (COVID-19) pandemic?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerf43bddd9-08c8-4e44-a894-275630a3e4d2",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "145",
+                                "options": [{
+                                        "label": "Choice of suppliers has increased",
+                                        "value": "Choice of suppliers has increased"
+                                    },
+                                    {
+                                        "label": "Choice of suppliers has not changed",
+                                        "value": "Choice of suppliers has not changed"
+                                    },
+                                    {
+                                        "label": "Choice of suppliers has decreased",
+                                        "value": "Choice of suppliers has decreased"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1f40b8f5-f152-4bbd-9a8e-4cbfdb5202eb",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1f40b8f5-f152-4bbd-9a8e-4cbfdb5202eb",
+                            "title": "Has the number of <em>businesses selling similar goods or services</em> as {{ metadata['ru_name'] }} changed since the start of the coronavirus (COVID-19) pandemic?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer938565f1-0c94-4e75-a333-e57eb1faf09a",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "147",
+                                "options": [{
+                                        "label": "Number has increased",
+                                        "value": "Number has increased"
+                                    },
+                                    {
+                                        "label": "Number has not changed",
+                                        "value": "Number has not changed"
+                                    },
+                                    {
+                                        "label": "Number has decreased",
+                                        "value": "Number has decreased"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
                     }
                 ],
                 "skip_conditions": [{
@@ -1392,9 +1533,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1410,9 +1549,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains any",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1428,9 +1565,7 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
@@ -1505,9 +1640,7 @@
                                     "when": [{
                                         "id": "answer27b42a40-5f79-4d32-b361-a94a454c638b",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Not applicable"
-                                        ]
+                                        "values": ["Not applicable"]
                                     }]
                                 }
                             },
@@ -1517,10 +1650,7 @@
                                     "when": [{
                                         "id": "answer27b42a40-5f79-4d32-b361-a94a454c638b",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Prices did not change any more than normal",
-                                            "Not sure"
-                                        ]
+                                        "values": ["Prices did not change any more than normal", "Not sure"]
                                     }]
                                 }
                             },
@@ -1554,7 +1684,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc09fc635-3d3d-46a0-bcca-2a04b42cd5b3",
-                            "title": "What are your expectations about changes in prices of materials, goods or services that your business needs for the <em>next two weeks</em>?",
+                            "title": "What are your expectations about changes in prices of materials, goods or services that {{ metadata['ru_name'] }} needs for the <em>next two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerdafcb524-7e33-472c-8b7e-76e77b402d92",
@@ -1588,7 +1718,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question83701edb-7ee7-46b9-84f1-a9bc879f6b32",
-                            "title": "How did the prices of goods or services <em>sold</em> by  your business change in the <em>last two weeks</em>, compared with normal fluctuations?",
+                            "title": "How did the prices of goods or services <em>sold</em> by {{ metadata['ru_name'] }} change in the <em>last two weeks</em>, compared with normal fluctuations?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
@@ -1630,9 +1760,7 @@
                                     "when": [{
                                         "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Not applicable"
-                                        ]
+                                        "values": ["Not applicable"]
                                     }]
                                 }
                             },
@@ -1642,10 +1770,7 @@
                                     "when": [{
                                         "id": "answer9274311d-e7dc-4e3b-8694-0fafc1eb4aae",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Prices did not change any more than normal",
-                                            "Not sure"
-                                        ]
+                                        "values": ["Prices did not change any more than normal", "Not sure"]
                                     }]
                                 }
                             },
@@ -1679,7 +1804,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question13fc69db-bd9a-4996-9724-66a6a6be13c0",
-                            "title": "What are your expectations about prices of goods or services that your business will <em>sell</em> over the <em>next two weeks</em>?",
+                            "title": "What are your expectations about prices of goods or services that {{ metadata['ru_name'] }} will <em>sell</em> over the <em>next two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer8b015ec5-0d31-4f04-b333-b2835f5af8e2",
@@ -1713,7 +1838,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question26f99a57-82bd-4cd2-96f1-0de2a2e74812",
-                            "title": "Has your business had an <em>increase in demand</em> for goods or services sold in the last two weeks?",
+                            "title": "Has {{ metadata['ru_name'] }} had an <em>increase in demand</em> for goods or services sold in the last two weeks?",
                             "type": "General",
                             "answers": [{
                                 "id": "answera0b70920-ba8a-4fdd-9862-822b401cb422",
@@ -1747,11 +1872,7 @@
                                     "when": [{
                                         "id": "answera0b70920-ba8a-4fdd-9862-822b401cb422",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure",
-                                            "Not applicable"
-                                        ]
+                                        "values": ["No", "Not sure", "Not applicable"]
                                     }]
                                 }
                             },
@@ -1791,9 +1912,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1809,9 +1928,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains any",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1827,9 +1944,7 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
@@ -1901,10 +2016,7 @@
                                     "when": [{
                                         "id": "answerc964594d-9b5b-4131-9c79-4baff0be08d1",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Stock levels are higher than normal",
-                                            "Stock levels are lower than normal"
-                                        ]
+                                        "values": ["Stock levels are higher than normal", "Stock levels are lower than normal"]
                                     }]
                                 }
                             },
@@ -1938,7 +2050,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0bad546b-2817-4249-bc22-d5a9107fc8f2",
-                            "title": "Is your business <em>stockpiling</em> any materials or goods?",
+                            "title": "Is {{ metadata['ru_name'] }} <em>stockpiling</em> any materials or goods?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer6bfe6e82-5d10-40ae-9917-4760a848e485",
@@ -1968,9 +2080,7 @@
                                     "when": [{
                                         "id": "answer6bfe6e82-5d10-40ae-9917-4760a848e485",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes"
-                                        ]
+                                        "values": ["Yes"]
                                     }]
                                 }
                             },
@@ -2100,7 +2210,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question50c7e7f6-fa90-40a1-9529-54a223ff18fe",
-                            "title": "How has the coronavirus (COVID-19) pandemic affected your business&apos;s <em>capital expenditure</em>?",
+                            "title": "How has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s <em>capital expenditure</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer78b4dee5-4ea4-4ef9-a306-26a95c10a78d",
@@ -2142,11 +2252,7 @@
                                     "when": [{
                                         "id": "answer78b4dee5-4ea4-4ef9-a306-26a95c10a78d",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Capital expenditure has not been affected",
-                                            "Not sure",
-                                            "Not applicable"
-                                        ]
+                                        "values": ["Capital expenditure has not been affected", "Not sure", "Not applicable"]
                                     }]
                                 }
                             },
@@ -2162,7 +2268,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0a278777-61f2-4de1-ba93-49d249351ec7",
-                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic has affected capital expenditure",
+                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic has affected {{ metadata['ru_name'] }}&apos;s capital expenditure",
                             "type": "General",
                             "answers": [{
                                 "id": "answer75ac933d-8cb7-466f-85d2-15fca313b84c",
@@ -2186,9 +2292,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2204,9 +2308,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains any",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2222,9 +2324,7 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
@@ -2270,7 +2370,7 @@
                                             "label": "Coronavirus Job Retention Scheme",
                                             "value": "Coronavirus Job Retention Scheme",
                                             "q_code": "451",
-                                            "description": "UK Government scheme that covers 80% of furloughed workers' pay, by a combination of government and employer contributions"
+                                            "description": "UK Government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
                                         },
                                         {
                                             "label": "Government-backed accredited loans or finance agreements",
@@ -2305,9 +2405,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -2317,9 +2415,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Business grants funded by the UK and devolved governments"
-                                        ]
+                                        "values": ["Business grants funded by the UK and devolved governments"]
                                     }]
                                 }
                             },
@@ -2329,9 +2425,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains all",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme"]
                                     }]
                                 }
                             },
@@ -2347,7 +2441,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questione46ad473-b3a0-4791-b658-d3ebcd35e785",
-                            "title": "Did your business apply for the Development Bank of Wales COVID-19 Business Loan Scheme?",
+                            "title": "Did {{ metadata['ru_name'] }} apply for the Development Bank of Wales COVID-19 Business Loan Scheme?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer845b4b07-1ed1-4937-84f1-bd7b347f1cb4",
@@ -2377,9 +2471,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Business grants funded by the UK and devolved governments"
-                                        ]
+                                        "values": ["Business grants funded by the UK and devolved governments"]
                                     }]
                                 }
                             },
@@ -2389,10 +2481,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme",
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -2446,9 +2535,7 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Welsh Government"
-                                        ]
+                                        "values": ["Welsh Government"]
                                     }]
                                 }
                             },
@@ -2458,9 +2545,7 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Scottish Government"
-                                        ]
+                                        "values": ["Scottish Government"]
                                     }]
                                 }
                             },
@@ -2470,9 +2555,7 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": [
-                                            "UK Government (England only)"
-                                        ]
+                                        "values": ["UK Government (England only)"]
                                     }]
                                 }
                             },
@@ -2482,9 +2565,7 @@
                                     "when": [{
                                         "id": "answer1f3f22db-c33a-4999-99d8-2333f0c1ad20",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Northern Ireland Executive"
-                                        ]
+                                        "values": ["Northern Ireland Executive"]
                                     }]
                                 }
                             },
@@ -2494,10 +2575,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme",
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -2513,7 +2591,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question182ef910-1276-449f-9184-bb7d8234e84f",
-                            "title": "Which of the following Welsh Government grants did your business apply for?",
+                            "title": "Which of the following Welsh Government grants did {{ metadata['ru_name'] }} apply for?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -2559,11 +2637,7 @@
                                     "when": [{
                                         "id": "answer9d2c5b50-4e17-4b31-9c3f-3188080a16b2",
                                         "condition": "contains any",
-                                        "values": [
-                                            "COVID-19 grant for small businesses",
-                                            "Economic Resilience Fund",
-                                            "Sector-specific grants"
-                                        ]
+                                        "values": ["COVID-19 grant for small businesses", "Economic Resilience Fund", "Sector-specific grants"]
                                     }]
                                 }
                             },
@@ -2573,10 +2647,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme",
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -2592,7 +2663,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question525537e6-e6b5-401d-850d-2fe2f8da287a",
-                            "title": "Has your business <em>received</em> funds from any of the following Welsh Government grants?",
+                            "title": "Has {{ metadata['ru_name'] }} <em>received</em> funds from any of the following Welsh Government grants?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -2638,10 +2709,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme",
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -2657,7 +2725,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questioncfdf7d4f-47d0-428c-b8e0-5ec28fd525c3",
-                            "title": "Which of the following Scottish Government grants did your business apply for?",
+                            "title": "Which of the following Scottish Government grants did {{ metadata['ru_name'] }} apply for?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -2703,11 +2771,7 @@
                                     "when": [{
                                         "id": "answer9e33a258-d2be-40b8-ad4e-ae55f3d066f1",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Small Business Support grant",
-                                            "Pivotal Enterprise Resilience Fund",
-                                            "Sector-specific grants"
-                                        ]
+                                        "values": ["Small Business Support grant", "Pivotal Enterprise Resilience Fund", "Sector-specific grants"]
                                     }]
                                 }
                             },
@@ -2717,10 +2781,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme",
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -2736,7 +2797,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiond19893fd-7edf-405d-a04a-8986f3b691fe",
-                            "title": "Has your business <em>received</em> funds from any of the following Scottish Government grants?",
+                            "title": "Has {{ metadata['ru_name'] }} <em>received</em> funds from any of the following Scottish Government grants?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -2782,10 +2843,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme",
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -2801,7 +2859,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question5f68a3d0-365c-4247-b75e-a2ce7d5fea45",
-                            "title": "Which of the following UK Government (England only) grants did your business apply for?",
+                            "title": "Which of the following UK Government (England only) grants did {{ metadata['ru_name'] }} apply for?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -2842,10 +2900,7 @@
                                     "when": [{
                                         "id": "answer7a62b279-e8af-498b-bee4-6b861ec5d9f4",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Small Business Grant Fund (SBGF)",
-                                            "Sector-specific grants"
-                                        ]
+                                        "values": ["Small Business Grant Fund (SBGF)", "Sector-specific grants"]
                                     }]
                                 }
                             },
@@ -2855,10 +2910,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme",
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -2874,7 +2926,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question77a8fcf0-6663-4372-8a78-a0eaba692e25",
-                            "title": "Has your business <em>received</em> funds from any of the following UK Government (England only) grants?",
+                            "title": "Has {{ metadata['ru_name'] }} <em>received</em> funds from any of the following UK Government (England only) grants?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -2915,10 +2967,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme",
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -2934,7 +2983,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1be2fd23-e68f-4b5f-9553-d7c8c4e43082",
-                            "title": "Which of the following Northern Ireland Executive grants did your business apply for?",
+                            "title": "Which of the following Northern Ireland Executive grants did {{ metadata['ru_name'] }} apply for?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -2975,10 +3024,7 @@
                                     "when": [{
                                         "id": "answer1359bc07-ae5f-452b-8abd-00cfff28b27d",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Small Business Grant Scheme",
-                                            "Sector-specific grants"
-                                        ]
+                                        "values": ["Small Business Grant Scheme", "Sector-specific grants"]
                                     }]
                                 }
                             },
@@ -2988,10 +3034,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme",
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -3007,7 +3050,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question08e3e6c9-a572-43c2-ba84-0b984a2ed299",
-                            "title": "Has your business <em>received</em> funds from any of the following Northern Ireland Executive grants?",
+                            "title": "Has {{ metadata['ru_name'] }} <em>received</em> funds from any of the following Northern Ireland Executive grants?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -3048,10 +3091,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme",
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -3067,7 +3107,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionb305b9d6-b021-4d5e-a92e-291381c49492",
-                            "title": "Has your business <em>received</em> funds from any of the following schemes?",
+                            "title": "Has {{ metadata['ru_name'] }} <em>received</em> funds from any of the following schemes?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -3080,7 +3120,7 @@
                                             "label": "Coronavirus Job Retention Scheme",
                                             "value": "Coronavirus Job Retention Scheme",
                                             "q_code": "461",
-                                            "description": "UK Government scheme that covers 80% of furloughed workers' pay by a combination of government and employer contributions"
+                                            "description": "UK Government scheme that covers 80% of pay (up to £2,500 a month) for furloughed staff"
                                         },
                                         {
                                             "label": "Government-backed accredited loans or finance agreements",
@@ -3142,7 +3182,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiond39bd617-f259-488e-baf2-a51905d69b10",
-                            "title": "Does your business expect to use the Coronavirus Job Retention Scheme (CJRS) in the <em>next two weeks</em>?",
+                            "title": "Does {{ metadata['ru_name'] }} expect to use the Coronavirus Job Retention Scheme (CJRS) in the <em>next two weeks</em>?",
                             "description": "<p>If you have already applied once, and you plan to apply again for the next claim period, select &quot;Yes&quot;.</p>",
                             "type": "General",
                             "answers": [{
@@ -3173,7 +3213,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question7f5c1f5d-0854-4738-b801-20d9848475c2",
-                            "title": "Is your business <em>intending</em> to apply for any of the following schemes?",
+                            "title": "Is {{ metadata['ru_name'] }} <em>intending</em> to apply for any of the following schemes?",
                             "guidance": {
                                 "content": [{
                                     "description": "Exclude any schemes that your business has already applied for"
@@ -3225,322 +3265,6 @@
                                     }]
                                 }
                             ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block0af2086a-ec1d-4aa0-9d2d-d915a00cf86f",
-                                    "when": [{
-                                        "id": "answerc05c537f-7ef0-426d-bef8-a631236e3baa",
-                                        "condition": "contains all",
-                                        "values": [
-                                            "Job Retention Bonus"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block7186f9d3-751d-4fa5-b61e-7d30f26c09fc"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block7186f9d3-751d-4fa5-b61e-7d30f26c09fc",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question7186f9d3-751d-4fa5-b61e-7d30f26c09fc",
-                            "title": "Why is your business <em>not intending</em> to apply for the Job Retention Bonus?",
-                            "definitions": [{
-                                "title": "What we mean by \"Job Retention Bonus\"",
-                                "content": [{
-                                    "description": "This is a &#xA3;1000 payment to employers for each eligible employee brought back to work from furlough, if continuously employed up to the end of January 2021."
-                                }]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer75d18403-7be9-43b6-8213-63d72084433e",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "157",
-                                "options": [{
-                                        "label": "Furloughed employees will be made redundant before the end of January 2021",
-                                        "value": "Furloughed employees will be made redundant before the end of January 2021"
-                                    },
-                                    {
-                                        "label": "Furloughed employees are not eligible",
-                                        "value": "Furloughed employees are not eligible",
-                                        "description": "Refer to the Gov.UK website to check eligibility"
-                                    },
-                                    {
-                                        "label": "We have not furloughed any employees",
-                                        "value": "We have not furloughed any employees"
-                                    },
-                                    {
-                                        "label": "Other",
-                                        "value": "Other",
-                                        "detail_answer": {
-                                            "label": "Please describe",
-                                            "type": "TextField",
-                                            "id": "answera47b1cc3-4a51-48cc-a9c1-79e7ed5cd740",
-                                            "mandatory": true
-                                        }
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block0af2086a-ec1d-4aa0-9d2d-d915a00cf86f",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question0af2086a-ec1d-4aa0-9d2d-d915a00cf86f",
-                            "title": "Is your business intending to use the<em> Job Support Scheme (JSS)</em>?",
-                            "definitions": [{
-                                "title": "What we mean by the \"Job Support Scheme (JSS)\"",
-                                "content": [{
-                                    "description": "The Job Support Scheme (JSS) is the recently announced UK Government scheme designed to protect viable jobs. The scheme keeps employees attached to the workforce through a combination of employer and government contributions. To check eligibility, go to the GOV.UK website."
-                                }]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer53194a78-89df-48e0-88e5-70050885ea2e",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "171",
-                                "options": [{
-                                        "label": "Intend to use it",
-                                        "value": "Intend to use it"
-                                    },
-                                    {
-                                        "label": "Might use it",
-                                        "value": "Might use it"
-                                    },
-                                    {
-                                        "label": "Do not intend to use it",
-                                        "value": "Do not intend to use it"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block707c4125-b078-4bf4-a5a7-4e98987640e0",
-                                    "when": [{
-                                        "id": "answer53194a78-89df-48e0-88e5-70050885ea2e",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "Not sure"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block0c959ee0-b9bb-425a-943a-35df08bdee71",
-                                    "when": [{
-                                        "id": "answer53194a78-89df-48e0-88e5-70050885ea2e",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "Do not intend to use it"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block93aef192-7786-450a-a3e5-376df7d0ef49"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block93aef192-7786-450a-a3e5-376df7d0ef49",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question93aef192-7786-450a-a3e5-376df7d0ef49",
-                            "title": "Do you expect the Job Support Scheme (JSS) will help prevent redundancies at your business in the <em>next three months</em>?",
-                            "definitions": [{
-                                "title": "What we mean by the \"Job Support Scheme (JSS)\"",
-                                "content": [{
-                                    "description": "The Job Support Scheme (JSS) is the recently announced UK Government scheme designed to protect viable jobs. The scheme keeps employees attached to the workforce through a combination of employer and government contributions. To check eligibility, go to the GOV.UK website."
-                                }]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answere7036984-2a79-4409-9bda-aedda324b340",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "172",
-                                "options": [{
-                                        "label": "Expect all redundancies will be prevented",
-                                        "value": "Expect all redundancies will be prevented"
-                                    },
-                                    {
-                                        "label": "Expect some redundancies will be prevented",
-                                        "value": "Expect some redundancies will be prevented"
-                                    },
-                                    {
-                                        "label": "Expect no redundancies will be prevented",
-                                        "value": "Expect no redundancies will be prevented"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block21570aa6-712a-41fe-907b-5c146584d2cb",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question21570aa6-712a-41fe-907b-5c146584d2cb",
-                            "title": "What<em> percentage of your workforce </em>are you planning to use the Job Support Scheme (JSS) for?",
-                            "definitions": [{
-                                "title": "What we mean by the \"Job Support Scheme (JSS)\"",
-                                "content": [{
-                                    "description": "The Job Support Scheme (JSS) is the recently announced UK Government scheme designed to protect viable jobs. The scheme keeps employees attached to the workforce through a combination of employer and government contributions. To check eligibility, go to the GOV.UK website."
-                                }]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answere51d18ee-7ffa-4137-b42b-21b37562f215",
-                                    "mandatory": false,
-                                    "type": "Percentage",
-                                    "label": "Approximate percentage of the workforce who you will use the JSS for",
-                                    "description": "",
-                                    "q_code": "173",
-                                    "min_value": {
-                                        "value": 0,
-                                        "exclusive": false
-                                    },
-                                    "max_value": {
-                                        "value": 100,
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 0
-                                },
-                                {
-                                    "id": "answerb1ad0df0-9341-4015-ba4d-2da7d6b3e346",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Or select \"Not sure\"if the percentage is not known or is too difficult to calculate",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "174"
-                                    }]
-                                }
-                            ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block707c4125-b078-4bf4-a5a7-4e98987640e0",
-                                    "when": [{
-                                        "id": "answerb1ad0df0-9341-4015-ba4d-2da7d6b3e346",
-                                        "condition": "contains all",
-                                        "values": [
-                                            "Not sure"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block707c4125-b078-4bf4-a5a7-4e98987640e0",
-                                    "when": [{
-                                        "id": "answere51d18ee-7ffa-4137-b42b-21b37562f215",
-                                        "condition": "equals",
-                                        "value": 0
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block707c4125-b078-4bf4-a5a7-4e98987640e0"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block0c959ee0-b9bb-425a-943a-35df08bdee71",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question0c959ee0-b9bb-425a-943a-35df08bdee71",
-                            "title": "Why is your business <em>not intending</em> to use the Job Support Scheme (JSS)?",
-                            "definitions": [{
-                                "title": "What we mean by the \"Job Support Scheme (JSS)\"",
-                                "content": [{
-                                    "description": "The Job Support Scheme (JSS) is the recently announced UK Government scheme designed to protect viable jobs. The scheme keeps employees attached to the workforce through a combination of employer and government contributions. To check eligibility, go to the GOV.UK website."
-                                }]
-                            }],
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer3c4fe8a3-8f42-4953-a6e0-adf49b1f01af",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Our business is not eligible to apply",
-                                            "value": "Our business is not eligible to apply",
-                                            "q_code": "1751",
-                                            "description": "For example,  due to not meeting the financial assessment criteria"
-                                        },
-                                        {
-                                            "label": "None of our employees are eligible",
-                                            "value": "None of our employees are eligible",
-                                            "q_code": "1752",
-                                            "description": "For example, employees are working full-time or are not working sufficient hours"
-                                        },
-                                        {
-                                            "label": "It is not enough help to prevent closure",
-                                            "value": "It is not enough help to prevent closure",
-                                            "q_code": "1753"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "1754",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer5d4255a1-266e-4f40-bfa1-230b7ee88d57",
-                                                "mandatory": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer3c4fe8a3-8f42-4953-a6e0-adf49b1f01af-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "1755"
-                                    }]
-                                }
-                            ]
                         }]
                     },
                     {
@@ -3548,7 +3272,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question707c4125-b078-4bf4-a5a7-4e98987640e0",
-                            "title": "Is your business using any of the following <em>initiatives</em>?",
+                            "title": "Is {{ metadata['ru_name'] }} using any of the following <em>initiatives</em>?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -3561,6 +3285,11 @@
                                             "label": "Business rates holiday",
                                             "value": "Business rates holiday",
                                             "q_code": "891"
+                                        },
+                                        {
+                                            "label": "Eat Out to Help Out Scheme",
+                                            "value": "Eat Out to Help Out Scheme",
+                                            "q_code": "895"
                                         },
                                         {
                                             "label": "Deferring VAT payments",
@@ -3593,7 +3322,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question7a8cfd94-755c-4742-acfa-ca10a4c1cb87",
-                            "title": "Is your business <em>intending</em> to use any of the following <em>initiatives</em>?",
+                            "title": "Is {{ metadata['ru_name'] }} <em>intending</em> to use any of the following <em>initiatives</em>?",
                             "guidance": {
                                 "content": [{
                                     "description": "Exclude any initiatives that your business is already using"
@@ -3656,11 +3385,7 @@
                                     "when": [{
                                         "id": "answerc812da13-73e9-4f73-a310-c0a78ed38524",
                                         "condition": "contains any",
-                                        "values": [
-                                            "COVID-19 grant for small businesses",
-                                            "Economic Resilience Fund",
-                                            "Sector-specific grants"
-                                        ]
+                                        "values": ["COVID-19 grant for small businesses", "Economic Resilience Fund", "Sector-specific grants"]
                                     }]
                                 }
                             },
@@ -3670,11 +3395,7 @@
                                     "when": [{
                                         "id": "answerb579d6b0-bc9e-4d09-bf39-aed0a1f0ef0b",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Small Business Support grant",
-                                            "Pivotal Enterprise Resilience Fund",
-                                            "Sector-specific grants"
-                                        ]
+                                        "values": ["Small Business Support grant", "Pivotal Enterprise Resilience Fund", "Sector-specific grants"]
                                     }]
                                 }
                             },
@@ -3684,10 +3405,7 @@
                                     "when": [{
                                         "id": "answer7df0f422-59af-44a2-9de5-35b06645f367",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Small Business Grant Fund (SBGF)",
-                                            "Sector-specific grants"
-                                        ]
+                                        "values": ["Small Business Grant Fund (SBGF)", "Sector-specific grants"]
                                     }]
                                 }
                             },
@@ -3697,10 +3415,7 @@
                                     "when": [{
                                         "id": "answerb1d499f5-1ad6-469a-9ea2-9b48dea1457c",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Small Business Grant Scheme",
-                                            "Sector-specific grants"
-                                        ]
+                                        "values": ["Small Business Grant Scheme", "Sector-specific grants"]
                                     }]
                                 }
                             },
@@ -3710,10 +3425,7 @@
                                     "when": [{
                                         "id": "answer30aa84e6-07cf-4887-885f-abff7788aefb",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Coronavirus Job Retention Scheme",
-                                            "Government-backed accredited loans or finance agreements"
-                                        ]
+                                        "values": ["Coronavirus Job Retention Scheme", "Government-backed accredited loans or finance agreements"]
                                     }]
                                 }
                             },
@@ -3723,11 +3435,7 @@
                                     "when": [{
                                         "id": "answerf6103d5e-1a15-43d7-be56-1c4dcc960b3a",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Business rates holiday",
-                                            "Deferring VAT payments",
-                                            "HMRC Time To Pay scheme"
-                                        ]
+                                        "values": ["Business rates holiday", "Deferring VAT payments", "HMRC Time To Pay scheme"]
                                     }]
                                 }
                             },
@@ -3743,7 +3451,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question35d5f073-97cd-460f-aa2e-1dd068c6f6ff",
-                            "title": "Did the support received from these <em>initiatives</em> or <em>schemes</em> help your business continue trading?",
+                            "title": "Did the support received from these <em>initiatives</em> or <em>schemes</em> help {{ metadata['ru_name'] }} continue trading?",
                             "guidance": {
                                 "content": [{
                                     "description": "Include any grants or loans from government"
@@ -3796,7 +3504,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1633314b-b819-4309-917a-1a5d44940027",
-                            "title": "Has your business <em>received</em> any other financial assistance from banks or building societies?",
+                            "title": "Has {{ metadata['ru_name'] }} <em>received</em> any other financial assistance from banks or building societies?",
                             "guidance": {
                                 "content": [{
                                     "description": "Exclude government-backed loans"
@@ -3842,9 +3550,7 @@
                                     "when": [{
                                             "id": "answere72a6e53-f48d-4cf9-ad57-a4f99f2511f5",
                                             "condition": "contains any",
-                                            "values": [
-                                                "Yes"
-                                            ]
+                                            "values": ["Yes"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3869,7 +3575,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question18da18a3-82ce-4b60-a710-fe4f4b1e90f6",
-                            "title": "Did the financial assistance received from banks or building societies help  your business continue trading?",
+                            "title": "Did the financial assistance received from banks or building societies help {{ metadata['ru_name'] }} continue trading?",
                             "guidance": {
                                 "content": [{
                                     "description": "Exclude government-backed loans"
@@ -3904,7 +3610,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiona2d0a9ef-9bfc-4ead-867f-bad93d6a3bca",
-                            "title": "How long do you think your business&apos;s cash reserves will last?",
+                            "title": "How long do you think {{ metadata['ru_name'] }}&apos;s cash reserves will last?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer32a38f2a-e599-4ff7-9df9-b0419be84b96",
@@ -3942,49 +3648,11 @@
                         }]
                     },
                     {
-                        "id": "blockd32f2663-6840-4e76-8acd-fc269330b79c",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questiond32f2663-6840-4e76-8acd-fc269330b79c",
-                            "title": "How much confidence does your business have that it will <em>survive the next three months</em>?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerd8417fa1-7e84-4ff7-8c8e-1b933d838a04",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "158",
-                                "options": [{
-                                        "label": "High confidence",
-                                        "value": "High confidence"
-                                    },
-                                    {
-                                        "label": "Moderate confidence",
-                                        "value": "Moderate confidence"
-                                    },
-                                    {
-                                        "label": "Low confidence",
-                                        "value": "Low confidence"
-                                    },
-                                    {
-                                        "label": "No confidence",
-                                        "value": "No confidence"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }]
-                    },
-                    {
                         "id": "block72dea1cb-84b1-4b28-9dbc-5ce5a25411ee",
                         "type": "Question",
                         "questions": [{
                             "id": "question72dea1cb-84b1-4b28-9dbc-5ce5a25411ee",
-                            "title": "What is your business&apos;s <em>risk of insolvency</em>?",
+                            "title": "What is {{ metadata['ru_name'] }}&apos;s <em>risk of insolvency</em>?",
                             "definitions": [{
                                 "title": "What we mean by \"insolvency\"",
                                 "content": [{
@@ -4032,10 +3700,7 @@
                                     "when": [{
                                         "id": "answerd359ff9d-fc3c-4f6a-b85d-dfdf5f1eac7e",
                                         "condition": "contains any",
-                                        "values": [
-                                            "The business is insolvent",
-                                            "Not sure"
-                                        ]
+                                        "values": ["Not sure"]
                                     }]
                                 }
                             },
@@ -4051,7 +3716,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1963d9f7-d4bd-45bd-b503-908179f0cced",
-                            "title": "How has the coronavirus (COVID-19) pandemic affected your business&apos;s <em>risk of insolvency?  </em>",
+                            "title": "How has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s <em>risk of insolvency?  </em>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer1623c92a-0f31-41a4-b3ca-cef195e34252",
@@ -4091,9 +3756,7 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     }
                 ]
@@ -4109,7 +3772,7 @@
                         "type": "Interstitial",
                         "id": "group1760a554-060f-4e6a-bf64-970f98d84ac7-introduction",
                         "title": "Operational performance",
-                        "description": "<p>This section asks for information about your workforce such as the:</p><ul><li>percentage on furlough leave or working from home</li><li>percentage returning from furlough or homeworking</li><li>percentage of furloughed staff receiving top-ups in addition to the Coronavirus Job Retention Scheme (CJRS) payments</li></ul><p>It also asks about future site closures.</p>"
+                        "description": "<p>This section asks for information about your workforce such as the: </p><ul><li>percentage, for example, on furlough leave or working remotely </li><li>percentage returning from furlough or remote working </li><li>percentage of furloughed staff receiving top-ups in addition to the Coronavirus Job Retention Scheme (CJRS) payments</li><li>number of vacancies</li></ul><p>It also asks about safety measures in the workplace and expansion plans.</p>"
                     },
                     {
                         "id": "block90beb26c-59f1-4f7f-9dee-e9a822e871be",
@@ -4117,7 +3780,7 @@
                         "questions": [{
                             "id": "question90beb26c-59f1-4f7f-9dee-e9a822e871be",
                             "title": "In the <em>last two weeks</em>, approximately what percentage of {{ metadata['ru_name'] }}&apos;s workforce were:",
-                            "description": "<p>Your answers should <em>add up to 100%</em>. If your workforce did not fall into one of the categories, enter &quot;0&quot;.  Rough estimates are acceptable. </p>",
+                            "description": "<p>Your answers should <em>add up to 100%</em>. If your workforce did not fall into one of the categories, enter &apos;0&apos;. </p>",
                             "type": "Calculated",
                             "answers": [{
                                     "id": "answer92e4004a-ceef-424e-b5fa-d93520bc4780",
@@ -4134,14 +3797,14 @@
                                         "value": 100,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 2
+                                    "decimal_places": 0
                                 },
                                 {
                                     "id": "answerbc9d0665-2c42-4e04-988b-34423d020920",
                                     "mandatory": true,
                                     "type": "Percentage",
                                     "label": "Working at their normal place of work",
-                                    "description": "Include those who were normally homeworkers before the pandemic",
+                                    "description": "Include those who are normally remote workers",
                                     "q_code": "3741",
                                     "min_value": {
                                         "value": 0,
@@ -4151,14 +3814,14 @@
                                         "value": 100,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 2
+                                    "decimal_places": 0
                                 },
                                 {
                                     "id": "answerbec1b9cb-9f1f-471e-a874-f25ceaeef160",
                                     "mandatory": true,
                                     "type": "Percentage",
-                                    "label": "Working from home instead of at their normal place of work",
-                                    "description": "Exclude those who were normally homeworkers before the pandemic",
+                                    "label": "Working remotely instead of at their normal place of work",
+                                    "description": "Exclude those who are normally remote workers",
                                     "q_code": "3742",
                                     "min_value": {
                                         "value": 0,
@@ -4168,13 +3831,13 @@
                                         "value": 100,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 2
+                                    "decimal_places": 0
                                 },
                                 {
                                     "id": "answerb6a74106-d408-491a-898c-42534143e246",
                                     "mandatory": true,
                                     "type": "Percentage",
-                                    "label": "On sick leave or not working due to coronavirus (COVID-19) symptoms, self-isolation or quarantine",
+                                    "label": "On sick leave or in self-isolation due to coronavirus (COVID-19)",
                                     "description": "With statutory or company pay",
                                     "q_code": "372",
                                     "min_value": {
@@ -4185,7 +3848,7 @@
                                         "value": 100,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 2
+                                    "decimal_places": 0
                                 },
                                 {
                                     "id": "answer5319de32-f061-4988-88a4-95637cca3873",
@@ -4202,7 +3865,7 @@
                                         "value": 100,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 2
+                                    "decimal_places": 0
                                 },
                                 {
                                     "id": "answer2218d478-9b02-4806-babb-f6dc3a92cb55",
@@ -4219,7 +3882,7 @@
                                         "value": 100,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 2
+                                    "decimal_places": 0
                                 }
                             ],
                             "calculations": [{
@@ -4232,15 +3895,23 @@
                                     "answer5319de32-f061-4988-88a4-95637cca3873",
                                     "answer2218d478-9b02-4806-babb-f6dc3a92cb55"
                                 ],
-                                "conditions": [
-                                    "equals"
-                                ],
+                                "conditions": ["equals"],
                                 "value": 100
                             }]
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block71b73456-06c3-43f8-b6af-4c0f4d1f8343",
+                                    "block": "blockb12b5e7d-c421-4252-a174-42a2a0210c6b",
+                                    "when": [{
+                                        "id": "answer2218d478-9b02-4806-babb-f6dc3a92cb55",
+                                        "condition": "greater than",
+                                        "value": 0
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockb646b254-98b4-4d42-ab91-c13b5fec21b0",
                                     "when": [{
                                         "id": "answer92e4004a-ceef-424e-b5fa-d93520bc4780",
                                         "condition": "greater than",
@@ -4276,46 +3947,26 @@
                             },
                             {
                                 "goto": {
-                                    "group": "summary-group"
+                                    "block": "blocke94a866c-fda4-469d-ba7d-e858307138cb"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "block71b73456-06c3-43f8-b6af-4c0f4d1f8343",
+                        "id": "blockb12b5e7d-c421-4252-a174-42a2a0210c6b",
                         "type": "Question",
                         "questions": [{
-                            "id": "question71b73456-06c3-43f8-b6af-4c0f4d1f8343",
-                            "title": "Of those partially and fully furloughed, what percentage are <em>fully furloughed</em>?",
-                            "description": "<p>&quot;Fully furloughed&quot; refers to workers who are not working any of their normal hours and who you are claiming for under the Coronavirus Job Retention Scheme (CJRS). </p>",
-                            "guidance": {
-                                "content": [{
-                                    "description": "Exclude furloughed staff who are working some hours. These staff are considered &quot;partially furloughed&quot;"
-                                }]
-                            },
-                            "definitions": [{
-                                "title": "How you might answer this question",
-                                "content": [{
-                                    "description": "If your answer to the previous question was that 80% of your workforce were on partial or full furlough leave, and all of these are on full furlough, then the answer would be 100%. If half of the 80% were on full furlough leave, and the other half partially furloughed, then the answer would be 50%."
-                                }]
-                            }],
+                            "id": "questionb12b5e7d-c421-4252-a174-42a2a0210c6b",
+                            "title": "You said that {{ answers['answer2218d478-9b02-4806-babb-f6dc3a92cb55'] }}% of your workforce were classified as &quot;other&quot;. Please describe what this includes",
                             "type": "General",
                             "answers": [{
-                                "id": "answera2a063e3-2dc7-4666-bf2d-937e1aaeefb9",
-                                "mandatory": true,
-                                "type": "Percentage",
-                                "label": "Approximate percentage of furloughed staff who are \"fully furloughed\"",
+                                "id": "answer4c92cb9c-0ac7-43ef-a57f-e44350703379",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
                                 "description": "",
-                                "q_code": "176",
-                                "min_value": {
-                                    "value": 0,
-                                    "exclusive": false
-                                },
-                                "max_value": {
-                                    "value": 100,
-                                    "exclusive": false
-                                },
-                                "decimal_places": 2
+                                "q_code": "96",
+                                "max_length": 2000
                             }]
                         }],
                         "routing_rules": [{
@@ -4330,7 +3981,33 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block66bef12d-2546-4df7-9e64-15e48bdf99c4"
+                                    "block": "block66bef12d-2546-4df7-9e64-15e48bdf99c4",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Currently trading and has been for more than the last two weeks",
+                                            "Started trading within the last two weeks after a pause in trading"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block66bdbc42-37a9-4134-9f22-235e40594178",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Paused trading but intends to restart in the next two weeks",
+                                            "Paused trading and does not intend to restart in the next two weeks"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blocke94a866c-fda4-469d-ba7d-e858307138cb"
                                 }
                             }
                         ]
@@ -4340,23 +4017,19 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionb646b254-98b4-4d42-ab91-c13b5fec21b0",
-                            "title": "Is your business providing top-ups to any of your furloughed workers&apos; pay, <em>above</em> the combined employer and Coronavirus Job Retention Scheme (CJRS) 80% contribution?",
+                            "title": "Is {{ metadata['ru_name'] }} providing top-ups to any <em>furloughed workers&apos;</em> pay, on top of the Coronavirus Job Retention Scheme (CJRS) payments?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "top-ups paid by the employer to bring partially or fully furloughed workers&apos; pay over the 80% threshold"
-                                        ]
+                                        "list": ["workers on partial and full furlough leave"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "employer&apos;s contributions for pay, National Insurance or pension payments, that are required under the CJRS terms and conditions"
-                                        ]
+                                        "list": ["employer&#x2019;s NI and contribution to pension schemes"]
                                     }
                                 ]
                             },
@@ -4389,9 +4062,7 @@
                                     "when": [{
                                         "id": "answer3b3c0791-e310-4279-9116-92f1040606b4",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes, the business is providing a top-up"
-                                        ]
+                                        "values": ["Yes, the business is providing a top-up"]
                                     }]
                                 }
                             },
@@ -4401,10 +4072,7 @@
                                     "when": [{
                                             "id": "answer3b3c0791-e310-4279-9116-92f1040606b4",
                                             "condition": "contains any",
-                                            "values": [
-                                                "No, the business is not providing a top-up",
-                                                "Not sure"
-                                            ]
+                                            "values": ["No, the business is not providing a top-up", "Not sure"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -4423,10 +4091,7 @@
                                     "when": [{
                                             "id": "answer3b3c0791-e310-4279-9116-92f1040606b4",
                                             "condition": "contains any",
-                                            "values": [
-                                                "No, the business is not providing a top-up",
-                                                "Not sure"
-                                            ]
+                                            "values": ["No, the business is not providing a top-up", "Not sure"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -4441,7 +4106,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "summary-group"
+                                    "block": "blocke94a866c-fda4-469d-ba7d-e858307138cb"
                                 }
                             }
                         ]
@@ -4451,7 +4116,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4f6d1ad5-2f37-4135-92fc-339b1943fc0e",
-                            "title": "Of those on <em>furlough leave</em>, approximately what <em>percentage of workers</em> have had their pay topped up, above the combined employer and Coronavirus Job Retention Scheme (CJRS) 80% contribution?",
+                            "title": "Of those on <em>furlough leave</em>, approximately what <em>percentage of workers</em> have had their pay topped up?",
                             "description": "<p>Your answer should be out of 100%. </p>",
                             "guidance": {
                                 "content": [{
@@ -4468,7 +4133,7 @@
                             "definitions": [{
                                 "title": "How you might answer this question",
                                 "content": [{
-                                    "description": "If 50% of your workforce have been furloughed, but you are topping up pay above the required 80% for <strong>all</strong> of those furloughed workers, the answer would be 100%. If you are topping up the pay for <strong>half</strong> of those furloughed workers, the answer would be 50%."
+                                    "description": "If 50% of your workforce have been furloughed, but you are topping up the pay for <strong>all</strong> of those furloughed workers, the answer would be 100%. If you are topping up the pay for <strong>half</strong> of those furloughed workers, the answer would be 50%."
                                 }]
                             }],
                             "type": "General",
@@ -4487,7 +4152,7 @@
                                     "value": 100,
                                     "exclusive": false
                                 },
-                                "decimal_places": 2
+                                "decimal_places": 0
                             }]
                         }],
                         "routing_rules": [{
@@ -4515,15 +4180,15 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question66bef12d-2546-4df7-9e64-15e48bdf99c4",
-                            "title": "In the <em>last two weeks</em>, approximately what percentage of your workforce have:",
+                            "title": "In the <em>last two weeks</em>, approximately what percentage of {{ metadata['ru_name'] }}&apos;s workforce have:",
                             "type": "General",
                             "answers": [{
                                     "id": "answer647b4d64-5529-44ae-8412-903ff0250f71",
                                     "mandatory": true,
                                     "type": "Percentage",
-                                    "label": "Returned from furlough to homeworking, either fully or partially",
+                                    "label": "Returned from furlough leave, either fully or partially",
                                     "description": "",
-                                    "q_code": "9911",
+                                    "q_code": "991",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4532,31 +4197,14 @@
                                         "value": 100,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 2
-                                },
-                                {
-                                    "id": "answer9a9fa1a9-418b-4d35-a9b6-2162c914d912",
-                                    "mandatory": true,
-                                    "type": "Percentage",
-                                    "label": "Returned from furlough to the normal workplace, either fully or partially",
-                                    "description": "",
-                                    "q_code": "9912",
-                                    "min_value": {
-                                        "value": 0,
-                                        "exclusive": false
-                                    },
-                                    "max_value": {
-                                        "value": 100,
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 2
+                                    "decimal_places": 0
                                 },
                                 {
                                     "id": "answer8256ff1c-5839-4b89-8d1d-9f76e6280683",
                                     "mandatory": true,
                                     "type": "Percentage",
-                                    "label": "Moved from homeworking  to the normal workplace",
-                                    "description": "Exclude those who normally work from home before the pandemic",
+                                    "label": "Moved from remote working  to the normal workplace",
+                                    "description": "Exclude those who would normally work remotely prior to the pandemic",
                                     "q_code": "992",
                                     "min_value": {
                                         "value": 0,
@@ -4566,7 +4214,7 @@
                                         "value": 100,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 2
+                                    "decimal_places": 0
                                 }
                             ]
                         }]
@@ -4576,15 +4224,15 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question66bdbc42-37a9-4134-9f22-235e40594178",
-                            "title": "In the <em>next two weeks</em>, approximately what percentage of your workforce will:",
+                            "title": "In the <em>next two weeks</em>, approximately what percentage of {{ metadata['ru_name'] }}&apos;s workforce will:",
                             "type": "General",
                             "answers": [{
                                     "id": "answerf99be2e6-938d-4adf-99b5-942b78122fda",
                                     "mandatory": true,
                                     "type": "Percentage",
-                                    "label": "Return from furlough to homeworking, either fully or partially",
-                                    "description": "",
-                                    "q_code": "10011",
+                                    "label": "Return to work, either full or part-time, from furlough",
+                                    "description": "Include those returning from furlough to remote working",
+                                    "q_code": "1001",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4593,31 +4241,14 @@
                                         "value": 100,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 2
-                                },
-                                {
-                                    "id": "answer756955bc-1503-49ff-9275-c235644e9418",
-                                    "mandatory": true,
-                                    "type": "Percentage",
-                                    "label": "Return from furlough to the normal workplace, either fully or partially",
-                                    "description": "",
-                                    "q_code": "10012",
-                                    "min_value": {
-                                        "value": 0,
-                                        "exclusive": false
-                                    },
-                                    "max_value": {
-                                        "value": 100,
-                                        "exclusive": false
-                                    },
-                                    "decimal_places": 2
+                                    "decimal_places": 0
                                 },
                                 {
                                     "id": "answer00c0324e-6deb-404a-b425-563ebaf3829d",
                                     "mandatory": true,
                                     "type": "Percentage",
-                                    "label": "Return to the workplace from homeworking, either fully or partially",
-                                    "description": "Exclude those who normally worked from home before the pandemic",
+                                    "label": "Return to the workplace from remote working",
+                                    "description": "Exclude those who would normally work remotely prior to the pandemic",
                                     "q_code": "1002",
                                     "min_value": {
                                         "value": 0,
@@ -4627,7 +4258,7 @@
                                         "value": 100,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 2
+                                    "decimal_places": 0
                                 },
                                 {
                                     "id": "answer325edc5e-846a-4c17-870d-fce3c9b4c9fb",
@@ -4636,25 +4267,425 @@
                                     "label": "Be made permanently redundant",
                                     "description": "",
                                     "q_code": "1003",
-                                    "decimal_places": 2
+                                    "decimal_places": 0
                                 }
                             ]
                         }]
                     },
                     {
-                        "id": "block86e4d1d0-64f2-4005-a2eb-40403572506f",
+                        "id": "blocke94a866c-fda4-469d-ba7d-e858307138cb",
                         "type": "Question",
                         "questions": [{
-                            "id": "question86e4d1d0-64f2-4005-a2eb-40403572506f",
-                            "title": "Is your business intending to permanently close any business sites in the <em>next three months</em>?",
+                            "id": "questione94a866c-fda4-469d-ba7d-e858307138cb",
+                            "title": "How many <em>external job vacancies</em> is  {{ metadata['ru_name'] }} actively recruiting for?",
                             "type": "General",
                             "answers": [{
-                                "id": "answerb604a1eb-6dd0-4dda-b0b0-598b383c6cce",
+                                "id": "answer6fc41202-89c7-48f2-b65a-7801cd5086e4",
+                                "mandatory": true,
+                                "type": "Number",
+                                "label": "Number of external job vacancies",
+                                "description": "",
+                                "q_code": "101",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
+                                },
+                                "decimal_places": 0
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block29eac987-68af-41fc-adaf-53c45511d4da",
+                                    "when": [{
+                                        "id": "answer6fc41202-89c7-48f2-b65a-7801cd5086e4",
+                                        "condition": "equals",
+                                        "value": 0
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block653770e8-e13b-440e-8146-30b8e2c5fdf9"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block653770e8-e13b-440e-8146-30b8e2c5fdf9",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question653770e8-e13b-440e-8146-30b8e2c5fdf9",
+                            "title": "Of the {{ answers['answer6fc41202-89c7-48f2-b65a-7801cd5086e4'] | format_number }} external job vacancies, how many were <em>new</em> in the <em>last two weeks</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerb8942943-ba5d-4772-ae72-38b84abaeec0",
+                                "mandatory": true,
+                                "type": "Number",
+                                "label": "Number of new external job vacancies",
+                                "description": "",
+                                "q_code": "102",
+                                "max_value": {
+                                    "answer_id": "answer6fc41202-89c7-48f2-b65a-7801cd5086e4",
+                                    "exclusive": false
+                                },
+                                "decimal_places": 0
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block29eac987-68af-41fc-adaf-53c45511d4da",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question29eac987-68af-41fc-adaf-53c45511d4da",
+                            "title": "Is {{ metadata['ru_name'] }} using, or intending to use, any of the following <em>safety measures</em> in the workplace?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Personal Protective Equipment (PPE)",
+                                            "value": "Personal Protective Equipment (PPE)",
+                                            "q_code": "951",
+                                            "description": "For example, masks, gloves, etc."
+                                        },
+                                        {
+                                            "label": "Temperature checks",
+                                            "value": "Temperature checks",
+                                            "q_code": "959"
+                                        },
+                                        {
+                                            "label": "Routine COVID-19 testing",
+                                            "value": "Routine COVID-19 testing",
+                                            "q_code": "9510"
+                                        },
+                                        {
+                                            "label": "Social distancing",
+                                            "value": "Social distancing",
+                                            "q_code": "952"
+                                        },
+                                        {
+                                            "label": "Shift working",
+                                            "value": "Shift working",
+                                            "q_code": "953"
+                                        },
+                                        {
+                                            "label": "Working in fixed teams",
+                                            "value": "Working in fixed teams",
+                                            "q_code": "955"
+                                        },
+                                        {
+                                            "label": "Staggered breaks",
+                                            "value": "Staggered breaks",
+                                            "q_code": "954"
+                                        },
+                                        {
+                                            "label": "Hygiene measures",
+                                            "value": "Hygiene measures",
+                                            "q_code": "9511",
+                                            "description": "For example, increased cleaning of work areas and equipment"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "956",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answer36243886-6609-4cf4-af4b-111c29e9cc4f",
+                                                "mandatory": false
+                                            }
+                                        },
+                                        {
+                                            "label": "None of these",
+                                            "value": "None of these",
+                                            "q_code": "957"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "958"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockb8481e29-f74a-4b32-8b95-2720c2842e0c",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Currently trading and has been for more than the last two weeks",
+                                                "Started trading within the last two weeks after a pause in trading"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Personal Protective Equipment (PPE)",
+                                                "Temperature checks",
+                                                "Routine COVID-19 testing",
+                                                "Social distancing",
+                                                "Shift working",
+                                                "Working in fixed teams",
+                                                "Staggered breaks",
+                                                "Hygiene measures",
+                                                "Other"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Currently trading and has been for more than the last two weeks",
+                                                "Started trading within the last two weeks after a pause in trading"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f",
+                                            "condition": "contains any",
+                                            "values": ["None of these"]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Currently trading and has been for more than the last two weeks",
+                                                "Started trading within the last two weeks after a pause in trading"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f-exclusive",
+                                            "condition": "contains any",
+                                            "values": ["Not sure"]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block7ff4579e-ede4-4d33-804e-54df3c02d837",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Paused trading but intends to restart in the next two weeks",
+                                                "Paused trading and does not intend to restart in the next two weeks"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Personal Protective Equipment (PPE)",
+                                                "Temperature checks",
+                                                "Routine COVID-19 testing",
+                                                "Social distancing",
+                                                "Shift working",
+                                                "Working in fixed teams",
+                                                "Staggered breaks",
+                                                "Hygiene measures",
+                                                "Other"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Paused trading but intends to restart in the next two weeks",
+                                                "Paused trading and does not intend to restart in the next two weeks"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f",
+                                            "condition": "contains any",
+                                            "values": ["None of these"]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
+                                    "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Paused trading but intends to restart in the next two weeks",
+                                                "Paused trading and does not intend to restart in the next two weeks"
+                                            ]
+                                        },
+                                        {
+                                            "id": "answerc46ba0d2-68da-4098-af49-b6c5981c4e8f-exclusive",
+                                            "condition": "contains any",
+                                            "values": ["Not sure"]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockb8481e29-f74a-4b32-8b95-2720c2842e0c",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionb8481e29-f74a-4b32-8b95-2720c2842e0c",
+                            "title": "How has the implementation of these safety measures affected {{ metadata['ru_name'] }}&apos;s <em>operating costs</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer740ce2f4-18bd-48b9-a01d-47854e1e1796",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "131",
+                                "q_code": "116",
+                                "options": [{
+                                        "label": "Operating costs have substantially increased",
+                                        "value": "Operating costs have substantially increased"
+                                    },
+                                    {
+                                        "label": "Operating costs have increased a little",
+                                        "value": "Operating costs have increased a little"
+                                    },
+                                    {
+                                        "label": "Operating costs have stayed the same",
+                                        "value": "Operating costs have stayed the same"
+                                    },
+                                    {
+                                        "label": "Operating costs have decreased a little",
+                                        "value": "Operating costs have decreased a little"
+                                    },
+                                    {
+                                        "label": "Operating costs have substantially decreased",
+                                        "value": "Operating costs have substantially decreased"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Currently trading and has been for more than the last two weeks",
+                                            "Started trading within the last two weeks after a pause in trading"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block7ff4579e-ede4-4d33-804e-54df3c02d837"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block7ff4579e-ede4-4d33-804e-54df3c02d837",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question7ff4579e-ede4-4d33-804e-54df3c02d837",
+                            "title": "How do you expect the implementation of these safety measures to affect {{ metadata['ru_name'] }}&apos;s <em>operating costs</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer000984b9-561c-40ba-b529-6faa4d95fc1b",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "117",
+                                "options": [{
+                                        "label": "Operating costs will substantially increase",
+                                        "value": "Operating costs will substantially increase"
+                                    },
+                                    {
+                                        "label": "Operating costs will increase a little",
+                                        "value": "Operating costs will increase a little"
+                                    },
+                                    {
+                                        "label": "Operating costs will stay the same",
+                                        "value": "Operating costs will stay the same"
+                                    },
+                                    {
+                                        "label": "Operating costs will decrease a little",
+                                        "value": "Operating costs will decrease a little"
+                                    },
+                                    {
+                                        "label": "Operating costs will substantially decrease",
+                                        "value": "Operating costs will substantially decrease"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3eee8428-2cf5-4fe2-b1c9-94d8c5833673",
+                            "title": "Was {{ metadata['ru_name'] }} planning to <em>expand</em> its business before the coronavirus (COVID-19) pandemic?",
+                            "description": "<p>For example, expansion into new sectors, or an increase in workforce, sites, production or services.</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerc499f057-1ce0-4380-adc5-7d234c1dc14f",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "154",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -4672,319 +4703,56 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group1d4a72f2-3d7d-4b7b-916a-126076379b2f",
+                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
                                     "when": [{
-                                        "id": "answerb604a1eb-6dd0-4dda-b0b0-598b383c6cce",
+                                        "id": "answerc499f057-1ce0-4380-adc5-7d234c1dc14f",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure"
-                                        ]
+                                        "values": ["Not sure"]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "block1cd3987f-bdcc-4f9f-bc8c-137a27dde706"
+                                    "block": "blockf802e6e1-1241-4f66-bfd2-17c249fb00a2"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "block1cd3987f-bdcc-4f9f-bc8c-137a27dde706",
+                        "id": "blockf802e6e1-1241-4f66-bfd2-17c249fb00a2",
                         "type": "Question",
                         "questions": [{
-                            "id": "question1cd3987f-bdcc-4f9f-bc8c-137a27dde706",
-                            "title": "Where in the UK are the business sites that will permanently close in the <em>next three months</em>?",
-                            "description": "<p>Select all the regions where the majority of the business&apos;s sites would be permanently closed.</p>",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer9c191711-3e28-49a8-9c1d-4269abbcc67c",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Northern Ireland",
-                                            "value": "Northern Ireland",
-                                            "q_code": "1641"
-                                        },
-                                        {
-                                            "label": "Scotland",
-                                            "value": "Scotland",
-                                            "q_code": "1642"
-                                        },
-                                        {
-                                            "label": "Wales",
-                                            "value": "Wales",
-                                            "q_code": "1643"
-                                        },
-                                        {
-                                            "label": "East of England",
-                                            "value": "East of England",
-                                            "q_code": "1644"
-                                        },
-                                        {
-                                            "label": "East Midlands",
-                                            "value": "East Midlands",
-                                            "q_code": "1645"
-                                        },
-                                        {
-                                            "label": "Greater London",
-                                            "value": "Greater London",
-                                            "q_code": "1646"
-                                        },
-                                        {
-                                            "label": "North East of England",
-                                            "value": "North East of England",
-                                            "q_code": "1647"
-                                        },
-                                        {
-                                            "label": "North West of England",
-                                            "value": "North West of England",
-                                            "q_code": "1648"
-                                        },
-                                        {
-                                            "label": "South East of England",
-                                            "value": "South East of England",
-                                            "q_code": "1649"
-                                        },
-                                        {
-                                            "label": "South West of England",
-                                            "value": "South West of England",
-                                            "q_code": "16410"
-                                        },
-                                        {
-                                            "label": "West Midlands",
-                                            "value": "West Midlands",
-                                            "q_code": "16411"
-                                        },
-                                        {
-                                            "label": "Yorkshire and The Humber",
-                                            "value": "Yorkshire and The Humber",
-                                            "q_code": "16412"
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "16413"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer9c191711-3e28-49a8-9c1d-4269abbcc67c-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "None of our business sites will permanently close in the next three months",
-                                        "value": "None of our business sites will permanently close in the next three months",
-                                        "q_code": "1640"
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "block11a1a51e-0f69-4a63-90fc-55bb32a6ab0f",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question11a1a51e-0f69-4a63-90fc-55bb32a6ab0f",
-                            "title": "How do you expect closing these sites to affect your workforce?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answere83681e9-9719-4544-aabb-735a01ba55a6",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Decreased hours",
-                                            "value": "Decreased hours",
-                                            "q_code": "1321"
-                                        },
-                                        {
-                                            "label": "Increased hours",
-                                            "value": "Increased hours",
-                                            "q_code": "1322"
-                                        },
-                                        {
-                                            "label": "Moved to remote working",
-                                            "value": "Moved to remote working",
-                                            "q_code": "1324"
-                                        },
-                                        {
-                                            "label": "Permanent redundancies",
-                                            "value": "Permanent redundancies",
-                                            "q_code": "1323"
-                                        },
-                                        {
-                                            "label": "Relocation",
-                                            "value": "Relocation",
-                                            "q_code": "1325"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "1326",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer1e682257-bdc1-42d3-9282-5f9f9a5320e2",
-                                                "mandatory": false
-                                            }
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "1327"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answere83681e9-9719-4544-aabb-735a01ba55a6-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Workforce will not be affected",
-                                        "value": "Workforce will not be affected",
-                                        "q_code": "1320"
-                                    }]
-                                }
-                            ]
-                        }]
-                    }
-                ],
-                "skip_conditions": [{
-                        "when": [{
-                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "not set"
-                        }]
-                    },
-                    {
-                        "when": [{
-                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
-                        }]
-                    }
-                ]
-            }]
-        },
-        {
-            "id": "section1d4a72f2-3d7d-4b7b-916a-126076379b2f",
-            "title": "Workforce characteristics",
-            "groups": [{
-                "id": "group1d4a72f2-3d7d-4b7b-916a-126076379b2f",
-                "title": "Workforce characteristics",
-                "blocks": [{
-                        "type": "Interstitial",
-                        "id": "group1d4a72f2-3d7d-4b7b-916a-126076379b2f-introduction",
-                        "title": "Workforce characteristics",
-                        "description": "<p>This section asks for information about the characteristics of your workforce. </p><p>We are asking these questions to help understand how workforce characteristics may have changed across different sectors</p>"
-                    },
-                    {
-                        "id": "block3d47a35e-6975-4425-8f91-3f2e71a73c64",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question3d47a35e-6975-4425-8f91-3f2e71a73c64",
-                            "title": "Since the start of the coronavirus (COVID-19) pandemic, how has the number of workers from <em>within the European Union (EU)</em> at your business changed?",
-                            "guidance": {
-                                "content": [{
-                                    "description": "Exclude those from  the UK (England, Scotland, Wales and Northern Ireland)"
-                                }]
-                            },
+                            "id": "questionf802e6e1-1241-4f66-bfd2-17c249fb00a2",
+                            "title": "Has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s plans for expanding the business?",
                             "type": "General",
                             "answers": [{
-                                "id": "answer98b2a175-b90d-494d-b515-53a5b86eec6f",
+                                "id": "answere3de079a-fc34-453b-a5e6-e4e515e6a2b7",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "177",
+                                "q_code": "155",
                                 "options": [{
-                                        "label": "Number of workers from within the EU has increased",
-                                        "value": "Number of workers from within the EU has increased"
+                                        "label": "Plans are more ambitious",
+                                        "value": "Plans are more ambitious"
                                     },
                                     {
-                                        "label": "Number of workers from within the EU has stayed the same",
-                                        "value": "Number of workers from within the EU has stayed the same"
+                                        "label": "No change in plans",
+                                        "value": "No change in plans"
                                     },
                                     {
-                                        "label": "Number of workers from within the EU has decreased",
-                                        "value": "Number of workers from within the EU has decreased"
+                                        "label": "Plans are less ambitious",
+                                        "value": "Plans are less ambitious"
+                                    },
+                                    {
+                                        "label": "Plans have been postponed or cancelled",
+                                        "value": "Plans have been postponed or cancelled"
                                     },
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Prefer not to say",
-                                        "value": "Prefer not to say"
                                     }
-                                ],
-                                "guidance": {
-                                    "show_guidance": "Why are we asking this question?",
-                                    "hide_guidance": "Why are we asking this question?",
-                                    "content": [{
-                                        "description": "We want to understand how workforce characteristics may have changed across different sectors"
-                                    }]
-                                }
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block9dffc0c0-f561-4398-9d51-b46e200b44d7",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question9dffc0c0-f561-4398-9d51-b46e200b44d7",
-                            "title": "Since the start of the coronavirus (COVID-19) pandemic, how has the number of workers from <em>outside the European Union (EU)</em> at your business changed?",
-                            "guidance": {
-                                "content": [{
-                                    "description": "Exclude those from  the UK (England, Scotland, Wales and Northern Ireland)"
-                                }]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerbc5f3690-75a5-45ee-b8d7-f5dcee6ef6f8",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "178",
-                                "options": [{
-                                        "label": "Number of workers from outside the EU has increased",
-                                        "value": "Number of workers from outside the EU has increased"
-                                    },
-                                    {
-                                        "label": "Number of workers from outside the EU has stayed the same",
-                                        "value": "Number of workers from outside the EU has stayed the same"
-                                    },
-                                    {
-                                        "label": "Number of workers from outside the EU has decreased",
-                                        "value": "Number of workers from outside the EU has decreased"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Prefer not to say",
-                                        "value": "Prefer not to say"
-                                    }
-                                ],
-                                "guidance": {
-                                    "show_guidance": "Why are we asking this question?",
-                                    "hide_guidance": "Why are we asking this question?",
-                                    "content": [{
-                                        "description": "We want to understand how workforce characteristics may have changed across different sectors"
-                                    }]
-                                }
+                                ]
                             }]
                         }]
                     }
@@ -4999,9 +4767,7 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     }
                 ]
@@ -5018,7 +4784,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question840d9b9e-842b-4307-9006-9d93de8466ce",
-                            "title": "Please tell us anything else that may help us understand your business&apos;s current situation",
+                            "title": "Let us know anything else that you think may help us understand {{ metadata['ru_name'] }}&apos;s current situation",
                             "type": "General",
                             "answers": [{
                                 "id": "answerf2cd92db-8721-45eb-be99-848705657b88",
@@ -5037,8 +4803,7 @@
                     "title": "Summary",
                     "blocks": [{
                         "type": "Summary",
-                        "id": "summary-block",
-                        "collapsible": true
+                        "id": "summary-block"
                     }]
                 }
             ]
