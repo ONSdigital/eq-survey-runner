@@ -248,6 +248,7 @@ def get_thank_you(schema, metadata, eq_id, form_type):
         if _is_submission_viewable(schema.json, session_data.submitted_time):
             view_submission_url = url_for('.get_view_submission', eq_id=eq_id, form_type=form_type)
             view_submission_duration = humanize.naturaldelta(timedelta(seconds=schema.json['view_submitted_response']['duration']))
+        ons_cookie_policy = request.cookies.get('ons_cookie_message_displayed')
 
         return render_theme_template(schema.json['theme'],
                                      template_name='thank-you.html',
@@ -260,7 +261,8 @@ def get_thank_you(schema, metadata, eq_id, form_type):
                                      view_submission_url=view_submission_url,
                                      account_service_url=cookie_session.get('account_service_url'),
                                      account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
-                                     view_submission_duration=view_submission_duration)
+                                     view_submission_duration=view_submission_duration,
+                                     cookies=ons_cookie_policy)
 
     routing_path = path_finder.get_full_routing_path()
 
