@@ -330,6 +330,8 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
                 'variables': None,
             }
 
+            ons_cookie_policy = request.cookies.get('ons_cookie_message_displayed')
+
             return render_theme_template(schema.json['theme'],
                                          template_name='view-submission.html',
                                          metadata=metadata_context,
@@ -339,7 +341,8 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
                                          survey_title=TemplateRenderer.safe_content(schema.json['title']),
                                          account_service_url=cookie_session.get('account_service_url'),
                                          account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
-                                         content=context)
+                                         content=context,
+                                         cookies=ons_cookie_policy)
 
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
