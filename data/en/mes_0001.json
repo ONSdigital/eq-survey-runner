@@ -98,7 +98,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionabc7232c-2a77-43f7-88d9-7b7ca3d81fac",
-                            "title": "Approximately, what was the workforce size of {{ metadata['ru_name'] }} during the following periods?\t\t\t\t\t\t",
+                            "title": "Approximately, what was the workforce size of {{ metadata['ru_name'] }} during the following periods?",
                             "description": "<p>Report on the number of individual  employees captured in this definition rather than full-time equivalent staff</p>",
                             "guidance": {
                                 "content": [{
@@ -373,8 +373,8 @@
                                         "value": "A family not related to the founder owned it"
                                     },
                                     {
-                                        "label": "Not a family-owned business\t\t",
-                                        "value": "Not a family-owned business\t\t",
+                                        "label": "Not a family-owned business",
+                                        "value": "Not a family-owned business",
                                         "description": "\t"
                                     }
                                 ]
@@ -386,7 +386,7 @@
                                     "when": [{
                                         "id": "answer3fc91986-fdf4-4b47-8b06-626565697135",
                                         "condition": "contains any",
-                                        "values": ["Not a family-owned business\t\t"]
+                                        "values": ["Not a family-owned business"]
                                     }]
                                 }
                             },
@@ -434,7 +434,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4e413b56-6b23-4934-850d-6dbc57d171b8",
-                            "title": "In 2019, in general what was the <em>most common</em> response to problems faced within {{ metadata['ru_name'] }}?\t",
+                            "title": "In 2019, in general what was the <em>most common</em> response to problems faced within {{ metadata['ru_name'] }}?",
                             "description": "<p>This refers to your business&apos;s approach to resolving significant problems that will have an impact on the business&apos;s ability to run normally.</p>",
                             "definitions": [{
                                 "title": "Examples of problems",
@@ -501,7 +501,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0f66eb1e-f3bd-49bc-b7b7-9b072820a5cb",
-                            "title": "<em>As of now</em>, in general what is the most common response to problems faced within {{ metadata['ru_name'] }}?\t\t\t\t\t",
+                            "title": "<em>As of now</em>, in general what is the most common response to problems faced within {{ metadata['ru_name'] }}?",
                             "description": "<p>This refers to your business&apos;s approach to resolving significant problems that will have an impact on the business&apos;s ability to run normally.</p><p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "definitions": [{
                                 "title": "Examples of problems",
@@ -749,7 +749,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiond0de557f-e92a-4087-9715-840dea0126e1",
-                            "title": "As of now, how many key performance indicators (KPIs) does {{ metadata['ru_name'] }} monitor?\t\t\t\t\t\t",
+                            "title": "As of now, how many key performance indicators (KPIs) does {{ metadata['ru_name'] }} monitor?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "definitions": [{
                                 "title": "What we mean by \"KPIs\"",
@@ -817,7 +817,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question19e0dba7-0a07-477a-9718-0196888d0564",
-                            "title": "As of now, how frequently is progress against the key performance indicators (KPIs) reviewed by <em>managers</em>?\t\t\t\t\t\t",
+                            "title": "As of now, how frequently is progress against the key performance indicators (KPIs) reviewed by <em>managers</em>?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "guidance": {
                                 "content": [{
@@ -885,7 +885,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4718e435-35a3-4b0c-9296-71e906011811",
-                            "title": "As of now, how frequently is progress against the key performance indicators (KPIs) reviewed by <em>non-managers</em>?\t\t\t\t\t\t",
+                            "title": "As of now, how frequently is progress against the key performance indicators (KPIs) reviewed by <em>non-managers</em>?\t",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "guidance": {
                                 "content": [{
@@ -1028,7 +1028,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiona1fecf93-5952-4621-8559-ae2295a7390f",
-                            "title": "In 2019, how easy or difficult was it to achieve these targets?\t\t\t\t",
+                            "title": "In 2019, how easy or difficult was it to achieve these targets?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerb1f5a245-34fb-49b6-87fb-23b8a0696268",
@@ -1126,7 +1126,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question64c1e94b-2e9f-4dda-900f-d5d3b171b7d8",
-                            "title": "In 2019, approximately what proportion of <em>non-managers</em> were aware of these targets? \t\t\t\t\t\t",
+                            "title": "In 2019, approximately what proportion of <em>non-managers</em> were aware of these targets?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -1181,7 +1181,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question3bc25a6a-06d5-4cfb-9a73-d7336b48d5d3",
-                            "title": "<em>As of now</em>, which of the following best describes the main timeframes for achieving targets set within {{ metadata['ru_name'] }}?\t\t\t\t\t\t",
+                            "title": "<em>As of now</em>, which of the following best describes the main timeframes for achieving targets set within {{ metadata['ru_name'] }}?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "definitions": [{
                                 "title": "What we mean by \"target\"",
@@ -1257,7 +1257,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionfdad442e-3591-4fd9-81b7-9889878a0519",
-                            "title": "As of now, how easy or difficult is it to achieve these targets?\t\t\t\t",
+                            "title": "As of now, how easy or difficult is it to achieve these targets?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "type": "General",
                             "answers": [{
@@ -1301,7 +1301,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1d90557e-f8a3-4124-823c-5976c9d84fa2",
-                            "title": "As of now, approximately what proportion of <em>managers</em> are aware of these targets? \t\t\t\t\t\t",
+                            "title": "As of now, approximately what proportion of <em>managers</em> are aware of these targets?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "definitions": [{
                                 "title": "What we mean by \"manager\"",
@@ -1342,7 +1342,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question12544d2d-dc54-4a0e-a873-c9748ce7fa4a",
-                            "title": "As of now, approximately what proportion of <em>non-managers</em> are aware of these targets? \t\t\t\t\t\t",
+                            "title": "As of now, approximately what proportion of <em>non-managers</em> are aware of these targets?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "guidance": {
                                 "content": [{
@@ -1447,7 +1447,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question219a2124-c436-48fc-9601-6c28e6145639",
-                            "title": "As of now, what are performance bonuses for <em>managers</em> usually based on within {{ metadata['ru_name'] }}? \t\t\t\t\t\t",
+                            "title": "As of now, what are performance bonuses for <em>managers</em> usually based on within {{ metadata['ru_name'] }}?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "definitions": [{
                                 "title": "What we mean by \"manager\"",
@@ -1546,7 +1546,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questioncf597279-a4eb-4f5b-8816-2262b2f6b0a0",
-                            "title": "As of now, what are performance bonuses for <em>non-managers</em> usually based on? \t\t\t\t\t\t",
+                            "title": "As of now, what are performance bonuses for <em>non-managers</em> usually based on?\t\t\t\t\t",
                             "definitions": [{
                                 "title": "What we mean by \"non-managers\"",
                                 "content": [{
@@ -1652,7 +1652,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question14ac97bb-8179-4c38-9a05-466594a18c8a",
-                            "title": "As of now, how would <em>managers</em> usually be promoted?\t\t\t\t\t\t",
+                            "title": "As of now, how would <em>managers</em> usually be promoted?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "definitions": [{
                                 "title": "What we mean by \"manager\"",
@@ -1752,7 +1752,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question8102c898-7740-431b-9726-f4cba2fbd671",
-                            "title": "As of now, how would <em>non-managers</em> usually be promoted?\t\t\t\t\t\t",
+                            "title": "As of now, how would <em>non-managers</em> usually be promoted?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "definitions": [{
                                 "title": "What we mean by \"non-managers\"",
@@ -1848,7 +1848,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question78f45cf1-2362-46d8-a58f-48c774e0634b",
-                            "title": "As of now, on average how many days training and development do <em>managers</em> undertake in a year?\t\t\t\t\t\t",
+                            "title": "As of now, on average how many days training and development do <em>managers</em> undertake in a year?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -1954,7 +1954,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question32297c7c-c031-46fd-bad2-16f454056bd7",
-                            "title": "As of now, on average how many days training and development do <em>non-managers</em> undertake in a year?\t\t\t\t\t\t",
+                            "title": "As of now, on average how many days training and development do <em>non-managers</em> undertake in a year?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "guidance": {
                                 "content": [{
@@ -2048,7 +2048,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbdd23549-a7a7-43df-b901-4dae41af580b",
-                            "title": "<em>As of now</em>, which of the following best describes the timeframe that action is taken to address under-performance among managers?\t\t\t\t\t",
+                            "title": "<em>As of now</em>, which of the following best describes the timeframe that action is taken to address under-performance among managers?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "definitions": [{
                                 "title": "Examples of actions to address under-performance",
@@ -2129,7 +2129,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiona71ab56e-ad66-4745-a311-1278c73602a1",
-                            "title": "<em>As of now</em>, which of the following best describes the timeframe that action is taken to address under-performance among non-managers?\t\t\t",
+                            "title": "<em>As of now</em>, which of the following best describes the timeframe that action is taken to address under-performance among non-managers?",
                             "description": "<p>&quot;Now&quot; refers to your current business arrangements, at the time of completing the survey.</p>",
                             "definitions": [{
                                 "title": "Examples of actions to address under-performance",
@@ -2170,7 +2170,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question968745e4-32e6-471b-8626-9c780c9bdba6",
-                            "title": "In 2019, approximately what share of your managers and non-managers <em>mainly worked remotely</em>? \t\t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                            "title": "In 2019, approximately what share of your managers and non-managers <em>mainly worked remotely</em>?",
                             "definitions": [{
                                 "title": "What we mean by \"working remotely\"",
                                 "content": [{
@@ -2212,7 +2212,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question768909d4-811c-4b73-a79e-2eb07249c614",
-                            "title": "<em>As of now</em>, approximately what share of your managers and non-managers mainly work remotely? \t\t\t\t\t",
+                            "title": "<em>As of now</em>, approximately what share of your managers and non-managers mainly work remotely?",
                             "description": "<p>Now refers to your current business arrangements, at the time of completing the survey.</p>",
                             "definitions": [{
                                 "title": "What we mean by \"working remotely\"",
@@ -2255,7 +2255,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question70491b2f-ccc3-4221-8e82-4e93886a3a3d",
-                            "title": "In <em>December 2021</em>, approximately what share of your managers and non-managers do you <em>expect</em> to be mainly working remotely? \t\t\t\t\t",
+                            "title": "In <em>December 2021</em>, approximately what share of your managers and non-managers do you <em>expect</em> to be mainly working remotely?",
                             "definitions": [{
                                 "title": "What we mean by \"working remotely\"",
                                 "content": [{
@@ -2447,7 +2447,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question30f3919b-956d-44c6-af9e-d8126c1c1707",
-                            "title": "In 2019, what was the <em>maximum amount</em> that could be used to purchase a capital asset for a site without prior authorisation from headquarters?\t\t\t\t\t\t",
+                            "title": "In 2019, what was the <em>maximum amount</em> that could be used to purchase a capital asset for a site without prior authorisation from headquarters?",
                             "definitions": [{
                                 "title": "What we mean by \"capital asset\"",
                                 "content": [{
@@ -2658,7 +2658,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionfadac152-e514-425f-bebb-378853c00717",
-                            "title": "How does turnover in 2020 compare to what was expected at the start of the year?\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                            "title": "How does turnover in 2020 compare to what was expected at the start of the year?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2704,8 +2704,8 @@
                                             "q_code": "1287"
                                         },
                                         {
-                                            "label": "Turnover derived from some types of product or activities is higher than expected while others lower than expected\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
-                                            "value": "Turnover derived from some types of product or activities is higher than expected while others lower than expected\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                                            "label": "Turnover derived from some types of product or activities is higher than expected while others lower than expected",
+                                            "value": "Turnover derived from some types of product or activities is higher than expected while others lower than expected",
                                             "q_code": "1288"
                                         },
                                         {
@@ -2761,7 +2761,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionae57e1eb-380e-4305-80b8-0b027539b885",
-                            "title": "Approximately, how much higher do you estimate turnover is in 2020 relative to expectations at the beginning of the year?\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                            "title": "Approximately, how much higher do you estimate turnover is in 2020 relative to expectations at the beginning of the year?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2812,7 +2812,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question5ea272bc-16ef-44ae-bef9-a396e388f42b",
-                            "title": "Approximately, how much lower do you estimate turnover is in 2020 relative to expectations at the beginning of the year?\t",
+                            "title": "Approximately, how much lower do you estimate turnover is in 2020 relative to expectations at the beginning of the year?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2863,7 +2863,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question96a6806a-aaa6-4ae1-a3f8-07de578c086f",
-                            "title": "Looking ahead to the 2021 calendar year, what is the approximate turnover you would anticipate for this business in the following scenarios? \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                            "title": "Looking ahead to the 2021 calendar year, what is the approximate turnover you would anticipate for this business in the following scenarios?",
                             "description": "<p>We would like to know what you expect your business&apos;s turnover will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest turnover scenario to the highest, with your best estimate in the middle. </p><p>We would like to know how likely you think each of these scenarios is, and report the probability chance of that scenario happening on the next page.</p><p>Go to this address to see some examples of how to answer this question:</p><p>https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey</p><p>Please report according to your best judgement, you can provide a rough estimate. </p>",
                             "guidance": {
                                 "content": [{
@@ -3071,7 +3071,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionb216c90d-7fbc-4906-b084-654e5447e8a6",
-                            "title": "What was {{ metadata['ru_name'] }}&apos;s total expenditure on energy, goods, materials and services for the following periods?\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                            "title": "What was {{ metadata['ru_name'] }}&apos;s total expenditure on energy, goods, materials and services for the following periods?",
                             "description": "<p>Give amounts payable excluding employment costs, stock variation and all interest payments.</p><p>State the net cost of purchases made whether or not they were used or resold.</p><p>Report to the nearest &#xA3;1,000. For example, &#xA3;1,357,689 would be reported as &#xA3;1,358,000</p>",
                             "guidance": {
                                 "content": [{
@@ -3128,7 +3128,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question95e05d85-ca13-4b03-b3b7-1efbde778ad3",
-                            "title": "In 2019, approximately how many suppliers did {{ metadata['ru_name'] }} use to get energy, goods, material and services? \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                            "title": "In 2019, approximately how many suppliers did {{ metadata['ru_name'] }} use to get energy, goods, material and services?",
                             "description": "<p>You can provide a rough estimate.</p>",
                             "guidance": {
                                 "content": [{
@@ -3174,7 +3174,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionb11089cd-3bdf-4eeb-8536-bb78f6e4e69b",
-                            "title": "How has {{ metadata['ru_name'] }}&apos;s supplier network <em>changed during 2020</em>?\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                            "title": "How has {{ metadata['ru_name'] }}&apos;s supplier network <em>changed during 2020</em>?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -3420,7 +3420,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question87ca5f66-3543-4233-a0f0-1d906ad8edc7",
-                            "title": "How has {{ metadata['ru_name'] }}&apos;s capital expenditure changed during 2020, relative to what was expected at the beginning of the year?\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                            "title": "How has {{ metadata['ru_name'] }}&apos;s capital expenditure changed during 2020, relative to what was expected at the beginning of the year?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -3501,7 +3501,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionf176bee9-69bf-46fd-917c-9bed06c5ae5d",
-                            "title": "Approximately, how much higher than expected is capital expenditure in 2020? \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                            "title": "Approximately, how much higher than expected is capital expenditure in 2020?",
                             "description": "<p>This covers building work, acquisitions or disposals of land, buildings, structures, vehicles, plant and machinery, and capitalised intangible assets like software, and research and development costs.</p><p>Do not deduct any amounts received in grants and/or allowances from government sources.</p>",
                             "guidance": {
                                 "content": [{
@@ -3554,7 +3554,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question48430c1e-951c-4d79-97fd-d389fee2a121",
-                            "title": "Approximately, how much lower than expected is capital expenditure in 2020? \t",
+                            "title": "Approximately, how much lower than expected is capital expenditure in 2020?",
                             "description": "<p>This covers building work, acquisitions or disposals of land, buildings, structures, vehicles, plant and machinery, and capitalised intangible assets like software, and research and development costs.</p><p>Do not deduct any amounts received in grants and/or allowances from government sources.</p>",
                             "guidance": {
                                 "content": [{
@@ -3804,7 +3804,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question22944528-54c4-45d0-923d-83b8d0d27bdf",
-                            "title": "What likelihood would you give to the following scenarios happening to the UK economy growth rate (GDP), for 2021?\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                            "title": "What likelihood would you give to the following scenarios happening to the UK economy growth rate (GDP), for 2021?",
                             "description": "<p>Your answers should add up to 100%</p>",
                             "definitions": [{
                                 "title": "What we mean by \"UK economy growth rate\"",
@@ -3996,7 +3996,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question23fd1f65-d049-4137-b44b-cd1826e04edc",
-                                "title": "How long did it take you to complete this questionnaire?\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                                "title": "How long did it take you to complete this questionnaire?",
                                 "guidance": {
                                     "content": [{
                                             "description": "<strong>Include:</strong>"
@@ -4038,7 +4038,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question31e0c165-a984-4fc4-b154-60c0561e6d2c",
-                                "title": "Please provide any additional information that will help us understand the answers you have provided\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                                "title": "Please provide any additional information that will help us understand the answers you have provided",
                                 "type": "General",
                                 "answers": [{
                                     "id": "answer9165fb4f-ad7b-412a-859e-4c36d67ce0ea",
