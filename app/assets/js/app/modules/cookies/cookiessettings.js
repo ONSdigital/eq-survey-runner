@@ -58,7 +58,7 @@ export default class CookiesSettings {
   }
 
   checkForPreviousPage() {
-    if (history.length < 1) {
+    if (history.length > 1) {
       event.preventDefault()
       window.history.back()
     }
