@@ -68,9 +68,7 @@ describe('Cookie settings page', function() {
       .click('#on-1')
       .click('.cookies-submit-btn')
       // Then
-      .getCookie(cookiePolicy).then(item => item.value).should.eventually.equal('{"essential":true,"usage":true}')
-      .waitForVisible('.cookies-confirmation-message')
-      .isVisible('.cookies-confirmation-message').should.eventually.be.true;
+      .getCookie(cookiePolicy).then(item => item.value).should.eventually.equal('{"essential":true,"usage":true}');
   });
 
   it('Given I am on the cookies-settings page when I reject specific cookies then they are set in my browser', function() {
@@ -83,8 +81,7 @@ describe('Cookie settings page', function() {
     .click('#off-1')
     .click('.cookies-submit-btn')
     .refresh()
-    .waitForExist('#off-1')
-    // // Then
+    // Then
     .getCookie(cookiePolicy).then(item => item.value).should.eventually.equal('{"essential":true,"usage":false}');
   });
 
