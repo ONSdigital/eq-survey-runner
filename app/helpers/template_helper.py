@@ -49,7 +49,7 @@ def with_analytics(func):
             analytics_gtm_id=current_app.config['EQ_GTM_ID'],
             analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'],
             **kwargs)
-          
+
     return analytics_wrapper
 
 
