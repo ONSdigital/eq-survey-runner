@@ -4240,10 +4240,6 @@
             "validator": "date"
         },
         {
-            "name": "employmentDate",
-            "validator": "date"
-        },
-        {
             "name": "period_str",
             "validator": "string"
         }
