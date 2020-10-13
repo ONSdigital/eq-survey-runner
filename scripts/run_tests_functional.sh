@@ -23,6 +23,9 @@ function display_result {
 # Run Functional tests
 npm config set python python2.7
 
+yarn test_unit_no_watch
+display_result $? 4 "Front end unit tests"
+
 echo "Generating functional test pages"
 yarn generate_pages
 
