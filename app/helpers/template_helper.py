@@ -1,6 +1,6 @@
 from functools import wraps
 
-from flask import current_app, g, request, session as cookie_session
+from flask import current_app, g, session as cookie_session
 from flask_login import current_user
 from flask_themes2 import render_theme_template
 from structlog import get_logger
