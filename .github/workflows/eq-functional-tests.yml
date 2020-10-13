@@ -13,6 +13,8 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
+            - name: Update to latest stable Chrome
+              run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo apt install ./google-chrome-stable_current_amd64.deb
             - name: Install Python
               uses: actions/setup-python@v2
               with:
