@@ -270,12 +270,10 @@ def get_thank_you(schema, metadata, eq_id, form_type):
 
     routing_path = path_finder.get_full_routing_path()
 
-    collection_id = metadata['collection_exercise_sid']
-
     router = Router(schema, routing_path, completeness)
     next_location = router.get_next_location()
 
-    return _redirect_to_location(collection_id, metadata.get('eq_id'), metadata.get('form_type'), next_location)
+    return _redirect_to_location(metadata['collection_exercise_sid'], metadata.get('eq_id'), metadata.get('form_type'), next_location)
 
 
 @post_submission_blueprint.route('thank-you', methods=['POST'])
