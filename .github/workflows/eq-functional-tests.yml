@@ -13,8 +13,6 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
-            - name: Update to latest stable Chrome
-              run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo apt install ./google-chrome-stable_current_amd64.deb
             - name: Install Python
               uses: actions/setup-python@v2
               with:
@@ -29,13 +27,13 @@ jobs:
               run: pip install -U pip pipenv==2018.5.18 wheel
             - name: Set up Pipenv
               run: pipenv install --dev --deploy
+            - name: Update to latest stable Chrome
+              run: pipenv run wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo apt install ./google-chrome-stable_current_amd64.deb
             - name: Compile application
               run: yarn compile
             - name: Populate application version
               run: printf $(git rev-parse HEAD) > .application-version
             - name: Boot up EQ
               run: docker-compose up --build -d
-            - name: Generate test pages
-              run: yarn generate_pages
-            - name: Run unit tests
-              run: yarn test_functional
+            - name: Run functional tests
+              run: pipenv run ./scripts/run_tests_functional.sh
