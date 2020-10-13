@@ -1,9 +1,9 @@
-name: EQ merge into master
+name: EQ functional tests
 
 on: [pull_request]
 
 jobs:
-    build_and_push_Docker_image:
+    functional_tests:
         runs-on: ubuntu-latest
 
         strategy:
