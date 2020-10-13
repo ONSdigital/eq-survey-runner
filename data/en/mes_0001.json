@@ -31,7 +31,7 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                "description": "The information required in this survey covers a range of topics, and you might need to consult with colleagues for some sections."
+                                "description": "<p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' target='_blank'>View questions and see examples of how to complete the Expectations section, before you start the survey (external link)</a></p><p>The information required in this survey covers a range of topics, and you might need to consult with colleagues for some sections.</p>"
                             }],
                             "questions": [{
                                     "question": "Management practices and business characteristics",
@@ -2631,7 +2631,7 @@
                         "type": "Interstitial",
                         "id": "groupaa6734a1-a948-4478-8ed6-d713fe21f575-introduction",
                         "title": "Expectations",
-                        "description": "<p>This section asks for information about your business&apos;s outcomes in 2019 and how current outcomes for 2020 have differed from expectations going in to 2020. We also ask about expectations for how your business, and the wider economy, will operate in 2021.  </p><p>The questions in this section ask for your expectations for a range of scenarios. </p><p>Examples of how to answer these questions</p><p> If you do not hold the precise information, please use your best judgement. You can provide informed estimates if actual figures are not available.</p><p></p>"
+                        "description": "<p>This section asks for information about your business&apos;s outcomes in 2019 and how current outcomes for 2020 have differed from expectations going in to 2020. We also ask about expectations for how your business, and the wider economy, will operate in 2021.  </p><p>The questions in this section ask for your expectations for a range of scenarios. </p><p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' target='_blank'>Examples of how to answer these questions (external link)</a></p><p> If you do not hold the precise information, please use your best judgement. You can provide informed estimates if actual figures are not available.</p><p></p>"
                     },
                     {
                         "id": "block228ee6f3-98c3-40a0-be18-59465fd334e5",
