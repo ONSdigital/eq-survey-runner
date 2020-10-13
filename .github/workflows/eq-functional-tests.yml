@@ -8,8 +8,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [8.x]
-                python-version: [3.7.x]
+                node-version: [6.x]
 
         steps:
             - uses: actions/checkout@v2
