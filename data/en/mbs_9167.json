@@ -18,7 +18,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Exclude</b>: furlough payments received in figures.<br><b>Include</b>: furloughed employees in any employment figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Include</b>: furloughed employees in any employment figures.<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
                                 "list": [
                                     "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
                                     "You can provide informed estimates if actual figures aren&#x2019;t available.",
@@ -76,9 +76,7 @@
                                             "description": "Exclude:"
                                         },
                                         {
-                                            "list": [
-                                                "VAT"
-                                            ]
+                                            "list": ["VAT"]
                                         }
                                     ]
                                 },
@@ -164,7 +162,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question5126daf7-5b96-43e5-b686-55bfb4e8d0b4",
-                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
+                            "title": "Are you able to report for the period from {{ format_conditional_date (answers['answere107e8d8-3f37-41d8-8cad-ff78d932a8cdfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answere107e8d8-3f37-41d8-8cad-ff78d932a8cdto'], metadata['ref_p_end_date']) }}?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer3dfe1f50-1ef8-4495-88ad-11a7ba43493c",
@@ -189,9 +187,7 @@
                                     "when": [{
                                         "id": "answer3dfe1f50-1ef8-4495-88ad-11a7ba43493c",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes"
-                                        ]
+                                        "values": ["Yes"]
                                     }]
                                 }
                             },
@@ -259,7 +255,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questione2529e09-2140-4a10-85ed-fc3e421397dc",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}&apos;s <em>turnover</em>, excluding VAT?",
+                            "title": "For the period {{ format_conditional_date (answers['answere107e8d8-3f37-41d8-8cad-ff78d932a8cdfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answere107e8d8-3f37-41d8-8cad-ff78d932a8cdto'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}&apos;s <em>turnover</em>, excluding VAT?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -308,7 +304,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-e2529e09-2140-4a10-85ed-fc3e421397dc",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, the turnover was <em>{{ format_currency(answers['answerce4ed38b-507b-4038-8182-32fc974bec4d'], 'GBP') }}</em>, is this correct?",
+                            "title": "For the period {{ format_conditional_date (answers['answere107e8d8-3f37-41d8-8cad-ff78d932a8cdfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answere107e8d8-3f37-41d8-8cad-ff78d932a8cdto'], metadata['ref_p_end_date']) }}, the turnover was <em>{{ format_currency(answers['answerce4ed38b-507b-4038-8182-32fc974bec4d'], 'GBP') }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-e2529e09-2140-4a10-85ed-fc3e421397dc",
@@ -331,9 +327,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-e2529e09-2140-4a10-85ed-fc3e421397dc",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -422,6 +416,52 @@
                         }]
                     },
                     {
+                        "id": "blockconfirmation-page-for-825a4d12-56ed-42b9-9112-3a40477b2af0",
+                        "type": "ConfirmationQuestion",
+                        "questions": [{
+                            "id": "questionconfirmation-page-for-825a4d12-56ed-42b9-9112-3a40477b2af0",
+                            "title": "On {{ format_conditional_date (answers['answere107e8d8-3f37-41d8-8cad-ff78d932a8cdto'], metadata['ref_p_end_date']) }}, the number of employees for {{ metadata['ru_name'] }} was <em>{{ answers['answer1530a741-2540-4c9b-9021-34f95288e671'] | format_number }}</em>, is this correct?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerconfirmation-answer-for-825a4d12-56ed-42b9-9112-3a40477b2af0",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes this is correct"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No I need to change this"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answer1530a741-2540-4c9b-9021-34f95288e671",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block825a4d12-56ed-42b9-9112-3a40477b2af0",
+                                    "when": [{
+                                        "id": "answerconfirmation-answer-for-825a4d12-56ed-42b9-9112-3a40477b2af0",
+                                        "condition": "contains any",
+                                        "values": ["No I need to change this"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockd269b76b-8439-4d0d-a3ba-10f59fa48e6a"
+                                }
+                            }
+                        ]
+                    },
+                    {
                         "id": "blockd269b76b-8439-4d0d-a3ba-10f59fa48e6a",
                         "type": "Question",
                         "questions": [{
@@ -454,7 +494,7 @@
                             "type": "Calculated",
                             "answers": [{
                                     "id": "answer38de218c-b355-487b-9449-c73b4a0cb5d7",
-                                    "mandatory": true,
+                                    "mandatory": false,
                                     "type": "Number",
                                     "label": "Number of male employees working more than 30 hours per week",
                                     "description": "",
@@ -471,7 +511,7 @@
                                 },
                                 {
                                     "id": "answerde6003e1-e883-46ea-aa48-6530a2c1aebf",
-                                    "mandatory": true,
+                                    "mandatory": false,
                                     "type": "Number",
                                     "label": "Number of male employees working 30 hours or less per week",
                                     "description": "",
@@ -488,7 +528,7 @@
                                 },
                                 {
                                     "id": "answerbc0f251d-b8f2-4a0e-9d30-952d1edd115e",
-                                    "mandatory": true,
+                                    "mandatory": false,
                                     "type": "Number",
                                     "label": "Number of female employees working more than 30 hours per week",
                                     "description": "",
@@ -505,7 +545,7 @@
                                 },
                                 {
                                     "id": "answer2a46c70d-f1a0-4ef7-b652-ddca13758640",
-                                    "mandatory": true,
+                                    "mandatory": false,
                                     "type": "Number",
                                     "label": "Number of female employees working 30 hours or less per week",
                                     "description": "",
@@ -529,10 +569,25 @@
                                     "answerbc0f251d-b8f2-4a0e-9d30-952d1edd115e",
                                     "answer2a46c70d-f1a0-4ef7-b652-ddca13758640"
                                 ],
-                                "conditions": [
-                                    "equals"
+                                "conditions": ["equals"],
+                                "value": 0
+                            }, {
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answer38de218c-b355-487b-9449-c73b4a0cb5d7",
+                                    "answerde6003e1-e883-46ea-aa48-6530a2c1aebf",
+                                    "answerbc0f251d-b8f2-4a0e-9d30-952d1edd115e",
+                                    "answer2a46c70d-f1a0-4ef7-b652-ddca13758640"
                                 ],
+                                "conditions": ["equals"],
                                 "answer_id": "answer1530a741-2540-4c9b-9021-34f95288e671"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answer1530a741-2540-4c9b-9021-34f95288e671",
+                                "condition": "equals",
+                                "value": 0
                             }]
                         }]
                     }
@@ -554,7 +609,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answerc70ae489-de3d-4a23-a454-37e8b547cbe0",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
