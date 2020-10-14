@@ -18,7 +18,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Include</b>: furloughed employees in any employment figures.<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
                                 "list": [
                                     "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
                                     "You can provide informed estimates if actual figures aren&#x2019;t available.",
@@ -86,7 +86,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionded4827d-f4d7-4d1b-ae5d-5774001cf349",
-                            "title": "Are you able to report for the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
+                            "title": "Are you able to report for the period {{ format_conditional_date (answers['answer568d0c90-e364-4b11-a831-ef09a5840784from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer568d0c90-e364-4b11-a831-ef09a5840784to'], metadata['ref_p_end_date']) }}?",
                             "type": "General",
                             "answers": [{
                                 "id": "answera0bbd59f-26a3-44f0-b928-2dd649ec02c4",
@@ -179,7 +179,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question34b8f409-5534-4841-82ac-0a48dc7a5893",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}&apos;s <em>total turnover</em>, excluding VAT?",
+                            "title": "For the period {{ format_conditional_date (answers['answer568d0c90-e364-4b11-a831-ef09a5840784from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer568d0c90-e364-4b11-a831-ef09a5840784to'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}&apos;s <em>total turnover</em>, excluding VAT?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -227,7 +227,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-34b8f409-5534-4841-82ac-0a48dc7a5893",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, the total turnover was <em>{{ format_currency(answers['answer7a348404-f4e0-43e9-9cae-5918c381684e'], 'GBP') }}</em>, is this correct?",
+                            "title": "For the period {{ format_conditional_date (answers['answer568d0c90-e364-4b11-a831-ef09a5840784from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer568d0c90-e364-4b11-a831-ef09a5840784to'], metadata['ref_p_end_date']) }}, the total turnover was <em>{{ format_currency(answers['answer7a348404-f4e0-43e9-9cae-5918c381684e'], 'GBP') }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-34b8f409-5534-4841-82ac-0a48dc7a5893",
@@ -279,7 +279,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer90e3f6ee-ed13-48f6-8476-0774b262f030",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",

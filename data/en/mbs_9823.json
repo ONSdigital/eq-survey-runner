@@ -18,7 +18,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Include</b>: furloughed employees in any employment figures.<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
                                 "list": [
                                     "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
                                     "You can provide informed estimates if actual figures aren&#x2019;t available.",
@@ -85,7 +85,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question27a449cd-4c80-4e2d-a07e-cf291a867175",
-                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
+                            "title": "Are you able to report for the period from {{ format_conditional_date (answers['answera035f252-e4d4-4546-b06a-9219fd22d003from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answera035f252-e4d4-4546-b06a-9219fd22d003to'], metadata['ref_p_end_date']) }}?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerc1b315a5-776e-49dc-9090-173f77832912",
@@ -110,9 +110,7 @@
                                     "when": [{
                                         "id": "answerc1b315a5-776e-49dc-9090-173f77832912",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes"
-                                        ]
+                                        "values": ["Yes"]
                                     }]
                                 }
                             },
@@ -180,7 +178,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question06b145fe-36f2-43bc-8985-8cafe040f73e",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}&apos;s <em>total turnover</em>, excluding VAT?",
+                            "title": "For the period {{ format_conditional_date (answers['answera035f252-e4d4-4546-b06a-9219fd22d003from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answera035f252-e4d4-4546-b06a-9219fd22d003to'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}&apos;s <em>total turnover</em>, excluding VAT?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -227,7 +225,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-06b145fe-36f2-43bc-8985-8cafe040f73e",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, the total turnover was <em>{{ format_currency(answers['answer64a24199-9525-42d0-a28f-81c913ae8276'], 'GBP') }}</em>, is this correct?",
+                            "title": "For the period {{ format_conditional_date (answers['answera035f252-e4d4-4546-b06a-9219fd22d003from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answera035f252-e4d4-4546-b06a-9219fd22d003to'], metadata['ref_p_end_date']) }}, the total turnover was <em>{{ format_currency(answers['answer64a24199-9525-42d0-a28f-81c913ae8276'], 'GBP') }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-06b145fe-36f2-43bc-8985-8cafe040f73e",
@@ -250,9 +248,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-06b145fe-36f2-43bc-8985-8cafe040f73e",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -281,7 +277,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answerbb7c4faa-9571-4902-8e43-6c22c348ca1a",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
