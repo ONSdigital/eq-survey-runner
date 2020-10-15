@@ -11,6 +11,23 @@ jobs:
                 node-version: [6.x]
                 python-version: [3.7.x]
 
+        env:
+            EQ_RUN_LOCAL_LINT: True
+            EQ_RUN_LOCAL_TESTS: True
+            EQ_RUN_DOCKER_UP: True
+            EQ_RUN_FUNCTIONAL_TESTS: True
+            EQ_RUN_FUNCTIONAL_TESTS_HEADLESS: True
+            EQ_DYNAMODB_ENDPOINT: http://localhost:6060
+            EQ_SUBMITTED_RESPONSES_TABLE_NAME: devsubmittedresponses
+            EQ_QUESTIONNAIRE_STATE_TABLE_NAME: devquestionnairestate
+            EQ_QUESTIONNAIRE_STATE_DYNAMO_READ: True
+            EQ_QUESTIONNAIRE_STATE_DYNAMO_WRITE: True
+            EQ_SESSION_TABLE_NAME: deveqsession
+            EQ_USED_JTI_CLAIM_TABLE_NAME: devusedjticlaim
+            AWS_DEFAULT_REGION: euwest1
+            AWS_ACCESS_KEY_ID: dummyaccesskey
+            AWS_SECRET_ACCESS_KEY: dummysecretkey
+
         steps:
             - uses: actions/checkout@v2
             - name: Install Python
