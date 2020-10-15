@@ -21,6 +21,8 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
+            - name: Install apt dependencies
+              run: sudo apt-get install libsnappy-dev
             - name: Setup Pip
               run: pip install -U pip pipenv==2018.5.18 wheel
             - name: Setup Pipenv
@@ -28,7 +30,7 @@ jobs:
             - run: set -e
             - name: Compile the application
               run: yarn compile
-            - name: Populare application version
+            - name: Populate application version
               run: printf $(git rev-parse HEAD) > .application-version
             - name: Display docker-compose version
               run: docker-compose --version
