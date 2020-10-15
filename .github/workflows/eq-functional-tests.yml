@@ -9,7 +9,7 @@ jobs:
         strategy:
             matrix:
                 node-version: [6.x]
-                python-version: [3.7.2]
+                python-version: [3.7.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -17,12 +17,22 @@ jobs:
               uses: actions/setup-python@v2
               with:
                   python-version: ${{ matrix.python-version }}
-            - name: Setup Pip
-              run: pip install -U pip pipenv==2018.5.18 wheel
-            - name: Setup Pipenv
-              run: pipenv install --dev --deploy
             - name: Install Node
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-
+            - name: Setup Pip
+              run: pip install -U pip pipenv==2018.5.18 wheel
+            - name: Setup Pipenv
+              run: pipenv install --dev --deploy
+            - run: set -e
+            - name: Compile the application
+              run: yarn compile
+            - name: Populare application version
+              run: printf $(git rev-parse HEAD) > .application-version
+            - name: Display docker-compose version
+              run: docker-compose --version
+            - name: Build Docker Compose image
+              run: docker-compose build
+            - name: Boot up EQ
+              run: docker-compose up -d
