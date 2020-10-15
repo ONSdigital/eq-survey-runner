@@ -9,9 +9,7 @@ jobs:
         strategy:
             matrix:
                 node-version: [6.x]
-                python:
-                  - 3.7.2
-                  - 2.x
+                python-version: [3.7.2]
 
         steps:
             - uses: actions/checkout@v2
@@ -19,11 +17,12 @@ jobs:
               uses: actions/setup-python@v2
               with:
                   python-version: ${{ matrix.python-version }}
-            - name: Install python version
-              uses: gabrielfalcao/pyenv-action@v5
+            - name: Setup Pip
+              run: pip install -U pip pipenv==2018.5.18 wheel
+            - name: Setup Pipenv
+              run: pipenv install --dev --deploy
+            - name: Install Node
+              uses: actions/setup-node@v1
               with:
-                default: "${{ matrix.python }}"
-                command: pip install -U pip
-            - name: List installed python versions
-              run: pyenv versions
+                  node-version: ${{ matrix.node-version }}
 
