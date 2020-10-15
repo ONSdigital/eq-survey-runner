@@ -5573,7 +5573,33 @@
                                     }]
                                 }
                             ]
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group7ad86386-56a2-4b8c-bb01-1fdedec31332",
+                                    "when": [{
+                                        "id": "answere22e32f2-0fa9-4a9a-9151-d576ff79b611",
+                                        "condition": "contains all",
+                                        "values": ["Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group7ad86386-56a2-4b8c-bb01-1fdedec31332",
+                                    "when": [{
+                                        "id": "answer4e7cbab0-5fbf-44cc-b3c1-3b4b7a529690",
+                                        "condition": "equals",
+                                        "value": 0
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block78c53286-a2c8-45ff-89fd-a75fc233c429"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "block78c53286-a2c8-45ff-89fd-a75fc233c429",
@@ -5784,7 +5810,7 @@
             ]
         }
     ],
-    "theme": "covid",
+    "theme": "default",
     "navigation": {
         "visible": true
     },
