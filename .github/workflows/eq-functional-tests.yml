@@ -1,0 +1,57 @@
+name: EQ functional tests
+
+on:
+    schedule:
+        - cron: "0 10 * * 1-5" # At 10:00 on every day-of-week from Monday through Friday
+        - cron: "0 15 * * 1-5" # At 15:00 on every day-of-week from Monday through Friday
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [6.x]
+                python-version: [3.7.x]
+
+        env:
+            EQ_DYNAMODB_ENDPOINT: http://localhost:6060
+            EQ_SUBMITTED_RESPONSES_TABLE_NAME: devsubmittedresponses
+            EQ_QUESTIONNAIRE_STATE_TABLE_NAME: devquestionnairestate
+            EQ_QUESTIONNAIRE_STATE_DYNAMO_READ: True
+            EQ_QUESTIONNAIRE_STATE_DYNAMO_WRITE: True
+            EQ_SESSION_TABLE_NAME: deveqsession
+            EQ_USED_JTI_CLAIM_TABLE_NAME: devusedjticlaim
+            AWS_DEFAULT_REGION: euwest1
+            AWS_ACCESS_KEY_ID: dummyaccesskey
+            AWS_SECRET_ACCESS_KEY: dummysecretkey
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Install Python
+              uses: actions/setup-python@v2
+              with:
+                  python-version: ${{ matrix.python-version }}
+            - name: Install Node
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: Install apt dependencies
+              run: sudo apt-get install libsnappy-dev
+            - name: Setup Pip
+              run: pip install -U pip pipenv==2018.5.18 wheel
+            - name: Setup Pipenv
+              run: pipenv install --dev --deploy
+            - run: set -e
+            - name: Compile the application
+              run: yarn compile
+            - name: Populate application version
+              run: printf $(git rev-parse HEAD) > .application-version
+            - name: Display docker-compose version
+              run: docker-compose --version
+            - name: Build Docker Compose image
+              run: docker-compose build
+            - name: Boot up EQ
+              run: docker-compose up -d
+            - name: Run functional tests
+              run: ./scripts/run_tests_functional.sh

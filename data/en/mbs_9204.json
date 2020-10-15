@@ -18,7 +18,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Include</b>: furloughed employees in any employment figures.<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
                                 "list": [
                                     "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
                                     "You can provide informed estimates if actual figures aren&#x2019;t available.",
@@ -57,7 +57,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question047c9b56-075b-498c-97e9-4580d766acf7",
-                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
+                            "title": "Are you able to report for the period from {{ format_conditional_date (answers['answer5dda86a5-2940-4763-be18-c64d426ade3bfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer5dda86a5-2940-4763-be18-c64d426ade3bto'], metadata['ref_p_end_date']) }}?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer25b21ff6-5663-4b8b-8f9e-4740ac7b4447",
@@ -150,7 +150,7 @@
                     "type": "Question",
                     "questions": [{
                         "id": "questionbb508839-f8a3-4320-9f21-9eedc0978f89",
-                        "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was the total volume of {{ metadata['ru_name'] }}&apos;s <em>potable water that was supplied to customers</em>, in megalitres?",
+                        "title": "For the period {{ format_conditional_date (answers['answer5dda86a5-2940-4763-be18-c64d426ade3bfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer5dda86a5-2940-4763-be18-c64d426ade3bto'], metadata['ref_p_end_date']) }}, what was the total volume of {{ metadata['ru_name'] }}&apos;s <em>potable water that was supplied to customers</em>, in megalitres?",
                         "type": "General",
                         "answers": [{
                             "id": "answercb2a09a9-106e-465d-a46d-8d1112091061",
@@ -182,7 +182,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer900d3b86-65c4-4c62-a500-07846a47478d",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
