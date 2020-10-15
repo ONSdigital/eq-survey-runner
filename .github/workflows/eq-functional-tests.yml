@@ -1,6 +1,9 @@
 name: EQ functional tests
 
-on: [pull_request]
+on:
+    schedule:
+        - cron: "0 10 * * 1-5" # At 10:00 on every day-of-week from Monday through Friday
+        - cron: "0 15 * * 1-5" # At 15:00 on every day-of-week from Monday through Friday
 
 jobs:
     build:
@@ -12,11 +15,6 @@ jobs:
                 python-version: [3.7.x]
 
         env:
-            EQ_RUN_LOCAL_LINT: True
-            EQ_RUN_LOCAL_TESTS: True
-            EQ_RUN_DOCKER_UP: True
-            EQ_RUN_FUNCTIONAL_TESTS: True
-            EQ_RUN_FUNCTIONAL_TESTS_HEADLESS: True
             EQ_DYNAMODB_ENDPOINT: http://localhost:6060
             EQ_SUBMITTED_RESPONSES_TABLE_NAME: devsubmittedresponses
             EQ_QUESTIONNAIRE_STATE_TABLE_NAME: devquestionnairestate
