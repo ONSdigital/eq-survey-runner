@@ -21,7 +21,7 @@
                             "content": [{
                                     "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/thequestionsonthebusinessimpactofcoronaviruscovid19survey'>View the questions before you start the survey (external link)</a>",
                                     "list": [
-                                        "This survey provide real-time information during the coronavirus (COVID-19) pandemic to help inform the UK response.",
+                                        "This survey provides real-time information during the coronavirus (COVID-19) pandemic to help inform the UK response.",
                                         "Your response helps ensure your business, and businesses like yours, are represented."
                                     ]
                                 },
@@ -4605,7 +4605,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "blockb646b254-98b4-4d42-ab91-c13b5fec21b0",
+                                    "block": "blockf9bb3c75-8200-43a3-aed7-69f599c47612",
                                     "when": [{
                                         "id": "answer92e4004a-ceef-424e-b5fa-d93520bc4780",
                                         "condition": "greater than",
@@ -4617,26 +4617,38 @@
                                 "goto": {
                                     "block": "block66bef12d-2546-4df7-9e64-15e48bdf99c4",
                                     "when": [{
-                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "Currently trading and have been for more than the last two weeks",
-                                            "Started trading within the last two weeks after a pause in trading"
-                                        ]
-                                    }]
+                                            "id": "answer92e4004a-ceef-424e-b5fa-d93520bc4780",
+                                            "condition": "equals",
+                                            "value": 0
+                                        },
+                                        {
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Currently trading and have been for more than the last two weeks",
+                                                "Started trading within the last two weeks after a pause in trading"
+                                            ]
+                                        }
+                                    ]
                                 }
                             },
                             {
                                 "goto": {
                                     "block": "block66bdbc42-37a9-4134-9f22-235e40594178",
                                     "when": [{
-                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "Paused trading but intends to restart in the next two weeks",
-                                            "Paused trading and does not intend to restart in the next two weeks"
-                                        ]
-                                    }]
+                                            "id": "answer92e4004a-ceef-424e-b5fa-d93520bc4780",
+                                            "condition": "equals",
+                                            "value": 0
+                                        },
+                                        {
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Paused trading but intends to restart in the next two weeks",
+                                                "Paused trading and does not intend to restart in the next two weeks"
+                                            ]
+                                        }
+                                    ]
                                 }
                             },
                             {
