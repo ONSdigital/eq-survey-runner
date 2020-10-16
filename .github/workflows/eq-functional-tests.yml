@@ -15,16 +15,21 @@ jobs:
                 python-version: [3.7.x]
 
         env:
-            EQ_DYNAMODB_ENDPOINT: http://localhost:6060
-            EQ_SUBMITTED_RESPONSES_TABLE_NAME: devsubmittedresponses
-            EQ_QUESTIONNAIRE_STATE_TABLE_NAME: devquestionnairestate
-            EQ_QUESTIONNAIRE_STATE_DYNAMO_READ: True
-            EQ_QUESTIONNAIRE_STATE_DYNAMO_WRITE: True
-            EQ_SESSION_TABLE_NAME: deveqsession
-            EQ_USED_JTI_CLAIM_TABLE_NAME: devusedjticlaim
-            AWS_DEFAULT_REGION: euwest1
-            AWS_ACCESS_KEY_ID: dummyaccesskey
-            AWS_SECRET_ACCESS_KEY: dummysecretkey
+          EQ_RUN_LOCAL_LINT: true
+          EQ_RUN_LOCAL_TESTS: true
+          EQ_RUN_DOCKER_UP: true
+          EQ_RUN_FUNCTIONAL_TESTS: true
+          EQ_RUN_FUNCTIONAL_TESTS_HEADLESS: true
+          EQ_DYNAMODB_ENDPOINT: http://localhost:6060
+          EQ_SUBMITTED_RESPONSES_TABLE_NAME: devsubmittedresponses
+          EQ_QUESTIONNAIRE_STATE_TABLE_NAME: devquestionnairestate
+          EQ_QUESTIONNAIRE_STATE_DYNAMO_READ: true
+          EQ_QUESTIONNAIRE_STATE_DYNAMO_WRITE: true
+          EQ_SESSION_TABLE_NAME: deveqsession
+          EQ_USED_JTI_CLAIM_TABLE_NAME: devusedjticlaim
+          AWS_DEFAULT_REGION: euwest1
+          AWS_ACCESS_KEY_ID: dummyaccesskey
+          AWS_SECRET_ACCESS_KEY: dummysecretkey
 
         steps:
             - uses: actions/checkout@v2
