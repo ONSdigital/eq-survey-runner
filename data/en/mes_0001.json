@@ -61,7 +61,7 @@
                                             "description": "The questions in this section ask for your expectations for a range of scenarios."
                                         },
                                         {
-                                            "description": "<a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' target='_blank'>Examples of how to answer these questions (external link)</a>"
+                                            "description": "<a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer these questions (external link)</a>"
                                         },
                                         {
                                             "description": "If you do not hold the precise information, please use your best judgement. You can provide informed estimates if actual figures are not available."
@@ -2506,7 +2506,7 @@
                         "type": "Interstitial",
                         "id": "groupaa6734a1-a948-4478-8ed6-d713fe21f575-introduction",
                         "title": "Expectations",
-                        "description": "<p>This section asks for information about your business&apos;s outcomes in 2019 and how current outcomes for 2020 have differed from expectations going in to 2020. We also ask about expectations for how your business, and the wider economy, will operate in 2021.  </p><p>The questions in this section ask for your expectations for a range of scenarios. </p><p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' target='_blank'>Examples of how to answer these questions (external link)</a></p><p> If you do not hold the precise information, please use your best judgement. You can provide informed estimates if actual figures are not available.</p><p></p>"
+                        "description": "<p>This section asks for information about your business&apos;s outcomes in 2019 and how current outcomes for 2020 have differed from expectations going in to 2020. We also ask about expectations for how your business, and the wider economy, will operate in 2021.  </p><p>The questions in this section ask for your expectations for a range of scenarios. </p><p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer these questions (external link)</a></p><p> If you do not hold the precise information, please use your best judgement. You can provide informed estimates if actual figures are not available.</p><p></p>"
                     },
                     {
                         "id": "block228ee6f3-98c3-40a0-be18-59465fd334e5",
@@ -2864,7 +2864,7 @@
                         "questions": [{
                             "id": "question96a6806a-aaa6-4ae1-a3f8-07de578c086f",
                             "title": "Looking ahead to the 2021 calendar year, what is the approximate turnover you would anticipate for this business in the following scenarios?",
-                            "description": "<p>We would like to know what you expect your business&apos;s turnover will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest turnover scenario to the highest, with your best estimate in the middle. </p><p>We would like to know how likely you think each of these scenarios is, and report the probability chance of that scenario happening on the next page.</p><p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' target='_blank'>Examples of how to answer this question (external link)</a></p><p>Please report according to your best judgement, you can provide a rough estimate. </p>",
+                            "description": "<p>We would like to know what you expect your business&apos;s turnover will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest turnover scenario to the highest, with your best estimate in the middle. </p><p>We would like to know how likely you think each of these scenarios is, and report the probability chance of that scenario happening on the next page.</p><p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer this question (external link)</a></p><p>Please report according to your best judgement, you can provide a rough estimate. </p>",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2958,7 +2958,7 @@
                                         "description": "We would like to know what you expect your business&#x2019;s turnover will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest turnover scenario to the highest, with your best guess in the middle. We would like to know how likely you think each of the scenarios you gave in the last question are, and report the probability chance of that scenario happening on this page."
                                     },
                                     {
-                                        "description": "<a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' target='_blank'>Examples of how to answer this question (external link)</a>"
+                                        "description": "<a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer this question (external link)</a>"
                                     }
                                 ]
                             }],
@@ -3605,7 +3605,7 @@
                         "questions": [{
                             "id": "question9946a337-d9c0-4159-9486-5f63e0740a26",
                             "title": "Looking ahead, approximately how many employees would you <em>anticipate</em> to be on {{ metadata['ru_name'] }}&apos;s payroll in December 2021 in the following scenarios?",
-                            "description": "<p>We would like to know what you expect your business&#x2019;s employment will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest employment scenario to the highest, with your best estimate in the middle. </p><p>We would like to know how likely you think each of these scenarios is, and report the probability chance of that scenario happening on the next page.</p><p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' target='_blank'>Examples of how to answer this question (external link)</a></p><p>Please report according to your best judgement, you can provide a rough estimate.</p>",
+                            "description": "<p>We would like to know what you expect your business&#x2019;s employment will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest employment scenario to the highest, with your best estimate in the middle. </p><p>We would like to know how likely you think each of these scenarios is, and report the probability chance of that scenario happening on the next page.</p><p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer this question (external link)</a></p><p>Please report according to your best judgement, you can provide a rough estimate.</p>",
                             "type": "General",
                             "answers": [{
                                     "id": "answerce8b197d-2367-4df9-acc3-fedb9585a64a",
@@ -3688,7 +3688,7 @@
                                         "description": "We would like to know what you expect your business&#x2019;s employment will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest employment scenario to the highest, with your best guess in the middle. We would like to know how likely you think each of the scenarios you gave in the last question are, and report the probability chance of that scenario happening on this page."
                                     },
                                     {
-                                        "description": "<a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' target='_blank'>Examples of how to answer this question (external link)</a>"
+                                        "description": "<a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer this question (external link)</a>"
                                     }
                                 ]
                             }],
