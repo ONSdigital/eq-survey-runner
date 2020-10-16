@@ -4238,6 +4238,17 @@
         {
             "name": "ref_p_end_date",
             "validator": "date"
+<<<<<<< HEAD
+=======
+        },
+        {
+            "name": "employmentDate",
+            "validator": "date"
+        },
+        {
+            "name": "period_str",
+            "validator": "string"
+>>>>>>> parent of 516af3af... Remove unused employmentDate
         }
     ],
     "view_submitted_response": {
