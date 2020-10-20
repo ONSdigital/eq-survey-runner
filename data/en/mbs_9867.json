@@ -150,7 +150,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question20c54ee9-7972-4a63-9a0d-b226a7b11c93",
-                            "title": "Are you able to report for the period from {{ format_conditional_date (answers['answer7b54ca54-230a-493c-9fa3-bd4572639a1bfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer7b54ca54-230a-493c-9fa3-bd4572639a1bto'], metadata['ref_p_end_date']) }}?",
+                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer53f09ccc-117f-45c1-9074-c8f3bee8a345",
