@@ -77,7 +77,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question44887073-01a5-4de0-8d4b-221dbdb06b6f",
-                            "title": "Are you able to report for the period from {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677to'], metadata['ref_p_end_date']) }}?",
+                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer1b071b2f-8c41-44cd-a517-98dcedaa759a",

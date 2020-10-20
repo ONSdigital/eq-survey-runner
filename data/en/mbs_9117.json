@@ -98,7 +98,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questione57c6df2-8879-4b43-9ed1-c99b5a45d818",
-                            "title": "Are you able to report for the period from {{ format_conditional_date (answers['answer10e5f134-d575-4d48-ae53-1943eb68b85dfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer10e5f134-d575-4d48-ae53-1943eb68b85dto'], metadata['ref_p_end_date']) }}?",
+                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer8a08cf12-6f95-4e66-ae36-dc53710f9caa",
