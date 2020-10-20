@@ -80,7 +80,7 @@
                 "type": "Question",
                 "questions": [{
                     "id": "question17695711-3c10-48f3-840c-eb8457dc0836",
-                    "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
+                    "title": "Are you able to report for the period from {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479to'], metadata['ref_p_end_date'])}}?",
                     "type": "General",
                     "answers": [{
                         "id": "answer033c9949-fbb7-4a93-a910-6235920408f8",
@@ -193,7 +193,7 @@
                 "type": "ConfirmationQuestion",
                 "questions": [{
                     "id": "questionconfirmation-page-for-9c16f830-53d7-4d70-aa7f-3d2dd3ce46f6",
-                    "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, the total turnover was <em>{{ format_currency(answers['answer06c497b8-4f83-44eb-8390-d6cb45d5b08f'], 'GBP') }}</em>, is this correct?",
+                    "title": "For the period {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479to'], metadata['ref_p_end_date'])}}, the total turnover was <em>{{ format_currency(answers['answer06c497b8-4f83-44eb-8390-d6cb45d5b08f'], 'GBP') }}</em>, is this correct?",
                     "type": "General",
                     "answers": [{
                         "id": "answerconfirmation-answer-for-9c16f830-53d7-4d70-aa7f-3d2dd3ce46f6",
@@ -234,7 +234,7 @@
                 "type": "Question",
                 "questions": [{
                     "id": "question80516743-aece-44e6-a492-3934a7e29c2b",
-                    "title": "On {{ metadata['employment_date'] | format_date }}, what was the number of employees for {{ metadata['ru_name'] }}?",
+                    "title": "On {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479from'], metadata['ref_p_start_date'])}}, what was the number of employees for {{ metadata['ru_name'] }}?",
                     "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                     "guidance": {
                         "content": [{
@@ -263,7 +263,7 @@
                 "type": "ConfirmationQuestion",
                 "questions": [{
                     "id": "questionconfirmation-page-for-80516743-aece-44e6-a492-3934a7e29c2b",
-                    "title": "On {{ metadata['employment_date'] | format_date }}, the number of employees for {{ metadata['ru_name'] }} was <em>{{ answers['answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227'] | format_number }}</em>, is this correct?",
+                    "title": "On {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479from'], metadata['ref_p_start_date'])}}, the number of employees for {{ metadata['ru_name'] }} was <em>{{ answers['answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227'] | format_number }}</em>, is this correct?",
                     "type": "General",
                     "answers": [{
                         "id": "answerconfirmation-answer-for-80516743-aece-44e6-a492-3934a7e29c2b",
