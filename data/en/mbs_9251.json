@@ -18,7 +18,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Include</b>: furloughed employees in any employment figures.<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
                                 "list": [
                                     "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
                                     "You can provide informed estimates if actual figures aren&#x2019;t available.",
@@ -160,7 +160,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question7eac868b-88ba-4131-8019-61dabb346ce2",
-                            "title": "Are you able to report for the period from {{ format_conditional_date (answers['answer23b1c399-82de-4efb-94b0-a9217df16575from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer23b1c399-82de-4efb-94b0-a9217df16575to'], metadata['ref_p_end_date']) }}?",
+                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerc69f3cfc-54f5-4d93-ae34-84072da99bac",
@@ -264,7 +264,7 @@
                                             "income from sub-contracted activities",
                                             "commission",
                                             "sales of goods purchased for resale",
-                                            "transport, insurance and packagnig charges",
+                                            "transport, insurance and packaging charges",
                                             "revenue earned from other parts of the business not named at the top of this page (please supply at fair value)"
                                         ]
                                     },
@@ -391,7 +391,7 @@
                         "questions": [{
                             "id": "question46918f5e-3fad-4aa2-a898-ce2c9ff1ac27",
                             "title": "On {{ metadata['employment_date'] | format_date }}, what was the number of employees for {{ metadata['ru_name'] }}?",
-                            "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
+                            "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from it&apos;s payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -433,7 +433,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-46918f5e-3fad-4aa2-a898-ce2c9ff1ac27",
-                            "title": "On {{ format_conditional_date (answers['answer23b1c399-82de-4efb-94b0-a9217df16575to'], metadata['ref_p_end_date']) }}, the number of employees for {{ metadata['ru_name'] }} was <em>{{ answers['answer975d841b-3dc2-48b8-b4e1-57081c1b4efb'] | format_number }}</em>, is this correct?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, the number of employees for {{ metadata['ru_name'] }} was <em>{{ answers['answer975d841b-3dc2-48b8-b4e1-57081c1b4efb'] | format_number }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-46918f5e-3fad-4aa2-a898-ce2c9ff1ac27",
