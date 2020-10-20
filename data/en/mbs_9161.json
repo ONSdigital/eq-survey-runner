@@ -378,6 +378,7 @@
                         "decimal_places": 0
                     }],
                     "calculations": [{
+                        "value": 0,
                         "calculation_type": "sum",
                         "answers_to_calculate": ["answer8f04e9b0-497b-4537-ad94-71c86e7f1b41", "answereaa6a9ed-d941-4edc-a034-435a145ad5e3", "answer4762cb2d-f2e0-4f0e-b630-becb8b408126", "answerf9bb5fb6-89eb-413b-b138-8fa09ac1ab0d"],
                         "conditions": ["equals"],
