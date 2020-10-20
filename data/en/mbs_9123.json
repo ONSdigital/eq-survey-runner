@@ -18,7 +18,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Include</b>: furloughed employees in any employment figures.<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
+                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance </h2><p><b>If you have not traded for all, or some, of the period</b>: still select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<br><b>Exclude</b>: furlough payments received in figures.<br><b>Explain figures</b> in the comments section to minimise us contacting you and to help us tell an industry story.<br></p></div></div>",
                                 "list": [
                                     "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
                                     "You can provide informed estimates if actual figures aren&#x2019;t available.",
@@ -77,7 +77,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question44887073-01a5-4de0-8d4b-221dbdb06b6f",
-                            "title": "Are you able to report for the period from {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677to'], metadata['ref_p_end_date']) }}?",
+                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer1b071b2f-8c41-44cd-a517-98dcedaa759a",
