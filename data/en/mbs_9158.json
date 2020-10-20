@@ -280,6 +280,13 @@
                         }]
                     }]
                 }],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227",
+                        "condition": "greater than",
+                        "value": 0
+                    }]
+                }],
                 "routing_rules": [{
                     "goto": {
                         "block": "block80516743-aece-44e6-a492-3934a7e29c2b",
@@ -378,7 +385,11 @@
                         "decimal_places": 0
                     }],
                     "calculations": [{
-                        "value": 0,
+                        "calculation_type": "sum",
+                        "answers_to_calculate": ["answercc4096e3-ceda-4ae9-aabf-6f44b81008db", "answere9d8c83d-9ea0-493b-99bb-d7cb37d872b3", "answer14d0b50e-4f12-4435-8727-d701d3d40fc7", "answeredb8bcb5-73c8-44aa-8790-f1b66376fe15"],
+                        "conditions": ["equals"],
+                        "value": 0
+                    }, {
                         "calculation_type": "sum",
                         "answers_to_calculate": ["answercc4096e3-ceda-4ae9-aabf-6f44b81008db", "answere9d8c83d-9ea0-493b-99bb-d7cb37d872b3", "answer14d0b50e-4f12-4435-8727-d701d3d40fc7", "answeredb8bcb5-73c8-44aa-8790-f1b66376fe15"],
                         "conditions": ["equals"],
