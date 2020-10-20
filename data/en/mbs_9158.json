@@ -4,6 +4,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "survey_id": "009",
+    "eq_id": "mbs",
     "title": "Monthly Business Survey",
     "sections": [{
         "id": "sectionb6fe331f-6521-4e48-9cb7-e1d51f24f512",
