@@ -128,7 +128,7 @@
                         "id": "answer20459962-662d-4439-9987-2b89b0ac5479from",
                         "type": "Date",
                         "mandatory": true,
-                        "label": "From:",
+                        "label": "From",
                         "q_code": "11",
                         "minimum": {
                             "meta": "ref_p_start_date",
@@ -140,7 +140,7 @@
                         "id": "answer20459962-662d-4439-9987-2b89b0ac5479to",
                         "type": "Date",
                         "mandatory": true,
-                        "label": "To:",
+                        "label": "To",
                         "q_code": "12",
                         "maximum": {
                             "value": "2016-06-12",
@@ -199,7 +199,7 @@
                 "type": "ConfirmationQuestion",
                 "questions": [{
                     "id": "questionconfirmation-page-for-9c16f830-53d7-4d70-aa7f-3d2dd3ce46f6",
-                    "title": "For the period {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479to'], metadata['ref_p_end_date'])}}}, the total turnover was <em>{{ format_currency(answers['answer06c497b8-4f83-44eb-8390-d6cb45d5b08f'], 'GBP') }}</em>, is this correct?",
+                    "title": "For the period {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479to'], metadata['ref_p_end_date'])}}, the total turnover was <em>{{ format_currency(answers['answer06c497b8-4f83-44eb-8390-d6cb45d5b08f'], 'GBP') }}</em>, is this correct?",
                     "type": "General",
                     "answers": [{
                         "id": "answerconfirmation-answer-for-9c16f830-53d7-4d70-aa7f-3d2dd3ce46f6",
