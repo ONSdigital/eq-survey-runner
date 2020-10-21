@@ -170,7 +170,7 @@
                 "type": "Question",
                 "questions": [{
                     "id": "question2a5fcea0-e60a-4bac-95c4-11ea7954fad8",
-                    "title": "For the period {{ format_conditional_date (answers['answer5b169b72-cdd2-47ee-9d68-53ab102b3524from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer5b169b72-cdd2-47ee-9d68-53ab102b3524to'], metadata['ref_p_end_date'])}}}, what was {{ metadata['ru_name'] }}&apos;s <em>total turnover</em>, excluding VAT?",
+                    "title": "For the period {{ format_conditional_date (answers['answer5b169b72-cdd2-47ee-9d68-53ab102b3524from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer5b169b72-cdd2-47ee-9d68-53ab102b3524to'], metadata['ref_p_end_date'])}}, what was {{ metadata['ru_name'] }}&apos;s <em>total turnover</em>, excluding VAT?",
                     "guidance": {
                         "content": [{
                             "description": "<strong>Include:</strong>"

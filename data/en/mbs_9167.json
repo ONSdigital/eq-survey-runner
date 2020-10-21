@@ -177,7 +177,7 @@
                 "type": "Question",
                 "questions": [{
                     "id": "questione2529e09-2140-4a10-85ed-fc3e421397dc",
-                    "title": "For the period {{ format_conditional_date (answers['nswere107e8d8-3f37-41d8-8cad-ff78d932a8cdfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['nswere107e8d8-3f37-41d8-8cad-ff78d932a8cdto'], metadata['ref_p_end_date'])}}}, what was {{ metadata['ru_name'] }}&apos;s <em>turnover</em>, excluding VAT?",
+                    "title": "For the period {{ format_conditional_date (answers['nswere107e8d8-3f37-41d8-8cad-ff78d932a8cdfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['nswere107e8d8-3f37-41d8-8cad-ff78d932a8cdto'], metadata['ref_p_end_date'])}}, what was {{ metadata['ru_name'] }}&apos;s <em>turnover</em>, excluding VAT?",
                     "guidance": {
                         "content": [{
                             "description": "<strong>Include:</strong>"
