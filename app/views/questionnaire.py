@@ -249,6 +249,10 @@ def get_thank_you(schema, metadata, eq_id, form_type):
             view_submission_url = url_for('.get_view_submission', eq_id=eq_id, form_type=form_type)
             view_submission_duration = humanize.naturaldelta(timedelta(seconds=schema.json['view_submitted_response']['duration']))
 
+        cookie_message = request.cookies.get('ons_cookie_message_displayed')
+        cookie_policy = request.cookies.get('ons_cookie_policy')
+        allow_analytics = cookie_policy and '"usage":true' in cookie_policy
+
         return render_theme_template(schema.json['theme'],
                                      template_name='thank-you.html',
                                      metadata=metadata_context,
@@ -260,16 +264,16 @@ def get_thank_you(schema, metadata, eq_id, form_type):
                                      view_submission_url=view_submission_url,
                                      account_service_url=cookie_session.get('account_service_url'),
                                      account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
-                                     view_submission_duration=view_submission_duration)
+                                     view_submission_duration=view_submission_duration,
+                                     cookie_message=cookie_message,
+                                     allow_analytics=allow_analytics)
 
     routing_path = path_finder.get_full_routing_path()
-
-    collection_id = metadata['collection_exercise_sid']
 
     router = Router(schema, routing_path, completeness)
     next_location = router.get_next_location()
 
-    return _redirect_to_location(collection_id, metadata.get('eq_id'), metadata.get('form_type'), next_location)
+    return _redirect_to_location(metadata['collection_exercise_sid'], metadata.get('eq_id'), metadata.get('form_type'), next_location)
 
 
 @post_submission_blueprint.route('thank-you', methods=['POST'])
@@ -328,6 +332,10 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
                 'variables': None,
             }
 
+            cookie_message = request.cookies.get('ons_cookie_message_displayed')
+            cookie_policy = request.cookies.get('ons_cookie_policy')
+            allow_analytics = cookie_policy and '"usage":true' in cookie_policy
+
             return render_theme_template(schema.json['theme'],
                                          template_name='view-submission.html',
                                          metadata=metadata_context,
@@ -337,7 +345,9 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
                                          survey_title=TemplateRenderer.safe_content(schema.json['title']),
                                          account_service_url=cookie_session.get('account_service_url'),
                                          account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
-                                         content=context)
+                                         content=context,
+                                         cookie_message=cookie_message,
+                                         allow_analytics=allow_analytics)
 
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
@@ -578,13 +588,17 @@ def _build_template(current_location, context, template, schema, answer_store, m
     front_end_navigation = _get_front_end_navigation(answer_store, current_location, metadata, schema, routing_path)
     previous_location = path_finder.get_previous_location(current_location)
     previous_url = previous_location.url(metadata) if previous_location is not None else None
+    cookie_message = request.cookies.get('ons_cookie_message_displayed')
+    cookie_policy = request.cookies.get('ons_cookie_policy')
+    allow_analytics = cookie_policy and '"usage":true' in cookie_policy
 
     add_person_url = None
     if routing_path:
         add_person_location = routing_path[routing_path.index(current_location) - 1]
         add_person_url = add_person_location.url(metadata) if add_person_location else None
 
-    return _render_template(context, current_location, template, front_end_navigation, previous_url, add_person_url, schema, metadata, answer_store)
+    return _render_template(context, current_location, template, front_end_navigation, previous_url, add_person_url, schema, metadata, answer_store,
+                            cookie_message, allow_analytics)
 
 
 @with_session_timeout
@@ -592,7 +606,8 @@ def _build_template(current_location, context, template, schema, answer_store, m
 @with_metadata_context
 @with_analytics
 @with_legal_basis
-def _render_template(context, current_location, template, front_end_navigation, previous_url, add_person_url, schema, metadata, answer_store,
+def _render_template(context, current_location, template, front_end_navigation,
+                     previous_url, add_person_url, schema, metadata, answer_store, cookie_message, allow_analytics,
                      **kwargs):
     page_title = get_page_title_for_location(schema, current_location, metadata, answer_store)
 
@@ -609,6 +624,8 @@ def _render_template(context, current_location, template, front_end_navigation, 
         page_title=page_title,
         metadata=kwargs.pop('metadata_context'),  # `metadata_context` is used as `metadata` in the jinja templates
         language_code=session_data.language_code,
+        cookie_message=cookie_message,
+        allow_analytics=allow_analytics,
         **kwargs
     )
 
