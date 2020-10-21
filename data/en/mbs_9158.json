@@ -128,7 +128,7 @@
                         "id": "answer20459962-662d-4439-9987-2b89b0ac5479from",
                         "type": "Date",
                         "mandatory": true,
-                        "label": "From:",
+                        "label": "From",
                         "q_code": "11",
                         "minimum": {
                             "meta": "ref_p_start_date",
@@ -140,7 +140,7 @@
                         "id": "answer20459962-662d-4439-9987-2b89b0ac5479to",
                         "type": "Date",
                         "mandatory": true,
-                        "label": "To:",
+                        "label": "To",
                         "q_code": "12",
                         "maximum": {
                             "value": "2016-06-12",
