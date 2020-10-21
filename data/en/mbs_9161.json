@@ -199,7 +199,7 @@
                 "type": "ConfirmationQuestion",
                 "questions": [{
                     "id": "questionconfirmation-page-for-2a5fcea0-e60a-4bac-95c4-11ea7954fad8",
-                    "title": "For the period {{ format_conditional_date (answers['answer5b169b72-cdd2-47ee-9d68-53ab102b3524from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer5b169b72-cdd2-47ee-9d68-53ab102b3524to'], metadata['ref_p_end_date'])}}}, the total turnover was <em>{{ format_currency(answers['answerf0d15785-cfbc-42be-8ffa-5f1311a876f7'], 'GBP') }}</em>, is this correct?",
+                    "title": "For the period {{ format_conditional_date (answers['answer5b169b72-cdd2-47ee-9d68-53ab102b3524from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer5b169b72-cdd2-47ee-9d68-53ab102b3524to'], metadata['ref_p_end_date'])}}, the total turnover was <em>{{ format_currency(answers['answerf0d15785-cfbc-42be-8ffa-5f1311a876f7'], 'GBP') }}</em>, is this correct?",
                     "type": "General",
                     "answers": [{
                         "id": "answerconfirmation-answer-for-2a5fcea0-e60a-4bac-95c4-11ea7954fad8",

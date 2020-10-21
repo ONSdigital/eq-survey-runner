@@ -206,7 +206,7 @@
                 "type": "ConfirmationQuestion",
                 "questions": [{
                     "id": "questionconfirmation-page-for-e2529e09-2140-4a10-85ed-fc3e421397dc",
-                    "title": "For the period {{ format_conditional_date (answers['nswere107e8d8-3f37-41d8-8cad-ff78d932a8cdfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['nswere107e8d8-3f37-41d8-8cad-ff78d932a8cdto'], metadata['ref_p_end_date'])}}}, the turnover was <em>{{ format_currency(answers['answerce4ed38b-507b-4038-8182-32fc974bec4d'], 'GBP') }}</em>, is this correct?",
+                    "title": "For the period {{ format_conditional_date (answers['nswere107e8d8-3f37-41d8-8cad-ff78d932a8cdfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['nswere107e8d8-3f37-41d8-8cad-ff78d932a8cdto'], metadata['ref_p_end_date'])}}, the turnover was <em>{{ format_currency(answers['answerce4ed38b-507b-4038-8182-32fc974bec4d'], 'GBP') }}</em>, is this correct?",
                     "type": "General",
                     "answers": [{
                         "id": "answerconfirmation-answer-for-e2529e09-2140-4a10-85ed-fc3e421397dc",
