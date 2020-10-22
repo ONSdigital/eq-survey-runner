@@ -161,7 +161,7 @@
                             "q_code": "110",
                             "unit": "volume-megaliter",
                             "unit_length": "short",
-                            "decimal_places": 2
+                            "decimal_places": 0
                         }]
                     }]
                 }]
