@@ -237,8 +237,7 @@
         "enabled": true,
         "duration": 900
     }
-}
-{
+} {
     "title": "Monthly Business Survey",
     "survey_id": "009",
     "mime_type": "application/json/ons/eq",
