@@ -62,7 +62,7 @@
                         "content": [{
                             "description": "The number of:"
                         }, {
-                            "list": ["male employees workings more than 30 hours per week", "male employees working 30 hours or less per week", "female employees working more than 30 hours per week", "female employees working 30 hours or less per week"]
+                            "list": ["male employees working more than 30 hours per week", "male employees working 30 hours or less per week", "female employees working more than 30 hours per week", "female employees working 30 hours or less per week"]
                         }, {
                             "description": "Include:"
                         }, {
