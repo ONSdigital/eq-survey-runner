@@ -1,0 +1,236 @@
+{
+    "eq_id": "25f7b518-0961-4586-89da-d351c21715b8",
+    "form_type": "25f7b518-0961-4586-89da-d351c21715b8",
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "testskippingconfirmationpage",
+    "title": "Test skipping confirmation page",
+    "sections": [
+        {
+            "id": "section762e6ee0-92fd-4bf3-8aff-50656a76156e",
+            "groups": [
+                {
+                    "id": "group762e6ee0-92fd-4bf3-8aff-50656a76156e",
+                    "title": "",
+                    "blocks": [
+                        {
+                            "type": "Introduction",
+                            "id": "introduction-block",
+                            "primary_content": [
+                                {
+                                    "type": "Basic",
+                                    "id": "primary"
+                                }
+                            ],
+                            "preview_content": {
+                                "id": "preview",
+                                "title": "Information you need",
+                                "content": [
+                                    {
+                                        "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                                    }
+                                ],
+                                "questions": []
+                            },
+                            "secondary_content": [
+                                {
+                                    "id": "secondary-content",
+                                    "title": "How we use your data",
+                                    "content": [
+                                        {
+                                            "list": [
+                                                "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                                                "The information you provide contributes to Gross Domestic Product (GDP)."
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "blocke5c4eaa5-51d5-4345-bab0-18a7ec5a14dc",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "questione5c4eaa5-51d5-4345-bab0-18a7ec5a14dc",
+                                    "title": "How many rattos do you have?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer39e59931-c9d7-4f0c-bfe5-10fda035206b",
+                                            "mandatory": false,
+                                            "type": "Number",
+                                            "label": "This many!",
+                                            "description": "",
+                                            "decimal_places": 0
+                                        }
+                                    ]
+                                }
+                            ],
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "blockconfirmation-page-for-e5c4eaa5-51d5-4345-bab0-18a7ec5a14dc",
+                                        "when": [
+                                            {
+                                                "id": "answer39e59931-c9d7-4f0c-bfe5-10fda035206b",
+                                                "condition": "equals",
+                                                "value": 0
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "blockac2cfa6e-36e3-4b71-a51b-1a11ca6215a2"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "blockconfirmation-page-for-e5c4eaa5-51d5-4345-bab0-18a7ec5a14dc",
+                            "type": "ConfirmationQuestion",
+                            "questions": [
+                                {
+                                    "id": "questionconfirmation-page-for-e5c4eaa5-51d5-4345-bab0-18a7ec5a14dc",
+                                    "title": "You said you have {{ answers['answer39e59931-c9d7-4f0c-bfe5-10fda035206b'] | format_number }} rattos. Is that right?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answerconfirmation-answer-for-e5c4eaa5-51d5-4345-bab0-18a7ec5a14dc",
+                                            "mandatory": true,
+                                            "type": "Radio",
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "blocke5c4eaa5-51d5-4345-bab0-18a7ec5a14dc",
+                                        "when": [
+                                            {
+                                                "id": "answerconfirmation-answer-for-e5c4eaa5-51d5-4345-bab0-18a7ec5a14dc",
+                                                "condition": "contains any",
+                                                "values": ["No"]
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "blockac2cfa6e-36e3-4b71-a51b-1a11ca6215a2",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "questionac2cfa6e-36e3-4b71-a51b-1a11ca6215a2",
+                                    "title": "Do you want any more rattos?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer0ff374e0-528e-40bd-82c1-dc1e165b1acd",
+                                            "mandatory": false,
+                                            "type": "Radio",
+                                            "label": "",
+                                            "description": "",
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "confirmation-group",
+                    "title": "confirmation",
+                    "blocks": [
+                        {
+                            "title": "You are now ready to submit this survey",
+                            "type": "Confirmation",
+                            "id": "confirmation",
+                            "description": "",
+                            "questions": [
+                                {
+                                    "id": "ready-to-submit-completed-question",
+                                    "title": "Submission",
+                                    "type": "Content",
+                                    "guidance": {
+                                        "content": [
+                                            {
+                                                "list": [
+                                                    "You will not be able to access or change your answers on submitting the questionnaire",
+                                                    "If you wish to review your answers please select the relevant completed sections"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "theme": "default",
+    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
+    "navigation": {
+        "visible": false
+    },
+    "metadata": [
+        {
+            "name": "user_id",
+            "validator": "string"
+        },
+        {
+            "name": "period_id",
+            "validator": "string"
+        },
+        {
+            "name": "ru_name",
+            "validator": "string"
+        },
+        {
+            "name": "trad_as",
+            "validator": "string"
+        },
+        {
+            "name": "ref_p_start_date",
+            "validator": "date"
+        },
+        {
+            "name": "ref_p_end_date",
+            "validator": "date"
+        },
+        {
+            "name": "employment_date",
+            "validator": "date"
+        }
+    ],
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    }
+}
