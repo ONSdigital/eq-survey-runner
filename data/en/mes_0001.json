@@ -31,7 +31,7 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                "description": "<p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>View questions and see examples of how to complete the Expectations section, before you start the survey (external link)</a></p><p>The information required in this survey covers a range of topics, and you might need to consult with colleagues for some sections.</p>"
+                                "description": "<p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>View questions and see examples of how to complete the Expectations section, before you start the survey (external link)</a></p> <p>The information required in this survey covers a range of topics, and you might need to consult with colleagues for some sections.</p>"
                             }],
                             "questions": [{
                                     "question": "Management practices and business characteristics",
@@ -55,13 +55,13 @@
                                 {
                                     "question": "Expectations",
                                     "content": [{
-                                            "description": "This section asks for information about your business&apos;s outcomes in 2019 and how current outcomes for 2020 have differed from expectations going in to 2020. We also ask about expectations for how your business, and the wider economy, will operate in 2021."
+                                            "description": "This section asks for information about your business&apos;s outcomes in 2019 and how current outcomes for 2020 have differed from expectations going into 2020. We also ask about expectations for how your business, and the wider economy, will operate in 2021."
                                         },
                                         {
                                             "description": "The questions in this section ask for your expectations for a range of scenarios."
                                         },
                                         {
-                                            "description": "<a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer these questions (external link)</a>"
+                                            "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>Examples of how to answer these questions (external link)</a>"
                                         },
                                         {
                                             "description": "If you do not hold the precise information, please use your best judgement. You can provide informed estimates if actual figures are not available."
@@ -71,7 +71,7 @@
                                 {
                                     "question": "Feedback",
                                     "content": [{
-                                        "description": "This section provides the opportunity to request feedback on the management practices score, and provide feedback on the questionnaire."
+                                        "description": "This section provides the opportunity to request feedback on the management practices score, and provide any additional information that will help us understand the answers you have provided."
                                     }]
                                 }
                             ]
@@ -366,7 +366,7 @@
                                     {
                                         "label": "A relative of the founder owned it",
                                         "value": "A relative of the founder owned it",
-                                        "description": "For example daughter, son, sister, brother, grandson, husband or wife"
+                                        "description": "For example, daughter, son, sister, brother, grandson, husband or wife"
                                     },
                                     {
                                         "label": "A family not related to the founder owned it",
@@ -474,27 +474,7 @@
                                     }
                                 ]
                             }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block0f66eb1e-f3bd-49bc-b7b7-9b072820a5cb",
-                                    "when": [{
-                                        "id": "answer32b2211a-f760-4fb6-86eb-43a9e059d4f6",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "We resolved the problems but did not take further action",
-                                            "We resolved the problems and took action to try to ensure they do not happen again",
-                                            "We resolved the problems and had a continuous improvement process to anticipate similar problems in advance"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockb175bdb9-7030-41ec-b894-303b777bb0b8"
-                                }
-                            }
-                        ]
+                        }]
                     },
                     {
                         "id": "block0f66eb1e-f3bd-49bc-b7b7-9b072820a5cb",
@@ -2390,13 +2370,7 @@
                                     },
                                     {
                                         "label": "Other",
-                                        "value": "Other",
-                                        "detail_answer": {
-                                            "label": "Please describe",
-                                            "type": "TextField",
-                                            "id": "answere89e3a3f-45ac-42ee-9de4-5cefb1824a1a",
-                                            "mandatory": true
-                                        }
+                                        "value": "Other"
                                     }
                                 ]
                             }]
@@ -2430,13 +2404,7 @@
                                     },
                                     {
                                         "label": "Other",
-                                        "value": "Other",
-                                        "detail_answer": {
-                                            "label": "Please describe",
-                                            "type": "TextField",
-                                            "id": "answer4bdb130a-9d78-4ae7-a22e-dfd165c71003",
-                                            "mandatory": true
-                                        }
+                                        "value": "Other"
                                     }
                                 ]
                             }]
@@ -2470,12 +2438,12 @@
                                 "description": "",
                                 "q_code": "1170",
                                 "options": [{
-                                        "label": "Under £1000",
-                                        "value": "Under £1000"
+                                        "label": "Under £1,000",
+                                        "value": "Under £1,000"
                                     },
                                     {
-                                        "label": "£1000 to £9999",
-                                        "value": "£1000 to £9999"
+                                        "label": "£1,000 to £9,999",
+                                        "value": "£1,000 to £9,999"
                                     },
                                     {
                                         "label": "£10,000 to £99,999",
@@ -2506,52 +2474,7 @@
                         "type": "Interstitial",
                         "id": "groupaa6734a1-a948-4478-8ed6-d713fe21f575-introduction",
                         "title": "Expectations",
-                        "description": "<p>This section asks for information about your business&apos;s outcomes in 2019 and how current outcomes for 2020 have differed from expectations going in to 2020. We also ask about expectations for how your business, and the wider economy, will operate in 2021.  </p><p>The questions in this section ask for your expectations for a range of scenarios. </p><p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer these questions (external link)</a></p><p> If you do not hold the precise information, please use your best judgement. You can provide informed estimates if actual figures are not available.</p><p></p>"
-                    },
-                    {
-                        "id": "block228ee6f3-98c3-40a0-be18-59465fd334e5",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question228ee6f3-98c3-40a0-be18-59465fd334e5",
-                            "title": "What dates in the calendar year 2019 will you be reporting for?",
-                            "description": "<p>This following section asks for information on financial items. </p><p>Where possible, we would like you to report for calendar years.  If calendar reporting periods are not available, please use your own financial year reporting period that spans the majority of the calendar year in question.  </p><p>If you traded for only part of the year, please still provide dates and figures for the period in which you were trading.  </p><p>Please indicate below what dates you will be reporting for when questions ask for the 2019 calendar year.</p>",
-                            "type": "DateRange",
-                            "answers": [{
-                                    "id": "answer64050a42-81fe-4a7b-a2c4-18aac8ff870ffrom",
-                                    "type": "Date",
-                                    "mandatory": true,
-                                    "label": "From",
-                                    "q_code": "1164",
-                                    "minimum": {
-                                        "value": "2018-01-01",
-                                        "offset_by": {
-                                            "days": 0
-                                        }
-                                    }
-                                },
-                                {
-                                    "id": "answer64050a42-81fe-4a7b-a2c4-18aac8ff870fto",
-                                    "type": "Date",
-                                    "mandatory": true,
-                                    "label": "To",
-                                    "q_code": "1165",
-                                    "maximum": {
-                                        "value": "2020-12-31",
-                                        "offset_by": {
-                                            "days": 0
-                                        }
-                                    }
-                                }
-                            ],
-                            "period_limits": {
-                                "minimum": {
-                                    "days": 0
-                                },
-                                "maximum": {
-                                    "days": 365
-                                }
-                            }
-                        }]
+                        "description": "<p>This section asks for information about your business&apos;s outcomes in 2019 and how current outcomes for 2020 have differed from expectations going into 2020. We also ask about expectations for how your business, and the wider economy, will operate in 2021.  </p><p>The questions in this section ask for your expectations for a range of scenarios. </p><p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>Examples of how to answer these questions (external link)<a/></p><p> If you do not hold the precise information, please use your best judgement. You can provide informed estimates if actual figures are not available.</p><p></p>"
                     },
                     {
                         "id": "block98ffb8e6-bb48-4498-9c9a-8a6c9c8a0a37",
@@ -2568,7 +2491,7 @@
                                         "list": [
                                             "all sales of goods (except capital assets) including exports and goods purchased and resold without processing",
                                             "income from any services rendered to other organisations, except the rent from land",
-                                            "amounts received for the right to use patents and similar",
+                                            "amounts received for the right to use patents or similar",
                                             "provision of goods or services to other parts of your company or organisation which are not the same as the part of your company you are responding for"
                                         ]
                                     },
@@ -2578,7 +2501,7 @@
                                     {
                                         "list": [
                                             "goods and services produced and used by your business (output for own final use)",
-                                            "interest payments received and dividend",
+                                            "interest payments or dividends received",
                                             "amounts received from the sale of fixed capital assets or intellectual property rights",
                                             "grants, subsidies from any public authority, transfers and donations",
                                             "freight charges, excise taxes and value added tax"
@@ -2667,7 +2590,7 @@
                                         "list": [
                                             "all sales of goods (except capital assets) including exports and goods purchased and resold without processing",
                                             "income from any services rendered to other organisations, except the rent from land",
-                                            "amounts received for the right to use patents and similar",
+                                            "amounts received for the right to use patents or similar",
                                             "provision of goods or services to other parts of your company or organisation which are not the same as the part of your company you are responding for"
                                         ]
                                     },
@@ -2677,7 +2600,7 @@
                                     {
                                         "list": [
                                             "goods and services produced and used by your business (output for own final use)",
-                                            "interest payments received and dividend",
+                                            "interest payments or dividends received",
                                             "amounts received from the sale of fixed capital assets or intellectual property rights",
                                             "grants, subsidies from any public authority, transfers and donations",
                                             "freight charges, excise taxes and value added tax"
@@ -2770,7 +2693,7 @@
                                         "list": [
                                             "all sales of goods (except capital assets) including exports and goods purchased and resold without processing",
                                             "income from any services rendered to other organisations, except the rent from land",
-                                            "amounts received for the right to use patents and similar",
+                                            "amounts received for the right to use patents or similar",
                                             "provision of goods or services to other parts of your company or organisation which are not the same as the part of your company you are responding for"
                                         ]
                                     },
@@ -2780,7 +2703,7 @@
                                     {
                                         "list": [
                                             "goods and services produced and used by your business (output for own final use)",
-                                            "interest payments received and dividend",
+                                            "interest payments or dividends received",
                                             "amounts received from the sale of fixed capital assets or intellectual property rights",
                                             "grants, subsidies from any public authority, transfers and donations",
                                             "freight charges, excise taxes and value added tax"
@@ -2821,7 +2744,7 @@
                                         "list": [
                                             "all sales of goods (except capital assets) including exports and goods purchased and resold without processing",
                                             "income from any services rendered to other organisations, except the rent from land",
-                                            "amounts received for the right to use patents and similar",
+                                            "amounts received for the right to use patents or similar",
                                             "provision of goods or services to other parts of your company or organisation which are not the same as the part of your company you are responding for"
                                         ]
                                     },
@@ -2831,7 +2754,7 @@
                                     {
                                         "list": [
                                             "goods and services produced and used by your business (output for own final use)",
-                                            "interest payments received and dividend",
+                                            "interest payments or dividends received",
                                             "amounts received from the sale of fixed capital assets or intellectual property rights",
                                             "grants, subsidies from any public authority, transfers and donations",
                                             "freight charges, excise taxes and value added tax"
@@ -2864,7 +2787,7 @@
                         "questions": [{
                             "id": "question96a6806a-aaa6-4ae1-a3f8-07de578c086f",
                             "title": "Looking ahead to the 2021 calendar year, what is the approximate turnover you would anticipate for this business in the following scenarios?",
-                            "description": "<p>We would like to know what you expect your business&apos;s turnover will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest turnover scenario to the highest, with your best estimate in the middle. </p><p>We would like to know how likely you think each of these scenarios is, and report the probability chance of that scenario happening on the next page.</p><p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer this question (external link)</a></p><p>Please report according to your best judgement, you can provide a rough estimate. </p>",
+                            "description": "<p>We would like to know what you expect your business&apos;s turnover will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest turnover scenario to the highest, with your best estimate in the middle. </p><p>We would like to know how likely you think each of these scenarios is, and report the probability chance of that scenario happening on the next page.</p><p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>Examples of how to answer this question (external link)</a></p><p>Please report according to your best judgement, you can provide a rough estimate. </p>",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2873,7 +2796,7 @@
                                         "list": [
                                             "all sales of goods (except capital assets) including exports and goods purchased and resold without processing",
                                             "income from any services rendered to other organisations, except the rent from land",
-                                            "amounts received for the right to use patents and similar",
+                                            "amounts received for the right to use patents or similar",
                                             "provision of goods or services to other parts of your company or organisation which are not the same as the part of your company you are responding for"
                                         ]
                                     },
@@ -2883,7 +2806,7 @@
                                     {
                                         "list": [
                                             "goods and services produced and used by your business (output for own final use)",
-                                            "interest payments received and dividend",
+                                            "interest payments or dividends received",
                                             "amounts received from the sale of fixed capital assets or intellectual property rights",
                                             "grants, subsidies from any public authority, transfers and donations",
                                             "freight charges, excise taxes and value added tax"
@@ -2958,7 +2881,7 @@
                                         "description": "We would like to know what you expect your business&#x2019;s turnover will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest turnover scenario to the highest, with your best guess in the middle. We would like to know how likely you think each of the scenarios you gave in the last question are, and report the probability chance of that scenario happening on this page."
                                     },
                                     {
-                                        "description": "<a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer this question (external link)</a>"
+                                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>Examples of how to answer this question (external link)</a>"
                                     }
                                 ]
                             }],
@@ -3282,14 +3205,7 @@
                                     },
                                     {
                                         "label": "Other",
-                                        "value": "Other",
-                                        "q_code": "1302",
-                                        "detail_answer": {
-                                            "label": "Please describe",
-                                            "type": "TextField",
-                                            "id": "answer56ffd405-45b3-4655-b21e-767d44564030",
-                                            "mandatory": true
-                                        }
+                                        "value": "Other"
                                     }
                                 ]
                             }]
@@ -3442,8 +3358,8 @@
                                             "q_code": "1310"
                                         },
                                         {
-                                            "label": "Capital expenditure projects cancelled",
-                                            "value": "Capital expenditure projects cancelled",
+                                            "label": "Capital expenditure projects were cancelled",
+                                            "value": "Capital expenditure projects were cancelled",
                                             "q_code": "1311"
                                         },
                                         {
@@ -3605,7 +3521,7 @@
                         "questions": [{
                             "id": "question9946a337-d9c0-4159-9486-5f63e0740a26",
                             "title": "Looking ahead, approximately how many employees would you <em>anticipate</em> to be on {{ metadata['ru_name'] }}&apos;s payroll in December 2021 in the following scenarios?",
-                            "description": "<p>We would like to know what you expect your business&#x2019;s employment will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest employment scenario to the highest, with your best estimate in the middle. </p><p>We would like to know how likely you think each of these scenarios is, and report the probability chance of that scenario happening on the next page.</p><p><a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer this question (external link)</a></p><p>Please report according to your best judgement, you can provide a rough estimate.</p>",
+                            "description": "<p>We would like to know what you expect your business&#x2019;s employment will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest employment scenario to the highest, with your best estimate in the middle. </p><p>We would like to know how likely you think each of these scenarios is, and report the probability chance of that scenario happening on the next page.</p><p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>Examples of how to answer this question (external link)</a></p><p>Please report according to your best judgement, you can provide a rough estimate.</p>",
                             "type": "General",
                             "answers": [{
                                     "id": "answerce8b197d-2367-4df9-acc3-fedb9585a64a",
@@ -3688,7 +3604,7 @@
                                         "description": "We would like to know what you expect your business&#x2019;s employment will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest employment scenario to the highest, with your best guess in the middle. We would like to know how likely you think each of the scenarios you gave in the last question are, and report the probability chance of that scenario happening on this page."
                                     },
                                     {
-                                        "description": "<a href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey' rel='noopener noreferrer' target='_blank'>Examples of how to answer this question (external link)</a>"
+                                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>Examples of how to answer this question (external link)</a>"
                                     }
                                 ]
                             }],
@@ -3956,7 +3872,7 @@
                             "type": "Interstitial",
                             "id": "groupb63de3ed-4ad7-40ed-bacd-3101cd6a87be-introduction",
                             "title": "Feedback",
-                            "description": "<p>This section provides the opportunity to request feedback on the management practices score, and provide feedback on the questionnaire.</p>"
+                            "description": "<p>This section provides the opportunity to request feedback on the management practices score, and provide any additional information that will help us understand the answers you have provided.</p>"
                         },
                         {
                             "id": "block84e53de0-2617-48a4-9481-93ad3209cddb",
