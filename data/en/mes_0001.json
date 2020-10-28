@@ -4120,7 +4120,8 @@
                     "title": "Summary",
                     "blocks": [{
                         "type": "Summary",
-                        "id": "summary-block"
+                        "id": "summary-block",
+                        "collapsible": true
                     }]
                 }
             ]
@@ -4144,7 +4145,7 @@
         },
         {
             "name": "trad_as",
-            "validator": "string"
+            "validator": "optional_string"
         },
         {
             "name": "ref_p_start_date",
