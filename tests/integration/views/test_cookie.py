@@ -17,8 +17,3 @@ class TestCookie(IntegrationTestCase):
 
         self.assertIsNone(cookie.get('user_id'))
         self.assertIsNone(cookie.get('_permanent'))
-
-    def test_cookie_banner_present(self):
-        self.launchSurvey('0', 'star_wars')
-        self.assertStatusOK()
-        self.assertInBody('cookies-banner')

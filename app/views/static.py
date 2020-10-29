@@ -1,4 +1,4 @@
-from flask import Blueprint, current_app, request, session as cookie_session
+from flask import Blueprint, current_app, session as cookie_session
 from flask_themes2 import render_theme_template
 from structlog import get_logger
 
@@ -21,18 +21,12 @@ def contact():
         schema = load_schema_from_session_data(session)
         survey_id = schema.json['survey_id']
 
-    cookie_message = request.cookies.get('ons_cookie_message_displayed')
-    cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and '"usage":true' in cookie_policy
-
     contact_template = render_theme_template(theme=cookie_session.get('theme', 'default'),
                                              template_name='static/contact-us.html',
                                              session=session,
                                              survey_id=survey_id,
                                              analytics_gtm_id=current_app.config['EQ_GTM_ID'],
-                                             analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'],
-                                             cookie_message=cookie_message,
-                                             allow_analytics=allow_analytics)
+                                             analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'])
     return contact_template
 
 
@@ -42,19 +36,4 @@ def legal():
                                             template_name='static/cookies-privacy.html',
                                             analytics_gtm_id=current_app.config['EQ_GTM_ID'],
                                             analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'])
-    return cookie_template
-
-
-@contact_blueprint.route('/cookies-settings', methods=['GET'])
-def settings():
-    cookie_message = request.cookies.get('ons_cookie_message_displayed')
-    cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and '"usage":true' in cookie_policy
-
-    cookie_template = render_theme_template(theme=cookie_session.get('theme', 'default'),
-                                            analytics_gtm_id=current_app.config['EQ_GTM_ID'],
-                                            analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'],
-                                            cookie_message=cookie_message,
-                                            allow_analytics=allow_analytics,
-                                            template_name='static/cookies-settings.html')
     return cookie_template
