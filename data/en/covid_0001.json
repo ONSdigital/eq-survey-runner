@@ -20,7 +20,7 @@
                             "id": "primary",
                             "content": [{
                                     "list": [
-                                        "This survey provide real-time information during the coronavirus (COVID-19) pandemic to help inform the UK response.",
+                                        "This survey provides real-time information during the coronavirus (COVID-19) pandemic to help inform the UK response.",
                                         "Your response helps ensure your business, and businesses like yours, are represented."
                                     ]
                                 },
@@ -957,7 +957,7 @@
                                     "id": "answer16de8d46-b8c4-4cc1-8160-9e9b93466a24",
                                     "mandatory": false,
                                     "type": "Checkbox",
-                                    "label": "",
+                                    "label": "Select all that apply",
                                     "description": "",
                                     "options": [{
                                             "label": "Required to temporarily close due to lockdown regulations",
@@ -3141,13 +3141,6 @@
                                     }]
                                 }
                             ]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
-                                "condition": "contains any",
-                                "values": ["Small business grant"]
-                            }]
                         }]
                     },
                     {
