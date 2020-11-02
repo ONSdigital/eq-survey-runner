@@ -256,7 +256,7 @@
                     "type": "General",
                     "answers": [{
                         "id": "answer285f68a4-805b-4c39-9b2a-6e97095fa419",
-                        "mandatory": false,
+                        "mandatory": true,
                         "type": "Number",
                         "label": "Total number of employees",
                         "description": "",
