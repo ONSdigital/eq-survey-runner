@@ -5,7 +5,6 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "survey_id": "283",
-    "survey_id": "businessimpactofcoronaviruscovid19survey",
     "title": "Business Impact of Coronavirus (COVID-19) Survey",
     "sections": [{
             "id": "section07aa7033-76e4-41b4-81e4-a957831a5a42",
@@ -35,7 +34,6 @@
                             "title": "Information you need",
                             "content": [{
                                 "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/thequestionsonthebusinessimpactofcoronaviruscovid19survey'>View the questions before you start the survey (external link)</a>",
-
                                 "list": [
                                     "Information should relate to the UK.",
                                     "We will treat your information securely and confidentially.",
