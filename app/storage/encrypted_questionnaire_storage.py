@@ -20,6 +20,9 @@ class EncryptedQuestionnaireStorage:
         self.encrypter = StorageEncryption(user_id, user_ik, pepper)
 
     def add_or_update(self, data, version):
+        json_data = json.loads(data)
+        json_metadata = json_data["METADATA"]
+        collection_exercise_id = json_metadata["collection_exercise_sid"]
         compressed_data = snappy.compress(data)
         encrypted_data = self.encrypter.encrypt_data(compressed_data)
         questionnaire_state = self._find_questionnaire_state()
@@ -29,7 +32,7 @@ class EncryptedQuestionnaireStorage:
             questionnaire_state.version = version
         else:
             logger.debug('creating questionnaire data', user_id=self._user_id)
-            questionnaire_state = QuestionnaireState(self._user_id, encrypted_data, version)
+            questionnaire_state = QuestionnaireState(self._user_id, encrypted_data, version, collection_exercise_id)
 
         data_access.put(questionnaire_state)
 
