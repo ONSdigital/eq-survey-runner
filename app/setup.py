@@ -302,6 +302,11 @@ def add_blueprints(application):
     application.register_blueprint(flush_blueprint)
     flush_blueprint.config = application.config.copy()
 
+    from app.views.flush_collection import flush_collection_blueprint
+    csrf.exempt(flush_collection_blueprint)
+    application.register_blueprint(flush_collection_blueprint)
+    flush_collection_blueprint.config = application.config.copy()
+
     from app.views.dump import dump_blueprint
     application.register_blueprint(dump_blueprint)
     dump_blueprint.config = application.config.copy()
