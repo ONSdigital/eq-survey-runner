@@ -27,11 +27,8 @@
                     "title": "Information you need",
                     "questions": [{
                         "question": "Environmental protection expenditure",
-                        "content": [{
-                            "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/surveyofenvironmentalprotectionexpenditure'>View the questions before you start the survey (external link)</a>",
-                        }, {
-                            "list": []
-                        }, {
+                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/surveyofenvironmentalprotectionexpenditure'>View the questions before you start the survey (external link)</a>",
+                        "content": [{                     
                             "description": "This is defined as spending incurred by businesses where the <strong>primary aim is to reduce environmental pollution</strong> caused during normal operations, for example expenditure to:"
                         }, {
                             "list": ["reduce or prevent emissions to air or water", "dispose of waste materials", "protect land, soil and groundwater", "prevent noise and vibration", "protect the natural environment"]
