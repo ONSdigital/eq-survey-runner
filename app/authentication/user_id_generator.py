@@ -44,6 +44,21 @@ class UserIDGenerator():
         ik = self._generate(collection_exercise_sid, eq_id, form_type, ru_ref, salt)
         return to_str(ik)
 
+    def generate_ik_decrypted(self, collection_exercise_sid, eq_id, form_type, ru_ref):
+        if collection_exercise_sid is None:
+            raise ValueError('collection_exercise_sid is required')
+        if collection_exercise_sid is None:
+            raise ValueError('eq_id is required')
+        if collection_exercise_sid is None:
+            raise ValueError('form_type is required')
+        if collection_exercise_sid is None:
+            raise ValueError('ru_ref is required')
+        
+        logger.debug('generating user ik', ru_ref=ru_ref, ce_id=collection_exercise_sid, eq_id=eq_id, form_type=form_type)
+        salt = to_bytes(self._user_ik_salt)
+        ik = self._generate(collection_exercise_sid, eq_id, form_type, ru_ref, salt)
+        return to_str(ik)
+
     def _generate(self, collection_exercise_sid, eq_id, form_type, ru_ref, salt):
         key_material = ru_ref + collection_exercise_sid + eq_id + form_type
         kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt,
