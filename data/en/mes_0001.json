@@ -3501,7 +3501,7 @@
                         "questions": [{
                             "id": "question9946a337-d9c0-4159-9486-5f63e0740a26",
                             "title": "Looking ahead, approximately how many employees would you <em>anticipate</em> to be on {{ metadata['ru_name'] }}&apos;s payroll in December 2021 in the following scenarios?",
-                            "description": "<p>We would like to know what you expect your business&#x2019;s employment will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest employment scenario to the highest, with your best estimate in the middle. </p><p>We would like to know how likely you think each of these scenarios is, and report the probability chance of that scenario happening on the next page.</p><p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>Examples of how to answer this question (external link)</a></p><p>Please report according to your best judgement, you can provide a rough estimate.</p>",
+                            "description": "<p>We would like to know what you expect your business&#x2019;s employment will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest employment scenario to the highest, with your best estimate in the middle. </p><p>We would like to know how likely you think each of these scenarios is, and report the probability chance of that scenario happening on the next page.</p><p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectations'>Examples of how to answer this question (external link)</a></p><p>Please report according to your best judgement, you can provide a rough estimate.</p>",
                             "type": "General",
                             "answers": [{
                                     "id": "answerce8b197d-2367-4df9-acc3-fedb9585a64a",
@@ -3584,7 +3584,7 @@
                                         "description": "We would like to know what you expect your business&#x2019;s employment will be in 2021. However, as it is difficult to predict a single figure, we would like you to think about five possible scenarios, from the lowest employment scenario to the highest, with your best guess in the middle. We would like to know how likely you think each of the scenarios you gave in the last question are, and report the probability chance of that scenario happening on this page."
                                     },
                                     {
-                                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectationssurvey'>Examples of how to answer this question (external link)</a>"
+                                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/managementandexpectations'>Examples of how to answer this question (external link)</a>"
                                     }
                                 ]
                             }],
