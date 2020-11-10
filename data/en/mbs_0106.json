@@ -281,7 +281,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer4ff136e0-371b-4285-80e4-6ea9194afc1d",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",

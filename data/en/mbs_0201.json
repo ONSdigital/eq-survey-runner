@@ -331,7 +331,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer45bfde81-ad53-4c68-b8ff-27aa918baf97",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
