@@ -25,11 +25,6 @@ class TestApplicationVariables(IntegrationTestCase):
         self.assertStatusOK()
         self.assertInBody('flDebugToolbarHandle')
 
-    def test_google_analytics_code_is_present(self):
-        self.launchSurvey('0', 'star_wars')
-        self.assertStatusOK()
-        self.assertInHead('GoogleTagManagerObject')
-
     def test_livereload_script_rendered(self):
         self.launchSurvey('0', 'star_wars')
         self.assertStatusOK()
