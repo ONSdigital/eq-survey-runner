@@ -487,10 +487,10 @@
         "validator": "string"
     }, {
         "name": "ru_name",
-        "validator": "optional_string"
+        "validator": "string"
     }, {
         "name": "trad_as",
-        "validator": "string"
+        "validator": "optional_string"
     }, {
         "name": "ref_p_start_date",
         "validator": "date"
