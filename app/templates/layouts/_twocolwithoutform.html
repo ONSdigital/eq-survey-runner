@@ -1,0 +1,18 @@
+{% extends theme('layouts/_basewithoutform.html') %}
+
+{% block content %}
+
+<div class="grid grid--reverse">
+  <div class="grid__col col-4@m">
+    {% block sidebar %}{% endblock %}
+  </div>
+
+  <div class="grid__col col-7@m pull-1@m">
+    <main role="main" id="main" class="page__main">
+      {% block main %}{% endblock %}
+      {{super()}}
+    </main>
+  </div>
+</div>
+
+{% endblock %}
