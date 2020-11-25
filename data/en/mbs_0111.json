@@ -132,7 +132,7 @@
                             "answers": [{
                                     "id": "answer568d0c90-e364-4b11-a831-ef09a5840784from",
                                     "type": "Date",
-                                    "mandatory": false,
+                                    "mandatory": true,
                                     "label": "From",
                                     "q_code": "11",
                                     "minimum": {
@@ -145,7 +145,7 @@
                                 {
                                     "id": "answer568d0c90-e364-4b11-a831-ef09a5840784to",
                                     "type": "Date",
-                                    "mandatory": false,
+                                    "mandatory": true,
                                     "label": "To",
                                     "q_code": "12",
                                     "maximum": {
