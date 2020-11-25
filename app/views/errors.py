@@ -85,7 +85,7 @@ def _render_error_page(status_code):
 
     cookie_message = request.cookies.get('ons_cookie_message_displayed')
     cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and '"usage":true' in cookie_policy
+    allow_analytics = cookie_policy and "'usage':true" in cookie_policy
     return render_theme_template('default', 'errors/error.html',
                                  status_code=status_code,
                                  analytics_gtm_id=current_app.config['EQ_GTM_ID'],
@@ -110,7 +110,7 @@ def render_template(template_name):
 
     cookie_message = request.cookies.get('ons_cookie_message_displayed')
     cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and '"usage":true' in cookie_policy
+    allow_analytics = cookie_policy and "'usage':true" in cookie_policy
     return render_theme_template(cookie_session.get('theme', 'default'),
                                  template_name=template_name,
                                  analytics_gtm_id=current_app.config['EQ_GTM_ID'],

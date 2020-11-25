@@ -251,7 +251,7 @@ def get_thank_you(schema, metadata, eq_id, form_type):
 
         cookie_message = request.cookies.get('ons_cookie_message_displayed')
         cookie_policy = request.cookies.get('ons_cookie_policy')
-        allow_analytics = cookie_policy and '"usage":true' in cookie_policy
+        allow_analytics = cookie_policy and "'usage':true" in cookie_policy
 
         return render_theme_template(schema.json['theme'],
                                      template_name='thank-you.html',
@@ -334,7 +334,7 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
 
             cookie_message = request.cookies.get('ons_cookie_message_displayed')
             cookie_policy = request.cookies.get('ons_cookie_policy')
-            allow_analytics = cookie_policy and '"usage":true' in cookie_policy
+            allow_analytics = cookie_policy and "'usage':true" in cookie_policy
 
             return render_theme_template(schema.json['theme'],
                                          template_name='view-submission.html',
@@ -590,7 +590,7 @@ def _build_template(current_location, context, template, schema, answer_store, m
     previous_url = previous_location.url(metadata) if previous_location is not None else None
     cookie_message = request.cookies.get('ons_cookie_message_displayed')
     cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and '"usage":true' in cookie_policy
+    allow_analytics = cookie_policy and "'usage':true" in cookie_policy
 
     add_person_url = None
     if routing_path:

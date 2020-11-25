@@ -133,7 +133,7 @@ def get_sign_out():
 
     cookie_message = request.cookies.get('ons_cookie_message_displayed')
     cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and '"usage":true' in cookie_policy
+    allow_analytics = cookie_policy and "'usage':true" in cookie_policy
 
     return render_theme_template(cookie_session.get('theme', 'default'),
                                  template_name='signed-out.html',

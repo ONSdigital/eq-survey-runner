@@ -23,7 +23,7 @@ def contact():
 
     cookie_message = request.cookies.get('ons_cookie_message_displayed')
     cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and '"usage":true' in cookie_policy
+    allow_analytics = cookie_policy and "'usage':true" in cookie_policy
 
     contact_template = render_theme_template(theme=cookie_session.get('theme', 'default'),
                                              template_name='static/contact-us.html',
@@ -49,7 +49,7 @@ def legal():
 def settings():
     cookie_message = request.cookies.get('ons_cookie_message_displayed')
     cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and '"usage":true' in cookie_policy
+    allow_analytics = cookie_policy and "'usage':true" in cookie_policy
 
     cookie_template = render_theme_template(theme=cookie_session.get('theme', 'default'),
                                             analytics_gtm_id=current_app.config['EQ_GTM_ID'],
