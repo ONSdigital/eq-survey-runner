@@ -3632,7 +3632,23 @@
                                     }]
                                 }
                             ]
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block4f715518-d276-4297-b1f5-04f4debbb713",
+                                    "when": [{
+                                        "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
+                                        "condition": "contains any",
+                                        "values": ["Sector-specific grant"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockb305b9d6-b021-4d5e-a92e-291381c49492"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "block4f715518-d276-4297-b1f5-04f4debbb713",
@@ -3688,13 +3704,6 @@
                                     }]
                                 }
                             ]
-                        }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
-                                "condition": "contains all",
-                                "values": ["Small business grant"]
-                            }]
                         }]
                     },
                     {
