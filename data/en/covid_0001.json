@@ -34,14 +34,18 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                "list": [
-                                    "Information should relate to the UK.",
-                                    "We will treat your information securely and confidentially.",
-                                    "This survey is refreshed every two weeks.",
-                                    "To avoid losing data and to help us provide real-time information please submit by the return by date, or at the latest before the next fortnightly survey goes live.",
-                                    "You can save a copy of your answers as a pdf at the end of this questionnaire using the &apos;print&apos; button."
-                                ]
-                            }],
+                                    "description": "<a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/thequestionsonthebusinessimpactofcoronaviruscovid19survey\"target=\"_blank\"rel=\"noopener noreferrer\">View the questions before you start the survey</a>"
+                                },
+                                {
+                                    "list": [
+                                        "Information should relate to the UK.",
+                                        "We will treat your information securely and confidentially.",
+                                        "This survey is refreshed every two weeks.",
+                                        "To avoid losing data and to help us provide real-time information please submit by the return by date, or at the latest before the next fortnightly survey goes live.",
+                                        "You can save a copy of your answers as a pdf at the end of this questionnaire using the &apos;print&apos; button."
+                                    ]
+                                }
+                            ],
                             "questions": [{
                                     "question": "Trading status of your business",
                                     "content": [{
