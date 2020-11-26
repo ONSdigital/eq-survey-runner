@@ -22,3 +22,7 @@ class TestAnalyticsAllowed(unittest.TestCase):
     def test_with_cookie_usage_true_double_quotes(self):
         request = MockRequest('{"essential": true, "usage": true}')
         self.assertTrue(analytics_allowed(request))
+
+
+if __name__ == '__main__':
+    unittest.main()
