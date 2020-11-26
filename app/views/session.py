@@ -18,6 +18,8 @@ from app.templating.template_renderer import TemplateRenderer
 from app.utilities.schema import load_schema_from_metadata
 from app.views.errors import render_template
 
+from app.utilities.cookies import analytics_allowed
+
 logger = get_logger()
 
 
@@ -132,8 +134,7 @@ def get_sign_out():
         return redirect(account_service_log_out_url)
 
     cookie_message = request.cookies.get('ons_cookie_message_displayed')
-    cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and '"usage":true' in cookie_policy
+    allow_analytics = analytics_allowed(request)
 
     return render_theme_template(cookie_session.get('theme', 'default'),
                                  template_name='signed-out.html',
