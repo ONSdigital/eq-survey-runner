@@ -14,6 +14,8 @@ from app.submitter.converter import convert_feedback
 from app.utilities.schema import load_schema_from_session_data
 from app.authentication.no_token_exception import NoTokenException
 
+from app.utilities.cookies import analytics_allowed
+
 logger = get_logger()
 
 feedback_blueprint = Blueprint(name='feedback',
@@ -104,6 +106,5 @@ def post_thank_you():
 @template_helper.with_metadata_context
 def _render_template(template, **kwargs):
     cookie_message = request.cookies.get('ons_cookie_message_displayed')
-    cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and "'usage':true" in cookie_policy
+    allow_analytics = analytics_allowed(request)
     return template_helper.render_template(template, cookie_message=cookie_message, allow_analytics=allow_analytics, **kwargs)

@@ -43,6 +43,8 @@ from app.templating.view_context import build_view_context
 from app.utilities.schema import load_schema_from_session_data
 from app.views.errors import check_multiple_survey, MultipleSurveyError
 
+from app.utilities.cookies import analytics_allowed
+
 END_BLOCKS = 'Summary', 'Confirmation'
 
 logger = get_logger()
@@ -250,8 +252,7 @@ def get_thank_you(schema, metadata, eq_id, form_type):
             view_submission_duration = humanize.naturaldelta(timedelta(seconds=schema.json['view_submitted_response']['duration']))
 
         cookie_message = request.cookies.get('ons_cookie_message_displayed')
-        cookie_policy = request.cookies.get('ons_cookie_policy')
-        allow_analytics = cookie_policy and "'usage':true" in cookie_policy
+        allow_analytics = analytics_allowed(request)
 
         return render_theme_template(schema.json['theme'],
                                      template_name='thank-you.html',
@@ -333,8 +334,7 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
             }
 
             cookie_message = request.cookies.get('ons_cookie_message_displayed')
-            cookie_policy = request.cookies.get('ons_cookie_policy')
-            allow_analytics = cookie_policy and "'usage':true" in cookie_policy
+            allow_analytics = analytics_allowed(request)
 
             return render_theme_template(schema.json['theme'],
                                          template_name='view-submission.html',
@@ -589,8 +589,7 @@ def _build_template(current_location, context, template, schema, answer_store, m
     previous_location = path_finder.get_previous_location(current_location)
     previous_url = previous_location.url(metadata) if previous_location is not None else None
     cookie_message = request.cookies.get('ons_cookie_message_displayed')
-    cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and "'usage':true" in cookie_policy
+    allow_analytics = analytics_allowed(request)
 
     add_person_url = None
     if routing_path:

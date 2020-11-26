@@ -4,6 +4,7 @@ from structlog import get_logger
 
 from app.globals import get_session_store
 from app.utilities.schema import load_schema_from_session_data
+from app.utilities.cookies import analytics_allowed
 
 logger = get_logger()
 
@@ -22,8 +23,7 @@ def contact():
         survey_id = schema.json['survey_id']
 
     cookie_message = request.cookies.get('ons_cookie_message_displayed')
-    cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and "'usage':true" in cookie_policy
+    allow_analytics = analytics_allowed(request)
 
     contact_template = render_theme_template(theme=cookie_session.get('theme', 'default'),
                                              template_name='static/contact-us.html',
@@ -48,8 +48,7 @@ def legal():
 @contact_blueprint.route('/cookies-settings', methods=['GET'])
 def settings():
     cookie_message = request.cookies.get('ons_cookie_message_displayed')
-    cookie_policy = request.cookies.get('ons_cookie_policy')
-    allow_analytics = cookie_policy and "'usage':true" in cookie_policy
+    allow_analytics = analytics_allowed(request)
 
     cookie_template = render_theme_template(theme=cookie_session.get('theme', 'default'),
                                             analytics_gtm_id=current_app.config['EQ_GTM_ID'],
