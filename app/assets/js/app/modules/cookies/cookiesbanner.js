@@ -1,4 +1,4 @@
-import { cookie, setDefaultConsentCookie, approveAllCookieTypes, setConsentCookie } from './cookiesfunctions'
+import { cookie, setDefaultConsentCookie, approveAllCookieTypes, setConsentCookie, parseCookie } from './cookiesfunctions'
 
 export default class CookiesBanner {
   constructor(component) {
@@ -21,7 +21,7 @@ export default class CookiesBanner {
     const displayCookiesBanner = this.component && cookie('ons_cookie_message_displayed') !== 'true'
     let policy = cookie('ons_cookie_policy')
     if (policy) {
-      setConsentCookie(JSON.parse(policy.replace(/'/g, '"')))
+      setConsentCookie(parseCookie(policy))
     }
     if (displayCookiesBanner) {
       this.component.style.display = 'block'

@@ -1,5 +1,5 @@
 import { unset } from 'lodash'
-import { cookie, setDefaultConsentCookie, setConsentCookie, setCookie } from './cookiesfunctions'
+import { cookie, setDefaultConsentCookie, setConsentCookie, setCookie, parseCookie } from './cookiesfunctions'
 
 export default class CookiesSettings {
   constructor(component) {
@@ -14,7 +14,7 @@ export default class CookiesSettings {
     }
 
     const currentConsentCookie = cookie('ons_cookie_policy')
-    let currentConsentCookieJSON = JSON.parse(currentConsentCookie.replace(/'/g, '"'))
+    let currentConsentCookieJSON = parseCookie(currentConsentCookie)
 
     unset(currentConsentCookieJSON, 'essential')
 

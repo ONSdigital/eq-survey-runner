@@ -37,8 +37,7 @@ export function cookie(name, value, options) {
 }
 
 export function setDefaultConsentCookie() {
-  const defaultConsentCookie = JSON.stringify(DEFAULT_COOKIE_CONSENT).replace(/"/g, '"')
-  setCookie('ons_cookie_policy', defaultConsentCookie, { days: 365 })
+  setCookie('ons_cookie_policy', JSON.stringify(DEFAULT_COOKIE_CONSENT), { days: 365 })
 }
 
 export function approveAllCookieTypes() {
@@ -55,10 +54,10 @@ export function getConsentCookie() {
   let consentCookieObj
 
   if (consentCookie) {
-    consentCookieObj = JSON.parse(consentCookie.replace(/'/g, '"'))
+    consentCookieObj = parseCookie(consentCookie)
 
     if (typeof consentCookieObj !== 'object' && consentCookieObj !== null) {
-      consentCookieObj = JSON.parse(consentCookieObj.replace(/'/g, '"'))
+      consentCookieObj = parseCookie(consentCookieObj)
     }
   } else {
     return null
@@ -69,10 +68,8 @@ export function getConsentCookie() {
 export function setConsentCookie(options) {
   const domain = getDomain(document.domain)
 
-  let cookieConsent = getConsentCookie()
-  if (!cookieConsent) {
-    cookieConsent = JSON.parse(JSON.stringify(DEFAULT_COOKIE_CONSENT).replace(/'/g, '"'))
-  }
+  let cookieConsent = getConsentCookie() || DEFAULT_COOKIE_CONSENT
+
   for (let cookieType in options) {
     cookieConsent[cookieType] = options[cookieType]
     if (!options[cookieType]) {
@@ -87,7 +84,8 @@ export function setConsentCookie(options) {
       }
     }
   }
-  setCookie('ons_cookie_policy', JSON.stringify(cookieConsent).replace(/"/g, '"'), { days: 365 })
+
+  setCookie('ons_cookie_policy', JSON.stringify(cookieConsent), { days: 365 })
 }
 
 export function checkConsentCookieCategory(cookieName, cookieCategory) {
@@ -142,8 +140,13 @@ export function setCookie(name, value, options) {
       cookieString = cookieString + '; Secure'
     }
 
-    document.cookie = cookieString
+    // Use lowercase quotes as standard - incoming cookies use them
+    document.cookie = cookieString.replace(/"/g, '\'')
   }
+}
+
+export function parseCookie(cookieString) {
+  return JSON.parse(cookieString.replace(/'/g, '"'))
 }
 
 export function getCookie(name) {
