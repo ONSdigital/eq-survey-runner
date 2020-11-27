@@ -20,6 +20,38 @@ flush_collection_blueprint = Blueprint('flush_collection', __name__)
 
 @flush_collection_blueprint.route('/flush_collection', methods=['POST'])
 def flush_collection_data():
+    """Resolver function for the /flush_collection endpoint. Retrieves partial responses
+    for a given collection_id and attempts to push them into EQs Rabbit queue.
+
+    Parameters:
+         A JSON object of the following schema, encoded in a JWT token:
+        {
+             "collection_exercise_id": STRING
+        }
+
+    Returns:
+        A JSON object of the following schema:
+        {
+            "collection_exercise_id": STRING
+            "total_partial_responses": INT
+            "successful_flush: [
+                {
+                    "user_id": STRING
+                    "ru_ref": STRING
+                    "eq_id": STRING
+                    "form_type": STRING
+                }
+            ]
+            "failed_flush: [
+                {
+                    "user_id": STRING
+                    "ru_ref": STRING
+                    "eq_id": STRING
+                    "form_type": STRING
+                }
+            ]
+        }
+    """
 
     logger = get_logger()
 
@@ -65,18 +97,27 @@ def flush_collection_data():
 
 
 def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None):
+    """Accesses the Questionnaire State DynamoDB table and retrieves all records featuring
+    a given collection_exercise_id.
+
+    Parameters:
+        collection_exercise_id (STRING): The ID of the collection exercise to flush.
+        dynamodb (CLASS): An instance of DynamoDB for accessing the database.
+
+    Returns:
+        A list of objects, each being an individual partial response.
+    """
 
     EQ_QUESTIONNAIRE_STATE_TABLE_NAME = os.environ.get("EQ_QUESTIONNAIRE_STATE_TABLE_NAME")
 
     if not EQ_QUESTIONNAIRE_STATE_TABLE_NAME or EQ_QUESTIONNAIRE_STATE_TABLE_NAME is None:
         return 500
 
-    EQ_DYNAMODB_ENDPOINT = os.environ.get("EQ_DYNAMODB_ENDPOINT")
-
-    if not EQ_DYNAMODB_ENDPOINT or EQ_DYNAMODB_ENDPOINT is None:
-        return 500
-
     if not dynamodb:
+        EQ_DYNAMODB_ENDPOINT = os.environ.get("EQ_DYNAMODB_ENDPOINT")
+        if not EQ_DYNAMODB_ENDPOINT or EQ_DYNAMODB_ENDPOINT is None:
+            return 500
+
         dynamodb = boto3.resource('dynamodb', endpoint_url=EQ_DYNAMODB_ENDPOINT)
 
     table = dynamodb.Table(EQ_QUESTIONNAIRE_STATE_TABLE_NAME)
@@ -90,6 +131,16 @@ def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None)
     return response.get('Items', [])
 
 def _flush_response(response):
+    """Given a single response, tries to find the user who created it and calls a method to attempt
+    the flushing.
+
+    Parameters:
+        response (Dict): An individual partial response from the database
+    
+    Returns:
+        Boolean: Whether or not the response was successfully flushed
+        response_summary (Dict): Abstract information about the response that we tried to flush
+    """
 
     user = _get_user(response)
 
@@ -108,6 +159,14 @@ def _flush_response(response):
     return False, response_summary
 
 def _get_user(response):
+    """Generates user locators from their response and retrieves their information.
+
+    Parameters:
+        response (Dict): An individual partial response from the database.
+    
+    Returns:
+        User (Class): An individual user
+    """
 
     collection_exercise_id, eq_id, form_type, ru_ref = _get_data_from_response(response)
 
@@ -119,6 +178,14 @@ def _get_user(response):
     return User(user_id, user_ik)
 
 def _submit_data(user):
+    """Encrypts and pushes a users partial response to EQs Rabbit queue.
+
+    Paramaters:
+        User (Class): Information about a particular user, including their partial responses.
+
+    Returns:
+        Boolean: Whether or not the submission was successful.
+    """
 
     answer_store = get_answer_store(user)
 
@@ -144,6 +211,17 @@ def _submit_data(user):
     return False
 
 def _get_data_from_response(response):
+    """Helper function to return commonly needed data from an individual response.
+
+    Paramaters:
+        response (Dict): An individual response from the database.
+
+    Returns:
+        collection_exercise_id (STRING)
+        eq_id (STRING)
+        form_type (STRING)
+        ru_ref (STRING)
+    """
 
     collection_exercise_id = response["collection_exercise_id"]
     eq_id = response["eq_id"]
