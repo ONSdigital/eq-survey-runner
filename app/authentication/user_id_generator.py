@@ -34,41 +34,11 @@ class UserIDGenerator():
         user_id = self._generate(collection_exercise_sid, eq_id, form_type, ru_ref, salt)
         return to_str(user_id)
 
-    def generate_id_decrypted(self, collection_exercise_sid, eq_id, form_type, ru_ref):
-        if collection_exercise_sid is None:
-            raise ValueError('collection_exercise_sid is required')
-        if collection_exercise_sid is None:
-            raise ValueError('eq_id is required')
-        if collection_exercise_sid is None:
-            raise ValueError('form_type is required')
-        if collection_exercise_sid is None:
-            raise ValueError('ru_ref is required')
-
-        logger.debug('generating user id', ru_ref=ru_ref, ce_id=collection_exercise_sid, eq_id=eq_id, form_type=form_type)
-        salt = to_bytes(self._user_id_salt)
-        user_id = self._generate(collection_exercise_sid, eq_id, form_type, ru_ref, salt)
-        return to_str(user_id)
-
     def generate_ik(self, token):
         if token is None:
             raise ValueError('token is required')
 
         collection_exercise_sid, eq_id, form_type, ru_ref = UserIDGenerator._get_token_data(token)
-        logger.debug('generating user ik', ru_ref=ru_ref, ce_id=collection_exercise_sid, eq_id=eq_id, form_type=form_type)
-        salt = to_bytes(self._user_ik_salt)
-        ik = self._generate(collection_exercise_sid, eq_id, form_type, ru_ref, salt)
-        return to_str(ik)
-
-    def generate_ik_decrypted(self, collection_exercise_sid, eq_id, form_type, ru_ref):
-        if collection_exercise_sid is None:
-            raise ValueError('collection_exercise_sid is required')
-        if collection_exercise_sid is None:
-            raise ValueError('eq_id is required')
-        if collection_exercise_sid is None:
-            raise ValueError('form_type is required')
-        if collection_exercise_sid is None:
-            raise ValueError('ru_ref is required')
-        
         logger.debug('generating user ik', ru_ref=ru_ref, ce_id=collection_exercise_sid, eq_id=eq_id, form_type=form_type)
         salt = to_bytes(self._user_ik_salt)
         ik = self._generate(collection_exercise_sid, eq_id, form_type, ru_ref, salt)

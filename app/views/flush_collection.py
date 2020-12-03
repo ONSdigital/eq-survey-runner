@@ -4,7 +4,7 @@ import json
 
 from structlog import get_logger
 from boto3.dynamodb.conditions import Key
-from flask import Blueprint, Response, request, session, current_app
+from flask import Blueprint, Response, request, session, current_app, g
 from sdc.crypto.encrypter import encrypt
 from sdc.crypto.decrypter import decrypt
 from app.authentication.user import User
@@ -16,7 +16,10 @@ from app.submitter.converter import convert_answers
 from app.submitter.submission_failed import SubmissionFailedException
 from app.utilities.schema import load_schema_from_metadata
 
+logger = get_logger()
+
 flush_collection_blueprint = Blueprint('flush_collection', __name__)
+
 
 @flush_collection_blueprint.route('/flush_collection', methods=['POST'])
 def flush_collection_data():
@@ -52,8 +55,6 @@ def flush_collection_data():
             ]
         }
     """
-
-    logger = get_logger()
 
     if session:
         session.clear()
@@ -142,16 +143,17 @@ def _flush_response(response):
         response_summary (Dict): Abstract information about the response that we tried to flush
     """
 
-    user = _get_user(response)
-
-    collection_exercise_id, eq_id, form_type, ru_ref = _get_data_from_response(response)
-
     response_summary = {
-        "user_id": user.user_id,
-        "ru_ref": ru_ref,
-        "eq_id": eq_id,
-        "form_type": form_type
+        "collection_exercise_sid": response.get("collection_exercise_id"),
+        "user_id": response.get("user_id"),
+        "ru_ref": response.get("ru_ref"),
+        "eq_id": response.get("eq_id"),
+        "form_type": response.get("form_type")
     }
+
+    user = _get_user(response_summary)
+
+    response_summary.pop("collection_exercise_sid")
 
     if _submit_data(user):
         return True, response_summary
@@ -168,13 +170,9 @@ def _get_user(response):
         User (Class): An individual user
     """
 
-    collection_exercise_id, eq_id, form_type, ru_ref = _get_data_from_response(response)
-
     id_generator = current_app.eq['id_generator']
-
-    user_id = id_generator.generate_id_decrypted(collection_exercise_id, eq_id, form_type, ru_ref)
-    user_ik = id_generator.generate_ik_decrypted(collection_exercise_id, eq_id, form_type, ru_ref)
-
+    user_id = id_generator.generate_id(response)
+    user_ik = id_generator.generate_ik(response)
     return User(user_id, user_ik)
 
 def _submit_data(user):
@@ -187,6 +185,7 @@ def _submit_data(user):
         Boolean: Whether or not the submission was successful.
     """
 
+    g.pop('_questionnaire_store', None)
     answer_store = get_answer_store(user)
 
     if answer_store:
@@ -209,23 +208,3 @@ def _submit_data(user):
         return True
 
     return False
-
-def _get_data_from_response(response):
-    """Helper function to return commonly needed data from an individual response.
-
-    Paramaters:
-        response (Dict): An individual response from the database.
-
-    Returns:
-        collection_exercise_id (STRING)
-        eq_id (STRING)
-        form_type (STRING)
-        ru_ref (STRING)
-    """
-
-    collection_exercise_id = response["collection_exercise_id"]
-    eq_id = response["eq_id"]
-    form_type = response["form_type"]
-    ru_ref = response["ru_ref"]
-
-    return collection_exercise_id, eq_id, form_type, ru_ref
