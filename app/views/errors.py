@@ -13,6 +13,8 @@ from app.libs.utils import convert_tx_id_for_boxes
 from app.submitter.submission_failed import SubmissionFailedException
 from app.templating.template_renderer import TemplateRenderer
 
+from app.utilities.cookies import analytics_allowed
+
 logger = get_logger()
 
 errors_blueprint = Blueprint('errors', __name__)
@@ -83,10 +85,14 @@ def _render_error_page(status_code):
     tx_id = get_tx_id()
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
 
+    cookie_message = request.cookies.get('ons_cookie_message_displayed')
+    allow_analytics = analytics_allowed(request)
     return render_theme_template('default', 'errors/error.html',
                                  status_code=status_code,
                                  analytics_gtm_id=current_app.config['EQ_GTM_ID'],
                                  analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'],
+                                 cookie_message=cookie_message,
+                                 allow_analytics=allow_analytics,
                                  account_service_url=cookie_session.get('account_service_url'),
                                  ua=user_agent, tx_id=tx_id), status_code
 
@@ -103,10 +109,14 @@ def render_template(template_name):
     tx_id = get_tx_id()
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
 
+    cookie_message = request.cookies.get('ons_cookie_message_displayed')
+    allow_analytics = analytics_allowed(request)
     return render_theme_template(cookie_session.get('theme', 'default'),
                                  template_name=template_name,
                                  analytics_gtm_id=current_app.config['EQ_GTM_ID'],
                                  analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'],
+                                 cookie_message=cookie_message,
+                                 allow_analytics=allow_analytics,
                                  ua=user_agent,
                                  tx_id=tx_id,
                                  account_service_url=cookie_session.get('account_service_url'),
