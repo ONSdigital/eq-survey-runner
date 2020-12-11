@@ -4,7 +4,7 @@ import json
 
 from structlog import get_logger
 from boto3.dynamodb.conditions import Key
-from flask import Blueprint, Response, request, session, current_app, g
+from flask import Blueprint, request, session, current_app, g
 from sdc.crypto.encrypter import encrypt
 from sdc.crypto.decrypter import decrypt
 from app.authentication.user import User
@@ -84,7 +84,7 @@ def flush_collection_data():
         "collection_exercise_id": collection_exercise_id,
         "total_partial_responses": len(responses_to_flush),
         "successful_flush": [],
-        "failed_flush": []
+        "failed_flush": [],
     }
 
     for response in responses_to_flush:
@@ -124,7 +124,7 @@ def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None)
     table = dynamodb.Table(EQ_QUESTIONNAIRE_STATE_TABLE_NAME)
 
     scan_kwargs = {
-        "FilterExpression": Key("collection_exercise_id").eq(collection_exercise_id)
+        "FilterExpression": Key("collection_exercise_id").eq(collection_exercise_id),
     }
 
     response = table.scan(**scan_kwargs)
