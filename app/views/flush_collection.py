@@ -158,7 +158,7 @@ def _flush_response(response):
 
     if _submit_data(user):
         return True, response_summary
-    
+
     return False, response_summary
 
 
