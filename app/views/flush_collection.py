@@ -131,13 +131,14 @@ def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None)
 
     return response.get('Items', [])
 
+
 def _flush_response(response):
     """Given a single response, tries to find the user who created it and calls a method to attempt
     the flushing.
 
     Parameters:
         response (Dict): An individual partial response from the database
-    
+
     Returns:
         Boolean: Whether or not the response was successfully flushed
         response_summary (Dict): Abstract information about the response that we tried to flush
@@ -148,7 +149,7 @@ def _flush_response(response):
         "user_id": response.get("user_id"),
         "ru_ref": response.get("ru_ref"),
         "eq_id": response.get("eq_id"),
-        "form_type": response.get("form_type")
+        "form_type": response.get("form_type"),
     }
 
     user = _get_user(response_summary)
@@ -160,12 +161,13 @@ def _flush_response(response):
     
     return False, response_summary
 
+
 def _get_user(response):
     """Generates user locators from their response and retrieves their information.
 
     Parameters:
         response (Dict): An individual partial response from the database.
-    
+
     Returns:
         User (Class): An individual user
     """
@@ -174,6 +176,7 @@ def _get_user(response):
     user_id = id_generator.generate_id(response)
     user_ik = id_generator.generate_ik(response)
     return User(user_id, user_ik)
+
 
 def _submit_data(user):
     """Encrypts and pushes a users partial response to EQs Rabbit queue.
