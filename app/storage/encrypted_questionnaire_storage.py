@@ -21,12 +21,12 @@ class EncryptedQuestionnaireStorage:
 
     def add_or_update(self, data, version):
         json_data = json.loads(data)
-        json_metadata = json_data["METADATA"]
+        json_metadata = json_data['METADATA']
 
-        collection_exercise_id = json_metadata["collection_exercise_sid"]
-        form_type = json_metadata["form_type"]
-        eq_id = json_metadata["eq_id"]
-        ru_ref = json_metadata["ru_ref"]
+        collection_exercise_id = json_metadata['collection_exercise_sid']
+        form_type = json_metadata['form_type']
+        eq_id = json_metadata['eq_id']
+        ru_ref = json_metadata['ru_ref']
 
         compressed_data = snappy.compress(data)
         encrypted_data = self.encrypter.encrypt_data(compressed_data)
