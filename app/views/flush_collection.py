@@ -23,38 +23,38 @@ flush_collection_blueprint = Blueprint('flush_collection', __name__)
 
 @flush_collection_blueprint.route('/flush_collection', methods=['POST'])
 def flush_collection_data():
-    """Resolver function for the /flush_collection endpoint. Retrieves partial responses
+    '''Resolver function for the /flush_collection endpoint. Retrieves partial responses
     for a given collection_id and attempts to push them into EQs Rabbit queue.
 
     Parameters:
          A JSON object of the following schema, encoded in a JWT token:
         {
-             "collection_exercise_id": STRING
+             'collection_exercise_id': STRING
         }
 
     Returns:
         A JSON object of the following schema:
         {
-            "collection_exercise_id": STRING
-            "total_partial_responses": INT
-            "successful_flush: [
+            'collection_exercise_id': STRING
+            'total_partial_responses': INT
+            'successful_flush: [
                 {
-                    "user_id": STRING
-                    "ru_ref": STRING
-                    "eq_id": STRING
-                    "form_type": STRING
+                    'user_id': STRING
+                    'ru_ref': STRING
+                    'eq_id': STRING
+                    'form_type': STRING
                 }
             ]
-            "failed_flush: [
+            'failed_flush: [
                 {
-                    "user_id": STRING
-                    "ru_ref": STRING
-                    "eq_id": STRING
-                    "form_type": STRING
+                    'user_id': STRING
+                    'ru_ref': STRING
+                    'eq_id': STRING
+                    'form_type': STRING
                 }
             ]
         }
-    """
+    '''
 
     if session:
         session.clear()
@@ -62,7 +62,7 @@ def flush_collection_data():
     encrypted_token = request.args.get('token')
 
     if not encrypted_token or encrypted_token is None:
-        return "Could not find expected request argument: token", 400
+        return 'Could not find expected request argument: token', 400
 
     decrypted_token = decrypt(token=encrypted_token,
                               key_store=current_app.eq['key_store'],
@@ -70,35 +70,35 @@ def flush_collection_data():
                               leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
 
     if not decrypted_token or decrypted_token is None:
-        logger.info("Failed to decrypt given token")
+        logger.info('Failed to decrypt given token')
         return 403
 
-    collection_exercise_id = decrypted_token.get("collection_exercise_id")
+    collection_exercise_id = decrypted_token.get('collection_exercise_id')
 
     if not collection_exercise_id or collection_exercise_id is None:
-        return "Could not find 'collection_exercise_id' in decrypted JWT", 400
+        return 'Could not find "collection_exercise_id" in decrypted JWT', 400
 
     responses_to_flush = _get_partial_responses_for_collection(collection_exercise_id)
 
     api_response = {
-        "collection_exercise_id": collection_exercise_id,
-        "total_partial_responses": len(responses_to_flush),
-        "successful_flush": [],
-        "failed_flush": [],
+        'collection_exercise_id': collection_exercise_id,
+        'total_partial_responses': len(responses_to_flush),
+        'successful_flush': [],
+        'failed_flush': [],
     }
 
     for response in responses_to_flush:
         status, response_summary = _flush_response(response)
         if status:
-            api_response["successful_flush"].append(response_summary)
+            api_response['successful_flush'].append(response_summary)
         else:
-            api_response["failed_flush"].append(response_summary)
+            api_response['failed_flush'].append(response_summary)
 
     return json.dumps(api_response)
 
 
 def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None):
-    """Accesses the Questionnaire State DynamoDB table and retrieves all records featuring
+    '''Accesses the Questionnaire State DynamoDB table and retrieves all records featuring
     a given collection_exercise_id.
 
     Parameters:
@@ -107,15 +107,15 @@ def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None)
 
     Returns:
         A list of objects, each being an individual partial response.
-    """
+    '''
 
-    EQ_QUESTIONNAIRE_STATE_TABLE_NAME = os.environ.get("EQ_QUESTIONNAIRE_STATE_TABLE_NAME")
+    EQ_QUESTIONNAIRE_STATE_TABLE_NAME = os.environ.get('EQ_QUESTIONNAIRE_STATE_TABLE_NAME')
 
     if not EQ_QUESTIONNAIRE_STATE_TABLE_NAME or EQ_QUESTIONNAIRE_STATE_TABLE_NAME is None:
         return 500
 
     if not dynamodb:
-        EQ_DYNAMODB_ENDPOINT = os.environ.get("EQ_DYNAMODB_ENDPOINT")
+        EQ_DYNAMODB_ENDPOINT = os.environ.get('EQ_DYNAMODB_ENDPOINT')
         if not EQ_DYNAMODB_ENDPOINT or EQ_DYNAMODB_ENDPOINT is None:
             return 500
 
@@ -124,7 +124,7 @@ def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None)
     table = dynamodb.Table(EQ_QUESTIONNAIRE_STATE_TABLE_NAME)
 
     scan_kwargs = {
-        "FilterExpression": Key("collection_exercise_id").eq(collection_exercise_id),
+        'FilterExpression': Key('collection_exercise_id').eq(collection_exercise_id),
     }
 
     response = table.scan(**scan_kwargs)
@@ -133,7 +133,7 @@ def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None)
 
 
 def _flush_response(response):
-    """Given a single response, tries to find the user who created it and calls a method to attempt
+    '''Given a single response, tries to find the user who created it and calls a method to attempt
     the flushing.
 
     Parameters:
@@ -142,19 +142,19 @@ def _flush_response(response):
     Returns:
         Boolean: Whether or not the response was successfully flushed
         response_summary (Dict): Abstract information about the response that we tried to flush
-    """
+    '''
 
     response_summary = {
-        "collection_exercise_sid": response.get("collection_exercise_id"),
-        "user_id": response.get("user_id"),
-        "ru_ref": response.get("ru_ref"),
-        "eq_id": response.get("eq_id"),
-        "form_type": response.get("form_type"),
+        'collection_exercise_sid': response.get('collection_exercise_id'),
+        'user_id': response.get('user_id'),
+        'ru_ref': response.get('ru_ref'),
+        'eq_id': response.get('eq_id'),
+        'form_type': response.get('form_type'),
     }
 
     user = _get_user(response_summary)
 
-    response_summary.pop("collection_exercise_sid")
+    response_summary.pop('collection_exercise_sid')
 
     if _submit_data(user):
         return True, response_summary
@@ -163,14 +163,14 @@ def _flush_response(response):
 
 
 def _get_user(response):
-    """Generates user locators from their response and retrieves their information.
+    '''Generates user locators from their response and retrieves their information.
 
     Parameters:
         response (Dict): An individual partial response from the database.
 
     Returns:
         User (Class): An individual user
-    """
+    '''
 
     id_generator = current_app.eq['id_generator']
     user_id = id_generator.generate_id(response)
@@ -179,14 +179,14 @@ def _get_user(response):
 
 
 def _submit_data(user):
-    """Encrypts and pushes a users partial response to EQs Rabbit queue.
+    '''Encrypts and pushes a users partial response to EQs Rabbit queue.
 
     Paramaters:
         User (Class): Information about a particular user, including their partial responses.
 
     Returns:
         Boolean: Whether or not the submission was successful.
-    """
+    '''
 
     g.pop('_questionnaire_store', None)
     answer_store = get_answer_store(user)
