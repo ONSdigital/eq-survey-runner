@@ -23,7 +23,7 @@ flush_collection_blueprint = Blueprint('flush_collection', __name__)
 
 @flush_collection_blueprint.route('/flush_collection', methods=['POST'])
 def flush_collection_data():
-    '''Resolver function for the /flush_collection endpoint. Retrieves partial responses
+    """Resolver function for the /flush_collection endpoint. Retrieves partial responses
     for a given collection_id and attempts to push them into EQs Rabbit queue.
 
     Parameters:
@@ -54,7 +54,7 @@ def flush_collection_data():
                 }
             ]
         }
-    '''
+    """
 
     if session:
         session.clear()
@@ -98,7 +98,7 @@ def flush_collection_data():
 
 
 def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None):
-    '''Accesses the Questionnaire State DynamoDB table and retrieves all records featuring
+    """Accesses the Questionnaire State DynamoDB table and retrieves all records featuring
     a given collection_exercise_id.
 
     Parameters:
@@ -107,7 +107,7 @@ def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None)
 
     Returns:
         A list of objects, each being an individual partial response.
-    '''
+    """
 
     EQ_QUESTIONNAIRE_STATE_TABLE_NAME = os.environ.get('EQ_QUESTIONNAIRE_STATE_TABLE_NAME')
 
@@ -133,7 +133,7 @@ def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None)
 
 
 def _flush_response(response):
-    '''Given a single response, tries to find the user who created it and calls a method to attempt
+    """Given a single response, tries to find the user who created it and calls a method to attempt
     the flushing.
 
     Parameters:
@@ -142,7 +142,7 @@ def _flush_response(response):
     Returns:
         Boolean: Whether or not the response was successfully flushed
         response_summary (Dict): Abstract information about the response that we tried to flush
-    '''
+    """
 
     response_summary = {
         'collection_exercise_sid': response.get('collection_exercise_id'),
@@ -163,14 +163,14 @@ def _flush_response(response):
 
 
 def _get_user(response):
-    '''Generates user locators from their response and retrieves their information.
+    """Generates user locators from their response and retrieves their information.
 
     Parameters:
         response (Dict): An individual partial response from the database.
 
     Returns:
         User (Class): An individual user
-    '''
+    """
 
     id_generator = current_app.eq['id_generator']
     user_id = id_generator.generate_id(response)
@@ -179,14 +179,14 @@ def _get_user(response):
 
 
 def _submit_data(user):
-    '''Encrypts and pushes a users partial response to EQs Rabbit queue.
+    """Encrypts and pushes a users partial response to EQs Rabbit queue.
 
     Paramaters:
         User (Class): Information about a particular user, including their partial responses.
 
     Returns:
         Boolean: Whether or not the submission was successful.
-    '''
+    """
 
     g.pop('_questionnaire_store', None)
     answer_store = get_answer_store(user)
