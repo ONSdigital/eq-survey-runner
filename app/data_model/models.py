@@ -17,7 +17,6 @@ class QuestionnaireState(db.Model):
     version = db.Column('version', db.Integer)
     created_at = db.Column('created_at', db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column('updated_at', db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
-    collection_exercise_id = db.Column('collection_exercise_id', db.String)
 
     def __init__(self, user_id, state, version):
         self.user_id = user_id
@@ -25,7 +24,7 @@ class QuestionnaireState(db.Model):
         self.version = version
 
     def to_app_model(self):
-        model = app_models.QuestionnaireState(self.user_id, self.state, self.version)
+        model = app_models.QuestionnaireState(self.user_id, self.state, self.version, self.collection_exercise_id, self.form_type, self.ru_ref, self.eq_id)
         model.created_at = self.created_at
         model.updated_at = self.updated_at
         return model
