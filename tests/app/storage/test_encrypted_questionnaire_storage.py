@@ -181,7 +181,7 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         questionnaire_state = QuestionnaireState(
             user_id,
             state_data,
-            QuestionnaireStore.LATEST_VERSION + 1
+            QuestionnaireStore.LATEST_VERSION + 1,
             collection_exercise_id,
             form_type,
             ru_ref,
