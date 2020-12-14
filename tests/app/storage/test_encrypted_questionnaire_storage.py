@@ -16,12 +16,23 @@ from tests.app.app_context_test_case import AppContextTestCase
 def _save_state_data(user_id, data, state_version=QuestionnaireStore.LATEST_VERSION):
     encryption = StorageEncryption(user_id, 'mock', 'mock')
 
+    metadata = data['METADATA']
+
+    collection_exercise_id = metadata['collection_exercise_sid']
+    form_type = metadata['form_type']
+    eq_id = metadata['eq_id']
+    ru_ref = metadata['ru_ref']
+
     state_data = encryption.encrypt_data(data)
 
     questionnaire_state = QuestionnaireState(
         user_id,
         state_data,
-        state_version
+        state_version,
+        collection_exercise_id,
+        form_type,
+        eq_id,
+        ru_ref
     )
     data_access.put(questionnaire_state)
 
