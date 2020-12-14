@@ -138,10 +138,21 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
 
         legacy_state_data = json.dumps({'data': jwe_token.serialize(compact=True)})
 
+        metadata = data['METADATA']
+
+        collection_exercise_id = metadata['collection_exercise_sid']
+        form_type = metadata['form_type']
+        eq_id = metadata['eq_id']
+        ru_ref = metadata['ru_ref']
+
         questionnaire_state = QuestionnaireState(
             user_id,
             legacy_state_data,
-            self.LEGACY_DATA_STORE_VERSION
+            self.LEGACY_DATA_STORE_VERSION,
+            collection_exercise_id,
+            form_type,
+            ru_ref,
+            eq_id,
         )
         data_access.put(questionnaire_state)
 
@@ -160,10 +171,21 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
 
         state_data = jwe_token.serialize(compact=True)
 
+        metadata = data['METADATA']
+
+        collection_exercise_id = metadata['collection_exercise_sid']
+        form_type = metadata['form_type']
+        eq_id = metadata['eq_id']
+        ru_ref = metadata['ru_ref']
+
         questionnaire_state = QuestionnaireState(
             user_id,
             state_data,
             QuestionnaireStore.LATEST_VERSION + 1
+            collection_exercise_id,
+            form_type,
+            ru_ref,
+            eq_id,
         )
         data_access.put(questionnaire_state)
 
