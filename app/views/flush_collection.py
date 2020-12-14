@@ -1,6 +1,7 @@
 import os
-import boto3
 import json
+import boto3
+
 
 from structlog import get_logger
 from boto3.dynamodb.conditions import Key

@@ -15,7 +15,7 @@ class TestAppModels(AppContextTestCase):
         self._test_model(SubmittedResponse('txid', 'somedata', NOW))
 
     def test_questionnaire_state(self):
-        new_model = self._test_model(QuestionnaireState('someuser', 'somedata', 1, "somecollectionid", "someformtype", "someruref", "someeqid"))
+        new_model = self._test_model(QuestionnaireState('someuser', 'somedata', 1, 'somecollectionid', 'someformtype', 'someruref', 'someeqid'))
 
         self.assertGreaterEqual(new_model.created_at, NOW)
         self.assertGreaterEqual(new_model.updated_at, NOW)
