@@ -1,10 +1,8 @@
 import os
 import json
 import boto3
-
-
-from structlog import get_logger
 from boto3.dynamodb.conditions import Key
+from structlog import get_logger
 from flask import Blueprint, request, session, current_app, g
 from sdc.crypto.encrypter import encrypt
 from sdc.crypto.decrypter import decrypt
