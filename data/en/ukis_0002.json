@@ -1,6 +1,6 @@
 {
-    "eq_id": "ukis_0002",
-    "form_type": "0002",
+    "eq_id": "ukis_ni",
+    "form_type": "0001",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
@@ -4339,14 +4339,6 @@
         {
             "name": "trad_as",
             "validator": "optional_string"
-        },
-        {
-            "name": "ref_p_start_date",
-            "validator": "date"
-        },
-        {
-            "name": "ref_p_end_date",
-            "validator": "date"
         }
     ],
     "view_submitted_response": {
