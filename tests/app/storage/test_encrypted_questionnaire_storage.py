@@ -44,20 +44,38 @@ class TestEncryptedQuestionnaireStorage(AppContextTestCase):
         user_id = '1'
         user_ik = '2'
         encrypted = EncryptedQuestionnaireStorage(user_id, user_ik, 'pepper')
-        data = 'test'
-        encrypted.add_or_update(data, QuestionnaireStore.LATEST_VERSION)
+        mockData = {'METADATA': {
+            'collection_exercise_sid': '123',
+            'form_type': '456',
+            'ru_ref': '789',
+            'eq_id': 'survey_456',
+        }}
+        json_data = json.dumps(mockData)
+        encrypted.add_or_update(json_data, QuestionnaireStore.LATEST_VERSION)
         # check we can decrypt the data
-        self.assertEqual(('test', QuestionnaireStore.LATEST_VERSION), encrypted.get_user_data())
+        self.assertEqual((json_data, QuestionnaireStore.LATEST_VERSION), encrypted.get_user_data())
 
     def test_store(self):
-        data = 'test'
-        self.assertIsNone(self.storage.add_or_update(data, QuestionnaireStore.LATEST_VERSION))
+        mockData = {'METADATA': {
+            'collection_exercise_sid': '123',
+            'form_type': '456',
+            'ru_ref': '789',
+            'eq_id': 'survey_456',
+        }}
+        json_data = json.dumps(mockData)
+        self.assertIsNone(self.storage.add_or_update(json_data, QuestionnaireStore.LATEST_VERSION))
         self.assertIsNotNone(self.storage.get_user_data())  # pylint: disable=protected-access
 
     def test_get(self):
-        data = 'test'
-        self.storage.add_or_update(data, QuestionnaireStore.LATEST_VERSION)
-        self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
+        mockData = {'METADATA': {
+            'collection_exercise_sid': '123',
+            'form_type': '456',
+            'ru_ref': '789',
+            'eq_id': 'survey_456',
+        }}
+        json_data = json.dumps(mockData)
+        self.storage.add_or_update(json_data, QuestionnaireStore.LATEST_VERSION)
+        self.assertEqual((json_data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
 
     def test_delete(self):
         mockData = {'METADATA': {
