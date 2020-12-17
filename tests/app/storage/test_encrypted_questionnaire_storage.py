@@ -90,7 +90,7 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         }}
         json_data = json.dumps(mockData)
         self._save_legacy_state_data(self.user_id, json_data)
-        self.assertEqual(json_data, self.LEGACY_DATA_STORE_VERSION), self.storage.get_user_data())
+        self.assertEqual(json_data, self.LEGACY_DATA_STORE_VERSION, self.storage.get_user_data())
 
     def test_legacy_migrated_to_latest(self):
         """Tests that the legacy data is correctly saved as latest
