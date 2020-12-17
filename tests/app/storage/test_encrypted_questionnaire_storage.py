@@ -119,10 +119,16 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
     def test_legacy_migrated_to_latest(self):
         """Tests that the legacy data is correctly saved as latest
         """
-        self._save_legacy_state_data(self.user_id, 'test')
-        data = 'test update'
-        self.storage.add_or_update(data, QuestionnaireStore.LATEST_VERSION)
-        self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
+        mockData = {'METADATA': {
+            'collection_exercise_sid': '123',
+            'form_type': '456',
+            'ru_ref': '789',
+            'eq_id': 'survey_456',
+        }}
+        json_data = json.dumps(mockData)
+        self._save_legacy_state_data(self.user_id, json_data)
+        self.storage.add_or_update(json_data, QuestionnaireStore.LATEST_VERSION)
+        self.assertEqual((json_data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
 
     def test_newer_data_saved_as_current_latest_version(self):
         """
@@ -130,12 +136,18 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         that this application version can write.
         e.g. we can read version 3, but can only write version 2. Data should be saved as version 2.
         """
+        mockData = {'METADATA': {
+            'collection_exercise_sid': '123',
+            'form_type': '456',
+            'ru_ref': '789',
+            'eq_id': 'survey_456',
+        }}
+        json_data = json.dumps(mockData)
         current_version = QuestionnaireStore.LATEST_VERSION
         newer_version = current_version + 1
-        _save_state_data(self.user_id, 'test', state_version=newer_version)
-        data = 'test_newer_data_saved_as_current_latest_version'
-        self.storage.add_or_update(data, current_version)
-        self.assertEqual((data, current_version), self.storage.get_user_data())
+        _save_state_data(self.user_id, json_data, state_version=newer_version)
+        self.storage.add_or_update(json_data, current_version)
+        self.assertEqual((json_data, current_version), self.storage.get_user_data())
 
     def test_get(self):
         """Tests compressed state
