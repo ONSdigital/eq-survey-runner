@@ -60,8 +60,14 @@ class TestEncryptedQuestionnaireStorage(AppContextTestCase):
         self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
 
     def test_delete(self):
-        data = 'test'
-        self.storage.add_or_update(data, QuestionnaireStore.LATEST_VERSION)
+        mockData = {'METADATA': {
+            'collection_exercise_sid': '123',
+            'form_type': '456',
+            'ru_ref': '789',
+            'eq_id': 'survey_456',
+        }}
+        json_data = json.dumps(mockData)
+        self.storage.add_or_update(json_data, QuestionnaireStore.LATEST_VERSION)
         self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
         self.storage.delete()
         self.assertEqual((None, None), self.storage.get_user_data())  # pylint: disable=protected-access
