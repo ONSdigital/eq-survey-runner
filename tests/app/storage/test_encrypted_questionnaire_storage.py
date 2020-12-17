@@ -109,7 +109,13 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
     def test_get(self):
         """Tests compressed state
         """
-        self._save_compressed_state_data(self.user_id, 'test')
+        mockData = {'METADATA': {
+            'collection_exercise_id': '123',
+            'form_type': '456',
+            'ru_ref': '789',
+            'eq_id': 'survey_456',
+        }}
+        self._save_compressed_state_data(self.user_id, mockData)
         self.assertEqual(('test', QuestionnaireStore.LATEST_VERSION + 1), self.storage.get_user_data())
 
     def _save_legacy_state_data(self, user_id, data):
@@ -135,6 +141,14 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         data_access.put(questionnaire_state)
 
     def _save_compressed_state_data(self, user_id, data):
+        json_data = json.loads(data)
+        json_metadata = json_data['METADATA']
+
+        collection_exercise_id = json_metadata['collection_exercise_sid']
+        form_type = json_metadata['form_type']
+        eq_id = json_metadata['eq_id']
+        ru_ref = json_metadata['ru_ref']
+        
         protected_header = {
             'alg': 'dir',
             'enc': 'A256GCM',
@@ -142,7 +156,7 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         }
 
         jwe_token = jwe.JWE(
-            plaintext=snappy.compress(data),
+            plaintext=snappy.compress(json.dumps(data)),
             protected=protected_header,
             recipient=self.storage.encrypter.key
         )
@@ -153,6 +167,10 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
             user_id,
             state_data,
             QuestionnaireStore.LATEST_VERSION + 1,
+            collection_exercise_id,
+            form_type,
+            ru_ref,
+            eq_id
         )
         data_access.put(questionnaire_state)
 
