@@ -24,7 +24,7 @@ class QuestionnaireState(db.Model):
         self.version = version
 
     def to_app_model(self):
-        model = app_models.QuestionnaireState(self.user_id, self.state, self.version, self.collection_exercise_id, self.form_type, self.ru_ref, self.eq_id)
+        model = app_models.QuestionnaireState(self.user_id, self.state, self.version)
         model.created_at = self.created_at
         model.updated_at = self.updated_at
         return model
