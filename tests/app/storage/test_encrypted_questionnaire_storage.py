@@ -83,7 +83,7 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         """Tests that the legacy data is correctly decrypted
         """
         mockData = {'METADATA': {
-            'collection_exercise_id': '123',
+            'collection_exercise_sid': '123',
             'form_type': '456',
             'ru_ref': '789',
             'eq_id': 'survey_456',
@@ -116,7 +116,7 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         """Tests compressed state
         """
         mockData = {'METADATA': {
-            'collection_exercise_id': '123',
+            'collection_exercise_sid': '123',
             'form_type': '456',
             'ru_ref': '789',
             'eq_id': 'survey_456',
