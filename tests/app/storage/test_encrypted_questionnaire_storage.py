@@ -82,7 +82,13 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
     def test_legacy_get(self):
         """Tests that the legacy data is correctly decrypted
         """
-        self._save_legacy_state_data(self.user_id, 'test')
+         mockData = {'METADATA': {
+            'collection_exercise_id': '123',
+            'form_type': '456',
+            'ru_ref': '789',
+            'eq_id': 'survey_456',
+        }}
+        self._save_legacy_state_data(self.user_id, mockData)
         self.assertEqual(('test', self.LEGACY_DATA_STORE_VERSION), self.storage.get_user_data())
 
     def test_legacy_migrated_to_latest(self):
@@ -119,6 +125,14 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         self.assertEqual(('test', QuestionnaireStore.LATEST_VERSION + 1), self.storage.get_user_data())
 
     def _save_legacy_state_data(self, user_id, data):
+        json_data = json.loads(data)
+
+        json_metadata = json_data['METADATA']
+        collection_exercise_id = json_metadata['collection_exercise_sid']
+        form_type = json_metadata['form_type']
+        eq_id = json_metadata['eq_id']
+        ru_ref = json_metadata['ru_ref']
+
         protected_header = {
             'alg': 'dir',
             'enc': 'A256GCM',
@@ -137,18 +151,22 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
             user_id,
             legacy_state_data,
             self.LEGACY_DATA_STORE_VERSION,
+            collection_exercise_id,
+            form_type,
+            ru_ref,
+            eq_id,
         )
         data_access.put(questionnaire_state)
 
     def _save_compressed_state_data(self, user_id, data):
         json_data = json.loads(data)
-        json_metadata = json_data['METADATA']
 
+        json_metadata = json_data['METADATA']
         collection_exercise_id = json_metadata['collection_exercise_sid']
         form_type = json_metadata['form_type']
         eq_id = json_metadata['eq_id']
         ru_ref = json_metadata['ru_ref']
-        
+
         protected_header = {
             'alg': 'dir',
             'enc': 'A256GCM',
@@ -170,7 +188,7 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
             collection_exercise_id,
             form_type,
             ru_ref,
-            eq_id
+            eq_id,
         )
         data_access.put(questionnaire_state)
 
