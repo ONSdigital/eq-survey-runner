@@ -88,7 +88,7 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
             'ru_ref': '789',
             'eq_id': 'survey_456',
         }}
-        self._save_legacy_state_data(self.user_id, mockData)
+        self._save_legacy_state_data(self.user_id, json.dumps(mockData))
         self.assertEqual(('test', self.LEGACY_DATA_STORE_VERSION), self.storage.get_user_data())
 
     def test_legacy_migrated_to_latest(self):
@@ -121,7 +121,7 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
             'ru_ref': '789',
             'eq_id': 'survey_456',
         }}
-        self._save_compressed_state_data(self.user_id, mockData)
+        self._save_compressed_state_data(self.user_id, json.dumps(mockData))
         self.assertEqual(('test', QuestionnaireStore.LATEST_VERSION + 1), self.storage.get_user_data())
 
     def _save_legacy_state_data(self, user_id, data):
