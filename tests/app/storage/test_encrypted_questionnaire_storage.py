@@ -82,7 +82,7 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
     def test_legacy_get(self):
         """Tests that the legacy data is correctly decrypted
         """
-         mockData = {'METADATA': {
+        mockData = {'METADATA': {
             'collection_exercise_id': '123',
             'form_type': '456',
             'ru_ref': '789',
