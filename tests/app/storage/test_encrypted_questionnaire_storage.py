@@ -171,15 +171,22 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
     def test_get(self):
         """Tests compressed state
         """
-        mockData = {'METADATA': {
+        mock_data = {'METADATA': {
             'collection_exercise_sid': '123',
             'form_type': '456',
             'ru_ref': '789',
             'eq_id': 'survey_456',
         }}
-        json_data = json.dumps(mockData)
+        json_data = json.dumps(mock_data)
         self._save_compressed_state_data(self.user_id, json_data)
-        self.assertEqual((json_data, QuestionnaireStore.LATEST_VERSION + 1), self.storage.get_user_data())
+
+
+        user_data_from_storage = self.storage.get_user_data()
+        data_version_from_user = user_data_from_storage[1]
+        data_from_user = json.loads(user_data_from_storage[0])
+
+        self.assertEqual(mock_data, data_from_user)
+        self.assertEqual(QuestionnaireStore.LATEST_VERSION + 1, data_version_from_user)
 
     def _save_legacy_state_data(self, user_id, data):
         json_data = json.loads(data)
