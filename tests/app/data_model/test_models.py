@@ -12,10 +12,9 @@ class TestModels(AppContextTestCase):
             'some_collection_exercise_id',
             'some_form_type',
             'some_ru_ref',
-            'some_eq_id',
-            ]
-        (original, new) = self._make_models(QuestionnaireState,
-                questionnaire_state_args)
+            'some_eq_id']
+
+        original, new = self._make_models(QuestionnaireState, questionnaire_state_args)
 
         self.assertEqual(original, new)
 
@@ -28,4 +27,4 @@ class TestModels(AppContextTestCase):
         new_dict = new.__dict__
         del new_dict['_sa_instance_state']
 
-        return (orig_dict, new_dict)
+        return orig_dict, new_dict
