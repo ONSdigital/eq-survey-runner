@@ -85,7 +85,7 @@ class TestEncryptedQuestionnaireStorage(AppContextTestCase):
             'ru_ref': '789',
             'eq_id': 'survey_456',
         }}
-        json_mock_data = json.dumps()
+        json_mock_data = json.dumps(mock_data)
 
         self.storage.add_or_update(json_mock_data, QuestionnaireStore.LATEST_VERSION)
 
