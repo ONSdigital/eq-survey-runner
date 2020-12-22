@@ -79,15 +79,15 @@ class TestEncryptedQuestionnaireStorage(AppContextTestCase):
         self.assertIsNotNone(self.storage.get_user_data())  # pylint: disable=protected-access
 
     def test_get(self):
-        mockData = {'METADATA': {
+        mock_data = {'METADATA': {
             'collection_exercise_sid': '123',
             'form_type': '456',
             'ru_ref': '789',
             'eq_id': 'survey_456',
         }}
-        json_data = json.dumps(mockData)
+        json_mock_data = json.dumps(mockData)
 
-        self.storage.add_or_update(json_data, QuestionnaireStore.LATEST_VERSION)
+        self.storage.add_or_update(json_mock_data, QuestionnaireStore.LATEST_VERSION)
 
         user_data_from_storage = self.storage.get_user_data()
         data_version_from_user = user_data_from_storage[1]
