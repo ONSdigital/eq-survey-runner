@@ -5,7 +5,7 @@ from tests.app.app_context_test_case import AppContextTestCase
 class TestModels(AppContextTestCase):
 
     def test_questionnaire_state(self):
-        original, new = self._make_models(QuestionnaireState, ['someuser', 'somedata', 1])
+        original, new = self._make_models(QuestionnaireState, ['someuser', 'somedata', 1, 'some_collection_exercise_id', 'some_form_type', 'some_ru_ref', 'some_eq_id'])
 
         self.assertEqual(original, new)
 
