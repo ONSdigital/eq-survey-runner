@@ -5,7 +5,17 @@ from tests.app.app_context_test_case import AppContextTestCase
 class TestModels(AppContextTestCase):
 
     def test_questionnaire_state(self):
-        original, new = self._make_models(QuestionnaireState, ['someuser', 'somedata', 1, 'some_collection_exercise_id', 'some_form_type', 'some_ru_ref', 'some_eq_id'])
+        questionnaire_state_args = [
+            'someuser',
+            'somedata',
+            1,
+            'some_collection_exercise_id',
+            'some_form_type',
+            'some_ru_ref',
+            'some_eq_id',
+            ]
+        (original, new) = self._make_models(QuestionnaireState,
+                questionnaire_state_args)
 
         self.assertEqual(original, new)
 
@@ -18,4 +28,4 @@ class TestModels(AppContextTestCase):
         new_dict = new.__dict__
         del new_dict['_sa_instance_state']
 
-        return orig_dict, new_dict
+        return (orig_dict, new_dict)
