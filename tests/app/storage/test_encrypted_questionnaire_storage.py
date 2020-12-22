@@ -180,11 +180,11 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         json_data = json.dumps(mock_data)
 
         self._save_compressed_state_data(self.user_id, json_data)
-        
+
         user_data_from_storage = self.storage.get_user_data()
         data_version_from_user = user_data_from_storage[1]
         data_from_user = json.loads(user_data_from_storage[0])
-        
+
         self.assertEqual(mock_data, data_from_user)
         self.assertEqual(QuestionnaireStore.LATEST_VERSION + 1, data_version_from_user)
 
