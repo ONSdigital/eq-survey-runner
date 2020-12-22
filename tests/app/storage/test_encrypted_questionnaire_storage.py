@@ -94,6 +94,7 @@ class TestEncryptedQuestionnaireStorage(AppContextTestCase):
         json_data_from_user = json.dumps(user_data_from_storage[0])
 
         self.assertEqual(json_mock_data, json_data_from_user)
+        self.assertEqual(QuestionnaireStore.LATEST_VERSION, data_version_from_user)
 
     def test_delete(self):
         mockData = {'METADATA': {
