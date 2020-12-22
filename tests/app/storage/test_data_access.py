@@ -35,7 +35,7 @@ class TestDataAccess(AppContextTestCase):
         self.assertTrue(getattr(model, '_use_dynamo'))
 
     def test_get_by_key_rds_fallback(self):
-        rds_model = models.QuestionnaireState(USER_ID, STATE_DATA, VERSION)
+        rds_model = models.QuestionnaireState(USER_ID, STATE_DATA, VERSION, COLLECTION_EXERCISE_ID, FORM_TYPE, RU_REF,, EQ_ID)
 
         with mock.patch('app.storage.dynamo_api.get_item', return_value=None), \
              mock.patch.object(models.QuestionnaireState, 'query') as query:
