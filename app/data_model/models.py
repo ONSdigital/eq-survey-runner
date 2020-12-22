@@ -39,4 +39,4 @@ class QuestionnaireState(db.Model):
 
     @classmethod
     def from_app_model(cls, model):
-        return cls(model.user_id, model.state_data, model.version)
+        return cls(model.user_id, model.state_data, model.version, model.collection_exercise_id, model.form_type, model.ru_ref, model.eq_id)
