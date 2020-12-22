@@ -86,11 +86,13 @@ class TestEncryptedQuestionnaireStorage(AppContextTestCase):
             'eq_id': 'survey_456',
         }}
         json_data = json.dumps(mockData)
-        
+
         self.storage.add_or_update(json_data, QuestionnaireStore.LATEST_VERSION)
 
-        json_data_from_storage = json.loads(self.storage.get_user_data())
-        self.assertEqual((mockData, QuestionnaireStore.LATEST_VERSION), json_data_from_storage)
+        user_data_from_storage = self.storage.get_user_data()
+        json_data_from_user = json.loads(user_data_from_storage[0])
+        json_data_version_from_user = user_data_from_storage[1]
+        self.assertEqual((mockData, QuestionnaireStore.LATEST_VERSION), (json_data_from_user, json_data_version_from_user))
 
     def test_delete(self):
         mockData = {'METADATA': {
