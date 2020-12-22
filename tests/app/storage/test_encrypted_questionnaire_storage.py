@@ -182,10 +182,10 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         self._save_compressed_state_data(self.user_id, json_data)
         
         user_data_from_storage = self.storage.get_user_data()
-        data_from_user = json.loads(user_data_from_storage[0])
         data_version_from_user = user_data_from_storage[1]
+        data_from_user = json.loads(user_data_from_storage[0])
         
-        self.assertEqual(data_from_user, mock_data)
+        self.assertEqual(mock_data, data_from_user)
         self.assertEqual(QuestionnaireStore.LATEST_VERSION + 1, data_version_from_user)
 
     def _save_legacy_state_data(self, user_id, data):
@@ -238,7 +238,7 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         }
 
         jwe_token = jwe.JWE(
-            plaintext=snappy.compress(json.dumps(data)),
+            plaintext=snappy.compress(data),
             protected=protected_header,
             recipient=self.storage.encrypter.key
         )
