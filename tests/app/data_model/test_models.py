@@ -12,7 +12,8 @@ class TestModels(AppContextTestCase):
             'some_collection_exercise_id',
             'some_form_type',
             'some_ru_ref',
-            'some_eq_id']
+            'some_eq_id'
+        ]
 
         original, new = self._make_models(QuestionnaireState, questionnaire_state_args)
 
