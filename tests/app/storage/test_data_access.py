@@ -22,7 +22,15 @@ EQ_ID = 'someid'
 class TestDataAccess(AppContextTestCase):
 
     def test_get_by_key(self):
-        dynamo_item = {'user_id': USER_ID, 'state_data': STATE_DATA, 'version': VERSION}
+        dynamo_item = {
+            'user_id': USER_ID,
+            'state_data': STATE_DATA,
+            'version': VERSION,
+            'collection_exercise_id': COLLECTION_EXERCISE_ID,
+            'form_type': FORM_TYPE,
+            'ru_ref': RU_REF,
+            'eq_id': EQ_ID,
+        }
 
         with mock.patch('app.storage.dynamo_api.get_item', return_value=dynamo_item) as get_item:
             model = data_access.get_by_key(QuestionnaireState, USER_ID)
