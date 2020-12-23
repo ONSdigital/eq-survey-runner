@@ -69,8 +69,7 @@ def flush_collection_data():
                               leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
 
     if not decrypted_token or decrypted_token is None:
-        logger.info('Failed to decrypt given token')
-        return 403
+        return 'Failed to decrypt given token', 403
 
     collection_exercise_id = decrypted_token.get('collection_exercise_id')
 
