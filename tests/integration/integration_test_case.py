@@ -274,7 +274,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
     def assertMessage(self, message):
         if self.last_response is not None:
-            self.assertEqual(self.last_response.data, message)
+            self.assertEqual(self.last_response.get_data(), message)
         else:
             self.fail('last_response is invalid')
 
