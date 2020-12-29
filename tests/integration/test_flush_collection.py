@@ -46,7 +46,7 @@ class TestFlushCollection(IntegrationTestCase):
         """
 
         self.post(url='/flush')
-        self.assertStatusForbidden(400, 'Could not find expected request argument: token')
+        self.assertStatus(400, 'Could not find expected request argument: token')
 
     def test_cannot_decrypt_token(self):
         """GIVEN the endpoint is called,
