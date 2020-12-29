@@ -1,3 +1,4 @@
+from mock import patch
 class TestFlushCollection(IntegrationTestCase):
 
     def setUp(self):
