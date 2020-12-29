@@ -32,7 +32,7 @@ class TestFlushCollection(IntegrationTestCase):
 
         super().tearDown()
 
-    def test_no_token:
+    def test_no_token(self):
         """GIVEN the endpoint is called,
         WHEN the application tries to find
         the expected token in the request
@@ -47,7 +47,7 @@ class TestFlushCollection(IntegrationTestCase):
         self.post(url='/flush')
         self.assertStatusForbidden(400, 'Could not find expected request argument: token')
 
-    def test_cannot_decrypt_token:
+    def test_cannot_decrypt_token(self):
         """GIVEN the endpoint is called,
         AND a token is given,
         WHEN the application tries to decrypt it
@@ -60,7 +60,7 @@ class TestFlushCollection(IntegrationTestCase):
 
         # TODO
 
-    def test_cannot_find_collection_id:
+    def test_cannot_find_collection_id(self):
         """GIVEN the endpoint is called,
         AND a token is given,
         AND the token can be decrypted,
@@ -75,7 +75,7 @@ class TestFlushCollection(IntegrationTestCase):
 
         # TODO
 
-    def test_successful_flush_no_fails:
+    def test_successful_flush_no_fails(self):
         """GIVEN the endpoint is called,
         AND a token is given,
         AND the token can be decrypted,
@@ -92,7 +92,7 @@ class TestFlushCollection(IntegrationTestCase):
 
         # TODO
 
-    def test_failed_flush:
+    def test_failed_flush(self):
         """GIVEN the endpoint is called,
         AND a token is given,
         AND the token can be decrypted,
