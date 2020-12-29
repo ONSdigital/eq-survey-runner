@@ -1,5 +1,4 @@
 from mock import patch
-from moto import mock_dynamodb2
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -86,7 +85,6 @@ class TestFlushCollection(IntegrationTestCase):
 
         self.assertStatusCode(400)
 
-    @mock_dynamodb2
     def test_successful_flush(self):
         """GIVEN the endpoint is called,
         AND a token is given,
@@ -105,7 +103,7 @@ class TestFlushCollection(IntegrationTestCase):
 
         token = self.token_generator.generate_token(mock_payload)
 
-        url = '/flush_collection?token=' + token
+        url = f'/flush_collection?token={token}'
 
         self.post(url=url)
 

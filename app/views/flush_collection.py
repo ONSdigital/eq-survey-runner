@@ -110,13 +110,11 @@ def _get_partial_responses_for_collection(collection_exercise_id, dynamodb=None)
     EQ_QUESTIONNAIRE_STATE_TABLE_NAME = os.environ.get('EQ_QUESTIONNAIRE_STATE_TABLE_NAME')
 
     if not EQ_QUESTIONNAIRE_STATE_TABLE_NAME or EQ_QUESTIONNAIRE_STATE_TABLE_NAME is None:
-        print("hit")
         return 500
 
     if not dynamodb:
         EQ_DYNAMODB_ENDPOINT = os.environ.get('EQ_DYNAMODB_ENDPOINT')
         if not EQ_DYNAMODB_ENDPOINT or EQ_DYNAMODB_ENDPOINT is None:
-            print("hit")
             return 500
 
         dynamodb = boto3.resource('dynamodb', endpoint_url=EQ_DYNAMODB_ENDPOINT)
