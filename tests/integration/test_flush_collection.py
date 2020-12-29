@@ -50,6 +50,7 @@ class TestFlushCollection(IntegrationTestCase):
         self.post(url='/flush_collection')
 
         self.assertStatusCode(400)
+        self.assertMessage('Could not find expected request argument: token')
 
     def test_cannot_decrypt_token(self):
         """GIVEN the endpoint is called,
@@ -65,6 +66,7 @@ class TestFlushCollection(IntegrationTestCase):
         self.post(url='/flush_collection?token=someInvalidJWT123')
 
         self.assertStatusCode(403)
+        self.assertMessage('Failed to decrypt given token')
 
     def test_cannot_find_collection_id(self):
         """GIVEN the endpoint is called,

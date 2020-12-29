@@ -272,6 +272,12 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         else:
             self.fail('last_response is invalid')
 
+    def assertMessage(self, message):
+        if self.last_response is not None:
+            self.assertEqual(self.last_response.message, message)
+        else:
+            self.fail('last_response is invalid')
+
     def assertEqualUrl(self, url):
         if self.last_url:
             self.assertEqual(url, self.last_url)
