@@ -1,5 +1,36 @@
 class TestFlushCollection(IntegrationTestCase):
 
+    def setUp(self):
+        self.submitter_patcher = patch('app.setup.LogSubmitter')
+        mock_submitter_class = self.submitter_patcher.start()
+        self.submitter_instance = mock_submitter_class.return_value
+        self.submitter_instance.send_message.return_value = True
+
+        self.encrypter_patcher = patch('app.views.flush.encrypt')
+        mock_encrypter_class = self.encrypter_patcher.start()
+        self.encrypt_instance = mock_encrypter_class
+
+        super().setUp()
+        self.launchSurvey('test', '0205')
+        self.post(action='start_questionnaire')
+
+        form_data = {
+            'period-from-day': '01',
+            'period-from-month': '4',
+            'period-from-year': '2016',
+            'period-to-day': '30',
+            'period-to-month': '4',
+            'period-to-year': '2016',
+            'total-retail-turnover': '100000'
+        }
+        self.post(form_data)
+
+    def tearDown(self):
+        self.submitter_patcher.stop()
+        self.encrypter_patcher.stop()
+
+        super().tearDown()
+
     def test_no_token:
         """GIVEN the endpoint is called,
         WHEN the application tries to find
@@ -12,7 +43,8 @@ class TestFlushCollection(IntegrationTestCase):
         Could not find expected request argument: token
         """
 
-        #TODO
+        self.post(url='/flush')
+        self.assertStatusForbidden(400, 'Could not find expected request argument: token')
 
     def test_cannot_decrypt_token:
         """GIVEN the endpoint is called,
@@ -25,7 +57,7 @@ class TestFlushCollection(IntegrationTestCase):
         Failed to decrypt given token
         """
 
-        #TODO
+        # TODO
 
     def test_cannot_find_collection_id:
         """GIVEN the endpoint is called,
@@ -40,8 +72,8 @@ class TestFlushCollection(IntegrationTestCase):
         Could not find "collection_exercise_id" in decrypted JWT
         """
 
-        #TODO
-    
+        # TODO
+
     def test_successful_flush_no_fails:
         """GIVEN the endpoint is called,
         AND a token is given,
@@ -57,7 +89,7 @@ class TestFlushCollection(IntegrationTestCase):
         ((JSON string as documented))
         """
 
-        #TODO
+        # TODO
 
     def test_failed_flush:
         """GIVEN the endpoint is called,
@@ -74,4 +106,4 @@ class TestFlushCollection(IntegrationTestCase):
         ((JSON string as documented))
         """
 
-        #TODO
+        # TODO
