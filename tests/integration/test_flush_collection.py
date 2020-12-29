@@ -45,7 +45,7 @@ class TestFlushCollection(IntegrationTestCase):
         Could not find expected request argument: token
         """
 
-        self.post(url = '/flush')
+        self.post(url = '/flush_collection')
         
         self.assertStatusCode(400)
 
