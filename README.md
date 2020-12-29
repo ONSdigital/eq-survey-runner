@@ -204,7 +204,7 @@ JSON object format to be encoded within a JWT:
 
 Headers
 ```
-POST /flush HTTP/1.1
+POST /flush_collection HTTP/1.1
 Accept: */*
 Content-Length: 0
 ```

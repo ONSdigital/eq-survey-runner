@@ -1,5 +1,7 @@
 from mock import patch
 from tests.integration.integration_test_case import IntegrationTestCase
+
+
 class TestFlushCollection(IntegrationTestCase):
 
     def setUp(self):
@@ -45,8 +47,8 @@ class TestFlushCollection(IntegrationTestCase):
         Could not find expected request argument: token
         """
 
-        self.post(url = '/flush_collection')
-        
+        self.post(url='/flush_collection')
+
         self.assertStatusCode(400)
 
     def test_cannot_decrypt_token(self):
@@ -60,7 +62,9 @@ class TestFlushCollection(IntegrationTestCase):
         Failed to decrypt given token
         """
 
-        # TODO
+        self.post(url='/flush_collection?token=someInvalidJWT123')
+
+        self.assertStatusCode(403)
 
     def test_cannot_find_collection_id(self):
         """GIVEN the endpoint is called,
