@@ -79,7 +79,7 @@ class TestFlushCollection(IntegrationTestCase):
         mock_payload = {'pilot': 'Po'}
         token = self.token_generator.generate_token(mock_payload)
 
-        url = '/flush_collection?token=' + token
+        url = f'/flush_collection?token={token}'
 
         self.post(url=url)
 
