@@ -53,8 +53,8 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         configure_logging()
 
         setting_overrides = {
-            'SQLALCHEMY_DATABASE_URI': 'sqlite://'
-            #'EQ_DYNAMODB_ENDPOINT': None
+            'SQLALCHEMY_DATABASE_URI': 'sqlite://',
+            'EQ_DYNAMODB_ENDPOINT': None
         }
 
         self._application = create_app(setting_overrides)
