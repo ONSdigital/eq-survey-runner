@@ -21,7 +21,7 @@ describe('Setting cookies', function() {
       // Then
       .waitForExist('.js-hide-button')
       .getCookie(cookieMessage).then(item => item.value).should.eventually.equal('true')
-      .getCookie(cookiePolicy).then(item => item.value).should.eventually.equal('{"essential":true,"usage":true}');
+      .getCookie(cookiePolicy).then(item => item.value).should.eventually.equal('{\'essential\':true,\'usage\':true}');
   });
 
   it('Given the "ons_cookie_message_display" is set when I land on a page then the cookie banner should not be present', function() {
@@ -59,30 +59,40 @@ describe('Cookie settings page', function() {
   });
 
   it('Given I am on the cookies-settings page when I accept specific cookies then they are set in my browser', function() {
-    return browser
-      // When
-      .waitForExist('.js-accept-cookies')
-      .click('[href="/cookies-settings"]')
-      .waitForExist('#on-1')
-      .getCookie(cookiePolicy).then(item => item.value).should.eventually.equal('{"essential":true,"usage":false}')
-      .click('#on-1')
-      .click('.cookies-submit-btn')
-      // Then
-      .getCookie(cookiePolicy).then(item => item.value).should.eventually.equal('{"essential":true,"usage":true}');
+    return (
+      browser
+        // When
+        .waitForExist(".js-accept-cookies")
+        .click('[href="/cookies-settings"]')
+        .waitForExist("#on-1")
+        .getCookie(cookiePolicy)
+        .then((item) => item.value)
+        .should.eventually.equal('{"essential":true,"usage":false}')
+        .click("#on-1")
+        .click(".cookies-submit-btn")
+        // Then
+        .getCookie(cookiePolicy)
+        .then((item) => item.value)
+        .should.eventually.equal("{'essential':true,'usage':true}")
+    );
   });
 
   it('Given I am on the cookies-settings page when I reject specific cookies then they are set in my browser', function() {
-    return browser
-    // When
-    .setCookie({ name: cookiePolicy, value: '{"essential":true,"usage":true}' })
-    .waitForExist('.js-accept-cookies')
-    .click('[href="/cookies-settings"]')
-    .waitForExist('#off-1')
-    .click('#off-1')
-    .click('.cookies-submit-btn')
-    .refresh()
-    // Then
-    .getCookie(cookiePolicy).then(item => item.value).should.eventually.equal('{"essential":true,"usage":false}');
+    return (
+      browser
+        // When
+        .setCookie({ name: cookiePolicy, value: "{'essential':true,'usage':true}" })
+        .waitForExist(".js-accept-cookies")
+        .click('[href="/cookies-settings"]')
+        .waitForExist("#off-1")
+        .click("#off-1")
+        .click(".cookies-submit-btn")
+        .refresh()
+        // Then
+        .getCookie(cookiePolicy)
+        .then((item) => item.value)
+        .should.eventually.equal('{"essential":true,"usage":false}')
+    );
   });
 
 });
