@@ -102,36 +102,43 @@
                                     "options": [{
                                             "label": "New business practices for organising procedures",
                                             "value": "New business practices for organising procedures",
+                                            "q_code": "2310",
                                             "description": "For example first use of supply chain management, business re-engineering, knowledge management, lean production or quality management"
                                         },
                                         {
                                             "label": "New methods of organising work responsibilities and decision making",
                                             "value": "New methods of organising work responsibilities and decision making",
+                                            "q_code": "2320",
                                             "description": "For example first use of a new system of employee responsibilities, team work, decentralisation, integration or de-integration of departments or education or training systems"
                                         },
                                         {
                                             "label": "New methods of organising external relationships with other firms or public institutions",
                                             "value": "New methods of organising external relationships with other firms or public institutions",
+                                            "q_code": "2330",
                                             "description": "For example first use of alliances, partnerships, outsourcing or subcontracting"
                                         },
                                         {
                                             "label": "Implementation of significant changes to marketing concepts or strategies",
                                             "value": "Implementation of significant changes to marketing concepts or strategies",
+                                            "q_code": "2340",
                                             "description": "For example a marketing concept or strategy that differs significantly from your enterprise's existing marketing methods which has not been used before"
                                         },
                                         {
                                             "label": "Logistics, delivery or distribution methods",
                                             "value": "Logistics, delivery or distribution methods",
+                                            "q_code": "2350",
                                             "description": "For example transportation, service delivery, warehousing or order processing"
                                         },
                                         {
                                             "label": "Methods for information processing or communication",
                                             "value": "Methods for information processing or communication",
+                                            "q_code": "2360",
                                             "description": "The maintenance and provision of information and communication systems, for example hardware, software, data processing, database, maintenance, repair, web-hosting and other computer related information activities"
                                         },
                                         {
                                             "label": "Methods for accounting or other administrative operations",
                                             "value": "Methods for accounting or other administrative operations",
+                                            "q_code": "2370",
                                             "description": "For example accounting, bookkeeping, auditing, payments, financial or insurance activities and procurement"
                                         }
                                     ]
@@ -143,7 +150,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "No significant changes",
-                                        "value": "No significant changes"
+                                        "value": "No significant changes",
+                                        "q_code": "2380"
                                     }]
                                 }
                             ]
@@ -196,6 +204,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1310",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -241,15 +250,18 @@
                                 "description": "",
                                 "options": [{
                                         "label": "2018",
-                                        "value": "2018"
+                                        "value": "2018",
+                                        "q_code": "2675"
                                     },
                                     {
                                         "label": "2019",
-                                        "value": "2019"
+                                        "value": "2019",
+                                        "q_code": "2676"
                                     },
                                     {
                                         "label": "2020",
-                                        "value": "2020"
+                                        "value": "2020",
+                                        "q_code": "2677"
                                     }
                                 ]
                             }]
@@ -299,6 +311,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure on internal Research and Development (R&D)",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000) Do not enter ‘56’ for £56,000",
+                                "q_code": "1410",
                                 "decimal_places": 2,
                                 "currency": "GBP"
                             }]
@@ -322,6 +335,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1320",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -378,6 +392,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure on acquisition of Research and Development",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000) Do not enter ‘56’ for £56,000",
+                                "q_code": "1420",
                                 "min_value": {
                                     "value": 0,
                                     "exclusive": false
@@ -437,6 +452,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1330",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -483,16 +499,19 @@
                                 "options": [{
                                         "label": "Machinery and/or equipment",
                                         "value": "Machinery and/or equipment",
+                                        "q_code": "1331",
                                         "description": "Major (i.e. capitalised) machinery and equipment acquired for use in the performance of innovation by the business"
                                     },
                                     {
                                         "label": "Computer hardware",
                                         "value": "Computer hardware",
+                                        "q_code": "1332",
                                         "description": "For example computer monitors and terminals, printers, keyboards and computer projectors, servers"
                                     },
                                     {
                                         "label": "Computer software",
                                         "value": "Computer software",
+                                        "q_code": "1333",
                                         "description": "For example program descriptions, extensions, supporting materials for systems and applications"
                                     }
                                 ]
@@ -525,6 +544,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure for the acquisition of advanced machinery, equipment and software",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000) Do not enter ‘56’ for £56,000",
+                                "q_code": "1430",
                                 "min_value": {
                                     "value": 0,
                                     "exclusive": false
@@ -552,6 +572,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1340",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -608,6 +629,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure for the acquisition of existing knowledge",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000) Do not enter ‘56’ for £56,000",
+                                "q_code": "1440",
                                 "min_value": {
                                     "value": 0,
                                     "exclusive": false
@@ -635,6 +657,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1350",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -691,6 +714,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure on training for innovative activities",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000) Do not enter ‘56’ for £56,000",
+                                "q_code": "1450",
                                 "min_value": {
                                     "value": 0,
                                     "exclusive": false
@@ -724,6 +748,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1360",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -780,6 +805,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure for all forms of design activity",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000) Do not enter ‘56’ for £56,000",
+                                "q_code": "1460",
                                 "min_value": {
                                     "value": 0,
                                     "exclusive": false
@@ -822,6 +848,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1370",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -876,19 +903,23 @@
                                 "description": "",
                                 "options": [{
                                         "label": "Changes to product or service design",
-                                        "value": "Changes to product or service design"
+                                        "value": "Changes to product or service design",
+                                        "q_code": "1371"
                                     },
                                     {
                                         "label": "Market research",
-                                        "value": "Market research"
+                                        "value": "Market research",
+                                        "q_code": "1372"
                                     },
                                     {
                                         "label": "Changes to marketing methods",
-                                        "value": "Changes to marketing methods"
+                                        "value": "Changes to marketing methods",
+                                        "q_code": "1373"
                                     },
                                     {
                                         "label": "Advertising for a product or service launch",
-                                        "value": "Advertising for a product or service launch"
+                                        "value": "Advertising for a product or service launch",
+                                        "q_code": "1374"
                                     }
                                 ]
                             }]
@@ -920,6 +951,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure for market introduction of innovations",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000) Do not enter ‘56’ for £56,000",
+                                "q_code": "1470",
                                 "min_value": {
                                     "value": 0,
                                     "exclusive": false
@@ -978,6 +1010,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "0510",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -1023,11 +1056,13 @@
                                 "description": "",
                                 "options": [{
                                         "label": "This business or enterprise group",
-                                        "value": "This business or enterprise group"
+                                        "value": "This business or enterprise group",
+                                        "q_code": "0610"
                                     },
                                     {
                                         "label": "This business with other businesses or organisations",
-                                        "value": "This business with other businesses or organisations"
+                                        "value": "This business with other businesses or organisations",
+                                        "q_code": "0620"
                                     }
                                 ]
                             }]
@@ -1058,6 +1093,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "0520",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -1123,11 +1159,13 @@
                                 "description": "",
                                 "options": [{
                                         "label": "This business or enterprise group",
-                                        "value": "This business or enterprise group"
+                                        "value": "This business or enterprise group",
+                                        "q_code": "0601"
                                     },
                                     {
                                         "label": "This business with other businesses or organisations",
-                                        "value": "This business with other businesses or organisations"
+                                        "value": "This business with other businesses or organisations",
+                                        "q_code": "0602"
                                     }
                                 ]
                             }]
@@ -1151,6 +1189,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "0710",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -1181,6 +1220,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "0720",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -1234,6 +1274,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "0900",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -1261,19 +1302,23 @@
                                 "description": "",
                                 "options": [{
                                         "label": "No need due to previous innovations",
-                                        "value": "No need due to previous innovations"
+                                        "value": "No need due to previous innovations",
+                                        "q_code": "2011"
                                     },
                                     {
                                         "label": "No need due to market conditions",
-                                        "value": "No need due to market conditions"
+                                        "value": "No need due to market conditions",
+                                        "q_code": "2020"
                                     },
                                     {
                                         "label": "The UK does not have a business environment which encourages companies to innovate",
-                                        "value": "The UK does not have a business environment which encourages companies to innovate"
+                                        "value": "The UK does not have a business environment which encourages companies to innovate",
+                                        "q_code": "2030"
                                     },
                                     {
                                         "label": "Other",
-                                        "value": "Other"
+                                        "value": "Other",
+                                        "q_code": "2040"
                                     }
                                 ]
                             }]
@@ -1441,11 +1486,13 @@
                                 "description": "",
                                 "options": [{
                                         "label": "This business or enterprise group",
-                                        "value": "This business or enterprise group"
+                                        "value": "This business or enterprise group",
+                                        "q_code": "1010"
                                     },
                                     {
                                         "label": "This business with other businesses or organisations",
-                                        "value": "This business with other businesses or organisations"
+                                        "value": "This business with other businesses or organisations",
+                                        "q_code": "1020"
                                     }
                                 ]
                             }]
@@ -1491,15 +1538,18 @@
                                     "description": "",
                                     "options": [{
                                             "label": "Innovation activities were abandoned",
-                                            "value": "Innovation activities were abandoned"
+                                            "value": "Innovation activities were abandoned",
+                                            "q_code": "1510"
                                         },
                                         {
                                             "label": "Innovation activities were scaled back",
-                                            "value": "Innovation activities were scaled back"
+                                            "value": "Innovation activities were scaled back",
+                                            "q_code": "1530"
                                         },
                                         {
                                             "label": "Innovation activities were still ongoing at the end of 2020",
-                                            "value": "Innovation activities were still ongoing at the end of 2020"
+                                            "value": "Innovation activities were still ongoing at the end of 2020",
+                                            "q_code": "1520"
                                         }
                                     ]
                                 },
@@ -1510,7 +1560,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "No, there were no innovation activities that were abandoned, scaled back or ongoing at the end of 2020",
-                                        "value": "No, there were no innovation activities that were abandoned, scaled back or ongoing at the end of 2020"
+                                        "value": "No, there were no innovation activities that were abandoned, scaled back or ongoing at the end of 2020",
+                                        "q_code": "1540"
                                     }]
                                 }
                             ]
@@ -1536,6 +1587,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2657",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1569,6 +1621,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2658",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1602,6 +1655,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2659",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1635,6 +1689,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2660",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1668,6 +1723,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2661",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1701,6 +1757,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2662",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1734,6 +1791,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2663",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1767,6 +1825,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2664",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1800,6 +1859,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2665",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1833,6 +1893,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2666",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1866,6 +1927,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2667",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1899,6 +1961,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2678",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1932,6 +1995,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2680",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -1991,6 +2055,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1210",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2024,6 +2089,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1211",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2057,6 +2123,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1220",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2090,6 +2157,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1230",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2123,6 +2191,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1240",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2156,6 +2225,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1250",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2195,6 +2265,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1290",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2228,6 +2299,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1260",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2261,6 +2333,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1270",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2294,6 +2367,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1212",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2327,6 +2401,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1213",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2360,6 +2435,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1280",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2393,6 +2469,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1281",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2458,6 +2535,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1601",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2491,6 +2569,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1620",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2543,6 +2622,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1631",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2594,6 +2674,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1632",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2627,6 +2708,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1640",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2660,6 +2742,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1650",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2693,6 +2776,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1660",
                                 "options": [{
                                         "label": "High Importance",
                                         "value": "High Importance"
@@ -2732,6 +2816,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1670",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2765,6 +2850,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1680",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2798,6 +2884,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1610",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2831,6 +2918,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1611",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2864,6 +2952,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1690",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2897,6 +2986,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "1691",
                                 "options": [{
                                         "label": "High importance",
                                         "value": "High importance"
@@ -2960,15 +3050,18 @@
                                     "description": "",
                                     "options": [{
                                             "label": "UK",
-                                            "value": "UK"
+                                            "value": "UK",
+                                            "q_code": "1812"
                                         },
                                         {
                                             "label": "EU or EFTA countries",
-                                            "value": "EU or EFTA countries"
+                                            "value": "EU or EFTA countries",
+                                            "q_code": "1813"
                                         },
                                         {
                                             "label": "All other countries",
-                                            "value": "All other countries"
+                                            "value": "All other countries",
+                                            "q_code": "1814"
                                         }
                                     ]
                                 },
@@ -2979,7 +3072,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "We did not co-operate with other businesses or enterprise groups",
-                                        "value": "We did not co-operate with other businesses or enterprise groups"
+                                        "value": "We did not co-operate with other businesses or enterprise groups",
+                                        "q_code": "1811"
                                     }]
                                 }
                             ]
@@ -3001,15 +3095,18 @@
                                     "description": "",
                                     "options": [{
                                             "label": "UK",
-                                            "value": "UK"
+                                            "value": "UK",
+                                            "q_code": "1822"
                                         },
                                         {
                                             "label": "EU or EFTA countries",
-                                            "value": "EU or EFTA countries"
+                                            "value": "EU or EFTA countries",
+                                            "q_code": "1823"
                                         },
                                         {
                                             "label": "All other countries",
-                                            "value": "All other countries"
+                                            "value": "All other countries",
+                                            "q_code": "1824"
                                         }
                                     ]
                                 },
@@ -3020,7 +3117,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "We did not co-operate with suppliers of equipment, materials, services or software",
-                                        "value": "We did not co-operate with suppliers of equipment, materials, services or software"
+                                        "value": "We did not co-operate with suppliers of equipment, materials, services or software",
+                                        "q_code": "1821"
                                     }]
                                 }
                             ]
@@ -3061,15 +3159,18 @@
                                     "description": "",
                                     "options": [{
                                             "label": "UK",
-                                            "value": "UK"
+                                            "value": "UK",
+                                            "q_code": "1882"
                                         },
                                         {
                                             "label": "EU or EFTA countries",
-                                            "value": "EU or EFTA countries"
+                                            "value": "EU or EFTA countries",
+                                            "q_code": "1883"
                                         },
                                         {
                                             "label": "All other countries",
-                                            "value": "All other countries"
+                                            "value": "All other countries",
+                                            "q_code": "1884"
                                         }
                                     ]
                                 },
@@ -3080,7 +3181,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "We did not co-operate with clients or customers from the private sector",
-                                        "value": "We did not co-operate with clients or customers from the private sector"
+                                        "value": "We did not co-operate with clients or customers from the private sector",
+                                        "q_code": "1881"
                                     }]
                                 }
                             ]
@@ -3120,15 +3222,18 @@
                                     "description": "",
                                     "options": [{
                                             "label": "UK",
-                                            "value": "UK"
+                                            "value": "UK",
+                                            "q_code": "1892"
                                         },
                                         {
                                             "label": "EU or EFTA countries",
-                                            "value": "EU or EFTA countries"
+                                            "value": "EU or EFTA countries",
+                                            "q_code": "1893"
                                         },
                                         {
                                             "label": "All other countries",
-                                            "value": "All other countries"
+                                            "value": "All other countries",
+                                            "q_code": "1894"
                                         }
                                     ]
                                 },
@@ -3139,7 +3244,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "We did not co-operate with clients or customers from the public sector",
-                                        "value": "We did not co-operate with clients or customers from the public sector"
+                                        "value": "We did not co-operate with clients or customers from the public sector",
+                                        "q_code": "1891"
                                     }]
                                 }
                             ]
@@ -3161,15 +3267,18 @@
                                     "description": "",
                                     "options": [{
                                             "label": "UK",
-                                            "value": "UK"
+                                            "value": "UK",
+                                            "q_code": "1842"
                                         },
                                         {
                                             "label": "EU or EFTA countries",
-                                            "value": "EU or EFTA countries"
+                                            "value": "EU or EFTA countries",
+                                            "q_code": "1843"
                                         },
                                         {
                                             "label": "All other countries",
-                                            "value": "All other countries"
+                                            "value": "All other countries",
+                                            "q_code": "1844"
                                         }
                                     ]
                                 },
@@ -3180,7 +3289,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "We did not co-operate with competitors or other businesses in our industry",
-                                        "value": "We did not co-operate with competitors or other businesses in our industry"
+                                        "value": "We did not co-operate with competitors or other businesses in our industry",
+                                        "q_code": "1841"
                                     }]
                                 }
                             ]
@@ -3202,15 +3312,18 @@
                                     "description": "",
                                     "options": [{
                                             "label": "UK",
-                                            "value": "UK"
+                                            "value": "UK",
+                                            "q_code": "1852"
                                         },
                                         {
                                             "label": "EU or EFTA countries",
-                                            "value": "EU or EFTA countries"
+                                            "value": "EU or EFTA countries",
+                                            "q_code": "1853"
                                         },
                                         {
                                             "label": "All other countries",
-                                            "value": "All other countries"
+                                            "value": "All other countries",
+                                            "q_code": "1854"
                                         }
                                     ]
                                 },
@@ -3221,7 +3334,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "We did not co-operate with consultants, commercial laboratories or private research and development institutes",
-                                        "value": "We did not co-operate with consultants, commercial laboratories or private research and development institutes"
+                                        "value": "We did not co-operate with consultants, commercial laboratories or private research and development institutes",
+                                        "q_code": "1851"
                                     }]
                                 }
                             ]
@@ -3243,15 +3357,18 @@
                                     "description": "",
                                     "options": [{
                                             "label": "UK",
-                                            "value": "UK"
+                                            "value": "UK",
+                                            "q_code": "1862"
                                         },
                                         {
                                             "label": "EU or EFTA countries",
-                                            "value": "EU or EFTA countries"
+                                            "value": "EU or EFTA countries",
+                                            "q_code": "1863"
                                         },
                                         {
                                             "label": "All other countries",
-                                            "value": "All other countries"
+                                            "value": "All other countries",
+                                            "q_code": "1864"
                                         }
                                     ]
                                 },
@@ -3262,7 +3379,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "We did not co-operate with universities or other higher education institutions",
-                                        "value": "We did not co-operate with universities or other higher education institutions"
+                                        "value": "We did not co-operate with universities or other higher education institutions",
+                                        "q_code": "1861"
                                     }]
                                 }
                             ]
@@ -3290,15 +3408,18 @@
                                     "description": "",
                                     "options": [{
                                             "label": "UK",
-                                            "value": "UK"
+                                            "value": "UK",
+                                            "q_code": "1872"
                                         },
                                         {
                                             "label": "EU or EFTA countries",
-                                            "value": "EU or EFTA countries"
+                                            "value": "EU or EFTA countries",
+                                            "q_code": "1873"
                                         },
                                         {
                                             "label": "All other countries",
-                                            "value": "All other countries"
+                                            "value": "All other countries",
+                                            "q_code": "1874"
                                         }
                                     ]
                                 },
@@ -3309,7 +3430,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "We did not co-operate with government or public research institutes",
-                                        "value": "We did not co-operate with government or public research institutes"
+                                        "value": "We did not co-operate with government or public research institutes",
+                                        "q_code": "1871"
                                     }]
                                 }
                             ]
@@ -3331,15 +3453,18 @@
                                     "description": "",
                                     "options": [{
                                             "label": "UK",
-                                            "value": "UK"
+                                            "value": "UK",
+                                            "q_code": "1876"
                                         },
                                         {
                                             "label": "EU or EFTA countries",
-                                            "value": "EU or EFTA countries"
+                                            "value": "EU or EFTA countries",
+                                            "q_code": "1877"
                                         },
                                         {
                                             "label": "All other countries",
-                                            "value": "All other countries"
+                                            "value": "All other countries",
+                                            "q_code": "1878"
                                         }
                                     ]
                                 },
@@ -3350,7 +3475,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "We did not co-operate with other businesses outside the enterprise group",
-                                        "value": "We did not co-operate with other businesses outside the enterprise group"
+                                        "value": "We did not co-operate with other businesses outside the enterprise group",
+                                        "q_code": "1875"
                                     }]
                                 }
                             ]
@@ -3372,15 +3498,18 @@
                                     "description": "",
                                     "options": [{
                                             "label": "UK",
-                                            "value": "UK"
+                                            "value": "UK",
+                                            "q_code": "1880"
                                         },
                                         {
                                             "label": "EU or EFTA countries",
-                                            "value": "EU or EFTA countries"
+                                            "value": "EU or EFTA countries",
+                                            "q_code": "1885"
                                         },
                                         {
                                             "label": "All other countries",
-                                            "value": "All other countries"
+                                            "value": "All other countries",
+                                            "q_code": "1886"
                                         }
                                     ]
                                 },
@@ -3391,7 +3520,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "We did not co-operate with non-profit organisations",
-                                        "value": "We did not co-operate with non-profit organisations"
+                                        "value": "We did not co-operate with non-profit organisations",
+                                        "q_code": "1879"
                                     }]
                                 }
                             ]
@@ -3442,6 +3572,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2650",
                                 "options": [{
                                         "label": "Over 90%",
                                         "value": "Over 90%"
@@ -3481,6 +3612,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2651",
                                 "options": [{
                                         "label": "Over 90%",
                                         "value": "Over 90%"
@@ -3520,6 +3652,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2652",
                                 "options": [{
                                         "label": "Over 90%",
                                         "value": "Over 90%"
@@ -3559,6 +3692,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2653",
                                 "options": [{
                                         "label": "Over 90%",
                                         "value": "Over 90%"
@@ -3608,6 +3742,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2654",
                                 "options": [{
                                         "label": "Over 90%",
                                         "value": "Over 90%"
@@ -3641,6 +3776,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2655",
                                 "options": [{
                                         "label": "Over 90%",
                                         "value": "Over 90%"
@@ -3679,6 +3815,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "2656",
                                 "options": [{
                                         "label": "Over 90%",
                                         "value": "Over 90%"
@@ -3760,16 +3897,19 @@
                                     "description": "",
                                     "options": [{
                                             "label": "UK local or regional authorities",
-                                            "value": "UK local or regional authorities"
+                                            "value": "UK local or regional authorities",
+                                            "q_code": "2668"
                                         },
                                         {
                                             "label": "UK central government",
                                             "value": "UK central government",
+                                            "q_code": "2669",
                                             "description": "Include: UK government's agencies or funding bodies for example Innovate UK, formerly known as TSB"
                                         },
                                         {
                                             "label": "European Union (EU) institutions or programmes",
                                             "value": "European Union (EU) institutions or programmes",
+                                            "q_code": "2670",
                                             "description": "Include: EU Horizon - Programme for Research and Innovation"
                                         }
                                     ]
@@ -3781,7 +3921,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "No public financial support was received for innovation activities from government",
-                                        "value": "No public financial support was received for innovation activities from government"
+                                        "value": "No public financial support was received for innovation activities from government",
+                                        "q_code": "2671"
                                     }]
                                 }
                             ]
@@ -3871,15 +4012,18 @@
                                     "options": [{
                                             "label": "Direct financial support",
                                             "value": "Direct financial support",
+                                            "q_code": "2672",
                                             "description": "For example Smart or Collaborative research and development grants, work with Catapult centres, Innovation vouchers"
                                         },
                                         {
                                             "label": "Indirect financial support – Research and Development tax credits",
-                                            "value": "Indirect financial support – Research and Development tax credits"
+                                            "value": "Indirect financial support – Research and Development tax credits",
+                                            "q_code": "2673"
                                         },
                                         {
                                             "label": "Indirect financial support – Patent box, coronavirus (COVID-19) pandemic support",
-                                            "value": "Indirect financial support – Patent box, coronavirus (COVID-19) pandemic support"
+                                            "value": "Indirect financial support – Patent box, coronavirus (COVID-19) pandemic support",
+                                            "q_code": "2679"
                                         }
                                     ]
                                 },
@@ -3890,7 +4034,8 @@
                                     "description": "",
                                     "options": [{
                                         "label": "Not sure",
-                                        "value": "Not sure"
+                                        "value": "Not sure",
+                                        "q_code": "2674"
                                     }]
                                 }
                             ]
@@ -3931,6 +4076,7 @@
                                     "type": "Currency",
                                     "label": "Total estimated turnover for 2018",
                                     "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000) Do not enter ‘56’ for £56,000",
+                                    "q_code": "2410",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -3944,6 +4090,7 @@
                                     "type": "Currency",
                                     "label": "Total estimated turnover for 2020",
                                     "description": "",
+                                    "q_code": "2420",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -3980,6 +4127,7 @@
                                     "type": "Percentage",
                                     "label": "Goods and services new to the market in 2018 to 2020",
                                     "description": "",
+                                    "q_code": "0810",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -3996,6 +4144,7 @@
                                     "type": "Percentage",
                                     "label": "Goods and services only new to this business in 2018 to 2020",
                                     "description": "",
+                                    "q_code": "0820",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4012,6 +4161,7 @@
                                     "type": "Percentage",
                                     "label": "Goods and services that were significantly improved in 2018 to 2020",
                                     "description": "",
+                                    "q_code": "0830",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4028,6 +4178,7 @@
                                     "type": "Percentage",
                                     "label": "Goods and services that remained unchanged or only marginally modified",
                                     "description": "",
+                                    "q_code": "0840",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4054,6 +4205,7 @@
                                 "type": "Currency",
                                 "label": "Total value of exports for 2020",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000) Do not enter ‘56’ for £56,000",
+                                "q_code": "2440",
                                 "min_value": {
                                     "value": 0,
                                     "exclusive": false
@@ -4091,6 +4243,7 @@
                                     "type": "Number",
                                     "label": "Total number of employees for 2018",
                                     "description": "",
+                                    "q_code": "2510",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4103,6 +4256,7 @@
                                     "type": "Number",
                                     "label": "Total number of employees for 2020",
                                     "description": "",
+                                    "q_code": "2520",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4126,6 +4280,7 @@
                                     "type": "Percentage",
                                     "label": "Science or engineering subjects",
                                     "description": "",
+                                    "q_code": "2610",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4142,6 +4297,7 @@
                                     "type": "Percentage",
                                     "label": "Other subjects",
                                     "description": "",
+                                    "q_code": "2620",
                                     "min_value": {
                                         "value": 0,
                                         "exclusive": false
@@ -4170,32 +4326,39 @@
                                 "description": "",
                                 "options": [{
                                         "label": "Graphic arts, layout, advertising",
-                                        "value": "Graphic arts, layout, advertising"
+                                        "value": "Graphic arts, layout, advertising",
+                                        "q_code": "2631"
                                     },
                                     {
                                         "label": "Design of objects or services",
-                                        "value": "Design of objects or services"
+                                        "value": "Design of objects or services",
+                                        "q_code": "2632"
                                     },
                                     {
                                         "label": "Multimedia, web design",
                                         "value": "Multimedia, web design",
+                                        "q_code": "2633",
                                         "description": "For example, audio, graphics, text, still pictures, animation or video"
                                     },
                                     {
                                         "label": "Software development, database management",
-                                        "value": "Software development, database management"
+                                        "value": "Software development, database management",
+                                        "q_code": "2634"
                                     },
                                     {
                                         "label": "Engineering, applied sciences",
-                                        "value": "Engineering, applied sciences"
+                                        "value": "Engineering, applied sciences",
+                                        "q_code": "2635"
                                     },
                                     {
                                         "label": "Mathematics, statistics",
-                                        "value": "Mathematics, statistics"
+                                        "value": "Mathematics, statistics",
+                                        "q_code": "2636"
                                     },
                                     {
                                         "label": "Data scientists",
-                                        "value": "Data scientists"
+                                        "value": "Data scientists",
+                                        "q_code": "2637"
                                     }
                                 ]
                             }]
@@ -4229,6 +4392,7 @@
                                     "type": "TextArea",
                                     "label": "Comments",
                                     "description": "",
+                                    "q_code": "2700",
                                     "max_length": 2000
                                 }]
                             }]
@@ -4260,6 +4424,7 @@
                                         "type": "Number",
                                         "label": "Hours",
                                         "description": "",
+                                        "q_code": "2801",
                                         "min_value": {
                                             "value": 0,
                                             "exclusive": false
@@ -4272,6 +4437,7 @@
                                         "type": "Number",
                                         "label": "Minutes",
                                         "description": "",
+                                        "q_code": "2800",
                                         "min_value": {
                                             "value": 0,
                                             "exclusive": false
@@ -4294,6 +4460,7 @@
                                     "type": "Radio",
                                     "label": "",
                                     "description": "",
+                                    "q_code": "2900",
                                     "options": [{
                                             "label": "Yes",
                                             "value": "Yes"
