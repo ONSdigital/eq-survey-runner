@@ -19,6 +19,9 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><p><strong>Important notice</strong></p><p>Based on feedback, this survey will be changing its name to the “<strong>Business Insights and Conditions Survey</strong>” (BICS).</p><p>The purpose remains the same, to collect real-time information on key issues such as the coronavirus (COVID-19) pandemic and the end of the EU transition period.</p></div></div>"
+                                },
+                                {
                                     "list": [
                                         "This survey collects real-time information on issues impacting your business and the economy, to help inform decisions",
                                         "Questions are updated regularly to reflect important topics, such as the coronavirus (COVID-19) impacts and the end of the EU transition period",
@@ -104,11 +107,7 @@
                                             "description": "Goods sent from GB to Northern Ireland to:"
                                         },
                                         {
-                                            "list": [
-                                                "other businesses",
-                                                "other parts of your business",
-                                                "individual customers"
-                                            ]
+                                            "list": ["other businesses", "other parts of your business", "individual customers"]
                                         },
                                         {
                                             "description": "GB means &#x2018;Great Britain&#x2019; which includes England, Scotland and Wales, but excludes Northern Ireland."
@@ -228,9 +227,7 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Permanently ceased trading"
-                                        ]
+                                        "values": ["Permanently ceased trading"]
                                     }]
                                 }
                             },
@@ -342,9 +339,7 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                             "condition": "contains all",
-                                            "values": [
-                                                "Not sure"
-                                            ]
+                                            "values": ["Not sure"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -363,9 +358,7 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                             "condition": "contains all",
-                                            "values": [
-                                                "Not applicable"
-                                            ]
+                                            "values": ["Not applicable"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -418,9 +411,7 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Permanently ceased trading"
-                                        ]
+                                        "values": ["Permanently ceased trading"]
                                     }]
                                 }
                             },
@@ -430,9 +421,7 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                             "condition": "contains any",
-                                            "values": [
-                                                "Not sure"
-                                            ]
+                                            "values": ["Not sure"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -451,9 +440,7 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                             "condition": "contains any",
-                                            "values": [
-                                                "Not applicable"
-                                            ]
+                                            "values": ["Not applicable"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -574,9 +561,7 @@
                                     "when": [{
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                             "condition": "contains all",
-                                            "values": [
-                                                "Not sure"
-                                            ]
+                                            "values": ["Not sure"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -595,9 +580,7 @@
                                     "when": [{
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                             "condition": "contains all",
-                                            "values": [
-                                                "None of our sites are temporarily or permanently closed"
-                                            ]
+                                            "values": ["None of our sites are temporarily or permanently closed"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -616,9 +599,7 @@
                                     "when": [{
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                             "condition": "contains all",
-                                            "values": [
-                                                "None of our sites are temporarily or permanently closed"
-                                            ]
+                                            "values": ["None of our sites are temporarily or permanently closed"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -637,9 +618,7 @@
                                     "when": [{
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                             "condition": "contains all",
-                                            "values": [
-                                                "Not sure"
-                                            ]
+                                            "values": ["Not sure"]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -806,10 +785,7 @@
                                     "when": [{
                                         "id": "answer0581e398-f9ab-4597-a1a6-c67d8f96289f",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Turnover has not been affected",
-                                            "Not sure"
-                                        ]
+                                        "values": ["Turnover has not been affected", "Not sure"]
                                     }]
                                 }
                             },
@@ -939,18 +915,14 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -966,9 +938,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -984,9 +954,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "None of our sites are temporarily or permanently closed"
-                                ]
+                                "values": ["None of our sites are temporarily or permanently closed"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1002,9 +970,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1095,10 +1061,7 @@
                                     "when": [{
                                         "id": "answer6e5dfc6d-189b-4d67-b64f-d40f68253cda",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure"
-                                        ]
+                                        "values": ["No", "Not sure"]
                                     }]
                                 }
                             },
@@ -1148,10 +1111,7 @@
                                     "when": [{
                                         "id": "answerd78f239f-b8b6-4e7b-980f-285f45a2945e",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Never exported and do not have goods or services suitable for export",
-                                            "Not sure"
-                                        ]
+                                        "values": ["Never exported and do not have goods or services suitable for export", "Not sure"]
                                     }]
                                 }
                             },
@@ -1243,9 +1203,7 @@
                                     "when": [{
                                         "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Not sure"
-                                        ]
+                                        "values": ["Not sure"]
                                     }]
                                 }
                             },
@@ -1345,9 +1303,7 @@
                                     "when": [{
                                         "id": "answer70768625-dd8a-4635-acb6-34c80f6d9db1-exclusive",
                                         "condition": "contains all",
-                                        "values": [
-                                            "Did not experience any challenges with exporting"
-                                        ]
+                                        "values": ["Did not experience any challenges with exporting"]
                                     }]
                                 }
                             },
@@ -1586,18 +1542,14 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1613,9 +1565,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1631,9 +1581,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "None of our sites are temporarily or permanently closed"
-                                ]
+                                "values": ["None of our sites are temporarily or permanently closed"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1649,9 +1597,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1742,10 +1688,7 @@
                                     "when": [{
                                         "id": "answer5ad71b6e-442c-499a-b185-e39282dd09c0",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure"
-                                        ]
+                                        "values": ["No", "Not sure"]
                                     }]
                                 }
                             },
@@ -1791,11 +1734,7 @@
                                     "when": [{
                                         "id": "answer66fa416f-8aa3-4bfb-a7c4-72c450ad718d",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes",
-                                            "No",
-                                            "Not sure"
-                                        ]
+                                        "values": ["Yes", "No", "Not sure"]
                                     }]
                                 }
                             },
@@ -1943,9 +1882,7 @@
                                     "when": [{
                                         "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Not sure"
-                                        ]
+                                        "values": ["Not sure"]
                                     }]
                                 }
                             },
@@ -2050,9 +1987,7 @@
                                     "when": [{
                                         "id": "answer143d131d-5c37-4d4f-932b-2f4b4404d312-exclusive",
                                         "condition": "contains all",
-                                        "values": [
-                                            "Did not experience any challenges with importing"
-                                        ]
+                                        "values": ["Did not experience any challenges with importing"]
                                     }]
                                 }
                             },
@@ -2244,18 +2179,14 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2271,9 +2202,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2289,9 +2218,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "None of our sites are temporarily or permanently closed"
-                                ]
+                                "values": ["None of our sites are temporarily or permanently closed"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2307,9 +2234,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2410,11 +2335,7 @@
                                     "when": [{
                                         "id": "answer4e1c3e3a-97a2-4c91-bfb8-d4d699695ab5",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure",
-                                            "Not applicable"
-                                        ]
+                                        "values": ["No", "Not sure", "Not applicable"]
                                     }]
                                 }
                             },
@@ -2545,9 +2466,7 @@
                                     "when": [{
                                         "id": "answerc04c3eee-7588-4e0e-b5ab-9359c4248a8a",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No, the business has not been able to get the materials, goods or services needed"
-                                        ]
+                                        "values": ["No, the business has not been able to get the materials, goods or services needed"]
                                     }]
                                 }
                             },
@@ -2591,10 +2510,7 @@
                             "definitions": [{
                                 "title": "Examples of logistics services",
                                 "content": [{
-                                    "list": [
-                                        "delivery and courier services",
-                                        "haulage services"
-                                    ]
+                                    "list": ["delivery and courier services", "haulage services"]
                                 }]
                             }],
                             "type": "General",
@@ -2728,18 +2644,14 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2755,9 +2667,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2773,9 +2683,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "None of our sites are temporarily or permanently closed"
-                                ]
+                                "values": ["None of our sites are temporarily or permanently closed"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2791,9 +2699,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2863,11 +2769,7 @@
                                         "description": "Goods sent from GB to Northern Ireland to:"
                                     },
                                     {
-                                        "list": [
-                                            "other businesses",
-                                            "other parts of your business",
-                                            "individual customers"
-                                        ]
+                                        "list": ["other businesses", "other parts of your business", "individual customers"]
                                     }
                                 ]
                             },
@@ -2906,10 +2808,7 @@
                                     "when": [{
                                         "id": "answerd889b287-60b0-4e8f-9b04-7a4f81cd2147",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure"
-                                        ]
+                                        "values": ["No", "Not sure"]
                                     }]
                                 }
                             },
@@ -2995,10 +2894,7 @@
                                     "when": [{
                                         "id": "answerfc0b23c0-7fdd-44c6-8d85-28942dce089a",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure"
-                                        ]
+                                        "values": ["No", "Not sure"]
                                     }]
                                 }
                             },
@@ -3056,12 +2952,7 @@
                                     "when": [{
                                         "id": "answerf0a63ea1-91f6-43d6-ba8c-56cb82d64309",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Volume has increased",
-                                            "Volume has stayed the same",
-                                            "Not sure",
-                                            "Not applicable"
-                                        ]
+                                        "values": ["Volume has increased", "Volume has stayed the same", "Not sure", "Not applicable"]
                                     }]
                                 }
                             },
@@ -3177,10 +3068,7 @@
                                     "when": [{
                                         "id": "answerb1169fae-ae47-4dc7-9b19-aa597fcc1163",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No change made",
-                                            "Not sure"
-                                        ]
+                                        "values": ["No change made", "Not sure"]
                                     }]
                                 }
                             },
@@ -3257,18 +3145,14 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3284,9 +3168,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3302,9 +3184,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "None of our sites are temporarily or permanently closed"
-                                ]
+                                "values": ["None of our sites are temporarily or permanently closed"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3320,9 +3200,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3425,9 +3303,7 @@
                                     "when": [{
                                         "id": "answerca31b39b-c2aa-427e-aba0-ad7d93a4721c",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Not applicable"
-                                        ]
+                                        "values": ["Not applicable"]
                                     }]
                                 }
                             },
@@ -3437,10 +3313,7 @@
                                     "when": [{
                                         "id": "answerca31b39b-c2aa-427e-aba0-ad7d93a4721c",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Prices did not change any more than normal",
-                                            "Not sure"
-                                        ]
+                                        "values": ["Prices did not change any more than normal", "Not sure"]
                                     }]
                                 }
                             },
@@ -3550,9 +3423,7 @@
                                     "when": [{
                                         "id": "answer391c399a-ae51-415b-acfa-5a3a88739b5d",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Not applicable"
-                                        ]
+                                        "values": ["Not applicable"]
                                     }]
                                 }
                             },
@@ -3562,10 +3433,7 @@
                                     "when": [{
                                         "id": "answer391c399a-ae51-415b-acfa-5a3a88739b5d",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Prices did not change any more than normal",
-                                            "Not sure"
-                                        ]
+                                        "values": ["Prices did not change any more than normal", "Not sure"]
                                     }]
                                 }
                             },
@@ -3667,11 +3535,7 @@
                                     "when": [{
                                         "id": "answer09bfc47d-c8c2-48dc-ad14-27809f503a56",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure",
-                                            "Not applicable"
-                                        ]
+                                        "values": ["No", "Not sure", "Not applicable"]
                                     }]
                                 }
                             },
@@ -3705,18 +3569,14 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3732,9 +3592,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3750,9 +3608,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "None of our sites are temporarily or permanently closed"
-                                ]
+                                "values": ["None of our sites are temporarily or permanently closed"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3768,9 +3624,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -3870,10 +3724,7 @@
                                     "when": [{
                                         "id": "answerc964594d-9b5b-4131-9c79-4baff0be08d1",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Stock levels are higher than normal",
-                                            "Stock levels are lower than normal"
-                                        ]
+                                        "values": ["Stock levels are higher than normal", "Stock levels are lower than normal"]
                                     }]
                                 }
                             },
@@ -4002,9 +3853,7 @@
                                     "when": [{
                                         "id": "answere468d286-7424-4089-a52b-fed179aa80ab",
                                         "condition": "contains all",
-                                        "values": [
-                                            "Not sure"
-                                        ]
+                                        "values": ["Not sure"]
                                     }]
                                 }
                             },
@@ -4014,9 +3863,7 @@
                                     "when": [{
                                         "id": "answere468d286-7424-4089-a52b-fed179aa80ab-exclusive",
                                         "condition": "contains all",
-                                        "values": [
-                                            "Not stockpiling any goods or materials"
-                                        ]
+                                        "values": ["Not stockpiling any goods or materials"]
                                     }]
                                 }
                             },
@@ -4270,11 +4117,7 @@
                                     "when": [{
                                         "id": "answerce0217e4-b810-4fac-a030-8b0b6270573f",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Capital expenditure has not been affected",
-                                            "Not sure",
-                                            "Not applicable"
-                                        ]
+                                        "values": ["Capital expenditure has not been affected", "Not sure", "Not applicable"]
                                     }]
                                 }
                             },
@@ -4308,18 +4151,14 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": [
-                                "Permanently ceased trading"
-                            ]
+                            "values": ["Permanently ceased trading"]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -4335,9 +4174,7 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not applicable"
-                                ]
+                                "values": ["Not applicable"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -4353,9 +4190,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                 "condition": "contains all",
-                                "values": [
-                                    "None of our sites are temporarily or permanently closed"
-                                ]
+                                "values": ["None of our sites are temporarily or permanently closed"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -4371,9 +4206,7 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains all",
-                                "values": [
-                                    "Not sure"
-                                ]
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -4490,9 +4323,7 @@
                                     "when": [{
                                         "id": "answerb9ab9d11-a10c-4241-b125-6df52bc5f8f6-exclusive",
                                         "condition": "contains all",
-                                        "values": [
-                                            "Not applied for any of these grants"
-                                        ]
+                                        "values": ["Not applied for any of these grants"]
                                     }]
                                 }
                             },
@@ -4502,9 +4333,7 @@
                                     "when": [{
                                         "id": "answerb9ab9d11-a10c-4241-b125-6df52bc5f8f6",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Not sure"
-                                        ]
+                                        "values": ["Not sure"]
                                     }]
                                 }
                             },
@@ -4637,9 +4466,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Small business grant"
-                                        ]
+                                        "values": ["Small business grant"]
                                     }]
                                 }
                             },
@@ -4649,9 +4476,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Sector-specific grant"
-                                        ]
+                                        "values": ["Sector-specific grant"]
                                     }]
                                 }
                             },
@@ -4727,9 +4552,7 @@
                                     "when": [{
                                         "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Sector-specific grant"
-                                        ]
+                                        "values": ["Sector-specific grant"]
                                     }]
                                 }
                             },
@@ -5018,10 +4841,7 @@
                                     "when": [{
                                         "id": "answer1feb3977-8643-4f41-bb73-b6b7131e322b",
                                         "condition": "contains any",
-                                        "values": [
-                                            "The business is insolvent",
-                                            "Not sure"
-                                        ]
+                                        "values": ["The business is insolvent", "Not sure"]
                                     }]
                                 }
                             },
@@ -5071,9 +4891,7 @@
                     "when": [{
                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                         "condition": "contains any",
-                        "values": [
-                            "Permanently ceased trading"
-                        ]
+                        "values": ["Permanently ceased trading"]
                     }]
                 }]
             }]
@@ -5211,9 +5029,7 @@
                                     "answer5319de32-f061-4988-88a4-95637cca3873",
                                     "answer2218d478-9b02-4806-babb-f6dc3a92cb55"
                                 ],
-                                "conditions": [
-                                    "equals"
-                                ],
+                                "conditions": ["equals"],
                                 "value": 100
                             }]
                         }],
@@ -5557,10 +5373,7 @@
                                     "when": [{
                                         "id": "answer452ab041-83d2-42ac-ae1d-4a5e53c3a53b",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure"
-                                        ]
+                                        "values": ["No", "Not sure"]
                                     }]
                                 }
                             },
@@ -5616,9 +5429,7 @@
                                     "when": [{
                                         "id": "answere22e32f2-0fa9-4a9a-9151-d576ff79b611",
                                         "condition": "contains all",
-                                        "values": [
-                                            "Not sure"
-                                        ]
+                                        "values": ["Not sure"]
                                     }]
                                 }
                             },
@@ -5689,9 +5500,7 @@
                     "when": [{
                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                         "condition": "contains any",
-                        "values": [
-                            "Permanently ceased trading"
-                        ]
+                        "values": ["Permanently ceased trading"]
                     }]
                 }]
             }]
