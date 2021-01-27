@@ -50,7 +50,7 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertRegexPage('(?s)What was the total number of Ewoks?.*?')
         self.assertRegexPage("(?s)Why doesn't Chewbacca receive a medal at the end of A New Hope?.*?"
                              'Wookiees don’t place value in material rewards and refused the medal initially')
-        self.assertInBody('You can check your answers below')
+        self.assertInBody('You must submit this survey to complete it')
         self.assertInBody('>Submit answers<')
 
         # Post answers

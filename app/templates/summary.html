@@ -6,9 +6,9 @@
 {% block page_title -%}{{_("Summary")}} - {{survey_title}}{% endblock -%}
 
 {% block sidebar %}
-  {% if navigation %}
-    {% include theme('partials/section-navigation.html') %}
-  {% endif %}
+{% if navigation %}
+{% include theme('partials/section-navigation.html') %}
+{% endif %}
 {% endblock %}
 
 {% block form_content %}
@@ -22,19 +22,21 @@
   <div class="print__message panel panel--simple panel--error u-mb-l">
     <h2 class="u-fs-l">{{ _("Please remember to submit these answers") }}.</h2>
   </div>
-  <div class="print__hidden panel panel--simple panel--info u-mb-l">
-    <strong>{{ _("Please submit this survey to complete it") }}</strong>
-    <p>{{ _("You can check your answers below") }}</p>
+  <div class="govuk-warning-text">
+    <span class="govuk-warning-text-icon" aria-hidden="true">!</span>
+    <strong class="govuk-warning-text-text" aria-label="warning">
+      You must submit this survey to complete it
+    </strong>
   </div>
 </div>
 {% elif content.summary.summary_type in ('SectionSummary', 'AnswerSummary') %}
 <div>
-    {% set group = content.summary.groups %}
-    <h1 class="u-fs-l">{{content.summary.title}}</h1>
-    <div class="print__hidden panel panel--simple panel--success u-mb-l">
-        <strong>{{ _("This section is now complete") }}</strong>
-        <p>{{ _("You can review your answers below") }}</p>
-    </div>
+  {% set group = content.summary.groups %}
+  <h1 class="u-fs-l">{{content.summary.title}}</h1>
+  <div class="print__hidden panel panel--simple panel--success u-mb-l">
+    <strong>{{ _("This section is now complete") }}</strong>
+    <p>{{ _("You can review your answers below") }}</p>
+  </div>
 </div>
 {% elif content.summary.summary_type == 'CalculatedSummary' %}
 <div class="question">
@@ -43,20 +45,11 @@
     <h2 class="u-fs-r--b">{{ _("Please review your answers and confirm these are correct") }}.</h2>
   </div>
 </div>
-{% endif %}
-
-{% if content.summary.summary_type == 'AnswerSummary' %}
-  {% include theme('partials/summary/answer-summary.html') %}
-{% else %}
-  {% include theme('partials/summary/summary.html') %}
-{% endif %}
-
-{% if content.summary.is_view_submission_response_enabled %}
-  <div class="u-mb-s u-mb-m@s" data-qa="view-submission-text">
-    <div class="u-fs-r--b">{{ _("You will have the opportunity to view and print a copy of your answers after submitting this survey") }}</div>
-  </div>
-{% endif %}
-
-{{super()}}
-
-{% endblock -%}
+{% endif %} {% if content.summary.summary_type == 'AnswerSummary' %}
+{% include theme('partials/summary/answer-summary.html') %} {% else %} {% include
+theme('partials/summary/summary.html') %} {% endif %} {% if content.summary.is_view_submission_response_enabled %}
+<div class="u-mb-s u-mb-m@s" data-qa="view-submission-text">
+  <div class="u-fs-r--b">
+    {{ _("You will have the opportunity to view and print a copy of your answers after submitting this survey") }}</div>
+</div>
+{% endif %} {{super()}} {% endblock -%}
