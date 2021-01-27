@@ -26,14 +26,6 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         # Then
         self.assertEqualPageTitle('Submit answers - Final confirmation to submit')
 
-    def test_should_have_question_in_page_title_when_loading_summary(self):
-        # Given
-        self.launchSurvey('test', 'percentage')
-        # When
-        self.post({'answer': ''})
-        # Then
-        self.assertEqualPageTitle('Summary - Percentage Field Demo')
-
     def test_should_have_survey_in_page_title_when_thank_you(self):
         # Given
         self.launchSurvey('test', 'final_confirmation')
