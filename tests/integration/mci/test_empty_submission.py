@@ -64,7 +64,7 @@ class TestEmptySubmission(IntegrationTestCase):
 
         # We are on the review answers page
         self.assertInBody('>Check your answers and submit<')
-        self.assertInBody('You can check your answers below')
+        self.assertInBody('You must submit this survey to complete it')
         self.assertInBody('>Submit answers<')
 
         # We submit our answers
