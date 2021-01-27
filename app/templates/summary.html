@@ -1,6 +1,22 @@
-{% import 'macros/helpers.html' as helpers %} {% extends theme('confirmation.html') -%} {% set save_on_signout = true %} {% block page_title -%}{{_("Summary")}}
-- {{survey_title}}{% endblock -%} {% block sidebar %} {% if navigation %} {% include theme('partials/section-navigation.html') %} {% endif %} {% endblock %} {%
-block form_content %} {% endblock %} {% block main -%} {% if content.summary.summary_type == 'Summary' %}
+{% import 'macros/helpers.html' as helpers %}
+{% extends theme('confirmation.html') -%}
+
+{% set save_on_signout = true %}
+
+{% block page_title -%}{{_("Summary")}} - {{survey_title}}{% endblock -%}
+
+{% block sidebar %}
+{% if navigation %}
+{% include theme('partials/section-navigation.html') %}
+{% endif %}
+{% endblock %}
+
+{% block form_content %}
+{% endblock %}
+
+{% block main -%}
+
+{% if content.summary.summary_type == 'Summary' %}
 <div>
   <h1 class="u-fs-l">{{ _("Check your answers and submit") }}</h1>
   <div class="print__message panel panel--simple panel--error u-mb-l">
@@ -29,9 +45,11 @@ block form_content %} {% endblock %} {% block main -%} {% if content.summary.sum
     <h2 class="u-fs-r--b">{{ _("Please review your answers and confirm these are correct") }}.</h2>
   </div>
 </div>
-{% endif %} {% if content.summary.summary_type == 'AnswerSummary' %} {% include theme('partials/summary/answer-summary.html') %} {% else %} {% include
+{% endif %} {% if content.summary.summary_type == 'AnswerSummary' %}
+{% include theme('partials/summary/answer-summary.html') %} {% else %} {% include
 theme('partials/summary/summary.html') %} {% endif %} {% if content.summary.is_view_submission_response_enabled %}
 <div class="u-mb-s u-mb-m@s" data-qa="view-submission-text">
-  <div class="u-fs-r--b">{{ _("You will have the opportunity to view and print a copy of your answers after submitting this survey") }}</div>
+  <div class="u-fs-r--b">
+    {{ _("You will have the opportunity to view and print a copy of your answers after submitting this survey") }}</div>
 </div>
 {% endif %} {{super()}} {% endblock -%}
