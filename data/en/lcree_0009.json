@@ -1,6 +1,6 @@
 {
-    "eq_id": "low_carbon",
-    "form_type": "0001",
+    "eq_id": "lcree_0009",
+    "form_type": "0009",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
@@ -9301,10 +9301,6 @@
         },
         {
             "name": "ref_p_end_date",
-            "validator": "date"
-        },
-        {
-            "name": "employment_date",
             "validator": "date"
         }
     ],
