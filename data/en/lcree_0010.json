@@ -1016,6 +1016,12 @@
                                 "Offshore wind"
                             ]
                         }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
+                        }]
                     }
                 ]
             }]
@@ -1551,6 +1557,12 @@
                                 "Onshore wind"
                             ]
                         }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
+                        }]
                     }
                 ]
             }]
@@ -2085,6 +2097,12 @@
                                 "Solar"
                             ]
                         }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
+                        }]
                     }
                 ]
             }]
@@ -2615,6 +2633,12 @@
                             "values": [
                                 "Hydropower"
                             ]
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
                         }]
                     }
                 ]
@@ -3147,6 +3171,12 @@
                             "values": [
                                 "Other renewable electricity"
                             ]
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
                         }]
                     }
                 ]
@@ -3681,6 +3711,12 @@
                             "values": [
                                 "Bioenergy"
                             ]
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
                         }]
                     }
                 ]
@@ -4266,6 +4302,12 @@
                                 "Alternative fuels"
                             ]
                         }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
+                        }]
                     }
                 ]
             }]
@@ -4804,6 +4846,12 @@
                                 "Renewable heat"
                             ]
                         }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
+                        }]
                     }
                 ]
             }]
@@ -5336,6 +5384,12 @@
                                 "Renewable combined heat and power"
                             ]
                         }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
+                        }]
                     }
                 ]
             }]
@@ -5815,6 +5869,12 @@
                             "values": [
                                 "Energy efficient lighting"
                             ]
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
                         }]
                     }
                 ]
@@ -6300,6 +6360,12 @@
                                 "Energy efficient products"
                             ]
                         }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
+                        }]
                     }
                 ]
             }]
@@ -6781,6 +6847,12 @@
                             "values": [
                                 "Energy monitoring, saving or control systems"
                             ]
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
                         }]
                     }
                 ]
@@ -7267,6 +7339,12 @@
                                 "Low carbon consultancy, advisory and offsetting services"
                             ]
                         }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
+                        }]
                     }
                 ]
             }]
@@ -7750,6 +7828,12 @@
                                 "Low emission vehicles and infrastructure"
                             ]
                         }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
+                        }]
                     }
                 ]
             }]
@@ -8226,6 +8310,12 @@
                             "values": [
                                 "Carbon capture and storage"
                             ]
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
                         }]
                     }
                 ]
@@ -8704,6 +8794,12 @@
                             "values": [
                                 "Nuclear power"
                             ]
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
                         }]
                     }
                 ]
@@ -9185,6 +9281,12 @@
                             "values": [
                                 "Fuel cells and energy storage systems"
                             ]
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
+                            "condition": "not set"
                         }]
                     }
                 ]
