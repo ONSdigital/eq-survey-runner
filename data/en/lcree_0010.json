@@ -222,7 +222,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question06e17066-208c-41be-b946-494081f0ee27",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, which of the following sectors has {{ metadata['ru_name'] }} operated in?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, which of the following sectors has {{ metadata['ru_name'] }} operated in?",
                             "description": "<p>Select all relevant low carbon and renewable energy sectors your business has operated in during the reporting period. <a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/lowcarbonandrenewableenergyeconomysurvey\"target=\"_blank\"rel=\"noopener noreferrer\">See here for more detailed descriptions of each sector</a></p>",
                             "guidance": {
                                 "content": [{
@@ -506,7 +506,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0c80c17c-4b0f-40ce-9f98-0ffd30e31a52",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the offshore wind sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the offshore wind sector?",
                             "description": "<p>This covers the design, development, construction or production of electricity from offshore wind, specialised consultancy services and installation of infrastructure (for example, turbines) for producing electricity.</p><p>It also covers the operation and maintenance of the infrastructure for producing electricity from this source. It does not include tidal or wave power.</p>",
                             "guidance": {
                                 "content": [{
@@ -613,7 +613,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionfa3acf22-e38a-45d6-824b-d8ce6db656dc",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the offshore wind sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the offshore wind sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -655,7 +655,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question21845530-7a92-4cbd-af63-8068ad209948",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the offshore wind sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the offshore wind sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -768,7 +768,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questioneae9b134-f568-4d33-b746-fd08b283e867",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the offshore wind sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the offshore wind sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -816,7 +816,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question36e95318-ca86-48ef-bb3b-27b166c244b4",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the offshore wind sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the offshore wind sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -1043,7 +1043,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question28cbb59a-d2b4-4a35-9aaa-ee898b6e5169",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the onshore wind sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the onshore wind sector?",
                             "description": "<p>This covers the design, development, construction or production of electricity from onshore wind,  specialised consultancy services and installation of infrastructure (for example, turbines) for producing electricity.</p><p>It also covers the operation and maintenance of the infrastructure for producing electricity from this source. It does not include tidal or wave power. </p>",
                             "guidance": {
                                 "content": [{
@@ -1150,7 +1150,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionfab429c4-b560-4788-889e-6bdbca05eab5",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the onshore wind sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the onshore wind sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -1192,7 +1192,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question14218a4b-6687-4a25-aebf-91457da20117",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the onshore wind sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the onshore wind sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -1305,7 +1305,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9d1df7ce-2653-4559-bdaf-c74b8a6128fb",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the onshore wind sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the onshore wind sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.  </p>",
                             "guidance": {
                                 "content": [{
@@ -1353,7 +1353,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0682cfeb-0336-4fae-b2e3-c007d61740c4",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the onshore wind sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the onshore wind sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -1584,7 +1584,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionf2583d5b-0b33-483b-a9b2-7724a07b5ca4",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the solar sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the solar sector?",
                             "description": "<p>This covers the design, development, construction or production of electricity from solar,  specialised consultancy services and installation of infrastructure (for example, solar panels) for producing electricity.</p><p>It also covers the operation and maintenance of the infrastructure for producing electricity from this source. </p>",
                             "guidance": {
                                 "content": [{
@@ -1690,7 +1690,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question7ed72cc5-e687-4317-a8e1-4cef1cf0eca3",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the solar sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the solar sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -1732,7 +1732,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question511d1e49-083c-4d60-9291-2f51ed2621bf",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the solar sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the solar sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -1845,7 +1845,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question09ded570-fe5a-4e52-ae03-95f67e9c3c1c",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the solar sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the solar sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -1897,7 +1897,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2fd86e21-7400-4a08-a6d6-4fc9b75844b6",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the solar sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the solar sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -2124,7 +2124,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questione923a8ab-e6c2-4168-bc87-cda416af6719",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the hydropower sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the hydropower sector?",
                             "description": "<p>This covers the design, development, construction or production of electricity from hydropower (for example, hydroelectric dams), specialised consultancy services and installation of infrastructure (for example, turbines) for producing electricity.</p><p>It also covers the operation and maintenance of the infrastructure for producing electricity from this source. It does not mean tidal or wave power. </p>",
                             "guidance": {
                                 "content": [{
@@ -2231,7 +2231,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9d34359b-6ec2-4971-bf12-0d95814f1856",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the hydropower sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the hydropower sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2273,7 +2273,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question94f8afd8-3bcc-4701-9875-435317d36734",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the hydropower sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the hydropower sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2386,7 +2386,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question6e28df0b-7125-45de-8165-9093bfe4bc49",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the hydropower sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the hydropower sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -2434,7 +2434,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionb98b9e31-1c7f-4e20-b345-4c6aef1caf71",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the hydropower sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the hydropower sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -2661,7 +2661,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question78d8de75-379a-42f7-95e4-b7a4096c9781",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the other renewable electricity sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the other renewable electricity sector?",
                             "description": "<p>This covers the design, development, construction or production, specialised consultancy services and installation of infrastructure for producing electricity from other renewable sources, such as wave, tidal or geothermal sources.</p><p>It also covers the operation and maintenance of the infrastructure for producing electricity from these sources. It does not cover the generation of heat directly through geothermal means. </p>",
                             "guidance": {
                                 "content": [{
@@ -2769,7 +2769,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question5eab3f6d-a1ed-4adf-9dff-c739427f6e2a",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the other renewable electricity sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the other renewable electricity sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2811,7 +2811,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionb9ba9147-5b64-443e-90f4-800c58bc4149",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the other renewable electricity sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the other renewable electricity sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -2924,7 +2924,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4ec6382a-c778-4f68-90d9-85901f32d572",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D</em>) in relation to the other renewable electricity sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D</em>) in relation to the other renewable electricity sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -2972,7 +2972,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc0748134-54bf-4e48-84f8-4c060355272c",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the other renewable electricity sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the other renewable electricity sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -3199,7 +3199,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc2583236-42a1-4c06-9a6f-fa3b7f50ab27",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the bioenergy sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the bioenergy sector?",
                             "description": "<p>This covers the design, development, construction or production, specialised consultancy services and installation of infrastructure for producing energy from sustainable biomass sources.</p><p>It also covers the operation and maintenance of the infrastructure for producing energy from sustainable biomass sources.</p>",
                             "guidance": {
                                 "content": [{
@@ -3309,7 +3309,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question8a31186b-4d8d-40d0-9d69-59fc51f5a601",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the bioenergy sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the bioenergy sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -3351,7 +3351,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question855a4cfb-832a-48d3-babf-8dedcb2e1b09",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the bioenergy sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the bioenergy sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -3464,7 +3464,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1635bb14-ec3d-4b90-a2a0-7415c9f5ad56",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the bioenergy sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the bioenergy sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -3512,7 +3512,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2f9805c3-7df0-46a4-bbe2-2a77a2e0eb59",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the bioenergy sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the bioenergy sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -3785,7 +3785,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question936c5173-b798-4a1d-8b1e-7a9213cb09d9",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the alternative fuels sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the alternative fuels sector?",
                             "description": "<p>This covers the design, development, construction or production, specialised consultancy services and installation of infrastructure for producing energy from alternative fuels which is not classed as bioenergy.</p><p>It also covers the operation and maintenance of the infrastructure of the technologies using these fuels.</p>",
                             "guidance": {
                                 "content": [{
@@ -3899,7 +3899,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2544f4e1-5dd3-43ec-834a-c628ea235ec1",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the alternative fuels sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the alternative fuels sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -3941,7 +3941,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question644e2beb-182c-4a89-8a0d-5ad3962bea1c",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the alternative fuels sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the alternative fuels sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -4054,7 +4054,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1ade6970-f7d1-4450-bc2e-16f14005d884",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the alternative fuels sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the alternative fuels sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -4102,7 +4102,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question041d921d-2a04-404d-8eae-45654fbb842c",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the alternative fuels sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the alternative fuels sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -4329,7 +4329,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiona51cc40e-60ef-4158-9d27-bf6598885eef",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the renewable heat sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the renewable heat sector?",
                             "description": "<p>This covers the design, development, construction or production, specialised consultancy services and installation of infrastructure for producing energy from low carbon heating systems.</p><p>It also covers the operation and maintenance, design, production and installation of technologies using these renewable heat systems.</p>",
                             "guidance": {
                                 "content": [{
@@ -4443,7 +4443,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question807b8805-7be9-4d6c-b6d4-955f72816ad3",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the renewable heat sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the renewable heat sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -4485,7 +4485,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionb83ad445-06e3-44e8-bd5f-a63b0d685059",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the renewable heat sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the renewable heat sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -4598,7 +4598,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question5b5f61fa-cd25-41b4-8e0b-842274210d49",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the renewable heat sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the renewable heat sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -4646,7 +4646,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4ab9e6aa-5095-4d1a-8264-036ceb086ef5",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the renewable heat sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the renewable heat sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -4873,7 +4873,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question7b97dea7-49e4-4072-95a5-96da6914d355",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the renewable combined heat and power sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the renewable combined heat and power sector?",
                             "description": "<p>This covers the design, development, construction or production, specialised consultancy services and installation of infrastructure for producing energy from renewable combined heat and power systems.</p><p>It also covers the operation and maintenance, design, production and installation of technologies using these renewable combined heat and power systems.</p>",
                             "guidance": {
                                 "content": [{
@@ -4981,7 +4981,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question17a649d7-af4c-4888-b05a-c1b3cc807880",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the renewable combined heat and power sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the renewable combined heat and power sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -5023,7 +5023,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question06e172c2-0ae8-4c98-b5f8-4dee8d603c16",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the renewable combined heat and power sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the renewable combined heat and power sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -5136,7 +5136,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionda6a4f8d-9d60-4c6d-8c36-6623c29351c8",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the renewable combined heat and power sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the renewable combined heat and power sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -5184,7 +5184,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiona834dcbd-94ee-4805-a606-b3168fee9c40",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the renewable combined heat and power sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the renewable combined heat and power sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -5411,7 +5411,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiond50cf81b-30df-45bc-abea-c9334857e98c",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the energy efficient lighting sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the energy efficient lighting sector?",
                             "description": "<p>This covers the design, development, construction or production, specialised consultancy services and installation of infrastructure in relation to the energy efficient lighting sector.</p><p>It also covers the operation and maintenance of the infrastructure relating to this sector.</p>",
                             "guidance": {
                                 "content": [{
@@ -5467,7 +5467,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiond19e43d2-c180-43b6-a4da-2f3d5c6b0ae2",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the energy efficient lighting sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the energy efficient lighting sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -5509,7 +5509,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questioncf35032c-0f94-4611-9b19-ad14fea76175",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the energy efficient lighting sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the energy efficient lighting sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -5622,7 +5622,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiona352bcb4-9462-477f-9b0a-f62bbed80c88",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the energy efficient lighting sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the energy efficient lighting sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -5670,7 +5670,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionb0d8626a-1c7d-4a45-948d-2c29feb2503f",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the energy efficient lighting sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the energy efficient lighting sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -5897,7 +5897,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc6782931-e992-46f2-96c2-4de690287070",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the energy efficient products sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the energy efficient products sector?",
                             "description": "<p>This covers the design, development, construction or production, specialised consultancy services and installation of infrastructure in relation to the energy efficient products sector.</p><p>It also covers the operation and maintenance of the infrastructure relating to this sector.</p>",
                             "guidance": {
                                 "content": [{
@@ -5957,7 +5957,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question7b076496-a24c-4234-8c98-85958fa9b263",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the energy efficient products sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the energy efficient products sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -5999,7 +5999,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionf5ecc81d-153f-4d97-b545-118dec286ae4",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the energy efficient products sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the energy efficient products sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -6112,7 +6112,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiond96cc75d-614a-4b42-82cc-c11fcb0c9790",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the energy efficient products sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the energy efficient products sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -6160,7 +6160,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question92b18c36-1dee-4fae-a2cf-0eff0f4e7063",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the energy efficient products sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the energy efficient products sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -6387,7 +6387,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question8dbe419e-b5f5-42cf-9f3b-adb9e349a6b3",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the energy monitoring, saving and control systems sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the energy monitoring, saving and control systems sector?",
                             "description": "<p>This covers the design, development, construction or production, specialised consultancy services and installation of infrastructure in relation to the energy monitoring, saving and control systems that reduce energy consumption through effective heat or electricity management, including equipment and related systems for doing this.</p><p>It also covers the operation and maintenance of the infrastructure relating to this sector.</p>",
                             "guidance": {
                                 "content": [{
@@ -6445,7 +6445,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiondae3e6f6-a468-470c-9b22-aa3dd179be78",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the energy monitoring, saving and control systems sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the energy monitoring, saving and control systems sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -6487,7 +6487,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionce2d0d48-7d30-4353-ad52-5d24173cc1ca",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the energy monitoring, saving and control systems sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the energy monitoring, saving and control systems sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -6600,7 +6600,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionb573c69c-17d5-4a8d-b306-1106112f0ec2",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the energy monitoring, saving and control systems sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the energy monitoring, saving and control systems sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -6648,7 +6648,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiona3c2d694-55c2-4870-a1c3-7f5012555e78",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the energy monitoring, saving and control systems sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the energy monitoring, saving and control systems sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -6875,7 +6875,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question37e8a11a-d8a8-4260-8f13-9ad542a1808e",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the low carbon consultancy, advisory and offsetting services sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the low carbon consultancy, advisory and offsetting services sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -6936,7 +6936,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbaacf181-c23a-4baf-aa7e-1b3e2876703c",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the low carbon consultancy, advisory and offsetting services sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the low carbon consultancy, advisory and offsetting services sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -6978,7 +6978,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionde568473-687a-4b45-86c2-7d47c69353a6",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the low carbon consultancy, advisory and offsetting services sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the low carbon consultancy, advisory and offsetting services sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -7091,7 +7091,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questione7d3abae-64f5-4fa6-a1fb-987763442ac3",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the low carbon consultancy, advisory and offsetting services sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the low carbon consultancy, advisory and offsetting services sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -7139,7 +7139,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question34924e3c-a4d3-4412-8ee0-ad95aa7d644b",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the low carbon consultancy, advisory and offsetting services sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the low carbon consultancy, advisory and offsetting services sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -7366,7 +7366,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2dd59337-cce0-41d5-840e-2b2a758ac58a",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the low emission vehicles and infrastructure sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the low emission vehicles and infrastructure sector?",
                             "description": "<p>This covers the design, development, specialised consultancy services and manufacture of vehicles with specific technology to significantly reduce or remove emissions. </p><p>It also covers the design, development, production and installation of infrastructure to support these vehicles.</p>",
                             "guidance": {
                                 "content": [{
@@ -7425,7 +7425,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question3742b6ba-7756-419f-90f6-3214d6314e30",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the low emission vehicles and infrastructure sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the low emission vehicles and infrastructure sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -7467,7 +7467,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiondb4fd059-4c11-48a7-9b89-8dfba589283b",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the low emission vehicles and infrastructure sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the low emission vehicles and infrastructure sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -7580,7 +7580,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question8d0678c7-e4c8-44c0-b5b0-1ff07344ae12",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the low emission vehicles and infrastructure sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the low emission vehicles and infrastructure sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -7628,7 +7628,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1e144e04-ea60-4a09-8798-4162999246b5",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the low emission vehicles and infrastructure sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the low emission vehicles and infrastructure sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -7855,7 +7855,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1cba347f-4c73-4164-9789-581f632a393a",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the carbon capture and storage sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the carbon capture and storage sector?",
                             "description": "<p>This covers the capture of waste carbon dioxide or other greenhouse gases at point of emission, or from the atmosphere more generally and using it for additional economic activity and depositing it where it will not enter the atmosphere.</p><p>It also covers the design, manufacture, specialised consultancy services and installation of infrastructure for this purpose.</p>",
                             "guidance": {
                                 "content": [{
@@ -7908,7 +7908,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question14ef358c-60db-4436-8b0d-6fd171646700",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the carbon capture and storage sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the carbon capture and storage sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -7950,7 +7950,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question69e32f2a-dcdf-4e43-9b79-6bbbbd95c3a2",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the carbon capture and storage sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the carbon capture and storage sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -8063,7 +8063,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionfdc091b4-1ddd-49a4-adb9-e92a91448faf",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the carbon capture and storage sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the carbon capture and storage sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -8111,7 +8111,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question7a4a8acb-3464-4852-919b-8ecdb95ab3f5",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the carbon capture and storage sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the carbon capture and storage sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -8338,7 +8338,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question3f692cd6-7ff3-430d-847d-456d9efd61cb",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the nuclear power sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the nuclear power sector?",
                             "description": "<p>This covers the design, development, construction or production, specialised consultancy services and installation of infrastructure for producing electricity from nuclear power.</p><p>It also covers the operation and maintenance of infrastructure for producing electricity from this source.</p>",
                             "guidance": {
                                 "content": [{
@@ -8392,7 +8392,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question258d2f88-a835-46d6-b8c7-6e366218ce1a",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the nuclear power sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the nuclear power sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -8434,7 +8434,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question73e1b9c5-1bfe-4fbd-9c7c-bee6265037a3",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the nuclear power sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the nuclear power sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -8547,7 +8547,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question57635364-7354-4e67-94bc-6d659bf1cb78",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the nuclear power sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the nuclear power sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -8595,7 +8595,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question6a4690d2-5930-400f-b6eb-c2e891d59f1b",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the nuclear power sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the nuclear power sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -8822,7 +8822,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionf091b8a6-c18d-45a1-b08f-6c2a7e7a2c05",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>turnover</em> from activities carried out within the fuel cells and energy storage systems sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>turnover</em> from activities carried out within the fuel cells and energy storage systems sector?",
                             "description": "<p>This covers the design, development, manufacture, specialised consultancy services and installation of energy storage systems referring to the conversion of energy into a form which can be stored, the storing of that energy and subsequent use of that energy.</p>",
                             "guidance": {
                                 "content": [{
@@ -8879,7 +8879,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question7b8ac03a-b2dc-4669-be5d-912aaf6353a3",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>expenditure on imports</em> in relation to the fuel cells and energy storage systems sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>expenditure on imports</em> in relation to the fuel cells and energy storage systems sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -8921,7 +8921,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionf00ef814-d9a5-4669-9be5-5b8b4d7f9d9a",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your <em>income from exports</em> in relation to the fuel cells and energy storage systems sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your <em>income from exports</em> in relation to the fuel cells and energy storage systems sector?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -9034,7 +9034,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question74740a64-54fd-48ac-a0b4-b74829666a54",
-                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the fuel cells and energy storage systems sector?",
+                            "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, what was your expenditure on <em>Research and Development (R&amp;D)</em> in relation to the fuel cells and energy storage systems sector?",
                             "description": "<p>Research and Development (R&amp;D) covers basic and applied research and development. It covers creative and systematic work undertaken to increase knowledge or to devise new applications of available knowledge. R&amp;D activity must meet all five of these criteria: novel, creative, uncertain, systematic, transferable/reproducible.</p>",
                             "guidance": {
                                 "content": [{
@@ -9082,7 +9082,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question3520b65e-1fc0-47db-8eec-54f86c535b55",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how many <em>full-time equivalent employees</em> (FTEs) were working in the fuel cells and energy storage systems sector?",
+                            "title": "During the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, how many <em>full-time equivalent employees</em> (FTEs) were working in the fuel cells and energy storage systems sector?",
                             "description": "<p>An employee is anyone aged 16 years or over that your business pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -9303,7 +9303,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question224bd252-27ad-4fdc-a28e-7c3e87cbcb6f",
-                                "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['ru_name'] }} operate <em>in any other</em> low carbon or renewable energy sectors that have not been listed?",
+                                "title": "For the period {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to'], metadata['ref_p_end_date'])}}, did {{ metadata['ru_name'] }} operate <em>in any other</em> low carbon or renewable energy sectors that have not been listed?",
                                 "type": "General",
                                 "answers": [{
                                     "id": "answer7fa20105-5c8e-4d3e-baf2-4dbc303c79a1",
