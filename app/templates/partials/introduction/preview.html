@@ -17,6 +17,26 @@
 {% endfor %}
 </div>
 {% if intro.questions %}
+<div id="collapsible" class="collapsible js-collapsible" data-btn-close="Hide this">
+    <div class="collapsible__heading js-collapsible-heading">
+      <div class="collapsible__controls">
+        <h2 class="collapsible__title">What is a photovoltaic system?</h2>
+        <span class="collapsible__icon">
+          <svg class="svg-icon" viewBox="0 0 7.5 12.85" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M5.74,14.28l-.57-.56a.5.5,0,0,1,0-.71h0l5-5-5-5a.5.5,0,0,1,0-.71h0l.57-.56a.5.5,0,0,1,.71,0h0l5.93,5.93a.5.5,0,0,1,0,.7L6.45,14.28a.5.5,0,0,1-.71,0Z" transform="translate(-5.02 -1.59)" />
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div id="collapsible-content" class="collapsible__content js-collapsible-content">
+      <p>A typical photovoltaic system employs solar panels, each comprising a number of solar cells, which generate electrical power. PV installations may be ground-mounted, rooftop mounted or wall mounted. The mount may be fixed, or use a solar tracker to follow the sun across the sky.</p>
+      <button type="button" class="btn btn--small js-collapsible-button u-d-no btn--secondary" name="btn-submit" aria-hidden="true">
+        <span class="btn__inner js-collapsible-button-inner">Hide this</span>
+        <span class="btn__context u-vh">What is a photovoltaic system? content</span>
+      </button>
+    </div>
+  </div>
+  <!-- 
 <div class="collapsible js-collapsible u-mb-s">
         <div class="collapsible__controls">
             <button type="button" class="btn btn--secondary btn--small collapsible__control js-collapsible-toggle-all u-wa--@xs" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Show all" data-ga-label="Show all" data-close-all-label="{{ _('Hide all') }}" data-open-all-label="{{ _('Show all') }}" aria-hidden="true">
@@ -26,10 +46,36 @@
         <div class="js-collapsible-content">
             {% for question in intro.questions %}
             {% set outer_loop = loop %}
-            <h3 class="collapsible__title js-collapsible-title u-cf icon--collapsible" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Open panel" data-ga-label="{{question.question}}">
-                <span class="collapsible__title-text">{{question.question}}</span>
-                <button type="button" class="btn btn--secondary btn--small collapsible__title-right js-collapsible-toggle u-wa--@xs" data-close-label="{{ _('Hide') }}" data-open-label="{{ _('Show') }}" aria-hidden="true" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Open panel" data-ga-label="{{question.question}}">{{ _('Show') }}</button>
-            </h3>
+            <div class="collapsible__heading js-collapsible-heading">
+                <div class="collapsible__controls">
+                  <h2 class="collapsible__title">{{question.question}}</h2>
+                  <span class="collapsible__icon">
+                    <svg class="svg-icon" viewBox="0 0 7.5 12.85" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                      <path d="M5.74,14.28l-.57-.56a.5.5,0,0,1,0-.71h0l5-5-5-5a.5.5,0,0,1,0-.71h0l.57-.56a.5.5,0,0,1,.71,0h0l5.93,5.93a.5.5,0,0,1,0,.7L6.45,14.28a.5.5,0,0,1-.71,0Z" transform="translate(-5.02 -1.59)" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+    
+            <div id="collapsible" class="collapsible js-collapsible" data-btn-close="Hide this">
+                <div class="collapsible__heading js-collapsible-heading">
+                  <div class="collapsible__controls">
+                    <h2 class="collapsible__title">What is a photovoltaic system?</h2>
+                    <span class="collapsible__icon">
+                      <svg class="svg-icon" viewBox="0 0 7.5 12.85" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                        <path d="M5.74,14.28l-.57-.56a.5.5,0,0,1,0-.71h0l5-5-5-5a.5.5,0,0,1,0-.71h0l.57-.56a.5.5,0,0,1,.71,0h0l5.93,5.93a.5.5,0,0,1,0,.7L6.45,14.28a.5.5,0,0,1-.71,0Z" transform="translate(-5.02 -1.59)" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+                <div id="collapsible-content" class="collapsible__content js-collapsible-content">
+                  <p>A typical photovoltaic system employs solar panels, each comprising a number of solar cells, which generate electrical power. PV installations may be ground-mounted, rooftop mounted or wall mounted. The mount may be fixed, or use a solar tracker to follow the sun across the sky.</p>
+                  <button type="button" class="btn btn--small js-collapsible-button u-d-no btn--secondary" name="btn-submit" aria-hidden="true">
+                    <span class="btn__inner js-collapsible-button-inner">Hide this</span>
+                    <span class="btn__context u-vh">What is a photovoltaic system? content</span>
+                  </button>
+                </div>
+              </div>
 
             <div class="collapsible__body u-fs-r js-collapsible-body">
                 {% if question.content %}
@@ -54,6 +100,6 @@
             </div>
 
             {% endfor %}
-        </div>
+        </div> -->
 </div>
 {% endif %}

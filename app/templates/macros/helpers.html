@@ -35,7 +35,10 @@
       "name": "action[save_sign_out]",
     } %}
   {% set analytics = track('click', 'Navigation', 'Save and sign out click') %}
-  <button type="submit" {{attr|xmlattr}} {{analytics}}>{{ button_text }}</button>
+  <a type="submit" {{attr|xmlattr}} {{analytics}}>
+    <span class="btn__inner">{{ button_text }}
+    </span>
+  </a>
 {%- endmacro -%}
 
 {%- macro signout_button(button_text) -%}
