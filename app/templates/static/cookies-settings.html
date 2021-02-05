@@ -104,23 +104,131 @@
                                     </div>
                                     <p>{{ _("We do not allow Google to use or share the data about how you use this site.") }}</p>
                                 
-                                <div class="u-mb-s">
-                                  <fieldset id="cookies-measure-website-use" class="fieldset">
-                                    <legend class="fieldset__legend u-vh">Do you want to allow usage tracking?
+                                  <div class="u-mb-s">
+                                    <fieldset id="cookies-measure-website-use" class="fieldset">
+                                      <legend class="fieldset__legend u-vh">Do you want to allow usage tracking?
+                                      </legend>
+                                      <div class="radios__items">
+                                        <p class="radios__item">
+                                          <span class="radio">
+                                            <input type="radio" id="on-1" class="radio__input js-radio" value="on" name="cookies-usage">
+                                            <label class="radio__label  " for="on-1" id="on-1-label">On
+                                            </label>
+                                          </span>
+                                        </p>
+                                        <br>
+                                        <p class="radios__item">
+                                          <span class="radio">
+                                            <input type="radio" id="off-1" class="radio__input js-radio" value="off" name="cookies-usage">
+                                            <label class="radio__label  " for="off-1" id="off-1-label">Off
+                                            </label>
+                                          </span>
+                                        </p>
+                                      </div>
+                                    </fieldset>
+                                  </div>
+                                  <p>This selection will expire after two years.</p>
+                                  <h3>Cookies that help with our communications</h3>
+                                  <p>Some of our pages may contain content from other sites, like YouTube, which may set their own cookies. These sites are sometimes called “third party” services. This tells us how many people are seeing the content and whether it’s useful.</p>
+                                  <p>In addition, if you share a link to a census.gov.uk page, the service you share it on may set a cookie. We have no control over cookies set on other websites – you can turn them off, but not through us.</p>
+                                  <h4>YouTube videos</h4>
+                                  <p>We use YouTube to show videos on some census.gov.uk pages. YouTube sets cookies when you visit one of these pages.</p>
+                                  <div id="cookies-measure-website-comms-details" class="collapsible js-collapsible u-mb-s" data-btn-close="Hide this">
+                                    <div class="collapsible__heading js-collapsible-heading">
+                                      <div class="collapsible__controls">
+                                        <div class="collapsible__title">Learn more about these YouTube cookies</div>
+                                        <span class="collapsible__icon">
+                                          <svg class="svg-icon" viewBox="0 0 7.5 12.85" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                                            <path d="M5.74,14.28l-.57-.56a.5.5,0,0,1,0-.71h0l5-5-5-5a.5.5,0,0,1,0-.71h0l.57-.56a.5.5,0,0,1,.71,0h0l5.93,5.93a.5.5,0,0,1,0,.7L6.45,14.28a.5.5,0,0,1-.71,0Z" transform="translate(-5.02 -1.59)" />
+                                          </svg>
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div id="cookies-measure-website-comms-details-content" class="collapsible__content js-collapsible-content">
+                                      <table class="table ">
+                                        <thead class="table__head">
+                                          <tr class="table__row">
+                                            <th scope="col" class="table__header ">
+                                              <span>Name</span>
+                                            </th>
+                                            <th scope="col" class="table__header ">
+                                              <span>Purpose</span>
+                                            </th>
+                                            <th scope="col" class="table__header ">
+                                              <span>Expires</span>
+                                            </th>
+                                          </tr>
+                                        </thead>
+                                        <tbody class="table__body">
+                                          <tr class="table__row">
+                                            <td class="table__cell ">
+                                              <code>_use_hitbox</code>
+                                            </td>
+                                            <td class="table__cell ">
+                                              This is a randomly generated number that identifies your browser
+                                            </td>
+                                            <td class="table__cell ">
+                                              When you close your browser
+                                            </td>
+                                          </tr>
+                                          <tr class="table__row">
+                                            <td class="table__cell ">
+                                              <code>VISITOR_INFO1_LIVE</code>
+                                            </td>
+                                            <td class="table__cell ">
+                                              Lets Youtube count the views of embedded Youtube videos
+                                            </td>
+                                            <td class="table__cell ">
+                                              9 months
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <button type="button" class="btn btn--small js-collapsible-button u-d-no btn--secondary" name="btn-submit">
+                                        <span class="btn__inner js-collapsible-button-inner">Hide this</span>
+                                        <span class="btn__context u-vh">Learn more about these YouTube cookies undefined</span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <fieldset id="cookies-measure-website-comms" class="fieldset">
+                                    <legend class="fieldset__legend u-vh">Do you want to allow communications tracking?
                                     </legend>
                                     <div class="radios__items">
                                       <p class="radios__item">
                                         <span class="radio">
-                                          <input type="radio" id="on-1" class="radio__input js-radio" value="on" name="cookies-usage">
-                                          <label class="radio__label  " for="on-1" id="on-1-label">On
+                                          <input type="radio" id="on-2" class="radio__input js-radio" value="on" name="cookies-campaigns">
+                                          <label class="radio__label  " for="on-2" id="on-2-label">On
                                           </label>
                                         </span>
                                       </p>
                                       <br>
                                       <p class="radios__item">
                                         <span class="radio">
-                                          <input type="radio" id="off-1" class="radio__input js-radio" value="off" name="cookies-usage">
-                                          <label class="radio__label  " for="off-1" id="off-1-label">Off
+                                          <input type="radio" id="off-2" class="radio__input js-radio" value="off" name="cookies-campaigns">
+                                          <label class="radio__label  " for="off-2" id="off-2-label">Off
+                                          </label>
+                                        </span>
+                                      </p>
+                                    </div>
+                                  </fieldset>
+                                  <h3>Cookies that remember your settings</h3>
+                                  <p>These cookies do things like remember your preferences and the choices you make, to personalise your experience of using the site.</p>
+                                  <fieldset id="cookies-measure-website-settings" class="fieldset">
+                                    <legend class="fieldset__legend u-vh">Do you want to allow settings?
+                                    </legend>
+                                    <div class="radios__items">
+                                      <p class="radios__item">
+                                        <span class="radio">
+                                          <input type="radio" id="on-3" class="radio__input js-radio" value="on" name="cookies-settings">
+                                          <label class="radio__label  " for="on-3" id="on-3-label">On
+                                          </label>
+                                        </span>
+                                      </p>
+                                      <br>
+                                      <p class="radios__item">
+                                        <span class="radio">
+                                          <input type="radio" id="off-3" class="radio__input js-radio" value="off" name="cookies-settings">
+                                          <label class="radio__label  " for="off-3" id="off-3-label">Off
                                           </label>
                                         </span>
                                       </p>
