@@ -28,7 +28,7 @@
       <script nonce="{{ csp_nonce() }}">document.documentElement.className = document.documentElement.className.replace('no-js','has-js')</script>
     <!--<![endif]-->
     {%- block styles %}
-    {% set css_fixed_cdn = cdn_url_prefix~"/css/fixed.css" %}
+    <!-- {% set css_fixed_cdn = cdn_url_prefix~"/css/fixed.css" %} -->
     {% set css_main_cdn = cdn_url_prefix~"/css/main.css" %}
     {% set css_theme = "css/"~_theme~"/theme.css" %}
 
@@ -122,10 +122,10 @@
     <!--[if gte IE 9]><!-->
     {% block scripts %}
       {% set scripts_cdn = cdn_url_prefix~"/scripts/main.js" %}
-      <script nonce="">
+      <script{% if csp_nonce %} nonce="{{ csp_nonce() }}"{% endif %}>
         (function() {
-            window.ONS_assets_base_URL = "https://cdn.ons.gov.uk/sdc/design-system/31.4.5/";
-            var s = 'https://cdn.ons.gov.uk/sdc/design-system/31.4.5/scripts/main.js'.split(','),
+            window.ONS_assets_base_URL = "{{ cdn_url_prefix }}/";
+            var s = '{{ scripts_cdn | safe }}'.split(','),
             c = document.createElement('script');
 
             if (!('noModule' in c)) {
@@ -143,8 +143,6 @@
             }
         })();
     </script>
-      <script src="{{ scripts_cdn }}"></script>
-      <!-- <script src="{{ url_for('static', filename='js/bundle.js') }}"></script> -->
     {% endblock scripts %}
   	  <!--<![endif]-->
     </body>

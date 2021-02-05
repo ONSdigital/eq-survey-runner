@@ -30,12 +30,11 @@
     {%- block styles %}
     {% set css_fixed_cdn = cdn_url_prefix~"/css/fixed.css" %}
     {% set css_main_cdn = cdn_url_prefix~"/css/main.css" %}
-    <!-- https://cdn.ons.gov.uk/sdc/design-system/[VERSION]/css/main.css -->
-    <!-- {% set css_responsive_cdn = cdn_url_prefix~"/css/responsive.css" %} -->
     {% set css_theme = "css/"~_theme~"/theme.css" %}
 
     <!--[if (gt IE 9) | (IEMobile)]><!-->
     {%- if request.args.get('fixed') == 'true' %}
+    <!-- Not sure if this is used yet -->
       <link href="{{ css_fixed_cdn }}" rel="stylesheet" />
     {%- else %}
       <link href="{{ css_main_cdn }}" rel="stylesheet" />
@@ -127,15 +126,9 @@
     <!--[if gte IE 9]><!-->
     {% block scripts %}
       {% set scripts_cdn = cdn_url_prefix~"/scripts/main.js" %}
-      <!-- Adding this duplicates the script output -->
-      <!-- Also creates the broken script links -->
-      <!-- <script src="{{ scripts_cdn }}"></script> -->
-
-      <!-- This is the secret sauce -->
-      <!-- lazy loads correct js but not fast enough -->
       <script{% if csp_nonce %} nonce="{{ csp_nonce() }}"{% endif %}>
         (function() {
-            window.ONS_assets_base_URL = "https://cdn.ons.gov.uk/sdc/design-system/31.4.5/";
+            window.ONS_assets_base_URL = "{{ cdn_url_prefix }}/";
             var s = '{{ scripts_cdn | safe }}'.split(','),
             c = document.createElement('script');
 
@@ -154,31 +147,6 @@
             }
         })();
     </script>
-    <!-- End of secret sauce -->
-  
-      <!-- Alternate secret sauce from one of the repos -->
-      <!-- <script nonce="{{ csp_nonce() }}">
-        (function() {
-            window.ONS_assets_base_URL = "https://cdn.ons.gov.uk/sdc/design-system/31.4.5/";
-            var s = 'https://cdn.ons.gov.uk/sdc/design-system/31.4.5/scripts/main.js'.split(','),
-            c = document.createElement('script');
-            console.log("What is this madness?")
-            if (!('noModule' in c)) {
-              console.log("do i work?")
-                for (var i = 0; i < s.length; i++) {
-                    s[i] = s[i].replace('.js', '.es5.js');
-                }
-            }
-
-            for (var i = 0; i < s.length; i++) {
-                var e = document.createElement('script');
-                console.log(s[i])
-                e.src = s[i];
-
-                document.body.appendChild(e);
-            }
-        })();
-    </script> -->
     {% endblock scripts %}
   	  <!--<![endif]-->
     </body>
