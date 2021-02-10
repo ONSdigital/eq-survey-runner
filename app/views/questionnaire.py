@@ -44,6 +44,7 @@ from app.utilities.schema import load_schema_from_session_data
 from app.views.errors import check_multiple_survey, MultipleSurveyError
 
 from app.utilities.cookies import analytics_allowed
+from app.utilities.format_submitted_time import format_submitted_time
 
 END_BLOCKS = 'Summary', 'Confirmation'
 
@@ -484,8 +485,9 @@ def is_view_submitted_response_enabled(schema):
 
 def _is_submission_viewable(schema, submitted_time):
     if is_view_submitted_response_enabled(schema) and submitted_time:
-        submitted_time = datetime.strptime(submitted_time, '%Y-%m-%dT%H:%M:%S.%f')
-        submission_valid_until = submitted_time + timedelta(seconds=schema['view_submitted_response']['duration'])
+
+        submission_valid_until = format_submitted_time(submitted_time) + timedelta(seconds=schema['view_submitted_response']['duration'])
+
         return submission_valid_until > datetime.utcnow()
 
     return False
