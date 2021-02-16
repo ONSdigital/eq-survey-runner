@@ -5,12 +5,12 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "survey_id": "283",
-    "title": "Business Impact of Coronavirus (COVID-19) Survey",
+    "title": "Business Insights and Conditions Survey (BICS)",
     "sections": [{
             "id": "section07aa7033-76e4-41b4-81e4-a957831a5a42",
             "title": "Trading status of your business",
             "groups": [{
-                "id": "group07aa7033-76e4-41b4-81e4-a957831a5a42",
+                "id": "groupd5af0cb2-5d38-4feb-85a3-26680b67ddc4",
                 "title": "Trading status of your business",
                 "blocks": [{
                         "type": "Introduction",
@@ -19,13 +19,14 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><p><strong>Important notice</strong></p><p>Based on feedback, this survey will be changing its name to the “<strong>Business Insights and Conditions Survey</strong>” (BICS).</p><p>The purpose remains the same, to collect real-time information on key issues such as the coronavirus (COVID-19) pandemic and the end of the EU transition period.</p></div></div>"
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><p>Based on your feedback, we have changed the survey name from the “Business Impact of Coronavirus (COVID-19) Survey” to the “Business Insights and Conditions Survey” (BICS).  </p><p>The purpose of the survey remains the same, to collect real-time information on key economic issues such as the coronavirus (COVID-19) pandemic and the end of the EU transition period.</p></div></div>"
                                 },
                                 {
                                     "list": [
                                         "This survey collects real-time information on issues impacting your business and the economy, to help inform decisions",
                                         "Questions are updated regularly to reflect important topics, such as the coronavirus (COVID-19) impacts and the end of the EU transition period",
                                         "Your response helps ensure your business, and businesses like yours, are represented.",
+                                        "On average it takes 15 minutes to complete this survey once you have collected the information.",
                                         "<a href=\"https://www.ons.gov.uk/businessindustryandtrade/business/businessservices/bulletins/businessinsightsandimpactontheukeconomy/latest\"target=\"_blank\"rel=\"noopener noreferrer\">View the latest publication produced from this survey</a>"
                                     ]
                                 },
@@ -59,7 +60,7 @@
                                 {
                                     "question": "Turnover and profits",
                                     "content": [{
-                                            "description": "This section asks for information about how the coronavirus (COVID-19) pandemic may have affected:"
+                                            "description": "This section asks for information on any changes to the business&apos;s:"
                                         },
                                         {
                                             "list": [
@@ -90,10 +91,17 @@
                                             "list": [
                                                 "any changes to supply chains",
                                                 "the availability of materials, goods and services within the UK",
+                                                "the availability of materials, goods and services within the EU",
                                                 "use of UK logistics services"
                                             ]
                                         }
                                     ]
+                                },
+                                {
+                                    "question": "Prices of materials, goods and services",
+                                    "content": [{
+                                        "description": "This section asks for information on any changes to the prices and demand of goods and services bought or sold by the business in the last two weeks."
+                                    }]
                                 },
                                 {
                                     "question": "Sending goods from GB to Northern Ireland",
@@ -113,12 +121,6 @@
                                             "description": "GB means &#x2018;Great Britain&#x2019; which includes England, Scotland and Wales, but excludes Northern Ireland."
                                         }
                                     ]
-                                },
-                                {
-                                    "question": "Prices of materials, goods and services",
-                                    "content": [{
-                                        "description": "This section asks for information on any changes to the prices and demand of goods and services bought or sold by the business in the last two weeks."
-                                    }]
                                 },
                                 {
                                     "question": "Stock and capital expenditure",
@@ -150,6 +152,7 @@
                                             "list": [
                                                 "percentage, for example, on furlough leave or working from home, or made redundant in the last two weeks",
                                                 "percentage returning from furlough or homeworking",
+                                                "providing regular coronavirus testing for your workforce",
                                                 "expected redundancies in the next three months"
                                             ]
                                         }
@@ -223,7 +226,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "group": "group73de2088-284c-4669-93ab-bccacd145f5c",
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
@@ -335,7 +338,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
+                                    "group": "group251adc99-f889-4125-95b0-a810cb9ef3da",
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                             "condition": "contains all",
@@ -354,7 +357,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
+                                    "group": "group251adc99-f889-4125-95b0-a810cb9ef3da",
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                             "condition": "contains all",
@@ -407,7 +410,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "group": "group73de2088-284c-4669-93ab-bccacd145f5c",
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
@@ -417,7 +420,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group281e76fe-1287-43af-bfe9-e1a53be6476e",
+                                    "group": "group9a66397d-f1ef-4146-b7f7-68cbee99b5da",
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                             "condition": "contains any",
@@ -436,7 +439,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group281e76fe-1287-43af-bfe9-e1a53be6476e",
+                                    "group": "group9a66397d-f1ef-4146-b7f7-68cbee99b5da",
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                             "condition": "contains any",
@@ -557,7 +560,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group281e76fe-1287-43af-bfe9-e1a53be6476e",
+                                    "group": "group9a66397d-f1ef-4146-b7f7-68cbee99b5da",
                                     "when": [{
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                             "condition": "contains all",
@@ -576,26 +579,26 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group281e76fe-1287-43af-bfe9-e1a53be6476e",
+                                    "group": "group9a66397d-f1ef-4146-b7f7-68cbee99b5da",
                                     "when": [{
-                                            "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
-                                            "condition": "contains all",
-                                            "values": ["None of our sites are temporarily or permanently closed"]
-                                        },
-                                        {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                             "condition": "contains any",
                                             "values": [
                                                 "Currently trading and have been for more than the last two weeks",
                                                 "Started trading within the last two weeks after a pause in trading"
                                             ]
+                                        },
+                                        {
+                                            "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
+                                            "condition": "contains all",
+                                            "values": ["None of our sites are temporarily or permanently closed"]
                                         }
                                     ]
                                 }
                             },
                             {
                                 "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
+                                    "group": "group251adc99-f889-4125-95b0-a810cb9ef3da",
                                     "when": [{
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                             "condition": "contains all",
@@ -614,7 +617,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
+                                    "group": "group251adc99-f889-4125-95b0-a810cb9ef3da",
                                     "when": [{
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                             "condition": "contains all",
@@ -633,8 +636,16 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group281e76fe-1287-43af-bfe9-e1a53be6476e",
+                                    "group": "group9a66397d-f1ef-4146-b7f7-68cbee99b5da",
                                     "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Currently trading and have been for more than the last two weeks",
+                                                "Started trading within the last two weeks after a pause in trading"
+                                            ]
+                                        },
+                                        {
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                             "condition": "contains any",
                                             "values": [
@@ -650,14 +661,6 @@
                                                 "South West of England",
                                                 "West Midlands",
                                                 "Yorkshire and The Humber"
-                                            ]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Currently trading and have been for more than the last two weeks",
-                                                "Started trading within the last two weeks after a pause in trading"
                                             ]
                                         }
                                     ]
@@ -665,8 +668,16 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
+                                    "group": "group251adc99-f889-4125-95b0-a810cb9ef3da",
                                     "when": [{
+                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                            "condition": "contains any",
+                                            "values": [
+                                                "Paused trading but intends to restart in the next two weeks",
+                                                "Paused trading and does not intend to restart in the next two weeks"
+                                            ]
+                                        },
+                                        {
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                             "condition": "contains any",
                                             "values": [
@@ -682,14 +693,6 @@
                                                 "South West of England",
                                                 "West Midlands",
                                                 "Yorkshire and The Humber"
-                                            ]
-                                        },
-                                        {
-                                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                            "condition": "contains any",
-                                            "values": [
-                                                "Paused trading but intends to restart in the next two weeks",
-                                                "Paused trading and does not intend to restart in the next two weeks"
                                             ]
                                         }
                                     ]
@@ -709,7 +712,7 @@
             "id": "section281e76fe-1287-43af-bfe9-e1a53be6476e",
             "title": "Turnover and profits",
             "groups": [{
-                "id": "group281e76fe-1287-43af-bfe9-e1a53be6476e",
+                "id": "group9a66397d-f1ef-4146-b7f7-68cbee99b5da",
                 "title": "Turnover and profits",
                 "blocks": [{
                         "type": "Interstitial",
@@ -722,7 +725,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9361fa44-7f22-47da-bdd0-16e104300487",
-                            "title": "<em>In the last two weeks</em>, how has the coronavirus (COVID-19) pandemic affected {{ metadata['ru_name'] }}&apos;s turnover, compared with normal expectations for this time of year?",
+                            "title": "How does {{ metadata['ru_name'] }}&apos;s turnover for the <em>last two weeks</em>, compare to normal expectations for this time of year?",
                             "description": "<p>You can provide a rough estimate.</p>",
                             "guidance": {
                                 "content": [{
@@ -801,16 +804,42 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0bf14da5-6919-4507-8542-5d71be2e6ac1",
-                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic affected turnover in the last two weeks",
+                            "title": "What was the <em>main reason</em> for this change to your business&apos;s turnover in the last two weeks?",
                             "type": "General",
                             "answers": [{
-                                "id": "answerb27dfc7c-ac12-4c9f-ba1c-29b51878d877",
-                                "mandatory": false,
-                                "type": "TextArea",
-                                "label": "Comments",
+                                "id": "answer392e439f-5897-4aa9-94ca-f01126acf654",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
                                 "description": "",
-                                "q_code": "5",
-                                "max_length": 2000
+                                "q_code": "33",
+                                "options": [{
+                                        "label": "Coronavirus (COVID-19) pandemic",
+                                        "value": "Coronavirus (COVID-19) pandemic"
+                                    },
+                                    {
+                                        "label": "End of the EU transition period",
+                                        "value": "End of the EU transition period"
+                                    },
+                                    {
+                                        "label": "Coronavirus (COVID-19) pandemic and the end of the EU transition period",
+                                        "value": "Coronavirus (COVID-19) pandemic and the end of the EU transition period"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "value": "Other",
+                                        "detail_answer": {
+                                            "label": "Please describe",
+                                            "type": "TextField",
+                                            "id": "answer3dde7e8b-105e-4c71-bf42-803ea3036dd9",
+                                            "mandatory": true
+                                        }
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
                             }]
                         }]
                     },
@@ -861,7 +890,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiond4818169-20ff-49c6-97ff-9a8178fe076f",
-                            "title": "In the last two weeks, how has the coronavirus (COVID-19) pandemic affected your business&apos;s <em>profits,</em> compared with normal expectations for this time of year?",
+                            "title": "In the last two weeks, how has your business&apos;s <em>profits</em> compared with normal expectations for this time of year?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer7bbe3645-7ccc-48d1-a5ac-d40c735466ba",
@@ -984,6 +1013,14 @@
                     },
                     {
                         "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            },
+                            {
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains any",
                                 "values": [
@@ -1000,14 +1037,6 @@
                                     "West Midlands",
                                     "Yorkshire and The Humber"
                                 ]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
                             }
                         ]
                     }
@@ -1018,7 +1047,7 @@
             "id": "section139b1d35-6271-4893-8eef-e1a36f2eb3c9",
             "title": "Exporting",
             "groups": [{
-                "id": "group139b1d35-6271-4893-8eef-e1a36f2eb3c9",
+                "id": "group8c195237-6ad0-4155-b70b-61e8701a4df9",
                 "title": "Exporting",
                 "blocks": [{
                         "type": "Interstitial",
@@ -1107,7 +1136,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group41cccde6-9e36-409b-ba26-f2b1b9760306",
+                                    "group": "group72d53cba-63dd-4dc2-af40-5a8667f94704",
                                     "when": [{
                                         "id": "answerd78f239f-b8b6-4e7b-980f-285f45a2945e",
                                         "condition": "contains any",
@@ -1158,6 +1187,62 @@
                                     }
                                 ]
                             }]
+                        }]
+                    },
+                    {
+                        "id": "block55437b87-822f-4aa8-af6d-95498e5e28b5",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question55437b87-822f-4aa8-af6d-95498e5e28b5",
+                            "title": "Have you changed where you have  exported your goods or services to in the <em>last two weeks</em>?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer348f5169-29f2-47cc-a4d6-13695807100b",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Changed from EU to non-EU",
+                                            "value": "Changed from EU to non-EU",
+                                            "q_code": "81"
+                                        },
+                                        {
+                                            "label": "Changed from non-EU to EU",
+                                            "value": "Changed from non-EU to EU",
+                                            "q_code": "82"
+                                        },
+                                        {
+                                            "label": "Changed in a different way",
+                                            "value": "Changed in a different way",
+                                            "q_code": "83",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answeraf2749ab-1185-4879-b509-8b3d6cce0a3e",
+                                                "mandatory": false
+                                            }
+                                        },
+                                        {
+                                            "label": "No changes made",
+                                            "value": "No changes made",
+                                            "q_code": "80"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer348f5169-29f2-47cc-a4d6-13695807100b-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "89"
+                                    }]
+                                }
+                            ]
                         }]
                     },
                     {
@@ -1219,7 +1304,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc5f972ec-6082-4ae9-9540-7564994f6340",
-                            "title": "Have you experienced any of the following challenges with exporting over the <em>last two weeks</em>?",
+                            "title": "Have you experienced any of the following challenges with exporting goods or services over the <em>last two weeks</em>?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -1229,6 +1314,17 @@
                                     "label": "Select all that apply",
                                     "description": "",
                                     "options": [{
+                                            "label": "Additional paperwork",
+                                            "value": "Additional paperwork",
+                                            "q_code": "6013",
+                                            "description": "For example, customs declarations, conformity assessments, health and rules-of-origin certifications"
+                                        },
+                                        {
+                                            "label": "Basing some staff in an EU member state to be allowed to work",
+                                            "value": "Basing some staff in an EU member state to be allowed to work",
+                                            "q_code": "6014"
+                                        },
+                                        {
                                             "label": "Change in transportation costs",
                                             "value": "Change in transportation costs",
                                             "q_code": "607",
@@ -1243,7 +1339,8 @@
                                         {
                                             "label": "Customs duties or levies",
                                             "value": "Customs duties or levies",
-                                            "q_code": "608"
+                                            "q_code": "608",
+                                            "description": "Including VAT and other taxes"
                                         },
                                         {
                                             "label": "Destination countries changing their border restrictions",
@@ -1256,20 +1353,20 @@
                                             "q_code": "609"
                                         },
                                         {
-                                            "label": "Lack of hauliers to transport goods",
-                                            "value": "Lack of hauliers to transport goods",
-                                            "q_code": "6010"
-                                        },
-                                        {
-                                            "label": "Lack of logistics equipment",
-                                            "value": "Lack of logistics equipment",
-                                            "q_code": "6011",
+                                            "label": "Lack of hauliers to transport goods or lack of logistics equipment",
+                                            "value": "Lack of hauliers to transport goods or lack of logistics equipment",
+                                            "q_code": "6015",
                                             "description": "For example, containers, warehouse capacity or wooden palettes"
                                         },
                                         {
                                             "label": "Reduced demand for products and services",
                                             "value": "Reduced demand for products and services",
                                             "q_code": "6012"
+                                        },
+                                        {
+                                            "label": "Work permit or visa restrictions, or lack of mutual recognition of professional qualifications",
+                                            "value": "Work permit or visa restrictions, or lack of mutual recognition of professional qualifications",
+                                            "q_code": "6016"
                                         },
                                         {
                                             "label": "Other",
@@ -1319,7 +1416,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbbf044b0-d4f2-4bfd-83be-f6f3e8f03e69",
-                            "title": "What was the <em>main cause </em>of these exporting challenges?",
+                            "title": "What was the <em>main cause</em> of these exporting challenges?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerb1c9a35d-bfaa-4cd5-aca2-445a873b13b5",
@@ -1333,12 +1430,12 @@
                                         "value": "Coronavirus (COVID-19) pandemic"
                                     },
                                     {
-                                        "label": "End of the the EU transition period",
-                                        "value": "End of the the EU transition period"
+                                        "label": "End of the EU transition period",
+                                        "value": "End of the EU transition period"
                                     },
                                     {
-                                        "label": "Coronavirus (COVID-19) pandemic and the end of the the EU transition period",
-                                        "value": "Coronavirus (COVID-19) pandemic and the end of the the EU transition period"
+                                        "label": "Coronavirus (COVID-19) pandemic and the end of the EU transition period",
+                                        "value": "Coronavirus (COVID-19) pandemic and the end of the EU transition period"
                                     },
                                     {
                                         "label": "Other",
@@ -1611,6 +1708,14 @@
                     },
                     {
                         "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            },
+                            {
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains any",
                                 "values": [
@@ -1627,14 +1732,6 @@
                                     "West Midlands",
                                     "Yorkshire and The Humber"
                                 ]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
                             }
                         ]
                     }
@@ -1645,7 +1742,7 @@
             "id": "section41cccde6-9e36-409b-ba26-f2b1b9760306",
             "title": "Importing",
             "groups": [{
-                "id": "group41cccde6-9e36-409b-ba26-f2b1b9760306",
+                "id": "group72d53cba-63dd-4dc2-af40-5a8667f94704",
                 "title": "Importing",
                 "blocks": [{
                         "type": "Interstitial",
@@ -1730,7 +1827,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupf4db3101-f01d-4ae9-878b-7f62b0f97eea",
+                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
                                     "when": [{
                                         "id": "answer66fa416f-8aa3-4bfb-a7c4-72c450ad718d",
                                         "condition": "contains any",
@@ -1788,7 +1885,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionea33d055-b20c-46a0-99e8-64ea77ad06ff",
-                            "title": "Have you changed <em>where you have sourced</em> your imports of goods or services from in the last two weeks?",
+                            "title": "Have you changed where you have sourced your imports of goods or services from in the <em>last two weeks</em>?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -1878,7 +1975,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupf4db3101-f01d-4ae9-878b-7f62b0f97eea",
+                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
                                     "when": [{
                                         "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
                                         "condition": "contains any",
@@ -1908,15 +2005,16 @@
                                     "label": "Select all that apply",
                                     "description": "",
                                     "options": [{
-                                            "label": "Accessing Government-secured freight capacity",
-                                            "value": "Accessing Government-secured freight capacity",
-                                            "q_code": "707",
-                                            "description": "This is ferry space bought by the government, for use by businesses who supply critical goods"
+                                            "label": "Additional paperwork",
+                                            "value": "Additional paperwork",
+                                            "q_code": "7015",
+                                            "description": "For example, customs declarations, conformity assessments, health and rules-of-origin certifications"
                                         },
                                         {
                                             "label": "Change in transportation costs",
                                             "value": "Change in transportation costs",
-                                            "q_code": "708"
+                                            "q_code": "708",
+                                            "description": "For example, freight rates"
                                         },
                                         {
                                             "label": "Closure of infrastructure used to import goods or services",
@@ -1927,7 +2025,13 @@
                                         {
                                             "label": "Customs duties or levies",
                                             "value": "Customs duties or levies",
-                                            "q_code": "709"
+                                            "q_code": "709",
+                                            "description": "Including VAT and other taxes"
+                                        },
+                                        {
+                                            "label": "Destination countries changing their border restrictions",
+                                            "value": "Destination countries changing their border restrictions",
+                                            "q_code": "7016"
                                         },
                                         {
                                             "label": "Disruption at UK borders",
@@ -1935,14 +2039,9 @@
                                             "q_code": "7010"
                                         },
                                         {
-                                            "label": "Lack of hauliers to transport goods",
-                                            "value": "Lack of hauliers to transport goods",
-                                            "q_code": "7011"
-                                        },
-                                        {
-                                            "label": "Lack of logistics equipment",
-                                            "value": "Lack of logistics equipment",
-                                            "q_code": "7012",
+                                            "label": "Lack of hauliers to transport goods or lack of logistics equipment",
+                                            "value": "Lack of hauliers to transport goods or lack of logistics equipment",
+                                            "q_code": "7017",
                                             "description": "For example, containers, warehouse capacity or wooden palettes"
                                         },
                                         {
@@ -2017,12 +2116,12 @@
                                         "value": "Coronavirus (COVID-19) pandemic"
                                     },
                                     {
-                                        "label": "End of the the EU transition period",
-                                        "value": "End of the the EU transition period"
+                                        "label": "End of the EU transition period",
+                                        "value": "End of the EU transition period"
                                     },
                                     {
-                                        "label": "Coronavirus (COVID-19) pandemic and the end of the the EU transition period",
-                                        "value": "Coronavirus (COVID-19) pandemic and the end of the the EU transition period"
+                                        "label": "Coronavirus (COVID-19) pandemic and the end of the EU transition period",
+                                        "value": "Coronavirus (COVID-19) pandemic and the end of the EU transition period"
                                     },
                                     {
                                         "label": "Other",
@@ -2248,6 +2347,14 @@
                     },
                     {
                         "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            },
+                            {
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains any",
                                 "values": [
@@ -2264,14 +2371,6 @@
                                     "West Midlands",
                                     "Yorkshire and The Humber"
                                 ]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
                             }
                         ]
                     }
@@ -2282,13 +2381,13 @@
             "id": "sectionf4db3101-f01d-4ae9-878b-7f62b0f97eea",
             "title": "Supply chains",
             "groups": [{
-                "id": "groupf4db3101-f01d-4ae9-878b-7f62b0f97eea",
+                "id": "groupf90a4276-7496-4743-a79b-905dba902a3a",
                 "title": "Supply chains",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "groupf4db3101-f01d-4ae9-878b-7f62b0f97eea-introduction",
                         "title": "Supply chains",
-                        "description": "<p>This section asks for information about:</p><ul><li>any changes to supply chains</li><li>the availability of materials, goods and services within the UK</li><li>use of UK logistics services</li></ul>"
+                        "description": "<p>This section asks for information about:</p><ul><li>any changes to supply chains</li><li>the availability of materials, goods and services within the UK</li><li>the availability of materials, goods and services within the EU</li><li>use of UK logistics services</li></ul>"
                     },
                     {
                         "id": "block2792b362-de84-4ee6-9bf5-ce136096455d",
@@ -2331,7 +2430,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "blockf3f71f34-ee5c-43ba-8c12-a22d44bd6497",
+                                    "block": "block111abe44-19c4-45f4-82c5-d83eacee41a1",
                                     "when": [{
                                         "id": "answer4e1c3e3a-97a2-4c91-bfb8-d4d699695ab5",
                                         "condition": "contains any",
@@ -2381,7 +2480,7 @@
                                             "label": "Using more non-EU suppliers",
                                             "value": "Using more non-EU suppliers",
                                             "q_code": "2373",
-                                            "description": "As in the rest of the world, excluding EU and UK"
+                                            "description": "The rest of the world, excluding EU and UK"
                                         },
                                         {
                                             "label": "Moving the supply chain away from the short straits crossings",
@@ -2428,6 +2527,107 @@
                         }]
                     },
                     {
+                        "id": "block111abe44-19c4-45f4-82c5-d83eacee41a1",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question111abe44-19c4-45f4-82c5-d83eacee41a1",
+                            "title": "Has your business had any <em>extra costs</em> due to the end of the EU transition period?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer96287fd2-870d-4fea-b453-43b05cac8573",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Costs due to increased red tape",
+                                            "value": "Costs due to increased red tape",
+                                            "q_code": "2381",
+                                            "description": "For example, customs and rules of origin paperwork"
+                                        },
+                                        {
+                                            "label": "Costs incurred from wasted goods",
+                                            "value": "Costs incurred from wasted goods",
+                                            "q_code": "2382"
+                                        },
+                                        {
+                                            "label": "Cost of setting up EU subsidiaries",
+                                            "value": "Cost of setting up EU subsidiaries",
+                                            "q_code": "2383"
+                                        },
+                                        {
+                                            "label": "Extra tariffs or taxes",
+                                            "value": "Extra tariffs or taxes",
+                                            "q_code": "2384"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "2385",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answer427ea3bb-9dd3-4ff7-927c-8944b834b23b",
+                                                "mandatory": false
+                                            }
+                                        },
+                                        {
+                                            "label": "Not sure",
+                                            "value": "Not sure",
+                                            "q_code": "2389"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer96287fd2-870d-4fea-b453-43b05cac8573-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "No extra costs",
+                                        "value": "No extra costs",
+                                        "q_code": "2380"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "block78f97e48-ad45-4823-8d06-80d9a472cb27",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question78f97e48-ad45-4823-8d06-80d9a472cb27",
+                            "title": "Was your business able to get the materials, goods or services it needed <em>from the EU</em> in the <em>last two weeks</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerb434ea9e-113e-404f-ba8d-704d4cdf9a81",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "24",
+                                "options": [{
+                                        "label": "Yes, the business has been able to get the materials, goods or services it needed",
+                                        "value": "Yes, the business has been able to get the materials, goods or services it needed"
+                                    },
+                                    {
+                                        "label": "Yes, but the business had to change suppliers or find alternative solutions",
+                                        "value": "Yes, but the business had to change suppliers or find alternative solutions"
+                                    },
+                                    {
+                                        "label": "No, the business has not been able to get the materials, goods or services needed",
+                                        "value": "No, the business has not been able to get the materials, goods or services needed"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
                         "id": "blockf3f71f34-ee5c-43ba-8c12-a22d44bd6497",
                         "type": "Question",
                         "questions": [{
@@ -2442,8 +2642,8 @@
                                 "description": "",
                                 "q_code": "13",
                                 "options": [{
-                                        "label": "Yes, the business has been able to get what it needed",
-                                        "value": "Yes, the business has been able to get what it needed"
+                                        "label": "Yes, the business has been able to get the materials, goods or services it needed",
+                                        "value": "Yes, the business has been able to get the materials, goods or services it needed"
                                     },
                                     {
                                         "label": "Yes, but the business had to change suppliers or find alternative solutions",
@@ -2713,6 +2913,14 @@
                     },
                     {
                         "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            },
+                            {
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains any",
                                 "values": [
@@ -2729,6 +2937,257 @@
                                     "West Midlands",
                                     "Yorkshire and The Humber"
                                 ]
+                            }
+                        ]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section7f4cc636-79a2-499c-ac28-bfa6b3d04091",
+            "title": "Prices of materials, goods and services",
+            "groups": [{
+                "id": "groupc7cb194b-8be5-463c-84ad-f330c24ecef4",
+                "title": "Prices of materials, goods and services",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group7f4cc636-79a2-499c-ac28-bfa6b3d04091-introduction",
+                        "title": "Prices of materials, goods and services",
+                        "description": "<p>This section asks for information on any changes to the prices of goods and services bought or sold by the business in the last two weeks.</p>"
+                    },
+                    {
+                        "id": "block1fe3a183-a26d-49e2-a2a8-6ccf220059a6",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1fe3a183-a26d-49e2-a2a8-6ccf220059a6",
+                            "title": "How did the prices of materials, goods or services <em>bought</em> by {{ metadata['ru_name'] }} change in the <em>last two weeks</em>, compared with normal price fluctuations?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerc94ef925-704e-4784-a3cd-f28e4c468390",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "15",
+                                "options": [{
+                                        "label": "Prices increased more than normal",
+                                        "value": "Prices increased more than normal"
+                                    },
+                                    {
+                                        "label": "Prices did not change any more than normal",
+                                        "value": "Prices did not change any more than normal"
+                                    },
+                                    {
+                                        "label": "Prices decreased more than normal",
+                                        "value": "Prices decreased more than normal"
+                                    },
+                                    {
+                                        "label": "Some prices increased, some prices decreased",
+                                        "value": "Some prices increased, some prices decreased"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block2f2ada3e-2493-4b61-95d1-8082a59cc662",
+                                    "when": [{
+                                        "id": "answerc94ef925-704e-4784-a3cd-f28e4c468390",
+                                        "condition": "contains any",
+                                        "values": ["Prices did not change any more than normal", "Not sure", "Not applicable"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockd0e1d8cf-6424-4cb3-bf95-18603e1e833f"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockd0e1d8cf-6424-4cb3-bf95-18603e1e833f",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiond0e1d8cf-6424-4cb3-bf95-18603e1e833f",
+                            "title": "Please give more details about the prices of materials, goods or services that changed",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer3c5456a6-ac39-4d68-b01a-14b125a9696b",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "16",
+                                "max_length": 2000
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block2f2ada3e-2493-4b61-95d1-8082a59cc662",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question2f2ada3e-2493-4b61-95d1-8082a59cc662",
+                            "title": "How did the prices of goods or services <em>sold</em> by your business change in the <em>last two weeks</em>, compared with normal fluctuations?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerdbde29eb-0a6a-4474-8d8e-4bb5bbc1bd47",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "18",
+                                "options": [{
+                                        "label": "Prices increased more than normal",
+                                        "value": "Prices increased more than normal"
+                                    },
+                                    {
+                                        "label": "Prices did not change any more than normal",
+                                        "value": "Prices did not change any more than normal"
+                                    },
+                                    {
+                                        "label": "Prices decreased more than normal",
+                                        "value": "Prices decreased more than normal"
+                                    },
+                                    {
+                                        "label": "Some prices increased, some prices decreased",
+                                        "value": "Some prices increased, some prices decreased"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "groupe1705179-3d6c-4816-8df3-e991c555e13d",
+                                    "when": [{
+                                        "id": "answerdbde29eb-0a6a-4474-8d8e-4bb5bbc1bd47",
+                                        "condition": "contains any",
+                                        "values": ["Prices did not change any more than normal", "Not sure", "Not applicable"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockbfa09860-fd8f-4a08-9094-378f19572bde"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockbfa09860-fd8f-4a08-9094-378f19572bde",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionbfa09860-fd8f-4a08-9094-378f19572bde",
+                            "title": "Please give more details about how prices changed",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answeree939208-350e-4e20-aff4-91cc42617904",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "19",
+                                "max_length": 2000
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block710733dd-1007-4c9b-8179-06e1df6cb1a8",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question710733dd-1007-4c9b-8179-06e1df6cb1a8",
+                            "title": "Has your business had an increase in demand for goods or services <em>sold</em> in the <em>last two weeks</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer26fc859c-03dc-4f9b-bfc0-0c969eb4c6d2",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "136",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "groupe1705179-3d6c-4816-8df3-e991c555e13d",
+                                    "when": [{
+                                        "id": "answer26fc859c-03dc-4f9b-bfc0-0c969eb4c6d2",
+                                        "condition": "contains any",
+                                        "values": ["No", "Not sure", "Not applicable"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockeb96ae25-67d8-4a89-a87a-102e5e37414f"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockeb96ae25-67d8-4a89-a87a-102e5e37414f",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questioneb96ae25-67d8-4a89-a87a-102e5e37414f",
+                            "title": "Which goods or services have had an increase in demand?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer0948d890-7fa6-4e6b-8b6b-d995ad7f014e",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "137",
+                                "max_length": 2000
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                            "condition": "contains any",
+                            "values": ["Permanently ceased trading"]
+                        }]
+                    },
+                    {
+                        "when": [{
+                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
+                                "condition": "contains all",
+                                "values": ["Not sure"]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2739,28 +3198,105 @@
                                 ]
                             }
                         ]
+                    },
+                    {
+                        "when": [{
+                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
+                                "condition": "contains all",
+                                "values": ["Not applicable"]
+                            },
+                            {
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
+                                "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
+                                "condition": "contains all",
+                                "values": ["None of our sites are temporarily or permanently closed"]
+                            },
+                            {
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
+                                "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
+                                "condition": "contains all",
+                                "values": ["Not sure"]
+                            },
+                            {
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            },
+                            {
+                                "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
+                                "condition": "contains any",
+                                "values": [
+                                    "Northern Ireland",
+                                    "Scotland",
+                                    "Wales",
+                                    "East of England",
+                                    "East Midlands",
+                                    "Greater London",
+                                    "North East of England",
+                                    "North West of England",
+                                    "South East of England",
+                                    "South West of England",
+                                    "West Midlands",
+                                    "Yorkshire and The Humber"
+                                ]
+                            }
+                        ]
                     }
                 ]
             }]
         },
         {
-            "id": "sectiona532f2bc-d06f-45a2-b7a0-d69654e87b87",
+            "id": "sectionae95ec7d-f17b-441e-ba94-1daafa37be78",
             "title": "Sending goods from GB to Northern Ireland",
             "groups": [{
-                "id": "groupa532f2bc-d06f-45a2-b7a0-d69654e87b87",
+                "id": "groupe1705179-3d6c-4816-8df3-e991c555e13d",
                 "title": "Sending goods from GB to Northern Ireland",
                 "blocks": [{
                         "type": "Interstitial",
-                        "id": "groupa532f2bc-d06f-45a2-b7a0-d69654e87b87-introduction",
+                        "id": "groupae95ec7d-f17b-441e-ba94-1daafa37be78-introduction",
                         "title": "Sending goods from GB to Northern Ireland",
                         "description": "<p>This section asks for information about sending goods <strong>from </strong>GB <strong>to </strong>Northern Ireland, and any related challenges.</p><p><strong>Include</strong></p><p>Goods sent from GB to Northern Ireland to:</p><ul><li>other businesses</li><li>other parts of your business</li><li>individual customers</li></ul><p>GB means &#x2018;Great Britain&#x2019; which includes England, Scotland and Wales, but excludes Northern Ireland.</p>"
                     },
                     {
-                        "id": "blockc3b1b646-fffb-43f8-8192-243c29e3aa6a",
+                        "id": "block7885486d-4832-42ef-920d-6a87499f8e07",
                         "type": "Question",
                         "questions": [{
-                            "id": "questionc3b1b646-fffb-43f8-8192-243c29e3aa6a",
-                            "title": "Has  {{ metadata['ru_name'] }} <em>sent goods</em> from GB to Northern Ireland in the last 12 months?",
+                            "id": "question7885486d-4832-42ef-920d-6a87499f8e07",
+                            "title": "Has {{ metadata['ru_name'] }} <em>sent goods</em> from GB to Northern Ireland in the last 12 months?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include</strong>"
@@ -2781,7 +3317,7 @@
                             }],
                             "type": "General",
                             "answers": [{
-                                "id": "answerd889b287-60b0-4e8f-9b04-7a4f81cd2147",
+                                "id": "answerb9a4e651-46e3-486e-86e3-b2c861ceacec",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -2804,9 +3340,9 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group7844d150-73b7-4785-81a7-645a3f7589df",
+                                    "group": "group251adc99-f889-4125-95b0-a810cb9ef3da",
                                     "when": [{
-                                        "id": "answerd889b287-60b0-4e8f-9b04-7a4f81cd2147",
+                                        "id": "answerb9a4e651-46e3-486e-86e3-b2c861ceacec",
                                         "condition": "contains any",
                                         "values": ["No", "Not sure"]
                                     }]
@@ -2814,20 +3350,20 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block15ddbc9b-dee3-4bb7-a810-f2c69618f44d"
+                                    "block": "block0da1f44c-8867-4753-93ee-47dd767f180f"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "block15ddbc9b-dee3-4bb7-a810-f2c69618f44d",
+                        "id": "block0da1f44c-8867-4753-93ee-47dd767f180f",
                         "type": "Question",
                         "questions": [{
-                            "id": "question15ddbc9b-dee3-4bb7-a810-f2c69618f44d",
+                            "id": "question0da1f44c-8867-4753-93ee-47dd767f180f",
                             "title": "What route did your business <em>mainly use</em> over the last 12 months, to send goods from GB to Northern Ireland?",
                             "type": "General",
                             "answers": [{
-                                "id": "answer24442748-1d80-489b-ad12-c8cddf1a7e99",
+                                "id": "answera909a44a-ad6f-4eca-9ee1-986608492ad7",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -2847,7 +3383,7 @@
                                         "detail_answer": {
                                             "label": "Please describe",
                                             "type": "TextField",
-                                            "id": "answer7ad5752f-c411-49d4-9b7e-5f714add0466",
+                                            "id": "answer01df80be-6551-4da4-a015-78de2572ca63",
                                             "mandatory": true
                                         }
                                     },
@@ -2860,14 +3396,14 @@
                         }]
                     },
                     {
-                        "id": "block59ccafe0-f6c1-412e-9415-e33fb1476fd2",
+                        "id": "block8a1dd00e-da63-4e57-ad77-1bedb0668e5f",
                         "type": "Question",
                         "questions": [{
-                            "id": "question59ccafe0-f6c1-412e-9415-e33fb1476fd2",
+                            "id": "question8a1dd00e-da63-4e57-ad77-1bedb0668e5f",
                             "title": "Has your business sent, or intended to send, goods from GB to Northern Ireland in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
-                                "id": "answerfc0b23c0-7fdd-44c6-8d85-28942dce089a",
+                                "id": "answerf8610795-dc17-437c-a5a0-9ac0bbd56d70",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -2890,9 +3426,9 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group7844d150-73b7-4785-81a7-645a3f7589df",
+                                    "group": "group251adc99-f889-4125-95b0-a810cb9ef3da",
                                     "when": [{
-                                        "id": "answerfc0b23c0-7fdd-44c6-8d85-28942dce089a",
+                                        "id": "answerf8610795-dc17-437c-a5a0-9ac0bbd56d70",
                                         "condition": "contains any",
                                         "values": ["No", "Not sure"]
                                     }]
@@ -2900,20 +3436,20 @@
                             },
                             {
                                 "goto": {
-                                    "block": "blockab263101-3330-4679-8ad0-842bcb6abc65"
+                                    "block": "block71ab40f4-3c79-48d5-954a-a934cdac4775"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "blockab263101-3330-4679-8ad0-842bcb6abc65",
+                        "id": "block71ab40f4-3c79-48d5-954a-a934cdac4775",
                         "type": "Question",
                         "questions": [{
-                            "id": "questionab263101-3330-4679-8ad0-842bcb6abc65",
+                            "id": "question71ab40f4-3c79-48d5-954a-a934cdac4775",
                             "title": "In the last two weeks, has the <em>volume of goods</em> your business would normally send from GB to Northern Ireland changed?",
                             "type": "General",
                             "answers": [{
-                                "id": "answerf0a63ea1-91f6-43d6-ba8c-56cb82d64309",
+                                "id": "answer33034122-f409-4aee-a8ae-78c8d035b058",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -2948,9 +3484,9 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block3bf82c14-da47-4aac-af5b-e0c63da5cca9",
+                                    "block": "block6f1d946b-d5a2-49b6-afe7-3fec659377f6",
                                     "when": [{
-                                        "id": "answerf0a63ea1-91f6-43d6-ba8c-56cb82d64309",
+                                        "id": "answer33034122-f409-4aee-a8ae-78c8d035b058",
                                         "condition": "contains any",
                                         "values": ["Volume has increased", "Volume has stayed the same", "Not sure", "Not applicable"]
                                     }]
@@ -2958,21 +3494,21 @@
                             },
                             {
                                 "goto": {
-                                    "block": "blockfa91b395-c11e-4731-a437-c3d1eb2efe47"
+                                    "block": "blocke28f73d9-f8da-41e7-bfef-3770badff0dc"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "blockfa91b395-c11e-4731-a437-c3d1eb2efe47",
+                        "id": "blocke28f73d9-f8da-41e7-bfef-3770badff0dc",
                         "type": "Question",
                         "questions": [{
-                            "id": "questionfa91b395-c11e-4731-a437-c3d1eb2efe47",
-                            "title": "What were the reasons for this change in the volume of goods sent from GB to Northern Ireland?",
+                            "id": "questione28f73d9-f8da-41e7-bfef-3770badff0dc",
+                            "title": "What were the <em>reasons</em> for this change in the volume of goods sent from GB to Northern Ireland?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
-                                    "id": "answerc221a3f2-e891-46b7-a73a-d64e2700c1e3",
+                                    "id": "answer723d87e3-8f17-4d55-99cf-71780a6d94f9",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "label": "Select all that apply",
@@ -3004,7 +3540,7 @@
                                             "detail_answer": {
                                                 "label": "Please describe",
                                                 "type": "TextField",
-                                                "id": "answer4d95f85e-629b-4d69-b581-ecd115f73bda",
+                                                "id": "answer0cc2925c-1198-46e7-8e0a-15f962a8c76c",
                                                 "mandatory": false
                                             }
                                         },
@@ -3016,7 +3552,7 @@
                                     ]
                                 },
                                 {
-                                    "id": "answerc221a3f2-e891-46b7-a73a-d64e2700c1e3-exclusive",
+                                    "id": "answer723d87e3-8f17-4d55-99cf-71780a6d94f9-exclusive",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "description": "",
@@ -3030,14 +3566,14 @@
                         }]
                     },
                     {
-                        "id": "block3bf82c14-da47-4aac-af5b-e0c63da5cca9",
+                        "id": "block6f1d946b-d5a2-49b6-afe7-3fec659377f6",
                         "type": "Question",
                         "questions": [{
-                            "id": "question3bf82c14-da47-4aac-af5b-e0c63da5cca9",
+                            "id": "question6f1d946b-d5a2-49b6-afe7-3fec659377f6",
                             "title": "Has your business changed the <em>main route</em> for sending goods from GB to Northern Ireland in the last two weeks?",
                             "type": "General",
                             "answers": [{
-                                "id": "answerb1169fae-ae47-4dc7-9b19-aa597fcc1163",
+                                "id": "answer479f6c07-6a60-465f-a701-62f0fe06f03f",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -3064,9 +3600,9 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group7844d150-73b7-4785-81a7-645a3f7589df",
+                                    "group": "group251adc99-f889-4125-95b0-a810cb9ef3da",
                                     "when": [{
-                                        "id": "answerb1169fae-ae47-4dc7-9b19-aa597fcc1163",
+                                        "id": "answer479f6c07-6a60-465f-a701-62f0fe06f03f",
                                         "condition": "contains any",
                                         "values": ["No change made", "Not sure"]
                                     }]
@@ -3074,28 +3610,28 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block21a8aaef-a71e-491b-ac56-d68d27febbfa"
+                                    "block": "block9fac036f-ccf3-4c6c-ad5f-f9c0f89fe48c"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "block21a8aaef-a71e-491b-ac56-d68d27febbfa",
+                        "id": "block9fac036f-ccf3-4c6c-ad5f-f9c0f89fe48c",
                         "type": "Question",
                         "questions": [{
-                            "id": "question21a8aaef-a71e-491b-ac56-d68d27febbfa",
+                            "id": "question9fac036f-ccf3-4c6c-ad5f-f9c0f89fe48c",
                             "title": "What were the reasons for this change in route?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
-                                    "id": "answer714d6f19-518c-4bd3-aef9-4d1ccbd775aa",
+                                    "id": "answer34d62516-f1a5-4489-b07c-9e7d296b106b",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "label": "Select all that apply",
                                     "description": "",
                                     "options": [{
-                                            "label": "Coronavirus (Covid-19) pandemic",
-                                            "value": "Coronavirus (Covid-19) pandemic",
+                                            "label": "Coronavirus (COVID-19) pandemic",
+                                            "value": "Coronavirus (COVID-19) pandemic",
                                             "q_code": "2581"
                                         },
                                         {
@@ -3115,7 +3651,7 @@
                                             "detail_answer": {
                                                 "label": "Please describe",
                                                 "type": "TextField",
-                                                "id": "answer23d4c63f-c7bf-47e7-86ef-bbd8feef325a",
+                                                "id": "answerd7013978-d3fa-47a2-b81a-abc853b1e0be",
                                                 "mandatory": false
                                             }
                                         },
@@ -3127,7 +3663,7 @@
                                     ]
                                 },
                                 {
-                                    "id": "answer714d6f19-518c-4bd3-aef9-4d1ccbd775aa-exclusive",
+                                    "id": "answer34d62516-f1a5-4489-b07c-9e7d296b106b-exclusive",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "description": "",
@@ -3214,6 +3750,14 @@
                     },
                     {
                         "when": [{
+                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                "condition": "contains any",
+                                "values": [
+                                    "Paused trading but intends to restart in the next two weeks",
+                                    "Paused trading and does not intend to restart in the next two weeks"
+                                ]
+                            },
+                            {
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains any",
                                 "values": [
@@ -3230,14 +3774,6 @@
                                     "West Midlands",
                                     "Yorkshire and The Humber"
                                 ]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
                             }
                         ]
                     }
@@ -3245,451 +3781,27 @@
             }]
         },
         {
-            "id": "section7844d150-73b7-4785-81a7-645a3f7589df",
-            "title": "Prices of materials, goods and services",
-            "groups": [{
-                "id": "group7844d150-73b7-4785-81a7-645a3f7589df",
-                "title": "Prices of materials, goods and services",
-                "blocks": [{
-                        "type": "Interstitial",
-                        "id": "group7844d150-73b7-4785-81a7-645a3f7589df-introduction",
-                        "title": "Prices of materials, goods and services",
-                        "description": "<p>This section asks for information on any changes to the prices and demand of goods and services bought or sold by the business in the last two weeks.</p>"
-                    },
-                    {
-                        "id": "block55eac8dc-13ff-44d7-8467-2e42615dbfa7",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question55eac8dc-13ff-44d7-8467-2e42615dbfa7",
-                            "title": "How did the prices of materials, goods or services <em>bought</em> by {{ metadata['ru_name'] }} change in the last two weeks, compared with normal price fluctuations?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerca31b39b-c2aa-427e-aba0-ad7d93a4721c",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "15",
-                                "options": [{
-                                        "label": "Prices increased more than normal",
-                                        "value": "Prices increased more than normal"
-                                    },
-                                    {
-                                        "label": "Prices did not change any more than normal",
-                                        "value": "Prices did not change any more than normal"
-                                    },
-                                    {
-                                        "label": "Prices decreased more than normal",
-                                        "value": "Prices decreased more than normal"
-                                    },
-                                    {
-                                        "label": "Some prices increased, some prices decreased",
-                                        "value": "Some prices increased, some prices decreased"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block4f40e5bb-b07e-4be2-a383-d44d2028ffd1",
-                                    "when": [{
-                                        "id": "answerca31b39b-c2aa-427e-aba0-ad7d93a4721c",
-                                        "condition": "contains any",
-                                        "values": ["Not applicable"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockc8bcb324-6b8f-4b64-8890-7e0acf28ee87",
-                                    "when": [{
-                                        "id": "answerca31b39b-c2aa-427e-aba0-ad7d93a4721c",
-                                        "condition": "contains any",
-                                        "values": ["Prices did not change any more than normal", "Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block3b871aed-cadd-408d-8ee5-5b411f3aa7ff"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block3b871aed-cadd-408d-8ee5-5b411f3aa7ff",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question3b871aed-cadd-408d-8ee5-5b411f3aa7ff",
-                            "title": "Please give more details about the prices of materials, goods or services that changed",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerdee8bb82-41ef-4f5e-8f14-7d12cc0ca5f6",
-                                "mandatory": false,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "description": "",
-                                "q_code": "16",
-                                "max_length": 2000
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blockc8bcb324-6b8f-4b64-8890-7e0acf28ee87",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionc8bcb324-6b8f-4b64-8890-7e0acf28ee87",
-                            "title": "What are your expectations about changes in prices of materials, goods or services that your business needs for the <em>next two weeks</em>?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer8801e530-c7bb-4741-bfca-ae6b8ccabeb2",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "17",
-                                "options": [{
-                                        "label": "Expect prices to generally increase",
-                                        "value": "Expect prices to generally increase"
-                                    },
-                                    {
-                                        "label": "Expect prices not to change",
-                                        "value": "Expect prices not to change"
-                                    },
-                                    {
-                                        "label": "Expect prices to generally decrease",
-                                        "value": "Expect prices to generally decrease"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block4f40e5bb-b07e-4be2-a383-d44d2028ffd1",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4f40e5bb-b07e-4be2-a383-d44d2028ffd1",
-                            "title": "How did the prices of goods or services <em>sold</em> by your business change in the <em>last two weeks</em>, compared with normal fluctuations?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer391c399a-ae51-415b-acfa-5a3a88739b5d",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "18",
-                                "options": [{
-                                        "label": "Prices increased more than normal",
-                                        "value": "Prices increased more than normal"
-                                    },
-                                    {
-                                        "label": "Prices did not change any more than normal",
-                                        "value": "Prices did not change any more than normal"
-                                    },
-                                    {
-                                        "label": "Prices decreased more than normal",
-                                        "value": "Prices decreased more than normal"
-                                    },
-                                    {
-                                        "label": "Some prices increased, some prices decreased",
-                                        "value": "Some prices increased, some prices decreased"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group91ec421d-5346-4b67-8d16-a8268f1c4c07",
-                                    "when": [{
-                                        "id": "answer391c399a-ae51-415b-acfa-5a3a88739b5d",
-                                        "condition": "contains any",
-                                        "values": ["Not applicable"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blocke59bdefc-388a-4235-b3dd-54eaa399e111",
-                                    "when": [{
-                                        "id": "answer391c399a-ae51-415b-acfa-5a3a88739b5d",
-                                        "condition": "contains any",
-                                        "values": ["Prices did not change any more than normal", "Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block868ac0cf-f5b5-4725-a6d7-e2a1ff3bd1b1"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block868ac0cf-f5b5-4725-a6d7-e2a1ff3bd1b1",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question868ac0cf-f5b5-4725-a6d7-e2a1ff3bd1b1",
-                            "title": "Please give more details about how prices changed",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerfb221667-2407-4485-91ed-113b0586c546",
-                                "mandatory": false,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "description": "",
-                                "q_code": "19",
-                                "max_length": 2000
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blocke59bdefc-388a-4235-b3dd-54eaa399e111",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questione59bdefc-388a-4235-b3dd-54eaa399e111",
-                            "title": "What are your expectations about prices of goods or services that your business will <em>sell</em> over the <em>next two weeks</em>?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerd212db37-1f6e-40eb-9d64-3731b692324a",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "20",
-                                "options": [{
-                                        "label": "Prices will generally increase",
-                                        "value": "Prices will generally increase"
-                                    },
-                                    {
-                                        "label": "Prices will stay the same",
-                                        "value": "Prices will stay the same"
-                                    },
-                                    {
-                                        "label": "Prices will generally decrease",
-                                        "value": "Prices will generally decrease"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blockd040bd7f-7718-4870-91c4-6795138a37f8",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questiond040bd7f-7718-4870-91c4-6795138a37f8",
-                            "title": "Has your business had an increase in demand for goods or services <em>sold</em> in the last two weeks?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer09bfc47d-c8c2-48dc-ad14-27809f503a56",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "136",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group91ec421d-5346-4b67-8d16-a8268f1c4c07",
-                                    "when": [{
-                                        "id": "answer09bfc47d-c8c2-48dc-ad14-27809f503a56",
-                                        "condition": "contains any",
-                                        "values": ["No", "Not sure", "Not applicable"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block9b676359-9da4-4277-89b6-a9112ac452b8"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block9b676359-9da4-4277-89b6-a9112ac452b8",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question9b676359-9da4-4277-89b6-a9112ac452b8",
-                            "title": "Which goods or services have had an increase in demand?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answere25a6f68-769f-4d70-a51b-294b703f9a35",
-                                "mandatory": false,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "description": "",
-                                "q_code": "137",
-                                "max_length": 2000
-                            }]
-                        }]
-                    }
-                ],
-                "skip_conditions": [{
-                        "when": [{
-                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
-                        }]
-                    },
-                    {
-                        "when": [{
-                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
-                                "condition": "contains all",
-                                "values": ["Not sure"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
-                                "condition": "contains all",
-                                "values": ["Not applicable"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
-                                "condition": "contains all",
-                                "values": ["None of our sites are temporarily or permanently closed"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
-                                "condition": "contains all",
-                                "values": ["Not sure"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
-                                "condition": "contains any",
-                                "values": [
-                                    "Northern Ireland",
-                                    "Scotland",
-                                    "Wales",
-                                    "East of England",
-                                    "East Midlands",
-                                    "Greater London",
-                                    "North East of England",
-                                    "North West of England",
-                                    "South East of England",
-                                    "South West of England",
-                                    "West Midlands",
-                                    "Yorkshire and The Humber"
-                                ]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }]
-        },
-        {
-            "id": "section91ec421d-5346-4b67-8d16-a8268f1c4c07",
+            "id": "section165593ff-e20f-42ac-9916-e48a2b4c2851",
             "title": "Stock and capital expenditure",
             "groups": [{
-                "id": "group91ec421d-5346-4b67-8d16-a8268f1c4c07",
+                "id": "group251adc99-f889-4125-95b0-a810cb9ef3da",
                 "title": "Stock and capital expenditure",
                 "blocks": [{
                         "type": "Interstitial",
-                        "id": "group91ec421d-5346-4b67-8d16-a8268f1c4c07-introduction",
+                        "id": "group165593ff-e20f-42ac-9916-e48a2b4c2851-introduction",
                         "title": "Stock and capital expenditure",
                         "description": "<p>This section asks for information about the business&apos;s stock levels, stockpiling and capital expenditure.</p>"
                     },
                     {
-                        "id": "block9a64bb02-fc94-4a2a-bda1-9e96f64bcd01",
+                        "id": "block207aa0eb-bec6-4ed5-a4b8-615966483b0b",
                         "type": "Question",
                         "questions": [{
-                            "id": "question9a64bb02-fc94-4a2a-bda1-9e96f64bcd01",
+                            "id": "question207aa0eb-bec6-4ed5-a4b8-615966483b0b",
                             "title": "How do {{ metadata['ru_name'] }}&#x2019;s <em>stock levels</em> for the last two weeks, compare to normal expectations for this time of year?",
-                            "description": "<p>Your business may use the term  &quot;inventories&quot; instead of &quot;stock&quot;.</p>",
+                            "description": "<p>Your business may use the term &quot;inventories&quot; instead of &quot;stock&quot;.</p>",
                             "type": "General",
                             "answers": [{
-                                "id": "answerc964594d-9b5b-4131-9c79-4baff0be08d1",
+                                "id": "answerbedc9bad-ca91-4b24-a906-2906c109f74d",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -3720,9 +3832,9 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block0f3dde33-d8c8-42ba-b40c-39dca7587ac0",
+                                    "block": "blocke5c7d70f-8576-4da0-847a-47c5b7f9dd27",
                                     "when": [{
-                                        "id": "answerc964594d-9b5b-4131-9c79-4baff0be08d1",
+                                        "id": "answerbedc9bad-ca91-4b24-a906-2906c109f74d",
                                         "condition": "contains any",
                                         "values": ["Stock levels are higher than normal", "Stock levels are lower than normal"]
                                     }]
@@ -3730,20 +3842,20 @@
                             },
                             {
                                 "goto": {
-                                    "block": "blockd6f9f03a-f83a-4f08-81f4-54c313dc7ee1"
+                                    "block": "block1d56462b-5c3a-4f07-b8e7-a47dd7d363f1"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "block0f3dde33-d8c8-42ba-b40c-39dca7587ac0",
+                        "id": "blocke5c7d70f-8576-4da0-847a-47c5b7f9dd27",
                         "type": "Question",
                         "questions": [{
-                            "id": "question0f3dde33-d8c8-42ba-b40c-39dca7587ac0",
+                            "id": "questione5c7d70f-8576-4da0-847a-47c5b7f9dd27",
                             "title": "In the last two weeks, what has had the <em>greatest impact</em> to your business&apos;s stock levels?",
                             "type": "General",
                             "answers": [{
-                                "id": "answerbcb5d2cb-c05b-47b0-9eec-5662e3be0528",
+                                "id": "answer2a00a18e-0371-4f7d-8ef8-13d7a6ba8267",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -3767,7 +3879,7 @@
                                         "detail_answer": {
                                             "label": "Please describe",
                                             "type": "TextField",
-                                            "id": "answere2942036-c9b3-4215-8c8d-ad7a95debad5",
+                                            "id": "answerc7e434fc-fc07-4a57-b14a-53f66e111c23",
                                             "mandatory": true
                                         }
                                     },
@@ -3780,14 +3892,14 @@
                         }]
                     },
                     {
-                        "id": "block8b3a9f71-4818-40db-a9f6-1d7ca69fe9e8",
+                        "id": "blockd4cca85c-7a1b-4c2b-98ab-3ea065bddd7d",
                         "type": "Question",
                         "questions": [{
-                            "id": "question8b3a9f71-4818-40db-a9f6-1d7ca69fe9e8",
+                            "id": "questiond4cca85c-7a1b-4c2b-98ab-3ea065bddd7d",
                             "title": "Please explain this difference in stock levels in more detail",
                             "type": "General",
                             "answers": [{
-                                "id": "answere8a99b49-c76b-4598-925a-047596365fd1",
+                                "id": "answera6642ae9-b54b-4705-8fc8-0f80082d8d61",
                                 "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
@@ -3798,92 +3910,107 @@
                         }]
                     },
                     {
-                        "id": "blockd6f9f03a-f83a-4f08-81f4-54c313dc7ee1",
+                        "id": "block1d56462b-5c3a-4f07-b8e7-a47dd7d363f1",
                         "type": "Question",
                         "questions": [{
-                            "id": "questiond6f9f03a-f83a-4f08-81f4-54c313dc7ee1",
+                            "id": "question1d56462b-5c3a-4f07-b8e7-a47dd7d363f1",
                             "title": "Is your business <em>stockpiling</em> any goods or materials?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
+                            "type": "General",
                             "answers": [{
-                                    "id": "answere468d286-7424-4089-a52b-fed179aa80ab",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Yes, from UK suppliers",
-                                            "value": "Yes, from UK suppliers",
-                                            "q_code": "1381"
-                                        },
-                                        {
-                                            "label": "Yes, from EU suppliers",
-                                            "value": "Yes, from EU suppliers",
-                                            "q_code": "1382"
-                                        },
-                                        {
-                                            "label": "Yes, from non-EU suppliers",
-                                            "value": "Yes, from non-EU suppliers",
-                                            "q_code": "1383",
-                                            "description": "Excluding the UK"
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "1389"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answere468d286-7424-4089-a52b-fed179aa80ab-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not stockpiling any goods or materials",
-                                        "value": "Not stockpiling any goods or materials",
-                                        "q_code": "1380"
-                                    }]
-                                }
-                            ]
+                                "id": "answer4ada9060-878f-475b-b60e-4e1994614151",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "34",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "blocka1605c08-8c33-4f35-a7b7-0bdcbdd55fd7",
+                                    "block": "block13e616b8-1137-4336-a929-66024302f864",
                                     "when": [{
-                                        "id": "answere468d286-7424-4089-a52b-fed179aa80ab",
-                                        "condition": "contains all",
-                                        "values": ["Not sure"]
+                                        "id": "answer4ada9060-878f-475b-b60e-4e1994614151",
+                                        "condition": "contains any",
+                                        "values": ["No", "Not sure"]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "blocka1605c08-8c33-4f35-a7b7-0bdcbdd55fd7",
-                                    "when": [{
-                                        "id": "answere468d286-7424-4089-a52b-fed179aa80ab-exclusive",
-                                        "condition": "contains all",
-                                        "values": ["Not stockpiling any goods or materials"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block4a9947c8-6080-4cc4-8f0a-87ad0c1fc102"
+                                    "block": "block04573d32-dc0b-4e37-b6c4-2e83772d7926"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "block4a9947c8-6080-4cc4-8f0a-87ad0c1fc102",
+                        "id": "block04573d32-dc0b-4e37-b6c4-2e83772d7926",
                         "type": "Question",
                         "questions": [{
-                            "id": "question4a9947c8-6080-4cc4-8f0a-87ad0c1fc102",
-                            "title": "Which of the following materials or goods are you stockpiling?",
+                            "id": "question04573d32-dc0b-4e37-b6c4-2e83772d7926",
+                            "title": "Where are you sourcing these stockpiled goods or materials from?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
-                                    "id": "answera6c1b917-d3b5-4ffc-9a35-dfb8bcd18b56",
+                                    "id": "answer335b7531-a8d2-482b-8855-58d65721b34f",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "UK suppliers",
+                                            "value": "UK suppliers",
+                                            "q_code": "261"
+                                        },
+                                        {
+                                            "label": "EU suppliers",
+                                            "value": "EU suppliers",
+                                            "q_code": "262"
+                                        },
+                                        {
+                                            "label": "Non-EU suppliers",
+                                            "value": "Non-EU suppliers",
+                                            "q_code": "263",
+                                            "description": "Excluding the UK"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer335b7531-a8d2-482b-8855-58d65721b34f-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "269"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "block1e166b9f-d0dd-4e8d-b7a9-d6e99c3ddcca",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1e166b9f-d0dd-4e8d-b7a9-d6e99c3ddcca",
+                            "title": "Which of the following goods or materials are you stockpiling?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer4c26a345-8586-4740-82ea-9182ce5a4f79",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "label": "Select all that apply",
@@ -3922,7 +4049,7 @@
                                             "label": "Other consumer goods",
                                             "value": "Other consumer goods",
                                             "q_code": "1966",
-                                            "description": "For example,  beauty products, cleaning products, sports equipment or pet supplies"
+                                            "description": "For example, beauty products, cleaning products, pet supplies or sports equipment"
                                         },
                                         {
                                             "label": "Other",
@@ -3931,14 +4058,14 @@
                                             "detail_answer": {
                                                 "label": "Please describe",
                                                 "type": "TextField",
-                                                "id": "answer2b8f9624-1755-4dc4-a30a-90c691ddd030",
+                                                "id": "answer762baf6b-40c4-4617-bf96-7179230b539f",
                                                 "mandatory": false
                                             }
                                         }
                                     ]
                                 },
                                 {
-                                    "id": "answera6c1b917-d3b5-4ffc-9a35-dfb8bcd18b56-exclusive",
+                                    "id": "answer4c26a345-8586-4740-82ea-9182ce5a4f79-exclusive",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "description": "",
@@ -3952,15 +4079,15 @@
                         }]
                     },
                     {
-                        "id": "blockee8d5959-583d-4422-80e7-c2274907772a",
+                        "id": "block490bbb85-5ed7-4092-9365-3baac77bd870",
                         "type": "Question",
                         "questions": [{
-                            "id": "questionee8d5959-583d-4422-80e7-c2274907772a",
-                            "title": "Where are the stockpiled materials or goods <em>being stored</em>?",
+                            "id": "question490bbb85-5ed7-4092-9365-3baac77bd870",
+                            "title": "Where are the stockpiled goods or materials <em>being stored</em>?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
-                                    "id": "answer7d6a5b78-965e-403e-bf67-66193b4e2c34",
+                                    "id": "answer2ffa3b75-6e8b-4013-8576-a26864f9305f",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "label": "Select all that apply",
@@ -3983,7 +4110,7 @@
                                     ]
                                 },
                                 {
-                                    "id": "answer7d6a5b78-965e-403e-bf67-66193b4e2c34-exclusive",
+                                    "id": "answer2ffa3b75-6e8b-4013-8576-a26864f9305f-exclusive",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "description": "",
@@ -3997,15 +4124,15 @@
                         }]
                     },
                     {
-                        "id": "blockbb709dd7-90cc-4064-b417-3bcd311d6a00",
+                        "id": "blockadd0804e-6fd0-45bb-9d39-c3520d7d39d3",
                         "type": "Question",
                         "questions": [{
-                            "id": "questionbb709dd7-90cc-4064-b417-3bcd311d6a00",
-                            "title": "Which <em>storage solutions</em> are you using for stockpiling these materials or goods?",
+                            "id": "questionadd0804e-6fd0-45bb-9d39-c3520d7d39d3",
+                            "title": "Which <em>storage solutions</em> are you using for stockpiling these goods or materials?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
-                                    "id": "answer35358624-97ef-4b3f-9c16-477e27fd6bc6",
+                                    "id": "answer2fad3a07-78fe-4b37-b88a-42efc70c8438",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "label": "Select all that apply",
@@ -4032,14 +4159,14 @@
                                             "detail_answer": {
                                                 "label": "Please describe",
                                                 "type": "TextField",
-                                                "id": "answer799cf651-9df1-4058-b182-f56ce23d0345",
+                                                "id": "answer4aa3c8c7-f7a6-433b-9e38-513b6a9e85e3",
                                                 "mandatory": false
                                             }
                                         }
                                     ]
                                 },
                                 {
-                                    "id": "answer35358624-97ef-4b3f-9c16-477e27fd6bc6-exclusive",
+                                    "id": "answer2fad3a07-78fe-4b37-b88a-42efc70c8438-exclusive",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "description": "",
@@ -4053,14 +4180,14 @@
                         }]
                     },
                     {
-                        "id": "blockca2292f6-6638-4eb3-b1bf-3e629d0a3b94",
+                        "id": "blocka0cb8c2c-e5f8-4854-8fc6-d2a6a6e09cc1",
                         "type": "Question",
                         "questions": [{
-                            "id": "questionca2292f6-6638-4eb3-b1bf-3e629d0a3b94",
+                            "id": "questiona0cb8c2c-e5f8-4854-8fc6-d2a6a6e09cc1",
                             "title": "Please tell us more information about the goods or materials you are stockpiling",
                             "type": "General",
                             "answers": [{
-                                "id": "answer151e43a7-e41c-4e14-9b7e-8d3bb56f6636",
+                                "id": "answer9a5a42ff-beb8-4c8b-870a-dc9166fc0465",
                                 "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
@@ -4071,14 +4198,14 @@
                         }]
                     },
                     {
-                        "id": "blocka1605c08-8c33-4f35-a7b7-0bdcbdd55fd7",
+                        "id": "block13e616b8-1137-4336-a929-66024302f864",
                         "type": "Question",
                         "questions": [{
-                            "id": "questiona1605c08-8c33-4f35-a7b7-0bdcbdd55fd7",
-                            "title": "How has the coronavirus (COVID-19) pandemic affected your business&apos;s <em>capital expenditure</em>?",
+                            "id": "question13e616b8-1137-4336-a929-66024302f864",
+                            "title": "How does {{ metadata['ru_name'] }}&apos;s <em>capital expenditure</em> for the last two weeks compare to normal expectations for this time of year?",
                             "type": "General",
                             "answers": [{
-                                "id": "answerce0217e4-b810-4fac-a030-8b0b6270573f",
+                                "id": "answer68a8954d-f6c0-4379-9e88-6473f8a77d7d",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -4113,9 +4240,9 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
+                                    "group": "groupdd4e448a-a88e-4e27-bc7d-0335fcf0a935",
                                     "when": [{
-                                        "id": "answerce0217e4-b810-4fac-a030-8b0b6270573f",
+                                        "id": "answer68a8954d-f6c0-4379-9e88-6473f8a77d7d",
                                         "condition": "contains any",
                                         "values": ["Capital expenditure has not been affected", "Not sure", "Not applicable"]
                                     }]
@@ -4123,20 +4250,20 @@
                             },
                             {
                                 "goto": {
-                                    "block": "blockd42b74c1-840b-4aba-a4f2-8a85f4b4bbd4"
+                                    "block": "blockd9a19f03-6c62-4876-93cd-13b5e5d35f09"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "blockd42b74c1-840b-4aba-a4f2-8a85f4b4bbd4",
+                        "id": "blockd9a19f03-6c62-4876-93cd-13b5e5d35f09",
                         "type": "Question",
                         "questions": [{
-                            "id": "questiond42b74c1-840b-4aba-a4f2-8a85f4b4bbd4",
-                            "title": "Please explain in more detail how the coronavirus (COVID-19) pandemic has affected capital expenditure",
+                            "id": "questiond9a19f03-6c62-4876-93cd-13b5e5d35f09",
+                            "title": "Please explain in more detail how your business&apos;s capital expenditure has been affected",
                             "type": "General",
                             "answers": [{
-                                "id": "answere30ab530-6565-46bc-a59c-20228373e63d",
+                                "id": "answer3bd4b559-afe6-468e-ac79-f5cc78692947",
                                 "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
@@ -4148,119 +4275,25 @@
                     }
                 ],
                 "skip_conditions": [{
-                        "when": [{
-                            "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                            "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
-                        }]
-                    },
-                    {
-                        "when": [{
-                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
-                                "condition": "contains all",
-                                "values": ["Not sure"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
-                                "condition": "contains all",
-                                "values": ["Not applicable"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
-                                "condition": "contains all",
-                                "values": ["None of our sites are temporarily or permanently closed"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
-                                "condition": "contains all",
-                                "values": ["Not sure"]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "when": [{
-                                "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
-                                "condition": "contains any",
-                                "values": [
-                                    "Northern Ireland",
-                                    "Scotland",
-                                    "Wales",
-                                    "East of England",
-                                    "East Midlands",
-                                    "Greater London",
-                                    "North East of England",
-                                    "North West of England",
-                                    "South East of England",
-                                    "South West of England",
-                                    "West Midlands",
-                                    "Yorkshire and The Humber"
-                                ]
-                            },
-                            {
-                                "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                                "condition": "contains any",
-                                "values": [
-                                    "Paused trading but intends to restart in the next two weeks",
-                                    "Paused trading and does not intend to restart in the next two weeks"
-                                ]
-                            }
-                        ]
-                    }
-                ]
+                    "when": [{
+                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                        "condition": "contains any",
+                        "values": ["Permanently ceased trading"]
+                    }]
+                }]
             }]
         },
         {
             "id": "section8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
             "title": "Access to financial support",
             "groups": [{
-                "id": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
+                "id": "groupdd4e448a-a88e-4e27-bc7d-0335fcf0a935",
                 "title": "Access to financial support",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba-introduction",
                         "title": "Access to financial support",
-                        "description": "<p>This section asks for information about:</p><ul><li>support the business may have applied for or received from the four governments in the UK</li><li>cash reserves</li><li>confidence in business survival</li><li>insolvency risk</li></ul>"
+                        "description": "<p>This section asks for information about:</p><ul><li>support the business may have applied for or received from the four governments in the UK</li><li>cash reserves</li><li>confidence in business survival</li><li>debt repayment and insolvency risk</li></ul>"
                     },
                     {
                         "id": "block3e1692a9-835b-4294-adf5-6797e7f0fa5c",
@@ -4329,17 +4362,22 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block2ea33f36-282b-40d4-a881-0d946f8d4408",
+                                    "block": "block2c478835-bc76-43bf-a29d-9801bcadc650",
                                     "when": [{
                                         "id": "answerb9ab9d11-a10c-4241-b125-6df52bc5f8f6",
                                         "condition": "contains any",
-                                        "values": ["Not sure"]
+                                        "values": [
+                                            "Local Restrictions Support Grant - England",
+                                            "Local Restrictions Support Scheme - Northern Ireland",
+                                            "Strategic Framework Business Fund - Scotland",
+                                            "Lockdown Business Fund - Wales"
+                                        ]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "block2c478835-bc76-43bf-a29d-9801bcadc650"
+                                    "block": "block2ea33f36-282b-40d4-a881-0d946f8d4408"
                                 }
                             }
                         ]
@@ -4837,7 +4875,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group1760a554-060f-4e6a-bf64-970f98d84ac7",
+                                    "group": "groupbc417dc6-42e4-4a74-a314-93c8feb69392",
                                     "when": [{
                                         "id": "answer1feb3977-8643-4f41-bb73-b6b7131e322b",
                                         "condition": "contains any",
@@ -4857,7 +4895,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question03374e34-0d66-467f-ac83-8f6462d5f402",
-                            "title": "How has the coronavirus (COVID-19) pandemic affected your business&apos;s <em>risk of insolvency?</em>",
+                            "title": "How has your business&apos;s risk of insolvency changed in the last two weeks?",
                             "type": "General",
                             "answers": [{
                                 "id": "answera7851b80-4e6a-47da-b6fc-ed35eadaa405",
@@ -4900,13 +4938,13 @@
             "id": "section1760a554-060f-4e6a-bf64-970f98d84ac7",
             "title": "Operational performance",
             "groups": [{
-                "id": "group1760a554-060f-4e6a-bf64-970f98d84ac7",
+                "id": "groupbc417dc6-42e4-4a74-a314-93c8feb69392",
                 "title": "Operational performance",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group1760a554-060f-4e6a-bf64-970f98d84ac7-introduction",
                         "title": "Operational performance",
-                        "description": "<p>TThis section asks for information about your workforce such as the:</p><ul><li>percentage, for example, on furlough leave or working from home, or made redundant in the last two weeks</li><li>percentage returning from furlough or homeworking</li><li>expected redundancies in the next three months</li></ul>"
+                        "description": "<p>This section asks for information about your workforce such as the:</p><ul><li>percentage, for example, on furlough leave or working from home, or made redundant in the last two weeks</li><li>percentage returning from furlough or homeworking</li><li>providing regular coronavirus testing for your workforce</li><li>expected redundancies in the next three months</li></ul>"
                     },
                     {
                         "id": "block90beb26c-59f1-4f7f-9dee-e9a822e871be",
@@ -5169,7 +5207,7 @@
                         "questions": [{
                             "id": "question66bef12d-2546-4df7-9e64-15e48bdf99c4",
                             "title": "In the <em>last two weeks</em>, approximately what percentage of your workforce have:",
-                            "description": "<p>Rough estimates are acceptable. Answers <em>do not</em> need to sum to 100.</p>",
+                            "description": "<p>Rough estimates are acceptable.  Answers <em>do not</em> need to sum to 100.</p>",
                             "type": "General",
                             "answers": [{
                                     "id": "answer8256ff1c-5839-4b89-8d1d-9f76e6280683",
@@ -5240,7 +5278,7 @@
                                     "decimal_places": 2
                                 },
                                 {
-                                    "id": "answer6d7c0af9-a46d-4fcf-a772-14ffdb15dd2d",
+                                    "id": "answerb7ced9e1-a7ff-452c-a222-a555f353b474",
                                     "mandatory": true,
                                     "type": "Percentage",
                                     "label": "Moved from working to furlough, either fully or partially",
@@ -5268,7 +5306,7 @@
                             "description": "<p>Rough estimates are acceptable. </p>",
                             "type": "General",
                             "answers": [{
-                                    "id": "answera1bca2a9-2f94-49a1-b082-7c305a733bdf",
+                                    "id": "answer948c62ed-0fce-4b45-800d-8cc8ac74cd16",
                                     "mandatory": true,
                                     "type": "Percentage",
                                     "label": "Move from working to furlough, either fully or partially",
@@ -5339,6 +5377,116 @@
                         }]
                     },
                     {
+                        "id": "block3e15053c-4d2e-49e4-8a29-ec858fada8e9",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3e15053c-4d2e-49e4-8a29-ec858fada8e9",
+                            "title": "Is your business providing <em>regular</em> coronavirus (COVID-19) testing for its workforce?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "rapid lateral flow device (LFD) testing",
+                                            "loop-mediated isothermal amplification (LAMP) testing",
+                                            "polymerase chain reaction (PCR) testing"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude: </strong>"
+                                    },
+                                    {
+                                        "list": ["antibody testing"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by \"regular coronavirus (COVID-19) testing\"",
+                                "content": [{
+                                    "description": "This means that the business is testing the workforce on a routine basis (for example, once a week) to check for COVID cases, regardless of whether workers are asymptomatic"
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer577d25d7-3135-48a0-a673-571e7dfac5ad",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "4",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockf0fa1564-78f5-4d77-97f1-d79f6f455648",
+                                    "when": [{
+                                        "id": "answer577d25d7-3135-48a0-a673-571e7dfac5ad",
+                                        "condition": "contains any",
+                                        "values": ["No", "Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block3578c3c7-c7dd-4fa6-a340-ce60daf293c1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block3578c3c7-c7dd-4fa6-a340-ce60daf293c1",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3578c3c7-c7dd-4fa6-a340-ce60daf293c1",
+                            "title": "What percentage of your workforce are receiving regular coronavirus (COVID-19) testing?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "answere521e30c-4cbc-40ee-8604-018af4f37c43",
+                                    "mandatory": false,
+                                    "type": "Percentage",
+                                    "label": "Approximate percentage of your workforce receiving regular testing",
+                                    "description": "",
+                                    "q_code": "45",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
+                                    "decimal_places": 2
+                                },
+                                {
+                                    "id": "answere98394f5-1291-41b1-8a31-1e9e5b1eb7cf",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Or select \"Not sure\"if the percentage is not known or is too difficult to calculate",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "450"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
                         "id": "blockf0fa1564-78f5-4d77-97f1-d79f6f455648",
                         "type": "Question",
                         "questions": [{
@@ -5369,7 +5517,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "group": "group73de2088-284c-4669-93ab-bccacd145f5c",
                                     "when": [{
                                         "id": "answer452ab041-83d2-42ac-ae1d-4a5e53c3a53b",
                                         "condition": "contains any",
@@ -5435,7 +5583,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                                    "group": "group73de2088-284c-4669-93ab-bccacd145f5c",
                                     "when": [{
                                         "id": "answer4e7cbab0-5fbf-44cc-b3c1-3b4b7a529690",
                                         "condition": "equals",
@@ -5509,7 +5657,7 @@
             "id": "section19187b42-33f0-4bf8-92c3-aa13bc8628f8",
             "title": "Comments",
             "groups": [{
-                    "id": "group19187b42-33f0-4bf8-92c3-aa13bc8628f8",
+                    "id": "group73de2088-284c-4669-93ab-bccacd145f5c",
                     "title": "Comments",
                     "blocks": [{
                         "id": "block840d9b9e-842b-4307-9006-9d93de8466ce",
