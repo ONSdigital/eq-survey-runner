@@ -64,9 +64,7 @@
                                             "description": "Include:"
                                         },
                                         {
-                                            "list": [
-                                                "if you use renewable sources to produce, and then sell, electricity"
-                                            ]
+                                            "list": ["if you use renewable sources to produce, and then sell, electricity"]
                                         },
                                         {
                                             "description": "Exclude:"
@@ -152,9 +150,7 @@
                                     "when": [{
                                         "id": "answer171708de-cb63-419d-90cf-a699e53adc47",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes, I can report for these dates"
-                                        ]
+                                        "values": ["Yes, I can report for these dates"]
                                     }]
                                 }
                             },
@@ -178,13 +174,7 @@
                                     "type": "Date",
                                     "mandatory": true,
                                     "label": "From",
-                                    "q_code": "0011",
-                                    "minimum": {
-                                        "meta": "ref_p_start_date",
-                                        "offset_by": {
-                                            "days": 0
-                                        }
-                                    }
+                                    "q_code": "0011"
                                 },
                                 {
                                     "id": "answer9f57e03d-efb4-4cf1-9b50-1ca381b72a32to",
@@ -193,13 +183,18 @@
                                     "label": "To",
                                     "q_code": "0012",
                                     "maximum": {
-                                        "meta": "ref_p_end_date",
+                                        "value": "2021-04-05",
                                         "offset_by": {
                                             "days": 0
                                         }
                                     }
                                 }
-                            ]
+                            ],
+                            "period_limits": {
+                                "maximum": {
+                                    "months": 12
+                                }
+                            }
                         }]
                     }
                 ]
@@ -249,9 +244,7 @@
                                         "description": "Include:"
                                     },
                                     {
-                                        "list": [
-                                            "if you use renewable sources to produce, and then sell, electricity."
-                                        ]
+                                        "list": ["if you use renewable sources to produce, and then sell, electricity."]
                                     },
                                     {
                                         "description": "Exclude:"
@@ -424,9 +417,7 @@
                                     "when": [{
                                         "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes"
-                                        ]
+                                        "values": ["Yes"]
                                     }]
                                 }
                             },
@@ -436,9 +427,7 @@
                                     "when": [{
                                         "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No"
-                                        ]
+                                        "values": ["No"]
                                     }]
                                 }
                             },
@@ -448,9 +437,7 @@
                                     "when": [{
                                         "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Not sure"
-                                        ]
+                                        "values": ["Not sure"]
                                     }]
                                 }
                             },
@@ -513,9 +500,7 @@
                                         "description": "<strong>Include: </strong>"
                                     },
                                     {
-                                        "list": [
-                                            "feed-in tariffs"
-                                        ]
+                                        "list": ["feed-in tariffs"]
                                     },
                                     {
                                         "description": "<strong>Exclude: </strong>"
@@ -627,9 +612,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -669,9 +652,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -831,9 +812,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -888,9 +867,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-36e95318-ca86-48ef-bb3b-27b166c244b4",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -985,36 +962,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Offshore wind"
-                            ]
+                            "values": ["Offshore wind"]
                         }]
                     },
                     {
@@ -1050,9 +1019,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "feed-in tariffs"
-                                        ]
+                                        "list": ["feed-in tariffs"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -1164,9 +1131,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -1206,9 +1171,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -1368,9 +1331,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -1429,9 +1390,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-0682cfeb-0336-4fae-b2e3-c007d61740c4",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -1526,36 +1485,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Onshore wind"
-                            ]
+                            "values": ["Onshore wind"]
                         }]
                     },
                     {
@@ -1591,9 +1542,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "feed-in tariffs"
-                                        ]
+                                        "list": ["feed-in tariffs"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -1704,9 +1653,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -1746,9 +1693,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -1912,9 +1857,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -1969,9 +1912,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-2fd86e21-7400-4a08-a6d6-4fc9b75844b6",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -2066,36 +2007,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Solar"
-                            ]
+                            "values": ["Solar"]
                         }]
                     },
                     {
@@ -2131,9 +2064,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "feed-in tariffs"
-                                        ]
+                                        "list": ["feed-in tariffs"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -2245,9 +2176,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -2287,9 +2216,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -2449,9 +2376,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -2506,9 +2431,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-b98b9e31-1c7f-4e20-b345-4c6aef1caf71",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -2603,36 +2526,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Hydropower"
-                            ]
+                            "values": ["Hydropower"]
                         }]
                     },
                     {
@@ -2783,9 +2698,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -2825,9 +2738,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -2987,9 +2898,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -3044,9 +2953,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-c0748134-54bf-4e48-84f8-4c060355272c",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -3141,36 +3048,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Other renewable electricity"
-                            ]
+                            "values": ["Other renewable electricity"]
                         }]
                     },
                     {
@@ -3323,9 +3222,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -3365,9 +3262,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -3527,9 +3422,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -3584,9 +3477,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-2f9805c3-7df0-46a4-bbe2-2a77a2e0eb59",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -3681,36 +3572,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Bioenergy"
-                            ]
+                            "values": ["Bioenergy"]
                         }]
                     },
                     {
@@ -3913,9 +3796,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -3955,9 +3836,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -4117,9 +3996,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -4174,9 +4051,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-041d921d-2a04-404d-8eae-45654fbb842c",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -4271,36 +4146,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Alternative fuels"
-                            ]
+                            "values": ["Alternative fuels"]
                         }]
                     },
                     {
@@ -4457,9 +4324,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -4499,9 +4364,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -4661,9 +4524,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -4718,9 +4579,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-4ab9e6aa-5095-4d1a-8264-036ceb086ef5",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -4815,36 +4674,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Renewable heat"
-                            ]
+                            "values": ["Renewable heat"]
                         }]
                     },
                     {
@@ -4995,9 +4846,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -5037,9 +4886,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -5199,9 +5046,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -5256,9 +5101,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-a834dcbd-94ee-4805-a606-b3168fee9c40",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -5353,36 +5196,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Renewable combined heat and power"
-                            ]
+                            "values": ["Renewable combined heat and power"]
                         }]
                     },
                     {
@@ -5481,9 +5316,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -5523,9 +5356,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -5685,9 +5516,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -5742,9 +5571,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-b0d8626a-1c7d-4a45-948d-2c29feb2503f",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to correct this"
-                                        ]
+                                        "values": ["No I need to correct this"]
                                     }]
                                 }
                             },
@@ -5839,36 +5666,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Energy efficient lighting"
-                            ]
+                            "values": ["Energy efficient lighting"]
                         }]
                     },
                     {
@@ -5971,9 +5790,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -6013,9 +5830,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -6175,9 +5990,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -6232,9 +6045,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-92b18c36-1dee-4fae-a2cf-0eff0f4e7063",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -6329,36 +6140,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Energy efficient products"
-                            ]
+                            "values": ["Energy efficient products"]
                         }]
                     },
                     {
@@ -6459,9 +6262,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -6501,9 +6302,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -6663,9 +6462,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -6720,9 +6517,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-a3c2d694-55c2-4870-a1c3-7f5012555e78",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -6817,36 +6612,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Energy monitoring, saving or control systems"
-                            ]
+                            "values": ["Energy monitoring, saving or control systems"]
                         }]
                     },
                     {
@@ -6950,9 +6737,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -6992,9 +6777,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -7154,9 +6937,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -7211,9 +6992,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-34924e3c-a4d3-4412-8ee0-ad95aa7d644b",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -7308,36 +7087,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Low carbon consultancy, advisory and offsetting services"
-                            ]
+                            "values": ["Low carbon consultancy, advisory and offsetting services"]
                         }]
                     },
                     {
@@ -7439,9 +7210,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -7481,9 +7250,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -7643,9 +7410,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -7700,9 +7465,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-1e144e04-ea60-4a09-8798-4162999246b5",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -7797,36 +7560,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Low emission vehicles and infrastructure"
-                            ]
+                            "values": ["Low emission vehicles and infrastructure"]
                         }]
                     },
                     {
@@ -7922,9 +7677,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -7964,9 +7717,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -8126,9 +7877,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -8183,9 +7932,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-7a4a8acb-3464-4852-919b-8ecdb95ab3f5",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -8280,36 +8027,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Carbon capture and storage"
-                            ]
+                            "values": ["Carbon capture and storage"]
                         }]
                     },
                     {
@@ -8345,9 +8084,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "light water, fast breeder, and thermal breeder, reactors"
-                                        ]
+                                        "list": ["light water, fast breeder, and thermal breeder, reactors"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -8406,9 +8143,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -8448,9 +8183,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -8610,9 +8343,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -8667,9 +8398,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-6a4690d2-5930-400f-b6eb-c2e891d59f1b",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -8764,36 +8493,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Nuclear power"
-                            ]
+                            "values": ["Nuclear power"]
                         }]
                     },
                     {
@@ -8893,9 +8614,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the import of gas or electricity"
-                                        ]
+                                        "list": ["the import of gas or electricity"]
                                     }
                                 ]
                             },
@@ -8935,9 +8654,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "the export of gas or electricity"
-                                        ]
+                                        "list": ["the export of gas or electricity"]
                                     }
                                 ]
                             },
@@ -9097,9 +8814,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "sub-contractors"
-                                        ]
+                                        "list": ["sub-contractors"]
                                     }
                                 ]
                             },
@@ -9154,9 +8869,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-3520b65e-1fc0-47db-8eec-54f86c535b55",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -9251,36 +8964,28 @@
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Yes"
-                            ]
+                            "values": ["Yes"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "No"
-                            ]
+                            "values": ["No"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer32c21b60-e394-43b3-8bc8-1b927863413d",
                             "condition": "contains any",
-                            "values": [
-                                "Not sure"
-                            ]
+                            "values": ["Not sure"]
                         }]
                     },
                     {
                         "when": [{
                             "id": "answer1fafdcb0-8d26-4266-af3c-b5a99fc313c1",
                             "condition": "not contains all",
-                            "values": [
-                                "Fuel cells and energy storage systems"
-                            ]
+                            "values": ["Fuel cells and energy storage systems"]
                         }]
                     },
                     {
