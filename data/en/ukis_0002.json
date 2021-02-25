@@ -20,7 +20,7 @@
                             "id": "primary",
                             "content": [{
                                     "list": [
-                                        "Please complete this voluntary questionnaire for ESSENTIAL ENTERPRISE LTD.",
+                                        "Please complete this voluntary questionnaire for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}.",
                                         "If this business is part of an enterprise group, please answer all questions for this business in the UK only.",
                                         "Do not include results for subsidiaries or parent enterprises.",
                                         "You can provide informed estimates if actual figures are not available.",
@@ -34,7 +34,7 @@
                                     "list": [
                                         "Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that have been introduced, regardless of their origin.",
                                         "These innovations may be new to you or new to the market.",
-                                        "Investments for future innovation and changes that ESSENTIAL ENTERPRISE LTD. has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered."
+                                        "Investments for future innovation and changes that {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered."
                                     ]
                                 },
                                 {
