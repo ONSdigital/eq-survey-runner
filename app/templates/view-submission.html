@@ -26,13 +26,20 @@
         <p class="u-fs-r">{{ _("Transaction ID") }}: <b>{{metadata.tx_id}}</b></p>
     </div>
 </div>
+<div>
+    <button type="button"
+        class="btn btn--secondary btn-print icon--print-link u-mt-s u-mb-l print__hidden u-no-js-hide ga-track-print-btn pdf-button"
+        data-ga="click" data-ga-category="Print Button" data-ga-action="Open Print Dialogue"
+        data-ga-label="Track print button clicks">{{ _("Print this page") }}
+        <span class="btn__icon btn__icon--print-link"></span></button>
 
-<button type="button"
-    class="btn btn--secondary btn-print icon--print-link u-mt-s u-mb-l print__hidden u-no-js-hide ga-track-print-btn"
-    data-ga="click" data-ga-category="Print Button" data-ga-action="Open Print Dialogue"
-    data-ga-label="Track print button clicks">{{ _("Print this page") }}
-    <span class="btn__icon btn__icon--print-link"></span></button>
-
+    <button type="button"
+        class="btn btn--secondary btn-print icon--pdf-link u-mt-s u-mb-l print__hidden u-no-js-hide ga-track-print-btn pdf-button-second"
+        data-ga="click" data-ga-category="Print Button" data-ga-action="Open Print Dialogue"
+        data-ga-label="Track print button clicks">{{ _("Download as PDF") }}
+        <span class="btn__icon pdf-link"></span></button>
+    <div class="cl"></div>
+</div>
 {% include theme('partials/summary/summary.html') %}
 
 {% endblock -%}
