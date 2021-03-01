@@ -10,7 +10,7 @@
             "id": "sectionfb9d2910-8ac7-40c6-90bd-ecafc58580b2",
             "title": "Business strategy and practices",
             "groups": [{
-                "id": "groupfb9d2910-8ac7-40c6-90bd-ecafc58580b2",
+                "id": "group98f0190d-0479-49b5-8ae2-055da653fc65",
                 "title": "Business strategy and practices",
                 "blocks": [{
                         "type": "Introduction",
@@ -162,7 +162,7 @@
             "id": "section605",
             "title": "Innovation investment",
             "groups": [{
-                "id": "group605",
+                "id": "group59ca2709-ba1e-46b6-9856-e0b3516f056d",
                 "title": "Innovation investment",
                 "blocks": [{
                         "type": "Interstitial",
@@ -813,7 +813,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group606",
+                                    "group": "groupb244a796-f86a-4387-8d79-901e89785777",
                                     "when": [{
                                         "id": "answer3188",
                                         "condition": "contains any",
@@ -823,7 +823,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group606",
+                                    "group": "groupb244a796-f86a-4387-8d79-901e89785777",
                                     "when": [{
                                         "id": "answer3188",
                                         "condition": "not set"
@@ -914,7 +914,7 @@
             "id": "section606",
             "title": "Goods or services innovation",
             "groups": [{
-                "id": "group606",
+                "id": "groupb244a796-f86a-4387-8d79-901e89785777",
                 "title": "Goods or services innovation",
                 "blocks": [{
                         "type": "Interstitial",
@@ -1059,7 +1059,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group609",
+                                    "group": "group0710ac86-95c0-4f86-8440-8d15eb3cb6f7",
                                     "when": [{
                                             "id": "answer3191",
                                             "condition": "contains any",
@@ -1176,7 +1176,7 @@
             "id": "section609",
             "title": "Process innovation",
             "groups": [{
-                "id": "group609",
+                "id": "group0710ac86-95c0-4f86-8440-8d15eb3cb6f7",
                 "title": "Process innovation",
                 "blocks": [{
                         "type": "Interstitial",
@@ -1261,7 +1261,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group615",
+                                    "group": "group6ede824f-ed4e-468d-a1ef-60bb47defd29",
                                     "when": [{
                                         "id": "answer3230",
                                         "condition": "contains any",
@@ -1275,7 +1275,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group610",
+                                    "group": "group7ea38b68-fddf-4da8-8fe3-dc5ca86d52bb",
                                     "when": [{
                                         "id": "answer3230",
                                         "condition": "contains all",
@@ -1285,7 +1285,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group610",
+                                    "group": "group7ea38b68-fddf-4da8-8fe3-dc5ca86d52bb",
                                     "when": [{
                                         "id": "answer3230",
                                         "condition": "not set"
@@ -1426,7 +1426,7 @@
             "id": "section610",
             "title": "Constraints on innovation",
             "groups": [{
-                "id": "group610",
+                "id": "group7ea38b68-fddf-4da8-8fe3-dc5ca86d52bb",
                 "title": "Constraints on innovation",
                 "blocks": [{
                         "type": "Interstitial",
@@ -1946,7 +1946,7 @@
             "id": "section611",
             "title": "Factors affecting Innovation",
             "groups": [{
-                "id": "group611",
+                "id": "group91ba709e-ef42-4479-901a-8f745db85f24",
                 "title": "Factors affecting Innovation",
                 "blocks": [{
                         "type": "Interstitial",
@@ -2420,7 +2420,7 @@
             "id": "section612",
             "title": "Information needed for innovation",
             "groups": [{
-                "id": "group612",
+                "id": "groupd120d7ef-4069-40da-bc6a-cfd336c6433a",
                 "title": "Information needed for innovation",
                 "blocks": [{
                         "type": "Interstitial",
@@ -2937,7 +2937,7 @@
             "id": "section613",
             "title": "Co-operation on innovation",
             "groups": [{
-                "id": "group613",
+                "id": "groupaa0512ea-7e6b-4641-876a-46c08e090bbb",
                 "title": "Co-operation on innovation",
                 "blocks": [{
                         "type": "Interstitial",
@@ -3457,7 +3457,7 @@
             "id": "sectiona49fa7f0-9462-4db4-867c-e325e77ab2ba",
             "title": "Innovation protection",
             "groups": [{
-                "id": "groupa49fa7f0-9462-4db4-867c-e325e77ab2ba",
+                "id": "group4745ad51-d6b0-4c9f-9d78-58cb3675a118",
                 "title": "Innovation protection",
                 "blocks": [{
                         "type": "Interstitial",
@@ -3766,7 +3766,7 @@
             "id": "section615",
             "title": "Public financial support for innovation",
             "groups": [{
-                "id": "group615",
+                "id": "group6ede824f-ed4e-468d-a1ef-60bb47defd29",
                 "title": "Public financial support for innovation",
                 "blocks": [{
                         "type": "Interstitial",
@@ -3849,7 +3849,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group616",
+                                    "group": "group93ed09f0-07c7-43aa-8c56-7154d348019a",
                                     "when": [{
                                         "id": "answer3259",
                                         "condition": "contains all",
@@ -3859,7 +3859,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group616",
+                                    "group": "group93ed09f0-07c7-43aa-8c56-7154d348019a",
                                     "when": [{
                                         "id": "answer3259",
                                         "condition": "contains all",
@@ -3869,7 +3869,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group616",
+                                    "group": "group93ed09f0-07c7-43aa-8c56-7154d348019a",
                                     "when": [{
                                         "id": "answer3259",
                                         "condition": "contains all",
@@ -3879,7 +3879,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "group616",
+                                    "group": "group93ed09f0-07c7-43aa-8c56-7154d348019a",
                                     "when": [{
                                         "id": "answer3259-exclusive",
                                         "condition": "contains all",
@@ -3947,7 +3947,7 @@
             "id": "section616",
             "title": "Turnover and exports",
             "groups": [{
-                "id": "group616",
+                "id": "group93ed09f0-07c7-43aa-8c56-7154d348019a",
                 "title": "Turnover and exports",
                 "blocks": [{
                         "type": "Interstitial",
@@ -4089,6 +4089,19 @@
                                     "decimal_places": 2
                                 }
                             ]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                    "id": "answer3193",
+                                    "condition": "contains any",
+                                    "values": ["No"]
+                                },
+                                {
+                                    "id": "answer3191",
+                                    "condition": "contains any",
+                                    "values": ["No"]
+                                }
+                            ]
                         }]
                     },
                     {
@@ -4121,7 +4134,7 @@
             "id": "section617",
             "title": "Employees and skills",
             "groups": [{
-                "id": "group617",
+                "id": "groupbc589e17-2677-43d3-8dc4-ffe4103474f1",
                 "title": "Employees and skills",
                 "blocks": [{
                         "type": "Interstitial",
@@ -4270,7 +4283,7 @@
             "id": "section618",
             "title": "General information",
             "groups": [{
-                    "id": "group618",
+                    "id": "groupf1b8b24e-e5bb-44f7-88d4-0f94c6a97184",
                     "title": "General information",
                     "blocks": [{
                             "type": "Interstitial",
