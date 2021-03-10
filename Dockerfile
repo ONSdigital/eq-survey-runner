@@ -1,12 +1,11 @@
 FROM python:3.7-slim-stretch
 
 RUN pip install pipenv==2018.11.26 \
-  && pip install awscli==1.11.174
-RUN apt update && apt install -y libsnappy-dev build-essential libpq-dev
+  && pip install awscli==1.11.174 \
+  && pip install pdfkit
+RUN apt update && apt install -y libsnappy-dev build-essential libpq-dev wkhtmltopdf xvfb
 
-# Install binary for pdfkit to work
-RUN apt-get -y install wkhtmltopdf
-RUN apt-get -y install xvfb
+# Prepare binary for pdfkit to work
 RUN printf '#!/bin/bash\nxvfb-run -a --server-args="-screen 0, 1024x768x24" /usr/bin/wkhtmltopdf -q $*' > /usr/bin/wkhtmltopdf.sh
 RUN chmod a+x /usr/bin/wkhtmltopdf.sh
 RUN ln -s /usr/bin/wkhtmltopdf.sh /usr/local/bin/wkhtmltopdf

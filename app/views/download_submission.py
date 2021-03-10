@@ -6,6 +6,7 @@ download_submission_blueprint = Blueprint('download_submission', __name__)
 
 @download_submission_blueprint.route('/download_submission', methods=['GET'])
 def download_submission():
+    print("works")
 
     pdf = pdfkit.from_url('http://google.com', False)
     response = make_response(pdf)
