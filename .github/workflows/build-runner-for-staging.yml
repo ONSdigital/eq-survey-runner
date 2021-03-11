@@ -1,0 +1,76 @@
+name: Build Runner for Staging
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    build_and_push_Docker_image:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [8.x]
+        env:
+          TAG: "2.${{ github.run_number }}.0-staging"
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Install Node
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install Node dependencies
+              run: yarn
+
+            - name: Populate application version
+              run: printf ${{ env.TAG }} > .application-version
+
+            - name: Compile application
+              run: yarn compile
+
+            - name: Login to DockerHub
+              uses: docker/login-action@v1
+              with:
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
+            
+            - name: Build onsdigital/eq-survey-runner-static Docker image
+              env:
+                  REGISTRY: onsdigital
+                  REPOSITORY: eq-survey-runner-static
+                  IMAGE_TAG: ${{ env.TAG }}
+                  IMAGE_TAG_LATEST: latest
+              run: |
+                docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f Dockerfile.static .
+                docker tag $REGISTRY/$REPOSITORY:$IMAGE_TAG $REGISTRY/$REPOSITORY:$IMAGE_TAG_LATEST
+
+            - name: Build onsdigital/eq-survey-runner Docker image
+              env:
+                  REGISTRY: onsdigital
+                  REPOSITORY: eq-survey-runner
+                  IMAGE_TAG: ${{ env.TAG }}
+                  IMAGE_TAG_LATEST: latest
+              run: |
+                docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f Dockerfile .
+                docker tag $REGISTRY/$REPOSITORY:$IMAGE_TAG $REGISTRY/$REPOSITORY:$IMAGE_TAG_LATEST
+
+            - name: Push onsdigital/eq-survey-runner-static Docker image
+              env:
+                  REGISTRY: onsdigital
+                  REPOSITORY: eq-survey-runner-static
+                  IMAGE_TAG: ${{ env.TAG }}
+                  IMAGE_TAG_LATEST: latest
+              run: docker push --all-tags $REGISTRY/$REPOSITORY
+
+            - name: Push onsdigital/eq-survey-runner Docker image
+              env:
+                  REGISTRY: onsdigital
+                  REPOSITORY: eq-survey-runner
+                  IMAGE_TAG: ${{ env.TAG }}
+                  IMAGE_TAG_LATEST: latest
+              run: docker push --all-tags $REGISTRY/$REPOSITORY
+
+
