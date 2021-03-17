@@ -4,4 +4,8 @@
     background-repeat: no-repeat;
     background-position: right center;
     padding-right: 2.34rem;
+
+    &:hover {
+      background-image: url("/s/img/icons/icons--pdf-hover.svg");
+    }
   }
