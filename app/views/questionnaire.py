@@ -338,7 +338,8 @@ def _set_started_at_metadata_if_required(form, collection_metadata):
 
         collection_metadata['started_at'] = started_at
 
-def _render_submission_page(session_data, submitted_data, schema, eq_id, form_type): # pylint: disable=unused-argument, too-many-locals
+
+def _render_submission_page(session_data, submitted_data, schema, eq_id, form_type):  # pylint: disable=unused-argument, too-many-locals
 
     metadata_context = build_metadata_context_for_survey_completed(session_data)
 
@@ -392,6 +393,7 @@ def _render_submission_page(session_data, submitted_data, schema, eq_id, form_ty
                                  content=context,
                                  cookie_message=cookie_message,
                                  allow_analytics=allow_analytics)
+
 
 def _render_page(block_type, context, current_location, schema, answer_store, metadata, routing_path):
     if request_wants_json():
