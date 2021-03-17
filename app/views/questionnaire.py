@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 import humanize
 import simplejson as json
 from dateutil.tz import tzutc
-from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify, url_for
+from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
 from flask import session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
