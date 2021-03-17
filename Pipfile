@@ -54,6 +54,7 @@ humanize = "*"
 flask-talisman = "*"
 marshmallow = "*"
 python-snappy = "*"
+flask-weasyprint = "*"
 
 [requires]
 python_version = "3.7"

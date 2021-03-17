@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 import humanize
 import simplejson as json
 from dateutil.tz import tzutc
-from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
+from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify, url_for
 from flask import session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
@@ -45,6 +45,8 @@ from app.views.errors import check_multiple_survey, MultipleSurveyError
 
 from app.utilities.cookies import analytics_allowed
 from app.utilities.format_submitted_time import format_submitted_time
+
+from flask_weasyprint import HTML, render_pdf
 
 END_BLOCKS = 'Summary', 'Confirmation'
 
@@ -291,67 +293,15 @@ def post_thank_you(eq_id, form_type):
 @login_required
 @with_schema
 def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-argument, too-many-locals
-
     session_data = get_session_store().session_data
 
     if _is_submission_viewable(schema.json, session_data.submitted_time):
         submitted_data = data_access.get_by_key(SubmittedResponse, session_data.tx_id)
 
         if submitted_data:
-
-            metadata_context = build_metadata_context_for_survey_completed(session_data)
-
-            pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
-
-            encrypter = StorageEncryption(current_user.user_id, current_user.user_ik, pepper)
-            submitted_data = encrypter.decrypt_data(submitted_data.data)
-
-            # for backwards compatibility
-            # submitted data used to be base64 encoded before encryption
-            try:
-                submitted_data = base64url_decode(submitted_data.decode()).decode()
-            except ValueError:
-                pass
-
-            submitted_data = json.loads(submitted_data)
-            answer_store = AnswerStore(submitted_data.get('answers'))
-
-            metadata = submitted_data.get('metadata')
-            collection_metadata = submitted_data.get('collection_metadata')
-
-            routing_path = PathFinder(schema, answer_store, metadata, []).get_full_routing_path()
-
-            schema_context = _get_schema_context(routing_path, None, metadata, collection_metadata, answer_store, schema)
-            section_list = schema.json['sections']
-            summary_rendered_context = build_summary_rendering_context(schema, section_list, answer_store, metadata, schema_context)
-
-            context = {
-                'summary': {
-                    'groups': summary_rendered_context,
-                    'answers_are_editable': False,
-                    'is_view_submission_response_enabled': is_view_submitted_response_enabled(schema.json),
-                },
-                'variables': None,
-            }
-
-            cookie_message = request.cookies.get('ons_cookie_message_displayed')
-            allow_analytics = analytics_allowed(request)
-
-            return render_theme_template(schema.json['theme'],
-                                         template_name='view-submission.html',
-                                         metadata=metadata_context,
-                                         analytics_gtm_id=current_app.config['EQ_GTM_ID'],
-                                         analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'],
-                                         survey_id=schema.json['survey_id'],
-                                         survey_title=TemplateRenderer.safe_content(schema.json['title']),
-                                         account_service_url=cookie_session.get('account_service_url'),
-                                         account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
-                                         content=context,
-                                         cookie_message=cookie_message,
-                                         allow_analytics=allow_analytics)
+            return _render_submission_page(session_data, submitted_data, schema, eq_id, form_type)
 
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
-
 
 @post_submission_blueprint.route('view-submission', methods=['POST'])
 @login_required
@@ -361,6 +311,20 @@ def post_view_submission(eq_id, form_type):
 
     return redirect(url_for('post_submission.get_view_submission', eq_id=eq_id, form_type=form_type))
 
+@post_submission_blueprint.route('download-pdf', methods=['GET'])
+@login_required
+@with_schema
+def download_pdf(schema, eq_id, form_type):
+    session_data = get_session_store().session_data
+
+    if _is_submission_viewable(schema.json, session_data.submitted_time):
+        submitted_data = data_access.get_by_key(SubmittedResponse, session_data.tx_id)
+
+        if submitted_data:
+            return render_pdf(HTML(string=_render_submission_page(session_data, submitted_data, schema, eq_id, form_type)),
+                              download_filename='{}{}.pdf'.format(eq_id, form_type))
+
+    return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
 def _set_started_at_metadata_if_required(form, collection_metadata):
     if not collection_metadata.get('started_at') and form.data:
@@ -371,6 +335,60 @@ def _set_started_at_metadata_if_required(form, collection_metadata):
 
         collection_metadata['started_at'] = started_at
 
+def _render_submission_page(session_data, submitted_data, schema, eq_id, form_type): # pylint: disable=unused-argument, too-many-locals
+
+    metadata_context = build_metadata_context_for_survey_completed(session_data)
+
+    pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
+
+    encrypter = StorageEncryption(current_user.user_id, current_user.user_ik, pepper)
+    submitted_data = encrypter.decrypt_data(submitted_data.data)
+
+    # for backwards compatibility
+    # submitted data used to be base64 encoded before encryption
+    try:
+        submitted_data = base64url_decode(submitted_data.decode()).decode()
+    except ValueError:
+        pass
+
+    submitted_data = json.loads(submitted_data)
+    answer_store = AnswerStore(submitted_data.get('answers'))
+
+    metadata = submitted_data.get('metadata')
+    collection_metadata = submitted_data.get('collection_metadata')
+
+    routing_path = PathFinder(schema, answer_store, metadata, []).get_full_routing_path()
+
+    schema_context = _get_schema_context(routing_path, None, metadata, collection_metadata, answer_store, schema)
+    section_list = schema.json['sections']
+    summary_rendered_context = build_summary_rendering_context(schema, section_list, answer_store, metadata, schema_context)
+
+    context = {
+        'summary': {
+            'groups': summary_rendered_context,
+            'answers_are_editable': False,
+            'is_view_submission_response_enabled': is_view_submitted_response_enabled(schema.json),
+        },
+        'variables': None,
+    }
+
+    cookie_message = request.cookies.get('ons_cookie_message_displayed')
+    allow_analytics = analytics_allowed(request)
+    download_pdf_url = url_for('post_submission.download_pdf', eq_id=eq_id, form_type=form_type)
+
+    return render_theme_template(schema.json['theme'],
+                                 template_name='view-submission.html',
+                                 metadata=metadata_context,
+                                 download_pdf_url=download_pdf_url,
+                                 analytics_gtm_id=current_app.config['EQ_GTM_ID'],
+                                 analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'],
+                                 survey_id=schema.json['survey_id'],
+                                 survey_title=TemplateRenderer.safe_content(schema.json['title']),
+                                 account_service_url=cookie_session.get('account_service_url'),
+                                 account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
+                                 content=context,
+                                 cookie_message=cookie_message,
+                                 allow_analytics=allow_analytics)
 
 def _render_page(block_type, context, current_location, schema, answer_store, metadata, routing_path):
     if request_wants_json():

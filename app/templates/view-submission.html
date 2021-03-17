@@ -32,6 +32,15 @@
     data-ga="click" data-ga-category="Print Button" data-ga-action="Open Print Dialogue"
     data-ga-label="Track print button clicks">{{ _("Print this page") }}
     <span class="btn__icon btn__icon--print-link"></span></button>
+<a
+    href={{download_pdf_url}}
+    title="Download your submission"
+    target="_blank"
+    download
+    class="btn btn--secondary icon--print-link u-mt-s u-mb-l print__hidden u-no-js-hide ga-track-print-btn pdf-button"
+  >
+    Download as PDF
+  </a>
 
 {% include theme('partials/summary/summary.html') %}
 
