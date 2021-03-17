@@ -7,6 +7,7 @@ from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
 from flask import session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
+from flask_weasyprint import HTML, render_pdf
 from jwcrypto.common import base64url_decode
 from sdc.crypto.encrypter import encrypt
 from structlog import get_logger
@@ -46,7 +47,6 @@ from app.views.errors import check_multiple_survey, MultipleSurveyError
 from app.utilities.cookies import analytics_allowed
 from app.utilities.format_submitted_time import format_submitted_time
 
-from flask_weasyprint import HTML, render_pdf
 
 END_BLOCKS = 'Summary', 'Confirmation'
 
