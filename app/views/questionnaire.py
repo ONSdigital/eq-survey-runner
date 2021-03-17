@@ -303,6 +303,7 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
 
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
+
 @post_submission_blueprint.route('view-submission', methods=['POST'])
 @login_required
 def post_view_submission(eq_id, form_type):
@@ -310,6 +311,7 @@ def post_view_submission(eq_id, form_type):
         return redirect(url_for('session.get_sign_out'))
 
     return redirect(url_for('post_submission.get_view_submission', eq_id=eq_id, form_type=form_type))
+
 
 @post_submission_blueprint.route('download-pdf', methods=['GET'])
 @login_required
@@ -325,6 +327,7 @@ def download_pdf(schema, eq_id, form_type):
                               download_filename='{}{}.pdf'.format(eq_id, form_type))
 
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
+
 
 def _set_started_at_metadata_if_required(form, collection_metadata):
     if not collection_metadata.get('started_at') and form.data:
