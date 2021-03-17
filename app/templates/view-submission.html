@@ -1,49 +1,42 @@
-{% extends theme('layouts/_twocol.html') %}
-{% import 'macros/helpers.html' as helpers %}
-
-{% block page_title -%}{{_("Submission")}} - {{survey_title}}{% endblock -%}
-
-{% block main -%}
+{% extends theme('layouts/_twocol.html') %} {% import 'macros/helpers.html' as helpers %} {% block page_title -%}{{_("Submission")}} - {{survey_title}}{%
+endblock -%} {% block main -%}
 
 <div>
-    <h1 class="u-fs-l">{{ _("Submitted answers") }}</h1>
+  <h1 class="u-fs-l">{{ _("Submitted answers") }}</h1>
 </div>
 
 <div class="u-mb-s">
-    <div class="panel panel--simple panel--success panel--spacious">
-        <p class="u-fs-r">
-            {% if metadata.trad_as %}
-            {{ _("Your answers were submitted for <span>%(ru_name)s</span> (%(trading_as_name)s) on %(submitted_time)s",
-                ru_name = metadata.ru_name,
-                trading_as_name = metadata.trad_as,
-                submitted_time=metadata.submitted_time|format_datetime) }}
-            {% else %}
-            {{ _("Your answers were submitted for <span>%(ru_name)s</span> on %(submitted_time)s",
-                ru_name = metadata.ru_name,
-                submitted_time=metadata.submitted_time|format_datetime) }}
-            {% endif %}
-        </p>
-        <p class="u-fs-r">{{ _("Transaction ID") }}: <b>{{metadata.tx_id}}</b></p>
-    </div>
+  <div class="panel panel--simple panel--success panel--spacious">
+    <p class="u-fs-r">
+      {% if metadata.trad_as %} {{ _("Your answers were submitted for <span>%(ru_name)s</span> (%(trading_as_name)s) on %(submitted_time)s", ru_name =
+      metadata.ru_name, trading_as_name = metadata.trad_as, submitted_time=metadata.submitted_time|format_datetime) }} {% else %} {{ _("Your answers were
+      submitted for <span>%(ru_name)s</span> on %(submitted_time)s", ru_name = metadata.ru_name, submitted_time=metadata.submitted_time|format_datetime) }} {%
+      endif %}
+    </p>
+    <p class="u-fs-r">{{ _("Transaction ID") }}: <b>{{metadata.tx_id}}</b></p>
+  </div>
 </div>
 <div>
-    <button type="button"
-        class="btn btn--secondary btn-print icon--print-link u-mt-s u-mb-l print__hidden u-no-js-hide ga-track-print-btn pdf-button"
-        data-ga="click" data-ga-category="Print Button" data-ga-action="Open Print Dialogue"
-        data-ga-label="Track print button clicks">{{ _("Print this page") }}
-        <span class="btn__icon btn__icon--print-link"></span></button>
+  <button
+    type="button"
+    class="btn btn--secondary btn-print icon--print-link u-mt-s u-mb-l print__hidden u-no-js-hide ga-track-print-btn pdf-button"
+    data-ga="click"
+    data-ga-category="Print Button"
+    data-ga-action="Open Print Dialogue"
+    data-ga-label="Track print button clicks"
+  >
+    {{ _("Print this page") }} <span class="btn__icon btn__icon--print-link"></span>
+  </button>
 
-    <button type="button"
-        class="btn btn--secondary btn-download-pdf icon--pdf-link u-mt-s u-mb-l print__hidden u-no-js-hide ga-track-print-btn pdf-button-second"
-        data-ga="click" data-ga-category="Print Button" data-ga-action="Open Print Dialogue"
-        data-ga-label="Track print button clicks">{{ _("Download as PDF") }}
-        <span class="btn__icon pdf-link"></span></button>
-    <div class="cl"></div>
+  <a
+    href="/download_submission"
+    title="Download your submission"
+    target="_blank"
+    download
+    class="btn btn--secondary icon--print-link u-mt-s u-mb-l print__hidden u-no-js-hide ga-track-print-btn pdf-button"
+    >Download as PDF</a
+  >
+
+  <div class="cl"></div>
 </div>
-{% include theme('partials/summary/summary.html') %}
-
-{% endblock -%}
-
-{% block footer %}
-{% include theme('partials/footer-transactional.html') %}
-{% endblock %}
+{% include theme('partials/summary/summary.html') %} {% endblock -%} {% block footer %} {% include theme('partials/footer-transactional.html') %} {% endblock %}

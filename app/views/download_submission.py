@@ -11,6 +11,6 @@ def download_submission():
     pdf = pdfkit.from_url('http://google.com', False)
     response = make_response(pdf)
     response.headers["Content-Type"] = "application/pdf"
-    response.headers["Content-Disposition"] = "inline; filename=output.pdf"
+    response.headers["Content-Disposition"] = "attachment; filename=output.pdf"
 
     return response
