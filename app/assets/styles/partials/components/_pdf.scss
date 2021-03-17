@@ -1,11 +1,13 @@
 .pdf-button {
-    line-height: normal;
-    background-image: url("/s/img/icons/icons--pdf.svg");
-    background-repeat: no-repeat;
-    background-position: right center;
-    padding-right: 2.34rem;
+  margin-left: 1em;
+  line-height: normal;
+  background-image: url("/s/img/icons/icons--pdf.svg");
+  opacity: 0.2s ease-in-out, transform 0.3s ease-in-out;
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: 2.34rem;
 
-    &:hover {
-      background-image: url("/s/img/icons/icons--pdf-hover.svg");
-    }
+  &:hover {
+    background-image: url("/s/img/icons/icons--pdf-hover.svg");
   }
+}
