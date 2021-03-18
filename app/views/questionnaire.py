@@ -7,7 +7,7 @@ from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
 from flask import session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
-from flask_weasyprint import HTML, render_pdf
+from flask_weasyprint import HTML, render_pdf, CSS
 from jwcrypto.common import base64url_decode
 from sdc.crypto.encrypter import encrypt
 from structlog import get_logger
@@ -323,8 +323,18 @@ def download_pdf(schema, eq_id, form_type):
         submitted_data = data_access.get_by_key(SubmittedResponse, session_data.tx_id)
 
         if submitted_data:
-            return render_pdf(HTML(string=_render_submission_page(session_data, submitted_data, schema, eq_id, form_type)),
-                              download_filename='{}{}.pdf'.format(eq_id, form_type))
+            filename = '{}_{}.pdf'.format(eq_id, form_type)
+            html = _render_submission_page(session_data, submitted_data, schema, eq_id, form_type)
+            css = '''
+                .header__main {
+                    background: none !important;
+                }
+                .header__title {
+                    color: black !important;
+                }
+            '''
+            
+            return render_pdf(HTML(string=html), [CSS(string=css)], filename)
 
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
