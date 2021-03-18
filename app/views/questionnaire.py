@@ -333,7 +333,7 @@ def download_pdf(schema, eq_id, form_type):
                     color: black !important;
                 }
             '''
-            
+
             return render_pdf(HTML(string=html), [CSS(string=css)], filename)
 
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
