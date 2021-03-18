@@ -146,7 +146,7 @@ Using this method requires you to use multiple different terminal windows. We ha
 
 Once installed and running, you can navigate to `http://localhost:8000/`. This will take you to [go-launch-a-survey](https://github.com/ONSdigital/go-launch-a-survey), which allows you to view questionnaires as a respondent would in production.
 
-If you have a DynamoDB view installed (we reccomend [DynamoDB Admin](https://www.npmjs.com/package/dynamodb-admin), you can point it at `http://localhost:6060` to view the contents of EQs databases.
+If you have a DynamoDB view installed (we reccomend [DynamoDB Admin](https://www.npmjs.com/package/dynamodb-admin)), you can point it at `http://localhost:6060` to view the contents of EQs databases.
 
 <!-- API Reference -->
 ## API Reference
