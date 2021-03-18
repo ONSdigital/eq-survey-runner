@@ -325,14 +325,14 @@ def download_pdf(schema, eq_id, form_type):
         if submitted_data:
             filename = '{}_{}.pdf'.format(eq_id, form_type)
             html = _render_submission_page(session_data, submitted_data, schema, eq_id, form_type)
-            css = '''
+            css = """
                 .header__main {
                     background: none !important;
                 }
                 .header__title {
                     color: black !important;
                 }
-            '''
+            """
 
             return render_pdf(HTML(string=html), [CSS(string=css)], filename)
 
