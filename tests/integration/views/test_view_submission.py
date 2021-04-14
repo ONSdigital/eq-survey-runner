@@ -34,7 +34,7 @@ class TestViewSubmission(IntegrationTestCase):
 
         # check we're on the thank you page and view submission link is available
         self.assertInUrl('thank-you')
-        self.assertInBody('View and print a copy of your answers')
+        self.assertInBody('View, save or print a copy of your answers')
 
         # go to the view submission page
         self.get('questionnaire/test/view_submitted_response/view-submission')
@@ -94,7 +94,7 @@ class TestCantViewSubmission(IntegrationTestCase):
 
         # check we're on the thank you page and view submission link is not available
         self.assertInUrl('thank-you')
-        self.assertNotInBody('View and print a copy of your answers')
+        self.assertNotInBody('View, save or print a copy of your answers')
 
         # try go to the view submission page anyway
         self.get('questionnaire/test/currency/view-submission')

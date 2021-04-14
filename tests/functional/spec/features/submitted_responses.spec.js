@@ -22,7 +22,7 @@ describe('Feature: Submitted Responses', function() {
   describe('Check submitted responses', function() {
     it('Given I complete to Thank-You page, When I click the submitted answers link, Then I should be able to view my submitted answers', function() {
         return browser
-          .getText(BaseSummaryPage.viewSubmissionText()).should.eventually.contain('opportunity to view and print a copy of your answers')
+          .getText(BaseSummaryPage.viewSubmissionText()).should.eventually.contain('opportunity to view, save or print a copy of your answers')
           .click(SummaryPage.submit())
           .click(ThankYouPage.viewSubmitted())
           .getUrl().should.eventually.contain('view-submission')

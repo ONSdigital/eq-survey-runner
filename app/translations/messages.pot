@@ -199,7 +199,7 @@ msgstr ""
 
 #: app/templates/summary.html:56
 msgid ""
-"You will have the opportunity to view and print a copy of your answers "
+"You will have the opportunity to view, save or print a copy of your answers "
 "after submitting this survey"
 msgstr ""
 
@@ -235,7 +235,7 @@ msgstr ""
 
 #: app/templates/thank-you.html:37
 #: app/themes/social/templates/thank-you.html:19
-msgid "View and print a copy of your answers"
+msgid "View, save or print a copy of your answers"
 msgstr ""
 
 #: app/templates/thank-you.html:38
