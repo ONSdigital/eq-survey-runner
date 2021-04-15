@@ -185,11 +185,11 @@ msgstr "Adolygwch eich atebion a chadarnhewch fod y rhain yn gywir"
 
 #: app/templates/summary.html:54
 msgid ""
-"You will have the opportunity to view and print a copy of your answers after "
+"You will have the opportunity to view, save or print a copy of your answers after "
 "submitting this survey"
 msgstr ""
-"Byddwch yn cael y cyfle i weld ac argraffu copi o'ch atebion ar ôl "
-"cyflwyno'r arolwg hwn"
+"You will have the opportunity to view, save or print a copy of your answers after "
+"submitting this survey"
 
 #: app/templates/thank-you.html:3+app/themes/social/templates/thank-you.html:3
 msgid "We've received your answers"
@@ -226,7 +226,7 @@ msgstr ""
 "neu drwy neges ddiogel"
 
 #: app/templates/thank-you.html:38+app/themes/social/templates/thank-you.html:19
-msgid "View and print a copy of your answers"
+msgid "View, save or print a copy of your answers"
 msgstr "Edrychwch ar eich atebion ac argraffwch gopi ohonynt"
 
 #: app/templates/thank-you.html:39+app/themes/social/templates/thank-you.html:20
