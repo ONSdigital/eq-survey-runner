@@ -1,0 +1,40 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: monthly
+  open-pull-requests-limit: 10
+  labels:
+  - v2
+  ignore:
+  - dependency-name: marshmallow
+    versions:
+    - ">= 3.a, < 4"
+  - dependency-name: pylint
+    versions:
+    - 2.5.3
+  - dependency-name: psycopg2
+    versions:
+    - 2.8.5
+  - dependency-name: newrelic
+    versions:
+    - 5.12.0.140
+  - dependency-name: humanize
+    versions:
+    - 2.2.0
+  - dependency-name: flake8-debugger
+    versions:
+    - 3.2.1
+  - dependency-name: moto
+    versions:
+    - 1.3.14
+  - dependency-name: gunicorn
+    versions:
+    - 20.0.4
+  - dependency-name: flake8-print
+    versions:
+    - 3.1.4
+  - dependency-name: structlog
+    versions:
+    - 20.1.0
