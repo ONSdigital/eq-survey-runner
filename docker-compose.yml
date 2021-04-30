@@ -1,7 +1,5 @@
-version: '3'
-
+version: "3"
 services:
-
   rabbit:
     image: rabbitmq:3-management
     ports:
@@ -24,13 +22,15 @@ services:
     networks:
       - eq-env
 
-  eq-survey-register:
-    image: onsdigital/eq-survey-register:latest
-    restart: always
-    networks:
-      - eq-env
-    ports:
-      - "8080:8080"
+  # eq-survey-register:
+  #   image: onsdigital/eq-survey-register:latest
+  #   restart: always
+  #   networks:
+  #     - eq-env
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     AWS_REGION: eu-west-1
 
   eq-survey-runner:
     image: onsdigital/eq-survey-runner
@@ -81,7 +81,6 @@ services:
     ports:
       - "8000:8000"
 
-
   eq-docker-dynamodb:
     image: onsdigital/eq-docker-dynamodb:latest
     restart: always
@@ -89,7 +88,6 @@ services:
       - eq-env
     ports:
       - "6060:8000"
-
 
 networks:
   eq-env:
