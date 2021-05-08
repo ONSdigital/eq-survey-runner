@@ -135,7 +135,7 @@
         "eslint-plugin-node": "^5.1.1",
         "events": "^1.1.1",
         "ie9-oninput-polyfill": "^1.1.1",
-        "lodash": "^4.17.5",
+        "lodash": "^4.17.21",
         "whatwg-fetch": "^2.0.2"
     }
 }
