@@ -80,6 +80,22 @@
                                     }]
                                 },
                                 {
+                                    "question": "International trade in services",
+                                    "content": [{
+                                            "description": "This section asks specifically about the international trade of <strong>services.</strong>"
+                                        },
+                                        {
+                                            "description": "It includes exporting and importing of services from your businesses in the UK to an individual or business located outside of the UK."
+                                        },
+                                        {
+                                            "description": "Services are often skills and services that are provided by people, and are 'intangible'. For example, your business may provide a service (such as legal or financial services) to a non-UK business, or receive a service, such as research or construction, from a non-UK business."
+                                        },
+                                        {
+                                            "description": "Exclude international trade in goods and materials."
+                                        }
+                                    ]
+                                },
+                                {
                                     "question": "Supply chains",
                                     "content": [{
                                             "description": "This section asks for information about:"
@@ -125,10 +141,10 @@
                                             "list": [
                                                 "percentage, for example, on furlough leave or working from home, or made redundant in the last two weeks",
                                                 "percentage returning from furlough or homeworking",
-                                                "expectations of workforce returning to normal place of work and changes to business or commercial space",
+                                                "expectations of workforce returning to normal place of work",
                                                 "safety measures in the workplace",
+                                                "risk assessments related to coronavirus and sources for advice and support",
                                                 "providing regular coronavirus testing for your workforce",
-                                                "providing coronavirus vaccinations for your workforce",
                                                 "expected redundancies in the next three months"
                                             ]
                                         }
@@ -152,7 +168,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbe7effcb-8832-4733-90b4-b699fcffa38a",
-                            "title": "Which of the following statements best describes {{ metadata['ru_name'] }}'s <em>trading status</em>?",
+                            "title": "Which of the following statements best describes {{ metadata['ru_name'] }}'s trading status?",
                             "description": "<p>You can interpret \"trading\"as \"operating\".</p><p>Only select \"paused trading\"if all trading or operations have temporarily stopped.</p>",
                             "type": "General",
                             "answers": [{
@@ -222,7 +238,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2bf9c26a-511c-466b-b889-f936535bef7f",
-                            "title": "<em>Where in the UK</em> are {{ metadata['ru_name'] }}'s sites located?",
+                            "title": "Where in the UK are {{ metadata['ru_name'] }}'s sites located?",
                             "description": "<p>The UK consists of England, Northern Ireland, Scotland and Wales. </p>",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
@@ -701,7 +717,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9361fa44-7f22-47da-bdd0-16e104300487",
-                            "title": "How does {{ metadata['ru_name'] }}'s turnover for the <em>last two weeks</em>, compare to normal expectations for this time of year?",
+                            "title": "How does {{ metadata['ru_name'] }}'s turnover for the last two weeks, compare to normal expectations for this time of year?",
                             "description": "<p>You can provide a rough estimate.</p>",
                             "guidance": {
                                 "content": [{
@@ -780,7 +796,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0bf14da5-6919-4507-8542-5d71be2e6ac1",
-                            "title": "What was the <em>main reason</em> for this change to your business's turnover in the last two weeks?",
+                            "title": "What was the main reason for this change to your business's turnover in the last two weeks?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer392e439f-5897-4aa9-94ca-f01126acf654",
@@ -866,7 +882,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiond4818169-20ff-49c6-97ff-9a8178fe076f",
-                            "title": "In the last two weeks, how has your business's <em>profits</em> compared with normal expectations for this time of year?",
+                            "title": "In the <em>last two weeks</em>, how has your business's profits compared with normal expectations for this time of year?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer7bbe3645-7ccc-48d1-a5ac-d40c735466ba",
@@ -1036,7 +1052,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question059d51ee-2b0f-456f-8a29-23b1c97e2dac",
-                            "title": "Has {{ metadata['ru_name'] }} <em>exported</em> goods or services in the last 12 months?",
+                            "title": "Has {{ metadata['ru_name'] }} exported goods or services in the last 12 months?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer6e5dfc6d-189b-4d67-b64f-d40f68253cda",
@@ -1170,7 +1186,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question55437b87-822f-4aa8-af6d-95498e5e28b5",
-                            "title": "Have you changed where you have  exported your goods or services to in the <em>last two weeks</em>?",
+                            "title": "Have you changed where you have  exported your goods or services to in the last two weeks?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -1226,7 +1242,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question730e686b-f62a-444a-a62d-805ced57ace8",
-                            "title": "How does your business's exporting in the <em>last two weeks</em> compare to normal expectations for this time of year?",
+                            "title": "How does your business's exporting in the last two weeks compare to normal expectations for this time of year?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
@@ -1280,7 +1296,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc5f972ec-6082-4ae9-9540-7564994f6340",
-                            "title": "Have you experienced any of the following challenges with exporting goods or services over the <em>last two weeks</em>?",
+                            "title": "Have you experienced any of the following challenges with exporting goods or services in the last two weeks?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -1392,7 +1408,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbbf044b0-d4f2-4bfd-83be-f6f3e8f03e69",
-                            "title": "What was the <em>main cause</em> of these exporting challenges?",
+                            "title": "What was the main cause of these exporting challenges?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerb1c9a35d-bfaa-4cd5-aca2-445a873b13b5",
@@ -1436,7 +1452,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question3df3422a-16c2-4b1b-9d12-a7221b4f5337",
-                            "title": "How much disruption to your business have these challenges caused?",
+                            "title": "How much <em>disruption</em> to your business have these challenges caused?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer162e3290-8b03-410f-a456-e0be7d01ebef",
@@ -1555,7 +1571,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4728c544-95e8-4d1f-a5c7-d2fc3a95f180",
-                            "title": "Let us know anything else that will help us understand your business's exporting in the <em>last two weeks</em>",
+                            "title": "Let us know anything else that will help us understand your business's exporting in the last two weeks",
                             "type": "General",
                             "answers": [{
                                 "id": "answer3c6cef19-ffc2-4283-9cc9-bd356713b0f2",
@@ -1731,7 +1747,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionf25bdbfe-14fb-4699-bf0d-29140cb007f8",
-                            "title": "Has your business <em>imported</em> goods or services in the last 12 months?",
+                            "title": "Has {{ metadata['ru_name'] }} imported goods or services in the last 12 months?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer5ad71b6e-442c-499a-b185-e39282dd09c0",
@@ -1803,7 +1819,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
+                                    "group": "groupd76c7199-9267-4994-bdca-af71793337d0",
                                     "when": [{
                                         "id": "answer66fa416f-8aa3-4bfb-a7c4-72c450ad718d",
                                         "condition": "contains any",
@@ -1857,7 +1873,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
+                                    "group": "groupd76c7199-9267-4994-bdca-af71793337d0",
                                     "when": [{
                                             "id": "answer676f3fcf-5942-44fb-8cf7-f83ccd4c94e7",
                                             "condition": "contains any",
@@ -1942,7 +1958,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question41cb8d16-ed70-4442-a3e1-fac1efdea741",
-                            "title": "How does your business's importing in the <em>last two weeks</em> compare to normal expectations for this time of year?",
+                            "title": "How does your business's importing in the last two weeks compare to normal expectations for this time of year?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
@@ -1976,7 +1992,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
+                                    "group": "groupd76c7199-9267-4994-bdca-af71793337d0",
                                     "when": [{
                                         "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
                                         "condition": "contains any",
@@ -1996,7 +2012,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2c7c8b24-a217-4c10-b867-60ec2c6b62d5",
-                            "title": "Have you experienced any of the following challenges with importing over the <em>last two weeks</em>?",
+                            "title": "Have you experienced any of the following challenges with importing over the last two weeks?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -2103,7 +2119,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9f67aeed-b012-49c7-9486-0b15c4b9b2db",
-                            "title": "What was the <em>main cause</em> of these importing challenges?",
+                            "title": "What was the main cause of these importing challenges?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer8df5dfce-0739-4d5a-acea-3d35463dffc7",
@@ -2147,7 +2163,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionae1d1258-87d7-427c-8819-ed8595f77315",
-                            "title": "How much disruption to your business have these challenges caused?",
+                            "title": "How much <em>disruption</em> to your business have these challenges caused?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer0c6802f2-c705-4edc-ba4b-8aab80bb35ac",
@@ -2261,7 +2277,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4648511e-cf19-468d-9eed-14c4a92cb720",
-                            "title": "Let us know anything else that will help us understand your business's importing in the <em>last two weeks</em>",
+                            "title": "Let us know anything else that will help us understand your business's importing in the last two weeks",
                             "type": "General",
                             "answers": [{
                                 "id": "answer98ea4789-060e-460b-8d33-e688ceb4e947",
@@ -2271,6 +2287,200 @@
                                 "description": "",
                                 "q_code": "11",
                                 "max_length": 2000
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                        "condition": "contains any",
+                        "values": ["Permanently ceased trading"]
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "section71d730a2-d5b3-4fa8-8835-a1166763d295",
+            "title": "International trade in services",
+            "groups": [{
+                "id": "groupd76c7199-9267-4994-bdca-af71793337d0",
+                "title": "International trade in services",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group71d730a2-d5b3-4fa8-8835-a1166763d295-introduction",
+                        "title": "International trade in services",
+                        "description": "<p>This section asks specifically about the international trade of <strong>services.</strong></p><p>It includes exporting and importing of services from your businesses in the UK to an individual or business located outside of the UK.</p><p>Services are often skills and services that are provided by people, and are 'intangible'. For example, your business may provide a service (such as legal or financial services) to a non-UK business, or receive a service, such as research or construction, from a non-UK business.</p><p>Exclude international trade in goods and materials.</p>"
+                    },
+                    {
+                        "id": "block2b40bb4b-a484-41cf-afd2-0997b83b9c92",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question2b40bb4b-a484-41cf-afd2-0997b83b9c92",
+                            "title": "Has {{ metadata['ru_name'] }}'s international trade in services changed in the last 12 months?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "exporting of services from your businesses in the UK to an individual or business located outside of the UK",
+                                            "importing of services to your businesses in the UK from an individual or business located outside of the UK"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": ["exporting and importing of international trade in goods and materials"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by \"services\"",
+                                "content": [{
+                                    "description": "Services are often skills and services that are provided by people, and are 'intangible'. For example, your business may provide a service (such as legal or financial services) to a non-UK business, or receive a service, such as research or construction, from a non-UK business."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerd195a24f-f229-4047-9b5c-5602d366d959",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "195",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
+                                    "when": [{
+                                        "id": "answerd195a24f-f229-4047-9b5c-5602d366d959",
+                                        "condition": "contains any",
+                                        "values": ["No", "Not sure", "Not applicable"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockb11a8d4c-bd1f-48ef-b0b3-b0f8ff5a75b1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockb11a8d4c-bd1f-48ef-b0b3-b0f8ff5a75b1",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionb11a8d4c-bd1f-48ef-b0b3-b0f8ff5a75b1",
+                            "title": "How does your business's international trade in services in the <em>last two weeks</em> compare to normal expectations for this time of year?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer48cc121d-ac69-405d-8ef2-6da32e530651",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "196",
+                                "options": [{
+                                        "label": "Trading more than normal",
+                                        "value": "Trading more than normal"
+                                    },
+                                    {
+                                        "label": "Trading as normal",
+                                        "value": "Trading as normal"
+                                    },
+                                    {
+                                        "label": "Trading, but less than normal",
+                                        "value": "Trading, but less than normal"
+                                    },
+                                    {
+                                        "label": "Not been able to trade in services in the last two weeks",
+                                        "value": "Not been able to trade in services in the last two weeks"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
+                                    "when": [{
+                                        "id": "answer48cc121d-ac69-405d-8ef2-6da32e530651",
+                                        "condition": "contains any",
+                                        "values": ["Trading as normal", "Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block73a1bb0e-b9cb-40f0-ac2f-b819c7607bc8"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block73a1bb0e-b9cb-40f0-ac2f-b819c7607bc8",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question73a1bb0e-b9cb-40f0-ac2f-b819c7607bc8",
+                            "title": "What was the main reason for this change to international trade in services?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer7da6c859-70a6-4534-9be0-6da3cda50b16",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "197",
+                                "options": [{
+                                        "label": "Coronavirus (COVID-19) pandemic",
+                                        "value": "Coronavirus (COVID-19) pandemic"
+                                    },
+                                    {
+                                        "label": "End of the EU transition period",
+                                        "value": "End of the EU transition period"
+                                    },
+                                    {
+                                        "label": "Coronavirus (COVID-19) pandemic and the end of the EU transition period",
+                                        "value": "Coronavirus (COVID-19) pandemic and the end of the EU transition period"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "value": "Other",
+                                        "detail_answer": {
+                                            "label": "Please describe",
+                                            "type": "TextField",
+                                            "id": "answer957b022d-e315-45ee-9a2c-398437894dff",
+                                            "mandatory": true
+                                        }
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
                             }]
                         }]
                     }
@@ -2301,7 +2511,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2792b362-de84-4ee6-9bf5-ce136096455d",
-                            "title": "Has {{ metadata['ru_name'] }} made <em>changes to supply chains</em> due to the end of the EU transition period?",
+                            "title": "Has {{ metadata['ru_name'] }} made changes to supply chains due to the end of the EU transition period?",
                             "definitions": [{
                                 "title": "What we mean by the \"end of the EU transition period\"",
                                 "content": [{
@@ -2387,7 +2597,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question05a9fbb6-039f-4bb2-a898-7d7dcc468fb9",
-                            "title": "In which of the following ways has your business <em>changed supply chains</em> due to the end of the EU transition period?",
+                            "title": "In which of the following ways has your business changed supply chains due to the end of the EU transition period?",
                             "definitions": [{
                                 "title": "What we mean by the \"end of the EU transition period\"",
                                 "content": [{
@@ -2556,7 +2766,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question78f97e48-ad45-4823-8d06-80d9a472cb27",
-                            "title": "Was your business able to get the materials, goods or services it needed <em>from the EU</em> in the <em>last two weeks</em>?",
+                            "title": "Was your business able to get the materials, goods or services it needed from the EU in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerb434ea9e-113e-404f-ba8d-704d4cdf9a81",
@@ -2631,7 +2841,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1fe3a183-a26d-49e2-a2a8-6ccf220059a6",
-                            "title": "How did the prices of materials, goods or services <em>bought</em> by {{ metadata['ru_name'] }} change in the <em>last two weeks</em>, compared with normal price fluctuations?",
+                            "title": "How did the prices of materials, goods or services bought by {{ metadata['ru_name'] }} change in the last two weeks, compared with normal price fluctuations?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerc94ef925-704e-4784-a3cd-f28e4c468390",
@@ -2707,7 +2917,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2f2ada3e-2493-4b61-95d1-8082a59cc662",
-                            "title": "How did the prices of goods or services <em>sold</em> by your business change in the <em>last two weeks</em>, compared with normal fluctuations?",
+                            "title": "How did the prices of goods or services <em>sold</em> by your business change in the last two weeks, compared with normal fluctuations?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerdbde29eb-0a6a-4474-8d8e-4bb5bbc1bd47",
@@ -2793,7 +3003,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question710733dd-1007-4c9b-8179-06e1df6cb1a8",
-                            "title": "Has your business had an increase in demand for goods or services <em>sold</em> in the <em>last two weeks</em>?",
+                            "title": "Has your business had an increase in <em>demand</em> for goods or services sold in the last two weeks?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer26fc859c-03dc-4f9b-bfc0-0c969eb4c6d2",
@@ -2894,7 +3104,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question207aa0eb-bec6-4ed5-a4b8-615966483b0b",
-                            "title": "How do {{ metadata['ru_name'] }}’s <em>stock levels</em> for the last two weeks, compare to normal expectations for this time of year?",
+                            "title": "How do {{ metadata['ru_name'] }}’s stock levels for the last two weeks, compare to normal expectations for this time of year?",
                             "description": "<p>Your business may use the term 'inventories' instead of 'stock'.</p>",
                             "type": "General",
                             "answers": [{
@@ -2949,7 +3159,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questione5c7d70f-8576-4da0-847a-47c5b7f9dd27",
-                            "title": "In the last two weeks, what has had the <em>greatest impact</em> to your business's stock levels?",
+                            "title": "In the last two weeks, what has had the greatest impact to your business's stock levels?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer2a00a18e-0371-4f7d-8ef8-13d7a6ba8267",
@@ -3365,7 +3575,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9132d42e-1a65-4a23-a98f-daf72007b24c",
-                            "title": "What was the <em>main reason</em> for this change in your business's capital expenditure?",
+                            "title": "What was the main reason for this change in your business's capital expenditure?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer56674341-3abb-4379-9f05-cbfdb8600a95",
@@ -3449,7 +3659,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question3e1692a9-835b-4294-adf5-6797e7f0fa5c",
-                            "title": "Has {{ metadata['ru_name'] }} <em>applied for</em> any of the following grants?",
+                            "title": "Has {{ metadata['ru_name'] }} applied for any of the following grants?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -3591,7 +3801,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2ea33f36-282b-40d4-a881-0d946f8d4408",
-                            "title": "Has your business <em>received</em> any of these other grants?",
+                            "title": "Has your business received any of these <em>other grants</em>?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -3632,6 +3842,11 @@
                                             "label": "Business Development Grant - Wales",
                                             "value": "Business Development Grant - Wales",
                                             "q_code": "2053"
+                                        },
+                                        {
+                                            "label": "Business Restart Grant - Scotland",
+                                            "value": "Business Restart Grant - Scotland",
+                                            "q_code": "2057"
                                         },
                                         {
                                             "label": "Not sure",
@@ -3817,7 +4032,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionb305b9d6-b021-4d5e-a92e-291381c49492",
-                            "title": "Has your business received any <em>government-backed loans or finance agreements</em> during the coronavirus (COVID-19) pandemic?",
+                            "title": "Has your business received any government-backed loans or finance agreements during the coronavirus (COVID-19) pandemic?",
                             "definitions": [{
                                 "title": "Examples of government-backed loans and finance agreements",
                                 "content": [{
@@ -3908,11 +4123,69 @@
                         }]
                     },
                     {
+                        "id": "blocke098afba-49de-4a3c-b460-b3968d4286c1",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questione098afba-49de-4a3c-b460-b3968d4286c1",
+                            "title": "Did the <em>support received</em> from any of the initiatives or schemes help your business to continue trading?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Include any grants or loans from government"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer3595387f-9ac6-49fe-9ca7-63f7fe3049fd",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "91",
+                                "options": [{
+                                        "label": "Yes, it helped us to continue trading",
+                                        "value": "Yes, it helped us to continue trading"
+                                    },
+                                    {
+                                        "label": "No, it did not impact our ability to continue trading",
+                                        "value": "No, it did not impact our ability to continue trading"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                    "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503-exclusive",
+                                    "condition": "contains any",
+                                    "values": ["Not received any of these grants"]
+                                },
+                                {
+                                    "id": "answer9d9457f2-42d9-4aec-813c-20a782ef4b29",
+                                    "condition": "contains any",
+                                    "values": ["No"]
+                                },
+                                {
+                                    "id": "answer89f02f13-5a9e-4eeb-819a-fd82639f7d66-exclusive",
+                                    "condition": "contains any",
+                                    "values": ["Not using, or intending to use, any of these schemes"]
+                                },
+                                {
+                                    "id": "answerd1736918-22a2-489d-b89b-3f3141d4cac8-exclusive",
+                                    "condition": "contains any",
+                                    "values": ["Not received any of these grants"]
+                                }
+                            ]
+                        }]
+                    },
+                    {
                         "id": "blocka2d0a9ef-9bfc-4ead-867f-bad93d6a3bca",
                         "type": "Question",
                         "questions": [{
                             "id": "questiona2d0a9ef-9bfc-4ead-867f-bad93d6a3bca",
-                            "title": "How long do you think your business's <em>cash reserves</em> will last?",
+                            "title": "How long do you think your business's cash reserves will last?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer32a38f2a-e599-4ff7-9df9-b0419be84b96",
@@ -3954,7 +4227,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbdbc4356-50fd-4406-97c9-1252f3eadb0f",
-                            "title": "How much confidence does your business have that it will <em>survive the next three months</em>?",
+                            "title": "How much confidence does your business have that it will survive the next three months?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerc5c09a23-a983-4ecb-a6db-930de15865fa",
@@ -3992,7 +4265,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questione34c0aed-d8ea-47da-a46a-82eaefa154c5",
-                            "title": "Over the <em>last month</em>, how did your business's <em>debt repayments</em> compare with turnover?",
+                            "title": "Over the <em>last month</em>, how did your business's debt repayments compare with turnover?",
                             "description": "<p>You can provide a rough estimate.</p>",
                             "definitions": [{
                                 "title": "What we mean by \"debt\"",
@@ -4057,7 +4330,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4aaf767b-aa1a-417a-85b8-20aefaf680aa",
-                            "title": "Over the last month, how did your business's debt repayments <em>compare with normal expectations</em> for this time of year?",
+                            "title": "Over the last month, how did your business's debt repayments compare with normal expectations for this time of year?",
                             "description": "<p>You can provide a rough estimate.</p>",
                             "type": "General",
                             "answers": [{
@@ -4154,7 +4427,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question858bcec9-fe0b-4610-990c-f4a0eaf33616",
-                            "title": "How much confidence does your business have that it <em>will meet</em> its debt obligations?",
+                            "title": "How much confidence does your business have that it will meet its debt obligations?",
                             "type": "General",
                             "answers": [{
                                 "id": "answere7312ccc-bde4-4f80-9b64-f554a8936d7c",
@@ -4192,7 +4465,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2b28fb2b-779d-4a45-9806-15d5dbbf16f7",
-                            "title": "What is your business's <em>risk of insolvency</em>?",
+                            "title": "What is your business's risk of insolvency?",
                             "definitions": [{
                                 "title": "What we mean by \"insolvency\"",
                                 "content": [{
@@ -4233,56 +4506,6 @@
                                     }
                                 ]
                             }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "groupbc417dc6-42e4-4a74-a314-93c8feb69392",
-                                    "when": [{
-                                        "id": "answer1feb3977-8643-4f41-bb73-b6b7131e322b",
-                                        "condition": "contains any",
-                                        "values": ["The business is insolvent", "Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block03374e34-0d66-467f-ac83-8f6462d5f402"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block03374e34-0d66-467f-ac83-8f6462d5f402",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question03374e34-0d66-467f-ac83-8f6462d5f402",
-                            "title": "How has your business's risk of insolvency changed in the last two weeks?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answera7851b80-4e6a-47da-b6fc-ed35eadaa405",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "219",
-                                "options": [{
-                                        "label": "Risk has increased",
-                                        "value": "Risk has increased"
-                                    },
-                                    {
-                                        "label": "Risk has stayed the same",
-                                        "value": "Risk has stayed the same"
-                                    },
-                                    {
-                                        "label": "Risk has decreased",
-                                        "value": "Risk has decreased"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
                         }]
                     }
                 ],
@@ -4305,14 +4528,14 @@
                         "type": "Interstitial",
                         "id": "group1760a554-060f-4e6a-bf64-970f98d84ac7-introduction",
                         "title": "Operational performance",
-                        "description": "<p>This section asks for information about your workforce such as the:</p><ul><li>percentage, for example, on furlough leave or working from home, or made redundant in the last two weeks</li><li>percentage returning from furlough or homeworking</li><li>expectations of workforce returning to normal place of work and changes to business or commercial space</li><li>safety measures in the workplace</li><li>providing regular coronavirus testing for your workforce</li><li>providing coronavirus vaccinations for your workforce</li><li>expected redundancies in the next three months</li></ul>"
+                        "description": "<p>This section asks for information about your workforce such as the:</p><ul><li>percentage, for example, on furlough leave or working from home, or made redundant in the last two weeks</li><li>percentage returning from furlough or homeworking</li><li>expectations of workforce returning to normal place of work</li><li>safety measures in the workplace</li><li>risk assessments related to coronavirus and sources for advice and support</li><li>providing regular coronavirus testing for your workforce</li><li>expected redundancies in the next three months</li></ul>"
                     },
                     {
                         "id": "block90beb26c-59f1-4f7f-9dee-e9a822e871be",
                         "type": "Question",
                         "questions": [{
                             "id": "question90beb26c-59f1-4f7f-9dee-e9a822e871be",
-                            "title": "In the <em>last two weeks</em>, approximately what percentage of {{ metadata['ru_name'] }}'s workforce were:",
+                            "title": "In the last two weeks, approximately what percentage of {{ metadata['ru_name'] }}'s workforce were:",
                             "description": "<p>Your answers need to <em>add up to 100%</em>. </p><p>If your workforce did not fall into any of the top five categories, enter '0', then use the 'Other' box at the bottom to bring the total to 100%. </p><p>Rough estimates are acceptable.  </p>",
                             "type": "Calculated",
                             "answers": [{
@@ -4567,7 +4790,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question66bef12d-2546-4df7-9e64-15e48bdf99c4",
-                            "title": "In the <em>last two weeks</em>, approximately what percentage of your workforce have:",
+                            "title": "In the last two weeks, approximately what percentage of your workforce have:",
                             "description": "<p>Rough estimates are acceptable.  Answers <em>do not</em> need to sum to 100.</p>",
                             "type": "General",
                             "answers": [{
@@ -4738,251 +4961,14 @@
                         }]
                     },
                     {
-                        "id": "block4162f458-523c-42c8-a0f8-62e1dc4c1aa0",
+                        "id": "blocke4c13900-8eb9-411b-a749-2f4e25078d53",
                         "type": "Question",
                         "questions": [{
-                            "id": "question4162f458-523c-42c8-a0f8-62e1dc4c1aa0",
-                            "title": "Does your business intend to use increased homeworking as a <em>permanent business model</em> going forward?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer3bb20894-0867-4135-82ab-36c4b73fce73",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "161",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block3de81e66-5408-4a9e-9f21-1c111d0b9d62",
-                                    "when": [{
-                                        "id": "answer3bb20894-0867-4135-82ab-36c4b73fce73",
-                                        "condition": "contains any",
-                                        "values": ["Yes"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block0c8c9a35-0e74-4b08-aafd-941956c13c63",
-                                    "when": [{
-                                        "id": "answer3bb20894-0867-4135-82ab-36c4b73fce73",
-                                        "condition": "contains any",
-                                        "values": ["No"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block8d559354-3c33-4ace-a113-2b8b2f29fd58"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block3de81e66-5408-4a9e-9f21-1c111d0b9d62",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question3de81e66-5408-4a9e-9f21-1c111d0b9d62",
-                            "title": "Why do you <em>intend</em> to use increased homeworking as a permanent business model going forward?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answerab5c6212-0401-451d-89c4-7f393c8945ee",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Ability to recruit from a wider geographical pool",
-                                            "value": "Ability to recruit from a wider geographical pool",
-                                            "q_code": "1621"
-                                        },
-                                        {
-                                            "label": "Ability to better match jobs to skills",
-                                            "value": "Ability to better match jobs to skills",
-                                            "q_code": "1622"
-                                        },
-                                        {
-                                            "label": "Increased productivity",
-                                            "value": "Increased productivity",
-                                            "q_code": "1623"
-                                        },
-                                        {
-                                            "label": "Reduced overheads",
-                                            "value": "Reduced overheads",
-                                            "q_code": "1624"
-                                        },
-                                        {
-                                            "label": "Improved staff wellbeing",
-                                            "value": "Improved staff wellbeing",
-                                            "q_code": "1625"
-                                        },
-                                        {
-                                            "label": "Reduced sickness levels",
-                                            "value": "Reduced sickness levels",
-                                            "q_code": "1626"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "1627",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer381d7027-588a-4886-a1b6-fd43dee40781",
-                                                "mandatory": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answerab5c6212-0401-451d-89c4-7f393c8945ee-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "1620"
-                                    }]
-                                }
-                            ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block8d559354-3c33-4ace-a113-2b8b2f29fd58",
-                                    "when": [{
-                                        "id": "answerab5c6212-0401-451d-89c4-7f393c8945ee",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "Ability to recruit from a wider geographical pool",
-                                            "Ability to better match jobs to skills",
-                                            "Increased productivity",
-                                            "Reduced overheads",
-                                            "Improved staff wellbeing",
-                                            "Reduced sickness levels",
-                                            "Other"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block8d559354-3c33-4ace-a113-2b8b2f29fd58",
-                                    "when": [{
-                                        "id": "answerab5c6212-0401-451d-89c4-7f393c8945ee-exclusive",
-                                        "condition": "contains any",
-                                        "values": ["Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block0c8c9a35-0e74-4b08-aafd-941956c13c63"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block0c8c9a35-0e74-4b08-aafd-941956c13c63",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question0c8c9a35-0e74-4b08-aafd-941956c13c63",
-                            "title": "Why do you <em>not intend</em> to use increased homeworking as a permanent business model going forward?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answerf0885eea-c928-4bb2-b4fd-886307a699f3",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Reduced productivity",
-                                            "value": "Reduced productivity",
-                                            "q_code": "1631"
-                                        },
-                                        {
-                                            "label": "Security concerns",
-                                            "value": "Security concerns",
-                                            "q_code": "1632"
-                                        },
-                                        {
-                                            "label": "Reduced reliability and retention of staff",
-                                            "value": "Reduced reliability and retention of staff",
-                                            "q_code": "1633"
-                                        },
-                                        {
-                                            "label": "Reduced communication",
-                                            "value": "Reduced communication",
-                                            "q_code": "1634"
-                                        },
-                                        {
-                                            "label": "Negative impact on working culture",
-                                            "value": "Negative impact on working culture",
-                                            "q_code": "1635"
-                                        },
-                                        {
-                                            "label": "Not suitable for our business",
-                                            "value": "Not suitable for our business",
-                                            "q_code": "1636"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "1637",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer024cc7c3-010f-4b0f-85ef-03cfbbbac953",
-                                                "mandatory": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answerf0885eea-c928-4bb2-b4fd-886307a699f3-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "1630"
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "block8d559354-3c33-4ace-a113-2b8b2f29fd58",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question8d559354-3c33-4ace-a113-2b8b2f29fd58",
+                            "id": "questione4c13900-8eb9-411b-a749-2f4e25078d53",
                             "title": "When do you expect your workforce to return to their <em>normal</em> place of work?",
-                            "guidance": {
-                                "content": [{
-                                    "description": "Include employees returning to the workplace both fully and partially"
-                                }]
-                            },
                             "type": "General",
                             "answers": [{
-                                "id": "answer05ff64ad-c062-4933-b9b3-89129822a94f",
+                                "id": "answer3713ee46-3d45-42aa-836b-617bc1a089c8",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -5001,8 +4987,8 @@
                                         "value": "Between 4 to 6 months"
                                     },
                                     {
-                                        "label": "More than 6 months time",
-                                        "value": "More than 6 months time"
+                                        "label": "More than 6 months",
+                                        "value": "More than 6 months"
                                     },
                                     {
                                         "label": "Workforce already returned to their normal place of work",
@@ -5025,13 +5011,14 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block23ecb3c2-8853-457d-aabb-f0186f8e9c86",
+                                    "block": "blockb7a79e16-7c0b-43bf-8a3d-ca38da00b4e1",
                                     "when": [{
-                                        "id": "answer05ff64ad-c062-4933-b9b3-89129822a94f",
+                                        "id": "answer3713ee46-3d45-42aa-836b-617bc1a089c8",
                                         "condition": "contains any",
                                         "values": [
                                             "Workforce already returned to their normal place of work",
                                             "Not expecting workforce to return to their normal place of work",
+                                            "Not sure",
                                             "Not applicable"
                                         ]
                                     }]
@@ -5039,25 +5026,25 @@
                             },
                             {
                                 "goto": {
-                                    "block": "blockd4c37292-472d-4406-a34f-700fe5c0906a"
+                                    "block": "block39854832-b509-4feb-a031-53a303e0ab55"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "blockd4c37292-472d-4406-a34f-700fe5c0906a",
+                        "id": "block39854832-b509-4feb-a031-53a303e0ab55",
                         "type": "Question",
                         "questions": [{
-                            "id": "questiond4c37292-472d-4406-a34f-700fe5c0906a",
-                            "title": "What percentage of your workforce do you expect to return to their normal place of work on a given day?",
+                            "id": "question39854832-b509-4feb-a031-53a303e0ab55",
+                            "title": "What percentage of your workforce do you expect to return to their normal place of work in the time period you selected?",
                             "type": "General",
                             "answers": [{
-                                "id": "answer0861e58f-7174-492a-b9ed-c2efbd945478",
+                                "id": "answer2dbd69d2-1e97-44e4-905d-c0a22370b325",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "36",
+                                "q_code": "198",
                                 "options": [{
                                         "label": "Above 75% of the workforce",
                                         "value": "Above 75% of the workforce"
@@ -5083,111 +5070,11 @@
                         }]
                     },
                     {
-                        "id": "block23ecb3c2-8853-457d-aabb-f0186f8e9c86",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question23ecb3c2-8853-457d-aabb-f0186f8e9c86",
-                            "title": "Is your business planning to change its use of business and commercial space over the next 12 months?",
-                            "definitions": [{
-                                "title": "What we mean by \"business and commercial space\"",
-                                "content": [{
-                                    "description": "The space which is primarily used by a business's employees including office space, factories but <strong>not</strong> including retail units and leisure facilities."
-                                }]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer15449cac-9d50-4390-a7ea-9590c3a58f7f",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "37",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "blocked99f7f3-bc8a-454d-b5c3-454bb597945c",
-                                    "when": [{
-                                        "id": "answer15449cac-9d50-4390-a7ea-9590c3a58f7f",
-                                        "condition": "contains any",
-                                        "values": ["Yes"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockb7a79e16-7c0b-43bf-8a3d-ca38da00b4e1"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "blocked99f7f3-bc8a-454d-b5c3-454bb597945c",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questioned99f7f3-bc8a-454d-b5c3-454bb597945c",
-                            "title": "How is your business planning to change its use of business and commercial space?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerd882b499-ac1f-4897-969c-f5f4ec455c44",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "38",
-                                "options": [{
-                                        "label": "Using more space",
-                                        "value": "Using more space"
-                                    },
-                                    {
-                                        "label": "Using less space",
-                                        "value": "Using less space"
-                                    },
-                                    {
-                                        "label": "Use of space is no longer necessary",
-                                        "value": "Use of space is no longer necessary"
-                                    },
-                                    {
-                                        "label": "Other",
-                                        "value": "Other",
-                                        "detail_answer": {
-                                            "label": "Please describe",
-                                            "type": "TextField",
-                                            "id": "answerb25a4570-cd83-426f-9213-10ca5207c7a6",
-                                            "mandatory": true
-                                        }
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }]
-                    },
-                    {
                         "id": "blockb7a79e16-7c0b-43bf-8a3d-ca38da00b4e1",
                         "type": "Question",
                         "questions": [{
                             "id": "questionb7a79e16-7c0b-43bf-8a3d-ca38da00b4e1",
-                            "title": "Is your business using, or intending to use, any of the following <em>safety measures</em> in the workplace?",
+                            "title": "Is your business using, or intending to use, any of the following safety measures in the workplace?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -5262,11 +5149,176 @@
                         }]
                     },
                     {
+                        "id": "block3e0e33c5-d924-4c71-893c-469ea16f2ed8",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3e0e33c5-d924-4c71-893c-469ea16f2ed8",
+                            "title": "Has your business completed a risk assessment related to coronavirus (COVID-19) in the last 12 months?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer714ecc22-b34c-46a9-ad0b-5360a6632f3e",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "199",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block3315531d-b4ba-4161-a8ae-0d5ae3688e32",
+                                    "when": [{
+                                        "id": "answer714ecc22-b34c-46a9-ad0b-5360a6632f3e",
+                                        "condition": "contains any",
+                                        "values": ["No", "Not sure", "Not applicable"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block3d53d62a-c468-4387-8d06-b4d0e6b174e0"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block3d53d62a-c468-4387-8d06-b4d0e6b174e0",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3d53d62a-c468-4387-8d06-b4d0e6b174e0",
+                            "title": "When was your business's risk assessment related to coronavirus (COVID-19) last reviewed?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerf3c0bc52-bc06-4cdb-b372-99a477a8e0eb",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "200",
+                                "options": [{
+                                        "label": "Less than 1 month ago",
+                                        "value": "Less than 1 month ago"
+                                    },
+                                    {
+                                        "label": "Between 1 and 3 months ago",
+                                        "value": "Between 1 and 3 months ago"
+                                    },
+                                    {
+                                        "label": "More than 3 months ago",
+                                        "value": "More than 3 months ago"
+                                    },
+                                    {
+                                        "label": "Has not been reviewed since being completed",
+                                        "value": "Has not been reviewed since being completed"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block3315531d-b4ba-4161-a8ae-0d5ae3688e32",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3315531d-b4ba-4161-a8ae-0d5ae3688e32",
+                            "title": "Which, if any, of the following sources have you used for advice or support to adapt your business for coronavirus (COVID-19)?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer8c5bff02-4702-4f68-91a8-b5d0b78ce22f",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "GOV.UK working safely guidance",
+                                            "value": "GOV.UK working safely guidance",
+                                            "q_code": "411"
+                                        },
+                                        {
+                                            "label": "GOV.UK NHS test and trace guidance",
+                                            "value": "GOV.UK NHS test and trace guidance",
+                                            "q_code": "412"
+                                        },
+                                        {
+                                            "label": "Health and Safety Executive (HSE) guidance on HSE.GOV.UK",
+                                            "value": "Health and Safety Executive (HSE) guidance on HSE.GOV.UK",
+                                            "q_code": "413"
+                                        },
+                                        {
+                                            "label": "Local authority website",
+                                            "value": "Local authority website",
+                                            "q_code": "414"
+                                        },
+                                        {
+                                            "label": "Tailored business advice",
+                                            "value": "Tailored business advice",
+                                            "q_code": "415",
+                                            "description": "For example, a local authority regulatory services team or environmental health officer or  through a business support provider"
+                                        },
+                                        {
+                                            "label": "Trade or sector bodies",
+                                            "value": "Trade or sector bodies",
+                                            "q_code": "416"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "417",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answer49a53cc0-f5dc-45f7-9a59-8386495ea829",
+                                                "mandatory": false
+                                            }
+                                        },
+                                        {
+                                            "label": "Not sure",
+                                            "value": "Not sure",
+                                            "q_code": "419"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer8c5bff02-4702-4f68-91a8-b5d0b78ce22f-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "None of the above",
+                                        "value": "None of the above",
+                                        "q_code": "410"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
                         "id": "block3e15053c-4d2e-49e4-8a29-ec858fada8e9",
                         "type": "Question",
                         "questions": [{
                             "id": "question3e15053c-4d2e-49e4-8a29-ec858fada8e9",
-                            "title": "Is your business providing <em>regular</em> coronavirus (COVID-19) testing for its workforce?",
+                            "title": "Is your business providing regular coronavirus (COVID-19) testing for its workforce?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -5289,7 +5341,7 @@
                             "definitions": [{
                                 "title": "What we mean by \"regular coronavirus (COVID-19) testing\"",
                                 "content": [{
-                                    "description": "This means that the business is testing the workforce on a routine basis (for example, once a week) to check for COVID cases, regardless of whether workers are asymptomatic"
+                                    "description": "This means that the business is testing the workforce on a routine basis (for example, once a week) to check for COVID cases, regardless of whether workers are asymptomatic."
                                 }]
                             }],
                             "type": "General",
@@ -5317,7 +5369,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "blockc1e83758-4e8d-4cd3-b61f-401acd2c5c0b",
+                                    "block": "blockf0fa1564-78f5-4d77-97f1-d79f6f455648",
                                     "when": [{
                                         "id": "answer577d25d7-3135-48a0-a673-571e7dfac5ad",
                                         "condition": "contains any",
@@ -5372,19 +5424,25 @@
                         }]
                     },
                     {
-                        "id": "blockc1e83758-4e8d-4cd3-b61f-401acd2c5c0b",
+                        "id": "blockf0f9e9e6-2275-4047-b884-6ec5e9b36e0b",
                         "type": "Question",
                         "questions": [{
-                            "id": "questionc1e83758-4e8d-4cd3-b61f-401acd2c5c0b",
-                            "title": "Does your business intend to provide coronavirus (COVID-19) <em>vaccinations</em> for its workforce?",
+                            "id": "questionf0f9e9e6-2275-4047-b884-6ec5e9b36e0b",
+                            "title": "Would your business be prepared to pay for lateral flow device tests for its employees?",
+                            "definitions": [{
+                                "title": "What we mean by \"lateral flow device tests\"",
+                                "content": [{
+                                    "description": "This refers to lateral flow devices (LFDs) which are a fast and simple way to test people who do not have symptoms of coronavirus (COVID-19), but who may still be spreading the virus."
+                                }]
+                            }],
                             "type": "General",
                             "answers": [{
-                                "id": "answer1a62f4a0-6b99-4b79-b45c-8b973f0e9e97",
+                                "id": "answerd7fd43c7-3237-4d9c-a941-b937daef9c0c",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "460",
+                                "q_code": "470",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -5396,6 +5454,10 @@
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
                                     }
                                 ]
                             }]
@@ -5452,7 +5514,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1a2f76fd-08c7-418a-9d39-278aea1fbd59",
-                            "title": "Approximately what percentage of your workforce do you expect to be made redundant over the <em>next three months</em>?",
+                            "title": "Approximately what percentage of your workforce do you expect to be made redundant over the next three months?",
                             "description": "<p>A rough estimate is acceptable.</p>",
                             "type": "General",
                             "answers": [{
@@ -5488,7 +5550,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block78c53286-a2c8-45ff-89fd-a75fc233c429",
+                                    "group": "group73de2088-284c-4669-93ab-bccacd145f5c",
                                     "when": [{
                                         "id": "answere22e32f2-0fa9-4a9a-9151-d576ff79b611",
                                         "condition": "contains all",
@@ -5508,139 +5570,10 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block78c53286-a2c8-45ff-89fd-a75fc233c429"
+                                    "group": "group73de2088-284c-4669-93ab-bccacd145f5c"
                                 }
                             }
                         ]
-                    },
-                    {
-                        "id": "block78c53286-a2c8-45ff-89fd-a75fc233c429",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question78c53286-a2c8-45ff-89fd-a75fc233c429",
-                            "title": "When do you expect these redundancies to happen?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer57311376-52db-43a0-82bd-433f43362dda",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Within the next 2 weeks",
-                                            "value": "Within the next 2 weeks",
-                                            "q_code": "19511"
-                                        },
-                                        {
-                                            "label": "Between 2 weeks and 1 month",
-                                            "value": "Between 2 weeks and 1 month",
-                                            "q_code": "19512"
-                                        },
-                                        {
-                                            "label": "Between 1 and 3 months",
-                                            "value": "Between 1 and 3 months",
-                                            "q_code": "1952"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer57311376-52db-43a0-82bd-433f43362dda-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "1950"
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "block35f83915-96bd-48c6-9eb8-6bf68d85d673",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question35f83915-96bd-48c6-9eb8-6bf68d85d673",
-                            "title": "<em>Why</em> is your business making these redundancies?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer564790ec-43ae-4d7b-bc6f-af98879f2f37",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Automation",
-                                            "value": "Automation",
-                                            "q_code": "1931",
-                                            "description": "For example, adoption of new machinery, equipment or software that replaces particular job roles, either fully or partially"
-                                        },
-                                        {
-                                            "label": "Business is closing or insolvent",
-                                            "value": "Business is closing or insolvent",
-                                            "q_code": "1932"
-                                        },
-                                        {
-                                            "label": "Certain job roles are no longer required",
-                                            "value": "Certain job roles are no longer required",
-                                            "q_code": "1933"
-                                        },
-                                        {
-                                            "label": "Change in management",
-                                            "value": "Change in management",
-                                            "q_code": "1934",
-                                            "description": "For example, the business has a new owner or has undergone a merger"
-                                        },
-                                        {
-                                            "label": "Reducing staff costs",
-                                            "value": "Reducing staff costs",
-                                            "q_code": "1935"
-                                        },
-                                        {
-                                            "label": "Relocation of the business",
-                                            "value": "Relocation of the business",
-                                            "q_code": "1936"
-                                        },
-                                        {
-                                            "label": "Site closures",
-                                            "value": "Site closures",
-                                            "q_code": "1937",
-                                            "description": "For example, specific sites are closing"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "1938",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer5e34e760-3ed8-49f4-9eb8-3671268ba327",
-                                                "mandatory": false
-                                            }
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "1939"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer564790ec-43ae-4d7b-bc6f-af98879f2f37-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Prefer not to say",
-                                        "value": "Prefer not to say",
-                                        "q_code": "1930"
-                                    }]
-                                }
-                            ]
-                        }]
                     }
                 ],
                 "skip_conditions": [{
