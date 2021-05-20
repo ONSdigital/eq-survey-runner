@@ -249,11 +249,11 @@ def _build_calculated_summary_section_list(schema, rendered_block):
         if blocks:
             groups.append({
                 'id': group['id'],
-                'blocks': blocks
+                'blocks': blocks,
             })
 
     section = {
-        'groups': groups
+        'groups': groups,
     }
 
     return [section]
