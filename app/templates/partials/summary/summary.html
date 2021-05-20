@@ -23,10 +23,10 @@
 
                     {%- endfor -%}
                 {%- endfor -%}
+            {%- if loop.last or loop.nextitem.title -%}
                 {%- if content.summary.summary_type == 'CalculatedSummary' -%}
                     {%- include theme(['partials/summary/calculated-summary-answer.html']) -%}
                 {%- endif -%}
-            {%- if loop.last or loop.nextitem.title -%}
                 </div>
             {%- endif -%}
         {%- endfor -%}

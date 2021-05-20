@@ -128,12 +128,11 @@ def build_view_context_for_section_summary(metadata, schema, answer_store, schem
 def build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type,
                                               variables, current_location):
     block = schema.get_block(current_location.block_id)
-    section_list = _build_calculated_summary_section_list(schema, block, current_location.group_id)
+    section_list = _build_calculated_summary_section_list(schema, block)
 
     context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
                                              block_type, variables, schema_context)
 
-    context['summary']['groups'] = [context['summary']['groups'][current_location.group_instance]]
     schema_context['group_instance_id'] = get_group_instance_id(schema, answer_store, current_location)
     rendered_block = renderer.render(block, **schema_context)
     formatted_total = _get_formatted_total(context['summary'].get('groups', []))
@@ -234,23 +233,27 @@ def build_view_context_for_summary(schema, section_list, answer_store, metadata,
     return context
 
 
-def _build_calculated_summary_section_list(schema, rendered_block, group_id):
-    blocks = []
-    for block in schema.blocks:
-        answers_in_block = schema.get_answers_by_id_for_block(block['id'])
-        answers_to_calculate = rendered_block['calculation']['answers_to_calculate']
+def _build_calculated_summary_section_list(schema, rendered_block):
+    groups = []
 
-        answer_matches = set(answers_in_block.keys()) & set(answers_to_calculate)
-        if answer_matches:
-            blocks.append(_remove_unwanted_questions_answers(block, answers_in_block, answer_matches))
+    for group in schema.groups:
+        blocks = []
+        for block in schema.blocks:
+            answers_in_block = schema.get_answers_by_id_for_block(block['id'])
+            answers_to_calculate = rendered_block['calculation']['answers_to_calculate']
+
+            answer_matches = set(answers_in_block.keys()) & set(answers_to_calculate)
+            if answer_matches:
+                blocks.append(_remove_unwanted_questions_answers(block, answers_in_block, answer_matches))
+
+        if blocks:
+            groups.append({
+                'id': group['id'],
+                'blocks': blocks
+            })
 
     section = {
-        'groups': [
-            {
-                'id': group_id,
-                'blocks': blocks,
-            },
-        ],
+        'groups': groups
     }
 
     return [section]
