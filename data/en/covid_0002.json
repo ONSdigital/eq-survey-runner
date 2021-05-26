@@ -23,7 +23,7 @@
                                         "This survey collects real-time information on issues impacting your business and the economy, to help inform decisions",
                                         "Questions are updated regularly to reflect important topics, such as the coronavirus (COVID-19) impacts, the end of the EU transition period and climate change.",
                                         "Your response helps ensure your business, and businesses like yours, are represented.",
-                                        "On average it takes 15 minutes to complete this survey once you have collected the information.",
+                                        "On average it takes 20 minutes to complete this survey once you have collected the information.",
                                         "<a href=\"https://www.ons.gov.uk/businessindustryandtrade/business/businessservices/bulletins/businessinsightsandimpactontheukeconomy/latest\"target=\"_blank\"rel=\"noopener noreferrer\">View the latest publication produced from this survey</a>"
                                     ]
                                 },
@@ -80,6 +80,16 @@
                                     }]
                                 },
                                 {
+                                    "question": "UK Conformity Assessed (UKCA) marking",
+                                    "content": [{
+                                            "description": "This section asks for information about CE and UKCA markings."
+                                        },
+                                        {
+                                            "description": "These are markings that apply to a wide range of consumer and industrial goods such as toys, personal protective equipment, and construction products. The markings signal that products are fit to be placed on the GB market."
+                                        }
+                                    ]
+                                },
+                                {
                                     "question": "Supply chains",
                                     "content": [{
                                             "description": "This section asks for information about:"
@@ -124,12 +134,7 @@
                                             "description": "This section asks for information about:"
                                         },
                                         {
-                                            "list": [
-                                                "support the business may have applied for or received from the four governments in the UK",
-                                                "cash reserves",
-                                                "confidence in business survival",
-                                                "insolvency risk"
-                                            ]
+                                            "list": ["cash reserves", "confidence in business survival", "insolvency risk"]
                                         }
                                     ]
                                 },
@@ -148,6 +153,16 @@
                                         },
                                         {
                                             "description": "It also asks about safety measures in the workplace and future site closures."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Workforce characteristics",
+                                    "content": [{
+                                            "description": "This section asks for information about the characteristics of your workforce."
+                                        },
+                                        {
+                                            "description": "We are asking these questions to help understand how workforce characteristics may have changed across different sectors."
                                         }
                                     ]
                                 },
@@ -190,8 +205,8 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbe7effcb-8832-4733-90b4-b699fcffa38a",
-                            "title": "Which of the following statements best describes {{ metadata['ru_name'] }}'s <em>trading status</em>?",
-                            "description": "<p>You can interpret \"trading\"as \"operating\".</p><p>Only select \"paused trading\"if all trading or operations have temporarily stopped.</p>",
+                            "title": "Which of the following statements best describes {{ metadata['ru_name'] }}'s trading status?",
+                            "description": "<p>You can interpret 'trading' as 'operating'.</p><p>Only select \"paused trading\"if all trading or operations have temporarily stopped.</p>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -260,7 +275,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2bf9c26a-511c-466b-b889-f936535bef7f",
-                            "title": "<em>Where in the UK</em> are {{ metadata['ru_name'] }}'s sites located?",
+                            "title": "Where in the UK are {{ metadata['ru_name'] }}'s sites located?",
                             "description": "<p>The UK consists of England, Northern Ireland, Scotland and Wales. </p>",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
@@ -739,7 +754,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9361fa44-7f22-47da-bdd0-16e104300487",
-                            "title": "How does {{ metadata['ru_name'] }}'s turnover for the <em>last two weeks</em>, compare to normal expectations for this time of year?",
+                            "title": "How does {{ metadata['ru_name'] }}'s turnover for the last two weeks, compare to normal expectations for this time of year?",
                             "description": "<p>You can provide a rough estimate.</p>",
                             "guidance": {
                                 "content": [{
@@ -818,7 +833,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0bf14da5-6919-4507-8542-5d71be2e6ac1",
-                            "title": "What was the <em>main reason</em> for this change to your business's turnover in the last two weeks?",
+                            "title": "What was the main reason for this change to your business's turnover in the last two weeks?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer392e439f-5897-4aa9-94ca-f01126acf654",
@@ -904,7 +919,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiond4818169-20ff-49c6-97ff-9a8178fe076f",
-                            "title": "In the last two weeks, how has your business's <em>profits</em> compared with normal expectations for this time of year?",
+                            "title": "In the <em>last two weeks</em>, how has your business's profits compared with normal expectations for this time of year?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer7bbe3645-7ccc-48d1-a5ac-d40c735466ba",
@@ -1074,7 +1089,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question059d51ee-2b0f-456f-8a29-23b1c97e2dac",
-                            "title": "Has {{ metadata['ru_name'] }} <em>exported</em> goods or services in the last 12 months?",
+                            "title": "Has {{ metadata['ru_name'] }} exported goods or services in the last 12 months?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer6e5dfc6d-189b-4d67-b64f-d40f68253cda",
@@ -1208,7 +1223,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiona8d42050-b15f-4570-afc0-db834ee8a8b8",
-                            "title": "Have you changed where you have exported your goods or services to in the <em>last two weeks</em>?",
+                            "title": "Have you changed where you have exported your goods or services to in the last two weeks?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -1264,7 +1279,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question730e686b-f62a-444a-a62d-805ced57ace8",
-                            "title": "How does your business's exporting in the <em>last two weeks</em> compare to normal expectations for this time of year?",
+                            "title": "How does your business's exporting in the last two weeks compare to normal expectations for this time of year?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
@@ -1318,7 +1333,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc5f972ec-6082-4ae9-9540-7564994f6340",
-                            "title": "Have you experienced any of the following challenges with exporting goods or services in the <em>last two weeks</em>?",
+                            "title": "Have you experienced any of the following challenges with exporting goods or services in the last two weeks?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -1430,7 +1445,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbbf044b0-d4f2-4bfd-83be-f6f3e8f03e69",
-                            "title": "What was the <em>main cause</em> of these exporting challenges?",
+                            "title": "What was the main cause of these exporting challenges?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerb1c9a35d-bfaa-4cd5-aca2-445a873b13b5",
@@ -1474,7 +1489,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question3df3422a-16c2-4b1b-9d12-a7221b4f5337",
-                            "title": "How much disruption to your business have these challenges caused?",
+                            "title": "How much <em>disruption</em> to your business have these challenges caused?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer162e3290-8b03-410f-a456-e0be7d01ebef",
@@ -1593,7 +1608,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4728c544-95e8-4d1f-a5c7-d2fc3a95f180",
-                            "title": "Let us know anything else that will help us understand your business's exporting in the <em>last two weeks</em>",
+                            "title": "Let us know anything else that will help us understand your business's exporting in the last two weeks",
                             "type": "General",
                             "answers": [{
                                 "id": "answer3c6cef19-ffc2-4283-9cc9-bd356713b0f2",
@@ -1958,7 +1973,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionf25bdbfe-14fb-4699-bf0d-29140cb007f8",
-                            "title": "Has your business <em>imported</em> goods or services in the last 12 months?",
+                            "title": "Has your business imported goods or services in the last 12 months?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer5ad71b6e-442c-499a-b185-e39282dd09c0",
@@ -2030,7 +2045,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
+                                    "group": "group375df169-1ce9-4987-809e-b6434102b82f",
                                     "when": [{
                                         "id": "answer66fa416f-8aa3-4bfb-a7c4-72c450ad718d",
                                         "condition": "contains any",
@@ -2084,7 +2099,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
+                                    "group": "group375df169-1ce9-4987-809e-b6434102b82f",
                                     "when": [{
                                             "id": "answer676f3fcf-5942-44fb-8cf7-f83ccd4c94e7",
                                             "condition": "contains any",
@@ -2113,7 +2128,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionea33d055-b20c-46a0-99e8-64ea77ad06ff",
-                            "title": "Have you changed where you have sourced your imports of goods or services from in the <em>last two weeks</em>?",
+                            "title": "Have you changed where you have sourced your imports of goods or services from in the last two weeks?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -2169,7 +2184,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question41cb8d16-ed70-4442-a3e1-fac1efdea741",
-                            "title": "How does your business's importing in the <em>last two weeks</em> compare to normal expectations for this time of year?",
+                            "title": "How does your business's importing in the last two weeks compare to normal expectations for this time of year?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
@@ -2203,7 +2218,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
+                                    "group": "group375df169-1ce9-4987-809e-b6434102b82f",
                                     "when": [{
                                         "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
                                         "condition": "contains any",
@@ -2223,7 +2238,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2c7c8b24-a217-4c10-b867-60ec2c6b62d5",
-                            "title": "Have you experienced any of the following challenges with importing over the <em>last two weeks</em>?",
+                            "title": "Have you experienced any of the following challenges with importing over the last two weeks?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -2330,7 +2345,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9f67aeed-b012-49c7-9486-0b15c4b9b2db",
-                            "title": "What was the <em>main cause</em> of these importing challenges?",
+                            "title": "What was the main cause of these importing challenges?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer8df5dfce-0739-4d5a-acea-3d35463dffc7",
@@ -2374,7 +2389,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionae1d1258-87d7-427c-8819-ed8595f77315",
-                            "title": "How much disruption to your business have these challenges caused?",
+                            "title": "How much <em>disruption</em> to your business have these challenges caused?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer0c6802f2-c705-4edc-ba4b-8aab80bb35ac",
@@ -2488,7 +2503,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4648511e-cf19-468d-9eed-14c4a92cb720",
-                            "title": "Let us know anything else that will help us understand your business's importing in the <em>last two weeks</em>",
+                            "title": "Let us know anything else that will help us understand your business's importing in the last two weeks",
                             "type": "General",
                             "answers": [{
                                 "id": "answer98ea4789-060e-460b-8d33-e688ceb4e947",
@@ -2498,6 +2513,178 @@
                                 "description": "",
                                 "q_code": "11",
                                 "max_length": 2000
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                        "condition": "contains any",
+                        "values": ["Permanently ceased trading"]
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "section98dffaae-1c14-472f-83db-ec37eac2f89e",
+            "title": "UK Conformity Assessed (UKCA) marking",
+            "groups": [{
+                "id": "group375df169-1ce9-4987-809e-b6434102b82f",
+                "title": "UK Conformity Assessed (UKCA) marking",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group98dffaae-1c14-472f-83db-ec37eac2f89e-introduction",
+                        "title": "UK Conformity Assessed (UKCA) marking",
+                        "description": "<p>This section asks for information about CE and UKCA markings. </p><p>These are markings that apply to a wide range of consumer and industrial goods such as toys, personal protective equipment, and construction products. The markings signal that products are fit to be placed on the GB market. </p>"
+                    },
+                    {
+                        "id": "block5e62c04d-5339-48ed-a609-19858fec7d70",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question5e62c04d-5339-48ed-a609-19858fec7d70",
+                            "title": "Does your business manufacture, import, or distribute products that require either a CE marking or the new UKCA marking?",
+                            "definitions": [{
+                                "title": "What we mean by 'CE and UKCA markings'",
+                                "content": [{
+                                    "description": "The UKCA (UK Conformity Assessed) marking is a new UK product marking that is used for goods being placed on the market in GB. It covers most goods that previously required the CE (Conformity with European health, safety, and environment) marking."
+                                }]
+                            }],
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer5a9c7c64-922f-4022-a497-db0e571d6677",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply:",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Yes, we manufacture products that  need a CE or UKCA marking",
+                                            "value": "Yes, we manufacture products that  need a CE or UKCA marking",
+                                            "q_code": "421"
+                                        },
+                                        {
+                                            "label": "Yes, we import products that need a CE or UKCA marking",
+                                            "value": "Yes, we import products that need a CE or UKCA marking",
+                                            "q_code": "422"
+                                        },
+                                        {
+                                            "label": "Yes, we distribute products that need a CE or UKCA marking",
+                                            "value": "Yes, we distribute products that need a CE or UKCA marking",
+                                            "q_code": "423"
+                                        },
+                                        {
+                                            "label": "Not sure",
+                                            "value": "Not sure",
+                                            "q_code": "429"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer5a9c7c64-922f-4022-a497-db0e571d6677-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "No, we do not manufacture, import or distribute products that need a CE or UKCA marking",
+                                        "value": "No, we do not manufacture, import or distribute products that need a CE or UKCA marking",
+                                        "q_code": "420"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
+                                    "when": [{
+                                        "id": "answer5a9c7c64-922f-4022-a497-db0e571d6677",
+                                        "condition": "contains any",
+                                        "values": ["Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "groupf90a4276-7496-4743-a79b-905dba902a3a",
+                                    "when": [{
+                                        "id": "answer5a9c7c64-922f-4022-a497-db0e571d6677-exclusive",
+                                        "condition": "contains any",
+                                        "values": ["No, we do not manufacture, import or distribute products that need a CE or UKCA marking"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockc433d261-baec-4655-801c-652f37067008"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockc433d261-baec-4655-801c-652f37067008",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionc433d261-baec-4655-801c-652f37067008",
+                            "title": "Are you aware that most CE marked products need to be UKCA marked from 1&nbsp;January&nbsp;2022?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer7ffd7b96-fd14-45f5-8ad0-c55171d1f507",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "44",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockfb13973f-620e-41a2-8ebb-d47785980204",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionfb13973f-620e-41a2-8ebb-d47785980204",
+                            "title": "Is your business using, or intending to use, the UKCA marking <em>by</em> 1&nbsp;January&nbsp;2022?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer5f27e9c1-714f-41f2-a26e-5aa103e74deb",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "46",
+                                "options": [{
+                                        "label": "Already using UKCA marking",
+                                        "value": "Already using UKCA marking"
+                                    },
+                                    {
+                                        "label": "Not aware of, or do not know how to meet, requirements for the UKCA",
+                                        "value": "Not aware of, or do not know how to meet, requirements for the UKCA"
+                                    },
+                                    {
+                                        "label": "Not using the UKCA marking, but plan to by 1 January 2022",
+                                        "value": "Not using the UKCA marking, but plan to by 1 January 2022"
+                                    },
+                                    {
+                                        "label": "Will not use UKCA marking, as not relevant to our products or business",
+                                        "value": "Will not use UKCA marking, as not relevant to our products or business"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
                             }]
                         }]
                     }
@@ -2528,7 +2715,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2792b362-de84-4ee6-9bf5-ce136096455d",
-                            "title": "Has {{ metadata['ru_name'] }} made <em>changes to supply chains</em> due to the end of the EU transition period?",
+                            "title": "Has {{ metadata['ru_name'] }} made changes to supply chains due to the end of the EU transition period?",
                             "definitions": [{
                                 "title": "What we mean by the \"end of the EU transition period\"",
                                 "content": [{
@@ -2614,7 +2801,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question05a9fbb6-039f-4bb2-a898-7d7dcc468fb9",
-                            "title": "In which of the following ways has your business <em>changed supply chains</em> due to the end of the EU transition period?",
+                            "title": "In which of the following ways has your business changed supply chains due to the end of the EU transition period?",
                             "definitions": [{
                                 "title": "What we mean by the \"end of the EU transition period\"",
                                 "content": [{
@@ -2783,7 +2970,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question78f97e48-ad45-4823-8d06-80d9a472cb27",
-                            "title": "Was your business able to get the materials, goods or services it needed <em>from the EU</em> in the <em>last two weeks</em>?",
+                            "title": "Was your business able to get the materials, goods or services it needed from the EU in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerb434ea9e-113e-404f-ba8d-704d4cdf9a81",
@@ -2849,7 +3036,92 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupdd4e448a-a88e-4e27-bc7d-0335fcf0a935",
+                                    "group": "groupc7cb194b-8be5-463c-84ad-f330c24ecef4",
+                                    "when": [{
+                                        "id": "answerdd2549b2-fbea-460f-afb4-6b26eb0ed6db",
+                                        "condition": "contains any",
+                                        "values": ["No", "Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group35fdc226-79ec-4a15-aed4-1dc1c1bbd8f4",
+                                    "when": [{
+                                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Paused trading but intends to restart in the next two weeks",
+                                            "Paused trading and does not intend to restart in the next two weeks"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block62e14ea5-d4c3-4929-9924-f1317c94f35e"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block62e14ea5-d4c3-4929-9924-f1317c94f35e",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question62e14ea5-d4c3-4929-9924-f1317c94f35e",
+                            "title": "Would these new branches or subsidiaries be for any of the following?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer48f62297-ce22-4de8-b4fb-6154ec7f9c68",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply:",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Manufacturing",
+                                            "value": "Manufacturing",
+                                            "q_code": "471"
+                                        },
+                                        {
+                                            "label": "Research and Development (R&D)",
+                                            "value": "Research and Development (R&D)",
+                                            "q_code": "472"
+                                        },
+                                        {
+                                            "label": "Warehousing or distribution",
+                                            "value": "Warehousing or distribution",
+                                            "q_code": "473"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "478",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answerc839b406-dda8-458d-8d62-58eec0914cf1",
+                                                "mandatory": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answer48f62297-ce22-4de8-b4fb-6154ec7f9c68-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure",
+                                        "q_code": "479"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group35fdc226-79ec-4a15-aed4-1dc1c1bbd8f4",
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
@@ -2894,7 +3166,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1fe3a183-a26d-49e2-a2a8-6ccf220059a6",
-                            "title": "How did the prices of materials, goods or services <em>bought</em> by {{ metadata['ru_name'] }} change in the <em>last two weeks</em>, compared with normal price fluctuations?",
+                            "title": "How did the prices of materials, goods or services bought by {{ metadata['ru_name'] }} change in the last two weeks, compared with normal price fluctuations?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerc94ef925-704e-4784-a3cd-f28e4c468390",
@@ -2970,7 +3242,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2f2ada3e-2493-4b61-95d1-8082a59cc662",
-                            "title": "How did the prices of goods or services <em>sold</em> by your business change in the <em>last two weeks</em>, compared with normal fluctuations?",
+                            "title": "How did the prices of goods or services <em>sold</em> by your business change in the last two weeks, compared with normal fluctuations?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerdbde29eb-0a6a-4474-8d8e-4bb5bbc1bd47",
@@ -3079,7 +3351,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question7885486d-4832-42ef-920d-6a87499f8e07",
-                            "title": "Has {{ metadata['ru_name'] }} <em>sent goods</em> from GB to Northern Ireland in the <em>last 12 months</em>?",
+                            "title": "Has {{ metadata['ru_name'] }} sent goods from GB to Northern Ireland in the last 12 months?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include</strong>"
@@ -3095,7 +3367,7 @@
                             "definitions": [{
                                 "title": "What we mean by \"GB\"",
                                 "content": [{
-                                    "description": "GB means ‘Great Britain’ which includes England, Scotland and Wales, but excludes Northern Ireland"
+                                    "description": "GB means ‘Great Britain’ which includes England, Scotland and Wales, but excludes Northern Ireland."
                                 }]
                             }],
                             "type": "General",
@@ -3143,7 +3415,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question0da1f44c-8867-4753-93ee-47dd767f180f",
-                            "title": "What route did your business <em>mainly use</em> over the last 12 months, to send goods from GB to Northern Ireland?",
+                            "title": "What route did your business mainly use over the last 12 months, to send goods from GB to Northern Ireland?",
                             "type": "General",
                             "answers": [{
                                 "id": "answera909a44a-ad6f-4eca-9ee1-986608492ad7",
@@ -3287,7 +3559,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questione28f73d9-f8da-41e7-bfef-3770badff0dc",
-                            "title": "What were the <em>reasons</em> for this change in the volume of goods sent from GB to Northern Ireland?",
+                            "title": "What were the reasons for this change in the volume of goods sent from GB to Northern Ireland?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -3403,7 +3675,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9fac036f-ccf3-4c6c-ad5f-f9c0f89fe48c",
-                            "title": "What were the <em>reasons</em> for this change in route?",
+                            "title": "What were the reasons for this change in route?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -3502,7 +3774,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupdd4e448a-a88e-4e27-bc7d-0335fcf0a935",
+                                    "group": "group35fdc226-79ec-4a15-aed4-1dc1c1bbd8f4",
                                     "when": [{
                                         "id": "answeraa9b61b0-0088-4169-91f7-c65f2f832957",
                                         "condition": "contains any",
@@ -3522,7 +3794,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question184ec58d-c638-4c3a-9d2b-58cc5a863366",
-                            "title": "Has your business sent, or intended to send, goods <em>from Northern Ireland</em> to GB in the last two weeks?",
+                            "title": "Has your business sent, or intended to send, goods from Northern Ireland to GB in the <em>last two weeks</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerff5ee72a-7797-4386-abf3-d610f00ee4b1",
@@ -3548,7 +3820,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupdd4e448a-a88e-4e27-bc7d-0335fcf0a935",
+                                    "group": "group35fdc226-79ec-4a15-aed4-1dc1c1bbd8f4",
                                     "when": [{
                                         "id": "answerff5ee72a-7797-4386-abf3-d610f00ee4b1",
                                         "condition": "contains any",
@@ -3606,7 +3878,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupdd4e448a-a88e-4e27-bc7d-0335fcf0a935",
+                                    "group": "group35fdc226-79ec-4a15-aed4-1dc1c1bbd8f4",
                                     "when": [{
                                         "id": "answer129e7cdc-374c-4f11-8140-7e88993f54f8",
                                         "condition": "contains any",
@@ -3712,488 +3984,20 @@
             "id": "section8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
             "title": "Access to financial support",
             "groups": [{
-                "id": "groupdd4e448a-a88e-4e27-bc7d-0335fcf0a935",
+                "id": "group35fdc226-79ec-4a15-aed4-1dc1c1bbd8f4",
                 "title": "Access to financial support",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba-introduction",
                         "title": "Access to financial support",
-                        "description": "<p>This section asks for information about:</p><ul><li>support the business may have applied for or received from the four governments in the UK</li><li>cash reserves</li><li>confidence in business survival</li><li>insolvency risk</li></ul>"
-                    },
-                    {
-                        "id": "block3e1692a9-835b-4294-adf5-6797e7f0fa5c",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question3e1692a9-835b-4294-adf5-6797e7f0fa5c",
-                            "title": "Has {{ metadata['ru_name'] }} <em>applied for</em> any of the following grants?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answerb9ab9d11-a10c-4241-b125-6df52bc5f8f6",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Local Restrictions Support Grant - England",
-                                            "value": "Local Restrictions Support Grant - England",
-                                            "q_code": "1971"
-                                        },
-                                        {
-                                            "label": "Local Restrictions Support Scheme - Northern Ireland",
-                                            "value": "Local Restrictions Support Scheme - Northern Ireland",
-                                            "q_code": "1972"
-                                        },
-                                        {
-                                            "label": "Strategic Framework Business Fund - Scotland",
-                                            "value": "Strategic Framework Business Fund - Scotland",
-                                            "q_code": "1975",
-                                            "description": "Temporary Closure grant or Business Restrictions Grant"
-                                        },
-                                        {
-                                            "label": "Lockdown Business Fund - Wales",
-                                            "value": "Lockdown Business Fund - Wales",
-                                            "q_code": "1974"
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "1979"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answerb9ab9d11-a10c-4241-b125-6df52bc5f8f6-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not applied for any of these grants",
-                                        "value": "Not applied for any of these grants",
-                                        "q_code": "1970"
-                                    }]
-                                }
-                            ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block2ea33f36-282b-40d4-a881-0d946f8d4408",
-                                    "when": [{
-                                        "id": "answerb9ab9d11-a10c-4241-b125-6df52bc5f8f6-exclusive",
-                                        "condition": "contains all",
-                                        "values": ["Not applied for any of these grants"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block2c478835-bc76-43bf-a29d-9801bcadc650",
-                                    "when": [{
-                                        "id": "answerb9ab9d11-a10c-4241-b125-6df52bc5f8f6",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "Local Restrictions Support Grant - England",
-                                            "Local Restrictions Support Scheme - Northern Ireland",
-                                            "Strategic Framework Business Fund - Scotland",
-                                            "Lockdown Business Fund - Wales"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block2ea33f36-282b-40d4-a881-0d946f8d4408"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block2c478835-bc76-43bf-a29d-9801bcadc650",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question2c478835-bc76-43bf-a29d-9801bcadc650",
-                            "title": "Has your business <em>received</em> any of the following grants?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answerd1736918-22a2-489d-b89b-3f3141d4cac8",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Local Restrictions Support Grant - England",
-                                            "value": "Local Restrictions Support Grant - England",
-                                            "q_code": "1981"
-                                        },
-                                        {
-                                            "label": "Local Restrictions Support Scheme - Northern Ireland",
-                                            "value": "Local Restrictions Support Scheme - Northern Ireland",
-                                            "q_code": "1982"
-                                        },
-                                        {
-                                            "label": "Strategic Framework Business Fund - Scotland",
-                                            "value": "Strategic Framework Business Fund - Scotland",
-                                            "q_code": "1985"
-                                        },
-                                        {
-                                            "label": "Lockdown Business Fund - Wales",
-                                            "value": "Lockdown Business Fund - Wales",
-                                            "q_code": "1984"
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "1989"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answerd1736918-22a2-489d-b89b-3f3141d4cac8-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not received any of these grants",
-                                        "value": "Not received any of these grants",
-                                        "q_code": "1980"
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "block2ea33f36-282b-40d4-a881-0d946f8d4408",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question2ea33f36-282b-40d4-a881-0d946f8d4408",
-                            "title": "Has your business <em>received</em> any of these other grants?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Small business grant",
-                                            "value": "Small business grant",
-                                            "q_code": "2051",
-                                            "description": "Grants specifically for small businesses provided by the UK or devolved governments"
-                                        },
-                                        {
-                                            "label": "Sector-specific grant",
-                                            "value": "Sector-specific grant",
-                                            "q_code": "2052",
-                                            "description": "Grants for specific sectors such as the arts, entertainment, tourism, hospitality, retail, or fisheries provided by the UK or devolved governments"
-                                        },
-                                        {
-                                            "label": "Tradeshow access grant",
-                                            "value": "Tradeshow access grant",
-                                            "q_code": "2056",
-                                            "description": "Grant funding for eligible businesses towards the costs of exhibiting at overseas trade shows"
-                                        },
-                                        {
-                                            "label": "Additional Restriction Grant - England",
-                                            "value": "Additional Restriction Grant - England",
-                                            "q_code": "2054"
-                                        },
-                                        {
-                                            "label": "Business Contingency Fund Grants - Scotland",
-                                            "value": "Business Contingency Fund Grants - Scotland",
-                                            "q_code": "2055"
-                                        },
-                                        {
-                                            "label": "Business Development Grant - Wales",
-                                            "value": "Business Development Grant - Wales",
-                                            "q_code": "2053"
-                                        },
-                                        {
-                                            "label": "Business Restart Grant - Scotland",
-                                            "value": "Business Restart Grant - Scotland",
-                                            "q_code": "2057"
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "2059"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not received any of these grants",
-                                        "value": "Not received any of these grants",
-                                        "q_code": "2050"
-                                    }]
-                                }
-                            ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block4f3e7800-53f4-421a-a37d-523a415d4a8d",
-                                    "when": [{
-                                        "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
-                                        "condition": "contains any",
-                                        "values": ["Small business grant"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block4f715518-d276-4297-b1f5-04f4debbb713",
-                                    "when": [{
-                                        "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
-                                        "condition": "contains any",
-                                        "values": ["Sector-specific grant"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockb305b9d6-b021-4d5e-a92e-291381c49492"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block4f3e7800-53f4-421a-a37d-523a415d4a8d",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4f3e7800-53f4-421a-a37d-523a415d4a8d",
-                            "title": "Which governments in the UK provided the <em>small business</em> grant, or grants?",
-                            "definitions": [{
-                                "title": "What we mean by \"small business grant\"",
-                                "content": [{
-                                    "description": "These are grants specifically for small businesses provided by the UK or devolved governments."
-                                }]
-                            }],
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer59d8c8e4-73cd-424f-95ae-98424a194bc1",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Northern Ireland Executive",
-                                            "value": "Northern Ireland Executive",
-                                            "q_code": "1991",
-                                            "description": "Small Business  Support Grant"
-                                        },
-                                        {
-                                            "label": "Scottish Government",
-                                            "value": "Scottish Government",
-                                            "q_code": "1992",
-                                            "description": "Small Business Grant Scheme"
-                                        },
-                                        {
-                                            "label": "UK Government - England only",
-                                            "value": "UK Government - England only",
-                                            "q_code": "1993",
-                                            "description": "Small Business Grant Fund"
-                                        },
-                                        {
-                                            "label": "Welsh Government",
-                                            "value": "Welsh Government",
-                                            "q_code": "1994",
-                                            "description": "COVID-19 Grant for small businesses"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer59d8c8e4-73cd-424f-95ae-98424a194bc1-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "1999"
-                                    }]
-                                }
-                            ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block4f715518-d276-4297-b1f5-04f4debbb713",
-                                    "when": [{
-                                        "id": "answerfe9092a4-fbc4-445e-960d-6050c6111503",
-                                        "condition": "contains any",
-                                        "values": ["Sector-specific grant"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockb305b9d6-b021-4d5e-a92e-291381c49492"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block4f715518-d276-4297-b1f5-04f4debbb713",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4f715518-d276-4297-b1f5-04f4debbb713",
-                            "title": "Which governments in the UK provided the <em>sector-specific</em> grant, or grants?",
-                            "definitions": [{
-                                "title": "What we mean by \"sector-specific\"grants",
-                                "content": [{
-                                    "description": "Grants for specific sectors such as the arts, entertainment, tourism, hospitality, retail, or fisheries provided by the UK or devolved governments."
-                                }]
-                            }],
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer066f5f6c-1fb8-47c8-9041-d9c8f41ae40f",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Northern Ireland Executive",
-                                            "value": "Northern Ireland Executive",
-                                            "q_code": "2061"
-                                        },
-                                        {
-                                            "label": "Scottish Government",
-                                            "value": "Scottish Government",
-                                            "q_code": "2062"
-                                        },
-                                        {
-                                            "label": "UK Government - England only",
-                                            "value": "UK Government - England only",
-                                            "q_code": "2063"
-                                        },
-                                        {
-                                            "label": "Welsh Government",
-                                            "value": "Welsh Government",
-                                            "q_code": "2064"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer066f5f6c-1fb8-47c8-9041-d9c8f41ae40f-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "2069"
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "blockb305b9d6-b021-4d5e-a92e-291381c49492",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionb305b9d6-b021-4d5e-a92e-291381c49492",
-                            "title": "Has your business received any <em>government-backed loans or finance agreements</em> during the coronavirus (COVID-19) pandemic?",
-                            "definitions": [{
-                                "title": "Examples of government-backed loans and finance agreements",
-                                "content": [{
-                                    "list": [
-                                        "COVID Corporate Financing Facility (CCFF)",
-                                        "Coronavirus Business Interruption Loan Scheme (CBILS or CLBILS)",
-                                        "Bounce Back Loan Scheme (BBLS)",
-                                        "Future Fund",
-                                        "Loans from devolved governments"
-                                    ]
-                                }]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer9d9457f2-42d9-4aec-813c-20a782ef4b29",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "207",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block3df57582-2606-450b-b047-cc0bd2cf8815",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question3df57582-2606-450b-b047-cc0bd2cf8815",
-                            "title": "Are you using, or intending to use, any of the following schemes?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer89f02f13-5a9e-4eeb-819a-fd82639f7d66",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Coronavirus Job Retention Scheme (CJRS)",
-                                            "value": "Coronavirus Job Retention Scheme (CJRS)",
-                                            "q_code": "4811",
-                                            "description": "The UK government scheme for furloughed employees"
-                                        },
-                                        {
-                                            "label": "Kickstart Job Scheme for young people",
-                                            "value": "Kickstart Job Scheme for young people",
-                                            "q_code": "4812",
-                                            "description": "Government subsidy to provide six-month work placements for 16 - 24 year olds on Universal Credit"
-                                        },
-                                        {
-                                            "label": "Recovery Loan Scheme",
-                                            "value": "Recovery Loan Scheme",
-                                            "q_code": "4813",
-                                            "description": "UK government scheme to support access to finance as businesses recover from the disruption of COVID-19"
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "4899"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer89f02f13-5a9e-4eeb-819a-fd82639f7d66-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not using, or intending to use, any of these schemes",
-                                        "value": "Not using, or intending to use, any of these schemes",
-                                        "q_code": "487"
-                                    }]
-                                }
-                            ]
-                        }]
+                        "description": "<p>This section asks for information about:</p><ul><li>cash reserves</li><li>confidence in business survival</li><li>insolvency risk</li></ul>"
                     },
                     {
                         "id": "blocka2d0a9ef-9bfc-4ead-867f-bad93d6a3bca",
                         "type": "Question",
                         "questions": [{
                             "id": "questiona2d0a9ef-9bfc-4ead-867f-bad93d6a3bca",
-                            "title": "How long do you think your business's <em>cash reserves</em> will last?",
+                            "title": "How long do you think your business's cash reserves will last?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer32a38f2a-e599-4ff7-9df9-b0419be84b96",
@@ -4235,7 +4039,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbdbc4356-50fd-4406-97c9-1252f3eadb0f",
-                            "title": "How much confidence does your business have that it will <em>survive the next three months</em>?",
+                            "title": "How much confidence does your business have that it will survive the next three months?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerc5c09a23-a983-4ecb-a6db-930de15865fa",
@@ -4273,7 +4077,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2b28fb2b-779d-4a45-9806-15d5dbbf16f7",
-                            "title": "What is your business's <em>risk of insolvency</em>?",
+                            "title": "What is your business's risk of insolvency?",
                             "definitions": [{
                                 "title": "What we mean by \"insolvency\"",
                                 "content": [{
@@ -4393,7 +4197,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question90beb26c-59f1-4f7f-9dee-e9a822e871be",
-                            "title": "In the <em>last two weeks</em>, approximately what percentage of {{ metadata['ru_name'] }}'s workforce were:",
+                            "title": "In the last two weeks, approximately what percentage of {{ metadata['ru_name'] }}'s workforce were:",
                             "description": "<p>Your answers need to <em>add up to 100%</em>. </p><p>If your workforce did not fall into any of the top five categories, enter \"0\", then use the \"Other\"box at the bottom to bring the total to 100%. </p><p>Rough estimates are acceptable.  </p>",
                             "type": "Calculated",
                             "answers": [{
@@ -4648,7 +4452,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question66bef12d-2546-4df7-9e64-15e48bdf99c4",
-                            "title": "In the <em>last two weeks</em>, approximately what percentage of your workforce have:",
+                            "title": "In the last two weeks, approximately what percentage of your workforce have:",
                             "description": "<p>Rough estimates are acceptable.  Answers <em>do not</em> need to sum to 100.</p>",
                             "type": "General",
                             "answers": [{
@@ -4819,11 +4623,200 @@
                         }]
                     },
                     {
+                        "id": "blockcea2fb30-26d9-4ed1-bbbb-f24a212c8bb6",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questioncea2fb30-26d9-4ed1-bbbb-f24a212c8bb6",
+                            "title": "What proportion of employees have been furloughed for more than six months?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Include fully and partially furloughed employees"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer72219921-cc69-4efa-aa7a-cbd2cee03072",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "84",
+                                "options": [{
+                                        "label": "Over 75% of employees",
+                                        "value": "Over 75% of employees"
+                                    },
+                                    {
+                                        "label": "Between  50-75% of employees",
+                                        "value": "Between  50-75% of employees"
+                                    },
+                                    {
+                                        "label": "Between 25-49% of employees",
+                                        "value": "Between 25-49% of employees"
+                                    },
+                                    {
+                                        "label": "Less than 25% of employees",
+                                        "value": "Less than 25% of employees"
+                                    },
+                                    {
+                                        "label": "No employees have been furloughed for more than six months",
+                                        "value": "No employees have been furloughed for more than six months"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block57f72603-ccf2-47c5-9eac-31f39265102b",
+                                    "when": [{
+                                        "id": "answer72219921-cc69-4efa-aa7a-cbd2cee03072",
+                                        "condition": "contains any",
+                                        "values": ["No employees have been furloughed for more than six months", "Not sure"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockdbae26a2-9b8d-43ea-916a-e9f44a9a818c"
+                                }
+                            }
+                        ],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answer92e4004a-ceef-424e-b5fa-d93520bc4780",
+                                "condition": "equals",
+                                "value": 0
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockdbae26a2-9b8d-43ea-916a-e9f44a9a818c",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiondbae26a2-9b8d-43ea-916a-e9f44a9a818c",
+                            "title": "Do you expect to bring your furloughed employees back to work once their period of furlough ends?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer63c58fe1-02de-4324-90de-73b3b83f00ac",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "85",
+                                "options": [{
+                                        "label": "Yes, all employees",
+                                        "value": "Yes, all employees"
+                                    },
+                                    {
+                                        "label": "Yes, more than half of these employees",
+                                        "value": "Yes, more than half of these employees"
+                                    },
+                                    {
+                                        "label": "Yes, approximately half of employees",
+                                        "value": "Yes, approximately half of employees"
+                                    },
+                                    {
+                                        "label": "Yes, less than half of these employees",
+                                        "value": "Yes, less than half of these employees"
+                                    },
+                                    {
+                                        "label": "No, I do not expect to bring any of these employees back to work",
+                                        "value": "No, I do not expect to bring any of these employees back to work"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block3fc19d0d-edf2-41a2-9fe5-069bab5435e9",
+                                    "when": [{
+                                        "id": "answer63c58fe1-02de-4324-90de-73b3b83f00ac",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Yes, all employees",
+                                            "Yes, more than half of these employees",
+                                            "Yes, approximately half of employees",
+                                            "Yes, less than half of these employees"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block57f72603-ccf2-47c5-9eac-31f39265102b"
+                                }
+                            }
+                        ],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answer92e4004a-ceef-424e-b5fa-d93520bc4780",
+                                "condition": "equals",
+                                "value": 0
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block3fc19d0d-edf2-41a2-9fe5-069bab5435e9",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3fc19d0d-edf2-41a2-9fe5-069bab5435e9",
+                            "title": "By which month do you expect to have brought these furloughed employees back to work?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1d03f3aa-2d93-425a-bfc0-c12c272451d1",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "86",
+                                "options": [{
+                                        "label": "June",
+                                        "value": "June"
+                                    },
+                                    {
+                                        "label": "July",
+                                        "value": "July"
+                                    },
+                                    {
+                                        "label": "August",
+                                        "value": "August"
+                                    },
+                                    {
+                                        "label": "September",
+                                        "value": "September"
+                                    },
+                                    {
+                                        "label": "October onwards",
+                                        "value": "October onwards"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answer92e4004a-ceef-424e-b5fa-d93520bc4780",
+                                "condition": "equals",
+                                "value": 0
+                            }]
+                        }]
+                    },
+                    {
                         "id": "block57f72603-ccf2-47c5-9eac-31f39265102b",
                         "type": "Question",
                         "questions": [{
                             "id": "question57f72603-ccf2-47c5-9eac-31f39265102b",
-                            "title": "Is your business using, or intending to use, any of the following <em>safety measures</em> in the workplace?",
+                            "title": "Is your business using, or intending to use, any of the following safety measures in the workplace?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -4898,11 +4891,177 @@
                         }]
                     },
                     {
+                        "id": "block6ff08f6d-6939-4672-961f-dd0254dfee21",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question6ff08f6d-6939-4672-961f-dd0254dfee21",
+                            "title": "Has your business completed a risk assessment related to coronavirus (COVID-19) in the last 12 months?",
+                            "description": "<p>A risk assessment does not have to be written down if the business employs less than five people.</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer36af568d-0af6-4b11-be04-887035f87983",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "199",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block9b0d993e-2395-4bfc-96de-ab835b7854b7",
+                                    "when": [{
+                                        "id": "answer36af568d-0af6-4b11-be04-887035f87983",
+                                        "condition": "contains any",
+                                        "values": ["No", "Not sure", "Not applicable"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block58e161a5-4e63-44fb-b9a8-7f6599bf1609"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block58e161a5-4e63-44fb-b9a8-7f6599bf1609",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question58e161a5-4e63-44fb-b9a8-7f6599bf1609",
+                            "title": "When was your business's risk assessment related to coronavirus (COVID-19) last reviewed?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answercc5dd78f-4632-4f64-b07d-a112943f47f8",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "200",
+                                "options": [{
+                                        "label": "Less than 1 month ago",
+                                        "value": "Less than 1 month ago"
+                                    },
+                                    {
+                                        "label": "Between 1 and 3 months ago",
+                                        "value": "Between 1 and 3 months ago"
+                                    },
+                                    {
+                                        "label": "More than 3 months ago",
+                                        "value": "More than 3 months ago"
+                                    },
+                                    {
+                                        "label": "Has not been reviewed since being completed",
+                                        "value": "Has not been reviewed since being completed"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block9b0d993e-2395-4bfc-96de-ab835b7854b7",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question9b0d993e-2395-4bfc-96de-ab835b7854b7",
+                            "title": "Which, if any, of the following sources have you used for advice or support to adapt your business for coronavirus (COVID-19)?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answerc6a4dbe7-10bc-4251-9ab3-e14090c58a2c",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "GOV.UK working safely guidance",
+                                            "value": "GOV.UK working safely guidance",
+                                            "q_code": "411"
+                                        },
+                                        {
+                                            "label": "GOV.UK NHS test and trace guidance",
+                                            "value": "GOV.UK NHS test and trace guidance",
+                                            "q_code": "412"
+                                        },
+                                        {
+                                            "label": "Health and Safety Executive (HSE) guidance on HSE.GOV.UK",
+                                            "value": "Health and Safety Executive (HSE) guidance on HSE.GOV.UK",
+                                            "q_code": "413"
+                                        },
+                                        {
+                                            "label": "Local authority website",
+                                            "value": "Local authority website",
+                                            "q_code": "414"
+                                        },
+                                        {
+                                            "label": "Tailored business advice",
+                                            "value": "Tailored business advice",
+                                            "q_code": "415",
+                                            "description": "For example, a local authority regulatory services team or environmental health officer or through a business support provider"
+                                        },
+                                        {
+                                            "label": "Trade or sector bodies",
+                                            "value": "Trade or sector bodies",
+                                            "q_code": "416"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "417",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answerda834340-1428-408f-8dde-b28e2866b25e",
+                                                "mandatory": false
+                                            }
+                                        },
+                                        {
+                                            "label": "Not sure",
+                                            "value": "Not sure",
+                                            "q_code": "419"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answerc6a4dbe7-10bc-4251-9ab3-e14090c58a2c-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "None of the above",
+                                        "value": "None of the above",
+                                        "q_code": "410"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
                         "id": "block58a2ec2f-4aba-458b-b8ea-c3e11d296913",
                         "type": "Question",
                         "questions": [{
                             "id": "question58a2ec2f-4aba-458b-b8ea-c3e11d296913",
-                            "title": "Is your business providing <em>regular</em> coronavirus (COVID-19) testing for its workforce?",
+                            "title": "Is your business providing regular coronavirus (COVID-19) testing for its workforce?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -4973,7 +5132,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc044eaf0-be8e-4fbb-870c-19776f02b99f",
-                            "title": "What percentage of your workforce are <em>receiving regular</em> coronavirus (COVID-19) testing?",
+                            "title": "What percentage of your workforce are receiving regular coronavirus (COVID-19) testing?",
                             "type": "General",
                             "answers": [{
                                     "id": "answer9fd27579-ae27-467b-8803-8948f0cb66eb",
@@ -5058,7 +5217,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4bf54c28-a6c0-4a46-b163-983df5d49cd9",
-                            "title": "Where in the UK are the sites that will permanently close in the <em>next three months</em>?",
+                            "title": "Where in the UK are the sites that will permanently close in the next three months?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
@@ -5245,7 +5404,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "blockd93b1819-3858-453f-844e-6f489b95db1b",
+                                    "group": "group9ce57b25-619d-46bd-8d81-d38a62d83b99",
                                     "when": [{
                                         "id": "answer452ab041-83d2-42ac-ae1d-4a5e53c3a53b",
                                         "condition": "contains any",
@@ -5265,7 +5424,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1a2f76fd-08c7-418a-9d39-278aea1fbd59",
-                            "title": "Approximately what percentage of your workforce do you expect to be made redundant over the <em>next three months</em>?",
+                            "title": "Approximately what percentage of your workforce do you expect to be made redundant over the next three months?",
                             "description": "<p>A rough estimate is acceptable.</p>",
                             "type": "General",
                             "answers": [{
@@ -5311,7 +5470,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "blockd93b1819-3858-453f-844e-6f489b95db1b",
+                                    "group": "group9ce57b25-619d-46bd-8d81-d38a62d83b99",
                                     "when": [{
                                         "id": "answer4e7cbab0-5fbf-44cc-b3c1-3b4b7a529690",
                                         "condition": "equals",
@@ -5454,70 +5613,121 @@
                                 }
                             ]
                         }]
+                    }
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
+                        "condition": "contains any",
+                        "values": ["Permanently ceased trading"]
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "section888d48a1-c7a3-466b-a159-6c77352ba2c8",
+            "title": "Workforce characteristics",
+            "groups": [{
+                "id": "group9ce57b25-619d-46bd-8d81-d38a62d83b99",
+                "title": "Workforce characteristics",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group888d48a1-c7a3-466b-a159-6c77352ba2c8-introduction",
+                        "title": "Workforce characteristics",
+                        "description": "<p>This section asks for information about the characteristics of your workforce.</p><p>We are asking these questions to help understand how workforce characteristics may have changed across different sectors.</p>"
                     },
                     {
-                        "id": "blockd93b1819-3858-453f-844e-6f489b95db1b",
+                        "id": "block9e445f4b-d24b-4933-abe2-a8523279bfc4",
                         "type": "Question",
                         "questions": [{
-                            "id": "questiond93b1819-3858-453f-844e-6f489b95db1b",
-                            "title": "Which, if any, of the following skills have you experienced an increase in demand for in the <em>last 12 months</em>?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
+                            "id": "question9e445f4b-d24b-4933-abe2-a8523279bfc4",
+                            "title": "Since the start of the coronavirus (COVID-19) pandemic, how has the number of workers from <em>within</em> the European Union (EU) at your business changed?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude those from  the UK (England, Scotland, Wales and Northern Ireland)"
+                                }]
+                            },
+                            "type": "General",
                             "answers": [{
-                                    "id": "answerca488045-4813-479d-a519-1882d3ec54ae",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Advanced digital skills",
-                                            "value": "Advanced digital skills",
-                                            "q_code": "321",
-                                            "description": "For example, animation, data science and programming skills"
-                                        },
-                                        {
-                                            "label": "Basic digital skills",
-                                            "value": "Basic digital skills",
-                                            "q_code": "322",
-                                            "description": "For example, emails, office based applications and using the internet"
-                                        },
-                                        {
-                                            "label": "Management or leadership skills",
-                                            "value": "Management or leadership skills",
-                                            "q_code": "323",
-                                            "description": "For example, influencing others, managing staff and setting objectives"
-                                        },
-                                        {
-                                            "label": "Soft skills",
-                                            "value": "Soft skills",
-                                            "q_code": "324",
-                                            "description": "For example, managing your own time, task prioritisation and teamwork"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "329",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer78312921-f963-43b0-a312-33de8cf82237",
-                                                "mandatory": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answerca488045-4813-479d-a519-1882d3ec54ae-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "None of the above",
-                                        "value": "None of the above",
-                                        "q_code": "320"
-                                    }]
-                                }
-                            ]
+                                "id": "answer1fe5b4b9-81e2-4c6f-a078-fed55e0f6a7d",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "177",
+                                "options": [{
+                                        "label": "Number of workers from within the EU has increased",
+                                        "value": "Number of workers from within the EU has increased"
+                                    },
+                                    {
+                                        "label": "We employ workers from within the EU, and the number has stayed the same",
+                                        "value": "We employ workers from within the EU, and the number has stayed the same"
+                                    },
+                                    {
+                                        "label": "Number of workers from within the EU has decreased",
+                                        "value": "Number of workers from within the EU has decreased"
+                                    },
+                                    {
+                                        "label": "Not relevant, as have not employed workers from within the EU",
+                                        "value": "Not relevant, as have not employed workers from within the EU"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Prefer not to say",
+                                        "value": "Prefer not to say"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block6ac6dce4-2e51-4755-b627-d8744eabacd5",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question6ac6dce4-2e51-4755-b627-d8744eabacd5",
+                            "title": "Since the start of the coronavirus (COVID-19) pandemic, how has the number of workers from <em>outside</em> the European Union (EU) at your business changed?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude those from  the UK (England, Scotland, Wales and Northern Ireland)"
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer90b3cd36-c2b7-4c43-b931-b901863e1544",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "178",
+                                "options": [{
+                                        "label": "Number of workers from outside the EU has increased",
+                                        "value": "Number of workers from outside the EU has increased"
+                                    },
+                                    {
+                                        "label": "We employ workers from outside the EU, and the number has stayed the same",
+                                        "value": "We employ workers from outside the EU, and the number has stayed the same"
+                                    },
+                                    {
+                                        "label": "Number of workers from outside the EU has decreased",
+                                        "value": "Number of workers from outside the EU has decreased"
+                                    },
+                                    {
+                                        "label": "Not relevant, as have not employed workers from outside the EU",
+                                        "value": "Not relevant, as have not employed workers from outside the EU"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Prefer not to say",
+                                        "value": "Prefer not to say"
+                                    }
+                                ]
+                            }]
                         }]
                     }
                 ],
