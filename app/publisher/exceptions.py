@@ -1,0 +1,2 @@
+class PublicationFailed(Exception):
+    pass

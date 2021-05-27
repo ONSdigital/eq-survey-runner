@@ -3,9 +3,13 @@ from pika import BlockingConnection
 from pika import URLParameters
 from pika.exceptions import AMQPError, NackError, UnroutableError
 from structlog import get_logger
+from app.publisher.exceptions import PublicationFailed
+from flask import current_app
 
 logger = get_logger()
 
+class IndividualResponseFulfilmentRequestPublicationFailed(Exception):
+    pass
 
 class LogSubmitter():  # pylint: disable=no-self-use
 
@@ -14,6 +18,22 @@ class LogSubmitter():  # pylint: disable=no-self-use
         logger.info('message payload', message=message, queue=queue)
         return True
 
+class PubSubSubmitter ():
+    def send_message(self, message, queue, tx_id):
+        message_as_string = str(message)
+        logger.info('sending message', category='pubsub')
+        logger.info('message payload', message=message_as_string, category='pubsub')
+        topic_id = queue
+        try:
+            current_app.eq["publisher"].publish(
+                topic_id,
+                message,
+                fulfilment_request_transaction_id=tx_id,
+            )
+            logger.info('sent message', category='pubsub')
+            return True
+        except PublicationFailed:
+            raise IndividualResponseFulfilmentRequestPublicationFailed
 
 class RabbitMQSubmitter():
     def __init__(self, host, secondary_host, port, username=None, password=None):

@@ -55,6 +55,8 @@ flask-talisman = "*"
 marshmallow = "*"
 python-snappy = "*"
 flask-weasyprint = "*"
+google-cloud-pubsub = "*"
+"google.auth" = "*"
 
 [requires]
 python_version = "3.7"

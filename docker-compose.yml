@@ -57,6 +57,12 @@ services:
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-dummy}"
       EQ_GTM_ID: "${EQ_GTM_ID:-dummy}"
       EQ_GTM_ENV_ID: "${EQ_GTM_ENV_ID:-dummy}"
+      EQ_PUBSUB_ENABLED: "False"
+      EQ_PUBLISHER_BACKEND: pubsub
+      EQ_PUBSUB_PROJECT_ID: my-project-id'
+      EQ_PUBSUB_TOPIC_ID: "submit_q"
+      # PUBSUB_CREDENTIALS_FILE: gcp-credentials.json
+      PUBSUB_EMULATOR_HOST: host.docker.internal:8085
     restart: always
     depends_on:
       - db

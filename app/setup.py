@@ -23,12 +23,13 @@ from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.authentication.user_id_generator import UserIDGenerator
+from app.publisher import LogPublisher, PubSubPublisher
 from app.data_model.models import QuestionnaireState, db
 from app.globals import get_session_store
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
-from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
+from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, PubSubSubmitter
 
 CACHE_HEADERS = {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -103,6 +104,11 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     else:
         application.eq['submitter'] = LogSubmitter()
+
+    if application.config['EQ_PUBSUB_ENABLED']:
+        logger.info("here")
+        setup_publisher(application)
+        application.eq['pubsub_submitter'] = PubSubSubmitter()
 
     application.eq['id_generator'] = UserIDGenerator(
         application.config['EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS'],
@@ -380,3 +386,15 @@ def get_minimized_asset(filename):
         elif 'js' in filename:
             filename = filename.replace('.js', '.min.js')
     return filename
+
+def setup_publisher(application):
+    if application.config["EQ_PUBLISHER_BACKEND"] == "pubsub":
+        application.eq["publisher"] = PubSubPublisher(application.config['EQ_PUBSUB_PROJECT_ID'],
+            application.config['PUBSUB_CREDENTIALS_FILE'])
+        application.eq["publisher"].create_topic(application.config['EQ_PUBSUB_TOPIC_ID']) 
+
+    elif application.config["EQ_PUBLISHER_BACKEND"] == "log":
+        application.eq["publisher"] = LogPublisher()
+
+    else:
+        raise Exception("Unknown EQ_PUBLISHER_BACKEND")
