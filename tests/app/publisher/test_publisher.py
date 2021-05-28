@@ -17,7 +17,7 @@ class TestPubSub(TestCase):
             "app.publisher.publisher.google.auth._default._get_explicit_environ_credentials",
             return_value=(Mock(), "test-project-id"),
         ):
-            self.publisher = PubSubPublisher()
+            self.publisher = PubSubPublisher("test-project-id", "")
 
     # pylint: disable=protected-access
     def test_publish(self):
@@ -33,7 +33,7 @@ class TestPubSub(TestCase):
         self.publisher._client._set_batch(self.topic_path, batch)
 
         # Publish message.
-        future = self.publisher._publish(self.topic_id, b"test-message")
+        future = self.publisher._publish(self.topic_id, "test-message")
         assert future is sentinel.future
 
         # Check mock.
@@ -44,7 +44,7 @@ class TestPubSub(TestCase):
             # Try resolve the future with an invalid credentials
             self.publisher.publish(
                 self.topic_id,
-                b"test-message",
+                "test-message",
                 fulfilment_request_transaction_id=str(uuid4()),
             )
 

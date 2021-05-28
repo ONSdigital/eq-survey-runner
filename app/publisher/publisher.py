@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
 
+import json
+import google.auth
 from google.api_core.exceptions import AlreadyExists
 from google.cloud.pubsub_v1 import PublisherClient
 from google.cloud.pubsub_v1.futures import Future
-import json
 from google.auth import jwt
 from structlog import get_logger
 
