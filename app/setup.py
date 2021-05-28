@@ -63,7 +63,7 @@ class AWSReverseProxied:
         return self.app(environ, start_response)
 
 
-def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-complex
+def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-complex, too-many-statements
     application = Flask(__name__, static_url_path='/s', static_folder='../static')
     application.config.from_object(settings)
 
@@ -106,7 +106,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         application.eq['submitter'] = LogSubmitter()
 
     if application.config['EQ_PUBSUB_ENABLED']:
-        logger.info("here")
         setup_publisher(application)
         application.eq['pubsub_submitter'] = PubSubSubmitter()
 
@@ -389,13 +388,13 @@ def get_minimized_asset(filename):
 
 
 def setup_publisher(application):
-    if application.config["EQ_PUBLISHER_BACKEND"] == "pubsub":
-        application.eq["publisher"] = PubSubPublisher(application.config['EQ_PUBSUB_PROJECT_ID'],
+    if application.config['EQ_PUBLISHER_BACKEND'] == 'pubsub':
+        application.eq['publisher'] = PubSubPublisher(application.config['EQ_PUBSUB_PROJECT_ID'],
                                                       application.config['PUBSUB_CREDENTIALS_FILE'])
-        application.eq["publisher"].create_topic(application.config['EQ_PUBSUB_TOPIC_ID'])
+        application.eq['publisher'].create_topic(application.config['EQ_PUBSUB_TOPIC_ID'])
 
-    elif application.config["EQ_PUBLISHER_BACKEND"] == "log":
-        application.eq["publisher"] = LogPublisher()
+    elif application.config['EQ_PUBLISHER_BACKEND'] == 'log':
+        application.eq['publisher'] = LogPublisher()
 
     else:
-        raise Exception("Unknown EQ_PUBLISHER_BACKEND")
+        raise Exception('Unknown EQ_PUBLISHER_BACKEND')
