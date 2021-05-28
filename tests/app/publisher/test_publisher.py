@@ -1,5 +1,5 @@
 from unittest import TestCase, mock
-from unittest.mock import Mock, sentinel
+from unittest.mock import Mock, sentinel, patch
 from uuid import uuid4
 
 from google.pubsub_v1.types.pubsub import PubsubMessage
@@ -10,10 +10,10 @@ from app.publisher.exceptions import PublicationFailed
 
 class TestPubSub(TestCase):
     topic_id = 'test-topic-id'
-    topic_path = f'projects/test-project-id/topics/{topic_id}'
+    topic_path = f'projects/martyn-test-mongo/topics/{topic_id}'
 
     def setUp(self) -> None:
-        self.publisher = PubSubPublisher('test-project-id', '')
+        self.publisher = PubSubPublisher('martyn-test-mongo', 'gcp-credentials.json')
 
     # pylint: disable=protected-access
     def test_publish(self):
@@ -44,4 +44,4 @@ class TestPubSub(TestCase):
                 fulfilment_request_transaction_id=str(uuid4()),
             )
 
-        assert '404 Resource not found ' in str(ex.exception)
+        assert '404 Resource not found' in str(ex.exception)

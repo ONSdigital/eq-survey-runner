@@ -19,7 +19,7 @@ class Publisher(ABC):
 
 
 class PubSubPublisher(Publisher):
-    def __init__(self, project_id, credentials_file):
+    def __init__(self, project_id, credentials_file=None):
         logger.info('connecting to pubsub')
         if credentials_file:
             service_account_info = json.load(open(credentials_file))
@@ -32,14 +32,14 @@ class PubSubPublisher(Publisher):
             self._client = PublisherClient()
         self._project_id = project_id
 
-    def _publish(self, topic_id, message):
+    def _publish(self, topic_id, message, **kwargs):
         logger.info('publishing message', topic_id=topic_id)
         topic_path = self._client.topic_path(self._project_id, topic_id)  # pylint: disable=no-member
-        response: Future = self._client.publish(topic_path, message.encode('utf-8'))
+        response: Future = self._client.publish(topic_path, message.encode('utf-8'), **kwargs)
         return response
 
     def publish(self, topic_id, message: bytes, fulfilment_request_transaction_id: str):
-        response = self._publish(topic_id, message)
+        response = self._publish(topic_id, message, tx_id=fulfilment_request_transaction_id)
         try:
             # Resolve the future
             message_id = response.result()
