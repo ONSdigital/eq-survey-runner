@@ -8,6 +8,7 @@ from flask import current_app
 
 logger = get_logger()
 
+
 class IndividualResponseFulfilmentRequestPublicationFailed(Exception):
     pass
 
@@ -65,7 +66,6 @@ class RabbitMQSubmitter():
                 logger.error('unable to open connection', exc_info=e, server='secondary', category='rabbitmq')
                 raise err
 
-
     @staticmethod
     def _disconnect(connection):
         try:
@@ -74,7 +74,6 @@ class RabbitMQSubmitter():
                 connection.close()
         except AMQPError as e:
             logger.error('unable to close connection', exc_info=e, category='rabbitmq')
-
 
     def send_message(self, message, queue, tx_id):
         """

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 import json
-import google.auth
+import google.auth  # pylint disable=unused-import
 from google.api_core.exceptions import AlreadyExists
 from google.cloud.pubsub_v1 import PublisherClient
 from google.cloud.pubsub_v1.futures import Future
@@ -26,20 +26,18 @@ class PubSubPublisher(Publisher):
             service_account_info = json.load(open(credentials_file))
             publisher_audience = "https://pubsub.googleapis.com/google.pubsub.v1.Publisher"
             credentials_pub = jwt.Credentials.from_service_account_info(
-                service_account_info, audience=publisher_audience
+                service_account_info, audience=publisher_audience,
             )
             self._client = PublisherClient(credentials=credentials_pub)
         else:
             self._client = PublisherClient()
         self._project_id = project_id
 
-
     def _publish(self, topic_id, message):
         logger.info("publishing message", topic_id=topic_id)
         topic_path = self._client.topic_path(self._project_id, topic_id)
         response: Future = self._client.publish(topic_path, message.encode('utf-8'))
         return response
-
 
     def publish(self, topic_id, message: bytes, fulfilment_request_transaction_id: str):
         response = self._publish(topic_id, message)
@@ -58,7 +56,6 @@ class PubSubPublisher(Publisher):
                 topic_id=topic_id,
             )
             raise PublicationFailed(ex)
-
 
     def create_topic(self, topic_id):
         try:
