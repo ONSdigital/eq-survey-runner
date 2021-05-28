@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 import json
-import google.auth  # pylint: disable=unused-import
+import google.auth  # noqa: F401  # pylint: disable=unused-import
 from google.api_core.exceptions import AlreadyExists
 from google.cloud.pubsub_v1 import PublisherClient
 from google.cloud.pubsub_v1.futures import Future
