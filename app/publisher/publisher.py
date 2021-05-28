@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 from google.api_core.exceptions import AlreadyExists
 from google.cloud.pubsub_v1 import PublisherClient
+from google.cloud.pubsub_v1.futures import Future
 import json
 from google.auth import jwt
 from structlog import get_logger
@@ -33,20 +34,21 @@ class PubSubPublisher(Publisher):
 
 
     def _publish(self, topic_id, message):
+        logger.info("publishing message", topic_id=topic_id)
         topic_path = self._client.topic_path(self._project_id, topic_id)
-
-        future = self._client.publish(topic_path, message.encode('utf-8'))
-        return future.result()
+        response: Future = self._client.publish(topic_path, message.encode('utf-8'))
+        return response
 
 
     def publish(self, topic_id, message: bytes, fulfilment_request_transaction_id: str):
-        logger.info("publishing message", topic_id=topic_id)
+        response = self._publish(topic_id, message)
         try:
-            response = self._publish(topic_id, message)
+            # Resolve the future
+            message_id = response.result()
             logger.info(  # pragma: no cover
                 "message published successfully",
                 topic_id=topic_id,
-                message_id=response,
+                message_id=message_id,
                 fulfilment_request_transaction_id=fulfilment_request_transaction_id,
             )
         except Exception as ex:  # pylint:disable=broad-except
