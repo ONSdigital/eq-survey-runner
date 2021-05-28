@@ -66,7 +66,7 @@ class PubSubPublisher(Publisher):
             logger.info("Topic already exists")
         except Exception as ex:
             logger.error(
-                "failed", exc_info=ex
+                "failed", exc_info=ex,
             )
 
 

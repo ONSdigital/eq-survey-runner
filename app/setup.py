@@ -387,11 +387,12 @@ def get_minimized_asset(filename):
             filename = filename.replace('.js', '.min.js')
     return filename
 
+
 def setup_publisher(application):
     if application.config["EQ_PUBLISHER_BACKEND"] == "pubsub":
         application.eq["publisher"] = PubSubPublisher(application.config['EQ_PUBSUB_PROJECT_ID'],
-            application.config['PUBSUB_CREDENTIALS_FILE'])
-        application.eq["publisher"].create_topic(application.config['EQ_PUBSUB_TOPIC_ID']) 
+                                                        application.config['PUBSUB_CREDENTIALS_FILE'])
+        application.eq["publisher"].create_topic(application.config['EQ_PUBSUB_TOPIC_ID'])
 
     elif application.config["EQ_PUBLISHER_BACKEND"] == "log":
         application.eq["publisher"] = LogPublisher()

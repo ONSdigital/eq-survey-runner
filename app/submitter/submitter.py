@@ -11,12 +11,13 @@ logger = get_logger()
 class IndividualResponseFulfilmentRequestPublicationFailed(Exception):
     pass
 
-class LogSubmitter():  # pylint: disable=no-self-use
 
+class LogSubmitter():  # pylint: disable=no-self-use
     def send_message(self, message, queue, tx_id):  # pylint: disable=unused-argument
         logger.info('sending message')
         logger.info('message payload', message=message, queue=queue)
         return True
+
 
 class PubSubSubmitter ():
     def send_message(self, message, queue, tx_id):
@@ -34,6 +35,7 @@ class PubSubSubmitter ():
             return True
         except PublicationFailed:
             raise IndividualResponseFulfilmentRequestPublicationFailed
+
 
 class RabbitMQSubmitter():
     def __init__(self, host, secondary_host, port, username=None, password=None):
@@ -63,6 +65,7 @@ class RabbitMQSubmitter():
                 logger.error('unable to open connection', exc_info=e, server='secondary', category='rabbitmq')
                 raise err
 
+
     @staticmethod
     def _disconnect(connection):
         try:
@@ -71,6 +74,7 @@ class RabbitMQSubmitter():
                 connection.close()
         except AMQPError as e:
             logger.error('unable to close connection', exc_info=e, category='rabbitmq')
+
 
     def send_message(self, message, queue, tx_id):
         """
