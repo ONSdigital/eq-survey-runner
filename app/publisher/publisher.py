@@ -34,7 +34,7 @@ class PubSubPublisher(Publisher):
 
     def _publish(self, topic_id, message):
         logger.info('publishing message', topic_id=topic_id)
-        topic_path = self._client.topic_path(self._project_id, topic_id)
+        topic_path = self._client.topic_path(self._project_id, topic_id)  # pylint: disable=no-member
         response: Future = self._client.publish(topic_path, message.encode('utf-8'))
         return response
 
@@ -59,11 +59,11 @@ class PubSubPublisher(Publisher):
     def create_topic(self, topic_id):
         try:
             logger.info('creating topic')
-            topic_path = self._client.topic_path(self._project_id, topic_id)
-            self._client.create_topic(request={'name': topic_path})
+            topic_path = self._client.topic_path(self._project_id, topic_id)  # pylint: disable=no-member
+            self._client.create_topic(request={'name': topic_path})  # pylint: disable=no-member
         except AlreadyExists:
             logger.info('Topic already exists')
-        except Exception as ex:
+        except Exception as ex:  # pylint:disable=broad-except
             logger.error(
                 'failed', exc_info=ex,
             )
