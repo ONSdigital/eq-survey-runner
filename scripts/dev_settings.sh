@@ -72,6 +72,10 @@ if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
   export AWS_SECRET_ACCESS_KEY=dummy-secret-key
 fi
 
+if [ -z "$PUBSUB_EMULATOR_HOST" ]; then
+  export PUBSUB_EMULATOR_HOST=localhost:8681
+fi
+
 export FLASK_DEBUG=1
 
 python scripts/generate_secrets.py jwt-test-secrets/

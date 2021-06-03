@@ -21,6 +21,15 @@ services:
       - "5433:5432"
     networks:
       - eq-env
+      
+  pubsub:
+    image: messagebird/gcloud-pubsub-emulator:latest
+    environment:
+      PUBSUB_PROJECT1: my-test-project,test-topic-id
+    ports:
+      - "8681:8681"
+    networks:
+      - eq-env
 
   # eq-survey-register:
   #   image: onsdigital/eq-survey-register:latest
@@ -57,6 +66,11 @@ services:
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-dummy}"
       EQ_GTM_ID: "${EQ_GTM_ID:-dummy}"
       EQ_GTM_ENV_ID: "${EQ_GTM_ENV_ID:-dummy}"
+      EQ_PUBSUB_ENABLED: "True"
+      EQ_PUBLISHER_BACKEND: pubsub
+      EQ_PUBSUB_PROJECT_ID: my-test-project
+      EQ_PUBSUB_TOPIC_ID: "test-topic-id"
+      PUBSUB_EMULATOR_HOST: host.docker.internal:8681
     restart: always
     depends_on:
       - db

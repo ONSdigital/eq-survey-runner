@@ -464,6 +464,12 @@ def submit_answers(routing_path, eq_id, form_type, schema):
         current_app.config['EQ_RABBITMQ_QUEUE_NAME'],
         metadata['tx_id'],
     )
+    if current_app.config['EQ_PUBSUB_ENABLED']:
+        current_app.eq['pubsub_submitter'].send_message(
+            encrypted_message,
+            current_app.config['EQ_PUBSUB_TOPIC_ID'],
+            metadata['tx_id'],
+        )
 
     if not sent:
         raise SubmissionFailedException()

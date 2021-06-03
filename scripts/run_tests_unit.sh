@@ -6,6 +6,14 @@
 # ./scripts/run_tests_unit.sh
 set -o pipefail
 
+echo "starting docker..."
+PUBSUB_CONTAINER_ID=$(docker run --rm -d --publish 8681:8681 -e PUBSUB_PROJECT1=my-test-project,test-topic-id messagebird/gcloud-pubsub-emulator:latest)
+function finish {
+  echo "killing docker..."
+  docker rm -vf $PUBSUB_CONTAINER_ID
+}
+trap finish EXIT
+
 function display_result {
   RESULT=$1
   EXIT_STATUS=$2
