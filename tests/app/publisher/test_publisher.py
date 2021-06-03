@@ -10,10 +10,10 @@ from app.publisher.exceptions import PublicationFailed
 
 class TestPubSub(TestCase):
     topic_id = 'test-topic-id'
-    topic_path = f'projects/martyn-test-mongo/topics/{topic_id}'
+    topic_path = f'projects/my-test-project/topics/{topic_id}'
 
     def setUp(self) -> None:
-        self.publisher = PubSubPublisher('martyn-test-mongo', 'gcp-credentials.json')
+        self.publisher = PubSubPublisher('my-test-project')
 
     # pylint: disable=protected-access
     def test_publish(self):
@@ -37,11 +37,11 @@ class TestPubSub(TestCase):
 
     def test_resolving_message_raises_exception_on_error(self):
         with self.assertRaises(PublicationFailed) as ex:
-            # Try resolve the future with an invalid credentials
+            # Try resolve the future with an incorrect topic id
             self.publisher.publish(
-                self.topic_id,
+                'bad_topic',
                 'test-message',
                 fulfilment_request_transaction_id=str(uuid4()),
             )
 
-        assert '404 Resource not found' in str(ex.exception)
+        assert '404 Topic not found' in str(ex.exception)
