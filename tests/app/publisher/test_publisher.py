@@ -1,5 +1,5 @@
 from unittest import TestCase, mock
-from unittest.mock import Mock, sentinel, patch
+from unittest.mock import Mock, sentinel
 from uuid import uuid4
 
 from google.pubsub_v1.types.pubsub import PubsubMessage
