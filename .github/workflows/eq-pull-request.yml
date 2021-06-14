@@ -62,8 +62,6 @@ jobs:
               run: printf $(git rev-parse HEAD) > .application-version
             - name: Run unit tests
               run: pipenv run ./scripts/run_tests_unit.sh
-            - name: Upload coverage to Codecov
-              run: pipenv run bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -F unittests
 
     validate_schemas:
         runs-on: ubuntu-latest
