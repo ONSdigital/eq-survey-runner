@@ -446,11 +446,13 @@
                                 "options": [{
                                         "label": "Public sector projects",
                                         "value": "Public sector projects",
+                                        "q_code": "d1",
                                         "description": "This includes public housing and government owned organisations such as local, regional and national public authorities and agencies"
                                     },
                                     {
                                         "label": "Private sector projects",
                                         "value": "Private sector projects",
+                                        "q_code": "d2",
                                         "description": "This refers to the part of the economy that is for profit and is owned by private organisations. For example privately owned businesses, housing associations, partnerships and sole traders, joint ventures and privately owned housing"
                                     }
                                 ]
@@ -1093,16 +1095,19 @@
                                 "options": [{
                                         "label": "Public sector projects",
                                         "value": "Public sector projects",
+                                        "q_code": "d3",
                                         "description": "This consists of government owned organisations, for example local, regional and national public authorities and agencies, public housing"
                                     },
                                     {
                                         "label": "Private commercial sector projects",
                                         "value": "Private commercial sector projects",
+                                        "q_code": "d4",
                                         "description": "This consists of privately funded projects on areas such as offices, entertainment venues, privately funded education and health establishments, retail and agriculture structures"
                                     },
                                     {
                                         "label": "Private industrial sector projects",
                                         "value": "Private industrial sector projects",
+                                        "q_code": "d5",
                                         "description": "This consists of privately funded projects on areas such as warehouses and factories"
                                     }
                                 ]
@@ -1602,6 +1607,7 @@
                                 "type": "Number",
                                 "label": "Total number of employees",
                                 "description": "",
+                                "q_code": "50",
                                 "decimal_places": 0
                             }]
                         }]
@@ -1682,6 +1688,7 @@
                                     "type": "Number",
                                     "label": "Number of male employees working more than 30 hours per week",
                                     "description": "",
+                                    "q_code": "51",
                                     "max_value": {
                                         "answer_id": "answer9aae4831-f747-431d-9384-5d6802a37ce2",
                                         "exclusive": false
@@ -1694,6 +1701,7 @@
                                     "type": "Number",
                                     "label": "Number of male employees working 30 hours or less per week",
                                     "description": "",
+                                    "q_code": "52",
                                     "max_value": {
                                         "answer_id": "answer9aae4831-f747-431d-9384-5d6802a37ce2",
                                         "exclusive": false
@@ -1706,6 +1714,7 @@
                                     "type": "Number",
                                     "label": "Number of female employees working more than 30 hours per week",
                                     "description": "",
+                                    "q_code": "53",
                                     "max_value": {
                                         "answer_id": "answer9aae4831-f747-431d-9384-5d6802a37ce2",
                                         "exclusive": false
@@ -1718,6 +1727,7 @@
                                     "type": "Number",
                                     "label": "Number of female employees working 30 hours or less per week",
                                     "description": "",
+                                    "q_code": "54",
                                     "max_value": {
                                         "answer_id": "answer9aae4831-f747-431d-9384-5d6802a37ce2",
                                         "exclusive": false
