@@ -440,11 +440,13 @@
                                 "options": [{
                                         "label": "Public sector projects",
                                         "value": "Public sector projects",
+                                        "q_code": "d1",
                                         "description": "This includes public housing and government owned organisations such as local, regional and national public authorities and agencies"
                                     },
                                     {
                                         "label": "Private sector projects",
                                         "value": "Private sector projects",
+                                        "q_code": "d2",
                                         "description": "This refers to the part of the economy that is for profit and is owned by private organisations. For example privately owned businesses, housing associations, partnerships and sole traders, joint ventures and privately owned housing"
                                     }
                                 ]
@@ -1087,16 +1089,19 @@
                                 "options": [{
                                         "label": "Public sector projects",
                                         "value": "Public sector projects",
+                                        "q_code": "d3",
                                         "description": "This consists of government owned organisations, for example local, regional and national public authorities and agencies, public housing"
                                     },
                                     {
                                         "label": "Private commercial sector projects",
                                         "value": "Private commercial sector projects",
+                                        "q_code": "d4",
                                         "description": "This consists of privately funded projects on areas such as offices, entertainment venues, privately funded education and health establishments, retail and agriculture structures"
                                     },
                                     {
                                         "label": "Private industrial sector projects",
                                         "value": "Private industrial sector projects",
+                                        "q_code": "d5",
                                         "description": "This consists of privately funded projects on areas such as warehouses and factories"
                                     }
                                 ]
