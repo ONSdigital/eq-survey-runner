@@ -156,7 +156,9 @@
                                     "when": [{
                                         "id": "answerdadafe6c-4875-43bc-87e2-6097ff0d106e",
                                         "condition": "contains any",
-                                        "values": ["Yes, I can report for this period"]
+                                        "values": [
+                                            "Yes, I can report for this period"
+                                        ]
                                     }]
                                 }
                             },
@@ -232,7 +234,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question69ae90ee-65a6-49ef-8ca9-1c55c9eb6688",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was the total value of all construction work carried out by {{ metadata['trad_as'] }}?",
+                            "title": "During the period {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6to'], metadata['ref_p_end_date']) }}, what was the total value of all construction work carried out by {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                             "description": "<p>If you are a fitter, installer, or have any other involvement in construction projects, you are included within the construction industry and so should report your figures.</p>",
                             "guidance": {
                                 "content": [{
@@ -290,7 +292,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-69ae90ee-65a6-49ef-8ca9-1c55c9eb6688",
-                            "title": "You stated that the total value of all construction work carried out by {{ metadata['trad_as'] }} was {{ format_currency(answers['answer24502b57-1962-4d88-b3a1-40facd7f0661'], 'GBP') }}. Is that correct?",
+                            "title": "You stated that the total value of all construction work carried out by {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was {{ format_currency(answers['answer24502b57-1962-4d88-b3a1-40facd7f0661'], 'GBP') }}. Is that correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-69ae90ee-65a6-49ef-8ca9-1c55c9eb6688",
@@ -314,7 +316,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-69ae90ee-65a6-49ef-8ca9-1c55c9eb6688",
                                         "condition": "contains any",
-                                        "values": ["No, I need to change this"]
+                                        "values": [
+                                            "No, I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -371,20 +375,27 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionbaffab41-96f6-4f04-901d-5ff18c15bb90",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['trad_as'] }} carry out any work on housing?",
+                            "title": "During the period {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6to'], metadata['ref_p_end_date']) }}, did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} carry out any work on housing?",
                             "description": "<p>If you are a fitter, installer, or have any other involvement in construction projects, you are included within the construction industry and so should report your figures.</p>",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include new builds and repair and maintenance of:</strong>"
                                     },
                                     {
-                                        "list": ["flats and maisonettes", "new houses", "other types of residential housing"]
+                                        "list": [
+                                            "flats and maisonettes",
+                                            "new houses",
+                                            "other types of residential housing"
+                                        ]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["any work on halls of residence for educational institutions", "work on infrastructure"]
+                                        "list": [
+                                            "any work on halls of residence for educational institutions",
+                                            "work on infrastructure"
+                                        ]
                                     }
                                 ]
                             },
@@ -419,7 +430,9 @@
                                     "when": [{
                                         "id": "answera75253f4-438c-4bdf-8613-cbfa2a3a1fb6",
                                         "condition": "contains any",
-                                        "values": ["Yes, we carried out work on housing"]
+                                        "values": [
+                                            "Yes, we carried out work on housing"
+                                        ]
                                     }]
                                 }
                             },
@@ -435,7 +448,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc102510b-e675-4074-8cdb-d6b8c5729a29",
-                            "title": "Which sector did {{ metadata['trad_as'] }} carry out housing work for?",
+                            "title": "Which sector did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} carry out housing work for?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer35ce4949-ad6d-4137-b28b-ce3b5723831e",
@@ -470,7 +483,11 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": ["new construction work", "demolition", "site preparation"]
+                                        "list": [
+                                            "new construction work",
+                                            "demolition",
+                                            "site preparation"
+                                        ]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -493,7 +510,10 @@
                                         "description": "<strong>Examples of public sector: </strong>"
                                     },
                                     {
-                                        "list": ["local, regional and national public authorities and agencies", "public housing"]
+                                        "list": [
+                                            "local, regional and national public authorities and agencies",
+                                            "public housing"
+                                        ]
                                     }
                                 ]
                             }],
@@ -517,7 +537,9 @@
                             "when": [{
                                 "id": "answer35ce4949-ad6d-4137-b28b-ce3b5723831e",
                                 "condition": "not contains any",
-                                "values": ["Public sector projects"]
+                                "values": [
+                                    "Public sector projects"
+                                ]
                             }]
                         }]
                     },
@@ -532,13 +554,20 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": ["extensions", "repairing something which is damaged", "maintaining something to an existing standard"]
+                                        "list": [
+                                            "extensions",
+                                            "repairing something which is damaged",
+                                            "maintaining something to an existing standard"
+                                        ]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["any work on halls of residence for educational institutions", "work on infrastructure"]
+                                        "list": [
+                                            "any work on halls of residence for educational institutions",
+                                            "work on infrastructure"
+                                        ]
                                     }
                                 ]
                             },
@@ -562,7 +591,9 @@
                             "when": [{
                                 "id": "answer35ce4949-ad6d-4137-b28b-ce3b5723831e",
                                 "condition": "not contains any",
-                                "values": ["Public sector projects"]
+                                "values": [
+                                    "Public sector projects"
+                                ]
                             }]
                         }]
                     },
@@ -577,7 +608,11 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": ["new construction work", "demolition", "site preparation"]
+                                        "list": [
+                                            "new construction work",
+                                            "demolition",
+                                            "site preparation"
+                                        ]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -630,7 +665,9 @@
                             "when": [{
                                 "id": "answer35ce4949-ad6d-4137-b28b-ce3b5723831e",
                                 "condition": "not contains any",
-                                "values": ["Private sector projects"]
+                                "values": [
+                                    "Private sector projects"
+                                ]
                             }]
                         }]
                     },
@@ -655,7 +692,10 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["any work on halls of residence for educational institutions", "work on infrastructure"]
+                                        "list": [
+                                            "any work on halls of residence for educational institutions",
+                                            "work on infrastructure"
+                                        ]
                                     }
                                 ]
                             },
@@ -679,7 +719,9 @@
                             "when": [{
                                 "id": "answer35ce4949-ad6d-4137-b28b-ce3b5723831e",
                                 "condition": "not contains any",
-                                "values": ["Private sector projects"]
+                                "values": [
+                                    "Private sector projects"
+                                ]
                             }]
                         }]
                     },
@@ -736,14 +778,16 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question01c41114-3ca3-432f-b7e6-95f8c702f308",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['trad_as'] }} carry out any work on infrastructure?",
+                            "title": "During the period {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6to'], metadata['ref_p_end_date']) }}, did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} carry out any work on infrastructure?",
                             "description": "<p>If you are a fitter, installer, or have any other involvement in construction projects, you are included within the construction industry and so should report your figures.</p>",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": ["new infrastructure and repair and maintenance of infrastructure"]
+                                        "list": [
+                                            "new infrastructure and repair and maintenance of infrastructure"
+                                        ]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -804,7 +848,9 @@
                                     "when": [{
                                         "id": "answer01c0c84f-7282-42a3-b1c3-13b6d10f39bf",
                                         "condition": "contains any",
-                                        "values": ["Yes, we carried out work on infrastructure"]
+                                        "values": [
+                                            "Yes, we carried out work on infrastructure"
+                                        ]
                                     }]
                                 }
                             },
@@ -888,7 +934,11 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": ["repairing a fault", "repairing something which is damaged", "maintaining an existing standard"]
+                                        "list": [
+                                            "repairing a fault",
+                                            "repairing something which is damaged",
+                                            "maintaining an existing standard"
+                                        ]
                                     },
                                     {
                                         "description": "<strong> Exclude:</strong>"
@@ -926,7 +976,10 @@
                         }],
                         "calculation": {
                             "calculation_type": "sum",
-                            "answers_to_calculate": ["answer692af9c8-8773-4a7b-9a21-1830f3dc3401", "answer8561360c-adc9-40b9-b6af-2f85c486fef5"],
+                            "answers_to_calculate": [
+                                "answer692af9c8-8773-4a7b-9a21-1830f3dc3401",
+                                "answer8561360c-adc9-40b9-b6af-2f85c486fef5"
+                            ],
                             "titles": [{
                                 "value": "Total value of all infrastructure work"
                             }]
@@ -966,20 +1019,25 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question92bf4040-ae9c-4245-889c-c11ec6d52ce4",
-                            "title": "During the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['trad_as'] }} carry out any non-housing work, excluding work on infrastructure?",
+                            "title": "During the period {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer440c8850-b115-4f6b-b0f5-52d911dd6ef6to'], metadata['ref_p_end_date']) }}, did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} carry out any non-housing work, excluding work on infrastructure?",
                             "description": "<p>If you are a fitter, installer, or have any other involvement in construction projects, you are included within the construction industry and so should report your figures.</p>",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": ["halls of residence for educational institutions"]
+                                        "list": [
+                                            "halls of residence for educational institutions"
+                                        ]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
+                                        "list": [
+                                            "work on residential buildings, for example housing, flats and maisonettes",
+                                            "work on infrastructure"
+                                        ]
                                     }
                                 ]
                             },
@@ -1042,7 +1100,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-92bf4040-ae9c-4245-889c-c11ec6d52ce4",
                                         "condition": "contains any",
-                                        "values": ["No"]
+                                        "values": [
+                                            "No"
+                                        ]
                                     }]
                                 }
                             },
@@ -1052,7 +1112,9 @@
                                     "when": [{
                                         "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                         "condition": "contains any",
-                                        "values": ["No, we did not"]
+                                        "values": [
+                                            "No, we did not"
+                                        ]
                                     }]
                                 }
                             },
@@ -1066,7 +1128,9 @@
                             "when": [{
                                 "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                 "condition": "contains any",
-                                "values": ["No, we did not"]
+                                "values": [
+                                    "No, we did not"
+                                ]
                             }]
                         }]
                     },
@@ -1075,13 +1139,16 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questioncb22fe8e-4000-418d-b0f1-ca57306a2c0e",
-                            "title": "Which sector did {{ metadata['trad_as'] }} carry out non-housing work for?",
+                            "title": "Which sector did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} carry out non-housing work for?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
+                                        "list": [
+                                            "work on residential buildings, for example housing, flats and maisonettes",
+                                            "work on infrastructure"
+                                        ]
                                     }
                                 ]
                             },
@@ -1117,7 +1184,9 @@
                             "when": [{
                                 "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                 "condition": "contains any",
-                                "values": ["No, we did not"]
+                                "values": [
+                                    "No, we did not"
+                                ]
                             }]
                         }]
                     },
@@ -1143,7 +1212,10 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
+                                        "list": [
+                                            "work on residential buildings, for example housing, flats and maisonettes",
+                                            "work on infrastructure"
+                                        ]
                                     }
                                 ]
                             },
@@ -1188,14 +1260,18 @@
                                 "when": [{
                                     "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                     "condition": "contains any",
-                                    "values": ["No, we did not"]
+                                    "values": [
+                                        "No, we did not"
+                                    ]
                                 }]
                             },
                             {
                                 "when": [{
                                     "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                     "condition": "not contains any",
-                                    "values": ["Public sector projects"]
+                                    "values": [
+                                        "Public sector projects"
+                                    ]
                                 }]
                             }
                         ]
@@ -1211,13 +1287,19 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": ["repairing something which is damaged", "maintaining an existing standard"]
+                                        "list": [
+                                            "repairing something which is damaged",
+                                            "maintaining an existing standard"
+                                        ]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
+                                        "list": [
+                                            "work on residential buildings, for example housing, flats and maisonettes",
+                                            "work on infrastructure"
+                                        ]
                                     }
                                 ]
                             },
@@ -1262,14 +1344,18 @@
                                 "when": [{
                                     "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                     "condition": "contains any",
-                                    "values": ["No, we did not"]
+                                    "values": [
+                                        "No, we did not"
+                                    ]
                                 }]
                             },
                             {
                                 "when": [{
                                     "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                     "condition": "not contains any",
-                                    "values": ["Public sector projects"]
+                                    "values": [
+                                        "Public sector projects"
+                                    ]
                                 }]
                             }
                         ]
@@ -1296,7 +1382,10 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
+                                        "list": [
+                                            "work on residential buildings, for example housing, flats and maisonettes",
+                                            "work on infrastructure"
+                                        ]
                                     }
                                 ]
                             },
@@ -1342,14 +1431,18 @@
                                 "when": [{
                                     "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                     "condition": "contains any",
-                                    "values": ["No, we did not"]
+                                    "values": [
+                                        "No, we did not"
+                                    ]
                                 }]
                             },
                             {
                                 "when": [{
                                     "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                     "condition": "not contains any",
-                                    "values": ["Private commercial sector projects"]
+                                    "values": [
+                                        "Private commercial sector projects"
+                                    ]
                                 }]
                             }
                         ]
@@ -1376,7 +1469,10 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
+                                        "list": [
+                                            "work on residential buildings, for example housing, flats and maisonettes",
+                                            "work on infrastructure"
+                                        ]
                                     }
                                 ]
                             },
@@ -1418,14 +1514,18 @@
                                 "when": [{
                                     "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                     "condition": "contains any",
-                                    "values": ["No, we did not"]
+                                    "values": [
+                                        "No, we did not"
+                                    ]
                                 }]
                             },
                             {
                                 "when": [{
                                     "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                     "condition": "not contains any",
-                                    "values": ["Private industrial sector projects"]
+                                    "values": [
+                                        "Private industrial sector projects"
+                                    ]
                                 }]
                             }
                         ]
@@ -1441,13 +1541,19 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": ["repairing something which is damaged", "maintaining an existing standard"]
+                                        "list": [
+                                            "repairing something which is damaged",
+                                            "maintaining an existing standard"
+                                        ]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
+                                        "list": [
+                                            "work on residential buildings, for example housing, flats and maisonettes",
+                                            "work on infrastructure"
+                                        ]
                                     }
                                 ]
                             },
@@ -1501,14 +1607,19 @@
                                 "when": [{
                                     "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                     "condition": "contains any",
-                                    "values": ["No, we did not"]
+                                    "values": [
+                                        "No, we did not"
+                                    ]
                                 }]
                             },
                             {
                                 "when": [{
                                     "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                     "condition": "not contains any",
-                                    "values": ["Private commercial sector projects", "Private industrial sector projects"]
+                                    "values": [
+                                        "Private commercial sector projects",
+                                        "Private industrial sector projects"
+                                    ]
                                 }]
                             }
                         ]
@@ -1536,7 +1647,9 @@
                             "when": [{
                                 "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                 "condition": "contains any",
-                                "values": ["No, we did not"]
+                                "values": [
+                                    "No, we did not"
+                                ]
                             }]
                         }]
                     }
@@ -1574,7 +1687,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question26537570-11bc-4ece-a0c7-aeb2fb65f9ee",
-                            "title": "On {{ metadata['employment_date'] | format_date }}, what was the number of employees for {{ metadata['trad_as'] }}?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, what was the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                             "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job, or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
@@ -1617,7 +1730,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-26537570-11bc-4ece-a0c7-aeb2fb65f9ee",
-                            "title": "On {{ metadata['employment_date'] | format_date }}, the number of employees for {{ metadata['trad_as'] }} was {{ answers['answer9aae4831-f747-431d-9384-5d6802a37ce2'] | format_number }}, is this correct?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was {{ answers['answer9aae4831-f747-431d-9384-5d6802a37ce2'] | format_number }}, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-26537570-11bc-4ece-a0c7-aeb2fb65f9ee",
@@ -1640,7 +1753,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-26537570-11bc-4ece-a0c7-aeb2fb65f9ee",
                                         "condition": "contains any",
-                                        "values": ["No, I need to change this"]
+                                        "values": [
+                                            "No, I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -1744,7 +1859,7 @@
                                         "answer3af9ba2d-d839-4b3e-a258-14ca5c6405a9"
                                     ],
                                     "conditions": ["equals"],
-                                    "answer_id": "answer9aae4831-f747-431d-9384-5d6802a37ce2"
+                                    "value": 0
                                 },
                                 {
                                     "calculation_type": "sum",
@@ -1755,7 +1870,7 @@
                                         "answer3af9ba2d-d839-4b3e-a258-14ca5c6405a9"
                                     ],
                                     "conditions": ["equals"],
-                                    "value": 0
+                                    "answer_id": "answer9aae4831-f747-431d-9384-5d6802a37ce2"
                                 }
                             ]
                         }],
