@@ -40,7 +40,7 @@
                                 },
                                 {
                                     "list": [
-                                        "Information should relate to the UK.",
+                                        "Information should relate to sites in the UK. This includes England, Wales, Scotland and Northern Ireland.",
                                         "We will treat your information securely and confidentially.",
                                         "This survey is refreshed every two weeks. To avoid losing data and to help us provide real-time information please submit by the return by date, or at the latest before the next fortnightly survey goes live.",
                                         "You can save a copy of your answers at the end of this questionnaire using the ‘Download as PDF’ button."
@@ -79,22 +79,6 @@
                                     }]
                                 },
                                 {
-                                    "question": "International trade in services",
-                                    "content": [{
-                                            "description": "This section asks specifically about the international trade of <strong>services.</strong>"
-                                        },
-                                        {
-                                            "description": "It includes exporting and importing of services from your businesses in the UK to an individual or business located outside of the UK."
-                                        },
-                                        {
-                                            "description": "Services are often skills and services that are provided by people, and are 'intangible'. For example, your business may provide a service (such as legal or financial services) to a non-UK business, or receive a service, such as research or construction, from a non-UK business."
-                                        },
-                                        {
-                                            "description": "Exclude international trade in goods and materials."
-                                        }
-                                    ]
-                                },
-                                {
                                     "question": "Supply chains",
                                     "content": [{
                                             "description": "This section asks for information about:"
@@ -117,8 +101,7 @@
                                         {
                                             "list": [
                                                 "the business's stock levels and stockpiling",
-                                                "changes to capital expenditure",
-                                                "scrapping capital assets"
+                                                "changes to capital expenditure"
                                             ]
                                         }
                                     ]
@@ -150,6 +133,7 @@
                                                 "percentage returning from furlough or homeworking",
                                                 "homeworking as a business model",
                                                 "expectations of workforce returning to normal place of work",
+                                                "employee terms and conditions changes",
                                                 "expected redundancies in the next three months"
                                             ]
                                         }
@@ -253,7 +237,7 @@
                                     "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                     "mandatory": false,
                                     "type": "Checkbox",
-                                    "label": "Select all that apply",
+                                    "label": "Select all that apply:",
                                     "description": "",
                                     "options": [{
                                             "label": "Northern Ireland",
@@ -1150,10 +1134,59 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block7e5cd840-85fc-4416-989d-ab415a77503c"
+                                    "block": "blocke1bca958-3636-4e74-bbf7-5721e8fc7393"
                                 }
                             }
                         ]
+                    },
+                    {
+                        "id": "blocke1bca958-3636-4e74-bbf7-5721e8fc7393",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questione1bca958-3636-4e74-bbf7-5721e8fc7393",
+                            "title": "Has your business exported goods or services in the last 12 months?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Include exporting services from your businesses in the UK to an individual or business located outside of the UK"
+                                }]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by 'services'",
+                                "content": [{
+                                        "description": "This refers to skills and services that are provided by people, and are 'intangible'."
+                                    },
+                                    {
+                                        "description": "For example, your business may provide a service (such as legal or financial services) to a non-UK business, or receive a service, such as research or construction, from a non-UK business."
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1b3aea80-a8fa-49fe-bdb8-91c9cd8a2e1d",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "48",
+                                "options": [{
+                                        "label": "Exported goods only",
+                                        "value": "Exported goods only"
+                                    },
+                                    {
+                                        "label": "Exported services only",
+                                        "value": "Exported services only"
+                                    },
+                                    {
+                                        "label": "Exported both goods and services",
+                                        "value": "Exported both goods and services"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
                     },
                     {
                         "id": "block7e5cd840-85fc-4416-989d-ab415a77503c",
@@ -1368,6 +1401,12 @@
                                             "label": "Reduced demand for products and services",
                                             "value": "Reduced demand for products and services",
                                             "q_code": "6012"
+                                        },
+                                        {
+                                            "label": "Time taken for checks at the border",
+                                            "value": "Time taken for checks at the border",
+                                            "q_code": "6017",
+                                            "description": "For example, documentary or physical checks"
                                         },
                                         {
                                             "label": "Work permit or visa restrictions, or lack of mutual recognition of professional qualifications",
@@ -1803,7 +1842,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group71d730a2-d5b3-4fa8-8835-a1166763d295",
+                                    "group": "groupf4db3101-f01d-4ae9-878b-7f62b0f97eea",
                                     "when": [{
                                         "id": "answer4dd003d9-8d96-4f34-8cd2-9bd1a647a8db",
                                         "condition": "contains any",
@@ -1817,10 +1856,59 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block1e08d4aa-cd99-4480-b357-f6e8c47d85a3"
+                                    "block": "block8b52d56f-871e-4d24-b176-c170ca72d673"
                                 }
                             }
                         ]
+                    },
+                    {
+                        "id": "block8b52d56f-871e-4d24-b176-c170ca72d673",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question8b52d56f-871e-4d24-b176-c170ca72d673",
+                            "title": "Has your business imported goods or services in the last 12 months?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Include importing services to your businesses in the UK from an individual or business located outside of the UK"
+                                }]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by 'services'",
+                                "content": [{
+                                        "description": "This refers to skills and services that are provided by people, and are 'intangible'."
+                                    },
+                                    {
+                                        "description": "For example, your business may provide a service (such as legal or financial services) to a non-UK business, or receive a service, such as research or construction, from a non-UK business."
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer760cd38e-0999-4d2b-9301-31d87ae86549",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "57",
+                                "options": [{
+                                        "label": "Imported goods only",
+                                        "value": "Imported goods only"
+                                    },
+                                    {
+                                        "label": "Imported services only",
+                                        "value": "Imported services only"
+                                    },
+                                    {
+                                        "label": "Imported both goods and services",
+                                        "value": "Imported both goods and services"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
                     },
                     {
                         "id": "block1e08d4aa-cd99-4480-b357-f6e8c47d85a3",
@@ -1861,7 +1949,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group71d730a2-d5b3-4fa8-8835-a1166763d295",
+                                    "group": "groupf4db3101-f01d-4ae9-878b-7f62b0f97eea",
                                     "when": [{
                                             "id": "answer676f3fcf-5942-44fb-8cf7-f83ccd4c94e7",
                                             "condition": "contains any",
@@ -1983,7 +2071,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group71d730a2-d5b3-4fa8-8835-a1166763d295",
+                                    "group": "groupf4db3101-f01d-4ae9-878b-7f62b0f97eea",
                                     "when": [{
                                         "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
                                         "condition": "contains any",
@@ -2063,6 +2151,12 @@
                                             "label": "Suppliers not customs ready",
                                             "value": "Suppliers not customs ready",
                                             "q_code": "7013"
+                                        },
+                                        {
+                                            "label": "Time taken for checks at the border",
+                                            "value": "Time taken for checks at the border",
+                                            "q_code": "7018",
+                                            "description": "For example, documentary or physical checks"
                                         },
                                         {
                                             "label": "Other",
@@ -2298,211 +2392,6 @@
             }]
         },
         {
-            "id": "section71d730a2-d5b3-4fa8-8835-a1166763d295",
-            "title": "International trade in services",
-            "groups": [{
-                "id": "group71d730a2-d5b3-4fa8-8835-a1166763d295",
-                "title": "International trade in services",
-                "blocks": [{
-                        "type": "Interstitial",
-                        "id": "group71d730a2-d5b3-4fa8-8835-a1166763d295-introduction",
-                        "title": "International trade in services",
-                        "description": "<p>This section asks specifically about the international trade of <strong>services.</strong></p><p>It includes exporting and importing of services from your businesses in the UK to an individual or business located outside of the UK.</p><p>Services are often skills and services that are provided by people, and are 'intangible'. For example, your business may provide a service (such as legal or financial services) to a non-UK business, or receive a service, such as research or construction, from a non-UK business.</p><p>Exclude international trade in goods and materials.</p>"
-                    },
-                    {
-                        "id": "block2b40bb4b-a484-41cf-afd2-0997b83b9c92",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question2b40bb4b-a484-41cf-afd2-0997b83b9c92",
-                            "title": "Has {{ metadata['ru_name'] }}'s international trade in services changed in the last 12 months?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "exporting of services from your businesses in the UK to an individual or business located outside of the UK",
-                                            "importing of services to your businesses in the UK from an individual or business located outside of the UK"
-                                        ]
-                                    },
-                                    {
-                                        "description": "<strong>Exclude:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "exporting and importing of international trade in goods and materials"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "definitions": [{
-                                "title": "What we mean by 'services'",
-                                "content": [{
-                                    "description": "Services are often skills and services that are provided by people, and are 'intangible'. For example, your business may provide a service (such as legal or financial services) to a non-UK business, or receive a service, such as research or construction, from a non-UK business."
-                                }]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answerd195a24f-f229-4047-9b5c-5602d366d959",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "195",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "groupf4db3101-f01d-4ae9-878b-7f62b0f97eea",
-                                    "when": [{
-                                        "id": "answerd195a24f-f229-4047-9b5c-5602d366d959",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure",
-                                            "Not applicable"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockb11a8d4c-bd1f-48ef-b0b3-b0f8ff5a75b1"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "blockb11a8d4c-bd1f-48ef-b0b3-b0f8ff5a75b1",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionb11a8d4c-bd1f-48ef-b0b3-b0f8ff5a75b1",
-                            "title": "How does your business's international trade in services in the <em>last two weeks</em> compare to normal expectations for this time of year?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer48cc121d-ac69-405d-8ef2-6da32e530651",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "196",
-                                "options": [{
-                                        "label": "Trading more than normal",
-                                        "value": "Trading more than normal"
-                                    },
-                                    {
-                                        "label": "Trading as normal",
-                                        "value": "Trading as normal"
-                                    },
-                                    {
-                                        "label": "Trading, but less than normal",
-                                        "value": "Trading, but less than normal"
-                                    },
-                                    {
-                                        "label": "Not been able to trade in services in the last two weeks",
-                                        "value": "Not been able to trade in services in the last two weeks"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "groupf4db3101-f01d-4ae9-878b-7f62b0f97eea",
-                                    "when": [{
-                                        "id": "answer48cc121d-ac69-405d-8ef2-6da32e530651",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "Trading as normal",
-                                            "Not sure"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block73a1bb0e-b9cb-40f0-ac2f-b819c7607bc8"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block73a1bb0e-b9cb-40f0-ac2f-b819c7607bc8",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question73a1bb0e-b9cb-40f0-ac2f-b819c7607bc8",
-                            "title": "What was the main reason for this change to international trade in services?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer7da6c859-70a6-4534-9be0-6da3cda50b16",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "197",
-                                "options": [{
-                                        "label": "Coronavirus (COVID-19) pandemic",
-                                        "value": "Coronavirus (COVID-19) pandemic"
-                                    },
-                                    {
-                                        "label": "End of the EU transition period",
-                                        "value": "End of the EU transition period"
-                                    },
-                                    {
-                                        "label": "Coronavirus (COVID-19) pandemic and the end of the EU transition period",
-                                        "value": "Coronavirus (COVID-19) pandemic and the end of the EU transition period"
-                                    },
-                                    {
-                                        "label": "Other",
-                                        "value": "Other",
-                                        "detail_answer": {
-                                            "label": "Please describe",
-                                            "type": "TextField",
-                                            "id": "answer957b022d-e315-45ee-9a2c-398437894dff",
-                                            "mandatory": true
-                                        }
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }]
-                    }
-                ],
-                "skip_conditions": [{
-                    "when": [{
-                        "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
-                        "condition": "contains any",
-                        "values": [
-                            "Permanently ceased trading"
-                        ]
-                    }]
-                }]
-            }]
-        },
-        {
             "id": "sectionf4db3101-f01d-4ae9-878b-7f62b0f97eea",
             "title": "Supply chains",
             "groups": [{
@@ -2645,7 +2534,7 @@
                                             "label": "Moving the supply chain away from the short straits crossings",
                                             "value": "Moving the supply chain away from the short straits crossings",
                                             "q_code": "2374",
-                                            "description": "'Short straits' are the Euro tunnel and ferry routes between the Port of Dover and Calais, Coquelles or Dunkirk"
+                                            "description": "For example, the Euro tunnel and ferry routes between the Port of Dover and Calais, Coquelles or Dunkirk"
                                         },
                                         {
                                             "label": "Increasing the diversity in suppliers",
@@ -2778,7 +2667,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question78f97e48-ad45-4823-8d06-80d9a472cb27",
-                            "title": "Was your business able to get the materials, goods or services it needed from the EU in the <em>last two weeks</em>?",
+                            "title": "Was your business able to get the materials, goods or services it needed <em>from the EU</em> in the last two weeks?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerb434ea9e-113e-404f-ba8d-704d4cdf9a81",
@@ -2899,7 +2788,7 @@
                         "type": "Interstitial",
                         "id": "group165593ff-e20f-42ac-9916-e48a2b4c2851-introduction",
                         "title": "Stock and capital expenditure",
-                        "description": "<p>This section asks for information about:</p><ul><li>the business's stock levels and stockpiling</li><li>changes to capital expenditure</li><li>scrapping capital assets</li></ul>"
+                        "description": "<p>This section asks for information about:</p><ul><li>the business's stock levels and stockpiling</li><li>changes to capital expenditure</li></ul>"
                     },
                     {
                         "id": "block207aa0eb-bec6-4ed5-a4b8-615966483b0b",
@@ -3065,21 +2954,21 @@
                             },
                             {
                                 "goto": {
-                                    "block": "block04573d32-dc0b-4e37-b6c4-2e83772d7926"
+                                    "block": "block57e8472c-14cc-4326-a36d-0791ef47dd7f"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "block04573d32-dc0b-4e37-b6c4-2e83772d7926",
+                        "id": "block57e8472c-14cc-4326-a36d-0791ef47dd7f",
                         "type": "Question",
                         "questions": [{
-                            "id": "question04573d32-dc0b-4e37-b6c4-2e83772d7926",
+                            "id": "question57e8472c-14cc-4326-a36d-0791ef47dd7f",
                             "title": "Where are you sourcing these stockpiled goods or materials from?",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
                             "answers": [{
-                                    "id": "answer335b7531-a8d2-482b-8855-58d65721b34f",
+                                    "id": "answerae519ea3-77c8-4063-98e2-70a43eb2940f",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "label": "Select all that apply:",
@@ -3103,7 +2992,7 @@
                                     ]
                                 },
                                 {
-                                    "id": "answer335b7531-a8d2-482b-8855-58d65721b34f-exclusive",
+                                    "id": "answerae519ea3-77c8-4063-98e2-70a43eb2940f-exclusive",
                                     "mandatory": false,
                                     "type": "Checkbox",
                                     "description": "",
@@ -3247,80 +3136,6 @@
                         }]
                     },
                     {
-                        "id": "blockadd0804e-6fd0-45bb-9d39-c3520d7d39d3",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionadd0804e-6fd0-45bb-9d39-c3520d7d39d3",
-                            "title": "Which <em>storage solutions</em> are you using for stockpiling these goods or materials?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer2fad3a07-78fe-4b37-b88a-42efc70c8438",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply:",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Building new storage",
-                                            "value": "Building new storage",
-                                            "q_code": "1411"
-                                        },
-                                        {
-                                            "label": "Renting new storage",
-                                            "value": "Renting new storage",
-                                            "q_code": "1412"
-                                        },
-                                        {
-                                            "label": "Using more of our current storage",
-                                            "value": "Using more of our current storage",
-                                            "q_code": "1413"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "1414",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer4aa3c8c7-f7a6-433b-9e38-513b6a9e85e3",
-                                                "mandatory": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer2fad3a07-78fe-4b37-b88a-42efc70c8438-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "1410"
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "blocka0cb8c2c-e5f8-4854-8fc6-d2a6a6e09cc1",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questiona0cb8c2c-e5f8-4854-8fc6-d2a6a6e09cc1",
-                            "title": "Please tell us more information about the goods or materials you are stockpiling",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer9a5a42ff-beb8-4c8b-870a-dc9166fc0465",
-                                "mandatory": false,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "description": "",
-                                "q_code": "209",
-                                "max_length": 2000
-                            }]
-                        }]
-                    },
-                    {
                         "id": "block13e616b8-1137-4336-a929-66024302f864",
                         "type": "Question",
                         "questions": [{
@@ -3441,89 +3256,6 @@
                                 "label": "Comments",
                                 "description": "",
                                 "q_code": "123",
-                                "max_length": 2000
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blocke35c6733-0560-4948-b4da-7b7df30ac533",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questione35c6733-0560-4948-b4da-7b7df30ac533",
-                            "title": "Over the last month, has your business <em>scrapped</em> any capital assets earlier than intended?",
-                            "guidance": {
-                                "content": [{
-                                    "description": "Exclude capital assets which are sold"
-                                }]
-                            },
-                            "definitions": [{
-                                "title": "What we mean by 'scrapped'",
-                                "content": [{
-                                    "description": "Assets that have been scrapped are retired from their use in the production process."
-                                }]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer855af9f9-c097-40be-8c84-5900e4f61841",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "76",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "group": "group8753dfce-d80c-4fe0-98ba-3cddd52a9bba",
-                                    "when": [{
-                                        "id": "answer855af9f9-c097-40be-8c84-5900e4f61841",
-                                        "condition": "contains any",
-                                        "values": [
-                                            "No",
-                                            "Not sure",
-                                            "Not applicable"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block642e79ee-5a87-45c2-93c3-0a7fbb053d9d"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block642e79ee-5a87-45c2-93c3-0a7fbb053d9d",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question642e79ee-5a87-45c2-93c3-0a7fbb053d9d",
-                            "title": "Please explain in more detail what type of assets your business scrapped early and why",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer7888f788-f2f7-406e-a8df-a9e919d651ac",
-                                "mandatory": false,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "description": "",
-                                "q_code": "77",
                                 "max_length": 2000
                             }]
                         }]
@@ -4461,6 +4193,59 @@
                                     }
                                 ]
                             }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group1760a554-060f-4e6a-bf64-970f98d84ac7",
+                                    "when": [{
+                                        "id": "answer1feb3977-8643-4f41-bb73-b6b7131e322b",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "The business is insolvent",
+                                            "Not sure"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block8ab01c01-2960-4907-8a03-0812a6c79d20"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block8ab01c01-2960-4907-8a03-0812a6c79d20",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question8ab01c01-2960-4907-8a03-0812a6c79d20",
+                            "title": "How has your business's risk of insolvency changed in the <em>last two weeks</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer9162be45-4117-4d64-a914-016449d6c584",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "219",
+                                "options": [{
+                                        "label": "Risk has increased",
+                                        "value": "Risk has increased"
+                                    },
+                                    {
+                                        "label": "Risk has stayed the same",
+                                        "value": "Risk has stayed the same"
+                                    },
+                                    {
+                                        "label": "Risk has decreased",
+                                        "value": "Risk has decreased"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
                         }]
                     }
                 ],
@@ -4485,7 +4270,7 @@
                         "type": "Interstitial",
                         "id": "group1760a554-060f-4e6a-bf64-970f98d84ac7-introduction",
                         "title": "Operational performance",
-                        "description": "<p>This section asks for information about your workforce such as the:</p><ul><li>percentage, for example, on furlough leave or working from home, or made redundant in the last two weeks</li><li>percentage returning from furlough or homeworking</li><li>homeworking as a business model</li><li>expectations of workforce returning to normal place of work </li><li>expected redundancies in the next three months</li></ul>"
+                        "description": "<p>This section asks for information about your workforce such as the:</p><ul><li>percentage, for example, on furlough leave or working from home, or made redundant in the last two weeks</li><li>percentage returning from furlough or homeworking</li><li>homeworking as a business model</li><li>expectations of workforce returning to normal place of work </li><li>employee terms and conditions changes</li><li>expected redundancies in the next three months</li></ul>"
                     },
                     {
                         "id": "block90beb26c-59f1-4f7f-9dee-e9a822e871be",
@@ -4547,6 +4332,15 @@
                                     "decimal_places": 2
                                 },
                                 {
+                                    "id": "answer1a7c306e-cb9f-49b6-a23b-f89e4cac7109",
+                                    "mandatory": true,
+                                    "type": "Percentage",
+                                    "label": "On sick leave or not working due to coronavirus (COVID-19) symptoms, self-isolation or quarantine",
+                                    "description": "With statutory or company pay",
+                                    "q_code": "378",
+                                    "decimal_places": 2
+                                },
+                                {
                                     "id": "answer5319de32-f061-4988-88a4-95637cca3873",
                                     "mandatory": true,
                                     "type": "Percentage",
@@ -4587,6 +4381,7 @@
                                     "answer92e4004a-ceef-424e-b5fa-d93520bc4780",
                                     "answerbc9d0665-2c42-4e04-988b-34423d020920",
                                     "answerbec1b9cb-9f1f-471e-a874-f25ceaeef160",
+                                    "answer1a7c306e-cb9f-49b6-a23b-f89e4cac7109",
                                     "answer5319de32-f061-4988-88a4-95637cca3873",
                                     "answer2218d478-9b02-4806-babb-f6dc3a92cb55"
                                 ],
@@ -4973,7 +4768,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "blockf0fa1564-78f5-4d77-97f1-d79f6f455648"
+                                    "block": "block1fd584b8-2fcc-4772-beb2-c2023116e37f"
                                 }
                             }
                         ]
@@ -4993,14 +4788,19 @@
                                     "label": "Select all that apply:",
                                     "description": "",
                                     "options": [{
+                                            "label": "Ability to better match jobs to skills",
+                                            "value": "Ability to better match jobs to skills",
+                                            "q_code": "1622"
+                                        },
+                                        {
                                             "label": "Ability to recruit from a wider geographical pool",
                                             "value": "Ability to recruit from a wider geographical pool",
                                             "q_code": "1621"
                                         },
                                         {
-                                            "label": "Ability to better match jobs to skills",
-                                            "value": "Ability to better match jobs to skills",
-                                            "q_code": "1622"
+                                            "label": "Improved staff wellbeing",
+                                            "value": "Improved staff wellbeing",
+                                            "q_code": "1625"
                                         },
                                         {
                                             "label": "Increased productivity",
@@ -5008,14 +4808,15 @@
                                             "q_code": "1623"
                                         },
                                         {
+                                            "label": "Reduced carbon emissions",
+                                            "value": "Reduced carbon emissions",
+                                            "q_code": "1629",
+                                            "description": "For example, due to less travelling to the workplace"
+                                        },
+                                        {
                                             "label": "Reduced overheads",
                                             "value": "Reduced overheads",
                                             "q_code": "1624"
-                                        },
-                                        {
-                                            "label": "Improved staff wellbeing",
-                                            "value": "Improved staff wellbeing",
-                                            "q_code": "1625"
                                         },
                                         {
                                             "label": "Reduced sickness levels",
@@ -5060,11 +4861,12 @@
                                         "id": "answerbd21820b-6a2a-4e71-b832-960a1f59cd3b",
                                         "condition": "contains any",
                                         "values": [
-                                            "Ability to recruit from a wider geographical pool",
                                             "Ability to better match jobs to skills",
-                                            "Increased productivity",
-                                            "Reduced overheads",
+                                            "Ability to recruit from a wider geographical pool",
                                             "Improved staff wellbeing",
+                                            "Increased productivity",
+                                            "Reduced carbon emissions",
+                                            "Reduced overheads",
                                             "Reduced sickness levels",
                                             "Reduced wage bill",
                                             "Other"
@@ -5213,7 +5015,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "blockf0fa1564-78f5-4d77-97f1-d79f6f455648",
+                                    "block": "block1fd584b8-2fcc-4772-beb2-c2023116e37f",
                                     "when": [{
                                         "id": "answer29906d90-e471-4040-a035-d51055149404",
                                         "condition": "contains any",
@@ -5247,6 +5049,149 @@
                                 "label": "",
                                 "description": "",
                                 "q_code": "198",
+                                "options": [{
+                                        "label": "Above 75% of the workforce",
+                                        "value": "Above 75% of the workforce"
+                                    },
+                                    {
+                                        "label": "Between 50-75% of the workforce",
+                                        "value": "Between 50-75% of the workforce"
+                                    },
+                                    {
+                                        "label": "Between 25-49% of the workforce",
+                                        "value": "Between 25-49% of the workforce"
+                                    },
+                                    {
+                                        "label": "Less than 25% of the workforce",
+                                        "value": "Less than 25% of the workforce"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1fd584b8-2fcc-4772-beb2-c2023116e37f",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1fd584b8-2fcc-4772-beb2-c2023116e37f",
+                            "title": "Since the start of the coronavirus (COVID-19) pandemic, has your business <em>reduced</em> the terms and conditions of any of your workforce?",
+                            "description": "<p>This time period covers from March 2020 to present day.</p><p>Terms and conditions refers to  the contractual relationship between worker and employer. It can include wages/pay rates, hours worked, annual leave entitlement, pension, and other contractual benefits. It also covers probation periods and whether the contract is permanent or temporary.</p>",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude partial or full furlough"
+                                }]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by 'reduced'",
+                                "content": [{
+                                        "description": "A reduction in terms and conditions (T&amp;Cs) occurs when changes to T&amp;Cs result in a net worsening in the benefits the worker receives from the employer for providing work."
+                                    },
+                                    {
+                                        "description": "For example:"
+                                    },
+                                    {
+                                        "list": [
+                                            "being required to work the same hours for less pay",
+                                            "work more hours for the same pay",
+                                            "reduced holiday entitlement, overtime rates, pension entitlement or access to other benefits, previously provided, with no changes to worker obligations."
+                                        ]
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer3d6cd24e-52f0-4777-8b56-832d5f986ad4",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "60",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    },
+                                    {
+                                        "label": "Prefer not to say",
+                                        "value": "Prefer not to say"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockf0fa1564-78f5-4d77-97f1-d79f6f455648",
+                                    "when": [{
+                                        "id": "answer3d6cd24e-52f0-4777-8b56-832d5f986ad4",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "No",
+                                            "Not sure",
+                                            "Not applicable",
+                                            "Prefer not to say"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block10aee066-bb62-4b6d-9992-0884f99249a3"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block10aee066-bb62-4b6d-9992-0884f99249a3",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question10aee066-bb62-4b6d-9992-0884f99249a3",
+                            "title": "Since the start of the coronavirus (COVID-19) pandemic, approximately what percentage of your workforce have had their terms and conditions <em>reduced</em>?",
+                            "description": "<p>This time period covers from March 2020 to present day.</p><p>Terms and conditions refers to the contractual relationship between worker and employer. It can include wages/pay rates, hours worked, annual leave entitlement, pension, and other contractual benefits. It also covers probation periods and whether the contract is permanent or temporary.</p>",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude partial or full furlough"
+                                }]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by 'reduced'",
+                                "content": [{
+                                        "description": "A reduction in terms and conditions (T&amp;Cs) occurs when changes to T&amp;Cs result in a net worsening in the benefits the worker receives from the employer for providing work."
+                                    },
+                                    {
+                                        "description": "For example:"
+                                    },
+                                    {
+                                        "list": [
+                                            "being required to work the same hours for less pay",
+                                            "work more hours for the same pay",
+                                            "reduced holiday entitlement, overtime rates, pension entitlement or access to other benefits, previously provided, with no changes to worker obligations."
+                                        ]
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer11b5a8e6-f8bb-4520-ba29-cb2ef194f0b7",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "61",
                                 "options": [{
                                         "label": "Above 75% of the workforce",
                                         "value": "Above 75% of the workforce"
