@@ -1,559 +1,653 @@
 {
-    "eq_id": "stocks",
+    "eq_id": "stocks_0014",
     "form_type": "0014",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "survey_id": "017",
     "title": "Quarterly Stocks Survey",
-    "sections": [{
-        "id": "section1205",
-        "groups": [{
-                "id": "group1205",
-                "title": "",
-                "blocks": [{
-                        "type": "Introduction",
-                        "id": "introduction-block",
-                        "primary_content": [{
-                            "type": "Basic",
-                            "id": "primary",
-                            "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Important notice – Changes to guidance </h2><p>Please now include the value of stocks owned and held abroad in your figures, alongside all stocks owned and held in the UK. Read the includes and excludes that accompany each question for further guidance.</p></div></div><br/>",
-                                "list": [
-                                    "This survey covers UK businesses. The business is the individual company, partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
-                                    "Include all stock owned by your business, whether in the UK or abroad.",
-                                    "We will treat your data securely and confidentially."
+    "sections": [
+        {
+            "id": "section1205",
+            "groups": [
+                {
+                    "id": "group1205",
+                    "title": "",
+                    "blocks": [
+                        {
+                            "type": "Introduction",
+                            "id": "introduction-block",
+                            "primary_content": [
+                                {
+                                    "type": "Basic",
+                                    "id": "primary",
+                                    "content": [
+                                        {
+                                            "list": [
+                                                "This survey covers UK businesses. The business is the individual company, partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
+                                                "Include all stock owned by your business, whether in the UK or abroad.",
+                                                "We will treat your data securely and confidentially."
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "preview_content": {
+                                "id": "preview",
+                                "title": "Information you need",
+                                "content": [
+                                    {
+                                        "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                                    }
+                                ],
+                                "questions": [
+                                    {
+                                        "question": "Value of stocks held for materials, stores and fuel",
+                                        "content": [
+                                            {
+                                                "description": "<strong>Include:</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "all stock owned by your business, whether in the UK or abroad",
+                                                    "raw materials and components purchased for incorporation into products for sale",
+                                                    "consumable stores",
+                                                    "semi-processed goods",
+                                                    "office supplies (including stationery) and packaging materials",
+                                                    "duty for dutiable goods held out of bond",
+                                                    "the value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                                ]
+                                            },
+                                            {
+                                                "description": "<strong>Exclude:</strong>"
+                                            },
+                                            {
+                                                "list": ["VAT", "stocks you hold that do not belong to you", "duty on stocks held in bond"]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "question": "Value of stocks held for work in progress",
+                                        "content": [
+                                            {
+                                                "description": "<strong>Include:</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "all stock owned by your business, whether in the UK or abroad",
+                                                    "products that you own in intermediate stages of completion (even if not held by you)",
+                                                    "long term business contract balances in line with UK Generally Accepted Accountancy Practice (GAAP) or International GAAP",
+                                                    "vehicles, plant or machinery, etc. bought for resale",
+                                                    "duty for dutiable goods held out of bond",
+                                                    "the value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                                ]
+                                            },
+                                            {
+                                                "description": "<strong>Exclude:</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "VAT",
+                                                    "stocks you hold that do not belong to you",
+                                                    "duty on stocks held in bond",
+                                                    "products in intermediate stages of completion that do not belong to you"
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "question": "Value of stocks held for goods on hand for sale",
+                                        "content": [
+                                            {
+                                                "description": "<strong>Include:</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "all stock owned by your business, whether in the UK or abroad",
+                                                    "show houses completed but not yet sold",
+                                                    "buildings for sale",
+                                                    "houses taken in part exchange",
+                                                    "vehicles, plant, machinery, etc. let out on hire only if they were not charged to capital account when acquired or made",
+                                                    "duty for dutiable goods held out of bond",
+                                                    "the value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                                ]
+                                            },
+                                            {
+                                                "description": "<strong>Exclude:</strong>"
+                                            },
+                                            {
+                                                "list": ["VAT", "stocks you hold that do not belong to you", "duty on stocks held in bond"]
+                                            }
+                                        ]
+                                    }
                                 ]
-                            }]
-                        }],
-                        "preview_content": {
-                            "id": "preview",
-                            "title": "Information you need",
-                            "content": [{
-                                "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
-                            }],
-                            "questions": [{
-                                    "question": "Value of stocks held for materials, stores, and fuel",
-                                    "content": [{
-                                            "title": "Include"
-                                        },
-                                        {
-                                            "list": [
-                                                "All stock owned by your business, whether in the UK or abroad",
-                                                "Raw materials and components purchased for incorporation into products for sale",
-                                                "Consumable stores",
-                                                "Semi-processed goods",
-                                                "Office supplies (including stationery) and packaging materials",
-                                                "Duty for dutiable goods held out of bond",
-                                                "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
-                                            ]
-                                        },
-                                        {
-                                            "title": "Exclude"
-                                        },
-                                        {
-                                            "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
-                                        }
-                                    ]
-                                },
+                            },
+                            "secondary_content": [
                                 {
-                                    "question": "Value of stocks held for work in progress",
-                                    "content": [{
-                                            "title": "Include"
-                                        },
+                                    "id": "secondary-content",
+                                    "title": "How we use your data",
+                                    "content": [
                                         {
                                             "list": [
-                                                "All stock owned by your business, whether in the UK or abroad",
-                                                "Products that you own in intermediate stages of completion (even if not held by you)",
-                                                "Long term business contract balances in line with UK Generally Accepted Accountancy Practice (GAAP) or International GAAP",
-                                                "Vehicles, plant or machinery, etc. bought for resale",
-                                                "Duty for dutiable goods held out of bond",
-                                                "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                                "The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity.",
+                                                "GDP is used to measure the UK's financial health and prosperity over time and in comparison to other countries.",
+                                                "The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."
                                             ]
-                                        },
-                                        {
-                                            "title": "Exclude"
-                                        },
-                                        {
-                                            "list": [
-                                                "VAT",
-                                                "Stocks you hold that do not belong to you",
-                                                "Duty on stocks held in bond",
-                                                "Products in intermediate stages of completion that do not belong to you"
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "question": "Value of stocks held for goods on hand for sale",
-                                    "content": [{
-                                            "title": "Include"
-                                        },
-                                        {
-                                            "list": [
-                                                "All stock owned by your business, whether in the UK or abroad",
-                                                "Show houses completed but not yet sold",
-                                                "Buildings for sale",
-                                                "Houses taken in part exchange",
-                                                "Vehicles, plant, machinery, etc. let out on hire only if they were not charged to capital account when acquired or made",
-                                                "Duty for dutiable goods held out of bond",
-                                                "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
-                                            ]
-                                        },
-                                        {
-                                            "title": "Exclude"
-                                        },
-                                        {
-                                            "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
                                         }
                                     ]
                                 }
                             ]
                         },
-                        "secondary_content": [{
-                            "id": "secondary-content",
-                            "title": "How we use your data",
-                            "content": [{
-                                "list": ["The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity.", "GDP is used to measure the UK's financial health and prosperity over time and in comparison to other countries.", "The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "able-to-report-between",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4882",
-                            "title": "Are you able to report for the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer6197",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "value-stocks-materials",
-                                    "when": [{
-                                        "id": "answer6197",
-                                        "condition": "equals",
-                                        "value": "Yes"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "which-report-period"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "which-report-period",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4883",
-                            "title": "For which period are you able to report?",
-                            "type": "DateRange",
-                            "answers": [{
-                                    "id": "answer6198from",
-                                    "type": "Date",
-                                    "mandatory": true,
-                                    "label": "Period from",
-                                    "q_code": "11",
-                                    "minimum": {
-                                        "meta": "ref_p_start_date",
-                                        "offset_by": {
-                                            "days": -31
-                                        }
-                                    }
-                                },
+                        {
+                            "id": "block4882",
+                            "type": "Question",
+                            "questions": [
                                 {
-                                    "id": "answer6198to",
-                                    "type": "Date",
-                                    "mandatory": true,
-                                    "label": "Period to",
-                                    "q_code": "12",
-                                    "maximum": {
-                                        "meta": "ref_p_end_date",
-                                        "offset_by": {
-                                            "days": 31
+                                    "id": "question4882",
+                                    "title": "Are you able to report for the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer6197",
+                                            "mandatory": true,
+                                            "type": "Radio",
+                                            "label": "",
+                                            "description": "",
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ]
                                         }
-                                    }
+                                    ]
                                 }
                             ],
-                            "period_limits": {
-                                "minimum": {
-                                    "days": 76
-                                },
-                                "maximum": {
-                                    "days": 106
-                                }
-                            }
-                        }]
-                    },
-                    {
-
-                        "id": "value-stocks-materials",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4884",
-                            "title": "What was the value of stocks held for <em>materials, stores, and fuel</em> (net of progress payments on long-term contracts)?",
-                            "guidance": {
-                                "content": [{
-                                        "title": "Include"
-                                    },
-                                    {
-                                        "list": [
-                                            "All stock owned by your business, whether in the UK or abroad",
-                                            "Raw materials and components purchased for incorporation into products for sale",
-                                            "Consumable stores",
-                                            "Semi-processed goods",
-                                            "Office supplies (including stationery) and packaging materials",
-                                            "Duty for dutiable goods held out of bond",
-                                            "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "group": "group1206",
+                                        "when": [
+                                            {
+                                                "id": "answer6197",
+                                                "condition": "contains any",
+                                                "values": ["Yes"]
+                                            }
                                         ]
-                                    },
-                                    {
-                                        "title": "Exclude"
-                                    },
-                                    {
-                                        "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
                                     }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answer6210",
-                                    "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Value of materials, stores, and fuel stocks at start of period",
-                                    "q_code": "139",
-                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
                                 },
                                 {
-                                    "id": "answer6199",
-                                    "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Value of materials, stores, and fuel stocks at end of period",
-                                    "q_code": "140",
-                                    "description": "",
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "value-stocks-work-in-progress",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4885",
-                            "title": "What was the value of stocks held for <em>work in progress </em> (net of progress payments on long-term contracts)?",
-                            "guidance": {
-                                "content": [{
-                                        "title": "Include"
-                                    },
-                                    {
-                                        "list": [
-                                            "All stock owned by your business, whether in the UK or abroad",
-                                            "Products that you own in intermediate stages of completion (even if not held by you)",
-                                            "Long term business contract balances in line with UK Generally Accepted Accountancy Practice (GAAP) or International GAAP",
-                                            "Vehicles, plant or machinery, etc. bought for resale",
-                                            "Duty for dutiable goods held out of bond",
-                                            "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
-                                        ]
-                                    },
-                                    {
-                                        "title": "Exclude"
-                                    },
-                                    {
-                                        "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
+                                    "goto": {
+                                        "block": "block4883"
                                     }
-                                ]
-                            },
-                            "definitions": [{
-                                "title": "What is 'work in progress'?",
-                                "content": [{
-                                    "description": "&apos;Work in progress&apos; consists of goods and services that have been partially processed, fabricated or assembled by the producer but are not usually sold or turned over to others without further processing."
-                                }]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answer6211",
-                                    "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Value of work in progress at start of period",
-                                    "q_code": "144",
-                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
-                                },
-                                {
-                                    "id": "answer6200",
-                                    "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Value of work in progress at end of period",
-                                    "q_code": "145",
-                                    "description": "",
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
                                 }
                             ]
-                        }]
-                    },
-                    {
-                        "id": "value-stocks-goods-on-hand",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4891",
-                            "title": "What was the value of stocks held for <em>goods on hand for sale</em>?",
-                            "description": "<p>Net of progress payments on long-term contracts.</p>",
-                            "guidance": {
-                                "content": [{
-                                        "title": "Include"
-                                    },
-                                    {
-                                        "list": [
-                                            "All stock owned by your business, whether in the UK or abroad",
-                                            "Show houses completed but not yet sold",
-                                            "Buildings for sale",
-                                            "Houses taken in part exchange",
-                                            "Vehicles, plant, machinery, etc. let out on hire only if they were not charged to capital account when acquired or made",
-                                            "Duty for dutiable goods held out of bond",
-                                            "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
-                                        ]
-                                    },
-                                    {
-                                        "title": "Exclude"
-                                    },
-                                    {
-                                        "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
+                        },
+                        {
+                            "id": "block4883",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question4883",
+                                    "title": "For which period are you able to report?",
+                                    "type": "DateRange",
+                                    "answers": [
+                                        {
+                                            "id": "answer6198from",
+                                            "type": "Date",
+                                            "mandatory": true,
+                                            "label": "Period from",
+                                            "q_code": "11",
+                                            "minimum": {
+                                                "value": "2019-03-31",
+                                                "offset_by": {
+                                                    "days": -31
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "id": "answer6198to",
+                                            "type": "Date",
+                                            "mandatory": true,
+                                            "label": "Period to",
+                                            "q_code": "12",
+                                            "maximum": {
+                                                "value": "2019-06-30",
+                                                "offset_by": {
+                                                    "days": 31
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "period_limits": {
+                                        "minimum": {
+                                            "days": 76
+                                        },
+                                        "maximum": {
+                                            "days": 106
+                                        }
                                     }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answer6207",
-                                    "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Value of goods on hand for sale at start of period",
-                                    "q_code": "149",
-                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
-                                },
-                                {
-                                    "id": "answer6206",
-                                    "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Value of goods on hand for sale at end of period",
-                                    "q_code": "150",
-                                    "description": "",
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
                                 }
                             ]
-                        }]
-                    },
-                    {
-                        "id": "calc-total-value-stocks-start",
-                        "type": "CalculatedSummary",
-                        "titles": [{
-                            "value": "For the <em>start of the period</em>, we calculate the total value of stocks to be %(total)s"
-                        }],
-                        "calculation": {
-                            "calculation_type": "sum",
-                            "answers_to_calculate": ["answer6210", "answer6211", "answer6207"],
-                            "titles": [{
-                                "value": "Total value of stocks held at the start of the period"
-                            }]
                         }
-                    },
-                    {
-                        "id": "calc-total-value-stocks-end",
-                        "type": "CalculatedSummary",
-                        "titles": [{
-                            "value": "For the <em>end of the period</em>, we calculate the total value of stocks to be %(total)s"
-                        }],
-                        "calculation": {
-                            "calculation_type": "sum",
-                            "answers_to_calculate": ["answer6199", "answer6200", "answer6206"],
-                            "titles": [{
-                                "value": "Total value of stocks held at the end of the period"
-                            }]
-                        }
-                    },
-                    {
-                        "id": "is-eop-figures-estimated",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4893",
-                            "title": "Are the end of period figures you have provided estimated?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer6212",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "q_code": "15",
-                                "description": "",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "section1206",
+            "groups": [
+                {
+                    "id": "group1206",
+                    "title": "",
+                    "blocks": [
+                        {
+                            "id": "block4884",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question4884",
+                                    "title": "What was the value of stocks held for <em>materials, stores, and fuel</em> (net of progress payments on long-term contracts)?",
+                                    "guidance": {
+                                        "content": [
+                                            {
+                                                "description": "<strong>Include:</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "all stock owned by your business, whether in the UK or aboard",
+                                                    "raw materials and components purchased for incorporation into products for sale",
+                                                    "consumable stores",
+                                                    "semi-processed goods",
+                                                    "office supplies (including stationery) and packaging materials",
+                                                    "duty for dutiable goods held out of bond",
+                                                    "the value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                                ]
+                                            },
+                                            {
+                                                "description": "<strong>Exclude:</strong>"
+                                            },
+                                            {
+                                                "list": ["VAT", "stocks you hold that do not belong to you", "duty on stocks held in bond"]
+                                            }
+                                        ]
                                     },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer6210",
+                                            "mandatory": true,
+                                            "type": "Currency",
+                                            "label": "Value of materials, stores and fuel stocks at start of period",
+                                            "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                            "q_code": "139",
+                                            "decimal_places": 2,
+                                            "currency": "GBP"
+                                        },
+                                        {
+                                            "id": "answer6199",
+                                            "mandatory": true,
+                                            "type": "Currency",
+                                            "label": "Value of materials, stores and fuel stocks at end of period",
+                                            "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                            "q_code": "140",
+                                            "decimal_places": 2,
+                                            "currency": "GBP"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block4885",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question4885",
+                                    "title": "What was the value of stocks held for <em>work in progress </em> (net of progress payments on long-term contracts)?",
+                                    "guidance": {
+                                        "content": [
+                                            {
+                                                "description": "<strong>Include:</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "all stock owned by your business, whether in the UK or aboard",
+                                                    "products that you own in intermediate stages of completion (even if not held by you)",
+                                                    "long term business contract balances in line with UK Generally Accepted Accountancy Practice (GAAP) or International GAAP",
+                                                    "vehicles, plant or machinery, etc. bought for resale",
+                                                    "all stocks owned; whether held by you or in transit in the UK or abroad",
+                                                    "duty for dutiable goods held out of bond",
+                                                    "the value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                                ]
+                                            },
+                                            {
+                                                "description": "<strong>Exclude:</strong>"
+                                            },
+                                            {
+                                                "list": ["VAT", "stocks you hold that do not belong to you", "duty on stocks held in bond"]
+                                            }
+                                        ]
+                                    },
+                                    "definitions": [
+                                        {
+                                            "title": "What is 'work in progress'?",
+                                            "content": [
+                                                {
+                                                    "description": "This consists of goods and services that have been partially processed, fabricated or assembled by the producer but are not usually sold or turned over to others without further processing."
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer6211",
+                                            "mandatory": true,
+                                            "type": "Currency",
+                                            "label": "Value of work in progress at start of period",
+                                            "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                            "q_code": "144",
+                                            "decimal_places": 2,
+                                            "currency": "GBP"
+                                        },
+                                        {
+                                            "id": "answer6200",
+                                            "mandatory": true,
+                                            "type": "Currency",
+                                            "label": "Value of work in progress at end of period",
+                                            "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                            "q_code": "145",
+                                            "decimal_places": 2,
+                                            "currency": "GBP"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block4891",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question4891",
+                                    "title": "What was the value of stocks held for <em>goods on hand for sale</em>?",
+                                    "description": "<p>Net of progress payments on long-term contracts.</p>",
+                                    "guidance": {
+                                        "content": [
+                                            {
+                                                "description": "<strong>Include:</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "all stock owned by your business, whether in the UK or aboard",
+                                                    "show houses completed but not yet sold",
+                                                    "buildings for sale",
+                                                    "houses taken in part exchange",
+                                                    "vehicles, plant, machinery, etc. let out on hire only if they were not charged to capital account when acquired or made",
+                                                    "all stocks owned; whether held by you or in transit in the UK or abroad",
+                                                    "duty for dutiable goods held out of bond",
+                                                    "the value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                                ]
+                                            },
+                                            {
+                                                "description": "<strong>Exclude:</strong>"
+                                            },
+                                            {
+                                                "list": ["VAT", "stocks you hold that do not belong to you", "duty on stocks held in bond"]
+                                            }
+                                        ]
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer6207",
+                                            "mandatory": true,
+                                            "type": "Currency",
+                                            "label": "Value of goods on hand for sale at start of period",
+                                            "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                            "q_code": "149",
+                                            "decimal_places": 2,
+                                            "currency": "GBP"
+                                        },
+                                        {
+                                            "id": "answer6206",
+                                            "mandatory": true,
+                                            "type": "Currency",
+                                            "label": "Value of goods on hand for sale at end of period",
+                                            "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                            "q_code": "150",
+                                            "decimal_places": 2,
+                                            "currency": "GBP"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "blockdcb43f1c-63dc-42f7-8a6d-a8263bbebead",
+                            "type": "CalculatedSummary",
+                            "titles": [
+                                {
+                                    "value": "For the <em>start of the period</em>, we calculate the total value of stocks to be %(total)s"
+                                }
+                            ],
+                            "calculation": {
+                                "calculation_type": "sum",
+                                "answers_to_calculate": ["answer6210", "answer6211", "answer6207"],
+                                "titles": [
                                     {
-                                        "label": "No",
-                                        "value": "No"
+                                        "value": "Total value of stocks at the start of the period"
                                     }
                                 ]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "significant-change-stocks-value",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4894",
-                            "title": "Did any significant changes occur to the total value of stocks for {{ metadata['trad_as'] }}?",
-                            "description": "<p>Please note: what constitutes a &#x2018;significant change&#x2019; is dependent on your own interpretation in relation to {{ metadata['trad_as'] }}&#x2019;s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer6213",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "q_code": "146a",
-                                "description": "",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "reason-changes-value-stocks",
-                                    "when": [{
-                                        "id": "answer6213",
-                                        "condition": "equals",
-                                        "value": "Yes"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "explain-difference-quarter-value"
-                                }
                             }
-                        ]
-                    },
-                    {
-                        "id": "reason-changes-value-stocks",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4895",
-                            "title": "Please indicate the reasons for any changes in the total value of stocks for {{ metadata['trad_as'] }}",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer6214",
-                                "mandatory": true,
-                                "type": "Checkbox",
-                                "label": "",
-                                "description": "",
-                                "options": [{
-                                        "label": "Start or end of long term project",
-                                        "q_code": "146b",
-                                        "value": "Start or end of long term project"
-                                    },
+                        },
+                        {
+                            "id": "block997cc8ce-641b-4818-b113-37a9683da003",
+                            "type": "CalculatedSummary",
+                            "titles": [
+                                {
+                                    "value": "For the <em>end of the period</em>, we calculate the total value of stocks to be %(total)s"
+                                }
+                            ],
+                            "calculation": {
+                                "calculation_type": "sum",
+                                "answers_to_calculate": ["answer6199", "answer6200", "answer6206"],
+                                "titles": [
                                     {
-                                        "label": "End of accounting period or financial year",
-                                        "q_code": "146c",
-                                        "value": "End of accounting period or financial year"
-                                    },
-                                    {
-                                        "label": "Normal movement for the time of year",
-                                        "q_code": "146d",
-                                        "value": "Normal movement for the time of year"
-                                    },
-                                    {
-                                        "label": "Change of business structure, merger or takeover",
-                                        "q_code": "146e",
-                                        "value": "Change of business structure, merger or takeover"
-                                    },
-                                    {
-                                        "label": "One-off increase in stocks",
-                                        "q_code": "146f",
-                                        "value": "One-off increase in stocks"
-                                    },
-                                    {
-                                        "label": "Introduction or removal of new legislation or incentive",
-                                        "q_code": "146g",
-                                        "value": "Introduction or removal of new legislation or incentive"
-                                    },
-                                    {
-                                        "label": "Other (for example, global economic conditions, leaving the EU)",
-                                        "q_code": "146h",
-                                        "value": "Other (for example, global economic conditions, leaving the EU)"
+                                        "value": "Total value of stocks at the end of the period"
                                     }
                                 ]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "explain-difference-quarter-value",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4887",
-                            "title": "Explain any differences between this quarter&apos;s opening value and the previously returned closing value",
-                            "description": "<p> Include any unusual fluctuations in figures </p>",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer6202",
-                                "mandatory": false,
-                                "type": "TextArea",
-                                "label": "Comments",
-                                "q_code": "146",
-                                "description": ""
-                            }]
-                        }]
-                    }
-                ]
-            },
-            {
-                "id": "summary-group",
-                "title": "Summary",
-                "blocks": [{
-                    "type": "Summary",
-                    "id": "summary-block"
-                }]
-            }
-        ]
-    }],
+                            }
+                        },
+                        {
+                            "id": "block4893",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question4893",
+                                    "title": "Are the end of period figures you have provided estimated?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer6212",
+                                            "mandatory": true,
+                                            "type": "Radio",
+                                            "label": "",
+                                            "description": "",
+                                            "q_code": "15",
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block4894",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question4894",
+                                    "title": "Did any significant changes occur to the total value of stocks for {{ metadata['trad_as'] }}?",
+                                    "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{ metadata['trad_as'] }}’s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer6213",
+                                            "mandatory": true,
+                                            "type": "Radio",
+                                            "label": "",
+                                            "description": "",
+                                            "q_code": "146a",
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "block4895",
+                                        "when": [
+                                            {
+                                                "id": "answer6213",
+                                                "condition": "contains any",
+                                                "values": ["Yes"]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block4887"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block4895",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question4895",
+                                    "title": "Please indicate the reasons for any changes in the total value of stocks for {{ metadata['trad_as'] }}",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer6214",
+                                            "mandatory": true,
+                                            "type": "Checkbox",
+                                            "label": "",
+                                            "description": "",
+                                            "options": [
+                                                {
+                                                    "label": "Change of business structure, merger or takeover",
+                                                    "value": "Change of business structure, merger or takeover",
+                                                    "q_code": "146e"
+                                                },
+                                                {
+                                                    "label": "End of accounting period or financial year",
+                                                    "value": "End of accounting period or financial year",
+                                                    "q_code": "146c"
+                                                },
+                                                {
+                                                    "label": "Introduction or removal of new legislation or incentive",
+                                                    "value": "Introduction or removal of new legislation or incentive",
+                                                    "q_code": "146g"
+                                                },
+                                                {
+                                                    "label": "Normal movement for the time of year",
+                                                    "value": "Normal movement for the time of year",
+                                                    "q_code": "146d"
+                                                },
+                                                {
+                                                    "label": "One-off increase in stocks",
+                                                    "value": "One-off increase in stocks",
+                                                    "q_code": "146f"
+                                                },
+                                                {
+                                                    "label": "Start or end of long term project",
+                                                    "value": "Start or end of long term project",
+                                                    "q_code": "146b"
+                                                },
+                                                {
+                                                    "label": "Other (for example, end of the EU transition period, leaving the EU or other global economic conditions)",
+                                                    "value": "Other (for example, end of the EU transition period, leaving the EU or other global economic conditions)",
+                                                    "q_code": "146h"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block4887",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question4887",
+                                    "title": "Explain any differences between this quarter's opening value and the previously returned closing value",
+                                    "description": "<p> Include any unusual fluctuations in figures </p>",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer6202",
+                                            "mandatory": false,
+                                            "type": "TextArea",
+                                            "label": "Comments",
+                                            "description": "",
+                                            "q_code": "146",
+                                            "max_length": 2000
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "summary-group",
+                    "title": "Summary",
+                    "blocks": [
+                        {
+                            "type": "Summary",
+                            "id": "summary-block"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
     "theme": "northernireland",
-    "legal_basis": "Notice is given under article 5 of the Statistics of Trade and Employment (Northern Ireland) Order 1988.",
+    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
     "navigation": {
         "visible": false
     },
-    "metadata": [{
+    "metadata": [
+        {
             "name": "user_id",
             "validator": "string"
         },
@@ -567,15 +661,15 @@
         },
         {
             "name": "ref_p_start_date",
-            "validator": "string"
+            "validator": "date"
         },
         {
             "name": "ref_p_end_date",
-            "validator": "string"
+            "validator": "date"
         },
         {
             "name": "trad_as",
-            "validator": "optional_string"
+            "validator": "string"
         }
     ],
     "view_submitted_response": {
