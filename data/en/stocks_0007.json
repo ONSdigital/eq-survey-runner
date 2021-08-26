@@ -596,7 +596,7 @@
         },
         {
             "name": "trad_as",
-            "validator": "string"
+            "validator": "optional_string"
         }
     ],
     "view_submitted_response": {
