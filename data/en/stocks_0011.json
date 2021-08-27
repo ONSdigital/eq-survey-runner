@@ -152,7 +152,7 @@
                                     "label": "Period from",
                                     "q_code": "11",
                                     "minimum": {
-                                        "value": "2019-03-31",
+                                        "meta": "ref_p_start_date",
                                         "offset_by": {
                                             "days": -31
                                         }
@@ -165,7 +165,7 @@
                                     "label": "Period to",
                                     "q_code": "12",
                                     "maximum": {
-                                        "value": "2019-06-30",
+                                        "meta": "ref_p_end_date",
                                         "offset_by": {
                                             "days": 31
                                         }
