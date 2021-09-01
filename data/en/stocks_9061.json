@@ -1,5 +1,5 @@
 {
-    "eq_id": "stocks",
+    "eq_id": "stocks_0061",
     "form_type": "0061",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -18,11 +18,10 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Important notice – Changes to guidance </h2><p>Please now include the value of stocks owned and held abroad in your figures, alongside all stocks owned and held in the UK. Read the includes and excludes that accompany each question for further guidance.</p></div></div><br/>",
                                 "list": [
                                     "This survey covers UK businesses. The business is the individual company, partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
                                     "Include all stock owned by your business, whether in the UK or abroad.",
-                                    "We will treat your data securely and confidentially."
+                                    "We will treat your data securely and confidentially"
                                 ]
                             }]
                         }],
@@ -35,20 +34,20 @@
                             "questions": [{
                                 "question": "Value of total stocks",
                                 "content": [{
-                                        "title": "Include"
+                                        "description": "<strong>Include:</strong>"
                                     },
                                     {
                                         "list": [
-                                            "All stock owned by your business, whether in the UK or abroad",
-                                            "Duty for dutiable goods held out of bond",
-                                            "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                            "all stock owned by your business, whether in the UK or abroad",
+                                            "duty for dutiable goods held out of bond",
+                                            "the value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
                                     },
                                     {
-                                        "title": "Exclude"
+                                        "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
+                                        "list": ["VAT", "stocks you hold that do not belong to you", "duty on stocks held in bond"]
                                     }
                                 ]
                             }]
@@ -57,12 +56,16 @@
                             "id": "secondary-content",
                             "title": "How we use your data",
                             "content": [{
-                                "list": ["The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity.", "GDP is used to measure the UK's financial health and prosperity over time and in comparison to other countries.", "The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."]
+                                "list": [
+                                    "The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity.",
+                                    "GDP is used to measure the UK's financial health and prosperity over time and in comparison to other countries.",
+                                    "The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."
+                                ]
                             }]
                         }]
                     },
                     {
-                        "id": "able-to-report-between",
+                        "id": "block379",
                         "type": "Question",
                         "questions": [{
                             "id": "question379",
@@ -87,23 +90,23 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "total-value-stocks-net-progress-payments",
+                                    "block": "block381",
                                     "when": [{
                                         "id": "answer434",
-                                        "condition": "equals",
-                                        "value": "Yes"
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "which-period-report"
+                                    "block": "block380"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "which-period-report",
+                        "id": "block380",
                         "type": "Question",
                         "questions": [{
                             "id": "question380",
@@ -147,27 +150,27 @@
                         }]
                     },
                     {
-                        "id": "total-value-stocks-net-progress-payments",
+                        "id": "block381",
                         "type": "Question",
                         "questions": [{
                             "id": "question381",
                             "title": "What was the <em>total value</em> of stocks held (net of progress payments on long-term contracts)?",
                             "guidance": {
                                 "content": [{
-                                        "title": "Include"
+                                        "description": "<strong>Include:</strong>"
                                     },
                                     {
                                         "list": [
-                                            "All stock owned by your business, whether in the UK or abroad",
-                                            "Duty for dutiable goods held out of bond",
-                                            "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                            "all stock owned by your business, whether in the UK or abroad",
+                                            "duty for dutiable goods held out of bond",
+                                            "the value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
                                     },
                                     {
-                                        "title": "Exclude"
+                                        "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
+                                        "list": ["VAT", "stocks you hold that do not belong to you", "duty on stocks held in bond"]
                                     }
                                 ]
                             },
@@ -177,8 +180,8 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Total value of stocks held at start of period",
-                                    "q_code": "498",
                                     "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
+                                    "q_code": "498",
                                     "decimal_places": 2,
                                     "currency": "GBP"
                                 },
@@ -187,8 +190,8 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Total value of stocks held at end of period",
+                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                                     "q_code": "499",
-                                    "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
                                 }
@@ -196,7 +199,7 @@
                         }]
                     },
                     {
-                        "id": "figures-estimated",
+                        "id": "block4616",
                         "type": "Question",
                         "questions": [{
                             "id": "question4616",
@@ -222,20 +225,20 @@
                         }]
                     },
                     {
-                        "id": "stocks-significant-changes",
+                        "id": "block4952",
                         "type": "Question",
                         "questions": [{
                             "id": "question4952",
-                            "title": "Did any significant changes occur to the total value of stocks for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
-                            "description": "<p>Please note: what constitutes a &#x2018;significant change&#x2019; is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}&#x2019;s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
+                            "title": "Did any significant changes occur to the total value of stocks for {{ metadata['trad_as'] }}?",
+                            "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{ metadata['trad_as'] }}’s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer6287",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
-                                "q_code": "146a",
                                 "description": "",
+                                "q_code": "146a",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -249,27 +252,27 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "reasons-for-changes-value",
+                                    "block": "block4953",
                                     "when": [{
                                         "id": "answer6287",
-                                        "condition": "equals",
-                                        "value": "Yes"
+                                        "condition": "contains any",
+                                        "values": ["Yes"]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "differences-between-quarters"
+                                    "block": "block383"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "reasons-for-changes-value",
+                        "id": "block4953",
                         "type": "Question",
                         "questions": [{
                             "id": "question4953",
-                            "title": "Please indicate the reasons for any changes in the total value of stocks for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
+                            "title": "Please indicate the reasons for any changes in the total value of stocks for {{ metadata['trad_as'] }}",
                             "type": "General",
                             "answers": [{
                                 "id": "answer6288",
@@ -278,50 +281,50 @@
                                 "label": "",
                                 "description": "",
                                 "options": [{
-                                        "label": "Start or end of long term project",
-                                        "q_code": "146b",
-                                        "value": "Start or end of long term project"
+                                        "label": "Change of business structure, merger or takeover",
+                                        "value": "Change of business structure, merger or takeover",
+                                        "q_code": "146e"
                                     },
                                     {
                                         "label": "End of accounting period or financial year",
-                                        "q_code": "146c",
-                                        "value": "End of accounting period or financial year"
-                                    },
-                                    {
-                                        "label": "Normal movement for the time of year",
-                                        "q_code": "146d",
-                                        "value": "Normal movement for the time of year"
-                                    },
-                                    {
-                                        "label": "Change of business structure, merger or takeover",
-                                        "q_code": "146e",
-                                        "value": "Change of business structure, merger or takeover"
-                                    },
-                                    {
-                                        "label": "One-off increase in stocks",
-                                        "q_code": "146f",
-                                        "value": "One-off increase in stocks"
+                                        "value": "End of accounting period or financial year",
+                                        "q_code": "146c"
                                     },
                                     {
                                         "label": "Introduction or removal of new legislation or incentive",
-                                        "q_code": "146g",
-                                        "value": "Introduction or removal of new legislation or incentive"
+                                        "value": "Introduction or removal of new legislation or incentive",
+                                        "q_code": "146g"
                                     },
                                     {
-                                        "label": "Other (for example, global economic conditions, leaving the EU)",
-                                        "q_code": "146h",
-                                        "value": "Other (for example, global economic conditions, leaving the EU)"
+                                        "label": "Normal movement for the time of year",
+                                        "value": "Normal movement for the time of year",
+                                        "q_code": "146d"
+                                    },
+                                    {
+                                        "label": "One-off increase in stocks",
+                                        "value": "One-off increase in stocks",
+                                        "q_code": "146f"
+                                    },
+                                    {
+                                        "label": "Start or end of long term project",
+                                        "value": "Start or end of long term project",
+                                        "q_code": "146b"
+                                    },
+                                    {
+                                        "label": "Other (for example, end of the EU transition period, leaving the EU or other global economic conditions)",
+                                        "value": "Other (for example, end of the EU transition period, leaving the EU or other global economic conditions)",
+                                        "q_code": "146h"
                                     }
                                 ]
                             }]
                         }]
                     },
                     {
-                        "id": "differences-between-quarters",
+                        "id": "block383",
                         "type": "Question",
                         "questions": [{
                             "id": "question383",
-                            "title": "Explain any differences between this quarter&apos;s opening value and the previously returned closing value",
+                            "title": "Explain any differences between this quarter's opening value and the previously returned closing value",
                             "description": "<p>  Include any unusual fluctuations in figures  </p>",
                             "type": "General",
                             "answers": [{
@@ -329,8 +332,9 @@
                                 "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
+                                "description": "",
                                 "q_code": "146",
-                                "description": ""
+                                "max_length": 2000
                             }]
                         }]
                     }
@@ -365,11 +369,11 @@
         },
         {
             "name": "ref_p_start_date",
-            "validator": "string"
+            "validator": "date"
         },
         {
             "name": "ref_p_end_date",
-            "validator": "string"
+            "validator": "date"
         },
         {
             "name": "trad_as",
