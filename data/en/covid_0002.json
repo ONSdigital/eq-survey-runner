@@ -110,7 +110,11 @@
                                             "description": "Goods sent to:"
                                         },
                                         {
-                                            "list": ["other businesses", "other parts of your business", "individual customers"]
+                                            "list": [
+                                                "other businesses",
+                                                "other parts of your business",
+                                                "individual customers"
+                                            ]
                                         },
                                         {
                                             "description": "GB means ‘Great Britain’ which includes England, Scotland and Wales, but excludes Northern Ireland."
@@ -126,31 +130,34 @@
                                             "list": [
                                                 "percentage, for example, on furlough leave or working from home, or made redundant in the last two weeks",
                                                 "percentage returning from furlough or homeworking",
-                                                "skills in demand",
+                                                "provisions for staff training",
                                                 "safety measures and coronavirus (COVID-19) testing",
                                                 "expected redundancies in the next three months",
                                                 "ability to fill vacancies over the last month"
                                             ]
-                                        },
-                                        {
-                                            "description": "It also asks about site closures."
                                         }
                                     ]
                                 },
                                 {
-                                    "question": "Innovation",
+                                    "question": "Workforce characteristics",
                                     "content": [{
-                                            "description": "This section asks for information about your business's innovation activities."
+                                            "description": "This section asks for information about the characteristics of your workforce such as:"
                                         },
                                         {
-                                            "description": "Innovation is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that have been introduced, regardless of their origin."
+                                            "list": [
+                                                "changes to the numbers of workers from within <strong>and</strong> outside the EU",
+                                                "where employees working abroad are based"
+                                            ]
+                                        },
+                                        {
+                                            "description": "We are asking these questions to help understand how workforce characteristics may have changed across different sectors."
                                         }
                                     ]
                                 },
                                 {
                                     "question": "Contact tracing",
                                     "content": [{
-                                            "description": "This section asks for information about contact tracing  and the use of the NHS QR code scheme."
+                                            "description": "This section asks for information about contact tracing."
                                         },
                                         {
                                             "description": "Examples of collecting customer, staff or visitor details for contact tracing include:"
@@ -162,9 +169,6 @@
                                                 "using the official NHS QR code posters",
                                                 "using computers or tablets"
                                             ]
-                                        },
-                                        {
-                                            "description": "It also asks about support your business might have received from local authorities."
                                         }
                                     ]
                                 }
@@ -187,7 +191,7 @@
                         "questions": [{
                             "id": "questionbe7effcb-8832-4733-90b4-b699fcffa38a",
                             "title": "Which of the following statements best describes {{ metadata['ru_name'] }}'s trading status?",
-                            "description": "<p>You can interpret 'trading' as 'operating'.</p><p>Only select \"paused trading\"if all trading or operations have temporarily stopped.</p>",
+                            "description": "<p>You can interpret 'trading' as 'operating'.</p><p>Only select 'paused trading' if all trading or operations have temporarily stopped.</p>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -240,7 +244,9 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Permanently ceased trading"]
+                                        "values": [
+                                            "Permanently ceased trading"
+                                        ]
                                     }]
                                 }
                             },
@@ -352,7 +358,9 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                             "condition": "contains any",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -371,7 +379,9 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                             "condition": "contains all",
-                                            "values": ["Not applicable"]
+                                            "values": [
+                                                "Not applicable"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -424,7 +434,9 @@
                                     "when": [{
                                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                                         "condition": "contains any",
-                                        "values": ["Permanently ceased trading"]
+                                        "values": [
+                                            "Permanently ceased trading"
+                                        ]
                                     }]
                                 }
                             },
@@ -434,7 +446,9 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                             "condition": "contains any",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -453,7 +467,9 @@
                                     "when": [{
                                             "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                             "condition": "contains any",
-                                            "values": ["Not applicable"]
+                                            "values": [
+                                                "Not applicable"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -574,7 +590,9 @@
                                     "when": [{
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                             "condition": "contains all",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -601,7 +619,9 @@
                                         {
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                             "condition": "contains all",
-                                            "values": ["None of our sites are temporarily or permanently closed"]
+                                            "values": [
+                                                "None of our sites are temporarily or permanently closed"
+                                            ]
                                         }
                                     ]
                                 }
@@ -612,7 +632,9 @@
                                     "when": [{
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                             "condition": "contains all",
-                                            "values": ["None of our sites are temporarily or permanently closed"]
+                                            "values": [
+                                                "None of our sites are temporarily or permanently closed"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -631,7 +653,9 @@
                                     "when": [{
                                             "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                             "condition": "contains all",
-                                            "values": ["Not sure"]
+                                            "values": [
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -798,7 +822,10 @@
                                     "when": [{
                                         "id": "answer0581e398-f9ab-4597-a1a6-c67d8f96289f",
                                         "condition": "contains any",
-                                        "values": ["Turnover has not been affected", "Not sure"]
+                                        "values": [
+                                            "Turnover has not been affected",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -954,14 +981,18 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -977,7 +1008,9 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains all",
-                                "values": ["Not applicable"]
+                                "values": [
+                                    "Not applicable"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -993,7 +1026,9 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                 "condition": "contains all",
-                                "values": ["None of our sites are temporarily or permanently closed"]
+                                "values": [
+                                    "None of our sites are temporarily or permanently closed"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1009,7 +1044,9 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains all",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1121,7 +1158,10 @@
                                     "when": [{
                                         "id": "answer42c407b6-b471-4716-b257-047c244daa09",
                                         "condition": "contains any",
-                                        "values": ["Never exported and do not have goods or services suitable for export", "Not sure"]
+                                        "values": [
+                                            "Never exported and do not have goods or services suitable for export",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -1318,7 +1358,9 @@
                                     "when": [{
                                         "id": "answer39662368-cb6b-4abb-9990-6e9eb02e3eef",
                                         "condition": "contains any",
-                                        "values": ["Not sure"]
+                                        "values": [
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -1383,10 +1425,15 @@
                                             "q_code": "609"
                                         },
                                         {
+                                            "label": "Finding information on how to export",
+                                            "value": "Finding information on how to export",
+                                            "q_code": "6018"
+                                        },
+                                        {
                                             "label": "Lack of hauliers to transport goods or lack of logistics equipment",
                                             "value": "Lack of hauliers to transport goods or lack of logistics equipment",
                                             "q_code": "6015",
-                                            "description": "For example, containers, warehouse capacity or wooden palettes"
+                                            "description": "For example, containers, warehouse capacity or wooden pallets"
                                         },
                                         {
                                             "label": "Reduced demand for products and services",
@@ -1436,7 +1483,9 @@
                                     "when": [{
                                         "id": "answer70768625-dd8a-4635-acb6-34c80f6d9db1-exclusive",
                                         "condition": "contains all",
-                                        "values": ["Did not experience any challenges with exporting"]
+                                        "values": [
+                                            "Did not experience any challenges with exporting"
+                                        ]
                                     }]
                                 }
                             },
@@ -1567,6 +1616,12 @@
                                             "label": "Finding new overseas contacts or customers",
                                             "value": "Finding new overseas contacts or customers",
                                             "q_code": "1614"
+                                        },
+                                        {
+                                            "label": "Information on exporting",
+                                            "value": "Information on exporting",
+                                            "q_code": "16110",
+                                            "description": "For example, changes to requirements following the end of the EU transition period"
                                         },
                                         {
                                             "label": "Legal support",
@@ -1719,7 +1774,10 @@
                                     "when": [{
                                         "id": "answer4f1f2760-6626-4205-8258-07bd77709f72",
                                         "condition": "contains any",
-                                        "values": ["Yes, to EU countries", "Yes, to both EU and non-EU countries"]
+                                        "values": [
+                                            "Yes, to EU countries",
+                                            "Yes, to both EU and non-EU countries"
+                                        ]
                                     }]
                                 }
                             },
@@ -1729,7 +1787,10 @@
                                     "when": [{
                                         "id": "answer4f1f2760-6626-4205-8258-07bd77709f72",
                                         "condition": "contains any",
-                                        "values": ["Yes, to non-EU countries", "Not sure"]
+                                        "values": [
+                                            "Yes, to non-EU countries",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -1877,14 +1938,18 @@
                         "when": [{
                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                             "condition": "contains any",
-                            "values": ["Permanently ceased trading"]
+                            "values": [
+                                "Permanently ceased trading"
+                            ]
                         }]
                     },
                     {
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75",
                                 "condition": "contains any",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1900,7 +1965,9 @@
                         "when": [{
                                 "id": "answere866cf73-a3a4-4d61-8f0c-1a05f09e1c75-exclusive",
                                 "condition": "contains all",
-                                "values": ["Not applicable"]
+                                "values": [
+                                    "Not applicable"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1916,7 +1983,9 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a-exclusive",
                                 "condition": "contains all",
-                                "values": ["None of our sites are temporarily or permanently closed"]
+                                "values": [
+                                    "None of our sites are temporarily or permanently closed"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -1932,7 +2001,9 @@
                         "when": [{
                                 "id": "answer59821270-1fd0-4719-b72b-46923591d46a",
                                 "condition": "contains all",
-                                "values": ["Not sure"]
+                                "values": [
+                                    "Not sure"
+                                ]
                             },
                             {
                                 "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2027,7 +2098,11 @@
                                     "when": [{
                                         "id": "answer0ae4549f-a3f4-4540-bbad-33b97f2fa497",
                                         "condition": "contains any",
-                                        "values": ["Imported more than 12 months ago", "Never imported", "Not sure"]
+                                        "values": [
+                                            "Imported more than 12 months ago",
+                                            "Never imported",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -2130,7 +2205,10 @@
                                     "when": [{
                                             "id": "answer676f3fcf-5942-44fb-8cf7-f83ccd4c94e7",
                                             "condition": "contains any",
-                                            "values": ["Not imported in the last two weeks", "Not sure"]
+                                            "values": [
+                                                "Not imported in the last two weeks",
+                                                "Not sure"
+                                            ]
                                         },
                                         {
                                             "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
@@ -2249,7 +2327,9 @@
                                     "when": [{
                                         "id": "answer96cefc81-a976-46a3-a45d-429633159a3e",
                                         "condition": "contains any",
-                                        "values": ["Not sure"]
+                                        "values": [
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -2309,10 +2389,15 @@
                                             "q_code": "7010"
                                         },
                                         {
+                                            "label": "Finding information on how to import",
+                                            "value": "Finding information on how to import",
+                                            "q_code": "7019"
+                                        },
+                                        {
                                             "label": "Lack of hauliers to transport goods or lack of logistics equipment",
                                             "value": "Lack of hauliers to transport goods or lack of logistics equipment",
                                             "q_code": "7017",
-                                            "description": "For example, containers, warehouse capacity or wooden palettes"
+                                            "description": "For example, containers, warehouse capacity or wooden pallets"
                                         },
                                         {
                                             "label": "Suppliers not continuing to trade",
@@ -2362,7 +2447,9 @@
                                     "when": [{
                                         "id": "answer143d131d-5c37-4d4f-932b-2f4b4404d312-exclusive",
                                         "condition": "contains all",
-                                        "values": ["Did not experience any challenges with importing"]
+                                        "values": [
+                                            "Did not experience any challenges with importing"
+                                        ]
                                     }]
                                 }
                             },
@@ -2490,6 +2577,12 @@
                                             "q_code": "717"
                                         },
                                         {
+                                            "label": "Information on importing",
+                                            "value": "Information on importing",
+                                            "q_code": "7110",
+                                            "description": "For example, changes to requirements following the end of the EU transition period"
+                                        },
+                                        {
                                             "label": "Legal support",
                                             "value": "Legal support",
                                             "q_code": "715"
@@ -2554,7 +2647,9 @@
                     "when": [{
                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                         "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
+                        "values": [
+                            "Permanently ceased trading"
+                        ]
                     }]
                 }]
             }]
@@ -2632,7 +2727,9 @@
                                     "when": [{
                                         "id": "answer5a9c7c64-922f-4022-a497-db0e571d6677-exclusive",
                                         "condition": "contains all",
-                                        "values": ["No, we do not manufacture, import or distribute products that need a CE or UKCA marking"]
+                                        "values": [
+                                            "No, we do not manufacture, import or distribute products that need a CE or UKCA marking"
+                                        ]
                                     }]
                                 }
                             },
@@ -2662,7 +2759,8 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionc433d261-baec-4655-801c-652f37067008",
-                            "title": "Are you aware that most CE marked products need to be UKCA marked from 1 January 2022?",
+                            "title": "Are you aware that most CE marked products need to be UKCA marked from 1 January 2023?",
+                            "description": "<p>In August 2021, it was announced that the deadline for businesses to apply UKCA markings will be <em>extended by one year</em> from 1 January 2022 to 1 January 2023, for most products.</p>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer7ffd7b96-fd14-45f5-8ad0-c55171d1f507",
@@ -2692,7 +2790,8 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questionfb13973f-620e-41a2-8ebb-d47785980204",
-                            "title": "Is your business using, or intending to use, the UKCA marking <em>by</em> 1 January 2022?",
+                            "title": "Is your business using, or intending to use, the UKCA marking <em>by</em> 1 January 2023?",
+                            "description": "<p>In August 2021, it was announced that the deadline for businesses to apply UKCA markings will be <em>extended by one year</em> from 1 January 2022 to 1 January 2023, for most products.</p>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer5f27e9c1-714f-41f2-a26e-5aa103e74deb",
@@ -2710,8 +2809,8 @@
                                         "value": "Not aware of, or do not know how to meet, requirements for the UKCA"
                                     },
                                     {
-                                        "label": "Not using the UKCA marking, but plan to by 1 January 2022",
-                                        "value": "Not using the UKCA marking, but plan to by 1 January 2022"
+                                        "label": "Not using the UKCA marking, but plan to by 1 January 2023",
+                                        "value": "Not using the UKCA marking, but plan to by 1 January 2023"
                                     },
                                     {
                                         "label": "Will not use UKCA marking, as not relevant to our products or business",
@@ -2730,7 +2829,9 @@
                     "when": [{
                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                         "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
+                        "values": [
+                            "Permanently ceased trading"
+                        ]
                     }]
                 }]
             }]
@@ -2794,7 +2895,11 @@
                                     "when": [{
                                         "id": "answerc94ef925-704e-4784-a3cd-f28e4c468390",
                                         "condition": "contains any",
-                                        "values": ["Prices did not change any more than normal", "Not sure", "Not applicable"]
+                                        "values": [
+                                            "Prices did not change any more than normal",
+                                            "Not sure",
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -2870,7 +2975,9 @@
                                     "when": [{
                                         "id": "answerdbde29eb-0a6a-4474-8d8e-4bb5bbc1bd47",
                                         "condition": "contains any",
-                                        "values": ["Not applicable"]
+                                        "values": [
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -2880,7 +2987,10 @@
                                     "when": [{
                                         "id": "answerdbde29eb-0a6a-4474-8d8e-4bb5bbc1bd47",
                                         "condition": "contains any",
-                                        "values": ["Prices did not change any more than normal", "Not sure"]
+                                        "values": [
+                                            "Prices did not change any more than normal",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -2948,7 +3058,11 @@
                                     "when": [{
                                         "id": "answerfe557de8-b1e7-4bf0-862a-869ff79b6349",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure", "Not applicable"]
+                                        "values": [
+                                            "No",
+                                            "Not sure",
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -2982,7 +3096,9 @@
                     "when": [{
                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                         "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
+                        "values": [
+                            "Permanently ceased trading"
+                        ]
                     }]
                 }]
             }]
@@ -3013,14 +3129,18 @@
                                         "description": "Goods sent from GB to Northern Ireland to:"
                                     },
                                     {
-                                        "list": ["other businesses", "other parts of your business", "individual customers"]
+                                        "list": [
+                                            "other businesses",
+                                            "other parts of your business",
+                                            "individual customers"
+                                        ]
                                     }
                                 ]
                             },
                             "definitions": [{
                                 "title": "What we mean by  'GB'",
                                 "content": [{
-                                    "description": "GB means ‘Great Britain’ which includes England, Scotland and Wales, but excludes Northern Ireland."
+                                    "description": "This refers to ‘Great Britain’ which includes England, Scotland and Wales, but excludes Northern Ireland."
                                 }]
                             }],
                             "type": "General",
@@ -3052,16 +3172,59 @@
                                     "when": [{
                                         "id": "answerb9a4e651-46e3-486e-86e3-b2c861ceacec",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "block8a1dd00e-da63-4e57-ad77-1bedb0668e5f"
+                                    "block": "block9a2d3423-592e-4348-935a-c9b3f8a6ac8a"
                                 }
                             }
                         ]
+                    },
+                    {
+                        "id": "block9a2d3423-592e-4348-935a-c9b3f8a6ac8a",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question9a2d3423-592e-4348-935a-c9b3f8a6ac8a",
+                            "title": "What route did your business mainly use, over the last 12 months, to send goods from GB to Northern Ireland?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer165f40a7-6d88-4cd7-a1cb-511d15de35aa",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "239",
+                                "options": [{
+                                        "label": "From GB direct to Northern Ireland",
+                                        "value": "From GB direct to Northern Ireland"
+                                    },
+                                    {
+                                        "label": "From GB via Republic of Ireland",
+                                        "value": "From GB via Republic of Ireland"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "value": "Other",
+                                        "detail_answer": {
+                                            "label": "Please describe",
+                                            "type": "TextField",
+                                            "id": "answereeee38b6-5a1f-41a8-b500-1a3b29e05094",
+                                            "mandatory": true
+                                        }
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }]
                     },
                     {
                         "id": "block8a1dd00e-da63-4e57-ad77-1bedb0668e5f",
@@ -3098,7 +3261,10 @@
                                     "when": [{
                                         "id": "answerf8610795-dc17-437c-a5a0-9ac0bbd56d70",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -3152,11 +3318,16 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "block0a73ae45-be92-4f17-9ca2-a7f169d2815a",
+                                    "block": "block1c7a950f-d1d3-4de6-8b5f-5ad000f6c906",
                                     "when": [{
                                         "id": "answer33034122-f409-4aee-a8ae-78c8d035b058",
                                         "condition": "contains any",
-                                        "values": ["Volume has increased", "Volume has stayed the same", "Not sure", "Not applicable"]
+                                        "values": [
+                                            "Volume has increased",
+                                            "Volume has stayed the same",
+                                            "Not sure",
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -3234,6 +3405,120 @@
                         }]
                     },
                     {
+                        "id": "block1c7a950f-d1d3-4de6-8b5f-5ad000f6c906",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1c7a950f-d1d3-4de6-8b5f-5ad000f6c906",
+                            "title": "Has your business changed the <em>main route</em> for sending goods from GB to Northern Ireland in the last two weeks?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer5fa3633f-98ed-46d1-8819-aff77fd02d07",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "257",
+                                "options": [{
+                                        "label": "Changed to go via Republic of Ireland",
+                                        "value": "Changed to go via Republic of Ireland"
+                                    },
+                                    {
+                                        "label": "Changed to go direct to Northern Ireland",
+                                        "value": "Changed to go direct to Northern Ireland"
+                                    },
+                                    {
+                                        "label": "No change made",
+                                        "value": "No change made"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block0a73ae45-be92-4f17-9ca2-a7f169d2815a",
+                                    "when": [{
+                                        "id": "answer5fa3633f-98ed-46d1-8819-aff77fd02d07",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "No change made",
+                                            "Not sure"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block23500c5b-ca6b-4fb9-8970-d7879f9fcdca"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block23500c5b-ca6b-4fb9-8970-d7879f9fcdca",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question23500c5b-ca6b-4fb9-8970-d7879f9fcdca",
+                            "title": "What were the reasons for this change in route?",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answerdffcedd2-58fd-4f6d-8911-1df9427b9bdb",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply:",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Coronavirus (COVID-19) pandemic",
+                                            "value": "Coronavirus (COVID-19) pandemic",
+                                            "q_code": "2581"
+                                        },
+                                        {
+                                            "label": "Increased costs",
+                                            "value": "Increased costs",
+                                            "q_code": "2582"
+                                        },
+                                        {
+                                            "label": "Increased delays",
+                                            "value": "Increased delays",
+                                            "q_code": "2583"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "q_code": "2584",
+                                            "detail_answer": {
+                                                "label": "Please describe",
+                                                "type": "TextField",
+                                                "id": "answer0e7fdd0c-0e54-4f28-b63c-a16f4d1c4917",
+                                                "mandatory": false
+                                            }
+                                        },
+                                        {
+                                            "label": "Not sure",
+                                            "value": "Not sure",
+                                            "q_code": "2589"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answerdffcedd2-58fd-4f6d-8911-1df9427b9bdb-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "Route has not been affected",
+                                        "value": "Route has not been affected",
+                                        "q_code": "2580"
+                                    }]
+                                }
+                            ]
+                        }]
+                    },
+                    {
                         "id": "block0a73ae45-be92-4f17-9ca2-a7f169d2815a",
                         "type": "Question",
                         "questions": [{
@@ -3247,10 +3532,20 @@
                                         "description": "Goods sent from Northern Ireland to GB to:"
                                     },
                                     {
-                                        "list": ["other businesses", "other parts of your business", "individual customers"]
+                                        "list": [
+                                            "other businesses",
+                                            "other parts of your business",
+                                            "individual customers"
+                                        ]
                                     }
                                 ]
                             },
+                            "definitions": [{
+                                "title": "What we mean by 'GB'",
+                                "content": [{
+                                    "description": "This refers to ‘Great Britain’ which includes England, Scotland and Wales, but excludes Northern Ireland."
+                                }]
+                            }],
                             "type": "General",
                             "answers": [{
                                 "id": "answeraa9b61b0-0088-4169-91f7-c65f2f832957",
@@ -3280,7 +3575,10 @@
                                     "when": [{
                                         "id": "answeraa9b61b0-0088-4169-91f7-c65f2f832957",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -3326,7 +3624,10 @@
                                     "when": [{
                                         "id": "answerff5ee72a-7797-4386-abf3-d610f00ee4b1",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -3384,7 +3685,12 @@
                                     "when": [{
                                         "id": "answer129e7cdc-374c-4f11-8140-7e88993f54f8",
                                         "condition": "contains any",
-                                        "values": ["Volume has increased", "Volume has stayed the same", "Not sure", "Not applicable"]
+                                        "values": [
+                                            "Volume has increased",
+                                            "Volume has stayed the same",
+                                            "Not sure",
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -3466,7 +3772,9 @@
                     "when": [{
                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                         "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
+                        "values": [
+                            "Permanently ceased trading"
+                        ]
                     }]
                 }]
             }]
@@ -3481,7 +3789,7 @@
                         "type": "Interstitial",
                         "id": "group1760a554-060f-4e6a-bf64-970f98d84ac7-introduction",
                         "title": "Operational performance",
-                        "description": "<p>This section asks for information about your workforce such as the:</p><ul><li>percentage, for example, on furlough leave or working from home, or made redundant in the last two weeks</li><li>percentage returning from furlough or homeworking</li><li>skills in demand</li><li>safety measures and coronavirus (COVID-19) testing</li><li>expected redundancies in the next three months</li><li>ability to fill vacancies over the last month</li></ul><p>It also asks about site closures.</p>"
+                        "description": "<p>This section asks for information about your workforce such as the:</p><ul><li>percentage, for example, on furlough leave or working from home, or made redundant in the last two weeks</li><li>percentage returning from furlough or homeworking</li><li>provisions for staff training</li><li>safety measures and coronavirus (COVID-19) testing</li><li>expected redundancies in the next three months</li><li>ability to fill vacancies over the last month</li></ul>"
                     },
                     {
                         "id": "block90beb26c-59f1-4f7f-9dee-e9a822e871be",
@@ -3489,7 +3797,7 @@
                         "questions": [{
                             "id": "question90beb26c-59f1-4f7f-9dee-e9a822e871be",
                             "title": "In the last two weeks, approximately what percentage of {{ metadata['ru_name'] }}'s workforce were:",
-                            "description": "<p>Your answers need to <em>add up to 100%</em>. </p><p>If your workforce did not fall into any of the top four categories, enter '0', then use the 'Other' box at the bottom to bring the total to 100%. </p><p>Rough estimates are acceptable.  </p>",
+                            "description": "<p>Your answers need to <em>add up to 100%</em>. </p><p>If your workforce did not fall into any of the top five categories, enter '0', then use the 'Other' box at the bottom to bring the total to 100%. </p><p>Rough estimates are acceptable.  </p>",
                             "type": "Calculated",
                             "answers": [{
                                     "id": "answer92e4004a-ceef-424e-b5fa-d93520bc4780",
@@ -3549,6 +3857,14 @@
                                     "label": "On sick leave or not working due to coronavirus (COVID-19) symptoms, self-isolation or quarantine",
                                     "description": "With statutory or company pay",
                                     "q_code": "378",
+                                    "min_value": {
+                                        "value": 0,
+                                        "exclusive": false
+                                    },
+                                    "max_value": {
+                                        "value": 100,
+                                        "exclusive": false
+                                    },
                                     "decimal_places": 2
                                 },
                                 {
@@ -3596,7 +3912,9 @@
                                     "answer5319de32-f061-4988-88a4-95637cca3873",
                                     "answer2218d478-9b02-4806-babb-f6dc3a92cb55"
                                 ],
-                                "conditions": ["equals"],
+                                "conditions": [
+                                    "equals"
+                                ],
                                 "value": 100
                             }]
                         }],
@@ -3923,157 +4241,103 @@
                         }]
                     },
                     {
-                        "id": "blockd3238703-59f5-48c0-b258-484d5ca61712",
+                        "id": "blocke7db09e4-2f48-4cd6-899e-6dd1064647fb",
                         "type": "Question",
                         "questions": [{
-                            "id": "questiond3238703-59f5-48c0-b258-484d5ca61712",
-                            "title": "Which, if any, of the following skills has your business had a <em>high demand</em> for in the last 12 months?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
+                            "id": "questione7db09e4-2f48-4cd6-899e-6dd1064647fb",
+                            "title": "Has your business furloughed any of its workforce since the start of the coronavirus (COVID-19) pandemic?",
+                            "description": "<p>This time period covers from March 2020 to present day.</p>",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Include both partial and full furlough"
+                                }]
+                            },
+                            "type": "General",
                             "answers": [{
-                                    "id": "answerfc106cfb-8d5e-457e-a0b4-16bab89077af",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply:",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Advanced digital skills",
-                                            "value": "Advanced digital skills",
-                                            "q_code": "501",
-                                            "description": "For example, animation, data science and programming skills"
-                                        },
-                                        {
-                                            "label": "Basic digital skills",
-                                            "value": "Basic digital skills",
-                                            "q_code": "502",
-                                            "description": "For example, emails, office based applications, using the internet and video conferencing"
-                                        },
-                                        {
-                                            "label": "Customer service skills",
-                                            "value": "Customer service skills",
-                                            "q_code": "503",
-                                            "description": "For example, in retail and hospitality"
-                                        },
-                                        {
-                                            "label": "Management or leadership skills",
-                                            "value": "Management or leadership skills",
-                                            "q_code": "504",
-                                            "description": "For example, influencing others, managing staff and setting objectives"
-                                        },
-                                        {
-                                            "label": "Manual skills",
-                                            "value": "Manual skills",
-                                            "q_code": "506",
-                                            "description": "For example, skills used in construction and industrial trades"
-                                        },
-                                        {
-                                            "label": "Transferable skills",
-                                            "value": "Transferable skills",
-                                            "q_code": "505",
-                                            "description": "For example, managing your own time, task prioritisation and teamwork"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "509",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer21eb4000-346c-4780-b40b-bb9804299311",
-                                                "mandatory": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answerfc106cfb-8d5e-457e-a0b4-16bab89077af-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "None of the above",
-                                        "value": "None of the above",
-                                        "q_code": "500"
+                                "id": "answerd0c9e6bb-a120-4036-ad0a-13d79a70fa12",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "533",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block57f72603-ccf2-47c5-9eac-31f39265102b",
+                                    "when": [{
+                                        "id": "answerd0c9e6bb-a120-4036-ad0a-13d79a70fa12",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "No",
+                                            "Not sure",
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
-                            ]
-                        }]
+                            },
+                            {
+                                "goto": {
+                                    "block": "block57d1ddee-25c9-4828-a132-778ce54b246a"
+                                }
+                            }
+                        ]
                     },
                     {
-                        "id": "block87ee9876-db0e-499c-96d9-dd6778ab15c6",
+                        "id": "block57d1ddee-25c9-4828-a132-778ce54b246a",
                         "type": "Question",
                         "questions": [{
-                            "id": "question87ee9876-db0e-499c-96d9-dd6778ab15c6",
-                            "title": "Which, if any, of the following skills does your workforce require <em>extra support</em> or training in?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
+                            "id": "question57d1ddee-25c9-4828-a132-778ce54b246a",
+                            "title": "Has your business provided <em>additional</em> training or support for your furloughed workforce after their return to work?",
+                            "definitions": [{
+                                "title": "What we mean by 'additional training or support'",
+                                "content": [{
+                                    "description": "This refers to training or support that would not normally have been provided if the workforce had not been furloughed. This includes refresher training, training to support people being back in the workplace and so on."
+                                }]
+                            }],
+                            "type": "General",
                             "answers": [{
-                                    "id": "answer1b468552-4727-4d87-b691-d7255613414f",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply:",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Advanced digital skills",
-                                            "value": "Advanced digital skills",
-                                            "q_code": "511",
-                                            "description": "For example, animation, data science and programming skills"
-                                        },
-                                        {
-                                            "label": "Basic digital skills",
-                                            "value": "Basic digital skills",
-                                            "q_code": "512",
-                                            "description": "For example, emails, office based applications, using the internet and video conferencing"
-                                        },
-                                        {
-                                            "label": "Customer service skills",
-                                            "value": "Customer service skills",
-                                            "q_code": "513",
-                                            "description": "For example, in retail and hospitality"
-                                        },
-                                        {
-                                            "label": "Management or leadership skills",
-                                            "value": "Management or leadership skills",
-                                            "q_code": "514",
-                                            "description": "For example, influencing others, managing staff and setting objectives"
-                                        },
-                                        {
-                                            "label": "Manual skills",
-                                            "value": "Manual skills",
-                                            "q_code": "516",
-                                            "description": "For example, skills used in construction and industrial trades"
-                                        },
-                                        {
-                                            "label": "Transferable skills",
-                                            "value": "Transferable skills",
-                                            "q_code": "515",
-                                            "description": "For example, managing your own time, task prioritisation and teamwork"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "519",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answerbb4f2df0-c00c-4df1-826e-df4a26dc2312",
-                                                "mandatory": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer1b468552-4727-4d87-b691-d7255613414f-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "None of the above",
-                                        "value": "None of the above",
-                                        "q_code": "510"
-                                    }]
-                                }
-                            ]
+                                "id": "answer8a25de09-7273-494d-9cc0-b438ff6eb500",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "56",
+                                "options": [{
+                                        "label": "Yes, my business has provided this",
+                                        "value": "Yes, my business has provided this"
+                                    },
+                                    {
+                                        "label": "No, but my business intends to provide this",
+                                        "value": "No, but my business intends to provide this"
+                                    },
+                                    {
+                                        "label": "No, my business has not provided this and does not intend to",
+                                        "value": "No, my business has not provided this and does not intend to"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }
+                                ]
+                            }]
                         }]
                     },
                     {
@@ -4095,6 +4359,12 @@
                                             "value": "Adjusted working practices",
                                             "q_code": "271",
                                             "description": "For example, staggered breaks, working in fixed teams and working shifts"
+                                        },
+                                        {
+                                            "label": "Carbon dioxide monitors",
+                                            "value": "Carbon dioxide monitors",
+                                            "q_code": "278",
+                                            "description": "To monitor ventilation or air quality to prevent the spread of coronavirus (COVID-19)"
                                         },
                                         {
                                             "label": "Coronavirus (COVID-19) vaccinations",
@@ -4176,7 +4446,9 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["antibody testing"]
+                                        "list": [
+                                            "antibody testing"
+                                        ]
                                     }
                                 ]
                             },
@@ -4215,13 +4487,15 @@
                                     "when": [{
                                         "id": "answerafcff5f1-d0ba-4b2b-8919-22859a211a52",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "block2e73c159-295a-49ad-8ac6-79dbe7c9d4fc"
+                                    "block": "blockb308ba1e-942a-4ade-a1e6-a7d12ef1c34f"
                                 }
                             }
                         ]
@@ -4266,253 +4540,6 @@
                         }]
                     },
                     {
-                        "id": "block2e73c159-295a-49ad-8ac6-79dbe7c9d4fc",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question2e73c159-295a-49ad-8ac6-79dbe7c9d4fc",
-                            "title": "Would your business be prepared to pay for lateral flow device tests for its employees?",
-                            "definitions": [{
-                                "title": "What we mean by 'lateral flow device tests'",
-                                "content": [{
-                                    "description": "This refers to lateral flow devices (LFDs) which are a fast and simple way to test people who do not have symptoms of coronavirus (COVID-19), but who may still be spreading the virus."
-                                }]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer15a00a9b-b6fe-4cc6-bf7d-c0bd664f44ae",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "470",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    },
-                                    {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
-                                    }
-                                ]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "blocke4a28aaf-a6b5-4b84-bfd7-59959dc0b150",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questione4a28aaf-a6b5-4b84-bfd7-59959dc0b150",
-                            "title": "Is your business intending to permanently close any business sites in the <em>next three months</em>?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer313a4acc-4de8-497b-82e9-36b56a8a0dcf",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "131",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "blockb308ba1e-942a-4ade-a1e6-a7d12ef1c34f",
-                                    "when": [{
-                                        "id": "answer313a4acc-4de8-497b-82e9-36b56a8a0dcf",
-                                        "condition": "contains any",
-                                        "values": ["No", "Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockc282b801-c361-4e6d-a34c-5a2b55c93dfe"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "blockc282b801-c361-4e6d-a34c-5a2b55c93dfe",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionc282b801-c361-4e6d-a34c-5a2b55c93dfe",
-                            "title": "Where in the UK are the sites that will permanently close in the next three months?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answera690759a-bc98-4e60-b74f-2e81e78903e6",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply:",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Northern Ireland",
-                                            "value": "Northern Ireland",
-                                            "q_code": "1641"
-                                        },
-                                        {
-                                            "label": "Scotland",
-                                            "value": "Scotland",
-                                            "q_code": "1642"
-                                        },
-                                        {
-                                            "label": "Wales",
-                                            "value": "Wales",
-                                            "q_code": "1643"
-                                        },
-                                        {
-                                            "label": "East of England",
-                                            "value": "East of England",
-                                            "q_code": "1644"
-                                        },
-                                        {
-                                            "label": "East Midlands",
-                                            "value": "East Midlands",
-                                            "q_code": "1645"
-                                        },
-                                        {
-                                            "label": "Greater London",
-                                            "value": "Greater London",
-                                            "q_code": "1646"
-                                        },
-                                        {
-                                            "label": "North East of England",
-                                            "value": "North East of England",
-                                            "q_code": "1647"
-                                        },
-                                        {
-                                            "label": "North West of England",
-                                            "value": "North West of England",
-                                            "q_code": "1648"
-                                        },
-                                        {
-                                            "label": "South East of England",
-                                            "value": "South East of England",
-                                            "q_code": "1649"
-                                        },
-                                        {
-                                            "label": "South West of England",
-                                            "value": "South West of England",
-                                            "q_code": "16410"
-                                        },
-                                        {
-                                            "label": "West Midlands",
-                                            "value": "West Midlands",
-                                            "q_code": "16411"
-                                        },
-                                        {
-                                            "label": "Yorkshire and The Humber",
-                                            "value": "Yorkshire and The Humber",
-                                            "q_code": "16412"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answera690759a-bc98-4e60-b74f-2e81e78903e6-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "16413"
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "blockf0fa1564-78f5-4d77-97f1-d79f6f455648",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questionf0fa1564-78f5-4d77-97f1-d79f6f455648",
-                            "title": "How do you expect closing these sites to affect your workforce?",
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer6fbdf08d-4dd4-4d09-a260-d732c7ddee6e",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply:",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Decreased hours",
-                                            "value": "Decreased hours",
-                                            "q_code": "1321"
-                                        },
-                                        {
-                                            "label": "Increased hours",
-                                            "value": "Increased hours",
-                                            "q_code": "1322"
-                                        },
-                                        {
-                                            "label": "Move to remote working",
-                                            "value": "Move to remote working",
-                                            "q_code": "1324"
-                                        },
-                                        {
-                                            "label": "Permanent redundancies",
-                                            "value": "Permanent redundancies",
-                                            "q_code": "1323"
-                                        },
-                                        {
-                                            "label": "Relocation",
-                                            "value": "Relocation",
-                                            "q_code": "1325"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "1326",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answerbfde378c-c62c-43fa-b653-a6c34cd071cc",
-                                                "mandatory": false
-                                            }
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "1327"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer6fbdf08d-4dd4-4d09-a260-d732c7ddee6e-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Workforce will not be affected",
-                                        "value": "Workforce will not be affected",
-                                        "q_code": "1320"
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
                         "id": "blockb308ba1e-942a-4ade-a1e6-a7d12ef1c34f",
                         "type": "Question",
                         "questions": [{
@@ -4543,11 +4570,14 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "blocka6248389-401e-497d-aeb8-9f97042e1952",
+                                    "block": "blockd87abb63-ee2b-44af-a28d-0654c761d7cd",
                                     "when": [{
                                         "id": "answerbd3a796a-f70b-47f9-b33c-2d2965c0ec58",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure"]
+                                        "values": [
+                                            "No",
+                                            "Not sure"
+                                        ]
                                     }]
                                 }
                             },
@@ -4734,6 +4764,73 @@
                         }]
                     },
                     {
+                        "id": "blockd87abb63-ee2b-44af-a28d-0654c761d7cd",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiond87abb63-ee2b-44af-a28d-0654c761d7cd",
+                            "title": "How does {{ metadata['ru_name'] }}'s staff turnover for the last month, compare to normal expectations for this time of year?",
+                            "description": "<p>You can provide a rough estimate.</p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "change expected due to seasonal effects",
+                                            "change expected due to normal patterns of business activity"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer28e231cb-ed03-451c-83da-c281ca3042e1",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "534",
+                                "options": [{
+                                        "label": "Staff turnover has increased by more than 50%",
+                                        "value": "Staff turnover has increased by more than 50%"
+                                    },
+                                    {
+                                        "label": "Staff turnover has increased between 20% and 50%",
+                                        "value": "Staff turnover has increased between 20% and 50%"
+                                    },
+                                    {
+                                        "label": "Staff turnover has increased by up to 20%",
+                                        "value": "Staff turnover has increased by up to 20%"
+                                    },
+                                    {
+                                        "label": "Staff turnover has not been affected",
+                                        "value": "Staff turnover has not been affected"
+                                    },
+                                    {
+                                        "label": "Staff turnover has decreased by up to 20%",
+                                        "value": "Staff turnover has decreased by up to 20%"
+                                    },
+                                    {
+                                        "label": "Staff turnover has decreased between 20% and 50%",
+                                        "value": "Staff turnover has decreased between 20% and 50%"
+                                    },
+                                    {
+                                        "label": "Staff turnover has decreased by more than 50%",
+                                        "value": "Staff turnover has decreased by more than 50%"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Not applicable",
+                                        "value": "Not applicable"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
                         "id": "blocka6248389-401e-497d-aeb8-9f97042e1952",
                         "type": "Question",
                         "questions": [{
@@ -4772,7 +4869,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group372ed76c-9c56-4f96-a44d-1b126e7b0408",
+                                    "group": "group5d77ac3a-74d5-491c-a62e-f659554e81f2",
                                     "when": [{
                                         "id": "answer3245eead-c1dc-4a07-be82-c84d64054bd5",
                                         "condition": "contains any",
@@ -4824,10 +4921,15 @@
                                             "description": "For example, business growth and diversification, or new work opportunities"
                                         },
                                         {
-                                            "label": "Lack of suitable applicants for the roles on offer",
-                                            "value": "Lack of suitable applicants for the roles on offer",
-                                            "q_code": "544",
+                                            "label": "Lack of qualified applicants for the roles on offer",
+                                            "value": "Lack of qualified applicants for the roles on offer",
+                                            "q_code": "547",
                                             "description": "For example, applicants lacking the experience, qualifications or skills required"
+                                        },
+                                        {
+                                            "label": "Low number of applications for the roles on offer",
+                                            "value": "Low number of applications for the roles on offer",
+                                            "q_code": "5410"
                                         },
                                         {
                                             "label": "Reduced number of applicants aged 16 to 24 years",
@@ -4871,241 +4973,158 @@
                     "when": [{
                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                         "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
+                        "values": [
+                            "Permanently ceased trading"
+                        ]
                     }]
                 }]
             }]
         },
         {
-            "id": "section372ed76c-9c56-4f96-a44d-1b126e7b0408",
-            "title": "Innovation",
+            "id": "section5d77ac3a-74d5-491c-a62e-f659554e81f2",
+            "title": "Workforce characteristics",
             "groups": [{
-                "id": "group372ed76c-9c56-4f96-a44d-1b126e7b0408",
-                "title": "Innovation",
+                "id": "group5d77ac3a-74d5-491c-a62e-f659554e81f2",
+                "title": "Workforce characteristics",
                 "blocks": [{
                         "type": "Interstitial",
-                        "id": "group372ed76c-9c56-4f96-a44d-1b126e7b0408-introduction",
-                        "title": "Innovation",
-                        "description": "<p>This section asks for information about your business's innovation activities. </p><p>Innovation is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that have been introduced, regardless of their origin.</p>"
+                        "id": "group5d77ac3a-74d5-491c-a62e-f659554e81f2-introduction",
+                        "title": "Workforce characteristics",
+                        "description": "<p>This section asks for information about the characteristics of your workforce such as:</p><ul><li>changes to the numbers of workers from within <strong>and</strong> outside the EU</li><li>where employees working abroad are based</li></ul><p>We are asking these questions to help understand how workforce characteristics may have changed across different sectors.</p>"
                     },
                     {
-                        "id": "block77c9c50d-6256-46eb-9bbf-125805ecc302",
+                        "id": "block899724e0-bda8-4023-ba1e-12fcea8d1f79",
                         "type": "Question",
                         "questions": [{
-                            "id": "question77c9c50d-6256-46eb-9bbf-125805ecc302",
-                            "title": "How has {{ metadata['ru_name'] }}'s innovation changed since the start of the coronavirus (COVID-19) pandemic?",
-                            "description": "<p>This time period covers from March 2020 to present day.</p>",
+                            "id": "question899724e0-bda8-4023-ba1e-12fcea8d1f79",
+                            "title": "How has the number of workers from <em>within</em> the EU at {{ metadata['ru_name'] }} changed, compared with normal expectations for this time of year?",
                             "guidance": {
                                 "content": [{
-                                    "description": "Exclude mandatory changes to comply with coronavirus (COVID-19) regulations"
+                                    "description": "Exclude those from the UK (England, Scotland, Wales and Northern Ireland)"
                                 }]
                             },
-                            "definitions": [{
-                                "title": "What we mean by 'innovation'",
-                                "content": [{
-                                    "description": "This refers to <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that have been introduced, regardless of their origin."
-                                }]
-                            }],
                             "type": "General",
                             "answers": [{
-                                "id": "answera7f174c5-4ca3-4cfb-9fa2-ae067d143903",
+                                "id": "answer1db67444-5680-4b0c-a14e-efbfacb90292",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "8011",
+                                "q_code": "520",
                                 "options": [{
-                                        "label": "There has been more innovation",
-                                        "value": "There has been more innovation"
+                                        "label": "Number of workers from within the EU has increased",
+                                        "value": "Number of workers from within the EU has increased"
                                     },
                                     {
-                                        "label": "Innovation has not changed",
-                                        "value": "Innovation has not changed"
+                                        "label": "We employ workers from within the EU, and the number has stayed the same",
+                                        "value": "We employ workers from within the EU, and the number has stayed the same"
                                     },
                                     {
-                                        "label": "There has been less innovation",
-                                        "value": "There has been less innovation"
+                                        "label": "Number of workers from within the EU has decreased",
+                                        "value": "Number of workers from within the EU has decreased"
+                                    },
+                                    {
+                                        "label": "Not relevant, as have not employed workers from within the EU",
+                                        "value": "Not relevant, as have not employed workers from within the EU"
                                     },
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
                                     },
                                     {
-                                        "label": "Not applicable",
-                                        "value": "Not applicable"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block34808fd1-c862-4f54-b77d-3d7565d62871",
-                                    "when": [{
-                                        "id": "answera7f174c5-4ca3-4cfb-9fa2-ae067d143903",
-                                        "condition": "contains any",
-                                        "values": ["Not applicable"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "blockd7dfe3d6-f4ee-4718-af12-4dc0cbbf29d7"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "blockd7dfe3d6-f4ee-4718-af12-4dc0cbbf29d7",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "questiond7dfe3d6-f4ee-4718-af12-4dc0cbbf29d7",
-                            "title": "Since the start of the coronavirus (COVID-19) pandemic, which of the following did your business innovate?",
-                            "description": "<p>This time period covers from March 2020 to present day.</p>",
-                            "guidance": {
-                                "content": [{
-                                    "description": "Exclude mandatory changes to comply with coronavirus (COVID-19) regulations"
-                                }]
-                            },
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answerb1a1f3ba-370e-445a-b191-24d5a7d5f026",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply:",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Adoption of digital technologies",
-                                            "value": "Adoption of digital technologies",
-                                            "q_code": "8021"
-                                        },
-                                        {
-                                            "label": "Changes in management practices",
-                                            "value": "Changes in management practices",
-                                            "q_code": "8022"
-                                        },
-                                        {
-                                            "label": "Improvement of existing products and services",
-                                            "value": "Improvement of existing products and services",
-                                            "q_code": "8023"
-                                        },
-                                        {
-                                            "label": "Improvements in methods of logistics, delivery or distribution",
-                                            "value": "Improvements in methods of logistics, delivery or distribution",
-                                            "q_code": "8024"
-                                        },
-                                        {
-                                            "label": "Improvements in methods of manufacturing products and services",
-                                            "value": "Improvements in methods of manufacturing products and services",
-                                            "q_code": "8025"
-                                        },
-                                        {
-                                            "label": "Introduction of new products and services",
-                                            "value": "Introduction of new products and services",
-                                            "q_code": "8026"
-                                        },
-                                        {
-                                            "label": "Investment in innovation activities",
-                                            "value": "Investment in innovation activities",
-                                            "q_code": "8027",
-                                            "description": "For example, Research and Development"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "8028",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer93c07627-125e-4f55-9b3e-873f653665fc",
-                                                "mandatory": false
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answerb1a1f3ba-370e-445a-b191-24d5a7d5f026-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "Not sure",
-                                        "value": "Not sure",
-                                        "q_code": "8029"
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "id": "block006faa7a-8a6a-407b-82bb-c018162f50ef",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question006faa7a-8a6a-407b-82bb-c018162f50ef",
-                            "title": "How do you expect these innovations to affect your business’s productivity over the <em>next 12 months</em>?",
-                            "definitions": [{
-                                "title": "What we mean by 'productivity'",
-                                "content": [{
-                                    "description": "This refers to the sales or output generated per worker."
-                                }]
-                            }],
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer0f7bea3e-adaa-44a8-b215-c5663f0b4580",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "8040",
-                                "options": [{
-                                        "label": "Productivity will increase",
-                                        "value": "Productivity will increase"
-                                    },
-                                    {
-                                        "label": "Productivity will not change",
-                                        "value": "Productivity will not change"
-                                    },
-                                    {
-                                        "label": "Productivity will decrease",
-                                        "value": "Productivity will decrease"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
+                                        "label": "Prefer not to say",
+                                        "value": "Prefer not to say"
                                     }
                                 ]
                             }]
                         }]
                     },
                     {
-                        "id": "block34808fd1-c862-4f54-b77d-3d7565d62871",
+                        "id": "blockce70a926-9bd6-43d5-bf19-b6fc84836d8c",
                         "type": "Question",
                         "questions": [{
-                            "id": "question34808fd1-c862-4f54-b77d-3d7565d62871",
-                            "title": "What are your expectations for your business’s innovation over the next 12 months, compared with before the coronavirus (COVID-19) pandemic?",
+                            "id": "questionce70a926-9bd6-43d5-bf19-b6fc84836d8c",
+                            "title": "How has the number of workers from <em>outside</em> the EU at your business changed, compared with normal expectations for this time of year?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude those from the UK (England, Scotland, Wales and Northern Ireland)"
+                                }]
+                            },
                             "type": "General",
                             "answers": [{
-                                "id": "answer995080cb-dffc-4498-b2a9-fde09465a0aa",
+                                "id": "answerebce7629-59bb-45b8-85e0-0352b7353311",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
-                                "q_code": "8050",
+                                "q_code": "530",
                                 "options": [{
-                                        "label": "Innovation will increase",
-                                        "value": "Innovation will increase"
+                                        "label": "Number of workers from outside the EU has increased",
+                                        "value": "Number of workers from outside the EU has increased"
                                     },
                                     {
-                                        "label": "Innovation will not change",
-                                        "value": "Innovation will not change"
+                                        "label": "We employ workers from outside the EU, and the number has stayed the same",
+                                        "value": "We employ workers from outside the EU, and the number has stayed the same"
                                     },
                                     {
-                                        "label": "Innovation will decrease",
-                                        "value": "Innovation will decrease"
+                                        "label": "Number of workers from outside the EU has decreased",
+                                        "value": "Number of workers from outside the EU has decreased"
+                                    },
+                                    {
+                                        "label": "Not relevant, as have not employed workers from outside the EU",
+                                        "value": "Not relevant, as have not employed workers from outside the EU"
                                     },
                                     {
                                         "label": "Not sure",
                                         "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "Prefer not to say",
+                                        "value": "Prefer not to say"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockb613b022-a8b1-4a70-9a9c-bb5ef0297c3e",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionb613b022-a8b1-4a70-9a9c-bb5ef0297c3e",
+                            "title": "If your business has employees working abroad, where are they based?",
+                            "definitions": [{
+                                "title": "List of European Union countries",
+                                "content": [{
+                                    "description": "Austria, Belgium, Bulgaria, Croatia, Cyprus, Czechia (Czech Republic), Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerd998fad4-b8f7-483d-9fb1-9940e9dea75e",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "535",
+                                "options": [{
+                                        "label": "Within the EU",
+                                        "value": "Within the EU"
+                                    },
+                                    {
+                                        "label": "Outside of the EU",
+                                        "value": "Outside of the EU"
+                                    },
+                                    {
+                                        "label": "Both within and outside the EU",
+                                        "value": "Both within and outside the EU"
+                                    },
+                                    {
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    },
+                                    {
+                                        "label": "We do not have employees working abroad",
+                                        "value": "We do not have employees working abroad"
                                     }
                                 ]
                             }]
@@ -5116,7 +5135,9 @@
                     "when": [{
                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                         "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
+                        "values": [
+                            "Permanently ceased trading"
+                        ]
                     }]
                 }]
             }]
@@ -5131,7 +5152,7 @@
                         "type": "Interstitial",
                         "id": "group737c411d-370b-4591-a46c-d5edeeeb381d-introduction",
                         "title": "Contact tracing",
-                        "description": "<p>This section asks for information about contact tracing  and the use of the NHS QR code scheme.</p><p>Examples of collecting customer, staff or visitor details for contact tracing include:</p><ul><li>using an online advanced booking system</li><li>using pen and paper</li><li>using the official NHS QR code posters</li><li>using computers or tablets</li></ul><p>It also asks about support your business might have received from local authorities.</p>"
+                        "description": "<p>This section asks for information about contact tracing.</p><p>Examples of collecting customer, staff or visitor details for contact tracing include:</p><ul><li>using an online advanced booking system</li><li>using pen and paper</li><li>using the official NHS QR code posters</li><li>using computers or tablets</li></ul>"
                     },
                     {
                         "id": "blockcb339443-808e-4c03-9b83-705cc838d041",
@@ -5143,7 +5164,7 @@
                             "definitions": [{
                                 "title": "What we mean by 'contact tracing'",
                                 "content": [{
-                                    "description": "Contact tracing is a procedure used to help prevent the spread of coronavirus (COVID-19). Contact tracing aims to identify and alert people who have come into contact with an infected person."
+                                    "description": "This refers to a procedure used to help prevent the spread of coronavirus (COVID-19). Contact tracing aims to identify and alert people who have come into contact with an infected person."
                                 }]
                             }],
                             "type": "General",
@@ -5186,7 +5207,11 @@
                                     "when": [{
                                         "id": "answer35053c4f-d2cc-49da-8343-0b086f1e8d1a",
                                         "condition": "contains any",
-                                        "values": ["No", "Not sure", "Not applicable"]
+                                        "values": [
+                                            "No",
+                                            "Not sure",
+                                            "Not applicable"
+                                        ]
                                     }]
                                 }
                             },
@@ -5264,33 +5289,7 @@
                                     }]
                                 }
                             ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block7a64bad7-2448-420b-af15-34f7fa9786df",
-                                    "when": [{
-                                        "id": "answerfa8c8c77-0366-4326-ac0a-355574cf3e9c",
-                                        "condition": "contains any",
-                                        "values": ["Advanced booking systems", "Commercial QR codes", "Digital records", "Paper records", "Other"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block7a64bad7-2448-420b-af15-34f7fa9786df",
-                                    "when": [{
-                                        "id": "answerfa8c8c77-0366-4326-ac0a-355574cf3e9c-exclusive",
-                                        "condition": "contains any",
-                                        "values": ["Not sure"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block6c5673f6-fe23-4ed4-a78e-b034458d525a"
-                                }
-                            }
-                        ]
+                        }]
                     },
                     {
                         "id": "blockd9fc45d8-491a-4bf3-b2a8-f5beab9b490e",
@@ -5357,160 +5356,12 @@
                                 }
                             ]
                         }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "block6c5673f6-fe23-4ed4-a78e-b034458d525a",
-                                    "when": [{
-                                        "id": "answer077c18a1-8e90-41b8-bf81-b557eadbbee9",
-                                        "condition": "contains any",
-                                        "values": ["Not relevant to my business"]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "block7a64bad7-2448-420b-af15-34f7fa9786df"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "block7a64bad7-2448-420b-af15-34f7fa9786df",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question7a64bad7-2448-420b-af15-34f7fa9786df",
-                            "title": "Which of the following would encourage your business to use the NHS COVID-19 app <em>QR code</em> posters?",
-                            "definitions": [{
-                                "title": "What we mean by 'NHS COVID-19 app QR code'",
-                                "content": [{
-                                        "description": "Businesses in England and Wales can register for a unique NHS QR code that allows visitors, customers and staff to 'check-in' by scanning the code on a mobile device using the NHS COVID-19 app."
-                                    },
-                                    {
-                                        "description": "If an outbreak occurs at a venue this allows NHS Test and Trace to issue 'venue alerts', where individuals who were present at the time are notified of their potential risk, and are recommended to book a test. This helps to identify asymptomatic cases and reduce the spread of the virus."
-                                    },
-                                    {
-                                        "description": "Venue alerts do <strong>not</strong> recommend that individuals self-isolate, unless they test positive."
-                                    }
-                                ]
-                            }],
-                            "type": "MutuallyExclusive",
-                            "mandatory": true,
-                            "answers": [{
-                                    "id": "answer9f81bf5d-43f6-40db-891f-dbd06d03c4fb",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "label": "Select all that apply:",
-                                    "description": "",
-                                    "options": [{
-                                            "label": "Greater understanding of how data is used and stored",
-                                            "value": "Greater understanding of how data is used and stored",
-                                            "q_code": "401"
-                                        },
-                                        {
-                                            "label": "Displaying an NHS QR code poster was a legal requirement for my industry",
-                                            "value": "Displaying an NHS QR code poster was a legal requirement for my industry",
-                                            "q_code": "402"
-                                        },
-                                        {
-                                            "label": "Increased use of the NHS COVID-19 app",
-                                            "value": "Increased use of the NHS COVID-19 app",
-                                            "q_code": "403"
-                                        },
-                                        {
-                                            "label": "More detailed materials outlining use of QR code",
-                                            "value": "More detailed materials outlining use of QR code",
-                                            "q_code": "404",
-                                            "description": "For example, informational posters and leaflets for customers"
-                                        },
-                                        {
-                                            "label": "More information provided to our business",
-                                            "value": "More information provided to our business",
-                                            "q_code": "405"
-                                        },
-                                        {
-                                            "label": "More support from local authorities and public health teams",
-                                            "value": "More support from local authorities and public health teams",
-                                            "q_code": "406"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "value": "Other",
-                                            "q_code": "407",
-                                            "detail_answer": {
-                                                "label": "Please describe",
-                                                "type": "TextField",
-                                                "id": "answer7db6c47b-efa8-459b-a2aa-7b866a589320",
-                                                "mandatory": false
-                                            }
-                                        },
-                                        {
-                                            "label": "Not sure",
-                                            "value": "Not sure",
-                                            "q_code": "409"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "answer9f81bf5d-43f6-40db-891f-dbd06d03c4fb-exclusive",
-                                    "mandatory": false,
-                                    "type": "Checkbox",
-                                    "description": "",
-                                    "options": [{
-                                        "label": "None of the above",
-                                        "value": "None of the above",
-                                        "q_code": "400"
-                                    }]
-                                }
-                            ]
-                        }],
                         "skip_conditions": [{
                             "when": [{
-                                "id": "answerfa8c8c77-0366-4326-ac0a-355574cf3e9c",
+                                "id": "answer35053c4f-d2cc-49da-8343-0b086f1e8d1a",
                                 "condition": "contains any",
-                                "values": ["Official NHS QR code posters"]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "block6c5673f6-fe23-4ed4-a78e-b034458d525a",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question6c5673f6-fe23-4ed4-a78e-b034458d525a",
-                            "title": "Has your business received any <em>support</em> from your local public health team or local authority in relation to the NHS COVID-19 app QR code posters?",
-                            "guidance": {
-                                "content": [{
-                                        "description": "<strong>Include:</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "advice and guidance",
-                                            "encouraging participation",
-                                            "help setting up the QR code",
-                                            "providing public information"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                "id": "answer836d9ce9-870a-437b-a273-75f14980a78d",
-                                "mandatory": true,
-                                "type": "Radio",
-                                "label": "",
-                                "description": "",
-                                "q_code": "100",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    },
-                                    {
-                                        "label": "Not sure",
-                                        "value": "Not sure"
-                                    }
+                                "values": [
+                                    "Yes"
                                 ]
                             }]
                         }]
@@ -5520,7 +5371,9 @@
                     "when": [{
                         "id": "answer7c70ce5d-dd31-4340-95bf-9df9b9028acd",
                         "condition": "contains any",
-                        "values": ["Permanently ceased trading"]
+                        "values": [
+                            "Permanently ceased trading"
+                        ]
                     }]
                 }]
             }]
