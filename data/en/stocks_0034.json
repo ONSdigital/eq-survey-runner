@@ -724,10 +724,6 @@
         {
             "name": "trad_as",
             "validator": "optional_string"
-        },
-        {
-            "name": "employmentDate",
-            "validator": "date"
         }
     ],
     "view_submitted_response": {
