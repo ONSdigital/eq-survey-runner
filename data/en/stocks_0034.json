@@ -42,7 +42,7 @@
                                                 "raw materials and components purchased for incorporation into products for sale",
                                                 "consumable stores",
                                                 "semi-processed goods",
-                                                "office supplies (including stationery)and packaging materials",
+                                                "office supplies (including stationery) and packaging materials",
                                                 "duty for dutiable goods held out of bond",
                                                 "the value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -51,7 +51,11 @@
                                             "description": "<strong>Exclude:</strong>"
                                         },
                                         {
-                                            "list": ["VAT", "stocks you hold that do not belong to you", "duty on stocks held in bond"]
+                                            "list": [
+                                                "VAT",
+                                                "stocks you hold that do not belong to you",
+                                                "duty on stocks held in bond"
+                                            ]
                                         }
                                     ]
                                 },
@@ -130,7 +134,9 @@
                                     "when": [{
                                         "id": "answer6029",
                                         "condition": "contains any",
-                                        "values": ["No"]
+                                        "values": [
+                                            "No"
+                                        ]
                                     }]
                                 }
                             },
@@ -224,7 +230,11 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["VAT", "stocks you hold that do not belong to you", "duty on stocks held in bond"]
+                                        "list": [
+                                            "VAT",
+                                            "stocks you hold that do not belong to you",
+                                            "duty on stocks held in bond"
+                                        ]
                                     }
                                 ]
                             },
@@ -326,7 +336,10 @@
                         }],
                         "calculation": {
                             "calculation_type": "sum",
-                            "answers_to_calculate": ["answer6032", "answer6034"],
+                            "answers_to_calculate": [
+                                "answer6032",
+                                "answer6034"
+                            ],
                             "titles": [{
                                 "value": "Total value of stocks, relating to anything other than dwellings, at the start of the period"
                             }]
@@ -340,7 +353,10 @@
                         }],
                         "calculation": {
                             "calculation_type": "sum",
-                            "answers_to_calculate": ["answer6031", "answer6033"],
+                            "answers_to_calculate": [
+                                "answer6031",
+                                "answer6033"
+                            ],
                             "titles": [{
                                 "value": "Total value of stocks, relating to anything other than dwellings, at the end of the period"
                             }]
@@ -385,7 +401,11 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": ["VAT", "stocks you hold that do not belong to you", "duty on stocks held in bond"]
+                                        "list": [
+                                            "VAT",
+                                            "stocks you hold that do not belong to you",
+                                            "duty on stocks held in bond"
+                                        ]
                                     }
                                 ]
                             },
@@ -396,7 +416,7 @@
                                     "type": "Currency",
                                     "label": "Value of materials, stores, and fuel at start of period",
                                     "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
-                                    "q_code": "149",
+                                    "q_code": "249",
                                     "decimal_places": 2,
                                     "currency": "GBP"
                                 },
@@ -487,7 +507,10 @@
                         }],
                         "calculation": {
                             "calculation_type": "sum",
-                            "answers_to_calculate": ["answer6038", "answer6040"],
+                            "answers_to_calculate": [
+                                "answer6038",
+                                "answer6040"
+                            ],
                             "titles": [{
                                 "value": "Total value of stocks, relating to dwellings, at the start of the period"
                             }]
@@ -501,7 +524,10 @@
                         }],
                         "calculation": {
                             "calculation_type": "sum",
-                            "answers_to_calculate": ["answer6037", "answer6039"],
+                            "answers_to_calculate": [
+                                "answer6037",
+                                "answer6039"
+                            ],
                             "titles": [{
                                 "value": "Total value of stocks, relating to dwellings, at the end of the period"
                             }]
@@ -573,7 +599,9 @@
                                         "when": [{
                                             "id": "answer6098",
                                             "condition": "contains any",
-                                            "values": ["Yes"]
+                                            "values": [
+                                                "Yes"
+                                            ]
                                         }]
                                     }
                                 },
@@ -696,6 +724,10 @@
         {
             "name": "trad_as",
             "validator": "optional_string"
+        },
+        {
+            "name": "employmentDate",
+            "validator": "date"
         }
     ],
     "view_submitted_response": {
