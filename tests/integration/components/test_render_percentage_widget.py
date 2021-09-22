@@ -34,7 +34,6 @@ class TestRenderPercentageWidget(IntegrationTestCase):
         self.post({'answer': '50'})
         self.assertStatusOK()
         self.assertInUrl('summary')
-        self.assertRegexPage(r'summary__answer.+\">\n +50%\n +</div>')
 
     def test_description_label_is_rendered(self):
         self.assertInBody('Enter percentage of growth')
