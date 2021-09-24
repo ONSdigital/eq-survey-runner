@@ -60,8 +60,7 @@
                                                 "NHS receipts"
                                             ]
                                         }
-                                    ],
-                                    "default": 0
+                                    ]
                                 },
                                 {
                                     "question": "Internet sales",
@@ -239,7 +238,8 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "default": 0
                             }]
                         }]
                     },
