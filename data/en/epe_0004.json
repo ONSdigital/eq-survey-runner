@@ -160,7 +160,7 @@
                                     "label": "To",
                                     "q_code": "21",
                                     "maximum": {
-                                        "meta": "ref_p_end_date",
+                                        "value": "2021-04-05",
                                         "offset_by": {
                                             "days": 0
                                         }
