@@ -390,7 +390,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-improvements-construction-question",
-                            "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the total capital expenditure on major improvements and construction work was <em>{{format_currency(answers['improvements-construction-answer'])}}</em>, is this correct?"
+                            "title": "For the period {{ format_conditional_date (answers['reporting-period-from-answer'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['reporting-period-to-answer'], metadata['ref_p_end_date'])}}, the total capital expenditure on major improvements and construction work was <em>{{format_currency(answers['improvements-construction-answer'])}}</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
