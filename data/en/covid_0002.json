@@ -382,8 +382,7 @@
                                                 "label": "Please describe",
                                                 "type": "TextField",
                                                 "id": "answerb105444e-6115-443c-8b1a-5b9490040721",
-                                                "mandatory": false,
-                                                "q_code": "23710"
+                                                "mandatory": false
                                             }
                                         }
                                     ]
@@ -466,8 +465,7 @@
                                                 "label": "Please describe",
                                                 "type": "TextField",
                                                 "id": "answer698a84b3-201d-4a46-bd29-ebd8c5ecb65b",
-                                                "mandatory": false,
-                                                "q_code": "23810"
+                                                "mandatory": false
                                             }
                                         },
                                         {
@@ -1271,8 +1269,7 @@
                                                 "label": "Please describe",
                                                 "type": "TextField",
                                                 "id": "answer63002bea-0b0b-4ab8-941a-9b57c47eecf0",
-                                                "mandatory": false,
-                                                "q_code": "19610"
+                                                "mandatory": false
                                             }
                                         }
                                     ]
@@ -2150,8 +2147,7 @@
                                                 "label": "Please describe",
                                                 "type": "TextField",
                                                 "id": "answer9400c702-1692-43bc-8ab9-8725eee283d5",
-                                                "mandatory": false,
-                                                "q_code": "2711"
+                                                "mandatory": false
                                             }
                                         },
                                         {
@@ -2618,8 +2614,7 @@
                                                 "label": "Please describe",
                                                 "type": "TextField",
                                                 "id": "answer4713b715-d851-4342-9ba9-080518de5f30",
-                                                "mandatory": false,
-                                                "q_code": "3167"
+                                                "mandatory": false
                                             }
                                         },
                                         {
@@ -2829,8 +2824,7 @@
                                                 "label": "Please describe",
                                                 "type": "TextField",
                                                 "id": "answerc3d85b44-c95e-4241-a3bf-112b66dc908b",
-                                                "mandatory": false,
-                                                "q_code": "5411"
+                                                "mandatory": false
                                             }
                                         }
                                     ]
