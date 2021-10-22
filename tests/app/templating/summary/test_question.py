@@ -258,7 +258,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
             'label': 'Other option label',
             'value': 'other',
             'other': {
-                'label': 'Please specify other'
+                'label': 'Please describe other'
             }
         }]
         answer_schema = {'id': 'answer_1', 'label': 'Which side?', 'type': 'Checkbox', 'options': options}

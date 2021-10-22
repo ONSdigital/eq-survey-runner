@@ -240,7 +240,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                                     'detail_answer': {
                                         'mandatory': True,
                                         'id': 'other-answer-mandatory',
-                                        'label': 'Please specify other',
+                                        'label': 'Please describe other',
                                         'type': 'TextField'
                                     }
                                 }
@@ -299,7 +299,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                                     'detail_answer':  {
                                         'mandatory': True,
                                         'id': 'other-answer-mandatory',
-                                        'label': 'Please specify other',
+                                        'label': 'Please describe other',
                                         'type': 'TextField'
                                     }
                                 }
@@ -358,7 +358,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                                     'detail_answer': {
                                         'mandatory': True,
                                         'id': 'other-answer-mandatory',
-                                        'label': 'Please specify other',
+                                        'label': 'Please describe other',
                                         'type': 'TextField'
                                     }
                                 }

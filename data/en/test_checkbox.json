@@ -11,133 +11,169 @@
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
         "INVALID_NUMBER": "Please enter an integer"
     },
-    "metadata": [{
-        "name": "user_id",
-        "validator": "string"
-    }, {
-        "name": "period_id",
-        "validator": "string"
-    }, {
-        "name": "ru_name",
-        "validator": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "mandatory-checkbox",
-                "description": "",
-                "questions": [{
-                    "answers": [{
-                        "id": "mandatory-checkbox-answer",
-                        "label": "",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "None",
-                            "value": "None",
-                            "q_code": "0"
-                        }, {
-                            "label": "Cheese",
-                            "value": "Cheese",
-                            "q_code": "1"
-                        }, {
-                            "label": "Ham",
-                            "value": "Ham",
-                            "q_code": "2"
-                        }, {
-                            "label": "Pineapple",
-                            "value": "Pineapple",
-                            "q_code": "3"
-                        }, {
-                            "label": "Tuna",
-                            "value": "Tuna",
-                            "q_code": "4"
-                        }, {
-                            "label": "Pepperoni",
-                            "value": "Pepperoni",
-                            "q_code": "5"
-                        }, {
-                            "label": "Other",
-                            "q_code": "6",
-                            "description": "Choose any other topping",
-                            "value": "Other",
-                            "detail_answer": {
-                                "mandatory": true,
-                                "id": "other-answer-mandatory",
-                                "label": "Please specify other",
-                                "type": "TextField"
-                            }
-                        }],
-                        "type": "Checkbox",
-                        "validation": {
-                            "messages": {}
+    "metadata": [
+        {
+            "name": "user_id",
+            "validator": "string"
+        },
+        {
+            "name": "period_id",
+            "validator": "string"
+        },
+        {
+            "name": "ru_name",
+            "validator": "string"
+        }
+    ],
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "mandatory-checkbox",
+                            "description": "",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "id": "mandatory-checkbox-answer",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "None",
+                                                    "value": "None",
+                                                    "q_code": "0"
+                                                },
+                                                {
+                                                    "label": "Cheese",
+                                                    "value": "Cheese",
+                                                    "q_code": "1"
+                                                },
+                                                {
+                                                    "label": "Ham",
+                                                    "value": "Ham",
+                                                    "q_code": "2"
+                                                },
+                                                {
+                                                    "label": "Pineapple",
+                                                    "value": "Pineapple",
+                                                    "q_code": "3"
+                                                },
+                                                {
+                                                    "label": "Tuna",
+                                                    "value": "Tuna",
+                                                    "q_code": "4"
+                                                },
+                                                {
+                                                    "label": "Pepperoni",
+                                                    "value": "Pepperoni",
+                                                    "q_code": "5"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "q_code": "6",
+                                                    "description": "Choose any other topping",
+                                                    "value": "Other",
+                                                    "detail_answer": {
+                                                        "mandatory": true,
+                                                        "id": "other-answer-mandatory",
+                                                        "label": "Please describe other",
+                                                        "type": "TextField"
+                                                    }
+                                                }
+                                            ],
+                                            "type": "Checkbox",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "mandatory-checkbox-question",
+                                    "title": "Which pizza toppings would you like?",
+                                    "type": "General"
+                                }
+                            ],
+                            "title": "Mandatory other option",
+                            "routing_rules": []
+                        },
+                        {
+                            "type": "Question",
+                            "id": "non-mandatory-checkbox",
+                            "description": "",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "id": "non-mandatory-checkbox-answer",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "None",
+                                                    "value": "None"
+                                                },
+                                                {
+                                                    "label": "Cheese",
+                                                    "value": "Cheese"
+                                                },
+                                                {
+                                                    "label": "Ham",
+                                                    "value": "Ham"
+                                                },
+                                                {
+                                                    "label": "Pineapple",
+                                                    "value": "Pineapple"
+                                                },
+                                                {
+                                                    "label": "Tuna",
+                                                    "value": "Tuna"
+                                                },
+                                                {
+                                                    "label": "Pepperoni",
+                                                    "value": "Pepperoni"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "Other",
+                                                    "description": "Choose any other topping",
+                                                    "detail_answer": {
+                                                        "mandatory": false,
+                                                        "id": "other-answer-non-mandatory",
+                                                        "label": "Please describe other",
+                                                        "type": "TextField"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "non-mandatory-checkbox-question",
+                                    "title": "What extra toppings would you like?",
+                                    "type": "General"
+                                }
+                            ],
+                            "title": "Non mandatory other option",
+                            "routing_rules": []
+                        },
+                        {
+                            "type": "Summary",
+                            "id": "summary"
                         }
-                    }],
-                    "description": "",
-                    "id": "mandatory-checkbox-question",
-                    "title": "Which pizza toppings would you like?",
-                    "type": "General"
-                }],
-                "title": "Mandatory other option",
-                "routing_rules": []
-            }, {
-                "type": "Question",
-                "id": "non-mandatory-checkbox",
-                "description": "",
-                "questions": [{
-                    "answers": [{
-                        "id": "non-mandatory-checkbox-answer",
-                        "label": "",
-                        "mandatory": false,
-                        "options": [{
-                            "label": "None",
-                            "value": "None"
-                        }, {
-                            "label": "Cheese",
-                            "value": "Cheese"
-                        }, {
-                            "label": "Ham",
-                            "value": "Ham"
-                        }, {
-                            "label": "Pineapple",
-                            "value": "Pineapple"
-                        }, {
-                            "label": "Tuna",
-                            "value": "Tuna"
-                        }, {
-                            "label": "Pepperoni",
-                            "value": "Pepperoni"
-                        }, {
-                            "label": "Other",
-                            "value": "Other",
-                            "description": "Choose any other topping",
-                            "detail_answer": {
-                                "mandatory": false,
-                                "id": "other-answer-non-mandatory",
-                                "label": "Please specify other",
-                                "type": "TextField"
-                            }
-                        }],
-                        "q_code": "20",
-                        "type": "Checkbox",
-                        "validation": {
-                            "messages": {}
-                        }
-                    }],
-                    "description": "",
-                    "id": "non-mandatory-checkbox-question",
-                    "title": "What extra toppings would you like?",
-                    "type": "General"
-                }],
-                "title": "Non mandatory other option",
-                "routing_rules": []
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "checkboxes",
-            "title": ""
-        }]
-    }]
+                    ],
+                    "id": "checkboxes",
+                    "title": ""
+                }
+            ]
+        }
+    ]
 }
