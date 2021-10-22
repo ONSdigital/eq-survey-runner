@@ -11,8 +11,7 @@
         "enabled": true,
         "duration": 900
     },
-    "metadata": [
-        {
+    "metadata": [{
             "name": "user_id",
             "validator": "string"
         },
@@ -41,803 +40,690 @@
             "validator": "optional_string"
         }
     ],
-    "sections": [
-        {
-            "id": "default-section",
-            "groups": [
-                {
-                    "blocks": [
-                        {
-                            "type": "Introduction",
-                            "id": "introduction",
-                            "primary_content": [
-                                {
-                                    "id": "get-started",
-                                    "content": [
-                                        {
-                                            "list": [
-                                                "On average it takes 10 minutes to complete this survey once you\u2019ve collected the information.",
-                                                "Data should relate to all sites in England, Scotland and Wales.",
-                                                "You can provide informed estimates if actual figures aren't available.",
-                                                "We will treat your data securely and confidentially."
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ],
-                            "preview_content": {
-                                "id": "preview",
-                                "title": "Information you need",
-                                "content": [
-                                    {
-                                        "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
-                                    }
-                                ],
-                                "questions": [
-                                    {
-                                        "question": "Total retail turnover",
-                                        "content": [
-                                            {
-                                                "description": "Include:",
-                                                "list": ["VAT", "internet sales", "retail sales from outlets in Great Britain to customers abroad"]
-                                            },
-                                            {
-                                                "description": "Exclude:",
-                                                "list": [
-                                                    "revenue from mobile phone network commission and top-up",
-                                                    "sales from catering facilities used by customers",
-                                                    "lottery sales and commission from lottery sales",
-                                                    "sales of car accessories and motor vehicles",
-                                                    "NHS receipts"
-                                                ]
-                                            }
-                                        ]
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                    "type": "Introduction",
+                    "id": "introduction",
+                    "primary_content": [{
+                        "id": "get-started",
+                        "content": [{
+                            "list": [
+                                "On average it takes 10 minutes to complete this survey once you\u2019ve collected the information.",
+                                "Data should relate to all sites in England, Scotland and Wales.",
+                                "You can provide informed estimates if actual figures aren't available.",
+                                "We will treat your data securely and confidentially."
+                            ]
+                        }]
+                    }],
+                    "preview_content": {
+                        "id": "preview",
+                        "title": "Information you need",
+                        "content": [{
+                            "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                        }],
+                        "questions": [{
+                                "question": "Total retail turnover",
+                                "content": [{
+                                        "description": "Include:",
+                                        "list": ["VAT", "internet sales", "retail sales from outlets in Great Britain to customers abroad"]
                                     },
                                     {
-                                        "question": "Internet sales",
-                                        "content": [
-                                            {
-                                                "description": "Include: VAT"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "question": "Significant changes to the total retail turnover",
-                                        "content": [
-                                            {
-                                                "description": "For example:",
-                                                "list": [
-                                                    "in-store / online promotions",
-                                                    "special events (e.g.  sporting events)",
-                                                    "calendar events (e.g.  Christmas, Easter, Bank Holiday)",
-                                                    "weather",
-                                                    "store closures/openings"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "question": "Employees",
-                                        "content": [
-                                            {
-                                                "title": "Number of employees",
-                                                "description": "Include:",
-                                                "list": [
-                                                    "all workers paid directly from this business's payroll(s)",
-                                                    "those temporarily absent but still being paid, for example on maternity leave"
-                                                ]
-                                            },
-                                            {
-                                                "description": "Exclude:",
-                                                "list": [
-                                                    "agency workers paid directly from the agency payroll",
-                                                    "voluntary workers",
-                                                    "former employees only receiving a pension",
-                                                    "self-employed workers",
-                                                    "working owners who are not paid via PAYE"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "question": "Working hours",
-                                        "content": [
-                                            {
-                                                "description": "The number of:",
-                                                "list": [
-                                                    "male employees working more than 30 hours per week",
-                                                    "male employees working 30 hours or less per week",
-                                                    "female employees working more than 30 hours per week",
-                                                    "female employees working 30 hours or less per week"
-                                                ]
-                                            },
-                                            {
-                                                "description": "Include:",
-                                                "list": [
-                                                    "all workers paid directly from this business's payroll(s)",
-                                                    "those temporarily absent but still being paid, for example on maternity leave"
-                                                ]
-                                            },
-                                            {
-                                                "description": "Exclude:",
-                                                "list": [
-                                                    "agency workers paid directly from the agency payroll",
-                                                    "voluntary workers",
-                                                    "former employees only receiving a pension",
-                                                    "self-employed workers",
-                                                    "working owners who are not paid via PAYE"
-                                                ]
-                                            }
+                                        "description": "Exclude:",
+                                        "list": [
+                                            "revenue from mobile phone network commission and top-up",
+                                            "sales from catering facilities used by customers",
+                                            "lottery sales and commission from lottery sales",
+                                            "sales of car accessories and motor vehicles",
+                                            "NHS receipts"
                                         ]
                                     }
                                 ]
                             },
-                            "secondary_content": [
-                                {
-                                    "id": "how-we-use-your-data",
-                                    "title": "How we use your data",
-                                    "content": [
-                                        {
-                                            "list": [
-                                                "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                                                "The information you supply is used to produce monthly estimates of the total retail sales in Great Britain. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the UK National Accounts."
-                                            ]
-                                        }
+                            {
+                                "question": "Internet sales",
+                                "content": [{
+                                    "description": "Include: VAT"
+                                }]
+                            },
+                            {
+                                "question": "Significant changes to the total retail turnover",
+                                "content": [{
+                                    "description": "For example:",
+                                    "list": [
+                                        "in-store / online promotions",
+                                        "special events (e.g.  sporting events)",
+                                        "calendar events (e.g.  Christmas, Easter, Bank Holiday)",
+                                        "weather",
+                                        "store closures/openings"
                                     ]
-                                }
+                                }]
+                            },
+                            {
+                                "question": "Employees",
+                                "content": [{
+                                        "title": "Number of employees",
+                                        "description": "Include:",
+                                        "list": [
+                                            "all workers paid directly from this business's payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                        ]
+                                    },
+                                    {
+                                        "description": "Exclude:",
+                                        "list": [
+                                            "agency workers paid directly from the agency payroll",
+                                            "voluntary workers",
+                                            "former employees only receiving a pension",
+                                            "self-employed workers",
+                                            "working owners who are not paid via PAYE"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "question": "Working hours",
+                                "content": [{
+                                        "description": "The number of:",
+                                        "list": [
+                                            "male employees working more than 30 hours per week",
+                                            "male employees working 30 hours or less per week",
+                                            "female employees working more than 30 hours per week",
+                                            "female employees working 30 hours or less per week"
+                                        ]
+                                    },
+                                    {
+                                        "description": "Include:",
+                                        "list": [
+                                            "all workers paid directly from this business's payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                        ]
+                                    },
+                                    {
+                                        "description": "Exclude:",
+                                        "list": [
+                                            "agency workers paid directly from the agency payroll",
+                                            "voluntary workers",
+                                            "former employees only receiving a pension",
+                                            "self-employed workers",
+                                            "working owners who are not paid via PAYE"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "secondary_content": [{
+                        "id": "how-we-use-your-data",
+                        "title": "How we use your data",
+                        "content": [{
+                            "list": [
+                                "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                                "The information you supply is used to produce monthly estimates of the total retail sales in Great Britain. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the UK National Accounts."
                             ]
+                        }]
+                    }]
+                },
+                {
+                    "title": "Reporting period",
+                    "routing_rules": [{
+                            "goto": {
+                                "when": [{
+                                    "value": "Yes",
+                                    "condition": "equals",
+                                    "id": "reporting-period-choice-answer"
+                                }],
+                                "block": "total-retail-turnover-block"
+                            }
                         },
                         {
-                            "title": "Reporting period",
-                            "routing_rules": [
-                                {
-                                    "goto": {
-                                        "when": [
-                                            {
-                                                "value": "Yes",
-                                                "condition": "equals",
-                                                "id": "reporting-period-choice-answer"
-                                            }
-                                        ],
-                                        "block": "total-retail-turnover-block"
-                                    }
-                                },
-                                {
-                                    "goto": {
-                                        "block": "reporting-period"
-                                    }
-                                }
-                            ],
-                            "questions": [
-                                {
-                                    "title": "Are you able to report for the period from {{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}}?",
-                                    "type": "General",
-                                    "id": "reporting-period-choice-question",
-                                    "answers": [
-                                        {
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Yes",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No",
-                                                    "value": "No"
-                                                }
-                                            ],
-                                            "id": "reporting-period-choice-answer",
-                                            "type": "Radio"
-                                        }
-                                    ]
-                                }
-                            ],
-                            "id": "reporting-period-choice",
-                            "type": "Question"
-                        },
-                        {
-                            "title": "Reporting period",
-                            "id": "reporting-period",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "title": "What are the dates of the period that you will be reporting for?",
-                                    "type": "DateRange",
-                                    "id": "reporting-period-question",
-                                    "period_limits": {
-                                        "minimum": {
-                                            "days": 23
-                                        },
-                                        "maximum": {
-                                            "days": 50
-                                        }
-                                    },
-                                    "answers": [
-                                        {
-                                            "mandatory": true,
-                                            "label": "From",
-                                            "id": "period-from",
-                                            "q_code": "11",
-                                            "type": "Date",
-                                            "minimum": {
-                                                "meta": "ref_p_start_date",
-                                                "offset_by": {
-                                                    "days": -19
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "mandatory": true,
-                                            "label": "To",
-                                            "id": "period-to",
-                                            "q_code": "12",
-                                            "type": "Date",
-                                            "maximum": {
-                                                "meta": "ref_p_end_date",
-                                                "offset_by": {
-                                                    "days": 20
-                                                }
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Question",
-                            "id": "total-retail-turnover-block",
-                            "questions": [
-                                {
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "title": "Include",
-                                                "list": ["VAT", "internet sales"]
-                                            },
-                                            {
-                                                "title": "Exclude",
-                                                "list": [
-                                                    "revenue from mobile phone network commission and top-up",
-                                                    "sales from catering facilities used by customers",
-                                                    "lottery sales and commission from lottery sales",
-                                                    "sales of car accessories and motor vehicles",
-                                                    "NHS receipts"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "answers": [
-                                        {
-                                            "id": "total-retail-turnover-answer",
-                                            "label": "Total retail turnover",
-                                            "mandatory": false,
-                                            "q_code": "20",
-                                            "type": "Currency",
-                                            "currency": "GBP",
-                                            "decimal_places": 2,
-                                            "default": 0
-                                        }
-                                    ],
-                                    "id": "total-turnover-question",
-                                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s <em>total retail turnover</em>?",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Retail Turnover"
-                        },
-                        {
-                            "type": "ConfirmationQuestion",
-                            "title": "Retail Turnover",
-                            "id": "confirm-zero-turnover-block",
-                            "skip_conditions": [
-                                {
-                                    "when": [
-                                        {
-                                            "id": "total-retail-turnover-answer",
-                                            "condition": "greater than",
-                                            "value": 0
-                                        }
-                                    ]
-                                }
-                            ],
-                            "questions": [
-                                {
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "type": "Radio",
-                                            "id": "confirm-zero-turnover-answer",
-                                            "q_code": "d20",
-                                            "options": [
-                                                {
-                                                    "label": "Yes this is correct",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No I need to change this",
-                                                    "value": "No"
-                                                }
-                                            ],
-                                            "mandatory": true
-                                        }
-                                    ],
-                                    "id": "confirm-zero-turnover-question",
-                                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the total retail turnover was <em>\u00a30</em>, is this correct?"
-                                }
-                            ],
-                            "routing_rules": [
-                                {
-                                    "goto": {
-                                        "when": [
-                                            {
-                                                "value": "No",
-                                                "id": "confirm-zero-turnover-answer",
-                                                "condition": "equals"
-                                            }
-                                        ],
-                                        "block": "total-retail-turnover-block"
-                                    }
-                                },
-                                {
-                                    "goto": {
-                                        "block": "significant-change"
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Question",
-                            "id": "total-internet-sales",
-                            "questions": [
-                                {
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "title": "Include",
-                                                "list": ["VAT", "sales from orders received over the internet, irrespective of the payment or delivery method"]
-                                            }
-                                        ]
-                                    },
-                                    "answers": [
-                                        {
-                                            "id": "internet-sales-answer",
-                                            "label": "Internet sales",
-                                            "mandatory": true,
-                                            "q_code": "21",
-                                            "type": "Currency",
-                                            "currency": "GBP",
-                                            "decimal_places": 2,
-                                            "max_value": {
-                                                "answer_id": "total-retail-turnover-answer"
-                                            }
-                                        }
-                                    ],
-                                    "id": "internet-sales-question",
-                                    "title": "Of the <em>{{format_currency(answers['total-retail-turnover-answer'])}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Retail turnover"
-                        },
-                        {
-                            "id": "significant-change",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "title": "For example",
-                                                "list": [
-                                                    "in-store / online promotions",
-                                                    "special events (e.g. sporting events)",
-                                                    "calendar events (e.g. Christmas, Easter, Bank Holiday)",
-                                                    "weather",
-                                                    "store closures/openings"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "answers": [
-                                        {
-                                            "id": "significant-change-established-answer",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Yes",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No",
-                                                    "value": "No"
-                                                }
-                                            ],
-                                            "q_code": "146a",
-                                            "type": "Radio"
-                                        }
-                                    ],
-                                    "definitions": [
-                                        {
-                                            "title": "What constitutes a significant change?",
-                                            "content": [
-                                                {
-                                                    "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s figures from the previous reporting period and the same reporting period last year."
-                                                },
-                                                {
-                                                    "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "id": "significant-change-question",
-                                    "title": "Did any significant changes occur to the total retail turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Changes in total retail turnover"
-                        },
-                        {
-                            "type": "Question",
-                            "id": "reason-for-change",
-                            "skip_conditions": [
-                                {
-                                    "when": [
-                                        {
-                                            "id": "significant-change-established-answer",
-                                            "condition": "equals",
-                                            "value": "No"
-                                        }
-                                    ]
-                                }
-                            ],
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "id": "reason-for-change-answer",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "In-store / online promotions",
-                                                    "q_code": "146b",
-                                                    "value": "In-store / online promotions"
-                                                },
-                                                {
-                                                    "label": "Special events (e.g. sporting events)",
-                                                    "q_code": "146c",
-                                                    "value": "Special events (e.g. sporting events)"
-                                                },
-                                                {
-                                                    "label": "Calendar events (e.g. Christmas, Easter, Bank Holiday)",
-                                                    "q_code": "146d",
-                                                    "value": "Calendar events (e.g. Christmas, Easter, Bank Holiday)"
-                                                },
-                                                {
-                                                    "label": "Weather",
-                                                    "q_code": "146e",
-                                                    "value": "Weather"
-                                                },
-                                                {
-                                                    "label": "Store closures",
-                                                    "q_code": "146f",
-                                                    "value": "Store closures"
-                                                },
-                                                {
-                                                    "label": "Store openings",
-                                                    "q_code": "146g",
-                                                    "value": "Store openings"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "q_code": "146h",
-                                                    "value": "Other"
-                                                }
-                                            ],
-                                            "type": "Checkbox"
-                                        }
-                                    ],
-                                    "id": "reason-for-change-question",
-                                    "title": "Please indicate the reasons for any changes in the total retail turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Changes in total retail turnover"
-                        },
-                        {
-                            "type": "Question",
-                            "id": "change-comment-block",
-                            "skip_conditions": [
-                                {
-                                    "when": [
-                                        {
-                                            "id": "significant-change-established-answer",
-                                            "condition": "equals",
-                                            "value": "No"
-                                        }
-                                    ]
-                                }
-                            ],
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": {
-                                                "show_guidance": "Show examples of commentary on changes to total retail turnover",
-                                                "hide_guidance": "Hide examples of commentary on changes to total retail turnover",
-                                                "content": [
-                                                    {
-                                                        "description": "Examples of commentary:"
-                                                    },
-                                                    {
-                                                        "title": "\u2018In-store promotion\u2019",
-                                                        "description": "\u201cOffer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.\u201d"
-                                                    },
-                                                    {
-                                                        "title": "\u2018Special events (for example, sporting events)\u2019",
-                                                        "description": "\u201cThis was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.\u201d"
-                                                    },
-                                                    {
-                                                        "title": "\u2018Weather\u2019",
-                                                        "description": "\u201cThe bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.\u201d"
-                                                    }
-                                                ]
-                                            },
-                                            "id": "change-comment",
-                                            "label": "Comments",
-                                            "mandatory": true,
-                                            "q_code": "146",
-                                            "type": "TextArea"
-                                        }
-                                    ],
-                                    "description": "We rely on your commentary to \u2018tell the story\u2019 behind changes in figures. By commenting here it will reduce the need for us to call you.",
-                                    "id": "change-comment-question",
-                                    "title": "Please describe the changes in total retail turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} in more detail",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Changes in total retail turnover"
-                        },
-                        {
-                            "type": "Question",
-                            "id": "total-employees",
-                            "questions": [
-                                {
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "title": "Include",
-                                                "list": [
-                                                    "all workers paid directly from this business\u2019s payroll(s)",
-                                                    "those temporarily absent but still being paid, for example on maternity leave"
-                                                ]
-                                            },
-                                            {
-                                                "title": "Exclude",
-                                                "list": [
-                                                    "agency workers paid directly from the agency payroll",
-                                                    "voluntary workers",
-                                                    "former employees only receiving pension",
-                                                    "self-employed workers",
-                                                    "working owners who are not paid via PAYE"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "answers": [
-                                        {
-                                            "id": "total-number-employees",
-                                            "label": "Total number of employees",
-                                            "mandatory": false,
-                                            "q_code": "50",
-                                            "type": "Number",
-                                            "default": 0
-                                        }
-                                    ],
-                                    "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
-                                    "id": "total-number-employees-question",
-                                    "title": "On {{metadata['employment_date']|format_date}} what was the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Employees"
-                        },
-                        {
-                            "type": "ConfirmationQuestion",
-                            "title": "Employees",
-                            "id": "confirm-zero-employees-block",
-                            "skip_conditions": [
-                                {
-                                    "when": [
-                                        {
-                                            "id": "total-number-employees",
-                                            "condition": "greater than",
-                                            "value": 0
-                                        }
-                                    ]
-                                }
-                            ],
-                            "questions": [
-                                {
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "type": "Radio",
-                                            "id": "confirm-zero-employees-answer",
-                                            "q_code": "d50",
-                                            "options": [
-                                                {
-                                                    "label": "Yes this is correct",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No I need to change this",
-                                                    "value": "No"
-                                                }
-                                            ],
-                                            "mandatory": true
-                                        }
-                                    ],
-                                    "id": "confirm-zero-employees-question",
-                                    "title": "On {{metadata['employment_date']|format_date}}, the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was <em>0</em>, is this correct?"
-                                }
-                            ],
-                            "routing_rules": [
-                                {
-                                    "goto": {
-                                        "when": [
-                                            {
-                                                "value": "No",
-                                                "id": "confirm-zero-employees-answer",
-                                                "condition": "equals"
-                                            }
-                                        ],
-                                        "block": "total-employees"
-                                    }
-                                },
-                                {
-                                    "goto": {
-                                        "block": "changes-in-employees"
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Question",
-                            "id": "employees-breakdown",
-                            "questions": [
-                                {
-                                    "calculations": [
-                                        {
-                                            "calculation_type": "sum",
-                                            "value": 0,
-                                            "answers_to_calculate": [
-                                                "male-employees-over-30-hours",
-                                                "male-employees-under-30-hours",
-                                                "female-employees-over-30-hours",
-                                                "female-employees-under-30-hours"
-                                            ],
-                                            "conditions": ["equals"]
-                                        },
-                                        {
-                                            "calculation_type": "sum",
-                                            "answer_id": "total-number-employees",
-                                            "answers_to_calculate": [
-                                                "male-employees-over-30-hours",
-                                                "male-employees-under-30-hours",
-                                                "female-employees-over-30-hours",
-                                                "female-employees-under-30-hours"
-                                            ],
-                                            "conditions": ["equals"]
-                                        }
-                                    ],
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "title": "Include",
-                                                "list": [
-                                                    "all workers paid directly from this business\u2019s payroll(s)",
-                                                    "those temporarily absent but still being paid, for example on maternity leave"
-                                                ]
-                                            },
-                                            {
-                                                "title": "Exclude",
-                                                "list": [
-                                                    "agency workers paid directly from the agency payroll",
-                                                    "voluntary workers",
-                                                    "former employees only receiving pension",
-                                                    "self-employed workers",
-                                                    "working owners who are not paid via PAYE"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "answers": [
-                                        {
-                                            "id": "male-employees-over-30-hours",
-                                            "label": "Number of male employees working more than 30 hours per week",
-                                            "mandatory": false,
-                                            "q_code": "51",
-                                            "type": "Number",
-                                            "max_value": {
-                                                "answer_id": "total-number-employees"
-                                            }
-                                        },
-                                        {
-                                            "id": "male-employees-under-30-hours",
-                                            "label": "Number of male employees working 30 hours or less per week",
-                                            "mandatory": false,
-                                            "q_code": "52",
-                                            "type": "Number",
-                                            "max_value": {
-                                                "answer_id": "total-number-employees"
-                                            }
-                                        },
-                                        {
-                                            "id": "female-employees-over-30-hours",
-                                            "label": "Number of female employees working more than 30 hours per week",
-                                            "mandatory": false,
-                                            "q_code": "53",
-                                            "type": "Number",
-                                            "max_value": {
-                                                "answer_id": "total-number-employees"
-                                            }
-                                        },
-                                        {
-                                            "id": "female-employees-under-30-hours",
-                                            "label": "Number of female employees working 30 hours or less per week",
-                                            "mandatory": false,
-                                            "q_code": "54",
-                                            "type": "Number",
-                                            "max_value": {
-                                                "answer_id": "total-number-employees"
-                                            }
-                                        }
-                                    ],
-                                    "id": "employee-breakdown-questions",
-                                    "title": "Of the <em>{{answers['total-number-employees']|format_number}}</em> total employees employed on {{metadata['employment_date']|format_date}}, please describe' the number of:",
-                                    "type": "Calculated"
-                                }
-                            ],
-                            "title": "Employees"
-                        },
-                        {
-                            "type": "Question",
-                            "id": "changes-in-employees",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "id": "changes-in-employees-answer",
-                                            "label": "Comments",
-                                            "mandatory": false,
-                                            "q_code": "147",
-                                            "type": "TextArea"
-                                        }
-                                    ],
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "description": "<p>Comment on significant changes in the number of employees from:</p>",
-                                                "list": ["the previous reporting period", "the same reporting period last year"]
-                                            }
-                                        ]
-                                    },
-                                    "id": "changes-in-employees-question",
-                                    "title": "Explain any significant changes in the number of employees",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Changes in employee figures"
-                        },
-                        {
-                            "type": "Summary",
-                            "id": "summary"
+                            "goto": {
+                                "block": "reporting-period"
+                            }
                         }
                     ],
-                    "id": "rsi",
-                    "title": ""
+                    "questions": [{
+                        "title": "Are you able to report for the period from {{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}}?",
+                        "type": "General",
+                        "id": "reporting-period-choice-question",
+                        "answers": [{
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No",
+                                    "value": "No"
+                                }
+                            ],
+                            "id": "reporting-period-choice-answer",
+                            "type": "Radio"
+                        }]
+                    }],
+                    "id": "reporting-period-choice",
+                    "type": "Question"
+                },
+                {
+                    "title": "Reporting period",
+                    "id": "reporting-period",
+                    "type": "Question",
+                    "questions": [{
+                        "title": "What are the dates of the period that you will be reporting for?",
+                        "type": "DateRange",
+                        "id": "reporting-period-question",
+                        "period_limits": {
+                            "minimum": {
+                                "days": 23
+                            },
+                            "maximum": {
+                                "days": 50
+                            }
+                        },
+                        "answers": [{
+                                "mandatory": true,
+                                "label": "From",
+                                "id": "period-from",
+                                "q_code": "11",
+                                "type": "Date",
+                                "minimum": {
+                                    "meta": "ref_p_start_date",
+                                    "offset_by": {
+                                        "days": -19
+                                    }
+                                }
+                            },
+                            {
+                                "mandatory": true,
+                                "label": "To",
+                                "id": "period-to",
+                                "q_code": "12",
+                                "type": "Date",
+                                "maximum": {
+                                    "meta": "ref_p_end_date",
+                                    "offset_by": {
+                                        "days": 20
+                                    }
+                                }
+                            }
+                        ]
+                    }]
+                },
+                {
+                    "type": "Question",
+                    "id": "total-retail-turnover-block",
+                    "questions": [{
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": ["VAT", "internet sales"]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "revenue from mobile phone network commission and top-up",
+                                        "sales from catering facilities used by customers",
+                                        "lottery sales and commission from lottery sales",
+                                        "sales of car accessories and motor vehicles",
+                                        "NHS receipts"
+                                    ]
+                                }
+                            ]
+                        },
+                        "answers": [{
+                            "id": "total-retail-turnover-answer",
+                            "label": "Total retail turnover",
+                            "mandatory": false,
+                            "q_code": "20",
+                            "type": "Currency",
+                            "currency": "GBP",
+                            "decimal_places": 2,
+                            "default": 0
+                        }],
+                        "id": "total-turnover-question",
+                        "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s <em>total retail turnover</em>?",
+                        "type": "General"
+                    }],
+                    "title": "Retail Turnover"
+                },
+                {
+                    "type": "ConfirmationQuestion",
+                    "title": "Retail Turnover",
+                    "id": "confirm-zero-turnover-block",
+                    "skip_conditions": [{
+                        "when": [{
+                            "id": "total-retail-turnover-answer",
+                            "condition": "greater than",
+                            "value": 0
+                        }]
+                    }],
+                    "questions": [{
+                        "type": "General",
+                        "answers": [{
+                            "type": "Radio",
+                            "id": "confirm-zero-turnover-answer",
+                            "q_code": "d20",
+                            "options": [{
+                                    "label": "Yes this is correct",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No I need to change this",
+                                    "value": "No"
+                                }
+                            ],
+                            "mandatory": true
+                        }],
+                        "id": "confirm-zero-turnover-question",
+                        "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the total retail turnover was <em>\u00a30</em>, is this correct?"
+                    }],
+                    "routing_rules": [{
+                            "goto": {
+                                "when": [{
+                                    "value": "No",
+                                    "id": "confirm-zero-turnover-answer",
+                                    "condition": "equals"
+                                }],
+                                "block": "total-retail-turnover-block"
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "significant-change"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Question",
+                    "id": "total-internet-sales",
+                    "questions": [{
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": ["VAT", "sales from orders received over the internet, irrespective of the payment or delivery method"]
+                            }]
+                        },
+                        "answers": [{
+                            "id": "internet-sales-answer",
+                            "label": "Internet sales",
+                            "mandatory": true,
+                            "q_code": "21",
+                            "type": "Currency",
+                            "currency": "GBP",
+                            "decimal_places": 2,
+                            "max_value": {
+                                "answer_id": "total-retail-turnover-answer"
+                            }
+                        }],
+                        "id": "internet-sales-question",
+                        "title": "Of the <em>{{format_currency(answers['total-retail-turnover-answer'])}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
+                        "type": "General"
+                    }],
+                    "title": "Retail turnover"
+                },
+                {
+                    "id": "significant-change",
+                    "type": "Question",
+                    "questions": [{
+                        "guidance": {
+                            "content": [{
+                                "title": "For example",
+                                "list": [
+                                    "in-store / online promotions",
+                                    "special events (e.g. sporting events)",
+                                    "calendar events (e.g. Christmas, Easter, Bank Holiday)",
+                                    "weather",
+                                    "store closures/openings"
+                                ]
+                            }]
+                        },
+                        "answers": [{
+                            "id": "significant-change-established-answer",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No",
+                                    "value": "No"
+                                }
+                            ],
+                            "q_code": "146a",
+                            "type": "Radio"
+                        }],
+                        "definitions": [{
+                            "title": "What constitutes a significant change?",
+                            "content": [{
+                                    "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s figures from the previous reporting period and the same reporting period last year."
+                                },
+                                {
+                                    "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
+                                }
+                            ]
+                        }],
+                        "id": "significant-change-question",
+                        "title": "Did any significant changes occur to the total retail turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
+                        "type": "General"
+                    }],
+                    "title": "Changes in total retail turnover"
+                },
+                {
+                    "type": "Question",
+                    "id": "reason-for-change",
+                    "skip_conditions": [{
+                        "when": [{
+                            "id": "significant-change-established-answer",
+                            "condition": "equals",
+                            "value": "No"
+                        }]
+                    }],
+                    "questions": [{
+                        "answers": [{
+                            "id": "reason-for-change-answer",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "In-store / online promotions",
+                                    "q_code": "146b",
+                                    "value": "In-store / online promotions"
+                                },
+                                {
+                                    "label": "Special events (e.g. sporting events)",
+                                    "q_code": "146c",
+                                    "value": "Special events (e.g. sporting events)"
+                                },
+                                {
+                                    "label": "Calendar events (e.g. Christmas, Easter, Bank Holiday)",
+                                    "q_code": "146d",
+                                    "value": "Calendar events (e.g. Christmas, Easter, Bank Holiday)"
+                                },
+                                {
+                                    "label": "Weather",
+                                    "q_code": "146e",
+                                    "value": "Weather"
+                                },
+                                {
+                                    "label": "Store closures",
+                                    "q_code": "146f",
+                                    "value": "Store closures"
+                                },
+                                {
+                                    "label": "Store openings",
+                                    "q_code": "146g",
+                                    "value": "Store openings"
+                                },
+                                {
+                                    "label": "Other",
+                                    "q_code": "146h",
+                                    "value": "Other"
+                                }
+                            ],
+                            "type": "Checkbox"
+                        }],
+                        "id": "reason-for-change-question",
+                        "title": "Please indicate the reasons for any changes in the total retail turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
+                        "type": "General"
+                    }],
+                    "title": "Changes in total retail turnover"
+                },
+                {
+                    "type": "Question",
+                    "id": "change-comment-block",
+                    "skip_conditions": [{
+                        "when": [{
+                            "id": "significant-change-established-answer",
+                            "condition": "equals",
+                            "value": "No"
+                        }]
+                    }],
+                    "questions": [{
+                        "answers": [{
+                            "guidance": {
+                                "show_guidance": "Show examples of commentary on changes to total retail turnover",
+                                "hide_guidance": "Hide examples of commentary on changes to total retail turnover",
+                                "content": [{
+                                        "description": "Examples of commentary:"
+                                    },
+                                    {
+                                        "title": "\u2018In-store promotion\u2019",
+                                        "description": "\u201cOffer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.\u201d"
+                                    },
+                                    {
+                                        "title": "\u2018Special events (for example, sporting events)\u2019",
+                                        "description": "\u201cThis was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.\u201d"
+                                    },
+                                    {
+                                        "title": "\u2018Weather\u2019",
+                                        "description": "\u201cThe bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.\u201d"
+                                    }
+                                ]
+                            },
+                            "id": "change-comment",
+                            "label": "Comments",
+                            "mandatory": true,
+                            "q_code": "146",
+                            "type": "TextArea"
+                        }],
+                        "description": "We rely on your commentary to \u2018tell the story\u2019 behind changes in figures. By commenting here it will reduce the need for us to call you.",
+                        "id": "change-comment-question",
+                        "title": "Please describe the changes in total retail turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} in more detail",
+                        "type": "General"
+                    }],
+                    "title": "Changes in total retail turnover"
+                },
+                {
+                    "type": "Question",
+                    "id": "total-employees",
+                    "questions": [{
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "all workers paid directly from this business\u2019s payroll(s)",
+                                        "those temporarily absent but still being paid, for example on maternity leave"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "agency workers paid directly from the agency payroll",
+                                        "voluntary workers",
+                                        "former employees only receiving pension",
+                                        "self-employed workers",
+                                        "working owners who are not paid via PAYE"
+                                    ]
+                                }
+                            ]
+                        },
+                        "answers": [{
+                            "id": "total-number-employees",
+                            "label": "Total number of employees",
+                            "mandatory": false,
+                            "q_code": "50",
+                            "type": "Number",
+                            "default": 0
+                        }],
+                        "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
+                        "id": "total-number-employees-question",
+                        "title": "On {{metadata['employment_date']|format_date}} what was the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
+                        "type": "General"
+                    }],
+                    "title": "Employees"
+                },
+                {
+                    "type": "ConfirmationQuestion",
+                    "title": "Employees",
+                    "id": "confirm-zero-employees-block",
+                    "skip_conditions": [{
+                        "when": [{
+                            "id": "total-number-employees",
+                            "condition": "greater than",
+                            "value": 0
+                        }]
+                    }],
+                    "questions": [{
+                        "type": "General",
+                        "answers": [{
+                            "type": "Radio",
+                            "id": "confirm-zero-employees-answer",
+                            "q_code": "d50",
+                            "options": [{
+                                    "label": "Yes this is correct",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No I need to change this",
+                                    "value": "No"
+                                }
+                            ],
+                            "mandatory": true
+                        }],
+                        "id": "confirm-zero-employees-question",
+                        "title": "On {{metadata['employment_date']|format_date}}, the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was <em>0</em>, is this correct?"
+                    }],
+                    "routing_rules": [{
+                            "goto": {
+                                "when": [{
+                                    "value": "No",
+                                    "id": "confirm-zero-employees-answer",
+                                    "condition": "equals"
+                                }],
+                                "block": "total-employees"
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "changes-in-employees"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Question",
+                    "id": "employees-breakdown",
+                    "questions": [{
+                        "calculations": [{
+                                "calculation_type": "sum",
+                                "value": 0,
+                                "answers_to_calculate": [
+                                    "male-employees-over-30-hours",
+                                    "male-employees-under-30-hours",
+                                    "female-employees-over-30-hours",
+                                    "female-employees-under-30-hours"
+                                ],
+                                "conditions": ["equals"]
+                            },
+                            {
+                                "calculation_type": "sum",
+                                "answer_id": "total-number-employees",
+                                "answers_to_calculate": [
+                                    "male-employees-over-30-hours",
+                                    "male-employees-under-30-hours",
+                                    "female-employees-over-30-hours",
+                                    "female-employees-under-30-hours"
+                                ],
+                                "conditions": ["equals"]
+                            }
+                        ],
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "all workers paid directly from this business\u2019s payroll(s)",
+                                        "those temporarily absent but still being paid, for example on maternity leave"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "agency workers paid directly from the agency payroll",
+                                        "voluntary workers",
+                                        "former employees only receiving pension",
+                                        "self-employed workers",
+                                        "working owners who are not paid via PAYE"
+                                    ]
+                                }
+                            ]
+                        },
+                        "answers": [{
+                                "id": "male-employees-over-30-hours",
+                                "label": "Number of male employees working more than 30 hours per week",
+                                "mandatory": false,
+                                "q_code": "51",
+                                "type": "Number",
+                                "max_value": {
+                                    "answer_id": "total-number-employees"
+                                }
+                            },
+                            {
+                                "id": "male-employees-under-30-hours",
+                                "label": "Number of male employees working 30 hours or less per week",
+                                "mandatory": false,
+                                "q_code": "52",
+                                "type": "Number",
+                                "max_value": {
+                                    "answer_id": "total-number-employees"
+                                }
+                            },
+                            {
+                                "id": "female-employees-over-30-hours",
+                                "label": "Number of female employees working more than 30 hours per week",
+                                "mandatory": false,
+                                "q_code": "53",
+                                "type": "Number",
+                                "max_value": {
+                                    "answer_id": "total-number-employees"
+                                }
+                            },
+                            {
+                                "id": "female-employees-under-30-hours",
+                                "label": "Number of female employees working 30 hours or less per week",
+                                "mandatory": false,
+                                "q_code": "54",
+                                "type": "Number",
+                                "max_value": {
+                                    "answer_id": "total-number-employees"
+                                }
+                            }
+                        ],
+                        "id": "employee-breakdown-questions",
+                        "title": "Of the <em>{{answers['total-number-employees']|format_number}}</em> total employees employed on {{metadata['employment_date']|format_date}}, please describe' the number of:",
+                        "type": "Calculated"
+                    }],
+                    "title": "Employees"
+                },
+                {
+                    "type": "Question",
+                    "id": "changes-in-employees",
+                    "questions": [{
+                        "answers": [{
+                            "id": "changes-in-employees-answer",
+                            "label": "Comments",
+                            "mandatory": false,
+                            "q_code": "147",
+                            "type": "TextArea"
+                        }],
+                        "guidance": {
+                            "content": [{
+                                "description": "<p>Comment on significant changes in the number of employees from:</p>",
+                                "list": ["the previous reporting period", "the same reporting period last year"]
+                            }]
+                        },
+                        "id": "changes-in-employees-question",
+                        "title": "Explain any significant changes in the number of employees",
+                        "type": "General"
+                    }],
+                    "title": "Changes in employee figures"
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
                 }
-            ]
-        }
-    ]
+            ],
+            "id": "rsi",
+            "title": ""
+        }]
+    }]
 }

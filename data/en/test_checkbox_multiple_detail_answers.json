@@ -11,8 +11,7 @@
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
         "INVALID_NUMBER": "Please enter an integer"
     },
-    "metadata": [
-        {
+    "metadata": [{
             "name": "user_id",
             "validator": "string"
         },
@@ -25,102 +24,92 @@
             "validator": "string"
         }
     ],
-    "sections": [
-        {
-            "id": "default-section",
-            "groups": [
-                {
-                    "blocks": [
-                        {
-                            "type": "Question",
-                            "id": "mandatory-checkbox",
-                            "description": "",
-                            "questions": [
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                    "type": "Question",
+                    "id": "mandatory-checkbox",
+                    "description": "",
+                    "questions": [{
+                        "answers": [{
+                            "id": "mandatory-checkbox-answer",
+                            "label": "",
+                            "mandatory": false,
+                            "options": [{
+                                    "label": "None",
+                                    "value": "None",
+                                    "q_code": "0"
+                                },
                                 {
-                                    "answers": [
-                                        {
-                                            "id": "mandatory-checkbox-answer",
-                                            "label": "",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "None",
-                                                    "value": "None",
-                                                    "q_code": "0"
-                                                },
-                                                {
-                                                    "label": "Cheese",
-                                                    "value": "Cheese",
-                                                    "q_code": "1",
-                                                    "detail_answer": {
-                                                        "mandatory": false,
-                                                        "id": "cheese-type-answer",
-                                                        "label": "Type specific cheese if cheddar isn't wanted",
-                                                        "type": "TextField"
-                                                    }
-                                                },
-                                                {
-                                                    "label": "Ham",
-                                                    "value": "Ham",
-                                                    "q_code": "2"
-                                                },
-                                                {
-                                                    "label": "Pineapple",
-                                                    "value": "Pineapple",
-                                                    "q_code": "3"
-                                                },
-                                                {
-                                                    "label": "Tuna",
-                                                    "value": "Tuna",
-                                                    "q_code": "4"
-                                                },
-                                                {
-                                                    "label": "Pepperoni",
-                                                    "value": "Pepperoni",
-                                                    "q_code": "5"
-                                                },
-                                                {
-                                                    "label": "Your choice",
-                                                    "q_code": "6",
-                                                    "description": "Choose any other topping",
-                                                    "value": "Your choice",
-                                                    "detail_answer": {
-                                                        "mandatory": true,
-                                                        "id": "your-choice-answer-mandatory",
-                                                        "label": "Please describe your topping",
-                                                        "type": "TextField",
-                                                        "validation": {
-                                                            "messages": {
-                                                                "MANDATORY_TEXTFIELD": "Enter your topping choice to continue"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            ],
-                                            "type": "Checkbox",
-                                            "validation": {
-                                                "messages": {}
+                                    "label": "Cheese",
+                                    "value": "Cheese",
+                                    "q_code": "1",
+                                    "detail_answer": {
+                                        "mandatory": false,
+                                        "id": "cheese-type-answer",
+                                        "label": "Type specific cheese if cheddar isn't wanted",
+                                        "type": "TextField"
+                                    }
+                                },
+                                {
+                                    "label": "Ham",
+                                    "value": "Ham",
+                                    "q_code": "2"
+                                },
+                                {
+                                    "label": "Pineapple",
+                                    "value": "Pineapple",
+                                    "q_code": "3"
+                                },
+                                {
+                                    "label": "Tuna",
+                                    "value": "Tuna",
+                                    "q_code": "4"
+                                },
+                                {
+                                    "label": "Pepperoni",
+                                    "value": "Pepperoni",
+                                    "q_code": "5"
+                                },
+                                {
+                                    "label": "Your choice",
+                                    "q_code": "6",
+                                    "description": "Choose any other topping",
+                                    "value": "Your choice",
+                                    "detail_answer": {
+                                        "mandatory": true,
+                                        "id": "your-choice-answer-mandatory",
+                                        "label": "Please describe your topping",
+                                        "type": "TextField",
+                                        "validation": {
+                                            "messages": {
+                                                "MANDATORY_TEXTFIELD": "Enter your topping choice to continue"
                                             }
                                         }
-                                    ],
-                                    "description": "",
-                                    "id": "mandatory-checkbox-question",
-                                    "title": "Which pizza toppings would you like?",
-                                    "type": "General"
+                                    }
                                 }
                             ],
-                            "title": "Mandatory other option",
-                            "routing_rules": []
-                        },
-                        {
-                            "type": "Summary",
-                            "id": "summary"
-                        }
-                    ],
-                    "id": "checkboxes",
-                    "title": ""
+                            "type": "Checkbox",
+                            "validation": {
+                                "messages": {}
+                            }
+                        }],
+                        "description": "",
+                        "id": "mandatory-checkbox-question",
+                        "title": "Which pizza toppings would you like?",
+                        "type": "General"
+                    }],
+                    "title": "Mandatory other option",
+                    "routing_rules": []
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
                 }
-            ]
-        }
-    ]
+            ],
+            "id": "checkboxes",
+            "title": ""
+        }]
+    }]
 }

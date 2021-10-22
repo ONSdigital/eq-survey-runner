@@ -5,8 +5,7 @@
     "survey_id": "0",
     "title": "Radio Optional with Mandatory Other Overridden Error",
     "theme": "default",
-    "metadata": [
-        {
+    "metadata": [{
             "name": "user_id",
             "validator": "string"
         },
@@ -19,61 +18,51 @@
             "validator": "string"
         }
     ],
-    "sections": [
-        {
-            "id": "default-section",
-            "groups": [
-                {
-                    "id": "radio",
-                    "title": "Radio Optional with Mandatory Other Overridden Error",
-                    "blocks": [
-                        {
-                            "type": "Question",
-                            "id": "radio-non-mandatory",
-                            "questions": [
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "id": "radio",
+            "title": "Radio Optional with Mandatory Other Overridden Error",
+            "blocks": [{
+                    "type": "Question",
+                    "id": "radio-non-mandatory",
+                    "questions": [{
+                        "type": "General",
+                        "id": "radio-non-mandatory-question",
+                        "title": "What do you prefer for breakfast?",
+                        "answers": [{
+                            "type": "Radio",
+                            "id": "radio-non-mandatory-answer",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Toast",
+                                    "value": "Toast"
+                                },
                                 {
-                                    "type": "General",
-                                    "id": "radio-non-mandatory-question",
-                                    "title": "What do you prefer for breakfast?",
-                                    "answers": [
-                                        {
-                                            "type": "Radio",
-                                            "id": "radio-non-mandatory-answer",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Toast",
-                                                    "value": "Toast"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "description": "This is mandatory.",
-                                                    "value": "Other",
-                                                    "detail_answer": {
-                                                        "mandatory": true,
-                                                        "id": "other-answer-non-mandatory",
-                                                        "label": "Please describe other",
-                                                        "type": "TextField",
-                                                        "validation": {
-                                                            "messages": {
-                                                                "MANDATORY_TEXTFIELD": "Test error message is overridden"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            ]
+                                    "label": "Other",
+                                    "description": "This is mandatory.",
+                                    "value": "Other",
+                                    "detail_answer": {
+                                        "mandatory": true,
+                                        "id": "other-answer-non-mandatory",
+                                        "label": "Please describe other",
+                                        "type": "TextField",
+                                        "validation": {
+                                            "messages": {
+                                                "MANDATORY_TEXTFIELD": "Test error message is overridden"
+                                            }
                                         }
-                                    ]
+                                    }
                                 }
                             ]
-                        },
-                        {
-                            "type": "Summary",
-                            "id": "summary"
-                        }
-                    ]
+                        }]
+                    }]
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
                 }
             ]
-        }
-    ]
+        }]
+    }]
 }
