@@ -878,7 +878,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupb903c023-4354-46af-87bc-708000c86384",
+                                    "group": "group-summary-weekly",
                                     "when": [{
                                         "id": "answer3b68f565-f13a-4155-b639-124cd0ec82ca",
                                         "condition": "contains any",
@@ -1063,13 +1063,27 @@
                                 ]
                             }]
                         }]
-                    },
+                    }
+                ]
+            },
+            {
+                "id": "group-summary-weekly",
+                "blocks": [
                     {
-                        "id": "summary1da4e8ee-f4ee-42c4-90ab-485444de2b3e",
+                        "id": "summary-weekly",
                         "type": "SectionSummary",
                         "collapsible": false
                     }
-                ]
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                        "condition": "not contains any",
+                        "values": [
+                            "Weekly"
+                        ]
+                    }]
+                }]
             }]
         },
         {
@@ -1643,7 +1657,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group9832eee5-f77a-4d30-87e7-80220310090c",
+                                    "group": "group-summary-fortnightly",
                                     "when": [{
                                         "id": "answerf4882ee4-ec46-4c98-840a-7171597d1285",
                                         "condition": "contains any",
@@ -1828,13 +1842,27 @@
                                 ]
                             }]
                         }]
-                    },
+                    }
+                ]
+            },
+            {
+                "id": "group-summary-fortnightly",
+                "blocks": [
                     {
-                        "id": "summaryb903c023-4354-46af-87bc-708000c86384",
+                        "id": "summary-fortnightly",
                         "type": "SectionSummary",
                         "collapsible": false
                     }
-                ]
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                        "condition": "not contains any",
+                        "values": [
+                            "Fortnightly"
+                        ]
+                    }]
+                }]
             }]
         },
         {
@@ -2391,7 +2419,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group9442599d-4b92-4c58-81f2-693ae40b7100",
+                                    "group": "group-summary-monthly",
                                     "when": [{
                                         "id": "answerd6064ed2-4172-462a-9b7f-af57f1bc7b9a",
                                         "condition": "contains any",
@@ -2576,13 +2604,27 @@
                                 ]
                             }]
                         }]
-                    },
+                    }
+                ]
+            },
+            {
+                "id": "group-summary-monthly",
+                "blocks": [
                     {
-                        "id": "summary9832eee5-f77a-4d30-87e7-80220310090c",
+                        "id": "summary-monthly",
                         "type": "SectionSummary",
                         "collapsible": false
                     }
-                ]
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                        "condition": "not contains any",
+                        "values": [
+                            "Calendar monthly"
+                        ]
+                    }]
+                }]
             }]
         },
         {
@@ -3139,7 +3181,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "group9747ed13-704c-46f6-8d17-3655314314ca",
+                                    "group": "group-summary-fourweekly",
                                     "when": [{
                                         "id": "answerfefeb3ed-f1fe-4359-aebd-16739cf8ac6e",
                                         "condition": "contains any",
@@ -3324,13 +3366,27 @@
                                 ]
                             }]
                         }]
-                    },
+                    }
+                ]
+            },
+            {
+                "id": "group-summary-fourweekly",
+                "blocks": [
                     {
-                        "id": "summary9442599d-4b92-4c58-81f2-693ae40b7100",
+                        "id": "summary-fourweekly",
                         "type": "SectionSummary",
                         "collapsible": false
                     }
-                ]
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                        "condition": "not contains any",
+                        "values": [
+                            "Four weekly"
+                        ]
+                    }]
+                }]
             }]
         },
         {
@@ -3887,7 +3943,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "group": "groupe30dd07c-2f93-4605-bd45-eb821be27e9e",
+                                    "group": "group-summary-fiveweekly",
                                     "when": [{
                                         "id": "answerb567e1f5-c395-4db3-98b6-03dad97e420c",
                                         "condition": "contains any",
@@ -4072,13 +4128,27 @@
                                 ]
                             }]
                         }]
-                    },
+                    }
+                ]
+            },
+            {
+                "id": "group-summary-fiveweekly",
+                "blocks": [
                     {
-                        "id": "summary9747ed13-704c-46f6-8d17-3655314314ca",
+                        "id": "summary-fiveweekly",
                         "type": "SectionSummary",
                         "collapsible": false
                     }
-                ]
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answer9c73f380-4074-4680-853a-8e6a24d00b33",
+                        "condition": "not contains any",
+                        "values": [
+                            "Five weekly"
+                        ]
+                    }]
+                }]
             }]
         },
         {
@@ -4110,11 +4180,6 @@
                                     "max_length": 2000
                                 }]
                             }]
-                        },
-                        {
-                            "id": "summarye30dd07c-2f93-4605-bd45-eb821be27e9e",
-                            "type": "SectionSummary",
-                            "collapsible": false
                         }
                     ]
                 },
