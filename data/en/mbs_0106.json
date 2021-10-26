@@ -1,5 +1,5 @@
 {
-    "eq_id": "mbs",
+    "eq_id": "mbs_0106",
     "form_type": "0106",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -18,22 +18,25 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance</h2><p><strong>Please still complete this survey even if your business has been closed.</strong><p><strong>If you have closed for all, or some, of the period</strong>: select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<p><strong>Exclude from figures</strong>: any COVID-19 government subsidies such as the Coronavirus Job Retention Scheme and sector-specific, or small business, grants.<p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>",
-                                "list": [
-                                    "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
-                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
-                                    "We will treat your data securely and confidentially."
-                                ]
-                            }]
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><h2><strong>Coronavirus (COVID-19) guidance</strong></h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select &#x27;yes, you can provide figures&#x27; and enter turnover, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
+                                },
+                                {
+                                    "list": [
+                                        "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
+                                        "You can provide informed estimates if actual figures are not available.",
+                                        "We will treat your data securely and confidentially."
+                                    ]
+                                }
+                            ]
                         }],
                         "preview_content": {
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
+                                    "description": "<a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices\"target=\"_blank\"rel=\"noopener noreferrer\">View the survey information and questions before you start the survey</a>  (external link)"
                                 },
                                 {
-                                    "description": "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP)</a> (external link)"
+                                    "description": "The information you provide contributes to <a href=\"https://www.ons.gov.uk/economy/grossdomesticproductgdp\"target=\"_blank\"rel=\"noopener noreferrer\">Gross Domestic Product (GDP)</a>  (external link)"
                                 },
                                 {
                                     "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
@@ -112,7 +115,9 @@
                                     "when": [{
                                         "id": "answer29181293-57f8-498e-946a-ebfc0ad1af53",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -180,7 +185,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question84f2ba79-2dfb-4456-805e-2253590d5197",
-                            "title": "For the period {{ format_conditional_date (answers['answer90fe9593-5570-46f4-938e-87e1b75f8660from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer90fe9593-5570-46f4-938e-87e1b75f8660to'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}&apos;s <em>total turnover</em>, excluding VAT?",
+                            "title": "For the period {{ format_conditional_date (answers['answer90fe9593-5570-46f4-938e-87e1b75f8660from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer90fe9593-5570-46f4-938e-87e1b75f8660to'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}'s <em>total turnover</em>, excluding VAT?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -229,7 +234,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-84f2ba79-2dfb-4456-805e-2253590d5197",
-                            "title": "For the period {{ format_conditional_date (answers['answer90fe9593-5570-46f4-938e-87e1b75f8660from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer90fe9593-5570-46f4-938e-87e1b75f8660to'], metadata['ref_p_end_date']) }}, the total turnover was <em>{{ format_currency(answers['answer0893fc66-fa85-4dcc-b61e-455add66a8b7'], 'GBP') }}</em>, is this correct?",
+                            "title": "For the period {{ format_conditional_date (answers['answer90fe9593-5570-46f4-938e-87e1b75f8660from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer90fe9593-5570-46f4-938e-87e1b75f8660to'], metadata['ref_p_end_date']) }}, the total turnover was <em>{{ format_currency(answers['answer0893fc66-fa85-4dcc-b61e-455add66a8b7'], 'GBP') }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-84f2ba79-2dfb-4456-805e-2253590d5197",
@@ -252,7 +257,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-84f2ba79-2dfb-4456-805e-2253590d5197",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -331,6 +338,7 @@
             "name": "ref_p_end_date",
             "validator": "date"
         }
+
     ],
     "view_submitted_response": {
         "enabled": true,
