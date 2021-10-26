@@ -376,8 +376,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
-                                "currency": "GBP",
-                                "default": 0
+                                "currency": "GBP"
                             }]
                         }]
                     },
