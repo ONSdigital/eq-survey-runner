@@ -18,7 +18,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><h2>Coronavirus (COVID-19) additional guidance</h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select &quot;yes, you can provide figures&quot; and enter retail turnover, even if this is &quot;0&quot;.<br/><strong>Exclude from figures</strong>: any COVID-19 government subsidies such as the Coronavirus Job Retention Scheme and sector-specific, or small business, grants.<br/><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><h2>Coronavirus (COVID-19) guidance</h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select &#x27;yes, you can provide figures&#x27; and enter retail turnover, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
                                 },
                                 {
                                     "list": [
@@ -238,8 +238,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
-                                "currency": "GBP",
-                                "default": 0
+                                "currency": "GBP"
                             }]
                         }]
                     },
