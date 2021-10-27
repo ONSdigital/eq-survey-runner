@@ -19,7 +19,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><p><strong>Important notice - changes to guidance</strong></p><p>New information has been added about which trades are included in the survey and how to calculate value of work. For further guidance, read the introductory pages and guidance that accompanies the questions.</p><p></p><p></p><p><strong>Coronavirus (COVID-19) additional guidance</strong></p><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period: </strong>select &quot;yes, you can provide figures&quot; and enter value of work, even if this is &quot;0&quot;.</p><p><strong>Exclude from figures: </strong>any COVID-19 government subsidies such as the Coronavirus Job Retention Scheme and sector-specific or small business grants.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><p><strong>Important notice - changes to guidance</strong></p><p>Additional information has been added about which trades are included in the survey and how to calculate value of work. For further guidance, read the introductory pages and guidance that accompanies the questions.</p><p></p><p></p><p><strong>Coronavirus (COVID-19) guidance</strong></p><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period: </strong>select &#x27;yes, you can provide figures&#x27; and enter value of work, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
                                 },
                                 {
                                     "list": [
@@ -117,7 +117,7 @@
                         "type": "Interstitial",
                         "id": "groupb1d09333-c7fd-464a-a840-f86056fb32cf-introduction",
                         "title": "How to complete this survey",
-                        "description": "<ul><li>This survey is for construction businesses and allied trades.  If you are a fitter, installer, or have any other involvement in construction projects, you are included within the construction industry and so should report your figures.  <a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyforconstructionandalliedtrades\"target=\"_blank\"rel=\"noopener noreferrer\">A full list of allied trades can be found here</a>.</li><li>If you have not carried out any work in the reporting period, enter zero values and still submit. Nil returns are equally important in producing statistics.</li><li>If your total value of work is zero, please explain in the comments section at the end of the survey. This will reduce the need for us to contact you with data queries.</li></ul><p><strong>What you need to do</strong></p><p>You will be asked to provide a total figure for the <strong>value of the work </strong>your business has carried out during the reporting period.</p><p>You will then be asked to provide values for the work you have carried out across three main categories, with other breakdowns in each section.</p><ul><li>Housing work</li><li>Infrastructure</li><li>Non-housing, excluding infrastructure</li></ul><p>If you have difficulty in splitting your work across the different categories, then an informed estimate is acceptable.  However, please use a consistent approach for each reporting period.</p><p><a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyforconstructionandalliedtrades\"target=\"_blank\"rel=\"noopener noreferrer\">See here for more detail on the questions you will be asked</a></p><p><strong>What do we mean by \"value of work\"?</strong></p><p>To calculate the value of your work, you will need to provide a precise valuation, or informed estimate if needed, of the <strong>chargeable work</strong> your business has carried out during the reporting period. This could be work started, in progress, or completed. </p><p>To produce a valuation, you will need to:</p><p><strong>Include:</strong></p><ul><li>materials used</li><li>overheads</li><li>profits</li><li>labour costs of employees on your payroll</li></ul><p><strong>Exclude:</strong></p><ul><li>value of the work carried out by subcontractors</li><li>VAT</li><li>payments for work carried out in previous periods</li><li>payments made to consultants or architects</li><li>fixtures, equipment, tools and materials your business made for sale</li><li>value of land</li></ul><p></p>"
+                        "description": "<ul><li>This survey is for construction businesses and allied trades.  If you are a fitter, installer, or have any other involvement in construction projects, you are included within the construction industry and so should report your figures.  <a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyforconstructionandalliedtrades\"target=\"_blank\"rel=\"noopener noreferrer\">A full list of allied trades can be found here</a>.</li><li>If you have not carried out any work in the reporting period, enter zero values and still submit. Nil returns are equally important in producing statistics.</li><li>If your total value of work is zero, please explain in the comments section at the end of the survey. This will reduce the need for us to contact you with data queries.</li></ul><p><strong>What you need to do</strong></p><p>You will be asked to provide a total figure for the <strong>value of the work </strong>your business has carried out during the reporting period.</p><p>You will then be asked to provide values for the work you have carried out across three main categories, with other breakdowns in each section.</p><ul><li>Housing work</li><li>Infrastructure</li><li>Non-housing, excluding infrastructure</li></ul><p>If you have difficulty in splitting your work across the different categories, then an informed estimate is acceptable.  However, please use a consistent approach for each reporting period.</p><p><a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyforconstructionandalliedtrades\"target=\"_blank\"rel=\"noopener noreferrer\">See here for more detail on the questions you will be asked</a></p><p><strong>What do we mean by 'value of work'?</strong></p><p>To calculate the value of your work, you will need to provide a precise valuation, or informed estimate if needed, of the <strong>chargeable work</strong> your business has carried out during the reporting period. This could be work started, in progress, or completed. </p><p>To produce a valuation, you will need to:</p><p><strong>Include:</strong></p><ul><li>materials used</li><li>overheads</li><li>profits</li><li>labour costs of employees on your payroll</li></ul><p><strong>Exclude:</strong></p><ul><li>value of the work carried out by subcontractors</li><li>VAT</li><li>payments for work carried out in previous periods</li><li>payments made to consultants or architects</li><li>fixtures, equipment, tools and materials your business made for sale</li><li>value of land</li></ul><p></p>"
                     },
                     {
                         "id": "blockb859977c-01e2-498a-807e-5438af81fdd2",
@@ -259,7 +259,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"total value of all construction work\"",
+                                "title": "What we mean by 'total value of all construction work'",
                                 "content": [{
                                     "description": "This refers to all<strong> work on new structures and repair and maintenance on existing structures,</strong> carried out on housing, infrastructure, commercial and industrial projects for the public and private sector."
                                 }]
@@ -295,7 +295,7 @@
                                 "options": [{
                                         "label": "Yes, that is correct",
                                         "value": "Yes, that is correct",
-                                        "description": "If you have entered \"0\", please explain in the comment section at the end of the survey"
+                                        "description": "If you have entered '0', please explain in the comment section at the end of the survey"
                                     },
                                     {
                                         "label": "No, I need to change this",
@@ -394,7 +394,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"work on housing\"",
+                                "title": "What we mean by 'work on housing'",
                                 "content": [{
                                     "description": "This refers to work on residential buildings. If over half of a building's floor area is used for residential purposes, it is considered a residential building."
                                 }]
@@ -496,7 +496,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"public sector\"",
+                                "title": "What we mean by 'public sector'",
                                 "content": [{
                                         "description": "This consists of government owned organisations."
                                     },
@@ -621,7 +621,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"private sector\"",
+                                "title": "What we mean by 'private sector'",
                                 "content": [{
                                         "description": "This refers to the part of the economy that is for profit and is owned by private organisations or individuals."
                                     },
@@ -795,7 +795,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"infrastructure\"",
+                                "title": "What we mean by 'infrastructure'",
                                 "content": [{
                                         "description": "Infrastructure refers to non-residential buildings, facilities, or systems that are fundamental to the functioning of an area."
                                     },
@@ -1151,7 +1151,7 @@
                                 "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                 "mandatory": true,
                                 "type": "Checkbox",
-                                "label": "",
+                                "label": "Select all that apply:",
                                 "description": "",
                                 "options": [{
                                         "label": "Public sector projects",
@@ -1214,7 +1214,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"new non-housing\"",
+                                "title": "What we mean by 'new non-housing'",
                                 "content": [{
                                         "description": "This refers to work on new non-residential structures. If over half of a building's floor area is used for non-residential purposes, it is considered a non-residential building."
                                     },
@@ -1298,7 +1298,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"existing non-housing structures\"",
+                                "title": "What we mean by 'existing non-housing structures'",
                                 "content": [{
                                         "description": "This refers to work on existing non-residential structures. If over half of a building's floor area is used for non-residential purposes, it is considered a non-residential building."
                                     },
@@ -1384,7 +1384,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by the \"private commercial sector\"",
+                                "title": "What we mean by the 'private commercial sector'",
                                 "content": [{
                                         "description": "This sector refers to part of the economy that  includes all businesses, except those involved in manufacturing and transport."
                                     },
@@ -1471,7 +1471,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by the \"private industrial sector\"",
+                                "title": "What we mean by the 'private industrial sector'",
                                 "content": [{
                                         "description": "This refers to part of the economy that includes businesses involved in manufacturing and transport, excluding agriculture."
                                     },
