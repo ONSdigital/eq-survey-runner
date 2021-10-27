@@ -1,5 +1,5 @@
 {
-    "eq_id": "mbs",
+    "eq_id": "mbs_0204",
     "form_type": "0204",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -18,22 +18,25 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance</h2><p><strong>Please still complete this survey even if your business has been closed.</strong><p><strong>If you have closed for all, or some, of the period</strong>: select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<p><strong>Exclude from figures</strong>: any COVID-19 government subsidies such as the Coronavirus Job Retention Scheme and sector-specific, or small business, grants.<p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>",
-                                "list": [
-                                    "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
-                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
-                                    "We will treat your data securely and confidentially."
-                                ]
-                            }]
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><h2><strong>Coronavirus (COVID-19) guidance</strong></h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select &#x27;yes, you can provide figures&#x27; and enter turnover, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
+                                },
+                                {
+                                    "list": [
+                                        "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
+                                        "You can provide informed estimates if actual figures are not available.",
+                                        "We will treat your data securely and confidentially."
+                                    ]
+                                }
+                            ]
                         }],
                         "preview_content": {
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
+                                    "description": "<a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices\"target=\"_blank\"rel=\"noopener noreferrer\">View the survey information and questions before you start the survey</a>  (external link)"
                                 },
                                 {
-                                    "description": "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP)</a> (external link)"
+                                    "description": "The information you provide contributes to <a href=\"https://www.ons.gov.uk/economy/grossdomesticproductgdp\"target=\"_blank\"rel=\"noopener noreferrer\">Gross Domestic Product (GDP)</a>  (external link)"
                                 },
                                 {
                                     "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
@@ -82,7 +85,9 @@
                                     "when": [{
                                         "id": "answer25b21ff6-5663-4b8b-8f9e-4740ac7b4447",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -150,7 +155,7 @@
                     "type": "Question",
                     "questions": [{
                         "id": "questionbb508839-f8a3-4320-9f21-9eedc0978f89",
-                        "title": "For the period {{ format_conditional_date (answers['answer5dda86a5-2940-4763-be18-c64d426ade3bfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer5dda86a5-2940-4763-be18-c64d426ade3bto'], metadata['ref_p_end_date']) }}, what was the total volume of {{ metadata['ru_name'] }}&apos;s <em>potable water that was supplied to customers</em>, in megalitres?",
+                        "title": "For the period {{ format_conditional_date (answers['answer5dda86a5-2940-4763-be18-c64d426ade3bfrom'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer5dda86a5-2940-4763-be18-c64d426ade3bto'], metadata['ref_p_end_date']) }}, what was the total volume of {{ metadata['ru_name'] }}'s <em>potable water that was supplied to customers</em>, in megalitres?",
                         "type": "General",
                         "answers": [{
                             "id": "answercb2a09a9-106e-465d-a46d-8d1112091061",
