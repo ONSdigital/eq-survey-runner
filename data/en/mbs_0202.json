@@ -1,5 +1,5 @@
 {
-    "eq_id": "mbs",
+    "eq_id": "mbs_0202",
     "form_type": "0202",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -18,22 +18,25 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance</h2><p><strong>Please still complete this survey even if your business has been closed.</strong><p><strong>If you have closed for all, or some, of the period</strong>: select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<p><strong>Exclude from figures</strong>: any COVID-19 government subsidies such as the Coronavirus Job Retention Scheme and sector-specific, or small business, grants.<p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>",
-                                "list": [
-                                    "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
-                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
-                                    "We will treat your data securely and confidentially."
-                                ]
-                            }]
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><h2><strong>Coronavirus (COVID-19) guidance</strong></h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select &#x27;yes, you can provide figures&#x27; and enter turnover, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
+                                },
+                                {
+                                    "list": [
+                                        "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
+                                        "You can provide informed estimates if actual figures are not available.",
+                                        "We will treat your data securely and confidentially."
+                                    ]
+                                }
+                            ]
                         }],
                         "preview_content": {
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
+                                    "description": "<a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices\"target=\"_blank\"rel=\"noopener noreferrer\">View the survey information and questions before you start the survey</a>  (external link)"
                                 },
                                 {
-                                    "description": "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP)</a> (external link)"
+                                    "description": "The information you provide contributes to <a href=\"https://www.ons.gov.uk/economy/grossdomesticproductgdp\"target=\"_blank\"rel=\"noopener noreferrer\">Gross Domestic Product (GDP)</a>  (external link)"
                                 },
                                 {
                                     "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
@@ -74,7 +77,9 @@
                                             "description": "<strong>Include:</strong>"
                                         },
                                         {
-                                            "list": ["all countries outside of England, Scotland, Wales and Northern Ireland"]
+                                            "list": [
+                                                "all countries outside of England, Scotland, Wales and Northern Ireland"
+                                            ]
                                         }
                                     ]
                                 }
@@ -121,7 +126,9 @@
                                     "when": [{
                                         "id": "answer33b48a9c-6ff4-4034-96d7-265d2a900836",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -189,7 +196,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question62ef3454-2f90-4563-9a3f-df6d16cb0bcd",
-                            "title": "For the period {{ format_conditional_date (answers['answeree20c4a8-0da5-4606-b79a-4bdc79e77e85from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answeree20c4a8-0da5-4606-b79a-4bdc79e77e85to'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}&apos;s <em>total turnover</em>, excluding VAT?",
+                            "title": "For the period {{ format_conditional_date (answers['answeree20c4a8-0da5-4606-b79a-4bdc79e77e85from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answeree20c4a8-0da5-4606-b79a-4bdc79e77e85to'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}'s <em>total turnover</em>, excluding VAT?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -236,7 +243,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-62ef3454-2f90-4563-9a3f-df6d16cb0bcd",
-                            "title": "For the period {{ format_conditional_date (answers['answeree20c4a8-0da5-4606-b79a-4bdc79e77e85from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answeree20c4a8-0da5-4606-b79a-4bdc79e77e85to'], metadata['ref_p_end_date']) }}, the total turnover was <em>{{ format_currency(answers['answer39da2680-957d-43fa-bb29-7447a712d139'], 'GBP') }}</em>, is this correct?",
+                            "title": "For the period {{ format_conditional_date (answers['answeree20c4a8-0da5-4606-b79a-4bdc79e77e85from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answeree20c4a8-0da5-4606-b79a-4bdc79e77e85to'], metadata['ref_p_end_date']) }}, the total turnover was <em>{{ format_currency(answers['answer39da2680-957d-43fa-bb29-7447a712d139'], 'GBP') }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-62ef3454-2f90-4563-9a3f-df6d16cb0bcd",
@@ -259,7 +266,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-62ef3454-2f90-4563-9a3f-df6d16cb0bcd",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -289,7 +298,9 @@
                                     "description": "Include:"
                                 },
                                 {
-                                    "list": ["All countries outside of England, Scotland, Wales and Northern Ireland"]
+                                    "list": [
+                                        "All countries outside of England, Scotland, Wales and Northern Ireland"
+                                    ]
                                 }
                             ]
                         },

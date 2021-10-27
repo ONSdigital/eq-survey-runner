@@ -1,5 +1,5 @@
 {
-    "eq_id": "mbs",
+    "eq_id": "mbs_0123",
     "form_type": "0123",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -18,22 +18,25 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance</h2><p><strong>Please still complete this survey even if your business has been closed.</strong><p><strong>If you have closed for all, or some, of the period</strong>: select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".<p><strong>Exclude from figures</strong>: any COVID-19 government subsidies such as the Coronavirus Job Retention Scheme and sector-specific, or small business, grants.<p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>",
-                                "list": [
-                                    "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
-                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
-                                    "We will treat your data securely and confidentially."
-                                ]
-                            }]
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><h2><strong>Coronavirus (COVID-19) guidance</strong></h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select &#x27;yes&#x27;, you can provide figures&#x27; and enter turnover, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
+                                },
+                                {
+                                    "list": [
+                                        "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
+                                        "You can provide informed estimates if actual figures are not available.",
+                                        "We will treat your data securely and confidentially."
+                                    ]
+                                }
+                            ]
                         }],
                         "preview_content": {
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
+                                    "description": "<a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices\"target=\"_blank\"rel=\"noopener noreferrer\">View the survey information and questions before you start the survey</a> (external link)"
                                 },
                                 {
-                                    "description": "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP)</a> (external link)"
+                                    "description": "The information you provide contributes to <a href=\"https://www.ons.gov.uk/economy/grossdomesticproductgdp\"target=\"_blank\"rel=\"noopener noreferrer\">Gross Domestic Product (GDP)</a>  (external link)"
                                 },
                                 {
                                     "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
@@ -45,7 +48,9 @@
                                             "description": "<strong>Exclude:</strong>"
                                         },
                                         {
-                                            "list": ["VAT"]
+                                            "list": [
+                                                "VAT"
+                                            ]
                                         }
                                     ]
                                 },
@@ -55,7 +60,12 @@
                                             "description": "Exclude:"
                                         },
                                         {
-                                            "list": ["VAT", "commission and fees", "income from sale of fixed capital assets", "grants"]
+                                            "list": [
+                                                "VAT",
+                                                "commission and fees",
+                                                "income from sale of fixed capital assets",
+                                                "grants"
+                                            ]
                                         }
                                     ]
                                 }
@@ -102,7 +112,9 @@
                                     "when": [{
                                         "id": "answer1b071b2f-8c41-44cd-a517-98dcedaa759a",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -170,7 +182,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question77c5a87c-adbe-4e9e-986f-b0e233897dd0",
-                            "title": "For the period {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677to'], metadata['ref_p_end_date']) }}, what was the value of {{ metadata['ru_name'] }}&apos;s <em>commission and fees</em>, excluding VAT?",
+                            "title": "For the period {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677to'], metadata['ref_p_end_date']) }}, what was the value of {{ metadata['ru_name'] }}'s <em>commission and fees</em>, excluding VAT?",
                             "description": "<p>For example, as a travel agent, where you do not hold title to goods/services</p>",
                             "type": "General",
                             "answers": [{
@@ -190,7 +202,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-77c5a87c-adbe-4e9e-986f-b0e233897dd0",
-                            "title": "For the period {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677to'], metadata['ref_p_end_date']) }}, the total commission and fees was <em>{{ format_currency(answers['answerc26e1415-9f8e-42dd-ab69-3a53f490685d'], 'GBP') }}</em>, is this correct?",
+                            "title": "For the period {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677to'], metadata['ref_p_end_date']) }}, the total commission and fees was <em>{{ format_currency(answers['answerc26e1415-9f8e-42dd-ab69-3a53f490685d'], 'GBP') }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-77c5a87c-adbe-4e9e-986f-b0e233897dd0",
@@ -213,7 +225,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-77c5a87c-adbe-4e9e-986f-b0e233897dd0",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -237,14 +251,19 @@
                     "type": "Question",
                     "questions": [{
                         "id": "questiondec2c911-4677-4a6c-bbf7-b07f560e20e7",
-                        "title": "For the period {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677to'], metadata['ref_p_end_date']) }}, what was the value of {{ metadata['ru_name'] }}&apos;s <em>sales on own account and turnover from other activities</em>, excluding VAT?",
+                        "title": "For the period {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer4af83791-be6b-4990-b8ba-ccfef8531677to'], metadata['ref_p_end_date']) }}, what was the value of {{ metadata['ru_name'] }}'s <em>sales on own account and turnover from other activities</em>, excluding VAT?",
                         "description": "<p>For example, as a tour operator </p>",
                         "guidance": {
                             "content": [{
                                     "description": "<strong>Exclude:</strong>"
                                 },
                                 {
-                                    "list": ["VAT", "commission and fees", "income from sales of fixed capital assets", "grants"]
+                                    "list": [
+                                        "VAT",
+                                        "commission and fees",
+                                        "income from sales of fixed capital assets",
+                                        "grants"
+                                    ]
                                 }
                             ]
                         },
