@@ -5,7 +5,7 @@
     "survey_id": "0",
     "title": "Star Wars",
     "theme": "starwars",
-    "description": "Kitchen sink test for the Star Wars questionnaire",
+    "description": "Kitchen sink test for the Star Wars questionnaire a",
     "metadata": [{
         "name": "user_id",
         "validator": "string"
