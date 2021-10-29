@@ -474,7 +474,7 @@
                             "title": "Of the {{ format_currency(answers['answer24502b57-1962-4d88-b3a1-40facd7f0661'], 'GBP') }} total, what was the value of work carried out on new housing builds for <em>public</em> sector projects?",
                             "guidance": {
                                 "content": [{
-                                        "description": "<strong>Includeerw:</strong>"
+                                        "description": "<strong>Includedsw:</strong>"
                                     },
                                     {
                                         "list": [
