@@ -19,7 +19,7 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><p><strong>Important notice - changes to guidance</strong></p><p>New information has been added about which trades are included in the survey and how to calculate value of work. For further guidance, read the introductory pages and guidance that accompanies the questions.</p><p></p><p></p><p><strong>Coronavirus (COVID-19) additional guidance</strong></p><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period: </strong>select &quot;yes, you can provide figures&quot; and enter value of work, even if this is &quot;0&quot;.</p><p><strong>Exclude from figures: </strong>any COVID-19 government subsidies such as the Coronavirus Job Retention Scheme and sector-specific or small business grants.</p><p><strong>Include:</strong> furloughed employees in any employment figures</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><p><strong>Important notice - changes to guidance</strong></p><p>Additional information has been added about which trades are included in the survey and how to calculate value of work. For further guidance, read the introductory pages and guidance that accompanies the questions.</p><p></p><p></p><p><strong>Coronavirus (COVID-19) guidance</strong></p><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period: </strong>select &#x27;yes, you can provide figures&#x27; and enter value of work, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
                                 },
                                 {
                                     "list": [
@@ -123,7 +123,7 @@
                         "type": "Interstitial",
                         "id": "groupb1d09333-c7fd-464a-a840-f86056fb32cf-introduction",
                         "title": "How to complete this survey",
-                        "description": "<ul><li>This survey is for construction businesses and allied trades.  If you are a fitter, installer, or have any other involvement in construction projects, you are included within the construction industry and so should report your figures.  <a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyforconstructionandalliedtrades\"target=\"_blank\"rel=\"noopener noreferrer\">A full list of allied trades can be found here</a>.</li><li>If you have not carried out any work in the reporting period, enter zero values and still submit. Nil returns are equally important in producing statistics.</li><li>If your total value of work is zero, please explain in the comments section at the end of the survey. This will reduce the need for us to contact you with data queries.</li></ul><p><strong>What you need to do</strong></p><p>You will be asked to provide a total figure for the <strong>value of the work </strong>your business has carried out during the reporting period.</p><p>You will then be asked to provide values for the work you have carried out across three main categories, with other breakdowns in each section.</p><ul><li>Housing work</li><li>Infrastructure</li><li>Non-housing, excluding infrastructure</li></ul><p>If you have difficulty in splitting your work across the different categories, then an informed estimate is acceptable.  However, please use a consistent approach for each reporting period.</p><p><a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyforconstructionandalliedtrades\"target=\"_blank\"rel=\"noopener noreferrer\">See here for more detail on the questions you will be asked</a></p><p><strong>What do we mean by \"value of work\"?</strong></p><p>To calculate the value of your work, you will need to provide a precise valuation, or informed estimate if needed, of the <strong>chargeable work</strong> your business has carried out during the reporting period. This could be work started, in progress, or completed. </p><p>To produce a valuation, you will need to:</p><p><strong>Include:</strong></p><ul><li>materials used</li><li>overheads</li><li>profits</li><li>labour costs of employees on your payroll</li></ul><p><strong>Exclude:</strong></p><ul><li>value of the work carried out by subcontractors</li><li>VAT</li><li>payments for work carried out in previous periods</li><li>payments made to consultants or architects</li><li>fixtures, equipment, tools and materials your business made for sale</li><li>value of land</li></ul><p></p>"
+                        "description": "<ul><li>This survey is for construction businesses and allied trades.  If you are a fitter, installer, or have any other involvement in construction projects, you are included within the construction industry and so should report your figures.  <a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyforconstructionandalliedtrades\"target=\"_blank\"rel=\"noopener noreferrer\">A full list of allied trades can be found here</a>.</li><li>If you have not carried out any work in the reporting period, enter zero values and still submit. Nil returns are equally important in producing statistics.</li><li>If your total value of work is zero, please explain in the comments section at the end of the survey. This will reduce the need for us to contact you with data queries.</li></ul><p><strong>What you need to do</strong></p><p>You will be asked to provide a total figure for the <strong>value of the work </strong>your business has carried out during the reporting period.</p><p>You will then be asked to provide values for the work you have carried out across three main categories, with other breakdowns in each section.</p><ul><li>Housing work</li><li>Infrastructure</li><li>Non-housing, excluding infrastructure</li></ul><p>If you have difficulty in splitting your work across the different categories, then an informed estimate is acceptable.  However, please use a consistent approach for each reporting period.</p><p><a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyforconstructionandalliedtrades\"target=\"_blank\"rel=\"noopener noreferrer\">See here for more detail on the questions you will be asked</a></p><p><strong>What do we mean by 'value of work'?</strong></p><p>To calculate the value of your work, you will need to provide a precise valuation, or informed estimate if needed, of the <strong>chargeable work</strong> your business has carried out during the reporting period. This could be work started, in progress, or completed. </p><p>To produce a valuation, you will need to:</p><p><strong>Include:</strong></p><ul><li>materials used</li><li>overheads</li><li>profits</li><li>labour costs of employees on your payroll</li></ul><p><strong>Exclude:</strong></p><ul><li>value of the work carried out by subcontractors</li><li>VAT</li><li>payments for work carried out in previous periods</li><li>payments made to consultants or architects</li><li>fixtures, equipment, tools and materials your business made for sale</li><li>value of land</li></ul><p></p>"
                     },
                     {
                         "id": "blockb859977c-01e2-498a-807e-5438af81fdd2",
@@ -156,9 +156,7 @@
                                     "when": [{
                                         "id": "answerdadafe6c-4875-43bc-87e2-6097ff0d106e",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes, I can report for this period"
-                                        ]
+                                        "values": ["Yes, I can report for this period"]
                                     }]
                                 }
                             },
@@ -265,7 +263,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"total value of all construction work\"",
+                                "title": "What we mean by 'total value of all construction work'",
                                 "content": [{
                                     "description": "This refers to all<strong> work on new structures and repair and maintenance on existing structures,</strong> carried out on housing, infrastructure, commercial and industrial projects for the public and private sector."
                                 }]
@@ -301,7 +299,7 @@
                                 "options": [{
                                         "label": "Yes, that is correct",
                                         "value": "Yes, that is correct",
-                                        "description": "If you have entered \"0\", please explain in the comment section at the end of the survey"
+                                        "description": "If you have entered '0', please explain in the comment section at the end of the survey"
                                     },
                                     {
                                         "label": "No, I need to change this",
@@ -316,9 +314,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-69ae90ee-65a6-49ef-8ca9-1c55c9eb6688",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No, I need to change this"
-                                        ]
+                                        "values": ["No, I need to change this"]
                                     }]
                                 }
                             },
@@ -382,25 +378,18 @@
                                         "description": "<strong>Include new builds and repair and maintenance of:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "flats and maisonettes",
-                                            "new houses",
-                                            "other types of residential housing"
-                                        ]
+                                        "list": ["flats and maisonettes", "new houses", "other types of residential housing"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "any work on halls of residence for educational institutions",
-                                            "work on infrastructure"
-                                        ]
+                                        "list": ["any work on halls of residence for educational institutions", "work on infrastructure"]
                                     }
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"work on housing\"",
+                                "title": "What we mean by 'work on housing'",
                                 "content": [{
                                     "description": "This refers to work on residential buildings. If over half of a building's floor area is used for residential purposes, it is considered a residential building."
                                 }]
@@ -430,9 +419,7 @@
                                     "when": [{
                                         "id": "answera75253f4-438c-4bdf-8613-cbfa2a3a1fb6",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes, we carried out work on housing"
-                                        ]
+                                        "values": ["Yes, we carried out work on housing"]
                                     }]
                                 }
                             },
@@ -483,11 +470,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "new construction work",
-                                            "demolition",
-                                            "site preparation"
-                                        ]
+                                        "list": ["new construction work", "demolition", "site preparation"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -502,7 +485,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"public sector\"",
+                                "title": "What we mean by 'public sector'",
                                 "content": [{
                                         "description": "This consists of government owned organisations."
                                     },
@@ -510,10 +493,7 @@
                                         "description": "<strong>Examples of public sector: </strong>"
                                     },
                                     {
-                                        "list": [
-                                            "local, regional and national public authorities and agencies",
-                                            "public housing"
-                                        ]
+                                        "list": ["local, regional and national public authorities and agencies", "public housing"]
                                     }
                                 ]
                             }],
@@ -537,9 +517,7 @@
                             "when": [{
                                 "id": "answer35ce4949-ad6d-4137-b28b-ce3b5723831e",
                                 "condition": "not contains any",
-                                "values": [
-                                    "Public sector projects"
-                                ]
+                                "values": ["Public sector projects"]
                             }]
                         }]
                     },
@@ -554,20 +532,13 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "extensions",
-                                            "repairing something which is damaged",
-                                            "maintaining something to an existing standard"
-                                        ]
+                                        "list": ["extensions", "repairing something which is damaged", "maintaining something to an existing standard"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "any work on halls of residence for educational institutions",
-                                            "work on infrastructure"
-                                        ]
+                                        "list": ["any work on halls of residence for educational institutions", "work on infrastructure"]
                                     }
                                 ]
                             },
@@ -591,9 +562,7 @@
                             "when": [{
                                 "id": "answer35ce4949-ad6d-4137-b28b-ce3b5723831e",
                                 "condition": "not contains any",
-                                "values": [
-                                    "Public sector projects"
-                                ]
+                                "values": ["Public sector projects"]
                             }]
                         }]
                     },
@@ -608,11 +577,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "new construction work",
-                                            "demolition",
-                                            "site preparation"
-                                        ]
+                                        "list": ["new construction work", "demolition", "site preparation"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -627,7 +592,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"private sector\"",
+                                "title": "What we mean by 'private sector'",
                                 "content": [{
                                         "description": "This refers to the part of the economy that is for profit and is owned by private organisations or individuals."
                                     },
@@ -665,9 +630,7 @@
                             "when": [{
                                 "id": "answer35ce4949-ad6d-4137-b28b-ce3b5723831e",
                                 "condition": "not contains any",
-                                "values": [
-                                    "Private sector projects"
-                                ]
+                                "values": ["Private sector projects"]
                             }]
                         }]
                     },
@@ -692,10 +655,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "any work on halls of residence for educational institutions",
-                                            "work on infrastructure"
-                                        ]
+                                        "list": ["any work on halls of residence for educational institutions", "work on infrastructure"]
                                     }
                                 ]
                             },
@@ -719,9 +679,7 @@
                             "when": [{
                                 "id": "answer35ce4949-ad6d-4137-b28b-ce3b5723831e",
                                 "condition": "not contains any",
-                                "values": [
-                                    "Private sector projects"
-                                ]
+                                "values": ["Private sector projects"]
                             }]
                         }]
                     },
@@ -785,9 +743,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "new infrastructure and repair and maintenance of infrastructure"
-                                        ]
+                                        "list": ["new infrastructure and repair and maintenance of infrastructure"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -801,7 +757,7 @@
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"infrastructure\"",
+                                "title": "What we mean by 'infrastructure'",
                                 "content": [{
                                         "description": "Infrastructure refers to non-residential buildings, facilities, or systems that are fundamental to the functioning of an area."
                                     },
@@ -848,9 +804,7 @@
                                     "when": [{
                                         "id": "answer01c0c84f-7282-42a3-b1c3-13b6d10f39bf",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes, we carried out work on infrastructure"
-                                        ]
+                                        "values": ["Yes, we carried out work on infrastructure"]
                                     }]
                                 }
                             },
@@ -934,11 +888,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "repairing a fault",
-                                            "repairing something which is damaged",
-                                            "maintaining an existing standard"
-                                        ]
+                                        "list": ["repairing a fault", "repairing something which is damaged", "maintaining an existing standard"]
                                     },
                                     {
                                         "description": "<strong> Exclude:</strong>"
@@ -976,10 +926,7 @@
                         }],
                         "calculation": {
                             "calculation_type": "sum",
-                            "answers_to_calculate": [
-                                "answer692af9c8-8773-4a7b-9a21-1830f3dc3401",
-                                "answer8561360c-adc9-40b9-b6af-2f85c486fef5"
-                            ],
+                            "answers_to_calculate": ["answer692af9c8-8773-4a7b-9a21-1830f3dc3401", "answer8561360c-adc9-40b9-b6af-2f85c486fef5"],
                             "titles": [{
                                 "value": "Total value of all infrastructure work"
                             }]
@@ -1026,18 +973,13 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "halls of residence for educational institutions"
-                                        ]
+                                        "list": ["halls of residence for educational institutions"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "work on residential buildings, for example housing, flats and maisonettes",
-                                            "work on infrastructure"
-                                        ]
+                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
                                     }
                                 ]
                             },
@@ -1100,9 +1042,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-92bf4040-ae9c-4245-889c-c11ec6d52ce4",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No"
-                                        ]
+                                        "values": ["No"]
                                     }]
                                 }
                             },
@@ -1112,9 +1052,7 @@
                                     "when": [{
                                         "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No, we did not"
-                                        ]
+                                        "values": ["No, we did not"]
                                     }]
                                 }
                             },
@@ -1128,9 +1066,7 @@
                             "when": [{
                                 "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                 "condition": "contains any",
-                                "values": [
-                                    "No, we did not"
-                                ]
+                                "values": ["No, we did not"]
                             }]
                         }]
                     },
@@ -1145,10 +1081,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "work on residential buildings, for example housing, flats and maisonettes",
-                                            "work on infrastructure"
-                                        ]
+                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
                                     }
                                 ]
                             },
@@ -1157,7 +1090,7 @@
                                 "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                 "mandatory": true,
                                 "type": "Checkbox",
-                                "label": "",
+                                "label": "Select all that apply:",
                                 "description": "",
                                 "options": [{
                                         "label": "Public sector projects",
@@ -1184,9 +1117,7 @@
                             "when": [{
                                 "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                 "condition": "contains any",
-                                "values": [
-                                    "No, we did not"
-                                ]
+                                "values": ["No, we did not"]
                             }]
                         }]
                     },
@@ -1212,15 +1143,12 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "work on residential buildings, for example housing, flats and maisonettes",
-                                            "work on infrastructure"
-                                        ]
+                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
                                     }
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"new non-housing structures\"",
+                                "title": "What we mean by 'new non-housing structures'",
                                 "content": [{
                                         "description": "This refers to work on new non-residential structures. If over half of a building's floor area is used for non-residential purposes, it is considered a non-residential building."
                                     },
@@ -1260,18 +1188,14 @@
                                 "when": [{
                                     "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                     "condition": "contains any",
-                                    "values": [
-                                        "No, we did not"
-                                    ]
+                                    "values": ["No, we did not"]
                                 }]
                             },
                             {
                                 "when": [{
                                     "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                     "condition": "not contains any",
-                                    "values": [
-                                        "Public sector projects"
-                                    ]
+                                    "values": ["Public sector projects"]
                                 }]
                             }
                         ]
@@ -1287,24 +1211,18 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "repairing something which is damaged",
-                                            "maintaining an existing standard"
-                                        ]
+                                        "list": ["repairing something which is damaged", "maintaining an existing standard"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "work on residential buildings, for example housing, flats and maisonettes",
-                                            "work on infrastructure"
-                                        ]
+                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
                                     }
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by \"existing non-housing structures\"",
+                                "title": "What we mean by 'existing non-housing structures'",
                                 "content": [{
                                         "description": "This refers to work on existing non-residential structures. If over half of a building's floor area is used for non-residential purposes, it is considered a non-residential building."
                                     },
@@ -1344,18 +1262,14 @@
                                 "when": [{
                                     "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                     "condition": "contains any",
-                                    "values": [
-                                        "No, we did not"
-                                    ]
+                                    "values": ["No, we did not"]
                                 }]
                             },
                             {
                                 "when": [{
                                     "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                     "condition": "not contains any",
-                                    "values": [
-                                        "Public sector projects"
-                                    ]
+                                    "values": ["Public sector projects"]
                                 }]
                             }
                         ]
@@ -1382,15 +1296,12 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "work on residential buildings, for example housing, flats and maisonettes",
-                                            "work on infrastructure"
-                                        ]
+                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
                                     }
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by the \"private commercial sector\"",
+                                "title": "What we mean by the 'private commercial sector'",
                                 "content": [{
                                         "description": "This sector refers to part of the economy that  includes all businesses, except those involved in manufacturing and transport."
                                     },
@@ -1431,18 +1342,14 @@
                                 "when": [{
                                     "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                     "condition": "contains any",
-                                    "values": [
-                                        "No, we did not"
-                                    ]
+                                    "values": ["No, we did not"]
                                 }]
                             },
                             {
                                 "when": [{
                                     "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                     "condition": "not contains any",
-                                    "values": [
-                                        "Private commercial sector projects"
-                                    ]
+                                    "values": ["Private commercial sector projects"]
                                 }]
                             }
                         ]
@@ -1469,15 +1376,12 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "work on residential buildings, for example housing, flats and maisonettes",
-                                            "work on infrastructure"
-                                        ]
+                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
                                     }
                                 ]
                             },
                             "definitions": [{
-                                "title": "What we mean by the \"private industrial sector\"",
+                                "title": "What we mean by the 'private industrial sector'",
                                 "content": [{
                                         "description": "This refers to part of the economy that includes businesses involved in manufacturing and transport, excluding agriculture."
                                     },
@@ -1514,18 +1418,14 @@
                                 "when": [{
                                     "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                     "condition": "contains any",
-                                    "values": [
-                                        "No, we did not"
-                                    ]
+                                    "values": ["No, we did not"]
                                 }]
                             },
                             {
                                 "when": [{
                                     "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                     "condition": "not contains any",
-                                    "values": [
-                                        "Private industrial sector projects"
-                                    ]
+                                    "values": ["Private industrial sector projects"]
                                 }]
                             }
                         ]
@@ -1541,19 +1441,13 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "repairing something which is damaged",
-                                            "maintaining an existing standard"
-                                        ]
+                                        "list": ["repairing something which is damaged", "maintaining an existing standard"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "work on residential buildings, for example housing, flats and maisonettes",
-                                            "work on infrastructure"
-                                        ]
+                                        "list": ["work on residential buildings, for example housing, flats and maisonettes", "work on infrastructure"]
                                     }
                                 ]
                             },
@@ -1607,19 +1501,14 @@
                                 "when": [{
                                     "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                     "condition": "contains any",
-                                    "values": [
-                                        "No, we did not"
-                                    ]
+                                    "values": ["No, we did not"]
                                 }]
                             },
                             {
                                 "when": [{
                                     "id": "answer27e92f6a-21af-4432-b94c-5157746ebc9e",
                                     "condition": "not contains any",
-                                    "values": [
-                                        "Private commercial sector projects",
-                                        "Private industrial sector projects"
-                                    ]
+                                    "values": ["Private commercial sector projects", "Private industrial sector projects"]
                                 }]
                             }
                         ]
@@ -1647,9 +1536,7 @@
                             "when": [{
                                 "id": "answer50ae0d8f-dd41-43ab-8e29-431028500270",
                                 "condition": "contains any",
-                                "values": [
-                                    "No, we did not"
-                                ]
+                                "values": ["No, we did not"]
                             }]
                         }]
                     }
@@ -1753,9 +1640,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-26537570-11bc-4ece-a0c7-aeb2fb65f9ee",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No, I need to change this"
-                                        ]
+                                        "values": ["No, I need to change this"]
                                     }]
                                 }
                             },
