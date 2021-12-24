@@ -18,22 +18,25 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance</h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".</p> <p><strong>Exclude from figures</strong>: any COVID-19 government subsidies such as the Coronavirus Job Retention Scheme and sector-specific, or small business, grants.</p> <p><strong>Include</strong>: furloughed employees in any employment figures. </p> <strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</div></div>",
-                                "list": [
-                                    "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
-                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
-                                    "We will treat your data securely and confidentially."
-                                ]
-                            }]
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><h2>Coronavirus (COVID-19) guidance</h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select &#x27;yes, you can provide figures&#x27; and enter turnover, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
+                                },
+                                {
+                                    "list": [
+                                        "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
+                                        "You can provide informed estimates if actual figures are not available.",
+                                        "We will treat your data securely and confidentially."
+                                    ]
+                                }
+                            ]
                         }],
                         "preview_content": {
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
+                                    "description": "<a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices\"target=\"_blank\"rel=\"noopener noreferrer\">View the survey information and questions before you start the survey</a> (external link)"
                                 },
                                 {
-                                    "description": "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP)</a> (external link)"
+                                    "description": "The information you provide contributes to <a href=\"https://www.ons.gov.uk/economy/grossdomesticproductgdp\"target=\"_blank\"rel=\"noopener noreferrer\">Gross Domestic Product (GDP)</a> (external link)"
                                 },
                                 {
                                     "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
@@ -42,7 +45,7 @@
                             "questions": [{
                                     "question": "Turnover",
                                     "content": [{
-                                            "description": "Include:"
+                                            "description": "<strong>Include: </strong>"
                                         },
                                         {
                                             "list": [
@@ -54,7 +57,7 @@
                                             ]
                                         },
                                         {
-                                            "description": "Exclude:"
+                                            "description": "<strong>Exclude:</strong>"
                                         },
                                         {
                                             "list": [
@@ -70,12 +73,8 @@
                                 {
                                     "question": "Value of exports",
                                     "content": [{
-                                            "description": "Include:"
-                                        },
-                                        {
-                                            "list": ["all countries outside of England, Scotland, Wales and Northern Ireland"]
-                                        }
-                                    ]
+                                        "description": "Include all countries outside of England, Scotland, Wales and Northern Ireland"
+                                    }]
                                 },
                                 {
                                     "question": "Number of employees",
@@ -83,16 +82,16 @@
                                             "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme."
                                         },
                                         {
-                                            "description": "Include:"
+                                            "description": "<strong>Include:</strong>"
                                         },
                                         {
                                             "list": [
-                                                "all workers paid directly from this business&apos;s payroll(s)",
+                                                "all workers paid directly from this business's payroll(s)",
                                                 "those temporarily absent but still being paid, for example on maternity leave"
                                             ]
                                         },
                                         {
-                                            "description": "Exclude:"
+                                            "description": "<strong>Exclude:</strong>"
                                         },
                                         {
                                             "list": [
@@ -119,16 +118,16 @@
                                             ]
                                         },
                                         {
-                                            "description": "Include:"
+                                            "description": "<strong>Include:</strong>"
                                         },
                                         {
                                             "list": [
-                                                "all workers paid directly from this business&apos;s payroll(s)",
+                                                "all workers paid directly from this business's payroll(s)",
                                                 "those temporarily absent but still being paid, for example on maternity leave"
                                             ]
                                         },
                                         {
-                                            "description": "Exclude:"
+                                            "description": "<strong>Exclude:</strong>"
                                         },
                                         {
                                             "list": [
@@ -184,7 +183,9 @@
                                     "when": [{
                                         "id": "answer02681d35-bdca-4319-8b70-b1883f60a1d5",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -252,7 +253,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2023f5ec-92bf-4136-a90c-7341aa7e1551",
-                            "title": "For the period {{ format_conditional_date (answers['answer27bf19be-c6de-4453-a1c9-629f854e8198from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer27bf19be-c6de-4453-a1c9-629f854e8198to'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}&apos;s <em>turnover</em>, excluding VAT?",
+                            "title": "For the period {{ format_conditional_date (answers['answer27bf19be-c6de-4453-a1c9-629f854e8198from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer27bf19be-c6de-4453-a1c9-629f854e8198to'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}'s <em>turnover</em>, excluding VAT?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -298,7 +299,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-2023f5ec-92bf-4136-a90c-7341aa7e1551",
-                            "title": "For the period  {{ format_conditional_date (answers['answer27bf19be-c6de-4453-a1c9-629f854e8198from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer27bf19be-c6de-4453-a1c9-629f854e8198to'], metadata['ref_p_end_date']) }}, the turnover was <em>{{ format_currency(answers['answer6c0781a0-3b4a-45cd-9f61-8cf4fbdd6dba'], 'GBP') }}</em>, is this correct?",
+                            "title": "For the period  {{ format_conditional_date (answers['answer27bf19be-c6de-4453-a1c9-629f854e8198from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer27bf19be-c6de-4453-a1c9-629f854e8198to'], metadata['ref_p_end_date']) }}, the turnover was <em>{{ format_currency(answers['answer6c0781a0-3b4a-45cd-9f61-8cf4fbdd6dba'], 'GBP') }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-2023f5ec-92bf-4136-a90c-7341aa7e1551",
@@ -321,7 +322,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-2023f5ec-92bf-4136-a90c-7341aa7e1551",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -348,12 +351,8 @@
                             "title": "What was the value of <em>exports</em>?",
                             "guidance": {
                                 "content": [{
-                                        "description": "<strong>Include: </strong>"
-                                    },
-                                    {
-                                        "list": ["All countries outside of England, Scotland, Wales and Northern Ireland"]
-                                    }
-                                ]
+                                    "description": "Include all countries outside of England, Scotland, Wales and Northern Ireland"
+                                }]
                             },
                             "type": "General",
                             "answers": [{
@@ -408,7 +407,7 @@
                                     },
                                     {
                                         "list": [
-                                            "all workers paid directly from this business&apos;s payroll(s)",
+                                            "all workers paid directly from this business's payroll(s)",
                                             "those temporarily absent but still being paid, for example on maternity leave"
                                         ]
                                     },
@@ -460,20 +459,25 @@
                                 ]
                             }]
                         }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer349eef3b-7379-4ca9-984a-c56bdf8346d0",
-                                "condition": "greater than",
-                                "value": 0
-                            }]
-                        }],
                         "routing_rules": [{
                                 "goto": {
                                     "block": "blocka63bf87a-8407-4d9d-90cf-2ff179417065",
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-a63bf87a-8407-4d9d-90cf-2ff179417065",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "groupd115f162-9090-4f64-a2de-af65884202c1",
+                                    "when": [{
+                                        "id": "answer349eef3b-7379-4ca9-984a-c56bdf8346d0",
+                                        "condition": "equals",
+                                        "value": 0
                                     }]
                                 }
                             },
@@ -482,7 +486,14 @@
                                     "block": "blockd9a26b69-2d8f-4932-b741-25f683115941"
                                 }
                             }
-                        ]
+                        ],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answer349eef3b-7379-4ca9-984a-c56bdf8346d0",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }]
                     },
                     {
                         "id": "blockd9a26b69-2d8f-4932-b741-25f683115941",
@@ -496,7 +507,7 @@
                                     },
                                     {
                                         "list": [
-                                            "all workers paid directly from this business&apos;s payroll(s)",
+                                            "all workers paid directly from this business's payroll(s)",
                                             "those temporarily absent but still being paid, for example on maternity leave"
                                         ]
                                     },
@@ -592,7 +603,9 @@
                                         "answer481923c9-cc80-43ea-b70f-8f7a063518df",
                                         "answerf9d0bc27-0b21-434c-98cd-fdbcef37ba63"
                                     ],
-                                    "conditions": ["equals"],
+                                    "conditions": [
+                                        "equals"
+                                    ],
                                     "value": 0
                                 },
                                 {
@@ -603,7 +616,9 @@
                                         "answer481923c9-cc80-43ea-b70f-8f7a063518df",
                                         "answerf9d0bc27-0b21-434c-98cd-fdbcef37ba63"
                                     ],
-                                    "conditions": ["equals"],
+                                    "conditions": [
+                                        "equals"
+                                    ],
                                     "answer_id": "answer349eef3b-7379-4ca9-984a-c56bdf8346d0"
                                 }
                             ]

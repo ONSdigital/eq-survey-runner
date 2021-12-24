@@ -18,22 +18,25 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Coronavirus (COVID-19) additional guidance</h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select \"yes, you can provide figures\" and enter turnover, even if this is \"0\".</p> <p><strong>Exclude from figures</strong>: any COVID-19 government subsidies such as the Coronavirus Job Retention Scheme and sector-specific, or small business, grants.</p> <p><strong>Include</strong>: furloughed employees in any employment figures. </p> <strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</div></div>",
-                                "list": [
-                                    "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
-                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
-                                    "We will treat your data securely and confidentially."
-                                ]
-                            }]
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><h2>Coronavirus (COVID-19) guidance</h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select &#x27;yes, you can provide figures&#x27; and enter turnover, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
+                                },
+                                {
+                                    "list": [
+                                        "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
+                                        "You can provide informed estimates if actual figures are not available.",
+                                        "We will treat your data securely and confidentially."
+                                    ]
+                                }
+                            ]
                         }],
                         "preview_content": {
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                    "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices'>View the survey information and questions before you start the survey</a> (external link)"
+                                    "description": "<a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices\"target=\"_blank\"rel=\"noopener noreferrer\">View the survey information and questions before you start the survey</a> (external link)"
                                 },
                                 {
-                                    "description": "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP)</a> (external link)"
+                                    "description": "The information you provide contributes to <a href=\"https://www.ons.gov.uk/economy/grossdomesticproductgdp\"target=\"_blank\"rel=\"noopener noreferrer\">Gross Domestic Product (GDP)</a> (external link)"
                                 },
                                 {
                                     "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
@@ -42,7 +45,7 @@
                             "questions": [{
                                     "question": "Total turnover",
                                     "content": [{
-                                            "description": "Include:"
+                                            "description": "<strong>Include:</strong>"
                                         },
                                         {
                                             "list": [
@@ -55,7 +58,7 @@
                                             ]
                                         },
                                         {
-                                            "description": "Exclude:"
+                                            "description": "<strong>Exclude:</strong>"
                                         },
                                         {
                                             "list": [
@@ -74,16 +77,16 @@
                                             "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme."
                                         },
                                         {
-                                            "description": "Include:"
+                                            "description": "<strong>Include:</strong>"
                                         },
                                         {
                                             "list": [
-                                                "all workers paid directly from this business&apos;s payroll(s)",
+                                                "all workers paid directly from this business's payroll(s)",
                                                 "those temporarily absent but still being paid, for example on maternity leave"
                                             ]
                                         },
                                         {
-                                            "description": "Exclude:"
+                                            "description": "<strong>Exclude:</strong>"
                                         },
                                         {
                                             "list": [
@@ -110,16 +113,16 @@
                                             ]
                                         },
                                         {
-                                            "description": "Include:"
+                                            "description": "<strong>Include:</strong>"
                                         },
                                         {
                                             "list": [
-                                                "all workers paid directly from this business&apos;s payroll(s)",
+                                                "all workers paid directly from this business's payroll(s)",
                                                 "those temporarily absent but still being paid, for example on maternity leave"
                                             ]
                                         },
                                         {
-                                            "description": "Exclude:"
+                                            "description": "<strong>Exclude:</strong>"
                                         },
                                         {
                                             "list": [
@@ -175,7 +178,9 @@
                                     "when": [{
                                         "id": "answer53f09ccc-117f-45c1-9074-c8f3bee8a345",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -243,7 +248,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question729ed4db-fc92-4ed2-b2a2-2e07e8c6c9aa",
-                            "title": "For the period {{ format_conditional_date (answers['answer7b54ca54-230a-493c-9fa3-bd4572639a1bfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer7b54ca54-230a-493c-9fa3-bd4572639a1bto'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}&apos;s <em>total turnover</em>, excluding VAT?",
+                            "title": "For the period {{ format_conditional_date (answers['answer7b54ca54-230a-493c-9fa3-bd4572639a1bfrom'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer7b54ca54-230a-493c-9fa3-bd4572639a1bto'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}'s <em>total turnover</em>, excluding VAT?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -290,7 +295,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-729ed4db-fc92-4ed2-b2a2-2e07e8c6c9aa",
-                            "title": "For the period {{ format_conditional_date (answers['answer7b54ca54-230a-493c-9fa3-bd4572639a1bfrom'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['answer7b54ca54-230a-493c-9fa3-bd4572639a1bto'], metadata['ref_p_end_date']) }}, the total turnover was <em>{{ format_currency(answers['answerb27da677-d55a-4650-8469-0922c8171572'], 'GBP') }}</em>, is this correct?",
+                            "title": "For the period {{ format_conditional_date (answers['answer7b54ca54-230a-493c-9fa3-bd4572639a1bfrom'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer7b54ca54-230a-493c-9fa3-bd4572639a1bto'], metadata['ref_p_end_date']) }}, the total turnover was <em>{{ format_currency(answers['answerb27da677-d55a-4650-8469-0922c8171572'], 'GBP') }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-729ed4db-fc92-4ed2-b2a2-2e07e8c6c9aa",
@@ -313,7 +318,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-729ed4db-fc92-4ed2-b2a2-2e07e8c6c9aa",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -345,7 +352,7 @@
                                     },
                                     {
                                         "list": [
-                                            "all workers paid directly from this business&apos;s payroll(s)",
+                                            "all workers paid directly from this business's payroll(s)",
                                             "those temporarily absent but still being paid, for example on maternity leave"
                                         ]
                                     },
@@ -397,20 +404,25 @@
                                 ]
                             }]
                         }],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answerf1edd3ae-0c6b-4c23-88bb-f3d0ea5c562c",
-                                "condition": "greater than",
-                                "value": 0
-                            }]
-                        }],
                         "routing_rules": [{
                                 "goto": {
                                     "block": "block93800f17-7827-4972-b552-2f80f15befff",
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-93800f17-7827-4972-b552-2f80f15befff",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group08ea5977-50c0-4bf7-ac87-5c79e36db522",
+                                    "when": [{
+                                        "id": "answerf1edd3ae-0c6b-4c23-88bb-f3d0ea5c562c",
+                                        "condition": "equals",
+                                        "value": 0
                                     }]
                                 }
                             },
@@ -419,7 +431,14 @@
                                     "block": "block532ba6ce-a6b0-473c-b9ef-b1e3bb2dfa1e"
                                 }
                             }
-                        ]
+                        ],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerf1edd3ae-0c6b-4c23-88bb-f3d0ea5c562c",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }]
                     },
                     {
                         "id": "block532ba6ce-a6b0-473c-b9ef-b1e3bb2dfa1e",
@@ -433,7 +452,7 @@
                                     },
                                     {
                                         "list": [
-                                            "all workers paid directly from this business&apos;s payroll(s)",
+                                            "all workers paid directly from this business's payroll(s)",
                                             "those temporarily absent but still being paid, for example on maternity leave"
                                         ]
                                     },
@@ -522,26 +541,32 @@
                                 }
                             ],
                             "calculations": [{
-                                "calculation_type": "sum",
-                                "answers_to_calculate": [
-                                    "answer636ea5bb-9632-4896-91a9-1c0ec974f0f9",
-                                    "answerfdc56b34-bfbc-4cd2-8ad2-a6ff6882fd16",
-                                    "answerb8b57e12-ede7-49b7-9873-879192e135ba",
-                                    "answerbe002c91-4830-4798-b549-6cfc8270c53d"
-                                ],
-                                "conditions": ["equals"],
-                                "value": 0
-                            }, {
-                                "calculation_type": "sum",
-                                "answers_to_calculate": [
-                                    "answer636ea5bb-9632-4896-91a9-1c0ec974f0f9",
-                                    "answerfdc56b34-bfbc-4cd2-8ad2-a6ff6882fd16",
-                                    "answerb8b57e12-ede7-49b7-9873-879192e135ba",
-                                    "answerbe002c91-4830-4798-b549-6cfc8270c53d"
-                                ],
-                                "conditions": ["equals"],
-                                "answer_id": "answerf1edd3ae-0c6b-4c23-88bb-f3d0ea5c562c"
-                            }]
+                                    "calculation_type": "sum",
+                                    "answers_to_calculate": [
+                                        "answer636ea5bb-9632-4896-91a9-1c0ec974f0f9",
+                                        "answerfdc56b34-bfbc-4cd2-8ad2-a6ff6882fd16",
+                                        "answerb8b57e12-ede7-49b7-9873-879192e135ba",
+                                        "answerbe002c91-4830-4798-b549-6cfc8270c53d"
+                                    ],
+                                    "conditions": [
+                                        "equals"
+                                    ],
+                                    "value": 0
+                                },
+                                {
+                                    "calculation_type": "sum",
+                                    "answers_to_calculate": [
+                                        "answer636ea5bb-9632-4896-91a9-1c0ec974f0f9",
+                                        "answerfdc56b34-bfbc-4cd2-8ad2-a6ff6882fd16",
+                                        "answerb8b57e12-ede7-49b7-9873-879192e135ba",
+                                        "answerbe002c91-4830-4798-b549-6cfc8270c53d"
+                                    ],
+                                    "conditions": [
+                                        "equals"
+                                    ],
+                                    "answer_id": "answerf1edd3ae-0c6b-4c23-88bb-f3d0ea5c562c"
+                                }
+                            ]
                         }],
                         "skip_conditions": [{
                             "when": [{
