@@ -1,5 +1,5 @@
 {
-    "eq_id": "mbs",
+    "eq_id": "mbs_0158",
     "form_type": "0158",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -217,7 +217,7 @@
                                     "label": "To",
                                     "q_code": "12",
                                     "maximum": {
-                                        "value": "2016-06-12",
+                                        "meta": "ref_p_end_date",
                                         "offset_by": {
                                             "days": 20
                                         }
