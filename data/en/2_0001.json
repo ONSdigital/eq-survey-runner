@@ -119,7 +119,8 @@
                                 "label": "Total number of employees",
                                 "description": "",
                                 "q_code": "50",
-                                "decimal_places": 0
+                                "decimal_places": 0,
+                                "default": 0
                             }]
                         }]
                     },
