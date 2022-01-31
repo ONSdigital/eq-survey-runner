@@ -1,10 +1,10 @@
 {
-    "eq_id": "des_187",
-    "form_type": "187",
+    "eq_id": "des_0001",
+    "form_type": "0001",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
-    "survey_id": "des",
+    "survey_id": "187",
     "title": "Digital Economy Survey 2021",
     "sections": [{
             "id": "section3df0c977-6f0b-48f4-99f6-1b5b6cd2d87c",
