@@ -3862,6 +3862,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "753",
                                 "options": [{
                                         "label": "Yes, we provided a digital intermediary platform service",
                                         "value": "Yes, we provided a digital intermediary platform service"
@@ -3931,6 +3932,7 @@
                                     "type": "Currency",
                                     "label": "Income from fees charged to users located in the UK",
                                     "description": "",
+                                    "q_code": "754",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 },
@@ -3940,6 +3942,7 @@
                                     "type": "Currency",
                                     "label": "Income from fees charged to users located outside the UK",
                                     "description": "",
+                                    "q_code": "755",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 }
@@ -3972,6 +3975,7 @@
                                     "type": "Currency",
                                     "label": "Value of goods sold to customers located in the UK",
                                     "description": "",
+                                    "q_code": "756",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 },
@@ -3981,6 +3985,7 @@
                                     "type": "Currency",
                                     "label": "Value of goods sold to customers located outside the UK",
                                     "description": "",
+                                    "q_code": "757",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 }
@@ -4013,6 +4018,7 @@
                                     "type": "Currency",
                                     "label": "Value of services sold to customers located in the UK",
                                     "description": "",
+                                    "q_code": "758",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 },
@@ -4022,6 +4028,7 @@
                                     "type": "Currency",
                                     "label": "Value of services sold to customers located outside the UK",
                                     "description": "",
+                                    "q_code": "759",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 }
@@ -4041,6 +4048,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "760",
                                 "options": [{
                                         "label": "Yes, we paid a digital intermediary platform to sell our goods and services",
                                         "value": "Yes, we paid a digital intermediary platform to sell our goods and services"
@@ -5230,7 +5238,7 @@
         }
     ],
     "theme": "northernireland",
-    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
+    "legal_basis": "Notice is given under article 5 of the Statistics of Trade and Employment (Northern Ireland) Order 1988.",
     "navigation": {
         "visible": true
     },
