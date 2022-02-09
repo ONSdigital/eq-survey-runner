@@ -210,6 +210,7 @@
                                     "type": "Date",
                                     "mandatory": true,
                                     "label": "From",
+                                    "q_code": "11",
                                     "minimum": {
                                         "value": "2020-04-06",
                                         "offset_by": {
@@ -222,6 +223,7 @@
                                     "type": "Date",
                                     "mandatory": true,
                                     "label": "To",
+                                    "q_code": "12",
                                     "maximum": {
                                         "value": "2022-06-30",
                                         "offset_by": {
@@ -295,6 +297,7 @@
                                 "type": "Currency",
                                 "label": "Total turnover",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "399",
                                 "decimal_places": 0,
                                 "currency": "GBP",
                                 "guidance": {
@@ -412,6 +415,7 @@
                                 "type": "Currency",
                                 "label": "Income from the retail sale of goods to the general public",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "300",
                                 "decimal_places": 0,
                                 "currency": "GBP",
                                 "guidance": {
@@ -495,6 +499,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "80",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -539,6 +544,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "81",
                                 "options": [{
                                         "label": "75-100%",
                                         "value": "75-100%"
@@ -652,6 +658,7 @@
                                 "type": "Currency",
                                 "label": "Total employment costs",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "450",
                                 "decimal_places": 0,
                                 "currency": "GBP"
                             }]
@@ -694,6 +701,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure on energy, goods, materials, and services",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "499",
                                 "decimal_places": 0,
                                 "currency": "GBP",
                                 "guidance": {
@@ -815,6 +823,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure on rates, duties, levies, and taxes paid to the government",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "400",
                                 "decimal_places": 0,
                                 "currency": "GBP",
                                 "guidance": {
@@ -979,6 +988,7 @@
                                     "type": "Currency",
                                     "label": "Total value of acquisitions",
                                     "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                    "q_code": "600",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 },
@@ -988,6 +998,7 @@
                                     "type": "Currency",
                                     "label": "Total value of proceeds from disposals",
                                     "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                    "q_code": "699",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 }
@@ -1060,6 +1071,7 @@
                                 "type": "Currency",
                                 "label": "Total income from services provided to individuals, enterprises, or other organisations outside the UK",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "163",
                                 "decimal_places": 0,
                                 "currency": "GBP"
                             }]
@@ -1116,6 +1128,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure on services provided by individuals, enterprises, or organisations outside the UK",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "164",
                                 "decimal_places": 0,
                                 "currency": "GBP"
                             }]
@@ -1187,6 +1200,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "15",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -1250,6 +1264,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "16",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -1323,6 +1338,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "9",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -1390,6 +1406,7 @@
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
+                                "q_code": "146",
                                 "max_length": 2000
                             }]
                         }]
