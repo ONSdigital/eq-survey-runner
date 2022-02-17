@@ -531,7 +531,7 @@
                         "type": "Interstitial",
                         "id": "group19991c0f-50a9-4b03-b0da-efeb9c5ca148-introduction",
                         "title": "Expenditure",
-                        "description": "<p>This section asks for information regarding your business's expenditure.</p><p>This includes:</p><ul><li>employment costs</li><li>costs of energy, goods, materials, and services </li><li>rates, duties, levies, and taxes paid to the government</li><li>subsidies received from UK government sources or the EU</li></ul><p>This section requires figures for business activity within <strong>GB</strong>. Exclude Northern Ireland business activity.</p>"
+                        "description": "<p>This section asks about for information regarding your business's expenditure.</p><p>This includes:</p><ul><li>employment costs</li><li>costs of energy, goods, materials, and services </li><li>rates, duties, levies, and taxes paid to the government</li><li>subsidies received from UK government sources or the EU</li></ul><p>This section requires figures for business activity within <strong>GB</strong>. Exclude Northern Ireland business activity.</p>"
                     },
                     {
                         "id": "block875190a3-16e4-4fe7-a689-2c4f7dd097d5",
@@ -972,7 +972,7 @@
                                                     "duty on stocks held out of bond",
                                                     "contracts not yet finalised - commission fees for work carried out",
                                                     "building work carried out by yourselves, <strong>including</strong> finished properties built by yourselves with the intention to sell",
-                                                    "long term business contract balances, with progress payments treated in line with UK GAAP or International GAAP",
+                                                    "long term business contract balances, with progress payments treated in line with UK GAAP or International GAAP)",
                                                     "duty for dutiable goods held out of bond"
                                                 ]
                                             },
