@@ -12,12 +12,13 @@
 
 {% block sidebar %}
   {% if navigation %}
-    {% include theme('partials/section-navigation.html') %}
+    {% if (content.summary == undefined) or (content.summary and content.summary.summary_type != 'Summary')%}
+        {% include theme('partials/section-navigation.html') %}
+    {% endif %}
   {% endif %}
 {% endblock %}
 
 {% block main %}
-
     {% block form_errors %}{% endblock %}
 
       {% block form_content %}
