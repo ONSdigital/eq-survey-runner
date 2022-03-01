@@ -1,9 +1,9 @@
 {
     "application": "surveyrunner",
-    "identifier": "ukis",
-    "name": "UKIS",
-    "author": "jonshaw",
-    "description": "Theme for UKIS",
+    "identifier": "orr",
+    "name": "Office of Rail and Road",
+    "author": "joshchapman",
+    "description": "Theme for ORR",
     "license": "MIT/X11",
     "version": "1.0.0"
 }
