@@ -12,8 +12,8 @@ from app.forms.duration_form import get_duration_form
 from app.validation.validators import NumberCheck, NumberRange, ResponseRequired, DecimalPlaces
 
 MAX_LENGTH = 2000
-MAX_NUMBER = 9999999999
-MIN_NUMBER = -999999999
+MAX_NUMBER = 99999999999
+MIN_NUMBER = -9999999999
 MAX_DECIMAL_PLACES = 6
 logger = get_logger()
 
