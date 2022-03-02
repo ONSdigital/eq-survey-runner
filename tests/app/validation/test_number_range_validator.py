@@ -380,13 +380,13 @@ class TestNumberRangeValidator(unittest.TestCase):
             if isinstance(validator, NumberRange):
                 test_validator = validator
 
-        self.assertEqual(test_validator.maximum, 9999999999)
+        self.assertEqual(test_validator.maximum, 99999999999)
         self.assertEqual(test_validator.minimum, 0)
 
     def test_min_less_than_system_limits(self):
         answer = {
             'min_value': {
-                'value': -1000000000
+                'value': -10000000000
             },
             'id': 'test-range',
             'label': 'Range Test 10 to 20',
@@ -413,7 +413,7 @@ class TestNumberRangeValidator(unittest.TestCase):
     def test_max_greater_than_system_limits(self):
         answer = {
             'max_value': {
-                'value': 10000000000
+                'value': 100000000000
             },
             'id': 'test-range',
             'label': 'Range Test 10 to 20',
