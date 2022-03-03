@@ -386,8 +386,6 @@ msgstr ""
 #: app/themes/social/templates/static/contact-us.html:26
 #: app/themes/ukis/templates/partials/footer-transactional.html:13
 #: app/themes/ukis/templates/partials/footer.html:25
-#: app/themes/orr/templates/partials/footer-transactional.html:13
-#: app/themes/orr/templates/partials/footer.html:25
 #: app/themes/ukis_ni/templates/partials/footer-transactional.html:13
 msgid "Contact us"
 msgstr ""
@@ -400,8 +398,6 @@ msgstr ""
 #: app/themes/northernireland/templates/partials/footer.html:13
 #: app/themes/ukis/templates/partials/footer-transactional.html:16
 #: app/themes/ukis/templates/partials/footer.html:14
-#: app/themes/orr/templates/partials/footer-transactional.html:16
-#: app/themes/orr/templates/partials/footer.html:14
 #: app/themes/ukis_ni/templates/partials/footer-transactional.html:16
 #: app/themes/ukis_ni/templates/partials/footer.html:14
 msgid "Cookies and privacy"
@@ -415,8 +411,6 @@ msgstr ""
 #: app/themes/northernireland/templates/partials/footer.html:47
 #: app/themes/ukis/templates/partials/footer-transactional.html:22
 #: app/themes/ukis/templates/partials/footer.html:48
-#: app/themes/orr/templates/partials/footer-transactional.html:22
-#: app/themes/orr/templates/partials/footer.html:48
 #: app/themes/ukis_ni/templates/partials/footer-transactional.html:22
 #: app/themes/ukis_ni/templates/partials/footer.html:48
 #, python-format
@@ -429,7 +423,6 @@ msgstr ""
 #: app/themes/census/templates/partials/footer.html:10
 #: app/themes/northernireland/templates/partials/footer.html:10
 #: app/themes/ukis/templates/partials/footer.html:11
-#: app/themes/orr/templates/partials/footer.html:11
 #: app/themes/ukis_ni/templates/partials/footer.html:11
 msgid "Legal information"
 msgstr ""
@@ -438,7 +431,6 @@ msgstr ""
 #: app/themes/census/templates/partials/footer.html:18
 #: app/themes/northernireland/templates/partials/footer.html:18
 #: app/themes/ukis/templates/partials/footer.html:19
-#: app/themes/orr/templates/partials/footer.html:19
 #: app/themes/ukis_ni/templates/partials/footer.html:19
 msgid "About ONS"
 msgstr ""
@@ -447,7 +439,6 @@ msgstr ""
 #: app/themes/census/templates/partials/footer.html:21
 #: app/themes/northernireland/templates/partials/footer.html:21
 #: app/themes/ukis/templates/partials/footer.html:22
-#: app/themes/orr/templates/partials/footer.html:22
 #: app/themes/ukis_ni/templates/partials/footer.html:22
 msgid "What we do"
 msgstr ""
@@ -456,7 +447,6 @@ msgstr ""
 #: app/themes/census/templates/partials/footer.html:27
 #: app/themes/northernireland/templates/partials/footer.html:27
 #: app/themes/ukis/templates/partials/footer.html:28
-#: app/themes/orr/templates/partials/footer.html:28
 #: app/themes/ukis_ni/templates/partials/footer.html:28
 msgid "Accessibility"
 msgstr ""
@@ -465,7 +455,6 @@ msgstr ""
 #: app/themes/census/templates/partials/footer.html:32
 #: app/themes/northernireland/templates/partials/footer.html:32
 #: app/themes/ukis/templates/partials/footer.html:33
-#: app/themes/orr/templates/partials/footer.html:33
 #: app/themes/ukis_ni/templates/partials/footer.html:33
 msgid "Statistics"
 msgstr ""
@@ -474,7 +463,6 @@ msgstr ""
 #: app/themes/census/templates/partials/footer.html:35
 #: app/themes/northernireland/templates/partials/footer.html:35
 #: app/themes/ukis/templates/partials/footer.html:36
-#: app/themes/orr/templates/partials/footer.html:36
 #: app/themes/ukis_ni/templates/partials/footer.html:36
 msgid "UK Statistics Authority"
 msgstr ""
@@ -483,7 +471,6 @@ msgstr ""
 #: app/themes/census/templates/partials/footer.html:38
 #: app/themes/northernireland/templates/partials/footer.html:38
 #: app/themes/ukis/templates/partials/footer.html:39
-#: app/themes/orr/templates/partials/footer.html:39
 #: app/themes/ukis_ni/templates/partials/footer.html:39
 msgid "Release calendar"
 msgstr ""
@@ -492,7 +479,6 @@ msgstr ""
 #: app/themes/census/templates/partials/footer.html:41
 #: app/themes/northernireland/templates/partials/footer.html:41
 #: app/themes/ukis/templates/partials/footer.html:42
-#: app/themes/orr/templates/partials/footer.html:42
 #: app/themes/ukis_ni/templates/partials/footer.html:42
 msgid "News"
 msgstr ""
