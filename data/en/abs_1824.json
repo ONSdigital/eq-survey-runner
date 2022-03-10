@@ -11,7 +11,7 @@
             "title": "How to complete and reporting period",
             "groups": [{
                 "id": "groupa9fe9c27-08c0-45a2-be1b-93e52307ce85",
-                "title": "How to complete and reporting period",
+                "title": "",
                 "blocks": [{
                         "type": "Introduction",
                         "id": "introduction-block",
@@ -210,6 +210,7 @@
                                     "type": "Date",
                                     "mandatory": true,
                                     "label": "From",
+                                    "q_code": "11",
                                     "minimum": {
                                         "value": "2020-04-06",
                                         "offset_by": {
@@ -222,6 +223,7 @@
                                     "type": "Date",
                                     "mandatory": true,
                                     "label": "To",
+                                    "q_code": "12",
                                     "maximum": {
                                         "value": "2022-06-30",
                                         "offset_by": {
@@ -248,7 +250,7 @@
             "title": "Income",
             "groups": [{
                 "id": "group940d0123-dd5f-4dec-bfaa-fcf84c7ca40d",
-                "title": "Income",
+                "title": "",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group940d0123-dd5f-4dec-bfaa-fcf84c7ca40d-introduction",
@@ -295,6 +297,7 @@
                                 "type": "Currency",
                                 "label": "Total turnover",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "399",
                                 "decimal_places": 0,
                                 "currency": "GBP",
                                 "guidance": {
@@ -412,6 +415,7 @@
                                 "type": "Currency",
                                 "label": "Income from the retail sale of goods to the general public",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "300",
                                 "decimal_places": 0,
                                 "currency": "GBP",
                                 "guidance": {
@@ -495,6 +499,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "80",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -539,6 +544,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "81",
                                 "options": [{
                                         "label": "75-100%",
                                         "value": "75-100%"
@@ -571,7 +577,7 @@
             "title": "Expenditure",
             "groups": [{
                 "id": "group19991c0f-50a9-4b03-b0da-efeb9c5ca148",
-                "title": "Expenditure",
+                "title": "",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group19991c0f-50a9-4b03-b0da-efeb9c5ca148-introduction",
@@ -652,6 +658,7 @@
                                 "type": "Currency",
                                 "label": "Total employment costs",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "450",
                                 "decimal_places": 0,
                                 "currency": "GBP"
                             }]
@@ -694,6 +701,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure on energy, goods, materials, and services",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "499",
                                 "decimal_places": 0,
                                 "currency": "GBP",
                                 "guidance": {
@@ -815,6 +823,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure on rates, duties, levies, and taxes paid to the government",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "400",
                                 "decimal_places": 0,
                                 "currency": "GBP",
                                 "guidance": {
@@ -873,7 +882,7 @@
             "title": "Capital assets",
             "groups": [{
                 "id": "group739ac8ba-4133-4ca9-97e0-ece36eecdf42",
-                "title": "Capital assets",
+                "title": "",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group739ac8ba-4133-4ca9-97e0-ece36eecdf42-introduction",
@@ -979,6 +988,7 @@
                                     "type": "Currency",
                                     "label": "Total value of acquisitions",
                                     "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                    "q_code": "600",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 },
@@ -988,6 +998,7 @@
                                     "type": "Currency",
                                     "label": "Total value of proceeds from disposals",
                                     "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                    "q_code": "699",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 }
@@ -1002,7 +1013,7 @@
             "title": "International trade in services",
             "groups": [{
                 "id": "groupff3748b8-c9e4-4e4e-a2e1-54af1a44e3c1",
-                "title": "International trade in services",
+                "title": "",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "groupff3748b8-c9e4-4e4e-a2e1-54af1a44e3c1-introduction",
@@ -1060,6 +1071,7 @@
                                 "type": "Currency",
                                 "label": "Total income from services provided to individuals, enterprises, or other organisations outside the UK",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "163",
                                 "decimal_places": 0,
                                 "currency": "GBP"
                             }]
@@ -1116,6 +1128,7 @@
                                 "type": "Currency",
                                 "label": "Total expenditure on services provided by individuals, enterprises, or organisations outside the UK",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000).  Do not enter ‘56’ for £56,000.",
+                                "q_code": "164",
                                 "decimal_places": 0,
                                 "currency": "GBP"
                             }]
@@ -1129,7 +1142,7 @@
             "title": "International trade in goods",
             "groups": [{
                 "id": "group52157af2-e3ad-4642-9d55-52b5a2cdff99",
-                "title": "International trade in goods",
+                "title": "",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group52157af2-e3ad-4642-9d55-52b5a2cdff99-introduction",
@@ -1187,6 +1200,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "15",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -1250,6 +1264,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "16",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -1270,7 +1285,7 @@
             "title": "Research and Development",
             "groups": [{
                 "id": "groupc718c7c3-257e-4bea-887b-4bc0ac471c38",
-                "title": "Research and Development",
+                "title": "",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "groupc718c7c3-257e-4bea-887b-4bc0ac471c38-introduction",
@@ -1323,6 +1338,7 @@
                                 "type": "Radio",
                                 "label": "",
                                 "description": "",
+                                "q_code": "9",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -1343,7 +1359,7 @@
             "title": "Comments",
             "groups": [{
                     "id": "groupec78732e-4da0-4b2d-9411-2c6cdb4b6c0d",
-                    "title": "Comments",
+                    "title": "",
                     "blocks": [{
                         "id": "block7fd9ec1d-c51d-482f-8268-bae72fdb6eed",
                         "type": "Question",
@@ -1390,6 +1406,7 @@
                                 "type": "TextArea",
                                 "label": "Comments",
                                 "description": "",
+                                "q_code": "146",
                                 "max_length": 2000
                             }]
                         }]
