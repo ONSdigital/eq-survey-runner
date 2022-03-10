@@ -11,7 +11,7 @@
             "title": "How to complete and reporting period",
             "groups": [{
                 "id": "groupa9fe9c27-08c0-45a2-be1b-93e52307ce85",
-                "title": "",
+                "title": "How to complete and reporting period",
                 "blocks": [{
                         "type": "Introduction",
                         "id": "introduction-block",
@@ -250,7 +250,7 @@
             "title": "Income",
             "groups": [{
                 "id": "group940d0123-dd5f-4dec-bfaa-fcf84c7ca40d",
-                "title": "",
+                "title": "Income",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group940d0123-dd5f-4dec-bfaa-fcf84c7ca40d-introduction",
@@ -577,7 +577,7 @@
             "title": "Expenditure",
             "groups": [{
                 "id": "group19991c0f-50a9-4b03-b0da-efeb9c5ca148",
-                "title": "",
+                "title": "Expenditure",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group19991c0f-50a9-4b03-b0da-efeb9c5ca148-introduction",
@@ -882,7 +882,7 @@
             "title": "Capital assets",
             "groups": [{
                 "id": "group739ac8ba-4133-4ca9-97e0-ece36eecdf42",
-                "title": "",
+                "title": "Capital assets",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group739ac8ba-4133-4ca9-97e0-ece36eecdf42-introduction",
@@ -1013,7 +1013,7 @@
             "title": "International trade in services",
             "groups": [{
                 "id": "groupff3748b8-c9e4-4e4e-a2e1-54af1a44e3c1",
-                "title": "",
+                "title": "International trade in services",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "groupff3748b8-c9e4-4e4e-a2e1-54af1a44e3c1-introduction",
@@ -1142,7 +1142,7 @@
             "title": "International trade in goods",
             "groups": [{
                 "id": "group52157af2-e3ad-4642-9d55-52b5a2cdff99",
-                "title": "",
+                "title": "International trade in goods",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group52157af2-e3ad-4642-9d55-52b5a2cdff99-introduction",
@@ -1285,7 +1285,7 @@
             "title": "Research and Development",
             "groups": [{
                 "id": "groupc718c7c3-257e-4bea-887b-4bc0ac471c38",
-                "title": "",
+                "title": "Research and Development",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "groupc718c7c3-257e-4bea-887b-4bc0ac471c38-introduction",
@@ -1359,7 +1359,7 @@
             "title": "Comments",
             "groups": [{
                     "id": "groupec78732e-4da0-4b2d-9411-2c6cdb4b6c0d",
-                    "title": "",
+                    "title": "Comments",
                     "blocks": [{
                         "id": "block7fd9ec1d-c51d-482f-8268-bae72fdb6eed",
                         "type": "Question",
