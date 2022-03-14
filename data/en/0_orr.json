@@ -1,256 +1,436 @@
 {
+    "eq_id": "orr_194",
+    "form_type": "0001",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
-    "survey_id": "023",
-    "title": "Rogue One ",
-    "description": "Test with a confirmation page instead of a summary",
+    "survey_id": "194",
+    "title": "Annual Railways Investment Survey",
+    "sections": [{
+        "id": "section5b375c46-6375-4b6c-8af5-c592dc1a09df",
+        "groups": [{
+                "id": "group5b375c46-6375-4b6c-8af5-c592dc1a09df",
+                "title": "",
+                "blocks": [{
+                        "type": "Introduction",
+                        "id": "introduction-block",
+                        "primary_content": [{
+                            "type": "Basic",
+                            "id": "primary",
+                            "content": [{
+                                "list": [
+                                    "The information supplied is collected by the Office for National Statistics (ONS), on behalf of the Office of Rail and Road (ORR), under Ministerial Direction.",
+                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                                    "We will treat your data securely and confidentially.",
+                                    "Data should relate to sites in England, Scotland and Wales.",
+                                    "You can provide informed estimates if actual figures are not available.",
+                                    "Please provide your figures rounded to the nearest whole number.",
+                                    "You can save a copy of your answers at the end of this questionnaire using the ‘Download as PDF’ button."
+                                ]
+                            }]
+                        }],
+                        "preview_content": {
+                            "id": "preview",
+                            "title": "Information you need",
+                            "content": [{
+                                "description": "This survey asks for the <strong>value of acquisitions and proceeds from disposals </strong>for each of the following:"
+                            }],
+                            "questions": [{
+                                    "question": "Track and signalling",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "expenditure on rail track renewals and enhancements",
+                                                "new routes",
+                                                "new electrification and signalling and any associated land",
+                                                "professional fees and charges"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Rolling Stock",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "new and second-hand acquisitions of rail rolling stock",
+                                                "eligible refurbishment work"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "leasing charges"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Stations",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "expenditure on passenger stations",
+                                                "passenger and freight train depots, train maintenance facilities",
+                                                "expenditure on retail outlets"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "expenditure at station ticket offices"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Other Rail",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "all other expenditure in connection with rail business",
+                                                "buildings and associated land",
+                                                "non-rail vehicles",
+                                                "capital equipment"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "track and signalling",
+                                                "expenditure not connected with rail business"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "secondary_content": [{
+                            "id": "secondary-content",
+                            "title": "How we use your data",
+                            "content": [{
+                                "list": [
+                                    "The information you provide contributes to the rail finance statistical release by the Office for Rail and Road (ORR).",
+                                    "ORR aggregates the investment figures for all the companies in Great Britain and publishes them as a yearly estimate in the <a href=\"https://dataportal.orr.gov.uk/statistics/finance/rail-industry-finance/table-7290-private-sector-investment-in-the-rail-industry-excludes-network-rail-investment/\"target=\"_blank\"rel=\"noopener noreferrer\">rail finance statistical release (this link opens in a new tab)</a>."
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blocke23adaf4-56c5-4b21-99e0-57998a0c68e2",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questione23adaf4-56c5-4b21-99e0-57998a0c68e2",
+                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}'s total value of acquisitions and proceeds from disposals for <em>track and signalling</em>?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "expenditure on rail track renewals and enhancements",
+                                            "new routes",
+                                            "new electrification and signalling and any associated land",
+                                            "professional fees and charges"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                    "id": "answerd49825a9-3298-438e-9561-78e98472866a",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total value of construction and acquisition of land",
+                                    "description": "Enter a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "q_code": "2",
+                                    "decimal_places": 0,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer38cae515-e7ba-428e-9ed0-9cf50f297224",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total value of proceeds from disposals of land and assets",
+                                    "description": "Enter a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "q_code": "3",
+                                    "decimal_places": 0,
+                                    "currency": "GBP"
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "block58e5a705-cbfb-4119-9a2c-0f62472f9d8c",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question58e5a705-cbfb-4119-9a2c-0f62472f9d8c",
+                            "title": "For the reporting period, what was your business's total value of acquisitions and proceeds from disposals for <em>rolling stock</em>?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "new and second-hand acquisitions of rail rolling stock",
+                                            "eligible refurbishment work"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "leasing charges"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                    "id": "answerc984e2b9-e992-46ca-b19b-9460a84f16ea",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total value of acquisitions of rolling stock",
+                                    "description": "Enter a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "q_code": "4",
+                                    "decimal_places": 0,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answerb04975e4-f6f6-47bf-85ba-148cc26f09f1",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total value of proceeds from disposals of rolling stock",
+                                    "description": "Enter a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "q_code": "5",
+                                    "decimal_places": 0,
+                                    "currency": "GBP"
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "block616cfa6b-6cc5-456e-9bbd-647337686e27",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question616cfa6b-6cc5-456e-9bbd-647337686e27",
+                            "title": "For the reporting period, what was your business's total value of acquisitions and proceeds from disposals for <em>stations</em>?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "expenditure on passenger stations",
+                                            "passenger and freight train depots, train maintenance facilities",
+                                            "expenditure on retail outlets"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "expenditure at station ticket offices"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                    "id": "answer01fb6563-c770-4f7d-b272-d2e876c7fd12",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total value of retail acquisitions at stations",
+                                    "description": "Enter a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "q_code": "6",
+                                    "decimal_places": 0,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer71aee2ea-262b-4d4f-a2ee-a437e2100e31",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total value of proceeds from retail disposals at stations",
+                                    "description": "Enter a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "q_code": "7",
+                                    "decimal_places": 0,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answerbd213159-d765-4f9f-ad27-f88d9045035f",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total value of other acquisitions at stations",
+                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "q_code": "8",
+                                    "decimal_places": 0,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer01bef06a-2ca7-49d1-9c2d-f77216546c27",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total value of proceeds from other disposals at stations",
+                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "q_code": "9",
+                                    "decimal_places": 0,
+                                    "currency": "GBP"
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "block44031246-d838-4d61-8265-2b5e72107cb3",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question44031246-d838-4d61-8265-2b5e72107cb3",
+                            "title": "For the reporting period, what was your business's total value of acquisitions and proceeds from disposals for <em>other rail</em>?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "all other expenditure in connection with rail business",
+                                            "buildings and associated land",
+                                            "non-rail vehicles",
+                                            "capital equipment"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "track and signalling",
+                                            "rolling stock",
+                                            "stations",
+                                            "expenditure not connected with rail business"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by 'other rail'",
+                                "content": [{
+                                    "description": "This refers to the value of any other acquisitions and proceeds from disposals, not already previously mentioned in this survey, that relate to rail business."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                    "id": "answer446abd90-84f3-4b97-ae97-a9f5cc0fb211",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total value of acquisitions from other rail",
+                                    "description": "Enter a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "q_code": "10",
+                                    "decimal_places": 0,
+                                    "currency": "GBP"
+                                },
+                                {
+                                    "id": "answer7e0d53c7-7344-4960-9d8a-6a06d186c326",
+                                    "mandatory": true,
+                                    "type": "Currency",
+                                    "label": "Total value of proceeds from disposals of other rail",
+                                    "description": "Enter a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "q_code": "13",
+                                    "decimal_places": 0,
+                                    "currency": "GBP"
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "block11020211-b6d8-4118-b73d-745709a1fa8d",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question11020211-b6d8-4118-b73d-745709a1fa8d",
+                            "title": "Please provide any further details that will help us understand your figures and to tell an industry story",
+                            "description": "<p>Providing commentary minimises the likelihood of us contacting you with further data queries.</p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "any unusual fluctuations in your figures",
+                                            "changes in the accounting approaches you have taken"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer2fc8dbaa-21be-419e-8b72-c7b8bbe68b38",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "146",
+                                "max_length": 2000
+                            }]
+                        }]
+                    }
+                ]
+            },
+            {
+                "id": "summary-group",
+                "title": "Summary",
+                "blocks": [{
+                    "type": "Summary",
+                    "id": "summary-block"
+                }]
+            }
+        ]
+    }],
     "theme": "orr",
     "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
+    "navigation": {
+        "visible": false
+    },
     "metadata": [{
-        "name": "user_id",
-        "validator": "string"
-    }, {
-        "name": "period_id",
-        "validator": "string"
-    }, {
-        "name": "ru_name",
-        "validator": "string"
-    }],
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                "type": "Introduction",
-                "id": "introduction"
-            }, {
-                "type": "Question",
-                "id": "block-1",
-                "description": "",
-                "questions": [{
-                    "answers": [{
-                        "id": "character-answer",
-                        "label": "Who do you want to know more about?",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Jyn Erso",
-                            "value": "Jyn Erso"
-                        }, {
-                            "label": "Cassian Andor",
-                            "value": "Cassian Andor"
-                        }, {
-                            "label": "Bodhi Rook",
-                            "value": "Bodhi Rook"
-                        }, {
-                            "label": "Orson Krennic",
-                            "value": "Orson Krennic"
-                        }],
-                        "q_code": "1",
-                        "type": "Radio",
-                        "validation": {
-                            "messages": {}
-                        }
-                    }],
-                    "description": "",
-                    "id": "character-question",
-                    "title": "",
-                    "type": "General"
-                }],
-                "title": "Who do you want to know more about?",
-                "routing_rules": [{
-                    "goto": {
-                        "block": "jyn-erso-like-this-page",
-                        "when": [{
-                            "id": "character-answer",
-                            "condition": "equals",
-                            "value": "Jyn Erso"
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "block": "cassian-andor-like-this-page",
-                        "when": [{
-                            "id": "character-answer",
-                            "condition": "equals",
-                            "value": "Cassian Andor"
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "block": "bodhi-rook-like-this-page",
-                        "when": [{
-                            "id": "character-answer",
-                            "condition": "equals",
-                            "value": "Bodhi Rook"
-                        }]
-                    }
-                }, {
-                    "goto": {
-                        "block": "orson-krennic-like-this-page"
-                    }
-                }]
-            }, {
-                "type": "Question",
-                "id": "jyn-erso-like-this-page",
-                "description": "Putting behind a checkered past by lending her skills to a greater cause, Jyn is impetuous, defiant, and eager to bring the battle to the Empire. Used to operating alone, she finds higher purpose by taking on a desperate mission for the Rebel Alliance.",
-                "questions": [{
-                    "answers": [{
-                        "id": "jyn-erso-like-this-page-answer",
-                        "label": "",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Yes",
-                            "value": "Yes"
-                        }, {
-                            "label": "No",
-                            "value": "No"
-                        }],
-                        "q_code": "2",
-                        "type": "Radio",
-                        "validation": {
-                            "messages": {}
-                        }
-                    }],
-                    "description": "",
-                    "id": "jyn-erso-like-this-page-question",
-                    "title": "Do you like this page?",
-                    "type": "General"
-                }],
-                "title": "{{answers['character']}}",
-                "routing_rules": [{
-                    "goto": {
-                        "block": "film-takings"
-                    }
-                }]
-            }, {
-                "type": "Question",
-                "id": "cassian-andor-like-this-page",
-                "description": "An accomplished Rebel Alliance Intelligence Officer with combat field experience, Captain Andor commands respect from his Rebel troops with his ability to keep a cool head under fire and complete his missions with minimal resources",
-                "questions": [{
-                    "answers": [{
-                        "id": "cassian-andor-like-this-page-answer",
-                        "label": "",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Yes",
-                            "value": "Yes"
-                        }, {
-                            "label": "No",
-                            "value": "No"
-                        }],
-                        "q_code": "3",
-                        "type": "Radio",
-                        "validation": {
-                            "messages": {}
-                        }
-                    }],
-                    "description": "",
-                    "id": "cassian-andor-like-this-page-question",
-                    "title": "Do you like this page?",
-                    "type": "General"
-                }],
-                "title": "{{answers['character']}}",
-                "routing_rules": [{
-                    "goto": {
-                        "block": "film-takings"
-                    }
-                }]
-            }, {
-                "type": "Question",
-                "id": "bodhi-rook-like-this-page",
-                "description": "A former Imperial pilot, Bodhi has strong piloting and technical skills to use as the pilot of the Rebel squad. Ever practical, but highly anxious, Rook must gather his courage to bring the battle to the Empire.",
-                "questions": [{
-                    "answers": [{
-                        "id": "bodhi-rook-like-this-page-answer",
-                        "label": "",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Yes",
-                            "value": "Yes"
-                        }, {
-                            "label": "No",
-                            "value": "No"
-                        }],
-                        "q_code": "4",
-                        "type": "Radio",
-                        "validation": {
-                            "messages": {}
-                        }
-                    }],
-                    "description": "",
-                    "id": "bodhi-rook-like-this-page-question",
-                    "title": "Do you like this page?",
-                    "type": "General"
-                }],
-                "title": "{{answers['character']}}",
-                "routing_rules": [{
-                    "goto": {
-                        "block": "film-takings"
-                    }
-                }]
-            }, {
-                "type": "Question",
-                "id": "orson-krennic-like-this-page",
-                "description": "An Imperial Military Director who is obsessed with the completion of the long-delayed Death Star project. A cruel but brilliant man, Krennic has staked his reputation on the delivery of the functional battle station to the Emperor.",
-                "questions": [{
-                    "answers": [{
-                        "id": "orson-krennic-like-this-page-answer",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Yes",
-                            "value": "Yes"
-                        }, {
-                            "label": "No",
-                            "value": "No"
-                        }],
-                        "q_code": "5",
-                        "type": "Radio"
-                    }],
-                    "id": "orson-krennic-like-this-page-question",
-                    "title": "Do you like this page?",
-                    "type": "General"
-                }],
-                "title": "{{answers['character']}}",
-                "routing_rules": [{
-                    "goto": {
-                        "block": "film-takings"
-                    }
-                }]
-            }, {
-                "type": "Question",
-                "id": "film-takings",
-                "description": "",
-                "questions": [{
-                    "answers": [{
-                        "id": "film-takings-answer",
-                        "label": "Estimated takings",
-                        "mandatory": true,
-                        "q_code": "2",
-                        "type": "Currency",
-                        "currency": "GBP",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "How much, fool you must be",
-                                "NUMBER_TOO_SMALL": "How can it be negative?"
-                            }
-                        }
-                    }],
-                    "description": "",
-                    "id": "film-takings-question",
-                    "title": "In millions, how much do you think this film will take?",
-                    "type": "General"
-                }],
-                "title": ""
-            }],
-            "title": "",
-            "id": "rogue-one"
-        }, {
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "summary-group",
-            "title": ""
-        }]
-    }]
+            "name": "user_id",
+            "validator": "string"
+        },
+        {
+            "name": "period_id",
+            "validator": "string"
+        },
+        {
+            "name": "ru_name",
+            "validator": "string"
+        },
+        {
+            "name": "trad_as",
+            "validator": "optional_string"
+        },
+        {
+            "name": "ref_p_start_date",
+            "validator": "date"
+        },
+        {
+            "name": "ref_p_end_date",
+            "validator": "date"
+        }
+    ],
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    }
 }
