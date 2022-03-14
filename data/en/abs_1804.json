@@ -171,9 +171,7 @@
                                     "when": [{
                                         "id": "answer3ca2007a-08e2-4723-8440-7e927a52aef9",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes, I can report for this period"
-                                        ]
+                                        "values": ["Yes, I can report for this period"]
                                     }]
                                 }
                             },
@@ -288,9 +286,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "VAT"
-                                        ]
+                                        "list": ["VAT"]
                                     }
                                 ]
                             },
@@ -392,9 +388,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-41cdf0fc-9a2c-4def-a728-0b77f3647177",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No, I need to change this"
-                                        ]
+                                        "values": ["No, I need to change this"]
                                     }]
                                 }
                             },
@@ -427,9 +421,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "VAT"
-                                        ]
+                                        "list": ["VAT"]
                                     }
                                 ]
                             },
@@ -469,9 +461,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "VAT"
-                                        ]
+                                        "list": ["VAT"]
                                     }
                                 ]
                             },
@@ -515,10 +505,7 @@
                                         "description": "Goods and/or services that protect the environment that are <strong>used</strong> by your business. For example:"
                                     },
                                     {
-                                        "list": [
-                                            "the use of energy saving light bulbs",
-                                            "the consumption of recycled materials"
-                                        ]
+                                        "list": ["the use of energy saving light bulbs", "the consumption of recycled materials"]
                                     }
                                 ]
                             },
@@ -547,9 +534,7 @@
                                     "when": [{
                                         "id": "answer4772a4af-cc57-4973-a9ec-2684efcfd515",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No"
-                                        ]
+                                        "values": ["No"]
                                     }]
                                 }
                             },
@@ -670,11 +655,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "former employees only receiving a pension",
-                                            "self-employed workers",
-                                            "subcontractors"
-                                        ]
+                                        "list": ["former employees only receiving a pension", "self-employed workers", "subcontractors"]
                                     }
                                 ]
                             }],
@@ -727,11 +708,7 @@
                             "definitions": [{
                                 "title": "Examples of goods bought for resale",
                                 "content": [{
-                                    "list": [
-                                        "petrol",
-                                        "gas",
-                                        "coal"
-                                    ]
+                                    "list": ["petrol", "gas", "coal"]
                                 }]
                             }],
                             "type": "General",
@@ -786,29 +763,20 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "all fees and commissions received",
-                                            "management fees and/or inter group charges"
-                                        ]
+                                        "list": ["all fees and commissions received", "management fees and/or inter group charges"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "national non-domestic business rates"
-                                        ]
+                                        "list": ["national non-domestic business rates"]
                                     }
                                 ]
                             },
                             "definitions": [{
                                 "title": "Examples of other costs of materials, goods, and services",
                                 "content": [{
-                                    "list": [
-                                        "post and telecommunication costs",
-                                        "advertising charges",
-                                        "commercial insurance premiums paid"
-                                    ]
+                                    "list": ["post and telecommunication costs", "advertising charges", "commercial insurance premiums paid"]
                                 }]
                             }],
                             "type": "General",
@@ -899,10 +867,7 @@
                         }],
                         "calculation": {
                             "calculation_type": "sum",
-                            "answers_to_calculate": [
-                                "answer9e10ec5e-7edb-4d85-a9d0-344e62706783",
-                                "answer2cda2ab4-dcc3-4a7b-bb3d-bda169bd3df4"
-                            ],
+                            "answers_to_calculate": ["answer9e10ec5e-7edb-4d85-a9d0-344e62706783", "answer2cda2ab4-dcc3-4a7b-bb3d-bda169bd3df4"],
                             "titles": [{
                                 "value": "Total expenditure on energy, goods, materials, and services"
                             }]
@@ -1023,11 +988,7 @@
                                         "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "VAT",
-                                            "deposits",
-                                            "Vehicle Excise Duty, also known as ‘motor vehicle duty’ or ‘road fund tax’"
-                                        ]
+                                        "list": ["VAT", "deposits", "Vehicle Excise Duty, also known as ‘motor vehicle duty’ or ‘road fund tax’"]
                                     }
                                 ]
                             },
@@ -1096,9 +1057,7 @@
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "work in progress"
-                                        ]
+                                        "list": ["work in progress"]
                                     },
                                     {
                                         "description": "<strong>Exclude:</strong>"
@@ -1599,11 +1558,7 @@
                                         "description": "Research and Development covers <strong>three</strong> types of activity:"
                                     },
                                     {
-                                        "list": [
-                                            "Basic research",
-                                            "Applied research",
-                                            "Experimental development"
-                                        ]
+                                        "list": ["Basic research", "Applied research", "Experimental development"]
                                     },
                                     {
                                         "description": "R&amp;D comprises creative and systematic work undertaken in order to increase the stock of knowledge, and in order to devise new applications of available knowledge. R&amp;D activity <strong>must</strong> have elements of <strong>all of these five</strong> criteria:"
@@ -1666,27 +1621,19 @@
                                         "description": "<strong>Please include details of:</strong>"
                                     },
                                     {
-                                        "list": [
-                                            "any zero figures"
-                                        ]
+                                        "list": ["any zero figures"]
                                     },
                                     {
                                         "description": "Any significant impacts upon your data resulting from changes to your business. For example:"
                                     },
                                     {
-                                        "list": [
-                                            "changes to your business structure",
-                                            "type of activity undertaken"
-                                        ]
+                                        "list": ["changes to your business structure", "type of activity undertaken"]
                                     },
                                     {
                                         "description": "Changes in the accounting approaches you have taken. For example:"
                                     },
                                     {
-                                        "list": [
-                                            "change of accounting standard such as IFRS",
-                                            "regulatory changes"
-                                        ]
+                                        "list": ["change of accounting standard such as IFRS", "regulatory changes"]
                                     },
                                     {
                                         "description": "Any significant changes upon your data as a result of the coronavirus (COVID-19) pandemic."

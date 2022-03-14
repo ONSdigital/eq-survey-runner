@@ -964,7 +964,7 @@
                                 "type": "Currency",
                                 "label": "Total amounts received in subsidies from UK government sources and the EU",
                                 "description": "Enter a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
-                                "q_code": "400414",
+                                "q_code": "414",
                                 "decimal_places": 0,
                                 "currency": "GBP",
                                 "guidance": {
