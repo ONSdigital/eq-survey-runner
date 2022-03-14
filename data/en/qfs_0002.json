@@ -1,0 +1,1759 @@
+{
+    "eq_id": "2021_Fuels_(024)",
+    "form_type": "0002",
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "024",
+    "title": "Quarterly Fuels Survey",
+    "sections": [{
+            "id": "section2c7d2ff2-90ae-4c81-b694-644de77d168d",
+            "title": "Fuels purchased",
+            "groups": [{
+                "id": "group2c7d2ff2-90ae-4c81-b694-644de77d168d",
+                "title": "Fuels purchased",
+                "blocks": [{
+                        "type": "Introduction",
+                        "id": "introduction-block",
+                        "primary_content": [{
+                            "type": "Basic",
+                            "id": "primary",
+                            "content": [{
+                                "list": [
+                                    "This survey is conducted by the Office for National Statistics on behalf of the Department of Business, Energy and Industrial Strategy (BEIS).",
+                                    "BEIS, as the department responsible for the energy industries, uses the information to calculate industrial fuel prices. This is used to inform energy prices policy and used by industry to benchmark and help with negotiation of their energy costs.",
+                                    "Data should relate to sites within the UK.",
+                                    "You can provide informed estimates if actual figures are not available.",
+                                    "We will treat your data securely and confidentially."
+                                ]
+                            }]
+                        }],
+                        "preview_content": {
+                            "id": "preview",
+                            "title": "Information you need",
+                            "content": [{
+                                    "description": "This survey collects information on the different fuel types your business has purchased within the reporting period."
+                                },
+                                {
+                                    "description": "The fuel types included in this survey are:"
+                                },
+                                {
+                                    "list": ["oil", "coal", "gas", "electricity"]
+                                },
+                                {
+                                    "description": "The survey has the following sections:"
+                                }
+                            ],
+                            "questions": [{
+                                    "question": "Reporting period",
+                                    "content": [{
+                                        "description": "You are asked to provide information for the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}."
+                                    }]
+                                },
+                                {
+                                    "question": "Fuel types purchased by your business",
+                                    "content": [{
+                                        "description": "You will be asked to select the fuel types your business has purchased during the reporting period."
+                                    }]
+                                },
+                                {
+                                    "question": "Questions for each fuel type",
+                                    "content": [{
+                                            "description": "You will be asked to provide the following information for each fuel you select:"
+                                        },
+                                        {
+                                            "list": [
+                                                "total purchase cost",
+                                                "quantity of fuel purchased",
+                                                "the Climate Change Levy paid",
+                                                "net-calorific value",
+                                                "names of suppliers",
+                                                "main use of fuel"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "secondary_content": [{
+                            "id": "secondary-content",
+                            "title": "How we use your data",
+                            "content": [{
+                                "list": [
+                                    "The information you supply is used to create an accurate picture of energy prices by size of consumer. It is also used to promote price transparency during contract negotiations.",
+                                    "Data on industrial fuel prices are published by BEIS. <a href=\"https://www.gov.uk/government/collections/quarterly-energy-prices\"target=\"_blank\"rel=\"noopener noreferrer\">View the latest publication produced from this survey (this link opens in a new tab</a>).",
+                                    "If you would like further information on how the data are used or published please visit the <a href=\"https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy\"target=\"_blank\"rel=\"noopener noreferrer\">BEIS's Energy Statistics website (this link opens in a new tab)</a> or call the Department of Business, Energy and Industrial Strategy on 0300 068 5060."
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Interstitial",
+                        "id": "group2c7d2ff2-90ae-4c81-b694-644de77d168d-introduction",
+                        "title": "How to complete",
+                        "description": "<p>This survey collects information on the different fuel types your business has purchased within the reporting period.</p><ul><li>Data should relate to sites in the UK.</li><li>You can provide informed estimates if actual figures are not available.</li><li>Please provide your figures rounded to the nearest whole number.</li><li>You can save a copy of your answers at the end of this questionnaire using the ‘Download as PDF’ button.</li></ul><p><strong>What you need to do</strong></p><p>Select which fuels your business has purchased during the reporting period and then complete the questions for each relevant fuel type. The fuel types included in this survey are:</p><ul><li>oil</li><li>coal</li><li>gas</li><li>electricity</li></ul><p>You will be asked to provide the following information for each fuel you select:</p><ul><li>total purchase cost</li><li>quantity of fuel purchased</li><li>the Climate Change Levy paid</li><li>net-calorific value</li><li>names of suppliers</li><li>main use of fuel</li></ul><p><strong>Not relevant for your business?</strong></p><p>You still need to complete this survey even if it does not seem relevant. All returns are important as it helps us produce better statistics.</p>"
+                    },
+                    {
+                        "id": "block13c17872-46c2-4d15-b1cb-a87ed4dd3ac5",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question13c17872-46c2-4d15-b1cb-a87ed4dd3ac5",
+                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, which of the following fuels has {{ metadata['ru_name'] }} purchased?",
+                            "description": "<p>You still need to complete this survey even if it does not seem relevant. All returns, including nil figures, are important as it helps us produce better statistics.</p>",
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "label": "Select all that apply:",
+                                    "description": "",
+                                    "options": [{
+                                            "label": "Oil",
+                                            "value": "Oil",
+                                            "q_code": "13",
+                                            "description": "Including heavy and light oil"
+                                        },
+                                        {
+                                            "label": "Coal",
+                                            "value": "Coal",
+                                            "q_code": "12",
+                                            "description": "Including graded singles and doubles"
+                                        },
+                                        {
+                                            "label": "Gas",
+                                            "value": "Gas",
+                                            "q_code": "10",
+                                            "description": "Including under firm and interruptible contracts"
+                                        },
+                                        {
+                                            "label": "Electricity",
+                                            "value": "Electricity",
+                                            "q_code": "11",
+                                            "description": "Including externally sourced electricity"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "answerb30aefc2-5807-4499-b164-5394574d869c-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "",
+                                    "options": [{
+                                        "label": "None of the above",
+                                        "value": "None of the above",
+                                        "q_code": "14"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group985d3fe9-09ae-4dfb-be1d-e83f1ab3fbf0",
+                                    "when": [{
+                                        "id": "answerb30aefc2-5807-4499-b164-5394574d869c-exclusive",
+                                        "condition": "contains all",
+                                        "values": ["None of the above"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group5b375c46-6375-4b6c-8af5-c592dc1a09df"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section5b375c46-6375-4b6c-8af5-c592dc1a09df",
+            "title": "Oil",
+            "groups": [{
+                "id": "group5b375c46-6375-4b6c-8af5-c592dc1a09df",
+                "title": "Oil",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group5b375c46-6375-4b6c-8af5-c592dc1a09df-introduction",
+                        "title": "Oil",
+                        "description": "<p>This section asks for information about types, quantity and cost of oil purchased by your business.</p><p>The different types of gas fuel asked about are heavy fuel oil and light fuel oil.</p><p><strong>Examples of heavy fuel oil:</strong></p><ul><li>marine fuel</li><li>bunker fuel</li><li>furnace fuel</li></ul><p><strong>Examples of light fuel oil:</strong></p><ul><li>diesel</li><li>kerosene</li><li>gasoline</li></ul>",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Oil"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block507c3111-b659-4f5a-9155-8835945c4c91",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question507c3111-b659-4f5a-9155-8835945c4c91",
+                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}'s purchase cost of heavy fuel oil?",
+                            "description": "<p>Informed estimates are acceptable.</p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["duty paid", "all costs incurred transporting fuel to your premises", "gas oil", "diesel oil"]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "lubricants",
+                                            "drawing or quenching oils",
+                                            "fuels used as raw materials",
+                                            "fuels for use in fork lift trucks",
+                                            "fuels for use in road vehicles",
+                                            "VAT and levy"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by 'purchase cost'",
+                                "content": [{
+                                    "description": "Purchase cost is the total value of the fuel including the cost of the fuel itself, duty paid, charges from the supplier, costs incurring transporting the fuel to premises."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer26d103cf-031e-4f2b-8258-e9de3125367d",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Purchase cost of heavy fuel oil, excluding VAT and levy",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "110",
+                                "decimal_places": 0,
+                                "currency": "GBP",
+                                "guidance": {
+                                    "show_guidance": "What we mean by 'heavy fuel oil'",
+                                    "hide_guidance": "What we mean by 'heavy fuel oil'",
+                                    "content": [{
+                                            "description": "Fuel oils are the heavier residuals from the refining process. Fuel oils are used for fuel in furnaces and boilers for heating, metallurgic operation and industrial power plants."
+                                        },
+                                        {
+                                            "description": "The heavier grades of fuel oils<strong> require some form of pre-heating</strong> before being burned <strong>in all situations</strong>. These are typically viscous and tar-like and formed from the remnants of the process to make higher quality petroleum products."
+                                        }
+                                    ]
+                                }
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Oil"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockbb9f0698-0928-4785-935e-1ff9a2803b47",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionbb9f0698-0928-4785-935e-1ff9a2803b47",
+                            "title": "Was the heavy fuel oil purchased in litres or tonnes?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerdadc5b9d-7717-4ac7-a704-16e4a7865603",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "120",
+                                "options": [{
+                                        "label": "Litres",
+                                        "value": "Litres"
+                                    },
+                                    {
+                                        "label": "Tonnes",
+                                        "value": "Tonnes"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block712a7993-4560-45d1-ac18-c2e17290a7c6",
+                                    "when": [{
+                                        "id": "answerdadc5b9d-7717-4ac7-a704-16e4a7865603",
+                                        "condition": "contains any",
+                                        "values": ["Litres"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockbc97ac6c-c8a6-470b-af5e-de9b56a101ce",
+                                    "when": [{
+                                        "id": "answerdadc5b9d-7717-4ac7-a704-16e4a7865603",
+                                        "condition": "contains any",
+                                        "values": ["Tonnes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockffc13911-6bb3-4ec6-a8fa-e0070ffbcb47"
+                                }
+                            }
+                        ],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Oil"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block712a7993-4560-45d1-ac18-c2e17290a7c6",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question712a7993-4560-45d1-ac18-c2e17290a7c6",
+                            "title": "During the reporting period, what was the total quantity of heavy fuel oil purchased?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer697df7eb-6b78-4ed5-bd87-2300eda52da3",
+                                "mandatory": true,
+                                "type": "Unit",
+                                "label": "Total quantity of heavy fuel oil purchased in litres",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "121",
+                                "unit": "volume-liter",
+                                "unit_length": "short",
+                                "decimal_places": 0
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Oil"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockbc97ac6c-c8a6-470b-af5e-de9b56a101ce",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionbc97ac6c-c8a6-470b-af5e-de9b56a101ce",
+                            "title": "During the reporting period, what was the total quantity of heavy fuel oil purchased?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer1a322d0c-d2d4-472c-8163-a91375c84e1e",
+                                "mandatory": true,
+                                "type": "Unit",
+                                "label": "Total quantity of heavy fuel oil purchased in tonnes",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "122",
+                                "unit": "mass-metric-ton",
+                                "unit_length": "short",
+                                "decimal_places": 0
+                            }]
+                        }],
+                        "skip_conditions": [{
+                                "when": [{
+                                    "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                    "condition": "not contains any",
+                                    "values": ["Oil"]
+                                }]
+                            },
+                            {
+                                "when": [{
+                                    "id": "answerdadc5b9d-7717-4ac7-a704-16e4a7865603",
+                                    "condition": "contains any",
+                                    "values": ["Litres"]
+                                }]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "blockffc13911-6bb3-4ec6-a8fa-e0070ffbcb47",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionffc13911-6bb3-4ec6-a8fa-e0070ffbcb47",
+                            "title": "During the reporting period, what was your business's purchase cost of light fuel oil?",
+                            "description": "<p>Informed estimates are acceptable.</p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["duty paid", "all costs incurred transporting fuel to your premises", "gas oil", "diesel oil"]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "lubricants",
+                                            "drawing or quenching oils",
+                                            "fuels used as raw materials",
+                                            "fuels for use in fork lift trucks",
+                                            "fuels for use in road vehicles",
+                                            "VAT and levy"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by 'purchase cost'",
+                                "content": [{
+                                    "description": "Purchase cost is the total value of the fuel including the cost of the fuel itself, duty paid, charges from the supplier, costs incurring transporting the fuel to premises."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answera7f51408-abe4-4817-b387-fb027c2b31a4",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Purchase cost of light fuel oil, excluding VAT and levy",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "130",
+                                "decimal_places": 0,
+                                "currency": "GBP",
+                                "guidance": {
+                                    "show_guidance": "What we mean by 'light fuel oil'",
+                                    "hide_guidance": "What we mean by 'light fuel oil'",
+                                    "content": [{
+                                            "description": "Fuel oils are the heavier residuals from the refining process. Fuel oils are used for fuel in furnaces and boilers for heating, metallurgic operation and industrial power plants."
+                                        },
+                                        {
+                                            "description": "The lighter fuel oil grades are made up of straight-run or cracked distillates and can be used in commercial or industrial burner installations <strong>without pre-heating</strong> facilities."
+                                        }
+                                    ]
+                                }
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Oil"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockedced295-3e16-4e2c-b240-3f9a2449fc06",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionedced295-3e16-4e2c-b240-3f9a2449fc06",
+                            "title": "Was the light fuel oil purchased in litres or tonnes?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answercefa7db7-22fb-4bfd-be8e-e3f73367cb57",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "140",
+                                "options": [{
+                                        "label": "Litres",
+                                        "value": "Litres"
+                                    },
+                                    {
+                                        "label": "Tonnes",
+                                        "value": "Tonnes"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "blockeebff6f6-8840-495a-b63c-269262bb2bec",
+                                    "when": [{
+                                        "id": "answercefa7db7-22fb-4bfd-be8e-e3f73367cb57",
+                                        "condition": "contains any",
+                                        "values": ["Litres"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockc83eb18b-d786-48fe-9092-5dc60836fd80",
+                                    "when": [{
+                                        "id": "answercefa7db7-22fb-4bfd-be8e-e3f73367cb57",
+                                        "condition": "contains any",
+                                        "values": ["Tonnes"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "group6c5c45d6-7adb-4807-b46b-9f207af73b2f"
+                                }
+                            }
+                        ],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Oil"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockeebff6f6-8840-495a-b63c-269262bb2bec",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questioneebff6f6-8840-495a-b63c-269262bb2bec",
+                            "title": "During the reporting period, what was the total quantity of light fuel oil purchased?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer9c791594-6916-4893-8596-f643c553cf43",
+                                "mandatory": true,
+                                "type": "Unit",
+                                "label": "Total quantity of light fuel oil purchased in litres",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "141",
+                                "unit": "volume-liter",
+                                "unit_length": "short",
+                                "decimal_places": 0
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Oil"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockc83eb18b-d786-48fe-9092-5dc60836fd80",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionc83eb18b-d786-48fe-9092-5dc60836fd80",
+                            "title": "During the reporting period, what was the total quantity of light fuel oil purchased?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerad42a5b2-11fb-4924-a824-c6fe946531ac",
+                                "mandatory": true,
+                                "type": "Unit",
+                                "label": "Total quantity of light fuel oil purchased in tonnes",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "142",
+                                "unit": "mass-metric-ton",
+                                "unit_length": "short",
+                                "decimal_places": 0
+                            }]
+                        }],
+                        "skip_conditions": [{
+                                "when": [{
+                                    "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                    "condition": "not contains any",
+                                    "values": ["Oil"]
+                                }]
+                            },
+                            {
+                                "when": [{
+                                    "id": "answercefa7db7-22fb-4bfd-be8e-e3f73367cb57",
+                                    "condition": "contains any",
+                                    "values": ["Litres"]
+                                }]
+                            }
+                        ]
+                    }
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answerb30aefc2-5807-4499-b164-5394574d869c-exclusive",
+                        "condition": "contains all",
+                        "values": ["None of the above"]
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "section6c5c45d6-7adb-4807-b46b-9f207af73b2f",
+            "title": "Coal",
+            "groups": [{
+                "id": "group6c5c45d6-7adb-4807-b46b-9f207af73b2f",
+                "title": "Coal",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group6c5c45d6-7adb-4807-b46b-9f207af73b2f-introduction",
+                        "title": "Coal",
+                        "description": "<p>This section asks for information about quantity and cost of coal purchased by your business.</p>",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Coal"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockc3b9b175-2f45-42d7-be65-6ec04ce36e96",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionc3b9b175-2f45-42d7-be65-6ec04ce36e96",
+                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}'s purchase cost of coal?",
+                            "description": "<p>Informed estimates are acceptable.</p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["purchases of all types of coal, for example, graded singles and doubles"]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": ["slurry purchases", "coke", "VAT and levy"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by 'purchase cost'",
+                                "content": [{
+                                    "description": "Purchase cost is the total value of the fuel including the cost of the fuel itself, duty paid, charges from the supplier, costs incurring transporting the fuel to premises."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer69903395-8c6d-4038-b68c-d3ceceef364d",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Purchase cost of coal, excluding VAT and levy",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "150",
+                                "decimal_places": 0,
+                                "currency": "GBP"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Coal"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockb92de2ac-c873-4910-8f16-4ddfff67f644",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionb92de2ac-c873-4910-8f16-4ddfff67f644",
+                            "title": "For the reporting period, what was the total quantity of coal purchased?",
+                            "description": "<p>Please report your figures in tonnes.</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answercaa410c8-9847-40a9-8ca3-c0f9181d3c47",
+                                "mandatory": true,
+                                "type": "Unit",
+                                "label": "Total tonnes of coal purchased",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "160",
+                                "unit": "mass-metric-ton",
+                                "unit_length": "short",
+                                "decimal_places": 0
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Coal"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block134faf64-17a4-4feb-9fb0-9d751c16acb9",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question134faf64-17a4-4feb-9fb0-9d751c16acb9",
+                            "title": "What was the total cost of Climate Change Levy for your business?",
+                            "definitions": [{
+                                "title": "What we mean by 'Climate Change Levy'",
+                                "content": [{
+                                    "description": "The Climate Change Levy (CCL) is a tax on energy delivered to non-domestic users in the UK."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer8e060025-aa02-40ad-a95a-69bd8ad65f05",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Total cost of Climate Change Levy",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "180",
+                                "decimal_places": 0,
+                                "currency": "GBP"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Coal"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block0cad4c61-9a37-418a-a0f9-4ba06b27333b",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question0cad4c61-9a37-418a-a0f9-4ba06b27333b",
+                            "title": "What <em>percentage rate</em> of Climate Change Levy was paid by your business?",
+                            "definitions": [{
+                                "title": "What we mean by 'Climate Change Levy'",
+                                "content": [{
+                                    "description": "The Climate Change Levy (CCL) is a tax on energy delivered to non-domestic users in the UK."
+                                }]
+                            }],
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answerebbd3995-8f2b-43e4-aca8-8952948012db",
+                                    "mandatory": false,
+                                    "type": "Percentage",
+                                    "label": "Rate of Climate Change Levy paid",
+                                    "description": "Please provide your figures rounded to the nearest whole number.",
+                                    "q_code": "190",
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answerebbd3995-8f2b-43e4-aca8-8952948012db-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "Please provide your figures rounded to the nearest whole number.",
+                                    "q_code": "190",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Coal"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block701da73f-bd44-48ee-a13b-90c89bd75fe9",
+                        "type": "CalculatedSummary",
+                        "titles": [{
+                            "value": "We calculate the total cost of coal (excluding VAT) purchased to be %(total)s, is this correct?"
+                        }],
+                        "calculation": {
+                            "calculation_type": "sum",
+                            "answers_to_calculate": ["answer69903395-8c6d-4038-b68c-d3ceceef364d", "answer8e060025-aa02-40ad-a95a-69bd8ad65f05"],
+                            "titles": [{
+                                "value": "Total cost of coal"
+                            }]
+                        },
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Coal"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block9d017c4f-5d1b-4285-b767-a8733476f423",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question9d017c4f-5d1b-4285-b767-a8733476f423",
+                            "title": "For the reporting period, what was the net calorific value of coal purchased by your business?",
+                            "description": "<p>Please report your figures in kilojoules (kj).</p>",
+                            "definitions": [{
+                                "title": "What we mean by 'net calorific value'",
+                                "content": [{
+                                        "description": "Calorific value represents the amount of heat or energy within a given volume of gas. There can potentially be variations over time or regionally in the quality of natural gas that would affect this."
+                                    },
+                                    {
+                                        "description": "Gross Calorific Value (GCV) is the amount of heat released by the complete combustion of a unit of natural gas. Net Calorific Value (NCV) is determined by subtracting the heat of vaporisation of the water vapour from this value."
+                                    }
+                                ]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer304d2c28-10c2-4106-a697-8aa6fe701682",
+                                "mandatory": true,
+                                "type": "Unit",
+                                "label": "Net calorific value of coal purchased",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "200",
+                                "unit": "energy-kilojoule",
+                                "unit_length": "short",
+                                "decimal_places": 0
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Coal"]
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answerb30aefc2-5807-4499-b164-5394574d869c-exclusive",
+                        "condition": "contains all",
+                        "values": ["None of the above"]
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "section17c630fe-34a2-4098-a8ab-e316d406e624",
+            "title": "Gas",
+            "groups": [{
+                "id": "group17c630fe-34a2-4098-a8ab-e316d406e624",
+                "title": "Gas",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "group17c630fe-34a2-4098-a8ab-e316d406e624-introduction",
+                        "title": "Gas",
+                        "description": "<p>This section asks for information about quantity and cost of gas purchased by your business both under an interruptible contract and under a firm contract.</p><p>Firm gas contracts are where the gas supply has been guaranteed as uninterruptible by the supplier and customer.</p><p>Interruptible gas contracts are where the gas supply may be interrupted by the supplier to manage system demands, in accordance with certain conditions as contracted.</p>",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block61e0fc70-f2b5-4325-989c-fa0cf0fac292",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question61e0fc70-f2b5-4325-989c-fa0cf0fac292",
+                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, has {{ metadata['ru_name'] }} purchased any gas under a firm contract?",
+                            "definitions": [{
+                                "title": "What we mean by 'a firm contract'",
+                                "content": [{
+                                    "description": "Firm gas contracts are where the gas supply has been guaranteed as uninterruptible by the supplier and customer."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer8cd001aa-86aa-4e54-8fc3-bfb48ca5e8e5",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "210",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block3ff999fd-96e1-45ea-a016-d2ee6fcbd316",
+                                    "when": [{
+                                        "id": "answer8cd001aa-86aa-4e54-8fc3-bfb48ca5e8e5",
+                                        "condition": "contains any",
+                                        "values": ["No"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block7ecc765f-7664-447e-9dec-9914784f4752"
+                                }
+                            }
+                        ],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block7ecc765f-7664-447e-9dec-9914784f4752",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question7ecc765f-7664-447e-9dec-9914784f4752",
+                            "title": "For the reporting period, what was your business's purchase cost of gas under a firm contract?",
+                            "description": "<p>Informed estimates are acceptable.</p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["maximum demand charges", "standing charges", "meter charges"]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": ["gas purchased under an interruptible contract", "VAT and levy"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by 'purchase cost'",
+                                "content": [{
+                                    "description": "Purchase cost is the total value of the fuel including the cost of the fuel itself, duty paid, charges from the supplier, costs incurring transporting the fuel to premises."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answercd549c60-6a80-4dea-942b-ab1aca5e0eea",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Purchase cost of gas under a firm contract, excluding VAT and levy",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "211",
+                                "decimal_places": 0,
+                                "currency": "GBP"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block04bedbea-035f-4832-807a-c081790d873c",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question04bedbea-035f-4832-807a-c081790d873c",
+                            "title": "For the reporting period, what was the total quantity of gas purchased under a firm contract?",
+                            "description": "<p>Please report your figures in kilowatt-hours (kWh).</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer3cec104d-7ce9-43eb-93c5-a6b2084ab66f",
+                                "mandatory": true,
+                                "type": "Unit",
+                                "label": "Total kWh of gas purchased",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "220",
+                                "unit": "energy-kilowatt-hour",
+                                "unit_length": "short",
+                                "decimal_places": 0
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block0a7af651-1f8a-45bc-9e57-2d42720fa6d5",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question0a7af651-1f8a-45bc-9e57-2d42720fa6d5",
+                            "title": "What was the total cost of Climate Change Levy for your business?",
+                            "description": "<p>This refers to gas purchased under a firm contract.</p>",
+                            "definitions": [{
+                                "title": "What we mean by 'Climate Change Levy'",
+                                "content": [{
+                                    "description": "The Climate Change Levy (CCL) is a tax on energy delivered to non-domestic users in the UK."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer7e62cc84-cf3d-4c87-abd9-061c165bf8ee",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Total cost of Climate Change Levy",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "230",
+                                "decimal_places": 0,
+                                "currency": "GBP"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block150b5c68-05bd-4355-bd97-6b1d27644d46",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question150b5c68-05bd-4355-bd97-6b1d27644d46",
+                            "title": "What <em>percentage rate</em> of Climate Change Levy was paid by your business?",
+                            "description": "<p>This refers to gas purchased under a firm contract.</p>",
+                            "definitions": [{
+                                "title": "What we mean by 'Climate Change Levy'",
+                                "content": [{
+                                    "description": "The Climate Change Levy (CCL) is a tax on energy delivered to non-domestic users in the UK."
+                                }]
+                            }],
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer8fd0973b-8329-4549-b4e0-dc637f0719f5",
+                                    "mandatory": false,
+                                    "type": "Percentage",
+                                    "label": "Rate of Climate Change Levy",
+                                    "description": "Please provide your figures rounded to the nearest whole number.",
+                                    "q_code": "240",
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answer8fd0973b-8329-4549-b4e0-dc637f0719f5-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "Please provide your figures rounded to the nearest whole number.",
+                                    "q_code": "240",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockc20047ed-918d-47ef-a48b-f66bbaa605c4",
+                        "type": "CalculatedSummary",
+                        "titles": [{
+                            "value": "We calculate the total cost of gas (excluding VAT) purchased under firm contract to be %(total)s, is this correct?"
+                        }],
+                        "calculation": {
+                            "calculation_type": "sum",
+                            "answers_to_calculate": ["answercd549c60-6a80-4dea-942b-ab1aca5e0eea", "answer7e62cc84-cf3d-4c87-abd9-061c165bf8ee"],
+                            "titles": [{
+                                "value": "Total cost of gas under firm contract"
+                            }]
+                        },
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block589e3b48-d559-4f37-9fdf-7f2215695d63",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question589e3b48-d559-4f37-9fdf-7f2215695d63",
+                            "title": "For the reporting period, what was the name of your business's gas suppliers?",
+                            "description": "<p>This refers to the suppliers of gas purchased under a firm contract.</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer5f11083b-3ff9-45db-85cd-23e913ab69fb",
+                                "mandatory": true,
+                                "type": "TextField",
+                                "label": "Name of gas suppliers",
+                                "description": "",
+                                "q_code": "250"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block2e3ca061-b839-4bbd-91d9-5c7edb729628",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question2e3ca061-b839-4bbd-91d9-5c7edb729628",
+                            "title": "For the reporting period, what was your business's main use for gas?",
+                            "description": "<p>This refers to gas purchased under a firm contract.</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answereaaf069f-7945-4d23-93dc-b31dcbef4baf",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "If more than one applies, please select heat only",
+                                "description": "",
+                                "q_code": "260",
+                                "options": [{
+                                        "label": "Heat",
+                                        "value": "Heat"
+                                    },
+                                    {
+                                        "label": "Raw materials",
+                                        "value": "Raw materials"
+                                    },
+                                    {
+                                        "label": "Electricity generation",
+                                        "value": "Electricity generation"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block3ff999fd-96e1-45ea-a016-d2ee6fcbd316",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3ff999fd-96e1-45ea-a016-d2ee6fcbd316",
+                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, has {{ metadata['ru_name'] }} purchased any gas under an interruptible contract?",
+                            "definitions": [{
+                                "title": "What we mean by 'an interruptible contract'",
+                                "content": [{
+                                    "description": "Interruptible gas contracts are where the gas supply may be interrupted by the supplier to manage system demands, in accordance with certain conditions as contracted."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer31336970-4cc0-4eed-b0d3-1afb5c1f8619",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "q_code": "270",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "groupe61df721-9cdc-4a72-9f03-567a4627d04f",
+                                    "when": [{
+                                        "id": "answer31336970-4cc0-4eed-b0d3-1afb5c1f8619",
+                                        "condition": "contains any",
+                                        "values": ["No"]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockdf5ff1fc-df55-4558-8f8f-87261dc4711f"
+                                }
+                            }
+                        ],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockdf5ff1fc-df55-4558-8f8f-87261dc4711f",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questiondf5ff1fc-df55-4558-8f8f-87261dc4711f",
+                            "title": "For the reporting period, what was your business's purchase cost of gas under an interruptible contract?",
+                            "description": "<p>Informed estimates are acceptable.</p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": ["maximum demand charges", "standing charges", "meter charges"]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": ["any gas purchased under a firm contract", "VAT and levy"]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by 'purchase cost'",
+                                "content": [{
+                                    "description": "Purchase cost is the total value of the fuel including the cost of the fuel itself, duty paid, charges from the supplier, costs incurring transporting the fuel to premises."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer5a7a38ac-447a-4b22-aac2-96803cd10ba1",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Purchase cost of gas under an interruptible contract, excluding VAT and levy",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "271",
+                                "decimal_places": 0,
+                                "currency": "GBP"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block55f48064-babe-4901-a76c-b5ac29636ea1",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question55f48064-babe-4901-a76c-b5ac29636ea1",
+                            "title": "For the reporting period, what was the total quantity of gas purchased under an interruptible contract?",
+                            "description": "<p>Please report your figures in kilowatt-hours (kWh).</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answere06001f0-2d82-42a9-af28-e5ec104714ae",
+                                "mandatory": true,
+                                "type": "Unit",
+                                "label": "Total volume of gas purchased",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "280",
+                                "unit": "energy-kilowatt-hour",
+                                "unit_length": "short",
+                                "decimal_places": 0
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block9415829e-775d-4e67-899a-a93f55bf9a5e",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question9415829e-775d-4e67-899a-a93f55bf9a5e",
+                            "title": "What was the total cost of Climate Change Levy for your business?",
+                            "description": "<p>This refers to gas purchased under an interruptible contract.</p>",
+                            "definitions": [{
+                                "title": "What we mean by 'Climate Change Levy'",
+                                "content": [{
+                                    "description": "The Climate Change Levy (CCL) is a tax on energy delivered to non-domestic users in the UK."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer53b71839-b3c8-4d37-a431-1e9f1c80db81",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Total cost of Climate Change Levy",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "290",
+                                "decimal_places": 0,
+                                "currency": "GBP"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block85fb7674-e070-4c65-9ce2-fcb8e1f87e00",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question85fb7674-e070-4c65-9ce2-fcb8e1f87e00",
+                            "title": "What percentage rate of Climate Change Levy was paid by your business?",
+                            "description": "<p>This refers to gas purchased under an interruptible contract.</p>",
+                            "definitions": [{
+                                "title": "What we mean by 'Climate Change Levy'",
+                                "content": [{
+                                    "description": "The Climate Change Levy (CCL) is a tax on energy delivered to non-domestic users in the UK."
+                                }]
+                            }],
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer11e140ba-a508-4e4b-af9e-889ed2ed6088",
+                                    "mandatory": false,
+                                    "type": "Percentage",
+                                    "label": "Rate of Climate Change Levy",
+                                    "description": "Please provide your figures rounded to the nearest whole number.",
+                                    "q_code": "300",
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answer11e140ba-a508-4e4b-af9e-889ed2ed6088-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "Please provide your figures rounded to the nearest whole number.",
+                                    "q_code": "300",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block7ee649cf-bb63-4afc-9009-37ddca615879",
+                        "type": "CalculatedSummary",
+                        "titles": [{
+                            "value": "We calculate the total cost of gas (excluding VAT) purchased under interruptible contract to be %(total)s, is this correct?"
+                        }],
+                        "calculation": {
+                            "calculation_type": "sum",
+                            "answers_to_calculate": ["answer5a7a38ac-447a-4b22-aac2-96803cd10ba1", "answer53b71839-b3c8-4d37-a431-1e9f1c80db81"],
+                            "titles": [{
+                                "value": "Total cost of gas under interruptible contract"
+                            }]
+                        },
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block71623398-24b0-4779-badb-2c12477c9046",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question71623398-24b0-4779-badb-2c12477c9046",
+                            "title": "For the reporting period, what was the name of your business's gas suppliers?",
+                            "description": "<p>This refers to the suppliers of gas purchased under an interruptible contract.</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer3fa53aea-2c8e-4882-a355-a7738c5f0430",
+                                "mandatory": true,
+                                "type": "TextField",
+                                "label": "Name of gas suppliers",
+                                "description": "",
+                                "q_code": "310"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block89663558-30de-47a2-a240-786788676df5",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question89663558-30de-47a2-a240-786788676df5",
+                            "title": "For the reporting period, what was your business's main use for gas?",
+                            "description": "<p>This refers to gas purchased under an interruptible contract.</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer102c7bef-1d54-4fbb-b668-a13eb6551a5a",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "If more than one applies, please select heat only",
+                                "description": "",
+                                "q_code": "320",
+                                "options": [{
+                                        "label": "Heat",
+                                        "value": "Heat"
+                                    },
+                                    {
+                                        "label": "Raw materials",
+                                        "value": "Raw materials"
+                                    },
+                                    {
+                                        "label": "Electricity generation",
+                                        "value": "Electricity generation"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Gas"]
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answerb30aefc2-5807-4499-b164-5394574d869c-exclusive",
+                        "condition": "contains all",
+                        "values": ["None of the above"]
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "sectione61df721-9cdc-4a72-9f03-567a4627d04f",
+            "title": "Electricity",
+            "groups": [{
+                "id": "groupe61df721-9cdc-4a72-9f03-567a4627d04f",
+                "title": "Electricity",
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "groupe61df721-9cdc-4a72-9f03-567a4627d04f-introduction",
+                        "title": "Electricity",
+                        "description": "<p>This section asks for information about the cost and quantity of electricity purchased by your business.</p><p><strong>Include:</strong></p><ul><li>only electricity supplied from external sources</li><li>maximum demand charges</li><li>standing charges</li><li>meter charges</li></ul><p><strong>Exclude:</strong></p><ul><li>costs for any self-generated electricity</li><li>receipts from sales of self-generated electricity</li><li>VAT</li></ul>",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Electricity"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockbf9828ff-5874-451c-b533-a680d00413ee",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionbf9828ff-5874-451c-b533-a680d00413ee",
+                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}'s purchase cost of electricity?",
+                            "description": "<p>Informed estimates are acceptable.</p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "only electricity supplied from external sources",
+                                            "maximum demand charges",
+                                            "standing charges",
+                                            "meter charges"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "costs for any self-generated electricity",
+                                            "receipts from sales of self-generated electricity",
+                                            "VAT and levy"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "definitions": [{
+                                "title": "What we mean by 'purchase cost'",
+                                "content": [{
+                                    "description": "Purchase cost is the total value of the fuel including the cost of the fuel itself, duty paid, charges from the supplier, costs incurring transporting the fuel to premises."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer52761bd5-22b7-479d-b90e-6780bc2910ed",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Purchase cost of electricity, excluding VAT and levy",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "330",
+                                "decimal_places": 0,
+                                "currency": "GBP"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Electricity"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockde5ad5a0-6598-4737-b1ee-ad68857858a7",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionde5ad5a0-6598-4737-b1ee-ad68857858a7",
+                            "title": "For the reporting period, what was the quantity of electricity purchased by your business?",
+                            "description": "<p>Please   report your figures in kilowatt-hours (kWh).</p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerde574ab9-892a-4af2-a434-f1bbc425cca1",
+                                "mandatory": true,
+                                "type": "Unit",
+                                "label": "Total kWh of electricity purchased",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "340",
+                                "unit": "energy-kilowatt-hour",
+                                "unit_length": "short",
+                                "decimal_places": 0
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Electricity"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block2d78988c-d065-4963-930d-aa86d23aadab",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question2d78988c-d065-4963-930d-aa86d23aadab",
+                            "title": "What was the total cost of Climate Change Levy for your business?",
+                            "definitions": [{
+                                "title": "What we mean by 'Climate Change Levy'",
+                                "content": [{
+                                    "description": "The Climate Change Levy (CCL) is a tax on energy delivered to non-domestic users in the UK."
+                                }]
+                            }],
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer3727030d-e136-4704-875c-091193d1a5ef",
+                                "mandatory": true,
+                                "type": "Currency",
+                                "label": "Total cost of Climate Change Levy",
+                                "description": "Please provide your figures rounded to the nearest whole number. Enter '0', rather than leave blank.",
+                                "q_code": "350",
+                                "decimal_places": 0,
+                                "currency": "GBP"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Electricity"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block66d5fa52-3020-4665-8f0a-0fd723dea89f",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question66d5fa52-3020-4665-8f0a-0fd723dea89f",
+                            "title": "What <em>percentage rate</em> of Climate Change Levy was paid by your business?",
+                            "definitions": [{
+                                "title": "What we mean by 'Climate Change Levy'",
+                                "content": [{
+                                    "description": "The Climate Change Levy (CCL) is a tax on energy delivered to non-domestic users in the UK."
+                                }]
+                            }],
+                            "type": "MutuallyExclusive",
+                            "mandatory": true,
+                            "answers": [{
+                                    "id": "answer0c832f2f-128a-4d89-99ed-9511003580e2",
+                                    "mandatory": false,
+                                    "type": "Percentage",
+                                    "label": "Rate of Climate Change Levy",
+                                    "description": "Please provide your figures rounded to the nearest whole number.",
+                                    "q_code": "360",
+                                    "decimal_places": 0
+                                },
+                                {
+                                    "id": "answer0c832f2f-128a-4d89-99ed-9511003580e2-exclusive",
+                                    "mandatory": false,
+                                    "type": "Checkbox",
+                                    "description": "Please provide your figures rounded to the nearest whole number.",
+                                    "q_code": "360",
+                                    "options": [{
+                                        "label": "Not sure",
+                                        "value": "Not sure"
+                                    }]
+                                }
+                            ]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Electricity"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block79add2ef-2a80-4bf6-a624-5957de976c71",
+                        "type": "CalculatedSummary",
+                        "titles": [{
+                            "value": "We calculate the total cost of electricity (excluding VAT) purchased to be %(total)s, is this correct?"
+                        }],
+                        "calculation": {
+                            "calculation_type": "sum",
+                            "answers_to_calculate": ["answer52761bd5-22b7-479d-b90e-6780bc2910ed", "answer3727030d-e136-4704-875c-091193d1a5ef"],
+                            "titles": [{
+                                "value": "Total cost of electricity"
+                            }]
+                        },
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Electricity"]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block0034c0bb-06ef-46c4-a1cd-d1fca4902115",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question0034c0bb-06ef-46c4-a1cd-d1fca4902115",
+                            "title": "For the reporting period, what was the name of your business's electricity supplier?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answere670cd7e-5093-43d7-a5a8-168508c8a1b2",
+                                "mandatory": true,
+                                "type": "TextField",
+                                "label": "Name of electricity supplier(s)",
+                                "description": "",
+                                "q_code": "370"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answerb30aefc2-5807-4499-b164-5394574d869c",
+                                "condition": "not contains any",
+                                "values": ["Electricity"]
+                            }]
+                        }]
+                    }
+                ],
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "answerb30aefc2-5807-4499-b164-5394574d869c-exclusive",
+                        "condition": "contains all",
+                        "values": ["None of the above"]
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "section985d3fe9-09ae-4dfb-be1d-e83f1ab3fbf0",
+            "title": "Comments",
+            "groups": [{
+                    "id": "group985d3fe9-09ae-4dfb-be1d-e83f1ab3fbf0",
+                    "title": "Comments",
+                    "blocks": [{
+                        "id": "block3c1ef96c-fcf8-44fd-b9b2-0c37b14c064e",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question3c1ef96c-fcf8-44fd-b9b2-0c37b14c064e",
+                            "title": "Please provide any further details that will help us understand your figures and to tell an industry story",
+                            "description": "<p>If you provide comments, we are less likely to contact you with data queries.</p>",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "any large price or quantity changes compared to previous quarters",
+                                            "details of any credits or rebates received in respect of fuel payments made in a previous period",
+                                            "further explanation of the figures you have provided"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>For example:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "factory shut-down or closures",
+                                            "machine break-downs",
+                                            "seasonal usage changes",
+                                            "change of fuel and contract type"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer56e4ab18-c87c-4e0e-b9e5-b441feb94fef",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "146",
+                                "max_length": 2000
+                            }]
+                        }]
+                    }]
+                },
+                {
+                    "id": "summary-group",
+                    "title": "Summary",
+                    "blocks": [{
+                        "type": "Summary",
+                        "id": "summary-block",
+                        "collapsible": true
+                    }]
+                }
+            ]
+        }
+    ],
+    "theme": "ukis",
+    "legal_basis": "Notice is given under the Petroleum Act 1998 and Section 1 of the Statistics of Trade Act 1947.",
+    "navigation": {
+        "visible": true
+    },
+    "metadata": [{
+            "name": "user_id",
+            "validator": "string"
+        },
+        {
+            "name": "period_id",
+            "validator": "string"
+        },
+        {
+            "name": "ru_name",
+            "validator": "string"
+        },
+        {
+            "name": "trad_as",
+            "validator": "optional_string"
+        },
+        {
+            "name": "ref_p_start_date",
+            "validator": "date"
+        },
+        {
+            "name": "ref_p_end_date",
+            "validator": "date"
+        }
+    ],
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    }
+}
