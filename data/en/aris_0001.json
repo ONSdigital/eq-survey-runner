@@ -1,5 +1,5 @@
 {
-    "eq_id": "oor_001",
+    "eq_id": "aris_0001",
     "form_type": "0001",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -277,7 +277,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Total value of other acquisitions at stations",
-                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "description": "Enter a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
                                     "q_code": "8",
                                     "decimal_places": 0,
                                     "currency": "GBP"
@@ -287,7 +287,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Total value of proceeds from other disposals at stations",
-                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
+                                    "description": "Enter a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000. Enter '0', rather than leave blank.",
                                     "q_code": "9",
                                     "decimal_places": 0,
                                     "currency": "GBP"
