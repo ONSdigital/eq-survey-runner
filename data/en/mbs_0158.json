@@ -1,6 +1,9 @@
+// 20220330175401
+// https://prod-publisher.prod.eq.ons.digital/publish/3c295465-65ad-4c73-9b74-029ba566902b
+
 {
-    "eq_id": "mbs_0158",
-    "form_type": "0158",
+    "eq_id": "",
+    "form_type": "",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
@@ -10,7 +13,7 @@
             "id": "sectionb6fe331f-6521-4e48-9cb7-e1d51f24f512",
             "groups": [{
                 "id": "groupb6fe331f-6521-4e48-9cb7-e1d51f24f512",
-                "title": "Reporting period",
+                "title": "",
                 "blocks": [{
                         "type": "Introduction",
                         "id": "introduction-block",
@@ -189,7 +192,9 @@
                                     "when": [{
                                         "id": "answer033c9949-fbb7-4a93-a910-6235920408f8",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -227,7 +232,7 @@
                                     "label": "To",
                                     "q_code": "12",
                                     "maximum": {
-                                        "value": "2016-06-12",
+                                        "meta": "ref_p_end_date",
                                         "offset_by": {
                                             "days": 20
                                         }
@@ -328,7 +333,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-9c16f830-53d7-4d70-aa7f-3d2dd3ce46f6",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -420,7 +427,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-80516743-aece-44e6-a492-3934a7e29c2b",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -436,7 +445,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "questiondeb9c618-409b-47fc-a55e-5a0a95cbad67",
-                            "title": "Of the {{ answers['answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227'] | format_number }} total employees employed on {{ metadata['employment_date'] | format_date }}, how many male and female employees worked the following hours?",
+                            "title": "Of the <em>{{ answers['answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227'] | format_number }}</em> total employees employed on {{ metadata['employment_date'] | format_date }}, how many male and female employees worked the following hours?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -534,16 +543,32 @@
                                 }
                             ],
                             "calculations": [{
-                                "calculation_type": "sum",
-                                "answers_to_calculate": [
-                                    "answercc4096e3-ceda-4ae9-aabf-6f44b81008db",
-                                    "answere9d8c83d-9ea0-493b-99bb-d7cb37d872b3",
-                                    "answer14d0b50e-4f12-4435-8727-d701d3d40fc7",
-                                    "answeredb8bcb5-73c8-44aa-8790-f1b66376fe15"
-                                ],
-                                "conditions": ["equals"],
-                                "answer_id": "answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227"
-                            }]
+                                    "calculation_type": "sum",
+                                    "answers_to_calculate": [
+                                        "answercc4096e3-ceda-4ae9-aabf-6f44b81008db",
+                                        "answere9d8c83d-9ea0-493b-99bb-d7cb37d872b3",
+                                        "answer14d0b50e-4f12-4435-8727-d701d3d40fc7",
+                                        "answeredb8bcb5-73c8-44aa-8790-f1b66376fe15"
+                                    ],
+                                    "conditions": [
+                                        "equals"
+                                    ],
+                                    "value": 0
+                                },
+                                {
+                                    "calculation_type": "sum",
+                                    "answers_to_calculate": [
+                                        "answercc4096e3-ceda-4ae9-aabf-6f44b81008db",
+                                        "answere9d8c83d-9ea0-493b-99bb-d7cb37d872b3",
+                                        "answer14d0b50e-4f12-4435-8727-d701d3d40fc7",
+                                        "answeredb8bcb5-73c8-44aa-8790-f1b66376fe15"
+                                    ],
+                                    "conditions": [
+                                        "equals"
+                                    ],
+                                    "answer_id": "answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227"
+                                }
+                            ]
                         }],
                         "skip_conditions": [{
                             "when": [{
@@ -611,7 +636,7 @@
         },
         {
             "name": "trad_as",
-            "validator": "optional_string"
+            "validator": "string"
         },
         {
             "name": "ref_p_start_date",
