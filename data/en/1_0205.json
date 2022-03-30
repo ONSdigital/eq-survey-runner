@@ -6,936 +6,835 @@
     "data_version": "0.0.1",
     "survey_id": "023",
     "title": "Monthly Business Survey - Retail Sales Index",
-    "sections": [
-        {
+    "sections": [{
             "id": "sectione950c0fb-44a1-4dbc-acda-6e92bb31d8d5",
-            "groups": [
-                {
-                    "id": "groupe950c0fb-44a1-4dbc-acda-6e92bb31d8d5",
-                    "title": "",
-                    "blocks": [
-                        {
-                            "type": "Introduction",
-                            "id": "introduction-block",
-                            "primary_content": [
+            "groups": [{
+                "id": "groupe950c0fb-44a1-4dbc-acda-6e92bb31d8d5",
+                "title": "",
+                "blocks": [{
+                        "type": "Introduction",
+                        "id": "introduction-block",
+                        "primary_content": [{
+                            "type": "Basic",
+                            "id": "primary",
+                            "content": [{
+                                    "list": [
+                                        "On average it takes 10 minutes to complete this survey once you have collected the information.",
+                                        "Data should relate to all sites in England, Scotland and Wales.",
+                                        "You can provide informed estimates if actual figures are not available.",
+                                        "We will treat your data securely and confidentially."
+                                    ]
+                                },
                                 {
-                                    "type": "Basic",
-                                    "id": "primary",
-                                    "content": [
+                                    "description": "<strong>If you have closed for all, or some, of the period</strong>: select 'yes, you can provide figures' and enter retail turnover, even if this is '0'."
+                                }
+                            ]
+                        }],
+                        "preview_content": {
+                            "id": "preview",
+                            "title": "Information you need",
+                            "content": [{
+                                    "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                                },
+                                {
+                                    "description": "Explain figures in the comments section to minimise us contacting you and to help us tell an industry story."
+                                }
+                            ],
+                            "questions": [{
+                                    "question": "Total retail turnover",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
                                         {
                                             "list": [
-                                                "On average it takes 10 minutes to complete this survey once you have collected the information.",
-                                                "Data should relate to all sites in England, Scotland and Wales.",
-                                                "You can provide informed estimates if actual figures are not available.",
-                                                "We will treat your data securely and confidentially."
+                                                "VAT",
+                                                "internet sales",
+                                                "retail sales from outlets in Great Britain to customers abroad"
                                             ]
                                         },
                                         {
-                                            "description": "<strong>If you have closed for all, or some, of the period</strong>: select 'yes, you can provide figures' and enter retail turnover, even if this is '0'."
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "revenue from mobile phone network commission and top-up",
+                                                "sales from catering facilities used by customers",
+                                                "lottery sales and commission from lottery sales",
+                                                "sales of car accessories and motor vehicles",
+                                                "NHS receipts",
+                                                "automotive fuel"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Food sales",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "all fresh food",
+                                                "other food for human consumption (except chocolate and sugar confectionery)",
+                                                "soft drinks"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "sales from catering facilities used by customers"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Alcohol, confectionery and tobacco sales",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "chocolate and sugar confectionery",
+                                                "tobacco and smokers’ requisites"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Clothing and footwear sales",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "clothing fabrics",
+                                                "haberdashery and furs",
+                                                "leather and travel goods",
+                                                "handbags and umbrellas"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Household goods sales",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "carpets, rugs and other floor coverings",
+                                                "furniture",
+                                                "household textiles and soft furnishings",
+                                                "prints and picture frames",
+                                                "antiques and works of art",
+                                                "domestic electrical and gas appliances, audio or visual equipment, and home computers",
+                                                "lighting and minor electrical supplies",
+                                                "records, compact discs, audio and video tapes",
+                                                "musical instruments and goods",
+                                                "decorators’ and DIY supplies",
+                                                "lawn-mowers",
+                                                "hardware",
+                                                "china, glassware and cutlery",
+                                                "novelties, souvenirs and gifts",
+                                                "e-cigarettes"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Other sales",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "toiletries and medications (except NHS receipts)",
+                                                "newspapers and periodicals",
+                                                "books, stationery and office supplies",
+                                                "photographic and optical goods",
+                                                "spectacles, contact lenses and sunglasses",
+                                                "toys and games",
+                                                "cycles and cycle accessories",
+                                                "sport and camping equipment",
+                                                "jewellery",
+                                                "silverware and plates, clocks and watches",
+                                                "household cleaning products and kitchen paper products",
+                                                "pets, pets’ requisites and pet foods",
+                                                "cut flowers, plants, seeds and other garden sundries",
+                                                "other new and second hand goods",
+                                                "mobile phones"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "revenue from mobile phone network commission and top up",
+                                                "lottery sales and commission from lottery sales",
+                                                "sales of car accessories and motor vehicles",
+                                                "NHS receipts"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Internet sales",
+                                    "content": [{
+                                        "description": "Include VAT"
+                                    }]
+                                },
+                                {
+                                    "question": "Automotive fuel",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "VAT",
+                                                "sales of fuel owned by you"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "sales of fuel not owned by you",
+                                                "any commissions"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Additional comments",
+                                    "content": [{
+                                            "description": "Please provide any additional comments about your data."
+                                        },
+                                        {
+                                            "description": "<strong>For example:</strong>"
+                                        },
+                                        {
+                                            "list": [
+                                                "in-store or online promotions",
+                                                "special events (e.g. sporting events)",
+                                                "calendar events (e.g. Christmas, Easter, Bank Holiday)",
+                                                "weather",
+                                                "store closures or openings"
+                                            ]
                                         }
                                     ]
                                 }
-                            ],
-                            "preview_content": {
-                                "id": "preview",
-                                "title": "Information you need",
-                                "content": [
-                                    {
-                                        "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                            ]
+                        },
+                        "secondary_content": [{
+                            "id": "secondary-content",
+                            "title": "How we use your data",
+                            "content": [{
+                                "list": [
+                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                                    "The information you supply is used to produce monthly estimates of the total retail sales in Great Britain. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the UK National Accounts."
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block1b26d118-7a0b-4ab4-8a5f-f0f770c44329",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question1b26d118-7a0b-4ab4-8a5f-f0f770c44329",
+                            "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answera45d38f3-cb54-4885-ac11-98144f09477f",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
                                     },
                                     {
-                                        "description": "Explain figures in the comments section to minimise us contacting you and to help us tell an industry story."
+                                        "label": "No",
+                                        "value": "No"
                                     }
-                                ],
-                                "questions": [
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "group": "group907ed71e-2910-473c-89f4-225b3791c424",
+                                    "when": [{
+                                        "id": "answera45d38f3-cb54-4885-ac11-98144f09477f",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "Yes"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block97bfcacd-1741-41df-9b38-a12a9e6d0e2b"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "block97bfcacd-1741-41df-9b38-a12a9e6d0e2b",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question97bfcacd-1741-41df-9b38-a12a9e6d0e2b",
+                            "title": "What are the dates of the period that you will be reporting for?",
+                            "type": "DateRange",
+                            "answers": [{
+                                    "id": "answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5efrom",
+                                    "type": "Date",
+                                    "mandatory": true,
+                                    "label": "From",
+                                    "q_code": "11",
+                                    "minimum": {
+                                        "meta": "ref_p_start_date",
+                                        "offset_by": {
+                                            "days": -19
+                                        }
+                                    }
+                                },
+                                {
+                                    "id": "answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5eto",
+                                    "type": "Date",
+                                    "mandatory": true,
+                                    "label": "To",
+                                    "q_code": "12",
+                                    "maximum": {
+                                        "meta": "ref_p_end_date",
+                                        "offset_by": {
+                                            "days": 20
+                                        }
+                                    }
+                                }
+                            ],
+                            "period_limits": {
+                                "minimum": {
+                                    "days": 23
+                                },
+                                "maximum": {
+                                    "days": 50
+                                }
+                            }
+                        }]
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "section907ed71e-2910-473c-89f4-225b3791c424",
+            "groups": [{
+                "id": "group907ed71e-2910-473c-89f4-225b3791c424",
+                "title": "",
+                "blocks": [{
+                        "id": "block6658f716-7f5f-4488-ab20-2af1dc694294",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question6658f716-7f5f-4488-ab20-2af1dc694294",
+                            "title": "For the period {{ format_conditional_date (answers['answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5efrom'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5eto'], metadata['ref_p_end_date']) }}, what was the value of {{ metadata['ru_name'] }}'s <em>total retail turnover</em>?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
                                     {
-                                        "question": "Total retail turnover",
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "VAT",
-                                                    "internet sales",
-                                                    "retail sales from outlets in Great Britain to customers abroad"
-                                                ]
-                                            },
-                                            {
-                                                "description": "<strong>Exclude:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "revenue from mobile phone network commission and top-up",
-                                                    "sales from catering facilities used by customers",
-                                                    "lottery sales and commission from lottery sales",
-                                                    "sales of car accessories and motor vehicles",
-                                                    "NHS receipts",
-                                                    "automotive fuel"
-                                                ]
-                                            }
+                                        "list": [
+                                            "VAT",
+                                            "internet sales",
+                                            "retail sales from outlets in Great Britain to customers abroad"
                                         ]
                                     },
                                     {
-                                        "question": "Food sales",
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "all fresh food",
-                                                    "other food for human consumption (except chocolate and sugar confectionery)",
-                                                    "soft drinks"
-                                                ]
-                                            },
-                                            {
-                                                "description": "<strong>Exclude:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "sales from catering facilities used by customers"
-                                                ]
-                                            }
-                                        ]
+                                        "description": "<strong>Exclude:</strong>"
                                     },
                                     {
-                                        "question": "Alcohol, confectionery and tobacco sales",
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "chocolate and sugar confectionery",
-                                                    "tobacco and smokers’ requisites"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "question": "Clothing and footwear sales",
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "clothing fabrics",
-                                                    "haberdashery and furs",
-                                                    "leather and travel goods",
-                                                    "handbags and umbrellas"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "question": "Household goods sales",
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "carpets, rugs and other floor coverings",
-                                                    "furniture",
-                                                    "household textiles and soft furnishings",
-                                                    "prints and picture frames",
-                                                    "antiques and works of art",
-                                                    "domestic electrical and gas appliances, audio or visual equipment, and home computers",
-                                                    "lighting and minor electrical supplies",
-                                                    "records, compact discs, audio and video tapes",
-                                                    "musical instruments and goods",
-                                                    "decorators’ and DIY supplies",
-                                                    "lawn-mowers",
-                                                    "hardware",
-                                                    "china, glassware and cutlery",
-                                                    "novelties, souvenirs and gifts",
-                                                    "e-cigarettes"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "question": "Other sales",
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "toiletries and medications (except NHS receipts)",
-                                                    "newspapers and periodicals",
-                                                    "books, stationery and office supplies",
-                                                    "photographic and optical goods",
-                                                    "spectacles, contact lenses and sunglasses",
-                                                    "toys and games",
-                                                    "cycles and cycle accessories",
-                                                    "sport and camping equipment",
-                                                    "jewellery",
-                                                    "silverware and plates, clocks and watches",
-                                                    "household cleaning products and kitchen paper products",
-                                                    "pets, pets’ requisites and pet foods",
-                                                    "cut flowers, plants, seeds and other garden sundries",
-                                                    "other new and second hand goods",
-                                                    "mobile phones"
-                                                ]
-                                            },
-                                            {
-                                                "description": "<strong>Exclude:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "revenue from mobile phone network commission and top up",
-                                                    "lottery sales and commission from lottery sales",
-                                                    "sales of car accessories and motor vehicles",
-                                                    "NHS receipts"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "question": "Internet sales",
-                                        "content": [
-                                            {
-                                                "description": "Include VAT"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "question": "Automotive fuel",
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "VAT",
-                                                    "sales of fuel owned by you"
-                                                ]
-                                            },
-                                            {
-                                                "description": "<strong>Exclude:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "sales of fuel not owned by you",
-                                                    "any commissions"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "question": "Additional comments",
-                                        "content": [
-                                            {
-                                                "description": "Please provide any additional comments about your data."
-                                            },
-                                            {
-                                                "description": "<strong>For example:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "in-store or online promotions",
-                                                    "special events (e.g. sporting events)",
-                                                    "calendar events (e.g. Christmas, Easter, Bank Holiday)",
-                                                    "weather",
-                                                    "store closures or openings"
-                                                ]
-                                            }
+                                        "list": [
+                                            "revenue from mobile phone network commission and top-up",
+                                            "sales from catering facilities used by customers",
+                                            "lottery sales and commission from lottery sales",
+                                            "sales of car accessories and motor vehicles",
+                                            "NHS receipts",
+                                            "automotive fuel"
                                         ]
                                     }
                                 ]
                             },
-                            "secondary_content": [
-                                {
-                                    "id": "secondary-content",
-                                    "title": "How we use your data",
-                                    "content": [
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
+                                "mandatory": false,
+                                "type": "Currency",
+                                "label": "Total retail turnover",
+                                "description": "",
+                                "q_code": "20",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
+                                },
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockconfirmation-page-for-6658f716-7f5f-4488-ab20-2af1dc694294",
+                        "type": "ConfirmationQuestion",
+                        "questions": [{
+                            "id": "questionconfirmation-page-for-6658f716-7f5f-4488-ab20-2af1dc694294",
+                            "title": "For the period {{ format_conditional_date (answers['answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5efrom'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5eto'], metadata['ref_p_end_date']) }}, the value of the total retail turnover was <em>{{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }}</em>, is this correct?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerconfirmation-answer-for-6658f716-7f5f-4488-ab20-2af1dc694294",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Yes, this is correct",
+                                        "value": "Yes, this is correct"
+                                    },
+                                    {
+                                        "label": "No, I need to change this",
+                                        "value": "No, I need to change this"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block6658f716-7f5f-4488-ab20-2af1dc694294",
+                                    "when": [{
+                                        "id": "answerconfirmation-answer-for-6658f716-7f5f-4488-ab20-2af1dc694294",
+                                        "condition": "contains any",
+                                        "values": [
+                                            "No, I need to change this"
+                                        ]
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blockc3572158-9874-45e1-9628-351a6cea2cfc",
+                                    "when": [{
+                                        "id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
+                                        "condition": "equals",
+                                        "value": 0
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "blocke1ddd2ff-78ee-4476-8b9d-ea7a2b9d7c9b"
+                                }
+                            }
+                        ],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
+                                "condition": "not equals",
+                                "value": 0
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blocke1ddd2ff-78ee-4476-8b9d-ea7a2b9d7c9b",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questione1ddd2ff-78ee-4476-8b9d-ea7a2b9d7c9b",
+                            "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of <em>food</em> sales?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "all fresh food",
+                                            "other food for human consumption (except chocolate and sugar confectionery)",
+                                            "soft drinks"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "sales from catering facilities used by customers"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer45bbf36e-a929-48ea-bdf8-d6db9f6a4e0f",
+                                "mandatory": false,
+                                "type": "Currency",
+                                "label": "Value of food sales",
+                                "description": "",
+                                "q_code": "22",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
+                                },
+                                "max_value": {
+                                    "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
+                                    "exclusive": false
+                                },
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockc6fdf75d-b478-45b0-8a1f-e581632a63b6",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionc6fdf75d-b478-45b0-8a1f-e581632a63b6",
+                            "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of <em>alcohol, confectionery and tobacco</em> sales?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "alcoholic drink",
+                                            "chocolate and sugar confectionery",
+                                            "tobacco and smokers’ requisites"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer9068cf91-9f77-4327-838a-f32070f382bd",
+                                "mandatory": false,
+                                "type": "Currency",
+                                "label": "Value of alcohol, confectionery and tobacco sales",
+                                "description": "",
+                                "q_code": "23",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
+                                },
+                                "max_value": {
+                                    "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
+                                    "exclusive": false
+                                },
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block6f9e84d5-b373-4b9c-a694-5ef95a8ef191",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question6f9e84d5-b373-4b9c-a694-5ef95a8ef191",
+                            "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "clothing and footwear",
+                                            "clothing fabrics",
+                                            "haberdashery and furs",
+                                            "leather and travel goods",
+                                            "handbags and umbrellas"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answera5b5c2ef-650d-4a30-a794-37cf7dfba559",
+                                "mandatory": false,
+                                "type": "Currency",
+                                "label": "Value of clothing and footwear sales",
+                                "description": "",
+                                "q_code": "24",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
+                                },
+                                "max_value": {
+                                    "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
+                                    "exclusive": false
+                                },
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block8290215a-cfba-4d7a-8777-2cdcb5e3db95",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question8290215a-cfba-4d7a-8777-2cdcb5e3db95",
+                            "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of sales for <em>household goods</em>?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answera1898f82-2cca-4be2-b0a2-4b8565e2bb68",
+                                "mandatory": false,
+                                "type": "Currency",
+                                "label": "Value of sales for household goods",
+                                "description": "",
+                                "q_code": "25",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
+                                },
+                                "max_value": {
+                                    "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
+                                    "exclusive": false
+                                },
+                                "decimal_places": 2,
+                                "currency": "GBP",
+                                "guidance": {
+                                    "show_guidance": "Show household goods to include",
+                                    "hide_guidance": "Show household goods to include",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
+                                        },
                                         {
                                             "list": [
-                                                "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                                                "The information you supply is used to produce monthly estimates of the total retail sales in Great Britain. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the UK National Accounts."
+                                                "carpets, rugs and other floor coverings",
+                                                "furniture",
+                                                "household textiles and soft furnishings",
+                                                "prints and picture frames",
+                                                "antiques and works of art",
+                                                "domestic electrical and gas appliances, audio or visual equipment, and home computers",
+                                                "lighting and minor electrical supplies",
+                                                "records, compact discs, audio and video tapes",
+                                                "musical instruments and goods",
+                                                "decorators’ and DIY supplies",
+                                                "lawn-mowers",
+                                                "hardware",
+                                                "china, glassware and cutlery",
+                                                "novelties, souvenirs and gifts",
+                                                "e-cigarettes"
                                             ]
                                         }
                                     ]
                                 }
-                            ]
-                        },
-                        {
-                            "id": "block1b26d118-7a0b-4ab4-8a5f-f0f770c44329",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "question1b26d118-7a0b-4ab4-8a5f-f0f770c44329",
-                                    "title": "Are you able to report for the period from {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "answera45d38f3-cb54-4885-ac11-98144f09477f",
-                                            "mandatory": true,
-                                            "type": "Radio",
-                                            "label": "",
-                                            "description": "",
-                                            "options": [
-                                                {
-                                                    "label": "Yes",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No",
-                                                    "value": "No"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ],
-                            "routing_rules": [
-                                {
-                                    "goto": {
-                                        "group": "group907ed71e-2910-473c-89f4-225b3791c424",
-                                        "when": [
-                                            {
-                                                "id": "answera45d38f3-cb54-4885-ac11-98144f09477f",
-                                                "condition": "contains any",
-                                                "values": [
-                                                    "Yes"
-                                                ]
-                                            }
-                                        ]
-                                    }
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "block63a9c2f1-0ecb-4891-a8b5-f0c8b6622ecb",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question63a9c2f1-0ecb-4891-a8b5-f0c8b6622ecb",
+                            "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of <em>other</em> sales?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer0b9fb1d1-41e3-4322-85ef-d76a79d82764",
+                                "mandatory": false,
+                                "type": "Currency",
+                                "label": "Value of sales for other goods",
+                                "description": "",
+                                "q_code": "26",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
                                 },
-                                {
-                                    "goto": {
-                                        "block": "block97bfcacd-1741-41df-9b38-a12a9e6d0e2b"
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            "id": "block97bfcacd-1741-41df-9b38-a12a9e6d0e2b",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "question97bfcacd-1741-41df-9b38-a12a9e6d0e2b",
-                                    "title": "What are the dates of the period that you will be reporting for?",
-                                    "type": "DateRange",
-                                    "answers": [
-                                        {
-                                            "id": "answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5efrom",
-                                            "type": "Date",
-                                            "mandatory": true,
-                                            "label": "From",
-                                            "q_code": "11",
-                                            "minimum": {
-                                                "meta": "ref_p_start_date",
-                                                "offset_by": {
-                                                    "days": -19
-                                                }
-                                            }
+                                "max_value": {
+                                    "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
+                                    "exclusive": false
+                                },
+                                "decimal_places": 2,
+                                "currency": "GBP",
+                                "guidance": {
+                                    "show_guidance": "Show sale items to include and exclude",
+                                    "hide_guidance": "Show sale items to include and exclude",
+                                    "content": [{
+                                            "description": "<strong>Include:</strong>"
                                         },
                                         {
-                                            "id": "answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5eto",
-                                            "type": "Date",
-                                            "mandatory": true,
-                                            "label": "To",
-                                            "q_code": "12",
-                                            "maximum": {
-                                                "meta": "ref_p_end_date",
-                                                "offset_by": {
-                                                    "days": 20
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "period_limits": {
-                                        "minimum": {
-                                            "days": 23
+                                            "list": [
+                                                "toiletries and medications (except NHS receipts)",
+                                                "newspapers and periodicals",
+                                                "books, stationery and office supplies",
+                                                "photographic and optical goods",
+                                                "spectacles, contact lenses and sunglasses",
+                                                "toys and games",
+                                                "cycles and cycle accessories",
+                                                "sport and camping equipment",
+                                                "jewellery",
+                                                "silverware and plates, clocks and watches",
+                                                "household cleaning products and kitchen paper products",
+                                                "pets, pets’ requisites and pet foods",
+                                                "cut flowers, plants, seeds and other garden sundries",
+                                                "other new and second hand goods",
+                                                "mobile phones"
+                                            ]
                                         },
-                                        "maximum": {
-                                            "days": 50
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "section907ed71e-2910-473c-89f4-225b3791c424",
-            "groups": [
-                {
-                    "id": "group907ed71e-2910-473c-89f4-225b3791c424",
-                    "title": "",
-                    "blocks": [
-                        {
-                            "id": "block6658f716-7f5f-4488-ab20-2af1dc694294",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "question6658f716-7f5f-4488-ab20-2af1dc694294",
-                                    "title": "For the period {{ format_conditional_date (answers['answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5efrom'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5eto'], metadata['ref_p_end_date']) }}, what was the value of {{ metadata['ru_name'] }}'s <em>total retail turnover</em>?",
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "VAT",
-                                                    "internet sales",
-                                                    "retail sales from outlets in Great Britain to customers abroad"
-                                                ]
-                                            },
-                                            {
-                                                "description": "<strong>Exclude:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "revenue from mobile phone network commission and top-up",
-                                                    "sales from catering facilities used by customers",
-                                                    "lottery sales and commission from lottery sales",
-                                                    "sales of car accessories and motor vehicles",
-                                                    "NHS receipts",
-                                                    "automotive fuel"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "type": "General",
-                                    "answers": [
                                         {
-                                            "id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
-                                            "mandatory": false,
-                                            "type": "Currency",
-                                            "label": "Total retail turnover",
-                                            "description": "",
-                                            "q_code": "20",
-                                            "min_value": {
-                                                "value": 0,
-                                                "exclusive": false
-                                            },
-                                            "decimal_places": 2,
-                                            "currency": "GBP"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "blockconfirmation-page-for-6658f716-7f5f-4488-ab20-2af1dc694294",
-                            "type": "ConfirmationQuestion",
-                            "questions": [
-                                {
-                                    "id": "questionconfirmation-page-for-6658f716-7f5f-4488-ab20-2af1dc694294",
-                                    "title": "For the period {{ format_conditional_date (answers['answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5efrom'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answerfdaf44e6-373d-4b4e-b5fa-13caf04d9b5eto'], metadata['ref_p_end_date']) }}, the value of the total retail turnover was <em>{{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }}</em>, is this correct?",
-                                    "type": "General",
-                                    "answers": [
+                                            "description": "<strong>Exclude:</strong>"
+                                        },
                                         {
-                                            "id": "answerconfirmation-answer-for-6658f716-7f5f-4488-ab20-2af1dc694294",
-                                            "mandatory": true,
-                                            "type": "Radio",
-                                            "options": [
-                                                {
-                                                    "label": "Yes, this is correct",
-                                                    "value": "Yes, this is correct"
-                                                },
-                                                {
-                                                    "label": "No, I need to change this",
-                                                    "value": "No, I need to change this"
-                                                }
+                                            "list": [
+                                                "revenue from mobile phone network commission and top up",
+                                                "lottery sales and commission from lottery sales",
+                                                "sales of car accessories and motor vehicles",
+                                                "NHS receipts"
                                             ]
                                         }
                                     ]
                                 }
-                            ],
-                            "routing_rules": [
-                                {
-                                    "goto": {
-                                        "block": "block6658f716-7f5f-4488-ab20-2af1dc694294",
-                                        "when": [
-                                            {
-                                                "id": "answerconfirmation-answer-for-6658f716-7f5f-4488-ab20-2af1dc694294",
-                                                "condition": "contains any",
-                                                "values": [
-                                                    "No, I need to change this"
-                                                ]
-                                            }
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockea1ecf32-36e7-4445-ba63-2aa2f9531410",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionea1ecf32-36e7-4445-ba63-2aa2f9531410",
+                            "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of <em>internet</em> sales?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "VAT",
+                                            "sales from orders received over the internet, irrespective of the payment or delivery method"
                                         ]
                                     }
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerd2be9903-31d4-4c55-83e2-c4007809eb08",
+                                "mandatory": false,
+                                "type": "Currency",
+                                "label": "Value of internet sales",
+                                "description": "",
+                                "q_code": "21",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
                                 },
-                                {
-                                    "goto": {
-                                        "block": "blockc3572158-9874-45e1-9628-351a6cea2cfc",
-                                        "when": [
-                                            {
-                                                "id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
-                                                "condition": "equals",
-                                                "value": 0
-                                            }
-                                        ]
-                                    }
+                                "max_value": {
+                                    "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
+                                    "exclusive": false
                                 },
-                                {
-                                    "goto": {
-                                        "block": "blocke1ddd2ff-78ee-4476-8b9d-ea7a2b9d7c9b"
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "blockc3572158-9874-45e1-9628-351a6cea2cfc",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "questionc3572158-9874-45e1-9628-351a6cea2cfc",
+                            "title": "What was the total sale of <em>automotive fuel</em>?",
+                            "guidance": {
+                                "content": [{
+                                        "description": "<strong>Include:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "VAT",
+                                            "sales of fuel owned by you"
+                                        ]
+                                    },
+                                    {
+                                        "description": "<strong>Exclude:</strong>"
+                                    },
+                                    {
+                                        "list": [
+                                            "sales of fuel not owned by you",
+                                            "any commissions"
+                                        ]
                                     }
-                                }
-                            ],
-                            "skip_conditions": [
-                                {
-                                    "when": [
-                                        {
-                                            "id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
-                                            "condition": "not equals",
-                                            "value": 0
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "blocke1ddd2ff-78ee-4476-8b9d-ea7a2b9d7c9b",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "questione1ddd2ff-78ee-4476-8b9d-ea7a2b9d7c9b",
-                                    "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of <em>food</em> sales?",
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "all fresh food",
-                                                    "other food for human consumption (except chocolate and sugar confectionery)",
-                                                    "soft drinks"
-                                                ]
-                                            },
-                                            {
-                                                "description": "<strong>Exclude:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "sales from catering facilities used by customers"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "answer45bbf36e-a929-48ea-bdf8-d6db9f6a4e0f",
-                                            "mandatory": false,
-                                            "type": "Currency",
-                                            "label": "Value of food sales",
-                                            "description": "",
-                                            "q_code": "22",
-                                            "min_value": {
-                                                "value": 0,
-                                                "exclusive": false
-                                            },
-                                            "max_value": {
-                                                "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
-                                                "exclusive": false
-                                            },
-                                            "decimal_places": 2,
-                                            "currency": "GBP"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "blockc6fdf75d-b478-45b0-8a1f-e581632a63b6",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "questionc6fdf75d-b478-45b0-8a1f-e581632a63b6",
-                                    "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of <em>alcohol, confectionery and tobacco</em> sales?",
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "alcoholic drink",
-                                                    "chocolate and sugar confectionery",
-                                                    "tobacco and smokers’ requisites"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "answer9068cf91-9f77-4327-838a-f32070f382bd",
-                                            "mandatory": false,
-                                            "type": "Currency",
-                                            "label": "Value of alcohol, confectionery and tobacco sales",
-                                            "description": "",
-                                            "q_code": "23",
-                                            "min_value": {
-                                                "value": 0,
-                                                "exclusive": false
-                                            },
-                                            "max_value": {
-                                                "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
-                                                "exclusive": false
-                                            },
-                                            "decimal_places": 2,
-                                            "currency": "GBP"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "block6f9e84d5-b373-4b9c-a694-5ef95a8ef191",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "question6f9e84d5-b373-4b9c-a694-5ef95a8ef191",
-                                    "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "clothing and footwear",
-                                                    "clothing fabrics",
-                                                    "haberdashery and furs",
-                                                    "leather and travel goods",
-                                                    "handbags and umbrellas"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "answera5b5c2ef-650d-4a30-a794-37cf7dfba559",
-                                            "mandatory": false,
-                                            "type": "Currency",
-                                            "label": "Value of clothing and footwear sales",
-                                            "description": "",
-                                            "q_code": "24",
-                                            "min_value": {
-                                                "value": 0,
-                                                "exclusive": false
-                                            },
-                                            "max_value": {
-                                                "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
-                                                "exclusive": false
-                                            },
-                                            "decimal_places": 2,
-                                            "currency": "GBP"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "block8290215a-cfba-4d7a-8777-2cdcb5e3db95",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "question8290215a-cfba-4d7a-8777-2cdcb5e3db95",
-                                    "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of sales for <em>household goods</em>?",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "answera1898f82-2cca-4be2-b0a2-4b8565e2bb68",
-                                            "mandatory": false,
-                                            "type": "Currency",
-                                            "label": "Value of sales for household goods",
-                                            "description": "",
-                                            "q_code": "25",
-                                            "min_value": {
-                                                "value": 0,
-                                                "exclusive": false
-                                            },
-                                            "max_value": {
-                                                "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
-                                                "exclusive": false
-                                            },
-                                            "decimal_places": 2,
-                                            "currency": "GBP",
-                                            "guidance": {
-                                                "show_guidance": "Show household goods to include",
-                                                "hide_guidance": "Show household goods to include",
-                                                "content": [
-                                                    {
-                                                        "description": "<strong>Include:</strong>"
-                                                    },
-                                                    {
-                                                        "list": [
-                                                            "carpets, rugs and other floor coverings",
-                                                            "furniture",
-                                                            "household textiles and soft furnishings",
-                                                            "prints and picture frames",
-                                                            "antiques and works of art",
-                                                            "domestic electrical and gas appliances, audio or visual equipment, and home computers",
-                                                            "lighting and minor electrical supplies",
-                                                            "records, compact discs, audio and video tapes",
-                                                            "musical instruments and goods",
-                                                            "decorators’ and DIY supplies",
-                                                            "lawn-mowers",
-                                                            "hardware",
-                                                            "china, glassware and cutlery",
-                                                            "novelties, souvenirs and gifts",
-                                                            "e-cigarettes"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "block63a9c2f1-0ecb-4891-a8b5-f0c8b6622ecb",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "question63a9c2f1-0ecb-4891-a8b5-f0c8b6622ecb",
-                                    "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of <em>other</em> sales?",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "answer0b9fb1d1-41e3-4322-85ef-d76a79d82764",
-                                            "mandatory": false,
-                                            "type": "Currency",
-                                            "label": "Value of sales for other goods",
-                                            "description": "",
-                                            "q_code": "26",
-                                            "min_value": {
-                                                "value": 0,
-                                                "exclusive": false
-                                            },
-                                            "max_value": {
-                                                "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
-                                                "exclusive": false
-                                            },
-                                            "decimal_places": 2,
-                                            "currency": "GBP",
-                                            "guidance": {
-                                                "show_guidance": "Show sale items to include and exclude",
-                                                "hide_guidance": "Show sale items to include and exclude",
-                                                "content": [
-                                                    {
-                                                        "description": "<strong>Include:</strong>"
-                                                    },
-                                                    {
-                                                        "list": [
-                                                            "toiletries and medications (except NHS receipts)",
-                                                            "newspapers and periodicals",
-                                                            "books, stationery and office supplies",
-                                                            "photographic and optical goods",
-                                                            "spectacles, contact lenses and sunglasses",
-                                                            "toys and games",
-                                                            "cycles and cycle accessories",
-                                                            "sport and camping equipment",
-                                                            "jewellery",
-                                                            "silverware and plates, clocks and watches",
-                                                            "household cleaning products and kitchen paper products",
-                                                            "pets, pets’ requisites and pet foods",
-                                                            "cut flowers, plants, seeds and other garden sundries",
-                                                            "other new and second hand goods",
-                                                            "mobile phones"
-                                                        ]
-                                                    },
-                                                    {
-                                                        "description": "<strong>Exclude:</strong>"
-                                                    },
-                                                    {
-                                                        "list": [
-                                                            "revenue from mobile phone network commission and top up",
-                                                            "lottery sales and commission from lottery sales",
-                                                            "sales of car accessories and motor vehicles",
-                                                            "NHS receipts"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "blockea1ecf32-36e7-4445-ba63-2aa2f9531410",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "questionea1ecf32-36e7-4445-ba63-2aa2f9531410",
-                                    "title": "Of the {{ format_currency(answers['answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f'], 'GBP') }} total retail turnover, what was the value of <em>internet</em> sales?",
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "VAT",
-                                                    "sales from orders received over the internet, irrespective of the payment or delivery method"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "answerd2be9903-31d4-4c55-83e2-c4007809eb08",
-                                            "mandatory": false,
-                                            "type": "Currency",
-                                            "label": "Value of internet sales",
-                                            "description": "",
-                                            "q_code": "21",
-                                            "min_value": {
-                                                "value": 0,
-                                                "exclusive": false
-                                            },
-                                            "max_value": {
-                                                "answer_id": "answer6b01328d-73f6-4b9b-877b-b7d4a2b68b4f",
-                                                "exclusive": false
-                                            },
-                                            "decimal_places": 2,
-                                            "currency": "GBP"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "blockc3572158-9874-45e1-9628-351a6cea2cfc",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "questionc3572158-9874-45e1-9628-351a6cea2cfc",
-                                    "title": "What was the total sale of <em>automotive fuel</em>?",
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "description": "<strong>Include:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "VAT",
-                                                    "sales of fuel owned by you"
-                                                ]
-                                            },
-                                            {
-                                                "description": "<strong>Exclude:</strong>"
-                                            },
-                                            {
-                                                "list": [
-                                                    "sales of fuel not owned by you",
-                                                    "any commissions"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "answerc970c521-5f0a-44ae-97e6-913079a8d70a",
-                                            "mandatory": false,
-                                            "type": "Currency",
-                                            "label": "Total sale of automotive fuel",
-                                            "description": "",
-                                            "q_code": "27",
-                                            "min_value": {
-                                                "value": 0,
-                                                "exclusive": false
-                                            },
-                                            "decimal_places": 2,
-                                            "currency": "GBP"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+                                ]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "answerc970c521-5f0a-44ae-97e6-913079a8d70a",
+                                "mandatory": false,
+                                "type": "Currency",
+                                "label": "Total sale of automotive fuel",
+                                "description": "",
+                                "q_code": "27",
+                                "min_value": {
+                                    "value": 0,
+                                    "exclusive": false
+                                },
+                                "decimal_places": 2,
+                                "currency": "GBP"
+                            }]
+                        }]
+                    }
+                ]
+            }]
         },
         {
             "id": "sectionbef43b93-1ad2-43c3-a10e-facafafd22e3",
-            "groups": [
-                {
+            "groups": [{
                     "id": "groupbef43b93-1ad2-43c3-a10e-facafafd22e3",
                     "title": "",
-                    "blocks": [
-                        {
-                            "id": "block9897812e-5097-4359-bc96-86ff55b50267",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "question9897812e-5097-4359-bc96-86ff55b50267",
-                                    "title": "Please explain any changes in your figures from previous returns, if applicable",
-                                    "description": "<p>If you provide comments we are less likely to contact you with data queries.</p><p>You have nearly finished! <em>Make sure you continue to the next page and select 'submit answers' at the bottom.</em></p>",
-                                    "type": "General",
-                                    "answers": [
+                    "blocks": [{
+                        "id": "block9897812e-5097-4359-bc96-86ff55b50267",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "question9897812e-5097-4359-bc96-86ff55b50267",
+                            "title": "Please explain any changes in your figures from previous returns, if applicable",
+                            "description": "<p>If you provide comments we are less likely to contact you with data queries.</p><p>You have nearly finished! <em>Make sure you continue to the next page and select 'submit answers' at the bottom.</em></p>",
+                            "type": "General",
+                            "answers": [{
+                                "id": "answer180939d9-f101-42c6-8167-b7aec05274dd",
+                                "mandatory": false,
+                                "type": "TextArea",
+                                "label": "Comments",
+                                "description": "",
+                                "q_code": "146",
+                                "max_length": 2000,
+                                "guidance": {
+                                    "show_guidance": "Show examples of comments on changes to figures from previous returns",
+                                    "hide_guidance": "Show examples of comments on changes to figures from previous returns",
+                                    "content": [{
+                                            "description": "Examples of comments:"
+                                        },
                                         {
-                                            "id": "answer180939d9-f101-42c6-8167-b7aec05274dd",
-                                            "mandatory": false,
-                                            "type": "TextArea",
-                                            "label": "Comments",
-                                            "description": "",
-                                            "q_code": "146",
-                                            "max_length": 2000,
-                                            "guidance": {
-                                                "show_guidance": "Show examples of comments on changes to figures from previous returns",
-                                                "hide_guidance": "Show examples of comments on changes to figures from previous returns",
-                                                "content": [
-                                                    {
-                                                        "description": "Examples of comments:"
-                                                    },
-                                                    {
-                                                        "description": "<strong>‘In-store promotion’</strong>"
-                                                    },
-                                                    {
-                                                        "description": "“Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.”"
-                                                    },
-                                                    {
-                                                        "description": "<strong>‘Special events (for example, sporting events)’</strong>"
-                                                    },
-                                                    {
-                                                        "description": "“This was the month before the start of Euro 2020 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.”"
-                                                    },
-                                                    {
-                                                        "description": "<strong>‘Weather’</strong>"
-                                                    },
-                                                    {
-                                                        "description": "“The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.”"
-                                                    }
-                                                ]
-                                            }
+                                            "description": "<strong>‘In-store promotion’</strong>"
+                                        },
+                                        {
+                                            "description": "“Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.”"
+                                        },
+                                        {
+                                            "description": "<strong>‘Special events (for example, sporting events)’</strong>"
+                                        },
+                                        {
+                                            "description": "“This was the month before the start of Euro 2020 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.”"
+                                        },
+                                        {
+                                            "description": "<strong>‘Weather’</strong>"
+                                        },
+                                        {
+                                            "description": "“The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.”"
                                         }
                                     ]
                                 }
-                            ]
-                        }
-                    ]
+                            }]
+                        }]
+                    }]
                 },
                 {
                     "id": "summary-group",
                     "title": "Summary",
-                    "blocks": [
-                        {
-                            "type": "Summary",
-                            "id": "summary-block"
-                        }
-                    ]
+                    "blocks": [{
+                        "type": "Summary",
+                        "id": "summary-block"
+                    }]
                 }
             ]
         }
@@ -945,8 +844,7 @@
     "navigation": {
         "visible": false
     },
-    "metadata": [
-        {
+    "metadata": [{
             "name": "user_id",
             "validator": "string"
         },
