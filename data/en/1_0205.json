@@ -18,15 +18,15 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><h2>Coronavirus (COVID-19) guidance</h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select &#x27;yes, you can provide figures&#x27; and enter retail turnover, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
-                                },
-                                {
                                     "list": [
                                         "On average it takes 10 minutes to complete this survey once you have collected the information.",
                                         "Data should relate to all sites in England, Scotland and Wales.",
                                         "You can provide informed estimates if actual figures are not available.",
                                         "We will treat your data securely and confidentially."
                                     ]
+                                },
+                                {
+                                    "description": "<strong>If you have closed for all, or some, of the period</strong>: select 'yes, you can provide figures' and enter retail turnover, even if this is '0'."
                                 }
                             ]
                         }],
@@ -34,8 +34,12 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
-                            }],
+                                    "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                                },
+                                {
+                                    "description": "Explain figures in the comments section to minimise us contacting you and to help us tell an industry story."
+                                }
+                            ],
                             "questions": [{
                                     "question": "Total retail turnover",
                                     "content": [{
@@ -376,8 +380,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
-                                "currency": "GBP",
-                                "default": 0
+                                "currency": "GBP"
                             }]
                         }]
                     },
