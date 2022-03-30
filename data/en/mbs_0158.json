@@ -1,9 +1,6 @@
-// 20220330175401
-// https://prod-publisher.prod.eq.ons.digital/publish/3c295465-65ad-4c73-9b74-029ba566902b
-
 {
-    "eq_id": "",
-    "form_type": "",
+    "eq_id": "mbs",
+    "form_type": "0158",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
@@ -636,7 +633,7 @@
         },
         {
             "name": "trad_as",
-            "validator": "string"
+            "validator": "optional_string"
         },
         {
             "name": "ref_p_start_date",
