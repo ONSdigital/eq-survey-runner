@@ -674,7 +674,7 @@
             ]
         }
     ],
-    "theme": "covid",
+    "theme": "default",
     "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
     "navigation": {
         "visible": false
