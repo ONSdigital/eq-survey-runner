@@ -18,14 +18,14 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><h2><strong>Coronavirus (COVID-19) guidance</strong></h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select &#x27;yes, you can provide figures&#x27; and enter turnover, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
-                                },
-                                {
                                     "list": [
                                         "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
                                         "You can provide informed estimates if actual figures are not available.",
                                         "We will treat your data securely and confidentially."
                                     ]
+                                },
+                                {
+                                    "description": "<strong>If you have closed for all, or some, of the period</strong>: select 'yes, you can provide figures' and enter turnover, even if this is '0'."
                                 }
                             ]
                         }],
@@ -33,13 +33,16 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                    "description": "<a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices\"target=\"_blank\"rel=\"noopener noreferrer\">View the survey information and questions before you start the survey</a>  (external link)"
+                                    "description": "<a href=\"https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/monthlybusinesssurveyproductionandservices\"target=\"_blank\"rel=\"noopener noreferrer\">View the survey information and questions before you start the survey</a> (external link)"
                                 },
                                 {
-                                    "description": "The information you provide contributes to <a href=\"https://www.ons.gov.uk/economy/grossdomesticproductgdp\"target=\"_blank\"rel=\"noopener noreferrer\">Gross Domestic Product (GDP)</a>  (external link)"
+                                    "description": "The information you provide contributes to <a href=\"https://www.ons.gov.uk/economy/grossdomesticproductgdp\"target=\"_blank\"rel=\"noopener noreferrer\">Gross Domestic Product (GDP)</a> (external link)"
                                 },
                                 {
                                     "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                                },
+                                {
+                                    "description": "Explain figures in the comments section to minimise us contacting you and to help us tell an industry story."
                                 }
                             ],
                             "questions": [{
@@ -75,26 +78,32 @@
                                 {
                                     "question": "Number of employees",
                                     "content": [{
-                                            "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme."
+                                            "description": "An employee is anyone aged 16 years or over who is working directly for the business."
                                         },
                                         {
-                                            "description": "<strong>Include:</strong>"
+                                            "description": "They may be paid direct from the business, from elsewhere within the wider group, or by an external payroll provider on behalf of the company. If your business uses a central payroll to pay employees who work within the wider group, only include employees working directly for the business."
+                                        },
+                                        {
+                                            "description": "Include:"
                                         },
                                         {
                                             "list": [
-                                                "all workers paid directly from this business's payroll(s)",
-                                                "those temporarily absent but still being paid, for example on maternity leave"
+                                                "full-time (over 30 hours a week) and part-time (30 hours or less) employees aged 16 years and over. This includes individuals working from home and those temporarily absent but still employed, for example those on parental leave or sick leave",
+                                                "those on apprenticeships or training schemes",
+                                                "directors and working owners paid via PAYE",
+                                                "employees without guaranteed hours, for example those on zero hour contracts, who worked on this date"
                                             ]
                                         },
                                         {
-                                            "description": "<strong>Exclude:</strong>"
+                                            "description": "Exclude:"
                                         },
                                         {
                                             "list": [
+                                                "workers paid by an employment agency, for example consultants and contingent labour",
                                                 "voluntary workers",
                                                 "former employees only receiving a pension",
                                                 "self-employed workers",
-                                                "working owners who are not paid via PAYE"
+                                                "directors and working owners who are not paid via PAYE"
                                             ]
                                         }
                                     ]
@@ -102,34 +111,37 @@
                                 {
                                     "question": "Employees and working hours",
                                     "content": [{
-                                            "description": "<strong>The number of:</strong>"
+                                            "description": "The number of:"
                                         },
                                         {
                                             "list": [
-                                                "male employees workings more than 30 hours per week",
+                                                "male employees working more than 30 hours per week",
                                                 "male employees working 30 hours or less per week",
                                                 "female employees working more than 30 hours per week",
                                                 "female employees working 30 hours or less per week"
                                             ]
                                         },
                                         {
-                                            "description": "<strong>Include:</strong>"
+                                            "description": "Include:"
                                         },
                                         {
                                             "list": [
-                                                "all workers paid directly from this business's payroll(s)",
-                                                "those temporarily absent but still being paid, for example on maternity leave"
+                                                "full-time (over 30 hours a week) and part-time (30 hours or less) employees aged 16 years and over. This includes individuals working from home and those temporarily absent but still employed, for example those on parental leave or sick leave",
+                                                "those on apprenticeships or training schemes",
+                                                "directors and working owners paid via PAYE",
+                                                "employees without guaranteed hours, for example those on zero hour contracts, who worked on this date"
                                             ]
                                         },
                                         {
-                                            "description": "<strong>Exclude:</strong>"
+                                            "description": "Exclude:"
                                         },
                                         {
                                             "list": [
+                                                "workers paid by an employment agency, for example consultants and contingent labour",
                                                 "voluntary workers",
                                                 "former employees only receiving a pension",
                                                 "self-employed workers",
-                                                "working owners who are not paid via PAYE"
+                                                "directors and working owners who are not paid via PAYE"
                                             ]
                                         }
                                     ]
@@ -177,9 +189,7 @@
                                     "when": [{
                                         "id": "answer033c9949-fbb7-4a93-a910-6235920408f8",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes"
-                                        ]
+                                        "values": ["Yes"]
                                     }]
                                 }
                             },
@@ -217,7 +227,7 @@
                                     "label": "To",
                                     "q_code": "12",
                                     "maximum": {
-                                        "meta": "ref_p_end_date",
+                                        "value": "2016-06-12",
                                         "offset_by": {
                                             "days": 20
                                         }
@@ -241,13 +251,13 @@
             "id": "sectiond6f30eb3-421a-4c74-8d15-13f88c0f8fb0",
             "groups": [{
                 "id": "groupd6f30eb3-421a-4c74-8d15-13f88c0f8fb0",
-                "title": "Total turnover",
+                "title": "",
                 "blocks": [{
                         "id": "block9c16f830-53d7-4d70-aa7f-3d2dd3ce46f6",
                         "type": "Question",
                         "questions": [{
                             "id": "question9c16f830-53d7-4d70-aa7f-3d2dd3ce46f6",
-                            "title": "For the period {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479to'], metadata['ref_p_end_date']) }}, what was {{ metadata['ru_name'] }}'s <em>total turnover,</em> excluding VAT?",
+                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, what was {{ metadata['ru_name'] }}'s <em>total turnover</em>, excluding VAT?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -295,7 +305,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-9c16f830-53d7-4d70-aa7f-3d2dd3ce46f6",
-                            "title": "For the period {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479from'], metadata['ref_p_start_date']) }} to {{ format_conditional_date (answers['answer20459962-662d-4439-9987-2b89b0ac5479to'], metadata['ref_p_end_date']) }}, the total turnover was <em>{{ format_currency(answers['answer06c497b8-4f83-44eb-8390-d6cb45d5b08f'], 'GBP') }}</em>, is this correct?",
+                            "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, the total turnover was <em>{{ format_currency(answers['answer06c497b8-4f83-44eb-8390-d6cb45d5b08f'], 'GBP') }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-9c16f830-53d7-4d70-aa7f-3d2dd3ce46f6",
@@ -318,9 +328,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-9c16f830-53d7-4d70-aa7f-3d2dd3ce46f6",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -338,22 +346,24 @@
             "id": "section205164d0-80a5-4e24-9415-ec24907fb816",
             "groups": [{
                 "id": "group205164d0-80a5-4e24-9415-ec24907fb816",
-                "title": "Employees",
+                "title": "",
                 "blocks": [{
                         "id": "block80516743-aece-44e6-a492-3934a7e29c2b",
                         "type": "Question",
                         "questions": [{
                             "id": "question80516743-aece-44e6-a492-3934a7e29c2b",
                             "title": "On {{ metadata['employment_date'] | format_date }}, what was the number of employees for {{ metadata['ru_name'] }}?",
-                            "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
+                            "description": "<p>An employee is anyone aged 16 years or over who is working directly for the business.</p><p>They may be paid direct from the business, from elsewhere within the wider group, or by an external payroll provider on behalf of the company. If your business uses a central payroll to pay employees who work within the wider group, only include employees working directly for the business.</p>",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
                                         "list": [
-                                            "all workers paid directly from this business's payroll(s)",
-                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                            "full-time (over 30 hours a week) and part-time (30 hours or less) employees aged 16 years and over. This includes individuals working from home and those temporarily absent but still employed, for example those on parental leave or sick leave",
+                                            "those on apprenticeships or training schemes",
+                                            "directors and working owners paid via PAYE",
+                                            "employees without guaranteed hours, for example those on zero hour contracts, who worked on this date"
                                         ]
                                     },
                                     {
@@ -361,11 +371,11 @@
                                     },
                                     {
                                         "list": [
-                                            "working owners who are not paid via PAYE",
-                                            "agency workers paid directly from the agency payroll",
+                                            "workers paid by an employment agency, for example consultants and contingent labour",
                                             "voluntary workers",
                                             "former employees only receiving a pension",
-                                            "self-employed workers"
+                                            "self-employed workers",
+                                            "directors and working owners who are not paid via PAYE"
                                         ]
                                     }
                                 ]
@@ -373,7 +383,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "Number",
                                 "label": "Total number of employees",
                                 "description": "",
@@ -410,19 +420,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-80516743-aece-44e6-a492-3934a7e29c2b",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "group": "group553b5f60-44f5-432f-938a-4144306c82ea",
-                                    "when": [{
-                                        "id": "answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227",
-                                        "condition": "equals",
-                                        "value": 0
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -431,14 +429,7 @@
                                     "block": "blockdeb9c618-409b-47fc-a55e-5a0a95cbad67"
                                 }
                             }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "id": "answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227",
-                                "condition": "greater than",
-                                "value": 0
-                            }]
-                        }]
+                        ]
                     },
                     {
                         "id": "blockdeb9c618-409b-47fc-a55e-5a0a95cbad67",
@@ -452,8 +443,10 @@
                                     },
                                     {
                                         "list": [
-                                            "all workers paid directly from this business's payroll(s)",
-                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                            "full-time (over 30 hours a week) and part-time (30 hours or less) employees aged 16 years and over. This includes individuals working from home and those temporarily absent but still employed, for example those on parental leave or sick leave",
+                                            "those on apprenticeships or training schemes",
+                                            "directors and working owners paid via PAYE",
+                                            "employees without guaranteed hours, for example those on zero hour contracts, who worked on this date"
                                         ]
                                     },
                                     {
@@ -461,11 +454,11 @@
                                     },
                                     {
                                         "list": [
-                                            "working owners who are not paid via PAYE",
-                                            "agency workers paid directly from the agency payroll",
+                                            "workers paid by an employment agency, for example consultants and contingent labour",
                                             "voluntary workers",
                                             "former employees only receiving a pension",
-                                            "self-employed workers"
+                                            "self-employed workers",
+                                            "directors and working owners who are not paid via PAYE"
                                         ]
                                     }
                                 ]
@@ -541,32 +534,16 @@
                                 }
                             ],
                             "calculations": [{
-                                    "calculation_type": "sum",
-                                    "answers_to_calculate": [
-                                        "answercc4096e3-ceda-4ae9-aabf-6f44b81008db",
-                                        "answere9d8c83d-9ea0-493b-99bb-d7cb37d872b3",
-                                        "answer14d0b50e-4f12-4435-8727-d701d3d40fc7",
-                                        "answeredb8bcb5-73c8-44aa-8790-f1b66376fe15"
-                                    ],
-                                    "conditions": [
-                                        "equals"
-                                    ],
-                                    "value": 0
-                                },
-                                {
-                                    "calculation_type": "sum",
-                                    "answers_to_calculate": [
-                                        "answercc4096e3-ceda-4ae9-aabf-6f44b81008db",
-                                        "answere9d8c83d-9ea0-493b-99bb-d7cb37d872b3",
-                                        "answer14d0b50e-4f12-4435-8727-d701d3d40fc7",
-                                        "answeredb8bcb5-73c8-44aa-8790-f1b66376fe15"
-                                    ],
-                                    "conditions": [
-                                        "equals"
-                                    ],
-                                    "answer_id": "answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227"
-                                }
-                            ]
+                                "calculation_type": "sum",
+                                "answers_to_calculate": [
+                                    "answercc4096e3-ceda-4ae9-aabf-6f44b81008db",
+                                    "answere9d8c83d-9ea0-493b-99bb-d7cb37d872b3",
+                                    "answer14d0b50e-4f12-4435-8727-d701d3d40fc7",
+                                    "answeredb8bcb5-73c8-44aa-8790-f1b66376fe15"
+                                ],
+                                "conditions": ["equals"],
+                                "answer_id": "answer5abb6f1f-9cc5-47ac-afa5-354a7fbb9227"
+                            }]
                         }],
                         "skip_conditions": [{
                             "when": [{
@@ -583,7 +560,7 @@
             "id": "section553b5f60-44f5-432f-938a-4144306c82ea",
             "groups": [{
                     "id": "group553b5f60-44f5-432f-938a-4144306c82ea",
-                    "title": "Comments",
+                    "title": "",
                     "blocks": [{
                         "id": "blockdfe7f9e8-abbc-456f-9c2c-768d4febd198",
                         "type": "Question",
