@@ -380,6 +380,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
+                                "default": 0,
                                 "currency": "GBP"
                             }]
                         }]
@@ -486,6 +487,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
+                                "default": 0,
                                 "currency": "GBP"
                             }]
                         }]
@@ -526,6 +528,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
+                                "default": 0,
                                 "currency": "GBP"
                             }]
                         }]
@@ -568,6 +571,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
+                                "default": 0,
                                 "currency": "GBP"
                             }]
                         }]
@@ -595,6 +599,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
+                                "default": 0,
                                 "currency": "GBP",
                                 "guidance": {
                                     "show_guidance": "Show household goods to include",
@@ -649,6 +654,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
+                                "default": 0,
                                 "currency": "GBP",
                                 "guidance": {
                                     "show_guidance": "Show sale items to include and exclude",
@@ -726,6 +732,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
+                                "default": 0,
                                 "currency": "GBP"
                             }]
                         }]
@@ -770,6 +777,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
+                                "default": 0,
                                 "currency": "GBP"
                             }]
                         }]

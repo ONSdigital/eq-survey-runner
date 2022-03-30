@@ -1,11 +1,10 @@
-{
     "eq_id": "1_0102",
     "form_type": "0102",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "survey_id": "023",
-    "title": "Monthly Business Survey - Retail Sales Index",
+    "title": "JH Copy of Monthly Business Survey - Retail Sales Index",
     "sections": [{
             "id": "sectione950c0fb-44a1-4dbc-acda-6e92bb31d8d5",
             "groups": [{
@@ -242,6 +241,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
+                                "default": 0,
                                 "currency": "GBP"
                             }]
                         }]
@@ -339,6 +339,7 @@
                                     "exclusive": false
                                 },
                                 "decimal_places": 2,
+                                "default": 0,
                                 "currency": "GBP"
                             }]
                         }]
@@ -442,4 +443,4 @@
         "enabled": true,
         "duration": 900
     }
-}
+    }
