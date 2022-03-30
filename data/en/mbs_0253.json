@@ -159,9 +159,7 @@
                                     "when": [{
                                         "id": "answer4d55ff07-14ea-405a-8220-cc5bb3f3d87d",
                                         "condition": "contains any",
-                                        "values": [
-                                            "Yes"
-                                        ]
+                                        "values": ["Yes"]
                                     }]
                                 }
                             },
@@ -324,9 +322,7 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-043c1a68-a000-45cd-b8d0-fdcce2da2448",
                                         "condition": "contains any",
-                                        "values": [
-                                            "No I need to change this"
-                                        ]
+                                        "values": ["No I need to change this"]
                                     }]
                                 }
                             },
@@ -464,9 +460,7 @@
                                         "answerb7ee1257-e740-4e85-bbda-fad42ae70c27",
                                         "answer7c697777-7ec9-485c-9825-3ce60f7ed7cb"
                                     ],
-                                    "conditions": [
-                                        "equals"
-                                    ],
+                                    "conditions": ["equals"],
                                     "value": 0
                                 },
                                 {
@@ -477,9 +471,7 @@
                                         "answerb7ee1257-e740-4e85-bbda-fad42ae70c27",
                                         "answer7c697777-7ec9-485c-9825-3ce60f7ed7cb"
                                     ],
-                                    "conditions": [
-                                        "equals"
-                                    ],
+                                    "conditions": ["equals"],
                                     "answer_id": "answer60e59706-8fa4-4fee-bc19-622a1b71f2b5"
                                 }
                             ]
@@ -558,6 +550,10 @@
         },
         {
             "name": "ref_p_end_date",
+            "validator": "date"
+        },
+        {
+            "name": "employment_date",
             "validator": "date"
         }
     ],
