@@ -1,5 +1,5 @@
 {
-    "eq_id": "mbs",
+    "eq_id": "mbs_0253",
     "form_type": "0253",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -159,7 +159,9 @@
                                     "when": [{
                                         "id": "answer4d55ff07-14ea-405a-8220-cc5bb3f3d87d",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -254,7 +256,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question043c1a68-a000-45cd-b8d0-fdcce2da2448",
-                            "title": "On {{ metadata['employment_date'] | format_date }} what was the number of employees for {{ metadata['ru_name'] }}?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, what was the number of employees for {{ metadata['ru_name'] }}?",
                             "description": "<p>An employee is anyone aged 16 years or over who is working directly for the business.</p><p>They may be paid direct from the business, from elsewhere within the wider group, or by an external payroll provider on behalf of the company. If your business uses a central payroll to pay employees who work within the wider group, only include employees working directly for the business.</p>",
                             "guidance": {
                                 "content": [{
@@ -299,7 +301,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-043c1a68-a000-45cd-b8d0-fdcce2da2448",
-                            "title": "On {{ metadata['employment_date'] | format_date }}, the number of employees for  was <em>{{ answers['answer60e59706-8fa4-4fee-bc19-622a1b71f2b5'] | format_number }}</em>, is this correct?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, the number of employees for {{ metadata['ru_name'] }} was <em>{{ answers['answer60e59706-8fa4-4fee-bc19-622a1b71f2b5'] | format_number }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-043c1a68-a000-45cd-b8d0-fdcce2da2448",
@@ -322,7 +324,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-043c1a68-a000-45cd-b8d0-fdcce2da2448",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -460,7 +464,9 @@
                                         "answerb7ee1257-e740-4e85-bbda-fad42ae70c27",
                                         "answer7c697777-7ec9-485c-9825-3ce60f7ed7cb"
                                     ],
-                                    "conditions": ["equals"],
+                                    "conditions": [
+                                        "equals"
+                                    ],
                                     "value": 0
                                 },
                                 {
@@ -471,7 +477,9 @@
                                         "answerb7ee1257-e740-4e85-bbda-fad42ae70c27",
                                         "answer7c697777-7ec9-485c-9825-3ce60f7ed7cb"
                                     ],
-                                    "conditions": ["equals"],
+                                    "conditions": [
+                                        "equals"
+                                    ],
                                     "answer_id": "answer60e59706-8fa4-4fee-bc19-622a1b71f2b5"
                                 }
                             ]
