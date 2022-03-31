@@ -194,7 +194,9 @@
                                     "when": [{
                                         "id": "answerc69f3cfc-54f5-4d93-ae34-84072da99bac",
                                         "condition": "contains any",
-                                        "values": ["Yes"]
+                                        "values": [
+                                            "Yes"
+                                        ]
                                     }]
                                 }
                             },
@@ -332,7 +334,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-24d32f46-5abb-4278-96ca-567a720cd693",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -440,7 +444,7 @@
                         "type": "ConfirmationQuestion",
                         "questions": [{
                             "id": "questionconfirmation-page-for-46918f5e-3fad-4aa2-a898-ce2c9ff1ac27",
-                            "title": "On {{ metadata['employment_date'] | format_date }}, the number of employees for was <em>{{ answers['answer975d841b-3dc2-48b8-b4e1-57081c1b4efb'] | format_number }}</em>, is this correct?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, the number of employees for {{ metadata['ru_name'] }} was <em>{{ answers['answer975d841b-3dc2-48b8-b4e1-57081c1b4efb'] | format_number }}</em>, is this correct?",
                             "type": "General",
                             "answers": [{
                                 "id": "answerconfirmation-answer-for-46918f5e-3fad-4aa2-a898-ce2c9ff1ac27",
@@ -463,7 +467,9 @@
                                     "when": [{
                                         "id": "answerconfirmation-answer-for-46918f5e-3fad-4aa2-a898-ce2c9ff1ac27",
                                         "condition": "contains any",
-                                        "values": ["No I need to change this"]
+                                        "values": [
+                                            "No I need to change this"
+                                        ]
                                     }]
                                 }
                             },
@@ -601,7 +607,9 @@
                                         "answerd4ed1b9e-9cc8-4685-a7c6-b8502ed4101a",
                                         "answer0bd3ce48-5d9b-4298-94f0-651b474da82d"
                                     ],
-                                    "conditions": ["equals"],
+                                    "conditions": [
+                                        "equals"
+                                    ],
                                     "value": 0
                                 },
                                 {
@@ -612,7 +620,9 @@
                                         "answerd4ed1b9e-9cc8-4685-a7c6-b8502ed4101a",
                                         "answer0bd3ce48-5d9b-4298-94f0-651b474da82d"
                                     ],
-                                    "conditions": ["equals"],
+                                    "conditions": [
+                                        "equals"
+                                    ],
                                     "answer_id": "answer975d841b-3dc2-48b8-b4e1-57081c1b4efb"
                                 }
                             ]
