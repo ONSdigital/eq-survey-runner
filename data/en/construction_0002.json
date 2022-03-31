@@ -11,7 +11,7 @@
             "title": "How to complete and reporting period",
             "groups": [{
                 "id": "groupb1d09333-c7fd-464a-a840-f86056fb32cf",
-                "title": "",
+                "title": "How to complete and reporting period",
                 "blocks": [{
                         "type": "Introduction",
                         "id": "introduction-block",
@@ -19,6 +19,9 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
+                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><p><strong>Important notice - changes to guidance</strong></p><p>Additional information has been added about which trades are included in the survey and how to calculate value of work. For further guidance, read the introductory pages and guidance that accompanies the questions.</p><p></p><p></p><p><strong>Coronavirus (COVID-19) guidance</strong></p><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period: </strong>select &#x27;yes, you can provide figures&#x27; and enter value of work, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
+                                },
+                                {
                                     "list": [
                                         "Data should relate to all sites in England, Scotland and Wales but excludes Northern Ireland.",
                                         "You can provide informed estimates if actual figures are not available.",
@@ -26,9 +29,6 @@
                                         "Your business has been selected from a list of businesses in the UK that are registered for VAT, PAYE or with Companies House.",
                                         "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy."
                                     ]
-                                },
-                                {
-                                    "description": "<strong>If you have closed for all, or some, of the period: </strong>select 'yes, you can provide figures' and enter value of work, even if this is '0'."
                                 }
                             ]
                         }],
@@ -36,9 +36,6 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                    "description": "Explain figures in the comments section to minimise us contacting you and to help us tell an industry story."
-                                },
-                                {
                                     "description": "<strong>Allied trades include:</strong>"
                                 },
                                 {
@@ -223,7 +220,7 @@
             "title": "Value of work",
             "groups": [{
                 "id": "group7e41e171-26eb-42c0-99ef-b34fa447c363",
-                "title": "",
+                "title": "Value of work",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group7e41e171-26eb-42c0-99ef-b34fa447c363-introduction",
@@ -362,7 +359,7 @@
             "title": "Housing work",
             "groups": [{
                 "id": "group95c68629-8efd-4913-b465-41b686719d32",
-                "title": "",
+                "title": "Housing work",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group95c68629-8efd-4913-b465-41b686719d32-introduction",
@@ -727,7 +724,7 @@
             "title": "Infrastructure",
             "groups": [{
                 "id": "group551ac31e-ba5e-4161-a93e-92a06c53c6ad",
-                "title": "",
+                "title": "Infrastructure",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group551ac31e-ba5e-4161-a93e-92a06c53c6ad-introduction",
@@ -957,7 +954,7 @@
             "title": "Non-housing, excluding infrastructure",
             "groups": [{
                 "id": "group6cc8656d-6877-4685-b9eb-f024a9ae1898",
-                "title": "",
+                "title": "Non-housing, excluding infrastructure",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group6cc8656d-6877-4685-b9eb-f024a9ae1898-introduction",
@@ -1565,30 +1562,28 @@
             "title": "Employment",
             "groups": [{
                 "id": "group8374314b-96e2-4d12-9a92-c4c2ee6a1b7f",
-                "title": "",
+                "title": "Employment",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "group8374314b-96e2-4d12-9a92-c4c2ee6a1b7f-introduction",
                         "title": "Employment",
-                        "description": "<p>This section asks for information on the number of employees, and hours worked split by gender.</p><p><strong>Include:</strong></p><ul><li>full-time (over 30 hours a week) and part-time (30 hours or less) employees aged 16 years and over. This includes individuals working from home and those temporarily absent but still employed, for example those on parental leave or sick leave</li><li>those on apprenticeships or training schemes</li><li>directors and working owners paid via PAYE</li><li>employees without guaranteed hours, for example those on zero hour contracts, who worked on this date</li></ul><p><strong>Exclude:</strong></p><ul><li>workers paid by an employment agency, for example consultants and contingent labour</li><li>voluntary workers</li><li>former employees only receiving a pension</li><li>self-employed workers, for example sub-contractors</li><li>directors and working owners who are not paid via PAYE</li></ul>"
+                        "description": "<p>This section asks for information on the number of employees, and hours worked split by gender.</p><p><strong>Include:</strong></p><ul><li>all workers paid directly from this business’s payroll(s)</li><li>those temporarily absent but still being paid, for example on maternity leave</li></ul><p><strong>Exclude:</strong></p><ul><li>subcontractors</li><li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving a pension</li><li>self-employed workers</li><li>working owners who are not paid via PAYE</li></ul>"
                     },
                     {
                         "id": "block26537570-11bc-4ece-a0c7-aeb2fb65f9ee",
                         "type": "Question",
                         "questions": [{
                             "id": "question26537570-11bc-4ece-a0c7-aeb2fb65f9ee",
-                            "title": "On {{ metadata['employment_date'] | format_date }}, what was the number of employees for {{ metadata['ru_name'] }}?",
-                            "description": "<p>An employee is anyone aged 16 years or over who is working directly for the business.</p><p>They may be paid direct from the business, from elsewhere within the wider group, or by an external payroll provider on behalf of the company. If your business uses a central payroll to pay employees who work within the wider group, only include employees working directly for the business.</p>",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, what was the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
+                            "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job, or being on a training scheme.</p>",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
                                     },
                                     {
                                         "list": [
-                                            "full-time (over 30 hours a week) and part-time (30 hours or less) employees aged 16 years and over. This includes individuals working from home and those temporarily absent but still employed, for example those on parental leave or sick leave",
-                                            "those on apprenticeships or training schemes",
-                                            "directors and working owners paid via PAYE",
-                                            "employees without guaranteed hours, for example those on zero hour contracts, who worked on this date"
+                                            "all workers paid directly from this business’s payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
                                         ]
                                     },
                                     {
@@ -1596,11 +1591,11 @@
                                     },
                                     {
                                         "list": [
-                                            "workers paid by an employment agency, for example consultants and contingent labour",
+                                            "agency workers paid directly from the agency payroll",
                                             "voluntary workers",
                                             "former employees only receiving a pension",
-                                            "self-employed workers, for example sub-contractors",
-                                            "directors and working owners who are not paid via PAYE"
+                                            "self-employed workers",
+                                            "working owners who are not paid via PAYE"
                                         ]
                                     }
                                 ]
@@ -1668,10 +1663,8 @@
                                     },
                                     {
                                         "list": [
-                                            "full-time (over 30 hours a week) and part-time (30 hours or less) employees aged 16 years and over. This includes individuals working from home and those temporarily absent but still employed, for example those on parental leave or sick leave",
-                                            "those on apprenticeships or training schemes",
-                                            "directors and working owners paid via PAYE",
-                                            "employees without guaranteed hours, for example those on zero hour contracts, who worked on this date"
+                                            "all workers paid directly from this business’s payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
                                         ]
                                     },
                                     {
@@ -1679,11 +1672,11 @@
                                     },
                                     {
                                         "list": [
-                                            "workers paid by an employment agency, for example consultants and contingent labour",
+                                            "agency workers paid directly from the agency payroll",
                                             "voluntary workers",
                                             "former employees only receiving a pension",
-                                            "self-employed workers, for example sub-contractors",
-                                            "directors and working owners who are not paid via PAYE"
+                                            "self-employed workers",
+                                            "working owners who are not paid via PAYE"
                                         ]
                                     }
                                 ]
@@ -1782,7 +1775,7 @@
             "title": "Comments",
             "groups": [{
                     "id": "groupe9d26530-ad8f-4527-b09c-afacfa0c820a",
-                    "title": "",
+                    "title": "Comments",
                     "blocks": [{
                         "id": "block37d73422-28cc-4beb-99ce-b099e612f6af",
                         "type": "Question",
