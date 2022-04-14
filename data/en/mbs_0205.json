@@ -18,14 +18,14 @@
                             "type": "Basic",
                             "id": "primary",
                             "content": [{
-                                    "description": "<div class='panel panel--simple panel--info'><div class='panel__body'><h2><strong>Coronavirus (COVID-19) guidance</strong></h2><p><strong>Please still complete this survey even if your business has been closed.</strong></p><p><strong>If you have closed for all, or some, of the period</strong>: select &#x27;yes, you can provide figures&#x27; and enter turnover, even if this is &#x27;0&#x27;.</p><p><strong>Explain figures</strong> in the comments section to minimise us contacting you and to help us tell an industry story.</p></div></div>"
-                                },
-                                {
                                     "list": [
                                         "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
                                         "You can provide informed estimates if actual figures are not available.",
                                         "We will treat your data securely and confidentially."
                                     ]
+                                },
+                                {
+                                    "description": "<strong>If you have closed for all, or some, of the period</strong>: select 'yes, you can provide figures' and enter turnover, even if this is '0'."
                                 }
                             ]
                         }],
@@ -40,6 +40,9 @@
                                 },
                                 {
                                     "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                                },
+                                {
+                                    "description": "Explain figures in the comments section to minimise us contacting you and to help us tell an industry story."
                                 }
                             ],
                             "questions": [{
