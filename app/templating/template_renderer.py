@@ -29,6 +29,7 @@ class TemplateRenderer:
         env.globals['format_address_list'] = filters.format_address_list
         env.globals['format_conditional_date'] = filters.format_conditional_date
         env.globals['format_currency'] = filters.format_currency
+        env.globals['format_percentage'] = filters.format_percentage
         env.globals['format_unit'] = filters.format_unit
         env.globals['format_date_range'] = filters.format_date_range
         env.globals['format_date_range_no_repeated_month_year'] = filters.format_date_range_no_repeated_month_year
