@@ -6,207 +6,180 @@
     "data_version": "0.0.1",
     "survey_id": "123",
     "title": "Benchmark test checkboxes",
-    "sections": [
-        {
-            "id": "default-section",
-            "groups": [
-                {
-                    "id": "checkboxes",
-                    "title": "",
-                    "blocks": [
-                        {
-                            "id": "mandatory-checkbox",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "mandatory-checkbox-question",
-                                    "title": "Which pizza toppings would you like?",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "mandatory-checkbox-answer",
-                                            "mandatory": true,
-                                            "type": "Checkbox",
-                                            "label": "",
-                                            "description": "",
-                                            "options": [
-                                                {
-                                                    "label": "None",
-                                                    "value": "None",
-                                                    "q_code": "1"
-                                                },
-                                                {
-                                                    "label": "Ham & Cheese",
-                                                    "value": "Ham & Cheese",
-                                                    "q_code": "2"
-                                                },
-                                                {
-                                                    "label": "Ham",
-                                                    "value": "Ham",
-                                                    "q_code": "3"
-                                                },
-                                                {
-                                                    "label": "Pineapple",
-                                                    "value": "Pineapple",
-                                                    "q_code": "4"
-                                                },
-                                                {
-                                                    "label": "Tuna",
-                                                    "value": "Tuna",
-                                                    "q_code": "5"
-                                                },
-                                                {
-                                                    "label": "Pepperoni",
-                                                    "value": "Pepperoni",
-                                                    "q_code": "6"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "value": "Other",
-                                                    "q_code": "7",
-                                                    "detail_answer": {
-                                                        "label": "Choose any other topping",
-                                                        "type": "TextField",
-                                                        "id": "other-answer-mandatory",
-                                                        "mandatory": true
-                                                    }
-                                                }
-                                            ]
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+                "id": "checkboxes",
+                "title": "",
+                "blocks": [{
+                        "id": "mandatory-checkbox",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "mandatory-checkbox-question",
+                            "title": "Which pizza toppings would you like?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "mandatory-checkbox-answer",
+                                "mandatory": true,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "None",
+                                        "value": "None",
+                                        "q_code": "1"
+                                    },
+                                    {
+                                        "label": "Ham & Cheese",
+                                        "value": "Ham & Cheese",
+                                        "q_code": "2"
+                                    },
+                                    {
+                                        "label": "Ham",
+                                        "value": "Ham",
+                                        "q_code": "3"
+                                    },
+                                    {
+                                        "label": "Pineapple",
+                                        "value": "Pineapple",
+                                        "q_code": "4"
+                                    },
+                                    {
+                                        "label": "Tuna",
+                                        "value": "Tuna",
+                                        "q_code": "5"
+                                    },
+                                    {
+                                        "label": "Pepperoni",
+                                        "value": "Pepperoni",
+                                        "q_code": "6"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "value": "Other",
+                                        "q_code": "7",
+                                        "detail_answer": {
+                                            "label": "Choose any other topping",
+                                            "type": "TextField",
+                                            "id": "other-answer-mandatory",
+                                            "mandatory": true
                                         }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "non-mandatory-checkbox",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "non-mandatory-checkbox-question",
-                                    "title": "What extra toppings would you like?",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "non-mandatory-checkbox-answer",
-                                            "mandatory": false,
-                                            "type": "Checkbox",
-                                            "label": "",
-                                            "description": "",
-                                            "options": [
-                                                {
-                                                    "label": "None",
-                                                    "value": "None",
-                                                    "q_code": "8"
-                                                },
-                                                {
-                                                    "label": "Cheese",
-                                                    "value": "Cheese",
-                                                    "q_code": "9"
-                                                },
-                                                {
-                                                    "label": "Ham",
-                                                    "value": "Ham",
-                                                    "q_code": "10"
-                                                },
-                                                {
-                                                    "label": "Pineapple",
-                                                    "value": "Pineapple",
-                                                    "q_code": "11"
-                                                },
-                                                {
-                                                    "label": "Tuna",
-                                                    "value": "Tuna",
-                                                    "q_code": "12"
-                                                },
-                                                {
-                                                    "label": "Pepperoni",
-                                                    "value": "Pepperoni",
-                                                    "q_code": "13"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "value": "Other",
-                                                    "q_code": "14",
-                                                    "detail_answer": {
-                                                        "label": "Choose any other topping",
-                                                        "type": "TextField",
-                                                        "id": "other-answer-non-mandatory",
-                                                        "mandatory": false
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "single-checkbox",
-                            "type": "Question",
-                            "questions": [
-                                {
-                                    "id": "single-checkbox-question",
-                                    "title": "Is this an estimate?",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "single-checkbox-answer",
-                                            "mandatory": false,
-                                            "type": "Checkbox",
-                                            "label": "",
-                                            "description": "",
-                                            "options": [
-                                                {
-                                                    "label": "Estimate",
-                                                    "value": "Estimate",
-                                                    "q_code": "15"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": "confirmation-group",
-                    "title": "confirmation",
-                    "blocks": [
-                        {
-                            "title": "You are now ready to submit this survey",
-                            "type": "Confirmation",
-                            "id": "confirmation",
-                            "description": "",
-                            "questions": [
-                                {
-                                    "id": "ready-to-submit-completed-question",
-                                    "title": "Submission",
-                                    "type": "Content",
-                                    "guidance": {
-                                        "content": [
-                                            {
-                                                "list": [
-                                                    "You will not be able to access or change your answers on submitting the questionnaire",
-                                                    "If you wish to review your answers please select the relevant completed sections"
-                                                ]
-                                            }
-                                        ]
                                     }
-                                }
-                            ]
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "non-mandatory-checkbox",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "non-mandatory-checkbox-question",
+                            "title": "What extra toppings would you like?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "non-mandatory-checkbox-answer",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "None",
+                                        "value": "None",
+                                        "q_code": "8"
+                                    },
+                                    {
+                                        "label": "Cheese",
+                                        "value": "Cheese",
+                                        "q_code": "9"
+                                    },
+                                    {
+                                        "label": "Ham",
+                                        "value": "Ham",
+                                        "q_code": "10"
+                                    },
+                                    {
+                                        "label": "Pineapple",
+                                        "value": "Pineapple",
+                                        "q_code": "11"
+                                    },
+                                    {
+                                        "label": "Tuna",
+                                        "value": "Tuna",
+                                        "q_code": "12"
+                                    },
+                                    {
+                                        "label": "Pepperoni",
+                                        "value": "Pepperoni",
+                                        "q_code": "13"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "value": "Other",
+                                        "q_code": "14",
+                                        "detail_answer": {
+                                            "label": "Choose any other topping",
+                                            "type": "TextField",
+                                            "id": "other-answer-non-mandatory",
+                                            "mandatory": false
+                                        }
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "single-checkbox",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "single-checkbox-question",
+                            "title": "Is this an estimate?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "single-checkbox-answer",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                    "label": "Estimate",
+                                    "value": "Estimate",
+                                    "q_code": "15"
+                                }]
+                            }]
+                        }]
+                    }
+                ]
+            },
+            {
+                "id": "confirmation-group",
+                "title": "confirmation",
+                "blocks": [{
+                    "title": "You are now ready to submit this survey",
+                    "type": "Confirmation",
+                    "id": "confirmation",
+                    "description": "",
+                    "questions": [{
+                        "id": "ready-to-submit-completed-question",
+                        "title": "Submission",
+                        "type": "Content",
+                        "guidance": {
+                            "content": [{
+                                "list": [
+                                    "You will not be able to access or change your answers on submitting the questionnaire",
+                                    "If you wish to review your answers please select the relevant completed sections"
+                                ]
+                            }]
                         }
-                    ]
-                }
-            ]
-        }
-    ],
+                    }]
+                }]
+            }
+        ]
+    }],
     "theme": "default",
     "navigation": {
         "visible": false
     },
-    "metadata": [
-        {
+    "metadata": [{
             "name": "user_id",
             "validator": "string"
         },
