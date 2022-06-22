@@ -381,7 +381,7 @@
                         "questions": [{
                             "id": "questionb3fcca67-a267-4ac4-98c3-7bb96c537546",
                             "title": "What are your business’s <em>expectations</em> for turnover in August 2022?",
-                            "description": "<p>When considering expectations compare to your business's current turnover.</p>",
+                            "description": "<p>When considering expectations, compare to your business's current turnover.</p>",
                             "type": "General",
                             "answers": [{
                                 "id": "answeracfc1290-9429-464b-886f-9fe8a52d1919",
@@ -537,7 +537,7 @@
                         "questions": [{
                             "id": "question2e006c3f-8ff9-44e5-bbcd-696ddc4ba90f",
                             "title": "What are your business's expectations for the prices of goods or services sold in <em>August 2022</em>?",
-                            "description": "<p>When considering expectations compare to current prices of goods or services.</p>",
+                            "description": "<p>When considering expectations, compare to your business's current prices of goods or services.</p>",
                             "guidance": {
                                 "content": [{
                                     "description": "Exclude seasonal changes"
@@ -1620,7 +1620,7 @@
                         "questions": [{
                             "id": "question2935dc7f-55c2-4da8-afbe-7f7cb21964aa",
                             "title": "What are your business’s expectations for the number of employees in <em>August 2022</em>?",
-                            "description": "<p>Informed estimates are acceptable.</p><p>If you are a sole trader, please base your answers on your own working arrangement.</p><p>When considering expectations compare to your business's current number of employees.</p>",
+                            "description": "<p>Informed estimates are acceptable.</p><p>If you are a sole trader, please base your answers on your own working arrangement.</p><p>When considering expectations, compare to your business's current number of employees.</p>",
                             "guidance": {
                                 "content": [{
                                     "description": "Exclude seasonal changes"
