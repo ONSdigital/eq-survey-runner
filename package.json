@@ -132,7 +132,7 @@
     "dependencies": {
         "a11y-dialog": "^3.0.2",
         "eslint-plugin-import": "^2.7.0",
-        "eslint-plugin-node": "^5.1.1",
+        "eslint-plugin-node": "^5.2.1",
         "events": "^1.1.1",
         "ie9-oninput-polyfill": "^1.1.1",
         "lodash": "^4.17.5",
