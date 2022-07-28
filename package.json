@@ -136,6 +136,6 @@
         "events": "^1.1.1",
         "ie9-oninput-polyfill": "^1.1.1",
         "lodash": "^4.17.5",
-        "whatwg-fetch": "^2.0.2"
+        "whatwg-fetch": "^2.0.4"
     }
 }
