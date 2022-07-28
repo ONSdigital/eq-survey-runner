@@ -40,10 +40,10 @@ JSONStream@^1.0.3:
     jsonparse "^1.2.0"
     through ">=2.2.7 <3"
 
-a11y-dialog@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/a11y-dialog/-/a11y-dialog-3.0.2.tgz#9b9a4e91d87a756490a36707e210c259d1d83fec"
-  integrity sha512-4R1yYQc/ZBuapi1PSq0R7aqecYiyKiIUxS0W8ZmwAX8Xe2PnQk+9GJeS6bdNJDM7TG4gfKKOjAj7rG8DNzFjvg==
+a11y-dialog@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/a11y-dialog/-/a11y-dialog-3.1.0.tgz#e986eb35748c9fd9f1374d02fa5d30dff1a373ec"
+  integrity sha512-T69RZdOR+8FZ9Vw4ScYVTu3F8oslZKKz4+nxvgJM2AMBuIZ+ejcmCcm/AMjXaxP6E3Es4u4cvt0qT/09UKHoxA==
 
 abbrev@1, abbrev@1.0.x:
   version "1.0.9"
