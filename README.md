@@ -1,5 +1,9 @@
 # eQ Survey Runner
-![EQ functional tests](https://github.com/ONSdigital/eq-survey-runner/workflows/EQ%20functional%20tests/badge.svg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/82e63fc5bc5c43e8ba1ba6d13bfb4243)](https://www.codacy.com/app/ONSDigital/eq-survey-runner)
+![EQ functional tests](https://github.com/ONSdigital/eq-survey-runner/workflows/EQ%20functional%20tests/badge.svg)
+
+**IMPORTANT! This repository is archived and is no longer actively maintained.**
+
+If you're looking for the latest version, please check out the successor project: [eQ Questionnaire Runner](https://github.com/ONSdigital/eq-questionnaire-runner).
 
 ## Run with Docker
 Install Docker for your system: https://www.docker.com/
